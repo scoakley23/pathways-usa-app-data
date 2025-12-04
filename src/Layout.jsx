@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import { BookOpen, Mic, CheckCircle, LogOut, Menu, X, Settings } from 'lucide-react';
+import { BookOpen, Mic, CheckCircle, LogOut, Menu, X, Settings, GraduationCap } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { base44 } from '@/api/base44Client';
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -27,6 +27,7 @@ export default function Layout({ children }) {
     { label: 'Home', path: '/', icon: BookOpen },
     { label: 'Practice', path: '/Practice', icon: Mic },
     { label: 'Progress', path: '/Progress', icon: CheckCircle },
+    { label: 'Tutor Portal', path: '/Tutor', icon: GraduationCap },
   ];
 
   // Add admin link if user is admin
