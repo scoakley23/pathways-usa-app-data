@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import { base44 } from '@/api/base44Client';
-import confetti from 'canvas-confetti';
+// confetti removed to avoid external dependency
 
 export default function DictationCard({ sentence, onComplete, onNext }) {
   const [stage, setStage] = useState('listen'); // listen, check, result
@@ -47,12 +47,7 @@ export default function DictationCard({ sentence, onComplete, onNext }) {
     setStage('result');
     
     if (isCorrect) {
-      confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 },
-        colors: ['#1d4ed8', '#ef4444', '#ffffff'] // R, W, B
-      });
+      // Success animation handled by UI
       onComplete(true);
     } else {
       onComplete(false);
@@ -194,12 +189,6 @@ export default function DictationCard({ sentence, onComplete, onNext }) {
                         <X className="w-4 h-4 mr-2" /> No, I made a mistake
                       </Button>
                       <Button onClick={() => {
-                         confetti({
-                            particleCount: 100,
-                            spread: 70,
-                            origin: { y: 0.6 },
-                            colors: ['#1d4ed8', '#ef4444', '#ffffff']
-                          });
                         onComplete(true);
                       }} className="bg-green-600 hover:bg-green-700">
                         <Check className="w-4 h-4 mr-2" /> Yes, it matches
