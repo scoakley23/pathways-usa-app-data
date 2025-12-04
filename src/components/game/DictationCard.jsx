@@ -1,18 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Volume2, Eye, Check, X, ArrowRight, RefreshCw, Edit3 } from 'lucide-react';
+import { Volume2, Eye, Check, X, ArrowRight, RefreshCw, Edit3, Globe, Languages, Loader2 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { base44 } from '@/api/base44Client';
-// confetti removed to avoid external dependency
 
 export default function DictationCard({ sentence, onComplete, onNext }) {
   const [stage, setStage] = useState('listen'); // listen, check, result
   const [userInput, setUserInput] = useState('');
   const [isPlaying, setIsPlaying] = useState(false);
   const [feedback, setFeedback] = useState(null); // correct, incorrect
+  const [selectedLanguage, setSelectedLanguage] = useState('');
+  const [translation, setTranslation] = useState('');
+  const [isTranslating, setIsTranslating] = useState(false);
+
+  const SUPPORTED_LANGUAGES = [
+    { code: 'es', name: 'Spanish' },
+    { code: 'ar', name: 'Arabic' },
+    { code: 'am', name: 'Amharic' },
+    { code: 'pt', name: 'Portuguese' }
+  ];
 
   // Reset state when sentence changes
   useEffect(() => {
@@ -20,7 +30,37 @@ export default function DictationCard({ sentence, onComplete, onNext }) {
     setUserInput('');
     setFeedback(null);
     setIsPlaying(false);
+    setTranslation('');
+    // Keep selected language
   }, [sentence]);
+
+  // Fetch translation when entering result stage if language is selected
+  useEffect(() => {
+    if (stage === 'result' && selectedLanguage && !translation) {
+      fetchTranslation();
+    }
+  }, [stage, selectedLanguage]);
+
+  const fetchTranslation = async () => {
+    if (!sentence || !selectedLanguage) return;
+    
+    setIsTranslating(true);
+    try {
+      const langName = SUPPORTED_LANGUAGES.find(l => l.code === selectedLanguage)?.name;
+      const prompt = `Translate the following sentence into ${langName}: "${sentence.text}". Return ONLY the translated text, nothing else.`;
+      
+      const res = await base44.integrations.Core.InvokeLLM({
+        prompt: prompt
+      });
+      
+      setTranslation(res);
+    } catch (error) {
+      console.error("Translation error", error);
+      setTranslation("Translation unavailable");
+    } finally {
+      setIsTranslating(false);
+    }
+  };
 
   const speak = () => {
     if (!sentence) return;
@@ -62,6 +102,23 @@ export default function DictationCard({ sentence, onComplete, onNext }) {
 
   return (
     <div className="w-full max-w-2xl mx-auto">
+      <div className="flex justify-end mb-4">
+        <div className="flex items-center gap-2 bg-white/50 backdrop-blur-sm p-1 rounded-lg border border-slate-200">
+          <Globe className="w-4 h-4 text-slate-500 ml-2" />
+          <Select value={selectedLanguage} onValueChange={setSelectedLanguage}>
+            <SelectTrigger className="w-[140px] h-8 text-xs border-0 bg-transparent focus:ring-0">
+              <SelectValue placeholder="Translate to..." />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="none">No Translation</SelectItem>
+              {SUPPORTED_LANGUAGES.map(lang => (
+                <SelectItem key={lang.code} value={lang.code}>{lang.name}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
+
       <Card className="bg-white shadow-xl border-0 overflow-hidden rounded-2xl">
         <div className="h-2 bg-gradient-to-r from-blue-600 via-red-500 to-blue-600" />
         
@@ -152,11 +209,26 @@ export default function DictationCard({ sentence, onComplete, onNext }) {
                 animate={{ opacity: 1, scale: 1 }}
                 className="w-full space-y-8"
               >
-                <div className="bg-slate-50 rounded-xl p-8 border border-slate-200 w-full">
+                <div className="bg-slate-50 rounded-xl p-8 border border-slate-200 w-full relative overflow-hidden">
                   <p className="text-sm text-slate-500 uppercase tracking-wider font-bold mb-2">Correct Sentence</p>
-                  <h3 className="text-2xl md:text-3xl font-bold text-slate-800 leading-relaxed">
+                  <h3 className="text-2xl md:text-3xl font-bold text-slate-800 leading-relaxed mb-2">
                     {sentence.text}
                   </h3>
+                  
+                  {selectedLanguage && selectedLanguage !== 'none' && (
+                    <div className="mt-4 pt-4 border-t border-slate-200">
+                      {isTranslating ? (
+                        <div className="flex items-center justify-center gap-2 text-slate-500">
+                          <Loader2 className="w-4 h-4 animate-spin" /> Translating...
+                        </div>
+                      ) : (
+                        <div className="text-lg text-blue-700 font-medium bg-blue-50 p-3 rounded-lg inline-block animate-in fade-in">
+                          <span className="mr-2 opacity-75 text-sm uppercase tracking-wide">{SUPPORTED_LANGUAGES.find(l => l.code === selectedLanguage)?.name}:</span>
+                          {translation}
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
 
                 {feedback === 'correct' && (
