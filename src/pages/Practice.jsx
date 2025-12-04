@@ -3,7 +3,8 @@ import { base44 } from '@/api/base44Client';
 import DictationCard from '@/components/game/DictationCard';
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { Loader2, Trophy, RotateCcw } from 'lucide-react';
+import { Loader2, Trophy, RotateCcw, Zap, Star } from 'lucide-react';
+import { toast } from "sonner";
 
 export default function Practice() {
   const [sentences, setSentences] = useState([]);
@@ -36,16 +37,86 @@ export default function Practice() {
   const handleSentenceComplete = async (isCorrect) => {
     if (isCorrect) setScore(prev => prev + 1);
     
-    // Save progress if user is logged in
+    // Save progress & Update Gamification
     const user = await base44.auth.me().catch(() => null);
-    if (user && sentences[currentIndex]) {
+    if (user) {
       try {
-        await base44.entities.UserProgress.create({
-          user_email: user.email,
-          sentence_id: sentences[currentIndex].id,
-          status: isCorrect ? 'mastered' : 'practicing',
-          last_practiced: new Date().toISOString()
+        // 1. Save UserProgress
+        if (sentences[currentIndex]) {
+            await base44.entities.UserProgress.create({
+            user_email: user.email,
+            sentence_id: sentences[currentIndex].id,
+            status: isCorrect ? 'mastered' : 'practicing',
+            last_practiced: new Date().toISOString()
+            });
+        }
+
+        // 2. Update User Stats
+        let newPoints = (user.points || 0);
+        let newStreak = (user.current_streak || 0);
+        let newMaxStreak = (user.max_streak || 0);
+        let newTotalCorrect = (user.total_correct || 0);
+        let currentBadges = [...(user.badges || [])];
+        let earnedNewBadge = false;
+
+        if (isCorrect) {
+            newStreak += 1;
+            newTotalCorrect += 1;
+            if (newStreak > newMaxStreak) newMaxStreak = newStreak;
+            
+            // Points Calculation
+            const basePoints = 10;
+            const streakBonus = Math.min(newStreak, 10); // Cap bonus at 10
+            newPoints += basePoints + streakBonus;
+        } else {
+            newStreak = 0;
+        }
+
+        // 3. Check Badges
+        const checkBadge = (id, condition) => {
+            if (condition && !currentBadges.includes(id)) {
+                currentBadges.push(id);
+                earnedNewBadge = true;
+                toast.success(`Badge Unlocked: ${id.replace('_', ' ').toUpperCase()}!`);
+            }
+        };
+
+        checkBadge("first_step", newTotalCorrect >= 1);
+        checkBadge("on_fire", newStreak >= 5);
+        checkBadge("unstoppable", newStreak >= 10);
+        checkBadge("scholar", newTotalCorrect >= 50);
+        checkBadge("veteran", newPoints >= 1000);
+
+        // 4. Update User Entity
+        await base44.auth.updateMe({
+            points: newPoints,
+            current_streak: newStreak,
+            max_streak: newMaxStreak,
+            total_correct: newTotalCorrect,
+            badges: currentBadges
         });
+
+        // 5. Update Public Profile (for leaderboard)
+        // We need to find the existing profile or create one
+        const profiles = await base44.entities.PublicProfile.list({
+             user_email: user.email
+        });
+        
+        if (profiles.length > 0) {
+             await base44.entities.PublicProfile.update(profiles[0].id, {
+                 points: newPoints,
+                 badges_count: currentBadges.length,
+                 display_name: user.full_name || user.email.split('@')[0]
+             });
+        } else {
+             await base44.entities.PublicProfile.create({
+                 user_email: user.email,
+                 points: newPoints,
+                 badges_count: currentBadges.length,
+                 display_name: user.full_name || user.email.split('@')[0]
+             });
+        }
+
       } catch (e) {
         console.error("Failed to save progress", e);
       }
