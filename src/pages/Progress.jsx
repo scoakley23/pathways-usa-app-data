@@ -188,10 +188,6 @@ export default function Progress() {
     </div>
   );
 }
-      <Card>
-        <CardHeader>
-          <CardTitle>Recent Activity</CardTitle>
-        </CardHeader>
         <CardContent>
           {history.length > 0 ? (
             <Table>
