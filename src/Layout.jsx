@@ -32,6 +32,9 @@ export default function Layout({ children }) {
         
         if (validProfile) {
             setRole(validProfile.account_type);
+            // If multiple profiles exist, we might want to clean them up, but for now just picking the valid one is enough
+            // to stop the dialog from showing.
+            if (showOnboarding) setShowOnboarding(false);
         } else {
             // If no valid profile, show onboarding
             setShowOnboarding(true);
@@ -40,7 +43,15 @@ export default function Layout({ children }) {
         // Not logged in
       }
     };
+    
     checkUser();
+
+    const handleProfileUpdate = () => {
+        checkUser();
+    };
+
+    window.addEventListener('profile-updated', handleProfileUpdate);
+    return () => window.removeEventListener('profile-updated', handleProfileUpdate);
   }, []);
 
   const navItems = [

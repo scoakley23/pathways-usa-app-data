@@ -49,11 +49,28 @@ export default function MyTutor({ currentUserEmail }) {
 
       try {
           // 1. Find tutor by invite code
-          const cleanCode = inviteCode.replace(/\s+/g, '').toUpperCase();
+          let cleanCode = inviteCode.replace(/\s+/g, '').toUpperCase();
           
-          const profiles = await base44.entities.PublicProfile.list({
+          let profiles = await base44.entities.PublicProfile.list({
               query: { invite_code: cleanCode }
           });
+
+          // Fallback: Handle 0 vs O confusion
+          if (profiles.length === 0) {
+              // Try replacing 0 with O
+              const codeWithO = cleanCode.replace(/0/g, 'O');
+              if (codeWithO !== cleanCode) {
+                  profiles = await base44.entities.PublicProfile.list({ query: { invite_code: codeWithO } });
+              }
+              
+              // Try replacing O with 0
+              if (profiles.length === 0) {
+                  const codeWithZero = cleanCode.replace(/O/g, '0');
+                  if (codeWithZero !== cleanCode) {
+                      profiles = await base44.entities.PublicProfile.list({ query: { invite_code: codeWithZero } });
+                  }
+              }
+          }
 
           if (profiles.length === 0) {
               toast.error("Invalid invite code. Please check and try again.");

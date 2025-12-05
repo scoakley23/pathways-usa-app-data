@@ -56,13 +56,24 @@ export default function RoleSelectionDialog({ isOpen, onComplete, userEmail, use
 
       // Generate invite code for tutors immediately
       if (selectedRole === 'tutor') {
-           const prefix = userEmail.substring(0, 3).toUpperCase();
+           // Use simpler prefix logic to avoid confusion, or stick to standard but cleaner
+           const prefix = userEmail.substring(0, 3).toUpperCase().replace(/[^A-Z]/g, 'X'); 
            const random = Math.floor(1000 + Math.random() * 9000);
            profileData.invite_code = `${prefix}${random}`;
       }
 
       if (existing.length > 0) {
+          // Update the first one found
           await base44.entities.PublicProfile.update(existing[0].id, profileData);
+          
+          // Cleanup duplicates if any exist to ensure 1:1 mapping
+          if (existing.length > 1) {
+              for (let i = 1; i < existing.length; i++) {
+                  try {
+                      await base44.entities.PublicProfile.delete(existing[i].id);
+                  } catch (e) { console.error("Cleanup error", e); }
+              }
+          }
       } else {
           await base44.entities.PublicProfile.create(profileData);
       }
