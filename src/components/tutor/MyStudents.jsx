@@ -17,9 +17,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 import AssignContentDialog from './AssignContentDialog';
 import StudentProgressReport from './StudentProgressReport';
+import TutorDashboard from './TutorDashboard';
+import { LayoutDashboard, Users } from 'lucide-react';
 import { toast } from "sonner";
 
 export default function MyStudents({ currentUserEmail }) {
+  const [view, setView] = useState('list'); // 'list' or 'dashboard'
   const [students, setStudents] = useState([]);
   const [newStudentEmail, setNewStudentEmail] = useState("");
   const [selectedStudent, setSelectedStudent] = useState(null);
@@ -92,31 +95,53 @@ export default function MyStudents({ currentUserEmail }) {
 
   return (
     <div className="space-y-6">
-      <Card>
-        <CardHeader>
-          <CardTitle>Add New Student</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="mb-4 text-sm text-slate-600 bg-blue-50 p-3 rounded-md border border-blue-100">
-              <p><strong>How it works:</strong> Enter your student's email address below. They will receive an invitation email and see a request in their Tutor Portal.</p>
-              <p className="mt-1">Once they accept, you can assign them practice exercises and track their progress.</p>
-          </div>
-          <form onSubmit={addStudent} className="flex gap-4">
-            <Input
-              placeholder="Student's Email Address"
-              value={newStudentEmail}
-              onChange={(e) => setNewStudentEmail(e.target.value)}
-              type="email"
-              required
-            />
-            <Button type="submit">
-              <Plus className="w-4 h-4 mr-2" /> Add Student
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
+      <div className="flex justify-between items-center mb-4">
+        <div className="flex bg-slate-100 p-1 rounded-lg">
+            <button 
+                onClick={() => setView('list')}
+                className={`flex items-center px-4 py-2 rounded-md text-sm font-medium transition-all ${view === 'list' ? 'bg-white shadow-sm text-blue-700' : 'text-slate-500 hover:text-slate-700'}`}
+            >
+                <Users className="w-4 h-4 mr-2" /> My Students
+            </button>
+            <button 
+                onClick={() => setView('dashboard')}
+                className={`flex items-center px-4 py-2 rounded-md text-sm font-medium transition-all ${view === 'dashboard' ? 'bg-white shadow-sm text-blue-700' : 'text-slate-500 hover:text-slate-700'}`}
+            >
+                <LayoutDashboard className="w-4 h-4 mr-2" /> Dashboard
+            </button>
+        </div>
+      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {view === 'dashboard' ? (
+          <TutorDashboard currentUserEmail={currentUserEmail} students={students} />
+      ) : (
+        <>
+          <Card>
+            <CardHeader>
+              <CardTitle>Add New Student</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="mb-4 text-sm text-slate-600 bg-blue-50 p-3 rounded-md border border-blue-100">
+                  <p><strong>How it works:</strong> Enter your student's email address below. They will receive an invitation email and see a request in their Tutor Portal.</p>
+                  <p className="mt-1">Once they accept, you can assign them practice exercises and track their progress.</p>
+              </div>
+              <form onSubmit={addStudent} className="flex gap-4">
+                <Input
+                  placeholder="Student's Email Address"
+                  value={newStudentEmail}
+                  onChange={(e) => setNewStudentEmail(e.target.value)}
+                  type="email"
+                  required
+                />
+                <Button type="submit">
+                  <Plus className="w-4 h-4 mr-2" /> Add Student
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      
         {students.map((rel) => (
           <Card key={rel.id} className="hover:shadow-md transition-shadow">
             <CardContent className="p-6">
@@ -172,6 +197,8 @@ export default function MyStudents({ currentUserEmail }) {
             </div>
         )}
       </div>
+      </>
+      )}
 
       {/* Chat Dialog */}
       <Dialog open={isChatOpen} onOpenChange={setIsChatOpen}>
