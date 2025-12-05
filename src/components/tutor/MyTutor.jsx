@@ -21,8 +21,9 @@ export default function MyTutor({ currentUserEmail }) {
 
   const fetchTutors = async () => {
     try {
+      const normalizedEmail = currentUserEmail.toLowerCase().trim();
       const rels = await base44.entities.TutorRelationship.list({
-        query: { student_email: currentUserEmail }
+        query: { student_email: normalizedEmail }
       });
       setTutors(rels);
     } catch (error) {
@@ -58,8 +59,9 @@ export default function MyTutor({ currentUserEmail }) {
           }
 
           const tutorEmail = profiles[0].user_email;
+          const studentEmailNormalized = currentUserEmail.toLowerCase().trim();
 
-          if (tutorEmail.toLowerCase() === currentUserEmail.toLowerCase()) {
+          if (tutorEmail.toLowerCase() === studentEmailNormalized) {
               toast.error("You cannot add yourself as a tutor.");
               setIsJoining(false);
               return;
@@ -67,7 +69,7 @@ export default function MyTutor({ currentUserEmail }) {
 
           // 2. Check if relationship already exists
           const existing = await base44.entities.TutorRelationship.list({
-              query: { student_email: currentUserEmail, tutor_email: tutorEmail }
+              query: { student_email: studentEmailNormalized, tutor_email: tutorEmail }
           });
 
           if (existing.length > 0) {
@@ -78,7 +80,7 @@ export default function MyTutor({ currentUserEmail }) {
 
           // 3. Create active relationship
           await base44.entities.TutorRelationship.create({
-              student_email: currentUserEmail,
+              student_email: studentEmailNormalized,
               tutor_email: tutorEmail,
               status: 'active' // Auto-accept when using code
           });

@@ -41,9 +41,12 @@ export default function MyStudents({ currentUserEmail }) {
 
   const fetchInviteCode = async () => {
       try {
+          // Normalize email to ensure we find the profile created during onboarding
+          const normalizedEmail = currentUserEmail.toLowerCase().trim();
+
           // Find my profile
           const profiles = await base44.entities.PublicProfile.list({ 
-              query: { user_email: currentUserEmail } 
+              query: { user_email: normalizedEmail } 
           });
           
           if (profiles.length > 0) {
@@ -51,18 +54,19 @@ export default function MyStudents({ currentUserEmail }) {
               if (profile.invite_code) {
                   setInviteCode(profile.invite_code);
               } else {
-                  // Generate new code
-                  const newCode = generateInviteCode(currentUserEmail);
+                  // Generate new code if missing
+                  const newCode = generateInviteCode(normalizedEmail);
                   await base44.entities.PublicProfile.update(profile.id, { invite_code: newCode });
                   setInviteCode(newCode);
               }
           } else {
-               // Create profile if doesn't exist (edge case)
-               const newCode = generateInviteCode(currentUserEmail);
+               // Create profile if doesn't exist (edge case - should be covered by onboarding)
+               const newCode = generateInviteCode(normalizedEmail);
                await base44.entities.PublicProfile.create({
-                   user_email: currentUserEmail,
-                   display_name: currentUserEmail.split('@')[0],
-                   invite_code: newCode
+                   user_email: normalizedEmail,
+                   display_name: normalizedEmail.split('@')[0],
+                   invite_code: newCode,
+                   account_type: 'tutor' // Ensure account type is set if created here
                });
                setInviteCode(newCode);
           }
@@ -79,8 +83,9 @@ export default function MyStudents({ currentUserEmail }) {
 
   const fetchStudents = async () => {
     try {
+      const normalizedEmail = currentUserEmail.toLowerCase().trim();
       const rels = await base44.entities.TutorRelationship.list({
-        query: { tutor_email: currentUserEmail }
+        query: { tutor_email: normalizedEmail }
       });
       setStudents(rels);
     } catch (error) {
