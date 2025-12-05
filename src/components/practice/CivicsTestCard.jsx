@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Volume2, Eye, ArrowRight, Globe, Loader2 } from 'lucide-react';
 import { speakText } from "@/components/utils/textToSpeech";
+import AIExplanation from '@/components/ai/AIExplanation';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -173,8 +174,13 @@ export default function CivicsTestCard({ question, onComplete, onNext }) {
                     className="mt-4 text-slate-500 hover:text-indigo-600"
                   >
                     <Volume2 className="w-4 h-4 mr-1" /> Listen to answer
-                  </Button>
-                </div>
+                    </Button>
+
+                    <AIExplanation 
+                    question={question.question} 
+                    answer={question.answer} 
+                    />
+                    </div>
 
                 <div className="flex flex-col items-center space-y-4">
                   <p className="text-slate-600 font-medium">How did you do?</p>

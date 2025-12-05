@@ -74,7 +74,7 @@ export default function Practice() {
     seedData();
   }, []);
 
-  const getSRSContent = async (items, type) => {
+  const getSRSContent = async (items, type, options = {}) => {
     if (!currentUser) return items.sort(() => 0.5 - Math.random()).slice(0, 10);
     
     try {
@@ -84,26 +84,75 @@ export default function Practice() {
       
       const progressMap = new Map(progress.map(p => [p.content_id, p]));
       
-      // Calculate priority score
-      // Higher score = higher priority to practice
+      // 1. Calculate Category Weakness
+      const categoryStats = {};
+      progress.forEach(p => {
+          // Find corresponding item to get category
+          const item = items.find(i => i.id === p.content_id);
+          if (item && item.category) {
+             if (!categoryStats[item.category]) categoryStats[item.category] = { total: 0, incorrect: 0 };
+             categoryStats[item.category].total++;
+             if (p.last_result === 'incorrect' || p.status === 'practicing') {
+                 categoryStats[item.category].incorrect++;
+             }
+          }
+      });
+
+      const weakCategories = Object.keys(categoryStats).filter(cat => {
+          const stats = categoryStats[cat];
+          return stats.total > 0 && (stats.incorrect / stats.total) > 0.4; // >40% incorrect/practicing
+      });
+
+      // 2. Calculate Priority Score (Modified SM-2 + Adaptive Boost)
       const scoredItems = items.map(item => {
         const p = progressMap.get(item.id);
-        let score = 100; // Base score for unseen items
+        let score = 100; // Base score for new/unseen items
         
+        // Adaptive Learning: Boost score if in a weak category
+        if (item.category && weakCategories.includes(item.category)) {
+            score += 300; 
+        }
+
         if (p) {
-          const daysSince = (new Date() - new Date(p.last_practiced)) / (1000 * 60 * 60 * 24);
-          if (p.status === 'mastered') {
-            score = 10 + (daysSince * 1); // Low priority, slowly increases
+          const now = new Date().getTime();
+          const lastPracticed = new Date(p.last_practiced).getTime();
+          const daysSince = (now - lastPracticed) / (1000 * 60 * 60 * 24);
+          
+          const interval = p.interval || 0;
+          
+          // SRS Logic: Priority is higher when we are past the due date (interval)
+          // Score = (Days Since / Interval) * 100. 
+          // If Interval is 0 (just started/failed), prioritize heavily.
+          
+          if (interval === 0) {
+             score += 500; // Immediate retry priority
           } else {
-            score = 50 + (daysSince * 5); // Medium priority, increases faster
+             const dueRatio = daysSince / interval;
+             score += dueRatio * 100;
           }
+
+          // If mastered and interval is long, push it down unless it's due
+          if (p.status === 'mastered' && interval > 20 && daysSince < interval) {
+              score -= 500;
+          }
+        } else {
+           // Slightly randomize unseen items so we don't always see them in same order
+           score += Math.random() * 50; 
         }
         
-        // Add small random factor to mix things up slightly
-        return { ...item, score: score + Math.random() * 10 };
+        return { ...item, score };
       });
       
-      return scoredItems.sort((a, b) => b.score - a.score).slice(0, 10);
+      // Sort descending by score
+      const sorted = scoredItems.sort((a, b) => b.score - a.score);
+      
+      // Log adaptive behavior
+      if (weakCategories.length > 0) {
+          console.log("Adaptive Learning Active: Focusing on weak categories:", weakCategories);
+          toast.info(`Adaptive Mode: Focusing on ${weakCategories.join(', ')}`);
+      }
+
+      return sorted.slice(0, 10);
     } catch (e) {
       console.error("SRS calculation failed", e);
       return items.sort(() => 0.5 - Math.random()).slice(0, 10);
@@ -121,25 +170,28 @@ export default function Practice() {
       let data = [];
       if (selectedMode === 'reading') {
          data = await base44.entities.ReadingSentence.list();
-         // Simple shuffle for reading
+         // Reading doesn't use strict SRS yet, simple shuffle
          data = data.sort(() => 0.5 - Math.random()).slice(0, 10);
       } else if (selectedMode === 'dictation') {
         const allSentences = await base44.entities.Sentence.list();
         data = await getSRSContent(allSentences, 'sentence');
       } else if (selectedMode === 'vocabulary') {
         const allVocab = await base44.entities.VocabularyWord.list();
-        // For games, we might want different logic, but let's stick to SRS for general learning
-        // Transform for consistency
         const transformed = allVocab.map(v => ({ ...v, text: v.word, type: 'vocabulary' }));
         data = await getSRSContent(transformed, 'vocabulary');
       } else if (selectedMode === 'civics') {
         let allQuestions = await base44.entities.CivicsQuestion.list();
         allQuestions = allQuestions.filter(q => q.version === civicsVersion);
+        
+        // Adaptive Difficulty Handling
         if (civicsDifficulty !== 'all') {
           allQuestions = allQuestions.filter(q => q.difficulty === civicsDifficulty);
+          // Simple shuffle if filtering manually
+          data = allQuestions.sort(() => 0.5 - Math.random()).slice(0, 10);
+        } else {
+           // Use SRS + Adaptive Logic for 'All' difficulty
+           data = await getSRSContent(allQuestions, 'civics_question');
         }
-        // Civics is usually just random shuffle for quiz feel
-        data = allQuestions.sort(() => 0.5 - Math.random()).slice(0, 10);
       }
       
       setContent(data);
@@ -228,19 +280,62 @@ export default function Practice() {
   const handleComplete = async (isSuccess) => {
     const currentItem = content[currentIndex];
     
-    // Logic to save progress
     if (currentUser) {
        try {
-          await base44.entities.UserProgress.create({
+          // 1. Fetch existing progress to implement SRS math
+          const existing = await base44.entities.UserProgress.list({
+              query: { user_email: currentUser.email, content_id: currentItem.id },
+              limit: 1
+          });
+          
+          const prevProgress = existing[0] || { 
+              ease_factor: 2.5, 
+              interval: 0, 
+              consecutive_correct: 0 
+          };
+
+          // 2. Calculate new SRS values (Simplified SM-2)
+          let newEaseFactor = prevProgress.ease_factor;
+          let newInterval = prevProgress.interval;
+          let newConsecutive = prevProgress.consecutive_correct;
+
+          if (isSuccess) {
+              newConsecutive += 1;
+              if (newConsecutive === 1) {
+                  newInterval = 1;
+              } else if (newConsecutive === 2) {
+                  newInterval = 6;
+              } else {
+                  newInterval = Math.round(prevProgress.interval * prevProgress.ease_factor);
+              }
+          } else {
+              newConsecutive = 0;
+              newInterval = 0; // Reset interval on failure
+              // Reduce ease factor slightly if wrong, but min 1.3
+              newEaseFactor = Math.max(1.3, newEaseFactor - 0.2);
+          }
+
+          const progressData = {
             user_email: currentUser.email,
             content_id: currentItem.id,
             content_type: mode === 'civics' ? 'civics_question' : (mode === 'vocabulary' ? 'vocabulary' : 'sentence'),
-            status: isSuccess ? 'mastered' : 'practicing',
+            status: (isSuccess && newConsecutive >= 2) ? 'mastered' : 'practicing',
             last_practiced: new Date().toISOString(),
-            assignment_id: currentItem.assignment_id
-          });
+            assignment_id: currentItem.assignment_id,
+            ease_factor: newEaseFactor,
+            interval: newInterval,
+            consecutive_correct: newConsecutive,
+            last_result: isSuccess ? 'correct' : 'incorrect'
+          };
 
-          // If it was an assignment, mark it as completed
+          // Update or Create
+          if (existing.length > 0) {
+              await base44.entities.UserProgress.update(existing[0].id, progressData);
+          } else {
+              await base44.entities.UserProgress.create(progressData);
+          }
+
+          // Assignment completion logic
           if (currentItem.assignment_id) {
             await base44.entities.Assignment.update(currentItem.assignment_id, {
               status: 'completed',
@@ -249,7 +344,7 @@ export default function Practice() {
             toast.success("Assignment Completed!");
           }
 
-          // Gamification update (simplified here, ideally shared logic)
+          // Gamification
           if (isSuccess) {
              const newPoints = (currentUser.points || 0) + 10;
              await base44.auth.updateMe({ points: newPoints });
