@@ -151,7 +151,7 @@ export default function MyTutor({ currentUserEmail }) {
           <CardContent>
               <form onSubmit={joinByCode} className="flex gap-4 max-w-md">
                   <Input 
-                      placeholder="Enter 5-6 character code" 
+                      placeholder="Enter 7 character code" 
                       value={inviteCode}
                       onChange={(e) => setInviteCode(e.target.value.toUpperCase())}
                       className="bg-white font-mono uppercase"
