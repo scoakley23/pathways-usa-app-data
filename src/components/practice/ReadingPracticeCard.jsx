@@ -17,6 +17,7 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext }) {
   const recognitionRef = useRef(null);
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
+  const spokenTextRef = useRef('');
 
   useEffect(() => {
     // Reset state on new sentence
@@ -39,6 +40,7 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext }) {
         setIsListening(true);
         setStatus('listening');
         setSpokenText('');
+        spokenTextRef.current = '';
         startRecording();
       };
 
@@ -47,6 +49,7 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext }) {
           .map(result => result[0].transcript)
           .join('');
         setSpokenText(transcript);
+        spokenTextRef.current = transcript;
       };
 
       recognitionRef.current.onerror = (event) => {
@@ -75,7 +78,13 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext }) {
   const startRecording = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      mediaRecorderRef.current = new MediaRecorder(stream);
+      // Better browser compatibility handling
+      const mimeType = MediaRecorder.isTypeSupported('audio/webm') 
+        ? 'audio/webm' 
+        : (MediaRecorder.isTypeSupported('audio/mp4') ? 'audio/mp4' : '');
+        
+      const options = mimeType ? { mimeType } : undefined;
+      mediaRecorderRef.current = new MediaRecorder(stream, options);
       audioChunksRef.current = [];
 
       mediaRecorderRef.current.ondataavailable = (event) => {
@@ -85,7 +94,8 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext }) {
       };
 
       mediaRecorderRef.current.onstop = () => {
-        const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
+        const type = mediaRecorderRef.current.mimeType || 'audio/webm';
+        const audioBlob = new Blob(audioChunksRef.current, { type });
         analyzeAudio(audioBlob);
         
         // Stop all tracks
@@ -95,7 +105,7 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext }) {
       mediaRecorderRef.current.start();
     } catch (err) {
       console.error("Error accessing microphone:", err);
-      toast.error("Could not access microphone for analysis.");
+      // Non-blocking error, we can still use text recognition
     }
   };
 
@@ -120,16 +130,42 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext }) {
     }
   };
 
+  const fallbackValidation = () => {
+    const textToCheck = spokenTextRef.current || spokenText;
+    const target = cleanText(sentence.text);
+    const spoken = cleanText(textToCheck || ""); 
+    
+    if (spoken && (target === spoken || spoken.includes(target) || target.includes(spoken))) {
+        setStatus('success');
+        setAnalysis({
+            overall_score: 85,
+            pronunciation_score: 0,
+            intonation_score: 0,
+            fluency_score: 0,
+            general_feedback: "Good reading! (Text match verified)",
+            phoneme_feedback: "Detailed audio analysis unavailable."
+        });
+        onComplete(true);
+    } else {
+        setStatus('retry');
+        if (!spoken) {
+            toast.error("We didn't catch that. Please speak clearly.");
+        }
+    }
+  };
+
   const analyzeAudio = async (audioBlob) => {
-    // Wait a bit for the spoken text to settle if needed, but usually onstop is enough
-    // Check if we have any spoken text to warrant analysis
-    if (audioBlob.size < 1000) return; // Too short
+    // Check if too short - fallback to text validation
+    if (audioBlob.size < 500) { 
+        fallbackValidation();
+        return;
+    }
 
     setIsAnalyzing(true);
     try {
       // 1. Upload File
-      // Create a file from blob
-      const file = new File([audioBlob], "reading_practice.webm", { type: 'audio/webm' });
+      const fileExt = audioBlob.type.includes('mp4') ? 'mp4' : 'webm';
+      const file = new File([audioBlob], `reading_practice.${fileExt}`, { type: audioBlob.type });
       const { file_url } = await base44.integrations.Core.UploadFile({ file });
 
       // 2. Analyze with LLM
@@ -170,26 +206,16 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext }) {
 
       setAnalysis(result);
       
-      // Auto-validation based on score
       if (result.overall_score >= 70) {
         setStatus('success');
-        onComplete(true); // Mark as complete
+        onComplete(true);
       } else {
         setStatus('retry');
-        // Don't mark complete on failure, let them try again
       }
 
     } catch (error) {
       console.error("Analysis failed", error);
-      // Fallback to text matching if LLM fails
-      const target = cleanText(sentence.text);
-      const spoken = cleanText(spokenText || ""); // Use whatever text we caught
-      if (spoken && (target === spoken || spoken.includes(target) || target.includes(spoken))) {
-          setStatus('success');
-          onComplete(true);
-      } else {
-          setStatus('retry');
-      }
+      fallbackValidation();
     } finally {
       setIsAnalyzing(false);
     }
