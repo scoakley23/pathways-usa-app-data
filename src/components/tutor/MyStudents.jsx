@@ -27,6 +27,7 @@ export default function MyStudents({ currentUserEmail }) {
   const [newStudentEmail, setNewStudentEmail] = useState("");
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [inviteCode, setInviteCode] = useState("");
   
   // Dialog States
   const [isChatOpen, setIsChatOpen] = useState(false);
@@ -35,7 +36,46 @@ export default function MyStudents({ currentUserEmail }) {
 
   useEffect(() => {
     fetchStudents();
+    fetchInviteCode();
   }, [currentUserEmail]);
+
+  const fetchInviteCode = async () => {
+      try {
+          // Find my profile
+          const profiles = await base44.entities.PublicProfile.list({ 
+              query: { user_email: currentUserEmail } 
+          });
+          
+          if (profiles.length > 0) {
+              const profile = profiles[0];
+              if (profile.invite_code) {
+                  setInviteCode(profile.invite_code);
+              } else {
+                  // Generate new code
+                  const newCode = generateInviteCode(currentUserEmail);
+                  await base44.entities.PublicProfile.update(profile.id, { invite_code: newCode });
+                  setInviteCode(newCode);
+              }
+          } else {
+               // Create profile if doesn't exist (edge case)
+               const newCode = generateInviteCode(currentUserEmail);
+               await base44.entities.PublicProfile.create({
+                   user_email: currentUserEmail,
+                   display_name: currentUserEmail.split('@')[0],
+                   invite_code: newCode
+               });
+               setInviteCode(newCode);
+          }
+      } catch (e) {
+          console.error("Error with invite code", e);
+      }
+  };
+
+  const generateInviteCode = (email) => {
+      const prefix = email.substring(0, 3).toUpperCase();
+      const random = Math.floor(1000 + Math.random() * 9000);
+      return `${prefix}${random}`;
+  };
 
   const fetchStudents = async () => {
     try {
@@ -136,9 +176,41 @@ export default function MyStudents({ currentUserEmail }) {
               <CardTitle>Add New Student</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="mb-4 text-sm text-slate-600 bg-blue-50 p-3 rounded-md border border-blue-100">
-                  <p><strong>How it works:</strong> Enter your student's email address below. They will receive an invitation email and see a request in their Tutor Portal.</p>
-                  <p className="mt-1">Once they accept, you can assign them practice exercises and track their progress.</p>
+               {/* Invite Code Section */}
+               <div className="mb-6 bg-indigo-50 border border-indigo-100 rounded-lg p-4 flex flex-col md:flex-row items-center justify-between gap-4">
+                   <div>
+                       <h3 className="text-sm font-bold text-indigo-900 mb-1">Your Class Invite Code</h3>
+                       <p className="text-xs text-indigo-700">Share this code with your students. They can enter it to join your class instantly.</p>
+                   </div>
+                   <div className="flex items-center gap-2">
+                       <code className="bg-white px-4 py-2 rounded-lg border-2 border-indigo-200 text-xl font-mono font-bold text-indigo-600 tracking-wider">
+                           {inviteCode || "..."}
+                       </code>
+                       <Button 
+                           size="sm" 
+                           variant="ghost" 
+                           onClick={() => {
+                               navigator.clipboard.writeText(inviteCode);
+                               toast.success("Code copied!");
+                           }}
+                           className="text-indigo-600 hover:bg-indigo-100"
+                       >
+                           Copy
+                       </Button>
+                   </div>
+               </div>
+
+               <div className="relative my-6">
+                   <div className="absolute inset-0 flex items-center">
+                       <span className="w-full border-t" />
+                   </div>
+                   <div className="relative flex justify-center text-xs uppercase">
+                       <span className="bg-white px-2 text-muted-foreground">Or invite by email</span>
+                   </div>
+               </div>
+
+              <div className="mb-4 text-sm text-slate-600 bg-slate-50 p-3 rounded-md border border-slate-100">
+                  <p>Enter your student's email address below. They will receive an invitation email.</p>
               </div>
               <form onSubmit={addStudent} className="flex gap-4">
                 <Input
