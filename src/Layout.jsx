@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import { BookOpen, Mic, CheckCircle, LogOut, Menu, X, Settings, GraduationCap, User } from 'lucide-react';
+import { BookOpen, Mic, CheckCircle, LogOut, Menu, X, Settings, GraduationCap, User, MessageSquare } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { base44 } from '@/api/base44Client';
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -50,13 +50,21 @@ export default function Layout({ children }) {
               US
             </div>
             <span className="font-bold text-xl tracking-tight text-slate-900">
-              Civics<span className="text-blue-700">Tutor</span>
-            </span>
-          </div>
+              Citizenship <span className="text-blue-700">Learning Hub</span>
+              </span>
+              </div>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-6">
-            {navItems.map((item) => (
+              {/* Desktop Nav */}
+              <div className="hidden md:flex items-center gap-6">
+              <Link 
+                to={createPageUrl('Messages')}
+                className={`text-sm font-medium transition-colors hover:text-blue-700 flex items-center gap-2 px-3 py-2 rounded-md
+                  ${location.pathname === '/Messages' ? 'bg-blue-50 text-blue-700' : 'text-slate-600'}`}
+              >
+                <MessageSquare className="w-4 h-4" />
+                Messages
+              </Link>
+              {navItems.map((item) => (
               <Link 
                 key={item.path} 
                 to={createPageUrl(item.path.replace('/', ''))}

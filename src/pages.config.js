@@ -4,6 +4,7 @@ import Progress from './pages/Progress';
 import Admin from './pages/Admin';
 import Tutor from './pages/Tutor';
 import Profile from './pages/Profile';
+import Messages from './pages/Messages';
 import __Layout from './Layout.jsx';
 
 
@@ -14,6 +15,7 @@ export const PAGES = {
     "Admin": Admin,
     "Tutor": Tutor,
     "Profile": Profile,
+    "Messages": Messages,
 }
 
 export const pagesConfig = {

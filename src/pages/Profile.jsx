@@ -149,7 +149,6 @@ export default function Profile() {
                     onChange={(e) => setDisplayName(e.target.value)}
                     placeholder="Enter your name"
                   />
-                  <p className="text-xs text-slate-500">This name will appear on leaderboards.</p>
                 </div>
                 <Button type="submit" disabled={isSaving} className="w-full">
                   {isSaving ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <Save className="w-4 h-4 mr-2" />}

@@ -6,7 +6,9 @@ import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Clock, Award, Zap, Trophy } from 'lucide-react';
 import { format } from 'date-fns';
 import BadgesDisplay from '@/components/gamification/BadgesDisplay';
-import Leaderboard from '@/components/gamification/Leaderboard';
+import PracticeCalendar from '@/components/progress/PracticeCalendar';
+import TestDateTracker from '@/components/progress/TestDateTracker';
+import { Progress as ProgressBar } from "@/components/ui/progress";
 
 export default function Progress() {
   const [history, setHistory] = useState([]);
@@ -27,18 +29,26 @@ export default function Progress() {
       }
       setUserData(user);
 
-      // In a real app, we'd filter by user_id in the query
-      // For this demo, we'll fetch and filter client side or assume API handles it
+      // Fetch Progress
       const progressData = await base44.entities.UserProgress.list();
       const userProgress = progressData.filter(p => p.user_email === user.email);
       
-      // Get sentence details for context
-      const sentences = await base44.entities.Sentence.list();
-      const sentencesMap = sentences.reduce((acc, s) => ({...acc, [s.id]: s}), {});
+      // Fetch Content for mapping names
+      const [sentences, vocab, questions] = await Promise.all([
+        base44.entities.Sentence.list(),
+        base44.entities.VocabularyWord.list(),
+        base44.entities.CivicsQuestion.list()
+      ]);
+
+      const contentMap = {
+        sentence: sentences.reduce((acc, s) => ({...acc, [s.id]: s}), {}),
+        vocabulary: vocab.reduce((acc, s) => ({...acc, [s.id]: s}), {}),
+        civics_question: questions.reduce((acc, s) => ({...acc, [s.id]: s}), {})
+      };
 
       const enrichedHistory = userProgress.map(p => ({
         ...p,
-        sentence: sentencesMap[p.sentence_id]
+        content: contentMap[p.content_type || 'sentence']?.[p.content_id] || { text: 'Unknown Content' }
       })).sort((a, b) => new Date(b.last_practiced) - new Date(a.last_practiced));
 
       setHistory(enrichedHistory);
@@ -56,12 +66,21 @@ export default function Progress() {
 
   if (isLoading) return <div className="p-8 text-center text-slate-500">Loading progress...</div>;
 
+  // Calculate Preparedness Score (Simple metric: Mastered / 100 * 100, cap at 100)
+  const preparedness = Math.min(Math.round((stats.mastered / 100) * 100), 100);
+
   return (
     <div className="space-y-8">
-      <h1 className="text-3xl font-bold text-slate-900">Your Progress</h1>
+      <div className="flex flex-col md:flex-row justify-between items-end gap-4">
+          <div>
+             <h1 className="text-3xl font-bold text-slate-900">Your Progress</h1>
+             <p className="text-slate-600">Track your journey to citizenship</p>
+          </div>
+          <TestDateTracker />
+      </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <Card className="bg-blue-50 border-blue-100">
           <CardContent className="p-6 flex items-center gap-4">
             <div className="w-12 h-12 bg-blue-200 text-blue-700 rounded-full flex items-center justify-center">
@@ -80,39 +99,34 @@ export default function Progress() {
               <Award className="w-6 h-6" />
             </div>
             <div>
-              <p className="text-sm text-slate-500 font-medium">Sentences Mastered</p>
+              <p className="text-sm text-slate-500 font-medium">Items Mastered</p>
               <p className="text-3xl font-bold text-slate-900">{stats.mastered}</p>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-purple-50 border-purple-100">
-          <CardContent className="p-6 flex items-center gap-4">
-            <div className="w-12 h-12 bg-purple-200 text-purple-700 rounded-full flex items-center justify-center">
-              <Trophy className="w-6 h-6" />
+         <Card className="bg-emerald-50 border-emerald-100 md:col-span-2">
+          <CardContent className="p-6">
+            <div className="flex justify-between items-center mb-2">
+                 <div className="flex items-center gap-2">
+                     <div className="w-8 h-8 bg-emerald-200 text-emerald-700 rounded-full flex items-center justify-center">
+                        <Flag className="w-4 h-4" />
+                    </div>
+                    <p className="font-bold text-slate-900">Test Preparedness</p>
+                 </div>
+                 <span className="text-2xl font-bold text-emerald-700">{preparedness}%</span>
             </div>
-            <div>
-              <p className="text-sm text-slate-500 font-medium">Total Points</p>
-              <p className="text-3xl font-bold text-slate-900">{userData?.points || 0}</p>
-            </div>
-          </CardContent>
-        </Card>
-        
-        <Card className="bg-orange-50 border-orange-100">
-          <CardContent className="p-6 flex items-center gap-4">
-            <div className="w-12 h-12 bg-orange-200 text-orange-700 rounded-full flex items-center justify-center">
-              <Zap className="w-6 h-6" />
-            </div>
-            <div>
-              <p className="text-sm text-slate-500 font-medium">Best Streak</p>
-              <p className="text-3xl font-bold text-slate-900">{userData?.max_streak || 0}</p>
-            </div>
+            <ProgressBar value={preparedness} className="h-3 bg-emerald-200" />
+            <p className="text-xs text-slate-500 mt-2">Based on mastered content items (Goal: 100)</p>
           </CardContent>
         </Card>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-8">
+             {/* Calendar */}
+            <PracticeCalendar history={history} />
+
              {/* Badges Section */}
             <Card>
                 <CardHeader>
@@ -125,64 +139,45 @@ export default function Progress() {
                 <BadgesDisplay earnedBadges={userData?.badges || []} />
                 </CardContent>
             </Card>
-
-            {/* History Table */}
-            <Card>
-                <CardHeader>
-                <CardTitle>Recent Activity</CardTitle>
-                </CardHeader>
-                <CardContent>
-                {history.length > 0 ? (
-                    <Table>
-                    <TableHeader>
-                        <TableRow>
-                        <TableHead>Date</TableHead>
-                        <TableHead>Sentence</TableHead>
-                        <TableHead>Category</TableHead>
-                        <TableHead>Status</TableHead>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                        {history.map((item) => (
-                        <TableRow key={item.id}>
-                            <TableCell className="text-slate-500">
-                            {item.last_practiced && format(new Date(item.last_practiced), 'MMM d, yyyy')}
-                            </TableCell>
-                            <TableCell className="font-medium text-slate-800">
-                            {item.sentence?.text || 'Unknown Sentence'}
-                            </TableCell>
-                            <TableCell>
-                            <Badge variant="secondary" className="bg-slate-100 text-slate-600">
-                                {item.sentence?.category || 'General'}
-                            </Badge>
-                            </TableCell>
-                            <TableCell>
-                            {item.status === 'mastered' ? (
-                                <Badge className="bg-green-100 text-green-700 border-green-200 hover:bg-green-200">
-                                <CheckCircle className="w-3 h-3 mr-1" /> Mastered
-                                </Badge>
-                            ) : (
-                                <Badge variant="outline" className="text-slate-500">Practicing</Badge>
-                            )}
-                            </TableCell>
-                        </TableRow>
-                        ))}
-                    </TableBody>
-                    </Table>
-                ) : (
-                    <div className="text-center py-12 text-slate-500">
-                    <p>No practice history yet.</p>
-                    <Link to={createPageUrl('Practice')} className="text-blue-600 hover:underline mt-2 inline-block">
-                        Start your first session
-                    </Link>
-                    </div>
-                )}
-                </CardContent>
-            </Card>
         </div>
 
-        <div className="lg:col-span-1">
-            <Leaderboard />
+        <div className="lg:col-span-1 space-y-8">
+             {/* Recent List Sidebar */}
+            <Card className="h-full max-h-[600px] flex flex-col">
+                <CardHeader>
+                    <CardTitle>Recent Activity</CardTitle>
+                </CardHeader>
+                <CardContent className="flex-1 overflow-y-auto pr-2">
+                    {history.length > 0 ? (
+                        <div className="space-y-4">
+                            {history.map((item) => (
+                                <div key={item.id} className="border-b pb-3 last:border-0">
+                                    <p className="text-xs text-slate-400 mb-1">
+                                        {format(new Date(item.last_practiced), 'MMM d, h:mm a')}
+                                    </p>
+                                    <p className="font-medium text-slate-800 text-sm line-clamp-2">
+                                        {item.content?.text || item.content?.word || item.content?.question || 'Unknown'}
+                                    </p>
+                                    <div className="flex justify-between items-center mt-2">
+                                        <Badge variant="outline" className="text-[10px] h-5">
+                                            {item.content_type || 'Sentence'}
+                                        </Badge>
+                                        {item.status === 'mastered' ? (
+                                            <CheckCircle className="w-4 h-4 text-green-500" />
+                                        ) : (
+                                            <div className="w-4 h-4 rounded-full border-2 border-slate-200" />
+                                        )}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="text-center py-8 text-slate-500">
+                            No history yet.
+                        </div>
+                    )}
+                </CardContent>
+            </Card>
         </div>
       </div>
     </div>
