@@ -45,13 +45,7 @@ export default function Layout({ children }) {
     };
     
     checkUser();
-
-    const handleProfileUpdate = () => {
-        checkUser();
-    };
-
-    window.addEventListener('profile-updated', handleProfileUpdate);
-    return () => window.removeEventListener('profile-updated', handleProfileUpdate);
+    // Removed the event listener to prevent race conditions with eventual consistency
   }, []);
 
   const navItems = [

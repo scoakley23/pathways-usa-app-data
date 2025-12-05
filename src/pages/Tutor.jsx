@@ -35,22 +35,13 @@ export default function Tutor({ cachedUser, cachedRole }) {
   };
 
   useEffect(() => {
+    if (cachedUser) setUser(cachedUser);
+    if (cachedRole) setRole(cachedRole);
+
     // If we don't have cached data, fetch it
     if (!cachedUser || !cachedRole) {
         fetchUserData();
     }
-
-    // Listen for updates from the onboarding dialog
-    const handleUpdate = () => {
-        // If updated, we prefer to fetch fresh
-        setIsLoading(true);
-        setTimeout(() => {
-            fetchUserData();
-        }, 1000);
-    };
-    
-    window.addEventListener('profile-updated', handleUpdate);
-    return () => window.removeEventListener('profile-updated', handleUpdate);
   }, [cachedUser, cachedRole]);
 
   if (isLoading) {

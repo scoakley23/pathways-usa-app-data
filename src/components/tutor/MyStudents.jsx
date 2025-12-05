@@ -127,11 +127,13 @@ export default function MyStudents({ currentUserEmail }) {
 
       // Send email in background
       const appUrl = window.location.origin;
+      const emailSubject = "Invitation to connect on Citizenship Learning Hub";
+      const emailBody = `Hello! \n\n${currentUserEmail} has invited you to connect as a student on the Citizenship Learning Hub. \n\nPlease click the link below to register/login and accept the invitation to start practicing together:\n${appUrl}\n\nBest regards,\nThe Citizenship Hub Team`;
       base44.integrations.Core.SendEmail({
             from_name: "Citizenship Learning Hub",
             to: studentEmailLower,
-            subject: "Invitation to connect on Citizenship Learning Hub",
-            body: `Hello! \n\n${currentUserEmail} has invited you to connect as a student on the Citizenship Learning Hub. \n\nPlease click the link below to register/login and accept the invitation to start practicing together:\n${appUrl}\n\nBest regards,\nThe Citizenship Hub Team`
+            subject: emailSubject,
+            body: emailBody
       }).catch((emailError) => {
           console.error("Email failed", emailError);
       });
