@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { base44 } from '@/api/base44Client';
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import RoleSelectionDialog from '@/components/onboarding/RoleSelectionDialog';
+import { Toaster } from "sonner";
 
 export default function Layout({ children }) {
   const location = useLocation();
@@ -178,6 +179,7 @@ export default function Layout({ children }) {
               }}
           />
       )}
+      <Toaster />
     </div>
   );
 }
