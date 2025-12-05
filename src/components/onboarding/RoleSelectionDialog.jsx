@@ -62,9 +62,17 @@ export default function RoleSelectionDialog({ isOpen, onComplete, userEmail, use
 
       // Generate invite code for tutors
       if (selectedRole === 'tutor') {
-           const prefix = normalizedEmail.substring(0, 3).toUpperCase().replace(/[^A-Z]/g, 'X'); 
-           const random = Math.floor(1000 + Math.random() * 9000);
-           profileData.invite_code = `${prefix}${random}`;
+           // Attempt to find an existing invite code from the profiles we are about to delete
+           // This preserves the code if the user is re-registering or fixing their account
+           const existingCode = existing.find(p => p.invite_code)?.invite_code;
+           
+           if (existingCode) {
+               profileData.invite_code = existingCode;
+           } else {
+               const prefix = normalizedEmail.substring(0, 3).toUpperCase().replace(/[^A-Z]/g, 'X'); 
+               const random = Math.floor(1000 + Math.random() * 9000);
+               profileData.invite_code = `${prefix}${random}`;
+           }
       }
 
       // 4. Create ONE single source of truth

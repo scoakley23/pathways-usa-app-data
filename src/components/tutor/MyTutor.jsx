@@ -143,6 +143,22 @@ export default function MyTutor({ currentUserEmail }) {
       if (initialStatus === 'active') {
          toast.success(`Successfully joined class!`);
       } else {
+         // Send email notification to the Tutor
+         const appUrl = window.location.origin;
+         const emailSubject = "New Student Request - Citizenship Learning Hub";
+         const emailBody = `Hello! \n\n${studentEmailNormalized} has requested to join your class on the Citizenship Learning Hub. \n\nPlease log in to your Tutor Dashboard to accept or decline this request:\n${appUrl}/Tutor\n\nBest regards,\nThe Citizenship Hub Team`;
+         
+         try {
+             base44.integrations.Core.SendEmail({
+                from_name: "Citizenship Learning Hub",
+                to: tutorEmailNormalized,
+                subject: emailSubject,
+                body: emailBody
+             }).catch(err => console.error("Failed to send email notification", err));
+         } catch (e) {
+             console.error("Email dispatch error", e);
+         }
+
          toast.success(`Request sent to ${tutorEmailNormalized}`);
       }
       fetchTutors();
