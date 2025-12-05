@@ -60,6 +60,7 @@ export default function Layout({ children }) {
       // Guest view
       navItems.push({ label: 'Tutors', path: '/Tutor', icon: School });
   }
+  }
 
   navItems.push({ label: 'Profile', path: '/Profile', icon: User });
 
