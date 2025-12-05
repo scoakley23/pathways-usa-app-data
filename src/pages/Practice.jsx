@@ -157,6 +157,7 @@ export default function Practice() {
     let mode = 'dictation';
     if (assignment.content_type === 'vocabulary') mode = 'vocabulary';
     if (assignment.content_type === 'civics_question') mode = 'civics';
+    if (assignment.content_type === 'custom') mode = 'dictation'; // Default to dictation for custom
     setMode(mode);
     setCurrentIndex(0);
     setSessionComplete(false);
@@ -171,6 +172,8 @@ export default function Practice() {
         item = vocab ? { ...vocab, text: vocab.word, type: 'vocabulary' } : null;
       } else if (assignment.content_type === 'civics_question') {
         item = await base44.entities.CivicsQuestion.list({ id: assignment.content_id }).then(r => r[0]);
+      } else if (assignment.content_type === 'custom') {
+        item = { text: assignment.custom_content, type: 'sentence', id: 'custom' };
       }
 
       if (item) {
