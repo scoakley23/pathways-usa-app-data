@@ -30,6 +30,8 @@ export default function StudentProgressReport({ isOpen, onClose, studentEmail })
     weaknesses: [],
     strengths: []
   });
+  const [feedbackText, setFeedbackText] = useState("");
+  const [selectedAssignmentForFeedback, setSelectedAssignmentForFeedback] = useState(null);
 
   useEffect(() => {
     if (isOpen && studentEmail) {
@@ -201,19 +203,43 @@ export default function StudentProgressReport({ isOpen, onClose, studentEmail })
                   <TableHeader>
                     <TableRow>
                       <TableHead>Date</TableHead>
-                      <TableHead>Type</TableHead>
+                      <TableHead>Content</TableHead>
                       <TableHead>Status</TableHead>
+                      <TableHead>Feedback</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     {assignments.map((a) => (
                       <TableRow key={a.id}>
                         <TableCell>{format(new Date(a.assigned_date), 'MMM d')}</TableCell>
-                        <TableCell className="capitalize">{a.content_type.replace('_', ' ')}</TableCell>
+                        <TableCell className="max-w-[200px] truncate">
+                           {a.content_type === 'custom' ? `Custom: ${a.custom_content}` : (
+                                a.content_type.replace('_', ' ')
+                           )}
+                        </TableCell>
                         <TableCell>
                           <Badge variant={a.status === 'completed' ? 'default' : 'outline'} className={a.status === 'completed' ? 'bg-green-600' : ''}>
                             {a.status}
                           </Badge>
+                        </TableCell>
+                        <TableCell>
+                            {a.status === 'completed' && (
+                                a.tutor_feedback ? (
+                                    <span className="text-xs text-slate-600" title={a.tutor_feedback}>
+                                        <CheckCircle className="w-3 h-3 inline mr-1 text-green-500" />
+                                        Sent
+                                    </span>
+                                ) : (
+                                    <Button 
+                                        size="sm" 
+                                        variant="outline" 
+                                        className="h-7 text-xs"
+                                        onClick={() => setSelectedAssignmentForFeedback(a)}
+                                    >
+                                        Give Feedback
+                                    </Button>
+                                )
+                            )}
                         </TableCell>
                       </TableRow>
                     ))}
@@ -225,6 +251,45 @@ export default function StudentProgressReport({ isOpen, onClose, studentEmail })
                 </div>
               )}
             </div>
+            
+            {/* Feedback Dialog Overlay */}
+            <Dialog open={!!selectedAssignmentForFeedback} onOpenChange={(open) => !open && setSelectedAssignmentForFeedback(null)}>
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>Provide Feedback</DialogTitle>
+                    </DialogHeader>
+                    <div className="space-y-4 py-2">
+                        <p className="text-sm text-slate-500">
+                            Add a note for the student regarding their assignment.
+                        </p>
+                        <Input
+                            value={feedbackText}
+                            onChange={(e) => setFeedbackText(e.target.value)}
+                            placeholder="Great job! Work on..."
+                        />
+                        <Button 
+                            onClick={async () => {
+                                if (!selectedAssignmentForFeedback) return;
+                                try {
+                                    await base44.entities.Assignment.update(selectedAssignmentForFeedback.id, {
+                                        tutor_feedback: feedbackText,
+                                        feedback_date: new Date().toISOString()
+                                    });
+                                    toast.success("Feedback sent!");
+                                    setFeedbackText("");
+                                    setSelectedAssignmentForFeedback(null);
+                                    fetchReport(); // Refresh
+                                } catch(e) {
+                                    toast.error("Failed to send feedback");
+                                }
+                            }}
+                            className="w-full"
+                        >
+                            Send Feedback
+                        </Button>
+                    </div>
+                </DialogContent>
+            </Dialog>
 
           </div>
         )}
