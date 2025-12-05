@@ -1,24 +1,46 @@
 import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import MyStudents from '@/components/tutor/MyStudents';
 import MyTutor from '@/components/tutor/MyTutor';
-import { GraduationCap, Users, School } from 'lucide-react';
+import { GraduationCap, Users, School, Loader2 } from 'lucide-react';
 
 export default function Tutor() {
   const [user, setUser] = useState(null);
+  const [role, setRole] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const loadUser = async () => {
+    const loadUserAndRole = async () => {
       try {
         const me = await base44.auth.me();
         setUser(me);
+        
+        // Fetch Role
+        const profiles = await base44.entities.PublicProfile.list({
+            query: { user_email: me.email }
+        });
+        
+        if (profiles.length > 0 && profiles[0].account_type) {
+            setRole(profiles[0].account_type);
+        } else {
+            setRole('student'); // Fallback
+        }
       } catch (e) {
         // handle not logged in
+      } finally {
+        setIsLoading(false);
       }
     };
-    loadUser();
+    loadUserAndRole();
   }, []);
+
+  if (isLoading) {
+      return (
+          <div className="flex justify-center items-center min-h-[50vh]">
+              <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
+          </div>
+      );
+  }
 
   if (!user) {
     return (
@@ -34,30 +56,23 @@ export default function Tutor() {
     <div className="max-w-5xl mx-auto space-y-8">
       <div className="space-y-2">
         <h1 className="text-3xl font-bold text-slate-900 flex items-center gap-3">
-          <GraduationCap className="w-8 h-8 text-blue-600" />
-          Tutor Portal
+          {role === 'tutor' ? <GraduationCap className="w-8 h-8 text-blue-600" /> : <School className="w-8 h-8 text-blue-600" />}
+          {role === 'tutor' ? 'Tutor Dashboard' : 'My Classroom'}
         </h1>
-        <p className="text-slate-600">Manage your learning relationships and track progress.</p>
+        <p className="text-slate-600">
+            {role === 'tutor' 
+                ? 'Manage your students, assign practice, and track their progress.' 
+                : 'Connect with your tutor and check your assignments.'}
+        </p>
       </div>
 
-      <Tabs defaultValue="students" className="w-full">
-        <TabsList className="grid w-full max-w-md grid-cols-2">
-          <TabsTrigger value="students" className="flex items-center gap-2">
-            <Users className="w-4 h-4" /> I am a Tutor
-          </TabsTrigger>
-          <TabsTrigger value="tutors" className="flex items-center gap-2">
-            <School className="w-4 h-4" /> I am a Student
-          </TabsTrigger>
-        </TabsList>
-        
-        <TabsContent value="students" className="mt-6 animate-in fade-in slide-in-from-left-4 duration-500">
-          <MyStudents currentUserEmail={user.email} />
-        </TabsContent>
-        
-        <TabsContent value="tutors" className="mt-6 animate-in fade-in slide-in-from-right-4 duration-500">
-          <MyTutor currentUserEmail={user.email} />
-        </TabsContent>
-      </Tabs>
+      <div className="mt-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+          {role === 'tutor' ? (
+              <MyStudents currentUserEmail={user.email} />
+          ) : (
+              <MyTutor currentUserEmail={user.email} />
+          )}
+      </div>
     </div>
   );
 }
