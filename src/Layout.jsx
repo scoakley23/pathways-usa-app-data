@@ -27,10 +27,13 @@ export default function Layout({ children }) {
              query: { user_email: normalizedEmail }
         });
         
-        if (profiles.length > 0 && profiles[0].account_type) {
-            setRole(profiles[0].account_type);
+        // Handle duplicates or missing account_type
+        const validProfile = profiles.find(p => p.account_type === 'student' || p.account_type === 'tutor');
+        
+        if (validProfile) {
+            setRole(validProfile.account_type);
         } else {
-            // If no profile or no account_type, show onboarding
+            // If no valid profile, show onboarding
             setShowOnboarding(true);
         }
       } catch (e) {

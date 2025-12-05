@@ -15,6 +15,27 @@ export default function RoleSelectionDialog({ isOpen, onComplete, userEmail, use
   const [selectedRole, setSelectedRole] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Safety check: if profile exists, auto-complete
+  React.useEffect(() => {
+      const checkExisting = async () => {
+          if (!isOpen || !userEmail) return;
+          try {
+              const normalizedEmail = userEmail.toLowerCase().trim();
+              const existing = await base44.entities.PublicProfile.list({
+                  query: { user_email: normalizedEmail }
+              });
+              
+              if (existing.length > 0 && existing[0].account_type) {
+                  // User already has a role, just use it
+                  onComplete(existing[0].account_type);
+              }
+          } catch (e) {
+              console.error("Error checking existing role", e);
+          }
+      };
+      checkExisting();
+  }, [isOpen, userEmail, onComplete]);
+
   const handleSubmit = async () => {
     if (!selectedRole) return;
     setIsSubmitting(true);
