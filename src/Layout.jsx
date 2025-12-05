@@ -27,6 +27,7 @@ export default function Layout({ children }) {
     { label: 'Home', path: '/', icon: BookOpen },
     { label: 'Practice', path: '/Practice', icon: Mic },
     { label: 'Progress', path: '/Progress', icon: CheckCircle },
+    { label: 'Messages', path: '/Messages', icon: MessageSquare },
     { label: 'Tutor Portal', path: '/Tutor', icon: GraduationCap },
     { label: 'Profile', path: '/Profile', icon: User },
   ];
@@ -67,16 +68,6 @@ export default function Layout({ children }) {
                 <item.icon className="w-4 h-4" />
                 {item.label}
                 </Link>
-                {item.label === 'Progress' && (
-                  <Link 
-                    to={createPageUrl('Messages')}
-                    className={`text-sm font-medium transition-colors hover:text-blue-700 flex items-center gap-2 px-3 py-2 rounded-md
-                      ${location.pathname === '/Messages' ? 'bg-blue-50 text-blue-700' : 'text-slate-600'}`}
-                  >
-                    <MessageSquare className="w-4 h-4" />
-                    Messages
-                  </Link>
-                )}
                 </React.Fragment>
                 ))}
                 {user ? (

@@ -21,7 +21,10 @@ export default function DictationCard({ sentence, onComplete, onNext }) {
     { code: 'es', name: 'Spanish' },
     { code: 'ar', name: 'Arabic' },
     { code: 'am', name: 'Amharic' },
-    { code: 'pt', name: 'Portuguese' }
+    { code: 'pt', name: 'Portuguese' },
+    { code: 'zh', name: 'Chinese' },
+    { code: 'vi', name: 'Vietnamese' },
+    { code: 'fr', name: 'French' }
   ];
 
   // Reset state when sentence changes
