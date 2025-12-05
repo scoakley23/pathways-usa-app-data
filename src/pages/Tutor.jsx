@@ -4,13 +4,15 @@ import MyStudents from '@/components/tutor/MyStudents';
 import MyTutor from '@/components/tutor/MyTutor';
 import { GraduationCap, Users, School, Loader2 } from 'lucide-react';
 
-export default function Tutor() {
-  const [user, setUser] = useState(null);
-  const [role, setRole] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+export default function Tutor({ cachedUser, cachedRole }) {
+  const [user, setUser] = useState(cachedUser || null);
+  const [role, setRole] = useState(cachedRole || null);
+  // If we have cached data, we are not loading
+  const [isLoading, setIsLoading] = useState(!cachedUser || (cachedUser && !cachedRole));
 
   const fetchUserData = async () => {
     try {
+      // If we already have data from props, we can skip or just refresh quietly
       const me = await base44.auth.me();
       setUser(me);
       
@@ -22,7 +24,8 @@ export default function Tutor() {
       if (profiles.length > 0 && profiles[0].account_type) {
           setRole(profiles[0].account_type);
       } else {
-          setRole(null);
+          // Keep existing role if we have one from cache to prevent flashing
+          if (!role) setRole(null);
       }
     } catch (e) {
       console.error("Error loading user data", e);
@@ -32,12 +35,15 @@ export default function Tutor() {
   };
 
   useEffect(() => {
-    fetchUserData();
+    // If we don't have cached data, fetch it
+    if (!cachedUser || !cachedRole) {
+        fetchUserData();
+    }
 
     // Listen for updates from the onboarding dialog
     const handleUpdate = () => {
+        // If updated, we prefer to fetch fresh
         setIsLoading(true);
-        // Add a small delay to ensure DB propagation
         setTimeout(() => {
             fetchUserData();
         }, 1000);
@@ -45,7 +51,7 @@ export default function Tutor() {
     
     window.addEventListener('profile-updated', handleUpdate);
     return () => window.removeEventListener('profile-updated', handleUpdate);
-  }, []);
+  }, [cachedUser, cachedRole]);
 
   if (isLoading) {
       return (

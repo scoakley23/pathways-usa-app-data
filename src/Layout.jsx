@@ -159,7 +159,12 @@ export default function Layout({ children }) {
       </nav>
 
       <main key={role || 'init'} className="container mx-auto px-4 py-8 max-w-5xl">
-        {children}
+        {React.Children.map(children, child => {
+            if (React.isValidElement(child)) {
+                return React.cloneElement(child, { cachedUser: user, cachedRole: role });
+            }
+            return child;
+        })}
       </main>
       
       {showOnboarding && user && (
