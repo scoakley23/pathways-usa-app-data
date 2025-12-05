@@ -38,6 +38,41 @@ export default function Practice() {
     loadUserAndAssignments();
   }, []);
 
+  // Seed Reading Data if empty
+  useEffect(() => {
+    const seedData = async () => {
+      const existing = await base44.entities.ReadingSentence.list();
+      if (existing.length === 0) {
+         const sentences = [
+            { text: "Who was George Washington?", difficulty: "easy" },
+            { text: "What is the capital of the United States?", difficulty: "easy" },
+            { text: "When is Flag Day?", difficulty: "medium" },
+            { text: "Who elects Congress?", difficulty: "hard" },
+            { text: "Lincoln was the President during the Civil War.", difficulty: "medium" },
+            { text: "What do we pay to the government?", difficulty: "medium" },
+            { text: "Who lives in the White House?", difficulty: "easy" },
+            { text: "When is Columbus Day?", difficulty: "easy" },
+            { text: "Where does Congress meet?", difficulty: "medium" },
+            { text: "Who was the first President?", difficulty: "easy" },
+            { text: "Why do people come to America?", difficulty: "medium" },
+            { text: "What are the colors of the American flag?", difficulty: "easy" },
+            { text: "When is Labor Day?", difficulty: "easy" },
+            { text: "How many Senators do we have?", difficulty: "hard" },
+            { text: "When is Presidents' Day?", difficulty: "easy" },
+            { text: "What is the Bill of Rights?", difficulty: "hard" },
+            { text: "Who is the Father of Our Country?", difficulty: "medium" },
+            { text: "What is the largest city in America?", difficulty: "medium" },
+            { text: "When is Independence Day?", difficulty: "easy" },
+            { text: "What was the first capital of the United States?", difficulty: "hard" }
+         ];
+         for (const s of sentences) {
+            await base44.entities.ReadingSentence.create(s);
+         }
+      }
+    };
+    seedData();
+  }, []);
+
   const getSRSContent = async (items, type) => {
     if (!currentUser) return items.sort(() => 0.5 - Math.random()).slice(0, 10);
     
@@ -233,32 +268,33 @@ export default function Practice() {
           </div>
         )}
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {/* Dictation Mode */}
-          <Card className="hover:shadow-xl transition-all duration-300 border-slate-200 group cursor-pointer" onClick={() => startSession('dictation')}>
+        <div className="grid md:grid-cols-4 gap-4">
+          
+          {/* 1. Reading Mode */}
+          <Card className="hover:shadow-xl transition-all duration-300 border-slate-200 group cursor-pointer" onClick={() => startSession('reading')}>
             <CardHeader>
-              <div className="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                <Mic className="w-6 h-6" />
+              <div className="w-12 h-12 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                <BookA className="w-6 h-6" />
               </div>
-              <CardTitle>Sentence Dictation</CardTitle>
+              <CardTitle>Reading</CardTitle>
               <CardDescription>
-                Listen to official USCIS sentences and practice writing them correctly.
+                Read official USCIS sentences aloud to practice pronunciation.
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Button className="w-full bg-indigo-600 hover:bg-indigo-700">Start Dictation</Button>
+              <Button className="w-full bg-purple-600 hover:bg-purple-700">Start Reading</Button>
             </CardContent>
           </Card>
 
-          {/* Vocabulary Mode */}
+          {/* 2. Writing Vocab */}
           <Card className="hover:shadow-xl transition-all duration-300 border-slate-200 group">
             <CardHeader>
               <div className="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                <BookA className="w-6 h-6" />
+                <Mic className="w-6 h-6" />
               </div>
-              <CardTitle>Vocabulary Practice</CardTitle>
+              <CardTitle>Writing Vocab</CardTitle>
               <CardDescription>
-                Master the official vocabulary list required for the writing test.
+                Practice writing official vocabulary words.
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-2">
@@ -269,12 +305,28 @@ export default function Practice() {
                 <Sparkles className="w-4 h-4 mr-2" /> Flashcards
               </Button>
               <Button onClick={() => startSession('vocabulary', 'matching')} variant="outline" className="w-full justify-start hover:bg-emerald-50 hover:text-emerald-700">
-                <Layers className="w-4 h-4 mr-2" /> Matching Game
+                <Layers className="w-4 h-4 mr-2" /> Matching
               </Button>
             </CardContent>
           </Card>
 
-          {/* Civics Test Mode */}
+          {/* 3. Sentence Dictation */}
+          <Card className="hover:shadow-xl transition-all duration-300 border-slate-200 group cursor-pointer" onClick={() => startSession('dictation')}>
+            <CardHeader>
+              <div className="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                <Mic className="w-6 h-6" />
+              </div>
+              <CardTitle>Sentence Dictation</CardTitle>
+              <CardDescription>
+                Listen to full sentences and write them down correctly.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Button className="w-full bg-indigo-600 hover:bg-indigo-700">Start Dictation</Button>
+            </CardContent>
+          </Card>
+
+          {/* 4. Civics Test */}
           <Card className="hover:shadow-xl transition-all duration-300 border-slate-200 group">
             <CardHeader>
               <div className="w-12 h-12 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
@@ -282,10 +334,10 @@ export default function Practice() {
               </div>
               <div className="flex justify-between items-start">
                  <CardTitle>Civics Test</CardTitle>
-                 <Badge variant="outline" className="text-xs">Quiz Mode</Badge>
+                 <Badge variant="outline" className="text-xs">Quiz</Badge>
               </div>
               <CardDescription className="mb-4">
-                Practice the 100 civics questions with difficulty settings.
+                Practice the 100 civics questions.
               </CardDescription>
               <div className="space-y-3" onClick={(e) => e.stopPropagation()}>
                  <div className="space-y-1">
@@ -295,8 +347,8 @@ export default function Practice() {
                           <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                          <SelectItem value="2008">2008 Version (Current)</SelectItem>
-                          <SelectItem value="2025">2025 Version (New)</SelectItem>
+                          <SelectItem value="2008">2008</SelectItem>
+                          <SelectItem value="2025">2025</SelectItem>
                       </SelectContent>
                    </Select>
                  </div>
@@ -307,9 +359,9 @@ export default function Practice() {
                           <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                          <SelectItem value="all">Mixed Difficulty</SelectItem>
+                          <SelectItem value="all">All</SelectItem>
                           <SelectItem value="easy">Easy</SelectItem>
-                          <SelectItem value="medium">Medium</SelectItem>
+                          <SelectItem value="medium">Med</SelectItem>
                           <SelectItem value="hard">Hard</SelectItem>
                       </SelectContent>
                    </Select>
