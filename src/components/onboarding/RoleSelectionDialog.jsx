@@ -57,8 +57,8 @@ export default function RoleSelectionDialog({ isOpen, onComplete, userEmail, use
 
   return (
     <Dialog open={isOpen} onOpenChange={() => {}}>
-      <DialogContent className="sm:max-w-lg [&>button]:hidden"> 
-        {/* Hidden close button to force selection */}
+      <DialogContent className="sm:max-w-lg [&>button.absolute]:hidden"> 
+        {/* Hidden close button (absolute positioned) to force selection */}
         <DialogHeader>
           <DialogTitle className="text-2xl text-center">Welcome to Citizenship Learning Hub</DialogTitle>
           <DialogDescription className="text-center text-lg mt-2">
