@@ -69,27 +69,28 @@ export default function MyStudents({ currentUserEmail }) {
             return;
         }
 
-      await base44.entities.TutorRelationship.create({
+      const newRel = await base44.entities.TutorRelationship.create({
         tutor_email: currentUserEmail,
         student_email: studentEmailLower,
         status: 'pending' 
       });
 
-      try {
-        // Send email invitation
-        await base44.integrations.Core.SendEmail({
+      // Immediate UI Update
+      setStudents(prev => [...prev, newRel]);
+      setNewStudentEmail("");
+      toast.success("Student added to your list!");
+
+      // Send email in background
+      base44.integrations.Core.SendEmail({
             to: studentEmailLower,
             subject: "Invitation to connect on Citizenship Learning Hub",
             body: `Hello! \n\n${currentUserEmail} has invited you to connect as a student on the Citizenship Learning Hub. \n\nPlease log in to the app to accept the invitation and start practicing together. \n\nBest regards,\nThe Citizenship Hub Team`
-        });
-        toast.success("Invitation sent to student!");
-      } catch (emailError) {
+      }).then(() => {
+          toast.success("Invitation email sent!");
+      }).catch((emailError) => {
           console.error("Email failed", emailError);
-          toast.warning("Student added, but failed to send email invitation.");
-      }
-
-      setNewStudentEmail("");
-      fetchStudents();
+          toast.warning("Could not send email invitation, but student was added.");
+      });
     } catch (error) {
       console.error("Add student error", error);
       toast.error(`Failed to add student: ${error.message || "Unknown error"}`);
