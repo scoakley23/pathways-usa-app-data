@@ -224,12 +224,12 @@ export default function Practice() {
       // Fetch the specific content
       let item;
       if (assignment.content_type === 'sentence') {
-        item = await base44.entities.Sentence.list({ id: assignment.content_id }).then(r => r[0]);
+        item = await base44.entities.Sentence.list({ query: { id: assignment.content_id } }).then(r => r[0]);
       } else if (assignment.content_type === 'vocabulary') {
-        const vocab = await base44.entities.VocabularyWord.list({ id: assignment.content_id }).then(r => r[0]);
+        const vocab = await base44.entities.VocabularyWord.list({ query: { id: assignment.content_id } }).then(r => r[0]);
         item = vocab ? { ...vocab, text: vocab.word, type: 'vocabulary' } : null;
       } else if (assignment.content_type === 'civics_question') {
-        item = await base44.entities.CivicsQuestion.list({ id: assignment.content_id }).then(r => r[0]);
+        item = await base44.entities.CivicsQuestion.list({ query: { id: assignment.content_id } }).then(r => r[0]);
       } else if (assignment.content_type === 'custom') {
         // Handle custom content types
         if (assignment.custom_type === 'vocabulary' && assignment.custom_data) {

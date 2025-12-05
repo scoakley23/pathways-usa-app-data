@@ -275,23 +275,31 @@ export default function MyStudents({ currentUserEmail }) {
               </div>
               
               <div className="mt-4 pt-4 border-t border-slate-100">
-                 {rel.status === 'pending' && rel.created_by !== currentUserEmail ? (
-                     <div className="flex flex-col gap-2">
-                         <span className="text-xs font-medium text-slate-500">Student requested to join:</span>
+                 {rel.status === 'pending' ? (
+                    rel.created_by !== currentUserEmail ? (
+                     <div className="bg-blue-50 p-3 rounded-md border border-blue-100">
+                         <span className="text-xs font-bold text-blue-700 block mb-2">Student requested to join</span>
                          <div className="flex gap-2">
-                             <Button size="sm" className="bg-green-600 hover:bg-green-700 flex-1 h-8" onClick={() => handleResponse(rel.id, 'active')}>
+                             <Button size="sm" className="bg-blue-600 hover:bg-blue-700 flex-1 h-8" onClick={() => handleResponse(rel.id, 'active')}>
                                  <Check className="w-3 h-3 mr-1" /> Accept
                              </Button>
-                             <Button size="sm" variant="outline" className="text-red-600 hover:bg-red-50 flex-1 h-8" onClick={() => handleResponse(rel.id, 'rejected')}>
+                             <Button size="sm" variant="outline" className="text-slate-600 hover:bg-slate-100 flex-1 h-8" onClick={() => handleResponse(rel.id, 'rejected')}>
                                  <X className="w-3 h-3 mr-1" /> Reject
                              </Button>
                          </div>
                      </div>
+                    ) : (
+                     <div className="bg-yellow-50 p-3 rounded-md border border-yellow-100 flex items-center justify-between">
+                         <span className="text-sm font-medium text-yellow-800 flex items-center">
+                             <Clock className="w-4 h-4 mr-2" /> Invitation Sent
+                         </span>
+                         <span className="text-xs text-yellow-600">Pending acceptance</span>
+                     </div>
+                    )
                  ) : (
                     <div className="flex items-center justify-between">
                         <div className="flex items-center">
-                            {rel.status === 'active' && <Badge className="bg-green-100 text-green-700"><UserCheck className="w-3 h-3 mr-1"/> Active</Badge>}
-                            {rel.status === 'pending' && <Badge variant="outline" className="bg-yellow-50 text-yellow-700"><Clock className="w-3 h-3 mr-1"/> Invited</Badge>}
+                            {rel.status === 'active' && <Badge className="bg-green-100 text-green-700 border-green-200"><UserCheck className="w-3 h-3 mr-1"/> Active</Badge>}
                             {rel.status === 'rejected' && <Badge variant="destructive"><UserX className="w-3 h-3 mr-1"/> Rejected</Badge>}
                         </div>
                         <div className="flex gap-2">

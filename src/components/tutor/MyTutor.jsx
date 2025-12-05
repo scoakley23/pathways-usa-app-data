@@ -176,7 +176,11 @@ export default function MyTutor({ currentUserEmail }) {
                     <h3 className="font-semibold text-lg">{rel.tutor_email}</h3>
                     <div className="mt-1">
                          {rel.status === 'active' && <Badge className="bg-green-100 text-green-700"><UserCheck className="w-3 h-3 mr-1"/> Active Tutor</Badge>}
-                        {rel.status === 'pending' && <Badge variant="outline" className="bg-yellow-50 text-yellow-700"><Clock className="w-3 h-3 mr-1"/> Request Pending</Badge>}
+                        {rel.status === 'pending' && (
+                            rel.created_by === currentUserEmail 
+                            ? <Badge variant="outline" className="bg-yellow-50 text-yellow-700"><Clock className="w-3 h-3 mr-1"/> Request Sent</Badge>
+                            : <Badge variant="outline" className="bg-blue-50 text-blue-700"><MessageCircle className="w-3 h-3 mr-1"/> Invite Received</Badge>
+                        )}
                     </div>
                 </div>
                 
@@ -188,20 +192,23 @@ export default function MyTutor({ currentUserEmail }) {
               </div>
 
               {rel.status === 'pending' && (
-                <div className="flex gap-2 mt-4">
+                <div className="mt-4">
                   {rel.created_by === currentUserEmail ? (
-                      <div className="w-full text-center text-sm text-slate-500 bg-slate-100 py-2 rounded-md">
-                          Request Sent
+                      <div className="w-full flex items-center justify-center gap-2 text-sm font-medium text-yellow-700 bg-yellow-50 border border-yellow-100 py-2 rounded-md">
+                          <Clock className="w-4 h-4" /> Request Pending Approval
                       </div>
                   ) : (
-                      <>
-                        <Button size="sm" className="bg-green-600 hover:bg-green-700 flex-1" onClick={() => handleResponse(rel.id, 'active')}>
-                            <Check className="w-4 h-4 mr-2" /> Accept
-                        </Button>
-                        <Button size="sm" variant="outline" className="text-red-600 hover:bg-red-50 flex-1" onClick={() => handleResponse(rel.id, 'rejected')}>
-                            <X className="w-4 h-4 mr-2" /> Decline
-                        </Button>
-                      </>
+                      <div className="bg-blue-50 p-3 rounded-md border border-blue-100">
+                          <span className="text-xs font-bold text-blue-700 block mb-2">Tutor invited you</span>
+                          <div className="flex gap-2">
+                            <Button size="sm" className="bg-blue-600 hover:bg-blue-700 flex-1" onClick={() => handleResponse(rel.id, 'active')}>
+                                <Check className="w-4 h-4 mr-2" /> Accept
+                            </Button>
+                            <Button size="sm" variant="outline" className="text-slate-600 hover:bg-slate-100 flex-1" onClick={() => handleResponse(rel.id, 'rejected')}>
+                                <X className="w-4 h-4 mr-2" /> Decline
+                            </Button>
+                          </div>
+                      </div>
                   )}
                 </div>
               )}

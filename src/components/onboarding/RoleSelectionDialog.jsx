@@ -93,65 +93,82 @@ export default function RoleSelectionDialog({ isOpen, onComplete, userEmail, use
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={() => {}}>
-      <DialogContent className="sm:max-w-lg [&>button.absolute]:hidden"> 
-        {/* Hidden close button (absolute positioned) to force selection */}
-        <DialogHeader>
-          <DialogTitle className="text-2xl text-center">Welcome to Citizenship Learning Hub</DialogTitle>
-          <DialogDescription className="text-center text-lg mt-2">
-            How will you be using the app?
-          </DialogDescription>
-        </DialogHeader>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-6">
-          <div 
-            className={`cursor-pointer rounded-xl border-2 p-6 flex flex-col items-center text-center transition-all hover:border-blue-400 hover:bg-blue-50
-              ${selectedRole === 'student' ? 'border-blue-600 bg-blue-50 ring-2 ring-blue-600 ring-offset-2' : 'border-slate-200'}`}
-            onClick={() => setSelectedRole('student')}
-          >
-            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4 text-blue-600">
-               <School className="w-8 h-8" />
+    <div className="fixed inset-0 z-[9999] bg-white flex flex-col items-center justify-center p-4 animate-in fade-in duration-300">
+        <div className="w-full max-w-2xl space-y-8">
+            <div className="text-center space-y-4">
+                <h1 className="text-4xl font-bold text-slate-900">Welcome to Citizenship Learning Hub</h1>
+                <p className="text-xl text-slate-600">To get started, please select your role.</p>
             </div>
-            <h3 className="font-bold text-lg text-slate-900">I am a Student</h3>
-            <p className="text-sm text-slate-500 mt-2">I want to practice for my citizenship test.</p>
-          </div>
 
-          <div 
-            className={`cursor-pointer rounded-xl border-2 p-6 flex flex-col items-center text-center transition-all hover:border-indigo-400 hover:bg-indigo-50
-              ${selectedRole === 'tutor' ? 'border-indigo-600 bg-indigo-50 ring-2 ring-indigo-600 ring-offset-2' : 'border-slate-200'}`}
-            onClick={() => setSelectedRole('tutor')}
-          >
-             <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-4 text-indigo-600">
-               <GraduationCap className="w-8 h-8" />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <button 
+                    onClick={() => setSelectedRole('student')}
+                    className={`relative group p-8 rounded-2xl border-2 transition-all duration-300 text-left hover:shadow-lg
+                        ${selectedRole === 'student' 
+                            ? 'border-blue-600 bg-blue-50 ring-4 ring-blue-100 scale-[1.02]' 
+                            : 'border-slate-200 bg-white hover:border-blue-300 hover:bg-slate-50'}`}
+                >
+                    <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-colors
+                        ${selectedRole === 'student' ? 'bg-blue-600 text-white' : 'bg-blue-100 text-blue-600'}`}>
+                        <School className="w-8 h-8" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-slate-900 mb-2">I am a Student</h3>
+                    <p className="text-slate-600">I want to practice reading, writing, and civics for my test.</p>
+                    {selectedRole === 'student' && (
+                        <div className="absolute top-4 right-4 bg-blue-600 text-white rounded-full p-1">
+                            <Check className="w-4 h-4" />
+                        </div>
+                    )}
+                </button>
+
+                <button 
+                    onClick={() => setSelectedRole('tutor')}
+                    className={`relative group p-8 rounded-2xl border-2 transition-all duration-300 text-left hover:shadow-lg
+                        ${selectedRole === 'tutor' 
+                            ? 'border-indigo-600 bg-indigo-50 ring-4 ring-indigo-100 scale-[1.02]' 
+                            : 'border-slate-200 bg-white hover:border-indigo-300 hover:bg-slate-50'}`}
+                >
+                    <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-colors
+                        ${selectedRole === 'tutor' ? 'bg-indigo-600 text-white' : 'bg-indigo-100 text-indigo-600'}`}>
+                        <GraduationCap className="w-8 h-8" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-slate-900 mb-2">I am a Tutor</h3>
+                    <p className="text-slate-600">I want to manage my students, assign practice, and track progress.</p>
+                     {selectedRole === 'tutor' && (
+                        <div className="absolute top-4 right-4 bg-indigo-600 text-white rounded-full p-1">
+                            <Check className="w-4 h-4" />
+                        </div>
+                    )}
+                </button>
             </div>
-            <h3 className="font-bold text-lg text-slate-900">I am a Tutor</h3>
-            <p className="text-sm text-slate-500 mt-2">I want to manage students and assign work.</p>
-          </div>
-        </div>
 
-        <Button 
-          size="lg" 
-          className="w-full text-lg h-12" 
-          disabled={!selectedRole || isSubmitting}
-          onClick={handleSubmit}
-        >
-          {isSubmitting ? 'Setting up...' : `Continue as ${selectedRole ? (selectedRole.charAt(0).toUpperCase() + selectedRole.slice(1)) : '...'}`}
-        </Button>
-
-        <div className="mt-4 text-center">
-            <Button 
-                variant="ghost" 
-                size="sm" 
-                className="text-slate-400 hover:text-red-500"
-                onClick={async () => {
-                    await base44.auth.logout();
-                    window.location.reload();
-                }}
-            >
-                Not you? Sign Out
-            </Button>
+            <div className="flex flex-col items-center gap-4 pt-8">
+                <Button 
+                    size="lg" 
+                    className="w-full max-w-md h-14 text-lg font-semibold bg-slate-900 hover:bg-slate-800 transition-all"
+                    disabled={!selectedRole || isSubmitting}
+                    onClick={handleSubmit}
+                >
+                    {isSubmitting ? (
+                        <span className="flex items-center gap-2">
+                            Setting up your profile...
+                        </span>
+                    ) : (
+                        `Continue as ${selectedRole ? (selectedRole.charAt(0).toUpperCase() + selectedRole.slice(1)) : '...'}`
+                    )}
+                </Button>
+                
+                <button 
+                    onClick={async () => {
+                        await base44.auth.logout();
+                        window.location.reload();
+                    }}
+                    className="text-sm text-slate-400 hover:text-red-500 transition-colors"
+                >
+                    Signed in as {userEmail} • Sign Out
+                </button>
+            </div>
         </div>
-      </DialogContent>
-    </Dialog>
+    </div>
   );
 }
