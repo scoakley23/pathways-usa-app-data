@@ -155,6 +155,16 @@ export default function MyTutor({ currentUserEmail }) {
                 subject: emailSubject,
                 body: emailBody
              }).catch(err => console.error("Failed to send email notification", err));
+             
+             // In-App Notification
+             await base44.entities.Notification.create({
+                 user_email: tutorEmailNormalized,
+                 type: 'request',
+                 title: 'New Student Request',
+                 message: `${studentEmailNormalized} wants to join your class.`,
+                 link: '/Tutor'
+             });
+
          } catch (e) {
              console.error("Email dispatch error", e);
          }

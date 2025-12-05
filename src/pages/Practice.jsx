@@ -363,6 +363,19 @@ export default function Practice() {
               completed_date: new Date().toISOString()
             });
             
+            // Notify Tutor
+            // Find the assignment to get tutor email (we filtered it out of state, so we need it from somewhere or assume we have it)
+            const completedAssignment = assignments.find(a => a.id === currentItem.assignment_id);
+            if (completedAssignment) {
+                 await base44.entities.Notification.create({
+                     user_email: completedAssignment.tutor_email,
+                     type: 'assignment',
+                     title: 'Assignment Completed',
+                     message: `${currentUser.email} has completed an assignment.`,
+                     link: '/Tutor'
+                 });
+            }
+
             // Update local state immediately so it vanishes from list
             setAssignments(prev => prev.filter(a => a.id !== currentItem.assignment_id));
             

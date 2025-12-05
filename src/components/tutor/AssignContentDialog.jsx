@@ -141,6 +141,16 @@ export default function AssignContentDialog({ isOpen, onClose, studentEmail, tut
           // Use parallel creation for better performance
           await Promise.all(assignments.map(a => base44.entities.Assignment.create(a)));
       }
+      
+      // Notify Student
+      await base44.entities.Notification.create({
+          user_email: studentEmail,
+          type: 'assignment',
+          title: 'New Assignment',
+          message: `Your tutor has assigned you ${contentType === 'custom' ? 'a new task' : 'new practice items'}.`,
+          link: '/Practice'
+      });
+
       toast.success("Assignment sent successfully!");
       onClose();
     } catch (error) {

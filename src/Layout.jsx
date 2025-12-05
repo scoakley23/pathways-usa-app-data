@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { base44 } from '@/api/base44Client';
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import RoleSelectionDialog from '@/components/onboarding/RoleSelectionDialog';
+import NotificationCenter from '@/components/notifications/NotificationCenter';
 import { Toaster } from "sonner";
 
 export default function Layout({ children }) {
@@ -159,6 +160,9 @@ export default function Layout({ children }) {
                 </Link>
                 </React.Fragment>
                 ))}
+
+                {user && <NotificationCenter userEmail={user.email} />}
+
                 {user ? (
               <Button variant="ghost" size="sm" onClick={handleLogout} className="ml-2 text-slate-600 hover:text-red-600 hover:bg-red-50">
                 <LogOut className="w-4 h-4 mr-2" />
@@ -172,7 +176,8 @@ export default function Layout({ children }) {
           </div>
 
           {/* Mobile Nav */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center gap-2">
+            {user && <NotificationCenter userEmail={user.email} />}
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon">

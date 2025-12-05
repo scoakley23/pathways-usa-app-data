@@ -149,6 +149,19 @@ export default function MyStudents({ currentUserEmail }) {
   const handleResponse = async (id, status) => {
     try {
       await base44.entities.TutorRelationship.update(id, { status });
+      
+      // Notify Student
+      const rel = students.find(s => s.id === id);
+      if (rel) {
+          await base44.entities.Notification.create({
+              user_email: rel.student_email,
+              type: 'request',
+              title: `Request ${status === 'active' ? 'Accepted' : 'Declined'}`,
+              message: `Your tutor request was ${status}.`,
+              link: '/Tutor'
+          });
+      }
+
       toast.success(`Request ${status}`);
       fetchStudents();
     } catch (error) {

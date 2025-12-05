@@ -98,6 +98,16 @@ export default function ChatInterface({ otherUserEmail, currentUserEmail }) {
         content: newMessage,
         read: false
       });
+
+      // Notification for receiver
+      await base44.entities.Notification.create({
+          user_email: otherUserEmail,
+          type: 'message',
+          title: 'New Message',
+          message: `New message from ${currentUserEmail.split('@')[0]}`,
+          link: '/Tutor' // Or wherever chat is accessible
+      });
+
       setNewMessage("");
       fetchMessages();
     } catch (error) {
