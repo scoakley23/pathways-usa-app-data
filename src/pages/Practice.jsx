@@ -246,30 +246,34 @@ export default function Practice() {
           </p>
         </div>
 
-        {assignments.length > 0 && (
-          <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-8">
-            <h2 className="font-bold text-blue-900 flex items-center gap-2 mb-4">
-              <Clock className="w-5 h-5" /> Assignments from your Tutor
-            </h2>
+        <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-8">
+          <h2 className="font-bold text-blue-900 flex items-center gap-2 mb-4">
+            <Clock className="w-5 h-5" /> Assignments from your Tutor
+          </h2>
+          {assignments.length > 0 ? (
             <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
               {assignments.map(a => (
                 <Card key={a.id} className="cursor-pointer hover:shadow-md transition-all border-blue-100" onClick={() => startAssignment(a)}>
                   <CardContent className="p-4 flex justify-between items-center">
-                    <div>
-                      <p className="font-semibold text-blue-800 text-sm capitalize">
-                        {a.content_type.replace('_', ' ')} Task
+                    <div className="overflow-hidden mr-2">
+                      <p className="font-semibold text-blue-800 text-sm capitalize truncate">
+                        {a.content_type === 'custom' ? (a.custom_content || 'Custom Task') : a.content_type.replace('_', ' ')}
                       </p>
                       <p className="text-xs text-slate-500">
                         Assigned {new Date(a.assigned_date).toLocaleDateString()}
                       </p>
                     </div>
-                    <Button size="sm" className="bg-blue-600 h-8">Start</Button>
+                    <Button size="sm" className="bg-blue-600 h-8 shrink-0">Start</Button>
                   </CardContent>
                 </Card>
               ))}
             </div>
-          </div>
-        )}
+          ) : (
+            <div className="text-center py-6 text-blue-400 bg-white/50 rounded-lg border border-blue-100 border-dashed">
+                <p>No active assignments. Check back later!</p>
+            </div>
+          )}
+        </div>
 
         <div className="grid md:grid-cols-4 gap-4">
           

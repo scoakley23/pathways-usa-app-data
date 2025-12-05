@@ -39,13 +39,16 @@ export default function FlashcardGame({ words, onComplete }) {
 
       <div className="flex-1 relative perspective-1000 cursor-pointer group" onClick={() => setIsFlipped(!isFlipped)}>
         <motion.div
-          className="w-full h-full relative preserve-3d transition-all duration-500"
+          className="w-full h-full relative transition-all duration-500"
           animate={{ rotateY: isFlipped ? 180 : 0 }}
           transition={{ type: "spring", stiffness: 260, damping: 20 }}
           style={{ transformStyle: 'preserve-3d' }}
         >
           {/* Front */}
-          <Card className="absolute inset-0 backface-hidden w-full h-full flex flex-col items-center justify-center p-8 bg-white border-2 border-indigo-100 shadow-xl rounded-3xl">
+          <Card 
+            className="absolute inset-0 w-full h-full flex flex-col items-center justify-center p-8 bg-white border-2 border-indigo-100 shadow-xl rounded-3xl"
+            style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
+          >
             <span className="text-xs font-bold text-indigo-400 uppercase tracking-widest mb-4">Word</span>
             <h2 className="text-4xl font-bold text-slate-800 text-center">{currentWord.word}</h2>
             <Button
@@ -61,8 +64,12 @@ export default function FlashcardGame({ words, onComplete }) {
 
           {/* Back */}
           <Card 
-            className="absolute inset-0 backface-hidden w-full h-full flex flex-col items-center justify-center p-8 bg-indigo-600 text-white shadow-xl rounded-3xl"
-            style={{ transform: 'rotateY(180deg)' }}
+            className="absolute inset-0 w-full h-full flex flex-col items-center justify-center p-8 bg-indigo-600 text-white shadow-xl rounded-3xl"
+            style={{ 
+              transform: 'rotateY(180deg)', 
+              backfaceVisibility: 'hidden', 
+              WebkitBackfaceVisibility: 'hidden' 
+            }}
           >
             <span className="text-xs font-bold text-indigo-200 uppercase tracking-widest mb-4">Definition</span>
             <p className="text-2xl font-medium text-center leading-relaxed">{currentWord.definition}</p>
