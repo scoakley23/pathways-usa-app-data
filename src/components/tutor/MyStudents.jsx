@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Plus, UserCheck, Clock, UserX, MessageCircle, FileText, BarChart, MoreHorizontal } from 'lucide-react';
+import { Plus, UserCheck, Clock, UserX, MessageCircle, FileText, BarChart, MoreHorizontal, Check, X } from 'lucide-react';
 import ChatInterface from '@/components/chat/ChatInterface';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import {
@@ -132,17 +132,24 @@ export default function MyStudents({ currentUserEmail }) {
             to: studentEmailLower,
             subject: "Invitation to connect on Citizenship Learning Hub",
             body: `Hello! \n\n${currentUserEmail} has invited you to connect as a student on the Citizenship Learning Hub. \n\nPlease click the link below to register/login and accept the invitation to start practicing together:\n${appUrl}\n\nBest regards,\nThe Citizenship Hub Team`
-      }).then(() => {
-          toast.success("Invitation email sent!");
       }).catch((emailError) => {
           console.error("Email failed", emailError);
-          toast.warning("Could not send email invitation, but student was added.");
       });
     } catch (error) {
       console.error("Add student error", error);
       toast.error(`Failed to add student: ${error.message || "Unknown error"}`);
     } finally {
         setIsSubmitting(false);
+    }
+  };
+
+  const handleResponse = async (id, status) => {
+    try {
+      await base44.entities.TutorRelationship.update(id, { status });
+      toast.success(`Request ${status}`);
+      fetchStudents();
+    } catch (error) {
+      toast.error("Action failed");
     }
   };
 
@@ -265,20 +272,36 @@ export default function MyStudents({ currentUserEmail }) {
                  </DropdownMenu>
               </div>
               
-              <div className="flex items-center justify-between mt-4 pt-4 border-t border-slate-100">
-                 <div className="flex items-center">
-                    {rel.status === 'active' && <Badge className="bg-green-100 text-green-700"><UserCheck className="w-3 h-3 mr-1"/> Active</Badge>}
-                    {rel.status === 'pending' && <Badge variant="outline" className="bg-yellow-50 text-yellow-700"><Clock className="w-3 h-3 mr-1"/> Pending</Badge>}
-                    {rel.status === 'rejected' && <Badge variant="destructive"><UserX className="w-3 h-3 mr-1"/> Rejected</Badge>}
-                </div>
-                <div className="flex gap-2">
-                    <Button variant="outline" size="sm" onClick={() => handleAction(rel, 'assign')}>
-                        Assign
-                    </Button>
-                    <Button variant="ghost" size="sm" onClick={() => handleAction(rel, 'chat')}>
-                        <MessageCircle className="w-4 h-4 text-slate-500" />
-                    </Button>
-                </div>
+              <div className="mt-4 pt-4 border-t border-slate-100">
+                 {rel.status === 'pending' && rel.created_by !== currentUserEmail ? (
+                     <div className="flex flex-col gap-2">
+                         <span className="text-xs font-medium text-slate-500">Student requested to join:</span>
+                         <div className="flex gap-2">
+                             <Button size="sm" className="bg-green-600 hover:bg-green-700 flex-1 h-8" onClick={() => handleResponse(rel.id, 'active')}>
+                                 <Check className="w-3 h-3 mr-1" /> Accept
+                             </Button>
+                             <Button size="sm" variant="outline" className="text-red-600 hover:bg-red-50 flex-1 h-8" onClick={() => handleResponse(rel.id, 'rejected')}>
+                                 <X className="w-3 h-3 mr-1" /> Reject
+                             </Button>
+                         </div>
+                     </div>
+                 ) : (
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center">
+                            {rel.status === 'active' && <Badge className="bg-green-100 text-green-700"><UserCheck className="w-3 h-3 mr-1"/> Active</Badge>}
+                            {rel.status === 'pending' && <Badge variant="outline" className="bg-yellow-50 text-yellow-700"><Clock className="w-3 h-3 mr-1"/> Invited</Badge>}
+                            {rel.status === 'rejected' && <Badge variant="destructive"><UserX className="w-3 h-3 mr-1"/> Rejected</Badge>}
+                        </div>
+                        <div className="flex gap-2">
+                            <Button variant="outline" size="sm" onClick={() => handleAction(rel, 'assign')} disabled={rel.status !== 'active'}>
+                                Assign
+                            </Button>
+                            <Button variant="ghost" size="sm" onClick={() => handleAction(rel, 'chat')} disabled={rel.status !== 'active'}>
+                                <MessageCircle className="w-4 h-4 text-slate-500" />
+                            </Button>
+                        </div>
+                    </div>
+                 )}
               </div>
               </CardContent>
               </Card>

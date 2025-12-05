@@ -3,7 +3,7 @@ import { base44 } from '@/api/base44Client';
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MessageCircle, Check, X, UserCheck, Clock, Plus, Hash } from 'lucide-react';
+import { MessageCircle, Check, X, UserCheck, Clock, Plus, Hash, Mail } from 'lucide-react';
 import { Input } from "@/components/ui/input";
 import ChatInterface from '@/components/chat/ChatInterface';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -13,6 +13,7 @@ export default function MyTutor({ currentUserEmail }) {
   const [tutors, setTutors] = useState([]);
   const [selectedTutor, setSelectedTutor] = useState(null);
   const [inviteCode, setInviteCode] = useState("");
+  const [tutorEmailInput, setTutorEmailInput] = useState("");
   const [isJoining, setIsJoining] = useState(false);
 
   useEffect(() => {
@@ -48,7 +49,6 @@ export default function MyTutor({ currentUserEmail }) {
 
       try {
           // 1. Find tutor by invite code
-          // Remove all whitespace to handle cases where users type spaces
           const cleanCode = inviteCode.replace(/\s+/g, '').toUpperCase();
           
           const profiles = await base44.entities.PublicProfile.list({
@@ -62,35 +62,8 @@ export default function MyTutor({ currentUserEmail }) {
           }
 
           const tutorEmail = profiles[0].user_email;
-          const studentEmailNormalized = currentUserEmail.toLowerCase().trim();
-
-          if (tutorEmail.toLowerCase() === studentEmailNormalized) {
-              toast.error("You cannot add yourself as a tutor.");
-              setIsJoining(false);
-              return;
-          }
-
-          // 2. Check if relationship already exists
-          const existing = await base44.entities.TutorRelationship.list({
-              query: { student_email: studentEmailNormalized, tutor_email: tutorEmail }
-          });
-
-          if (existing.length > 0) {
-              toast.error("You are already connected with this tutor.");
-              setIsJoining(false);
-              return;
-          }
-
-          // 3. Create active relationship
-          await base44.entities.TutorRelationship.create({
-              student_email: studentEmailNormalized,
-              tutor_email: tutorEmail,
-              status: 'active' // Auto-accept when using code
-          });
-
-          toast.success(`Successfully joined ${profiles[0].display_name}'s class!`);
+          await connectWithTutor(tutorEmail, 'active'); // Auto-accept for code
           setInviteCode("");
-          fetchTutors();
 
       } catch (error) {
           console.error("Join error", error);
@@ -98,6 +71,56 @@ export default function MyTutor({ currentUserEmail }) {
       } finally {
           setIsJoining(false);
       }
+  };
+
+  const addTutorByEmail = async (e) => {
+      e.preventDefault();
+      if (!tutorEmailInput) return;
+      setIsJoining(true);
+      
+      try {
+        const email = tutorEmailInput.toLowerCase().trim();
+        await connectWithTutor(email, 'pending');
+        setTutorEmailInput("");
+      } catch (e) {
+          console.error(e);
+      } finally {
+          setIsJoining(false);
+      }
+  };
+
+  const connectWithTutor = async (tutorEmail, initialStatus = 'pending') => {
+      const studentEmailNormalized = currentUserEmail.toLowerCase().trim();
+      const tutorEmailNormalized = tutorEmail.toLowerCase().trim();
+
+      if (tutorEmailNormalized === studentEmailNormalized) {
+          toast.error("You cannot add yourself as a tutor.");
+          return;
+      }
+
+      // Check if relationship already exists
+      const existing = await base44.entities.TutorRelationship.list({
+          query: { student_email: studentEmailNormalized, tutor_email: tutorEmailNormalized }
+      });
+
+      if (existing.length > 0) {
+          toast.error("You are already connected with this tutor.");
+          return;
+      }
+
+      // Create relationship
+      await base44.entities.TutorRelationship.create({
+          student_email: studentEmailNormalized,
+          tutor_email: tutorEmailNormalized,
+          status: initialStatus
+      });
+
+      if (initialStatus === 'active') {
+         toast.success(`Successfully joined class!`);
+      } else {
+         toast.success(`Request sent to ${tutorEmailNormalized}`);
+      }
+      fetchTutors();
   };
 
   return (
@@ -125,12 +148,20 @@ export default function MyTutor({ currentUserEmail }) {
 
               {rel.status === 'pending' && (
                 <div className="flex gap-2 mt-4">
-                  <Button size="sm" className="bg-green-600 hover:bg-green-700 flex-1" onClick={() => handleResponse(rel.id, 'active')}>
-                    <Check className="w-4 h-4 mr-2" /> Accept
-                  </Button>
-                  <Button size="sm" variant="outline" className="text-red-600 hover:bg-red-50 flex-1" onClick={() => handleResponse(rel.id, 'rejected')}>
-                    <X className="w-4 h-4 mr-2" /> Decline
-                  </Button>
+                  {rel.created_by === currentUserEmail ? (
+                      <div className="w-full text-center text-sm text-slate-500 bg-slate-100 py-2 rounded-md">
+                          Request Sent
+                      </div>
+                  ) : (
+                      <>
+                        <Button size="sm" className="bg-green-600 hover:bg-green-700 flex-1" onClick={() => handleResponse(rel.id, 'active')}>
+                            <Check className="w-4 h-4 mr-2" /> Accept
+                        </Button>
+                        <Button size="sm" variant="outline" className="text-red-600 hover:bg-red-50 flex-1" onClick={() => handleResponse(rel.id, 'rejected')}>
+                            <X className="w-4 h-4 mr-2" /> Decline
+                        </Button>
+                      </>
+                  )}
                 </div>
               )}
             </CardContent>
@@ -144,30 +175,58 @@ export default function MyTutor({ currentUserEmail }) {
         )}
       </div>
 
-      {/* Join by Code Section */}
-      <Card className="mt-8 border-indigo-100 bg-indigo-50/50">
-          <CardHeader>
-              <CardTitle className="text-lg flex items-center gap-2 text-indigo-900">
-                  <Hash className="w-5 h-5" /> Join a Class with Code
-              </CardTitle>
-          </CardHeader>
-          <CardContent>
-              <form onSubmit={joinByCode} className="flex gap-4 max-w-md">
-                  <Input 
-                      placeholder="Enter 7 character code" 
-                      value={inviteCode}
-                      onChange={(e) => setInviteCode(e.target.value.toUpperCase())}
-                      className="bg-white font-mono uppercase"
-                  />
-                  <Button type="submit" disabled={isJoining || !inviteCode} className="bg-indigo-600 hover:bg-indigo-700">
-                      {isJoining ? "Joining..." : "Join Class"}
-                  </Button>
-              </form>
-              <p className="text-xs text-slate-500 mt-2">
-                  Enter the Invite Code provided by your tutor to instantly connect with them.
-              </p>
-          </CardContent>
-      </Card>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+          {/* Join by Code Section */}
+          <Card className="border-indigo-100 bg-indigo-50/50">
+              <CardHeader>
+                  <CardTitle className="text-lg flex items-center gap-2 text-indigo-900">
+                      <Hash className="w-5 h-5" /> Join with Code
+                  </CardTitle>
+              </CardHeader>
+              <CardContent>
+                  <form onSubmit={joinByCode} className="flex gap-4">
+                      <Input 
+                          placeholder="7-char code" 
+                          value={inviteCode}
+                          onChange={(e) => setInviteCode(e.target.value.toUpperCase())}
+                          className="bg-white font-mono uppercase"
+                      />
+                      <Button type="submit" disabled={isJoining || !inviteCode} className="bg-indigo-600 hover:bg-indigo-700">
+                          Join
+                      </Button>
+                  </form>
+                  <p className="text-xs text-slate-500 mt-2">
+                      Enter the code provided by your tutor.
+                  </p>
+              </CardContent>
+          </Card>
+
+          {/* Join by Email Section */}
+          <Card className="border-blue-100 bg-blue-50/50">
+              <CardHeader>
+                  <CardTitle className="text-lg flex items-center gap-2 text-blue-900">
+                      <Mail className="w-5 h-5" /> Request by Email
+                  </CardTitle>
+              </CardHeader>
+              <CardContent>
+                  <form onSubmit={addTutorByEmail} className="flex gap-4">
+                      <Input 
+                          placeholder="Tutor's Email" 
+                          value={tutorEmailInput}
+                          onChange={(e) => setTutorEmailInput(e.target.value)}
+                          type="email"
+                          className="bg-white"
+                      />
+                      <Button type="submit" disabled={isJoining || !tutorEmailInput} className="bg-blue-600 hover:bg-blue-700">
+                          Request
+                      </Button>
+                  </form>
+                  <p className="text-xs text-slate-500 mt-2">
+                      Send a connection request to your tutor's email.
+                  </p>
+              </CardContent>
+          </Card>
+      </div>
 
       <Dialog open={!!selectedTutor} onOpenChange={(open) => !open && setSelectedTutor(null)}>
         <DialogContent className="max-w-2xl h-[600px] flex flex-col">
