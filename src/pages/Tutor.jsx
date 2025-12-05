@@ -37,7 +37,10 @@ export default function Tutor() {
     // Listen for updates from the onboarding dialog
     const handleUpdate = () => {
         setIsLoading(true);
-        fetchUserData();
+        // Add a small delay to ensure DB propagation
+        setTimeout(() => {
+            fetchUserData();
+        }, 1000);
     };
     
     window.addEventListener('profile-updated', handleUpdate);
@@ -67,12 +70,20 @@ export default function Tutor() {
           <div className="flex flex-col items-center justify-center min-h-[50vh] text-center space-y-4">
               <Loader2 className="w-12 h-12 animate-spin text-blue-200" />
               <p className="text-slate-500">Setting up your profile...</p>
-              <button 
-                onClick={() => window.location.reload()} 
-                className="text-sm text-blue-600 hover:underline mt-4"
-              >
-                Taking too long? Refresh Page
-              </button>
+              <div className="flex flex-col gap-2 mt-4">
+                  <button 
+                    onClick={() => { setIsLoading(true); fetchUserData(); }} 
+                    className="text-sm font-semibold text-blue-600 hover:text-blue-800 underline"
+                  >
+                    Check again
+                  </button>
+                  <button 
+                    onClick={() => window.location.reload()} 
+                    className="text-xs text-slate-400 hover:text-slate-600"
+                  >
+                    Reload Page
+                  </button>
+              </div>
           </div>
       );
   }

@@ -41,14 +41,18 @@ export default function Layout({ children }) {
 
   const navItems = [
     { label: 'Home', path: '/', icon: BookOpen },
-    { label: 'Practice', path: '/Practice', icon: Mic },
-    { label: 'Progress', path: '/Progress', icon: CheckCircle },
   ];
 
   // Dynamic Navigation based on Role
   if (role === 'tutor') {
       navItems.push({ label: 'Tutor Portal', path: '/Tutor', icon: GraduationCap });
-  } else if (role === 'student' || (!role && user)) {
+      // Tutors don't need Practice or Progress pages
+  } else {
+      // Students and Guests
+      navItems.push({ label: 'Practice', path: '/Practice', icon: Mic });
+      navItems.push({ label: 'Progress', path: '/Progress', icon: CheckCircle });
+      
+      if (role === 'student' || (!role && user)) {
       // Students see "My Classroom" instead of "Tutor Portal"
       // Or we can keep the path /Tutor but rename the label
       navItems.push({ label: 'My Classroom', path: '/Tutor', icon: School });
