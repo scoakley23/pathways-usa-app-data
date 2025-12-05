@@ -21,8 +21,44 @@ export default function Layout({ children }) {
         const currentUser = await base44.auth.me();
         setUser(currentUser);
         
-        // Check for Role
         const normalizedEmail = currentUser.email.toLowerCase().trim();
+        
+        // Handle Invite Link (if present)
+        const params = new URLSearchParams(location.search);
+        const inviteTutorEmail = params.get('tutor_invite');
+        
+        if (inviteTutorEmail) {
+             try {
+                 const tutorEmail = inviteTutorEmail.toLowerCase().trim();
+                 // Check if relationship exists
+                 const existing = await base44.entities.TutorRelationship.list({
+                     query: { student_email: normalizedEmail, tutor_email: tutorEmail }
+                 });
+                 
+                 if (existing.length === 0) {
+                     await base44.entities.TutorRelationship.create({
+                         student_email: normalizedEmail,
+                         tutor_email: tutorEmail,
+                         status: 'active' // Auto-accept since they clicked the link
+                     });
+                     toast.success(`Connected with tutor ${tutorEmail}!`);
+                 } else {
+                     // Update if pending
+                     if (existing[0].status !== 'active') {
+                         await base44.entities.TutorRelationship.update(existing[0].id, { status: 'active' });
+                         toast.success(`Connected with tutor ${tutorEmail}!`);
+                     }
+                 }
+                 
+                 // Clean URL
+                 const newUrl = window.location.pathname;
+                 window.history.replaceState({}, document.title, newUrl);
+             } catch (err) {
+                 console.error("Error processing invite", err);
+             }
+        }
+
+        // Check for Role
         // Get the most recently created profile to be safe
         const profiles = await base44.entities.PublicProfile.list({
              query: { user_email: normalizedEmail },
@@ -36,12 +72,13 @@ export default function Layout({ children }) {
             setShowOnboarding(true);
         }
       } catch (e) {
-        // Not logged in
+        // Not logged in - store invite if present for after login?
+        // For now, we rely on the URL parameter persisting if they login directly via the link.
+        // Base44 auth usually redirects back to the original URL.
       }
     };
     
     checkUser();
-    // Removed the event listener to prevent race conditions with eventual consistency
   }, []);
 
   const navItems = [

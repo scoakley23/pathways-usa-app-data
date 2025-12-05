@@ -223,13 +223,26 @@ export default function Practice() {
     try {
       // Fetch the specific content
       let item;
+      console.log("Fetching assignment content:", assignment);
+      
       if (assignment.content_type === 'sentence') {
-        item = await base44.entities.Sentence.list({ query: { id: assignment.content_id } }).then(r => r[0]);
+        // Try standard list with query (most robust)
+        const results = await base44.entities.Sentence.list({ query: { id: assignment.content_id } });
+        item = results[0];
+        
+        // Fallback: if list didn't work with ID query (sometimes ID handling varies), try listing all and finding (inefficient but safe for small datasets)
+        if (!item) {
+             console.log("Fallback fetch for sentence");
+             const all = await base44.entities.Sentence.list();
+             item = all.find(s => s.id === assignment.content_id);
+        }
       } else if (assignment.content_type === 'vocabulary') {
-        const vocab = await base44.entities.VocabularyWord.list({ query: { id: assignment.content_id } }).then(r => r[0]);
+        const results = await base44.entities.VocabularyWord.list({ query: { id: assignment.content_id } });
+        const vocab = results[0];
         item = vocab ? { ...vocab, text: vocab.word, type: 'vocabulary' } : null;
       } else if (assignment.content_type === 'civics_question') {
-        item = await base44.entities.CivicsQuestion.list({ query: { id: assignment.content_id } }).then(r => r[0]);
+        const results = await base44.entities.CivicsQuestion.list({ query: { id: assignment.content_id } });
+        item = results[0];
       } else if (assignment.content_type === 'custom') {
         // Handle custom content types
         if (assignment.custom_type === 'vocabulary' && assignment.custom_data) {
