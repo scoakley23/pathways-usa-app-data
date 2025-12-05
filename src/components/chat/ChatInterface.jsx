@@ -33,10 +33,20 @@ export default function ChatInterface({ otherUserEmail, currentUserEmail }) {
       // Assuming Message entity has low volume for this demo.
       // Better: Fetch sent and received separately and merge.
       
+      // Use lowercased emails for reliable matching
+      const me = currentUserEmail.toLowerCase();
+      const them = otherUserEmail.toLowerCase();
+
+      // Fetch all relevant messages
+      // Note: Since we can't easily OR in query, we rely on fetching lists and filtering if needed, 
+      // but for now we assume the query filter works with exact strings. 
+      // If backend data is mixed case, this might miss some. 
+      // Best practice is to store all emails lowercase.
+      
       const sent = await base44.entities.Message.list({
         query: { sender_email: currentUserEmail, receiver_email: otherUserEmail },
         limit: 50,
-        sort: { created_date: -1 } // Get newest
+        sort: { created_date: -1 } 
       });
 
       const received = await base44.entities.Message.list({
@@ -45,11 +55,29 @@ export default function ChatInterface({ otherUserEmail, currentUserEmail }) {
         sort: { created_date: -1 }
       });
 
-      const all = [...sent, ...received].sort((a, b) => 
+      // Also try with lowercased versions if they are different (handling potential case sensitivity in stored data)
+      // This is a safety net.
+      let extraSent = [];
+      let extraReceived = [];
+      
+      if (currentUserEmail !== me || otherUserEmail !== them) {
+         extraSent = await base44.entities.Message.list({
+            query: { sender_email: me, receiver_email: them },
+            limit: 50,
+            sort: { created_date: -1 }
+         });
+         extraReceived = await base44.entities.Message.list({
+            query: { sender_email: them, receiver_email: me },
+            limit: 50,
+            sort: { created_date: -1 }
+         });
+      }
+
+      const all = [...sent, ...received, ...extraSent, ...extraReceived].sort((a, b) => 
         new Date(a.created_date) - new Date(b.created_date)
       );
 
-      // Remove duplicates if any (unlikely with this logic but safe)
+      // Remove duplicates if any
       const unique = all.filter((v,i,a)=>a.findIndex(t=>(t.id === v.id))===i);
 
       setMessages(unique);

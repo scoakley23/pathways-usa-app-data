@@ -27,7 +27,6 @@ export default function Layout({ children }) {
     { label: 'Home', path: '/', icon: BookOpen },
     { label: 'Practice', path: '/Practice', icon: Mic },
     { label: 'Progress', path: '/Progress', icon: CheckCircle },
-    { label: 'Messages', path: '/Messages', icon: MessageSquare },
     { label: 'Tutor Portal', path: '/Tutor', icon: GraduationCap },
     { label: 'Profile', path: '/Profile', icon: User },
   ];

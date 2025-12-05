@@ -48,8 +48,15 @@ export default function MyStudents({ currentUserEmail }) {
     e.preventDefault();
     if (!newStudentEmail) return;
 
+    const studentEmailLower = newStudentEmail.toLowerCase().trim();
+
+    if (studentEmailLower === currentUserEmail.toLowerCase().trim()) {
+        toast.error("You cannot add yourself as a student");
+        return;
+    }
+
     try {
-        const existing = students.find(s => s.student_email === newStudentEmail);
+        const existing = students.find(s => s.student_email.toLowerCase() === studentEmailLower);
         if (existing) {
             toast.error("Student already added");
             return;
@@ -57,13 +64,13 @@ export default function MyStudents({ currentUserEmail }) {
 
       await base44.entities.TutorRelationship.create({
         tutor_email: currentUserEmail,
-        student_email: newStudentEmail,
+        student_email: studentEmailLower,
         status: 'pending' 
       });
 
       // Send email invitation
       await base44.integrations.Core.SendEmail({
-        to: newStudentEmail,
+        to: studentEmailLower,
         subject: "Invitation to connect on Citizenship Learning Hub",
         body: `Hello! \n\n${currentUserEmail} has invited you to connect as a student on the Citizenship Learning Hub. \n\nPlease log in to the app to accept the invitation and start practicing together. \n\nBest regards,\nThe Citizenship Hub Team`
       });
@@ -90,6 +97,10 @@ export default function MyStudents({ currentUserEmail }) {
           <CardTitle>Add New Student</CardTitle>
         </CardHeader>
         <CardContent>
+          <div className="mb-4 text-sm text-slate-600 bg-blue-50 p-3 rounded-md border border-blue-100">
+              <p><strong>How it works:</strong> Enter your student's email address below. They will receive an invitation email and see a request in their Tutor Portal.</p>
+              <p className="mt-1">Once they accept, you can assign them practice exercises and track their progress.</p>
+          </div>
           <form onSubmit={addStudent} className="flex gap-4">
             <Input
               placeholder="Student's Email Address"
@@ -99,7 +110,7 @@ export default function MyStudents({ currentUserEmail }) {
               required
             />
             <Button type="submit">
-              <Plus className="w-4 h-4 mr-2" /> Add
+              <Plus className="w-4 h-4 mr-2" /> Add Student
             </Button>
           </form>
         </CardContent>

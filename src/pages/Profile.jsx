@@ -194,59 +194,17 @@ export default function Profile() {
             </Card>
           </div>
 
-          <Tabs defaultValue="badges" className="w-full">
-            <TabsList className="w-full grid grid-cols-3">
-              <TabsTrigger value="badges" className="flex items-center gap-2">
-                <Trophy className="w-4 h-4" /> Badges
-              </TabsTrigger>
-              <TabsTrigger value="learning" className="flex items-center gap-2">
-                <School className="w-4 h-4" /> Learning
-              </TabsTrigger>
-              <TabsTrigger value="teaching" className="flex items-center gap-2">
-                <Users className="w-4 h-4" /> Teaching
-              </TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="badges" className="mt-6">
+          <div className="w-full">
               <Card>
                 <CardHeader>
-                  <CardTitle>Your Collection</CardTitle>
+                  <CardTitle className="flex items-center gap-2"><Trophy className="w-5 h-5 text-yellow-500" /> Your Badge Collection</CardTitle>
                   <CardDescription>Unlock badges by practicing consistently.</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <BadgesDisplay earnedBadges={user.badges || []} />
                 </CardContent>
               </Card>
-            </TabsContent>
-
-            <TabsContent value="learning" className="mt-6">
-               <div className="space-y-4">
-                  <div className="bg-blue-50 p-4 rounded-lg border border-blue-100 mb-4">
-                      <h3 className="font-semibold text-blue-900 flex items-center gap-2">
-                          <School className="w-4 h-4" /> I am a Student
-                      </h3>
-                      <p className="text-sm text-blue-700 mt-1">
-                          Manage your tutors here. You can chat with them once they accept your request.
-                      </p>
-                  </div>
-                  <MyTutor currentUserEmail={user.email} />
-               </div>
-            </TabsContent>
-
-            <TabsContent value="teaching" className="mt-6">
-                <div className="space-y-4">
-                  <div className="bg-purple-50 p-4 rounded-lg border border-purple-100 mb-4">
-                      <h3 className="font-semibold text-purple-900 flex items-center gap-2">
-                          <Users className="w-4 h-4" /> I am a Tutor
-                      </h3>
-                      <p className="text-sm text-purple-700 mt-1">
-                          Invite students and track their progress.
-                      </p>
-                  </div>
-                  <MyStudents currentUserEmail={user.email} />
-                </div>
-            </TabsContent>
-          </Tabs>
+          </div>
 
         </div>
       </div>
