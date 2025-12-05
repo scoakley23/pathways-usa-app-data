@@ -46,9 +46,11 @@ export default function Layout({ children }) {
       <nav className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-blue-700 rounded-lg flex items-center justify-center shadow-md transform hover:scale-105 transition-transform">
-               <Notebook className="w-6 h-6 text-red-400" strokeWidth={2.5} />
-            </div>
+            <img 
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6931bd654d327c7b2e36bfed/1906006d3_Screenshot2025-12-04at112241PM.png" 
+              alt="Citizenship Learning Hub Logo"
+              className="w-12 h-12 rounded-lg shadow-md transform hover:scale-105 transition-transform object-cover"
+            />
             <span className="font-bold text-xl tracking-tight text-slate-900 leading-tight">
               Citizenship<br/>
               <span className="text-blue-700 text-sm uppercase tracking-wider">Learning Hub</span>
