@@ -48,8 +48,6 @@ export default function RoleSelectionDialog({ isOpen, onComplete, userEmail, use
 
       toast.success(`Welcome, ${selectedRole === 'tutor' ? 'Tutor' : 'Student'}!`);
       onComplete(selectedRole);
-      // Force reload to ensure all components/pages reflect the new role immediately
-      window.location.reload();
     } catch (error) {
       console.error("Error saving role", error);
       toast.error("Failed to save role. Please try again.");
@@ -103,6 +101,20 @@ export default function RoleSelectionDialog({ isOpen, onComplete, userEmail, use
         >
           {isSubmitting ? 'Setting up...' : `Continue as ${selectedRole ? (selectedRole.charAt(0).toUpperCase() + selectedRole.slice(1)) : '...'}`}
         </Button>
+
+        <div className="mt-4 text-center">
+            <Button 
+                variant="ghost" 
+                size="sm" 
+                className="text-slate-400 hover:text-red-500"
+                onClick={async () => {
+                    await base44.auth.logout();
+                    window.location.reload();
+                }}
+            >
+                Not you? Sign Out
+            </Button>
+        </div>
       </DialogContent>
     </Dialog>
   );
