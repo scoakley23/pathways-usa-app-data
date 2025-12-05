@@ -4,6 +4,7 @@ import { createPageUrl } from '@/utils';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, Mic, PenTool, BookOpen, CheckCircle, GraduationCap } from 'lucide-react';
+import StudyBuddy from '@/components/ai/StudyBuddy';
 
 export default function Home() {
   return (
@@ -86,6 +87,7 @@ export default function Home() {
             </Card>
         </Link>
       </section>
+      <StudyBuddy />
     </div>
   );
 }

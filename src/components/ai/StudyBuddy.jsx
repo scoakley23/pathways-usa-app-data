@@ -7,6 +7,9 @@ import { MessageCircle, X, Send, Bot, User, Loader2, Volume2, Globe, History } f
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+import { Link } from 'react-router-dom';
+import { createPageUrl } from '@/utils';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 export default function StudyBuddy() {
   const [isOpen, setIsOpen] = useState(false);
