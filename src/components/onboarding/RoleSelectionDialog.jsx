@@ -82,12 +82,6 @@ export default function RoleSelectionDialog({ isOpen, onComplete, userEmail, use
       toast.error("Failed to save role. Please try again.");
       setIsSubmitting(false);
     }
-    } catch (error) {
-      console.error("Error saving role", error);
-      toast.error("Failed to save role. Please try again.");
-    } finally {
-      setIsSubmitting(false);
-    }
   };
 
   return (
