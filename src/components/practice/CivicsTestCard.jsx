@@ -1,12 +1,70 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Volume2, Eye, ArrowRight, HelpCircle } from 'lucide-react';
+import { Volume2, Eye, ArrowRight, Globe, Loader2 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { base44 } from '@/api/base44Client';
 
 export default function CivicsTestCard({ question, onComplete, onNext }) {
   const [isRevealed, setIsRevealed] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState('');
+  const [translation, setTranslation] = useState('');
+  const [isTranslating, setIsTranslating] = useState(false);
+
+  const SUPPORTED_LANGUAGES = [
+    { code: 'es', name: 'Spanish' },
+    { code: 'ar', name: 'Arabic' },
+    { code: 'am', name: 'Amharic' },
+    { code: 'pt', name: 'Portuguese' },
+    { code: 'zh', name: 'Chinese' },
+    { code: 'vi', name: 'Vietnamese' },
+    { code: 'fr', name: 'French' }
+  ];
+
+  // Reset state when question changes
+  useEffect(() => {
+    setIsRevealed(false);
+    setIsPlaying(false);
+    setTranslation('');
+    // Keep selected language
+  }, [question]);
+
+  // Fetch translation when language is selected or question changes
+  useEffect(() => {
+    if (selectedLanguage && selectedLanguage !== 'none' && !translation) {
+      fetchTranslation();
+    }
+  }, [selectedLanguage, question]);
+
+  const fetchTranslation = async () => {
+    if (!question || !selectedLanguage || selectedLanguage === 'none') return;
+    
+    setIsTranslating(true);
+    try {
+      const langName = SUPPORTED_LANGUAGES.find(l => l.code === selectedLanguage)?.name;
+      const prompt = `Translate the following Civics Question and Answer into ${langName}.
+      
+      Question: "${question.question}"
+      Answer: "${question.answer}"
+      
+      Return ONLY the translation in this format:
+      Question: [Translated Question]
+      Answer: [Translated Answer]`;
+      
+      const res = await base44.integrations.Core.InvokeLLM({
+        prompt: prompt
+      });
+      
+      setTranslation(res);
+    } catch (error) {
+      console.error("Translation error", error);
+      setTranslation("Translation unavailable");
+    } finally {
+      setIsTranslating(false);
+    }
+  };
 
   const speak = (text) => {
     window.speechSynthesis.cancel();
@@ -19,18 +77,50 @@ export default function CivicsTestCard({ question, onComplete, onNext }) {
 
   return (
     <div className="w-full max-w-2xl mx-auto">
+       <div className="flex justify-end mb-4">
+        <div className="flex items-center gap-2 bg-white/50 backdrop-blur-sm p-1 rounded-lg border border-slate-200">
+          <Globe className="w-4 h-4 text-slate-500 ml-2" />
+          <Select value={selectedLanguage} onValueChange={setSelectedLanguage}>
+            <SelectTrigger className="w-[140px] h-8 text-xs border-0 bg-transparent focus:ring-0">
+              <SelectValue placeholder="Translate to..." />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="none">No Translation</SelectItem>
+              {SUPPORTED_LANGUAGES.map(lang => (
+                <SelectItem key={lang.code} value={lang.code}>{lang.name}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
+
       <Card className="bg-white shadow-xl border-0 overflow-hidden rounded-2xl">
         <div className="h-2 bg-gradient-to-r from-indigo-600 via-purple-500 to-indigo-600" />
         
         <CardContent className="p-8 md:p-12 flex flex-col items-center text-center min-h-[400px] justify-center">
           
-          <div className="mb-8">
+          <div className="mb-8 w-full">
             <span className="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold uppercase tracking-wide mb-4">
               {question.version} Civics Test
             </span>
-            <h3 className="text-2xl md:text-3xl font-bold text-slate-800 leading-relaxed">
+            <h3 className="text-2xl md:text-3xl font-bold text-slate-800 leading-relaxed mb-4">
               {question.question}
             </h3>
+
+             {/* Translation Display for Question */}
+             {selectedLanguage && selectedLanguage !== 'none' && (
+                <div className="mb-4">
+                    {isTranslating ? (
+                         <div className="flex items-center justify-center gap-2 text-slate-400 text-sm">
+                            <Loader2 className="w-3 h-3 animate-spin" /> Translating...
+                        </div>
+                    ) : (
+                        <p className="text-lg text-indigo-700 font-medium animate-in fade-in bg-indigo-50 p-3 rounded-lg inline-block">
+                            {translation.split('Answer:')[0].replace('Question:', '').trim()}
+                        </p>
+                    )}
+                </div>
+            )}
           </div>
 
           <div className="mb-8">
@@ -69,6 +159,14 @@ export default function CivicsTestCard({ question, onComplete, onNext }) {
                   <p className="text-xl font-medium text-slate-800 leading-relaxed">
                     {question.answer}
                   </p>
+                  
+                  {/* Translation Display for Answer */}
+                   {selectedLanguage && selectedLanguage !== 'none' && !isTranslating && translation.includes('Answer:') && (
+                      <p className="text-lg text-indigo-700 font-medium mt-2 animate-in fade-in">
+                          {translation.split('Answer:')[1].trim()}
+                      </p>
+                   )}
+
                   <Button
                     variant="ghost"
                     size="sm"

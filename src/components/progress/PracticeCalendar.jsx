@@ -21,8 +21,8 @@ export default function PracticeCalendar({ history }) {
 
   const modifiersStyles = {
     practiced: {
-      backgroundColor: '#dbeafe', // blue-100
-      color: '#1d4ed8', // blue-700
+      backgroundColor: '#22c55e', // green-500
+      color: 'white',
       fontWeight: 'bold',
       borderRadius: '100%'
     }
@@ -40,13 +40,17 @@ export default function PracticeCalendar({ history }) {
       </CardHeader>
       <CardContent className="flex flex-col md:flex-row gap-8">
         <div className="flex-shrink-0 mx-auto md:mx-0">
+           <div className="flex items-center gap-2 mb-2 justify-center md:justify-start">
+             <div className="w-3 h-3 rounded-full bg-green-500" />
+             <span className="text-xs text-slate-500">Day Practiced</span>
+           </div>
            <Calendar
             mode="single"
             selected={date}
             onSelect={setDate}
             modifiers={modifiers}
             modifiersStyles={modifiersStyles}
-            className="rounded-md border shadow-sm bg-white"
+            className="rounded-md border shadow-sm bg-white p-4"
           />
         </div>
         

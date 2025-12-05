@@ -46,36 +46,40 @@ export default function Layout({ children }) {
       <nav className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-blue-700 rounded-md flex items-center justify-center text-white font-bold text-xl shadow-sm">
-              US
+            <div className="w-10 h-10 bg-gradient-to-br from-blue-700 to-red-600 rounded-lg flex items-center justify-center text-white shadow-md transform hover:scale-105 transition-transform">
+               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" x2="4" y1="22" y2="15"/></svg>
             </div>
-            <span className="font-bold text-xl tracking-tight text-slate-900">
-              Citizenship <span className="text-blue-700">Learning Hub</span>
-              </span>
-              </div>
+            <span className="font-bold text-xl tracking-tight text-slate-900 leading-tight">
+              Citizenship<br/>
+              <span className="text-blue-700 text-sm uppercase tracking-wider">Learning Hub</span>
+            </span>
+          </div>
 
-              {/* Desktop Nav */}
-              <div className="hidden md:flex items-center gap-6">
-              <Link 
-                to={createPageUrl('Messages')}
-                className={`text-sm font-medium transition-colors hover:text-blue-700 flex items-center gap-2 px-3 py-2 rounded-md
-                  ${location.pathname === '/Messages' ? 'bg-blue-50 text-blue-700' : 'text-slate-600'}`}
-              >
-                <MessageSquare className="w-4 h-4" />
-                Messages
-              </Link>
-              {navItems.map((item) => (
-              <Link 
-                key={item.path} 
-                to={createPageUrl(item.path.replace('/', ''))}
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center gap-6">
+            {navItems.map((item) => (
+              <React.Fragment key={item.path}>
+                <Link 
+                  to={createPageUrl(item.path.replace('/', ''))}
                 className={`text-sm font-medium transition-colors hover:text-blue-700 flex items-center gap-2 px-3 py-2 rounded-md
                   ${location.pathname === item.path ? 'bg-blue-50 text-blue-700' : 'text-slate-600'}`}
               >
                 <item.icon className="w-4 h-4" />
                 {item.label}
-              </Link>
-            ))}
-            {user ? (
+                </Link>
+                {item.label === 'Progress' && (
+                  <Link 
+                    to={createPageUrl('Messages')}
+                    className={`text-sm font-medium transition-colors hover:text-blue-700 flex items-center gap-2 px-3 py-2 rounded-md
+                      ${location.pathname === '/Messages' ? 'bg-blue-50 text-blue-700' : 'text-slate-600'}`}
+                  >
+                    <MessageSquare className="w-4 h-4" />
+                    Messages
+                  </Link>
+                )}
+                </React.Fragment>
+                ))}
+                {user ? (
               <Button variant="ghost" size="sm" onClick={handleLogout} className="ml-2 text-slate-600 hover:text-red-600 hover:bg-red-50">
                 <LogOut className="w-4 h-4 mr-2" />
                 Sign Out
