@@ -9,6 +9,7 @@ import DictationCard from '@/components/game/DictationCard';
 import CivicsTestCard from '@/components/practice/CivicsTestCard';
 import FlashcardGame from '@/components/practice/FlashcardGame';
 import MatchingGame from '@/components/practice/MatchingGame';
+import ReadingPracticeCard from '@/components/practice/ReadingPracticeCard';
 import { toast } from "sonner";
 
 export default function Practice() {
@@ -82,7 +83,11 @@ export default function Practice() {
     
     try {
       let data = [];
-      if (selectedMode === 'dictation') {
+      if (selectedMode === 'reading') {
+         data = await base44.entities.ReadingSentence.list();
+         // Simple shuffle for reading
+         data = data.sort(() => 0.5 - Math.random()).slice(0, 10);
+      } else if (selectedMode === 'dictation') {
         const allSentences = await base44.entities.Sentence.list();
         data = await getSRSContent(allSentences, 'sentence');
       } else if (selectedMode === 'vocabulary') {
@@ -349,7 +354,13 @@ export default function Practice() {
             <Loader2 className="w-10 h-10 animate-spin text-blue-600" />
         </div>
       ) : content.length > 0 ? (
-         mode === 'civics' ? (
+         mode === 'reading' ? (
+            <ReadingPracticeCard 
+                sentence={content[currentIndex]}
+                onComplete={handleComplete}
+                onNext={handleNext}
+            />
+         ) : mode === 'civics' ? (
             <CivicsTestCard 
                 question={content[currentIndex]}
                 onComplete={handleComplete}
