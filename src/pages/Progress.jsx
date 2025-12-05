@@ -3,7 +3,7 @@ import { base44 } from '@/api/base44Client';
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, Clock, Award, Zap, Trophy } from 'lucide-react';
+import { CheckCircle, Clock, Award, Zap, Flag } from 'lucide-react';
 import { format } from 'date-fns';
 import BadgesDisplay from '@/components/gamification/BadgesDisplay';
 import PracticeCalendar from '@/components/progress/PracticeCalendar';
