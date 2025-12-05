@@ -78,7 +78,15 @@ export default function MyTutor({ currentUserEmail }) {
               return;
           }
 
-          const tutorEmail = profiles[0].user_email;
+          const tutorProfile = profiles[0];
+          // Verify this is actually a tutor account
+          if (tutorProfile.account_type !== 'tutor') {
+               toast.error("This code belongs to a student account, not a tutor.");
+               setIsJoining(false);
+               return;
+          }
+
+          const tutorEmail = tutorProfile.user_email;
           await connectWithTutor(tutorEmail, 'active'); // Auto-accept for code
           setInviteCode("");
 

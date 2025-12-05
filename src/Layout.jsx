@@ -23,20 +23,16 @@ export default function Layout({ children }) {
         
         // Check for Role
         const normalizedEmail = currentUser.email.toLowerCase().trim();
+        // Get the most recently created profile to be safe
         const profiles = await base44.entities.PublicProfile.list({
-             query: { user_email: normalizedEmail }
+             query: { user_email: normalizedEmail },
+             sort: { created_date: -1 }
         });
         
-        // Handle duplicates or missing account_type
-        const validProfile = profiles.find(p => p.account_type === 'student' || p.account_type === 'tutor');
-        
-        if (validProfile) {
-            setRole(validProfile.account_type);
-            // If multiple profiles exist, we might want to clean them up, but for now just picking the valid one is enough
-            // to stop the dialog from showing.
-            if (showOnboarding) setShowOnboarding(false);
+        if (profiles.length > 0 && profiles[0].account_type) {
+            setRole(profiles[0].account_type);
+            setShowOnboarding(false);
         } else {
-            // If no valid profile, show onboarding
             setShowOnboarding(true);
         }
       } catch (e) {

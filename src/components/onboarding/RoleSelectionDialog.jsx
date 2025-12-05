@@ -43,44 +43,45 @@ export default function RoleSelectionDialog({ isOpen, onComplete, userEmail, use
     const normalizedEmail = userEmail.toLowerCase().trim();
 
     try {
-      // Create or update profile
+      // 1. NUKE STRATEGY: Fetch ALL existing profiles for this email
       const existing = await base44.entities.PublicProfile.list({
           query: { user_email: normalizedEmail }
       });
 
+      // 2. Delete ALL of them to ensure a clean slate (fixes "both student and tutor" bug)
+      if (existing.length > 0) {
+          await Promise.all(existing.map(p => base44.entities.PublicProfile.delete(p.id)));
+      }
+
+      // 3. Prepare new clean profile data
       const profileData = {
           user_email: normalizedEmail,
           display_name: userName || normalizedEmail.split('@')[0],
           account_type: selectedRole
       };
 
-      // Generate invite code for tutors immediately
+      // Generate invite code for tutors
       if (selectedRole === 'tutor') {
-           // Use simpler prefix logic to avoid confusion, or stick to standard but cleaner
-           const prefix = userEmail.substring(0, 3).toUpperCase().replace(/[^A-Z]/g, 'X'); 
+           const prefix = normalizedEmail.substring(0, 3).toUpperCase().replace(/[^A-Z]/g, 'X'); 
            const random = Math.floor(1000 + Math.random() * 9000);
            profileData.invite_code = `${prefix}${random}`;
       }
 
-      if (existing.length > 0) {
-          // Update the first one found
-          await base44.entities.PublicProfile.update(existing[0].id, profileData);
-          
-          // Cleanup duplicates if any exist to ensure 1:1 mapping
-          if (existing.length > 1) {
-              for (let i = 1; i < existing.length; i++) {
-                  try {
-                      await base44.entities.PublicProfile.delete(existing[i].id);
-                  } catch (e) { console.error("Cleanup error", e); }
-              }
-          }
-      } else {
-          await base44.entities.PublicProfile.create(profileData);
-      }
+      // 4. Create ONE single source of truth
+      await base44.entities.PublicProfile.create(profileData);
 
-      toast.success(`Welcome, ${selectedRole === 'tutor' ? 'Tutor' : 'Student'}!`);
-      // Directly complete without dispatching event to avoid race conditions
-      onComplete(selectedRole);
+      toast.success(`Profile set to: ${selectedRole === 'tutor' ? 'Tutor' : 'Student'}`);
+      
+      // 5. Force page reload to ensure Layout picks up the fresh single source of truth
+      setTimeout(() => {
+          window.location.reload();
+      }, 500);
+      
+    } catch (error) {
+      console.error("Error saving role", error);
+      toast.error("Failed to save role. Please try again.");
+      setIsSubmitting(false);
+    }
     } catch (error) {
       console.error("Error saving role", error);
       toast.error("Failed to save role. Please try again.");
