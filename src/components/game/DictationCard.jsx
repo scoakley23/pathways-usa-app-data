@@ -47,7 +47,7 @@ export default function DictationCard({ sentence, onComplete, onNext }) {
     setIsTranslating(true);
     try {
       const langName = SUPPORTED_LANGUAGES.find(l => l.code === selectedLanguage)?.name;
-      const prompt = `Translate the following sentence into ${langName}: "${sentence.text}". Return ONLY the translated text, nothing else.`;
+      const prompt = `Translate the following text (which could be a word or a sentence) into ${langName}: "${sentence.text}". Return ONLY the translated text, nothing else.`;
       
       const res = await base44.integrations.Core.InvokeLLM({
         prompt: prompt
