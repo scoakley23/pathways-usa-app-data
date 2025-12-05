@@ -3,15 +3,19 @@ import { base44 } from '@/api/base44Client';
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Mic, BookA, GraduationCap, Clock, ArrowRight, CheckCircle, Play, Loader2 } from 'lucide-react';
+import { Mic, BookA, GraduationCap, Clock, ArrowRight, CheckCircle, Play, Loader2, Sparkles, Layers } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import DictationCard from '@/components/game/DictationCard';
 import CivicsTestCard from '@/components/practice/CivicsTestCard';
+import FlashcardGame from '@/components/practice/FlashcardGame';
+import MatchingGame from '@/components/practice/MatchingGame';
 import { toast } from "sonner";
 
 export default function Practice() {
   const [mode, setMode] = useState('menu'); // menu, dictation, vocabulary, civics
+  const [vocabSubMode, setVocabSubMode] = useState('dictation'); // dictation, flashcards, matching
   const [civicsVersion, setCivicsVersion] = useState('2008');
+  const [civicsDifficulty, setCivicsDifficulty] = useState('all'); // all, easy, medium, hard
   const [content, setContent] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
@@ -33,28 +37,71 @@ export default function Practice() {
     loadUserAndAssignments();
   }, []);
 
-  const startSession = async (selectedMode) => {
+  const getSRSContent = async (items, type) => {
+    if (!currentUser) return items.sort(() => 0.5 - Math.random()).slice(0, 10);
+    
+    try {
+      const progress = await base44.entities.UserProgress.list({
+        query: { user_email: currentUser.email, content_type: type }
+      });
+      
+      const progressMap = new Map(progress.map(p => [p.content_id, p]));
+      
+      // Calculate priority score
+      // Higher score = higher priority to practice
+      const scoredItems = items.map(item => {
+        const p = progressMap.get(item.id);
+        let score = 100; // Base score for unseen items
+        
+        if (p) {
+          const daysSince = (new Date() - new Date(p.last_practiced)) / (1000 * 60 * 60 * 24);
+          if (p.status === 'mastered') {
+            score = 10 + (daysSince * 1); // Low priority, slowly increases
+          } else {
+            score = 50 + (daysSince * 5); // Medium priority, increases faster
+          }
+        }
+        
+        // Add small random factor to mix things up slightly
+        return { ...item, score: score + Math.random() * 10 };
+      });
+      
+      return scoredItems.sort((a, b) => b.score - a.score).slice(0, 10);
+    } catch (e) {
+      console.error("SRS calculation failed", e);
+      return items.sort(() => 0.5 - Math.random()).slice(0, 10);
+    }
+  };
+
+  const startSession = async (selectedMode, subMode = null) => {
     setIsLoading(true);
     setMode(selectedMode);
+    if (subMode) setVocabSubMode(subMode);
     setCurrentIndex(0);
     setSessionComplete(false);
     
     try {
       let data = [];
       if (selectedMode === 'dictation') {
-        data = await base44.entities.Sentence.list();
+        const allSentences = await base44.entities.Sentence.list();
+        data = await getSRSContent(allSentences, 'sentence');
       } else if (selectedMode === 'vocabulary') {
-        data = await base44.entities.VocabularyWord.list();
-        // Transform vocab to match DictationCard expected format (text property)
-        data = data.map(v => ({ ...v, text: v.word, type: 'vocabulary' }));
+        const allVocab = await base44.entities.VocabularyWord.list();
+        // For games, we might want different logic, but let's stick to SRS for general learning
+        // Transform for consistency
+        const transformed = allVocab.map(v => ({ ...v, text: v.word, type: 'vocabulary' }));
+        data = await getSRSContent(transformed, 'vocabulary');
       } else if (selectedMode === 'civics') {
-        data = await base44.entities.CivicsQuestion.list();
-        data = data.filter(q => q.version === civicsVersion);
+        let allQuestions = await base44.entities.CivicsQuestion.list();
+        allQuestions = allQuestions.filter(q => q.version === civicsVersion);
+        if (civicsDifficulty !== 'all') {
+          allQuestions = allQuestions.filter(q => q.difficulty === civicsDifficulty);
+        }
+        // Civics is usually just random shuffle for quiz feel
+        data = allQuestions.sort(() => 0.5 - Math.random()).slice(0, 10);
       }
       
-      // Shuffle and pick 10
-      const shuffled = data.sort(() => 0.5 - Math.random()).slice(0, 10);
-      setContent(shuffled);
+      setContent(data);
     } catch (error) {
       console.error("Error starting session", error);
       toast.error("Failed to start practice session");
@@ -199,7 +246,7 @@ export default function Practice() {
           </Card>
 
           {/* Vocabulary Mode */}
-          <Card className="hover:shadow-xl transition-all duration-300 border-slate-200 group cursor-pointer" onClick={() => startSession('vocabulary')}>
+          <Card className="hover:shadow-xl transition-all duration-300 border-slate-200 group">
             <CardHeader>
               <div className="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
                 <BookA className="w-6 h-6" />
@@ -209,8 +256,16 @@ export default function Practice() {
                 Master the official vocabulary list required for the writing test.
               </CardDescription>
             </CardHeader>
-            <CardContent>
-              <Button className="w-full bg-emerald-600 hover:bg-emerald-700">Practice Words</Button>
+            <CardContent className="space-y-2">
+              <Button onClick={() => startSession('vocabulary', 'dictation')} className="w-full bg-emerald-600 hover:bg-emerald-700 justify-start">
+                <Mic className="w-4 h-4 mr-2" /> Dictation
+              </Button>
+              <Button onClick={() => startSession('vocabulary', 'flashcards')} variant="outline" className="w-full justify-start hover:bg-emerald-50 hover:text-emerald-700">
+                <Sparkles className="w-4 h-4 mr-2" /> Flashcards
+              </Button>
+              <Button onClick={() => startSession('vocabulary', 'matching')} variant="outline" className="w-full justify-start hover:bg-emerald-50 hover:text-emerald-700">
+                <Layers className="w-4 h-4 mr-2" /> Matching Game
+              </Button>
             </CardContent>
           </Card>
 
@@ -222,22 +277,38 @@ export default function Practice() {
               </div>
               <div className="flex justify-between items-start">
                  <CardTitle>Civics Test</CardTitle>
-                 <Badge variant="outline" className="text-xs">Q&A</Badge>
+                 <Badge variant="outline" className="text-xs">Quiz Mode</Badge>
               </div>
               <CardDescription className="mb-4">
-                Practice the 100 civics questions for the oral interview.
+                Practice the 100 civics questions with difficulty settings.
               </CardDescription>
-              <div className="space-y-2" onClick={(e) => e.stopPropagation()}>
-                 <label className="text-xs font-medium text-slate-600">Select Version:</label>
-                 <Select value={civicsVersion} onValueChange={setCivicsVersion}>
-                    <SelectTrigger className="h-8 text-xs">
-                        <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="2008">2008 Version (Current)</SelectItem>
-                        <SelectItem value="2025">2025 Version (New)</SelectItem>
-                    </SelectContent>
-                 </Select>
+              <div className="space-y-3" onClick={(e) => e.stopPropagation()}>
+                 <div className="space-y-1">
+                   <label className="text-xs font-medium text-slate-600">Version:</label>
+                   <Select value={civicsVersion} onValueChange={setCivicsVersion}>
+                      <SelectTrigger className="h-8 text-xs">
+                          <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                          <SelectItem value="2008">2008 Version (Current)</SelectItem>
+                          <SelectItem value="2025">2025 Version (New)</SelectItem>
+                      </SelectContent>
+                   </Select>
+                 </div>
+                 <div className="space-y-1">
+                   <label className="text-xs font-medium text-slate-600">Difficulty:</label>
+                   <Select value={civicsDifficulty} onValueChange={setCivicsDifficulty}>
+                      <SelectTrigger className="h-8 text-xs">
+                          <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                          <SelectItem value="all">Mixed Difficulty</SelectItem>
+                          <SelectItem value="easy">Easy</SelectItem>
+                          <SelectItem value="medium">Medium</SelectItem>
+                          <SelectItem value="hard">Hard</SelectItem>
+                      </SelectContent>
+                   </Select>
+                 </div>
               </div>
             </CardHeader>
             <CardContent>
@@ -284,8 +355,27 @@ export default function Practice() {
                 onComplete={handleComplete}
                 onNext={handleNext}
             />
+         ) : mode === 'vocabulary' ? (
+            vocabSubMode === 'flashcards' ? (
+              <FlashcardGame 
+                words={content} 
+                onComplete={() => setSessionComplete(true)}
+              />
+            ) : vocabSubMode === 'matching' ? (
+              <MatchingGame 
+                words={content}
+                onComplete={() => setSessionComplete(true)}
+              />
+            ) : (
+              // Default to Dictation for vocabulary
+              <DictationCard 
+                  sentence={content[currentIndex]}
+                  onComplete={handleComplete}
+                  onNext={handleNext}
+              />
+            )
          ) : (
-            // Shared component for Dictation (Sentences) and Vocab (Words)
+            // Dictation (Sentences)
             <DictationCard 
                 sentence={content[currentIndex]}
                 onComplete={handleComplete}
