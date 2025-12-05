@@ -117,15 +117,6 @@ export default function AssignContentDialog({ isOpen, onClose, studentEmail, tut
       setIsAssigning(false);
     }
   };
-      toast.success("Assignment sent successfully!");
-      onClose();
-    } catch (error) {
-      console.error("Error assigning content", error);
-      toast.error("Failed to assign content");
-    } finally {
-      setIsAssigning(false);
-    }
-  };
 
   const getItemLabel = (item) => {
     if (contentType === 'sentence') return item.text;
