@@ -21,8 +21,9 @@ export default function Layout({ children }) {
         setUser(currentUser);
         
         // Check for Role
+        const normalizedEmail = currentUser.email.toLowerCase().trim();
         const profiles = await base44.entities.PublicProfile.list({
-             query: { user_email: currentUser.email }
+             query: { user_email: normalizedEmail }
         });
         
         if (profiles.length > 0 && profiles[0].account_type) {

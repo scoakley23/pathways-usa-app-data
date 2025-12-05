@@ -16,14 +16,18 @@ export default function Tutor() {
         setUser(me);
         
         // Fetch Role
+        const normalizedEmail = me.email.toLowerCase().trim();
         const profiles = await base44.entities.PublicProfile.list({
-            query: { user_email: me.email }
+            query: { user_email: normalizedEmail }
         });
         
         if (profiles.length > 0 && profiles[0].account_type) {
             setRole(profiles[0].account_type);
         } else {
-            setRole('student'); // Fallback
+            // If no role found, we might be in the middle of onboarding.
+            // Don't default to student yet, let the layout handle onboarding.
+            // But to avoid infinite loading if layout fails, we check if we are forced to show something.
+            setRole(null); 
         }
       } catch (e) {
         // handle not logged in
@@ -50,6 +54,15 @@ export default function Tutor() {
         <p className="text-slate-600">Connect with students or tutors to track progress together.</p>
       </div>
     );
+  }
+
+  if (!role) {
+      return (
+          <div className="flex flex-col items-center justify-center min-h-[50vh] text-center space-y-4">
+              <Loader2 className="w-12 h-12 animate-spin text-blue-200" />
+              <p className="text-slate-500">Setting up your profile...</p>
+          </div>
+      );
   }
 
   return (

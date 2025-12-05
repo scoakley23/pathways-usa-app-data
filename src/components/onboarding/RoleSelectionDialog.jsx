@@ -19,16 +19,17 @@ export default function RoleSelectionDialog({ isOpen, onComplete, userEmail, use
     if (!selectedRole) return;
     setIsSubmitting(true);
 
+    const normalizedEmail = userEmail.toLowerCase().trim();
+
     try {
       // Create or update profile
-      // We use list to check existence first since we might need to update if it was auto-created elsewhere
       const existing = await base44.entities.PublicProfile.list({
-          query: { user_email: userEmail }
+          query: { user_email: normalizedEmail }
       });
 
       const profileData = {
-          user_email: userEmail,
-          display_name: userName || userEmail.split('@')[0],
+          user_email: normalizedEmail,
+          display_name: userName || normalizedEmail.split('@')[0],
           account_type: selectedRole
       };
 
@@ -47,6 +48,8 @@ export default function RoleSelectionDialog({ isOpen, onComplete, userEmail, use
 
       toast.success(`Welcome, ${selectedRole === 'tutor' ? 'Tutor' : 'Student'}!`);
       onComplete(selectedRole);
+      // Force reload to ensure all components/pages reflect the new role immediately
+      window.location.reload();
     } catch (error) {
       console.error("Error saving role", error);
       toast.error("Failed to save role. Please try again.");
