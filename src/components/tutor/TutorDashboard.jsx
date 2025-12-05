@@ -161,6 +161,11 @@ export default function TutorDashboard({ currentUserEmail, students }) {
 
   return (
     <div className="space-y-6 animate-in fade-in">
+      <div className="flex justify-end">
+          <Button variant="outline" size="sm" onClick={fetchData} disabled={isLoading}>
+              <TrendingUp className="w-4 h-4 mr-2" /> Refresh Data
+          </Button>
+      </div>
       {/* Metrics Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <Card>

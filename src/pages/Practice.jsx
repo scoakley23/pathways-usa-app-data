@@ -25,9 +25,7 @@ export default function Practice() {
   const [assignments, setAssignments] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
 
-  // Fetch pending assignments on load
-  useEffect(() => {
-    const loadUserAndAssignments = async () => {
+  const loadUserAndAssignments = async () => {
       const user = await base44.auth.me().catch(() => null);
       if (user) {
         setCurrentUser(user);
@@ -35,9 +33,19 @@ export default function Practice() {
         const myPending = allAssignments.filter(a => a.student_email === user.email && a.status === 'pending');
         setAssignments(myPending);
       }
-    };
+  };
+
+  // Fetch pending assignments on load
+  useEffect(() => {
     loadUserAndAssignments();
   }, []);
+
+  // Refresh when returning to menu
+  useEffect(() => {
+      if (mode === 'menu') {
+          loadUserAndAssignments();
+      }
+  }, [mode]);
 
   // Seed Reading Data if empty
   useEffect(() => {
@@ -354,6 +362,10 @@ export default function Practice() {
               status: 'completed',
               completed_date: new Date().toISOString()
             });
+            
+            // Update local state immediately so it vanishes from list
+            setAssignments(prev => prev.filter(a => a.id !== currentItem.assignment_id));
+            
             toast.success("Assignment Completed!");
           }
 

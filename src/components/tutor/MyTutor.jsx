@@ -166,7 +166,12 @@ export default function MyTutor({ currentUserEmail }) {
 
   return (
     <div className="space-y-6">
-        <h2 className="text-xl font-semibold text-slate-800">My Tutors</h2>
+        <div className="flex justify-between items-center">
+            <h2 className="text-xl font-semibold text-slate-800">My Tutors</h2>
+            <Button variant="ghost" size="sm" onClick={fetchTutors} title="Refresh">
+                <div className="w-4 h-4 border-2 border-slate-400 border-t-transparent rounded-full hover:animate-spin" />
+            </Button>
+        </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {tutors.map((rel) => (
           <Card key={rel.id} className="hover:shadow-md transition-shadow">

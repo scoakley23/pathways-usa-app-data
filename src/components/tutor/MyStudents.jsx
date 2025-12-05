@@ -168,7 +168,7 @@ export default function MyStudents({ currentUserEmail }) {
       <div className="flex justify-between items-center mb-4">
         <div className="flex bg-slate-100 p-1 rounded-lg">
             <button 
-                onClick={() => setView('list')}
+                onClick={() => { setView('list'); fetchStudents(); }}
                 className={`flex items-center px-4 py-2 rounded-md text-sm font-medium transition-all ${view === 'list' ? 'bg-white shadow-sm text-blue-700' : 'text-slate-500 hover:text-slate-700'}`}
             >
                 <Users className="w-4 h-4 mr-2" /> My Students
@@ -180,6 +180,9 @@ export default function MyStudents({ currentUserEmail }) {
                 <LayoutDashboard className="w-4 h-4 mr-2" /> Dashboard
             </button>
         </div>
+        <Button variant="ghost" size="sm" onClick={fetchStudents} title="Refresh List">
+            <div className="w-4 h-4 border-2 border-slate-400 border-t-transparent rounded-full hover:animate-spin" />
+        </Button>
       </div>
 
       {view === 'dashboard' ? (

@@ -25,7 +25,16 @@ export default function Layout({ children }) {
         
         // Handle Invite Link (if present)
         const params = new URLSearchParams(location.search);
-        const inviteTutorEmail = params.get('tutor_invite');
+        const urlInviteEmail = params.get('tutor_invite');
+        
+        // Persist to storage if found in URL (handles pre-login case)
+        if (urlInviteEmail) {
+            localStorage.setItem('pending_tutor_invite', urlInviteEmail);
+        }
+
+        // Check storage for pending invite
+        const storedInviteEmail = localStorage.getItem('pending_tutor_invite');
+        const inviteTutorEmail = urlInviteEmail || storedInviteEmail;
         
         if (inviteTutorEmail) {
              try {
@@ -50,9 +59,12 @@ export default function Layout({ children }) {
                      }
                  }
                  
-                 // Clean URL
-                 const newUrl = window.location.pathname;
-                 window.history.replaceState({}, document.title, newUrl);
+                 // Clean up
+                 localStorage.removeItem('pending_tutor_invite');
+                 if (urlInviteEmail) {
+                    const newUrl = window.location.pathname;
+                    window.history.replaceState({}, document.title, newUrl);
+                 }
              } catch (err) {
                  console.error("Error processing invite", err);
              }
