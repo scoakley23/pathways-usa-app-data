@@ -29,7 +29,21 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="py-16 grid md:grid-cols-3 gap-8">
+      <section className="py-16 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <Link to={createPageUrl('Practice')} className="block">
+            <Card className="h-full border-0 shadow-lg bg-white/50 backdrop-blur-sm hover:-translate-y-1 transition-transform duration-300 cursor-pointer hover:bg-purple-50/50">
+            <CardContent className="p-8 space-y-4">
+                <div className="w-12 h-12 bg-purple-100 text-purple-700 rounded-xl flex items-center justify-center">
+                <BookOpen className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold text-slate-900">Reading Practice</h3>
+                <p className="text-slate-600">
+                Read official sentences aloud and get instant feedback on pronunciation.
+                </p>
+            </CardContent>
+            </Card>
+        </Link>
+
         <Link to={createPageUrl('Practice')} className="block">
             <Card className="h-full border-0 shadow-lg bg-white/50 backdrop-blur-sm hover:-translate-y-1 transition-transform duration-300 cursor-pointer hover:bg-blue-50/50">
             <CardContent className="p-8 space-y-4">
