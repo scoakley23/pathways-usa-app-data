@@ -157,7 +157,12 @@ export default function Practice() {
     let mode = 'dictation';
     if (assignment.content_type === 'vocabulary') mode = 'vocabulary';
     if (assignment.content_type === 'civics_question') mode = 'civics';
-    if (assignment.content_type === 'custom') mode = 'dictation'; // Default to dictation for custom
+    if (assignment.content_type === 'custom') {
+        // Check custom_type to set correct mode
+        if (assignment.custom_type === 'vocabulary') mode = 'vocabulary';
+        else if (assignment.custom_type === 'civics_question') mode = 'civics';
+        else mode = 'dictation';
+    }
     setMode(mode);
     setCurrentIndex(0);
     setSessionComplete(false);
@@ -173,7 +178,33 @@ export default function Practice() {
       } else if (assignment.content_type === 'civics_question') {
         item = await base44.entities.CivicsQuestion.list({ id: assignment.content_id }).then(r => r[0]);
       } else if (assignment.content_type === 'custom') {
-        item = { text: assignment.custom_content, type: 'sentence', id: 'custom' };
+        // Handle custom content types
+        if (assignment.custom_type === 'vocabulary' && assignment.custom_data) {
+             item = { 
+                 text: assignment.custom_data.word, 
+                 word: assignment.custom_data.word,
+                 definition: assignment.custom_data.definition,
+                 type: 'vocabulary', 
+                 id: 'custom_vocab_' + assignment.id 
+             };
+             // Force mode to vocabulary if not set correctly above
+             if (mode !== 'vocabulary') setMode('vocabulary');
+             // Default to flashcards for custom vocab as it's best for learning new definitions
+             setVocabSubMode('flashcards');
+        } else if (assignment.custom_type === 'civics_question' && assignment.custom_data) {
+             item = {
+                 question: assignment.custom_data.question,
+                 answer: assignment.custom_data.answer,
+                 type: 'civics_question',
+                 version: 'custom',
+                 id: 'custom_civics_' + assignment.id
+             };
+             if (mode !== 'civics') setMode('civics');
+        } else {
+             // Default / Sentence
+             const text = assignment.custom_content || (assignment.custom_data && assignment.custom_data.text);
+             item = { text: text, type: 'sentence', id: 'custom' };
+        }
       }
 
       if (item) {

@@ -60,6 +60,14 @@ export default function MyStudents({ currentUserEmail }) {
         student_email: newStudentEmail,
         status: 'pending' 
       });
+
+      // Send email invitation
+      await base44.integrations.Core.SendEmail({
+        to: newStudentEmail,
+        subject: "Invitation to connect on Citizenship Learning Hub",
+        body: `Hello! \n\n${currentUserEmail} has invited you to connect as a student on the Citizenship Learning Hub. \n\nPlease log in to the app to accept the invitation and start practicing together. \n\nBest regards,\nThe Citizenship Hub Team`
+      });
+
       setNewStudentEmail("");
       toast.success("Invitation sent to student!");
       fetchStudents();

@@ -27,6 +27,8 @@ export default function AssignContentDialog({ isOpen, onClose, studentEmail, tut
   const [items, setItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [customType, setCustomType] = useState('sentence');
+  const [customData, setCustomData] = useState({ word: '', definition: '', question: '', answer: '' });
   const [selectedId, setSelectedId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isAssigning, setIsAssigning] = useState(false);
@@ -36,6 +38,8 @@ export default function AssignContentDialog({ isOpen, onClose, studentEmail, tut
       fetchContent();
       setSelectedId(null);
       setSearchQuery('');
+      setCustomData({ word: '', definition: '', question: '', answer: '' });
+      setCustomType('sentence');
     }
   }, [isOpen, contentType]);
 
@@ -83,20 +87,45 @@ export default function AssignContentDialog({ isOpen, onClose, studentEmail, tut
     setIsAssigning(true);
     try {
       if (contentType === 'custom') {
-         if (!searchQuery.trim()) {
-            toast.error("Please enter custom text");
+         // Validation
+         if (customType === 'sentence' && !searchQuery.trim()) {
+            toast.error("Please enter sentence text");
             setIsAssigning(false);
             return;
          }
-         await base44.entities.Assignment.create({
+         if (customType === 'vocabulary' && (!customData.word.trim() || !customData.definition.trim())) {
+             toast.error("Please enter both word and definition");
+             setIsAssigning(false);
+             return;
+         }
+         if (customType === 'civics_question' && (!customData.question.trim() || !customData.answer.trim())) {
+             toast.error("Please enter both question and answer");
+             setIsAssigning(false);
+             return;
+         }
+
+         let assignmentData = {
             tutor_email: tutorEmail,
             student_email: studentEmail,
             content_type: 'custom',
-            content_id: 'custom', // Placeholder
-            custom_content: searchQuery,
+            content_id: 'custom',
             status: 'pending',
-            assigned_date: new Date().toISOString()
-         });
+            assigned_date: new Date().toISOString(),
+            custom_type: customType
+         };
+
+         if (customType === 'sentence') {
+             assignmentData.custom_content = searchQuery;
+             assignmentData.custom_data = { text: searchQuery };
+         } else if (customType === 'vocabulary') {
+             assignmentData.custom_content = `${customData.word}: ${customData.definition}`; // Fallback/Display
+             assignmentData.custom_data = { word: customData.word, definition: customData.definition };
+         } else if (customType === 'civics_question') {
+             assignmentData.custom_content = customData.question;
+             assignmentData.custom_data = { question: customData.question, answer: customData.answer };
+         }
+
+         await base44.entities.Assignment.create(assignmentData);
       } else {
           if (!selectedId) return;
           await base44.entities.Assignment.create({
@@ -146,18 +175,84 @@ export default function AssignContentDialog({ isOpen, onClose, studentEmail, tut
           </Tabs>
 
           {contentType === 'custom' ? (
-            <div className="flex-1 p-4 space-y-4">
+            <div className="flex-1 p-4 space-y-4 overflow-y-auto">
                 <div className="space-y-2">
                     <h3 className="text-sm font-medium">Create Custom Assignment</h3>
-                    <p className="text-xs text-slate-500">Enter a custom sentence or instruction for the student to practice.</p>
+                    <p className="text-xs text-slate-500">Create content tailored to your student's needs.</p>
                 </div>
-                <Input
-                    placeholder="Type custom sentence here..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="h-24 text-lg"
-                    as="textarea" 
-                />
+
+                <div className="flex p-1 bg-slate-100 rounded-lg">
+                    {['sentence', 'vocabulary', 'civics_question'].map(type => (
+                        <button
+                            key={type}
+                            onClick={() => setCustomType(type)}
+                            className={`flex-1 text-xs font-medium py-2 rounded-md transition-all ${
+                                customType === type ? 'bg-white shadow text-blue-600' : 'text-slate-500 hover:text-slate-700'
+                            }`}
+                        >
+                            {type === 'civics_question' ? 'Civics Q&A' : type.charAt(0).toUpperCase() + type.slice(1)}
+                        </button>
+                    ))}
+                </div>
+
+                {customType === 'sentence' && (
+                    <div className="space-y-2 animate-in fade-in">
+                        <label className="text-xs font-medium text-slate-700">Sentence Text</label>
+                        <Input
+                            placeholder="Type sentence here..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="h-24 text-lg"
+                            as="textarea" 
+                        />
+                    </div>
+                )}
+
+                {customType === 'vocabulary' && (
+                    <div className="space-y-4 animate-in fade-in">
+                        <div className="space-y-2">
+                            <label className="text-xs font-medium text-slate-700">Word or Phrase</label>
+                            <Input
+                                placeholder="e.g. Amendment"
+                                value={customData.word}
+                                onChange={(e) => setCustomData({...customData, word: e.target.value})}
+                            />
+                        </div>
+                        <div className="space-y-2">
+                            <label className="text-xs font-medium text-slate-700">Definition</label>
+                            <Input
+                                placeholder="e.g. A change to the Constitution"
+                                value={customData.definition}
+                                onChange={(e) => setCustomData({...customData, definition: e.target.value})}
+                                as="textarea"
+                                className="h-20"
+                            />
+                        </div>
+                    </div>
+                )}
+
+                {customType === 'civics_question' && (
+                    <div className="space-y-4 animate-in fade-in">
+                        <div className="space-y-2">
+                            <label className="text-xs font-medium text-slate-700">Question</label>
+                            <Input
+                                placeholder="e.g. What is the supreme law of the land?"
+                                value={customData.question}
+                                onChange={(e) => setCustomData({...customData, question: e.target.value})}
+                            />
+                        </div>
+                        <div className="space-y-2">
+                            <label className="text-xs font-medium text-slate-700">Answer</label>
+                            <Input
+                                placeholder="e.g. The Constitution"
+                                value={customData.answer}
+                                onChange={(e) => setCustomData({...customData, answer: e.target.value})}
+                                as="textarea"
+                                className="h-20"
+                            />
+                        </div>
+                    </div>
+                )}
             </div>
           ) : (
             <>
