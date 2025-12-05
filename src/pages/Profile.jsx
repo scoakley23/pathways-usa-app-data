@@ -8,8 +8,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { User, Trophy, Flame, Star, GraduationCap, School, Users, Save, Loader2 } from 'lucide-react';
 import BadgesDisplay from '@/components/gamification/BadgesDisplay';
-import MyStudents from '@/components/tutor/MyStudents';
-import MyTutor from '@/components/tutor/MyTutor';
+import TutorDashboard from '@/components/tutor/TutorDashboard';
 import { toast } from "sonner";
 
 export default function Profile() {
@@ -18,6 +17,7 @@ export default function Profile() {
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [displayName, setDisplayName] = useState("");
+  const [students, setStudents] = useState([]);
 
   useEffect(() => {
     fetchData();
@@ -36,6 +36,13 @@ export default function Profile() {
       if (profiles.length > 0) {
         setPublicProfile(profiles[0]);
         setDisplayName(profiles[0].display_name || userData.full_name || "");
+        
+        if (profiles[0].account_type === 'tutor') {
+             const rels = await base44.entities.TutorRelationship.list({
+                query: { tutor_email: userData.email }
+             });
+             setStudents(rels);
+        }
       } else {
         setDisplayName(userData.full_name || "");
       }
@@ -117,6 +124,7 @@ export default function Profile() {
                 </h2>
                 <p className="text-slate-500 text-sm text-center mb-6">{user.email}</p>
                 
+                {(!publicProfile || publicProfile.account_type !== 'tutor') && (
                 <div className="w-full grid grid-cols-3 gap-2 text-center border-t border-slate-100 pt-4">
                   <div>
                     <p className="text-2xl font-bold text-slate-900">{user.points || 0}</p>
@@ -131,6 +139,7 @@ export default function Profile() {
                     <p className="text-xs text-slate-500 uppercase tracking-wide">Streak</p>
                   </div>
                 </div>
+                )}
               </div>
             </CardContent>
           </Card>
@@ -162,49 +171,63 @@ export default function Profile() {
         {/* Right Column: Stats & Relationships */}
         <div className="w-full md:w-2/3 space-y-6">
           
-          {/* Detailed Stats */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <Card className="bg-blue-50 border-blue-100">
-              <CardContent className="p-4 text-center">
-                <Trophy className="w-6 h-6 text-blue-600 mx-auto mb-2" />
-                <p className="text-2xl font-bold text-slate-900">{user.total_correct || 0}</p>
-                <p className="text-xs text-slate-600">Correct Answers</p>
-              </CardContent>
-            </Card>
-            <Card className="bg-orange-50 border-orange-100">
-              <CardContent className="p-4 text-center">
-                <Flame className="w-6 h-6 text-orange-600 mx-auto mb-2" />
-                <p className="text-2xl font-bold text-slate-900">{user.current_streak || 0}</p>
-                <p className="text-xs text-slate-600">Current Streak</p>
-              </CardContent>
-            </Card>
-            <Card className="bg-purple-50 border-purple-100">
-              <CardContent className="p-4 text-center">
-                <Star className="w-6 h-6 text-purple-600 mx-auto mb-2" />
-                <p className="text-2xl font-bold text-slate-900">{user.points || 0}</p>
-                <p className="text-xs text-slate-600">Total Points</p>
-              </CardContent>
-            </Card>
-             <Card className="bg-green-50 border-green-100">
-              <CardContent className="p-4 text-center">
-                <GraduationCap className="w-6 h-6 text-green-600 mx-auto mb-2" />
-                <p className="text-2xl font-bold text-slate-900">{(user.badges || []).length}</p>
-                <p className="text-xs text-slate-600">Badges Earned</p>
-              </CardContent>
-            </Card>
-          </div>
+          {publicProfile && publicProfile.account_type === 'tutor' ? (
+            <div className="space-y-6">
+                <div className="flex items-center justify-between">
+                    <h3 className="text-xl font-bold text-slate-800">Classroom Progress</h3>
+                    <Button variant="outline" size="sm" onClick={() => window.location.href = '/Tutor'}>
+                        <School className="w-4 h-4 mr-2" /> Manage Students
+                    </Button>
+                </div>
+                <TutorDashboard currentUserEmail={user.email} students={students} />
+            </div>
+          ) : (
+            <>
+              {/* Detailed Stats */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                <Card className="bg-blue-50 border-blue-100">
+                  <CardContent className="p-4 text-center">
+                    <Trophy className="w-6 h-6 text-blue-600 mx-auto mb-2" />
+                    <p className="text-2xl font-bold text-slate-900">{user.total_correct || 0}</p>
+                    <p className="text-xs text-slate-600">Correct Answers</p>
+                  </CardContent>
+                </Card>
+                <Card className="bg-orange-50 border-orange-100">
+                  <CardContent className="p-4 text-center">
+                    <Flame className="w-6 h-6 text-orange-600 mx-auto mb-2" />
+                    <p className="text-2xl font-bold text-slate-900">{user.current_streak || 0}</p>
+                    <p className="text-xs text-slate-600">Current Streak</p>
+                  </CardContent>
+                </Card>
+                <Card className="bg-purple-50 border-purple-100">
+                  <CardContent className="p-4 text-center">
+                    <Star className="w-6 h-6 text-purple-600 mx-auto mb-2" />
+                    <p className="text-2xl font-bold text-slate-900">{user.points || 0}</p>
+                    <p className="text-xs text-slate-600">Total Points</p>
+                  </CardContent>
+                </Card>
+                 <Card className="bg-green-50 border-green-100">
+                  <CardContent className="p-4 text-center">
+                    <GraduationCap className="w-6 h-6 text-green-600 mx-auto mb-2" />
+                    <p className="text-2xl font-bold text-slate-900">{(user.badges || []).length}</p>
+                    <p className="text-xs text-slate-600">Badges Earned</p>
+                  </CardContent>
+                </Card>
+              </div>
 
-          <div className="w-full">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2"><Trophy className="w-5 h-5 text-yellow-500" /> Your Badge Collection</CardTitle>
-                  <CardDescription>Unlock badges by practicing consistently.</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <BadgesDisplay earnedBadges={user.badges || []} />
-                </CardContent>
-              </Card>
-          </div>
+              <div className="w-full">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-2"><Trophy className="w-5 h-5 text-yellow-500" /> Your Badge Collection</CardTitle>
+                      <CardDescription>Unlock badges by practicing consistently.</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <BadgesDisplay earnedBadges={user.badges || []} />
+                    </CardContent>
+                  </Card>
+              </div>
+            </>
+          )}
 
         </div>
       </div>
