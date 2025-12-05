@@ -10,6 +10,7 @@ import CivicsTestCard from '@/components/practice/CivicsTestCard';
 import FlashcardGame from '@/components/practice/FlashcardGame';
 import MatchingGame from '@/components/practice/MatchingGame';
 import ReadingPracticeCard from '@/components/practice/ReadingPracticeCard';
+import StudyBuddy from '@/components/ai/StudyBuddy';
 import { toast } from "sonner";
 
 export default function Practice() {
@@ -488,7 +489,8 @@ export default function Practice() {
             <p className="text-slate-500">No content found for this mode.</p>
             <Button onClick={() => setMode('menu')} className="mt-4">Go Back</Button>
          </div>
-      )}
-    </div>
-  );
-}
+         )}
+         <StudyBuddy />
+         </div>
+         );
+         }
