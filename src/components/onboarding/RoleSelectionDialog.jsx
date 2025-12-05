@@ -72,10 +72,10 @@ export default function RoleSelectionDialog({ isOpen, onComplete, userEmail, use
 
       toast.success(`Profile set to: ${selectedRole === 'tutor' ? 'Tutor' : 'Student'}`);
       
-      // 5. Force page reload to ensure Layout picks up the fresh single source of truth
-      setTimeout(() => {
-          window.location.reload();
-      }, 500);
+      // 5. Update parent state immediately (Optimistic UI) to prevent buffering loop
+      if (onComplete) {
+          onComplete(selectedRole);
+      }
       
     } catch (error) {
       console.error("Error saving role", error);
