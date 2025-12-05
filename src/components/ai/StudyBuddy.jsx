@@ -3,7 +3,7 @@ import { base44 } from '@/api/base44Client';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
-import { MessageCircle, X, Send, Bot, User, Loader2 } from 'lucide-react';
+import { MessageCircle, X, Send, Bot, User, Loader2, Volume2, Globe, History } from 'lucide-react';
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
@@ -17,6 +17,7 @@ export default function StudyBuddy() {
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState(null);
   const [tutorEmail, setTutorEmail] = useState(null);
+  const [language, setLanguage] = useState('en');
   const scrollRef = useRef(null);
 
   useEffect(() => {
@@ -49,6 +50,14 @@ export default function StudyBuddy() {
     }
   }, [messages, isOpen]);
 
+  const speak = (text) => {
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    // Try to match language if possible, otherwise default to en-US
+    utterance.lang = language === 'es' ? 'es-ES' : (language === 'zh' ? 'zh-CN' : 'en-US');
+    window.speechSynthesis.speak(utterance);
+  };
+
   const handleSend = async (e) => {
     e.preventDefault();
     if (!input.trim() || isLoading) return;
@@ -60,11 +69,15 @@ export default function StudyBuddy() {
 
     try {
       // 1. Get AI Answer
-      const prompt = `You are a helpful US Citizenship Test Tutor. 
+      let prompt = `You are a helpful US Citizenship Test Tutor. 
       The student asked: "${userQuestion}"
       
       Provide a clear, accurate, and concise answer relevant to the US Civics test or English learning for the test. 
       Keep it simple and encouraging.`;
+
+      if (language !== 'en') {
+        prompt += `\n\nIMPORTANT: Provide the answer in ${language}. Also provide the English translation below it.`;
+      }
 
       const aiResponse = await base44.integrations.Core.InvokeLLM({
         prompt: prompt,
@@ -75,7 +88,18 @@ export default function StudyBuddy() {
 
       setMessages(prev => [...prev, { role: 'assistant', content: answerText }]);
 
-      // 2. Notify Tutor if exists
+      // 2. Save to History Log
+      if (user) {
+        await base44.entities.AIStudyLog.create({
+            user_email: user.email,
+            question: userQuestion,
+            answer: answerText,
+            language: language,
+            created_at: new Date().toISOString()
+        });
+      }
+
+      // 3. Notify Tutor if exists
       if (tutorEmail && user) {
         await base44.integrations.Core.SendEmail({
           to: tutorEmail,
@@ -98,19 +122,45 @@ export default function StudyBuddy() {
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end pointer-events-none">
       {isOpen && (
         <Card className="w-[350px] h-[500px] shadow-2xl border-blue-200 mb-4 pointer-events-auto flex flex-col animate-in slide-in-from-bottom-10 fade-in duration-300">
-          <CardHeader className="bg-blue-600 text-white rounded-t-xl p-4 flex flex-row items-center justify-between shrink-0">
-            <div className="flex items-center gap-2">
-              <Bot className="w-6 h-6" />
-              <CardTitle className="text-base">AI Study Buddy</CardTitle>
+          <CardHeader className="bg-blue-600 text-white rounded-t-xl p-3 flex flex-col gap-3 shrink-0">
+            <div className="flex items-center justify-between w-full">
+                <div className="flex items-center gap-2">
+                <Bot className="w-6 h-6" />
+                <CardTitle className="text-base">AI Study Buddy</CardTitle>
+                </div>
+                <div className="flex items-center gap-1">
+                    <Link to={createPageUrl('StudyHistory')}>
+                        <Button variant="ghost" size="icon" className="text-blue-100 hover:text-white hover:bg-blue-700 h-8 w-8" title="View History">
+                            <History className="w-4 h-4" />
+                        </Button>
+                    </Link>
+                    <Button 
+                    variant="ghost" 
+                    size="icon" 
+                    className="text-blue-100 hover:text-white hover:bg-blue-700 h-8 w-8"
+                    onClick={() => setIsOpen(false)}
+                    >
+                    <X className="w-5 h-5" />
+                    </Button>
+                </div>
             </div>
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              className="text-blue-100 hover:text-white hover:bg-blue-700 h-8 w-8"
-              onClick={() => setIsOpen(false)}
-            >
-              <X className="w-5 h-5" />
-            </Button>
+            <div className="flex items-center gap-2 w-full">
+                <Globe className="w-4 h-4 text-blue-100" />
+                <Select value={language} onValueChange={setLanguage}>
+                    <SelectTrigger className="h-8 bg-blue-700 border-none text-white text-xs focus:ring-0 focus:ring-offset-0">
+                        <SelectValue placeholder="Language" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value="en">English</SelectItem>
+                        <SelectItem value="es">Spanish (Español)</SelectItem>
+                        <SelectItem value="zh">Chinese (中文)</SelectItem>
+                        <SelectItem value="vi">Vietnamese (Tiếng Việt)</SelectItem>
+                        <SelectItem value="ar">Arabic (العربية)</SelectItem>
+                        <SelectItem value="fr">French (Français)</SelectItem>
+                        <SelectItem value="tl">Tagalog</SelectItem>
+                    </SelectContent>
+                </Select>
+            </div>
           </CardHeader>
           
           <CardContent className="flex-1 p-0 overflow-hidden bg-slate-50">
@@ -130,12 +180,21 @@ export default function StudyBuddy() {
                       {msg.role === 'user' ? <User className="w-5 h-5" /> : <Bot className="w-5 h-5" />}
                     </div>
                     <div className={cn(
-                      "p-3 rounded-2xl text-sm",
+                      "p-3 rounded-2xl text-sm group relative",
                       msg.role === 'user' 
                         ? "bg-blue-600 text-white rounded-tr-none" 
                         : "bg-white border border-slate-200 text-slate-700 rounded-tl-none shadow-sm"
                     )}>
                       {msg.content}
+                      {msg.role === 'assistant' && (
+                          <button 
+                            onClick={() => speak(msg.content)}
+                            className="absolute -right-8 top-1/2 -translate-y-1/2 p-1.5 text-slate-400 hover:text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity"
+                            title="Read aloud"
+                          >
+                              <Volume2 className="w-4 h-4" />
+                          </button>
+                      )}
                     </div>
                   </div>
                 ))}
