@@ -48,8 +48,11 @@ export default function MyTutor({ currentUserEmail }) {
 
       try {
           // 1. Find tutor by invite code
+          // Remove all whitespace to handle cases where users type spaces
+          const cleanCode = inviteCode.replace(/\s+/g, '').toUpperCase();
+          
           const profiles = await base44.entities.PublicProfile.list({
-              query: { invite_code: inviteCode.trim().toUpperCase() }
+              query: { invite_code: cleanCode }
           });
 
           if (profiles.length === 0) {
