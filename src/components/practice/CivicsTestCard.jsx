@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Volume2, Eye, ArrowRight, Globe, Loader2 } from 'lucide-react';
+import { speakText } from "@/components/utils/textToSpeech";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -67,12 +68,10 @@ export default function CivicsTestCard({ question, onComplete, onNext }) {
   };
 
   const speak = (text) => {
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'en-US';
-    utterance.onstart = () => setIsPlaying(true);
-    utterance.onend = () => setIsPlaying(false);
-    window.speechSynthesis.speak(utterance);
+    speakText(text, 'en', {
+      onStart: () => setIsPlaying(true),
+      onEnd: () => setIsPlaying(false)
+    });
   };
 
   return (

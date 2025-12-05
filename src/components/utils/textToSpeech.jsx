@@ -1,4 +1,4 @@
-export const speakText = (text, language = 'en') => {
+export const speakText = (text, language = 'en', { onStart, onEnd } = {}) => {
   if (!window.speechSynthesis) return;
   
   window.speechSynthesis.cancel();
@@ -41,6 +41,9 @@ export const speakText = (text, language = 'en') => {
     // Adjust rate for clarity (slightly slower is better for learning)
     utterance.rate = 0.85; 
     utterance.pitch = 1.0;
+
+    if (onStart) utterance.onstart = onStart;
+    if (onEnd) utterance.onend = onEnd;
 
     window.speechSynthesis.speak(utterance);
   };

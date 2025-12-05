@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Volume2, Eye, Check, X, ArrowRight, RefreshCw, Edit3, Globe, Languages, Loader2 } from 'lucide-react';
+import { speakText } from "@/components/utils/textToSpeech";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -67,16 +68,10 @@ export default function DictationCard({ sentence, onComplete, onNext }) {
 
   const speak = () => {
     if (!sentence) return;
-    
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(sentence.text);
-    utterance.lang = 'en-US';
-    utterance.rate = 0.85; // Slightly slower for clarity
-    
-    utterance.onstart = () => setIsPlaying(true);
-    utterance.onend = () => setIsPlaying(false);
-    
-    window.speechSynthesis.speak(utterance);
+    speakText(sentence.text, 'en', {
+      onStart: () => setIsPlaying(true),
+      onEnd: () => setIsPlaying(false)
+    });
   };
 
   // Clean text for comparison (remove punctuation, case insensitive)
