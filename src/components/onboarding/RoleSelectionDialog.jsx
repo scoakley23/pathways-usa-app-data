@@ -47,6 +47,7 @@ export default function RoleSelectionDialog({ isOpen, onComplete, userEmail, use
       }
 
       toast.success(`Welcome, ${selectedRole === 'tutor' ? 'Tutor' : 'Student'}!`);
+      window.dispatchEvent(new Event('profile-updated'));
       onComplete(selectedRole);
     } catch (error) {
       console.error("Error saving role", error);

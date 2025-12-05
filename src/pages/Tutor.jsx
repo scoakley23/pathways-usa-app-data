@@ -9,33 +9,39 @@ export default function Tutor() {
   const [role, setRole] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const loadUserAndRole = async () => {
-      try {
-        const me = await base44.auth.me();
-        setUser(me);
-        
-        // Fetch Role
-        const normalizedEmail = me.email.toLowerCase().trim();
-        const profiles = await base44.entities.PublicProfile.list({
-            query: { user_email: normalizedEmail }
-        });
-        
-        if (profiles.length > 0 && profiles[0].account_type) {
-            setRole(profiles[0].account_type);
-        } else {
-            // If no role found, we might be in the middle of onboarding.
-            // Don't default to student yet, let the layout handle onboarding.
-            // But to avoid infinite loading if layout fails, we check if we are forced to show something.
-            setRole(null); 
-        }
-      } catch (e) {
-        // handle not logged in
-      } finally {
-        setIsLoading(false);
+  const fetchUserData = async () => {
+    try {
+      const me = await base44.auth.me();
+      setUser(me);
+      
+      const normalizedEmail = me.email.toLowerCase().trim();
+      const profiles = await base44.entities.PublicProfile.list({
+          query: { user_email: normalizedEmail }
+      });
+      
+      if (profiles.length > 0 && profiles[0].account_type) {
+          setRole(profiles[0].account_type);
+      } else {
+          setRole(null);
       }
+    } catch (e) {
+      console.error("Error loading user data", e);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserData();
+
+    // Listen for updates from the onboarding dialog
+    const handleUpdate = () => {
+        setIsLoading(true);
+        fetchUserData();
     };
-    loadUserAndRole();
+    
+    window.addEventListener('profile-updated', handleUpdate);
+    return () => window.removeEventListener('profile-updated', handleUpdate);
   }, []);
 
   if (isLoading) {
@@ -61,6 +67,12 @@ export default function Tutor() {
           <div className="flex flex-col items-center justify-center min-h-[50vh] text-center space-y-4">
               <Loader2 className="w-12 h-12 animate-spin text-blue-200" />
               <p className="text-slate-500">Setting up your profile...</p>
+              <button 
+                onClick={() => window.location.reload()} 
+                className="text-sm text-blue-600 hover:underline mt-4"
+              >
+                Taking too long? Refresh Page
+              </button>
           </div>
       );
   }
