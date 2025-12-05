@@ -81,11 +81,12 @@ export default function MyStudents({ currentUserEmail }) {
       toast.success("Student added to your list!");
 
       // Send email in background
+      const appUrl = window.location.origin;
       base44.integrations.Core.SendEmail({
             from_name: "Citizenship Learning Hub",
             to: studentEmailLower,
             subject: "Invitation to connect on Citizenship Learning Hub",
-            body: `Hello! \n\n${currentUserEmail} has invited you to connect as a student on the Citizenship Learning Hub. \n\nPlease log in to the app to accept the invitation and start practicing together. \n\nBest regards,\nThe Citizenship Hub Team`
+            body: `Hello! \n\n${currentUserEmail} has invited you to connect as a student on the Citizenship Learning Hub. \n\nPlease click the link below to register/login and accept the invitation to start practicing together:\n${appUrl}\n\nBest regards,\nThe Citizenship Hub Team`
       }).then(() => {
           toast.success("Invitation email sent!");
       }).catch((emailError) => {
