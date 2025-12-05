@@ -26,6 +26,7 @@ export default function MyStudents({ currentUserEmail }) {
   const [students, setStudents] = useState([]);
   const [newStudentEmail, setNewStudentEmail] = useState("");
   const [selectedStudent, setSelectedStudent] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   
   // Dialog States
   const [isChatOpen, setIsChatOpen] = useState(false);
@@ -50,11 +51,13 @@ export default function MyStudents({ currentUserEmail }) {
   const addStudent = async (e) => {
     e.preventDefault();
     if (!newStudentEmail) return;
+    setIsSubmitting(true);
 
     const studentEmailLower = newStudentEmail.toLowerCase().trim();
 
     if (studentEmailLower === currentUserEmail.toLowerCase().trim()) {
         toast.error("You cannot add yourself as a student");
+        setIsSubmitting(false);
         return;
     }
 
@@ -62,6 +65,7 @@ export default function MyStudents({ currentUserEmail }) {
         const existing = students.find(s => s.student_email.toLowerCase() === studentEmailLower);
         if (existing) {
             toast.error("Student already added");
+            setIsSubmitting(false);
             return;
         }
 
@@ -71,18 +75,26 @@ export default function MyStudents({ currentUserEmail }) {
         status: 'pending' 
       });
 
-      // Send email invitation
-      await base44.integrations.Core.SendEmail({
-        to: studentEmailLower,
-        subject: "Invitation to connect on Citizenship Learning Hub",
-        body: `Hello! \n\n${currentUserEmail} has invited you to connect as a student on the Citizenship Learning Hub. \n\nPlease log in to the app to accept the invitation and start practicing together. \n\nBest regards,\nThe Citizenship Hub Team`
-      });
+      try {
+        // Send email invitation
+        await base44.integrations.Core.SendEmail({
+            to: studentEmailLower,
+            subject: "Invitation to connect on Citizenship Learning Hub",
+            body: `Hello! \n\n${currentUserEmail} has invited you to connect as a student on the Citizenship Learning Hub. \n\nPlease log in to the app to accept the invitation and start practicing together. \n\nBest regards,\nThe Citizenship Hub Team`
+        });
+        toast.success("Invitation sent to student!");
+      } catch (emailError) {
+          console.error("Email failed", emailError);
+          toast.warning("Student added, but failed to send email invitation.");
+      }
 
       setNewStudentEmail("");
-      toast.success("Invitation sent to student!");
       fetchStudents();
     } catch (error) {
-      toast.error("Failed to add student");
+      console.error("Add student error", error);
+      toast.error(`Failed to add student: ${error.message || "Unknown error"}`);
+    } finally {
+        setIsSubmitting(false);
     }
   };
 
@@ -133,8 +145,8 @@ export default function MyStudents({ currentUserEmail }) {
                   type="email"
                   required
                 />
-                <Button type="submit">
-                  <Plus className="w-4 h-4 mr-2" /> Add Student
+                <Button type="submit" disabled={isSubmitting}>
+                  <Plus className="w-4 h-4 mr-2" /> {isSubmitting ? 'Adding...' : 'Add Student'}
                 </Button>
               </form>
             </CardContent>
