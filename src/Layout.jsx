@@ -1,21 +1,36 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import { BookOpen, Mic, CheckCircle, LogOut, Menu, X, Settings, GraduationCap, User, MessageSquare, Notebook } from 'lucide-react';
+import { BookOpen, Mic, CheckCircle, LogOut, Menu, X, Settings, GraduationCap, User, MessageSquare, Notebook, School } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { base44 } from '@/api/base44Client';
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import RoleSelectionDialog from '@/components/onboarding/RoleSelectionDialog';
 
 export default function Layout({ children }) {
   const location = useLocation();
   const [user, setUser] = React.useState(null);
+  const [role, setRole] = React.useState(null);
   const [isOpen, setIsOpen] = React.useState(false);
+  const [showOnboarding, setShowOnboarding] = React.useState(false);
 
   React.useEffect(() => {
     const checkUser = async () => {
       try {
         const currentUser = await base44.auth.me();
         setUser(currentUser);
+        
+        // Check for Role
+        const profiles = await base44.entities.PublicProfile.list({
+             query: { user_email: currentUser.email }
+        });
+        
+        if (profiles.length > 0 && profiles[0].account_type) {
+            setRole(profiles[0].account_type);
+        } else {
+            // If no profile or no account_type, show onboarding
+            setShowOnboarding(true);
+        }
       } catch (e) {
         // Not logged in
       }
@@ -27,9 +42,21 @@ export default function Layout({ children }) {
     { label: 'Home', path: '/', icon: BookOpen },
     { label: 'Practice', path: '/Practice', icon: Mic },
     { label: 'Progress', path: '/Progress', icon: CheckCircle },
-    { label: 'Tutor Portal', path: '/Tutor', icon: GraduationCap },
-    { label: 'Profile', path: '/Profile', icon: User },
   ];
+
+  // Dynamic Navigation based on Role
+  if (role === 'tutor') {
+      navItems.push({ label: 'Tutor Portal', path: '/Tutor', icon: GraduationCap });
+  } else if (role === 'student' || (!role && user)) {
+      // Students see "My Classroom" instead of "Tutor Portal"
+      // Or we can keep the path /Tutor but rename the label
+      navItems.push({ label: 'My Classroom', path: '/Tutor', icon: School });
+  } else if (!user) {
+      // Guest view
+      navItems.push({ label: 'Tutors', path: '/Tutor', icon: School });
+  }
+
+  navItems.push({ label: 'Profile', path: '/Profile', icon: User });
 
   // Add admin link if user is admin
   if (user?.role === 'admin') {
@@ -127,6 +154,18 @@ export default function Layout({ children }) {
       <main className="container mx-auto px-4 py-8 max-w-5xl">
         {children}
       </main>
+      
+      {showOnboarding && user && (
+          <RoleSelectionDialog 
+              isOpen={showOnboarding} 
+              userEmail={user.email}
+              userName={user.full_name}
+              onComplete={(selectedRole) => {
+                  setRole(selectedRole);
+                  setShowOnboarding(false);
+              }}
+          />
+      )}
     </div>
   );
 }
