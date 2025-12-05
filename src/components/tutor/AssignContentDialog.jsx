@@ -29,14 +29,14 @@ export default function AssignContentDialog({ isOpen, onClose, studentEmail, tut
   const [searchQuery, setSearchQuery] = useState('');
   const [customType, setCustomType] = useState('sentence');
   const [customData, setCustomData] = useState({ word: '', definition: '', question: '', answer: '' });
-  const [selectedId, setSelectedId] = useState(null);
+  const [selectedIds, setSelectedIds] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isAssigning, setIsAssigning] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
       fetchContent();
-      setSelectedId(null);
+      setSelectedIds([]);
       setSearchQuery('');
       setCustomData({ word: '', definition: '', question: '', answer: '' });
       setCustomType('sentence');
@@ -127,15 +127,19 @@ export default function AssignContentDialog({ isOpen, onClose, studentEmail, tut
 
          await base44.entities.Assignment.create(assignmentData);
       } else {
-          if (!selectedId) return;
-          await base44.entities.Assignment.create({
+          if (selectedIds.length === 0) return;
+          
+          const assignments = selectedIds.map(id => ({
             tutor_email: tutorEmail,
             student_email: studentEmail,
             content_type: contentType,
-            content_id: selectedId,
+            content_id: id,
             status: 'pending',
             assigned_date: new Date().toISOString()
-          });
+          }));
+
+          // Use parallel creation for better performance
+          await Promise.all(assignments.map(a => base44.entities.Assignment.create(a)));
       }
       toast.success("Assignment sent successfully!");
       onClose();
@@ -278,14 +282,20 @@ export default function AssignContentDialog({ isOpen, onClose, studentEmail, tut
                 {filteredItems.map((item) => (
                   <div
                     key={item.id}
-                    onClick={() => setSelectedId(item.id)}
+                    onClick={() => {
+                        setSelectedIds(prev => 
+                            prev.includes(item.id) 
+                            ? prev.filter(id => id !== item.id) 
+                            : [...prev, item.id]
+                        );
+                    }}
                     className={`p-3 rounded-lg border cursor-pointer transition-colors flex justify-between items-start hover:bg-slate-50
-                      ${selectedId === item.id ? 'border-blue-500 bg-blue-50' : 'border-slate-200'}`}
+                      ${selectedIds.includes(item.id) ? 'border-blue-500 bg-blue-50' : 'border-slate-200'}`}
                   >
                     <p className="text-sm font-medium text-slate-800 pr-4 line-clamp-2">
                       {getItemLabel(item)}
                     </p>
-                    {selectedId === item.id && (
+                    {selectedIds.includes(item.id) && (
                       <Check className="w-4 h-4 text-blue-600 mt-1 flex-shrink-0" />
                     )}
                   </div>
@@ -301,11 +311,11 @@ export default function AssignContentDialog({ isOpen, onClose, studentEmail, tut
           <Button variant="outline" onClick={onClose}>Cancel</Button>
           <Button 
             onClick={handleAssign} 
-            disabled={(contentType !== 'custom' && !selectedId) || isAssigning} 
+            disabled={(contentType !== 'custom' && selectedIds.length === 0) || isAssigning} 
             className="bg-blue-600 hover:bg-blue-700"
           >
             {isAssigning ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
-            {contentType === 'custom' ? 'Assign Custom Task' : 'Assign Selected'}
+            {contentType === 'custom' ? 'Assign Custom Task' : `Assign Selected (${selectedIds.length})`}
           </Button>
         </DialogFooter>
       </DialogContent>
