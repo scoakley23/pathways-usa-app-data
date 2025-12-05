@@ -130,6 +130,12 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext }) {
     }
   };
 
+  const handleShowAnswer = () => {
+    speak();
+    setStatus('manual');
+    setAnalysis(null);
+  };
+
   const fallbackValidation = () => {
     const textToCheck = spokenTextRef.current || spokenText;
     const target = cleanText(sentence.text);
@@ -296,6 +302,24 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext }) {
                          <Loader2 className="w-8 h-8 animate-spin text-purple-600" />
                          <p className="text-sm font-medium">Analyzing your pronunciation...</p>
                     </div>
+                ) : status === 'manual' ? (
+                    <div className="flex flex-col items-center animate-in fade-in slide-in-from-bottom-4">
+                        <div className="bg-blue-50 p-6 rounded-xl mb-6 text-center w-full border border-blue-100">
+                            <p className="text-lg font-medium text-slate-800 mb-2">Listen to the correct pronunciation</p>
+                            <Button onClick={speak} variant="outline" className="bg-white hover:bg-blue-50 text-blue-600 border-blue-200">
+                                <Volume2 className="w-5 h-5 mr-2" /> Play Audio Again
+                            </Button>
+                        </div>
+                        <p className="text-slate-600 font-medium mb-4">Were you able to read it correctly?</p>
+                        <div className="flex gap-4">
+                            <Button onClick={() => setStatus('retry')} variant="outline" className="border-slate-200 hover:bg-slate-50 text-slate-600 min-w-[120px]">
+                                No, Try Again
+                            </Button>
+                            <Button onClick={() => onComplete(true)} className="bg-green-600 hover:bg-green-700 min-w-[120px]">
+                                <Check className="w-4 h-4 mr-2" /> Yes, I Got It
+                            </Button>
+                        </div>
+                    </div>
                 ) : analysis ? (
                     <div className="w-full bg-slate-50 rounded-xl p-4 border border-slate-100 animate-in fade-in slide-in-from-bottom-2">
                          <div className="flex items-center justify-between mb-4">
@@ -350,23 +374,37 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext }) {
              </div>
 
              {/* Controls */}
-             <div className="flex justify-center gap-4">
-                {(!analysis || analysis.overall_score < 70) ? (
-                    <Button
-                        size="lg"
-                        onClick={toggleListening}
-                        disabled={isAnalyzing}
-                        className={`h-16 w-16 rounded-full shadow-lg transition-all duration-300 ${
-                            isListening 
-                            ? 'bg-red-100 text-red-600 hover:bg-red-200 ring-4 ring-red-50' 
-                            : 'bg-purple-600 text-white hover:bg-purple-700 hover:scale-105'
-                        } ${isAnalyzing ? 'opacity-50 cursor-not-allowed' : ''}`}
+             <div className="flex flex-col items-center gap-4">
+                <div className="flex justify-center gap-4">
+                    {(!analysis || analysis.overall_score < 70) && status !== 'manual' ? (
+                        <Button
+                            size="lg"
+                            onClick={toggleListening}
+                            disabled={isAnalyzing}
+                            className={`h-16 w-16 rounded-full shadow-lg transition-all duration-300 ${
+                                isListening 
+                                ? 'bg-red-100 text-red-600 hover:bg-red-200 ring-4 ring-red-50' 
+                                : 'bg-purple-600 text-white hover:bg-purple-700 hover:scale-105'
+                            } ${isAnalyzing ? 'opacity-50 cursor-not-allowed' : ''}`}
+                        >
+                            {isListening ? <MicOff className="w-6 h-6" /> : <Mic className="w-6 h-6" />}
+                        </Button>
+                    ) : status !== 'manual' ? (
+                        <Button onClick={onNext} className="h-12 px-8 text-lg rounded-xl bg-purple-600 hover:bg-purple-700">
+                            Next Sentence <ArrowRight className="ml-2 w-5 h-5" />
+                        </Button>
+                    ) : null}
+                </div>
+
+                {/* Show Answer / Skip Button */}
+                {status !== 'success' && status !== 'manual' && !isListening && !isAnalyzing && (
+                    <Button 
+                        variant="ghost" 
+                        size="sm" 
+                        onClick={handleShowAnswer} 
+                        className="text-slate-400 hover:text-purple-600 text-xs font-medium"
                     >
-                        {isListening ? <MicOff className="w-6 h-6" /> : <Mic className="w-6 h-6" />}
-                    </Button>
-                ) : (
-                    <Button onClick={onNext} className="h-12 px-8 text-lg rounded-xl bg-purple-600 hover:bg-purple-700">
-                        Next Sentence <ArrowRight className="ml-2 w-5 h-5" />
+                        Can't get it right? Show Answer / Skip
                     </Button>
                 )}
              </div>

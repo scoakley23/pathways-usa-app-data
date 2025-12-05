@@ -137,19 +137,24 @@ export default function MyStudents({ currentUserEmail }) {
                  </DropdownMenu>
               </div>
               
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between mt-4 pt-4 border-t border-slate-100">
                  <div className="flex items-center">
                     {rel.status === 'active' && <Badge className="bg-green-100 text-green-700"><UserCheck className="w-3 h-3 mr-1"/> Active</Badge>}
                     {rel.status === 'pending' && <Badge variant="outline" className="bg-yellow-50 text-yellow-700"><Clock className="w-3 h-3 mr-1"/> Pending</Badge>}
                     {rel.status === 'rejected' && <Badge variant="destructive"><UserX className="w-3 h-3 mr-1"/> Rejected</Badge>}
                 </div>
-                <Button variant="outline" size="sm" onClick={() => handleAction(rel, 'chat')}>
-                    Message
-                </Button>
+                <div className="flex gap-2">
+                    <Button variant="outline" size="sm" onClick={() => handleAction(rel, 'assign')}>
+                        Assign
+                    </Button>
+                    <Button variant="ghost" size="sm" onClick={() => handleAction(rel, 'chat')}>
+                        <MessageCircle className="w-4 h-4 text-slate-500" />
+                    </Button>
+                </div>
               </div>
-            </CardContent>
-          </Card>
-        ))}
+              </CardContent>
+              </Card>
+              ))}
         {students.length === 0 && (
             <div className="col-span-full text-center py-10 text-slate-500">
                 No students yet. Add one above!

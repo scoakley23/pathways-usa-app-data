@@ -46,8 +46,8 @@ export default function FlashcardGame({ words, onComplete }) {
         >
           {/* Front */}
           <Card 
-            className="absolute inset-0 w-full h-full flex flex-col items-center justify-center p-8 bg-white border-2 border-indigo-100 shadow-xl rounded-3xl"
-            style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
+            className="absolute inset-0 w-full h-full flex flex-col items-center justify-center p-8 bg-white border-2 border-indigo-100 shadow-xl rounded-3xl backface-hidden"
+            style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'rotateY(0deg)' }}
           >
             <span className="text-xs font-bold text-indigo-400 uppercase tracking-widest mb-4">Word</span>
             <h2 className="text-4xl font-bold text-slate-800 text-center">{currentWord.word}</h2>
