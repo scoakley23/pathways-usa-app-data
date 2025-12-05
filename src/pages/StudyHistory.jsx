@@ -7,6 +7,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { ArrowLeft, MessageCircle, Calendar, Volume2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
+import { speakText } from "@/components/utils/textToSpeech";
 
 export default function StudyHistory() {
   const [logs, setLogs] = useState([]);
@@ -30,11 +31,8 @@ export default function StudyHistory() {
     fetchLogs();
   }, []);
 
-  const speak = (text) => {
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'en-US'; // Default, could be dynamic based on saved language
-    window.speechSynthesis.speak(utterance);
+  const speak = (text, lang = 'en') => {
+    speakText(text, lang);
   };
 
   return (
@@ -89,7 +87,7 @@ export default function StudyHistory() {
                     {log.answer}
                  </div>
                  <div className="flex justify-end">
-                    <Button variant="ghost" size="sm" onClick={() => speak(log.answer)} className="text-slate-500 hover:text-blue-600">
+                    <Button variant="ghost" size="sm" onClick={() => speak(log.answer, log.language)} className="text-slate-500 hover:text-blue-600">
                        <Volume2 className="w-4 h-4 mr-2" /> Listen
                     </Button>
                  </div>

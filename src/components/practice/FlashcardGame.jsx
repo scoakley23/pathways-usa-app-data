@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, RotateCcw, Volume2 } from 'lucide-react';
+import { speakText } from "@/components/utils/textToSpeech";
 
 export default function FlashcardGame({ words, onComplete }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -25,10 +26,7 @@ export default function FlashcardGame({ words, onComplete }) {
 
   const speak = (text, e) => {
     e.stopPropagation();
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'en-US';
-    window.speechSynthesis.speak(utterance);
+    speakText(text, 'en');
   };
 
   return (

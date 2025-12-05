@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { toast } from "sonner";
 import { base44 } from '@/api/base44Client';
+import { speakText } from "@/components/utils/textToSpeech";
 
 export default function ReadingPracticeCard({ sentence, onComplete, onNext }) {
   const [isListening, setIsListening] = useState(false);
@@ -250,10 +251,7 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext }) {
   };
 
   const speak = () => {
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(sentence.text);
-    utterance.lang = 'en-US';
-    window.speechSynthesis.speak(utterance);
+    speakText(sentence.text, 'en');
   };
 
   if (status === 'unsupported') {

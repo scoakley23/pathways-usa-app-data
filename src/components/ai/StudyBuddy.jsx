@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { speakText } from "@/components/utils/textToSpeech";
 
 export default function StudyBuddy() {
   const [isOpen, setIsOpen] = useState(false);
@@ -54,11 +55,7 @@ export default function StudyBuddy() {
   }, [messages, isOpen]);
 
   const speak = (text) => {
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
-    // Try to match language if possible, otherwise default to en-US
-    utterance.lang = language === 'es' ? 'es-ES' : (language === 'zh' ? 'zh-CN' : 'en-US');
-    window.speechSynthesis.speak(utterance);
+    speakText(text, language);
   };
 
   const handleSend = async (e) => {
