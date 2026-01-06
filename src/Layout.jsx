@@ -16,60 +16,78 @@ export default function Layout({ children }) {
   const [isOpen, setIsOpen] = React.useState(false);
   const [showOnboarding, setShowOnboarding] = React.useState(false);
 
-  React.useEffect(() => {
-    const checkUser = async () => {
-      try {
-        const currentUser = await base44.auth.me();
-        setUser(currentUser);
-        
-        const normalizedEmail = currentUser.email.toLowerCase().trim();
-        
-        // Handle Invite Link (if present)
-        const params = new URLSearchParams(location.search);
-        const urlInviteEmail = params.get('tutor_invite');
-        
-        // Persist to storage if found in URL (handles pre-login case)
-        if (urlInviteEmail) {
-            localStorage.setItem('pending_tutor_invite', urlInviteEmail);
-        }
+ React.useEffect(() => {
+  const checkUser = async () => {
+    try {
+      const currentUser = await base44.auth.me();
+      setUser(currentUser);
+      
+      const normalizedEmail = currentUser.email.toLowerCase().trim();
+      
+      // Handle Invite Link (if present)
+      const params = new URLSearchParams(location.search);
+      const urlInviteEmail = params.get('tutor_invite');
+      
+      if (urlInviteEmail) {
+          localStorage.setItem('pending_tutor_invite', urlInviteEmail);
+      }
 
-        // Check storage for pending invite
-        const storedInviteEmail = localStorage.getItem('pending_tutor_invite');
-        const inviteTutorEmail = urlInviteEmail || storedInviteEmail;
-        
-        if (inviteTutorEmail) {
-             try {
-                 const tutorEmail = inviteTutorEmail.toLowerCase().trim();
-                 // Check if relationship exists
-                 const existing = await base44.entities.TutorRelationship.list({
-                     query: { student_email: normalizedEmail, tutor_email: tutorEmail }
-                 });
-                 
-                 if (existing.length === 0) {
-                     await base44.entities.TutorRelationship.create({
-                         student_email: normalizedEmail,
-                         tutor_email: tutorEmail,
-                         status: 'active' // Auto-accept since they clicked the link
-                     });
-                     toast.success(`Connected with tutor ${tutorEmail}!`);
-                 } else {
-                     // Update if pending
-                     if (existing[0].status !== 'active') {
-                         await base44.entities.TutorRelationship.update(existing[0].id, { status: 'active' });
-                         toast.success(`Connected with tutor ${tutorEmail}!`);
-                     }
-                 }
-                 
-                 // Clean up
-                 localStorage.removeItem('pending_tutor_invite');
-                 if (urlInviteEmail) {
-                    const newUrl = window.location.pathname;
-                    window.history.replaceState({}, document.title, newUrl);
-                 }
-             } catch (err) {
-                 console.error("Error processing invite", err);
-             }
-        }
+      const storedInviteEmail = localStorage.getItem('pending_tutor_invite');
+      const inviteTutorEmail = urlInviteEmail || storedInviteEmail;
+      
+      if (inviteTutorEmail) {
+           try {
+               const tutorEmail = inviteTutorEmail.toLowerCase().trim();
+               const existing = await base44.entities.TutorRelationship.list({
+                   query: { student_email: normalizedEmail, tutor_email: tutorEmail }
+               });
+               
+               if (existing.length === 0) {
+                   await base44.entities.TutorRelationship.create({
+                       student_email: normalizedEmail,
+                       tutor_email: tutorEmail,
+                       status: 'active'
+                   });
+                   toast.success(`Connected with tutor!`);
+               } else {
+                   if (existing[0].status !== 'active') {
+                       await base44.entities.TutorRelationship.update(existing[0].id, { status: 'active' });
+                       toast.success(`Connected with tutor!`);
+                   }
+               }
+               
+               localStorage.removeItem('pending_tutor_invite');
+               if (urlInviteEmail) {
+                  const newUrl = window.location.pathname;
+                  window.history.replaceState({}, document.title, newUrl);
+               }
+           } catch (err) {
+               console.error("Error processing invite", err);
+           }
+      }
+
+      // FIX: Fetch only the MOST RECENT profile to prevent duplicates
+      const profiles = await base44.entities.PublicProfile.list({
+           query: { user_email: normalizedEmail },
+           sort: { created_date: -1 },
+           limit: 1
+      });
+      
+      if (profiles.length > 0 && profiles[0].account_type) {
+          setRole(profiles[0].account_type);
+          setShowOnboarding(false);
+      } else {
+          setShowOnboarding(true);
+      }
+    } catch (e) {
+      console.error("Auth check error:", e);
+      // Not logged in
+      setShowOnboarding(false);
+    }
+  };
+  
+  checkUser();
+}, [location.search]); // Only re-run when URL changes
 
         // Check for Role
         // Get the most recently created profile to be safe
@@ -240,4 +258,3 @@ export default function Layout({ children }) {
       <Toaster />
     </div>
   );
-}
