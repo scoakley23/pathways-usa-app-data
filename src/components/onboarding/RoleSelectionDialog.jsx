@@ -171,33 +171,6 @@ useEffect(() => {
     setIsSubmitting(false);
   }
 };
-```
-
-Now:
-1. Open your app as a tutor
-2. Copy your invite code
-3. Open incognito window
-4. Try to sign up as a student with that code
-5. **Open the browser console (F12)**
-6. **Copy ALL the debug output** that appears (everything between the === lines)
-7. **Paste it here**
-
-This will tell us exactly:
-- What code you're searching for
-- How many profiles exist
-- What codes are actually stored
-- Why the match is failing
-
-The debug output will look something like this - paste the whole thing:
-```
-=== INVITE CODE DEBUG ===
-Looking for code: ABC1234
-Total profiles found: 3
-All profiles: [{...}, {...}, {...}]
-Tutors with codes: [{...}]
-Checking profile tutor@example.com: { hasCode: true, profileCode: "ABC1234", ... }
-Matching tutor: {...}
-========================
 
   const handleLogin = async () => {
     if (!email || !password) {

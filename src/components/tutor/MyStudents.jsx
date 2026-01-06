@@ -38,14 +38,7 @@ export default function MyStudents({ currentUserEmail }) {
     fetchStudents();
     fetchInviteCode();
   }, [currentUserEmail]);
-// TEMPORARY DEBUG - Remove after testing
-useEffect(() => {
-  console.log("=== MY STUDENTS DEBUG ===");
-  console.log("Current user email:", currentUserEmail);
-  console.log("Invite code:", inviteCode);
-  console.log("Students:", students);
-  console.log("========================");
-}, [inviteCode, students, currentUserEmail]);
+
   const fetchInviteCode = async () => {
       try {
           // Normalize email to ensure we find the profile created during onboarding
