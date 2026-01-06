@@ -77,7 +77,7 @@ useEffect(() => {
   }
 }, [isOpen, currentUser]);
 
-  const handleSignUp = async () => {
+ const handleSignUp = async () => {
   if (!email || !password || !selectedRole) {
     toast.error('Please fill in all fields');
     return;
@@ -95,14 +95,37 @@ useEffect(() => {
     // 2. Check if invite code is valid (for students)
     let tutorEmail = null;
     if (selectedRole === 'student' && inviteCode) {
-      // FIXED: Fetch ALL profiles and filter in JavaScript (Base44 query limitation)
-      const allProfiles = await base44.entities.PublicProfile.list({ limit: 1000 });
+      console.log("=== INVITE CODE DEBUG ===");
+      console.log("Looking for code:", inviteCode);
       
-      const matchingTutor = allProfiles.find(p => 
-        p.invite_code && 
-        p.invite_code.toUpperCase() === inviteCode.toUpperCase() && 
-        p.account_type === 'tutor'
-      );
+      // Fetch ALL profiles
+      const allProfiles = await base44.entities.PublicProfile.list({ limit: 1000 });
+      console.log("Total profiles found:", allProfiles.length);
+      console.log("All profiles:", allProfiles);
+      
+      // Log all tutor profiles with codes
+      const tutorsWithCodes = allProfiles.filter(p => p.account_type === 'tutor' && p.invite_code);
+      console.log("Tutors with codes:", tutorsWithCodes);
+      
+      const matchingTutor = allProfiles.find(p => {
+        const hasCode = p.invite_code !== null && p.invite_code !== undefined;
+        const codeMatches = hasCode && p.invite_code.toUpperCase() === inviteCode.toUpperCase();
+        const isTutor = p.account_type === 'tutor';
+        
+        console.log(`Checking profile ${p.user_email}:`, {
+          hasCode,
+          profileCode: p.invite_code,
+          searchCode: inviteCode,
+          codeMatches,
+          isTutor,
+          accountType: p.account_type
+        });
+        
+        return hasCode && codeMatches && isTutor;
+      });
+      
+      console.log("Matching tutor:", matchingTutor);
+      console.log("========================");
       
       if (!matchingTutor) {
         toast.error('Invalid invite code. Please check and try again.');
@@ -148,6 +171,33 @@ useEffect(() => {
     setIsSubmitting(false);
   }
 };
+```
+
+Now:
+1. Open your app as a tutor
+2. Copy your invite code
+3. Open incognito window
+4. Try to sign up as a student with that code
+5. **Open the browser console (F12)**
+6. **Copy ALL the debug output** that appears (everything between the === lines)
+7. **Paste it here**
+
+This will tell us exactly:
+- What code you're searching for
+- How many profiles exist
+- What codes are actually stored
+- Why the match is failing
+
+The debug output will look something like this - paste the whole thing:
+```
+=== INVITE CODE DEBUG ===
+Looking for code: ABC1234
+Total profiles found: 3
+All profiles: [{...}, {...}, {...}]
+Tutors with codes: [{...}]
+Checking profile tutor@example.com: { hasCode: true, profileCode: "ABC1234", ... }
+Matching tutor: {...}
+========================
 
   const handleLogin = async () => {
     if (!email || !password) {
