@@ -213,90 +213,77 @@ export default function Practice() {
   };
 
   const startAssignment = async (assignment) => {
-    setIsLoading(true);
-    // Determine mode from assignment
-    let mode = 'dictation';
-    if (assignment.content_type === 'vocabulary') mode = 'vocabulary';
-    if (assignment.content_type === 'civics_question') mode = 'civics';
-    if (assignment.content_type === 'custom') {
-        // Check custom_type to set correct mode
-        if (assignment.custom_type === 'vocabulary') mode = 'vocabulary';
-        else if (assignment.custom_type === 'civics_question') mode = 'civics';
-        else mode = 'dictation';
-    }
-    setMode(mode);
-    setCurrentIndex(0);
-    setSessionComplete(false);
+  setIsLoading(true);
+  let mode = 'dictation';
+  if (assignment.content_type === 'vocabulary') mode = 'vocabulary';
+  if (assignment.content_type === 'civics_question') mode = 'civics';
+  if (assignment.content_type === 'custom') {
+    if (assignment.custom_type === 'vocabulary') mode = 'vocabulary';
+    else if (assignment.custom_type === 'civics_question') mode = 'civics';
+    else mode = 'dictation';
+  }
+  setMode(mode);
+  setCurrentIndex(0);
+  setSessionComplete(false);
 
-    try {
-      // Fetch the specific content
-      let item;
-      console.log("Fetching assignment content:", assignment);
-      
+  try {
+    let item;
+    
+    if (assignment.content_type === 'custom') {
+      // Handle custom assignments
+      if (assignment.custom_type === 'vocabulary' && assignment.custom_data) {
+        item = { 
+          text: assignment.custom_data.word, 
+          word: assignment.custom_data.word,
+          definition: assignment.custom_data.definition,
+          type: 'vocabulary', 
+          id: 'custom_vocab_' + assignment.id 
+        };
+        setMode('vocabulary');
+        setVocabSubMode('flashcards');
+      } else if (assignment.custom_type === 'civics_question' && assignment.custom_data) {
+        item = {
+          question: assignment.custom_data.question,
+          answer: assignment.custom_data.answer,
+          type: 'civics_question',
+          version: 'custom',
+          id: 'custom_civics_' + assignment.id
+        };
+        setMode('civics');
+      } else {
+        const text = assignment.custom_content || (assignment.custom_data && assignment.custom_data.text);
+        item = { text: text, type: 'sentence', id: 'custom_sentence_' + assignment.id };
+      }
+    } else {
+      // Handle standard content - fetch ALL and filter (Base44 ID query workaround)
       if (assignment.content_type === 'sentence') {
-        // Try standard list with query (most robust)
-        const results = await base44.entities.Sentence.list({ query: { id: assignment.content_id } });
-        item = results[0];
-        
-        // Fallback: if list didn't work with ID query (sometimes ID handling varies), try listing all and finding (inefficient but safe for small datasets)
-        if (!item) {
-             console.log("Fallback fetch for sentence");
-             const all = await base44.entities.Sentence.list();
-             item = all.find(s => s.id === assignment.content_id);
-        }
+        const all = await base44.entities.Sentence.list({ limit: 1000 });
+        item = all.find(s => s.id === assignment.content_id);
       } else if (assignment.content_type === 'vocabulary') {
-        const results = await base44.entities.VocabularyWord.list({ query: { id: assignment.content_id } });
-        const vocab = results[0];
+        const all = await base44.entities.VocabularyWord.list({ limit: 1000 });
+        const vocab = all.find(v => v.id === assignment.content_id);
         item = vocab ? { ...vocab, text: vocab.word, type: 'vocabulary' } : null;
       } else if (assignment.content_type === 'civics_question') {
-        const results = await base44.entities.CivicsQuestion.list({ query: { id: assignment.content_id } });
-        item = results[0];
-      } else if (assignment.content_type === 'custom') {
-        // Handle custom content types
-        if (assignment.custom_type === 'vocabulary' && assignment.custom_data) {
-             item = { 
-                 text: assignment.custom_data.word, 
-                 word: assignment.custom_data.word,
-                 definition: assignment.custom_data.definition,
-                 type: 'vocabulary', 
-                 id: 'custom_vocab_' + assignment.id 
-             };
-             // Force mode to vocabulary if not set correctly above
-             if (mode !== 'vocabulary') setMode('vocabulary');
-             // Default to flashcards for custom vocab as it's best for learning new definitions
-             setVocabSubMode('flashcards');
-        } else if (assignment.custom_type === 'civics_question' && assignment.custom_data) {
-             item = {
-                 question: assignment.custom_data.question,
-                 answer: assignment.custom_data.answer,
-                 type: 'civics_question',
-                 version: 'custom',
-                 id: 'custom_civics_' + assignment.id
-             };
-             if (mode !== 'civics') setMode('civics');
-        } else {
-             // Default / Sentence
-             const text = assignment.custom_content || (assignment.custom_data && assignment.custom_data.text);
-             item = { text: text, type: 'sentence', id: 'custom' };
-        }
+        const all = await base44.entities.CivicsQuestion.list({ limit: 1000 });
+        item = all.find(q => q.id === assignment.content_id);
       }
-
-      if (item) {
-        setContent([item]); // Single item session
-        // Store current assignment ID to mark complete later
-        item.assignment_id = assignment.id;
-      } else {
-        toast.error("Content not found");
-        setMode('menu');
-      }
-    } catch (error) {
-      console.error("Error loading assignment", error);
-      toast.error("Failed to load assignment");
-      setMode('menu');
-    } finally {
-      setIsLoading(false);
     }
-  };
+
+    if (item) {
+      setContent([item]);
+      item.assignment_id = assignment.id;
+    } else {
+      toast.error("Content not found");
+      setMode('menu');
+    }
+  } catch (error) {
+    console.error("Error loading assignment", error);
+    toast.error("Failed to load assignment");
+    setMode('menu');
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   const handleComplete = async (isSuccess) => {
     const currentItem = content[currentIndex];
