@@ -78,65 +78,76 @@ useEffect(() => {
 }, [isOpen, currentUser]);
 
   const handleSignUp = async () => {
-    if (!email || !password || !selectedRole) {
-      toast.error('Please fill in all fields');
-      return;
+  if (!email || !password || !selectedRole) {
+    toast.error('Please fill in all fields');
+    return;
+  }
+
+  setIsSubmitting(true);
+  try {
+    // 1. Create auth account
+    await base44.auth.signUp(email, password, {
+      name: displayName || email.split('@')[0]
+    });
+    
+    const normalizedEmail = email.toLowerCase().trim();
+
+    // 2. Check if invite code is valid (for students)
+    let tutorEmail = null;
+    if (selectedRole === 'student' && inviteCode) {
+      // FIXED: Fetch ALL profiles and filter in JavaScript (Base44 query limitation)
+      const allProfiles = await base44.entities.PublicProfile.list({ limit: 1000 });
+      
+      const matchingTutor = allProfiles.find(p => 
+        p.invite_code && 
+        p.invite_code.toUpperCase() === inviteCode.toUpperCase() && 
+        p.account_type === 'tutor'
+      );
+      
+      if (!matchingTutor) {
+        toast.error('Invalid invite code. Please check and try again.');
+        setIsSubmitting(false);
+        return;
+      }
+      tutorEmail = matchingTutor.user_email;
     }
 
-    setIsSubmitting(true);
-    try {
-      await base44.auth.signUp(email, password, {
-        name: displayName || email.split('@')[0]
+    // 3. Create profile
+    const profileData = {
+      user_email: normalizedEmail,
+      display_name: displayName || normalizedEmail.split('@')[0],
+      account_type: selectedRole
+    };
+
+    // Generate invite code for tutors
+    if (selectedRole === 'tutor') {
+      const prefix = normalizedEmail.substring(0, 3).toUpperCase().replace(/[^A-Z]/g, 'X');
+      const random = Math.floor(1000 + Math.random() * 9000);
+      profileData.invite_code = `${prefix}${random}`;
+    }
+
+    await base44.entities.PublicProfile.create(profileData);
+
+    // 4. Create relationship if student joined via invite
+    if (selectedRole === 'student' && tutorEmail) {
+      await base44.entities.TutorRelationship.create({
+        tutor_email: tutorEmail,
+        student_email: normalizedEmail,
+        status: 'active',
+        created_by: normalizedEmail
       });
-      
-      const normalizedEmail = email.toLowerCase().trim();
-
-      let tutorEmail = null;
-      if (selectedRole === 'student' && inviteCode) {
-        const tutorProfiles = await base44.entities.PublicProfile.list({
-          query: { invite_code: inviteCode, account_type: 'tutor' }
-        });
-        
-        if (tutorProfiles.length === 0) {
-          toast.error('Invalid invite code');
-          setIsSubmitting(false);
-          return;
-        }
-        tutorEmail = tutorProfiles[0].user_email;
-      }
-
-      const profileData = {
-        user_email: normalizedEmail,
-        display_name: displayName || normalizedEmail.split('@')[0],
-        account_type: selectedRole
-      };
-
-      if (selectedRole === 'tutor') {
-        const prefix = normalizedEmail.substring(0, 3).toUpperCase().replace(/[^A-Z]/g, 'X');
-        const random = Math.floor(1000 + Math.random() * 9000);
-        profileData.invite_code = `${prefix}${random}`;
-      }
-
-      await base44.entities.PublicProfile.create(profileData);
-
-      if (selectedRole === 'student' && tutorEmail) {
-        await base44.entities.TutorRelationship.create({
-          tutor_email: tutorEmail,
-          student_email: normalizedEmail,
-          status: 'active'
-        });
-        toast.success('Successfully joined your tutor!');
-      }
-
-      toast.success('Account created successfully!');
-      onComplete(selectedRole);
-      
-    } catch (error) {
-      console.error('Sign up error:', error);
-      toast.error('Failed to create account. Please try again.');
-      setIsSubmitting(false);
+      toast.success('Successfully joined your tutor!');
     }
-  };
+
+    toast.success('Account created successfully!');
+    onComplete(selectedRole);
+    
+  } catch (error) {
+    console.error('Sign up error:', error);
+    toast.error('Failed to create account. Please try again.');
+    setIsSubmitting(false);
+  }
+};
 
   const handleLogin = async () => {
     if (!email || !password) {
