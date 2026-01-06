@@ -94,57 +94,70 @@ export default function MyStudents({ currentUserEmail }) {
   };
 
   const addStudent = async (e) => {
-    e.preventDefault();
-    if (!newStudentEmail) return;
-    setIsSubmitting(true);
+  e.preventDefault();
+  if (!newStudentEmail) return;
+  setIsSubmitting(true);
 
-    const studentEmailLower = newStudentEmail.toLowerCase().trim();
+  const studentEmailLower = newStudentEmail.toLowerCase().trim();
 
-    if (studentEmailLower === currentUserEmail.toLowerCase().trim()) {
-        toast.error("You cannot add yourself as a student");
-        setIsSubmitting(false);
-        return;
-    }
+  if (studentEmailLower === currentUserEmail.toLowerCase().trim()) {
+      toast.error("You cannot add yourself as a student");
+      setIsSubmitting(false);
+      return;
+  }
 
-    try {
-        const existing = students.find(s => s.student_email.toLowerCase() === studentEmailLower);
-        if (existing) {
-            toast.error("Student already added");
-            setIsSubmitting(false);
-            return;
-        }
+  try {
+      const existing = students.find(s => s.student_email.toLowerCase() === studentEmailLower);
+      if (existing) {
+          toast.error("Student already added");
+          setIsSubmitting(false);
+          return;
+      }
 
-      const newRel = await base44.entities.TutorRelationship.create({
-        tutor_email: currentUserEmail,
-        student_email: studentEmailLower,
-        status: 'pending' 
-      });
+    const newRel = await base44.entities.TutorRelationship.create({
+      tutor_email: currentUserEmail.toLowerCase().trim(),
+      student_email: studentEmailLower,
+      status: 'pending',
+      created_by: currentUserEmail.toLowerCase().trim() // Track who created it
+    });
 
-      // Immediate UI Update
-      setStudents(prev => [...prev, newRel]);
-      setNewStudentEmail("");
-      toast.success("Student added to your list!");
+    setStudents(prev => [...prev, newRel]);
+    setNewStudentEmail("");
+    toast.success("Invitation sent!");
 
-      // Send email in background
-      const appUrl = window.location.origin;
-      const inviteLink = `${appUrl}/?tutor_invite=${encodeURIComponent(currentUserEmail)}`;
-      const emailSubject = "Invitation to connect on Citizenship Learning Hub";
-      const emailBody = `Hello! \n\n${currentUserEmail} has invited you to connect as a student on the Citizenship Learning Hub. \n\nPlease click the link below to register/login and automatically join their class:\n${inviteLink}\n\nBest regards,\nThe Citizenship Hub Team`;
-      base44.integrations.Core.SendEmail({
-            from_name: "Citizenship Learning Hub",
-            to: studentEmailLower,
-            subject: emailSubject,
-            body: emailBody
-      }).catch((emailError) => {
-          console.error("Email failed", emailError);
-      });
-    } catch (error) {
-      console.error("Add student error", error);
-      toast.error(`Failed to add student: ${error.message || "Unknown error"}`);
-    } finally {
-        setIsSubmitting(false);
-    }
-  };
+    // Send email with BOTH invite link AND code
+    const appUrl = window.location.origin;
+    const inviteLink = `${appUrl}/?tutor_invite=${encodeURIComponent(currentUserEmail)}`;
+    const emailSubject = "Invitation to join Citizenship Learning Hub";
+    const emailBody = `Hello!
+
+${currentUserEmail} has invited you to connect as a student on the Citizenship Learning Hub.
+
+You have TWO ways to join:
+
+OPTION 1 - Click this link to join automatically:
+${inviteLink}
+
+OPTION 2 - Sign up and enter this class code: ${inviteCode}
+
+Best regards,
+The Citizenship Hub Team`;
+
+    base44.integrations.Core.SendEmail({
+          from_name: "Citizenship Learning Hub",
+          to: studentEmailLower,
+          subject: emailSubject,
+          body: emailBody
+    }).catch((emailError) => {
+        console.error("Email failed", emailError);
+    });
+  } catch (error) {
+    console.error("Add student error", error);
+    toast.error(`Failed to add student: ${error.message || "Unknown error"}`);
+  } finally {
+      setIsSubmitting(false);
+  }
+};
 
   const handleResponse = async (id, status) => {
     try {
