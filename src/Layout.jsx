@@ -87,30 +87,7 @@ export default function Layout({ children }) {
   };
   
   checkUser();
-}, [location.search]); // Only re-run when URL changes
-
-        // Check for Role
-        // Get the most recently created profile to be safe
-        const profiles = await base44.entities.PublicProfile.list({
-             query: { user_email: normalizedEmail },
-             sort: { created_date: -1 }
-        });
-        
-        if (profiles.length > 0 && profiles[0].account_type) {
-            setRole(profiles[0].account_type);
-            setShowOnboarding(false);
-        } else {
-            setShowOnboarding(true);
-        }
-      } catch (e) {
-        // Not logged in - store invite if present for after login?
-        // For now, we rely on the URL parameter persisting if they login directly via the link.
-        // Base44 auth usually redirects back to the original URL.
-      }
-    };
-    
-    checkUser();
-  }, []);
+}, [location.search]);
 
   const navItems = [
     { label: 'Home', path: '/', icon: BookOpen },
@@ -258,3 +235,4 @@ export default function Layout({ children }) {
       <Toaster />
     </div>
   );
+}
