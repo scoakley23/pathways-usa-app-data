@@ -184,70 +184,76 @@ useEffect(() => {
   };
 
   const handleRoleSelection = async () => {
-    if (!selectedRole || !currentUser) return;
+  if (!selectedRole || !currentUser) return;
 
-    setIsSubmitting(true);
-    try {
-      const normalizedEmail = currentUser.email.toLowerCase().trim();
+  setIsSubmitting(true);
+  try {
+    const normalizedEmail = currentUser.email.toLowerCase().trim();
 
-      const existing = await base44.entities.PublicProfile.list({
-        query: { user_email: normalizedEmail }
-      });
-      
-      if (existing.length > 0) {
-        await Promise.all(existing.map(p => base44.entities.PublicProfile.delete(p.id)));
-      }
-
-      let tutorEmail = null;
-      if (selectedRole === 'student' && inviteCode) {
-        const tutorProfiles = await base44.entities.PublicProfile.list({
-          query: { invite_code: inviteCode, account_type: 'tutor' }
-        });
-        
-        if (tutorProfiles.length === 0) {
-          toast.error('Invalid invite code');
-          setIsSubmitting(false);
-          return;
-        }
-        tutorEmail = tutorProfiles[0].user_email;
-      }
-
-      const profileData = {
-        user_email: normalizedEmail,
-        display_name: displayName || normalizedEmail.split('@')[0],
-        account_type: selectedRole
-      };
-
-      if (selectedRole === 'tutor') {
-        const existingCode = existing.find(p => p.invite_code)?.invite_code;
-        if (existingCode) {
-          profileData.invite_code = existingCode;
-        } else {
-          const prefix = normalizedEmail.substring(0, 3).toUpperCase().replace(/[^A-Z]/g, 'X');
-          const random = Math.floor(1000 + Math.random() * 9000);
-          profileData.invite_code = `${prefix}${random}`;
-        }
-      }
-
-      await base44.entities.PublicProfile.create(profileData);
-
-      if (selectedRole === 'student' && tutorEmail) {
-        await base44.entities.TutorRelationship.create({
-          tutor_email: tutorEmail,
-          student_email: normalizedEmail,
-          status: 'active'
-        });
-      }
-
-      toast.success(`Profile set to: ${selectedRole === 'tutor' ? 'Tutor' : 'Student'}`);
-      onComplete(selectedRole);
-      
-    } catch (error) {
-      console.error('Error saving role:', error);
-      toast.error('Failed to save role. Please try again.');
-      setIsSubmitting(false);
+    const existing = await base44.entities.PublicProfile.list({
+      query: { user_email: normalizedEmail }
+    });
+    
+    if (existing.length > 0) {
+      await Promise.all(existing.map(p => base44.entities.PublicProfile.delete(p.id)));
     }
-  };
+
+    let tutorEmail = null;
+    if (selectedRole === 'student' && inviteCode) {
+      // FIXED: Fetch ALL and filter in JavaScript
+      const allProfiles = await base44.entities.PublicProfile.list({ limit: 1000 });
+      
+      const matchingTutor = allProfiles.find(p => 
+        p.invite_code && 
+        p.invite_code.toUpperCase() === inviteCode.toUpperCase() && 
+        p.account_type === 'tutor'
+      );
+      
+      if (!matchingTutor) {
+        toast.error('Invalid invite code. Please check and try again.');
+        setIsSubmitting(false);
+        return;
+      }
+      tutorEmail = matchingTutor.user_email;
+    }
+
+    const profileData = {
+      user_email: normalizedEmail,
+      display_name: displayName || normalizedEmail.split('@')[0],
+      account_type: selectedRole
+    };
+
+    if (selectedRole === 'tutor') {
+      const existingCode = existing.find(p => p.invite_code)?.invite_code;
+      if (existingCode) {
+        profileData.invite_code = existingCode;
+      } else {
+        const prefix = normalizedEmail.substring(0, 3).toUpperCase().replace(/[^A-Z]/g, 'X');
+        const random = Math.floor(1000 + Math.random() * 9000);
+        profileData.invite_code = `${prefix}${random}`;
+      }
+    }
+
+    await base44.entities.PublicProfile.create(profileData);
+
+    if (selectedRole === 'student' && tutorEmail) {
+      await base44.entities.TutorRelationship.create({
+        tutor_email: tutorEmail,
+        student_email: normalizedEmail,
+        status: 'active',
+        created_by: normalizedEmail
+      });
+    }
+
+    toast.success(`Profile set to: ${selectedRole === 'tutor' ? 'Tutor' : 'Student'}`);
+    onComplete(selectedRole);
+    
+  } catch (error) {
+    console.error('Error saving role:', error);
+    toast.error('Failed to save role. Please try again.');
+    setIsSubmitting(false);
+  }
+};
 
   if (!isOpen || !step) {
     return null;
