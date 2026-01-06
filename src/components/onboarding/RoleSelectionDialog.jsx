@@ -48,17 +48,34 @@ export default function RoleSelectionDialog({ isOpen, onComplete, userEmail, use
     checkAuth();
   }, [isOpen, onComplete]);
 
-  useEffect(() => {
-    if (!isOpen) return;
-    const urlParams = new URLSearchParams(window.location.search);
-    const code = urlParams.get('invite');
-    if (code) {
-      setInviteCode(code);
-      setSelectedRole('student');
+ // Check URL for invite code OR email invite
+useEffect(() => {
+  if (!isOpen) return;
+  const urlParams = new URLSearchParams(window.location.search);
+  
+  // Check for code-based invite (e.g., ?invite=ABC1234)
+  const code = urlParams.get('invite');
+  if (code) {
+    setInviteCode(code);
+    setSelectedRole('student');
+    if (!currentUser) {
       setStep('signup');
-      toast.success('Invite code detected! Sign up to join your tutor.');
     }
-  }, [isOpen]);
+    toast.success('Invite code detected! Sign up to join your tutor.');
+  }
+  
+  // Check for email-based invite (e.g., ?tutor_invite=tutor@email.com)
+  const tutorEmail = urlParams.get('tutor_invite');
+  if (tutorEmail) {
+    // Store for processing after login
+    localStorage.setItem('pending_tutor_invite', tutorEmail);
+    setSelectedRole('student');
+    if (!currentUser) {
+      setStep('signup');
+    }
+    toast.success('Tutor invitation detected! Sign up to connect.');
+  }
+}, [isOpen, currentUser]);
 
   const handleSignUp = async () => {
     if (!email || !password || !selectedRole) {
