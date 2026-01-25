@@ -1,21 +1,21 @@
+import Admin from './pages/Admin';
 import Home from './pages/Home';
 import Practice from './pages/Practice';
-import Progress from './pages/Progress';
-import Admin from './pages/Admin';
-import Tutor from './pages/Tutor';
 import Profile from './pages/Profile';
+import Progress from './pages/Progress';
 import StudyHistory from './pages/StudyHistory';
+import Tutor from './pages/Tutor';
 import __Layout from './Layout.jsx';
 
 
 export const PAGES = {
+    "Admin": Admin,
     "Home": Home,
     "Practice": Practice,
-    "Progress": Progress,
-    "Admin": Admin,
-    "Tutor": Tutor,
     "Profile": Profile,
+    "Progress": Progress,
     "StudyHistory": StudyHistory,
+    "Tutor": Tutor,
 }
 
 export const pagesConfig = {

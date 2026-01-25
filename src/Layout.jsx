@@ -131,7 +131,7 @@ export default function Layout({ children }) {
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <img 
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6931bd654d327c7b2e36bfed/1906006d3_Screenshot2025-12-04at112241PM.png" 
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6931bd654d327c7b2e36bfed/3b23d0d6f_Screenshot2026-01-25at112021AM.png" 
               alt="Citizenship Learning Hub Logo"
               className="w-12 h-12 rounded-lg shadow-md transform hover:scale-105 transition-transform object-cover"
             />
