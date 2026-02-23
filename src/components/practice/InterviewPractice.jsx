@@ -17,6 +17,7 @@ export default function InterviewPractice({ onComplete, onNext }) {
   const [feedback, setFeedback] = useState(null);
   const [score, setScore] = useState(0);
   const [sessionStarted, setSessionStarted] = useState(false);
+  const [isLoadingQuestions, setIsLoadingQuestions] = useState(true);
   
   const recognitionRef = useRef(null);
   const responseRef = useRef('');
@@ -27,6 +28,7 @@ export default function InterviewPractice({ onComplete, onNext }) {
   }, []);
 
   const loadQuestions = async () => {
+    setIsLoadingQuestions(true);
     const allQuestions = await base44.entities.InterviewQuestion.list('-order', 100);
     
     // Select mix of questions from different sections
@@ -37,6 +39,7 @@ export default function InterviewPractice({ onComplete, onNext }) {
     
     const selected = [...smallTalk, ...personalInfo, ...moralsEthics, ...oathReqs];
     setQuestions(selected);
+    setIsLoadingQuestions(false);
   };
 
   const initializeSpeechRecognition = () => {
