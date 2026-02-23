@@ -179,13 +179,22 @@ Be encouraging but specific. Give actionable advice for improvement.`,
       is_acceptable: false,
       score: 0,
       content_feedback: "Question skipped - practice this type of question more.",
-      improvement_tips: questions[currentIndex].tips || "Review the expected response and try again later.",
+      improvement_tips: questions[currentIndex]?.tips || "Review the expected response and try again later.",
       common_esl_mistakes: "Skipping questions during the interview is not recommended. Practice answering every question, even if you need to ask for clarification."
     });
   };
 
   const currentQuestion = questions[currentIndex];
   const progressPercent = currentQuestion ? ((currentIndex + 1) / questions.length) * 100 : 0;
+
+  if (questions.length === 0) {
+    return (
+      <Card className="p-8 text-center">
+        <Loader2 className="w-8 h-8 animate-spin mx-auto mb-4 text-indigo-600" />
+        <p className="text-slate-600">Loading interview questions...</p>
+      </Card>
+    );
+  }
 
   if (!sessionStarted) {
     return (
@@ -227,15 +236,6 @@ Be encouraging but specific. Give actionable advice for improvement.`,
           </CardContent>
         </Card>
       </div>
-    );
-  }
-
-  if (questions.length === 0) {
-    return (
-      <Card className="p-8 text-center">
-        <Loader2 className="w-8 h-8 animate-spin mx-auto mb-4 text-indigo-600" />
-        <p className="text-slate-600">Loading interview questions...</p>
-      </Card>
     );
   }
 
