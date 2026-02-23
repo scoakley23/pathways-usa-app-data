@@ -194,24 +194,26 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext }) {
       const { file_url } = await base44.integrations.Core.UploadFile({ file });
 
       // 2. Analyze with LLM
-      const prompt = `Analyze the pronunciation of the user reading the following target sentence: "${sentence.text}".
-      
-      The user's audio is provided.
-      Evaluate their:
-      1. Pronunciation (accuracy of phonemes)
-      2. Intonation (natural rise and fall)
-      3. Fluency (speed and smoothness)
-      4. Overall Score (0-100)
+      const prompt = `You are an expert English pronunciation coach for citizenship test preparation. Listen carefully to the user's audio reading and evaluate their pronunciation of this exact target sentence:
 
-      Return ONLY a JSON object with this schema:
-      {
-        "pronunciation_score": number (0-100),
-        "intonation_score": number (0-100),
-        "fluency_score": number (0-100),
-        "overall_score": number (0-100),
-        "phoneme_feedback": string (brief specific sounds to improve, e.g. "Watch the 'th' sound"),
-        "general_feedback": string (brief encouraging advice)
-      }`;
+TARGET SENTENCE: "${sentence.text}"
+
+INSTRUCTIONS:
+1. First, transcribe what you actually hear the user saying in the audio
+2. Compare their speech to the target sentence word-by-word
+3. Evaluate their pronunciation accuracy, clarity, and fluency
+4. Be encouraging but honest - students need to be understood at the citizenship interview
+5. Focus on intelligibility over perfection - accent is okay, clarity is essential
+
+SCORING CRITERIA:
+- Pronunciation (0-100): Did they say the right words? Are phonemes clear enough to be understood?
+- Intonation (0-100): Natural sentence rhythm and stress patterns
+- Fluency (0-100): Smooth delivery without excessive hesitation
+- Overall Score (0-100): Weighted average emphasizing pronunciation (50%), fluency (30%), intonation (20%)
+
+PASS THRESHOLD: 70+ means they're ready to move on. Below 70 needs more practice.
+
+Provide specific, actionable feedback on sounds they struggled with.`;
 
       const result = await base44.integrations.Core.InvokeLLM({
         prompt,
@@ -219,13 +221,15 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext }) {
         response_json_schema: {
             type: "object",
             properties: {
+                transcription: { type: "string" },
                 pronunciation_score: { type: "number" },
                 intonation_score: { type: "number" },
                 fluency_score: { type: "number" },
                 overall_score: { type: "number" },
                 phoneme_feedback: { type: "string" },
                 general_feedback: { type: "string" }
-            }
+            },
+            required: ["transcription", "pronunciation_score", "intonation_score", "fluency_score", "overall_score", "phoneme_feedback", "general_feedback"]
         }
       });
 
