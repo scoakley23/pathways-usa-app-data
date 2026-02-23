@@ -533,6 +533,37 @@ export default function Practice() {
             </CardContent>
           </Card>
         </div>
+
+        {/* Interview Practice Section */}
+        <div className="mt-8">
+          <Card className="bg-gradient-to-br from-slate-50 to-indigo-50 border-indigo-200 hover:shadow-xl transition-all cursor-pointer" onClick={() => setMode('interview')}>
+            <CardContent className="p-8">
+              <div className="flex items-center gap-6">
+                <div className="w-16 h-16 bg-indigo-600 rounded-2xl flex items-center justify-center shrink-0">
+                  <svg className="w-9 h-9 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center gap-3 mb-2">
+                    <h3 className="text-2xl font-bold text-slate-900">Mock Interview Practice</h3>
+                    <Badge className="bg-indigo-600">NEW</Badge>
+                  </div>
+                  <p className="text-slate-600 mb-4">
+                    Simulate your real citizenship interview with realistic questions from all sections: small talk, personal information, morals & ethics, and oath requirements.
+                  </p>
+                  <div className="flex flex-wrap gap-2 text-xs text-slate-600">
+                    <span className="px-3 py-1 bg-white rounded-full border border-indigo-200">✓ AI-powered feedback</span>
+                    <span className="px-3 py-1 bg-white rounded-full border border-indigo-200">✓ Speech practice</span>
+                    <span className="px-3 py-1 bg-white rounded-full border border-indigo-200">✓ Real interview format</span>
+                  </div>
+                </div>
+                <ArrowRight className="w-6 h-6 text-indigo-600 shrink-0" />
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
       </div>
     );
   }
