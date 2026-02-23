@@ -301,12 +301,12 @@ useEffect(() => {
       toast.success('Connected with your tutor!');
     }
 
-    toast.success(`Profile set to: ${selectedRole === 'tutor' ? 'Tutor' : 'Student'}`);
+    toast.success(`Welcome as a ${selectedRole}!`);
     onComplete(selectedRole);
     
   } catch (error) {
-    console.error('Error saving role:', error);
-    toast.error('Failed to save role. Please try again.');
+    console.error('Role selection error:', error);
+    toast.error('Failed to set role. Please try again.');
     setIsSubmitting(false);
   }
 };
