@@ -24,48 +24,6 @@ export default function Layout({ children }) {
       
       const normalizedEmail = currentUser.email.toLowerCase().trim();
       
-      // Handle Invite Link (if present)
-      const params = new URLSearchParams(location.search);
-      const urlInviteEmail = params.get('tutor_invite');
-      
-      if (urlInviteEmail) {
-          localStorage.setItem('pending_tutor_invite', urlInviteEmail);
-      }
-
-      const storedInviteEmail = localStorage.getItem('pending_tutor_invite');
-      const inviteTutorEmail = urlInviteEmail || storedInviteEmail;
-      
-      if (inviteTutorEmail) {
-           try {
-               const tutorEmail = inviteTutorEmail.toLowerCase().trim();
-               const existing = await base44.entities.TutorRelationship.list({
-                   query: { student_email: normalizedEmail, tutor_email: tutorEmail }
-               });
-               
-               if (existing.length === 0) {
-                   await base44.entities.TutorRelationship.create({
-                       student_email: normalizedEmail,
-                       tutor_email: tutorEmail,
-                       status: 'active'
-                   });
-                   toast.success(`Connected with tutor!`);
-               } else {
-                   if (existing[0].status !== 'active') {
-                       await base44.entities.TutorRelationship.update(existing[0].id, { status: 'active' });
-                       toast.success(`Connected with tutor!`);
-                   }
-               }
-               
-               localStorage.removeItem('pending_tutor_invite');
-               if (urlInviteEmail) {
-                  const newUrl = window.location.pathname;
-                  window.history.replaceState({}, document.title, newUrl);
-               }
-           } catch (err) {
-               console.error("Error processing invite", err);
-           }
-      }
-
       // Fetch the user's profile to determine their role
       const profiles = await base44.entities.PublicProfile.list({
            query: { user_email: normalizedEmail },
@@ -76,8 +34,49 @@ export default function Layout({ children }) {
       if (profiles.length > 0 && profiles[0].account_type) {
           setRole(profiles[0].account_type);
           setShowOnboarding(false);
+          
+          // Handle Invite Link ONLY after role is confirmed
+          const params = new URLSearchParams(location.search);
+          const urlInviteEmail = params.get('tutor_invite');
+          
+          if (urlInviteEmail) {
+              localStorage.setItem('pending_tutor_invite', urlInviteEmail);
+          }
+
+          const storedInviteEmail = localStorage.getItem('pending_tutor_invite');
+          const inviteTutorEmail = urlInviteEmail || storedInviteEmail;
+          
+          if (inviteTutorEmail && profiles[0].account_type === 'student') {
+               try {
+                   const tutorEmail = inviteTutorEmail.toLowerCase().trim();
+                   const existing = await base44.entities.TutorRelationship.list({
+                       query: { student_email: normalizedEmail, tutor_email: tutorEmail },
+                       limit: 1
+                   });
+                   
+                   if (existing.length === 0) {
+                       await base44.entities.TutorRelationship.create({
+                           student_email: normalizedEmail,
+                           tutor_email: tutorEmail,
+                           status: 'active'
+                       });
+                       toast.success(`Connected with tutor!`);
+                   } else if (existing[0].status !== 'active') {
+                       await base44.entities.TutorRelationship.update(existing[0].id, { status: 'active' });
+                       toast.success(`Connected with tutor!`);
+                   }
+                   
+                   localStorage.removeItem('pending_tutor_invite');
+                   if (urlInviteEmail) {
+                      const newUrl = window.location.pathname;
+                      window.history.replaceState({}, document.title, newUrl);
+                   }
+               } catch (err) {
+                   console.error("Error processing invite", err);
+               }
+          }
       } else {
-          // No profile or missing account_type - show onboarding
+          // No profile or missing account_type - show onboarding ONCE
           setShowOnboarding(true);
       }
     } catch (e) {

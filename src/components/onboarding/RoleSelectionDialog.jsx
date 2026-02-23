@@ -28,7 +28,8 @@ export default function RoleSelectionDialog({ isOpen, onComplete, userEmail, use
 
         const normalizedEmail = user.email.toLowerCase().trim();
         const profiles = await base44.entities.PublicProfile.list({
-          query: { user_email: normalizedEmail }
+          query: { user_email: normalizedEmail },
+          limit: 1
         });
 
         if (profiles.length === 0 || !profiles[0].account_type) {
@@ -37,6 +38,7 @@ export default function RoleSelectionDialog({ isOpen, onComplete, userEmail, use
           setDisplayName(user.full_name || '');
           setStep('select-role');
         } else {
+          // Profile exists with role - close dialog immediately
           onComplete(profiles[0].account_type);
         }
       } catch (error) {
@@ -253,10 +255,13 @@ useEffect(() => {
     }
 
     // Update existing profile or create new one
+    let profileId;
     if (existing.length > 0) {
       await base44.entities.PublicProfile.update(existing[0].id, profileData);
+      profileId = existing[0].id;
     } else {
-      await base44.entities.PublicProfile.create(profileData);
+      const newProfile = await base44.entities.PublicProfile.create(profileData);
+      profileId = newProfile.id;
     }
 
     // Create tutor relationship if joining via invite code
@@ -277,6 +282,9 @@ useEffect(() => {
       }
     }
 
+    // Force a small delay to ensure profile is saved
+    await new Promise(resolve => setTimeout(resolve, 300));
+    
     toast.success(`Welcome as a ${selectedRole}!`);
     onComplete(selectedRole);
     
