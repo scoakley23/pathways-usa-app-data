@@ -254,8 +254,8 @@ Provide specific, actionable feedback on sounds they struggled with.`;
     return text.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "").trim();
   };
 
-  const speak = () => {
-    speakText(sentence.text, 'en');
+  const speak = (useRandomVoice = false) => {
+    speakText(sentence.text, 'en', { randomVoice: useRandomVoice });
   };
 
   if (status === 'unsupported') {
@@ -279,9 +279,14 @@ Provide specific, actionable feedback on sounds they struggled with.`;
           <div className="space-y-6 w-full">
             <div className="flex justify-between items-start">
                <span className="text-xs font-bold tracking-wider text-purple-500 uppercase">Reading Practice</span>
-               <Button variant="ghost" size="sm" onClick={speak} className="text-slate-400 hover:text-purple-600">
-                 <Volume2 className="w-4 h-4 mr-1" /> Listen
-               </Button>
+               <div className="flex gap-2">
+                 <Button variant="ghost" size="sm" onClick={() => speak(false)} className="text-slate-400 hover:text-purple-600">
+                   <Volume2 className="w-4 h-4 mr-1" /> Listen
+                 </Button>
+                 <Button variant="ghost" size="sm" onClick={() => speak(true)} className="text-slate-400 hover:text-blue-600" title="Random voice for practice">
+                   <Volume2 className="w-4 h-4" /> 🎲
+                 </Button>
+               </div>
             </div>
 
             <h2 className="text-3xl md:text-4xl font-bold text-slate-800 leading-tight py-4">
