@@ -309,15 +309,81 @@ Be encouraging but specific. Give actionable advice for improvement.`,
                     </div>
                   </div>
                   
-                  <div className="bg-white p-4 rounded-lg border border-slate-200">
-                    <p className="text-sm font-semibold text-slate-700 mb-1">Feedback:</p>
-                    <p className="text-slate-700">{feedback.feedback}</p>
-                  </div>
+                  {/* Content Feedback */}
+                  {feedback.content_feedback && (
+                    <div className="bg-white p-4 rounded-lg border-l-4 border-blue-500">
+                      <p className="text-sm font-semibold text-blue-900 mb-1 flex items-center gap-2">
+                        <span>📝</span> Content & Accuracy
+                      </p>
+                      <p className="text-sm text-slate-700">{feedback.content_feedback}</p>
+                    </div>
+                  )}
 
+                  {/* Pronunciation Feedback */}
+                  {feedback.pronunciation_feedback && (
+                    <div className="bg-white p-4 rounded-lg border-l-4 border-purple-500">
+                      <p className="text-sm font-semibold text-purple-900 mb-1 flex items-center gap-2">
+                        <span>🗣️</span> Pronunciation & Clarity
+                      </p>
+                      <p className="text-sm text-slate-700">{feedback.pronunciation_feedback}</p>
+                    </div>
+                  )}
+
+                  {/* Grammar Feedback */}
+                  {feedback.grammar_feedback && (
+                    <div className="bg-white p-4 rounded-lg border-l-4 border-indigo-500">
+                      <p className="text-sm font-semibold text-indigo-900 mb-1 flex items-center gap-2">
+                        <span>📖</span> Grammar & Structure
+                      </p>
+                      <p className="text-sm text-slate-700">{feedback.grammar_feedback}</p>
+                    </div>
+                  )}
+
+                  {/* Fluency Feedback */}
+                  {feedback.fluency_feedback && (
+                    <div className="bg-white p-4 rounded-lg border-l-4 border-teal-500">
+                      <p className="text-sm font-semibold text-teal-900 mb-1 flex items-center gap-2">
+                        <span>💬</span> Fluency & Naturalness
+                      </p>
+                      <p className="text-sm text-slate-700">{feedback.fluency_feedback}</p>
+                    </div>
+                  )}
+
+                  {/* Common ESL Mistakes */}
+                  {feedback.common_esl_mistakes && (
+                    <div className="bg-amber-50 p-4 rounded-lg border border-amber-200">
+                      <p className="text-sm font-semibold text-amber-900 mb-1 flex items-center gap-2">
+                        <span>⚠️</span> Common ESL Pitfalls
+                      </p>
+                      <p className="text-sm text-slate-700">{feedback.common_esl_mistakes}</p>
+                    </div>
+                  )}
+
+                  {/* Corrected Version */}
+                  {feedback.corrected_version && (
+                    <div className="bg-green-50 p-4 rounded-lg border border-green-200">
+                      <p className="text-sm font-semibold text-green-900 mb-1 flex items-center gap-2">
+                        <span>✨</span> Suggested Response
+                      </p>
+                      <p className="text-sm text-slate-700 italic">"{feedback.corrected_version}"</p>
+                    </div>
+                  )}
+
+                  {/* Improvement Tips */}
                   {feedback.improvement_tips && (
-                    <div className="bg-indigo-50 p-4 rounded-lg border border-indigo-200">
-                      <p className="text-sm font-semibold text-indigo-900 mb-1">Tips for Improvement:</p>
+                    <div className="bg-indigo-50 p-4 rounded-lg border-2 border-indigo-200">
+                      <p className="text-sm font-semibold text-indigo-900 mb-1 flex items-center gap-2">
+                        <span>💡</span> Action Steps
+                      </p>
                       <p className="text-sm text-indigo-800">{feedback.improvement_tips}</p>
+                    </div>
+                  )}
+
+                  {/* Fallback for old feedback format */}
+                  {feedback.feedback && !feedback.content_feedback && (
+                    <div className="bg-white p-4 rounded-lg border border-slate-200">
+                      <p className="text-sm font-semibold text-slate-700 mb-1">Feedback:</p>
+                      <p className="text-sm text-slate-700">{feedback.feedback}</p>
                     </div>
                   )}
 
