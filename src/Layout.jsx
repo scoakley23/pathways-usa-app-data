@@ -66,17 +66,33 @@ export default function Layout({ children }) {
            }
       }
 
-      // FIX: Fetch only the MOST RECENT profile to prevent duplicates
+      // Fetch the user's profile to determine their role
       const profiles = await base44.entities.PublicProfile.list({
            query: { user_email: normalizedEmail },
            sort: { created_date: -1 },
-           limit: 1
+           limit: 10 // Fetch up to 10 to check for duplicates
       });
       
-      if (profiles.length > 0 && profiles[0].account_type) {
-          setRole(profiles[0].account_type);
-          setShowOnboarding(false);
+      if (profiles.length > 0) {
+          // Find the first profile with a valid account_type
+          const validProfile = profiles.find(p => p.account_type);
+          
+          if (validProfile) {
+              setRole(validProfile.account_type);
+              setShowOnboarding(false);
+              
+              // Clean up any duplicate profiles (keep only the valid one)
+              const duplicates = profiles.filter(p => p.id !== validProfile.id);
+              if (duplicates.length > 0) {
+                  Promise.all(duplicates.map(p => base44.entities.PublicProfile.delete(p.id)))
+                    .catch(err => console.error("Failed to clean duplicates:", err));
+              }
+          } else {
+              // Profile exists but no account_type - show onboarding
+              setShowOnboarding(true);
+          }
       } else {
+          // No profile at all - show onboarding
           setShowOnboarding(true);
       }
     } catch (e) {
