@@ -31,18 +31,24 @@ export default function InterviewPractice({ onComplete, onNext }) {
   }, []);
 
   const loadQuestions = async () => {
-    setIsLoadingQuestions(true);
-    const allQuestions = await base44.entities.InterviewQuestion.list('-order', 100);
-    
-    // Select mix of questions from different sections
-    const smallTalk = allQuestions.filter(q => q.section === 'small_talk').slice(0, 3);
-    const personalInfo = allQuestions.filter(q => q.section === 'personal_info').slice(0, 4);
-    const moralsEthics = allQuestions.filter(q => q.section === 'morals_ethics').slice(0, 6);
-    const oathReqs = allQuestions.filter(q => q.section === 'oath_requirements');
-    
-    const selected = [...smallTalk, ...personalInfo, ...moralsEthics, ...oathReqs];
-    setQuestions(selected);
-    setIsLoadingQuestions(false);
+    try {
+      setIsLoadingQuestions(true);
+      const allQuestions = await base44.entities.InterviewQuestion.list('-order', 100);
+      
+      // Select mix of questions from different sections
+      const smallTalk = allQuestions.filter(q => q.section === 'small_talk').slice(0, 3);
+      const personalInfo = allQuestions.filter(q => q.section === 'personal_info').slice(0, 4);
+      const moralsEthics = allQuestions.filter(q => q.section === 'morals_ethics').slice(0, 6);
+      const oathReqs = allQuestions.filter(q => q.section === 'oath_requirements');
+      
+      const selected = [...smallTalk, ...personalInfo, ...moralsEthics, ...oathReqs];
+      setQuestions(selected);
+    } catch (error) {
+      console.error('Failed to load questions:', error);
+      toast.error('Failed to load questions');
+    } finally {
+      setIsLoadingQuestions(false);
+    }
   };
 
   const initializeSpeechRecognition = () => {
