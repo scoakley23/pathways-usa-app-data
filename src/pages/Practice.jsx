@@ -332,17 +332,23 @@ export default function Practice() {
 
           if (isSuccess) {
               newConsecutive += 1;
+              // SM-2 Algorithm: Graduated intervals
               if (newConsecutive === 1) {
-                  newInterval = 1;
+                  newInterval = 1; // Review tomorrow
               } else if (newConsecutive === 2) {
-                  newInterval = 6;
+                  newInterval = 6; // Review in 6 days
               } else {
+                  // Exponential growth based on ease factor
                   newInterval = Math.round(prevProgress.interval * prevProgress.ease_factor);
+              }
+              // Reward consecutive successes with easier future reviews
+              if (newConsecutive >= 2) {
+                  newEaseFactor = Math.min(2.5, newEaseFactor + 0.1);
               }
           } else {
               newConsecutive = 0;
-              newInterval = 0; // Reset interval on failure
-              // Reduce ease factor slightly if wrong, but min 1.3
+              newInterval = 0; // Reset - immediate relearning
+              // Penalize ease factor on errors (minimum 1.3)
               newEaseFactor = Math.max(1.3, newEaseFactor - 0.2);
           }
 
@@ -350,7 +356,7 @@ export default function Practice() {
             user_email: currentUser.email,
             content_id: currentItem.id,
             content_type: mode === 'civics' ? 'civics_question' : (mode === 'vocabulary' ? 'vocabulary' : 'sentence'),
-            status: (isSuccess && newConsecutive >= 2) ? 'mastered' : 'practicing',
+            status: (isSuccess && newConsecutive >= 3) ? 'mastered' : 'practicing',
             last_practiced: new Date().toISOString(),
             assignment_id: currentItem.assignment_id,
             ease_factor: newEaseFactor,
@@ -634,7 +640,10 @@ export default function Practice() {
             vocabSubMode === 'flashcards' ? (
               <FlashcardGame 
                 words={content} 
-                onComplete={() => setSessionComplete(true)}
+                onComplete={(isSuccess) => {
+                  handleComplete(isSuccess);
+                  handleNext();
+                }}
               />
             ) : vocabSubMode === 'matching' ? (
               <MatchingGame 
