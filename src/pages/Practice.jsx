@@ -10,6 +10,7 @@ import CivicsTestCard from '@/components/practice/CivicsTestCard';
 import FlashcardGame from '@/components/practice/FlashcardGame';
 import MatchingGame from '@/components/practice/MatchingGame';
 import ReadingPracticeCard from '@/components/practice/ReadingPracticeCard';
+import InterviewPractice from '@/components/practice/InterviewPractice';
 import StudyBuddy from '@/components/ai/StudyBuddy';
 import { toast } from "sonner";
 
