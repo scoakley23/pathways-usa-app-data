@@ -213,17 +213,52 @@ useEffect(() => {
   try {
     const normalizedEmail = currentUser.email.toLowerCase().trim();
 
+    // Check for existing profiles
     const existing = await base44.entities.PublicProfile.list({
-      query: { user_email: normalizedEmail }
+      query: { user_email: normalizedEmail },
+      sort: { created_date: -1 }
     });
     
+    // If profile already exists with account_type, update it instead of creating new
+    if (existing.length > 0 && existing[0].account_type) {
+      const profileData = {
+        display_name: displayName || existing[0].display_name || normalizedEmail.split('@')[0],
+        account_type: selectedRole
+      };
+
+      // Keep or generate invite code for tutors
+      if (selectedRole === 'tutor') {
+        if (existing[0].invite_code) {
+          profileData.invite_code = existing[0].invite_code;
+        } else {
+          const prefix = normalizedEmail.substring(0, 3).toUpperCase().replace(/[^A-Z]/g, 'X');
+          const random = Math.floor(1000 + Math.random() * 9000);
+          profileData.invite_code = `${prefix}${random}`;
+        }
+      }
+
+      // Update the most recent profile
+      await base44.entities.PublicProfile.update(existing[0].id, profileData);
+      
+      // Delete any duplicate profiles
+      if (existing.length > 1) {
+        await Promise.all(existing.slice(1).map(p => base44.entities.PublicProfile.delete(p.id)));
+      }
+
+      toast.success(`Updated to ${selectedRole} role!`);
+      onComplete(selectedRole);
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Delete any profiles without account_type (orphaned profiles)
     if (existing.length > 0) {
       await Promise.all(existing.map(p => base44.entities.PublicProfile.delete(p.id)));
     }
 
+    // Handle invite code for students
     let tutorEmail = null;
     if (selectedRole === 'student' && inviteCode) {
-      // FIXED: Fetch ALL and filter in JavaScript
       const allProfiles = await base44.entities.PublicProfile.list({ limit: 1000 });
       
       const matchingTutor = allProfiles.find(p => 
@@ -240,6 +275,7 @@ useEffect(() => {
       tutorEmail = matchingTutor.user_email;
     }
 
+    // Create new profile
     const profileData = {
       user_email: normalizedEmail,
       display_name: displayName || normalizedEmail.split('@')[0],
@@ -247,18 +283,14 @@ useEffect(() => {
     };
 
     if (selectedRole === 'tutor') {
-      const existingCode = existing.find(p => p.invite_code)?.invite_code;
-      if (existingCode) {
-        profileData.invite_code = existingCode;
-      } else {
-        const prefix = normalizedEmail.substring(0, 3).toUpperCase().replace(/[^A-Z]/g, 'X');
-        const random = Math.floor(1000 + Math.random() * 9000);
-        profileData.invite_code = `${prefix}${random}`;
-      }
+      const prefix = normalizedEmail.substring(0, 3).toUpperCase().replace(/[^A-Z]/g, 'X');
+      const random = Math.floor(1000 + Math.random() * 9000);
+      profileData.invite_code = `${prefix}${random}`;
     }
 
     await base44.entities.PublicProfile.create(profileData);
 
+    // Create tutor relationship if joining via invite code
     if (selectedRole === 'student' && tutorEmail) {
       await base44.entities.TutorRelationship.create({
         tutor_email: tutorEmail,
@@ -266,6 +298,7 @@ useEffect(() => {
         status: 'active',
         created_by: normalizedEmail
       });
+      toast.success('Connected with your tutor!');
     }
 
     toast.success(`Profile set to: ${selectedRole === 'tutor' ? 'Tutor' : 'Student'}`);
