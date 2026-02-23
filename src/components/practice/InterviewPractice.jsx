@@ -8,6 +8,7 @@ import { speakText } from "@/components/utils/textToSpeech";
 import { toast } from "sonner";
 
 export default function InterviewPractice({ onComplete, onNext }) {
+  // All hooks must be declared first, before any conditional returns
   const [questions, setQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isListening, setIsListening] = useState(false);
