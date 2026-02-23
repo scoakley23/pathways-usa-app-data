@@ -184,6 +184,9 @@ Be encouraging but specific. Give actionable advice for improvement.`,
     });
   };
 
+  const currentQuestion = questions[currentIndex];
+  const progressPercent = currentQuestion ? ((currentIndex + 1) / questions.length) * 100 : 0;
+
   if (!sessionStarted) {
     return (
       <div className="w-full max-w-3xl mx-auto">
@@ -235,9 +238,6 @@ Be encouraging but specific. Give actionable advice for improvement.`,
       </Card>
     );
   }
-
-  const currentQuestion = questions[currentIndex];
-  const progressPercent = ((currentIndex + 1) / questions.length) * 100;
 
   return (
     <div className="w-full max-w-3xl mx-auto space-y-6">
