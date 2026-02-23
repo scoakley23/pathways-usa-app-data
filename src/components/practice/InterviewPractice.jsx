@@ -23,8 +23,11 @@ export default function InterviewPractice({ onComplete, onNext }) {
   const responseRef = useRef('');
 
   useEffect(() => {
-    loadQuestions();
-    initializeSpeechRecognition();
+    const init = async () => {
+      await loadQuestions();
+      initializeSpeechRecognition();
+    };
+    init();
   }, []);
 
   const loadQuestions = async () => {
