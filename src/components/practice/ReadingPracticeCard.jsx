@@ -324,6 +324,13 @@ Provide specific, actionable feedback on sounds they struggled with.`;
                     </div>
                 ) : analysis ? (
                     <div className="w-full bg-slate-50 rounded-xl p-4 border border-slate-100 animate-in fade-in slide-in-from-bottom-2">
+                         {analysis.transcription && (
+                             <div className="mb-3 p-2 bg-white rounded-lg border border-slate-200">
+                                 <p className="text-xs font-bold text-slate-500 uppercase tracking-wide mb-1">You said:</p>
+                                 <p className="text-sm text-slate-700 italic">"{analysis.transcription}"</p>
+                             </div>
+                         )}
+                         
                          <div className="flex items-center justify-between mb-4">
                             <div className="flex items-center gap-2">
                                 <div className={`w-10 h-10 rounded-full flex items-center justify-center ${analysis.overall_score >= 70 ? 'bg-green-100 text-green-600' : 'bg-orange-100 text-orange-600'}`}>
