@@ -24,18 +24,36 @@ export default function Layout({ children }) {
       
       const normalizedEmail = currentUser.email.toLowerCase().trim();
       
-      // Fetch the user's profile to determine their role
-      const profiles = await base44.entities.PublicProfile.list({
+      // Clean up duplicate profiles (keep only the most recent one with account_type)
+      const allProfiles = await base44.entities.PublicProfile.list({
            query: { user_email: normalizedEmail },
            sort: { created_date: -1 },
-           limit: 1
+           limit: 100
       });
       
-      if (profiles.length > 0 && profiles[0].account_type) {
-          setRole(profiles[0].account_type);
-          setShowOnboarding(false);
-          
-          // Handle Invite Link ONLY after role is confirmed
+      if (allProfiles.length > 1) {
+        // Find the first profile with account_type, or just use the most recent
+        const primaryProfile = allProfiles.find(p => p.account_type) || allProfiles[0];
+        
+        // Delete all other profiles
+        const duplicateIds = allProfiles.filter(p => p.id !== primaryProfile.id).map(p => p.id);
+        for (const id of duplicateIds) {
+          await base44.entities.PublicProfile.delete(id);
+        }
+        
+        setRole(primaryProfile.account_type);
+        setShowOnboarding(!primaryProfile.account_type);
+      } else if (allProfiles.length === 1) {
+        const profile = allProfiles[0];
+        setRole(profile.account_type);
+        setShowOnboarding(!profile.account_type);
+      } else {
+        // No profile - show onboarding
+        setShowOnboarding(true);
+      }
+      
+      // Handle invite links for students
+      if (allProfiles.length > 0 && allProfiles[0].account_type === 'student') {
           const params = new URLSearchParams(location.search);
           const urlInviteEmail = params.get('tutor_invite');
           
@@ -46,7 +64,7 @@ export default function Layout({ children }) {
           const storedInviteEmail = localStorage.getItem('pending_tutor_invite');
           const inviteTutorEmail = urlInviteEmail || storedInviteEmail;
           
-          if (inviteTutorEmail && profiles[0].account_type === 'student') {
+          if (inviteTutorEmail) {
                try {
                    const tutorEmail = inviteTutorEmail.toLowerCase().trim();
                    const existing = await base44.entities.TutorRelationship.list({
@@ -75,13 +93,9 @@ export default function Layout({ children }) {
                    console.error("Error processing invite", err);
                }
           }
-      } else {
-          // No profile or missing account_type - show onboarding ONCE
-          setShowOnboarding(true);
       }
     } catch (e) {
       console.error("Auth check error:", e);
-      // Not logged in
       setShowOnboarding(false);
     }
   };

@@ -215,12 +215,14 @@ useEffect(() => {
   try {
     const normalizedEmail = currentUser.email.toLowerCase().trim();
 
-    // Check for existing profiles
-    const existing = await base44.entities.PublicProfile.list({
-      query: { user_email: normalizedEmail },
-      sort: { created_date: -1 },
-      limit: 1
+    // Clean up ALL existing profiles first to prevent duplicates
+    const allExisting = await base44.entities.PublicProfile.list({
+      query: { user_email: normalizedEmail }
     });
+    
+    for (const profile of allExisting) {
+      await base44.entities.PublicProfile.delete(profile.id);
+    }
     
     // Handle invite code for students
     let tutorEmail = null;
@@ -254,15 +256,8 @@ useEffect(() => {
       profileData.invite_code = `${prefix}${random}`;
     }
 
-    // Update existing profile or create new one
-    let profileId;
-    if (existing.length > 0) {
-      await base44.entities.PublicProfile.update(existing[0].id, profileData);
-      profileId = existing[0].id;
-    } else {
-      const newProfile = await base44.entities.PublicProfile.create(profileData);
-      profileId = newProfile.id;
-    }
+    // Create single new profile
+    await base44.entities.PublicProfile.create(profileData);
 
     // Create tutor relationship if joining via invite code
     if (selectedRole === 'student' && tutorEmail) {
@@ -282,9 +277,6 @@ useEffect(() => {
       }
     }
 
-    // Force a small delay to ensure profile is saved
-    await new Promise(resolve => setTimeout(resolve, 300));
-    
     toast.success(`Welcome as a ${selectedRole}!`);
     onComplete(selectedRole);
     
