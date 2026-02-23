@@ -188,7 +188,7 @@ Be encouraging but specific. Give actionable advice for improvement.`,
     });
   };
 
-  if (questions.length === 0) {
+  if (isLoadingQuestions || questions.length === 0) {
     return (
       <Card className="p-8 text-center">
         <Loader2 className="w-8 h-8 animate-spin mx-auto mb-4 text-indigo-600" />
