@@ -158,16 +158,15 @@ export default function Layout({ children }) {
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-6">
             {navItems.map((item) => (
-              <React.Fragment key={item.path}>
-                <Link 
-                  to={createPageUrl(item.path.replace('/', ''))}
+              <Link 
+                key={item.path}
+                to={createPageUrl(item.path.replace('/', ''))}
                 className={`text-sm font-medium transition-colors hover:text-blue-700 flex items-center gap-2 px-3 py-2 rounded-md
                   ${location.pathname === item.path ? 'bg-blue-50 text-blue-700' : 'text-slate-600'}`}
               >
                 <item.icon className="w-4 h-4" />
                 {item.label}
-                </Link>
-                </React.Fragment>
+              </Link>
                 ))}
 
                 {user && <NotificationCenter userEmail={user.email} />}
