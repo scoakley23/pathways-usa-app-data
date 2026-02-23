@@ -313,9 +313,14 @@ Provide specific, actionable feedback on sounds they struggled with.`;
                     <div className="flex flex-col items-center animate-in fade-in slide-in-from-bottom-4">
                         <div className="bg-blue-50 p-6 rounded-xl mb-6 text-center w-full border border-blue-100">
                             <p className="text-lg font-medium text-slate-800 mb-2">Listen to the correct pronunciation</p>
-                            <Button onClick={speak} variant="outline" className="bg-white hover:bg-blue-50 text-blue-600 border-blue-200">
-                                <Volume2 className="w-5 h-5 mr-2" /> Play Audio Again
-                            </Button>
+                            <div className="flex gap-3 justify-center">
+                              <Button onClick={() => speak(false)} variant="outline" className="bg-white hover:bg-blue-50 text-blue-600 border-blue-200">
+                                  <Volume2 className="w-5 h-5 mr-2" /> Play Audio
+                              </Button>
+                              <Button onClick={() => speak(true)} variant="outline" className="bg-white hover:bg-slate-50 text-slate-600 border-slate-200">
+                                  <Volume2 className="w-5 h-5 mr-1" /> 🎲 Different Voice
+                              </Button>
+                            </div>
                         </div>
                         <p className="text-slate-600 font-medium mb-4">Were you able to read it correctly?</p>
                         <div className="flex gap-4">
