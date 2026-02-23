@@ -16,8 +16,13 @@ export default function FlashcardGame({ words, onComplete }) {
   const handleNext = (known) => {
     if (known) setMasteredCount(prev => prev + 1);
     
+    // Report performance to parent (for SRS tracking)
+    if (onComplete) {
+      onComplete(known);
+    }
+    
     if (isLast) {
-      onComplete(masteredCount + (known ? 1 : 0));
+      // Session complete
     } else {
       setIsFlipped(false);
       setTimeout(() => setCurrentIndex(prev => prev + 1), 200);
