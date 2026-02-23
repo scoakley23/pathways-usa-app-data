@@ -1,4 +1,4 @@
-export const speakText = (text, language = 'en', { onStart, onEnd } = {}) => {
+export const speakText = (text, language = 'en', { onStart, onEnd, randomVoice = false } = {}) => {
   if (!window.speechSynthesis) return;
   
   window.speechSynthesis.cancel();
@@ -21,17 +21,27 @@ export const speakText = (text, language = 'en', { onStart, onEnd } = {}) => {
     const targetLang = langMap[language] || 'en-US';
     utterance.lang = targetLang;
     
-    // improved voice selection strategy
-    // 1. Match language
-    // 2. Prefer "Google" (Chrome) or "Natural" (Edge) or "Premium" (Apple)
-    let voice = voices.find(v => 
-      v.lang.startsWith(language === 'en' ? 'en' : language) && 
-      (v.name.includes('Google US English') || v.name.includes('Samantha') || v.name.includes('Natural'))
+    // Get all voices matching the language
+    const matchingVoices = voices.filter(v => 
+      v.lang.startsWith(language === 'en' ? 'en' : language)
     );
 
-    // Fallback to any voice of that language
-    if (!voice) {
-      voice = voices.find(v => v.lang.startsWith(language === 'en' ? 'en' : language));
+    let voice;
+    
+    if (randomVoice && matchingVoices.length > 0) {
+      // Random voice selection for practice variability
+      voice = matchingVoices[Math.floor(Math.random() * matchingVoices.length)];
+    } else {
+      // Default: prefer high-quality voices
+      voice = voices.find(v => 
+        v.lang.startsWith(language === 'en' ? 'en' : language) && 
+        (v.name.includes('Google US English') || v.name.includes('Samantha') || v.name.includes('Natural'))
+      );
+
+      // Fallback to any voice of that language
+      if (!voice) {
+        voice = matchingVoices[0];
+      }
     }
 
     if (voice) {
