@@ -236,6 +236,9 @@ Be encouraging but specific. Give actionable advice for improvement.`,
     );
   }
 
+  const currentQuestion = questions[currentIndex];
+  const progressPercent = ((currentIndex + 1) / questions.length) * 100;
+
   return (
     <div className="w-full max-w-3xl mx-auto space-y-6">
       {/* Progress */}
