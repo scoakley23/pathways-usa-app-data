@@ -41,12 +41,11 @@ export default function MyStudents({ currentUserEmail }) {
 
   const fetchInviteCode = async () => {
       try {
-          // Normalize email to ensure we find the profile created during onboarding
           const normalizedEmail = currentUserEmail.toLowerCase().trim();
 
-          // Find my profile
           const profiles = await base44.entities.PublicProfile.list({ 
-              query: { user_email: normalizedEmail } 
+              query: { user_email: normalizedEmail },
+              limit: 1
           });
           
           if (profiles.length > 0) {
@@ -59,16 +58,6 @@ export default function MyStudents({ currentUserEmail }) {
                   await base44.entities.PublicProfile.update(profile.id, { invite_code: newCode });
                   setInviteCode(newCode);
               }
-          } else {
-               // Create profile if doesn't exist (edge case - should be covered by onboarding)
-               const newCode = generateInviteCode(normalizedEmail);
-               await base44.entities.PublicProfile.create({
-                   user_email: normalizedEmail,
-                   display_name: normalizedEmail.split('@')[0],
-                   invite_code: newCode,
-                   account_type: 'tutor' // Ensure account type is set if created here
-               });
-               setInviteCode(newCode);
           }
       } catch (e) {
           console.error("Error with invite code", e);
