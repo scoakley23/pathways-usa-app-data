@@ -184,9 +184,6 @@ Be encouraging but specific. Give actionable advice for improvement.`,
     });
   };
 
-  const currentQuestion = questions[currentIndex];
-  const progressPercent = currentQuestion ? ((currentIndex + 1) / questions.length) * 100 : 0;
-
   if (questions.length === 0) {
     return (
       <Card className="p-8 text-center">
