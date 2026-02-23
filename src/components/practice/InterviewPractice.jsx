@@ -105,26 +105,48 @@ export default function InterviewPractice({ onComplete, onNext }) {
 
     try {
       const result = await base44.integrations.Core.InvokeLLM({
-        prompt: `You are a USCIS citizenship interview officer evaluating a candidate's response.
+        prompt: `You are an experienced USCIS citizenship interview officer and ESL instructor evaluating a candidate's response.
 
 QUESTION: "${currentQ.question}"
 EXPECTED RESPONSE: "${currentQ.expected_response}"
 CANDIDATE'S RESPONSE: "${response}"
 RESPONSE TYPE: ${currentQ.response_type}
 
-Evaluate if the candidate's response is acceptable for a citizenship interview:
-- For open_ended questions: Any reasonable, coherent answer that shows understanding is acceptable
-- For yes_no questions: Must be clear yes/no with appropriate context
-- For specific_answer questions: Must contain the key information from expected response
+Provide comprehensive feedback on 4 dimensions:
 
-Be encouraging but honest. The goal is to ensure they can communicate effectively in English and understand the questions.`,
+1. CONTENT ACCEPTABILITY:
+   - For open_ended: Any reasonable, coherent answer showing understanding is acceptable
+   - For yes_no: Must be clear yes/no with appropriate context
+   - For specific_answer: Must contain key information from expected response
+
+2. PRONUNCIATION & CLARITY:
+   - Analyze word clarity based on the transcribed text
+   - Note any potential pronunciation issues common for non-native speakers (e.g., th/s/z sounds, -ed endings, stress patterns)
+   - Comment on overall clarity and understandability
+
+3. GRAMMAR & SENTENCE STRUCTURE:
+   - Identify any grammatical errors (subject-verb agreement, tense usage, article usage, etc.)
+   - Note common ESL errors like missing articles, incorrect prepositions, or word order issues
+   - Assess sentence completeness and coherence
+
+4. FLUENCY & NATURALNESS:
+   - Evaluate how natural and conversational the response sounds
+   - Comment on sentence flow and transitions
+   - Note if the response sounds memorized vs. conversational
+
+Be encouraging but specific. Give actionable advice for improvement.`,
         response_json_schema: {
           type: "object",
           properties: {
             is_acceptable: { type: "boolean" },
             score: { type: "number", description: "0-100" },
-            feedback: { type: "string" },
-            improvement_tips: { type: "string" }
+            content_feedback: { type: "string", description: "Feedback on content accuracy and completeness" },
+            pronunciation_feedback: { type: "string", description: "Specific feedback on pronunciation and clarity issues" },
+            grammar_feedback: { type: "string", description: "Grammar errors and corrections with examples" },
+            fluency_feedback: { type: "string", description: "Feedback on natural flow and conversational quality" },
+            common_esl_mistakes: { type: "string", description: "Common mistakes non-native speakers make with this type of question" },
+            improvement_tips: { type: "string", description: "Specific actionable suggestions for improvement" },
+            corrected_version: { type: "string", description: "An improved version of their response" }
           }
         }
       });
@@ -156,8 +178,9 @@ Be encouraging but honest. The goal is to ensure they can communicate effectivel
     setFeedback({
       is_acceptable: false,
       score: 0,
-      feedback: "Question skipped - practice this type of question more.",
-      improvement_tips: questions[currentIndex].tips || "Review the expected response and try again later."
+      content_feedback: "Question skipped - practice this type of question more.",
+      improvement_tips: questions[currentIndex].tips || "Review the expected response and try again later.",
+      common_esl_mistakes: "Skipping questions during the interview is not recommended. Practice answering every question, even if you need to ask for clarification."
     });
   };
 
