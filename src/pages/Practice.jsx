@@ -586,7 +586,6 @@ export default function Practice() {
           </Card>
         </div>
       </div>
-      </div>
     );
   }
 
