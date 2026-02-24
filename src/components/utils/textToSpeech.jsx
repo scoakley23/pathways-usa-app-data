@@ -26,27 +26,8 @@ export const speakText = (text, language = 'en', { onStart, onEnd, randomVoice =
       v.lang.startsWith(language === 'en' ? 'en' : language)
     );
 
-    let voice;
-    
-    if (randomVoice && matchingVoices.length > 0) {
-      // Random voice selection for practice variability
-      voice = matchingVoices[Math.floor(Math.random() * matchingVoices.length)];
-    } else {
-      // Default: prefer high-quality voices
-      voice = voices.find(v => 
-        v.lang.startsWith(language === 'en' ? 'en' : language) && 
-        (v.name.includes('Google US English') || v.name.includes('Samantha') || v.name.includes('Natural'))
-      );
-
-      // Fallback to any voice of that language
-      if (!voice) {
-        voice = matchingVoices[0];
-      }
-    }
-
-    if (voice) {
-      utterance.voice = voice;
-    }
+    // Use default voice - no explicit voice selection
+    // The browser will use its default voice for the language
 
     // Adjust rate for clarity (slightly slower is better for learning)
     utterance.rate = 0.85; 
