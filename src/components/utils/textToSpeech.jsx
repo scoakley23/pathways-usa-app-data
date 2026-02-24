@@ -26,8 +26,33 @@ export const speakText = (text, language = 'en', { onStart, onEnd, randomVoice =
       v.lang.startsWith(language === 'en' ? 'en' : language)
     );
 
-    // Use default voice - no explicit voice selection
-    // The browser will use its default voice for the language
+    // Prioritize high-quality voices (Siri-like voices)
+    const preferredVoiceNames = [
+      'Samantha', // Siri voice on macOS
+      'Google US English', 
+      'Microsoft Zira',
+      'Karen',
+      'Daniel',
+      'Moira',
+      'Tessa'
+    ];
+    
+    let selectedVoice = null;
+    
+    // Try to find a preferred voice
+    for (const name of preferredVoiceNames) {
+      selectedVoice = matchingVoices.find(v => v.name.includes(name));
+      if (selectedVoice) break;
+    }
+    
+    // If no preferred voice found, use first available matching voice or default
+    if (!selectedVoice && matchingVoices.length > 0) {
+      selectedVoice = matchingVoices[0];
+    }
+    
+    if (selectedVoice) {
+      utterance.voice = selectedVoice;
+    }
 
     // Adjust rate for clarity (slightly slower is better for learning)
     utterance.rate = 0.85; 
