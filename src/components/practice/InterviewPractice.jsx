@@ -86,7 +86,20 @@ export default function InterviewPractice({ onComplete, onNext }) {
 
   const speakQuestion = () => {
     if (questions[currentIndex]) {
-      speakText(questions[currentIndex].question, 'en');
+      if (!window.speechSynthesis) return;
+      
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(questions[currentIndex].question);
+      utterance.lang = 'en-US';
+      
+      const voices = window.speechSynthesis.getVoices();
+      const googleVoice = voices.find(v => v.name === 'Google US English');
+      if (googleVoice) {
+        utterance.voice = googleVoice;
+      }
+      
+      utterance.rate = 1.0;
+      window.speechSynthesis.speak(utterance);
     }
   };
 
