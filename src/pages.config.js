@@ -54,6 +54,7 @@ import Profile from './pages/Profile';
 import Progress from './pages/Progress';
 import StudyHistory from './pages/StudyHistory';
 import Tutor from './pages/Tutor';
+import Lessons from './pages/Lessons';
 import __Layout from './Layout.jsx';
 
 
@@ -65,6 +66,7 @@ export const PAGES = {
     "Progress": Progress,
     "StudyHistory": StudyHistory,
     "Tutor": Tutor,
+    "Lessons": Lessons,
 }
 
 export const pagesConfig = {

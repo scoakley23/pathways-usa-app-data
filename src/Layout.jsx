@@ -111,6 +111,7 @@ export default function Layout({ children }) {
         items.push({ label: 'Tutor Portal', path: '/Tutor', icon: GraduationCap });
     } else {
         items.push({ label: 'Practice', path: '/Practice', icon: Mic });
+        items.push({ label: 'Lessons', path: '/Lessons', icon: Notebook });
         items.push({ label: 'Progress', path: '/Progress', icon: CheckCircle });
         
         if (role === 'student' || (!role && user)) {
