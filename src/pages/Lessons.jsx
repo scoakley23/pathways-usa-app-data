@@ -2,18 +2,39 @@ import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Video, CheckCircle, ArrowRight, Award } from 'lucide-react';
+import { BookOpen, Video, CheckCircle, ArrowRight, Award, Star } from 'lucide-react';
 import LessonDetail from '@/components/lessons/LessonDetail';
+import RecommendationsPanel from '@/components/lessons/RecommendationsPanel';
 import { toast } from "sonner";
 
 export default function Lessons() {
   const [lessons, setLessons] = useState([]);
   const [selectedLesson, setSelectedLesson] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
+  const [progress, setProgress] = useState([]);
 
   useEffect(() => {
+    loadUser();
     loadLessons();
   }, []);
+
+  const loadUser = async () => {
+    try {
+      const currentUser = await base44.auth.me();
+      setUser(currentUser);
+      
+      if (currentUser?.email) {
+        const userProgress = await base44.entities.LessonProgress.list({
+          query: { user_email: currentUser.email },
+          limit: 1000
+        });
+        setProgress(userProgress);
+      }
+    } catch (error) {
+      console.error('Not authenticated');
+    }
+  };
 
   const loadLessons = async () => {
     try {
@@ -56,14 +77,22 @@ export default function Lessons() {
     }
   ];
 
+  const getLessonProgress = (lessonId) => {
+    return progress.find(p => p.lesson_id === lessonId);
+  };
+
   if (selectedLesson) {
     return (
       <LessonDetail 
         lesson={selectedLesson} 
-        onBack={() => setSelectedLesson(null)}
+        onBack={() => {
+          setSelectedLesson(null);
+          loadUser(); // Refresh progress
+        }}
         onComplete={() => {
           toast.success('Lesson completed!');
           setSelectedLesson(null);
+          loadUser();
         }}
       />
     );
@@ -93,6 +122,14 @@ export default function Lessons() {
         </p>
       </div>
 
+      {/* Recommendations */}
+      {user && (
+        <RecommendationsPanel 
+          userEmail={user.email} 
+          onSelectLesson={setSelectedLesson}
+        />
+      )}
+
       {/* Topics */}
       {topics.map((topic) => {
         const topicLessons = lessons.filter(l => l.topic === topic.name);
@@ -114,28 +151,50 @@ export default function Lessons() {
 
             {/* Lesson Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {topicLessons.map((lesson) => (
-                <Card 
-                  key={lesson.id}
-                  className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-blue-400"
-                  onClick={() => setSelectedLesson(lesson)}
-                >
-                  <CardHeader>
-                    <CardTitle className="flex items-start justify-between gap-2">
-                      <span className="text-lg">{lesson.title}</span>
-                      {lesson.video_url && (
-                        <Video className="w-5 h-5 text-red-500 shrink-0" />
+              {topicLessons.map((lesson) => {
+                const lessonProgress = getLessonProgress(lesson.id);
+                const hasProgress = lessonProgress && lessonProgress.best_score > 0;
+                const needsReview = lessonProgress?.needs_review;
+
+                return (
+                  <Card 
+                    key={lesson.id}
+                    className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-blue-400 relative"
+                    onClick={() => setSelectedLesson(lesson)}
+                  >
+                    <CardHeader>
+                      <CardTitle className="flex items-start justify-between gap-2">
+                        <span className="text-lg">{lesson.title}</span>
+                        <div className="flex items-center gap-1 shrink-0">
+                          {lesson.video_url && (
+                            <Video className="w-5 h-5 text-red-500" />
+                          )}
+                          {hasProgress && lessonProgress.best_score >= 80 && (
+                            <CheckCircle className="w-5 h-5 text-green-500" />
+                          )}
+                          {needsReview && (
+                            <Star className="w-5 h-5 text-orange-500 fill-orange-500" />
+                          )}
+                        </div>
+                      </CardTitle>
+                      <CardDescription>{lesson.description}</CardDescription>
+                      {hasProgress && (
+                        <div className="text-xs text-slate-600 mt-1">
+                          Best Score: {lessonProgress.best_score}%
+                          {needsReview && (
+                            <span className="ml-2 text-orange-600 font-medium">• Review Recommended</span>
+                          )}
+                        </div>
                       )}
-                    </CardTitle>
-                    <CardDescription>{lesson.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <Button className="w-full bg-blue-600 hover:bg-blue-700">
-                      Start Lesson <ArrowRight className="w-4 h-4 ml-2" />
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
+                    </CardHeader>
+                    <CardContent>
+                      <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                        {hasProgress ? 'Continue' : 'Start Lesson'} <ArrowRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </CardContent>
+                  </Card>
+                );
+              })}
             </div>
           </div>
         );

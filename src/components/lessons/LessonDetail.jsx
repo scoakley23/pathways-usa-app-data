@@ -19,6 +19,25 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
   const [quizCompleted, setQuizCompleted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState('lesson');
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    loadUser();
+  }, []);
+
+  const loadUser = async () => {
+    try {
+      const currentUser = await base44.auth.me();
+      setUser(currentUser);
+      
+      // Mark lesson as viewed
+      if (currentUser?.email) {
+        updateProgress(currentUser.email, { completed: true });
+      }
+    } catch (error) {
+      console.error('Not authenticated');
+    }
+  };
 
   useEffect(() => {
     loadFlashcards();
@@ -74,12 +93,58 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
     }
   };
 
+  const updateProgress = async (userEmail, updates) => {
+    if (!userEmail) return;
+
+    try {
+      const existing = await base44.entities.LessonProgress.list({
+        query: { user_email: userEmail, lesson_id: lesson.id },
+        limit: 1
+      });
+
+      if (existing.length > 0) {
+        await base44.entities.LessonProgress.update(existing[0].id, updates);
+      } else {
+        await base44.entities.LessonProgress.create({
+          user_email: userEmail,
+          lesson_id: lesson.id,
+          topic: lesson.topic,
+          ...updates
+        });
+      }
+    } catch (error) {
+      console.error('Failed to update progress:', error);
+    }
+  };
+
   const handleNext = () => {
     if (currentQuestionIndex < quizQuestions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setSelectedAnswer(null);
       setShowResult(false);
     } else {
+      // Save quiz results
+      const percentage = Math.round((score / quizQuestions.length) * 100);
+      if (user?.email) {
+        const existing = base44.entities.LessonProgress.list({
+          query: { user_email: user.email, lesson_id: lesson.id },
+          limit: 1
+        }).then(res => {
+          const current = res[0];
+          const attempts = (current?.quiz_attempts || 0) + 1;
+          const bestScore = Math.max(current?.best_score || 0, percentage);
+          
+          updateProgress(user.email, {
+            quiz_attempts: attempts,
+            best_score: bestScore,
+            last_score: percentage,
+            total_questions: quizQuestions.length,
+            last_attempt_date: new Date().toISOString(),
+            needs_review: percentage < 70
+          });
+        });
+      }
+      
       setQuizCompleted(true);
     }
   };
