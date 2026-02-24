@@ -254,8 +254,8 @@ Provide specific, actionable feedback on sounds they struggled with.`;
     return text.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "").trim();
   };
 
-  const speak = (useRandomVoice = false) => {
-    speakText(sentence.text, 'en', { randomVoice: useRandomVoice });
+  const speak = () => {
+    speakText(sentence.text, 'en');
   };
 
   if (status === 'unsupported') {
