@@ -29,6 +29,7 @@ import {
 } from 'lucide-react';
 import SentenceDialog from '@/components/admin/SentenceDialog';
 import GenerateLessonsButton from '@/components/admin/GenerateLessonsButton';
+import VoiceSelector from '@/components/settings/VoiceSelector';
 import { toast } from "sonner";
 
 export default function Admin() {
@@ -165,6 +166,8 @@ export default function Admin() {
           </Button>
         </div>
       </div>
+
+      <VoiceSelector />
 
       <div className="flex items-center space-x-2">
         <div className="relative flex-1 max-w-sm">
