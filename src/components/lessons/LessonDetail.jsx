@@ -156,8 +156,9 @@ ${lesson.key_points?.join('\n') || ''}`,
         return;
       }
 
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.rate = 0.9;
+      const cleanText = text.replace(/#{1,6}\s/g, '').replace(/\[.*?\]/g, '').replace(/!\[.*?\]\(.*?\)/g, '');
+      const utterance = new SpeechSynthesisUtterance(cleanText);
+      utterance.lang = 'en-US';
       utterance.onend = () => setIsSpeaking(false);
       utterance.onerror = () => setIsSpeaking(false);
       
