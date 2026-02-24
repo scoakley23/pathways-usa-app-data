@@ -83,6 +83,28 @@ export default function Practice() {
     seedData();
   }, []);
 
+  // Interview Practice Mode
+  if (mode === 'interview') {
+    return (
+      <div className="space-y-6">
+        <Button variant="ghost" onClick={() => setMode('menu')} className="text-slate-600 hover:text-slate-900">
+          &larr; Back to Practice Menu
+        </Button>
+        <InterviewPractice 
+          onComplete={(passed) => {
+            if (passed) {
+              toast.success('Great job! You\'re ready for the interview!');
+            } else {
+              toast.info('Keep practicing - you\'re getting better!');
+            }
+            setMode('menu');
+          }}
+          onNext={() => {}}
+        />
+      </div>
+    );
+  }
+
   const getSRSContent = async (items, type, options = {}) => {
     if (!currentUser) return items.sort(() => 0.5 - Math.random()).slice(0, 10);
     
