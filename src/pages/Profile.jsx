@@ -9,7 +9,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { User, Trophy, Flame, Star, GraduationCap, School, Users, Save, Loader2 } from 'lucide-react';
 import BadgesDisplay from '@/components/gamification/BadgesDisplay';
 import TutorDashboard from '@/components/tutor/TutorDashboard';
-import VoiceSelector from '@/components/settings/VoiceSelector';
 import { toast } from "sonner";
 
 export default function Profile() {
@@ -167,8 +166,6 @@ export default function Profile() {
               </form>
             </CardContent>
           </Card>
-
-          <VoiceSelector />
         </div>
 
         {/* Right Column: Stats & Relationships */}
