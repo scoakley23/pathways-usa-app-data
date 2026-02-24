@@ -1,4 +1,4 @@
-export const speakText = (text, language = 'en', { onStart, onEnd, randomVoice = false } = {}) => {
+export const speakText = (text, language = 'en', { onStart, onEnd } = {}) => {
   if (!window.speechSynthesis) return;
   
   window.speechSynthesis.cancel();

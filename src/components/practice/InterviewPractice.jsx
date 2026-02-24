@@ -86,7 +86,7 @@ export default function InterviewPractice({ onComplete, onNext }) {
 
   const speakQuestion = () => {
     if (questions[currentIndex]) {
-      speakText(questions[currentIndex].question, 'en', { randomVoice: true });
+      speakText(questions[currentIndex].question, 'en');
     }
   };
 
