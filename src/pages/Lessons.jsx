@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { BookOpen, Video, CheckCircle, ArrowRight, Award, Star } from 'lucide-react';
 import LessonDetail from '@/components/lessons/LessonDetail';
 import RecommendationsPanel from '@/components/lessons/RecommendationsPanel';
+import GenerateLessonsButton from '@/components/admin/GenerateLessonsButton';
 import { toast } from "sonner";
 
 export default function Lessons() {
@@ -206,7 +207,8 @@ export default function Lessons() {
             <BookOpen className="w-16 h-16 text-slate-300 mx-auto" />
             <div>
               <h3 className="text-xl font-semibold text-slate-900 mb-2">No Lessons Yet</h3>
-              <p className="text-slate-600">Lessons are being prepared. Check back soon!</p>
+              <p className="text-slate-600 mb-6">Generate AI-powered civics lessons based on citizenship test questions.</p>
+              {user?.role === 'admin' && <GenerateLessonsButton />}
             </div>
           </div>
         </Card>
