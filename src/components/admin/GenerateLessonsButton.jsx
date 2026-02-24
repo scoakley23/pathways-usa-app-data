@@ -14,62 +14,101 @@ export default function GenerateLessonsButton() {
       // Fetch all civics questions to understand topics
       const questions = await base44.entities.CivicsQuestion.list({ limit: 500 });
       
-      // Define main topics based on civics test structure
+      // Define main topics in chronological/logical order that build on each other
       const topics = [
         { 
           name: "Principles of American Democracy",
-          subtopics: ["Popular sovereignty", "Limited government", "Separation of powers", "Checks and balances", "Federalism"]
+          lessons: [
+            { title: "The Constitution - Supreme Law of the Land", order: 1 },
+            { title: "We the People - Self-Government and Democracy", order: 2 },
+            { title: "The Bill of Rights - First 10 Amendments", order: 3 },
+            { title: "The Rule of Law - Everyone Must Follow the Law", order: 4 }
+          ]
         },
         { 
           name: "System of Government",
-          subtopics: ["Branches of government", "Congress", "President", "Courts", "State and local government"]
+          lessons: [
+            { title: "Three Branches of Government", order: 1 },
+            { title: "The Legislative Branch - Congress", order: 2 },
+            { title: "The Executive Branch - The President", order: 3 },
+            { title: "The Judicial Branch - The Supreme Court", order: 4 },
+            { title: "Checks and Balances", order: 5 }
+          ]
         },
         { 
           name: "Rights and Responsibilities",
-          subtopics: ["Bill of Rights", "Freedom of speech", "Voting rights", "Civic responsibilities", "Amendments"]
+          lessons: [
+            { title: "Freedom of Speech and Religion", order: 1 },
+            { title: "Rights of All Americans", order: 2 },
+            { title: "Voting Rights and Civic Participation", order: 3 },
+            { title: "Responsibilities of U.S. Citizens", order: 4 }
+          ]
         },
         { 
           name: "U.S. History",
-          subtopics: ["Colonial period", "Revolutionary War", "Civil War", "20th Century events", "Important figures"]
+          lessons: [
+            { title: "Colonial America and Independence", order: 1 },
+            { title: "The Revolutionary War and Founding Fathers", order: 2 },
+            { title: "The Civil War and Slavery", order: 3 },
+            { title: "Modern American History - 1900s to Today", order: 4 }
+          ]
         },
         { 
           name: "Geography and Symbols",
-          subtopics: ["States and capitals", "Territories", "National symbols", "Landmarks", "Flag and anthem"]
+          lessons: [
+            { title: "U.S. Geography - States and Borders", order: 1 },
+            { title: "U.S. Territories and Capitals", order: 2 },
+            { title: "American Symbols - Flag, Anthem, and More", order: 3 },
+            { title: "National Holidays and Why We Celebrate", order: 4 }
+          ]
         }
       ];
 
       let lessonCount = 0;
       
       for (const topic of topics) {
-        // Get relevant questions for this topic
+        // Get relevant 2025 civics questions for this topic
         const topicQuestions = questions.filter(q => 
-          q.category?.includes(topic.name.split(' ')[0]) || 
-          q.question?.toLowerCase().includes(topic.name.toLowerCase().split(' ')[0])
-        ).slice(0, 15);
+          q.version === '2025' &&
+          (q.category?.includes(topic.name.split(' ')[0]) || 
+           q.question?.toLowerCase().includes(topic.name.toLowerCase().split(' ')[0]))
+        );
 
-        // Generate 4-5 lessons per topic
-        for (let i = 0; i < Math.min(5, topic.subtopics.length); i++) {
-          const subtopic = topic.subtopics[i];
+        // Generate lessons in order
+        for (const lessonTemplate of topic.lessons) {
+          // Find relevant questions for this specific lesson
+          const relevantQuestions = topicQuestions.filter(q => 
+            q.question.toLowerCase().includes(lessonTemplate.title.toLowerCase().split(' ')[0]) ||
+            q.answer.toLowerCase().includes(lessonTemplate.title.toLowerCase().split(' ')[0])
+          ).slice(0, 5);
+
+          // Create question list for the lesson
+          const questionText = relevantQuestions.length > 0 
+            ? relevantQuestions.map(q => `Q: ${q.question}\nA: ${q.answer}`).join('\n\n')
+            : '';
           
           // Generate lesson content with AI
-          const lessonPrompt = `Create a comprehensive, beginner-friendly civics lesson about "${subtopic}" for U.S. citizenship test preparation.
+          const lessonPrompt = `Create a clear, chronological civics lesson titled "${lessonTemplate.title}" for U.S. citizenship test preparation.
+
+This is lesson ${lessonTemplate.order} in the ${topic.name} series, so it should build on previous knowledge and prepare students for the next lessons.
 
 REQUIREMENTS:
-1. Clear, engaging title (simple language)
-2. 2-sentence description suitable for ESL learners
-3. Main content (400-500 words) in simple English with:
-   - Use short sentences and basic vocabulary
-   - Include 2-3 relevant markdown image URLs from Unsplash (use proper markdown: ![alt text](https://images.unsplash.com/photo-xxx))
-   - Add a real-life dialogue showing this concept in everyday American life
-   - Break content into clear sections with ## headings
-   - Include concrete examples
-4. 4-6 key bullet points summarizing main ideas
-5. Suggest 1 relevant YouTube search term for finding educational videos
+1. Keep the title: "${lessonTemplate.title}"
+2. Write 2-sentence description for ESL learners
+3. Main content (500-600 words) using SIMPLE English:
+   - Short sentences, basic vocabulary
+   - Start with basics, build complexity gradually
+   - Include 2 relevant Unsplash image URLs in markdown: ![alt](https://images.unsplash.com/photo-[id]?w=800)
+   - Use ## headings to organize sections
+   - NO dialogues or conversations
+   - Teach the concept step-by-step
+4. 5-6 key bullet points
 
-Use this format for images: Search for relevant Unsplash photos and use: ![Description](https://images.unsplash.com/photo-[id]?w=800)
-Example topics for images: American flag, Capitol building, voting, Constitution, etc.
+${questionText ? `5. Include these 2025 civics test questions naturally in your content:\n${questionText}\n\nExplain each answer clearly in the lesson.` : ''}
 
-Format as JSON with keys: title, description, content (markdown with images), key_points (array), youtube_search`;
+6. Suggest YouTube search term for videos
+
+Format as JSON with: title, description, content (markdown with images), key_points (array), youtube_search, questions_covered (array of question text)`;
 
           const lessonData = await base44.integrations.Core.InvokeLLM({
             prompt: lessonPrompt,
@@ -80,7 +119,8 @@ Format as JSON with keys: title, description, content (markdown with images), ke
                 description: { type: "string" },
                 content: { type: "string" },
                 key_points: { type: "array", items: { type: "string" } },
-                youtube_search: { type: "string" }
+                youtube_search: { type: "string" },
+                questions_covered: { type: "array", items: { type: "string" } }
               }
             }
           });
@@ -99,24 +139,24 @@ Format as JSON with keys: title, description, content (markdown with images), ke
             console.log('Could not find video for', lessonData.youtube_search);
           }
 
-          // Create lesson
+          // Create lesson with proper ordering
           const lesson = await base44.entities.Lesson.create({
             topic: topic.name,
             title: lessonData.title,
             description: lessonData.description,
             content: lessonData.content,
             key_points: lessonData.key_points,
-            order: i + 1,
+            order: lessonTemplate.order,
             video_url: videoUrl
           });
 
           // Generate flashcards  
-          const flashcardsPrompt = `Create 6-8 flashcards for the lesson "${lessonData.title}" about ${subtopic}.
+          const flashcardsPrompt = `Create 6-8 flashcards for the lesson "${lessonData.title}".
 Use simple language suitable for ESL learners.
 Each flashcard should have:
 - term: A key vocabulary word or concept (2-4 words)
 - definition: Clear, simple explanation (1-2 sentences, basic English)
-- example: A concrete example showing how it's used in real life
+- example: A simple example (optional)
 
 Return as JSON with a flashcards array.`;
 
