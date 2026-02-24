@@ -364,7 +364,6 @@ Be encouraging but specific. Give actionable advice for improvement.`,
                     </summary>
 
                     <div className="mt-4 space-y-3">
-                      {/* Pronunciation Feedback */}
                       {feedback.pronunciation_feedback && (
                         <div className="bg-white p-4 rounded-lg border-l-4 border-purple-500">
                           <p className="text-sm font-semibold text-purple-900 mb-1 flex items-center gap-2">
@@ -374,7 +373,6 @@ Be encouraging but specific. Give actionable advice for improvement.`,
                         </div>
                       )}
 
-                      {/* Grammar Feedback */}
                       {feedback.grammar_feedback && (
                         <div className="bg-white p-4 rounded-lg border-l-4 border-indigo-500">
                           <p className="text-sm font-semibold text-indigo-900 mb-1 flex items-center gap-2">
@@ -384,7 +382,6 @@ Be encouraging but specific. Give actionable advice for improvement.`,
                         </div>
                       )}
 
-                      {/* Fluency Feedback */}
                       {feedback.fluency_feedback && (
                         <div className="bg-white p-4 rounded-lg border-l-4 border-teal-500">
                           <p className="text-sm font-semibold text-teal-900 mb-1 flex items-center gap-2">
@@ -394,7 +391,6 @@ Be encouraging but specific. Give actionable advice for improvement.`,
                         </div>
                       )}
 
-                      {/* Improvement Tips */}
                       {feedback.improvement_tips && (
                         <div className="bg-indigo-50 p-4 rounded-lg border-2 border-indigo-200">
                           <p className="text-sm font-semibold text-indigo-900 mb-1 flex items-center gap-2">
@@ -404,7 +400,6 @@ Be encouraging but specific. Give actionable advice for improvement.`,
                         </div>
                       )}
 
-                      {/* Common Mistakes */}
                       {feedback.common_esl_mistakes && (
                         <div className="bg-amber-50 p-4 rounded-lg border border-amber-200">
                           <p className="text-sm font-semibold text-amber-900 mb-1 flex items-center gap-2">
