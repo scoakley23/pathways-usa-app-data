@@ -167,6 +167,8 @@ export default function Profile() {
               </form>
             </CardContent>
           </Card>
+
+          <VoiceSelector />
         </div>
 
         {/* Right Column: Stats & Relationships */}

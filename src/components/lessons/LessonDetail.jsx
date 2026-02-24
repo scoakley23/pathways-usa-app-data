@@ -158,6 +158,15 @@ ${lesson.key_points?.join('\n') || ''}`,
 
       const cleanText = text.replace(/#{1,6}\s/g, '').replace(/\[.*?\]/g, '').replace(/!\[.*?\]\(.*?\)/g, '');
       const utterance = new SpeechSynthesisUtterance(cleanText);
+      
+      // Use saved voice preference
+      const savedVoice = localStorage.getItem('preferredVoice');
+      if (savedVoice) {
+        const voices = window.speechSynthesis.getVoices();
+        const voice = voices.find(v => v.name === savedVoice);
+        if (voice) utterance.voice = voice;
+      }
+      
       utterance.rate = 0.9;
       utterance.pitch = 1.0;
       utterance.onend = () => setIsSpeaking(false);
