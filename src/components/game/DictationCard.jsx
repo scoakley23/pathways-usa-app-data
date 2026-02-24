@@ -68,10 +68,24 @@ export default function DictationCard({ sentence, onComplete, onNext }) {
 
   const speak = () => {
     if (!sentence) return;
-    speakText(sentence.text, 'en', {
-      onStart: () => setIsPlaying(true),
-      onEnd: () => setIsPlaying(false)
-    });
+    
+    if (!window.speechSynthesis) return;
+    
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(sentence.text);
+    utterance.lang = 'en-US';
+    
+    const voices = window.speechSynthesis.getVoices();
+    const googleVoice = voices.find(v => v.name === 'Google US English');
+    if (googleVoice) {
+      utterance.voice = googleVoice;
+    }
+    
+    utterance.rate = 1.0;
+    utterance.onstart = () => setIsPlaying(true);
+    utterance.onend = () => setIsPlaying(false);
+    
+    window.speechSynthesis.speak(utterance);
   };
 
   // Clean text for comparison (remove punctuation, case insensitive)
