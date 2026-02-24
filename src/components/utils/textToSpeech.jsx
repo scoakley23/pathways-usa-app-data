@@ -6,11 +6,17 @@ export const speakText = (text, language = 'en', { onStart, onEnd } = {}) => {
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = language === 'en' ? 'en-US' : language;
   
-  // Use Google US English voice
+  // Use Samantha voice if available
   const voices = window.speechSynthesis.getVoices();
-  const googleVoice = voices.find(v => v.name === 'Google US English');
-  if (googleVoice) {
-    utterance.voice = googleVoice;
+  const samanthaVoice = voices.find(v => v.name.includes('Samantha'));
+  if (samanthaVoice) {
+    utterance.voice = samanthaVoice;
+  } else {
+    // Fallback to Google US English if Samantha not available
+    const googleVoice = voices.find(v => v.name === 'Google US English');
+    if (googleVoice) {
+      utterance.voice = googleVoice;
+    }
   }
   
   utterance.rate = 1.0;
