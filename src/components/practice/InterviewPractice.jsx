@@ -399,18 +399,22 @@ Be encouraging but specific. Give actionable advice for improvement.`,
                         <div className="bg-indigo-50 p-4 rounded-lg border-2 border-indigo-200">
                           <p className="text-sm font-semibold text-indigo-900 mb-1 flex items-center gap-2">
                             <span>💡</span> What to Practice
-                      </p>
-                      <p className="text-sm text-indigo-800">{feedback.improvement_tips}</p>
-                    </div>
-                  )}
+                          </p>
+                          <p className="text-sm text-indigo-800">{feedback.improvement_tips}</p>
+                        </div>
+                      )}
 
-                  {/* Fallback for old feedback format */}
-                  {feedback.feedback && !feedback.content_feedback && (
-                    <div className="bg-white p-4 rounded-lg border border-slate-200">
-                      <p className="text-sm font-semibold text-slate-700 mb-1">Feedback:</p>
-                      <p className="text-sm text-slate-700">{feedback.feedback}</p>
+                      {/* Common Mistakes */}
+                      {feedback.common_esl_mistakes && (
+                        <div className="bg-amber-50 p-4 rounded-lg border border-amber-200">
+                          <p className="text-sm font-semibold text-amber-900 mb-1 flex items-center gap-2">
+                            <span>⚠️</span> Common Mistakes
+                          </p>
+                          <p className="text-sm text-slate-700">{feedback.common_esl_mistakes}</p>
+                        </div>
+                      )}
                     </div>
-                  )}
+                  </details>
 
                   <div className="bg-slate-100 p-3 rounded-lg">
                     <p className="text-xs font-semibold text-slate-600 mb-1">Expected Response:</p>
