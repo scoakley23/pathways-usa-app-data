@@ -89,14 +89,18 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
     
     // Handle already embedded URLs
     if (url.includes('youtube.com/embed/')) {
-      return url;
+      // Clean up the embed URL
+      const match = url.match(/youtube\.com\/embed\/([a-zA-Z0-9_-]+)/);
+      if (match) {
+        return `https://www.youtube.com/embed/${match[1]}?modestbranding=1&rel=0`;
+      }
     }
     
     // Extract video ID - handle all URL formats and query parameters
     let videoId = null;
     
-    // Format: youtube.com/watch?v=ID
-    let match = url.match(/youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)/);
+    // Format: youtube.com/watch?v=ID (stops at first & or end of string)
+    let match = url.match(/[?&]v=([a-zA-Z0-9_-]+)/);
     if (match) videoId = match[1];
     
     // Format: youtu.be/ID
@@ -105,14 +109,8 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
       if (match) videoId = match[1];
     }
     
-    // Format: youtube.com/embed/ID
-    if (!videoId) {
-      match = url.match(/youtube\.com\/embed\/([a-zA-Z0-9_-]+)/);
-      if (match) videoId = match[1];
-    }
-    
     if (videoId) {
-      return `https://www.youtube.com/embed/${videoId}?modestbranding=1&rel=0&showinfo=0`;
+      return `https://www.youtube.com/embed/${videoId}?modestbranding=1&rel=0`;
     }
     
     return null;
