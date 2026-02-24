@@ -16,122 +16,120 @@ export default function Layout({ children }) {
   const [isOpen, setIsOpen] = React.useState(false);
   const [showOnboarding, setShowOnboarding] = React.useState(false);
 
- React.useEffect(() => {
-  const checkUser = async () => {
-    try {
-      const currentUser = await base44.auth.me();
-      setUser(currentUser);
-      
-      const normalizedEmail = currentUser.email.toLowerCase().trim();
-      
-      // Clean up duplicate profiles (keep only the most recent one with account_type)
-      const allProfiles = await base44.entities.PublicProfile.list({
-           query: { user_email: normalizedEmail },
-           sort: { created_date: -1 },
-           limit: 100
-      });
-      
-      if (allProfiles.length > 1) {
-        // Find the first profile with account_type, or just use the most recent
-        const primaryProfile = allProfiles.find(p => p.account_type) || allProfiles[0];
+  React.useEffect(() => {
+    const checkUser = async () => {
+      try {
+        const currentUser = await base44.auth.me();
+        setUser(currentUser);
         
-        // Delete all other profiles
-        const duplicateIds = allProfiles.filter(p => p.id !== primaryProfile.id).map(p => p.id);
-        for (const id of duplicateIds) {
-          await base44.entities.PublicProfile.delete(id);
+        const normalizedEmail = currentUser.email.toLowerCase().trim();
+        
+        // Clean up duplicate profiles (keep only the most recent one with account_type)
+        const allProfiles = await base44.entities.PublicProfile.list({
+             query: { user_email: normalizedEmail },
+             sort: { created_date: -1 },
+             limit: 100
+        });
+        
+        if (allProfiles.length > 1) {
+          // Find the first profile with account_type, or just use the most recent
+          const primaryProfile = allProfiles.find(p => p.account_type) || allProfiles[0];
+          
+          // Delete all other profiles
+          const duplicateIds = allProfiles.filter(p => p.id !== primaryProfile.id).map(p => p.id);
+          for (const id of duplicateIds) {
+            await base44.entities.PublicProfile.delete(id);
+          }
+          
+          setRole(primaryProfile.account_type);
+          setShowOnboarding(!primaryProfile.account_type);
+        } else if (allProfiles.length === 1) {
+          const profile = allProfiles[0];
+          setRole(profile.account_type);
+          setShowOnboarding(!profile.account_type);
+        } else {
+          // No profile - show onboarding
+          setShowOnboarding(true);
         }
         
-        setRole(primaryProfile.account_type);
-        setShowOnboarding(!primaryProfile.account_type);
-      } else if (allProfiles.length === 1) {
-        const profile = allProfiles[0];
-        setRole(profile.account_type);
-        setShowOnboarding(!profile.account_type);
-      } else {
-        // No profile - show onboarding
-        setShowOnboarding(true);
-      }
-      
-      // Handle invite links for students
-      if (allProfiles.length > 0 && allProfiles[0].account_type === 'student') {
-          const params = new URLSearchParams(location.search);
-          const urlInviteEmail = params.get('tutor_invite');
-          
-          if (urlInviteEmail) {
-              localStorage.setItem('pending_tutor_invite', urlInviteEmail);
-          }
+        // Handle invite links for students
+        if (allProfiles.length > 0 && allProfiles[0].account_type === 'student') {
+            const params = new URLSearchParams(location.search);
+            const urlInviteEmail = params.get('tutor_invite');
+            
+            if (urlInviteEmail) {
+                localStorage.setItem('pending_tutor_invite', urlInviteEmail);
+            }
 
-          const storedInviteEmail = localStorage.getItem('pending_tutor_invite');
-          const inviteTutorEmail = urlInviteEmail || storedInviteEmail;
-          
-          if (inviteTutorEmail) {
-               try {
-                   const tutorEmail = inviteTutorEmail.toLowerCase().trim();
-                   const existing = await base44.entities.TutorRelationship.list({
-                       query: { student_email: normalizedEmail, tutor_email: tutorEmail },
-                       limit: 1
-                   });
-                   
-                   if (existing.length === 0) {
-                       await base44.entities.TutorRelationship.create({
-                           student_email: normalizedEmail,
-                           tutor_email: tutorEmail,
-                           status: 'active'
-                       });
-                       toast.success(`Connected with tutor!`);
-                   } else if (existing[0].status !== 'active') {
-                       await base44.entities.TutorRelationship.update(existing[0].id, { status: 'active' });
-                       toast.success(`Connected with tutor!`);
-                   }
-                   
-                   localStorage.removeItem('pending_tutor_invite');
-                   if (urlInviteEmail) {
-                      const newUrl = window.location.pathname;
-                      window.history.replaceState({}, document.title, newUrl);
-                   }
-               } catch (err) {
-                   console.error("Error processing invite", err);
-               }
-          }
+            const storedInviteEmail = localStorage.getItem('pending_tutor_invite');
+            const inviteTutorEmail = urlInviteEmail || storedInviteEmail;
+            
+            if (inviteTutorEmail) {
+                 try {
+                     const tutorEmail = inviteTutorEmail.toLowerCase().trim();
+                     const existing = await base44.entities.TutorRelationship.list({
+                         query: { student_email: normalizedEmail, tutor_email: tutorEmail },
+                         limit: 1
+                     });
+                     
+                     if (existing.length === 0) {
+                         await base44.entities.TutorRelationship.create({
+                             student_email: normalizedEmail,
+                             tutor_email: tutorEmail,
+                             status: 'active'
+                         });
+                     } else if (existing[0].status !== 'active') {
+                         await base44.entities.TutorRelationship.update(existing[0].id, { status: 'active' });
+                     }
+                     
+                     localStorage.removeItem('pending_tutor_invite');
+                     if (urlInviteEmail) {
+                        const newUrl = window.location.pathname;
+                        window.history.replaceState({}, document.title, newUrl);
+                     }
+                 } catch (err) {
+                     console.error("Error processing invite", err);
+                 }
+            }
+        }
+      } catch (e) {
+        console.error("Auth check error:", e);
+        setShowOnboarding(false);
       }
-    } catch (e) {
-      console.error("Auth check error:", e);
-      setShowOnboarding(false);
+    };
+    
+    checkUser();
+  }, [location.search]);
+
+  const getNavItems = React.useMemo(() => {
+    const items = [
+      { label: 'Home', path: '/', icon: BookOpen },
+    ];
+
+    // Dynamic Navigation based on Role
+    if (role === 'tutor') {
+        items.push({ label: 'Tutor Portal', path: '/Tutor', icon: GraduationCap });
+    } else {
+        items.push({ label: 'Practice', path: '/Practice', icon: Mic });
+        items.push({ label: 'Progress', path: '/Progress', icon: CheckCircle });
+        
+        if (role === 'student' || (!role && user)) {
+          items.push({ label: 'My Classroom', path: '/Tutor', icon: School });
+        } else if (!user) {
+          items.push({ label: 'Tutors', path: '/Tutor', icon: School });
+        }
     }
-  };
-  
-  checkUser();
-}, [location.search]);
 
-  const navItems = [
-    { label: 'Home', path: '/', icon: BookOpen },
-  ];
+    items.push({ label: 'Profile', path: '/Profile', icon: User });
 
-  // Dynamic Navigation based on Role
-  if (role === 'tutor') {
-      navItems.push({ label: 'Tutor Portal', path: '/Tutor', icon: GraduationCap });
-      // Tutors don't need Practice or Progress pages
-  } else {
-      // Students and Guests
-      navItems.push({ label: 'Practice', path: '/Practice', icon: Mic });
-      navItems.push({ label: 'Progress', path: '/Progress', icon: CheckCircle });
-      
-      if (role === 'student' || (!role && user)) {
-      // Students see "My Classroom" instead of "Tutor Portal"
-      // Or we can keep the path /Tutor but rename the label
-      navItems.push({ label: 'My Classroom', path: '/Tutor', icon: School });
-  } else if (!user) {
-      // Guest view
-      navItems.push({ label: 'Tutors', path: '/Tutor', icon: School });
-  }
-  }
+    if (user?.role === 'admin') {
+      items.push({ label: 'Admin', path: '/Admin', icon: Settings });
+    }
 
-  navItems.push({ label: 'Profile', path: '/Profile', icon: User });
+    return items;
+  }, [role, user]);
 
-  // Add admin link if user is admin
-  if (user?.role === 'admin') {
-    navItems.push({ label: 'Admin', path: '/Admin', icon: Settings });
-  }
+  const navItems = getNavItems;
 
   const handleLogout = async () => {
     await base44.auth.logout();
