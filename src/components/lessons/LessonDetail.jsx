@@ -162,11 +162,16 @@ ${keyPointsText}`,
       const cleanText = text.replace(/#{1,6}\s/g, '').replace(/\[.*?\]/g, '').replace(/!\[.*?\]\(.*?\)/g, '');
       const utterance = new SpeechSynthesisUtterance(cleanText);
       
-      // Use Google US English voice
+      // Use Samantha voice if available
       const voices = window.speechSynthesis.getVoices();
-      const googleVoice = voices.find(v => v.name === 'Google US English');
-      if (googleVoice) {
-        utterance.voice = googleVoice;
+      const samanthaVoice = voices.find(v => v.name.includes('Samantha'));
+      if (samanthaVoice) {
+        utterance.voice = samanthaVoice;
+      } else {
+        const googleVoice = voices.find(v => v.name === 'Google US English');
+        if (googleVoice) {
+          utterance.voice = googleVoice;
+        }
       }
       
       utterance.rate = 0.9;
