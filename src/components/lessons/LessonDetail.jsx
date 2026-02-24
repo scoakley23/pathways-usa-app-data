@@ -94,16 +94,16 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
     
     // Extract video ID from various YouTube URL formats
     const patterns = [
-      /(?:youtube\.com\/watch\?v=)([^&\s]+)/,
-      /(?:youtube\.com\/embed\/)([^&\s]+)/,
-      /(?:youtu\.be\/)([^&\s]+)/,
-      /(?:youtube\.com\/v\/)([^&\s]+)/
+      /(?:youtube\.com\/watch\?v=)([a-zA-Z0-9_-]+)/,
+      /(?:youtube\.com\/embed\/)([a-zA-Z0-9_-]+)/,
+      /(?:youtu\.be\/)([a-zA-Z0-9_-]+)/,
+      /(?:youtube\.com\/v\/)([a-zA-Z0-9_-]+)/
     ];
     
     for (const pattern of patterns) {
       const match = url.match(pattern);
       if (match && match[1]) {
-        return `https://www.youtube.com/embed/${match[1]}`;
+        return `https://www.youtube.com/embed/${match[1]}?rel=0`;
       }
     }
     
@@ -492,8 +492,10 @@ ${keyPointsText}`,
                 <div className="aspect-video rounded-xl overflow-hidden shadow-lg bg-slate-900 border-2 border-slate-200">
                   <iframe
                     src={embedUrl}
+                    title={lesson.title}
                     className="w-full h-full"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
                     allowFullScreen
                   />
                 </div>
