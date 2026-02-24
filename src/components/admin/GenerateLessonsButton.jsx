@@ -118,7 +118,17 @@ Format as JSON with: title, description, content (markdown with images), key_poi
                 title: { type: "string" },
                 description: { type: "string" },
                 content: { type: "string" },
-                key_points: { type: "array", items: { type: "string" } },
+                key_points: { 
+                  type: "array", 
+                  items: { 
+                    type: "object",
+                    properties: {
+                      text: { type: "string" },
+                      definition: { type: "string" }
+                    },
+                    required: ["text"]
+                  } 
+                },
                 youtube_search: { type: "string" },
                 questions_covered: { type: "array", items: { type: "string" } }
               }
