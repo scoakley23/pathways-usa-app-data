@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Play, CheckCircle, XCircle, RotateCcw } from 'lucide-react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ArrowLeft, Play, CheckCircle, XCircle, RotateCcw, BookOpen, CreditCard, Brain } from 'lucide-react';
 import { Progress } from "@/components/ui/progress";
+import FlashcardView from '@/components/lessons/FlashcardView';
 import { toast } from "sonner";
 
 export default function LessonDetail({ lesson, onBack, onComplete }) {
   const [quizQuestions, setQuizQuestions] = useState([]);
+  const [flashcards, setFlashcards] = useState([]);
   const [showQuiz, setShowQuiz] = useState(false);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
@@ -15,12 +18,29 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
   const [score, setScore] = useState(0);
   const [quizCompleted, setQuizCompleted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [activeTab, setActiveTab] = useState('lesson');
+
+  useEffect(() => {
+    loadFlashcards();
+  }, [lesson.id]);
 
   useEffect(() => {
     if (showQuiz && quizQuestions.length === 0) {
       loadQuizQuestions();
     }
   }, [showQuiz]);
+
+  const loadFlashcards = async () => {
+    try {
+      const cards = await base44.entities.LessonFlashcard.list({ 
+        query: { lesson_id: lesson.id },
+        limit: 100
+      });
+      setFlashcards(cards);
+    } catch (error) {
+      console.error('Failed to load flashcards:', error);
+    }
+  };
 
   const loadQuizQuestions = async () => {
     try {
@@ -202,7 +222,7 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
         Back to Lessons
       </Button>
 
-      {/* Lesson Content */}
+      {/* Lesson Content with Tabs */}
       <Card>
         <CardHeader>
           <div className="space-y-2">
@@ -214,52 +234,81 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
           </div>
         </CardHeader>
 
-        <CardContent className="space-y-6">
-          {/* Video */}
-          {embedUrl && (
-            <div className="aspect-video rounded-lg overflow-hidden shadow-lg bg-slate-900">
-              <iframe
-                src={embedUrl}
-                className="w-full h-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-          )}
+        <CardContent>
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+            <TabsList className="grid w-full grid-cols-3 mb-6">
+              <TabsTrigger value="lesson" className="flex items-center gap-2">
+                <BookOpen className="w-4 h-4" />
+                Lesson
+              </TabsTrigger>
+              <TabsTrigger value="flashcards" className="flex items-center gap-2">
+                <CreditCard className="w-4 h-4" />
+                Flashcards {flashcards.length > 0 && `(${flashcards.length})`}
+              </TabsTrigger>
+              <TabsTrigger value="quiz" className="flex items-center gap-2">
+                <Brain className="w-4 h-4" />
+                Quiz {quizQuestions.length > 0 && `(${quizQuestions.length})`}
+              </TabsTrigger>
+            </TabsList>
 
-          {/* Main Content */}
-          <div className="prose prose-slate max-w-none">
-            <div className="text-slate-700 leading-relaxed whitespace-pre-line">
-              {lesson.content}
-            </div>
-          </div>
+            <TabsContent value="lesson" className="space-y-6">
+              {/* Video */}
+              {embedUrl && (
+                <div className="aspect-video rounded-lg overflow-hidden shadow-lg bg-slate-900">
+                  <iframe
+                    src={embedUrl}
+                    className="w-full h-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+              )}
 
-          {/* Key Points */}
-          {lesson.key_points && lesson.key_points.length > 0 && (
-            <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-6">
-              <h3 className="text-lg font-bold text-blue-900 mb-3">Key Points to Remember:</h3>
-              <ul className="space-y-2">
-                {lesson.key_points.map((point, idx) => (
-                  <li key={idx} className="flex items-start gap-2">
-                    <CheckCircle className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
-                    <span className="text-slate-700">{point}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+              {/* Main Content */}
+              <div className="prose prose-slate max-w-none">
+                <div className="text-slate-700 leading-relaxed whitespace-pre-line">
+                  {lesson.content}
+                </div>
+              </div>
 
-          {/* Quiz Button */}
-          <div className="pt-4 border-t">
-            <Button 
-              onClick={() => setShowQuiz(true)}
-              size="lg"
-              className="w-full bg-indigo-600 hover:bg-indigo-700"
-              disabled={loading}
-            >
-              {loading ? 'Loading Quiz...' : `Take Quiz (${quizQuestions.length} questions)`}
-            </Button>
-          </div>
+              {/* Key Points */}
+              {lesson.key_points && lesson.key_points.length > 0 && (
+                <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-6">
+                  <h3 className="text-lg font-bold text-blue-900 mb-3">Key Points to Remember:</h3>
+                  <ul className="space-y-2">
+                    {lesson.key_points.map((point, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <CheckCircle className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
+                        <span className="text-slate-700">{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </TabsContent>
+
+            <TabsContent value="flashcards" className="py-4">
+              <FlashcardView flashcards={flashcards} />
+            </TabsContent>
+
+            <TabsContent value="quiz" className="py-4">
+              <div className="text-center space-y-4">
+                <p className="text-slate-600">
+                  Test your understanding with {quizQuestions.length || 'practice'} questions
+                </p>
+                <Button 
+                  onClick={() => setShowQuiz(true)}
+                  size="lg"
+                  className="bg-indigo-600 hover:bg-indigo-700"
+                  disabled={loading || quizQuestions.length === 0}
+                >
+                  {loading ? 'Loading Quiz...' : 
+                   quizQuestions.length === 0 ? 'No Quiz Available' : 
+                   'Start Quiz'}
+                </Button>
+              </div>
+            </TabsContent>
+          </Tabs>
         </CardContent>
       </Card>
     </div>
