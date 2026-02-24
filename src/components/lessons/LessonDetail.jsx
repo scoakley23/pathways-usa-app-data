@@ -51,11 +51,7 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
     loadQuizQuestions();
   }, [lesson.id]);
 
-  useEffect(() => {
-    if (showQuiz && quizQuestions.length === 0) {
-      loadQuizQuestions();
-    }
-  }, [showQuiz]);
+
 
   const loadFlashcards = async () => {
     try {
