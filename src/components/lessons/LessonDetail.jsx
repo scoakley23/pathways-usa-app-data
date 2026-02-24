@@ -119,6 +119,8 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
 
     setIsTranslating(true);
     try {
+      const keyPointsText = lesson.key_points?.map(kp => typeof kp === 'string' ? kp : kp.text).join('\n') || '';
+      
       const result = await base44.integrations.Core.InvokeLLM({
         prompt: `Translate the following lesson content to ${language}. Maintain all markdown formatting, structure, and headings. Keep technical terms and proper nouns in English when appropriate.
 
@@ -126,7 +128,7 @@ Title: ${lesson.title}
 Content: ${lesson.content}
 
 Key Points:
-${lesson.key_points?.join('\n') || ''}`,
+${keyPointsText}`,
         response_json_schema: {
           type: "object",
           properties: {
@@ -258,34 +260,41 @@ ${lesson.key_points?.join('\n') || ''}`,
   const progressPercent = quizQuestions.length > 0 ? ((currentQuestionIndex + 1) / quizQuestions.length) * 100 : 0;
   
   const displayContent = translatedContent || { 
-    title: lesson.title, 
-    content: lesson.content, 
-    key_points: lesson.key_points 
+    title: lesson.title,
+    content: lesson.content,
+    key_points: lesson.key_points
   };
 
-  if (showQuiz && quizCompleted) {
+  // Quiz completed screen
+  if (quizCompleted) {
     const percentage = Math.round((score / quizQuestions.length) * 100);
     const passed = percentage >= 70;
 
     return (
       <div className="max-w-2xl mx-auto">
-        <Card className="text-center p-8">
-          <div className="space-y-6">
-            <div className={`w-20 h-20 rounded-full mx-auto flex items-center justify-center ${
-              passed ? 'bg-green-100' : 'bg-orange-100'
-            }`}>
-              {passed ? 
-                <CheckCircle className="w-12 h-12 text-green-600" /> : 
-                <XCircle className="w-12 h-12 text-orange-600" />
-              }
+        <Card className="border-2 shadow-lg">
+          <CardContent className="p-12 text-center space-y-6">
+            <div className={`w-24 h-24 rounded-full flex items-center justify-center mx-auto ${passed ? 'bg-green-100' : 'bg-yellow-100'}`}>
+              {passed ? (
+                <CheckCircle className="w-12 h-12 text-green-600" />
+              ) : (
+                <AlertCircle className="w-12 h-12 text-yellow-600" />
+              )}
             </div>
-            
+
             <div>
               <h2 className="text-3xl font-bold text-slate-900 mb-2">
-                {passed ? 'Great Job!' : 'Keep Practicing!'}
+                {passed ? 'Great Job!' : 'Good Effort!'}
               </h2>
-              <p className="text-lg text-slate-600">
+              <p className="text-slate-600 text-lg">
                 You scored {score} out of {quizQuestions.length} ({percentage}%)
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg border-2 border-blue-300">
+              <Progress value={percentage} className="h-3 mb-3" />
+              <p className={`font-semibold ${passed ? 'text-green-700' : 'text-yellow-700'}`}>
+                {passed ? 'You passed the quiz!' : 'Review the material and try again'}
               </p>
             </div>
 
@@ -299,7 +308,7 @@ ${lesson.key_points?.join('\n') || ''}`,
                 Back to Lessons
               </Button>
             </div>
-          </div>
+          </CardContent>
         </Card>
       </div>
     );
@@ -360,74 +369,92 @@ ${lesson.key_points?.join('\n') || ''}`,
               })}
             </div>
 
-            {showResult && currentQuestion.explanation && (
-              <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-4">
-                <p className="text-sm font-semibold text-blue-900 mb-1">Explanation:</p>
-                <p className="text-sm text-slate-700">{currentQuestion.explanation}</p>
+            {showResult && (
+              <div>
+                {selectedAnswer === currentQuestion.correct_answer ? (
+                  <div className="p-4 bg-green-50 border-2 border-green-200 rounded-lg">
+                    <p className="text-green-800 font-semibold">Correct!</p>
+                    {currentQuestion.explanation && (
+                      <p className="text-green-700 mt-2 text-sm">{currentQuestion.explanation}</p>
+                    )}
+                  </div>
+                ) : (
+                  <div className="p-4 bg-red-50 border-2 border-red-200 rounded-lg">
+                    <p className="text-red-800 font-semibold">Incorrect</p>
+                    <p className="text-red-700 mt-1 text-sm">The correct answer is: <strong>{currentQuestion.correct_answer}</strong></p>
+                    {currentQuestion.explanation && (
+                      <p className="text-red-700 mt-2 text-sm">{currentQuestion.explanation}</p>
+                    )}
+                  </div>
+                )}
               </div>
             )}
 
-            {showResult && (
-              <Button 
-                onClick={handleNext}
-                className="w-full bg-blue-600 hover:bg-blue-700"
-                size="lg"
-              >
-                {currentQuestionIndex < quizQuestions.length - 1 ? 'Next Question' : 'See Results'}
-              </Button>
-            )}
+            <Button 
+              onClick={handleNext} 
+              className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 h-12"
+              disabled={!showResult}
+            >
+              {currentQuestionIndex === quizQuestions.length - 1 ? 'See Results' : 'Next Question'}
+              {currentQuestionIndex < quizQuestions.length - 1 && <ArrowRight className="w-4 h-4 ml-2" />}
+            </Button>
           </CardContent>
         </Card>
       </div>
     );
   }
 
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center p-12">
+        <div className="animate-spin w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full" />
+      </div>
+    );
+  }
+
   return (
     <div className="max-w-4xl mx-auto space-y-6">
-      <div className="flex items-center justify-between flex-wrap gap-4">
-        <Button onClick={onBack} variant="ghost">
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to Lessons
-        </Button>
+      <Button onClick={onBack} variant="ghost">
+        <ArrowLeft className="w-4 h-4 mr-2" />
+        Back to Lessons
+      </Button>
 
-        <div className="flex items-center gap-3">
-          <Globe className="w-5 h-5 text-slate-600" />
-          <Select value={targetLanguage} onValueChange={translateContent} disabled={isTranslating}>
-            <SelectTrigger className="w-[180px]">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="en">English</SelectItem>
-              <SelectItem value="Spanish">Spanish</SelectItem>
-              <SelectItem value="Chinese (Simplified)">Chinese</SelectItem>
-              <SelectItem value="Vietnamese">Vietnamese</SelectItem>
-              <SelectItem value="Korean">Korean</SelectItem>
-              <SelectItem value="Tagalog">Tagalog</SelectItem>
-              <SelectItem value="French">French</SelectItem>
-              <SelectItem value="Arabic">Arabic</SelectItem>
-              <SelectItem value="Russian">Russian</SelectItem>
-              <SelectItem value="Portuguese">Portuguese</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-      </div>
-
-      {/* Lesson Content with Tabs */}
-      <Card>
-        <CardHeader>
-          <div className="space-y-2">
-            <span className="text-sm font-semibold text-blue-600">{lesson.topic}</span>
-            <div className="flex items-start justify-between gap-4">
-              <div className="flex-1">
-                <CardTitle className="text-3xl">{displayContent.title}</CardTitle>
-                {lesson.description && (
-                  <p className="text-slate-600 mt-2">{lesson.description}</p>
-                )}
+      <Card className="border-2 shadow-lg">
+        <CardHeader className="bg-gradient-to-r from-blue-50 to-indigo-50 border-b-2">
+          <div className="space-y-4">
+            <h1 className="text-4xl font-bold text-slate-900">{lesson.title}</h1>
+            <p className="text-slate-600 text-lg">{lesson.description}</p>
+            
+            {targetLanguage !== 'en' && (
+              <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-lg text-sm font-medium">
+                <Globe className="w-4 h-4" />
+                Viewing in {['es', 'ar', 'am', 'pt', 'zh', 'vi', 'fr'].includes(targetLanguage) ? 
+                  ({es: 'Spanish', ar: 'Arabic', am: 'Amharic', pt: 'Portuguese', zh: 'Chinese', vi: 'Vietnamese', fr: 'French'}[targetLanguage]) : 
+                  targetLanguage}
               </div>
-              <Button
+            )}
+
+            <div className="flex flex-col sm:flex-row gap-3 justify-between items-start sm:items-center">
+              <div className="flex gap-2">
+                <Select value={targetLanguage} onValueChange={translateContent}>
+                  <SelectTrigger className="w-48">
+                    <SelectValue placeholder="Translate..." />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="en">English</SelectItem>
+                    <SelectItem value="es">Spanish</SelectItem>
+                    <SelectItem value="ar">Arabic</SelectItem>
+                    <SelectItem value="am">Amharic</SelectItem>
+                    <SelectItem value="pt">Portuguese</SelectItem>
+                    <SelectItem value="zh">Chinese</SelectItem>
+                    <SelectItem value="vi">Vietnamese</SelectItem>
+                    <SelectItem value="fr">French</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <Button 
                 onClick={() => speakContent(displayContent.content)}
-                variant="outline"
-                size="icon"
+                size="sm"
                 className="shrink-0"
                 title="Listen to lesson"
               >
@@ -507,26 +534,7 @@ ${lesson.key_points?.join('\n') || ''}`,
               </div>
 
               {/* Key Points */}
-              {displayContent.key_points && displayContent.key_points.length > 0 && (
-                <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-300 rounded-xl p-6 shadow-md">
-                  <h3 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-3">
-                    <div className="p-2 bg-blue-600 rounded-lg">
-                      <CheckCircle className="w-6 h-6 text-white" />
-                    </div>
-                    Key Points to Remember
-                  </h3>
-                  <ul className="space-y-3">
-                    {displayContent.key_points.map((point, idx) => (
-                      <li key={idx} className="flex items-start gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                        <span className="flex items-center justify-center w-7 h-7 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 text-white text-sm font-bold shrink-0 mt-0.5">
-                          {idx + 1}
-                        </span>
-                        <span className="text-slate-800 leading-relaxed font-medium">{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+              <KeyPointsDisplay keyPoints={displayContent.key_points} />
 
               {quizQuestions.length > 0 && (
                 <Button 
@@ -567,3 +575,6 @@ ${lesson.key_points?.join('\n') || ''}`,
     </div>
   );
 }
+
+import { AlertCircle } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
