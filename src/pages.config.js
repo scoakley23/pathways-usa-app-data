@@ -49,24 +49,24 @@
  */
 import Admin from './pages/Admin';
 import Home from './pages/Home';
+import Lessons from './pages/Lessons';
 import Practice from './pages/Practice';
 import Profile from './pages/Profile';
 import Progress from './pages/Progress';
 import StudyHistory from './pages/StudyHistory';
 import Tutor from './pages/Tutor';
-import Lessons from './pages/Lessons';
 import __Layout from './Layout.jsx';
 
 
 export const PAGES = {
     "Admin": Admin,
     "Home": Home,
+    "Lessons": Lessons,
     "Practice": Practice,
     "Profile": Profile,
     "Progress": Progress,
     "StudyHistory": StudyHistory,
     "Tutor": Tutor,
-    "Lessons": Lessons,
 }
 
 export const pagesConfig = {

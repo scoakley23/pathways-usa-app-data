@@ -28,6 +28,7 @@ import {
   AlertCircle 
 } from 'lucide-react';
 import SentenceDialog from '@/components/admin/SentenceDialog';
+import GenerateLessonsButton from '@/components/admin/GenerateLessonsButton';
 import { toast } from "sonner";
 
 export default function Admin() {
@@ -154,12 +155,15 @@ export default function Admin() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900">Sentence Management</h1>
-          <p className="text-slate-500">Manage the content for dictation practice.</p>
+          <h1 className="text-3xl font-bold text-slate-900">Admin Dashboard</h1>
+          <p className="text-slate-500">Manage content and generate lessons.</p>
         </div>
-        <Button onClick={openCreateDialog} className="bg-blue-600 hover:bg-blue-700">
-          <Plus className="w-4 h-4 mr-2" /> Add Sentence
-        </Button>
+        <div className="flex gap-2">
+          <GenerateLessonsButton />
+          <Button onClick={openCreateDialog} className="bg-blue-600 hover:bg-blue-700">
+            <Plus className="w-4 h-4 mr-2" /> Add Sentence
+          </Button>
+        </div>
       </div>
 
       <div className="flex items-center space-x-2">
