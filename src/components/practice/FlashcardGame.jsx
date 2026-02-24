@@ -31,20 +31,7 @@ export default function FlashcardGame({ words, onComplete }) {
 
   const speak = (text, e) => {
     e.stopPropagation();
-    if (!window.speechSynthesis) return;
-    
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'en-US';
-    
-    const voices = window.speechSynthesis.getVoices();
-    const googleVoice = voices.find(v => v.name === 'Google US English');
-    if (googleVoice) {
-      utterance.voice = googleVoice;
-    }
-    
-    utterance.rate = 1.0;
-    window.speechSynthesis.speak(utterance);
+    speakText(text);
   };
 
   return (
