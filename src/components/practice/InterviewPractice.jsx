@@ -327,77 +327,78 @@ Be encouraging but specific. Give actionable advice for improvement.`,
                     </div>
                     <div>
                       <p className="font-bold text-lg text-slate-900">
-                        {feedback.is_acceptable ? 'Acceptable Response' : 'Needs Improvement'}
+                        {feedback.is_acceptable ? 'Good Answer!' : 'Practice More'}
                       </p>
                       <p className="text-sm text-slate-600">Score: {feedback.score}/100</p>
                     </div>
                   </div>
                   
-                  {/* Content Feedback */}
-                  {feedback.content_feedback && (
-                    <div className="bg-white p-4 rounded-lg border-l-4 border-blue-500">
-                      <p className="text-sm font-semibold text-blue-900 mb-1 flex items-center gap-2">
-                        <span>📝</span> Content & Accuracy
-                      </p>
-                      <p className="text-sm text-slate-700">{feedback.content_feedback}</p>
+                  {/* Simple Summary - Easy to read */}
+                  <div className="bg-gradient-to-r from-indigo-50 to-purple-50 border-2 border-indigo-200 p-5 rounded-xl">
+                    <h4 className="font-bold text-indigo-900 mb-3 text-base flex items-center gap-2">
+                      📋 Quick Summary
+                    </h4>
+                    <div className="space-y-3 text-base leading-relaxed">
+                      {feedback.content_feedback && (
+                        <div>
+                          <span className="inline-block w-6 h-6 rounded-full bg-blue-500 text-white text-center leading-6 mr-2 shrink-0">✓</span>
+                          <span className="text-slate-800">{feedback.content_feedback.split('.')[0]}.</span>
+                        </div>
+                      )}
+                      {feedback.corrected_version && (
+                        <div className="mt-3 pt-3 border-t border-indigo-200">
+                          <p className="text-sm font-bold text-indigo-900 mb-2">Better way to say it:</p>
+                          <p className="text-base text-slate-700 bg-white p-3 rounded-lg italic">"{feedback.corrected_version}"</p>
+                        </div>
+                      )}
                     </div>
-                  )}
+                  </div>
 
-                  {/* Pronunciation Feedback */}
-                  {feedback.pronunciation_feedback && (
-                    <div className="bg-white p-4 rounded-lg border-l-4 border-purple-500">
-                      <p className="text-sm font-semibold text-purple-900 mb-1 flex items-center gap-2">
-                        <span>🗣️</span> Pronunciation & Clarity
-                      </p>
-                      <p className="text-sm text-slate-700">{feedback.pronunciation_feedback}</p>
-                    </div>
-                  )}
+                  {/* Collapsible Full Details */}
+                  <details className="group">
+                    <summary className="cursor-pointer list-none">
+                      <div className="flex items-center justify-between bg-slate-100 hover:bg-slate-200 p-4 rounded-lg transition-colors">
+                        <span className="font-semibold text-slate-700">📖 Read All Details</span>
+                        <ArrowRight className="w-5 h-5 text-slate-500 group-open:rotate-90 transition-transform" />
+                      </div>
+                    </summary>
 
-                  {/* Grammar Feedback */}
-                  {feedback.grammar_feedback && (
-                    <div className="bg-white p-4 rounded-lg border-l-4 border-indigo-500">
-                      <p className="text-sm font-semibold text-indigo-900 mb-1 flex items-center gap-2">
-                        <span>📖</span> Grammar & Structure
-                      </p>
-                      <p className="text-sm text-slate-700">{feedback.grammar_feedback}</p>
-                    </div>
-                  )}
+                    <div className="mt-4 space-y-3">
+                      {/* Pronunciation Feedback */}
+                      {feedback.pronunciation_feedback && (
+                        <div className="bg-white p-4 rounded-lg border-l-4 border-purple-500">
+                          <p className="text-sm font-semibold text-purple-900 mb-1 flex items-center gap-2">
+                            <span>🗣️</span> How You Sound
+                          </p>
+                          <p className="text-sm text-slate-700">{feedback.pronunciation_feedback}</p>
+                        </div>
+                      )}
 
-                  {/* Fluency Feedback */}
-                  {feedback.fluency_feedback && (
-                    <div className="bg-white p-4 rounded-lg border-l-4 border-teal-500">
-                      <p className="text-sm font-semibold text-teal-900 mb-1 flex items-center gap-2">
-                        <span>💬</span> Fluency & Naturalness
-                      </p>
-                      <p className="text-sm text-slate-700">{feedback.fluency_feedback}</p>
-                    </div>
-                  )}
+                      {/* Grammar Feedback */}
+                      {feedback.grammar_feedback && (
+                        <div className="bg-white p-4 rounded-lg border-l-4 border-indigo-500">
+                          <p className="text-sm font-semibold text-indigo-900 mb-1 flex items-center gap-2">
+                            <span>📖</span> Grammar
+                          </p>
+                          <p className="text-sm text-slate-700">{feedback.grammar_feedback}</p>
+                        </div>
+                      )}
 
-                  {/* Common ESL Mistakes */}
-                  {feedback.common_esl_mistakes && (
-                    <div className="bg-amber-50 p-4 rounded-lg border border-amber-200">
-                      <p className="text-sm font-semibold text-amber-900 mb-1 flex items-center gap-2">
-                        <span>⚠️</span> Common ESL Pitfalls
-                      </p>
-                      <p className="text-sm text-slate-700">{feedback.common_esl_mistakes}</p>
-                    </div>
-                  )}
+                      {/* Fluency Feedback */}
+                      {feedback.fluency_feedback && (
+                        <div className="bg-white p-4 rounded-lg border-l-4 border-teal-500">
+                          <p className="text-sm font-semibold text-teal-900 mb-1 flex items-center gap-2">
+                            <span>💬</span> How Natural It Sounds
+                          </p>
+                          <p className="text-sm text-slate-700">{feedback.fluency_feedback}</p>
+                        </div>
+                      )}
 
-                  {/* Corrected Version */}
-                  {feedback.corrected_version && (
-                    <div className="bg-green-50 p-4 rounded-lg border border-green-200">
-                      <p className="text-sm font-semibold text-green-900 mb-1 flex items-center gap-2">
-                        <span>✨</span> Suggested Response
-                      </p>
-                      <p className="text-sm text-slate-700 italic">"{feedback.corrected_version}"</p>
-                    </div>
-                  )}
-
-                  {/* Improvement Tips */}
-                  {feedback.improvement_tips && (
-                    <div className="bg-indigo-50 p-4 rounded-lg border-2 border-indigo-200">
-                      <p className="text-sm font-semibold text-indigo-900 mb-1 flex items-center gap-2">
-                        <span>💡</span> Action Steps
+                      {/* Improvement Tips */}
+                      {feedback.improvement_tips && (
+                        <div className="bg-indigo-50 p-4 rounded-lg border-2 border-indigo-200">
+                          <p className="text-sm font-semibold text-indigo-900 mb-1 flex items-center gap-2">
+                            <span>💡</span> What to Practice
                       </p>
                       <p className="text-sm text-indigo-800">{feedback.improvement_tips}</p>
                     </div>
