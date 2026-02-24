@@ -197,11 +197,22 @@ Be encouraging but specific. Give actionable advice for improvement.`,
     });
   };
 
-  if (isLoadingQuestions || questions.length === 0) {
+  if (isLoadingQuestions) {
     return (
       <Card className="p-8 text-center">
         <Loader2 className="w-8 h-8 animate-spin mx-auto mb-4 text-indigo-600" />
         <p className="text-slate-600">Loading interview questions...</p>
+      </Card>
+    );
+  }
+
+  if (questions.length === 0) {
+    return (
+      <Card className="p-8 text-center">
+        <p className="text-slate-600 mb-4">No interview questions found. Please contact admin to add questions.</p>
+        <Button onClick={() => window.location.reload()} variant="outline">
+          Reload Page
+        </Button>
       </Card>
     );
   }
