@@ -7,6 +7,7 @@ import { ArrowLeft, Play, CheckCircle, XCircle, RotateCcw, BookOpen, CreditCard,
 import { Progress } from "@/components/ui/progress";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import FlashcardView from '@/components/lessons/FlashcardView';
+import KeyPointsDisplay from '@/components/lessons/KeyPointsDisplay';
 import { toast } from "sonner";
 import ReactMarkdown from 'react-markdown';
 
