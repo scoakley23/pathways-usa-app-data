@@ -29,7 +29,6 @@ import {
 } from 'lucide-react';
 import SentenceDialog from '@/components/admin/SentenceDialog';
 import GenerateLessonsButton from '@/components/admin/GenerateLessonsButton';
-import VoiceSelector from '@/components/settings/VoiceSelector';
 import { toast } from "sonner";
 
 export default function Admin() {
@@ -40,10 +39,25 @@ export default function Admin() {
   const [editingSentence, setEditingSentence] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
+  const [voices, setVoices] = useState([]);
 
   useEffect(() => {
     checkUser();
     fetchSentences();
+    loadVoices();
+  }, []);
+
+  const loadVoices = () => {
+    const availableVoices = window.speechSynthesis.getVoices();
+    const enVoices = availableVoices.filter(v => v.lang.startsWith('en'));
+    setVoices(enVoices);
+  };
+
+  useEffect(() => {
+    window.speechSynthesis.onvoiceschanged = loadVoices;
+    return () => {
+      window.speechSynthesis.onvoiceschanged = null;
+    };
   }, []);
 
   const checkUser = async () => {
@@ -167,7 +181,36 @@ export default function Admin() {
         </div>
       </div>
 
-      <VoiceSelector />
+      <div className="border rounded-lg bg-white shadow-sm p-6">
+        <h2 className="text-xl font-bold text-slate-900 mb-4">Available Voice Options</h2>
+        <p className="text-sm text-slate-600 mb-4">Copy the exact voice name you want and tell me to set it as the default.</p>
+        {voices.length === 0 ? (
+          <p className="text-slate-500">Loading voices...</p>
+        ) : (
+          <div className="space-y-2">
+            {voices.map((voice, idx) => (
+              <div key={idx} className="flex items-center justify-between p-3 border rounded-lg hover:bg-slate-50">
+                <div className="flex-1">
+                  <p className="font-mono text-sm font-medium text-slate-900">{voice.name}</p>
+                  <p className="text-xs text-slate-500">{voice.lang} • {voice.localService ? 'Local' : 'Online'}</p>
+                </div>
+                <Button 
+                  size="sm"
+                  variant="outline"
+                  onClick={() => {
+                    const utterance = new SpeechSynthesisUtterance("Hello, this is how I sound.");
+                    utterance.voice = voice;
+                    utterance.rate = 0.9;
+                    window.speechSynthesis.speak(utterance);
+                  }}
+                >
+                  Test
+                </Button>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
 
       <div className="flex items-center space-x-2">
         <div className="relative flex-1 max-w-sm">
