@@ -85,8 +85,28 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
 
   const getYoutubeEmbedUrl = (url) => {
     if (!url) return null;
-    const videoId = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/)?.[1];
-    return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
+    
+    // Handle already embedded URLs
+    if (url.includes('youtube.com/embed/')) {
+      return url;
+    }
+    
+    // Extract video ID from various YouTube URL formats
+    const patterns = [
+      /(?:youtube\.com\/watch\?v=)([^&\s]+)/,
+      /(?:youtube\.com\/embed\/)([^&\s]+)/,
+      /(?:youtu\.be\/)([^&\s]+)/,
+      /(?:youtube\.com\/v\/)([^&\s]+)/
+    ];
+    
+    for (const pattern of patterns) {
+      const match = url.match(pattern);
+      if (match && match[1]) {
+        return `https://www.youtube.com/embed/${match[1]}`;
+      }
+    }
+    
+    return null;
   };
 
   const translateContent = async (language) => {
