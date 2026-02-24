@@ -3,10 +3,12 @@ import { base44 } from '@/api/base44Client';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ArrowLeft, Play, CheckCircle, XCircle, RotateCcw, BookOpen, CreditCard, Brain } from 'lucide-react';
+import { ArrowLeft, Play, CheckCircle, XCircle, RotateCcw, BookOpen, CreditCard, Brain, Globe, Volume2 } from 'lucide-react';
 import { Progress } from "@/components/ui/progress";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import FlashcardView from '@/components/lessons/FlashcardView';
 import { toast } from "sonner";
+import ReactMarkdown from 'react-markdown';
 
 export default function LessonDetail({ lesson, onBack, onComplete }) {
   const [quizQuestions, setQuizQuestions] = useState([]);
@@ -20,6 +22,10 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState('lesson');
   const [user, setUser] = useState(null);
+  const [translatedContent, setTranslatedContent] = useState(null);
+  const [targetLanguage, setTargetLanguage] = useState('en');
+  const [isTranslating, setIsTranslating] = useState(false);
+  const [isSpeaking, setIsSpeaking] = useState(false);
 
   useEffect(() => {
     loadUser();
@@ -81,6 +87,65 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
     if (!url) return null;
     const videoId = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/)?.[1];
     return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
+  };
+
+  const translateContent = async (language) => {
+    if (language === 'en') {
+      setTranslatedContent(null);
+      setTargetLanguage('en');
+      return;
+    }
+
+    setIsTranslating(true);
+    try {
+      const result = await base44.integrations.Core.InvokeLLM({
+        prompt: `Translate the following lesson content to ${language}. Maintain all markdown formatting, structure, and headings. Keep technical terms and proper nouns in English when appropriate.
+
+Title: ${lesson.title}
+Content: ${lesson.content}
+
+Key Points:
+${lesson.key_points?.join('\n') || ''}`,
+        response_json_schema: {
+          type: "object",
+          properties: {
+            title: { type: "string" },
+            content: { type: "string" },
+            key_points: { type: "array", items: { type: "string" } }
+          }
+        }
+      });
+
+      setTranslatedContent(result);
+      setTargetLanguage(language);
+      toast.success('Content translated successfully');
+    } catch (error) {
+      console.error('Translation error:', error);
+      toast.error('Failed to translate content');
+    } finally {
+      setIsTranslating(false);
+    }
+  };
+
+  const speakContent = (text) => {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      
+      if (isSpeaking) {
+        setIsSpeaking(false);
+        return;
+      }
+
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 0.9;
+      utterance.onend = () => setIsSpeaking(false);
+      utterance.onerror = () => setIsSpeaking(false);
+      
+      window.speechSynthesis.speak(utterance);
+      setIsSpeaking(true);
+    } else {
+      toast.error('Text-to-speech not supported in your browser');
+    }
   };
 
   const handleAnswerSelect = (answer) => {
@@ -160,6 +225,12 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
   const embedUrl = getYoutubeEmbedUrl(lesson.video_url);
   const currentQuestion = quizQuestions[currentQuestionIndex];
   const progressPercent = quizQuestions.length > 0 ? ((currentQuestionIndex + 1) / quizQuestions.length) * 100 : 0;
+  
+  const displayContent = translatedContent || { 
+    title: lesson.title, 
+    content: lesson.content, 
+    key_points: lesson.key_points 
+  };
 
   if (showQuiz && quizCompleted) {
     const percentage = Math.round((score / quizQuestions.length) * 100);

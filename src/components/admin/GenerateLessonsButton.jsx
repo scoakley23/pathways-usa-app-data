@@ -52,16 +52,24 @@ export default function GenerateLessonsButton() {
           const subtopic = topic.subtopics[i];
           
           // Generate lesson content with AI
-          const lessonPrompt = `Create a comprehensive civics lesson about "${subtopic}" for U.S. citizenship test preparation.
-          
-Include:
-1. A clear, engaging title
-2. A 2-sentence description
-3. Main lesson content (300-400 words) explaining the concept clearly for ESL learners
-4. 3-5 key bullet points summarizing the main ideas
-5. A short real-life dialogue (4-6 exchanges) showing how this topic applies in everyday American life
+          const lessonPrompt = `Create a comprehensive, beginner-friendly civics lesson about "${subtopic}" for U.S. citizenship test preparation.
 
-Format as JSON with these keys: title, description, content, key_points (array), dialogue (string)`;
+REQUIREMENTS:
+1. Clear, engaging title (simple language)
+2. 2-sentence description suitable for ESL learners
+3. Main content (400-500 words) in simple English with:
+   - Use short sentences and basic vocabulary
+   - Include 2-3 relevant markdown image URLs from Unsplash (use proper markdown: ![alt text](https://images.unsplash.com/photo-xxx))
+   - Add a real-life dialogue showing this concept in everyday American life
+   - Break content into clear sections with ## headings
+   - Include concrete examples
+4. 4-6 key bullet points summarizing main ideas
+5. Suggest 1 relevant YouTube search term for finding educational videos
+
+Use this format for images: Search for relevant Unsplash photos and use: ![Description](https://images.unsplash.com/photo-[id]?w=800)
+Example topics for images: American flag, Capitol building, voting, Constitution, etc.
+
+Format as JSON with keys: title, description, content (markdown with images), key_points (array), youtube_search`;
 
           const lessonData = await base44.integrations.Core.InvokeLLM({
             prompt: lessonPrompt,
@@ -72,27 +80,45 @@ Format as JSON with these keys: title, description, content, key_points (array),
                 description: { type: "string" },
                 content: { type: "string" },
                 key_points: { type: "array", items: { type: "string" } },
-                dialogue: { type: "string" }
+                youtube_search: { type: "string" }
               }
             }
           });
+
+          // Search for relevant YouTube video
+          let videoUrl = null;
+          try {
+            const searchResults = await base44.integrations.Core.InvokeLLM({
+              prompt: `Find a YouTube video URL for: "${lessonData.youtube_search}" related to U.S. citizenship education. Return just the full URL.`,
+              add_context_from_internet: true
+            });
+            if (searchResults && searchResults.includes('youtube.com')) {
+              videoUrl = searchResults.trim();
+            }
+          } catch (error) {
+            console.log('Could not find video for', lessonData.youtube_search);
+          }
 
           // Create lesson
           const lesson = await base44.entities.Lesson.create({
             topic: topic.name,
             title: lessonData.title,
             description: lessonData.description,
-            content: lessonData.content + "\n\n## Real-Life Scenario\n" + lessonData.dialogue,
+            content: lessonData.content,
             key_points: lessonData.key_points,
             order: i + 1,
-            video_url: null
+            video_url: videoUrl
           });
 
-          // Generate flashcards
-          const flashcardsPrompt = `Create 5 flashcards for the lesson "${lessonData.title}".
-Each flashcard should have a term and definition suitable for citizenship test preparation.
+          // Generate flashcards  
+          const flashcardsPrompt = `Create 6-8 flashcards for the lesson "${lessonData.title}" about ${subtopic}.
+Use simple language suitable for ESL learners.
+Each flashcard should have:
+- term: A key vocabulary word or concept (2-4 words)
+- definition: Clear, simple explanation (1-2 sentences, basic English)
+- example: A concrete example showing how it's used in real life
 
-Return as JSON array with objects containing: term, definition, example (optional)`;
+Return as JSON with a flashcards array.`;
 
           const flashcardsData = await base44.integrations.Core.InvokeLLM({
             prompt: flashcardsPrompt,
@@ -124,10 +150,16 @@ Return as JSON array with objects containing: term, definition, example (optiona
           }
 
           // Generate quiz questions
-          const quizPrompt = `Create 4 multiple-choice quiz questions about "${lessonData.title}".
-Each question should test understanding of the key concepts.
+          const quizPrompt = `Create 5-6 multiple-choice quiz questions about "${lessonData.title}" for U.S. citizenship test prep.
 
-Return as JSON array with objects containing: question, options (array of 4 strings), correct_answer, explanation`;
+REQUIREMENTS for each question:
+- Use simple, clear language (ESL-friendly)
+- Test real understanding, not just memorization
+- Include practical application questions
+- 4 answer options each
+- Clear explanation for why the answer is correct
+
+Return as JSON with a questions array.`;
 
           const quizData = await base44.integrations.Core.InvokeLLM({
             prompt: quizPrompt,
