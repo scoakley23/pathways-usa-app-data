@@ -48,28 +48,6 @@ export default function Practice() {
       }
   }, [mode]);
 
-  // Interview Practice Mode
-  if (mode === 'interview') {
-    return (
-      <div className="space-y-6">
-        <Button variant="ghost" onClick={() => setMode('menu')} className="text-slate-600 hover:text-slate-900">
-          &larr; Back to Practice Menu
-        </Button>
-        <InterviewPractice 
-          onComplete={(passed) => {
-            if (passed) {
-              toast.success('Great job! You\'re ready for the interview!');
-            } else {
-              toast.info('Keep practicing - you\'re getting better!');
-            }
-            setMode('menu');
-          }}
-          onNext={() => {}}
-        />
-      </div>
-    );
-  }
-
   // Seed Reading Data if empty
   useEffect(() => {
     const seedData = async () => {
