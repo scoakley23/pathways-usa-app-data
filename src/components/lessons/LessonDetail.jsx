@@ -48,6 +48,7 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
 
   useEffect(() => {
     loadFlashcards();
+    loadQuizQuestions();
   }, [lesson.id]);
 
   useEffect(() => {
