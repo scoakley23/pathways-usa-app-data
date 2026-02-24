@@ -353,20 +353,56 @@ ${lesson.key_points?.join('\n') || ''}`,
 
   return (
     <div className="max-w-4xl mx-auto space-y-6">
-      <Button onClick={onBack} variant="ghost">
-        <ArrowLeft className="w-4 h-4 mr-2" />
-        Back to Lessons
-      </Button>
+      <div className="flex items-center justify-between flex-wrap gap-4">
+        <Button onClick={onBack} variant="ghost">
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          Back to Lessons
+        </Button>
+
+        <div className="flex items-center gap-3">
+          <Globe className="w-5 h-5 text-slate-600" />
+          <Select value={targetLanguage} onValueChange={translateContent} disabled={isTranslating}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="en">English</SelectItem>
+              <SelectItem value="Spanish">Spanish</SelectItem>
+              <SelectItem value="Chinese (Simplified)">Chinese</SelectItem>
+              <SelectItem value="Vietnamese">Vietnamese</SelectItem>
+              <SelectItem value="Korean">Korean</SelectItem>
+              <SelectItem value="Tagalog">Tagalog</SelectItem>
+              <SelectItem value="French">French</SelectItem>
+              <SelectItem value="Arabic">Arabic</SelectItem>
+              <SelectItem value="Russian">Russian</SelectItem>
+              <SelectItem value="Portuguese">Portuguese</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
 
       {/* Lesson Content with Tabs */}
       <Card>
         <CardHeader>
           <div className="space-y-2">
             <span className="text-sm font-semibold text-blue-600">{lesson.topic}</span>
-            <CardTitle className="text-3xl">{lesson.title}</CardTitle>
-            {lesson.description && (
-              <p className="text-slate-600">{lesson.description}</p>
-            )}
+            <div className="flex items-start justify-between gap-4">
+              <div className="flex-1">
+                <CardTitle className="text-3xl">{displayContent.title}</CardTitle>
+                {lesson.description && (
+                  <p className="text-slate-600 mt-2">{lesson.description}</p>
+                )}
+              </div>
+              <Button
+                onClick={() => speakContent(displayContent.content)}
+                variant="outline"
+                size="icon"
+                className="shrink-0"
+                title="Listen to lesson"
+              >
+                <Volume2 className={`w-5 h-5 ${isSpeaking ? 'text-blue-600 animate-pulse' : ''}`} />
+              </Button>
+            </div>
           </div>
         </CardHeader>
 
@@ -390,7 +426,7 @@ ${lesson.key_points?.join('\n') || ''}`,
             <TabsContent value="lesson" className="space-y-6">
               {/* Video */}
               {embedUrl && (
-                <div className="aspect-video rounded-lg overflow-hidden shadow-lg bg-slate-900">
+                <div className="aspect-video rounded-xl overflow-hidden shadow-lg bg-slate-900 border-2 border-slate-200">
                   <iframe
                     src={embedUrl}
                     className="w-full h-full"
@@ -400,26 +436,76 @@ ${lesson.key_points?.join('\n') || ''}`,
                 </div>
               )}
 
-              {/* Main Content */}
-              <div className="prose prose-slate max-w-none">
-                <div className="text-slate-700 leading-relaxed whitespace-pre-line">
-                  {lesson.content}
+              {isTranslating && (
+                <div className="flex items-center justify-center p-8 bg-blue-50 rounded-lg border-2 border-blue-200">
+                  <div className="animate-spin w-6 h-6 border-4 border-blue-600 border-t-transparent rounded-full mr-3" />
+                  <span className="text-blue-700 font-medium">Translating content...</span>
                 </div>
+              )}
+
+              {/* Main Content */}
+              <div className="prose prose-slate prose-lg max-w-none">
+                <ReactMarkdown
+                  components={{
+                    h2: ({ children }) => <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4 border-b-2 border-slate-200 pb-2">{children}</h2>,
+                    h3: ({ children }) => <h3 className="text-xl font-semibold text-slate-800 mt-6 mb-3">{children}</h3>,
+                    p: ({ children }) => <p className="text-slate-700 leading-relaxed mb-4 text-lg">{children}</p>,
+                    ul: ({ children }) => <ul className="list-disc list-inside space-y-2 mb-4 ml-4">{children}</ul>,
+                    ol: ({ children }) => <ol className="list-decimal list-inside space-y-2 mb-4 ml-4">{children}</ol>,
+                    li: ({ children }) => <li className="text-slate-700 leading-relaxed">{children}</li>,
+                    strong: ({ children }) => <strong className="font-bold text-slate-900">{children}</strong>,
+                    em: ({ children }) => <em className="italic text-slate-800">{children}</em>,
+                    blockquote: ({ children }) => (
+                      <blockquote className="border-l-4 border-blue-500 pl-4 italic text-slate-600 my-6 bg-blue-50 py-2 rounded-r-lg">
+                        {children}
+                      </blockquote>
+                    ),
+                    img: ({ src, alt }) => (
+                      <img src={src} alt={alt} className="rounded-xl shadow-lg my-6 w-full object-cover max-h-96 border-2 border-slate-200" />
+                    ),
+                    code: ({ inline, children }) => 
+                      inline ? (
+                        <code className="bg-slate-100 text-slate-800 px-2 py-1 rounded text-sm">{children}</code>
+                      ) : (
+                        <code className="block bg-slate-100 text-slate-800 p-4 rounded-lg my-4">{children}</code>
+                      )
+                  }}
+                >
+                  {displayContent.content}
+                </ReactMarkdown>
               </div>
 
               {/* Key Points */}
-              {lesson.key_points && lesson.key_points.length > 0 && (
-                <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-6">
-                  <h3 className="text-lg font-bold text-blue-900 mb-3">Key Points to Remember:</h3>
-                  <ul className="space-y-2">
-                    {lesson.key_points.map((point, idx) => (
-                      <li key={idx} className="flex items-start gap-2">
-                        <CheckCircle className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
-                        <span className="text-slate-700">{point}</span>
+              {displayContent.key_points && displayContent.key_points.length > 0 && (
+                <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-300 rounded-xl p-6 shadow-md">
+                  <h3 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-3">
+                    <div className="p-2 bg-blue-600 rounded-lg">
+                      <CheckCircle className="w-6 h-6 text-white" />
+                    </div>
+                    Key Points to Remember
+                  </h3>
+                  <ul className="space-y-3">
+                    {displayContent.key_points.map((point, idx) => (
+                      <li key={idx} className="flex items-start gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <span className="flex items-center justify-center w-7 h-7 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 text-white text-sm font-bold shrink-0 mt-0.5">
+                          {idx + 1}
+                        </span>
+                        <span className="text-slate-800 leading-relaxed font-medium">{point}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
+              )}
+
+              {quizQuestions.length > 0 && (
+                <Button 
+                  onClick={() => setShowQuiz(true)} 
+                  className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 h-14 text-lg"
+                  size="lg"
+                >
+                  <Play className="w-5 h-5 mr-2" />
+                  Take Practice Quiz ({quizQuestions.length} Questions)
+                </Button>
               )}
             </TabsContent>
 
