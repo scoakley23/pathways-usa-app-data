@@ -108,7 +108,7 @@ ${questionText ? `5. Include these 2025 civics test questions naturally in your 
 
 6. Suggest YouTube search term for videos
 
-Format as JSON with: title, description, content (markdown with images), key_points (array), youtube_search, questions_covered (array of question text)`;
+Format as JSON with: title, description, content (markdown with images), key_points (array of objects with text and optional definition), youtube_search, questions_covered (array of question text)`;
 
           const lessonData = await base44.integrations.Core.InvokeLLM({
             prompt: lessonPrompt,
