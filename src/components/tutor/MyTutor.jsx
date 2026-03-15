@@ -48,46 +48,27 @@ export default function MyTutor({ currentUserEmail }) {
       setIsJoining(true);
 
       try {
-          // 1. Find tutor by invite code
-          let cleanCode = inviteCode.replace(/\s+/g, '').toUpperCase();
+          const cleanCode = inviteCode.replace(/\s+/g, '').toUpperCase();
+
+          // Fetch ALL tutor profiles and do a client-side case-insensitive match
+          // (query-filter on invite_code is unreliable across backends)
+          const allProfiles = await base44.entities.PublicProfile.list('-created_date', 1000);
+
+          // Try exact match first, then O/0 swap fallbacks
+          const variants = [cleanCode, cleanCode.replace(/0/g, 'O'), cleanCode.replace(/O/g, '0')];
           
-          let profiles = await base44.entities.PublicProfile.list({
-              query: { invite_code: cleanCode }
-          });
+          const tutorProfile = allProfiles.find(p =>
+              p.account_type === 'tutor' &&
+              p.invite_code &&
+              variants.includes(p.invite_code.toUpperCase())
+          );
 
-          // Fallback: Handle 0 vs O confusion
-          if (profiles.length === 0) {
-              // Try replacing 0 with O
-              const codeWithO = cleanCode.replace(/0/g, 'O');
-              if (codeWithO !== cleanCode) {
-                  profiles = await base44.entities.PublicProfile.list({ query: { invite_code: codeWithO } });
-              }
-              
-              // Try replacing O with 0
-              if (profiles.length === 0) {
-                  const codeWithZero = cleanCode.replace(/O/g, '0');
-                  if (codeWithZero !== cleanCode) {
-                      profiles = await base44.entities.PublicProfile.list({ query: { invite_code: codeWithZero } });
-                  }
-              }
-          }
-
-          if (profiles.length === 0) {
+          if (!tutorProfile) {
               toast.error("Invalid invite code. Please check and try again.");
-              setIsJoining(false);
               return;
           }
 
-          const tutorProfile = profiles[0];
-          // Verify this is actually a tutor account
-          if (tutorProfile.account_type !== 'tutor') {
-               toast.error("This code belongs to a student account, not a tutor.");
-               setIsJoining(false);
-               return;
-          }
-
-          const tutorEmail = tutorProfile.user_email;
-          await connectWithTutor(tutorEmail, 'active'); // Auto-accept for code
+          await connectWithTutor(tutorProfile.user_email, 'active');
           setInviteCode("");
 
       } catch (error) {
