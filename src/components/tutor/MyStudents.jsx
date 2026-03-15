@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Plus, UserCheck, Clock, UserX, MessageCircle, FileText, BarChart, MoreHorizontal, Check, X } from 'lucide-react';
+import { Plus, UserCheck, Clock, UserX, MessageCircle, FileText, BarChart, MoreHorizontal, Check, X, Link } from 'lucide-react';
 import ChatInterface from '@/components/chat/ChatInterface';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import {
