@@ -1,3 +1,8 @@
+const getSamanthaVoice = () => {
+  const voices = window.speechSynthesis.getVoices();
+  return voices.find(v => v.name === 'Samantha') || voices.find(v => v.name.includes('Samantha')) || null;
+};
+
 export const speakText = (text, language = 'en', { onStart, onEnd } = {}) => {
   if (!window.speechSynthesis) return;
   
@@ -5,18 +10,18 @@ export const speakText = (text, language = 'en', { onStart, onEnd } = {}) => {
   
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = language === 'en' ? 'en-US' : language;
-  
-  // Use Samantha voice if available
+
+  // Always use Samantha voice; voices may load async so retry if empty
+  const setVoice = () => {
+    const samantha = getSamanthaVoice();
+    if (samantha) utterance.voice = samantha;
+  };
+
   const voices = window.speechSynthesis.getVoices();
-  const samanthaVoice = voices.find(v => v.name.includes('Samantha'));
-  if (samanthaVoice) {
-    utterance.voice = samanthaVoice;
+  if (voices.length > 0) {
+    setVoice();
   } else {
-    // Fallback to Google US English if Samantha not available
-    const googleVoice = voices.find(v => v.name === 'Google US English');
-    if (googleVoice) {
-      utterance.voice = googleVoice;
-    }
+    window.speechSynthesis.addEventListener('voiceschanged', setVoice, { once: true });
   }
   
   utterance.rate = 1.0;

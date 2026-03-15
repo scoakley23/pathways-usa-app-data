@@ -158,39 +158,23 @@ ${keyPointsText}`,
   };
 
   const speakContent = (text) => {
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-      
-      if (isSpeaking) {
-        setIsSpeaking(false);
-        return;
-      }
-
-      const cleanText = text.replace(/#{1,6}\s/g, '').replace(/\[.*?\]/g, '').replace(/!\[.*?\]\(.*?\)/g, '');
-      const utterance = new SpeechSynthesisUtterance(cleanText);
-      
-      // Use Samantha voice if available
-      const voices = window.speechSynthesis.getVoices();
-      const samanthaVoice = voices.find(v => v.name.includes('Samantha'));
-      if (samanthaVoice) {
-        utterance.voice = samanthaVoice;
-      } else {
-        const googleVoice = voices.find(v => v.name === 'Google US English');
-        if (googleVoice) {
-          utterance.voice = googleVoice;
-        }
-      }
-      
-      utterance.rate = 0.9;
-      utterance.pitch = 1.0;
-      utterance.onend = () => setIsSpeaking(false);
-      utterance.onerror = () => setIsSpeaking(false);
-      
-      window.speechSynthesis.speak(utterance);
-      setIsSpeaking(true);
-    } else {
+    if (!('speechSynthesis' in window)) {
       toast.error('Text-to-speech not supported in your browser');
+      return;
     }
+
+    if (isSpeaking) {
+      window.speechSynthesis.cancel();
+      setIsSpeaking(false);
+      return;
+    }
+
+    const cleanText = text.replace(/#{1,6}\s/g, '').replace(/\[.*?\]/g, '').replace(/!\[.*?\]\(.*?\)/g, '');
+    const { speakText } = require('@/components/utils/textToSpeech');
+    speakText(cleanText, 'en', {
+      onStart: () => setIsSpeaking(true),
+      onEnd: () => setIsSpeaking(false),
+    });
   };
 
   const handleAnswerSelect = (answer) => {
