@@ -253,6 +253,9 @@ export default function Layout({ children }) {
               userEmail={user.email}
               userName={user.full_name}
               onComplete={(selectedRole) => {
+                  if (user?.email) {
+                    localStorage.setItem(`role_${user.email.toLowerCase().trim()}`, selectedRole);
+                  }
                   setRole(selectedRole);
                   setShowOnboarding(false);
               }}
