@@ -23,7 +23,7 @@ import { LayoutDashboard, Users, Activity } from 'lucide-react';
 import { toast } from "sonner";
 
 export default function MyStudents({ currentUserEmail }) {
-  const [view, setView] = useState('list'); // 'list' or 'dashboard'
+  const [view, setView] = useState('list'); // 'list', 'dashboard', or 'monitor'
   const [students, setStudents] = useState([]);
   const [newStudentEmail, setNewStudentEmail] = useState("");
   const [selectedStudent, setSelectedStudent] = useState(null);
