@@ -18,7 +18,8 @@ import {
 import AssignContentDialog from './AssignContentDialog';
 import StudentProgressReport from './StudentProgressReport';
 import TutorDashboard from './TutorDashboard';
-import { LayoutDashboard, Users } from 'lucide-react';
+import StudentActivityMonitor from './StudentActivityMonitor';
+import { LayoutDashboard, Users, Activity } from 'lucide-react';
 import { toast } from "sonner";
 
 export default function MyStudents({ currentUserEmail }) {
