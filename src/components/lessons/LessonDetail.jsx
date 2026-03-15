@@ -10,6 +10,7 @@ import FlashcardView from '@/components/lessons/FlashcardView';
 import KeyPointsDisplay from '@/components/lessons/KeyPointsDisplay';
 import { toast } from "sonner";
 import ReactMarkdown from 'react-markdown';
+import { speakText } from '@/components/utils/textToSpeech';
 
 export default function LessonDetail({ lesson, onBack, onComplete }) {
   const [quizQuestions, setQuizQuestions] = useState([]);
