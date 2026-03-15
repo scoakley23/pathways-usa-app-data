@@ -44,17 +44,16 @@ export default function MyStudents({ currentUserEmail }) {
       try {
           const normalizedEmail = currentUserEmail.toLowerCase().trim();
 
-          const profiles = await base44.entities.PublicProfile.list({ 
-              query: { user_email: normalizedEmail },
-              limit: 1
-          });
+          // Fetch all profiles for this tutor and use the one with account_type=tutor
+          const allProfiles = await base44.entities.PublicProfile.list('-created_date', 1000);
+          const profile = allProfiles.find(p => p.user_email === normalizedEmail && p.account_type === 'tutor')
+              || allProfiles.find(p => p.user_email === normalizedEmail);
           
-          if (profiles.length > 0) {
-              const profile = profiles[0];
+          if (profile) {
               if (profile.invite_code) {
                   setInviteCode(profile.invite_code);
               } else {
-                  // Generate new code if missing
+                  // Generate and persist code for tutors without one
                   const newCode = generateInviteCode(normalizedEmail);
                   await base44.entities.PublicProfile.update(profile.id, { invite_code: newCode });
                   setInviteCode(newCode);
