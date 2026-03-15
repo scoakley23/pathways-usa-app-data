@@ -101,33 +101,15 @@ useEffect(() => {
       console.log("Looking for code:", inviteCode);
       
       // Fetch ALL profiles
-      const allProfiles = await base44.entities.PublicProfile.list({ limit: 1000 });
-      console.log("Total profiles found:", allProfiles.length);
-      console.log("All profiles:", allProfiles);
+      const allProfiles = await base44.entities.PublicProfile.list('-created_date', 1000);
+      const cleanCode = inviteCode.replace(/\s+/g, '').toUpperCase();
+      const variants = [cleanCode, cleanCode.replace(/0/g, 'O'), cleanCode.replace(/O/g, '0')];
       
-      // Log all tutor profiles with codes
-      const tutorsWithCodes = allProfiles.filter(p => p.account_type === 'tutor' && p.invite_code);
-      console.log("Tutors with codes:", tutorsWithCodes);
-      
-      const matchingTutor = allProfiles.find(p => {
-        const hasCode = p.invite_code !== null && p.invite_code !== undefined;
-        const codeMatches = hasCode && p.invite_code.toUpperCase() === inviteCode.toUpperCase();
-        const isTutor = p.account_type === 'tutor';
-        
-        console.log(`Checking profile ${p.user_email}:`, {
-          hasCode,
-          profileCode: p.invite_code,
-          searchCode: inviteCode,
-          codeMatches,
-          isTutor,
-          accountType: p.account_type
-        });
-        
-        return hasCode && codeMatches && isTutor;
-      });
-      
-      console.log("Matching tutor:", matchingTutor);
-      console.log("========================");
+      const matchingTutor = allProfiles.find(p =>
+        p.account_type === 'tutor' &&
+        p.invite_code &&
+        variants.includes(p.invite_code.toUpperCase())
+      );
       
       if (!matchingTutor) {
         toast.error('Invalid invite code. Please check and try again.');
