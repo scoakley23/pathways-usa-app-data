@@ -23,6 +23,14 @@ export default function Layout({ children }) {
         setUser(currentUser);
         
         const normalizedEmail = currentUser.email.toLowerCase().trim();
+
+        // Check localStorage cache first to avoid re-showing onboarding on every navigation
+        const cachedRole = localStorage.getItem(`role_${normalizedEmail}`);
+        if (cachedRole) {
+          setRole(cachedRole);
+          setShowOnboarding(false);
+          return;
+        }
         
         // Clean up duplicate profiles (keep only the most recent one with account_type)
         const allProfiles = await base44.entities.PublicProfile.list({
@@ -41,10 +49,16 @@ export default function Layout({ children }) {
             await base44.entities.PublicProfile.delete(id);
           }
           
+          if (primaryProfile.account_type) {
+            localStorage.setItem(`role_${normalizedEmail}`, primaryProfile.account_type);
+          }
           setRole(primaryProfile.account_type);
           setShowOnboarding(!primaryProfile.account_type);
         } else if (allProfiles.length === 1) {
           const profile = allProfiles[0];
+          if (profile.account_type) {
+            localStorage.setItem(`role_${normalizedEmail}`, profile.account_type);
+          }
           setRole(profile.account_type);
           setShowOnboarding(!profile.account_type);
         } else {
