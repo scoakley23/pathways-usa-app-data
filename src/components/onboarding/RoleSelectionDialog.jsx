@@ -210,12 +210,14 @@ useEffect(() => {
     // Handle invite code for students
     let tutorEmail = null;
     if (selectedRole === 'student' && inviteCode) {
-      const allProfiles = await base44.entities.PublicProfile.list({ limit: 1000 });
+      const allProfiles = await base44.entities.PublicProfile.list('-created_date', 1000);
+      const cleanCode2 = inviteCode.replace(/\s+/g, '').toUpperCase();
+      const variants2 = [cleanCode2, cleanCode2.replace(/0/g, 'O'), cleanCode2.replace(/O/g, '0')];
       
-      const matchingTutor = allProfiles.find(p => 
-        p.invite_code && 
-        p.invite_code.toUpperCase() === inviteCode.toUpperCase() && 
-        p.account_type === 'tutor'
+      const matchingTutor = allProfiles.find(p =>
+        p.account_type === 'tutor' &&
+        p.invite_code &&
+        variants2.includes(p.invite_code.toUpperCase())
       );
       
       if (!matchingTutor) {
