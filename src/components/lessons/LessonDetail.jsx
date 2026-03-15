@@ -171,7 +171,6 @@ ${keyPointsText}`,
     }
 
     const cleanText = text.replace(/#{1,6}\s/g, '').replace(/\[.*?\]/g, '').replace(/!\[.*?\]\(.*?\)/g, '');
-    const { speakText } = require('@/components/utils/textToSpeech');
     speakText(cleanText, 'en', {
       onStart: () => setIsSpeaking(true),
       onEnd: () => setIsSpeaking(false),
