@@ -223,7 +223,7 @@ The Citizenship Hub Team`;
                        <h3 className="text-sm font-bold text-indigo-900 mb-1">Your Class Invite Code</h3>
                        <p className="text-xs text-indigo-700">Share this code with your students. They can enter it to join your class instantly.</p>
                    </div>
-                   <div className="flex items-center gap-2">
+                   <div className="flex items-center gap-2 flex-wrap">
                        <code className="bg-white px-4 py-2 rounded-lg border-2 border-indigo-200 text-xl font-mono font-bold text-indigo-600 tracking-wider">
                            {inviteCode || "..."}
                        </code>
@@ -236,7 +236,19 @@ The Citizenship Hub Team`;
                            }}
                            className="text-indigo-600 hover:bg-indigo-100"
                        >
-                           Copy
+                           Copy Code
+                       </Button>
+                       <Button
+                           size="sm"
+                           variant="ghost"
+                           onClick={() => {
+                               const link = `${window.location.origin}/?tutor_invite=${encodeURIComponent(currentUserEmail)}`;
+                               navigator.clipboard.writeText(link);
+                               toast.success("Invite link copied!");
+                           }}
+                           className="text-indigo-600 hover:bg-indigo-100"
+                       >
+                           <Link className="w-3 h-3 mr-1" /> Copy Link
                        </Button>
                    </div>
                </div>
