@@ -67,7 +67,8 @@ export default function Layout({ children }) {
         }
         
         // Handle invite links for students
-        if (allProfiles.length > 0 && allProfiles[0].account_type === 'student') {
+        const currentProfile = allProfiles.find(p => p.account_type) || allProfiles[0];
+        if (currentProfile && currentProfile.account_type === 'student') {
             const params = new URLSearchParams(location.search);
             const urlInviteEmail = params.get('tutor_invite');
             
