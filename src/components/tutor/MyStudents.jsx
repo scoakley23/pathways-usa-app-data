@@ -195,6 +195,12 @@ The Citizenship Hub Team`;
             >
                 <LayoutDashboard className="w-4 h-4 mr-2" /> Dashboard
             </button>
+            <button 
+                onClick={() => setView('monitor')}
+                className={`flex items-center px-4 py-2 rounded-md text-sm font-medium transition-all ${view === 'monitor' ? 'bg-white shadow-sm text-blue-700' : 'text-slate-500 hover:text-slate-700'}`}
+            >
+                <Activity className="w-4 h-4 mr-2" /> Activity
+            </button>
         </div>
         <Button variant="ghost" size="sm" onClick={fetchStudents} title="Refresh List">
             <div className="w-4 h-4 border-2 border-slate-400 border-t-transparent rounded-full hover:animate-spin" />
