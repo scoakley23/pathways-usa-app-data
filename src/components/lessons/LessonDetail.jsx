@@ -55,10 +55,11 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
 
   const loadFlashcards = async () => {
     try {
-      const cards = await base44.entities.LessonFlashcard.list({ 
-        query: { lesson_id: lesson.id },
-        limit: 100
-      });
+      const cards = await base44.entities.LessonFlashcard.filter(
+        { lesson_id: lesson.id },
+        null,
+        100
+      );
       setFlashcards(cards);
     } catch (error) {
       console.error('Failed to load flashcards:', error);
@@ -68,10 +69,13 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
   const loadQuizQuestions = async () => {
     try {
       setLoading(true);
-      const questions = await base44.entities.LessonQuiz.list({ 
-        query: { lesson_id: lesson.id },
-        limit: 100
-      });
+      console.log('Loading quiz for lesson id:', lesson.id);
+      const questions = await base44.entities.LessonQuiz.filter(
+        { lesson_id: lesson.id },
+        null,
+        100
+      );
+      console.log('Quiz questions loaded:', questions.length, questions);
       setQuizQuestions(questions);
     } catch (error) {
       console.error('Failed to load quiz:', error);
