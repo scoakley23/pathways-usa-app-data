@@ -209,6 +209,8 @@ The Citizenship Hub Team`;
 
       {view === 'dashboard' ? (
           <TutorDashboard currentUserEmail={currentUserEmail} students={students} />
+      ) : view === 'monitor' ? (
+          <StudentActivityMonitor currentUserEmail={currentUserEmail} students={students} />
       ) : (
         <>
           <Card>
