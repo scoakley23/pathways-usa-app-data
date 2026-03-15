@@ -94,7 +94,7 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
       // Clean up the embed URL
       const match = url.match(/youtube\.com\/embed\/([a-zA-Z0-9_-]+)/);
       if (match) {
-        return `https://www.youtube.com/embed/${match[1]}?modestbranding=1&rel=0`;
+        return `https://www.youtube.com/embed/${match[1]}?modestbranding=1&rel=0&enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}`;
       }
     }
     
@@ -112,7 +112,7 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
     }
     
     if (videoId) {
-      return `https://www.youtube.com/embed/${videoId}?modestbranding=1&rel=0`;
+      return `https://www.youtube.com/embed/${videoId}?modestbranding=1&rel=0&enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}`;
     }
     
     return null;
@@ -486,8 +486,8 @@ ${keyPointsText}`,
                     title={lesson.title}
                     className="w-full h-full"
                     frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-                    allowFullScreen
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen={true}
                   />
                 </div>
               )}
