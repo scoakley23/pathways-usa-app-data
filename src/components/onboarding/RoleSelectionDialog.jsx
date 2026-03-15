@@ -120,6 +120,7 @@ useEffect(() => {
     }
 
     // 3. Create profile
+
     const profileData = {
       user_email: normalizedEmail,
       display_name: displayName || normalizedEmail.split('@')[0],
