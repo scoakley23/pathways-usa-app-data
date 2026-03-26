@@ -424,9 +424,13 @@ ${keyPointsText}`,
             {targetLanguage !== 'en' && (
               <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-lg text-sm font-medium">
                 <Globe className="w-4 h-4" />
-                Viewing in {['es', 'ar', 'am', 'pt', 'zh', 'vi', 'fr'].includes(targetLanguage) ? 
-                  ({es: 'Spanish', ar: 'Arabic', am: 'Amharic', pt: 'Portuguese', zh: 'Chinese', vi: 'Vietnamese', fr: 'French'}[targetLanguage]) : 
-                  targetLanguage}
+                Viewing in {({
+                  es: 'Spanish', ar: 'Arabic', am: 'Amharic', pt: 'Portuguese',
+                  zh: 'Chinese', vi: 'Vietnamese', fr: 'French', ht: 'Haitian Creole',
+                  ko: 'Korean', tl: 'Tagalog', ru: 'Russian', hi: 'Hindi',
+                  ur: 'Urdu', fa: 'Farsi', pl: 'Polish', de: 'German',
+                  it: 'Italian', ja: 'Japanese', sw: 'Swahili', so: 'Somali'
+                })[targetLanguage] || targetLanguage}
               </div>
             )}
 
@@ -442,9 +446,22 @@ ${keyPointsText}`,
                     <SelectItem value="ar">Arabic</SelectItem>
                     <SelectItem value="am">Amharic</SelectItem>
                     <SelectItem value="pt">Portuguese</SelectItem>
-                    <SelectItem value="zh">Chinese</SelectItem>
+                    <SelectItem value="zh">Chinese (Simplified)</SelectItem>
                     <SelectItem value="vi">Vietnamese</SelectItem>
                     <SelectItem value="fr">French</SelectItem>
+                    <SelectItem value="ht">Haitian Creole</SelectItem>
+                    <SelectItem value="ko">Korean</SelectItem>
+                    <SelectItem value="tl">Tagalog (Filipino)</SelectItem>
+                    <SelectItem value="ru">Russian</SelectItem>
+                    <SelectItem value="hi">Hindi</SelectItem>
+                    <SelectItem value="ur">Urdu</SelectItem>
+                    <SelectItem value="fa">Farsi (Persian)</SelectItem>
+                    <SelectItem value="pl">Polish</SelectItem>
+                    <SelectItem value="de">German</SelectItem>
+                    <SelectItem value="it">Italian</SelectItem>
+                    <SelectItem value="ja">Japanese</SelectItem>
+                    <SelectItem value="sw">Swahili</SelectItem>
+                    <SelectItem value="so">Somali</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
