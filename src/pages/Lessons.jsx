@@ -3,7 +3,7 @@ import { base44 } from '@/api/base44Client';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { BookOpen, Video, CheckCircle, ArrowRight, Award, Star } from 'lucide-react';
-import LessonDetail from '@/components/lessons/LessonDetail';
+import LessonDetail from '@/components/lessons/LessonDetail.jsx';
 import RecommendationsPanel from '@/components/lessons/RecommendationsPanel';
 import GenerateLessonsButton from '@/components/admin/GenerateLessonsButton';
 import { toast } from "sonner";
