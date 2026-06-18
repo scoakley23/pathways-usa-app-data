@@ -5,11 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, Mic, PenTool, BookOpen, CheckCircle, GraduationCap, Notebook } from 'lucide-react';
 import StudyBuddy from '@/components/ai/StudyBuddy';
-import RepresentativeFinder from '@/components/civics/RepresentativeFinder';
 
 export default function Home({ cachedUser }) {
-  const [repData, setRepData] = React.useState(null);
-
   return (
     <div className="flex flex-col min-h-[calc(100vh-4rem)]">
       {/* Hero Section */}
@@ -90,10 +87,6 @@ export default function Home({ cachedUser }) {
             </Card>
         </Link>
       </section>
-      <RepresentativeFinder
-        userEmail={cachedUser?.email}
-        onDataLoaded={setRepData}
-      />
       <StudyBuddy />
     </div>
   );

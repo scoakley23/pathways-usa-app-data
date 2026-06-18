@@ -12,6 +12,7 @@ import MatchingGame from '@/components/practice/MatchingGame';
 import ReadingPracticeCard from '@/components/practice/ReadingPracticeCard';
 import InterviewPractice from '@/components/practice/InterviewPractice';
 import StudyBuddy from '@/components/ai/StudyBuddy';
+import RepresentativeFinder from '@/components/civics/RepresentativeFinder';
 import { toast } from "sonner";
 
 export default function Practice() {
@@ -444,6 +445,11 @@ export default function Practice() {
             Choose your study mode to prepare for your citizenship test.
           </p>
         </div>
+
+        <RepresentativeFinder
+          userEmail={currentUser?.email}
+          onDataLoaded={setRepresentativeData}
+        />
 
         <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-8">
           <h2 className="font-bold text-blue-900 flex items-center gap-2 mb-4">
