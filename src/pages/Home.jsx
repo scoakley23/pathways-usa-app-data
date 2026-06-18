@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, Mic, PenTool, BookOpen, CheckCircle, GraduationCap, Notebook } from 'lucide-react';
 import StudyBuddy from '@/components/ai/StudyBuddy';
+import RepresentativeFinder from '@/components/civics/RepresentativeFinder';
 
 export default function Home() {
   return (
@@ -87,6 +88,7 @@ export default function Home() {
             </Card>
         </Link>
       </section>
+      <RepresentativeFinder />
       <StudyBuddy />
     </div>
   );
