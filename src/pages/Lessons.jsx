@@ -170,14 +170,26 @@ export default function Lessons() {
                     onClick={() => setSelectedLesson(lesson)}
                   >
                     <CardHeader className="pb-3">
+                      <div className="mb-2">
+                        {isCompleted ? (
+                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-700 border border-green-200">
+                            <CheckCircle className="w-3 h-3" /> Completed
+                          </span>
+                        ) : hasProgress ? (
+                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-700 border border-amber-200">
+                            In Progress
+                          </span>
+                        ) : (
+                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-700 border border-blue-200">
+                            Start
+                          </span>
+                        )}
+                      </div>
                       <CardTitle className="flex items-start justify-between gap-2">
                         <span className="text-lg">{lesson.title}</span>
                         <div className="flex items-center gap-1 shrink-0">
                           {lesson.video_url && (
                             <Video className="w-5 h-5 text-red-500" />
-                          )}
-                          {isCompleted && (
-                            <CheckCircle className="w-5 h-5 text-green-500" />
                           )}
                           {needsReview && (
                             <Star className="w-5 h-5 text-orange-500 fill-orange-500" />
