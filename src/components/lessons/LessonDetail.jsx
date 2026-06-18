@@ -202,17 +202,25 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
       </div>
 
       {/* Video */}
-      {videoId && (
-        <div className="relative w-full rounded-xl overflow-hidden shadow-lg bg-black" style={{ paddingBottom: '56.25%', height: 0 }}>
-          <iframe
-            className="absolute inset-0 w-full h-full"
-            src={`https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`}
-            title="Lesson video"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
+      {videoId ? (
+        <div className="w-full rounded-xl overflow-hidden shadow-lg bg-black">
+          <div className="relative" style={{ paddingBottom: '56.25%' }}>
+            <iframe
+              className="absolute inset-0 w-full h-full"
+              src={`https://www.youtube.com/embed/${videoId}?origin=${window.location.origin}`}
+              title="Lesson video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            />
+          </div>
         </div>
+      ) : (
+        lesson.video_url && (
+          <div className="w-full rounded-xl bg-slate-100 p-8 text-center text-slate-500">
+            Video not available
+          </div>
+        )
       )}
 
       {/* Main Tabs */}
