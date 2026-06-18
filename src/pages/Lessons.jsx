@@ -159,7 +159,9 @@ export default function Lessons() {
                 return (
                   <Card 
                     key={lesson.id}
-                    className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-blue-400 relative"
+                    className={`hover:shadow-lg transition-shadow cursor-pointer border-2 relative ${
+                      lessonProgress?.completed ? 'border-green-300 hover:border-green-400' : 'hover:border-blue-400'
+                    }`}
                     onClick={() => setSelectedLesson(lesson)}
                   >
                     <CardHeader>
@@ -169,7 +171,10 @@ export default function Lessons() {
                           {lesson.video_url && (
                             <Video className="w-5 h-5 text-red-500" />
                           )}
-                          {hasProgress && lessonProgress.best_score >= 80 && (
+                          {lessonProgress?.completed && (
+                            <CheckCircle className="w-5 h-5 text-green-500" />
+                          )}
+                          {hasProgress && lessonProgress.best_score >= 80 && !lessonProgress?.completed && (
                             <CheckCircle className="w-5 h-5 text-green-500" />
                           )}
                           {needsReview && (
@@ -188,8 +193,12 @@ export default function Lessons() {
                       )}
                     </CardHeader>
                     <CardContent>
-                      <Button className="w-full bg-blue-600 hover:bg-blue-700">
-                        {hasProgress ? 'Continue' : 'Start Lesson'} <ArrowRight className="w-4 h-4 ml-2" />
+                      <Button className={`w-full ${
+                        lessonProgress?.completed 
+                          ? 'bg-green-600 hover:bg-green-700' 
+                          : 'bg-blue-600 hover:bg-blue-700'
+                      }`}>
+                        {lessonProgress?.completed ? 'Review' : hasProgress ? 'Continue' : 'Start Lesson'} <ArrowRight className="w-4 h-4 ml-2" />
                       </Button>
                     </CardContent>
                   </Card>
