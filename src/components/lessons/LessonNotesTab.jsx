@@ -88,13 +88,20 @@ export default function LessonNotesTab({ lesson, userEmail }) {
           </Button>
         </div>
       </div>
-      <div className="border border-slate-200 rounded-lg overflow-hidden min-h-[300px]">
+      <div className="border border-slate-200 rounded-lg overflow-hidden min-h-[300px] bg-white">
         <ReactQuill
           value={content}
           onChange={handleChange}
           placeholder="Start typing your notes here..."
           theme="snow"
-          style={{ minHeight: '280px' }}
+          modules={{
+            toolbar: [
+              ['bold', 'italic', 'underline', 'strike'],
+              [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+              [{ 'header': [1, 2, 3, false] }],
+              ['clean']
+            ]
+          }}
         />
       </div>
     </div>
