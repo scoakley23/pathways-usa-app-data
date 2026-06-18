@@ -16,38 +16,38 @@ export default function Lessons() {
   const [progress, setProgress] = useState([]);
 
   useEffect(() => {
-    loadUser();
-    loadLessons();
+    loadAll();
   }, []);
 
-  const loadUser = async () => {
+  const loadAll = async () => {
     try {
+      setLoading(true);
       const currentUser = await base44.auth.me();
       setUser(currentUser);
       
-      if (currentUser?.email) {
-        const userProgress = await base44.entities.LessonProgress.list({
-          query: { user_email: currentUser.email },
-          limit: 1000
-        });
-        setProgress(userProgress);
-      }
-    } catch (error) {
-      console.error('Not authenticated');
-    }
-  };
-
-  const loadLessons = async () => {
-    try {
-      setLoading(true);
-      const allLessons = await base44.entities.Lesson.list('order', 100);
+      const [allLessons, userProgress] = await Promise.all([
+        base44.entities.Lesson.list('order', 100),
+        currentUser?.email 
+          ? base44.entities.LessonProgress.list({ query: { user_email: currentUser.email }, limit: 1000 })
+          : Promise.resolve([])
+      ]);
+      
       setLessons(allLessons);
+      setProgress(userProgress);
     } catch (error) {
-      console.error('Failed to load lessons:', error);
-      toast.error('Failed to load lessons');
+      console.error('Failed to load:', error);
     } finally {
       setLoading(false);
     }
+  };
+
+  const refreshProgress = async () => {
+    if (!user?.email) return;
+    const userProgress = await base44.entities.LessonProgress.list({
+      query: { user_email: user.email },
+      limit: 1000
+    });
+    setProgress(userProgress);
   };
 
   const topics = [
@@ -88,11 +88,11 @@ export default function Lessons() {
         lesson={selectedLesson} 
         onBack={() => {
           setSelectedLesson(null);
-          loadUser(); // Refresh progress
+          refreshProgress();
         }}
         onComplete={() => {
           toast.success('Lesson marked complete! Great job!');
-          loadUser();
+          refreshProgress();
         }}
       />
     );
@@ -154,27 +154,29 @@ export default function Lessons() {
               {topicLessons.map((lesson) => {
                 const lessonProgress = getLessonProgress(lesson.id);
                 const hasProgress = lessonProgress && lessonProgress.best_score > 0;
+                const isCompleted = lessonProgress?.completed;
                 const needsReview = lessonProgress?.needs_review;
 
                 return (
                   <Card 
                     key={lesson.id}
-                    className={`hover:shadow-lg transition-shadow cursor-pointer border-2 relative ${
-                      lessonProgress?.completed ? 'border-green-300 hover:border-green-400' : 'hover:border-blue-400'
+                    className={`hover:shadow-lg transition-all cursor-pointer border-2 relative ${
+                      isCompleted 
+                        ? 'border-green-300 hover:border-green-400 bg-green-50/30' 
+                        : hasProgress
+                          ? 'border-amber-200 hover:border-amber-300 bg-amber-50/20'
+                          : 'hover:border-blue-400'
                     }`}
                     onClick={() => setSelectedLesson(lesson)}
                   >
-                    <CardHeader>
+                    <CardHeader className="pb-3">
                       <CardTitle className="flex items-start justify-between gap-2">
                         <span className="text-lg">{lesson.title}</span>
                         <div className="flex items-center gap-1 shrink-0">
                           {lesson.video_url && (
                             <Video className="w-5 h-5 text-red-500" />
                           )}
-                          {lessonProgress?.completed && (
-                            <CheckCircle className="w-5 h-5 text-green-500" />
-                          )}
-                          {hasProgress && lessonProgress.best_score >= 80 && !lessonProgress?.completed && (
+                          {isCompleted && (
                             <CheckCircle className="w-5 h-5 text-green-500" />
                           )}
                           {needsReview && (
@@ -184,21 +186,34 @@ export default function Lessons() {
                       </CardTitle>
                       <CardDescription>{lesson.description}</CardDescription>
                       {hasProgress && (
-                        <div className="text-xs text-slate-600 mt-1">
-                          Best Score: {lessonProgress.best_score}%
+                        <div className="mt-2 space-y-1">
+                          <div className="flex items-center justify-between text-xs text-slate-500">
+                            <span>{isCompleted ? 'Completed' : 'In Progress'}</span>
+                            <span>{lessonProgress.best_score}%</span>
+                          </div>
+                          <div className="w-full bg-slate-200 rounded-full h-1.5">
+                            <div 
+                              className={`h-1.5 rounded-full transition-all ${
+                                isCompleted ? 'bg-green-500' : needsReview ? 'bg-orange-400' : 'bg-blue-500'
+                              }`}
+                              style={{ width: `${lessonProgress.best_score}%` }}
+                            />
+                          </div>
                           {needsReview && (
-                            <span className="ml-2 text-orange-600 font-medium">• Review Recommended</span>
+                            <span className="text-xs text-orange-600 font-medium">Review Recommended</span>
                           )}
                         </div>
                       )}
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="pt-0">
                       <Button className={`w-full ${
-                        lessonProgress?.completed 
+                        isCompleted 
                           ? 'bg-green-600 hover:bg-green-700' 
-                          : 'bg-blue-600 hover:bg-blue-700'
+                          : hasProgress
+                            ? 'bg-blue-600 hover:bg-blue-700'
+                            : 'bg-slate-700 hover:bg-slate-800'
                       }`}>
-                        {lessonProgress?.completed ? 'Review' : hasProgress ? 'Continue' : 'Start Lesson'} <ArrowRight className="w-4 h-4 ml-2" />
+                        {isCompleted ? 'Review' : hasProgress ? 'Continue' : 'Start Lesson'} <ArrowRight className="w-4 h-4 ml-2" />
                       </Button>
                     </CardContent>
                   </Card>
