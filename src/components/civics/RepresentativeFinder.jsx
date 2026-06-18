@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, Loader2, Building2, Users, User, Landmark, CheckCircle2, BellRing } from 'lucide-react';
+import { MapPin, Loader2, Building2, Users, Landmark, CheckCircle2 } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
+import OfficialPhoto from '@/components/civics/OfficialPhoto';
 
 export default function RepresentativeFinder({ userEmail, onDataLoaded }) {
   const [zipCode, setZipCode] = useState('');
@@ -270,14 +271,8 @@ export default function RepresentativeFinder({ userEmail, onDataLoaded }) {
                   <p className="font-semibold text-slate-800">{results.state_capital}</p>
                 </div>
               </div>
-              <div className="flex items-center gap-3 pl-2">
-                {results.governor_photo_url ? (
-                  <img src={results.governor_photo_url} alt={results.governor} className="w-12 h-12 rounded-full object-cover border-2 border-white shadow" onError={(e) => e.target.style.display = 'none'} />
-                ) : (
-                  <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center">
-                    <User className="w-5 h-5 text-slate-400" />
-                  </div>
-                )}
+              <div className="flex items-center gap-4 pl-2">
+                <OfficialPhoto photoUrl={results.governor_photo_url} name={results.governor} size="md" />
                 <div>
                   <p className="text-xs text-slate-500">Governor</p>
                   <p className="font-semibold text-slate-800">{results.governor} <span className="text-xs text-slate-400">({results.governor_party})</span></p>
@@ -297,14 +292,8 @@ export default function RepresentativeFinder({ userEmail, onDataLoaded }) {
                 </div>
               </div>
               {results.senators.map((senator, i) => (
-                <div key={i} className="flex items-center gap-3 pl-2">
-                  {senator.photo_url ? (
-                    <img src={senator.photo_url} alt={senator.name} className="w-12 h-12 rounded-full object-cover border-2 border-white shadow" onError={(e) => e.target.style.display = 'none'} />
-                  ) : (
-                    <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center">
-                      <User className="w-5 h-5 text-slate-400" />
-                    </div>
-                  )}
+                <div key={i} className="flex items-center gap-4 pl-2">
+                  <OfficialPhoto photoUrl={senator.photo_url} name={senator.name} size="md" />
                   <div>
                     <p className="font-semibold text-slate-800">{senator.name}</p>
                     <p className="text-xs text-slate-400">{senator.party}</p>
@@ -312,14 +301,8 @@ export default function RepresentativeFinder({ userEmail, onDataLoaded }) {
                 </div>
               ))}
               <div className="border-t border-slate-100 pt-3">
-                <div className="flex items-center gap-3 pl-2">
-                  {results.representative?.photo_url ? (
-                    <img src={results.representative.photo_url} alt={results.representative.name} className="w-12 h-12 rounded-full object-cover border-2 border-white shadow" onError={(e) => e.target.style.display = 'none'} />
-                  ) : (
-                    <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center">
-                      <User className="w-5 h-5 text-slate-400" />
-                    </div>
-                  )}
+                <div className="flex items-center gap-4 pl-2">
+                  <OfficialPhoto photoUrl={results.representative?.photo_url} name={results.representative?.name} size="md" />
                   <div>
                     <p className="text-xs text-slate-500">US Representative</p>
                     <p className="font-semibold text-slate-800">{results.representative.name}</p>
