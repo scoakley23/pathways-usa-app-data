@@ -7,6 +7,7 @@ import { CheckCircle, Clock, Award, Zap, Flag } from 'lucide-react';
 import { format } from 'date-fns';
 import BadgesDisplay from '@/components/gamification/BadgesDisplay';
 import PracticeCalendar from '@/components/progress/PracticeCalendar';
+import ProgressChart from '@/components/progress/ProgressChart';
 import TestDateTracker from '@/components/progress/TestDateTracker';
 import { Progress as ProgressBar } from "@/components/ui/progress";
 
@@ -126,6 +127,9 @@ export default function Progress() {
         <div className="lg:col-span-2 space-y-8">
              {/* Calendar */}
             <PracticeCalendar history={history} />
+
+             {/* Progress Chart */}
+             <ProgressChart userEmail={userData?.email} />
 
              {/* Badges Section */}
             <Card>
