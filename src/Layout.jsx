@@ -7,6 +7,7 @@ import { base44 } from '@/api/base44Client';
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import RoleSelectionDialog from '@/components/onboarding/RoleSelectionDialog';
 import NotificationCenter from '@/components/notifications/NotificationCenter';
+import StudyBuddy from '@/components/ai/StudyBuddy';
 import { Toaster } from "sonner";
 
 export default function Layout({ children }) {
@@ -263,6 +264,7 @@ export default function Layout({ children }) {
               }}
           />
       )}
+      <StudyBuddy />
       <Toaster />
     </div>
   );
