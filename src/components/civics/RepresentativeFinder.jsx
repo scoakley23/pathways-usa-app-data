@@ -111,14 +111,18 @@ export default function RepresentativeFinder({ userEmail, onDataLoaded }) {
 
     try {
       const data = await base44.integrations.Core.InvokeLLM({
-        prompt: `Look up the elected officials and state capital for the US zip code ${zipCode.trim()}. Find:
-- The two US Senators for that state
-- The US Representative for that congressional district
-- The Governor of that state
-- The state capital city
+        prompt: `For US zip code ${zipCode.trim()}, look up the EXACT current elected officials from these official sources ONLY:
 
-Return the data in the specified JSON format. Use current, up-to-date information.`,
+1. First determine which state and congressional district this zip code belongs to.
+2. US Senators: Look up the TWO current US Senators for that state from senate.gov/senators/
+3. US Representative: Look up the specific Representative for that congressional district from house.gov/representatives/
+4. Governor: Look up the current Governor from nga.org/governors/
+5. State capital: The official capital city of the state.
+6. Photo URLs: Include official portrait photo URLs for each person. Use the official congressional biography photo URL from house.gov or senate.gov (format: "https://www.house.gov/sites/default/files/styles/congressional-portrait/public/..." or "https://www.senate.gov/general/img/...").
+
+CRITICAL: Use ONLY official .gov and .org sources. Do NOT guess. The US Representative MUST match the specific congressional district for this zip code. Double check all names are spelled correctly.`,
         add_context_from_internet: true,
+        model: "gemini_3_1_pro",
         response_json_schema: {
           type: "object",
           properties: {
@@ -127,13 +131,15 @@ Return the data in the specified JSON format. Use current, up-to-date informatio
             state_capital: { type: "string" },
             governor: { type: "string" },
             governor_party: { type: "string" },
+            governor_photo_url: { type: "string" },
             senators: {
               type: "array",
               items: {
                 type: "object",
                 properties: {
                   name: { type: "string" },
-                  party: { type: "string" }
+                  party: { type: "string" },
+                  photo_url: { type: "string" }
                 }
               },
               minItems: 2,
@@ -144,7 +150,8 @@ Return the data in the specified JSON format. Use current, up-to-date informatio
               properties: {
                 name: { type: "string" },
                 party: { type: "string" },
-                district: { type: "string" }
+                district: { type: "string" },
+                photo_url: { type: "string" }
               }
             }
           },
@@ -261,7 +268,13 @@ Return the data in the specified JSON format. Use current, up-to-date informatio
                 </div>
               </div>
               <div className="flex items-center gap-3 pl-2">
-                <User className="w-4 h-4 text-slate-400" />
+                {results.governor_photo_url ? (
+                  <img src={results.governor_photo_url} alt={results.governor} className="w-12 h-12 rounded-full object-cover border-2 border-white shadow" onError={(e) => e.target.style.display = 'none'} />
+                ) : (
+                  <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center">
+                    <User className="w-5 h-5 text-slate-400" />
+                  </div>
+                )}
                 <div>
                   <p className="text-xs text-slate-500">Governor</p>
                   <p className="font-semibold text-slate-800">{results.governor} <span className="text-xs text-slate-400">({results.governor_party})</span></p>
@@ -282,7 +295,13 @@ Return the data in the specified JSON format. Use current, up-to-date informatio
               </div>
               {results.senators.map((senator, i) => (
                 <div key={i} className="flex items-center gap-3 pl-2">
-                  <User className="w-4 h-4 text-slate-400" />
+                  {senator.photo_url ? (
+                    <img src={senator.photo_url} alt={senator.name} className="w-12 h-12 rounded-full object-cover border-2 border-white shadow" onError={(e) => e.target.style.display = 'none'} />
+                  ) : (
+                    <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center">
+                      <User className="w-5 h-5 text-slate-400" />
+                    </div>
+                  )}
                   <div>
                     <p className="font-semibold text-slate-800">{senator.name}</p>
                     <p className="text-xs text-slate-400">{senator.party}</p>
@@ -291,7 +310,13 @@ Return the data in the specified JSON format. Use current, up-to-date informatio
               ))}
               <div className="border-t border-slate-100 pt-3">
                 <div className="flex items-center gap-3 pl-2">
-                  <User className="w-4 h-4 text-slate-400" />
+                  {results.representative?.photo_url ? (
+                    <img src={results.representative.photo_url} alt={results.representative.name} className="w-12 h-12 rounded-full object-cover border-2 border-white shadow" onError={(e) => e.target.style.display = 'none'} />
+                  ) : (
+                    <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center">
+                      <User className="w-5 h-5 text-slate-400" />
+                    </div>
+                  )}
                   <div>
                     <p className="text-xs text-slate-500">US Representative</p>
                     <p className="font-semibold text-slate-800">{results.representative.name}</p>
