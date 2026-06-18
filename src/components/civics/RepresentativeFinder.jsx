@@ -15,6 +15,7 @@ export default function RepresentativeFinder({ userEmail, onDataLoaded }) {
   const [error, setError] = useState('');
   const [profileId, setProfileId] = useState(null);
   const [saved, setSaved] = useState(false);
+  const [needsAddress, setNeedsAddress] = useState(false);
 
   const fetchWikipediaPhoto = async (title) => {
     if (!title) return '';
@@ -151,23 +152,23 @@ export default function RepresentativeFinder({ userEmail, onDataLoaded }) {
     try {
       const addressStr = streetAddress.trim();
       const promptText = addressStr
-        ? `For the US address "${addressStr}, ${zipCode.trim()}", look up the EXACT current elected officials. Since some zip codes span multiple congressional districts, use the FULL street address to determine the PRECISE congressional district (like ziplook.house.gov does). Use ONLY official .gov, .org, and Wikipedia sources.`
-        : `For US zip code ${zipCode.trim()}, look up the EXACT current elected officials. Use ONLY official .gov, .org, and Wikipedia sources.`;
+        ? `For the US address "${addressStr}, ${zipCode.trim()}", look up the EXACT current elected officials. Use the FULL street address to determine the PRECISE congressional district. Use ONLY official .gov, .org, and Wikipedia sources.`
+        : `For US zip code ${zipCode.trim()}, look up the EXACT current elected officials. FIRST check if this zip code spans multiple congressional districts. Use ONLY official .gov, .org, and Wikipedia sources.`;
 
       const data = await base44.integrations.Core.InvokeLLM({
         prompt: `${promptText}
 
 STEPS:
-1. Determine which state and congressional district this zip code${addressStr ? ' + address' : ''} belongs to.${addressStr ? ' Use the street address to pinpoint the EXACT district — do NOT guess if the zip code spans multiple districts.' : ''}
-2. US Senators: Look up the TWO current US Senators for that state from senate.gov/senators/
-3. US Representative: Look up the specific Representative for that congressional district from house.gov/representatives/
-4. Governor: Look up the current Governor from nga.org/governors/
-5. State capital: The official capital city of the state.
+1. Determine which state this zip code belongs to.${addressStr ? ' Use the street address to pinpoint the EXACT congressional district.' : ''}
+2. ${addressStr ? '' : 'CRITICAL — AMBIGUITY CHECK: Check if this zip code maps to ONE congressional district or MULTIPLE. Set district_ambiguous to true if it spans multiple districts. If ambiguous, list all possible district numbers in possible_districts (e.g. "Districts 3, 7, and 9"). Do NOT pick one at random — set the representative to the most likely one but flag it as ambiguous.'}
+3. US Senators: Look up the TWO current US Senators for that state from senate.gov/senators/
+4. US Representative: Look up the specific Representative for that congressional district from house.gov/representatives/${addressStr ? '' : ' — if ambiguous, pick the one covering the largest portion of this zip code but flag district_ambiguous: true'}
+5. Governor: Look up the current Governor from nga.org/governors/
+6. State capital: The official capital city of the state.
 
 WIKIPEDIA PAGE TITLES — For EACH person, find the EXACT title of their Wikipedia page:
 - Look up each person on Wikipedia and return the exact page title (e.g. "John_Fetterman", "Bernie_Sanders_(politician)", "Ron_DeSantis")
 - The title is the part after /wiki/ in the URL
-- Use the most specific and correct title — check Wikipedia to confirm
 - Leave empty string "" if you cannot find a Wikipedia page
 
 Double check all names are spelled correctly.`,
@@ -182,6 +183,8 @@ Double check all names are spelled correctly.`,
             governor: { type: "string" },
             governor_party: { type: "string" },
             governor_wikipedia_title: { type: "string" },
+            district_ambiguous: { type: "boolean" },
+            possible_districts: { type: "string" },
             senators: {
               type: "array",
               items: {
@@ -205,9 +208,16 @@ Double check all names are spelled correctly.`,
               }
             }
           },
-          required: ["state", "state_capital", "governor", "senators", "representative"]
+          required: ["state", "state_capital", "governor", "senators", "representative", "district_ambiguous"]
         }
       });
+
+      // If ambiguous and no address provided, prompt for address instead of showing results
+      if (data.district_ambiguous && !addressStr) {
+        setNeedsAddress(true);
+        setLoading(false);
+        return;
+      }
 
       // Fetch photos from Wikipedia in parallel with showing results
       enrichPhotos(data).then(enriched => {
@@ -221,6 +231,7 @@ Double check all names are spelled correctly.`,
       });
 
       // Show results IMMEDIATELY without photos — photos will fill in when ready
+      setNeedsAddress(false);
       setResults(data);
       setLoading(false);
       if (onDataLoaded) onDataLoaded(data);
@@ -272,19 +283,12 @@ Double check all names are spelled correctly.`,
       </div>
 
       <div className="max-w-md mx-auto mb-8">
-        <div className="space-y-3">
-          <Input
-            placeholder="Street address (optional — for precise district)..."
-            value={streetAddress}
-            onChange={(e) => setStreetAddress(e.target.value)}
-            onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-            className="h-11"
-          />
+        {!needsAddress ? (
           <div className="flex gap-3">
             <Input
               placeholder="Enter your zip code..."
               value={zipCode}
-              onChange={(e) => { setZipCode(e.target.value); setSaved(false); }}
+              onChange={(e) => { setZipCode(e.target.value); setSaved(false); setNeedsAddress(false); }}
               onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
               className="h-12 text-lg"
               maxLength={10}
@@ -297,7 +301,37 @@ Double check all names are spelled correctly.`,
               {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Search'}
             </Button>
           </div>
-        </div>
+        ) : (
+          <div className="space-y-3 bg-amber-50 border border-amber-200 rounded-xl p-4">
+            <p className="text-amber-800 text-sm font-medium">
+              This zip code spans multiple congressional districts. Please enter your street address so we can find your exact representative.
+            </p>
+            <Input
+              placeholder="Enter your street address (e.g. 123 Main St)..."
+              value={streetAddress}
+              onChange={(e) => setStreetAddress(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+              className="h-12"
+              autoFocus
+            />
+            <div className="flex gap-3">
+              <Button
+                variant="outline"
+                onClick={() => { setNeedsAddress(false); setStreetAddress(''); }}
+                className="flex-1"
+              >
+                Cancel
+              </Button>
+              <Button
+                onClick={handleSearch}
+                disabled={loading || !streetAddress.trim()}
+                className="flex-1 bg-amber-600 hover:bg-amber-700"
+              >
+                {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Find My Representative'}
+              </Button>
+            </div>
+          </div>
+        )}
         {loading && (
           <p className="text-blue-600 text-sm mt-3 text-center flex items-center justify-center gap-2">
             <Loader2 className="w-4 h-4 animate-spin" /> Searching house.gov, senate.gov, and nga.org...
