@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { base44 } from '@/api/base44Client';
 import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
 import { Save, Loader2, CheckCircle } from 'lucide-react';
 import { toast } from "sonner";
-import ReactQuill from 'react-quill';
 
 export default function LessonNotesTab({ lesson, userEmail }) {
   const [content, setContent] = useState('');
@@ -34,8 +34,8 @@ export default function LessonNotesTab({ lesson, userEmail }) {
     load();
   }, [lesson?.id, userEmail]);
 
-  // Auto-save after 2 seconds of inactivity
-  const handleChange = (val) => {
+  const handleChange = (e) => {
+    const val = e.target.value;
     setContent(val);
     if (autoSaveRef.current) clearTimeout(autoSaveRef.current);
     autoSaveRef.current = setTimeout(() => saveNote(val), 2000);
@@ -43,7 +43,7 @@ export default function LessonNotesTab({ lesson, userEmail }) {
 
   const saveNote = async (contentToSave = content) => {
     if (!userEmail || !lesson?.id) return;
-    const trimmed = contentToSave.replace(/<[^>]*>/g, '').trim();
+    const trimmed = (contentToSave || '').trim();
     if (!trimmed) return;
 
     setIsSaving(true);
@@ -53,11 +53,11 @@ export default function LessonNotesTab({ lesson, userEmail }) {
         lesson_id: lesson.id,
         lesson_title: lesson.title,
         lesson_topic: lesson.topic,
-        content: contentToSave
+        content: trimmed
       };
 
       if (noteId) {
-        await base44.entities.LessonNotes.update(noteId, { content: contentToSave });
+        await base44.entities.LessonNotes.update(noteId, { content: trimmed });
       } else {
         const created = await base44.entities.LessonNotes.create(payload);
         setNoteId(created.id);
@@ -88,22 +88,12 @@ export default function LessonNotesTab({ lesson, userEmail }) {
           </Button>
         </div>
       </div>
-      <div className="border border-slate-200 rounded-lg overflow-hidden min-h-[300px] bg-white">
-        <ReactQuill
-          value={content}
-          onChange={handleChange}
-          placeholder="Start typing your notes here..."
-          theme="snow"
-          modules={{
-            toolbar: [
-              ['bold', 'italic', 'underline', 'strike'],
-              [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-              [{ 'header': [1, 2, 3, false] }],
-              ['clean']
-            ]
-          }}
-        />
-      </div>
+      <Textarea
+        value={content}
+        onChange={handleChange}
+        placeholder="Start typing your notes here..."
+        className="min-h-[300px] resize-y text-base leading-relaxed"
+      />
     </div>
   );
 }
