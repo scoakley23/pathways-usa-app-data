@@ -152,7 +152,7 @@ export default function Lessons() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {topicLessons.map((lesson) => {
                 const lessonProgress = getLessonProgress(lesson.id);
-                const hasProgress = lessonProgress && lessonProgress.best_score > 0;
+                const hasProgress = !!lessonProgress;
                 const isCompleted = lessonProgress?.completed && lessonProgress?.quiz_attempts > 0;
                 const needsReview = lessonProgress?.needs_review;
 
@@ -196,7 +196,7 @@ export default function Lessons() {
                         </div>
                       </CardTitle>
                       <CardDescription>{lesson.description}</CardDescription>
-                      {hasProgress && (
+                      {hasProgress && lessonProgress.best_score > 0 && (
                         <div className="mt-2 space-y-1">
                           <div className="flex items-center justify-between text-xs text-slate-500">
                             <span>{isCompleted ? 'Completed' : 'In Progress'}</span>
@@ -207,7 +207,7 @@ export default function Lessons() {
                               className={`h-1.5 rounded-full transition-all ${
                                 isCompleted ? 'bg-green-500' : needsReview ? 'bg-orange-400' : 'bg-blue-500'
                               }`}
-                              style={{ width: `${lessonProgress.best_score}%` }}
+                              style={{ width: `${Math.round(lessonProgress.best_score)}%` }}
                             />
                           </div>
                           {needsReview && (

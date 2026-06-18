@@ -50,6 +50,25 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
       if (progressList.length > 0) {
         setLessonProgress(progressList[0]);
         setQuizCompleted(progressList[0].quiz_attempts > 0);
+      } else if (currentUser?.email) {
+        // Mark as "in progress" the moment they open the lesson
+        try {
+          const newProgress = await base44.entities.LessonProgress.create({
+            user_email: currentUser.email,
+            lesson_id: lesson.id,
+            topic: lesson.topic,
+            completed: false,
+            quiz_attempts: 0,
+            best_score: 0,
+            last_score: 0,
+            total_questions: lessonQuizzes.length,
+            last_attempt_date: new Date().toISOString(),
+            needs_review: false
+          });
+          setLessonProgress(newProgress);
+        } catch (e) {
+          console.error('Failed to create initial progress:', e);
+        }
       }
     } catch (err) {
       console.error('Failed to load lesson data:', err);
