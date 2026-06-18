@@ -8,6 +8,7 @@ import OfficialPhoto from '@/components/civics/OfficialPhoto';
 
 export default function RepresentativeFinder({ userEmail, onDataLoaded }) {
   const [zipCode, setZipCode] = useState('');
+  const [streetAddress, setStreetAddress] = useState('');
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [results, setResults] = useState(null);
@@ -58,6 +59,7 @@ export default function RepresentativeFinder({ userEmail, onDataLoaded }) {
           setProfileId(profile.id);
           if (profile.zip_code) {
             setZipCode(profile.zip_code);
+            if (profile.street_address) setStreetAddress(profile.street_address);
             setSaved(true);
           }
           if (profile.representative_data) {
@@ -147,11 +149,16 @@ export default function RepresentativeFinder({ userEmail, onDataLoaded }) {
     setSaved(false);
 
     try {
+      const addressStr = streetAddress.trim();
+      const promptText = addressStr
+        ? `For the US address "${addressStr}, ${zipCode.trim()}", look up the EXACT current elected officials. Since some zip codes span multiple congressional districts, use the FULL street address to determine the PRECISE congressional district (like ziplook.house.gov does). Use ONLY official .gov, .org, and Wikipedia sources.`
+        : `For US zip code ${zipCode.trim()}, look up the EXACT current elected officials. Use ONLY official .gov, .org, and Wikipedia sources.`;
+
       const data = await base44.integrations.Core.InvokeLLM({
-        prompt: `For US zip code ${zipCode.trim()}, look up the EXACT current elected officials. Use ONLY official .gov, .org, and Wikipedia sources.
+        prompt: `${promptText}
 
 STEPS:
-1. Determine which state and congressional district this zip code belongs to.
+1. Determine which state and congressional district this zip code${addressStr ? ' + address' : ''} belongs to.${addressStr ? ' Use the street address to pinpoint the EXACT district — do NOT guess if the zip code spans multiple districts.' : ''}
 2. US Senators: Look up the TWO current US Senators for that state from senate.gov/senators/
 3. US Representative: Look up the specific Representative for that congressional district from house.gov/representatives/
 4. Governor: Look up the current Governor from nga.org/governors/
@@ -163,7 +170,7 @@ WIKIPEDIA PAGE TITLES — For EACH person, find the EXACT title of their Wikiped
 - Use the most specific and correct title — check Wikipedia to confirm
 - Leave empty string "" if you cannot find a Wikipedia page
 
-The US Representative MUST match the specific congressional district for this zip code. Double check all names are spelled correctly.`,
+Double check all names are spelled correctly.`,
         add_context_from_internet: true,
         model: "gemini_3_flash",
         response_json_schema: {
@@ -239,6 +246,7 @@ The US Representative MUST match the specific congressional district for this zi
         const pid = profiles[0].id;
         await base44.entities.PublicProfile.update(pid, {
           zip_code: zipCode.trim(),
+          street_address: streetAddress.trim() || undefined,
           representative_data: data
         });
         setProfileId(pid);
@@ -264,22 +272,31 @@ The US Representative MUST match the specific congressional district for this zi
       </div>
 
       <div className="max-w-md mx-auto mb-8">
-        <div className="flex gap-3">
+        <div className="space-y-3">
           <Input
-            placeholder="Enter your zip code..."
-            value={zipCode}
-            onChange={(e) => { setZipCode(e.target.value); setSaved(false); }}
+            placeholder="Street address (optional — for precise district)..."
+            value={streetAddress}
+            onChange={(e) => setStreetAddress(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-            className="h-12 text-lg"
-            maxLength={10}
+            className="h-11"
           />
-          <Button
-            onClick={handleSearch}
-            disabled={loading}
-            className="h-12 px-6 bg-red-600 hover:bg-red-700"
-          >
-            {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Search'}
-          </Button>
+          <div className="flex gap-3">
+            <Input
+              placeholder="Enter your zip code..."
+              value={zipCode}
+              onChange={(e) => { setZipCode(e.target.value); setSaved(false); }}
+              onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+              className="h-12 text-lg"
+              maxLength={10}
+            />
+            <Button
+              onClick={handleSearch}
+              disabled={loading}
+              className="h-12 px-6 bg-red-600 hover:bg-red-700"
+            >
+              {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Search'}
+            </Button>
+          </div>
         </div>
         {loading && (
           <p className="text-blue-600 text-sm mt-3 text-center flex items-center justify-center gap-2">

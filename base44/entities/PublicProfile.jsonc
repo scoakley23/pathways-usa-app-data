@@ -33,6 +33,10 @@
       "type": "string",
       "description": "User's zip code for representative lookup"
     },
+    "street_address": {
+      "type": "string",
+      "description": "Optional street address for precise congressional district lookup"
+    },
     "representative_data": {
       "type": "object",
       "description": "Cached representative lookup results"
