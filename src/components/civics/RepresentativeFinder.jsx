@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, Loader2, Building2, Users, User, Landmark, CheckCircle2 } from 'lucide-react';
+import { MapPin, Loader2, Building2, Users, User, Landmark, CheckCircle2, BellRing } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 
 export default function RepresentativeFinder({ userEmail, onDataLoaded }) {
@@ -44,6 +44,60 @@ export default function RepresentativeFinder({ userEmail, onDataLoaded }) {
     loadProfile();
   }, [userEmail]);
 
+  const detectChanges = (oldData, newData) => {
+    if (!oldData) return [];
+    const changes = [];
+
+    if (oldData.state_capital !== newData.state_capital) {
+      changes.push({ field: 'State Capital', old: oldData.state_capital, new: newData.state_capital });
+    }
+    if (oldData.governor !== newData.governor) {
+      changes.push({ field: 'Governor', old: oldData.governor, new: newData.governor });
+    }
+
+    const oldSenatorNames = (oldData.senators || []).map(s => s.name).sort().join(', ');
+    const newSenatorNames = (newData.senators || []).map(s => s.name).sort().join(', ');
+    if (oldSenatorNames !== newSenatorNames) {
+      changes.push({ field: 'US Senators', old: oldSenatorNames, new: newSenatorNames });
+    }
+
+    if (oldData.representative?.name !== newData.representative?.name) {
+      changes.push({
+        field: 'US Representative',
+        old: oldData.representative?.name || 'Unknown',
+        new: newData.representative?.name || 'Unknown'
+      });
+    }
+
+    return changes;
+  };
+
+  const notifyChanges = async (changes, state) => {
+    if (changes.length === 0 || !userEmail) return;
+
+    const changeList = changes.map(c => `• ${c.field}: ${c.old} → ${c.new}`).join('\n');
+
+    try {
+      // Send email notification
+      await base44.integrations.Core.SendEmail({
+        to: userEmail,
+        subject: `Your ${state} representatives have changed`,
+        body: `Hello!\n\nThe following elected officials for your area in ${state} have changed:\n\n${changeList}\n\nThese changes are now reflected in your civics test practice answers. Log in to review the updated information.\n\n— Citizenship Learning Hub`
+      });
+
+      // Create in-app notification
+      await base44.entities.Notification.create({
+        user_email: userEmail,
+        type: 'alert',
+        title: 'Representatives Updated',
+        message: `${changes.length} change(s) detected for ${state}:\n${changeList.replace(/\n/g, ' ')}`,
+        link: '/'
+      });
+    } catch (err) {
+      console.error("Error sending notification", err);
+    }
+  };
+
   const handleSearch = async () => {
     if (!zipCode.trim() || zipCode.trim().length < 5) {
       setError('Please enter a valid 5-digit zip code.');
@@ -51,6 +105,7 @@ export default function RepresentativeFinder({ userEmail, onDataLoaded }) {
     }
     setError('');
     setLoading(true);
+    const previousData = results;
     setResults(null);
     setSaved(false);
 
@@ -99,6 +154,12 @@ Return the data in the specified JSON format. Use current, up-to-date informatio
       setResults(data);
       if (onDataLoaded) onDataLoaded(data);
 
+      // Detect and notify changes
+      const changes = detectChanges(previousData, data);
+      if (changes.length > 0) {
+        await notifyChanges(changes, data.state);
+      }
+
       // Save to profile
       await saveToProfile(data);
     } catch (err) {
@@ -134,25 +195,6 @@ Return the data in the specified JSON format. Use current, up-to-date informatio
     } finally {
       setSaving(false);
     }
-  };
-
-  // Personalize civics question answers
-  const getPersonalizedAnswer = (question) => {
-    if (!results) return null;
-    const q = question.toLowerCase();
-    if (q.includes("senator") || q.includes("senators")) {
-      return results.senators.map(s => s.name).join(" and ");
-    }
-    if (q.includes("representative") || q.includes("house of representatives")) {
-      return `${results.representative.name} (District ${results.representative.district})`;
-    }
-    if (q.includes("governor")) {
-      return results.governor;
-    }
-    if (q.includes("capital")) {
-      return results.state_capital;
-    }
-    return null;
   };
 
   return (
