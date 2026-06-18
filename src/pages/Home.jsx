@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, Mic, PenTool, BookOpen, CheckCircle, GraduationCap } from 'lucide-react';
+import { ArrowRight, Mic, PenTool, BookOpen, CheckCircle, GraduationCap, Notebook } from 'lucide-react';
 import StudyBuddy from '@/components/ai/StudyBuddy';
 
 export default function Home() {
@@ -63,7 +63,7 @@ export default function Home() {
             <Card className="h-full border-0 shadow-lg bg-white/50 backdrop-blur-sm hover:-translate-y-1 transition-transform duration-300 cursor-pointer hover:bg-indigo-50/50">
             <CardContent className="p-8 space-y-4">
                 <div className="w-12 h-12 bg-indigo-100 text-indigo-700 rounded-xl flex items-center justify-center">
-                <BookOpen className="w-6 h-6" />
+                <Notebook className="w-6 h-6" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900">Vocabulary</h3>
                 <p className="text-slate-600">
