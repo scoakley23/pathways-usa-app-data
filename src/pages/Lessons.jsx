@@ -211,7 +211,7 @@ export default function Lessons() {
                           ? 'bg-green-600 hover:bg-green-700' 
                           : hasProgress
                             ? 'bg-blue-600 hover:bg-blue-700'
-                            : 'bg-slate-700 hover:bg-slate-800'
+                            : 'bg-blue-600 hover:bg-blue-700'
                       }`}>
                         {isCompleted ? 'Review' : hasProgress ? 'Continue' : 'Start Lesson'} <ArrowRight className="w-4 h-4 ml-2" />
                       </Button>
