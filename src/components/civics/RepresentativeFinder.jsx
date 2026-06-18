@@ -15,6 +15,33 @@ export default function RepresentativeFinder({ userEmail, onDataLoaded }) {
   const [profileId, setProfileId] = useState(null);
   const [saved, setSaved] = useState(false);
 
+  const fetchWikipediaPhoto = async (title) => {
+    if (!title) return '';
+    try {
+      const res = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}?redirect=true`);
+      if (!res.ok) return '';
+      const json = await res.json();
+      return json.thumbnail?.source || '';
+    } catch {
+      return '';
+    }
+  };
+
+  const enrichPhotos = async (data) => {
+    const [govPhoto, ...senatorResults] = await Promise.all([
+      fetchWikipediaPhoto(data.governor_wikipedia_title),
+      ...data.senators.map(s => fetchWikipediaPhoto(s.wikipedia_title)),
+    ]);
+    const repPhoto = await fetchWikipediaPhoto(data.representative?.wikipedia_title);
+
+    return {
+      ...data,
+      governor_photo_url: govPhoto,
+      senators: data.senators.map((s, i) => ({ ...s, photo_url: senatorResults[i] })),
+      representative: { ...data.representative, photo_url: repPhoto },
+    };
+  };
+
   // Load saved data on mount
   useEffect(() => {
     if (!userEmail) return;
@@ -34,8 +61,17 @@ export default function RepresentativeFinder({ userEmail, onDataLoaded }) {
             setSaved(true);
           }
           if (profile.representative_data) {
-            setResults(profile.representative_data);
-            if (onDataLoaded) onDataLoaded(profile.representative_data);
+            const saved = profile.representative_data;
+            setResults(saved);
+            if (onDataLoaded) onDataLoaded(saved);
+            // If saved data has wikipedia titles but no photos, fetch them now
+            const needsPhotos = saved.governor_wikipedia_title && !saved.governor_photo_url;
+            if (needsPhotos) {
+              enrichPhotos(saved).then(enriched => {
+                setResults(prev => prev === saved ? enriched : prev);
+                if (onDataLoaded) onDataLoaded(enriched);
+              });
+            }
           }
         }
       } catch (err) {
@@ -121,12 +157,11 @@ STEPS:
 4. Governor: Look up the current Governor from nga.org/governors/
 5. State capital: The official capital city of the state.
 
-PHOTO URLS — THIS IS CRITICAL. For EACH person, find their ACTUAL working official portrait photo URL:
-- Senators: Use Wikipedia page for each senator and extract the URL of their official portrait image (ends in .jpg, .jpeg, or .png). The Wikipedia infobox always has this.
-- Representative: Same approach — Wikipedia page, extract the official portrait URL from the infobox.
-- Governor: Same — Wikipedia page, extract the official portrait URL from the infobox.
-- Only return URLs that start with https:// and end with .jpg, .jpeg, .png, or .webp
-- If you truly cannot find a photo, leave the photo_url as an empty string "" — do NOT make up URLs.
+WIKIPEDIA PAGE TITLES — For EACH person, find the EXACT title of their Wikipedia page:
+- Look up each person on Wikipedia and return the exact page title (e.g. "John_Fetterman", "Bernie_Sanders_(politician)", "Ron_DeSantis")
+- The title is the part after /wiki/ in the URL
+- Use the most specific and correct title — check Wikipedia to confirm
+- Leave empty string "" if you cannot find a Wikipedia page
 
 The US Representative MUST match the specific congressional district for this zip code. Double check all names are spelled correctly.`,
         add_context_from_internet: true,
@@ -139,7 +174,7 @@ The US Representative MUST match the specific congressional district for this zi
             state_capital: { type: "string" },
             governor: { type: "string" },
             governor_party: { type: "string" },
-            governor_photo_url: { type: "string" },
+            governor_wikipedia_title: { type: "string" },
             senators: {
               type: "array",
               items: {
@@ -147,7 +182,7 @@ The US Representative MUST match the specific congressional district for this zi
                 properties: {
                   name: { type: "string" },
                   party: { type: "string" },
-                  photo_url: { type: "string" }
+                  wikipedia_title: { type: "string" }
                 }
               },
               minItems: 2,
@@ -159,7 +194,7 @@ The US Representative MUST match the specific congressional district for this zi
                 name: { type: "string" },
                 party: { type: "string" },
                 district: { type: "string" },
-                photo_url: { type: "string" }
+                wikipedia_title: { type: "string" }
               }
             }
           },
@@ -167,17 +202,21 @@ The US Representative MUST match the specific congressional district for this zi
         }
       });
 
-      // Show results IMMEDIATELY — don't wait for saving
+      // Fetch photos from Wikipedia in parallel with showing results
+      enrichPhotos(data).then(enriched => {
+        setResults(prev => prev === data ? enriched : prev);
+        if (onDataLoaded) onDataLoaded(enriched);
+        saveToProfile(enriched);
+        const changes = detectChanges(previousData, enriched);
+        if (changes.length > 0) {
+          notifyChanges(changes, data.state);
+        }
+      });
+
+      // Show results IMMEDIATELY without photos — photos will fill in when ready
       setResults(data);
       setLoading(false);
       if (onDataLoaded) onDataLoaded(data);
-
-      // Save to profile and notify changes in the background
-      saveToProfile(data);
-      const changes = detectChanges(previousData, data);
-      if (changes.length > 0) {
-        notifyChanges(changes, data.state);
-      }
     } catch (err) {
       setError('Could not find representatives for this zip code. Please try again.');
       console.error(err);
