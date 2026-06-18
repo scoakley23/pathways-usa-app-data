@@ -28,7 +28,7 @@ export default function Lessons() {
       const [allLessons, userProgress] = await Promise.all([
         base44.entities.Lesson.list('order', 100),
         currentUser?.email 
-          ? base44.entities.LessonProgress.list({ query: { user_email: currentUser.email }, limit: 1000 })
+          ? base44.entities.LessonProgress.filter({ user_email: currentUser.email }, null, 1000)
           : Promise.resolve([])
       ]);
       
@@ -43,10 +43,9 @@ export default function Lessons() {
 
   const refreshProgress = async () => {
     if (!user?.email) return;
-    const userProgress = await base44.entities.LessonProgress.list({
-      query: { user_email: user.email },
-      limit: 1000
-    });
+    const userProgress = await base44.entities.LessonProgress.filter(
+      { user_email: user.email }, null, 1000
+    );
     setProgress(userProgress);
   };
 
