@@ -112,7 +112,23 @@ export default function RepresentativeFinder({ userEmail, onDataLoaded }) {
 
     try {
       const data = await base44.integrations.Core.InvokeLLM({
-        prompt: `For US zip code ${zipCode.trim()}, look up the EXACT current elected officials from these official sources ONLY:\n\n1. First determine which state and congressional district this zip code belongs to.\n2. US Senators: Look up the TWO current US Senators for that state from senate.gov/senators/\n3. US Representative: Look up the specific Representative for that congressional district from house.gov/representatives/\n4. Governor: Look up the current Governor from nga.org/governors/\n5. State capital: The official capital city of the state.\n6. Photo URLs: Include official portrait photo URLs for each person from house.gov or senate.gov.\n\nCRITICAL: Use ONLY official .gov and .org sources. The US Representative MUST match the specific congressional district for this zip code. Double check all names.`,
+        prompt: `For US zip code ${zipCode.trim()}, look up the EXACT current elected officials. Use ONLY official .gov, .org, and Wikipedia sources.
+
+STEPS:
+1. Determine which state and congressional district this zip code belongs to.
+2. US Senators: Look up the TWO current US Senators for that state from senate.gov/senators/
+3. US Representative: Look up the specific Representative for that congressional district from house.gov/representatives/
+4. Governor: Look up the current Governor from nga.org/governors/
+5. State capital: The official capital city of the state.
+
+PHOTO URLS — THIS IS CRITICAL. For EACH person, find their ACTUAL working official portrait photo URL:
+- Senators: Use Wikipedia page for each senator and extract the URL of their official portrait image (ends in .jpg, .jpeg, or .png). The Wikipedia infobox always has this.
+- Representative: Same approach — Wikipedia page, extract the official portrait URL from the infobox.
+- Governor: Same — Wikipedia page, extract the official portrait URL from the infobox.
+- Only return URLs that start with https:// and end with .jpg, .jpeg, .png, or .webp
+- If you truly cannot find a photo, leave the photo_url as an empty string "" — do NOT make up URLs.
+
+The US Representative MUST match the specific congressional district for this zip code. Double check all names are spelled correctly.`,
         add_context_from_internet: true,
         model: "gemini_3_flash",
         response_json_schema: {
