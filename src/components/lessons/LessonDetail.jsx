@@ -23,6 +23,8 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
   const [showResult, setShowResult] = useState(false);
   const [score, setScore] = useState(0);
   const [answers, setAnswers] = useState([]);
+  const [flashcardsViewed, setFlashcardsViewed] = useState(false);
+  const [quizCompleted, setQuizCompleted] = useState(false);
 
   useEffect(() => {
     loadData();
@@ -45,7 +47,10 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
 
       setFlashcards(lessonFlashcards);
       setQuizzes(lessonQuizzes);
-      if (progressList.length > 0) setLessonProgress(progressList[0]);
+      if (progressList.length > 0) {
+        setLessonProgress(progressList[0]);
+        setQuizCompleted(progressList[0].quiz_attempts > 0);
+      }
     } catch (err) {
       console.error('Failed to load lesson data:', err);
     } finally {
@@ -132,6 +137,8 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
       }
 
       toast.success(`Quiz completed! Score: ${Math.round(finalScore)}%`);
+      setQuizCompleted(true);
+      setLessonProgress(prev => ({ ...prev, quiz_attempts: (prev?.quiz_attempts || 0) + 1, best_score: Math.max(prev?.best_score || 0, finalScore), last_score: finalScore }));
     } catch (err) {
       console.error('Failed to save progress:', err);
     }
@@ -187,10 +194,17 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Lessons
         </Button>
-        <Button onClick={handleMarkComplete} className="bg-green-600 hover:bg-green-700">
-          <CheckCircle className="w-4 h-4 mr-2" />
-          Mark Complete
-        </Button>
+        {lessonProgress?.completed ? (
+          <div className="flex items-center gap-2 px-4 py-2 bg-green-50 border border-green-200 rounded-lg">
+            <CheckCircle className="w-5 h-5 text-green-600" />
+            <span className="text-green-700 font-medium">Lesson Completed</span>
+          </div>
+        ) : (
+          <div className="flex items-center gap-2 px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg">
+            <div className="w-2 h-2 rounded-full bg-amber-400" />
+            <span className="text-slate-500 text-sm">Complete the flashcards and quiz to finish</span>
+          </div>
+        )}
       </div>
 
       {/* Title */}
@@ -226,9 +240,19 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
       {/* Main Tabs */}
       <Tabs defaultValue="content" className="w-full">
         <TabsList className="grid grid-cols-3 w-full max-w-md">
-          <TabsTrigger value="content">Lesson</TabsTrigger>
-          <TabsTrigger value="flashcards">Flashcards</TabsTrigger>
-          <TabsTrigger value="quiz">Quiz</TabsTrigger>
+          <TabsTrigger value="content" className="flex items-center gap-1.5">
+            Lesson
+          </TabsTrigger>
+          <TabsTrigger value="flashcards" className="flex items-center gap-1.5" onClick={() => setFlashcardsViewed(true)}>
+            Flashcards
+            {flashcardsViewed && <CheckCircle className="w-3 h-3 text-green-500" />}
+          </TabsTrigger>
+          <TabsTrigger value="quiz" className="flex items-center gap-1.5">
+            Quiz
+            {quizCompleted && lessonProgress?.best_score > 0 && (
+              <span className="text-xs text-green-600 font-medium ml-0.5">{lessonProgress.best_score}%</span>
+            )}
+          </TabsTrigger>
         </TabsList>
 
         {/* Content Tab */}
@@ -399,15 +423,27 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
                   ))}
                 </div>
 
-                <div className="flex justify-center gap-3 pt-4">
-                  <Button variant="outline" onClick={startQuiz}>
-                    <RotateCcw className="w-4 h-4 mr-2" />
-                    Retry Quiz
-                  </Button>
-                  <Button onClick={handleMarkComplete} className="bg-green-600 hover:bg-green-700">
-                    <CheckCircle className="w-4 h-4 mr-2" />
-                    Mark Complete
-                  </Button>
+                <div className="space-y-4 pt-4">
+                  {!flashcardsViewed && flashcards.length > 0 && (
+                    <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm text-amber-700 flex items-center gap-2">
+                      <AlertCircle className="w-4 h-4 shrink-0" />
+                      Review the flashcards tab before marking this lesson complete.
+                    </div>
+                  )}
+                  <div className="flex justify-center gap-3">
+                    <Button variant="outline" onClick={startQuiz}>
+                      <RotateCcw className="w-4 h-4 mr-2" />
+                      Retry Quiz
+                    </Button>
+                    <Button 
+                      onClick={handleMarkComplete} 
+                      className="bg-green-600 hover:bg-green-700"
+                      disabled={!flashcardsViewed && flashcards.length > 0}
+                    >
+                      <CheckCircle className="w-4 h-4 mr-2" />
+                      Mark Complete
+                    </Button>
+                  </div>
                 </div>
               </div>
             )}

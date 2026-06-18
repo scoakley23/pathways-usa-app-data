@@ -91,8 +91,7 @@ export default function Lessons() {
           loadUser(); // Refresh progress
         }}
         onComplete={() => {
-          toast.success('Lesson completed!');
-          setSelectedLesson(null);
+          toast.success('Lesson marked complete! Great job!');
           loadUser();
         }}
       />
