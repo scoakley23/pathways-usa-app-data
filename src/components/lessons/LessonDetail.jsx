@@ -194,7 +194,7 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Lessons
         </Button>
-        {lessonProgress?.completed ? (
+        {lessonProgress?.completed && lessonProgress?.quiz_attempts > 0 ? (
           <div className="flex items-center gap-2 px-4 py-2 bg-green-50 border border-green-200 rounded-lg">
             <CheckCircle className="w-5 h-5 text-green-600" />
             <span className="text-green-700 font-medium">Lesson Completed</span>

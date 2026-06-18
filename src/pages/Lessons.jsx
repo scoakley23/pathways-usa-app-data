@@ -154,7 +154,7 @@ export default function Lessons() {
               {topicLessons.map((lesson) => {
                 const lessonProgress = getLessonProgress(lesson.id);
                 const hasProgress = lessonProgress && lessonProgress.best_score > 0;
-                const isCompleted = lessonProgress?.completed;
+                const isCompleted = lessonProgress?.completed && lessonProgress?.quiz_attempts > 0;
                 const needsReview = lessonProgress?.needs_review;
 
                 return (
