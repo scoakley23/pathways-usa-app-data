@@ -200,7 +200,7 @@ export default function Lessons() {
                         <div className="mt-2 space-y-1">
                           <div className="flex items-center justify-between text-xs text-slate-500">
                             <span>{isCompleted ? 'Completed' : 'In Progress'}</span>
-                            <span>{lessonProgress.best_score}%</span>
+                            <span>{Math.round(lessonProgress.best_score)}%</span>
                           </div>
                           <div className="w-full bg-slate-200 rounded-full h-1.5">
                             <div 
