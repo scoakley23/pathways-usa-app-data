@@ -3,7 +3,8 @@ import { base44 } from '@/api/base44Client';
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ArrowLeft, Loader2, Play, CheckCircle, RotateCcw, AlertCircle } from 'lucide-react';
+import { ArrowLeft, Loader2, Play, CheckCircle, RotateCcw, AlertCircle, Eye, EyeOff } from 'lucide-react';
+import { Input } from "@/components/ui/input";
 import ReactMarkdown from 'react-markdown';
 import FlashcardView from '@/components/lessons/FlashcardView';
 import KeyPointsDisplay from '@/components/lessons/KeyPointsDisplay';
@@ -19,12 +20,13 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
   // Quiz state
   const [quizStarted, setQuizStarted] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
-  const [showResult, setShowResult] = useState(false);
+  const [typedAnswer, setTypedAnswer] = useState('');
+  const [showAnswer, setShowAnswer] = useState(false);
   const [score, setScore] = useState(0);
-  const [answers, setAnswers] = useState([]);
+  const [answeredCount, setAnsweredCount] = useState(0);
   const [flashcardsViewed, setFlashcardsViewed] = useState(false);
   const [quizCompleted, setQuizCompleted] = useState(false);
+  const questionVersion = quizzes.length > 0 ? quizzes[0].version : '2008';
 
   useEffect(() => {
     loadData();
@@ -37,16 +39,18 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
       const currentUser = await base44.auth.me();
       setUser(currentUser);
 
-      const [lessonFlashcards, lessonQuizzes, progressList] = await Promise.all([
+      const [lessonFlashcards, civics2025, civics2008, progressList] = await Promise.all([
         base44.entities.LessonFlashcard.filter({ lesson_id: lesson.id }, null, 200),
-        base44.entities.LessonQuiz.filter({ lesson_id: lesson.id }, null, 100),
+        base44.entities.CivicsQuestion.filter({ version: '2025', category: lesson.topic }, null, 100),
+        base44.entities.CivicsQuestion.filter({ version: '2008', category: lesson.topic }, null, 100),
         currentUser?.email ? base44.entities.LessonProgress.filter(
           { user_email: currentUser.email, lesson_id: lesson.id }, null, 1
         ) : Promise.resolve([])
       ]);
 
       setFlashcards(lessonFlashcards);
-      setQuizzes(lessonQuizzes);
+      // Use 2025 questions, fall back to 2008 if none available
+      setQuizzes(civics2025.length > 0 ? civics2025 : civics2008);
       if (progressList.length > 0) {
         setLessonProgress(progressList[0]);
         setQuizCompleted(progressList[0].quiz_attempts > 0);
@@ -61,7 +65,7 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
             quiz_attempts: 0,
             best_score: 0,
             last_score: 0,
-            total_questions: lessonQuizzes.length,
+            total_questions: civics2025.length || civics2008.length,
             last_attempt_date: new Date().toISOString(),
             needs_review: false
           });
@@ -95,37 +99,38 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
   const startQuiz = () => {
     setQuizStarted(true);
     setCurrentQuestion(0);
-    setSelectedAnswer(null);
-    setShowResult(false);
+    setTypedAnswer('');
+    setShowAnswer(false);
     setScore(0);
-    setAnswers([]);
+    setAnsweredCount(0);
   };
 
-  const handleAnswer = (option) => {
-    if (showResult) return;
-    setSelectedAnswer(option);
-    const isCorrect = option === quizzes[currentQuestion].correct_answer;
-    
-    setShowResult(true);
-    const newScore = isCorrect ? score + 1 : score;
-    setScore(newScore);
-    setAnswers([...answers, {
-      question: quizzes[currentQuestion].question,
-      selected: option,
-      correct: quizzes[currentQuestion].correct_answer,
-      isCorrect
-    }]);
+  const checkAnswer = () => {
+    if (!typedAnswer.trim()) return;
+    setShowAnswer(true);
+    const newAnsweredCount = answeredCount + 1;
+    setAnsweredCount(newAnsweredCount);
   };
 
-  const nextQuestion = () => {
+  const advanceQuestion = (newScore) => {
+    const totalAnswered = answeredCount; // answeredCount was already incremented in checkAnswer
     if (currentQuestion + 1 < quizzes.length) {
       setCurrentQuestion(currentQuestion + 1);
-      setSelectedAnswer(null);
-      setShowResult(false);
+      setTypedAnswer('');
+      setShowAnswer(false);
     } else {
-      // Quiz complete
-      finishQuiz(answers.length > 0 ? (score / quizzes.length) * 100 : 0);
+      finishQuiz(totalAnswered > 0 ? (newScore / quizzes.length) * 100 : 0);
     }
+  };
+
+  const markCorrect = () => {
+    const newScore = score + 1;
+    setScore(newScore);
+    advanceQuestion(newScore);
+  };
+
+  const markIncorrect = () => {
+    advanceQuestion(score);
   };
 
   const finishQuiz = async (finalScore) => {
@@ -157,7 +162,7 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
 
       toast.success(`Quiz completed! Score: ${Math.round(finalScore)}%`);
       setQuizCompleted(true);
-      setLessonProgress(prev => ({ ...prev, quiz_attempts: (prev?.quiz_attempts || 0) + 1, best_score: Math.max(prev?.best_score || 0, finalScore), last_score: finalScore }));
+      setLessonProgress(prev => ({ ...prev, completed: true, quiz_attempts: (prev?.quiz_attempts || 0) + 1, best_score: Math.max(prev?.best_score || 0, finalScore), last_score: finalScore }));
     } catch (err) {
       console.error('Failed to save progress:', err);
     }
@@ -269,7 +274,7 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
           <TabsTrigger value="quiz" className="flex items-center gap-1.5">
             Quiz
             {quizCompleted && lessonProgress?.best_score > 0 && (
-              <span className="text-xs text-green-600 font-medium ml-0.5">{lessonProgress.best_score}%</span>
+              <span className="text-xs text-green-600 font-medium ml-0.5">{Math.round(lessonProgress.best_score)}%</span>
             )}
           </TabsTrigger>
         </TabsList>
@@ -301,22 +306,28 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
           <Card className="p-6">
             {quizzes.length === 0 ? (
               <div className="text-center py-8 text-slate-500">
-                No quiz available for this lesson.
+                No USCIS civics questions available for this topic yet.
               </div>
             ) : !quizStarted ? (
               <div className="text-center py-8 space-y-4">
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto">
                   <Play className="w-8 h-8 text-blue-600" />
                 </div>
-                <h3 className="text-xl font-semibold text-slate-900">Lesson Quiz</h3>
-                <p className="text-slate-600">{quizzes.length} questions to test your knowledge</p>
+                <h3 className="text-xl font-semibold text-slate-900">Oral Civics Practice</h3>
+                <p className="text-slate-600 max-w-md mx-auto">
+                  Just like the real USCIS interview — read the question aloud, then type or speak your answer. 
+                  The officer won't give you multiple choice options!
+                </p>
+                <p className="text-sm text-slate-500">
+                  {quizzes.length} questions from the {questionVersion} civics test
+                </p>
                 {lessonProgress && lessonProgress.quiz_attempts > 0 && (
                   <p className="text-sm text-slate-500">
-                    Previous best: {lessonProgress.best_score}% ({lessonProgress.quiz_attempts} attempt{lessonProgress.quiz_attempts > 1 ? 's' : ''})
+                    Previous best: {Math.round(lessonProgress.best_score)}% ({lessonProgress.quiz_attempts} attempt{lessonProgress.quiz_attempts > 1 ? 's' : ''})
                   </p>
                 )}
                 <Button onClick={startQuiz} className="bg-blue-600 hover:bg-blue-700">
-                  Start Quiz
+                  Start Practice
                 </Button>
               </div>
             ) : currentQuestion < quizzes.length ? (
@@ -324,81 +335,93 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
                 {/* Progress */}
                 <div className="flex items-center justify-between text-sm text-slate-500">
                   <span>Question {currentQuestion + 1} of {quizzes.length}</span>
-                  <span>Score: {score}/{currentQuestion + (showResult ? 1 : 0)}</span>
+                  <span>Score: {score}/{answeredCount}</span>
                 </div>
                 <div className="w-full bg-slate-200 rounded-full h-2">
                   <div
                     className="bg-blue-600 h-2 rounded-full transition-all"
-                    style={{ width: `${((currentQuestion + (showResult ? 1 : 0)) / quizzes.length) * 100}%` }}
+                    style={{ width: `${((currentQuestion + (showAnswer ? 1 : 0)) / quizzes.length) * 100}%` }}
                   />
                 </div>
 
                 {/* Question */}
                 <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="px-2 py-0.5 text-xs rounded-full bg-blue-100 text-blue-700 font-medium">
+                      {quizzes[currentQuestion].version} Test
+                    </span>
+                    {quizzes[currentQuestion].difficulty && (
+                      <span className="px-2 py-0.5 text-xs rounded-full bg-slate-100 text-slate-600">
+                        {quizzes[currentQuestion].difficulty}
+                      </span>
+                    )}
+                  </div>
                   <h3 className="text-lg font-semibold text-slate-900 mb-4">
                     {quizzes[currentQuestion].question}
                   </h3>
-                  <div className="space-y-2">
-                    {quizzes[currentQuestion].options.map((option, idx) => {
-                      let btnClass = "w-full text-left p-3 rounded-lg border transition-colors ";
-                      if (!showResult) {
-                        btnClass += "hover:bg-blue-50 hover:border-blue-300 cursor-pointer";
-                      } else if (option === quizzes[currentQuestion].correct_answer) {
-                        btnClass += "bg-green-50 border-green-500 text-green-800";
-                      } else if (option === selectedAnswer && option !== quizzes[currentQuestion].correct_answer) {
-                        btnClass += "bg-red-50 border-red-500 text-red-800";
-                      } else {
-                        btnClass += "opacity-60";
-                      }
-                      return (
-                        <button
-                          key={idx}
-                          onClick={() => handleAnswer(option)}
-                          disabled={showResult}
-                          className={btnClass}
-                        >
-                          {option}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
+                  
+                  {/* Typed answer input */}
+                  <div className="space-y-3">
+                    <Input
+                      placeholder="Type your answer here..."
+                      value={typedAnswer}
+                      onChange={(e) => setTypedAnswer(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' && !showAnswer && typedAnswer.trim()) {
+                          checkAnswer();
+                        }
+                      }}
+                      disabled={showAnswer}
+                      className="text-base"
+                    />
+                    {!showAnswer ? (
+                      <Button 
+                        onClick={checkAnswer} 
+                        disabled={!typedAnswer.trim()}
+                        className="bg-blue-600 hover:bg-blue-700"
+                      >
+                        <Eye className="w-4 h-4 mr-2" />
+                        Check Answer
+                      </Button>
+                    ) : (
+                      <div className="space-y-4">
+                        {/* Correct answer reveal */}
+                        <div className="p-4 rounded-lg bg-blue-50 border border-blue-200">
+                          <div className="flex items-center gap-2 mb-1">
+                            <EyeOff className="w-4 h-4 text-blue-600" />
+                            <span className="text-sm font-semibold text-blue-800">Official Answer:</span>
+                          </div>
+                          <p className="text-blue-900 font-medium">{quizzes[currentQuestion].answer}</p>
+                        </div>
 
-                {/* Result feedback */}
-                {showResult && (
-                  <div className={`p-4 rounded-lg ${
-                    selectedAnswer === quizzes[currentQuestion].correct_answer
-                      ? 'bg-green-50 border border-green-200'
-                      : 'bg-red-50 border border-red-200'
-                  }`}>
-                    <div className="flex items-center gap-2 mb-1">
-                      {selectedAnswer === quizzes[currentQuestion].correct_answer ? (
-                        <CheckCircle className="w-5 h-5 text-green-600" />
-                      ) : (
-                        <AlertCircle className="w-5 h-5 text-red-600" />
-                      )}
-                      <span className={`font-semibold ${
-                        selectedAnswer === quizzes[currentQuestion].correct_answer
-                          ? 'text-green-800' : 'text-red-800'
-                      }`}>
-                        {selectedAnswer === quizzes[currentQuestion].correct_answer ? 'Correct!' : 'Incorrect'}
-                      </span>
-                    </div>
-                    {quizzes[currentQuestion].explanation && (
-                      <p className="text-sm text-slate-700 mt-1">
-                        {quizzes[currentQuestion].explanation}
-                      </p>
+                        {/* User's answer */}
+                        <div className="p-4 rounded-lg bg-slate-50 border border-slate-200">
+                          <p className="text-sm text-slate-500 mb-1">Your answer:</p>
+                          <p className="text-slate-800">{typedAnswer}</p>
+                        </div>
+
+                        {/* Self-evaluation */}
+                        <div className="flex gap-3 justify-center">
+                          <Button 
+                            onClick={markCorrect}
+                            className="bg-green-600 hover:bg-green-700"
+                          >
+                            <CheckCircle className="w-4 h-4 mr-2" />
+                            I got it right
+                          </Button>
+                          <Button 
+                            onClick={markIncorrect}
+                            variant="outline"
+                            className="border-red-300 text-red-700 hover:bg-red-50"
+                          >
+                            <RotateCcw className="w-4 h-4 mr-2" />
+                            I need to practice this
+                          </Button>
+                        </div>
+                      </div>
                     )}
                   </div>
-                )}
-
-                {showResult && (
-                  <div className="flex justify-end">
-                    <Button onClick={nextQuestion} className="bg-blue-600 hover:bg-blue-700">
-                      {currentQuestion + 1 < quizzes.length ? 'Next Question' : 'See Results'}
-                    </Button>
-                  </div>
-                )}
+                </div>
               </div>
             ) : (
               /* Quiz Results */
@@ -409,42 +432,22 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
                 }`}>
                   <span className="text-2xl font-bold">{Math.round((score / quizzes.length) * 100)}%</span>
                 </div>
-                <h3 className="text-xl font-semibold text-slate-900">Quiz Complete!</h3>
+                <h3 className="text-xl font-semibold text-slate-900">Practice Complete!</h3>
                 <p className="text-slate-600">
                   You got {score} out of {quizzes.length} correct
                 </p>
-
-                {/* Answer review */}
-                <div className="text-left space-y-3 mt-6 max-w-lg mx-auto">
-                  {answers.map((answer, idx) => (
-                    <div key={idx} className={`p-3 rounded-lg border ${
-                      answer.isCorrect ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'
-                    }`}>
-                      <div className="flex items-start gap-2">
-                        {answer.isCorrect ? (
-                          <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 shrink-0" />
-                        ) : (
-                          <AlertCircle className="w-4 h-4 text-red-600 mt-0.5 shrink-0" />
-                        )}
-                        <div>
-                          <p className="text-sm font-medium text-slate-900">{answer.question}</p>
-                          <p className="text-xs text-slate-600 mt-1">
-                            Your answer: <span className={answer.isCorrect ? 'text-green-700' : 'text-red-700'}>{answer.selected}</span>
-                          </p>
-                          {!answer.isCorrect && (
-                            <p className="text-xs text-green-700 mt-0.5">
-                              Correct: {answer.correct}
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+                
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 max-w-md mx-auto text-left">
+                  <p className="text-sm text-blue-800">
+                    <strong>Remember:</strong> In the real USCIS interview, an officer will ask you these questions 
+                    verbally. Your answers don't need to be word-for-word — as long as you convey the correct 
+                    meaning, you'll pass!
+                  </p>
                 </div>
 
                 <div className="space-y-4 pt-4">
                   {!flashcardsViewed && flashcards.length > 0 && (
-                    <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm text-amber-700 flex items-center gap-2">
+                    <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm text-amber-700 flex items-center gap-2 max-w-md mx-auto">
                       <AlertCircle className="w-4 h-4 shrink-0" />
                       Review the flashcards tab before marking this lesson complete.
                     </div>
@@ -452,7 +455,7 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
                   <div className="flex justify-center gap-3">
                     <Button variant="outline" onClick={startQuiz}>
                       <RotateCcw className="w-4 h-4 mr-2" />
-                      Retry Quiz
+                      Retry Practice
                     </Button>
                     <Button 
                       onClick={handleMarkComplete} 
