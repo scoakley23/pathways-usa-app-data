@@ -111,18 +111,9 @@ export default function RepresentativeFinder({ userEmail, onDataLoaded }) {
 
     try {
       const data = await base44.integrations.Core.InvokeLLM({
-        prompt: `For US zip code ${zipCode.trim()}, look up the EXACT current elected officials from these official sources ONLY:
-
-1. First determine which state and congressional district this zip code belongs to.
-2. US Senators: Look up the TWO current US Senators for that state from senate.gov/senators/
-3. US Representative: Look up the specific Representative for that congressional district from house.gov/representatives/
-4. Governor: Look up the current Governor from nga.org/governors/
-5. State capital: The official capital city of the state.
-6. Photo URLs: Include official portrait photo URLs for each person. Use the official congressional biography photo URL from house.gov or senate.gov (format: "https://www.house.gov/sites/default/files/styles/congressional-portrait/public/..." or "https://www.senate.gov/general/img/...").
-
-CRITICAL: Use ONLY official .gov and .org sources. Do NOT guess. The US Representative MUST match the specific congressional district for this zip code. Double check all names are spelled correctly.`,
+        prompt: `For US zip code ${zipCode.trim()}, look up the EXACT current elected officials from these official sources ONLY:\n\n1. First determine which state and congressional district this zip code belongs to.\n2. US Senators: Look up the TWO current US Senators for that state from senate.gov/senators/\n3. US Representative: Look up the specific Representative for that congressional district from house.gov/representatives/\n4. Governor: Look up the current Governor from nga.org/governors/\n5. State capital: The official capital city of the state.\n6. Photo URLs: Include official portrait photo URLs for each person from house.gov or senate.gov.\n\nCRITICAL: Use ONLY official .gov and .org sources. The US Representative MUST match the specific congressional district for this zip code. Double check all names.`,
         add_context_from_internet: true,
-        model: "gemini_3_1_pro",
+        model: "gemini_3_flash",
         response_json_schema: {
           type: "object",
           properties: {
@@ -158,21 +149,21 @@ CRITICAL: Use ONLY official .gov and .org sources. Do NOT guess. The US Represen
           required: ["state", "state_capital", "governor", "senators", "representative"]
         }
       });
+
+      // Show results IMMEDIATELY — don't wait for saving
       setResults(data);
+      setLoading(false);
       if (onDataLoaded) onDataLoaded(data);
 
-      // Detect and notify changes
+      // Save to profile and notify changes in the background
+      saveToProfile(data);
       const changes = detectChanges(previousData, data);
       if (changes.length > 0) {
-        await notifyChanges(changes, data.state);
+        notifyChanges(changes, data.state);
       }
-
-      // Save to profile
-      await saveToProfile(data);
     } catch (err) {
       setError('Could not find representatives for this zip code. Please try again.');
       console.error(err);
-    } finally {
       setLoading(false);
     }
   };
@@ -234,18 +225,30 @@ CRITICAL: Use ONLY official .gov and .org sources. Do NOT guess. The US Represen
             {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Search'}
           </Button>
         </div>
-        {saving && (
+        {loading && (
+          <p className="text-blue-600 text-sm mt-3 text-center flex items-center justify-center gap-2">
+            <Loader2 className="w-4 h-4 animate-spin" /> Searching house.gov, senate.gov, and nga.org...
+          </p>
+        )}
+        {saving && !loading && (
           <p className="text-blue-600 text-sm mt-2 text-center flex items-center justify-center gap-1">
             <Loader2 className="w-3 h-3 animate-spin" /> Saving to your profile...
           </p>
         )}
-        {saved && (
+        {saved && !loading && !saving && (
           <p className="text-green-600 text-sm mt-2 text-center flex items-center justify-center gap-1">
             <CheckCircle2 className="w-3 h-3" /> Saved to your profile!
           </p>
         )}
         {error && <p className="text-red-500 text-sm mt-2 text-center">{error}</p>}
       </div>
+
+      {loading && !results && (
+        <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto mt-4">
+          <div className="rounded-xl bg-slate-100 animate-pulse h-48" />
+          <div className="rounded-xl bg-slate-100 animate-pulse h-48" />
+        </div>
+      )}
 
       {results && (
         <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
