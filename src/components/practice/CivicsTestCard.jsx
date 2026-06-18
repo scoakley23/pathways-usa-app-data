@@ -159,28 +159,37 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
                 className="w-full space-y-8"
               >
                 <div className="bg-slate-50 rounded-xl p-8 border border-slate-200 w-full">
-                  <p className="text-sm text-slate-500 uppercase tracking-wider font-bold mb-2">Answer</p>
-                  {personalizedAnswer && (
-                    <div className="mb-3 bg-indigo-50 border border-indigo-200 rounded-lg p-3">
-                      <p className="text-xs text-indigo-600 uppercase tracking-wider font-bold mb-1">Your Representative</p>
-                      <p className="text-lg font-semibold text-indigo-800">{personalizedAnswer}</p>
-                    </div>
-                  )}
-                  <p className="text-xl font-medium text-slate-800 leading-relaxed">
-                    {question.answer}
-                  </p>
-                  
-                  {/* Translation Display for Answer */}
-                   {selectedLanguage && selectedLanguage !== 'none' && !isTranslating && translation.includes('Answer:') && (
-                      <p className="text-lg text-indigo-700 font-medium mt-2 animate-in fade-in">
-                          {translation.split('Answer:')[1].trim()}
+                  {personalizedAnswer ? (
+                    <>
+                      <p className="text-sm text-green-600 uppercase tracking-wider font-bold mb-2">Correct Answer for You</p>
+                      <div className="mb-4 bg-green-50 border border-green-200 rounded-lg p-4">
+                        <p className="text-xl font-bold text-green-800">{personalizedAnswer}</p>
+                      </div>
+                      <div className="border-t border-slate-200 pt-3 mt-3">
+                        <p className="text-xs text-slate-400 uppercase tracking-wider mb-1">Official Sample Answer</p>
+                        <p className="text-base text-slate-500">{question.answer}</p>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <p className="text-sm text-slate-500 uppercase tracking-wider font-bold mb-2">Answer</p>
+                      <p className="text-xl font-medium text-slate-800 leading-relaxed">
+                        {question.answer}
                       </p>
-                   )}
+                    </>
+                  )}
+
+                   {/* Translation Display for Answer */}
+                    {selectedLanguage && selectedLanguage !== 'none' && !isTranslating && translation.includes('Answer:') && (
+                       <p className="text-lg text-indigo-700 font-medium mt-2 animate-in fade-in">
+                           {translation.split('Answer:')[1].trim()}
+                       </p>
+                    )}
 
                   <Button
                     variant="ghost"
                     size="sm"
-                    onClick={() => speak(question.answer)}
+                    onClick={() => speak(personalizedAnswer || question.answer)}
                     className="mt-4 text-slate-500 hover:text-indigo-600"
                   >
                     <Volume2 className="w-4 h-4 mr-1" /> Listen to answer
@@ -188,7 +197,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
 
                     <AIExplanation 
                     question={question.question} 
-                    answer={question.answer} 
+                    answer={personalizedAnswer || question.answer} 
                     />
                     </div>
 
