@@ -17,8 +17,11 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { CheckCircle, Clock, AlertCircle, Loader2 } from 'lucide-react';
 import { format } from 'date-fns';
+import { toast } from "sonner";
 
 export default function StudentProgressReport({ isOpen, onClose, studentEmail }) {
   const [progress, setProgress] = useState([]);
