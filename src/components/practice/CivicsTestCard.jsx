@@ -8,7 +8,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { base44 } from '@/api/base44Client';
 
-export default function CivicsTestCard({ question, onComplete, onNext }) {
+import { getPersonalizedAnswer } from '@/components/civics/RepresentativeFinder';
+
+export default function CivicsTestCard({ question, onComplete, onNext, representativeData }) {
   const [isRevealed, setIsRevealed] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState('');
@@ -67,6 +69,8 @@ export default function CivicsTestCard({ question, onComplete, onNext }) {
       setIsTranslating(false);
     }
   };
+
+  const personalizedAnswer = getPersonalizedAnswer(question.question, representativeData);
 
   const speak = (text) => {
     speakText(text, 'en', {
@@ -156,6 +160,12 @@ export default function CivicsTestCard({ question, onComplete, onNext }) {
               >
                 <div className="bg-slate-50 rounded-xl p-8 border border-slate-200 w-full">
                   <p className="text-sm text-slate-500 uppercase tracking-wider font-bold mb-2">Answer</p>
+                  {personalizedAnswer && (
+                    <div className="mb-3 bg-indigo-50 border border-indigo-200 rounded-lg p-3">
+                      <p className="text-xs text-indigo-600 uppercase tracking-wider font-bold mb-1">Your Representative</p>
+                      <p className="text-lg font-semibold text-indigo-800">{personalizedAnswer}</p>
+                    </div>
+                  )}
                   <p className="text-xl font-medium text-slate-800 leading-relaxed">
                     {question.answer}
                   </p>

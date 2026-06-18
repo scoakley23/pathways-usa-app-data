@@ -1,15 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, Loader2, Building2, Users, User, Landmark } from 'lucide-react';
+import { MapPin, Loader2, Building2, Users, User, Landmark, CheckCircle2 } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 
-export default function RepresentativeFinder() {
+export default function RepresentativeFinder({ userEmail, onDataLoaded }) {
   const [zipCode, setZipCode] = useState('');
   const [loading, setLoading] = useState(false);
+  const [saving, setSaving] = useState(false);
   const [results, setResults] = useState(null);
   const [error, setError] = useState('');
+  const [profileId, setProfileId] = useState(null);
+  const [saved, setSaved] = useState(false);
+
+  // Load saved data on mount
+  useEffect(() => {
+    if (!userEmail) return;
+    const loadProfile = async () => {
+      try {
+        const normalizedEmail = userEmail.toLowerCase().trim();
+        const profiles = await base44.entities.PublicProfile.list({
+          query: { user_email: normalizedEmail },
+          sort: { created_date: -1 },
+          limit: 1
+        });
+        if (profiles.length > 0) {
+          const profile = profiles[0];
+          setProfileId(profile.id);
+          if (profile.zip_code) {
+            setZipCode(profile.zip_code);
+            setSaved(true);
+          }
+          if (profile.representative_data) {
+            setResults(profile.representative_data);
+            if (onDataLoaded) onDataLoaded(profile.representative_data);
+          }
+        }
+      } catch (err) {
+        console.error("Error loading profile", err);
+      }
+    };
+    loadProfile();
+  }, [userEmail]);
 
   const handleSearch = async () => {
     if (!zipCode.trim() || zipCode.trim().length < 5) {
@@ -19,6 +52,7 @@ export default function RepresentativeFinder() {
     setError('');
     setLoading(true);
     setResults(null);
+    setSaved(false);
 
     try {
       const data = await base44.integrations.Core.InvokeLLM({
@@ -33,11 +67,11 @@ Return the data in the specified JSON format. Use current, up-to-date informatio
         response_json_schema: {
           type: "object",
           properties: {
-            state: { type: "string", description: "Full state name" },
-            state_abbreviation: { type: "string", description: "Two-letter state abbreviation" },
-            state_capital: { type: "string", description: "State capital city" },
-            governor: { type: "string", description: "Name of the governor" },
-            governor_party: { type: "string", description: "Political party of the governor" },
+            state: { type: "string" },
+            state_abbreviation: { type: "string" },
+            state_capital: { type: "string" },
+            governor: { type: "string" },
+            governor_party: { type: "string" },
             senators: {
               type: "array",
               items: {
@@ -63,12 +97,62 @@ Return the data in the specified JSON format. Use current, up-to-date informatio
         }
       });
       setResults(data);
+      if (onDataLoaded) onDataLoaded(data);
+
+      // Save to profile
+      await saveToProfile(data);
     } catch (err) {
       setError('Could not find representatives for this zip code. Please try again.');
       console.error(err);
     } finally {
       setLoading(false);
     }
+  };
+
+  const saveToProfile = async (data) => {
+    if (!userEmail) return;
+    setSaving(true);
+    try {
+      const normalizedEmail = userEmail.toLowerCase().trim();
+      const profiles = await base44.entities.PublicProfile.list({
+        query: { user_email: normalizedEmail },
+        sort: { created_date: -1 },
+        limit: 1
+      });
+
+      if (profiles.length > 0) {
+        const pid = profiles[0].id;
+        await base44.entities.PublicProfile.update(pid, {
+          zip_code: zipCode.trim(),
+          representative_data: data
+        });
+        setProfileId(pid);
+      }
+      setSaved(true);
+    } catch (err) {
+      console.error("Error saving to profile", err);
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  // Personalize civics question answers
+  const getPersonalizedAnswer = (question) => {
+    if (!results) return null;
+    const q = question.toLowerCase();
+    if (q.includes("senator") || q.includes("senators")) {
+      return results.senators.map(s => s.name).join(" and ");
+    }
+    if (q.includes("representative") || q.includes("house of representatives")) {
+      return `${results.representative.name} (District ${results.representative.district})`;
+    }
+    if (q.includes("governor")) {
+      return results.governor;
+    }
+    if (q.includes("capital")) {
+      return results.state_capital;
+    }
+    return null;
   };
 
   return (
@@ -79,7 +163,7 @@ Return the data in the specified JSON format. Use current, up-to-date informatio
         </div>
         <h2 className="text-3xl font-bold text-slate-900">Who Represents Me?</h2>
         <p className="text-slate-500 mt-2 max-w-lg mx-auto">
-          Enter your zip code to find your Senators, Representative, Governor, and State Capital — key facts for the civics test.
+          Enter your zip code to find your Senators, Representative, Governor, and State Capital — your answers will be used during civics practice.
         </p>
       </div>
 
@@ -88,7 +172,7 @@ Return the data in the specified JSON format. Use current, up-to-date informatio
           <Input
             placeholder="Enter your zip code..."
             value={zipCode}
-            onChange={(e) => setZipCode(e.target.value)}
+            onChange={(e) => { setZipCode(e.target.value); setSaved(false); }}
             onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
             className="h-12 text-lg"
             maxLength={10}
@@ -101,12 +185,21 @@ Return the data in the specified JSON format. Use current, up-to-date informatio
             {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Search'}
           </Button>
         </div>
+        {saving && (
+          <p className="text-blue-600 text-sm mt-2 text-center flex items-center justify-center gap-1">
+            <Loader2 className="w-3 h-3 animate-spin" /> Saving to your profile...
+          </p>
+        )}
+        {saved && (
+          <p className="text-green-600 text-sm mt-2 text-center flex items-center justify-center gap-1">
+            <CheckCircle2 className="w-3 h-3" /> Saved to your profile!
+          </p>
+        )}
         {error && <p className="text-red-500 text-sm mt-2 text-center">{error}</p>}
       </div>
 
       {results && (
         <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-          {/* State Info Card */}
           <Card className="border-0 shadow-lg bg-gradient-to-br from-blue-50 to-white">
             <CardContent className="p-6 space-y-4">
               <div className="flex items-center gap-3">
@@ -135,7 +228,6 @@ Return the data in the specified JSON format. Use current, up-to-date informatio
             </CardContent>
           </Card>
 
-          {/* Senators & Representative Card */}
           <Card className="border-0 shadow-lg bg-gradient-to-br from-red-50 to-white">
             <CardContent className="p-6 space-y-4">
               <div className="flex items-center gap-3">
@@ -171,4 +263,22 @@ Return the data in the specified JSON format. Use current, up-to-date informatio
       )}
     </section>
   );
+}
+
+export function getPersonalizedAnswer(question, representativeData) {
+  if (!representativeData || !question) return null;
+  const q = question.toLowerCase();
+  if (q.includes("senator") || q.includes("senators")) {
+    return representativeData.senators.map(s => s.name).join(" and ");
+  }
+  if (q.includes("representative") || q.includes("house of representatives")) {
+    return `${representativeData.representative.name} (District ${representativeData.representative.district})`;
+  }
+  if (q.includes("governor")) {
+    return representativeData.governor;
+  }
+  if (q.includes("capital")) {
+    return representativeData.state_capital;
+  }
+  return null;
 }

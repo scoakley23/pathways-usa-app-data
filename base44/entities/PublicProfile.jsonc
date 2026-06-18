@@ -28,6 +28,14 @@
       ],
       "default": "student",
       "description": "User's selected role in the app"
+    },
+    "zip_code": {
+      "type": "string",
+      "description": "User's zip code for representative lookup"
+    },
+    "representative_data": {
+      "type": "object",
+      "description": "Cached representative lookup results"
     }
   },
   "required": [

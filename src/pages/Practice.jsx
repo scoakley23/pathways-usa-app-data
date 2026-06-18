@@ -25,11 +25,29 @@ export default function Practice() {
   const [sessionComplete, setSessionComplete] = useState(false);
   const [assignments, setAssignments] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
+  const [representativeData, setRepresentativeData] = useState(null);
+
+  const loadRepresentativeData = async (email) => {
+    try {
+      const normalizedEmail = email.toLowerCase().trim();
+      const profiles = await base44.entities.PublicProfile.list({
+        query: { user_email: normalizedEmail },
+        sort: { created_date: -1 },
+        limit: 1
+      });
+      if (profiles.length > 0 && profiles[0].representative_data) {
+        setRepresentativeData(profiles[0].representative_data);
+      }
+    } catch (e) {
+      console.error("Error loading representative data", e);
+    }
+  };
 
   const loadUserAndAssignments = async () => {
       const user = await base44.auth.me().catch(() => null);
       if (user) {
         setCurrentUser(user);
+        loadRepresentativeData(user.email);
         const allAssignments = await base44.entities.Assignment.list();
         const myPending = allAssignments.filter(a => a.student_email === user.email && a.status === 'pending');
         setAssignments(myPending);
@@ -635,6 +653,7 @@ export default function Practice() {
                 question={content[currentIndex]}
                 onComplete={handleComplete}
                 onNext={handleNext}
+                representativeData={representativeData}
             />
          ) : mode === 'vocabulary' ? (
             vocabSubMode === 'flashcards' ? (

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Button } from "@/components/ui/button";
@@ -7,7 +7,9 @@ import { ArrowRight, Mic, PenTool, BookOpen, CheckCircle, GraduationCap, Noteboo
 import StudyBuddy from '@/components/ai/StudyBuddy';
 import RepresentativeFinder from '@/components/civics/RepresentativeFinder';
 
-export default function Home() {
+export default function Home({ cachedUser }) {
+  const [repData, setRepData] = React.useState(null);
+
   return (
     <div className="flex flex-col min-h-[calc(100vh-4rem)]">
       {/* Hero Section */}
@@ -88,7 +90,10 @@ export default function Home() {
             </Card>
         </Link>
       </section>
-      <RepresentativeFinder />
+      <RepresentativeFinder
+        userEmail={cachedUser?.email}
+        onDataLoaded={setRepData}
+      />
       <StudyBuddy />
     </div>
   );
