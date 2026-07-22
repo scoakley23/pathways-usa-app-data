@@ -12,8 +12,8 @@ export default function Home({ cachedUser }) {
       {/* Hero Section */}
       <section className="flex-1 flex flex-col justify-center items-center text-center py-20 px-4 space-y-8 rounded-3xl relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #1A3A6D 0%, #2C5BA0 60%, #5C8BD3 100%)' }}>
         <img
-          src="https://media.base44.com/images/public/6931bd654d327c7b2e36bfed/499e2a18c_generated_image.png"
-          alt="Your pathway to citizenship"
+          src="https://media.base44.com/images/public/6931bd654d327c7b2e36bfed/c6aa490d9_e696d8ff-522b-4687-a00d-ce15992779db.png"
+          alt="Your learning journey"
           className="w-72 h-72 md:w-80 md:h-80 object-contain drop-shadow-2xl"
         />
         <div className="space-y-4 max-w-3xl">
