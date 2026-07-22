@@ -75,27 +75,19 @@ export default function PracticePathProgress({ userEmail }) {
         {STEPS.map((step, idx) => {
           const data = stats[step.key] || { mastered: 0, practiced: 0 };
           const isActive = data.practiced > 0;
-          const isComplete = data.mastered > 0;
           const { Icon } = step;
 
           return (
             <React.Fragment key={step.key}>
               <div className="flex flex-col items-center text-center flex-1 min-w-0">
                 <div
-                  className={`relative w-16 h-16 rounded-full flex items-center justify-center mb-3 ring-2 transition-all ${
+                  className={`w-16 h-16 rounded-full flex items-center justify-center mb-3 ring-2 transition-all ${
                     isActive
                       ? `${step.activeBg} ${step.activeText} ${step.activeRing}`
                       : 'bg-slate-50 text-slate-300 ring-transparent'
                   }`}
                 >
                   <Icon className="w-7 h-7" />
-                  {isComplete && (
-                    <span className="absolute -top-1 -right-1 w-5 h-5 bg-green-500 rounded-full flex items-center justify-center ring-2 ring-white">
-                      <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </span>
-                  )}
                 </div>
                 <p className="font-semibold text-sm text-slate-800">{step.label}</p>
                 <p className="text-xs text-slate-400 mb-1">{step.desc}</p>
