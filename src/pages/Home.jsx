@@ -14,7 +14,7 @@ export default function Home({ cachedUser }) {
         <img
           src="https://media.base44.com/images/public/6931bd654d327c7b2e36bfed/c6aa490d9_e696d8ff-522b-4687-a00d-ce15992779db.png"
           alt="Your learning journey"
-          className="w-72 h-72 md:w-80 md:h-80 object-contain drop-shadow-2xl"
+          className="w-[22rem] h-[22rem] md:w-[30rem] md:h-[30rem] object-contain drop-shadow-2xl"
         />
         <div className="space-y-4 max-w-3xl">
           <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight text-white">
