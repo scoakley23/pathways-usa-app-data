@@ -94,9 +94,7 @@ export default function Practice() {
             { text: "When is Independence Day?", difficulty: "easy" },
             { text: "What was the first capital of the United States?", difficulty: "hard" }
          ];
-         for (const s of sentences) {
-            await base44.entities.ReadingSentence.create(s);
-         }
+         await base44.entities.ReadingSentence.bulkCreate(sentences);
       }
     };
     seedData();
