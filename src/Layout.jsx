@@ -160,13 +160,12 @@ export default function Layout({ children }) {
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <img 
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6931bd654d327c7b2e36bfed/3b23d0d6f_Screenshot2026-01-25at112021AM.png" 
-              alt="Citizenship Learning Hub Logo"
-              className="w-12 h-12 rounded-lg shadow-md transform hover:scale-105 transition-transform object-cover"
+              src="https://media.base44.com/images/public/6931bd654d327c7b2e36bfed/5735feb70_generated_image.png" 
+              alt="Pathways Logo"
+              className="w-10 h-10 rounded-lg shadow-md transform hover:scale-105 transition-transform object-cover"
             />
-            <span className="font-bold text-xl tracking-tight text-slate-900 leading-tight">
-              Citizenship<br/>
-              <span className="text-blue-700 text-sm uppercase tracking-wider">Learning Hub</span>
+            <span className="font-bold text-xl tracking-tight text-slate-900">
+              Pathways
             </span>
           </div>
 

@@ -13,10 +13,10 @@ export default function Home({ cachedUser }) {
       <section className="flex-1 flex flex-col justify-center items-center text-center py-20 px-4 space-y-8 bg-gradient-to-b from-blue-50 to-white rounded-3xl my-4">
         <div className="space-y-4 max-w-3xl">
           <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight text-slate-900">
-            Pathway to your <span className="text-blue-700">Future!</span>
+            Your Pathway to <span className="text-blue-700">Citizenship</span>
           </h1>
           <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-            Your personal learning hub for the US Citizenship Test. Practice dictation, vocabulary, and civics questions.
+            Prepare for the US Citizenship Test with interactive lessons, practice dictation, vocabulary, and civics questions.
           </p>
         </div>
         
