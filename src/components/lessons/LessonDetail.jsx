@@ -9,6 +9,8 @@ import ReactMarkdown from 'react-markdown';
 import FlashcardView from '@/components/lessons/FlashcardView';
 import KeyPointsDisplay from '@/components/lessons/KeyPointsDisplay';
 import { toast } from "sonner";
+import { useLessonTranslation } from '@/hooks/useLessonTranslation';
+import LanguageSelector from '@/components/lessons/LanguageSelector';
 
 export default function LessonDetail({ lesson, onBack, onComplete }) {
   const [user, setUser] = useState(null);
@@ -26,7 +28,17 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
   const [answeredCount, setAnsweredCount] = useState(0);
   const [flashcardsViewed, setFlashcardsViewed] = useState(false);
   const [quizCompleted, setQuizCompleted] = useState(false);
-  const questionVersion = quizzes.length > 0 ? quizzes[0].version : '2008';
+
+  const {
+    language,
+    setLanguage,
+    translating,
+    displayLesson,
+    displayFlashcards,
+    displayQuizzes,
+  } = useLessonTranslation({ lesson, flashcards, quizzes });
+
+  const questionVersion = displayQuizzes.length > 0 ? quizzes[0].version : '2008';
 
   useEffect(() => {
     loadData();
@@ -114,12 +126,12 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
 
   const advanceQuestion = (newScore) => {
     const totalAnswered = answeredCount; // answeredCount was already incremented in checkAnswer
-    if (currentQuestion + 1 < quizzes.length) {
+    if (currentQuestion + 1 < displayQuizzes.length) {
       setCurrentQuestion(currentQuestion + 1);
       setTypedAnswer('');
       setShowAnswer(false);
     } else {
-      finishQuiz(totalAnswered > 0 ? (newScore / quizzes.length) * 100 : 0);
+      finishQuiz(totalAnswered > 0 ? (newScore / displayQuizzes.length) * 100 : 0);
     }
   };
 
@@ -149,7 +161,7 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
         quiz_attempts: (lessonProgress?.quiz_attempts || 0) + 1,
         best_score: Math.max(lessonProgress?.best_score || 0, finalScore),
         last_score: finalScore,
-        total_questions: quizzes.length,
+        total_questions: displayQuizzes.length,
         last_attempt_date: new Date().toISOString(),
         needs_review: finalScore < 60
       };
@@ -184,7 +196,7 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
         quiz_attempts: lessonProgress?.quiz_attempts || 0,
         best_score: lessonProgress?.best_score || 0,
         last_score: lessonProgress?.last_score || 0,
-        total_questions: quizzes.length,
+        total_questions: displayQuizzes.length,
         last_attempt_date: new Date().toISOString(),
         needs_review: lessonProgress?.needs_review || false
       };
@@ -218,24 +230,36 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Lessons
         </Button>
-        {lessonProgress?.completed && lessonProgress?.quiz_attempts > 0 ? (
-          <div className="flex items-center gap-2 px-4 py-2 bg-green-50 border border-green-200 rounded-lg">
-            <CheckCircle className="w-5 h-5 text-green-600" />
-            <span className="text-green-700 font-medium">Lesson Completed</span>
-          </div>
-        ) : (
-          <div className="flex items-center gap-2 px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg">
-            <div className="w-2 h-2 rounded-full bg-amber-400" />
-            <span className="text-slate-500 text-sm">Complete the flashcards and quiz to finish</span>
-          </div>
-        )}
+        <div className="flex items-center gap-3">
+          <LanguageSelector
+            language={language}
+            onLanguageChange={setLanguage}
+            translating={translating}
+          />
+          {translating ? (
+            <div className="flex items-center gap-2 px-4 py-2 bg-blue-50 border border-blue-200 rounded-lg">
+              <Loader2 className="w-4 h-4 animate-spin text-blue-600" />
+              <span className="text-blue-700 text-sm">Translating...</span>
+            </div>
+          ) : lessonProgress?.completed && lessonProgress?.quiz_attempts > 0 ? (
+            <div className="flex items-center gap-2 px-4 py-2 bg-green-50 border border-green-200 rounded-lg">
+              <CheckCircle className="w-5 h-5 text-green-600" />
+              <span className="text-green-700 font-medium">Lesson Completed</span>
+            </div>
+          ) : (
+            <div className="flex items-center gap-2 px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg">
+              <div className="w-2 h-2 rounded-full bg-amber-400" />
+              <span className="text-slate-500 text-sm">Complete the flashcards and quiz to finish</span>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Title */}
       <div>
-        <h1 className="text-3xl font-bold text-slate-900">{lesson.title}</h1>
-        {lesson.description && (
-          <p className="text-slate-600 mt-2">{lesson.description}</p>
+        <h1 className="text-3xl font-bold text-slate-900">{displayLesson.title}</h1>
+        {displayLesson.description && (
+          <p className="text-slate-600 mt-2">{displayLesson.description}</p>
         )}
       </div>
 
@@ -281,14 +305,14 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
 
         {/* Content Tab */}
         <TabsContent value="content" className="space-y-6 mt-4">
-          {lesson.key_points && lesson.key_points.length > 0 && (
-            <KeyPointsDisplay keyPoints={lesson.key_points} />
+          {displayLesson.key_points && displayLesson.key_points.length > 0 && (
+            <KeyPointsDisplay keyPoints={displayLesson.key_points} />
           )}
 
-          {lesson.content && (
+          {displayLesson.content && (
             <Card className="p-6">
               <div className="prose prose-slate max-w-none">
-                <ReactMarkdown>{lesson.content}</ReactMarkdown>
+                <ReactMarkdown>{displayLesson.content}</ReactMarkdown>
               </div>
             </Card>
           )}
@@ -297,14 +321,14 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
         {/* Flashcards Tab */}
         <TabsContent value="flashcards" className="mt-4">
           <Card className="p-6">
-            <FlashcardView flashcards={flashcards} />
+            <FlashcardView flashcards={displayFlashcards} />
           </Card>
         </TabsContent>
 
         {/* Quiz Tab */}
         <TabsContent value="quiz" className="mt-4">
           <Card className="p-6">
-            {quizzes.length === 0 ? (
+            {displayQuizzes.length === 0 ? (
               <div className="text-center py-8 text-slate-500">
                 No USCIS civics questions available for this topic yet.
               </div>
@@ -319,7 +343,7 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
                   The officer won't give you multiple choice options!
                 </p>
                 <p className="text-sm text-slate-500">
-                  {quizzes.length} questions from the {questionVersion} civics test
+                  {displayQuizzes.length} questions from the {questionVersion} civics test
                 </p>
                 {lessonProgress && lessonProgress.quiz_attempts > 0 && (
                   <p className="text-sm text-slate-500">
@@ -330,17 +354,17 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
                   Start Practice
                 </Button>
               </div>
-            ) : currentQuestion < quizzes.length ? (
+            ) : currentQuestion < displayQuizzes.length ? (
               <div className="space-y-6">
                 {/* Progress */}
                 <div className="flex items-center justify-between text-sm text-slate-500">
-                  <span>Question {currentQuestion + 1} of {quizzes.length}</span>
+                  <span>Question {currentQuestion + 1} of {displayQuizzes.length}</span>
                   <span>Score: {score}/{answeredCount}</span>
                 </div>
                 <div className="w-full bg-slate-200 rounded-full h-2">
                   <div
                     className="bg-blue-600 h-2 rounded-full transition-all"
-                    style={{ width: `${((currentQuestion + (showAnswer ? 1 : 0)) / quizzes.length) * 100}%` }}
+                    style={{ width: `${((currentQuestion + (showAnswer ? 1 : 0)) / displayQuizzes.length) * 100}%` }}
                   />
                 </div>
 
@@ -348,16 +372,16 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
                 <div>
                   <div className="flex items-center gap-2 mb-2">
                     <span className="px-2 py-0.5 text-xs rounded-full bg-blue-100 text-blue-700 font-medium">
-                      {quizzes[currentQuestion].version} Test
+                      {displayQuizzes[currentQuestion].version} Test
                     </span>
-                    {quizzes[currentQuestion].difficulty && (
+                    {displayQuizzes[currentQuestion].difficulty && (
                       <span className="px-2 py-0.5 text-xs rounded-full bg-slate-100 text-slate-600">
-                        {quizzes[currentQuestion].difficulty}
+                        {displayQuizzes[currentQuestion].difficulty}
                       </span>
                     )}
                   </div>
                   <h3 className="text-lg font-semibold text-slate-900 mb-4">
-                    {quizzes[currentQuestion].question}
+                    {displayQuizzes[currentQuestion].question}
                   </h3>
                   
                   {/* Typed answer input */}
@@ -391,7 +415,7 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
                             <EyeOff className="w-4 h-4 text-blue-600" />
                             <span className="text-sm font-semibold text-blue-800">Official Answer:</span>
                           </div>
-                          <p className="text-blue-900 font-medium">{quizzes[currentQuestion].answer}</p>
+                          <p className="text-blue-900 font-medium">{displayQuizzes[currentQuestion].answer}</p>
                         </div>
 
                         {/* User's answer */}
@@ -427,14 +451,14 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
               /* Quiz Results */
               <div className="text-center py-8 space-y-4">
                 <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto ${
-                  (score / quizzes.length) * 100 >= 80 ? 'bg-green-100' :
-                  (score / quizzes.length) * 100 >= 60 ? 'bg-yellow-100' : 'bg-red-100'
+                  (score / displayQuizzes.length) * 100 >= 80 ? 'bg-green-100' :
+                  (score / displayQuizzes.length) * 100 >= 60 ? 'bg-yellow-100' : 'bg-red-100'
                 }`}>
-                  <span className="text-2xl font-bold">{Math.round((score / quizzes.length) * 100)}%</span>
+                  <span className="text-2xl font-bold">{Math.round((score / displayQuizzes.length) * 100)}%</span>
                 </div>
                 <h3 className="text-xl font-semibold text-slate-900">Practice Complete!</h3>
                 <p className="text-slate-600">
-                  You got {score} out of {quizzes.length} correct
+                  You got {score} out of {displayQuizzes.length} correct
                 </p>
                 
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 max-w-md mx-auto text-left">
@@ -446,7 +470,7 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
                 </div>
 
                 <div className="space-y-4 pt-4">
-                  {!flashcardsViewed && flashcards.length > 0 && (
+                  {!flashcardsViewed && displayFlashcards.length > 0 && (
                     <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm text-amber-700 flex items-center gap-2 max-w-md mx-auto">
                       <AlertCircle className="w-4 h-4 shrink-0" />
                       Review the flashcards tab before marking this lesson complete.
@@ -460,7 +484,7 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
                     <Button 
                       onClick={handleMarkComplete} 
                       className="bg-green-600 hover:bg-green-700"
-                      disabled={!flashcardsViewed && flashcards.length > 0}
+                      disabled={!flashcardsViewed && displayFlashcards.length > 0}
                     >
                       <CheckCircle className="w-4 h-4 mr-2" />
                       Mark Complete
