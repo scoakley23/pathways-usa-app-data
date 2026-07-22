@@ -84,17 +84,20 @@ export default function Progress() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <Card className="bg-blue-50 border-blue-100">
-          <CardContent className="p-6 flex items-center gap-4">
-            <div className="w-12 h-12 bg-blue-200 text-blue-700 rounded-full flex items-center justify-center">
-              <Clock className="w-6 h-6" />
-            </div>
-            <div>
-              <p className="text-sm text-slate-500 font-medium">Total Practiced</p>
-              <p className="text-3xl font-bold text-slate-900">{stats.total}</p>
-            </div>
-          </CardContent>
-        </Card>
+        <Link to={createPageUrl('StudyHistory')} className="block">
+          <Card className="bg-blue-50 border-blue-100 hover:shadow-md hover:border-blue-300 transition-all cursor-pointer group">
+            <CardContent className="p-6 flex items-center gap-4">
+              <div className="w-12 h-12 bg-blue-200 text-blue-700 rounded-full flex items-center justify-center">
+                <Clock className="w-6 h-6" />
+              </div>
+              <div className="flex-1">
+                <p className="text-sm text-slate-500 font-medium">Total Practiced</p>
+                <p className="text-3xl font-bold text-slate-900">{stats.total}</p>
+              </div>
+              <ArrowRight className="w-5 h-5 text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </CardContent>
+          </Card>
+        </Link>
 
         <Link to={createPageUrl('Dashboard')} className="block">
           <Card className="bg-green-50 border-green-100 hover:shadow-md hover:border-green-300 transition-all cursor-pointer group">
