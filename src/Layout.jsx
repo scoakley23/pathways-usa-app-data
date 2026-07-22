@@ -160,11 +160,11 @@ export default function Layout({ children }) {
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <img 
-              src="https://media.base44.com/images/public/6931bd654d327c7b2e36bfed/5735feb70_generated_image.png" 
+              src="https://media.base44.com/images/public/6931bd654d327c7b2e36bfed/f90c67bf6_Screenshot2026-07-22at33716PM.png" 
               alt="Pathways Logo"
-              className="w-10 h-10 rounded-lg shadow-md transform hover:scale-105 transition-transform object-cover"
+              className="w-10 h-10 rounded-xl shadow-sm transform hover:scale-105 transition-transform object-cover ring-1 ring-slate-200"
             />
-            <span className="font-bold text-xl tracking-tight text-slate-900">
+            <span className="font-bold text-xl tracking-tight" style={{ color: '#1A3A6D' }}>
               Pathways
             </span>
           </div>
