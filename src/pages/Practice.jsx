@@ -28,6 +28,7 @@ export default function Practice() {
   const [assignments, setAssignments] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
   const [representativeData, setRepresentativeData] = useState(null);
+  const hasMounted = React.useRef(false);
 
   const loadRepresentativeData = async (email) => {
     try {
@@ -46,13 +47,19 @@ export default function Practice() {
   };
 
   const loadUserAndAssignments = async () => {
-      const user = await base44.auth.me().catch(() => null);
-      if (user) {
-        setCurrentUser(user);
-        loadRepresentativeData(user.email);
-        const allAssignments = await base44.entities.Assignment.list();
-        const myPending = allAssignments.filter(a => a.student_email === user.email && a.status === 'pending');
-        setAssignments(myPending);
+      try {
+        const user = await base44.auth.me();
+        if (user) {
+          setCurrentUser(user);
+          loadRepresentativeData(user.email);
+          const myAssignments = await base44.entities.Assignment.list({
+            query: { student_email: user.email, status: 'pending' },
+            limit: 100
+          });
+          setAssignments(myAssignments);
+        }
+      } catch (e) {
+        console.error("Error loading user data:", e);
       }
   };
 
@@ -61,11 +68,12 @@ export default function Practice() {
     loadUserAndAssignments();
   }, []);
 
-  // Refresh when returning to menu
+  // Refresh when returning to menu (skip on initial mount to avoid double-fetch)
   useEffect(() => {
-      if (mode === 'menu') {
+      if (hasMounted.current && mode === 'menu') {
           loadUserAndAssignments();
       }
+      hasMounted.current = true;
   }, [mode]);
 
   // Seed Reading Data if empty
