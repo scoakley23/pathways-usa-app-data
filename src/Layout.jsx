@@ -8,6 +8,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import RoleSelectionDialog from '@/components/onboarding/RoleSelectionDialog';
 import NotificationCenter from '@/components/notifications/NotificationCenter';
 import StudyBuddy from '@/components/ai/StudyBuddy';
+import DailyPracticeReminder from '@/components/notifications/DailyPracticeReminder';
 import { Toaster } from "sonner";
 
 export default function Layout({ children }) {
@@ -263,6 +264,7 @@ export default function Layout({ children }) {
           />
       )}
       <StudyBuddy />
+      <DailyPracticeReminder />
       <Toaster />
     </div>
   );
