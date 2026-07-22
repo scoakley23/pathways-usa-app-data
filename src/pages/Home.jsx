@@ -8,9 +8,9 @@ import { ArrowRight, Mic, PenTool, BookOpen, CheckCircle, GraduationCap, Noteboo
 
 export default function Home({ cachedUser }) {
   return (
-    <div className="flex flex-col min-h-[calc(100vh-4rem)] gap-8 pb-8">
+    <div className="flex flex-col min-h-[calc(100vh-8rem)] gap-8 pb-8">
       {/* Hero Section */}
-      <section className="flex-1 flex flex-col justify-center items-center text-center py-20 px-4 space-y-8 rounded-3xl mt-8 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #1A3A6D 0%, #2C5BA0 60%, #5C8BD3 100%)' }}>
+      <section className="flex-1 flex flex-col justify-center items-center text-center py-20 px-4 space-y-8 rounded-3xl relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #1A3A6D 0%, #2C5BA0 60%, #5C8BD3 100%)' }}>
         <img
           src="https://media.base44.com/images/public/6931bd654d327c7b2e36bfed/f90c67bf6_Screenshot2026-07-22at33716PM.png"
           alt="Pathways"
