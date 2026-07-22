@@ -10,27 +10,26 @@ export default function Home({ cachedUser }) {
   return (
     <div className="flex flex-col gap-8 pb-8">
       {/* Hero Section */}
-      <section className="flex flex-col justify-center items-center text-center py-12 px-4 space-y-6 rounded-3xl relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #1A3A6D 0%, #2C5BA0 60%, #5C8BD3 100%)' }}>
+      <section className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 py-8 px-6 md:px-10 rounded-3xl relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #1A3A6D 0%, #2C5BA0 60%, #5C8BD3 100%)' }}>
         <img
           src="https://media.base44.com/images/public/6931bd654d327c7b2e36bfed/c6aa490d9_e696d8ff-522b-4687-a00d-ce15992779db.png"
           alt="Your learning journey"
-          className="w-[22rem] h-[22rem] md:w-[30rem] md:h-[30rem] object-contain drop-shadow-2xl"
+          className="w-56 h-40 md:w-72 md:h-52 object-contain drop-shadow-2xl shrink-0"
         />
-        <div className="space-y-4 max-w-3xl">
-          <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight text-white">
+        <div className="space-y-4 max-w-xl text-center md:text-left">
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white">
             Your Pathway to <span style={{ color: '#E64A4A' }}>Citizenship</span>
           </h1>
-          <p className="text-xl text-blue-100 max-w-2xl mx-auto">
+          <p className="text-lg text-blue-100">
             Prepare for the US Citizenship Test with interactive lessons, practice dictation, vocabulary, and civics questions.
           </p>
-        </div>
-        
-        <div className="flex flex-col sm:flex-row gap-4">
-          <Link to={createPageUrl('Practice')}>
-            <Button size="lg" className="h-14 px-8 text-lg bg-white hover:bg-blue-50 shadow-xl" style={{ color: '#1A3A6D' }}>
-              Start Practicing Now <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
-          </Link>
+          <div className="flex justify-center md:justify-start">
+            <Link to={createPageUrl('Practice')}>
+              <Button size="lg" className="h-12 px-7 text-base bg-white hover:bg-blue-50 shadow-xl" style={{ color: '#1A3A6D' }}>
+                Start Practicing Now <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 
