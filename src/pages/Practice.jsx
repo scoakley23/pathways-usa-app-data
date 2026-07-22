@@ -70,6 +70,7 @@ export default function Practice() {
   // Seed Reading Data if empty
   useEffect(() => {
     const seedData = async () => {
+      try {
       const existing = await base44.entities.ReadingSentence.list();
       if (existing.length === 0) {
          const sentences = [
@@ -95,6 +96,9 @@ export default function Practice() {
             { text: "What was the first capital of the United States?", difficulty: "hard" }
          ];
          await base44.entities.ReadingSentence.bulkCreate(sentences);
+      }
+      } catch (err) {
+        console.error("Seeding skipped:", err);
       }
     };
     seedData();
