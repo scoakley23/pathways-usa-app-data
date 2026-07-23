@@ -20,6 +20,7 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext }) {
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
   const spokenTextRef = useRef('');
+  const silenceTimeoutRef = useRef(null);
 
   useEffect(() => {
     // Reset state on new sentence
@@ -35,9 +36,19 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext }) {
     if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
       recognitionRef.current = new SpeechRecognition();
-      recognitionRef.current.continuous = false;
+      recognitionRef.current.continuous = true;
       recognitionRef.current.interimResults = true;
       recognitionRef.current.lang = 'en-US';
+
+      const resetSilenceTimer = () => {
+        if (silenceTimeoutRef.current) clearTimeout(silenceTimeoutRef.current);
+        // Auto-stop after 10 seconds of silence — generous for beginners pausing between words
+        silenceTimeoutRef.current = setTimeout(() => {
+          if (recognitionRef.current) {
+            try { recognitionRef.current.stop(); } catch (e) {}
+          }
+        }, 10000);
+      };
 
       recognitionRef.current.onstart = () => {
         setIsListening(true);
@@ -47,6 +58,7 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext }) {
         setWordResults(null);
         spokenTextRef.current = '';
         startRecording();
+        resetSilenceTimer();
       };
 
       recognitionRef.current.onresult = (event) => {
@@ -55,16 +67,19 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext }) {
           .join('');
         setSpokenText(transcript);
         spokenTextRef.current = transcript;
+        resetSilenceTimer();
       };
 
       recognitionRef.current.onerror = (event) => {
         console.error('Speech recognition error', event.error);
+        if (silenceTimeoutRef.current) clearTimeout(silenceTimeoutRef.current);
         setIsListening(false);
         setStatus('error');
         stopRecording();
       };
 
       recognitionRef.current.onend = () => {
+        if (silenceTimeoutRef.current) clearTimeout(silenceTimeoutRef.current);
         setIsListening(false);
         stopRecording();
       };
@@ -73,6 +88,7 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext }) {
     }
 
     return () => {
+      if (silenceTimeoutRef.current) clearTimeout(silenceTimeoutRef.current);
       if (recognitionRef.current) recognitionRef.current.stop();
       if (mediaRecorderRef.current && mediaRecorderRef.current.state === 'recording') {
         mediaRecorderRef.current.stop();
