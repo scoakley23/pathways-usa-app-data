@@ -3,7 +3,7 @@ import { base44 } from '@/api/base44Client';
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ArrowLeft, Loader2, Play, CheckCircle, RotateCcw, AlertCircle, Eye, EyeOff, Mic, MicOff, Keyboard } from 'lucide-react';
+import { ArrowLeft, Loader2, Play, CheckCircle, RotateCcw, AlertCircle, Eye, EyeOff, Mic, MicOff, Keyboard, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Input } from "@/components/ui/input";
 import ReactMarkdown from 'react-markdown';
 import FlashcardView from '@/components/lessons/FlashcardView';
@@ -12,7 +12,7 @@ import { toast } from "sonner";
 import { useLessonTranslation } from '@/hooks/useLessonTranslation';
 import LanguageSelector from '@/components/lessons/LanguageSelector';
 
-export default function LessonDetail({ lesson, onBack, onComplete }) {
+export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNavigateLesson }) {
   const [user, setUser] = useState(null);
   const [flashcards, setFlashcards] = useState([]);
   const [quizzes, setQuizzes] = useState([]);
@@ -72,6 +72,26 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
   const cleanQuestionText = (text) => {
     if (!text) return text;
     return text.replace(/\s*\([^)]*(?:2008|2025)[^)]*\)\s*$/i, '').trim();
+  };
+
+  const currentIndex = lessons ? lessons.findIndex(l => l.id === lesson?.id) : -1;
+  const prevLesson = currentIndex > 0 ? lessons[currentIndex - 1] : null;
+  const nextLesson = currentIndex >= 0 && currentIndex < (lessons?.length || 0) - 1 ? lessons[currentIndex + 1] : null;
+
+  const handleNavigate = (newLesson) => {
+    setQuizStarted(false);
+    setCurrentQuestion(0);
+    setTypedAnswer('');
+    setShowAnswer(false);
+    setScore(0);
+    setAnsweredCount(0);
+    setFlashcardsViewed(false);
+    setQuizCompleted(false);
+    if (isListening && recognitionRef.current) {
+      try { recognitionRef.current.stop(); } catch (e) {}
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (onNavigateLesson) onNavigateLesson(newLesson);
   };
 
   const loadData = async () => {
@@ -558,7 +578,7 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
                       Review the flashcards tab before marking this lesson complete.
                     </div>
                   )}
-                  <div className="flex justify-center gap-3">
+                  <div className="flex justify-center gap-3 flex-wrap">
                     <Button variant="outline" onClick={startQuiz}>
                       <RotateCcw className="w-4 h-4 mr-2" />
                       Retry Practice
@@ -571,6 +591,12 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
                       <CheckCircle className="w-4 h-4 mr-2" />
                       Mark Complete
                     </Button>
+                    {nextLesson && (
+                      <Button onClick={() => handleNavigate(nextLesson)} className="bg-blue-600 hover:bg-blue-700">
+                        Next Lesson
+                        <ChevronRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    )}
                   </div>
                 </div>
               </div>
@@ -579,6 +605,35 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
         </TabsContent>
 
       </Tabs>
+
+      {/* Lesson Navigation */}
+      {lessons && lessons.length > 1 && (
+        <div className="flex items-center justify-between gap-4 pt-6 border-t border-slate-200">
+          {prevLesson ? (
+            <Button variant="outline" onClick={() => handleNavigate(prevLesson)} className="flex items-center gap-2 max-w-[40%]">
+              <ChevronLeft className="w-4 h-4 shrink-0" />
+              <div className="text-left overflow-hidden">
+                <div className="text-xs text-slate-400">Previous</div>
+                <div className="text-sm font-medium truncate">{prevLesson.title}</div>
+              </div>
+            </Button>
+          ) : <div className="max-w-[40%]" />}
+          
+          <Button variant="ghost" onClick={onBack} className="text-slate-500 shrink-0">
+            All Lessons
+          </Button>
+          
+          {nextLesson ? (
+            <Button onClick={() => handleNavigate(nextLesson)} className="bg-blue-600 hover:bg-blue-700 flex items-center gap-2 max-w-[40%]">
+              <div className="text-right overflow-hidden">
+                <div className="text-xs text-blue-200">Next</div>
+                <div className="text-sm font-medium truncate">{nextLesson.title}</div>
+              </div>
+              <ChevronRight className="w-4 h-4 shrink-0" />
+            </Button>
+          ) : <div className="max-w-[40%]" />}
+        </div>
+      )}
     </div>
   );
 }

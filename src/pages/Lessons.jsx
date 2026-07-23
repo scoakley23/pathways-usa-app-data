@@ -89,6 +89,8 @@ export default function Lessons() {
     return (
       <LessonDetail 
         lesson={selectedLesson} 
+        lessons={lessons}
+        onNavigateLesson={setSelectedLesson}
         onBack={() => {
           setSelectedLesson(null);
           refreshProgress();
