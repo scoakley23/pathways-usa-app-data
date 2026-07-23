@@ -159,7 +159,7 @@ export default function Layout({ children }) {
       {/* Navigation */}
       <nav className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white shadow-sm">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2 cursor-pointer">
             <img 
               src="https://media.base44.com/images/public/6931bd654d327c7b2e36bfed/f90c67bf6_Screenshot2026-07-22at33716PM.png" 
               alt="Pathways Logo"
@@ -168,7 +168,7 @@ export default function Layout({ children }) {
             <span className="font-bold text-xl tracking-tight" style={{ color: '#1A3A6D' }}>
               Pathways USA
             </span>
-          </div>
+          </Link>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-6">
