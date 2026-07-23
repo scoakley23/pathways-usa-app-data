@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import ReactMarkdown from 'react-markdown';
 import FlashcardView from '@/components/lessons/FlashcardView';
 import KeyPointsDisplay from '@/components/lessons/KeyPointsDisplay';
+import QuizExplanationPanel from '@/components/lessons/QuizExplanationPanel';
 import { toast } from "sonner";
 import { useLessonTranslation } from '@/hooks/useLessonTranslation';
 import LanguageSelector from '@/components/lessons/LanguageSelector';
@@ -33,6 +34,9 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
   const [showExplanation, setShowExplanation] = useState(false);
   const [explanation, setExplanation] = useState(null);
   const [loadingExplanation, setLoadingExplanation] = useState(false);
+  const [verifying, setVerifying] = useState(false);
+  const [verificationResult, setVerificationResult] = useState(null);
+  const [selfCheckMode, setSelfCheckMode] = useState(false);
   const recognitionRef = useRef(null);
 
   const {
@@ -94,6 +98,9 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
     setQuizCompleted(false);
     setShowExplanation(false);
     setExplanation(null);
+    setVerifying(false);
+    setVerificationResult(null);
+    setSelfCheckMode(false);
     if (isListening && recognitionRef.current) {
       try { recognitionRef.current.stop(); } catch (e) {}
     }
@@ -174,19 +181,60 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
     setAnsweredCount(0);
     setShowExplanation(false);
     setExplanation(null);
+    setVerifying(false);
+    setVerificationResult(null);
+    setSelfCheckMode(false);
     if (isListening && recognitionRef.current) {
       try { recognitionRef.current.stop(); } catch (e) {}
     }
   };
 
-  const checkAnswer = () => {
+  const checkAnswer = async () => {
     if (!typedAnswer.trim()) return;
     if (isListening && recognitionRef.current) {
       try { recognitionRef.current.stop(); } catch (e) {}
     }
-    setShowAnswer(true);
-    const newAnsweredCount = answeredCount + 1;
-    setAnsweredCount(newAnsweredCount);
+
+    if (selfCheckMode) {
+      setShowAnswer(true);
+      setAnsweredCount(answeredCount + 1);
+      return;
+    }
+
+    setVerifying(true);
+    try {
+      const result = await base44.integrations.Core.InvokeLLM({
+        prompt: `You are a USCIS citizenship test examiner. Determine if the student's spoken answer is correct.
+
+Question: ${displayQuizzes[currentQuestion].question}
+Official Answer: ${displayQuizzes[currentQuestion].answer}
+Student's Answer: ${typedAnswer}
+
+In the real USCIS interview, answers don't need to be word-for-word — as long as the meaning is correct, it counts. Determine if the student's answer conveys the correct meaning.`,
+        response_json_schema: {
+          type: "object",
+          properties: {
+            is_correct: { type: "boolean" },
+            feedback: { type: "string" }
+          }
+        }
+      });
+      setVerificationResult(result);
+      setShowAnswer(true);
+      setAnsweredCount(answeredCount + 1);
+
+      if (!result.is_correct) {
+        setShowExplanation(true);
+        fetchExplanation(displayQuizzes[currentQuestion]);
+      }
+    } catch (e) {
+      console.error('Failed to verify answer:', e);
+      setSelfCheckMode(true);
+      setShowAnswer(true);
+      setAnsweredCount(answeredCount + 1);
+    } finally {
+      setVerifying(false);
+    }
   };
 
   const advanceQuestion = (newScore) => {
@@ -198,6 +246,10 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
       setCurrentQuestion(currentQuestion + 1);
       setTypedAnswer('');
       setShowAnswer(false);
+      setShowExplanation(false);
+      setExplanation(null);
+      setVerificationResult(null);
+      setSelfCheckMode(false);
     } else {
       finishQuiz(totalAnswered > 0 ? (newScore / displayQuizzes.length) * 100 : 0);
     }
@@ -433,8 +485,8 @@ Please provide a brief, simple explanation (2-3 sentences) of this concept in pl
                 </div>
                 <h3 className="text-xl font-semibold text-slate-900">Oral Civics Practice</h3>
                 <p className="text-slate-600 max-w-md mx-auto">
-                  Just like the real USCIS interview — read the question aloud, then type or speak your answer. 
-                  The officer won't give you multiple choice options!
+                  Just like the real USCIS interview — read the question, then speak or type your answer.
+                  Your response will be verified automatically, just like a real officer would assess it.
                 </p>
                 <p className="text-sm text-slate-500">
                   {displayQuizzes.length} questions from the {questionVersion} civics test
@@ -536,90 +588,108 @@ Please provide a brief, simple explanation (2-3 sentences) of this concept in pl
                     ) : null}
 
                     {!showAnswer ? (
-                      <Button 
-                        onClick={checkAnswer} 
-                        disabled={!typedAnswer.trim()}
-                        className="bg-blue-600 hover:bg-blue-700"
-                      >
-                        <Eye className="w-4 h-4 mr-2" />
-                        Check Answer
-                      </Button>
+                      <div className="space-y-2">
+                        <Button
+                          onClick={checkAnswer}
+                          disabled={!typedAnswer.trim() || verifying}
+                          className="bg-blue-600 hover:bg-blue-700"
+                        >
+                          {verifying ? (
+                            <>
+                              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                              Verifying...
+                            </>
+                          ) : (
+                            <>
+                              <CheckCircle className="w-4 h-4 mr-2" />
+                              Submit Answer
+                            </>
+                          )}
+                        </Button>
+                        {!selfCheckMode && (
+                          <button
+                            onClick={() => setSelfCheckMode(true)}
+                            className="text-xs text-slate-400 hover:text-slate-600 underline block"
+                          >
+                            Having trouble? Reveal answer to self-check
+                          </button>
+                        )}
+                      </div>
                     ) : (
                       <div className="space-y-4">
-                        {/* Correct answer reveal */}
-                        <div className="p-4 rounded-lg bg-blue-50 border border-blue-200">
-                          <div className="flex items-center gap-2 mb-1">
-                            <EyeOff className="w-4 h-4 text-blue-600" />
-                            <span className="text-sm font-semibold text-blue-800">Official Answer:</span>
-                          </div>
-                          <p className="text-blue-900 font-medium">{displayQuizzes[currentQuestion].answer}</p>
-                        </div>
-
-                        {/* User's answer */}
-                        <div className="p-4 rounded-lg bg-slate-50 border border-slate-200">
-                          <p className="text-sm text-slate-500 mb-1">Your answer:</p>
-                          <p className="text-slate-800">{typedAnswer}</p>
-                        </div>
-
-                        {/* Self-evaluation or explanation */}
-                        {showExplanation ? (
-                          <div className="space-y-4">
-                            <div className="p-4 rounded-lg bg-blue-50 border border-blue-200">
-                              <div className="flex items-center gap-2 mb-2">
-                                <Lightbulb className="w-5 h-5 text-blue-600" />
-                                <span className="font-semibold text-blue-800">Concept Explanation</span>
+                        {!selfCheckMode && verificationResult ? (
+                          verificationResult.is_correct ? (
+                            <div className="space-y-4">
+                              <div className="p-4 rounded-lg bg-green-50 border border-green-200">
+                                <div className="flex items-center gap-2 mb-2">
+                                  <CheckCircle className="w-5 h-5 text-green-600" />
+                                  <span className="font-semibold text-green-800">Correct!</span>
+                                </div>
+                                <p className="text-green-900 text-sm">{verificationResult.feedback}</p>
                               </div>
-                              {loadingExplanation ? (
-                                <div className="flex items-center gap-2">
-                                  <Loader2 className="w-4 h-4 animate-spin text-blue-600" />
-                                  <span className="text-blue-600 text-sm">Generating explanation...</span>
-                                </div>
-                              ) : (
-                                <p className="text-blue-900 text-sm leading-relaxed">{explanation || 'Review the lesson content above for more details on this topic.'}</p>
-                              )}
+                              <div className="flex justify-center">
+                                <Button onClick={markCorrect} className="bg-green-600 hover:bg-green-700">
+                                  Next Question
+                                  <ChevronRight className="w-4 h-4 ml-2" />
+                                </Button>
+                              </div>
                             </div>
-
-                            {relatedLessons.length > 0 && (
-                              <div className="p-4 rounded-lg bg-slate-50 border border-slate-200">
-                                <p className="text-sm font-medium text-slate-700 mb-2 flex items-center gap-1.5">
-                                  <BookOpen className="w-4 h-4 text-slate-500" />
-                                  Related lessons to review:
-                                </p>
-                                <div className="space-y-1">
-                                  {relatedLessons.map(rl => (
-                                    <button key={rl.id} onClick={() => handleNavigate(rl)} className="block w-full text-left p-2 rounded-md hover:bg-blue-50 transition-colors">
-                                      <span className="text-blue-700 text-sm font-medium">{rl.title}</span>
-                                    </button>
-                                  ))}
+                          ) : (
+                            <div className="space-y-4">
+                              <div className="p-4 rounded-lg bg-red-50 border border-red-200">
+                                <div className="flex items-center gap-2 mb-2">
+                                  <AlertCircle className="w-5 h-5 text-red-600" />
+                                  <span className="font-semibold text-red-800">Not quite right</span>
                                 </div>
+                                <p className="text-red-900 text-sm mb-3">{verificationResult.feedback}</p>
+                                <div className="pt-3 border-t border-red-200">
+                                  <p className="text-sm text-slate-500 mb-1">Official answer:</p>
+                                  <p className="text-slate-800 font-medium">{displayQuizzes[currentQuestion].answer}</p>
+                                </div>
+                              </div>
+                              <QuizExplanationPanel
+                                loadingExplanation={loadingExplanation}
+                                explanation={explanation}
+                                relatedLessons={relatedLessons}
+                                onNavigate={handleNavigate}
+                                onContinue={handleContinueFromExplanation}
+                              />
+                            </div>
+                          )
+                        ) : (
+                          <>
+                            <div className="p-4 rounded-lg bg-blue-50 border border-blue-200">
+                              <div className="flex items-center gap-2 mb-1">
+                                <EyeOff className="w-4 h-4 text-blue-600" />
+                                <span className="text-sm font-semibold text-blue-800">Official Answer:</span>
+                              </div>
+                              <p className="text-blue-900 font-medium">{displayQuizzes[currentQuestion].answer}</p>
+                            </div>
+                            <div className="p-4 rounded-lg bg-slate-50 border border-slate-200">
+                              <p className="text-sm text-slate-500 mb-1">Your answer:</p>
+                              <p className="text-slate-800">{typedAnswer}</p>
+                            </div>
+                            {showExplanation ? (
+                              <QuizExplanationPanel
+                                loadingExplanation={loadingExplanation}
+                                explanation={explanation}
+                                relatedLessons={relatedLessons}
+                                onNavigate={handleNavigate}
+                                onContinue={handleContinueFromExplanation}
+                              />
+                            ) : (
+                              <div className="flex gap-3 justify-center">
+                                <Button onClick={markCorrect} className="bg-green-600 hover:bg-green-700">
+                                  <CheckCircle className="w-4 h-4 mr-2" />
+                                  I got it right
+                                </Button>
+                                <Button onClick={markIncorrect} variant="outline" className="border-red-300 text-red-700 hover:bg-red-50">
+                                  <RotateCcw className="w-4 h-4 mr-2" />
+                                  I need to practice this
+                                </Button>
                               </div>
                             )}
-
-                            <div className="flex justify-center">
-                              <Button onClick={handleContinueFromExplanation} className="bg-blue-600 hover:bg-blue-700">
-                                Continue
-                                <ChevronRight className="w-4 h-4 ml-2" />
-                              </Button>
-                            </div>
-                          </div>
-                        ) : (
-                          <div className="flex gap-3 justify-center">
-                            <Button 
-                              onClick={markCorrect}
-                              className="bg-green-600 hover:bg-green-700"
-                            >
-                              <CheckCircle className="w-4 h-4 mr-2" />
-                              I got it right
-                            </Button>
-                            <Button 
-                              onClick={markIncorrect}
-                              variant="outline"
-                              className="border-red-300 text-red-700 hover:bg-red-50"
-                            >
-                              <RotateCcw className="w-4 h-4 mr-2" />
-                              I need to practice this
-                            </Button>
-                          </div>
+                          </>
                         )}
                       </div>
                     )}
