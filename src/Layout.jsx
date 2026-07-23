@@ -166,7 +166,7 @@ export default function Layout({ children }) {
               className="w-10 h-10 rounded-xl shadow-sm transform hover:scale-105 transition-transform object-cover ring-1 ring-slate-200"
             />
             <span className="font-bold text-xl tracking-tight" style={{ color: '#1A3A6D' }}>
-              Pathways
+              Pathways USA
             </span>
           </div>
 
