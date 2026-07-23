@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { base44 } from '@/api/base44Client';
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ArrowLeft, Loader2, Play, CheckCircle, RotateCcw, AlertCircle, Eye, EyeOff } from 'lucide-react';
+import { ArrowLeft, Loader2, Play, CheckCircle, RotateCcw, AlertCircle, Eye, EyeOff, Mic, MicOff, Keyboard } from 'lucide-react';
 import { Input } from "@/components/ui/input";
 import ReactMarkdown from 'react-markdown';
 import FlashcardView from '@/components/lessons/FlashcardView';
@@ -28,6 +28,9 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
   const [answeredCount, setAnsweredCount] = useState(0);
   const [flashcardsViewed, setFlashcardsViewed] = useState(false);
   const [quizCompleted, setQuizCompleted] = useState(false);
+  const [inputMode, setInputMode] = useState('type');
+  const [isListening, setIsListening] = useState(false);
+  const recognitionRef = useRef(null);
 
   const {
     language,
@@ -43,6 +46,33 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
   useEffect(() => {
     loadData();
   }, [lesson?.id]);
+
+  useEffect(() => {
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR) return;
+    const recognition = new SR();
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.lang = 'en-US';
+    recognition.onstart = () => setIsListening(true);
+    recognition.onresult = (e) => {
+      const transcript = Array.from(e.results).map(r => r[0].transcript).join('');
+      setTypedAnswer(transcript);
+    };
+    recognition.onerror = () => setIsListening(false);
+    recognition.onend = () => setIsListening(false);
+    recognitionRef.current = recognition;
+    return () => {
+      if (recognitionRef.current) {
+        try { recognitionRef.current.stop(); } catch (e) {}
+      }
+    };
+  }, []);
+
+  const cleanQuestionText = (text) => {
+    if (!text) return text;
+    return text.replace(/\s*\([^)]*(?:2008|2025)[^)]*\)\s*$/i, '').trim();
+  };
 
   const loadData = async () => {
     if (!lesson?.id) return;
@@ -115,17 +145,26 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
     setShowAnswer(false);
     setScore(0);
     setAnsweredCount(0);
+    if (isListening && recognitionRef.current) {
+      try { recognitionRef.current.stop(); } catch (e) {}
+    }
   };
 
   const checkAnswer = () => {
     if (!typedAnswer.trim()) return;
+    if (isListening && recognitionRef.current) {
+      try { recognitionRef.current.stop(); } catch (e) {}
+    }
     setShowAnswer(true);
     const newAnsweredCount = answeredCount + 1;
     setAnsweredCount(newAnsweredCount);
   };
 
   const advanceQuestion = (newScore) => {
-    const totalAnswered = answeredCount; // answeredCount was already incremented in checkAnswer
+    const totalAnswered = answeredCount;
+    if (isListening && recognitionRef.current) {
+      try { recognitionRef.current.stop(); } catch (e) {}
+    }
     if (currentQuestion + 1 < displayQuizzes.length) {
       setCurrentQuestion(currentQuestion + 1);
       setTypedAnswer('');
@@ -370,34 +409,77 @@ export default function LessonDetail({ lesson, onBack, onComplete }) {
 
                 {/* Question */}
                 <div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="px-2 py-0.5 text-xs rounded-full bg-blue-100 text-blue-700 font-medium">
-                      {displayQuizzes[currentQuestion].version} Test
-                    </span>
-                    {displayQuizzes[currentQuestion].difficulty && (
-                      <span className="px-2 py-0.5 text-xs rounded-full bg-slate-100 text-slate-600">
-                        {displayQuizzes[currentQuestion].difficulty}
-                      </span>
-                    )}
-                  </div>
-                  <h3 className="text-lg font-semibold text-slate-900 mb-4">
-                    {displayQuizzes[currentQuestion].question}
+                  <h3 className="text-lg font-semibold text-slate-900 mb-1">
+                    {cleanQuestionText(displayQuizzes[currentQuestion].question)}
                   </h3>
+                  <p className="text-xs text-slate-400 mb-4">
+                    {displayQuizzes[currentQuestion].version} Civics Test
+                  </p>
                   
-                  {/* Typed answer input */}
+                  {/* Answer input area */}
                   <div className="space-y-3">
-                    <Input
-                      placeholder="Type your answer here..."
-                      value={typedAnswer}
-                      onChange={(e) => setTypedAnswer(e.target.value)}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter' && !showAnswer && typedAnswer.trim()) {
-                          checkAnswer();
-                        }
-                      }}
-                      disabled={showAnswer}
-                      className="text-base"
-                    />
+                    {/* Mode toggle */}
+                    {!showAnswer && (
+                      <div className="flex gap-1 p-1 bg-slate-100 rounded-lg w-fit">
+                        <button
+                          onClick={() => { if (isListening && recognitionRef.current) { try { recognitionRef.current.stop(); } catch (e) {} } setInputMode('type'); }}
+                          className={`flex items-center px-3 py-1.5 rounded-md text-sm font-medium transition-all ${inputMode === 'type' ? 'bg-white shadow-sm text-blue-700' : 'text-slate-500 hover:text-slate-700'}`}
+                        >
+                          <Keyboard className="w-4 h-4 mr-1.5" /> Type
+                        </button>
+                        <button
+                          onClick={() => {
+                            if (!recognitionRef.current) { toast.error('Voice input is not supported in this browser'); return; }
+                            setInputMode('speak');
+                          }}
+                          className={`flex items-center px-3 py-1.5 rounded-md text-sm font-medium transition-all ${inputMode === 'speak' ? 'bg-white shadow-sm text-blue-700' : 'text-slate-500 hover:text-slate-700'}`}
+                        >
+                          <Mic className="w-4 h-4 mr-1.5" /> Speak
+                        </button>
+                      </div>
+                    )}
+
+                    {inputMode === 'speak' && !showAnswer ? (
+                      <div className="space-y-3">
+                        <div className="min-h-[48px] p-3 rounded-lg border border-slate-200 bg-slate-50">
+                          {typedAnswer ? (
+                            <p className="text-slate-800">{typedAnswer}</p>
+                          ) : (
+                            <p className="text-slate-400">
+                              {isListening ? 'Listening...' : 'Tap the microphone and speak your answer'}
+                            </p>
+                          )}
+                        </div>
+                        <Button
+                          onClick={() => {
+                            if (isListening) {
+                              recognitionRef.current?.stop();
+                            } else {
+                              setTypedAnswer('');
+                              recognitionRef.current?.start();
+                            }
+                          }}
+                          disabled={!recognitionRef.current}
+                          className={isListening ? 'bg-red-500 hover:bg-red-600' : 'bg-blue-600 hover:bg-blue-700'}
+                        >
+                          {isListening ? <MicOff className="w-4 h-4 mr-2" /> : <Mic className="w-4 h-4 mr-2" />}
+                          {isListening ? 'Stop Listening' : 'Start Speaking'}
+                        </Button>
+                      </div>
+                    ) : !showAnswer ? (
+                      <Input
+                        placeholder="Type your answer here..."
+                        value={typedAnswer}
+                        onChange={(e) => setTypedAnswer(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' && !showAnswer && typedAnswer.trim()) {
+                            checkAnswer();
+                          }
+                        }}
+                        className="text-base"
+                      />
+                    ) : null}
+
                     {!showAnswer ? (
                       <Button 
                         onClick={checkAnswer} 
