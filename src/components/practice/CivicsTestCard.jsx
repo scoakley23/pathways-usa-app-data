@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Volume2, Eye, ArrowRight, Globe, Loader2 } from 'lucide-react';
+import { Volume2, Eye, ArrowRight, Globe, Loader2, CheckCircle, AlertCircle, Keyboard, MicOff, ChevronRight, Mic } from 'lucide-react';
 import { speakText } from "@/components/utils/textToSpeech";
 import AIExplanation from '@/components/ai/AIExplanation';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { base44 } from '@/api/base44Client';
 
@@ -16,6 +18,13 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
   const [selectedLanguage, setSelectedLanguage] = useState('');
   const [translation, setTranslation] = useState('');
   const [isTranslating, setIsTranslating] = useState(false);
+  const [userAnswer, setUserAnswer] = useState('');
+  const [verifying, setVerifying] = useState(false);
+  const [verificationResult, setVerificationResult] = useState(null);
+  const [selfCheckMode, setSelfCheckMode] = useState(false);
+  const [inputMode, setInputMode] = useState('type');
+  const [isListening, setIsListening] = useState(false);
+  const recognitionRef = useRef(null);
 
   const SUPPORTED_LANGUAGES = [
     { code: 'es', name: 'Spanish' },
@@ -32,6 +41,13 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
     setIsRevealed(false);
     setIsPlaying(false);
     setTranslation('');
+    setUserAnswer('');
+    setVerifying(false);
+    setVerificationResult(null);
+    setSelfCheckMode(false);
+    if (isListening && recognitionRef.current) {
+      try { recognitionRef.current.stop(); } catch (e) {}
+    }
     // Keep selected language
   }, [question]);
 
@@ -71,6 +87,68 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
   };
 
   const personalizedAnswer = getPersonalizedAnswer(question.question, representativeData);
+
+  // Speech recognition setup
+  useEffect(() => {
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR) return;
+    const recognition = new SR();
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.lang = 'en-US';
+    recognition.onstart = () => setIsListening(true);
+    recognition.onresult = (e) => {
+      const transcript = Array.from(e.results).map(r => r[0].transcript).join('');
+      setUserAnswer(transcript);
+    };
+    recognition.onerror = () => setIsListening(false);
+    recognition.onend = () => setIsListening(false);
+    recognitionRef.current = recognition;
+    return () => {
+      if (recognitionRef.current) {
+        try { recognitionRef.current.stop(); } catch (e) {}
+      }
+    };
+  }, []);
+
+  const checkAnswer = async () => {
+    if (!userAnswer.trim()) return;
+    if (isListening && recognitionRef.current) {
+      try { recognitionRef.current.stop(); } catch (e) {}
+    }
+    setVerifying(true);
+    try {
+      const correctAnswer = personalizedAnswer || question.answer;
+      const result = await base44.integrations.Core.InvokeLLM({
+        prompt: `You are a USCIS citizenship test examiner. Determine if the student's spoken answer is correct.
+
+Question: ${question.question}
+Official Answer: ${correctAnswer}
+Student's Answer: ${userAnswer}
+
+In the real USCIS interview, answers don't need to be word-for-word — as long as the meaning is correct, it counts. Determine if the student's answer conveys the correct meaning.`,
+        response_json_schema: {
+          type: "object",
+          properties: {
+            is_correct: { type: "boolean" },
+            feedback: { type: "string" }
+          }
+        }
+      });
+      setVerificationResult(result);
+    } catch (e) {
+      console.error('Failed to verify answer:', e);
+      setSelfCheckMode(true);
+      setIsRevealed(true);
+    } finally {
+      setVerifying(false);
+    }
+  };
+
+  const handleResult = (isCorrect) => {
+    onComplete(isCorrect);
+    onNext();
+  };
 
   const speak = (text) => {
     speakText(text, 'en', {
@@ -139,18 +217,161 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
           </div>
 
           <AnimatePresence mode="wait">
-            {!isRevealed ? (
+            {!verificationResult && !isRevealed ? (
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
+                className="w-full space-y-4"
               >
-                <Button 
-                  onClick={() => setIsRevealed(true)} 
-                  className="h-12 px-8 text-lg rounded-xl bg-indigo-600 hover:bg-indigo-700"
-                >
-                  <Eye className="mr-2 w-5 h-5" /> Show Answer
-                </Button>
+                {!selfCheckMode ? (
+                  <>
+                    <div className="flex gap-1 p-1 bg-slate-100 rounded-lg w-fit mx-auto">
+                      <button
+                        onClick={() => { if (isListening && recognitionRef.current) { try { recognitionRef.current.stop(); } catch (e) {} } setInputMode('type'); }}
+                        className={`flex items-center px-3 py-1.5 rounded-md text-sm font-medium transition-all ${inputMode === 'type' ? 'bg-white shadow-sm text-indigo-700' : 'text-slate-500 hover:text-slate-700'}`}
+                      >
+                        <Keyboard className="w-4 h-4 mr-1.5" /> Type
+                      </button>
+                      <button
+                        onClick={() => {
+                          if (!recognitionRef.current) { toast.error('Voice input is not supported in this browser'); return; }
+                          setInputMode('speak');
+                        }}
+                        className={`flex items-center px-3 py-1.5 rounded-md text-sm font-medium transition-all ${inputMode === 'speak' ? 'bg-white shadow-sm text-indigo-700' : 'text-slate-500 hover:text-slate-700'}`}
+                      >
+                        <Mic className="w-4 h-4 mr-1.5" /> Speak
+                      </button>
+                    </div>
+
+                    {inputMode === 'speak' ? (
+                      <div className="space-y-3">
+                        <div className="min-h-[48px] p-3 rounded-lg border border-slate-200 bg-slate-50">
+                          {userAnswer ? (
+                            <p className="text-slate-800">{userAnswer}</p>
+                          ) : (
+                            <p className="text-slate-400">
+                              {isListening ? 'Listening...' : 'Tap the microphone and speak your answer'}
+                            </p>
+                          )}
+                        </div>
+                        <Button
+                          onClick={() => {
+                            if (isListening) {
+                              recognitionRef.current?.stop();
+                            } else {
+                              setUserAnswer('');
+                              recognitionRef.current?.start();
+                            }
+                          }}
+                          disabled={!recognitionRef.current}
+                          className={isListening ? 'bg-red-500 hover:bg-red-600' : 'bg-indigo-600 hover:bg-indigo-700'}
+                        >
+                          {isListening ? <MicOff className="w-4 h-4 mr-2" /> : <Mic className="w-4 h-4 mr-2" />}
+                          {isListening ? 'Stop Listening' : 'Start Speaking'}
+                        </Button>
+                      </div>
+                    ) : (
+                      <Input
+                        placeholder="Type your answer here..."
+                        value={userAnswer}
+                        onChange={(e) => setUserAnswer(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' && userAnswer.trim() && !verifying) {
+                            checkAnswer();
+                          }
+                        }}
+                        className="text-base"
+                      />
+                    )}
+
+                    <div className="space-y-2">
+                      <Button
+                        onClick={checkAnswer}
+                        disabled={!userAnswer.trim() || verifying}
+                        className="h-12 px-8 text-lg rounded-xl bg-indigo-600 hover:bg-indigo-700"
+                      >
+                        {verifying ? (
+                          <>
+                            <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                            Verifying...
+                          </>
+                        ) : (
+                          <>
+                            <CheckCircle className="w-5 h-5 mr-2" />
+                            Submit Answer
+                          </>
+                        )}
+                      </Button>
+                      <button
+                        onClick={() => setSelfCheckMode(true)}
+                        className="text-xs text-slate-400 hover:text-slate-600 underline block mx-auto"
+                      >
+                        Having trouble? Show answer to self-check
+                      </button>
+                    </div>
+                  </>
+                ) : (
+                  <Button
+                    onClick={() => setIsRevealed(true)}
+                    className="h-12 px-8 text-lg rounded-xl bg-indigo-600 hover:bg-indigo-700"
+                  >
+                    <Eye className="mr-2 w-5 h-5" /> Show Answer
+                  </Button>
+                )}
+              </motion.div>
+            ) : verificationResult ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="w-full space-y-6"
+              >
+                {verificationResult.is_correct ? (
+                  <div className="space-y-6">
+                    <div className="bg-green-50 border border-green-200 rounded-xl p-6 text-center">
+                      <CheckCircle className="w-12 h-12 text-green-600 mx-auto mb-3" />
+                      <h3 className="text-xl font-bold text-green-800 mb-2">Correct!</h3>
+                      <p className="text-green-900 text-sm">{verificationResult.feedback}</p>
+                    </div>
+                    <div className="flex justify-center">
+                      <Button onClick={() => handleResult(true)} className="bg-green-600 hover:bg-green-700 px-8">
+                        Next Question
+                        <ChevronRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="space-y-6">
+                    <div className="bg-red-50 border border-red-200 rounded-xl p-6">
+                      <div className="flex items-center gap-2 mb-3">
+                        <AlertCircle className="w-6 h-6 text-red-600" />
+                        <span className="font-bold text-red-800 text-lg">Not quite right</span>
+                      </div>
+                      <p className="text-red-900 text-sm mb-4">{verificationResult.feedback}</p>
+                      <div className="pt-4 border-t border-red-200">
+                        <p className="text-sm text-slate-500 mb-1">Official answer:</p>
+                        {personalizedAnswer ? (
+                          <>
+                            <p className="text-lg font-bold text-green-800">{personalizedAnswer}</p>
+                            <p className="text-sm text-slate-500 mt-1">Sample: {question.answer}</p>
+                          </>
+                        ) : (
+                          <p className="text-lg font-medium text-slate-800">{question.answer}</p>
+                        )}
+                      </div>
+                    </div>
+                    <AIExplanation
+                      question={question.question}
+                      answer={personalizedAnswer || question.answer}
+                    />
+                    <div className="flex justify-center">
+                      <Button onClick={() => handleResult(false)} className="bg-indigo-600 hover:bg-indigo-700 px-8">
+                        Continue
+                        <ChevronRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </div>
+                  </div>
+                )}
               </motion.div>
             ) : (
               <motion.div
@@ -207,13 +428,13 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
                      <Button 
                         variant="outline" 
                         className="border-orange-200 hover:bg-orange-50 text-orange-700 min-w-[120px]"
-                        onClick={() => onComplete(false)}
+                        onClick={() => handleResult(false)}
                      >
                         Hard / Missed
                      </Button>
                      <Button 
                         className="bg-green-600 hover:bg-green-700 min-w-[120px]"
-                        onClick={() => onComplete(true)}
+                        onClick={() => handleResult(true)}
                      >
                         Easy / Got it
                      </Button>
@@ -225,7 +446,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
 
         </CardContent>
       </Card>
-       {isRevealed && (
+       {!verificationResult && !isRevealed && (
          <div className="mt-6 flex justify-center">
             <Button variant="ghost" onClick={onNext} className="text-slate-500 hover:text-slate-800">
                 Skip to next <ArrowRight className="w-4 h-4 ml-1" />
