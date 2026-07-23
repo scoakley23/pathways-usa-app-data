@@ -138,8 +138,7 @@ export default function AssignContentDialog({ isOpen, onClose, studentEmail, tut
             assigned_date: new Date().toISOString()
           }));
 
-          // Use parallel creation for better performance
-          await Promise.all(assignments.map(a => base44.entities.Assignment.create(a)));
+          await base44.entities.Assignment.bulkCreate(assignments);
       }
       
       // Notify Student

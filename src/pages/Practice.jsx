@@ -50,10 +50,12 @@ export default function Practice() {
       try {
         const user = await base44.auth.me();
         if (user) {
-          setCurrentUser(user);
-          loadRepresentativeData(user.email);
+          const normalizedEmail = user.email.toLowerCase().trim();
+          const normalizedUser = { ...user, email: normalizedEmail };
+          setCurrentUser(normalizedUser);
+          loadRepresentativeData(normalizedEmail);
           const myAssignments = await base44.entities.Assignment.list({
-            query: { student_email: user.email, status: 'pending' },
+            query: { student_email: normalizedEmail, status: 'pending' },
             limit: 100
           });
           setAssignments(myAssignments);
@@ -462,11 +464,11 @@ export default function Practice() {
 
         <PracticePathProgress userEmail={currentUser?.email} />
 
+        {assignments.length > 0 && (
         <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-8">
           <h2 className="font-bold text-blue-900 flex items-center gap-2 mb-4">
             <Clock className="w-5 h-5" /> Assignments from your Tutor
           </h2>
-          {assignments.length > 0 ? (
             <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
               {assignments.map(a => (
                 <Card key={a.id} className="cursor-pointer hover:shadow-md transition-all border-blue-100" onClick={() => startAssignment(a)}>
@@ -484,12 +486,8 @@ export default function Practice() {
                 </Card>
               ))}
             </div>
-          ) : (
-            <div className="text-center py-6 text-blue-400 bg-white/50 rounded-lg border border-blue-100 border-dashed">
-                <p>No active assignments. Check back later!</p>
-            </div>
-          )}
         </div>
+        )}
 
         <div className="grid md:grid-cols-4 gap-4">
           

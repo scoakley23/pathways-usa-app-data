@@ -101,9 +101,9 @@ export default function Tutor({ cachedUser, cachedRole }) {
 
       <div className="mt-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
           {role === 'tutor' ? (
-              <MyStudents currentUserEmail={user.email} />
+              <MyStudents currentUserEmail={user.email.toLowerCase().trim()} />
           ) : (
-              <MyTutor currentUserEmail={user.email} />
+              <MyTutor currentUserEmail={user.email.toLowerCase().trim()} />
           )}
       </div>
     </div>

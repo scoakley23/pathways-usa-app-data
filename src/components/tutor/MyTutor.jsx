@@ -118,7 +118,8 @@ export default function MyTutor({ currentUserEmail }) {
       await base44.entities.TutorRelationship.create({
           student_email: studentEmailNormalized,
           tutor_email: tutorEmailNormalized,
-          status: initialStatus
+          status: initialStatus,
+          created_by: studentEmailNormalized
       });
 
       if (initialStatus === 'active') {
