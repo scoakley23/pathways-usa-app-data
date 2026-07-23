@@ -56,6 +56,21 @@
         "incorrect"
       ],
       "description": "Result of the last practice session"
+    },
+    "best_score": {
+      "type": "number",
+      "default": 0,
+      "description": "Best accuracy score (0-100)"
+    },
+    "last_score": {
+      "type": "number",
+      "default": 0,
+      "description": "Most recent accuracy score (0-100)"
+    },
+    "total_attempts": {
+      "type": "number",
+      "default": 0,
+      "description": "Total number of practice attempts for this content item"
     }
   },
   "required": [

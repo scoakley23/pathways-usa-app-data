@@ -338,7 +338,7 @@ export default function Practice() {
   }
 };
 
-  const handleComplete = async (isSuccess) => {
+  const handleComplete = async (isSuccess, score = null) => {
     const currentItem = content[currentIndex];
     
     if (currentUser) {
@@ -392,7 +392,10 @@ export default function Practice() {
             ease_factor: newEaseFactor,
             interval: newInterval,
             consecutive_correct: newConsecutive,
-            last_result: isSuccess ? 'correct' : 'incorrect'
+            last_result: isSuccess ? 'correct' : 'incorrect',
+            best_score: Math.max(prevProgress.best_score || 0, score || 0),
+            last_score: score || 0,
+            total_attempts: (prevProgress.total_attempts || 0) + 1
           };
 
           // Update or Create
