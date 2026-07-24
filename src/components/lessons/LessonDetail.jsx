@@ -9,6 +9,7 @@ import ReactMarkdown from 'react-markdown';
 import FlashcardView from '@/components/lessons/FlashcardView';
 import KeyPointsDisplay from '@/components/lessons/KeyPointsDisplay';
 import QuizExplanationPanel from '@/components/lessons/QuizExplanationPanel';
+import GlossaryText from '@/components/lessons/GlossaryText';
 import { toast } from "sonner";
 import { useLessonTranslation } from '@/hooks/useLessonTranslation';
 import LanguageSelector from '@/components/lessons/LanguageSelector';
@@ -458,7 +459,14 @@ Please provide a brief, simple explanation (2-3 sentences) of this concept in pl
           {displayLesson.content && (
             <Card className="p-6">
               <div className="prose prose-slate max-w-none">
-                <ReactMarkdown>{displayLesson.content}</ReactMarkdown>
+                <ReactMarkdown
+                  components={{
+                    p: ({ children }) => <p><GlossaryText>{children}</GlossaryText></p>,
+                    li: ({ children }) => <li><GlossaryText>{children}</GlossaryText></li>,
+                  }}
+                >
+                  {displayLesson.content}
+                </ReactMarkdown>
               </div>
             </Card>
           )}

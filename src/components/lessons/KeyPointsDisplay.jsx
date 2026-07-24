@@ -1,5 +1,6 @@
 import React from 'react';
 import { CheckCircle } from 'lucide-react';
+import GlossaryText from '@/components/lessons/GlossaryText';
 
 export default function KeyPointsDisplay({ keyPoints }) {
   if (!keyPoints || keyPoints.length === 0) return null;
@@ -24,7 +25,7 @@ export default function KeyPointsDisplay({ keyPoints }) {
                 <span className="flex items-center justify-center w-7 h-7 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 text-white text-sm font-bold shrink-0">
                   {idx + 1}
                 </span>
-                <span className="text-slate-800 leading-relaxed font-medium flex-1">{pointText}</span>
+                <span className="text-slate-800 leading-relaxed font-medium flex-1"><GlossaryText>{pointText}</GlossaryText></span>
               </div>
               {definition && (
                 <div className="ml-10 p-3 bg-blue-50 rounded-lg border-l-4 border-blue-400">
