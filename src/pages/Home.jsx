@@ -99,9 +99,9 @@ export default function Home({ cachedUser }) {
           <CardContent className="p-6 md:p-10">
             <div className="flex flex-col md:flex-row items-center gap-6">
               <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/USCIS_logo_English.svg/400px-USCIS_logo_English.svg.png"
+                src="https://media.base44.com/images/public/6931bd654d327c7b2e36bfed/a40404ef0_generated_image.png"
                 alt="USCIS Official Seal"
-                className="w-24 md:w-32 h-auto object-contain opacity-80 shrink-0"
+                className="w-24 md:w-32 h-auto object-contain shrink-0"
               />
               <div className="flex-1 space-y-3 text-center md:text-left">
                 <h2 className="text-2xl md:text-3xl font-bold text-slate-900">Ready to Apply?</h2>
