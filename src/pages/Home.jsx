@@ -34,10 +34,10 @@ export default function Home({ cachedUser }) {
       </section>
 
       {/* Features Section */}
-      <section className="py-8 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <section className="py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
         <Link to={createPageUrl('Practice')} className="block">
             <Card className="h-full border-0 shadow-lg bg-white/50 backdrop-blur-sm hover:-translate-y-1 transition-transform duration-300 cursor-pointer hover:bg-blue-50">
-            <CardContent className="p-8 space-y-4">
+            <CardContent className="p-5 md:p-8 space-y-4">
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#E8EFF8', color: '#1A3A6D' }}>
                 <BookOpen className="w-6 h-6" />
                 </div>
@@ -51,7 +51,7 @@ export default function Home({ cachedUser }) {
 
         <Link to={createPageUrl('Practice')} className="block">
             <Card className="h-full border-0 shadow-lg bg-white/50 backdrop-blur-sm hover:-translate-y-1 transition-transform duration-300 cursor-pointer hover:bg-blue-50">
-            <CardContent className="p-8 space-y-4">
+            <CardContent className="p-5 md:p-8 space-y-4">
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#D6E4F5', color: '#2C5BA0' }}>
                 <Mic className="w-6 h-6" />
                 </div>
@@ -65,7 +65,7 @@ export default function Home({ cachedUser }) {
 
         <Link to={createPageUrl('Practice')} className="block">
             <Card className="h-full border-0 shadow-lg bg-white/50 backdrop-blur-sm hover:-translate-y-1 transition-transform duration-300 cursor-pointer hover:bg-blue-50">
-            <CardContent className="p-8 space-y-4">
+            <CardContent className="p-5 md:p-8 space-y-4">
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#C3D7F0', color: '#5C8BD3' }}>
                 <Notebook className="w-6 h-6" />
                 </div>
@@ -79,7 +79,7 @@ export default function Home({ cachedUser }) {
 
         <Link to={createPageUrl('Practice')} className="block">
             <Card className="h-full border-0 shadow-lg bg-white/50 backdrop-blur-sm hover:-translate-y-1 transition-transform duration-300 cursor-pointer hover:bg-blue-50">
-            <CardContent className="p-8 space-y-4">
+            <CardContent className="p-5 md:p-8 space-y-4">
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#FDE8E8', color: '#E64A4A' }}>
                 <GraduationCap className="w-6 h-6" />
                 </div>
@@ -96,8 +96,13 @@ export default function Home({ cachedUser }) {
       <section className="py-8">
         <Card className="border-0 shadow-lg overflow-hidden rounded-2xl">
           <div className="h-2" style={{ background: 'linear-gradient(90deg, #1A3A6D, #5C8BD3, #1A3A6D)' }} />
-          <CardContent className="p-8 md:p-10">
-            <div className="flex flex-col md:flex-row items-center gap-8">
+          <CardContent className="p-6 md:p-10">
+            <div className="flex flex-col md:flex-row items-center gap-6">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/USCIS_logo_English.svg/400px-USCIS_logo_English.svg.png"
+                alt="USCIS Official Seal"
+                className="w-24 md:w-32 h-auto object-contain opacity-80 shrink-0"
+              />
               <div className="flex-1 space-y-3 text-center md:text-left">
                 <h2 className="text-2xl md:text-3xl font-bold text-slate-900">Ready to Apply?</h2>
                 <p className="text-slate-600 max-w-lg">
@@ -126,11 +131,6 @@ export default function Home({ cachedUser }) {
                   </Button>
                 </a>
               </div>
-              <img
-                src="https://commons.wikimedia.org/wiki/Special:FilePath/USCIS_logo_English.svg?width=400"
-                alt="USCIS Official Seal"
-                className="w-32 h-auto object-contain opacity-80 shrink-0 hidden lg:block"
-              />
             </div>
           </CardContent>
         </Card>
