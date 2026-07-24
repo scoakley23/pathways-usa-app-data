@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, Mic, PenTool, BookOpen, CheckCircle, GraduationCap, Notebook } from 'lucide-react';
+import { ArrowRight, Mic, PenTool, BookOpen, CheckCircle, GraduationCap, Notebook, FileText, Search } from 'lucide-react';
 
 
 export default function Home({ cachedUser }) {
@@ -90,6 +90,45 @@ export default function Home({ cachedUser }) {
             </CardContent>
             </Card>
         </Link>
+      </section>
+
+      {/* USCIS Resources Section */}
+      <section className="py-8">
+        <Card className="border-0 shadow-lg overflow-hidden rounded-2xl">
+          <div className="h-2" style={{ background: 'linear-gradient(90deg, #1A3A6D, #5C8BD3, #1A3A6D)' }} />
+          <CardContent className="p-8 md:p-10">
+            <div className="flex flex-col md:flex-row items-center gap-8">
+              <div className="flex-1 space-y-3 text-center md:text-left">
+                <h2 className="text-2xl md:text-3xl font-bold text-slate-900">Ready to Apply?</h2>
+                <p className="text-slate-600 max-w-lg">
+                  Access official USCIS resources to submit your N-400 Application for Naturalization and track your case status.
+                </p>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                <a
+                  href="https://www.uscis.gov/citizenship/apply-for-naturalization"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex"
+                >
+                  <Button size="lg" className="h-12 px-6 text-base whitespace-nowrap" style={{ backgroundColor: '#1A3A6D' }}>
+                    <FileText className="mr-2 w-5 h-5" /> Apply for Naturalization
+                  </Button>
+                </a>
+                <a
+                  href="https://egov.uscis.gov/casestatus/landing.do"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex"
+                >
+                  <Button size="lg" variant="outline" className="h-12 px-6 text-base whitespace-nowrap border-slate-300 text-slate-700 hover:bg-slate-50">
+                    <Search className="mr-2 w-5 h-5" /> Check Case Status
+                  </Button>
+                </a>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </section>
     </div>
   );
