@@ -126,6 +126,11 @@ export default function Home({ cachedUser }) {
                   </Button>
                 </a>
               </div>
+              <img
+                src="https://commons.wikimedia.org/wiki/Special:FilePath/USCIS_logo_English.svg?width=400"
+                alt="USCIS Official Seal"
+                className="w-32 h-auto object-contain opacity-80 shrink-0 hidden lg:block"
+              />
             </div>
           </CardContent>
         </Card>
