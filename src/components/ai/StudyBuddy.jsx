@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { speakText } from "@/components/utils/textToSpeech";
+import { LANGUAGES } from '@/hooks/useLessonTranslation';
 
 export default function StudyBuddy() {
   const [isOpen, setIsOpen] = useState(false);
@@ -151,13 +152,9 @@ export default function StudyBuddy() {
                         <SelectValue placeholder="Language" />
                     </SelectTrigger>
                     <SelectContent>
-                        <SelectItem value="en">English</SelectItem>
-                        <SelectItem value="es">Spanish (Español)</SelectItem>
-                        <SelectItem value="zh">Chinese (中文)</SelectItem>
-                        <SelectItem value="vi">Vietnamese (Tiếng Việt)</SelectItem>
-                        <SelectItem value="ar">Arabic (العربية)</SelectItem>
-                        <SelectItem value="fr">French (Français)</SelectItem>
-                        <SelectItem value="tl">Tagalog</SelectItem>
+                        {LANGUAGES.map(lang => (
+                            <SelectItem key={lang.value} value={lang.value}>{lang.label}</SelectItem>
+                        ))}
                     </SelectContent>
                 </Select>
             </div>

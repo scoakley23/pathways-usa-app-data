@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { base44 } from '@/api/base44Client';
 
 import { getPersonalizedAnswer } from '@/components/civics/RepresentativeFinder';
+import { LANGUAGES } from '@/hooks/useLessonTranslation';
 
 export default function CivicsTestCard({ question, onComplete, onNext, representativeData }) {
   const [isRevealed, setIsRevealed] = useState(false);
@@ -26,15 +27,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
   const [isListening, setIsListening] = useState(false);
   const recognitionRef = useRef(null);
 
-  const SUPPORTED_LANGUAGES = [
-    { code: 'es', name: 'Spanish' },
-    { code: 'ar', name: 'Arabic' },
-    { code: 'am', name: 'Amharic' },
-    { code: 'pt', name: 'Portuguese' },
-    { code: 'zh', name: 'Chinese' },
-    { code: 'vi', name: 'Vietnamese' },
-    { code: 'fr', name: 'French' }
-  ];
+  const SUPPORTED_LANGUAGES = LANGUAGES.filter(l => l.value !== 'en');
 
   // Reset state when question changes
   useEffect(() => {
@@ -63,7 +56,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
     
     setIsTranslating(true);
     try {
-      const langName = SUPPORTED_LANGUAGES.find(l => l.code === selectedLanguage)?.name;
+      const langName = SUPPORTED_LANGUAGES.find(l => l.value === selectedLanguage)?.label;
       const prompt = `Translate the following Civics Question and Answer into ${langName}.
       
       Question: "${question.question}"
@@ -169,7 +162,7 @@ In the real USCIS interview, answers don't need to be word-for-word — as long 
             <SelectContent>
               <SelectItem value="none">No Translation</SelectItem>
               {SUPPORTED_LANGUAGES.map(lang => (
-                <SelectItem key={lang.code} value={lang.code}>{lang.name}</SelectItem>
+                <SelectItem key={lang.value} value={lang.value}>{lang.label}</SelectItem>
               ))}
             </SelectContent>
           </Select>
