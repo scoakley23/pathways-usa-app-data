@@ -19,7 +19,9 @@ export default function NotificationCenter({ userEmail }) {
   const [notifications, setNotifications] = useState([]);
   const [unreadCount, setUnreadCount] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
-  const [permission, setPermission] = useState(Notification.permission);
+  const [permission, setPermission] = useState(
+    typeof Notification !== 'undefined' ? Notification.permission : 'denied'
+  );
 
   useEffect(() => {
     if (userEmail) {
@@ -31,11 +33,9 @@ export default function NotificationCenter({ userEmail }) {
 
   const fetchNotifications = async () => {
     try {
-      const data = await base44.entities.Notification.list({
-        query: { user_email: userEmail },
-        limit: 20,
-        sort: { created_date: -1 }
-      });
+      const data = await base44.entities.Notification.filter(
+        { user_email: userEmail }, '-created_date', 20
+      );
       
       setNotifications(data);
       
@@ -88,6 +88,7 @@ export default function NotificationCenter({ userEmail }) {
   };
 
   const requestPushPermission = async () => {
+      if (typeof Notification === 'undefined') return;
       const result = await Notification.requestPermission();
       setPermission(result);
       if (result === 'granted') {

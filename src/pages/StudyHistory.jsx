@@ -17,10 +17,7 @@ export default function StudyHistory() {
     const fetchLogs = async () => {
       try {
         const user = await base44.auth.me();
-        const history = await base44.entities.AIStudyLog.list({
-            query: { user_email: user.email },
-            sort: { created_at: -1 }
-        });
+        const history = await base44.entities.AIStudyLog.filter({ user_email: user.email }, '-created_at');
         setLogs(history);
       } catch (e) {
         console.error(e);

@@ -37,10 +37,7 @@ export default function Leaderboard() {
         // 
         // Let's try to create 'PublicProfile' entity.
         
-        const profiles = await base44.entities.PublicProfile.list({
-            sort: { points: -1 },
-            limit: 10
-        });
+        const profiles = await base44.entities.PublicProfile.list('-points', 10);
         setLeaders(profiles);
       } catch (error) {
         console.error("Leaderboard fetch error", error);

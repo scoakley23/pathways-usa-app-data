@@ -35,11 +35,9 @@ export default function Layout({ children }) {
         }
         
         // Clean up duplicate profiles (keep only the most recent one with account_type)
-        const allProfiles = await base44.entities.PublicProfile.list({
-             query: { user_email: normalizedEmail },
-             sort: { created_date: -1 },
-             limit: 100
-        });
+        const allProfiles = await base44.entities.PublicProfile.filter(
+             { user_email: normalizedEmail }, '-created_date', 100
+        );
         
         if (allProfiles.length > 1) {
           // Find the first profile with account_type, or just use the most recent
@@ -84,10 +82,9 @@ export default function Layout({ children }) {
             if (inviteTutorEmail) {
                  try {
                      const tutorEmail = inviteTutorEmail.toLowerCase().trim();
-                     const existing = await base44.entities.TutorRelationship.list({
-                         query: { student_email: normalizedEmail, tutor_email: tutorEmail },
-                         limit: 1
-                     });
+                     const existing = await base44.entities.TutorRelationship.filter(
+                         { student_email: normalizedEmail, tutor_email: tutorEmail }, null, 1
+                     );
                      
                      if (existing.length === 0) {
                          await base44.entities.TutorRelationship.create({

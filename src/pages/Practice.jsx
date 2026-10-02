@@ -33,11 +33,7 @@ export default function Practice() {
   const loadRepresentativeData = async (email) => {
     try {
       const normalizedEmail = email.toLowerCase().trim();
-      const profiles = await base44.entities.PublicProfile.list({
-        query: { user_email: normalizedEmail },
-        sort: { created_date: -1 },
-        limit: 1
-      });
+      const profiles = await base44.entities.PublicProfile.filter({ user_email: normalizedEmail }, '-created_date', 1);
       if (profiles.length > 0 && profiles[0].representative_data) {
         setRepresentativeData(profiles[0].representative_data);
       }
@@ -54,10 +50,9 @@ export default function Practice() {
           const normalizedUser = { ...user, email: normalizedEmail };
           setCurrentUser(normalizedUser);
           loadRepresentativeData(normalizedEmail);
-          const myAssignments = await base44.entities.Assignment.list({
-            query: { student_email: normalizedEmail, status: 'pending' },
-            limit: 100
-          });
+          const myAssignments = await base44.entities.Assignment.filter(
+            { student_email: normalizedEmail, status: 'pending' }, null, 100
+          );
           setAssignments(myAssignments);
         }
       } catch (e) {
@@ -141,8 +136,8 @@ export default function Practice() {
     if (!currentUser) return items.sort(() => 0.5 - Math.random()).slice(0, 10);
     
     try {
-      const progress = await base44.entities.UserProgress.list({
-        query: { user_email: currentUser.email, content_type: type }
+      const progress = await base44.entities.UserProgress.filter({
+        user_email: currentUser.email, content_type: type
       });
       
       const progressMap = new Map(progress.map(p => [p.content_id, p]));
@@ -312,14 +307,14 @@ export default function Practice() {
     } else {
       // Handle standard content - fetch ALL and filter (Base44 ID query workaround)
       if (assignment.content_type === 'sentence') {
-        const all = await base44.entities.Sentence.list({ limit: 1000 });
+        const all = await base44.entities.Sentence.list('-created_date', 1000);
         item = all.find(s => s.id === assignment.content_id);
       } else if (assignment.content_type === 'vocabulary') {
-        const all = await base44.entities.VocabularyWord.list({ limit: 1000 });
+        const all = await base44.entities.VocabularyWord.list('-created_date', 1000);
         const vocab = all.find(v => v.id === assignment.content_id);
         item = vocab ? { ...vocab, text: vocab.word, type: 'vocabulary' } : null;
       } else if (assignment.content_type === 'civics_question') {
-        const all = await base44.entities.CivicsQuestion.list({ limit: 1000 });
+        const all = await base44.entities.CivicsQuestion.list('-created_date', 1000);
         item = all.find(q => q.id === assignment.content_id);
       }
     }
@@ -346,10 +341,9 @@ export default function Practice() {
     if (currentUser) {
        try {
           // 1. Fetch existing progress to implement SRS math
-          const existing = await base44.entities.UserProgress.list({
-              query: { user_email: currentUser.email, content_id: currentItem.id },
-              limit: 1
-          });
+          const existing = await base44.entities.UserProgress.filter(
+              { user_email: currentUser.email, content_id: currentItem.id }, null, 1
+          );
           
           const prevProgress = existing[0] || { 
               ease_factor: 2.5, 

@@ -20,10 +20,7 @@ export default function RecommendationsPanel({ userEmail, onSelectLesson }) {
       setLoading(true);
       
       // Get all progress
-      const progress = await base44.entities.LessonProgress.list({
-        query: { user_email: userEmail },
-        limit: 1000
-      });
+      const progress = await base44.entities.LessonProgress.filter({ user_email: userEmail }, null, 1000);
 
       // Get all lessons
       const allLessons = await base44.entities.Lesson.list('order', 1000);

@@ -32,11 +32,9 @@ export default function StudyBuddy() {
         setUser(currentUser);
         
         // Find active tutor
-        const rels = await base44.entities.TutorRelationship.list({
-          query: { 
-            student_email: currentUser.email,
-            status: 'active'
-          }
+        const rels = await base44.entities.TutorRelationship.filter({
+          student_email: currentUser.email,
+          status: 'active'
         });
         
         if (rels.length > 0) {

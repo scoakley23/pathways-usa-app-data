@@ -37,7 +37,7 @@ export default function StudentActivityMonitor({ currentUserEmail, students }) {
       // Fetch lesson progress for all students
       const allProgress = await Promise.all(
         emails.map(email =>
-          base44.entities.LessonProgress.list({ query: { user_email: email }, limit: 200 })
+          base44.entities.LessonProgress.filter({ user_email: email }, null, 200)
         )
       );
       const flatProgress = allProgress.flat();
@@ -46,7 +46,7 @@ export default function StudentActivityMonitor({ currentUserEmail, students }) {
       // Fetch UserProgress (civics/sentence/vocab practice)
       const allUserProgress = await Promise.all(
         emails.map(email =>
-          base44.entities.UserProgress.list({ query: { user_email: email }, limit: 200 })
+          base44.entities.UserProgress.filter({ user_email: email }, null, 200)
         )
       );
       setUserProgress(allUserProgress.flat());

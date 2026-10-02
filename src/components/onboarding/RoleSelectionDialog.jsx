@@ -27,10 +27,9 @@ export default function RoleSelectionDialog({ isOpen, onComplete, userEmail, use
         }
 
         const normalizedEmail = user.email.toLowerCase().trim();
-        const profiles = await base44.entities.PublicProfile.list({
-          query: { user_email: normalizedEmail },
-          limit: 1
-        });
+        const profiles = await base44.entities.PublicProfile.filter(
+          { user_email: normalizedEmail }, null, 1
+        );
 
         if (profiles.length === 0 || !profiles[0].account_type) {
           setCurrentUser(user);
@@ -168,9 +167,7 @@ useEffect(() => {
       await base44.auth.signIn(email, password);
       
       const normalizedEmail = email.toLowerCase().trim();
-      const profiles = await base44.entities.PublicProfile.list({
-        query: { user_email: normalizedEmail }
-      });
+      const profiles = await base44.entities.PublicProfile.filter({ user_email: normalizedEmail });
 
       if (profiles.length === 0 || !profiles[0].account_type) {
         const user = await base44.auth.me();
@@ -199,9 +196,7 @@ useEffect(() => {
     const normalizedEmail = currentUser.email.toLowerCase().trim();
 
     // Clean up ALL existing profiles first to prevent duplicates
-    const allExisting = await base44.entities.PublicProfile.list({
-      query: { user_email: normalizedEmail }
-    });
+    const allExisting = await base44.entities.PublicProfile.filter({ user_email: normalizedEmail });
     
     for (const profile of allExisting) {
       await base44.entities.PublicProfile.delete(profile.id);
@@ -246,10 +241,9 @@ useEffect(() => {
 
     // Create tutor relationship if joining via invite code
     if (selectedRole === 'student' && tutorEmail) {
-      const existingRel = await base44.entities.TutorRelationship.list({
-        query: { student_email: normalizedEmail, tutor_email: tutorEmail },
-        limit: 1
-      });
+      const existingRel = await base44.entities.TutorRelationship.filter(
+        { student_email: normalizedEmail, tutor_email: tutorEmail }, null, 1
+      );
       
       if (existingRel.length === 0) {
         await base44.entities.TutorRelationship.create({

@@ -17,9 +17,7 @@ export default function Tutor({ cachedUser, cachedRole }) {
       setUser(me);
       
       const normalizedEmail = me.email.toLowerCase().trim();
-      const profiles = await base44.entities.PublicProfile.list({
-          query: { user_email: normalizedEmail }
-      });
+      const profiles = await base44.entities.PublicProfile.filter({ user_email: normalizedEmail });
       
       if (profiles.length > 0 && profiles[0].account_type) {
           setRole(profiles[0].account_type);

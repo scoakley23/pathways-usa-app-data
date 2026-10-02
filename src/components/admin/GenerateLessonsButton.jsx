@@ -12,7 +12,7 @@ export default function GenerateLessonsButton() {
     
     try {
       // Fetch all civics questions to understand topics
-      const questions = await base44.entities.CivicsQuestion.list({ limit: 500 });
+      const questions = await base44.entities.CivicsQuestion.list('-created_date', 500);
       
       // Define main topics in chronological/logical order that build on each other
       const topics = [

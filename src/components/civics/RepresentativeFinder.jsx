@@ -50,11 +50,9 @@ export default function RepresentativeFinder({ userEmail, onDataLoaded }) {
     const loadProfile = async () => {
       try {
         const normalizedEmail = userEmail.toLowerCase().trim();
-        const profiles = await base44.entities.PublicProfile.list({
-          query: { user_email: normalizedEmail },
-          sort: { created_date: -1 },
-          limit: 1
-        });
+        const profiles = await base44.entities.PublicProfile.filter(
+          { user_email: normalizedEmail }, '-created_date', 1
+        );
         if (profiles.length > 0) {
           const profile = profiles[0];
           setProfileId(profile.id);
@@ -247,11 +245,9 @@ Double check all names are spelled correctly.`,
     setSaving(true);
     try {
       const normalizedEmail = userEmail.toLowerCase().trim();
-      const profiles = await base44.entities.PublicProfile.list({
-        query: { user_email: normalizedEmail },
-        sort: { created_date: -1 },
-        limit: 1
-      });
+      const profiles = await base44.entities.PublicProfile.filter(
+        { user_email: normalizedEmail }, '-created_date', 1
+      );
 
       if (profiles.length > 0) {
         const pid = profiles[0].id;

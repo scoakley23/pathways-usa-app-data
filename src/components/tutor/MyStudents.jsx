@@ -73,9 +73,7 @@ export default function MyStudents({ currentUserEmail }) {
   const fetchStudents = async () => {
     try {
       const normalizedEmail = currentUserEmail.toLowerCase().trim();
-      const rels = await base44.entities.TutorRelationship.list({
-        query: { tutor_email: normalizedEmail }
-      });
+      const rels = await base44.entities.TutorRelationship.filter({ tutor_email: normalizedEmail });
       setStudents(rels);
     } catch (error) {
       console.error("Error fetching students", error);

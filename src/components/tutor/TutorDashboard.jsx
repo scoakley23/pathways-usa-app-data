@@ -37,10 +37,9 @@ export default function TutorDashboard({ currentUserEmail, students }) {
     setIsLoading(true);
     try {
       // Fetch all assignments created by this tutor
-      const allAssignments = await base44.entities.Assignment.list({
-        query: { tutor_email: currentUserEmail },
-        limit: 500 // Fetch enough history
-      });
+      const allAssignments = await base44.entities.Assignment.filter(
+        { tutor_email: currentUserEmail }, null, 500 // Fetch enough history
+      );
       setAssignments(allAssignments);
     } catch (error) {
       console.error("Error fetching dashboard data", error);

@@ -43,17 +43,13 @@ export default function ChatInterface({ otherUserEmail, currentUserEmail }) {
       // If backend data is mixed case, this might miss some. 
       // Best practice is to store all emails lowercase.
       
-      const sent = await base44.entities.Message.list({
-        query: { sender_email: currentUserEmail, receiver_email: otherUserEmail },
-        limit: 50,
-        sort: { created_date: -1 } 
-      });
+      const sent = await base44.entities.Message.filter(
+        { sender_email: currentUserEmail, receiver_email: otherUserEmail }, '-created_date', 50
+      );
 
-      const received = await base44.entities.Message.list({
-        query: { sender_email: otherUserEmail, receiver_email: currentUserEmail },
-        limit: 50,
-        sort: { created_date: -1 }
-      });
+      const received = await base44.entities.Message.filter(
+        { sender_email: otherUserEmail, receiver_email: currentUserEmail }, '-created_date', 50
+      );
 
       // Also try with lowercased versions if they are different (handling potential case sensitivity in stored data)
       // This is a safety net.
@@ -61,16 +57,12 @@ export default function ChatInterface({ otherUserEmail, currentUserEmail }) {
       let extraReceived = [];
       
       if (currentUserEmail !== me || otherUserEmail !== them) {
-         extraSent = await base44.entities.Message.list({
-            query: { sender_email: me, receiver_email: them },
-            limit: 50,
-            sort: { created_date: -1 }
-         });
-         extraReceived = await base44.entities.Message.list({
-            query: { sender_email: them, receiver_email: me },
-            limit: 50,
-            sort: { created_date: -1 }
-         });
+         extraSent = await base44.entities.Message.filter(
+            { sender_email: me, receiver_email: them }, '-created_date', 50
+         );
+         extraReceived = await base44.entities.Message.filter(
+            { sender_email: them, receiver_email: me }, '-created_date', 50
+         );
       }
 
       const all = [...sent, ...received, ...extraSent, ...extraReceived].sort((a, b) => 

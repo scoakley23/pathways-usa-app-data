@@ -29,18 +29,14 @@ export default function Profile() {
       setUser(userData);
 
       // Fetch Public Profile for display name
-      const profiles = await base44.entities.PublicProfile.list({
-        query: { user_email: userData.email }
-      });
+      const profiles = await base44.entities.PublicProfile.filter({ user_email: userData.email });
 
       if (profiles.length > 0) {
         setPublicProfile(profiles[0]);
         setDisplayName(profiles[0].display_name || userData.full_name || "");
         
         if (profiles[0].account_type === 'tutor') {
-             const rels = await base44.entities.TutorRelationship.list({
-                query: { tutor_email: userData.email }
-             });
+             const rels = await base44.entities.TutorRelationship.filter({ tutor_email: userData.email });
              setStudents(rels);
         }
       } else {

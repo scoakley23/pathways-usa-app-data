@@ -23,9 +23,7 @@ export default function MyTutor({ currentUserEmail }) {
   const fetchTutors = async () => {
     try {
       const normalizedEmail = currentUserEmail.toLowerCase().trim();
-      const rels = await base44.entities.TutorRelationship.list({
-        query: { student_email: normalizedEmail }
-      });
+      const rels = await base44.entities.TutorRelationship.filter({ student_email: normalizedEmail });
       setTutors(rels);
     } catch (error) {
       console.error("Error fetching tutors", error);
@@ -105,8 +103,8 @@ export default function MyTutor({ currentUserEmail }) {
       }
 
       // Check if relationship already exists
-      const existing = await base44.entities.TutorRelationship.list({
-          query: { student_email: studentEmailNormalized, tutor_email: tutorEmailNormalized }
+      const existing = await base44.entities.TutorRelationship.filter({
+          student_email: studentEmailNormalized, tutor_email: tutorEmailNormalized
       });
 
       if (existing.length > 0) {
