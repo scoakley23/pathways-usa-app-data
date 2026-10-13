@@ -23,7 +23,8 @@ export default function RecommendationsPanel({ userEmail, onSelectLesson }) {
       const progress = await base44.entities.LessonProgress.filter({ user_email: userEmail }, null, 1000);
 
       // Get all lessons
-      const allLessons = await base44.entities.Lesson.list('order', 1000);
+      const lessonPage = await base44.entities.Lesson.filter({}, { sort: 'order', limit: 1000 });
+      const allLessons = lessonPage.items;
 
       // Analyze and recommend
       const recs = analyzeAndRecommend(progress, allLessons);
