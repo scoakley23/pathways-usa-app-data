@@ -15,6 +15,7 @@ import StudyBuddy from '@/components/ai/StudyBuddy';
 import RepresentativeFinder from '@/components/civics/RepresentativeFinder';
 import PracticePathProgress from '@/components/practice/PracticePathProgress';
 import { toast } from "sonner";
+import VoiceSettings from '@/components/utils/VoiceSettings';
 
 export default function Practice() {
   const [mode, setMode] = useState('menu'); // menu, dictation, vocabulary, civics
@@ -454,6 +455,9 @@ export default function Practice() {
           <p className="text-xl text-slate-600 max-w-2xl mx-auto">
             Choose your study mode to prepare for your citizenship test.
           </p>
+          <div className="flex justify-center">
+            <VoiceSettings />
+          </div>
         </div>
 
         <PracticePathProgress userEmail={currentUser?.email} />

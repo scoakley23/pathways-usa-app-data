@@ -6,11 +6,12 @@ import { Label } from "@/components/ui/label";
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { User, Trophy, Flame, Star, GraduationCap, School, Users, Save, Loader2 } from 'lucide-react';
+import { User, Trophy, Flame, Star, GraduationCap, School, Users, Save, Loader2, Volume2 } from 'lucide-react';
 import BadgesDisplay from '@/components/gamification/BadgesDisplay';
 import TutorDashboard from '@/components/tutor/TutorDashboard';
 import { toast } from "sonner";
 import { ensurePublicProfile } from '@/lib/profileService';
+import VoiceSettings from '@/components/utils/VoiceSettings';
 
 export default function Profile() {
   const [user, setUser] = useState(null);
@@ -224,6 +225,20 @@ export default function Profile() {
               </div>
             </>
           )}
+
+          <div className="w-full">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Volume2 className="w-5 h-5 text-blue-600" /> Voice & Audio
+                </CardTitle>
+                <CardDescription>Choose how the app sounds during practice and interviews.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <VoiceSettings />
+              </CardContent>
+            </Card>
+          </div>
 
         </div>
       </div>

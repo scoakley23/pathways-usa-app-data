@@ -5,10 +5,16 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Mic, MicOff, Volume2, ArrowRight, Check, X, Loader2, ChevronDown, ChevronUp, FileText } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
-import { speakText } from "@/components/utils/textToSpeech";
+import { speakText, stopSpeaking, getRandomVoice } from "@/components/utils/textToSpeech";
 import { toast } from "sonner";
 import InterviewReport from './InterviewReport';
 import VirtualInterviewer, { AVATAR_URL } from './VirtualInterviewer';
+
+// Long text is now spoken in chunks, so the fallback timeout must cover all of them.
+const speechTimeoutMs = (text) => {
+  const chunks = Math.max(1, Math.ceil((text || '').length / 200));
+  return 15000 + (chunks - 1) * 10000;
+};
 
 export default function InterviewPractice({ onComplete, onNext }) {
   const [questions, setQuestions] = useState([]);
@@ -28,6 +34,7 @@ export default function InterviewPractice({ onComplete, onNext }) {
   const [interviewerState, setInterviewerState] = useState('idle');
   const [conversation, setConversation] = useState([]);
   const [showTyping, setShowTyping] = useState(false);
+  const [varyOfficer, setVaryOfficer] = useState(false);
 
   const recognitionRef = useRef(null);
   const responseRef = useRef('');
@@ -37,6 +44,7 @@ export default function InterviewPractice({ onComplete, onNext }) {
   const streamRef = useRef(null);
   const transcriptRef = useRef(null);
   const silenceTimeoutRef = useRef(null);
+  const officerVoiceRef = useRef(null);
 
   useEffect(() => {
     loadQuestions();
@@ -146,7 +154,7 @@ export default function InterviewPractice({ onComplete, onNext }) {
     if (isListening) {
       recognitionRef.current.stop();
     } else {
-      window.speechSynthesis.cancel();
+      stopSpeaking();
       setInterviewerState('listening');
       setUserResponse('');
       responseRef.current = '';
@@ -171,20 +179,27 @@ export default function InterviewPractice({ onComplete, onNext }) {
       setConversation(prev => [...prev, { role: 'interviewer', text: q.question, id: `q_${index}` }]);
       setInterviewerState('speaking');
       speakText(q.question, 'en', {
+        voiceName: officerVoiceRef.current || undefined,
         onStart: () => setInterviewerState('speaking'),
         onEnd: () => setInterviewerState('listening')
       });
       // Fallback in case TTS doesn't fire onEnd
-      setTimeout(() => setInterviewerState(prev => prev === 'speaking' ? 'listening' : prev), 15000);
+      setTimeout(() => setInterviewerState(prev => prev === 'speaking' ? 'listening' : prev), speechTimeoutMs(q.question));
     }, 800);
   };
 
-  const startInterview = () => {
+  const startInterview = async () => {
     setSessionStarted(true);
+    if (varyOfficer) {
+      officerVoiceRef.current = await getRandomVoice('en');
+    } else {
+      officerVoiceRef.current = null;
+    }
     const greeting = "Good morning! Welcome to your citizenship interview. Let's get started.";
     setConversation([{ role: 'interviewer', text: greeting, id: 'greeting' }]);
     setInterviewerState('speaking');
     speakText(greeting, 'en', {
+      voiceName: officerVoiceRef.current || undefined,
       onStart: () => setInterviewerState('speaking'),
       onEnd: () => {
         setInterviewerState('idle');
@@ -199,7 +214,7 @@ export default function InterviewPractice({ onComplete, onNext }) {
         }
         return prev;
       });
-    }, 15000);
+    }, speechTimeoutMs(greeting));
   };
 
   const speakQuestion = () => {
@@ -207,6 +222,7 @@ export default function InterviewPractice({ onComplete, onNext }) {
     if (!q) return;
     setInterviewerState('speaking');
     speakText(q.question, 'en', {
+      voiceName: officerVoiceRef.current || undefined,
       onStart: () => setInterviewerState('speaking'),
       onEnd: () => setInterviewerState('listening')
     });
@@ -339,7 +355,14 @@ Also provide:
     />
   );
 
-  if (!sessionStarted) return <InterviewIntro questions={questions} onStart={startInterview} />;
+  if (!sessionStarted) return (
+    <InterviewIntro
+      questions={questions}
+      onStart={startInterview}
+      varyOfficer={varyOfficer}
+      onToggleVary={() => setVaryOfficer(v => !v)}
+    />
+  );
 
   const current = questions[currentIndex];
   const progress = ((currentIndex + 1) / questions.length) * 100;
@@ -605,7 +628,7 @@ function FeedbackPanel({ feedback, response, expected }) {
   );
 }
 
-function InterviewIntro({ questions, onStart }) {
+function InterviewIntro({ questions, onStart, varyOfficer, onToggleVary }) {
   const sections = [...new Set(questions.map(q => q.section))];
   const sectionNames = { small_talk: 'Small Talk', personal_info: 'Personal Information', morals_ethics: 'Morals & Ethics', oath_requirements: 'Oath Requirements' };
 
@@ -666,6 +689,16 @@ function InterviewIntro({ questions, onStart }) {
               ))}
             </div>
           </div>
+
+          <button
+            onClick={onToggleVary}
+            className="flex items-center justify-center gap-3 bg-white rounded-xl p-3 border border-slate-100 w-full max-w-sm mx-auto text-left"
+          >
+            <span className={`w-11 h-6 rounded-full relative transition-colors shrink-0 ${varyOfficer ? 'bg-indigo-600' : 'bg-slate-300'}`}>
+              <span className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform ${varyOfficer ? 'translate-x-5' : ''}`} />
+            </span>
+            <span className="text-sm text-slate-700 font-medium">Different officer voice each interview</span>
+          </button>
 
           <Button onClick={onStart} size="lg" className="bg-indigo-600 hover:bg-indigo-700 h-14 px-12 text-lg rounded-2xl shadow-lg shadow-indigo-200">
             Start Interview
