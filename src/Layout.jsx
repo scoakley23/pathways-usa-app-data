@@ -34,33 +34,18 @@ export default function Layout({ children }) {
           return;
         }
         
-        // Clean up duplicate profiles (keep only the most recent one with account_type)
+        // Look up the user's profile (creation is centralized, so duplicates are prevented at the source)
         const allProfiles = await base44.entities.PublicProfile.filter(
              { user_email: normalizedEmail }, '-created_date', 100
         );
         
-        if (allProfiles.length > 1) {
-          // Find the first profile with account_type, or just use the most recent
-          const primaryProfile = allProfiles.find(p => p.account_type) || allProfiles[0];
-          
-          // Delete all other profiles
-          const duplicateIds = allProfiles.filter(p => p.id !== primaryProfile.id).map(p => p.id);
-          for (const id of duplicateIds) {
-            await base44.entities.PublicProfile.delete(id);
-          }
-          
+        const primaryProfile = allProfiles.find(p => p.account_type) || allProfiles[0];
+        if (primaryProfile) {
           if (primaryProfile.account_type) {
             localStorage.setItem(`role_${normalizedEmail}`, primaryProfile.account_type);
           }
           setRole(primaryProfile.account_type);
           setShowOnboarding(!primaryProfile.account_type);
-        } else if (allProfiles.length === 1) {
-          const profile = allProfiles[0];
-          if (profile.account_type) {
-            localStorage.setItem(`role_${normalizedEmail}`, profile.account_type);
-          }
-          setRole(profile.account_type);
-          setShowOnboarding(!profile.account_type);
         } else {
           // No profile - show onboarding
           setShowOnboarding(true);

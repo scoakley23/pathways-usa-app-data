@@ -10,6 +10,7 @@ import { User, Trophy, Flame, Star, GraduationCap, School, Users, Save, Loader2 
 import BadgesDisplay from '@/components/gamification/BadgesDisplay';
 import TutorDashboard from '@/components/tutor/TutorDashboard';
 import { toast } from "sonner";
+import { ensurePublicProfile } from '@/lib/profileService';
 
 export default function Profile() {
   const [user, setUser] = useState(null);
@@ -29,7 +30,7 @@ export default function Profile() {
       setUser(userData);
 
       // Fetch Public Profile for display name
-      const profiles = await base44.entities.PublicProfile.filter({ user_email: userData.email });
+      const profiles = await base44.entities.PublicProfile.filter({ user_email: userData.email.toLowerCase().trim() });
 
       if (profiles.length > 0) {
         setPublicProfile(profiles[0]);
@@ -59,8 +60,7 @@ export default function Profile() {
           display_name: displayName
         });
       } else {
-        const newProfile = await base44.entities.PublicProfile.create({
-          user_email: user.email,
+        const { profile: newProfile } = await ensurePublicProfile(user.email, {
           display_name: displayName,
           points: user.points || 0,
           badges_count: (user.badges || []).length

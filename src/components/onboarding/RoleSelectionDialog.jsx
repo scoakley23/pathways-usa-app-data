@@ -3,6 +3,7 @@ import { base44 } from '@/api/base44Client';
 import { Button } from "@/components/ui/button";
 import { GraduationCap, School, X } from 'lucide-react';
 import { toast } from "sonner";
+import { ensurePublicProfile } from '@/lib/profileService';
 
 export default function RoleSelectionDialog({ isOpen, onComplete, userEmail, userName }) {
   const [step, setStep] = useState(null);
@@ -133,7 +134,7 @@ useEffect(() => {
       profileData.invite_code = `${prefix}${random}`;
     }
 
-    await base44.entities.PublicProfile.create(profileData);
+    await ensurePublicProfile(normalizedEmail, profileData);
 
     // 4. Create relationship if student joined via invite
     if (selectedRole === 'student' && tutorEmail) {
@@ -195,13 +196,6 @@ useEffect(() => {
   try {
     const normalizedEmail = currentUser.email.toLowerCase().trim();
 
-    // Clean up ALL existing profiles first to prevent duplicates
-    const allExisting = await base44.entities.PublicProfile.filter({ user_email: normalizedEmail });
-    
-    for (const profile of allExisting) {
-      await base44.entities.PublicProfile.delete(profile.id);
-    }
-    
     // Handle invite code for students
     let tutorEmail = null;
     if (selectedRole === 'student' && inviteCode) {
@@ -236,8 +230,8 @@ useEffect(() => {
       profileData.invite_code = `${prefix}${random}`;
     }
 
-    // Create single new profile
-    await base44.entities.PublicProfile.create(profileData);
+    // Update the existing profile instead of creating a duplicate
+    await ensurePublicProfile(normalizedEmail, profileData);
 
     // Create tutor relationship if joining via invite code
     if (selectedRole === 'student' && tutorEmail) {
