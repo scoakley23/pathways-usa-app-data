@@ -12,6 +12,7 @@ import TutorDashboard from '@/components/tutor/TutorDashboard';
 import { toast } from "sonner";
 import { ensurePublicProfile } from '@/lib/profileService';
 import VoiceSettings from '@/components/utils/VoiceSettings';
+import DeleteMyData from '@/components/profile/DeleteMyData';
 
 export default function Profile() {
   const [user, setUser] = useState(null);
@@ -239,6 +240,12 @@ export default function Profile() {
               </CardContent>
             </Card>
           </div>
+
+          {user?.email && (
+            <div className="w-full">
+              <DeleteMyData userEmail={user.email} />
+            </div>
+          )}
 
         </div>
       </div>
