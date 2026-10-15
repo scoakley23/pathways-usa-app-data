@@ -29,17 +29,9 @@
       "default": "student",
       "description": "User's selected role in the app"
     },
-    "zip_code": {
-      "type": "string",
-      "description": "User's zip code for representative lookup"
-    },
-    "street_address": {
-      "type": "string",
-      "description": "Optional street address for precise congressional district lookup"
-    },
     "representative_data": {
       "type": "object",
-      "description": "Cached representative lookup results"
+      "description": "Cached elected officials' names from the representative lookup (address is never stored)"
     }
   },
   "required": [

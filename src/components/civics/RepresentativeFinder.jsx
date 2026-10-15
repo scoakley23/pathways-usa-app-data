@@ -56,11 +56,6 @@ export default function RepresentativeFinder({ userEmail, onDataLoaded }) {
         if (profiles.length > 0) {
           const profile = profiles[0];
           setProfileId(profile.id);
-          if (profile.zip_code) {
-            setZipCode(profile.zip_code);
-            if (profile.street_address) setStreetAddress(profile.street_address);
-            setSaved(true);
-          }
           if (profile.representative_data) {
             const saved = profile.representative_data;
             setResults(saved);
@@ -230,6 +225,7 @@ Double check all names are spelled correctly.`,
 
       // Show results IMMEDIATELY without photos — photos will fill in when ready
       setNeedsAddress(false);
+      setStreetAddress(''); // Address is used for this lookup only, then discarded
       setResults(data);
       setLoading(false);
       if (onDataLoaded) onDataLoaded(data);
@@ -251,9 +247,8 @@ Double check all names are spelled correctly.`,
 
       if (profiles.length > 0) {
         const pid = profiles[0].id;
+        // Only the officials' names (public information) are saved — never the address
         await base44.entities.PublicProfile.update(pid, {
-          zip_code: zipCode.trim(),
-          street_address: streetAddress.trim() || undefined,
           representative_data: data
         });
         setProfileId(pid);
@@ -276,6 +271,7 @@ Double check all names are spelled correctly.`,
         <p className="text-slate-500 mt-2 max-w-lg mx-auto">
           Enter your zip code to find your Senators, Representative, Governor, and State Capital — your answers will be used during civics practice.
         </p>
+        <p className="text-xs text-slate-400 mt-1">Your address is used only for this lookup and is never saved.</p>
       </div>
 
       <div className="max-w-md mx-auto mb-8">
@@ -340,7 +336,7 @@ Double check all names are spelled correctly.`,
         )}
         {saved && !loading && !saving && (
           <p className="text-green-600 text-sm mt-2 text-center flex items-center justify-center gap-1">
-            <CheckCircle2 className="w-3 h-3" /> Saved to your profile!
+            <CheckCircle2 className="w-3 h-3" /> Representatives saved — your address was not.
           </p>
         )}
         {error && <p className="text-red-500 text-sm mt-2 text-center">{error}</p>}
