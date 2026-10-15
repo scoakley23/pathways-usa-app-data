@@ -1,0 +1,77 @@
+{
+  "name": "InterviewSession",
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string",
+      "description": "Email of the learner"
+    },
+    "overall_score": {
+      "type": "number",
+      "description": "Average score across answered questions (0-100)"
+    },
+    "passed": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the session met the passing threshold (70%)"
+    },
+    "question_count": {
+      "type": "number",
+      "description": "Total questions in the session"
+    },
+    "passed_count": {
+      "type": "number",
+      "description": "Number of questions marked acceptable"
+    },
+    "results": {
+      "type": "array",
+      "description": "Per-question results with response transcripts and feedback",
+      "items": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string"
+          },
+          "section": {
+            "type": "string"
+          },
+          "response": {
+            "type": "string",
+            "description": "The learner's spoken answer (transcript)"
+          },
+          "expected": {
+            "type": "string"
+          },
+          "content_score": {
+            "type": "number"
+          },
+          "grammar_score": {
+            "type": "number"
+          },
+          "fluency_score": {
+            "type": "number"
+          },
+          "overall_score": {
+            "type": "number"
+          },
+          "is_acceptable": {
+            "type": "boolean"
+          },
+          "corrected_version": {
+            "type": "string"
+          },
+          "improvement_tips": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "question",
+          "response"
+        ]
+      }
+    }
+  },
+  "required": [
+    "user_email"
+  ]
+}

@@ -8,6 +8,7 @@ import { base44 } from '@/api/base44Client';
 import { speakText, stopSpeaking, getRandomVoice } from "@/components/utils/textToSpeech";
 import { toast } from "sonner";
 import InterviewReport from './InterviewReport';
+import InterviewHistory from './InterviewHistory';
 import VirtualInterviewer, { AVATAR_URL } from './VirtualInterviewer';
 
 // Long text is now spoken in chunks, so the fallback timeout must cover all of them.
@@ -292,6 +293,25 @@ Also provide:
     }
   };
 
+  const saveSession = async (results) => {
+    try {
+      const user = await base44.auth.me();
+      const scored = results.filter(r => typeof r.overall_score === 'number');
+      const overall = scored.length ? Math.round(scored.reduce((s, r) => s + r.overall_score, 0) / scored.length) : 0;
+      const passedCount = results.filter(r => r.is_acceptable).length;
+      await base44.entities.InterviewSession.create({
+        user_email: user.email.toLowerCase().trim(),
+        overall_score: overall,
+        passed: passedCount >= questions.length * 0.7,
+        question_count: questions.length,
+        passed_count: passedCount,
+        results
+      });
+    } catch (e) {
+      console.error('Failed to save interview session', e);
+    }
+  };
+
   const handleNext = () => {
     if (currentIndex < questions.length - 1) {
       const nextIndex = currentIndex + 1;
@@ -299,6 +319,7 @@ Also provide:
       presentQuestion(nextIndex);
     } else {
       setShowReport(true);
+      saveSession(sessionResults);
       if (onComplete) onComplete(sessionResults.filter(r => r.is_acceptable).length >= questions.length * 0.7);
     }
   };
@@ -356,12 +377,15 @@ Also provide:
   );
 
   if (!sessionStarted) return (
-    <InterviewIntro
-      questions={questions}
-      onStart={startInterview}
-      varyOfficer={varyOfficer}
-      onToggleVary={() => setVaryOfficer(v => !v)}
-    />
+    <div className="w-full max-w-3xl mx-auto space-y-4">
+      <InterviewIntro
+        questions={questions}
+        onStart={startInterview}
+        varyOfficer={varyOfficer}
+        onToggleVary={() => setVaryOfficer(v => !v)}
+      />
+      <InterviewHistory />
+    </div>
   );
 
   const current = questions[currentIndex];

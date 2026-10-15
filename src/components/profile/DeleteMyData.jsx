@@ -27,6 +27,7 @@ export default function DeleteMyData({ userEmail }) {
       ['assignments', 'Assignment', { $or: variants.flatMap(v => [{ student_email: v }, { tutor_email: v }]) }],
       ['tutor connections', 'TutorRelationship', { $or: variants.flatMap(v => [{ tutor_email: v }, { student_email: v }]) }],
       ['notifications', 'Notification', { user_email: { $in: variants } }],
+      ['interview history', 'InterviewSession', { user_email: { $in: variants } }],
       ['profile', 'PublicProfile', { user_email: { $in: variants } }],
     ];
 
