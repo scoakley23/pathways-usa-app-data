@@ -79,7 +79,9 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
     }
   };
 
-  const personalizedAnswer = getPersonalizedAnswer(question.question, representativeData);
+  const isChanging = (question.answer || '').startsWith('Answers change');
+  const isLocation = (question.answer || '').startsWith('Answers vary');
+  const personalizedAnswer = isLocation ? getPersonalizedAnswer(question.question, representativeData) : null;
 
   // Speech recognition setup
   useEffect(() => {
@@ -111,15 +113,32 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
     }
     setVerifying(true);
     try {
-      const correctAnswer = personalizedAnswer || question.answer;
-      const result = await base44.integrations.Core.InvokeLLM({
-        prompt: `You are a USCIS citizenship test examiner. Determine if the student's spoken answer is correct.
-
+      let prompt;
+      if (isChanging) {
+        prompt = `You are a USCIS citizenship test examiner. The official answer to this question changes over time (for example, the current President, Vice President, Speaker of the House of Representatives, or Chief Justice).
 Question: ${question.question}
-Official Answer: ${correctAnswer}
 Student's Answer: ${userAnswer}
 
-In the real USCIS interview, answers don't need to be word-for-word — as long as the meaning is correct, it counts. Determine if the student's answer conveys the correct meaning.`,
+Use current information from the web to determine if the student's answer correctly names the current officeholder or current fact asked about. In the real USCIS interview, answers don't need to be word-for-word — as long as the meaning is correct, it counts.`;
+      } else if (isLocation && !personalizedAnswer) {
+        prompt = `You are a USCIS citizenship test examiner. The official answer to this question depends on where the student lives (their state's U.S. senators, their U.S. representative, their governor, or their state capital).
+Question: ${question.question}
+Student's Answer: ${userAnswer}
+
+Use current information from the web to determine if the student's answer plausibly names a currently serving U.S. official of the right kind, or a real U.S. state capital. Since the student's location is unknown, accept any currently valid answer of the right kind.`;
+      } else {
+        prompt = `You are a USCIS citizenship test examiner. Determine if the student's spoken answer is correct.
+
+Question: ${question.question}
+Official Answer: ${personalizedAnswer || question.answer}
+Student's Answer: ${userAnswer}
+
+In the real USCIS interview, answers don't need to be word-for-word — as long as the meaning is correct, it counts. Determine if the student's answer conveys the correct meaning.`;
+      }
+      const needsWeb = isChanging || (isLocation && !personalizedAnswer);
+      const result = await base44.integrations.Core.InvokeLLM({
+        prompt,
+        ...(needsWeb ? { add_context_from_internet: true, model: 'gemini_3_flash' } : {}),
         response_json_schema: {
           type: "object",
           properties: {
@@ -343,7 +362,11 @@ In the real USCIS interview, answers don't need to be word-for-word — as long 
                       <p className="text-red-900 text-sm mb-4">{verificationResult.feedback}</p>
                       <div className="pt-4 border-t border-red-200">
                         <p className="text-sm text-slate-500 mb-1">Official answer:</p>
-                        {personalizedAnswer ? (
+                        {isChanging ? (
+                          <p className="text-lg font-medium text-slate-800">Answers change. Check the current answer on <a href="https://www.uscis.gov/citizenship/testupdates" target="_blank" rel="noopener noreferrer" className="text-indigo-700 underline hover:text-indigo-900">uscis.gov</a></p>
+                        ) : isLocation && !personalizedAnswer ? (
+                          <p className="text-lg font-medium text-slate-800">Answers vary by where you live. Use the Representative Finder on your Practice dashboard to get your answer.</p>
+                        ) : personalizedAnswer ? (
                           <>
                             <p className="text-lg font-bold text-green-800">{personalizedAnswer}</p>
                             <p className="text-sm text-slate-500 mt-1">Sample: {question.answer}</p>
@@ -387,9 +410,19 @@ In the real USCIS interview, answers don't need to be word-for-word — as long 
                   ) : (
                     <>
                       <p className="text-sm text-slate-500 uppercase tracking-wider font-bold mb-2">Answer</p>
-                      <p className="text-xl font-medium text-slate-800 leading-relaxed">
-                        {question.answer}
-                      </p>
+                      {isChanging ? (
+                        <p className="text-xl font-medium text-slate-800 leading-relaxed">
+                          Answers change. Check the current answer on <a href="https://www.uscis.gov/citizenship/testupdates" target="_blank" rel="noopener noreferrer" className="text-indigo-700 underline hover:text-indigo-900">uscis.gov</a>
+                        </p>
+                      ) : isLocation && !personalizedAnswer ? (
+                        <p className="text-xl font-medium text-slate-800 leading-relaxed">
+                          Answers vary by where you live. Use the Representative Finder on your Practice dashboard to get your answer.
+                        </p>
+                      ) : (
+                        <p className="text-xl font-medium text-slate-800 leading-relaxed">
+                          {question.answer}
+                        </p>
+                      )}
                     </>
                   )}
 

@@ -419,6 +419,7 @@ Double check all names are spelled correctly.`,
 export function getPersonalizedAnswer(question, representativeData) {
   if (!representativeData || !question) return null;
   const q = question.toLowerCase();
+  if (!q.includes("your")) return null; // only personalize location-specific questions (e.g. "your state's U.S. senators")
   if (q.includes("senator") || q.includes("senators")) {
     return representativeData.senators.map(s => s.name).join(" and ");
   }
