@@ -2,25 +2,54 @@ import { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
 import { ROADMAP_STOPS } from './roadmapStops';
 
+const DEFAULT_STATE = {
+  loading: true,
+  currentStop: ROADMAP_STOPS[0],
+  done: {},
+  isNew: true,
+  doneCount: 0,
+};
+
+const EMPTY_STATE = { ...DEFAULT_STATE, loading: false };
+
+// The lesson catalog is the same for everyone — count it once per session.
+let lessonTotalPromise = null;
+function getLessonTotal() {
+  if (!lessonTotalPromise) {
+    lessonTotalPromise = base44.entities.Lesson.count().catch((err) => {
+      lessonTotalPromise = null; // retry next time instead of caching a failure
+      throw err;
+    });
+  }
+  return lessonTotalPromise;
+}
+
+const snapshotCache = new Map(); // email -> { ts, state }
+const inflightLoads = new Map(); // email -> Promise<state>
+const CACHE_TTL = 2 * 60 * 1000;
+
 /**
- * Shared roadmap state: computes which stops are done and which is current,
- * from existing progress data only.
+ * Shared roadmap state: computes which stops are done and which is current.
+ * Dedupes concurrent loads (StrictMode, hero + path), caches per user for a
+ * short TTL, and degrades gracefully on rate limits instead of throwing.
  */
 export default function useRoadmapProgress(user) {
-  const [state, setState] = useState({
-    loading: true,
-    currentStop: ROADMAP_STOPS[0],
-    done: {},
-    isNew: true,
-    doneCount: 0,
-  });
+  const [state, setState] = useState(DEFAULT_STATE);
 
   useEffect(() => {
     const email = user?.email?.toLowerCase().trim();
     if (!email) {
-      setState({ loading: false, currentStop: ROADMAP_STOPS[0], done: {}, isNew: true, doneCount: 0 });
+      setState(EMPTY_STATE);
       return;
     }
+
+    const cached = snapshotCache.get(email);
+    if (cached && Date.now() - cached.ts < CACHE_TTL) {
+      setState(cached.state);
+      return;
+    }
+
+    let cancelled = false;
 
     const load = async () => {
       const [totalProgress, masteredSentences, lessonsTotal, lessonsDone, passedInterviews] =
@@ -31,7 +60,7 @@ export default function useRoadmapProgress(user) {
             content_type: 'sentence',
             status: 'mastered',
           }),
-          base44.entities.Lesson.count(),
+          getLessonTotal(),
           base44.entities.LessonProgress.count({
             user_email: email,
             completed: true,
@@ -52,10 +81,27 @@ export default function useRoadmapProgress(user) {
       const isNew = totalProgress === 0 && lessonsDone === 0 && passedInterviews === 0;
       const doneCount = ROADMAP_STOPS.filter((s) => done[s.id]).length;
 
-      setState({ loading: false, currentStop, done, isNew, doneCount });
+      return { loading: false, currentStop, done, isNew, doneCount };
     };
 
-    load();
+    let p = inflightLoads.get(email);
+    if (!p) {
+      p = load().finally(() => inflightLoads.delete(email));
+      inflightLoads.set(email, p);
+    }
+
+    p.then((next) => {
+      snapshotCache.set(email, { ts: Date.now(), state: next });
+      if (!cancelled) setState(next);
+    }).catch(() => {
+      // Rate limit or transient error: show the roadmap with defaults
+      // instead of breaking the page; the next mount will retry.
+      if (!cancelled) setState(EMPTY_STATE);
+    });
+
+    return () => {
+      cancelled = true;
+    };
   }, [user?.email]);
 
   return state;
