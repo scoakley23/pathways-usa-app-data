@@ -147,8 +147,8 @@ export default function Layout({ children }) {
               alt="Pathways Logo"
               className="w-10 h-10 rounded-xl transform hover:scale-105 transition-transform object-cover ring-1 ring-white/25"
             />
-            <span className="font-bold text-xl tracking-tight text-white">
-              Pathways USA
+            <span className="font-extrabold text-xl tracking-tight text-white">
+              Pathways
             </span>
           </Link>
 
@@ -185,7 +185,7 @@ export default function Layout({ children }) {
             {user && <NotificationCenter userEmail={user.email} />}
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="text-white hover:bg-white/10">
+                <Button variant="outline" size="icon" className="border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white">
                   <Menu className="w-6 h-6" />
                 </Button>
               </SheetTrigger>

@@ -3,35 +3,15 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, Mic, PenTool, BookOpen, CheckCircle, GraduationCap, Notebook, FileText, Search, ExternalLink } from 'lucide-react';
+import RoadmapHero from '@/components/home/RoadmapHero';
+import { Mic, BookOpen, GraduationCap, Notebook, FileText, Search, ExternalLink } from 'lucide-react';
 
 
 export default function Home({ cachedUser }) {
   return (
     <div className="flex flex-col gap-8 pb-8">
       {/* Hero Section */}
-      <section className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 py-8 px-6 md:px-10 rounded-3xl relative overflow-hidden bg-slate-900">
-        <img
-          src="https://media.base44.com/images/public/6931bd654d327c7b2e36bfed/c6aa490d9_e696d8ff-522b-4687-a00d-ce15992779db.png"
-          alt="Your learning journey"
-          className="w-56 h-40 md:w-72 md:h-52 object-contain drop-shadow-2xl shrink-0"
-        />
-        <div className="space-y-4 max-w-xl text-center md:text-left">
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-[-1px] text-white">
-            Your Pathway to <span className="text-red-500">Citizenship</span>
-          </h1>
-          <p className="text-lg text-indigo-200">
-            Prepare for the US Citizenship Test with interactive lessons, practice dictation, vocabulary, and civics questions.
-          </p>
-          <div className="flex justify-center md:justify-start">
-            <Link to={createPageUrl('Practice')}>
-              <Button size="lg" className="h-12 px-7 text-base bg-white text-slate-900 hover:bg-slate-100">
-                Start Practicing Now <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <RoadmapHero user={cachedUser} />
 
       {/* Features Section */}
       <section className="py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">

@@ -65,6 +65,8 @@ module.exports = {
     				900: '#0E1830',
     				950: '#0A1122'
     			},
+    			'hero-label': '#9FB6E3',
+    			'hero-muted': '#C3D0EA',
     			red: {
     				50: '#FBEAE9',
     				100: '#F6D5D2',
