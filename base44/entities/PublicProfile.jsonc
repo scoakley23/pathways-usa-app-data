@@ -31,7 +31,7 @@
     },
     "representative_data": {
       "type": "object",
-      "description": "Cached elected officials' names from the representative lookup (address is never stored)"
+      "description": "Cached elected officials' names only (governor, senators, representative name and district, state capital). Addresses and zip codes are used only for the moment of lookup and must never be stored here."
     }
   },
   "required": [

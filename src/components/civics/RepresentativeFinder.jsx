@@ -6,6 +6,39 @@ import { MapPin, Loader2, Building2, Users, Landmark, CheckCircle2 } from 'lucid
 import { base44 } from '@/api/base44Client';
 import OfficialPhoto from '@/components/civics/OfficialPhoto';
 
+// Allow-list sanitizer: only public officials' information may be cached on a profile.
+// Any other field (e.g. an address) is silently dropped before saving or displaying.
+const sanitizeRepresentativeData = (data) => {
+  if (!data) return null;
+  const rep = data.representative
+    ? {
+        name: data.representative.name,
+        party: data.representative.party,
+        district: data.representative.district,
+        wikipedia_title: data.representative.wikipedia_title,
+        photo_url: data.representative.photo_url
+      }
+    : null;
+  return {
+    state: data.state,
+    state_abbreviation: data.state_abbreviation,
+    state_capital: data.state_capital,
+    governor: data.governor,
+    governor_party: data.governor_party,
+    governor_wikipedia_title: data.governor_wikipedia_title,
+    governor_photo_url: data.governor_photo_url,
+    district_ambiguous: data.district_ambiguous,
+    possible_districts: data.possible_districts,
+    senators: (data.senators || []).map(s => ({
+      name: s.name,
+      party: s.party,
+      wikipedia_title: s.wikipedia_title,
+      photo_url: s.photo_url
+    })),
+    representative: rep
+  };
+};
+
 export default function RepresentativeFinder({ userEmail, onDataLoaded }) {
   const [zipCode, setZipCode] = useState('');
   const [streetAddress, setStreetAddress] = useState('');
@@ -57,7 +90,7 @@ export default function RepresentativeFinder({ userEmail, onDataLoaded }) {
           const profile = profiles[0];
           setProfileId(profile.id);
           if (profile.representative_data) {
-            const saved = profile.representative_data;
+            const saved = sanitizeRepresentativeData(profile.representative_data);
             setResults(saved);
             if (onDataLoaded) onDataLoaded(saved);
             // If saved data has wikipedia titles but no photos, fetch them now
@@ -164,6 +197,8 @@ WIKIPEDIA PAGE TITLES — For EACH person, find the EXACT title of their Wikiped
 - The title is the part after /wiki/ in the URL
 - Leave empty string "" if you cannot find a Wikipedia page
 
+IMPORTANT: Do NOT include the street address, zip code, or any part of the user's address anywhere in your response fields — only the officials' names and district information.
+
 Double check all names are spelled correctly.`,
         add_context_from_internet: true,
         model: "gemini_3_flash",
@@ -249,7 +284,7 @@ Double check all names are spelled correctly.`,
         const pid = profiles[0].id;
         // Only the officials' names (public information) are saved — never the address
         await base44.entities.PublicProfile.update(pid, {
-          representative_data: data
+          representative_data: sanitizeRepresentativeData(data)
         });
         setProfileId(pid);
       }
