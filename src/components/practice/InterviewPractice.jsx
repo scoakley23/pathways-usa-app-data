@@ -3,13 +3,17 @@ import { motion } from 'framer-motion';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { Mic, MicOff, Volume2, ArrowRight, Check, X, Loader2, ChevronDown, ChevronUp, FileText, Bot, BarChart3 } from 'lucide-react';
+import { Mic, MicOff, Volume2, ArrowRight, Check, X, Loader2, ChevronDown, ChevronUp, FileText, Bot, BarChart3, ShieldAlert } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { speakText, stopSpeaking, getRandomVoice } from "@/components/utils/textToSpeech";
 import { toast } from "sonner";
 import InterviewReport from './InterviewReport';
 import InterviewHistory from './InterviewHistory';
 import VirtualInterviewer, { AVATAR_URL } from './VirtualInterviewer';
+import N400ReviewSetup from '@/components/interview/N400ReviewSetup';
+import PracticeApplicantCard from '@/components/interview/PracticeApplicantCard';
+import { getReviewQuestions, profileSummary } from '@/components/interview/practiceApplicants';
+import findPII from '@/components/interview/piiGuard';
 
 // Long text is now spoken in chunks, so the fallback timeout must cover all of them.
 const speechTimeoutMs = (text) => {
@@ -36,6 +40,12 @@ export default function InterviewPractice({ onComplete, onNext }) {
   const [conversation, setConversation] = useState([]);
   const [showTyping, setShowTyping] = useState(false);
   const [varyOfficer, setVaryOfficer] = useState(false);
+
+  // N-400 review practice mode
+  const [mode, setMode] = useState('standard');
+  const [applicant, setApplicant] = useState(null);
+  const [piiWarning, setPiiWarning] = useState(null);
+  const standardQuestionsRef = useRef([]);
 
   const recognitionRef = useRef(null);
   const responseRef = useRef('');
@@ -72,7 +82,9 @@ export default function InterviewPractice({ onComplete, onNext }) {
       const personalInfo = all.filter(q => q.section === 'personal_info').slice(0, 3);
       const morals = all.filter(q => q.section === 'morals_ethics').slice(0, 4);
       const oath = all.filter(q => q.section === 'oath_requirements').slice(0, 3);
-      setQuestions([...smallTalk, ...personalInfo, ...morals, ...oath]);
+      const standard = [...smallTalk, ...personalInfo, ...morals, ...oath];
+      standardQuestionsRef.current = standard;
+      setQuestions(standard);
     } catch (e) {
       toast.error('Failed to load questions');
     } finally {
@@ -189,14 +201,13 @@ export default function InterviewPractice({ onComplete, onNext }) {
     }, 800);
   };
 
-  const startInterview = async () => {
+  const beginSession = async (greeting) => {
     setSessionStarted(true);
     if (varyOfficer) {
       officerVoiceRef.current = await getRandomVoice('en');
     } else {
       officerVoiceRef.current = null;
     }
-    const greeting = "Good morning! Welcome to your citizenship interview. Let's get started.";
     setConversation([{ role: 'interviewer', text: greeting, id: 'greeting' }]);
     setInterviewerState('speaking');
     speakText(greeting, 'en', {
@@ -218,6 +229,17 @@ export default function InterviewPractice({ onComplete, onNext }) {
     }, speechTimeoutMs(greeting));
   };
 
+  const startInterview = () => beginSession("Good morning! Welcome to your citizenship interview. Let's get started.");
+
+  // N-400 review practice: the learner answers as the fictional practice person.
+  const startReviewInterview = (selectedApplicant) => {
+    setApplicant(selectedApplicant);
+    setPiiWarning(null);
+    setQuestions(getReviewQuestions(selectedApplicant));
+    const firstName = selectedApplicant.name.split(' ')[0];
+    beginSession(`Good morning, ${firstName}! Welcome to your citizenship interview. I have your N-400 application here. Let's review it together.`);
+  };
+
   const speakQuestion = () => {
     const q = questions[currentIndex];
     if (!q) return;
@@ -233,16 +255,33 @@ export default function InterviewPractice({ onComplete, onNext }) {
     const response = responseRef.current || userResponse;
     if (!response.trim()) { toast.error('Please record a response first'); return; }
 
+    // N-400 review practice: check on the learner's device for anything that
+    // looks like real personal data. If found, the answer is never sent.
+    if (mode === 'review') {
+      const pii = findPII(response, applicant);
+      if (pii) {
+        setPiiWarning(`That looks like real personal information. Please answer as ${applicant.name.split(' ')[0]}.`);
+        setUserResponse('');
+        responseRef.current = '';
+        setInterviewerState('listening');
+        return;
+      }
+      setPiiWarning(null);
+    }
+
     setConversation(prev => [...prev, { role: 'user', text: response, id: `u_${currentIndex}` }]);
     setInterviewerState('thinking');
     setIsAnalyzing(true);
 
     const q = questions[currentIndex];
     try {
+      const roleContext = mode === 'review' && applicant
+        ? `The candidate is role-playing as a FICTIONAL practice person. Profile card facts (the ground truth for scoring):\n${profileSummary(applicant)}\nScore CONTENT against this profile card, never against the candidate's own life. If the answer matches the card, content should score high. Never ask for or refer to the candidate's real personal information.\n\n`
+        : '';
       const result = await base44.integrations.Core.InvokeLLM({
         prompt: `You are an experienced USCIS citizenship interview officer and ESL instructor evaluating a naturalization candidate.
 
-INTERVIEW QUESTION: "${q.question}"
+${roleContext}INTERVIEW QUESTION: "${q.question}"
 EXPECTED RESPONSE: "${q.expected_response}"
 CANDIDATE'S SPOKEN RESPONSE: "${response}"
 RESPONSE TYPE: ${q.response_type}
@@ -319,8 +358,12 @@ Also provide:
       presentQuestion(nextIndex);
     } else {
       setShowReport(true);
-      saveSession(sessionResults);
-      if (onComplete) onComplete(sessionResults.filter(r => r.is_acceptable).length >= questions.length * 0.7);
+      // The N-400 review practice saves nothing to the account, database, or
+      // device. The standard interview keeps its existing behavior.
+      if (mode === 'standard') {
+        saveSession(sessionResults);
+        if (onComplete) onComplete(sessionResults.filter(r => r.is_acceptable).length >= questions.length * 0.7);
+      }
     }
   };
 
@@ -350,6 +393,10 @@ Also provide:
     setConversation([]);
     setInterviewerState('idle');
     responseRef.current = '';
+    setMode('standard');
+    setApplicant(null);
+    setPiiWarning(null);
+    setQuestions(standardQuestionsRef.current);
   };
 
   const formatTime = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
@@ -380,17 +427,20 @@ Also provide:
     <div className="w-full max-w-3xl mx-auto space-y-4">
       <InterviewIntro
         questions={questions}
+        mode={mode}
+        onSelectMode={setMode}
         onStart={startInterview}
+        onReviewReady={startReviewInterview}
         varyOfficer={varyOfficer}
         onToggleVary={() => setVaryOfficer(v => !v)}
       />
-      <InterviewHistory />
+      {mode === 'standard' && <InterviewHistory />}
     </div>
   );
 
   const current = questions[currentIndex];
   const progress = ((currentIndex + 1) / questions.length) * 100;
-  const sectionLabel = { small_talk: 'Small Talk', personal_info: 'Personal Info', morals_ethics: 'Morals & Ethics', oath_requirements: 'Oath Requirements' }[current.section] || current.section;
+  const sectionLabel = { small_talk: 'Small Talk', personal_info: 'Personal Info', morals_ethics: 'Morals & Ethics', oath_requirements: 'Oath Requirements', n400_review: 'N-400 Review' }[current.section] || current.section;
 
   const statusText = {
     speaking: 'Officer Martinez is speaking...',
@@ -401,6 +451,9 @@ Also provide:
 
   return (
     <div className="w-full max-w-3xl mx-auto space-y-4">
+      {/* Practice person's card stays visible during the interview */}
+      {mode === 'review' && applicant && <PracticeApplicantCard applicant={applicant} compact />}
+
       {/* Progress Bar */}
       <div className="bg-white rounded-xl p-4 shadow-sm border border-slate-100">
         <div className="flex justify-between items-center mb-2 text-sm font-medium text-slate-600">
@@ -485,6 +538,14 @@ Also provide:
               </div>
             )}
           </div>
+
+          {/* Personal information warning */}
+          {piiWarning && (
+            <div className="flex items-start gap-2 rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm font-medium text-amber-800">
+              <ShieldAlert className="w-5 h-5 shrink-0" />
+              {piiWarning}
+            </div>
+          )}
 
           {/* Status */}
           <p className="text-center text-sm font-medium text-slate-500">{statusText}</p>
@@ -652,7 +713,7 @@ function FeedbackPanel({ feedback, response, expected }) {
   );
 }
 
-function InterviewIntro({ questions, onStart, varyOfficer, onToggleVary }) {
+function InterviewIntro({ questions, mode, onSelectMode, onStart, onReviewReady, varyOfficer, onToggleVary }) {
   const sections = [...new Set(questions.map(q => q.section))];
   const sectionNames = { small_talk: 'Small Talk', personal_info: 'Personal Information', morals_ethics: 'Morals & Ethics', oath_requirements: 'Oath Requirements' };
 
@@ -688,45 +749,73 @@ function InterviewIntro({ questions, onStart, varyOfficer, onToggleVary }) {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 text-left max-w-sm mx-auto">
-            {[
-              { Icon: Mic, text: `${questions.length} questions across ${sections.length} sections` },
-              { Icon: Volume2, text: 'Officer speaks questions aloud' },
-              { Icon: Bot, text: 'Real-time AI evaluation' },
-              { Icon: BarChart3, text: 'Content, grammar & fluency scores' },
-            ].map(({ Icon, text }) => (
-              <div key={text} className="flex items-start gap-2 bg-white p-3 rounded-xl border border-slate-100">
-                <Icon className="w-5 h-5 text-indigo-600 shrink-0" />
-                <p className="text-sm text-slate-700 font-medium">{text}</p>
+          {/* Practice mode */}
+          <div className="grid grid-cols-2 gap-3 max-w-md mx-auto">
+            <button
+              onClick={() => onSelectMode('standard')}
+              className={`p-4 rounded-2xl border-2 text-left transition-colors ${
+                mode === 'standard' ? 'border-indigo-600 bg-white' : 'border-slate-200 bg-white hover:border-indigo-300'
+              }`}
+            >
+              <p className="font-bold text-slate-900 text-sm">Standard interview</p>
+              <p className="text-xs text-slate-500 mt-1">Answer as yourself: small talk, personal info, morals, oath.</p>
+            </button>
+            <button
+              onClick={() => onSelectMode('review')}
+              className={`p-4 rounded-2xl border-2 text-left transition-colors ${
+                mode === 'review' ? 'border-indigo-600 bg-white' : 'border-slate-200 bg-white hover:border-indigo-300'
+              }`}
+            >
+              <p className="font-bold text-slate-900 text-sm">N-400 review practice</p>
+              <p className="text-xs text-slate-500 mt-1">Answer as a fictional practice person. Saves nothing.</p>
+            </button>
+          </div>
+
+          {mode === 'review' ? (
+            <N400ReviewSetup onReady={onReviewReady} />
+          ) : (
+            <>
+              <div className="grid grid-cols-2 gap-3 text-left max-w-sm mx-auto">
+                {[
+                  { Icon: Mic, text: `${questions.length} questions across ${sections.length} sections` },
+                  { Icon: Volume2, text: 'Officer speaks questions aloud' },
+                  { Icon: Bot, text: 'Real-time AI evaluation' },
+                  { Icon: BarChart3, text: 'Content, grammar & fluency scores' },
+                ].map(({ Icon, text }) => (
+                  <div key={text} className="flex items-start gap-2 bg-white p-3 rounded-xl border border-slate-100">
+                    <Icon className="w-5 h-5 text-indigo-600 shrink-0" />
+                    <p className="text-sm text-slate-700 font-medium">{text}</p>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
 
-          <div className="bg-white rounded-xl p-4 border border-slate-100 text-left max-w-sm mx-auto">
-            <p className="text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Sections Covered</p>
-            <div className="space-y-1">
-              {sections.map(s => (
-                <div key={s} className="flex items-center gap-2 text-sm text-slate-700">
-                  <div className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
-                  {sectionNames[s] || s}
+              <div className="bg-white rounded-xl p-4 border border-slate-100 text-left max-w-sm mx-auto">
+                <p className="text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Sections Covered</p>
+                <div className="space-y-1">
+                  {sections.map(s => (
+                    <div key={s} className="flex items-center gap-2 text-sm text-slate-700">
+                      <div className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
+                      {sectionNames[s] || s}
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </div>
+              </div>
 
-          <button
-            onClick={onToggleVary}
-            className="flex items-center justify-center gap-3 bg-white rounded-xl p-3 border border-slate-100 w-full max-w-sm mx-auto text-left"
-          >
-            <span className={`w-11 h-6 rounded-full relative transition-colors shrink-0 ${varyOfficer ? 'bg-indigo-600' : 'bg-slate-300'}`}>
-              <span className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform ${varyOfficer ? 'translate-x-5' : ''}`} />
-            </span>
-            <span className="text-sm text-slate-700 font-medium">Different officer voice each interview</span>
-          </button>
+              <button
+                onClick={onToggleVary}
+                className="flex items-center justify-center gap-3 bg-white rounded-xl p-3 border border-slate-100 w-full max-w-sm mx-auto text-left"
+              >
+                <span className={`w-11 h-6 rounded-full relative transition-colors shrink-0 ${varyOfficer ? 'bg-indigo-600' : 'bg-slate-300'}`}>
+                  <span className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform ${varyOfficer ? 'translate-x-5' : ''}`} />
+                </span>
+                <span className="text-sm text-slate-700 font-medium">Different officer voice each interview</span>
+              </button>
 
-          <Button onClick={onStart} size="lg" className="bg-indigo-600 hover:bg-indigo-700 h-14 px-12 text-lg rounded-2xl shadow-lg shadow-indigo-200">
-            Start Interview
-          </Button>
+              <Button onClick={onStart} size="lg" className="bg-indigo-600 hover:bg-indigo-700 h-14 px-12 text-lg rounded-2xl shadow-lg shadow-indigo-200">
+                Start Interview
+              </Button>
+            </>
+          )}
         </CardContent>
       </Card>
     </div>
