@@ -13,6 +13,7 @@ import VirtualInterviewer, { AVATAR_URL } from './VirtualInterviewer';
 import N400ReviewSetup from '@/components/interview/N400ReviewSetup';
 import PracticeApplicantCard from '@/components/interview/PracticeApplicantCard';
 import { getReviewQuestions, profileSummary } from '@/components/interview/practiceApplicants';
+import { buildCivicsPlan } from '@/components/interview/civicsPlan';
 import findPII from '@/components/interview/piiGuard';
 
 // Long text is now spoken in chunks, so the fallback timeout must cover all of them.
@@ -45,6 +46,7 @@ export default function InterviewPractice({ onComplete, onNext }) {
   const [mode, setMode] = useState('standard');
   const [applicant, setApplicant] = useState(null);
   const [piiWarning, setPiiWarning] = useState(null);
+  const [civicsPlan, setCivicsPlan] = useState(null);
   const standardQuestionsRef = useRef([]);
 
   const recognitionRef = useRef(null);
@@ -188,16 +190,17 @@ export default function InterviewPractice({ onComplete, onNext }) {
     setInterviewerState('idle');
 
     setTimeout(() => {
+      const spoken = q.intro ? `${q.intro} ${q.question}` : q.question;
       setShowTyping(false);
-      setConversation(prev => [...prev, { role: 'interviewer', text: q.question, id: `q_${index}` }]);
+      setConversation(prev => [...prev, { role: 'interviewer', text: spoken, id: `q_${index}` }]);
       setInterviewerState('speaking');
-      speakText(q.question, 'en', {
+      speakText(spoken, 'en', {
         voiceName: officerVoiceRef.current || undefined,
         onStart: () => setInterviewerState('speaking'),
         onEnd: () => setInterviewerState('listening')
       });
       // Fallback in case TTS doesn't fire onEnd
-      setTimeout(() => setInterviewerState(prev => prev === 'speaking' ? 'listening' : prev), speechTimeoutMs(q.question));
+      setTimeout(() => setInterviewerState(prev => prev === 'speaking' ? 'listening' : prev), speechTimeoutMs(spoken));
     }, 800);
   };
 
@@ -231,11 +234,33 @@ export default function InterviewPractice({ onComplete, onNext }) {
 
   const startInterview = () => beginSession("Good morning! Welcome to your citizenship interview. Let's get started.");
 
-  // N-400 review practice: the learner answers as the fictional practice person.
-  const startReviewInterview = (selectedApplicant) => {
+  // N-400 review practice: the learner answers as the fictional practice
+  // person. After the N-400 review questions, the officer gives the civics
+  // test (official 2025 rules, with the shorter 65/20 path for applicants
+  // 65+ with 20+ years as a resident).
+  const startReviewInterview = async (selectedApplicant) => {
     setApplicant(selectedApplicant);
     setPiiWarning(null);
-    setQuestions(getReviewQuestions(selectedApplicant));
+    const reviewQuestions = getReviewQuestions(selectedApplicant);
+    let civicsQuestions = [];
+    let plan = null;
+    try {
+      const bank = await base44.entities.CivicsQuestion.list();
+      plan = buildCivicsPlan(selectedApplicant, bank);
+      civicsQuestions = plan.questions;
+    } catch (e) {
+      toast.error('Could not load civics questions');
+    }
+    if (civicsQuestions.length > 0) {
+      civicsQuestions[0] = {
+        ...civicsQuestions[0],
+        intro: plan.is6520
+          ? 'Thank you. Now I will ask you some civics questions. I will ask you ten questions. You need six correct answers to pass.'
+          : 'Thank you. Now I will ask you some civics questions. I will ask you up to twenty questions. You need twelve correct answers to pass.',
+      };
+    }
+    setCivicsPlan(plan);
+    setQuestions([...reviewQuestions, ...civicsQuestions]);
     const firstName = selectedApplicant.name.split(' ')[0];
     beginSession(`Good morning, ${firstName}! Welcome to your citizenship interview. I have your N-400 application here. Let's review it together.`);
   };
@@ -278,10 +303,13 @@ export default function InterviewPractice({ onComplete, onNext }) {
       const roleContext = mode === 'review' && applicant
         ? `The candidate is role-playing as a FICTIONAL practice person. Profile card facts (the ground truth for scoring):\n${profileSummary(applicant)}\nScore CONTENT against this profile card, never against the candidate's own life. If the answer matches the card, content should score high. Never ask for or refer to the candidate's real personal information.\n\n`
         : '';
+      const civicsContext = q.section === 'civics_2025'
+        ? `This is a civics question from the official 2025 USCIS civics test. The candidate lives in Ohio. Judge CONTENT on civics correctness: is_acceptable must be true ONLY if the spoken answer fully satisfies the question (if it asks to name three, three are required; "name one" needs only one). Content score: 100 if correct, 20 if wrong, 60 if partially correct (e.g. two of three items). For answers that change with elections or appointments (current President, Vice President, Speaker of the House, state governor), accept the official serving now.\n\n`
+        : '';
       const result = await base44.integrations.Core.InvokeLLM({
         prompt: `You are an experienced USCIS citizenship interview officer and ESL instructor evaluating a naturalization candidate.
 
-${roleContext}INTERVIEW QUESTION: "${q.question}"
+${civicsContext}${roleContext}INTERVIEW QUESTION: "${q.question}"
 EXPECTED RESPONSE: "${q.expected_response}"
 CANDIDATE'S SPOKEN RESPONSE: "${response}"
 RESPONSE TYPE: ${q.response_type}
@@ -352,7 +380,14 @@ Also provide:
   };
 
   const handleNext = () => {
-    if (currentIndex < questions.length - 1) {
+    // 2025 civics test rules: the civics portion ends as soon as the pass
+    // threshold is reached or too many answers are wrong.
+    const civicsResults = sessionResults.filter(r => r.section === 'civics_2025');
+    const civicsCorrect = civicsResults.filter(r => r.is_acceptable).length;
+    const civicsWrong = civicsResults.length - civicsCorrect;
+    const civicsReached = civicsPlan && (civicsCorrect >= civicsPlan.passAt || civicsWrong >= civicsPlan.stopWrong);
+
+    if (currentIndex < questions.length - 1 && !civicsReached) {
       const nextIndex = currentIndex + 1;
       setCurrentIndex(nextIndex);
       presentQuestion(nextIndex);
@@ -396,6 +431,7 @@ Also provide:
     setMode('standard');
     setApplicant(null);
     setPiiWarning(null);
+    setCivicsPlan(null);
     setQuestions(standardQuestionsRef.current);
   };
 
@@ -420,6 +456,7 @@ Also provide:
       results={sessionResults}
       questions={questions}
       onRestart={handleRestart}
+      civicsPlan={mode === 'review' ? civicsPlan : null}
     />
   );
 
@@ -440,7 +477,16 @@ Also provide:
 
   const current = questions[currentIndex];
   const progress = ((currentIndex + 1) / questions.length) * 100;
-  const sectionLabel = { small_talk: 'Small Talk', personal_info: 'Personal Info', morals_ethics: 'Morals & Ethics', oath_requirements: 'Oath Requirements', n400_review: 'N-400 Review' }[current.section] || current.section;
+  const civicsResults = sessionResults.filter(r => r.section === 'civics_2025');
+  const civicsCorrect = civicsResults.filter(r => r.is_acceptable).length;
+  const sectionLabel = {
+    small_talk: 'Small Talk',
+    personal_info: 'Personal Info',
+    morals_ethics: 'Morals & Ethics',
+    oath_requirements: 'Oath Requirements',
+    n400_review: 'N-400 Review',
+    civics_2025: civicsPlan?.is6520 ? 'Civics Test (65/20)' : 'Civics Test (2025)',
+  }[current.section] || current.section;
 
   const statusText = {
     speaking: 'Officer Martinez is speaking...',
@@ -458,7 +504,11 @@ Also provide:
       <div className="bg-white rounded-xl p-4 shadow-sm border border-slate-100">
         <div className="flex justify-between items-center mb-2 text-sm font-medium text-slate-600">
           <span>Question {currentIndex + 1} of {questions.length}</span>
-          <span>{sessionResults.filter(r => r.is_acceptable).length} passed so far</span>
+          <span>
+            {mode === 'review' && current.section === 'civics_2025' && civicsPlan
+              ? `Civics: ${civicsCorrect} correct · ${civicsResults.length - civicsCorrect} incorrect · pass at ${civicsPlan.passAt}`
+              : `${sessionResults.filter(r => r.is_acceptable).length} passed so far`}
+          </span>
         </div>
         <Progress value={progress} className="h-2" />
         <div className="flex gap-1 mt-2">

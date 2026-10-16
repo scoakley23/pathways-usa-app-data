@@ -25,7 +25,9 @@ export default function N400ReviewSetup({ onReady }) {
         <div className="text-center">
           <h2 className="text-2xl font-bold text-slate-900 mb-1">N-400 Review Practice</h2>
           <p className="text-slate-600">
-            Play the part of a practice applicant. Officer Martinez reviews their N-400 application with you.
+            Play the part of a practice applicant. Officer Martinez reviews their N-400 application with you, then gives
+            the official 2025 civics test — the shorter 65/20 version for applicants 65 or older with 20+ years as a
+            resident.
           </p>
         </div>
 
