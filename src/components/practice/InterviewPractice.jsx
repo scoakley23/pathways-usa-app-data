@@ -48,6 +48,9 @@ export default function InterviewPractice({ onComplete, onNext }) {
   const [piiWarning, setPiiWarning] = useState(null);
   const [civicsPlan, setCivicsPlan] = useState(null);
   const standardQuestionsRef = useRef([]);
+  // Guards against the greeting's speech-end and safety-timer paths both
+  // scheduling the same question (which made it appear twice in the chat).
+  const lastPresentedRef = useRef(null);
 
   const recognitionRef = useRef(null);
   const responseRef = useRef('');
@@ -182,6 +185,8 @@ export default function InterviewPractice({ onComplete, onNext }) {
   const presentQuestion = (index) => {
     const q = questions[index];
     if (!q) return;
+    if (lastPresentedRef.current === index) return;
+    lastPresentedRef.current = index;
 
     setUserResponse('');
     setFeedback(null);
@@ -206,6 +211,7 @@ export default function InterviewPractice({ onComplete, onNext }) {
 
   const beginSession = async (greeting) => {
     setSessionStarted(true);
+    lastPresentedRef.current = null;
     if (varyOfficer) {
       officerVoiceRef.current = await getRandomVoice('en');
     } else {
@@ -428,6 +434,7 @@ Also provide:
     setConversation([]);
     setInterviewerState('idle');
     responseRef.current = '';
+    lastPresentedRef.current = null;
     setMode('standard');
     setApplicant(null);
     setPiiWarning(null);
