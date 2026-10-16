@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Volume2, Loader2 } from 'lucide-react';
+import { Volume2, Loader2, FileText, MessagesSquare } from 'lucide-react';
 import { speakText } from '@/components/utils/textToSpeech';
 import { EXAMPLE_APPLICANTS } from './exampleApplicants';
+import N400PersonaCard from './N400PersonaCard';
+import N400PaperForm from './N400PaperForm';
 
 // Oath answers are the same for every applicant who is able and willing to
 // take the Oath, so they are shared across the example people.
@@ -55,11 +57,13 @@ function buildWalkthrough(a) {
   ];
 }
 
-// Example applicants section of the N-400 guide: pick a fictional person and
-// read how they would answer. Nothing here is collected or saved.
+// Example applicants sub-page of the N-400 guide: meet the fictional people,
+// read how they would answer, and see what their N-400 form would look like.
+// Nothing here is collected or saved.
 export default function N400Walkthrough() {
   const [selectedId, setSelectedId] = useState(EXAMPLE_APPLICANTS[0].id);
   const [playingKey, setPlayingKey] = useState(null);
+  const [mode, setMode] = useState('qa'); // 'qa' = interview answers, 'form' = N-400 practice copy
   const applicant = EXAMPLE_APPLICANTS.find((p) => p.id === selectedId);
   const firstName = applicant.name.split(' ')[0];
 
@@ -70,79 +74,108 @@ export default function N400Walkthrough() {
     });
   };
 
+  const toggleClasses = (active) =>
+    `flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
+      active ? 'bg-white shadow text-slate-900' : 'text-slate-500 hover:text-slate-700'
+    }`;
+
   return (
-    <Card className="rounded-2xl">
-      <CardContent className="p-5 md:p-6 space-y-4">
-        <div className="flex items-start justify-between gap-3">
-          <div>
-            <h2 className="text-xl font-extrabold text-slate-900">Example applicants</h2>
-            <p className="text-sm" style={{ color: '#4A5A78' }}>
-              A walkthrough of this guide, person by person
-            </p>
-          </div>
-        </div>
-
-        <p className="text-sm leading-relaxed" style={{ color: '#4A5A78' }}>
-          See how a made-up person would answer the questions in this guide. These examples are here to help you
-          understand the questions — every real applicant's answers are their own. Example answers are in English,
-          like the real interview. Nothing you read here is legal advice.
-        </p>
-
-        <div className="flex flex-wrap gap-2">
-          {EXAMPLE_APPLICANTS.map((p) => (
-            <button
-              key={p.id}
-              type="button"
-              onClick={() => setSelectedId(p.id)}
-              className={`px-3 py-1.5 rounded-full text-sm font-semibold border transition-colors ${
-                selectedId === p.id
-                  ? 'bg-[#1F3A6B] text-white border-[#1F3A6B]'
-                  : 'bg-white text-slate-600 border-slate-300 hover:bg-slate-100'
-              }`}
-            >
-              {p.name.split(' ')[0]}
-            </button>
-          ))}
-        </div>
-
-        <div className="rounded-xl bg-slate-50 border border-slate-200 p-4 space-y-1">
-          <div className="flex items-center gap-2">
-            <p className="font-bold text-slate-900">{applicant.name}</p>
-            <Badge variant="outline" className="text-amber-700 border-amber-300 bg-amber-50">
-              Practice person. Not real.
-            </Badge>
-          </div>
-          <p className="text-sm text-slate-600">{applicant.blurb}</p>
-        </div>
-
-        {buildWalkthrough(applicant).map((group) => (
-          <div key={group.title} className="space-y-3">
-            <h3 className="text-xs font-bold uppercase tracking-wide" style={{ color: '#4A5A78' }}>
-              {group.title}
-            </h3>
-            {group.pairs.map((pair, i) => {
-              const key = `${group.title}-${i}`;
-              return (
-                <div key={key} className="rounded-xl border border-slate-200 p-4 space-y-2">
-                  <p className="text-sm font-semibold text-slate-800">Officer asks: {pair.q}</p>
-                  <div className="flex items-start gap-3">
-                    <p className="text-sm text-slate-700 italic flex-1">{firstName} answers: “{pair.a}”</p>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      aria-label="Listen to this example answer"
-                      className="rounded-full w-9 h-9 shrink-0"
-                      onClick={() => (playingKey === key ? setPlayingKey(null) : speak(key, pair.a))}
-                    >
-                      {playingKey === key ? <Loader2 className="w-4 h-4 animate-spin" /> : <Volume2 className="w-4 h-4" />}
-                    </Button>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+    <div className="space-y-5">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        {EXAMPLE_APPLICANTS.map((p) => (
+          <N400PersonaCard
+            key={p.id}
+            applicant={p}
+            selected={p.id === selectedId}
+            onSelect={() => {
+              setSelectedId(p.id);
+              setPlayingKey(null);
+            }}
+          />
         ))}
-      </CardContent>
-    </Card>
+      </div>
+
+      <Card className="rounded-2xl">
+        <CardContent className="p-5 md:p-6 space-y-5">
+          <div className="flex flex-col sm:flex-row gap-4">
+            <img
+              src={applicant.image}
+              alt={`Illustration of ${applicant.name}, a fictional practice person`}
+              className="w-20 h-20 rounded-2xl object-cover border-2 border-slate-200 shrink-0"
+            />
+            <div className="space-y-1.5">
+              <div className="flex flex-wrap items-center gap-2">
+                <h2 className="text-xl font-extrabold text-slate-900">{applicant.name}</h2>
+                <Badge variant="outline" className="text-amber-700 border-amber-300 bg-amber-50">
+                  Practice person. Not real.
+                </Badge>
+              </div>
+              <p className="text-sm text-slate-600">{applicant.blurb}</p>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap gap-2 bg-slate-100 rounded-xl p-1 w-fit">
+            <button type="button" onClick={() => setMode('qa')} className={toggleClasses(mode === 'qa')}>
+              <MessagesSquare className="w-4 h-4" /> Interview Q&A
+            </button>
+            <button type="button" onClick={() => setMode('form')} className={toggleClasses(mode === 'form')}>
+              <FileText className="w-4 h-4" /> Their N-400 form
+            </button>
+          </div>
+
+          {mode === 'form' ? (
+            <div className="space-y-3">
+              <p className="text-sm leading-relaxed" style={{ color: '#4A5A78' }}>
+                This is what {firstName}'s Form N-400 would look like, using the answers above. This form is an
+                example for learning — it is not real, and this guide does not fill out or file any form.
+              </p>
+              <N400PaperForm applicant={applicant} />
+            </div>
+          ) : (
+            <div className="space-y-5">
+              <p className="text-sm leading-relaxed" style={{ color: '#4A5A78' }}>
+                See how {firstName} would answer the questions in the guide. These examples help you understand the
+                questions — every real applicant's answers are their own. Example answers are in English, like the
+                real interview. Nothing here is legal advice.
+              </p>
+
+              {buildWalkthrough(applicant).map((group) => (
+                <div key={group.title} className="space-y-3">
+                  <h3 className="text-xs font-bold uppercase tracking-wide" style={{ color: '#4A5A78' }}>
+                    {group.title}
+                  </h3>
+                  {group.pairs.map((pair, i) => {
+                    const key = `${group.title}-${i}`;
+                    return (
+                      <div key={key} className="rounded-xl border border-slate-200 p-4 space-y-2">
+                        <p className="text-sm font-semibold text-slate-800">Officer asks: {pair.q}</p>
+                        <div className="flex items-start gap-3">
+                          <p className="text-sm text-slate-700 italic flex-1">
+                            {firstName} answers: “{pair.a}”
+                          </p>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            aria-label="Listen to this example answer"
+                            className="rounded-full w-9 h-9 shrink-0"
+                            onClick={() => (playingKey === key ? setPlayingKey(null) : speak(key, pair.a))}
+                          >
+                            {playingKey === key ? (
+                              <Loader2 className="w-4 h-4 animate-spin" />
+                            ) : (
+                              <Volume2 className="w-4 h-4" />
+                            )}
+                          </Button>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              ))}
+            </div>
+          )}
+        </CardContent>
+      </Card>
+    </div>
   );
 }
