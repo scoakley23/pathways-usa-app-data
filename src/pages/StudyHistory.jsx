@@ -4,7 +4,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { ArrowLeft, MessageCircle, Calendar, Volume2 } from 'lucide-react';
+import { MessageCircle, Calendar, Volume2 } from 'lucide-react';
+import PageHeader from '@/components/PageHeader';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { speakText } from "@/components/utils/textToSpeech";
@@ -34,17 +35,10 @@ export default function StudyHistory() {
 
   return (
     <div className="max-w-4xl mx-auto py-8 space-y-6">
-      <div className="flex items-center gap-4">
-        <Link to={createPageUrl('Practice')}>
-          <Button variant="ghost" size="icon">
-            <ArrowLeft className="w-5 h-5" />
-          </Button>
-        </Link>
-        <div>
-          <h1 className="text-[34px] font-extrabold tracking-[-1px] text-slate-900">Study Question History</h1>
-          <p className="text-slate-500">Review your past questions and answers</p>
-        </div>
-      </div>
+      <PageHeader
+        title="Study Question History"
+        subtitle="Review your past questions and answers"
+      />
 
       {loading ? (
         <div className="text-center py-10">Loading history...</div>

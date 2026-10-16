@@ -12,6 +12,7 @@ import PracticeCalendar from '@/components/progress/PracticeCalendar';
 import ProgressChart from '@/components/progress/ProgressChart';
 import TestDateTracker from '@/components/progress/TestDateTracker';
 import { Progress as ProgressBar } from "@/components/ui/progress";
+import PageHeader from '@/components/PageHeader';
 
 export default function Progress() {
   const [history, setHistory] = useState([]);
@@ -74,18 +75,14 @@ export default function Progress() {
 
   return (
     <div className="space-y-8">
-      <div className="flex flex-col md:flex-row justify-between items-end gap-4">
-          <div>
-             <h1 className="text-[34px] font-extrabold tracking-[-1px] text-slate-900">Your Progress</h1>
-             <p className="text-slate-600">Track your journey to citizenship</p>
-          </div>
-          <TestDateTracker />
-      </div>
+      <PageHeader title="Your Progress" subtitle="Track your journey to citizenship">
+        <TestDateTracker />
+      </PageHeader>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <Link to={createPageUrl('StudyHistory')} className="block">
-          <Card className="bg-blue-50 border-blue-100 hover:shadow-md hover:border-blue-300 transition-all cursor-pointer group">
+          <Card className="hover:shadow-md transition-all cursor-pointer group">
             <CardContent className="p-6 flex items-center gap-4">
               <div className="w-12 h-12 bg-blue-200 text-blue-700 rounded-full flex items-center justify-center">
                 <Clock className="w-6 h-6" />
@@ -100,7 +97,7 @@ export default function Progress() {
         </Link>
 
         <Link to={createPageUrl('Dashboard')} className="block">
-          <Card className="bg-green-50 border-green-100 hover:shadow-md hover:border-green-300 transition-all cursor-pointer group">
+          <Card className="hover:shadow-md transition-all cursor-pointer group">
             <CardContent className="p-6 flex items-center gap-4">
               <div className="w-12 h-12 bg-green-200 text-green-700 rounded-full flex items-center justify-center">
                 <Award className="w-6 h-6" />
@@ -114,7 +111,7 @@ export default function Progress() {
           </Card>
         </Link>
 
-         <Card className="bg-emerald-50 border-emerald-100 md:col-span-2">
+         <Card className="md:col-span-2">
           <CardContent className="p-6">
             <div className="flex justify-between items-center mb-2">
                  <div className="flex items-center gap-2">

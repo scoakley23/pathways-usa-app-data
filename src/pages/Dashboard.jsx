@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
-import { createPageUrl } from '@/utils';
 import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Loader2, ArrowLeft, CheckCircle, Clock, Circle, BookOpen } from 'lucide-react';
+import { Loader2, CheckCircle, Clock, Circle, BookOpen } from 'lucide-react';
+import PageHeader from '@/components/PageHeader';
 import LessonStatusCard from '@/components/dashboard/LessonStatusCard';
 
 const TOPIC_ORDER = [
@@ -72,25 +70,14 @@ export default function Dashboard({ cachedUser }) {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between flex-wrap gap-3">
-        <div>
-          <h1 className="text-[34px] font-extrabold tracking-[-1px] text-slate-900">Lesson Progress</h1>
-          <p className="text-slate-600 mt-1">
-            Your completion status across all citizenship topics
-          </p>
-        </div>
-        <Link to={createPageUrl('Progress')}>
-          <Button variant="ghost" className="text-slate-600">
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Progress
-          </Button>
-        </Link>
-      </div>
+      <PageHeader
+        title="Lesson Progress"
+        subtitle="Your completion status across all citizenship topics"
+      />
 
       {/* Status summary cards */}
       <div className="flex flex-wrap items-center gap-4">
-        <Card className="border-green-200 bg-green-50 flex-1 min-w-[140px]">
+        <Card className="flex-1 min-w-[140px]">
           <CardContent className="p-4 flex items-center gap-3">
             <CheckCircle className="w-5 h-5 text-green-600" />
             <div>
@@ -99,7 +86,7 @@ export default function Dashboard({ cachedUser }) {
             </div>
           </CardContent>
         </Card>
-        <Card className="border-amber-200 bg-amber-50 flex-1 min-w-[140px]">
+        <Card className="flex-1 min-w-[140px]">
           <CardContent className="p-4 flex items-center gap-3">
             <Clock className="w-5 h-5 text-amber-600" />
             <div>
@@ -108,7 +95,7 @@ export default function Dashboard({ cachedUser }) {
             </div>
           </CardContent>
         </Card>
-        <Card className="border-slate-200 bg-slate-50 flex-1 min-w-[140px]">
+        <Card className="flex-1 min-w-[140px]">
           <CardContent className="p-4 flex items-center gap-3">
             <Circle className="w-5 h-5 text-slate-400" />
             <div>

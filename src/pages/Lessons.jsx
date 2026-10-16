@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { BookOpen, Video, CheckCircle, ArrowRight, Award, Star, ScrollText, Scale, Handshake, Landmark, Map } from 'lucide-react';
 import LessonDetail from '@/components/lessons/LessonDetail.jsx';
 import RecommendationsPanel from '@/components/lessons/RecommendationsPanel';
+import PageHeader from '@/components/PageHeader';
 import { toast } from "sonner";
 
 export default function Lessons() {
@@ -111,16 +112,10 @@ export default function Lessons() {
 
   return (
     <div className="space-y-8">
-      {/* Header */}
-      <div className="text-center space-y-3">
-        <div className="inline-block p-4 bg-slate-900 rounded-2xl">
-          <BookOpen className="w-12 h-12 text-white" />
-        </div>
-        <h1 className="text-[36px] font-extrabold tracking-[-1px] text-slate-900">Civics Lessons</h1>
-        <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-          Learn the key concepts you need to know for your U.S. citizenship test with video lessons, detailed content, and practice quizzes.
-        </p>
-      </div>
+      <PageHeader
+        title="Civics Lessons"
+        subtitle="Learn the key concepts you need to know for your U.S. citizenship test with video lessons, detailed content, and practice quizzes."
+      />
 
       {/* Recommendations */}
       {user && (
@@ -160,13 +155,7 @@ export default function Lessons() {
                 return (
                   <Card 
                     key={lesson.id}
-                    className={`hover:shadow-lg transition-all cursor-pointer border-2 relative ${
-                      isCompleted 
-                        ? 'border-green-300 hover:border-green-400 bg-green-50/30' 
-                        : hasProgress
-                          ? 'border-amber-200 hover:border-amber-300 bg-amber-50/20'
-                          : 'hover:border-blue-400'
-                    }`}
+                    className="hover:shadow-lg transition-all cursor-pointer border-2 border-slate-200 hover:border-indigo-400 relative"
                     onClick={() => setSelectedLesson(lesson)}
                   >
                     <CardHeader className="pb-3">
@@ -218,13 +207,7 @@ export default function Lessons() {
                       )}
                     </CardHeader>
                     <CardContent className="pt-0">
-                      <Button className={`w-full ${
-                        isCompleted 
-                          ? 'bg-green-600 hover:bg-green-700' 
-                          : hasProgress
-                            ? 'bg-blue-600 hover:bg-blue-700'
-                            : 'bg-blue-600 hover:bg-blue-700'
-                      }`}>
+                      <Button className="w-full">
                         {isCompleted ? 'Review' : hasProgress ? 'Continue' : 'Start Lesson'} <ArrowRight className="w-4 h-4 ml-2" />
                       </Button>
                     </CardContent>

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
 import MyStudents from '@/components/tutor/MyStudents';
 import MyTutor from '@/components/tutor/MyTutor';
-import { GraduationCap, Users, School, Loader2 } from 'lucide-react';
+import { School, Loader2 } from 'lucide-react';
+import PageHeader from '@/components/PageHeader';
 
 export default function Tutor({ cachedUser, cachedRole }) {
   const [user, setUser] = useState(cachedUser || null);
@@ -85,17 +86,12 @@ export default function Tutor({ cachedUser, cachedRole }) {
 
   return (
     <div className="max-w-5xl mx-auto space-y-8">
-      <div className="space-y-2">
-        <h1 className="text-[34px] font-extrabold tracking-[-1px] text-slate-900 flex items-center gap-3">
-          {role === 'tutor' ? <GraduationCap className="w-8 h-8 text-blue-600" /> : <School className="w-8 h-8 text-blue-600" />}
-          {role === 'tutor' ? 'Tutor Dashboard' : 'My Classroom'}
-        </h1>
-        <p className="text-slate-600">
-            {role === 'tutor' 
-                ? 'Manage your students, assign practice, and track their progress.' 
-                : 'Connect with your tutor and check your assignments.'}
-        </p>
-      </div>
+      <PageHeader
+        title={role === 'tutor' ? 'Tutor Dashboard' : 'My Classroom'}
+        subtitle={role === 'tutor'
+            ? 'Manage your students, assign practice, and track their progress.'
+            : 'Connect with your tutor and check your assignments.'}
+      />
 
       <div className="mt-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
           {role === 'tutor' ? (

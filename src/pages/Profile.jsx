@@ -13,6 +13,7 @@ import { toast } from "sonner";
 import { ensurePublicProfile } from '@/lib/profileService';
 import VoiceSettings from '@/components/utils/VoiceSettings';
 import DeleteMyData from '@/components/profile/DeleteMyData';
+import PageHeader from '@/components/PageHeader';
 
 export default function Profile() {
   const [user, setUser] = useState(null);
@@ -104,6 +105,7 @@ export default function Profile() {
 
   return (
     <div className="max-w-5xl mx-auto space-y-8 pb-12">
+      <PageHeader title="Profile" />
       <div className="flex flex-col md:flex-row gap-8 items-start">
         
         {/* Left Column: Profile Card */}
@@ -183,28 +185,28 @@ export default function Profile() {
             <>
               {/* Detailed Stats */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                <Card className="bg-blue-50 border-blue-100">
+                <Card>
                   <CardContent className="p-4 text-center">
                     <Trophy className="w-6 h-6 text-blue-600 mx-auto mb-2" />
                     <p className="text-2xl font-bold text-slate-900">{user.total_correct || 0}</p>
                     <p className="text-xs text-slate-600">Correct Answers</p>
                   </CardContent>
                 </Card>
-                <Card className="bg-orange-50 border-orange-100">
+                <Card>
                   <CardContent className="p-4 text-center">
                     <Flame className="w-6 h-6 text-orange-600 mx-auto mb-2" />
                     <p className="text-2xl font-bold text-slate-900">{user.current_streak || 0}</p>
                     <p className="text-xs text-slate-600">Current Streak</p>
                   </CardContent>
                 </Card>
-                <Card className="bg-purple-50 border-purple-100">
+                <Card>
                   <CardContent className="p-4 text-center">
                     <Star className="w-6 h-6 text-purple-600 mx-auto mb-2" />
                     <p className="text-2xl font-bold text-slate-900">{user.points || 0}</p>
                     <p className="text-xs text-slate-600">Total Points</p>
                   </CardContent>
                 </Card>
-                 <Card className="bg-green-50 border-green-100">
+                 <Card>
                   <CardContent className="p-4 text-center">
                     <GraduationCap className="w-6 h-6 text-green-600 mx-auto mb-2" />
                     <p className="text-2xl font-bold text-slate-900">{(user.badges || []).length}</p>

@@ -14,6 +14,7 @@ import InterviewPractice from '@/components/practice/InterviewPractice';
 import StudyBuddy from '@/components/ai/StudyBuddy';
 import RepresentativeFinder from '@/components/civics/RepresentativeFinder';
 import PracticePathProgress from '@/components/practice/PracticePathProgress';
+import PageHeader from '@/components/PageHeader';
 import { toast } from "sonner";
 import VoiceSettings from '@/components/utils/VoiceSettings';
 
@@ -458,21 +459,19 @@ export default function Practice() {
   if (mode === 'menu') {
     return (
       <div className="max-w-5xl mx-auto space-y-8 pb-12">
-        <div className="text-center space-y-4 py-8">
-          <h1 className="text-[36px] font-extrabold tracking-[-1px] text-slate-900">Practice Dashboard</h1>
-          <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-            Choose your study mode to prepare for your citizenship test.
-          </p>
-          <div className="flex justify-center">
-            <VoiceSettings />
-          </div>
+        <PageHeader
+          title="Practice Dashboard"
+          subtitle="Choose your study mode to prepare for your citizenship test."
+        />
+        <div className="flex justify-center">
+          <VoiceSettings />
         </div>
 
         <PracticePathProgress userEmail={currentUser?.email} />
 
         {assignments.length > 0 && (
-        <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-8">
-          <h2 className="font-bold text-blue-900 flex items-center gap-2 mb-4">
+        <div className="bg-white border border-slate-200 rounded-xl p-6 mb-8">
+          <h2 className="font-bold text-slate-900 flex items-center gap-2 mb-4">
             <Clock className="w-5 h-5" /> Assignments from your Tutor
           </h2>
             <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
@@ -487,7 +486,7 @@ export default function Practice() {
                         Assigned {new Date(a.assigned_date).toLocaleDateString()}
                       </p>
                     </div>
-                    <Button size="sm" className="bg-blue-600 h-8 shrink-0">Start</Button>
+                    <Button size="sm" className="h-8 shrink-0">Start</Button>
                   </CardContent>
                 </Card>
               ))}
@@ -500,7 +499,7 @@ export default function Practice() {
           {/* 1. Reading Mode */}
           <Card className="hover:shadow-xl transition-all duration-300 border-slate-200 group cursor-pointer" onClick={() => startSession('reading')}>
             <CardHeader>
-              <div className="w-12 h-12 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+              <div className="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
                 <BookA className="w-6 h-6" />
               </div>
               <CardTitle>Reading</CardTitle>
@@ -509,14 +508,14 @@ export default function Practice() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Button className="w-full bg-purple-600 hover:bg-purple-700">Start Reading</Button>
+              <Button className="w-full">Start Reading</Button>
             </CardContent>
           </Card>
 
           {/* 2. Writing Vocab */}
           <Card className="hover:shadow-xl transition-all duration-300 border-slate-200 group">
             <CardHeader>
-              <div className="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+              <div className="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
                 <Mic className="w-6 h-6" />
               </div>
               <CardTitle>Writing Vocab</CardTitle>
@@ -525,13 +524,13 @@ export default function Practice() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-2">
-              <Button onClick={() => startSession('vocabulary', 'dictation')} className="w-full bg-emerald-600 hover:bg-emerald-700 justify-start">
+              <Button onClick={() => startSession('vocabulary', 'dictation')} className="w-full justify-start">
                 <Mic className="w-4 h-4 mr-2" /> Dictation
               </Button>
-              <Button onClick={() => startSession('vocabulary', 'flashcards')} variant="outline" className="w-full justify-start hover:bg-emerald-50 hover:text-emerald-700">
+              <Button onClick={() => startSession('vocabulary', 'flashcards')} variant="outline" className="w-full justify-start">
                 <Sparkles className="w-4 h-4 mr-2" /> Flashcards
               </Button>
-              <Button onClick={() => startSession('vocabulary', 'matching')} variant="outline" className="w-full justify-start hover:bg-emerald-50 hover:text-emerald-700">
+              <Button onClick={() => startSession('vocabulary', 'matching')} variant="outline" className="w-full justify-start">
                 <Layers className="w-4 h-4 mr-2" /> Matching
               </Button>
             </CardContent>
@@ -540,7 +539,7 @@ export default function Practice() {
           {/* 3. Sentence Dictation */}
           <Card className="hover:shadow-xl transition-all duration-300 border-slate-200 group cursor-pointer" onClick={() => startSession('dictation')}>
             <CardHeader>
-              <div className="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+              <div className="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
                 <Mic className="w-6 h-6" />
               </div>
               <CardTitle>Sentence Dictation</CardTitle>
@@ -549,14 +548,14 @@ export default function Practice() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Button className="w-full bg-indigo-600 hover:bg-indigo-700">Start Dictation</Button>
+              <Button className="w-full">Start Dictation</Button>
             </CardContent>
           </Card>
 
           {/* 4. Civics Test */}
           <Card className="hover:shadow-xl transition-all duration-300 border-slate-200 group">
             <CardHeader>
-              <div className="w-12 h-12 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+              <div className="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
                 <GraduationCap className="w-6 h-6" />
               </div>
               <div className="flex justify-between items-start">
@@ -596,14 +595,14 @@ export default function Practice() {
               </div>
             </CardHeader>
             <CardContent>
-              <Button onClick={() => startSession('civics')} className="w-full bg-orange-600 hover:bg-orange-700">Start Quiz</Button>
+              <Button onClick={() => startSession('civics')} className="w-full">Start Quiz</Button>
             </CardContent>
           </Card>
         </div>
 
         {/* Interview Practice Section */}
         <div className="mt-8">
-          <Card className="bg-indigo-50 border border-indigo-200 transition-all cursor-pointer" onClick={() => setMode('interview')}>
+          <Card className="transition-all cursor-pointer" onClick={() => setMode('interview')}>
             <CardContent className="p-8">
               <div className="flex items-center gap-6">
                 <div className="w-16 h-16 bg-indigo-600 rounded-2xl flex items-center justify-center shrink-0">

@@ -6,6 +6,7 @@ import GenerateLessonsButton from '@/components/admin/GenerateLessonsButton';
 import SentencesTab from '@/components/admin/SentencesTab';
 import CivicsQuestionsTab from '@/components/admin/CivicsQuestionsTab';
 import VocabularyWordsTab from '@/components/admin/VocabularyWordsTab';
+import PageHeader from '@/components/PageHeader';
 
 export default function Admin() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -45,13 +46,12 @@ export default function Admin() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div>
-          <h1 className="text-[34px] font-extrabold tracking-[-1px] text-slate-900">Admin Dashboard</h1>
-          <p className="text-slate-500">Manage all practice content — sentences, civics questions, and vocabulary words.</p>
-        </div>
+      <PageHeader
+        title="Admin Dashboard"
+        subtitle="Manage all practice content — sentences, civics questions, and vocabulary words."
+      >
         <GenerateLessonsButton />
-      </div>
+      </PageHeader>
 
       <Tabs defaultValue="sentences">
         <TabsList className="grid w-full grid-cols-3 max-w-md">
