@@ -29,7 +29,7 @@ export function N400FormPage1({ d }) {
       </div>
       <div className="flex items-center justify-between flex-wrap gap-2">
         <p className="text-[10px] font-semibold text-slate-700">
-          Practice copy filled in for <span className="text-slate-900">{d.name}</span> — a fictional person.
+          Practice copy filled in for <span className="text-black">{d.name}</span> — a fictional person.
           It follows the real form's parts, wording, and item numbers as closely as we can, but it is not the
           real form and is never filed. The real form is at uscis.gov.
         </p>
@@ -37,13 +37,13 @@ export function N400FormPage1({ d }) {
           Practice — not real
         </Badge>
       </div>
-      <div className="border border-slate-500">
-        <div className="bg-slate-100 border-b border-slate-500 px-2 py-0.5">
+      <div className="border border-black">
+        <div className="bg-slate-100 border-b border-black px-2 py-0.5">
           <p className="text-[9px] font-bold text-slate-800">For USCIS Use Only</p>
         </div>
         <div className="grid grid-cols-4">
           {['Date Stamp', 'Receipt', 'Action Block', 'Remarks'].map((c) => (
-            <div key={c} className="border-r last:border-r-0 border-slate-400 p-1 text-[9px] font-semibold text-slate-700">
+            <div key={c} className="border-r last:border-r-0 border-black p-1 text-[9px] font-semibold text-slate-700">
               {c}
             </div>
           ))}
@@ -62,7 +62,7 @@ export function N400FormPage1({ d }) {
       <PartBar title="Part 1. Information About Your Eligibility" note="Select only one box to identify the basis of your eligibility or your Form N-400 may be delayed or rejected." />
       <Item number="A-">
         <p className="text-[11px] font-bold text-slate-800">Enter Your 9 Digit A-Number:</p>
-        <p className="font-mono text-xs text-slate-500">(left blank in this practice copy)</p>
+        <p className="font-typewriter text-xs text-slate-500">(left blank in this practice copy)</p>
       </Item>
       <Item number="1.">
         <p className="text-[11px] font-bold text-slate-800">Reason for Filing (Please see Instructions for eligibility requirements under each provision.)</p>
@@ -106,7 +106,7 @@ export function N400FormPage2({ d }) {
       <div className="grid grid-cols-2 gap-1">
         <Item number="4.">
           <p className="text-[11px] font-bold text-slate-800">USCIS Online Account Number (if any)</p>
-          <p className="font-mono text-xs text-slate-900">N/A</p>
+          <p className="font-typewriter text-xs text-black">N/A</p>
         </Item>
         <Item number="5.">
           <p className="text-[11px] font-bold text-slate-800">Sex</p>
@@ -118,7 +118,7 @@ export function N400FormPage2({ d }) {
       </div>
       <Item number="6.">
         <p className="text-[11px] font-bold text-slate-800">Date of Birth (mm/dd/yyyy)</p>
-        <p className="font-mono text-xs text-slate-900">About {d.birthYear} (example)</p>
+        <p className="font-typewriter text-xs text-black">About {d.birthYear} (example)</p>
         <Note>
           In addition to your actual date of birth, include any other dates of birth you have ever used, including
           dates used in connection with any legal names or non-legal names, in the space provided in Part 14.
@@ -130,16 +130,16 @@ export function N400FormPage2({ d }) {
           If you are a lawful permanent resident, provide the date you became a lawful permanent resident
           (mm/dd/yyyy).
         </p>
-        <p className="font-mono text-xs text-slate-900">About {d.lprYear} (example)</p>
+        <p className="font-typewriter text-xs text-black">About {d.lprYear} (example)</p>
       </Item>
       <div className="grid grid-cols-2 gap-1">
         <Item number="8.">
           <p className="text-[11px] font-bold text-slate-800">Country of Birth</p>
-          <p className="font-mono text-xs text-slate-900">{d.countryOfBirth}</p>
+          <p className="font-typewriter text-xs text-black">{d.countryOfBirth}</p>
         </Item>
         <Item number="9.">
           <p className="text-[11px] font-bold text-slate-800">Country of Citizenship or Nationality</p>
-          <p className="font-mono text-xs text-slate-900">{d.countryOfBirth}</p>
+          <p className="font-typewriter text-xs text-black">{d.countryOfBirth}</p>
         </Item>
       </div>
       <Item number="10.">
@@ -268,7 +268,7 @@ export function N400FormPage4({ d }) {
       </Item>
       <Item number="3.">
         <p className="text-[11px] font-bold text-slate-800">Current Mailing Address (Safe Mailing Address, if applicable)</p>
-        <p className="font-mono text-xs text-slate-500">(Skipped — the mailing address is the same as the physical address.)</p>
+        <p className="font-typewriter text-xs text-slate-500">(Skipped — the mailing address is the same as the physical address.)</p>
       </Item>
       <PartBar title="Part 5. Information About Your Marital History" />
       <Item number="1.">
@@ -288,7 +288,7 @@ export function N400FormPage4({ d }) {
       </Item>
       <Item number="3.">
         <p className="text-[11px] font-bold text-slate-800">How many times have you been married?</p>
-        <p className="font-mono text-xs text-slate-900">{d.marriages === 0 ? 'None' : d.marriages}</p>
+        <p className="font-typewriter text-xs text-black">{d.marriages === 0 ? 'None' : d.marriages}</p>
       </Item>
       <GroupIntro text="Your Current Marriage — If you are currently married, including if you are legally separated, provide the following information about your current spouse." />
       <Item number="4.a.">
@@ -300,7 +300,7 @@ export function N400FormPage4({ d }) {
             <Field label="Middle Name (if applicable)" value="N/A" />
           </div>
         ) : (
-          <p className="font-mono text-xs text-slate-500">(Not applicable — {d.name.split(' ')[0]} is not currently married.)</p>
+          <p className="font-typewriter text-xs text-slate-500">(Not applicable — {d.name.split(' ')[0]} is not currently married.)</p>
         )}
       </Item>
       {married && d.spouse && (
@@ -308,11 +308,11 @@ export function N400FormPage4({ d }) {
           <div className="grid grid-cols-2 gap-1">
             <Item number="4.b.">
               <p className="text-[11px] font-bold text-slate-800">Current Spouse's Date of Birth (mm/dd/yyyy)</p>
-              <p className="font-mono text-xs text-slate-500">(left blank in this practice copy)</p>
+              <p className="font-typewriter text-xs text-slate-500">(left blank in this practice copy)</p>
             </Item>
             <Item number="4.c.">
               <p className="text-[11px] font-bold text-slate-800">Date You Entered into Marriage with Current Spouse (mm/dd/yyyy)</p>
-              <p className="font-mono text-xs text-slate-900">{d.spouse.year ? `About ${d.spouse.year} (example)` : ''}</p>
+              <p className="font-typewriter text-xs text-black">{d.spouse.year ? `About ${d.spouse.year} (example)` : ''}</p>
             </Item>
           </div>
           <Item number="4.d.">
@@ -329,12 +329,12 @@ export function N400FormPage4({ d }) {
             </Item>
             <Item number="6.">
               <p className="text-[11px] font-bold text-slate-800">Current Spouse's Alien Registration Number (A-Number) (if any)</p>
-              <p className="font-mono text-xs text-slate-500">(left blank in this practice copy)</p>
+              <p className="font-typewriter text-xs text-slate-500">(left blank in this practice copy)</p>
             </Item>
           </div>
           <Item number="7.">
             <p className="text-[11px] font-bold text-slate-800">How many times has your current spouse been married?</p>
-            <p className="font-mono text-xs text-slate-500">(left blank in this practice copy)</p>
+            <p className="font-typewriter text-xs text-slate-500">(left blank in this practice copy)</p>
           </Item>
         </>
       )}

@@ -15,7 +15,7 @@ export function N400FormPage5({ d }) {
           <CheckBox checked={d.childrenUnder18 === 0} label="None" />
           <span className="inline-flex items-center gap-1.5">
             <CheckBox checked={d.childrenUnder18 > 0} label="Number:" />
-            <span className="font-mono text-xs text-slate-900">
+            <span className="font-typewriter text-xs text-black">
               {d.childrenUnder18 > 0 ? d.childrenUnder18 : ''}
             </span>
           </span>
@@ -24,11 +24,11 @@ export function N400FormPage5({ d }) {
       <Item number="2.">
         <p className="text-[11px] font-bold text-slate-800">Provide the following information about your children.</p>
         {d.children.length === 0 ? (
-          <p className="font-mono text-xs text-slate-500">(None — {first} does not have any children.)</p>
+          <p className="font-typewriter text-xs text-slate-500">(None — {first} does not have any children.)</p>
         ) : (
           <div className="space-y-2">
             {d.children.map((c, i) => (
-              <div key={c.name} className="border border-slate-300 p-1.5 space-y-1">
+              <div key={c.name} className="border border-black p-1.5 space-y-1">
                 <div className="grid grid-cols-3 gap-1">
                   <Field label="Son or Daughter's Name (First Name and Family Name)" value={`${c.name} ${d.family}`} />
                   <Field label="Date of Birth (mm/dd/yyyy)" value={c.age !== null ? `(about ${new Date().getFullYear() - c.age} — age ${c.age})` : ''} />
@@ -36,7 +36,7 @@ export function N400FormPage5({ d }) {
                 </div>
                 <div className="grid grid-cols-2 gap-1">
                   <Field label="Residence" value={c.note || `With me at my current physical address`} />
-                  <div className="border border-slate-500 bg-white px-1.5 py-1">
+                  <div className="border border-black bg-white px-1.5 py-1">
                     <p className="text-[9px] font-bold text-slate-800">
                       Are you currently providing support for your son or daughter?
                     </p>
@@ -103,7 +103,7 @@ export function N400FormPage6({ d }) {
             <JobRow key={j.occupation} label={`Employment ${i + 1}`} job={j} address={d.address} />
           ))}
           {history.length === 0 && (
-            <p className="font-mono text-xs text-slate-500">(No other employers in the last 5 years.)</p>
+            <p className="font-typewriter text-xs text-slate-500">(No other employers in the last 5 years.)</p>
           )}
         </div>
       </Item>
@@ -111,7 +111,7 @@ export function N400FormPage6({ d }) {
         <p className="text-[11px] font-bold text-slate-800">
           Provide information about the schools you attended during the last 5 years.
         </p>
-        <p className="font-mono text-xs text-slate-900">N/A (not attending school)</p>
+        <p className="font-typewriter text-xs text-black">N/A (not attending school)</p>
       </Item>
     </FormPage>
   );
@@ -126,14 +126,14 @@ export function N400FormPage7({ d }) {
           <p className="text-[11px] font-bold text-slate-800">
             Provide the total number of days you spent outside the United States during the last 5 years.
           </p>
-          <p className="font-mono text-xs text-slate-900">{d.totalDaysOut}</p>
+          <p className="font-typewriter text-xs text-black">{d.totalDaysOut}</p>
         </Item>
         <Item number="2.">
           <p className="text-[11px] font-bold text-slate-800">
             Provide the total number of trips (24 hours or longer) you have taken outside the United States
             during the last 5 years.
           </p>
-          <p className="font-mono text-xs text-slate-900">{d.trips.length}</p>
+          <p className="font-typewriter text-xs text-black">{d.trips.length}</p>
         </Item>
       </div>
       <Item number="3.">
@@ -146,23 +146,23 @@ export function N400FormPage7({ d }) {
           <thead>
             <tr className="text-left text-[9px] uppercase tracking-wide text-slate-700">
               {['Date of Departure', 'Date of Return', 'Total Days Out of the U.S.', 'Countries Visited', 'Reason for Trip'].map((h) => (
-                <th key={h} className="border border-slate-400 px-1.5 py-1 bg-slate-100">{h}</th>
+                <th key={h} className="border border-black px-1.5 py-1 bg-slate-100">{h}</th>
               ))}
             </tr>
           </thead>
-          <tbody className="font-mono text-[11px] text-slate-900">
+          <tbody className="font-typewriter text-[11px] text-black">
             {d.trips.map((t) => (
               <tr key={`${t.country}-${t.departure}`}>
-                <td className="border border-slate-400 px-1.5 py-1">{t.departure} (about)</td>
-                <td className="border border-slate-400 px-1.5 py-1">{t.return} (about)</td>
-                <td className="border border-slate-400 px-1.5 py-1">{t.days}</td>
-                <td className="border border-slate-400 px-1.5 py-1">{t.country}</td>
-                <td className="border border-slate-400 px-1.5 py-1">{t.reason}</td>
+                <td className="border border-black px-1.5 py-1">{t.departure} (about)</td>
+                <td className="border border-black px-1.5 py-1">{t.return} (about)</td>
+                <td className="border border-black px-1.5 py-1">{t.days}</td>
+                <td className="border border-black px-1.5 py-1">{t.country}</td>
+                <td className="border border-black px-1.5 py-1">{t.reason}</td>
               </tr>
             ))}
             {d.trips.length === 0 && (
               <tr>
-                <td colSpan={5} className="border border-slate-400 px-1.5 py-1 text-slate-500">None</td>
+                <td colSpan={5} className="border border-black px-1.5 py-1 text-slate-500">None</td>
               </tr>
             )}
           </tbody>

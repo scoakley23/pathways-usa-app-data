@@ -190,7 +190,7 @@ export function N400FormPage10({ d }) {
       />
       <Q number="25." text="Have you EVER been in jail or prison?" yes={false} />
       <Note>If you answered "No" to Item Number 25., go to Item Number 30.a.</Note>
-      <div className="border border-slate-300 bg-slate-50 px-2 py-1.5 space-y-1">
+      <div className="border border-black bg-slate-50 px-2 py-1.5 space-y-1">
         <p className="text-[9px] italic text-slate-600">
           Item Numbers 26. - 29. (why were you in jail or prison, dates of confinement From/To, and location) —
           completed only if you answered "Yes" to Item Number 25. Left blank for {d.name.split(' ')[0]}.
@@ -250,14 +250,14 @@ export function N400FormPage11({ d }) {
         <div className="flex flex-wrap items-center gap-4">
           <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-slate-800">
             No
-            <span className="inline-flex w-3.5 h-3.5 items-center justify-center border border-slate-600 bg-white text-[9px] font-bold">
+            <span className="inline-flex w-3.5 h-3.5 items-center justify-center border border-black bg-white text-[9px] font-bold">
               X
             </span>
             (skip to Part 11.)
           </span>
           <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-slate-800">
             Yes
-            <span className="inline-flex w-3.5 h-3.5 items-center justify-center border border-slate-600 bg-white text-[9px] font-bold" />
+            <span className="inline-flex w-3.5 h-3.5 items-center justify-center border border-black bg-white text-[9px] font-bold" />
             (complete Item Numbers 2. - 5.b.)
           </span>
         </div>
