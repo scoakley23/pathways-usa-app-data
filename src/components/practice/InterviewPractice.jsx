@@ -3,18 +3,13 @@ import { motion } from 'framer-motion';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { Mic, MicOff, Volume2, ArrowRight, Check, X, Loader2, ChevronDown, ChevronUp, FileText, Bot, BarChart3, ShieldAlert } from 'lucide-react';
+import { Mic, MicOff, Volume2, ArrowRight, Check, X, Loader2, ChevronDown, ChevronUp, FileText, Bot, BarChart3 } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { speakText, stopSpeaking, getRandomVoice } from "@/components/utils/textToSpeech";
 import { toast } from "sonner";
 import InterviewReport from './InterviewReport';
 import InterviewHistory from './InterviewHistory';
 import VirtualInterviewer, { AVATAR_URL } from './VirtualInterviewer';
-import N400ReviewSetup from '@/components/interview/N400ReviewSetup';
-import PracticeApplicantCard from '@/components/interview/PracticeApplicantCard';
-import { getReviewQuestions, profileSummary } from '@/components/interview/practiceApplicants';
-import { buildCivicsPlan } from '@/components/interview/civicsPlan';
-import findPII from '@/components/interview/piiGuard';
 
 // Long text is now spoken in chunks, so the fallback timeout must cover all of them.
 const speechTimeoutMs = (text) => {
@@ -42,11 +37,6 @@ export default function InterviewPractice({ onComplete, onNext }) {
   const [showTyping, setShowTyping] = useState(false);
   const [varyOfficer, setVaryOfficer] = useState(false);
 
-  // N-400 review practice mode
-  const [mode, setMode] = useState('standard');
-  const [applicant, setApplicant] = useState(null);
-  const [piiWarning, setPiiWarning] = useState(null);
-  const [civicsPlan, setCivicsPlan] = useState(null);
   const standardQuestionsRef = useRef([]);
   // Guards against the greeting's speech-end and safety-timer paths both
   // scheduling the same question (which made it appear twice in the chat).
@@ -240,37 +230,6 @@ export default function InterviewPractice({ onComplete, onNext }) {
 
   const startInterview = () => beginSession("Good morning! Welcome to your citizenship interview. Let's get started.");
 
-  // N-400 review practice: the learner answers as the fictional practice
-  // person. After the N-400 review questions, the officer gives the civics
-  // test (official 2025 rules, with the shorter 65/20 path for applicants
-  // 65+ with 20+ years as a resident).
-  const startReviewInterview = async (selectedApplicant) => {
-    setApplicant(selectedApplicant);
-    setPiiWarning(null);
-    const reviewQuestions = getReviewQuestions(selectedApplicant);
-    let civicsQuestions = [];
-    let plan = null;
-    try {
-      const bank = await base44.entities.CivicsQuestion.list();
-      plan = buildCivicsPlan(selectedApplicant, bank);
-      civicsQuestions = plan.questions;
-    } catch (e) {
-      toast.error('Could not load civics questions');
-    }
-    if (civicsQuestions.length > 0) {
-      civicsQuestions[0] = {
-        ...civicsQuestions[0],
-        intro: plan.is6520
-          ? 'Thank you. Now I will ask you some civics questions. I will ask you ten questions. You need six correct answers to pass.'
-          : 'Thank you. Now I will ask you some civics questions. I will ask you up to twenty questions. You need twelve correct answers to pass.',
-      };
-    }
-    setCivicsPlan(plan);
-    setQuestions([...reviewQuestions, ...civicsQuestions]);
-    const firstName = selectedApplicant.name.split(' ')[0];
-    beginSession(`Good morning, ${firstName}! Welcome to your citizenship interview. I have your N-400 application here. Let's review it together.`);
-  };
-
   const speakQuestion = () => {
     const q = questions[currentIndex];
     if (!q) return;
@@ -286,36 +245,16 @@ export default function InterviewPractice({ onComplete, onNext }) {
     const response = responseRef.current || userResponse;
     if (!response.trim()) { toast.error('Please record a response first'); return; }
 
-    // N-400 review practice: check on the learner's device for anything that
-    // looks like real personal data. If found, the answer is never sent.
-    if (mode === 'review') {
-      const pii = findPII(response, applicant);
-      if (pii) {
-        setPiiWarning(`That looks like real personal information. Please answer as ${applicant.name.split(' ')[0]}.`);
-        setUserResponse('');
-        responseRef.current = '';
-        setInterviewerState('listening');
-        return;
-      }
-      setPiiWarning(null);
-    }
-
     setConversation(prev => [...prev, { role: 'user', text: response, id: `u_${currentIndex}` }]);
     setInterviewerState('thinking');
     setIsAnalyzing(true);
 
     const q = questions[currentIndex];
     try {
-      const roleContext = mode === 'review' && applicant
-        ? `The candidate is role-playing as a FICTIONAL practice person. Profile card facts (the ground truth for scoring):\n${profileSummary(applicant)}\nScore CONTENT against this profile card, never against the candidate's own life. If the answer matches the card, content should score high. Never ask for or refer to the candidate's real personal information.\n\n`
-        : '';
-      const civicsContext = q.section === 'civics_2025'
-        ? `This is a civics question from the official 2025 USCIS civics test. The candidate lives in Ohio. Judge CONTENT on civics correctness: is_acceptable must be true ONLY if the spoken answer fully satisfies the question (if it asks to name three, three are required; "name one" needs only one). Content score: 100 if correct, 20 if wrong, 60 if partially correct (e.g. two of three items). For answers that change with elections or appointments (current President, Vice President, Speaker of the House, state governor), accept the official serving now.\n\n`
-        : '';
       const result = await base44.integrations.Core.InvokeLLM({
         prompt: `You are an experienced USCIS citizenship interview officer and ESL instructor evaluating a naturalization candidate.
 
-${civicsContext}${roleContext}INTERVIEW QUESTION: "${q.question}"
+INTERVIEW QUESTION: "${q.question}"
 EXPECTED RESPONSE: "${q.expected_response}"
 CANDIDATE'S SPOKEN RESPONSE: "${response}"
 RESPONSE TYPE: ${q.response_type}
@@ -386,25 +325,14 @@ Also provide:
   };
 
   const handleNext = () => {
-    // 2025 civics test rules: the civics portion ends as soon as the pass
-    // threshold is reached or too many answers are wrong.
-    const civicsResults = sessionResults.filter(r => r.section === 'civics_2025');
-    const civicsCorrect = civicsResults.filter(r => r.is_acceptable).length;
-    const civicsWrong = civicsResults.length - civicsCorrect;
-    const civicsReached = civicsPlan && (civicsCorrect >= civicsPlan.passAt || civicsWrong >= civicsPlan.stopWrong);
-
-    if (currentIndex < questions.length - 1 && !civicsReached) {
+    if (currentIndex < questions.length - 1) {
       const nextIndex = currentIndex + 1;
       setCurrentIndex(nextIndex);
       presentQuestion(nextIndex);
     } else {
       setShowReport(true);
-      // The N-400 review practice saves nothing to the account, database, or
-      // device. The standard interview keeps its existing behavior.
-      if (mode === 'standard') {
-        saveSession(sessionResults);
-        if (onComplete) onComplete(sessionResults.filter(r => r.is_acceptable).length >= questions.length * 0.7);
-      }
+      saveSession(sessionResults);
+      if (onComplete) onComplete(sessionResults.filter(r => r.is_acceptable).length >= questions.length * 0.7);
     }
   };
 
@@ -435,10 +363,6 @@ Also provide:
     setInterviewerState('idle');
     responseRef.current = '';
     lastPresentedRef.current = null;
-    setMode('standard');
-    setApplicant(null);
-    setPiiWarning(null);
-    setCivicsPlan(null);
     setQuestions(standardQuestionsRef.current);
   };
 
@@ -463,7 +387,6 @@ Also provide:
       results={sessionResults}
       questions={questions}
       onRestart={handleRestart}
-      civicsPlan={mode === 'review' ? civicsPlan : null}
     />
   );
 
@@ -471,28 +394,21 @@ Also provide:
     <div className="w-full max-w-3xl mx-auto space-y-4">
       <InterviewIntro
         questions={questions}
-        mode={mode}
-        onSelectMode={setMode}
         onStart={startInterview}
-        onReviewReady={startReviewInterview}
         varyOfficer={varyOfficer}
         onToggleVary={() => setVaryOfficer(v => !v)}
       />
-      {mode === 'standard' && <InterviewHistory />}
+      <InterviewHistory />
     </div>
   );
 
   const current = questions[currentIndex];
   const progress = ((currentIndex + 1) / questions.length) * 100;
-  const civicsResults = sessionResults.filter(r => r.section === 'civics_2025');
-  const civicsCorrect = civicsResults.filter(r => r.is_acceptable).length;
   const sectionLabel = {
     small_talk: 'Small Talk',
     personal_info: 'Personal Info',
     morals_ethics: 'Morals & Ethics',
     oath_requirements: 'Oath Requirements',
-    n400_review: 'N-400 Review',
-    civics_2025: civicsPlan?.is6520 ? 'Civics Test (65/20)' : 'Civics Test (2025)',
   }[current.section] || current.section;
 
   const statusText = {
@@ -504,18 +420,11 @@ Also provide:
 
   return (
     <div className="w-full max-w-3xl mx-auto space-y-4">
-      {/* Practice person's card stays visible during the interview */}
-      {mode === 'review' && applicant && <PracticeApplicantCard applicant={applicant} compact />}
-
       {/* Progress Bar */}
       <div className="bg-white rounded-xl p-4 shadow-sm border border-slate-100">
         <div className="flex justify-between items-center mb-2 text-sm font-medium text-slate-600">
           <span>Question {currentIndex + 1} of {questions.length}</span>
-          <span>
-            {mode === 'review' && current.section === 'civics_2025' && civicsPlan
-              ? `Civics: ${civicsCorrect} correct · ${civicsResults.length - civicsCorrect} incorrect · pass at ${civicsPlan.passAt}`
-              : `${sessionResults.filter(r => r.is_acceptable).length} passed so far`}
-          </span>
+          <span>{sessionResults.filter(r => r.is_acceptable).length} passed so far</span>
         </div>
         <Progress value={progress} className="h-2" />
         <div className="flex gap-1 mt-2">
@@ -595,14 +504,6 @@ Also provide:
               </div>
             )}
           </div>
-
-          {/* Personal information warning */}
-          {piiWarning && (
-            <div className="flex items-start gap-2 rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm font-medium text-amber-800">
-              <ShieldAlert className="w-5 h-5 shrink-0" />
-              {piiWarning}
-            </div>
-          )}
 
           {/* Status */}
           <p className="text-center text-sm font-medium text-slate-500">{statusText}</p>
@@ -770,7 +671,7 @@ function FeedbackPanel({ feedback, response, expected }) {
   );
 }
 
-function InterviewIntro({ questions, mode, onSelectMode, onStart, onReviewReady, varyOfficer, onToggleVary }) {
+function InterviewIntro({ questions, onStart, varyOfficer, onToggleVary }) {
   const sections = [...new Set(questions.map(q => q.section))];
   const sectionNames = { small_talk: 'Small Talk', personal_info: 'Personal Information', morals_ethics: 'Morals & Ethics', oath_requirements: 'Oath Requirements' };
 
@@ -806,32 +707,6 @@ function InterviewIntro({ questions, mode, onSelectMode, onStart, onReviewReady,
             </p>
           </div>
 
-          {/* Practice mode */}
-          <div className="grid grid-cols-2 gap-3 max-w-md mx-auto">
-            <button
-              onClick={() => onSelectMode('standard')}
-              className={`p-4 rounded-2xl border-2 text-left transition-colors ${
-                mode === 'standard' ? 'border-indigo-600 bg-white' : 'border-slate-200 bg-white hover:border-indigo-300'
-              }`}
-            >
-              <p className="font-bold text-slate-900 text-sm">Standard interview</p>
-              <p className="text-xs text-slate-500 mt-1">Answer as yourself: small talk, personal info, morals, oath.</p>
-            </button>
-            <button
-              onClick={() => onSelectMode('review')}
-              className={`p-4 rounded-2xl border-2 text-left transition-colors ${
-                mode === 'review' ? 'border-indigo-600 bg-white' : 'border-slate-200 bg-white hover:border-indigo-300'
-              }`}
-            >
-              <p className="font-bold text-slate-900 text-sm">N-400 review practice</p>
-              <p className="text-xs text-slate-500 mt-1">Answer as a fictional practice person. Saves nothing.</p>
-            </button>
-          </div>
-
-          {mode === 'review' ? (
-            <N400ReviewSetup onReady={onReviewReady} />
-          ) : (
-            <>
               <div className="grid grid-cols-2 gap-3 text-left max-w-sm mx-auto">
                 {[
                   { Icon: Mic, text: `${questions.length} questions across ${sections.length} sections` },
@@ -871,8 +746,6 @@ function InterviewIntro({ questions, mode, onSelectMode, onStart, onReviewReady,
               <Button onClick={onStart} size="lg" className="bg-indigo-600 hover:bg-indigo-700 h-14 px-12 text-lg rounded-2xl shadow-lg shadow-indigo-200">
                 Start Interview
               </Button>
-            </>
-          )}
         </CardContent>
       </Card>
     </div>

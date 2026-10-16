@@ -1,8 +1,8 @@
-// Six fictional practice applicants for the N-400 review interview mode.
-// Every one of these people is made up for practice. The disclaimer
-// "Practice person. Not real." is shown on every card that displays them.
+// Six fictional example applicants for the N-400 guide walkthrough. Every
+// one of these people is made up for practice. The disclaimer "Practice
+// person. Not real." is shown on every card that displays them.
 
-export const PRACTICE_APPLICANTS = [
+export const EXAMPLE_APPLICANTS = [
   {
     id: 'maria',
     name: 'Maria Santos',
@@ -12,8 +12,6 @@ export const PRACTICE_APPLICANTS = [
     yearsInUS: 12,
     blurb: 'Home health aide from Mexico. Married, two kids, two short trips home — and a speeding ticket to explain.',
     address: '482 Maple Street, Apt 3C, Riverton, Ohio 45000',
-    street: 'Maple Street',
-    city: 'Riverton',
     jobs: [
       'Home health aide at Riverton Home Care since 2019',
       'Housekeeper at the Park Hotel from 2014 to 2019',
@@ -44,8 +42,6 @@ export const PRACTICE_APPLICANTS = [
     yearsInUS: 8,
     blurb: 'Rideshare driver from Egypt. Divorced with one daughter, one long trip for a brother’s wedding.',
     address: '2201 Harbor Lane, Apt 12, Fairview, Ohio 45001',
-    street: 'Harbor Lane',
-    city: 'Fairview',
     jobs: [
       'Rideshare driver since 2020',
       'Gas station cashier from 2018 to 2020',
@@ -73,8 +69,6 @@ export const PRACTICE_APPLICANTS = [
     yearsInUS: 25,
     blurb: 'Retired teacher from South Korea. Widowed after 33 years of marriage, two grown children, two visits home.',
     address: '77 Ridge Road, Fairview, Ohio 45002',
-    street: 'Ridge Road',
-    city: 'Fairview',
     jobs: [
       'Retired in 2021',
       'Math teacher at Fairview Middle School from 2004 to 2021',
@@ -102,8 +96,6 @@ export const PRACTICE_APPLICANTS = [
     yearsInUS: 6,
     blurb: 'Line cook from Ukraine. Never married, no children, one trip home when his father was sick.',
     address: '12 Alder Court, Riverton, Ohio 45003',
-    street: 'Alder Court',
-    city: 'Riverton',
     jobs: [
       'Line cook at the Blue Door Bistro since 2022',
       'Dishwasher at the same bistro from 2020 to 2022',
@@ -130,8 +122,6 @@ export const PRACTICE_APPLICANTS = [
     yearsInUS: 15,
     blurb: 'Grocery store manager from India. Married twice, three kids — and a shoplifting citation from age 18 to explain.',
     address: '960 Willow Place, Fairview, Ohio 45004',
-    street: 'Willow Place',
-    city: 'Fairview',
     jobs: [
       'Assistant manager at Price Mart since 2018',
       'Cashier at Price Mart from 2011 to 2018',
@@ -162,8 +152,6 @@ export const PRACTICE_APPLICANTS = [
     yearsInUS: 10,
     blurb: 'Bus mechanic from Ghana. Married since 2009, two kids, one trip home for a funeral.',
     address: '333 Sunset Boulevard, Riverton, Ohio 45005',
-    street: 'Sunset Boulevard',
-    city: 'Riverton',
     jobs: [
       'Mechanic at Riverton Transit since 2017',
       'Auto shop worker from 2015 to 2017',
@@ -183,62 +171,3 @@ export const PRACTICE_APPLICANTS = [
     ],
   },
 ];
-
-// Plain-text summary of a practice person, used inside the AI prompt so the
-// officer scores the learner's answers against the card, not their real life.
-export function profileSummary(applicant) {
-  return [
-    `Name: ${applicant.name}`,
-    `Age: ${applicant.age}`,
-    `Birthplace: ${applicant.birthplace}`,
-    `Years living in the U.S.: ${applicant.yearsInUS}`,
-    `Current address: ${applicant.address}`,
-    `Work: ${applicant.jobs.join('; ')}`,
-    `Marital history: ${applicant.marital}`,
-    `Children: ${applicant.children.join('; ')}`,
-    `Trips outside the U.S.: ${applicant.trips.join('; ')}`,
-    `Good moral character answers: ${applicant.gmc.map((g) => `${g.q} — ${g.a}`).join('; ')}`,
-  ].join('\n');
-}
-
-// The officer's N-400 review questions for a practice person. Every expected
-// answer comes straight from the profile card.
-export function getReviewQuestions(applicant) {
-  return [
-    {
-      question: 'Where do you live?',
-      expected_response: `I live at ${applicant.address}.`,
-      section: 'n400_review',
-    },
-    {
-      question: 'What kind of work do you do? Where do you work?',
-      expected_response: `${applicant.job}. ${applicant.jobs[0]}.`,
-      section: 'n400_review',
-    },
-    {
-      question: 'Are you married? Tell me about it.',
-      expected_response: applicant.marital,
-      section: 'n400_review',
-    },
-    {
-      question: 'Do you have any children? How many?',
-      expected_response: `${applicant.children.join('; ')}.`,
-      section: 'n400_review',
-    },
-    {
-      question: 'Have you traveled outside the United States since you became a permanent resident? Tell me about your trips.',
-      expected_response: `Yes. ${applicant.trips.join('; ')}.`,
-      section: 'n400_review',
-    },
-    {
-      question: 'Where were you born?',
-      expected_response: applicant.birthplace,
-      section: 'n400_review',
-    },
-    ...applicant.gmc.map((g) => ({
-      question: g.q,
-      expected_response: g.a,
-      section: 'n400_review',
-    })),
-  ];
-}

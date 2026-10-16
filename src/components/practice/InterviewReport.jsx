@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { RotateCcw, CheckCircle, XCircle, ChevronDown, ChevronUp, Trophy, Target, BookOpen, MessageSquare } from 'lucide-react';
 
-export default function InterviewReport({ results, questions, onRestart, civicsPlan }) {
+export default function InterviewReport({ results, questions, onRestart }) {
   const [expandedIdx, setExpandedIdx] = useState(null);
 
   const passed = results.filter(r => r.is_acceptable).length;
@@ -25,14 +25,8 @@ export default function InterviewReport({ results, questions, onRestart, civicsP
     small_talk: 'Small Talk',
     personal_info: 'Personal Info',
     morals_ethics: 'Morals & Ethics',
-    oath_requirements: 'Oath Requirements',
-    n400_review: 'N-400 Review',
-    civics_2025: civicsPlan?.is6520 ? 'Civics Test (65/20)' : 'Civics Test (2025)'
+    oath_requirements: 'Oath Requirements'
   };
-
-  const civicsResults = results.filter(r => r.section === 'civics_2025');
-  const civicsCorrect = civicsResults.filter(r => r.is_acceptable).length;
-  const civicsPassed = civicsPlan && civicsCorrect >= civicsPlan.passAt;
 
   return (
     <div className="w-full max-w-3xl mx-auto space-y-6">
@@ -83,29 +77,6 @@ export default function InterviewReport({ results, questions, onRestart, civicsP
           </div>
         </CardContent>
       </Card>
-
-      {/* Civics Test Verdict */}
-      {civicsPlan && civicsResults.length > 0 && (
-        <Card className={`overflow-hidden ${civicsPassed ? 'bg-green-50' : 'bg-orange-50'}`}>
-          <div className={`h-2 ${civicsPassed ? 'bg-green-500' : 'bg-orange-400'}`} />
-          <CardContent className="p-5 flex items-center gap-4">
-            <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 ${civicsPassed ? 'bg-green-100' : 'bg-orange-100'}`}>
-              {civicsPassed
-                ? <CheckCircle className="w-7 h-7 text-green-600" />
-                : <XCircle className="w-7 h-7 text-orange-500" />}
-            </div>
-            <div className="flex-1">
-              <p className="font-bold text-lg text-slate-900">
-                {civicsPassed ? 'Civics test passed' : 'Civics test not passed'}
-              </p>
-              <p className="text-sm text-slate-600">
-                {civicsCorrect} correct out of {civicsResults.length} asked — the 2025 test requires {civicsPlan.passAt} correct
-                {civicsPlan.is6520 ? ' out of 10 (65/20 special consideration)' : ' out of 20'}.
-              </p>
-            </div>
-          </CardContent>
-        </Card>
-      )}
 
       {/* Score Breakdown */}
       <Card>

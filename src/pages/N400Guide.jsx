@@ -3,6 +3,7 @@ import { base44 } from '@/api/base44Client';
 import PageHeader from '@/components/PageHeader';
 import N400Section from '@/components/n400/N400Section';
 import { N400_SECTIONS } from '@/components/n400/n400Content';
+import N400Walkthrough from '@/components/n400/N400Walkthrough';
 import useAppLanguage from '@/hooks/useAppLanguage';
 import LanguageSelector from '@/components/lessons/LanguageSelector';
 
@@ -76,6 +77,8 @@ export default function N400Guide({ cachedUser }) {
           onComplete={markComplete}
         />
       ))}
+
+      <N400Walkthrough />
     </div>
   );
 }
