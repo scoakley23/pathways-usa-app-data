@@ -4,11 +4,15 @@ import { createPageUrl } from '@/utils';
 import { ArrowRight } from 'lucide-react';
 import { ROADMAP_STOPS } from './roadmapStops';
 
-export default function RoadmapHero({ roadmap }) {
+export default function RoadmapHero({ roadmap, t }) {
   const { loading, currentStop, isNew } = roadmap;
 
-  const label = loading ? '' : isNew ? 'Start here' : `Step ${currentStop.id} of 5`;
-  const action = isNew ? `Start: ${currentStop.name}` : `Continue: ${currentStop.name}`;
+  const label = loading
+    ? ''
+    : isNew
+    ? t('hero_start_here')
+    : t('hero_step_of').replace('{n}', currentStop.id);
+  const action = `${isNew ? t('hero_start') : t('hero_continue')}: ${t(`stop${currentStop.id}_name`)}`;
 
   return (
     <section className="bg-slate-900 -mx-4 -mt-16 pt-16 pb-10">
@@ -17,10 +21,10 @@ export default function RoadmapHero({ roadmap }) {
           {label}
         </p>
         <h1 className="text-[38px] leading-[1.1] font-extrabold tracking-[-1px] text-white">
-          Walk into your interview ready.
+          {t('hero_title')}
         </h1>
         <p className="text-base text-hero-muted min-h-[24px]">
-          {loading ? '' : `Today: ${currentStop.desc}.`}
+          {loading ? '' : `${t('hero_today')}: ${t(`stop${currentStop.id}_desc`)}.`}
         </p>
         <Link
           to={createPageUrl(currentStop.path) + (currentStop.query ? `?${currentStop.query}` : '')}
@@ -31,7 +35,7 @@ export default function RoadmapHero({ roadmap }) {
           </button>
         </Link>
         <p className="text-sm text-hero-muted">
-          Every step stays open — explore in any order you like.
+          {t('hero_flex')}
         </p>
       </div>
     </section>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Button } from "@/components/ui/button";
@@ -6,17 +6,29 @@ import { Card, CardContent } from "@/components/ui/card";
 import RoadmapHero from '@/components/home/RoadmapHero';
 import RoadmapPath from '@/components/home/RoadmapPath';
 import useRoadmapProgress from '@/components/home/useRoadmapProgress';
+import useAppLanguage, { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
+import useHomeTranslation from '@/hooks/useHomeTranslation';
 import { Mic, BookOpen, GraduationCap, Notebook, FileText, Search, ExternalLink } from 'lucide-react';
 
 
 export default function Home({ cachedUser }) {
   const roadmap = useRoadmapProgress(cachedUser);
+  const [language, setLanguage] = useAppLanguage();
+  const { t, translating } = useHomeTranslation(language);
+  const rtl = RTL_LANGUAGES.includes((language || 'en').slice(0, 2).toLowerCase());
+
   return (
-    <div className="flex flex-col gap-8 pb-8">
+    <div className="flex flex-col gap-8 pb-8" dir={rtl ? 'rtl' : 'ltr'}>
       {/* Hero Section */}
-      <RoadmapHero roadmap={roadmap} />
+      <RoadmapHero roadmap={roadmap} t={t} />
       {/* Roadmap */}
-      <RoadmapPath roadmap={roadmap} />
+      <RoadmapPath
+        roadmap={roadmap}
+        t={t}
+        language={language}
+        onLanguageChange={setLanguage}
+        translating={translating}
+      />
 
       {/* Features Section */}
       <section className="py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
@@ -26,9 +38,9 @@ export default function Home({ cachedUser }) {
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#EDF1F9', color: '#1F3A6B' }}>
                 <BookOpen className="w-6 h-6" />
                 </div>
-                <h3 className="text-xl font-bold text-slate-900">Reading Practice</h3>
+                <h3 className="text-xl font-bold text-slate-900">{t('feat_reading_title')}</h3>
                 <p className="text-slate-600">
-                Read official sentences aloud and get instant feedback on pronunciation.
+                {t('feat_reading_desc')}
                 </p>
             </CardContent>
             </Card>
@@ -40,9 +52,9 @@ export default function Home({ cachedUser }) {
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#DEE7F5', color: '#1F3A6B' }}>
                 <Mic className="w-6 h-6" />
                 </div>
-                <h3 className="text-xl font-bold text-slate-900">Dictation Practice</h3>
+                <h3 className="text-xl font-bold text-slate-900">{t('feat_dictation_title')}</h3>
                 <p className="text-slate-600">
-                Listen to official audio and practice typing exactly what you hear.
+                {t('feat_dictation_desc')}
                 </p>
             </CardContent>
             </Card>
@@ -54,9 +66,9 @@ export default function Home({ cachedUser }) {
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#B9C7E2', color: '#1F3A6B' }}>
                 <Notebook className="w-6 h-6" />
                 </div>
-                <h3 className="text-xl font-bold text-slate-900">Vocabulary</h3>
+                <h3 className="text-xl font-bold text-slate-900">{t('feat_vocab_title')}</h3>
                 <p className="text-slate-600">
-                Master the official reading and writing vocabulary lists.
+                {t('feat_vocab_desc')}
                 </p>
             </CardContent>
             </Card>
@@ -68,9 +80,9 @@ export default function Home({ cachedUser }) {
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#FBEAE9', color: '#D9483F' }}>
                 <GraduationCap className="w-6 h-6" />
                 </div>
-                <h3 className="text-xl font-bold text-slate-900">Civics Test</h3>
+                <h3 className="text-xl font-bold text-slate-900">{t('feat_civics_title')}</h3>
                 <p className="text-slate-600">
-                Practice for the civics test. Most new applicants take the 2025 test (up to 20 questions from a list of 128). We're adding the full 2025 list now.
+                {t('feat_civics_desc')}
                 </p>
             </CardContent>
             </Card>
@@ -87,9 +99,9 @@ export default function Home({ cachedUser }) {
                 <ExternalLink className="w-12 h-12" style={{ color: '#1F3A6B' }} />
               </div>
               <div className="flex-1 space-y-3 text-center md:text-left">
-                <h2 className="text-2xl md:text-3xl font-bold text-slate-900">Ready to file?</h2>
+                <h2 className="text-2xl md:text-3xl font-bold text-slate-900">{t('ready_title')}</h2>
                 <p className="text-slate-600 max-w-lg">
-                  When you're ready, you'll apply and check your case on the official USCIS website. Pathways is not part of USCIS or the U.S. government.
+                  {t('ready_body')}
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
@@ -100,7 +112,7 @@ export default function Home({ cachedUser }) {
                   className="inline-flex"
                 >
                   <Button size="lg" className="h-12 px-6 text-base whitespace-nowrap">
-                    <FileText className="mr-2 w-5 h-5" /> Apply on USCIS.gov
+                    <FileText className="mr-2 w-5 h-5" /> {t('btn_apply')}
                   </Button>
                 </a>
                 <a
@@ -110,7 +122,7 @@ export default function Home({ cachedUser }) {
                   className="inline-flex"
                 >
                   <Button size="lg" variant="outline" className="h-12 px-6 text-base whitespace-nowrap border-slate-300 text-slate-700 hover:bg-slate-50">
-                    <Search className="mr-2 w-5 h-5" /> Check case status on USCIS.gov
+                    <Search className="mr-2 w-5 h-5" /> {t('btn_case')}
                   </Button>
                 </a>
               </div>

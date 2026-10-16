@@ -1,29 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Check, Notebook, BookOpen, Mic, CalendarCheck, Star } from 'lucide-react';
 import LanguageSelector from '@/components/lessons/LanguageSelector';
 import { ROADMAP_STOPS } from './roadmapStops';
+import { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
 
 const STOP_ICONS = { 1: Notebook, 2: BookOpen, 3: Mic, 4: CalendarCheck };
 
 const stopUrl = (stop) =>
   createPageUrl(stop.path) + (stop.query ? `?${stop.query}` : '');
-const RTL_LANGUAGES = ['ar', 'fa', 'ur', 'he'];
 
 // Design geometry (viewBox units; panel is always 360 units wide in the design)
 const LEFT_X = 48;
 const RIGHT_X = 312;
 const STOP_Y = [90, 222, 354, 486, 618];
 const PANEL_HEIGHT = 724;
-
-function getSavedLanguage() {
-  try {
-    return localStorage.getItem('pathways_language') || 'en';
-  } catch (e) {
-    return 'en';
-  }
-}
 
 function pathThrough(points) {
   let d = `M ${points[0][0]} ${points[0][1]}`;
@@ -36,26 +28,22 @@ function pathThrough(points) {
   return d;
 }
 
-export default function RoadmapPath({ roadmap }) {
+export default function RoadmapPath({ roadmap, t, language, onLanguageChange, translating }) {
   const { loading, currentStop, done, doneCount } = roadmap;
 
-  const [language, setLanguage] = useState(getSavedLanguage);
-  const handleLanguageChange = (lang) => {
-    setLanguage(lang);
-    try {
-      localStorage.setItem('pathways_language', lang);
-    } catch (e) {
-      // ignore
-    }
-  };
-  const mirror = RTL_LANGUAGES.includes(language.slice(0, 2).toLowerCase());
+  const mirror = RTL_LANGUAGES.includes((language || 'en').slice(0, 2).toLowerCase());
+  const stops = ROADMAP_STOPS.map((s) => ({
+    ...s,
+    name: t(`stop${s.id}_name`),
+    short: t(`stop${s.id}_short`),
+  }));
   const xs = ROADMAP_STOPS.map((_, i) => {
     const base = i % 2 === 0 ? LEFT_X : RIGHT_X;
     return mirror ? 360 - base : base;
   });
   const xsPct = xs.map((x) => (x / 360) * 100);
 
-  const currentIdx = loading ? 0 : ROADMAP_STOPS.findIndex((s) => s.id === currentStop.id);
+  const currentIdx = loading ? 0 : stops.findIndex((s) => s.id === currentStop.id);
   const allPoints = [
     [xs[0], 10],
     ...ROADMAP_STOPS.map((_, i) => [xs[i], STOP_Y[i]]),
@@ -65,15 +53,15 @@ export default function RoadmapPath({ roadmap }) {
   const dottedPath = pathThrough(allPoints.slice(currentIdx + 1));
 
   return (
-    <section aria-label="Your path" dir={mirror ? 'rtl' : 'ltr'}>
+    <section aria-label={t('path_title')} dir={mirror ? 'rtl' : 'ltr'}>
       <div className="max-w-[480px] mx-auto">
         <div className="flex justify-end mb-2">
-          <LanguageSelector language={language} onLanguageChange={handleLanguageChange} />
+          <LanguageSelector language={language} onLanguageChange={onLanguageChange} translating={translating} />
         </div>
         <div className="flex items-baseline justify-between mb-3">
-          <h2 className="text-2xl font-extrabold tracking-[-0.5px] text-slate-900">Your path</h2>
+          <h2 className="text-2xl font-extrabold tracking-[-0.5px] text-slate-900">{t('path_title')}</h2>
           <span className="text-sm font-semibold text-slate-500 min-h-[20px]">
-            {loading ? '' : `${doneCount} of 5 done`}
+            {loading ? '' : t('path_done_of').replace('{n}', doneCount)}
           </span>
         </div>
 
@@ -118,7 +106,7 @@ export default function RoadmapPath({ roadmap }) {
           <div aria-hidden="true" className="absolute -bottom-24 -right-10 w-64 h-48 rounded-full bg-indigo-600/70" />
 
           {/* Stops */}
-          {ROADMAP_STOPS.map((stop, i) => {
+          {stops.map((stop, i) => {
             const isDone = !!done[stop.id];
             const isCurrent = !loading && currentStop.id === stop.id;
             const isOath = stop.id === 5;
@@ -138,7 +126,7 @@ export default function RoadmapPath({ roadmap }) {
                 >
                   <Star className="w-12 h-12 text-red-500 fill-red-500" strokeWidth={1.5} />
                   <span className="text-xs font-bold uppercase tracking-wide text-white">
-                    Oath day
+                    {t('oath_day')}
                   </span>
                 </Link>
               );
@@ -184,7 +172,7 @@ export default function RoadmapPath({ roadmap }) {
               <div className={onLeft ? 'text-left' : 'text-right'}>
                 {isCurrent && (
                   <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-here-label">
-                    You're here
+                    {t('you_are_here')}
                   </p>
                 )}
                 {!isOath && (
