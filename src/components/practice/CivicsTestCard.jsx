@@ -23,7 +23,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
   const [verifying, setVerifying] = useState(false);
   const [verificationResult, setVerificationResult] = useState(null);
   const [selfCheckMode, setSelfCheckMode] = useState(false);
-  const [inputMode, setInputMode] = useState('type');
+  const [inputMode, setInputMode] = useState('speak');
   const [isListening, setIsListening] = useState(false);
   const recognitionRef = useRef(null);
 
@@ -86,7 +86,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
   // Speech recognition setup
   useEffect(() => {
     const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SR) return;
+    if (!SR) { setInputMode('type'); return; }
     const recognition = new SR();
     recognition.continuous = true;
     recognition.interimResults = true;
