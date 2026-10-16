@@ -139,7 +139,7 @@ export default function StudentActivityMonitor({ currentUserEmail, students }) {
     <div className="space-y-6 animate-in fade-in">
       {/* Summary Row */}
       <div className="grid grid-cols-3 gap-4">
-        <Card className="bg-gradient-to-br from-indigo-50 to-indigo-100 border-indigo-200">
+        <Card className="bg-indigo-50 border-indigo-200">
           <CardContent className="p-4 flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center">
               <Users className="w-5 h-5 text-white" />
@@ -150,7 +150,7 @@ export default function StudentActivityMonitor({ currentUserEmail, students }) {
             </div>
           </CardContent>
         </Card>
-        <Card className="bg-gradient-to-br from-amber-50 to-amber-100 border-amber-200">
+        <Card className="bg-amber-50 border-amber-200">
           <CardContent className="p-4 flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-amber-500 flex items-center justify-center">
               <AlertTriangle className="w-5 h-5 text-white" />
@@ -161,7 +161,7 @@ export default function StudentActivityMonitor({ currentUserEmail, students }) {
             </div>
           </CardContent>
         </Card>
-        <Card className="bg-gradient-to-br from-green-50 to-green-100 border-green-200">
+        <Card className="bg-green-50 border-green-200">
           <CardContent className="p-4 flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-green-600 flex items-center justify-center">
               <Star className="w-5 h-5 text-white" />
@@ -223,7 +223,7 @@ export default function StudentActivityMonitor({ currentUserEmail, students }) {
               <Card key={student.email} className="hover:shadow-md transition-shadow">
                 <CardContent className="p-4 flex items-center justify-between gap-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center text-white font-bold text-sm">
+                    <div className="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-bold text-sm">
                       {student.name[0].toUpperCase()}
                     </div>
                     <div>
@@ -269,8 +269,6 @@ export default function StudentActivityMonitor({ currentUserEmail, students }) {
 }
 
 function LeaderboardRow({ student, rank }) {
-  const medals = ['🥇', '🥈', '🥉'];
-  const medal = medals[rank - 1];
 
   const scoreColor = (s) => {
     if (s == null) return 'text-slate-400';
@@ -280,10 +278,10 @@ function LeaderboardRow({ student, rank }) {
   return (
     <Card className={`overflow-hidden transition-shadow hover:shadow-md ${rank <= 3 ? 'border-2' : ''} ${rank === 1 ? 'border-amber-300' : rank === 2 ? 'border-slate-300' : rank === 3 ? 'border-orange-200' : ''}`}>
       <CardContent className="p-4 flex items-center gap-4">
-        <div className="w-10 text-center text-2xl shrink-0">
-          {medal || <span className="text-lg font-bold text-slate-400">#{rank}</span>}
+        <div className="w-10 text-center shrink-0">
+          {rank <= 3 ? <Star className="w-6 h-6 mx-auto text-red-500" /> : <span className="text-lg font-bold text-slate-400">#{rank}</span>}
         </div>
-        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center text-white font-bold text-sm shrink-0">
+        <div className="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-bold text-sm shrink-0">
           {student.name[0].toUpperCase()}
         </div>
         <div className="flex-1 min-w-0">

@@ -115,29 +115,29 @@ export default function ProgressChart({ userEmail }) {
         <div className="h-72">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={chartData} margin={{ top: 5, right: 20, left: 0, bottom: 5 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+              <CartesianGrid strokeDasharray="3 3" stroke="#DEE4EE" />
               <XAxis
                 dataKey="date"
-                tick={{ fontSize: 12, fill: '#64748b' }}
+                tick={{ fontSize: 12, fill: '#4A5A78' }}
                 tickLine={false}
-                axisLine={{ stroke: '#e2e8f0' }}
+                axisLine={{ stroke: '#DEE4EE' }}
               />
               <YAxis
                 yAxisId="left"
-                tick={{ fontSize: 12, fill: '#64748b' }}
+                tick={{ fontSize: 12, fill: '#4A5A78' }}
                 tickLine={false}
-                axisLine={{ stroke: '#e2e8f0' }}
+                axisLine={{ stroke: '#DEE4EE' }}
                 domain={[0, 100]}
-                label={{ value: 'Quiz Score %', angle: -90, position: 'insideLeft', style: { fontSize: 11, fill: '#3b82f6' } }}
+                label={{ value: 'Quiz Score %', angle: -90, position: 'insideLeft', style: { fontSize: 11, fill: '#1F3A6B' } }}
               />
               <YAxis
                 yAxisId="right"
                 orientation="right"
-                tick={{ fontSize: 12, fill: '#64748b' }}
+                tick={{ fontSize: 12, fill: '#4A5A78' }}
                 tickLine={false}
-                axisLine={{ stroke: '#e2e8f0' }}
+                axisLine={{ stroke: '#DEE4EE' }}
                 allowDecimals={false}
-                label={{ value: 'Lessons', angle: 90, position: 'insideRight', style: { fontSize: 11, fill: '#10b981' } }}
+                label={{ value: 'Lessons', angle: 90, position: 'insideRight', style: { fontSize: 11, fill: '#1F3A6B' } }}
               />
               <Tooltip
                 contentStyle={{
@@ -157,7 +157,7 @@ export default function ProgressChart({ userEmail }) {
                 name="Avg Quiz Score"
                 stroke="#3b82f6"
                 strokeWidth={2}
-                dot={{ r: 4, fill: '#3b82f6', strokeWidth: 2, stroke: '#fff' }}
+                dot={{ r: 4, fill: '#1F3A6B', strokeWidth: 2, stroke: '#fff' }}
                 activeDot={{ r: 6 }}
               />
               <Line
@@ -167,7 +167,7 @@ export default function ProgressChart({ userEmail }) {
                 name="Lessons Completed"
                 stroke="#10b981"
                 strokeWidth={2}
-                dot={{ r: 4, fill: '#10b981', strokeWidth: 2, stroke: '#fff' }}
+                dot={{ r: 4, fill: '#1F3A6B', strokeWidth: 2, stroke: '#fff' }}
                 activeDot={{ r: 6 }}
               />
             </LineChart>

@@ -317,7 +317,7 @@ Provide specific, actionable feedback on which sounds or words need improvement.
   return (
     <div className="w-full max-w-2xl mx-auto">
       <Card className="bg-white shadow-xl border-0 overflow-hidden rounded-2xl">
-        <div className="h-2 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500" />
+        <div className="h-2 bg-indigo-600" />
 
         <CardContent className="p-8 md:p-12 flex flex-col items-center text-center min-h-[500px] justify-between">
 

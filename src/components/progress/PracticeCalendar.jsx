@@ -21,7 +21,7 @@ export default function PracticeCalendar({ history }) {
 
   const modifiersStyles = {
     practiced: {
-      backgroundColor: '#22c55e', // green-500
+      backgroundColor: '#1F3A6B', // brand navy
       color: 'white',
       fontWeight: 'bold',
       borderRadius: '100%'

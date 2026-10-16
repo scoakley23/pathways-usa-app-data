@@ -10,22 +10,22 @@ export default function Home({ cachedUser }) {
   return (
     <div className="flex flex-col gap-8 pb-8">
       {/* Hero Section */}
-      <section className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 py-8 px-6 md:px-10 rounded-3xl relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #1A3A6D 0%, #2C5BA0 60%, #5C8BD3 100%)' }}>
+      <section className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 py-8 px-6 md:px-10 rounded-3xl relative overflow-hidden bg-slate-900">
         <img
           src="https://media.base44.com/images/public/6931bd654d327c7b2e36bfed/c6aa490d9_e696d8ff-522b-4687-a00d-ce15992779db.png"
           alt="Your learning journey"
           className="w-56 h-40 md:w-72 md:h-52 object-contain drop-shadow-2xl shrink-0"
         />
         <div className="space-y-4 max-w-xl text-center md:text-left">
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white">
-            Your Pathway to <span style={{ color: '#E64A4A' }}>Citizenship</span>
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-[-1px] text-white">
+            Your Pathway to <span className="text-red-500">Citizenship</span>
           </h1>
-          <p className="text-lg text-blue-100">
+          <p className="text-lg text-indigo-200">
             Prepare for the US Citizenship Test with interactive lessons, practice dictation, vocabulary, and civics questions.
           </p>
           <div className="flex justify-center md:justify-start">
             <Link to={createPageUrl('Practice')}>
-              <Button size="lg" className="h-12 px-7 text-base bg-white hover:bg-blue-50 shadow-xl" style={{ color: '#1A3A6D' }}>
+              <Button size="lg" className="h-12 px-7 text-base bg-white text-slate-900 hover:bg-slate-100">
                 Start Practicing Now <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
@@ -36,9 +36,9 @@ export default function Home({ cachedUser }) {
       {/* Features Section */}
       <section className="py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
         <Link to={createPageUrl('Practice')} className="block">
-            <Card className="h-full border-0 shadow-lg bg-white/50 backdrop-blur-sm hover:-translate-y-1 transition-transform duration-300 cursor-pointer hover:bg-blue-50">
+            <Card className="h-full hover:-translate-y-1 transition-transform duration-300 cursor-pointer">
             <CardContent className="p-5 md:p-8 space-y-4">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#E8EFF8', color: '#1A3A6D' }}>
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#EDF1F9', color: '#1F3A6B' }}>
                 <BookOpen className="w-6 h-6" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900">Reading Practice</h3>
@@ -50,9 +50,9 @@ export default function Home({ cachedUser }) {
         </Link>
 
         <Link to={createPageUrl('Practice')} className="block">
-            <Card className="h-full border-0 shadow-lg bg-white/50 backdrop-blur-sm hover:-translate-y-1 transition-transform duration-300 cursor-pointer hover:bg-blue-50">
+            <Card className="h-full hover:-translate-y-1 transition-transform duration-300 cursor-pointer">
             <CardContent className="p-5 md:p-8 space-y-4">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#D6E4F5', color: '#2C5BA0' }}>
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#DEE7F5', color: '#1F3A6B' }}>
                 <Mic className="w-6 h-6" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900">Dictation Practice</h3>
@@ -64,9 +64,9 @@ export default function Home({ cachedUser }) {
         </Link>
 
         <Link to={createPageUrl('Practice')} className="block">
-            <Card className="h-full border-0 shadow-lg bg-white/50 backdrop-blur-sm hover:-translate-y-1 transition-transform duration-300 cursor-pointer hover:bg-blue-50">
+            <Card className="h-full hover:-translate-y-1 transition-transform duration-300 cursor-pointer">
             <CardContent className="p-5 md:p-8 space-y-4">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#C3D7F0', color: '#5C8BD3' }}>
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#B9C7E2', color: '#1F3A6B' }}>
                 <Notebook className="w-6 h-6" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900">Vocabulary</h3>
@@ -78,9 +78,9 @@ export default function Home({ cachedUser }) {
         </Link>
 
         <Link to={createPageUrl('Practice')} className="block">
-            <Card className="h-full border-0 shadow-lg bg-white/50 backdrop-blur-sm hover:-translate-y-1 transition-transform duration-300 cursor-pointer hover:bg-blue-50">
+            <Card className="h-full hover:-translate-y-1 transition-transform duration-300 cursor-pointer">
             <CardContent className="p-5 md:p-8 space-y-4">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#FDE8E8', color: '#E64A4A' }}>
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#FBEAE9', color: '#D9483F' }}>
                 <GraduationCap className="w-6 h-6" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900">Civics Test</h3>
@@ -94,12 +94,12 @@ export default function Home({ cachedUser }) {
 
       {/* USCIS Resources Section */}
       <section className="py-8">
-        <Card className="border-0 shadow-lg overflow-hidden rounded-2xl">
-          <div className="h-2" style={{ background: 'linear-gradient(90deg, #1A3A6D, #5C8BD3, #1A3A6D)' }} />
+        <Card className="overflow-hidden rounded-2xl">
+          <div className="h-2 bg-slate-900" />
           <CardContent className="p-6 md:p-10">
             <div className="flex flex-col md:flex-row items-center gap-6">
               <div className="w-24 h-24 md:w-32 md:h-32 rounded-2xl bg-slate-100 flex items-center justify-center shrink-0">
-                <ExternalLink className="w-12 h-12" style={{ color: '#1A3A6D' }} />
+                <ExternalLink className="w-12 h-12" style={{ color: '#1F3A6B' }} />
               </div>
               <div className="flex-1 space-y-3 text-center md:text-left">
                 <h2 className="text-2xl md:text-3xl font-bold text-slate-900">Ready to file?</h2>
@@ -114,7 +114,7 @@ export default function Home({ cachedUser }) {
                   rel="noopener noreferrer"
                   className="inline-flex"
                 >
-                  <Button size="lg" className="h-12 px-6 text-base whitespace-nowrap" style={{ backgroundColor: '#1A3A6D' }}>
+                  <Button size="lg" className="h-12 px-6 text-base whitespace-nowrap">
                     <FileText className="mr-2 w-5 h-5" /> Apply on USCIS.gov
                   </Button>
                 </a>

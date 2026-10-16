@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { Mic, MicOff, Volume2, ArrowRight, Check, X, Loader2, ChevronDown, ChevronUp, FileText } from 'lucide-react';
+import { Mic, MicOff, Volume2, ArrowRight, Check, X, Loader2, ChevronDown, ChevronUp, FileText, Bot, BarChart3 } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { speakText, stopSpeaking, getRandomVoice } from "@/components/utils/textToSpeech";
 import { toast } from "sonner";
@@ -421,7 +421,7 @@ Also provide:
 
       {/* Interview Card */}
       <Card className="bg-white shadow-xl border-0 overflow-hidden">
-        <div className="h-1.5 bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500" />
+        <div className="h-1.5 bg-indigo-600" />
         <CardContent className="p-6 md:p-8 space-y-5">
 
           {/* Virtual Interviewer */}
@@ -658,8 +658,8 @@ function InterviewIntro({ questions, onStart, varyOfficer, onToggleVary }) {
 
   return (
     <div className="w-full max-w-2xl mx-auto">
-      <Card className="bg-gradient-to-br from-indigo-50 via-white to-purple-50 border-0 shadow-xl overflow-hidden">
-        <div className="h-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500" />
+      <Card className="bg-indigo-50 border border-indigo-200 overflow-hidden">
+        <div className="h-2 bg-indigo-600" />
         <CardContent className="p-10 text-center space-y-6">
           {/* Avatar preview */}
           <div className="flex flex-col items-center gap-3">
@@ -690,13 +690,13 @@ function InterviewIntro({ questions, onStart, varyOfficer, onToggleVary }) {
 
           <div className="grid grid-cols-2 gap-3 text-left max-w-sm mx-auto">
             {[
-              { icon: '🎤', text: `${questions.length} questions across ${sections.length} sections` },
-              { icon: '🗣️', text: 'Officer speaks questions aloud' },
-              { icon: '🤖', text: 'Real-time AI evaluation' },
-              { icon: '📊', text: 'Content, grammar & fluency scores' },
-            ].map(({ icon, text }) => (
-              <div key={text} className="flex items-start gap-2 bg-white p-3 rounded-xl border border-slate-100 shadow-sm">
-                <span className="text-lg">{icon}</span>
+              { Icon: Mic, text: `${questions.length} questions across ${sections.length} sections` },
+              { Icon: Volume2, text: 'Officer speaks questions aloud' },
+              { Icon: Bot, text: 'Real-time AI evaluation' },
+              { Icon: BarChart3, text: 'Content, grammar & fluency scores' },
+            ].map(({ Icon, text }) => (
+              <div key={text} className="flex items-start gap-2 bg-white p-3 rounded-xl border border-slate-100">
+                <Icon className="w-5 h-5 text-indigo-600 shrink-0" />
                 <p className="text-sm text-slate-700 font-medium">{text}</p>
               </div>
             ))}

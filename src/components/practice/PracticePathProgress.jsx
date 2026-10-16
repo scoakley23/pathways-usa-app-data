@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
-import { BookA, PenLine, GraduationCap } from 'lucide-react';
+import { BookA, PenLine, GraduationCap, Check } from 'lucide-react';
 
 const STEPS = [
   {
@@ -8,30 +8,18 @@ const STEPS = [
     label: 'Reading',
     desc: 'Read aloud',
     Icon: BookA,
-    activeBg: 'bg-purple-100',
-    activeText: 'text-purple-600',
-    activeRing: 'ring-purple-200',
-    bar: 'bg-purple-400',
   },
   {
     key: 'vocabulary',
     label: 'Writing',
     desc: 'Vocab & dictation',
     Icon: PenLine,
-    activeBg: 'bg-emerald-100',
-    activeText: 'text-emerald-600',
-    activeRing: 'ring-emerald-200',
-    bar: 'bg-emerald-400',
   },
   {
     key: 'civics_question',
     label: 'Civics',
     desc: 'Test questions',
     Icon: GraduationCap,
-    activeBg: 'bg-orange-100',
-    activeText: 'text-orange-600',
-    activeRing: 'ring-orange-200',
-    bar: 'bg-orange-400',
   },
 ];
 
@@ -66,8 +54,10 @@ export default function PracticePathProgress({ userEmail }) {
     fetchProgress();
   }, [userEmail]);
 
+  const currentKey = STEPS.find((s) => !stats[s.key] || stats[s.key].practiced === 0)?.key;
+
   return (
-    <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+    <div className="bg-white rounded-3xl border border-slate-200 p-6">
       <h2 className="text-sm font-semibold text-slate-400 uppercase tracking-wide mb-5">
         Your Learning Path
       </h2>
@@ -83,11 +73,13 @@ export default function PracticePathProgress({ userEmail }) {
                 <div
                   className={`w-16 h-16 rounded-full flex items-center justify-center mb-3 ring-2 transition-all ${
                     isActive
-                      ? `${step.activeBg} ${step.activeText} ${step.activeRing}`
-                      : 'bg-slate-50 text-slate-300 ring-transparent'
+                      ? 'bg-indigo-300 text-indigo-800 ring-indigo-200'
+                      : step.key === currentKey
+                        ? 'bg-red-50 text-red-500 ring-red-200'
+                        : 'bg-slate-50 text-slate-300 ring-transparent'
                   }`}
                 >
-                  <Icon className="w-7 h-7" />
+                  {isActive ? <Check className="w-7 h-7" /> : <Icon className="w-7 h-7" />}
                 </div>
                 <p className="font-semibold text-sm text-slate-800">{step.label}</p>
                 <p className="text-xs text-slate-400 mb-1">{step.desc}</p>
@@ -98,7 +90,7 @@ export default function PracticePathProgress({ userEmail }) {
               {idx < STEPS.length - 1 && (
                 <div className="flex-1 h-0.5 bg-slate-100 mx-1 mt-8 rounded-full overflow-hidden">
                   <div
-                    className={`h-full ${isActive ? step.bar : ''}`}
+                    className={`h-full ${isActive ? 'bg-indigo-300' : ''}`}
                     style={{ width: isActive ? '100%' : '0%' }}
                   />
                 </div>

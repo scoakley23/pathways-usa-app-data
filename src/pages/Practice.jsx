@@ -451,7 +451,7 @@ export default function Practice() {
     return (
       <div className="max-w-5xl mx-auto space-y-8 pb-12">
         <div className="text-center space-y-4 py-8">
-          <h1 className="text-4xl font-bold text-slate-900 tracking-tight">Practice Dashboard</h1>
+          <h1 className="text-[36px] font-extrabold tracking-[-1px] text-slate-900">Practice Dashboard</h1>
           <p className="text-xl text-slate-600 max-w-2xl mx-auto">
             Choose your study mode to prepare for your citizenship test.
           </p>
@@ -595,7 +595,7 @@ export default function Practice() {
 
         {/* Interview Practice Section */}
         <div className="mt-8">
-          <Card className="bg-gradient-to-br from-slate-50 to-indigo-50 border-indigo-200 hover:shadow-xl transition-all cursor-pointer" onClick={() => setMode('interview')}>
+          <Card className="bg-indigo-50 border border-indigo-200 transition-all cursor-pointer" onClick={() => setMode('interview')}>
             <CardContent className="p-8">
               <div className="flex items-center gap-6">
                 <div className="w-16 h-16 bg-indigo-600 rounded-2xl flex items-center justify-center shrink-0">
@@ -612,9 +612,9 @@ export default function Practice() {
                     Simulate your real citizenship interview with realistic questions from all sections: small talk, personal information, morals & ethics, and oath requirements.
                   </p>
                   <div className="flex flex-wrap gap-2 text-xs text-slate-600">
-                    <span className="px-3 py-1 bg-white rounded-full border border-indigo-200">✓ AI-powered feedback</span>
-                    <span className="px-3 py-1 bg-white rounded-full border border-indigo-200">✓ Speech practice</span>
-                    <span className="px-3 py-1 bg-white rounded-full border border-indigo-200">✓ Real interview format</span>
+                    <span className="px-3 py-1 bg-white rounded-full border border-indigo-200">AI-powered feedback</span>
+                    <span className="px-3 py-1 bg-white rounded-full border border-indigo-200">Speech practice</span>
+                    <span className="px-3 py-1 bg-white rounded-full border border-indigo-200">Real interview format</span>
                   </div>
                 </div>
                 <ArrowRight className="w-6 h-6 text-indigo-600 shrink-0" />

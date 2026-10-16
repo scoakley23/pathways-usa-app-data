@@ -47,7 +47,7 @@ export default function Admin() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900">Admin Dashboard</h1>
+          <h1 className="text-[34px] font-extrabold tracking-[-1px] text-slate-900">Admin Dashboard</h1>
           <p className="text-slate-500">Manage all practice content — sentences, civics questions, and vocabulary words.</p>
         </div>
         <GenerateLessonsButton />

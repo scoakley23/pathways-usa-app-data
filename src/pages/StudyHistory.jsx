@@ -41,7 +41,7 @@ export default function StudyHistory() {
           </Button>
         </Link>
         <div>
-          <h1 className="text-3xl font-bold text-slate-900">Study Question History</h1>
+          <h1 className="text-[34px] font-extrabold tracking-[-1px] text-slate-900">Study Question History</h1>
           <p className="text-slate-500">Review your past questions and answers</p>
         </div>
       </div>

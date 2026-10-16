@@ -75,7 +75,7 @@ export default function Dashboard({ cachedUser }) {
       {/* Header */}
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900">Lesson Progress</h1>
+          <h1 className="text-[34px] font-extrabold tracking-[-1px] text-slate-900">Lesson Progress</h1>
           <p className="text-slate-600 mt-1">
             Your completion status across all citizenship topics
           </p>

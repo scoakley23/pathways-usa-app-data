@@ -31,8 +31,8 @@ export default function InterviewReport({ results, questions, onRestart }) {
   return (
     <div className="w-full max-w-3xl mx-auto space-y-6">
       {/* Header */}
-      <Card className={`border-0 shadow-xl overflow-hidden ${isReady ? 'bg-gradient-to-br from-green-50 to-emerald-50' : 'bg-gradient-to-br from-orange-50 to-amber-50'}`}>
-        <div className={`h-2 ${isReady ? 'bg-gradient-to-r from-green-500 to-emerald-500' : 'bg-gradient-to-r from-orange-400 to-amber-500'}`} />
+      <Card className={`overflow-hidden ${isReady ? 'bg-green-50' : 'bg-orange-50'}`}>
+        <div className={`h-2 ${isReady ? 'bg-green-500' : 'bg-orange-400'}`} />
         <CardContent className="p-8 text-center space-y-6">
           <div className={`w-20 h-20 rounded-3xl flex items-center justify-center mx-auto shadow-lg ${isReady ? 'bg-green-100' : 'bg-orange-100'}`}>
             {isReady ? <Trophy className="w-10 h-10 text-green-600" /> : <Target className="w-10 h-10 text-orange-500" />}
@@ -79,7 +79,7 @@ export default function InterviewReport({ results, questions, onRestart }) {
       </Card>
 
       {/* Score Breakdown */}
-      <Card className="border-0 shadow-md">
+      <Card>
         <CardHeader className="pb-2">
           <h3 className="font-bold text-lg text-slate-900 flex items-center gap-2">
             <BookOpen className="w-5 h-5 text-indigo-600" /> Score Breakdown
@@ -88,12 +88,12 @@ export default function InterviewReport({ results, questions, onRestart }) {
         <CardContent>
           <div className="grid grid-cols-3 gap-4">
             {[
-              { label: 'Content Accuracy', score: avgContent, icon: '✅' },
-              { label: 'Grammar', score: avgGrammar, icon: '📖' },
-              { label: 'Fluency', score: avgFluency, icon: '💬' },
-            ].map(({ label, score, icon }) => (
+              { label: 'Content Accuracy', score: avgContent, icon: CheckCircle },
+              { label: 'Grammar', score: avgGrammar, icon: BookOpen },
+              { label: 'Fluency', score: avgFluency, icon: MessageSquare },
+            ].map(({ label, score, icon: Icon }) => (
               <div key={label} className="bg-slate-50 rounded-2xl p-4 text-center border border-slate-100">
-                <p className="text-2xl mb-1">{icon}</p>
+                <Icon className="w-6 h-6 mx-auto mb-1 text-indigo-600" />
                 <p className={`text-3xl font-bold ${scoreColor(score)}`}>{score}</p>
                 <div className="w-full bg-slate-200 rounded-full h-2 my-2">
                   <div className={`h-2 rounded-full ${barColor(score)}`} style={{ width: `${score}%` }} />
@@ -106,7 +106,7 @@ export default function InterviewReport({ results, questions, onRestart }) {
       </Card>
 
       {/* Per-Question Review */}
-      <Card className="border-0 shadow-md">
+      <Card>
         <CardHeader className="pb-2">
           <h3 className="font-bold text-lg text-slate-900 flex items-center gap-2">
             <MessageSquare className="w-5 h-5 text-indigo-600" /> Question-by-Question Review
@@ -173,7 +173,7 @@ export default function InterviewReport({ results, questions, onRestart }) {
                   )}
                   {r.improvement_tips && (
                     <div className="bg-amber-50 rounded-lg p-3 border border-amber-100">
-                      <p className="text-xs font-bold text-amber-600 mb-1">💡 Tips</p>
+                      <p className="text-xs font-bold text-amber-600 mb-1">Tips</p>
                       <p className="text-sm text-slate-700">{r.improvement_tips}</p>
                     </div>
                   )}

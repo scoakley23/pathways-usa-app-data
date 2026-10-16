@@ -86,7 +86,7 @@ export default function Tutor({ cachedUser, cachedRole }) {
   return (
     <div className="max-w-5xl mx-auto space-y-8">
       <div className="space-y-2">
-        <h1 className="text-3xl font-bold text-slate-900 flex items-center gap-3">
+        <h1 className="text-[34px] font-extrabold tracking-[-1px] text-slate-900 flex items-center gap-3">
           {role === 'tutor' ? <GraduationCap className="w-8 h-8 text-blue-600" /> : <School className="w-8 h-8 text-blue-600" />}
           {role === 'tutor' ? 'Tutor Dashboard' : 'My Classroom'}
         </h1>

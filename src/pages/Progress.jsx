@@ -76,7 +76,7 @@ export default function Progress() {
     <div className="space-y-8">
       <div className="flex flex-col md:flex-row justify-between items-end gap-4">
           <div>
-             <h1 className="text-3xl font-bold text-slate-900">Your Progress</h1>
+             <h1 className="text-[34px] font-extrabold tracking-[-1px] text-slate-900">Your Progress</h1>
              <p className="text-slate-600">Track your journey to citizenship</p>
           </div>
           <TestDateTracker />
@@ -143,7 +143,7 @@ export default function Progress() {
             <Card>
                 <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                    <Award className="w-5 h-5 text-yellow-500" />
+                    <Award className="w-5 h-5 text-red-500" />
                     Achievements
                 </CardTitle>
                 </CardHeader>

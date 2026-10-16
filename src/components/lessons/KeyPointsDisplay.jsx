@@ -6,7 +6,7 @@ export default function KeyPointsDisplay({ keyPoints }) {
   if (!keyPoints || keyPoints.length === 0) return null;
 
   return (
-    <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-300 rounded-xl p-6 shadow-md">
+    <div className="bg-indigo-50 border border-indigo-200 rounded-2xl p-6">
       <h3 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-3">
         <div className="p-2 bg-blue-600 rounded-lg">
           <CheckCircle className="w-6 h-6 text-white" />
@@ -22,7 +22,7 @@ export default function KeyPointsDisplay({ keyPoints }) {
           return (
             <li key={idx} className="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow space-y-3">
               <div className="flex items-start gap-3">
-                <span className="flex items-center justify-center w-7 h-7 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 text-white text-sm font-bold shrink-0">
+                <span className="flex items-center justify-center w-7 h-7 rounded-full bg-indigo-600 text-white text-sm font-bold shrink-0">
                   {idx + 1}
                 </span>
                 <span className="text-slate-800 leading-relaxed font-medium flex-1"><GlossaryText>{pointText}</GlossaryText></span>

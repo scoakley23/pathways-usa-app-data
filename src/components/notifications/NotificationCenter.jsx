@@ -101,7 +101,7 @@ export default function NotificationCenter({ userEmail }) {
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
         <Button variant="ghost" size="icon" className="relative">
-          <Bell className="w-5 h-5 text-slate-600" />
+          <Bell className="w-5 h-5 text-indigo-200" />
           {unreadCount > 0 && (
             <span className="absolute top-1 right-1 w-2.5 h-2.5 bg-red-500 rounded-full animate-pulse ring-2 ring-white" />
           )}

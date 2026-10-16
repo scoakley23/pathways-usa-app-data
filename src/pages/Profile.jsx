@@ -109,7 +109,7 @@ export default function Profile() {
         {/* Left Column: Profile Card */}
         <div className="w-full md:w-1/3 space-y-6">
           <Card className="overflow-hidden">
-            <div className="h-32 bg-gradient-to-r from-blue-600 to-purple-600"></div>
+            <div className="h-32 bg-slate-900"></div>
             <CardContent className="relative pt-0 pb-8 px-6">
               <div className="flex flex-col items-center -mt-12">
                 <Avatar className="w-24 h-24 border-4 border-white shadow-lg">
@@ -216,7 +216,7 @@ export default function Profile() {
               <div className="w-full">
                   <Card>
                     <CardHeader>
-                      <CardTitle className="flex items-center gap-2"><Trophy className="w-5 h-5 text-yellow-500" /> Your Badge Collection</CardTitle>
+                      <CardTitle className="flex items-center gap-2"><Trophy className="w-5 h-5 text-red-500" /> Your Badge Collection</CardTitle>
                       <CardDescription>Unlock badges by practicing consistently.</CardDescription>
                     </CardHeader>
                     <CardContent>

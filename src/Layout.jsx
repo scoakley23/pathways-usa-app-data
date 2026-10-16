@@ -139,15 +139,15 @@ export default function Layout({ children }) {
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900">
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white shadow-sm">
+      <nav className="sticky top-0 z-50 w-full bg-slate-900">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2 cursor-pointer">
             <img 
               src="https://media.base44.com/images/public/6931bd654d327c7b2e36bfed/f90c67bf6_Screenshot2026-07-22at33716PM.png" 
               alt="Pathways Logo"
-              className="w-10 h-10 rounded-xl shadow-sm transform hover:scale-105 transition-transform object-cover ring-1 ring-slate-200"
+              className="w-10 h-10 rounded-xl transform hover:scale-105 transition-transform object-cover ring-1 ring-white/25"
             />
-            <span className="font-bold text-xl tracking-tight" style={{ color: '#1A3A6D' }}>
+            <span className="font-bold text-xl tracking-tight text-white">
               Pathways USA
             </span>
           </Link>
@@ -158,8 +158,8 @@ export default function Layout({ children }) {
               <Link 
                 key={item.path}
                 to={createPageUrl(item.path.replace('/', ''))}
-                className={`text-sm font-medium transition-colors hover:text-blue-700 flex items-center gap-2 px-3 py-2 rounded-md
-                  ${location.pathname === item.path ? 'bg-blue-50 text-blue-700' : 'text-slate-600'}`}
+                className={`text-sm font-medium transition-colors flex items-center gap-2 px-3 py-2 rounded-md
+                  ${location.pathname === item.path ? 'bg-white/10 text-white' : 'text-indigo-200 hover:text-white'}`}
               >
                 <item.icon className="w-4 h-4" />
                 {item.label}
@@ -169,12 +169,12 @@ export default function Layout({ children }) {
                 {user && <NotificationCenter userEmail={user.email} />}
 
                 {user ? (
-              <Button variant="ghost" size="sm" onClick={handleLogout} className="ml-2 text-slate-600 hover:text-red-600 hover:bg-red-50">
+              <Button variant="ghost" size="sm" onClick={handleLogout} className="ml-2 text-indigo-200 hover:text-white hover:bg-white/10">
                 <LogOut className="w-4 h-4 mr-2" />
                 Sign Out
               </Button>
             ) : (
-               <Button size="sm" onClick={() => base44.auth.redirectToLogin()} className="ml-2 bg-blue-700 hover:bg-blue-800">
+               <Button size="sm" onClick={() => base44.auth.redirectToLogin()} className="ml-2 bg-white text-slate-900 hover:bg-slate-100">
                 Sign In
               </Button>
             )}
@@ -185,7 +185,7 @@ export default function Layout({ children }) {
             {user && <NotificationCenter userEmail={user.email} />}
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" className="text-white hover:bg-white/10">
                   <Menu className="w-6 h-6" />
                 </Button>
               </SheetTrigger>

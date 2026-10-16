@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Video, CheckCircle, ArrowRight, Award, Star } from 'lucide-react';
+import { BookOpen, Video, CheckCircle, ArrowRight, Award, Star, ScrollText, Scale, Handshake, Landmark, Map } from 'lucide-react';
 import LessonDetail from '@/components/lessons/LessonDetail.jsx';
 import RecommendationsPanel from '@/components/lessons/RecommendationsPanel';
 import { toast } from "sonner";
@@ -56,28 +56,23 @@ export default function Lessons() {
   const topics = [
     { 
       name: 'Principles of American Democracy', 
-      icon: '📜',
-      color: 'from-blue-500 to-blue-600'
+      Icon: ScrollText
     },
     { 
       name: 'System of Government', 
-      icon: '⚖️',
-      color: 'from-indigo-500 to-indigo-600'
+      Icon: Scale
     },
     { 
       name: 'Rights and Responsibilities', 
-      icon: '✊',
-      color: 'from-purple-500 to-purple-600'
+      Icon: Handshake
     },
     { 
       name: 'U.S. History', 
-      icon: '🏛️',
-      color: 'from-red-500 to-red-600'
+      Icon: Landmark
     },
     { 
       name: 'Geography and Symbols', 
-      icon: '🗺️',
-      color: 'from-green-500 to-green-600'
+      Icon: Map
     }
   ];
 
@@ -118,10 +113,10 @@ export default function Lessons() {
     <div className="space-y-8">
       {/* Header */}
       <div className="text-center space-y-3">
-        <div className="inline-block p-4 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl shadow-lg">
+        <div className="inline-block p-4 bg-slate-900 rounded-2xl">
           <BookOpen className="w-12 h-12 text-white" />
         </div>
-        <h1 className="text-4xl font-bold text-slate-900">Civics Lessons</h1>
+        <h1 className="text-[36px] font-extrabold tracking-[-1px] text-slate-900">Civics Lessons</h1>
         <p className="text-lg text-slate-600 max-w-2xl mx-auto">
           Learn the key concepts you need to know for your U.S. citizenship test with video lessons, detailed content, and practice quizzes.
         </p>
@@ -144,9 +139,9 @@ export default function Lessons() {
         return (
           <div key={topic.name} className="space-y-4">
             {/* Topic Header */}
-            <div className={`bg-gradient-to-r ${topic.color} text-white p-6 rounded-xl shadow-md`}>
+            <div className="bg-indigo-700 text-white p-6 rounded-2xl">
               <div className="flex items-center gap-3">
-                <span className="text-4xl">{topic.icon}</span>
+                <topic.Icon className="w-8 h-8 shrink-0" />
                 <div>
                   <h2 className="text-2xl font-bold">{topic.name}</h2>
                   <p className="text-white/90 text-sm">{topicLessons.length} lessons available</p>

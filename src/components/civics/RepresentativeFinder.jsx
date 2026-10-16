@@ -351,7 +351,7 @@ Double check all names are spelled correctly.`,
 
       {results && (
         <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-          <Card className="border-0 shadow-lg bg-gradient-to-br from-blue-50 to-white">
+          <Card className="border border-slate-200 bg-indigo-50">
             <CardContent className="p-6 space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-blue-100 text-blue-700 rounded-lg flex items-center justify-center">
@@ -379,7 +379,7 @@ Double check all names are spelled correctly.`,
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-lg bg-gradient-to-br from-red-50 to-white">
+          <Card className="border border-slate-200 bg-red-50">
             <CardContent className="p-6 space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-red-100 text-red-700 rounded-lg flex items-center justify-center">

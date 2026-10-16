@@ -232,7 +232,7 @@ export default function TutorDashboard({ currentUserEmail, students }) {
                                 contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
                             />
                             <Legend />
-                            <Line type="monotone" dataKey="assigned" name="Assigned" stroke="#3b82f6" strokeWidth={2} activeDot={{ r: 6 }} />
+                            <Line type="monotone" dataKey="assigned" name="Assigned" stroke="#1F3A6B" strokeWidth={2} activeDot={{ r: 6 }} />
                             <Line type="monotone" dataKey="completed" name="Completed" stroke="#22c55e" strokeWidth={2} activeDot={{ r: 6 }} />
                         </LineChart>
                     </ResponsiveContainer>

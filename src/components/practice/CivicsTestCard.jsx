@@ -189,7 +189,7 @@ In the real USCIS interview, answers don't need to be word-for-word — as long 
       </div>
 
       <Card className="bg-white shadow-xl border-0 overflow-hidden rounded-2xl">
-        <div className="h-2 bg-gradient-to-r from-indigo-600 via-purple-500 to-indigo-600" />
+        <div className="h-2 bg-indigo-600" />
         
         <CardContent className="p-8 md:p-12 flex flex-col items-center text-center min-h-[400px] justify-center">
           

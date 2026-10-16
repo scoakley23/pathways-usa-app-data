@@ -118,7 +118,7 @@ export default function DictationCard({ sentence, onComplete, onNext }) {
       </div>
 
       <Card className="bg-white shadow-xl border-0 overflow-hidden rounded-2xl">
-        <div className="h-2 bg-gradient-to-r from-blue-600 via-red-500 to-blue-600" />
+        <div className="h-2 bg-indigo-600" />
         
         <CardContent className="p-8 md:p-12 flex flex-col items-center text-center">
           
