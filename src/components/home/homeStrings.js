@@ -39,6 +39,8 @@ export const HOME_STRINGS = {
   ready_title: 'Ready to file?',
   ready_body:
     "When you're ready, you'll apply and check your case on the official USCIS website. Pathways is not part of USCIS or the U.S. government.",
+  ready_lawyer:
+    'Before you file, check "Talk to a lawyer first" — some situations need a lawyer or accredited representative before you apply.',
   btn_apply: 'Apply on USCIS.gov',
   btn_case: 'Check case status on USCIS.gov',
   n400_title: 'N-400 Question Guide',

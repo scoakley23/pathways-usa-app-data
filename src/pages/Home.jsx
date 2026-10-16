@@ -120,6 +120,11 @@ export default function Home({ cachedUser }) {
                 <p className="text-slate-600 max-w-lg">
                   {t('ready_body')}
                 </p>
+                <p className="text-sm max-w-lg">
+                  <Link to="/lawyer-first" className="underline font-semibold" style={{ color: '#1F3A6B' }}>
+                    {t('ready_lawyer')}
+                  </Link>
+                </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
                 <a
