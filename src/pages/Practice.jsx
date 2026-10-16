@@ -556,7 +556,7 @@ export default function Practice() {
                  <Badge variant="outline" className="text-xs">Quiz</Badge>
               </div>
               <CardDescription className="mb-4">
-                Practice the 100 civics questions.
+                Practice the civics questions for the 2025 and 2008 tests.
               </CardDescription>
               <div className="space-y-3" onClick={(e) => e.stopPropagation()}>
                  <div className="space-y-1">

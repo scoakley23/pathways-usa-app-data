@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, Mic, PenTool, BookOpen, CheckCircle, GraduationCap, Notebook, FileText, Search } from 'lucide-react';
+import { ArrowRight, Mic, PenTool, BookOpen, CheckCircle, GraduationCap, Notebook, FileText, Search, ExternalLink } from 'lucide-react';
 
 
 export default function Home({ cachedUser }) {
@@ -85,7 +85,7 @@ export default function Home({ cachedUser }) {
                 </div>
                 <h3 className="text-xl font-bold text-slate-900">Civics Test</h3>
                 <p className="text-slate-600">
-                Prepare for the 100 questions with 2008 and 2025 versions.
+                Practice for the civics test. Most new applicants take the 2025 test (up to 20 questions from a list of 128). We're adding the full 2025 list now.
                 </p>
             </CardContent>
             </Card>
@@ -98,15 +98,13 @@ export default function Home({ cachedUser }) {
           <div className="h-2" style={{ background: 'linear-gradient(90deg, #1A3A6D, #5C8BD3, #1A3A6D)' }} />
           <CardContent className="p-6 md:p-10">
             <div className="flex flex-col md:flex-row items-center gap-6">
-              <img
-                src="https://media.base44.com/images/public/6931bd654d327c7b2e36bfed/a40404ef0_generated_image.png"
-                alt="USCIS Official Seal"
-                className="w-24 md:w-32 h-auto object-contain shrink-0"
-              />
+              <div className="w-24 h-24 md:w-32 md:h-32 rounded-2xl bg-slate-100 flex items-center justify-center shrink-0">
+                <ExternalLink className="w-12 h-12" style={{ color: '#1A3A6D' }} />
+              </div>
               <div className="flex-1 space-y-3 text-center md:text-left">
-                <h2 className="text-2xl md:text-3xl font-bold text-slate-900">Ready to Apply?</h2>
+                <h2 className="text-2xl md:text-3xl font-bold text-slate-900">Ready to file?</h2>
                 <p className="text-slate-600 max-w-lg">
-                  Access official USCIS resources to submit your N-400 Application for Naturalization and track your case status.
+                  When you're ready, you'll apply and check your case on the official USCIS website. Pathways is not part of USCIS or the U.S. government.
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
@@ -117,7 +115,7 @@ export default function Home({ cachedUser }) {
                   className="inline-flex"
                 >
                   <Button size="lg" className="h-12 px-6 text-base whitespace-nowrap" style={{ backgroundColor: '#1A3A6D' }}>
-                    <FileText className="mr-2 w-5 h-5" /> Apply for Naturalization
+                    <FileText className="mr-2 w-5 h-5" /> Apply on USCIS.gov
                   </Button>
                 </a>
                 <a
@@ -127,7 +125,7 @@ export default function Home({ cachedUser }) {
                   className="inline-flex"
                 >
                   <Button size="lg" variant="outline" className="h-12 px-6 text-base whitespace-nowrap border-slate-300 text-slate-700 hover:bg-slate-50">
-                    <Search className="mr-2 w-5 h-5" /> Check Case Status
+                    <Search className="mr-2 w-5 h-5" /> Check case status on USCIS.gov
                   </Button>
                 </a>
               </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Mic, Loader2 } from 'lucide-react';
 
-export const AVATAR_URL = 'https://media.base44.com/images/public/6931bd654d327c7b2e36bfed/0786c0142_generated_image.png';
+export const AVATAR_URL = 'https://media.base44.com/images/public/6931bd654d327c7b2e36bfed/868007eb0_generated_image.png';
 
 export default function VirtualInterviewer({ state = 'idle', name = 'Officer Martinez' }) {
   return (
@@ -62,7 +62,7 @@ export default function VirtualInterviewer({ state = 'idle', name = 'Officer Mar
 
       <div className="text-center">
         <p className="font-bold text-slate-800 text-sm">{name}</p>
-        <p className="text-xs text-slate-500">USCIS Interviewer</p>
+        <p className="text-xs text-slate-500">Practice officer (AI). Not a real USCIS officer.</p>
       </div>
     </div>
   );
