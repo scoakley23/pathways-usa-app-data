@@ -233,8 +233,8 @@ export default function Layout({ children }) {
 
       <footer className="border-t border-slate-200 bg-white mt-8">
         <div className="container mx-auto px-4 py-4 max-w-5xl">
-          <p className="text-xs text-slate-500 text-center">
-            Pathways is an independent nonprofit education app. We are not affiliated with USCIS or any government agency, and we do not give legal advice.
+          <p className="text-xs text-center" style={{ color: '#4A5A78' }}>
+            Pathways is an independent nonprofit education app. Not affiliated with USCIS or any government agency. Not legal advice.
           </p>
         </div>
       </footer>
