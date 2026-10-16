@@ -126,8 +126,10 @@ export default function N400Walkthrough() {
           {mode === 'form' ? (
             <div className="space-y-3">
               <p className="text-sm leading-relaxed" style={{ color: '#4A5A78' }}>
-                This is what {firstName}'s Form N-400 would look like, using the answers above. This form is an
-                example for learning — it is not real, and this guide does not fill out or file any form.
+                This is what {firstName}'s Form N-400 would look like, using the answers above — laid out like
+                the official 14-page paper form, part by part. It is long because the real form is long. This
+                form is an example for learning — it is not real, and this guide does not fill out or file any
+                form.
               </p>
               <N400PaperForm applicant={applicant} />
             </div>
