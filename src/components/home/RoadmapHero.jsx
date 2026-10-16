@@ -1,87 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { ArrowRight } from 'lucide-react';
-import { base44 } from '@/api/base44Client';
+import { ROADMAP_STOPS } from './roadmapStops';
 
-export const ROADMAP_STOPS = [
-  {
-    id: 1,
-    name: 'Read and write',
-    desc: 'practice reading aloud, dictation, and vocabulary',
-    path: 'Practice',
-  },
-  {
-    id: 2,
-    name: 'Learn',
-    desc: 'study the civics lessons — history, government, and your representatives',
-    path: 'Lessons',
-  },
-  {
-    id: 3,
-    name: 'Speak',
-    desc: 'run a mock interview with the AI practice officer',
-    path: 'Practice',
-  },
-  {
-    id: 4,
-    name: 'Interview day',
-    desc: 'see what to expect at your interview (guide coming soon)',
-    path: 'Progress',
-  },
-  {
-    id: 5,
-    name: 'Oath day',
-    desc: 'the finish line — get ready to take the Oath',
-    path: 'Progress',
-  },
-];
-
-export default function RoadmapHero({ user }) {
-  const [loading, setLoading] = useState(true);
-  const [currentStop, setCurrentStop] = useState(ROADMAP_STOPS[0]);
-  const [isNew, setIsNew] = useState(true);
-
-  useEffect(() => {
-    const email = user?.email?.toLowerCase().trim();
-    if (!email) {
-      setLoading(false);
-      return;
-    }
-
-    const load = async () => {
-      const [totalProgress, masteredSentences, lessonsTotal, lessonsDone, passedInterviews] =
-        await Promise.all([
-          base44.entities.UserProgress.count({ user_email: email }),
-          base44.entities.UserProgress.count({
-            user_email: email,
-            content_type: 'sentence',
-            status: 'mastered',
-          }),
-          base44.entities.Lesson.count(),
-          base44.entities.LessonProgress.count({
-            user_email: email,
-            completed: true,
-            best_score: { $gte: 70 },
-          }),
-          base44.entities.InterviewSession.count({ user_email: email, passed: true }),
-        ]);
-
-      const done = {
-        1: masteredSentences >= 20,
-        2: lessonsTotal > 0 && lessonsDone >= lessonsTotal / 2,
-        3: passedInterviews >= 1,
-        4: false, // Interview day guide is coming soon
-      };
-
-      const stop = ROADMAP_STOPS.find((s) => !done[s.id]) || ROADMAP_STOPS[4];
-      setCurrentStop(stop);
-      setIsNew(totalProgress === 0 && lessonsDone === 0 && passedInterviews === 0);
-      setLoading(false);
-    };
-
-    load();
-  }, [user?.email]);
+export default function RoadmapHero({ roadmap }) {
+  const { loading, currentStop, isNew } = roadmap;
 
   const label = loading ? '' : isNew ? 'Start here' : `Step ${currentStop.id} of 5`;
   const action = isNew ? `Start: ${currentStop.name}` : `Continue: ${currentStop.name}`;

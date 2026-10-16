@@ -4,14 +4,19 @@ import { createPageUrl } from '@/utils';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import RoadmapHero from '@/components/home/RoadmapHero';
+import RoadmapPath from '@/components/home/RoadmapPath';
+import useRoadmapProgress from '@/components/home/useRoadmapProgress';
 import { Mic, BookOpen, GraduationCap, Notebook, FileText, Search, ExternalLink } from 'lucide-react';
 
 
 export default function Home({ cachedUser }) {
+  const roadmap = useRoadmapProgress(cachedUser);
   return (
     <div className="flex flex-col gap-8 pb-8">
       {/* Hero Section */}
-      <RoadmapHero user={cachedUser} />
+      <RoadmapHero roadmap={roadmap} />
+      {/* Roadmap */}
+      <RoadmapPath roadmap={roadmap} />
 
       {/* Features Section */}
       <section className="py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">

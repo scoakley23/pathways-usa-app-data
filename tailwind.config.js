@@ -67,6 +67,9 @@ module.exports = {
     			},
     			'hero-label': '#9FB6E3',
     			'hero-muted': '#C3D0EA',
+    			'road-dim': '#5F7FB8',
+    			'here-label': '#FFB3AC',
+    			'road-outline': '#8FA8D6',
     			red: {
     				50: '#FBEAE9',
     				100: '#F6D5D2',
