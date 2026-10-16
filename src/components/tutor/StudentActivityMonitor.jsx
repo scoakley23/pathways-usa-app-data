@@ -19,6 +19,7 @@ const TOPIC_COLORS = {
 export default function StudentActivityMonitor({ currentUserEmail, students }) {
   const [lessonProgress, setLessonProgress] = useState([]);
   const [userProgress, setUserProgress] = useState([]);
+  const [n400Progress, setN400Progress] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [isStudyPathOpen, setIsStudyPathOpen] = useState(false);
@@ -50,6 +51,14 @@ export default function StudentActivityMonitor({ currentUserEmail, students }) {
         )
       );
       setUserProgress(allUserProgress.flat());
+
+      // Fetch N-400 guide section completion (section level only)
+      const allN400 = await Promise.all(
+        emails.map(email =>
+          base44.entities.N400SectionProgress.filter({ user_email: email }, null, 200)
+        )
+      );
+      setN400Progress(allN400.flat());
     } catch (e) {
       toast.error('Failed to load student activity');
     } finally {
@@ -67,17 +76,19 @@ export default function StudentActivityMonitor({ currentUserEmail, students }) {
         : null;
       const completed = sProgress.filter(p => p.completed).length;
       const masteredPractice = userProgress.filter(p => p.user_email === s.student_email && p.status === 'mastered').length;
+      const n400Sections = n400Progress.filter(p => p.user_email === s.student_email && p.completed).length;
       return {
         email: s.student_email,
         name: s.student_email.split('@')[0],
         avgScore,
         lessonsCompleted: completed,
+        n400Sections,
         quizzesTaken: quizzed.length,
         masteredItems: masteredPractice,
         totalPoints: (completed * 10) + (quizzed.length * 5) + (masteredPractice * 3) + (avgScore || 0),
       };
     }).sort((a, b) => b.totalPoints - a.totalPoints);
-  }, [activeStudents, lessonProgress, userProgress]);
+  }, [activeStudents, lessonProgress, userProgress, n400Progress]);
 
   // --- Struggling Students ---
   const strugglingStudents = useMemo(() => {
@@ -288,7 +299,7 @@ function LeaderboardRow({ student, rank }) {
           <p className="font-semibold text-slate-800">{student.name}</p>
           <p className="text-xs text-slate-500 truncate">{student.email}</p>
         </div>
-        <div className="grid grid-cols-3 gap-4 text-center shrink-0">
+        <div className="grid grid-cols-4 gap-4 text-center shrink-0">
           <div>
             <p className={`font-bold text-lg ${scoreColor(student.avgScore)}`}>
               {student.avgScore != null ? `${student.avgScore}%` : '—'}
@@ -298,6 +309,10 @@ function LeaderboardRow({ student, rank }) {
           <div>
             <p className="font-bold text-lg text-slate-700">{student.lessonsCompleted}</p>
             <p className="text-xs text-slate-400">Lessons</p>
+          </div>
+          <div>
+            <p className="font-bold text-lg text-slate-700">{student.n400Sections}</p>
+            <p className="text-xs text-slate-400">N-400</p>
           </div>
           <div>
             <p className="font-bold text-lg text-indigo-600">{student.totalPoints}</p>

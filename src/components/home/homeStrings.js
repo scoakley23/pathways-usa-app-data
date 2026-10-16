@@ -41,4 +41,7 @@ export const HOME_STRINGS = {
     "When you're ready, you'll apply and check your case on the official USCIS website. Pathways is not part of USCIS or the U.S. government.",
   btn_apply: 'Apply on USCIS.gov',
   btn_case: 'Check case status on USCIS.gov',
+  n400_title: 'N-400 Question Guide',
+  n400_desc:
+    'Understand the questions on the naturalization application — what they mean, key words, and how the officer might ask them.',
 };

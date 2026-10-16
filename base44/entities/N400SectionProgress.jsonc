@@ -1,0 +1,31 @@
+{
+  "name": "N400SectionProgress",
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string",
+      "description": "Email of the learner"
+    },
+    "section_id": {
+      "type": "string",
+      "description": "Id of the N-400 guide section (e.g. 'oath-questions')"
+    },
+    "section_title": {
+      "type": "string",
+      "description": "Display title of the section (e.g. 'Oath Questions')"
+    },
+    "completed": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the learner marked the whole section complete. Only section-level completion is stored \u2014 never which questions were viewed, time spent, or replays."
+    },
+    "completed_date": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "user_email",
+    "section_id"
+  ]
+}

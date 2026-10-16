@@ -8,7 +8,7 @@ import RoadmapPath from '@/components/home/RoadmapPath';
 import useRoadmapProgress from '@/components/home/useRoadmapProgress';
 import useAppLanguage, { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
 import useHomeTranslation from '@/hooks/useHomeTranslation';
-import { Mic, BookOpen, GraduationCap, Notebook, FileText, Search, ExternalLink } from 'lucide-react';
+import { Mic, BookOpen, GraduationCap, Notebook, FileText, FileQuestion, Search, ExternalLink } from 'lucide-react';
 
 
 export default function Home({ cachedUser }) {
@@ -86,6 +86,23 @@ export default function Home({ cachedUser }) {
                 </p>
             </CardContent>
             </Card>
+        </Link>
+      </section>
+
+      {/* N-400 Question Guide */}
+      <section>
+        <Link to="/n400-guide" className="block">
+          <Card className="hover:-translate-y-1 transition-transform duration-300 cursor-pointer rounded-2xl">
+            <CardContent className="p-5 md:p-6 flex items-center gap-5">
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: '#EDF1F9', color: '#1F3A6B' }}>
+                <FileQuestion className="w-6 h-6" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-slate-900">{t('n400_title')}</h3>
+                <p className="text-slate-600">{t('n400_desc')}</p>
+              </div>
+            </CardContent>
+          </Card>
         </Link>
       </section>
 
