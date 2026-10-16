@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Check, Notebook, BookOpen, Mic, CalendarCheck, Star } from 'lucide-react';
+import LanguageSelector from '@/components/lessons/LanguageSelector';
 import { ROADMAP_STOPS } from './roadmapStops';
 
 const STOP_ICONS = { 1: Notebook, 2: BookOpen, 3: Mic, 4: CalendarCheck };
@@ -16,14 +17,12 @@ const RIGHT_X = 312;
 const STOP_Y = [90, 222, 354, 486, 618];
 const PANEL_HEIGHT = 724;
 
-function getAppLanguage() {
+function getSavedLanguage() {
   try {
-    const stored = localStorage.getItem('pathways_language');
-    if (stored) return stored.slice(0, 2).toLowerCase();
+    return localStorage.getItem('pathways_language') || 'en';
   } catch (e) {
-    // ignore
+    return 'en';
   }
-  return (navigator.language || 'en').slice(0, 2).toLowerCase();
 }
 
 function pathThrough(points) {
@@ -40,7 +39,16 @@ function pathThrough(points) {
 export default function RoadmapPath({ roadmap }) {
   const { loading, currentStop, done, doneCount } = roadmap;
 
-  const mirror = RTL_LANGUAGES.includes(getAppLanguage());
+  const [language, setLanguage] = useState(getSavedLanguage);
+  const handleLanguageChange = (lang) => {
+    setLanguage(lang);
+    try {
+      localStorage.setItem('pathways_language', lang);
+    } catch (e) {
+      // ignore
+    }
+  };
+  const mirror = RTL_LANGUAGES.includes(language.slice(0, 2).toLowerCase());
   const xs = ROADMAP_STOPS.map((_, i) => {
     const base = i % 2 === 0 ? LEFT_X : RIGHT_X;
     return mirror ? 360 - base : base;
@@ -59,6 +67,9 @@ export default function RoadmapPath({ roadmap }) {
   return (
     <section aria-label="Your path" dir={mirror ? 'rtl' : 'ltr'}>
       <div className="max-w-[480px] mx-auto">
+        <div className="flex justify-end mb-2">
+          <LanguageSelector language={language} onLanguageChange={handleLanguageChange} />
+        </div>
         <div className="flex items-baseline justify-between mb-3">
           <h2 className="text-2xl font-extrabold tracking-[-0.5px] text-slate-900">Your path</h2>
           <span className="text-sm font-semibold text-slate-500 min-h-[20px]">
