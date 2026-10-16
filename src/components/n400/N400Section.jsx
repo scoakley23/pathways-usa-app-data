@@ -24,7 +24,7 @@ export default function N400Section({ section, isAdmin, language, completed, onC
             </p>
           </div>
           <div className="flex flex-col items-end gap-2">
-            {isAdmin && (
+            {isAdmin && section.status === 'draft' && (
               <Badge variant="outline" className="text-amber-700 border-amber-300 bg-amber-50">
                 Draft
               </Badge>

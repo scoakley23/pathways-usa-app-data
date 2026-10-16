@@ -4,12 +4,13 @@ import PageHeader from '@/components/PageHeader';
 import N400Section from '@/components/n400/N400Section';
 import { N400_SECTIONS } from '@/components/n400/n400Content';
 import useAppLanguage from '@/hooks/useAppLanguage';
+import LanguageSelector from '@/components/lessons/LanguageSelector';
 
 // N-400 Question Guide: explains what questions on the naturalization
 // application mean. No learner answers are collected here — only whole-section
 // completion is saved.
 export default function N400Guide({ cachedUser }) {
-  const [language] = useAppLanguage();
+  const [language, changeLanguage] = useAppLanguage();
   const isAdmin = cachedUser?.role === 'admin';
   const [progress, setProgress] = useState([]);
 
@@ -61,12 +62,9 @@ export default function N400Guide({ cachedUser }) {
         answer any question, and nothing you say here is saved as an answer.
       </p>
 
-      {isAdmin && (
-        <div className="rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-800">
-          Draft mode: cards marked “Draft” are visible to you only. Learners see a section once its cards are
-          approved.
-        </div>
-      )}
+      <div className="flex justify-end">
+        <LanguageSelector language={language} onLanguageChange={changeLanguage} />
+      </div>
 
       {N400_SECTIONS.map((section) => (
         <N400Section

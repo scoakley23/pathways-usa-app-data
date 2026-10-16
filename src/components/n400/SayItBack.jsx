@@ -76,6 +76,9 @@ export default function SayItBack({ targets }) {
   return (
     <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 space-y-3">
       <p className="text-sm font-bold text-slate-700">Say it back</p>
+      <p className="text-xs" style={{ color: '#4A5A78' }}>
+        Pick what to practice, tap the mic, and repeat it out loud. You get a match score — nothing is saved.
+      </p>
       <div className="flex flex-wrap gap-2">
         {targets.map((t) => (
           <button
