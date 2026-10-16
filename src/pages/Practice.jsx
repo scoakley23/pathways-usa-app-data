@@ -74,6 +74,14 @@ export default function Practice() {
       hasMounted.current = true;
   }, [mode]);
 
+  // Open a specific practice mode when arriving via ?mode= (e.g. the roadmap's Speak stop)
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('mode') === 'interview') {
+      setMode('interview');
+    }
+  }, []);
+
   // Seed Reading Data if empty
   useEffect(() => {
     const seedData = async () => {

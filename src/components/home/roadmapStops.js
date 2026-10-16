@@ -19,6 +19,7 @@ export const ROADMAP_STOPS = [
     desc: 'run a mock interview with the AI practice officer',
     short: 'Practice out loud with an AI officer.',
     path: 'Practice',
+    query: 'mode=interview',
   },
   {
     id: 4,

@@ -5,6 +5,9 @@ import { Check, Notebook, BookOpen, Mic, CalendarCheck, Star } from 'lucide-reac
 import { ROADMAP_STOPS } from './roadmapStops';
 
 const STOP_ICONS = { 1: Notebook, 2: BookOpen, 3: Mic, 4: CalendarCheck };
+
+const stopUrl = (stop) =>
+  createPageUrl(stop.path) + (stop.query ? `?${stop.query}` : '');
 const RTL_LANGUAGES = ['ar', 'fa', 'ur', 'he'];
 
 // Design geometry (viewBox units; panel is always 360 units wide in the design)
@@ -118,7 +121,7 @@ export default function RoadmapPath({ roadmap }) {
             if (isOath) {
               marker = (
                 <Link
-                  to={createPageUrl(stop.path)}
+                  to={stopUrl(stop)}
                   aria-label={ariaLabel}
                   className="flex flex-col items-center gap-1 rounded-3xl p-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
                 >
@@ -132,7 +135,7 @@ export default function RoadmapPath({ roadmap }) {
               const Icon = STOP_ICONS[stop.id];
               marker = (
                 <Link
-                  to={createPageUrl(stop.path)}
+                  to={stopUrl(stop)}
                   aria-label={ariaLabel}
                   className={`flex items-center justify-center w-[68px] h-[68px] rounded-full bg-red-500 border-[5px] border-white ${focusRing}`}
                 >
@@ -140,23 +143,28 @@ export default function RoadmapPath({ roadmap }) {
                 </Link>
               );
             } else if (isDone) {
+              const Icon = STOP_ICONS[stop.id];
               marker = (
                 <Link
-                  to={createPageUrl(stop.path)}
+                  to={stopUrl(stop)}
                   aria-label={ariaLabel}
-                  className={`flex items-center justify-center w-12 h-12 rounded-full bg-indigo-300 ${focusRing}`}
+                  className={`relative flex items-center justify-center w-12 h-12 rounded-full bg-indigo-300 ${focusRing}`}
                 >
-                  <Check className="w-6 h-6 text-slate-800" strokeWidth={3} />
+                  <Icon className="w-5 h-5 text-slate-800" />
+                  <span className="absolute -bottom-0.5 -right-0.5 w-4 h-4 rounded-full bg-white border border-indigo-300 flex items-center justify-center">
+                    <Check className="w-2.5 h-2.5 text-slate-800" strokeWidth={3.5} />
+                  </span>
                 </Link>
               );
             } else {
+              const Icon = STOP_ICONS[stop.id];
               marker = (
                 <Link
-                  to={createPageUrl(stop.path)}
+                  to={stopUrl(stop)}
                   aria-label={ariaLabel}
                   className={`flex items-center justify-center w-12 h-12 rounded-full border-2 border-road-outline ${focusRing}`}
                 >
-                  <span className="text-base font-bold text-white">{stop.id}</span>
+                  <Icon className="w-5 h-5 text-white" />
                 </Link>
               );
             }

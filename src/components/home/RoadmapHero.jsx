@@ -22,7 +22,10 @@ export default function RoadmapHero({ roadmap }) {
         <p className="text-base text-hero-muted min-h-[24px]">
           {loading ? '' : `Today: ${currentStop.desc}.`}
         </p>
-        <Link to={createPageUrl(currentStop.path)} className="block">
+        <Link
+          to={createPageUrl(currentStop.path) + (currentStop.query ? `?${currentStop.query}` : '')}
+          className="block"
+        >
           <button className="w-full h-14 rounded-2xl bg-white text-slate-900 font-bold text-base flex items-center justify-center gap-2 hover:bg-slate-100 transition-colors">
             {action} <ArrowRight className="w-5 h-5" />
           </button>
