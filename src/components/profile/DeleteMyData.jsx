@@ -29,6 +29,7 @@ export default function DeleteMyData({ userEmail }) {
       ['notifications', 'Notification', { user_email: { $in: variants } }],
       ['interview history', 'InterviewSession', { user_email: { $in: variants } }],
       ['profile', 'PublicProfile', { user_email: { $in: variants } }],
+      ['N-400 guide progress', 'N400SectionProgress', { user_email: { $in: variants } }],
     ];
 
     try {
@@ -55,7 +56,7 @@ export default function DeleteMyData({ userEmail }) {
         </CardTitle>
         <CardDescription>
           Permanently erase everything tied to your email: your chat messages (including the copies in the other person's history),
-          AI study buddy history, lesson notes, progress & quiz scores, assignments, tutor connections, notifications, and your profile.
+          AI study buddy history, lesson notes, progress & quiz scores, N-400 guide section completion, assignments, tutor connections, notifications, and your profile.
           This cannot be undone.
         </CardDescription>
       </CardHeader>
