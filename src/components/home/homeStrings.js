@@ -35,7 +35,7 @@ export const HOME_STRINGS = {
   feat_vocab_desc: 'Master the official reading and writing vocabulary lists.',
   feat_civics_title: 'Civics Test',
   feat_civics_desc:
-    "Practice for the civics test. Most new applicants take the 2025 test (up to 20 questions from a list of 128). We're adding the full 2025 list now.",
+    "Practice for the civics test. Filed your N-400 on or after October 20, 2025? You'll take the 2025 test. Filed before that date? You'll take the 2008 test.",
   ready_title: 'Ready to file?',
   ready_body:
     "When you're ready, you'll apply and check your case on the official USCIS website. Pathways is not part of USCIS or the U.S. government.",

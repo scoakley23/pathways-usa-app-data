@@ -21,7 +21,7 @@ import VoiceSettings from '@/components/utils/VoiceSettings';
 export default function Practice() {
   const [mode, setMode] = useState('menu'); // menu, dictation, vocabulary, civics
   const [vocabSubMode, setVocabSubMode] = useState('dictation'); // dictation, flashcards, matching
-  const [civicsVersion, setCivicsVersion] = useState('2008');
+  const [civicsVersion, setCivicsVersion] = useState(() => localStorage.getItem('civicsVersion') || '2025');
   const [civicsDifficulty, setCivicsDifficulty] = useState('all'); // all, easy, medium, hard
   const [content, setContent] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -568,15 +568,23 @@ export default function Practice() {
               <div className="space-y-3" onClick={(e) => e.stopPropagation()}>
                  <div className="space-y-1">
                    <label className="text-xs font-medium text-slate-600">Version:</label>
-                   <Select value={civicsVersion} onValueChange={setCivicsVersion}>
+                   <Select value={civicsVersion} onValueChange={(v) => { setCivicsVersion(v); localStorage.setItem('civicsVersion', v); }}>
                       <SelectTrigger className="h-8 text-xs">
                           <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                          <SelectItem value="2008">2008</SelectItem>
                           <SelectItem value="2025">2025</SelectItem>
+                          <SelectItem value="2008">2008</SelectItem>
                       </SelectContent>
                    </Select>
+                   <p className="text-xs text-slate-500 leading-snug">
+                      {civicsVersion === '2025'
+                        ? 'The officer asks up to 20 questions from this list of 128. You pass with 12 correct.'
+                        : 'The officer asks up to 10 questions from this list of 100. You pass with 6 correct.'}
+                   </p>
+                   <a href="https://www.uscis.gov/citizenship/2025-test" target="_blank" rel="noopener noreferrer" className="text-xs text-indigo-600 hover:underline inline-block">
+                      Not sure which test you'll take? Check uscis.gov.
+                   </a>
                  </div>
                  <div className="space-y-1">
                    <label className="text-xs font-medium text-slate-600">Difficulty:</label>
