@@ -182,6 +182,15 @@ describe('planImport', () => {
     expect(a).not.toHaveProperty('name');
     expect(plan.updates.find((u) => u.id === 'b')).toMatchObject({ name: 'Renamed Kids Club', is_active: false });
   });
+  it("keeps an admin's check over the file's show/hide", () => {
+    const plan = planImport(
+      [{ name: 'Kids Club', category: 'esl', address: '2 Oak Ave', zip: '02138', external_id: 'test:kids', is_active: false, relevance_note: 'Could not confirm - check', hours: '9-5' }],
+      [{ ...saved[1], is_active: true, relevance_note: 'Checked: shown' }], ZIPS);
+    expect(plan.hiding).toBe(0);
+    expect(plan.updates[0]).toMatchObject({ hours: '9-5' });
+    expect(plan.updates[0]).not.toHaveProperty('is_active');
+    expect(plan.updates[0]).not.toHaveProperty('relevance_note');
+  });
   it('counts unchanged places', () => {
     const plan = planImport([{ name: 'Test Clinic', category: 'legal', services: ['legal'], address: '1 Main St', zip: '02138', external_id: '' }],
       [{ ...saved[0], services: ['legal'], languages: [], phone: '', website: '', logo_url: '', hours: '', cost: '', description: '', source: '', source_url: '', last_verified: '', city: '', state: '', external_id: '' }], ZIPS);

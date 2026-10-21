@@ -312,7 +312,12 @@ export function planImport(rows, existing, zipTable) {
     seen.add(seenKey);
     if (!match) { plan.creates.push(record); return; }
     const changes = {};
-    for (const f of UPDATABLE) if (!sameValue(match[f], record[f])) changes[f] = record[f];
+    // An admin's check ("Checked: ...") wins over the file's show/hide call.
+    const checked = /^Checked:/.test(match.relevance_note || '');
+    for (const f of UPDATABLE) {
+      if (checked && (f === 'is_active' || f === 'relevance_note')) continue;
+      if (!sameValue(match[f], record[f])) changes[f] = record[f];
+    }
     if (!Object.keys(changes).length) { plan.unchanged++; return; }
     if (changes.is_active === false && match.is_active !== false) plan.hiding++;
     plan.updates.push({ id: match.id, ...changes });
