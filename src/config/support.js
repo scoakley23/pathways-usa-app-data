@@ -3,8 +3,8 @@
 // soon.") until BOTH are set.
 //   SUPPORT_EMAIL: the Pathways USA team inbox, e.g. 'help@example.org'
 //   REPLY_TIME:    shown as "We reply within {REPLY_TIME}.", e.g. '2 business days'
-export const SUPPORT_EMAIL = '';
-export const REPLY_TIME = '';
+export const SUPPORT_EMAIL = 'pathwaysusacitizenship@gmail.com';
+export const REPLY_TIME = '3-5 business days';
 
 export const SUPPORT_SUBJECT = 'Pathways USA question';
 export const SUPPORT_MAX_LENGTH = 1000;

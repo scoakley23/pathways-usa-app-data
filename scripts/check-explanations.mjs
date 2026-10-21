@@ -12,7 +12,7 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const readJson = (p) => JSON.parse(readFileSync(join(root, p), 'utf8'));
 
 // Copy of splitOfficialAnswers in src/lib/practiceChecks.js (keep in sync).
-const splitOfficialAnswers = (answer) => (answer || '').split(/\n|;|•/).map((a) => a.trim()).filter(Boolean);
+const splitOfficialAnswers = (answer) => (answer || '').split(/\n|;|•|\s\/\s/).map((a) => a.trim()).filter(Boolean);
 
 const official = new Map(readJson('content/civics/questions-2025.json').map((q) => [q.question, q]));
 const dir = 'content/explanations';

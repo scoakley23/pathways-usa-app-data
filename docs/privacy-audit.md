@@ -37,27 +37,17 @@ Searched all `InvokeLLM`, `SendEmail`, `UploadFile`, entity `create/update`, and
 | Concern | Stored? | Sent to the AI? | Notes |
 | --- | --- | --- | --- |
 | Immigration status, A-number, case details | No field stores them | Only if a learner types them into Ask Vía | Privacy note above the chat; email/phone numbers are stripped before sending; case questions are declined (local keyword check before the AI, plus the AI flags them) and not saved. Free text in **Lesson notes** and **tutor messages** could contain anything the learner types (stored, not sent to AI) |
-| Address / zip | Not stored (only official names are cached) | **Yes — Representative Finder sends the street address and zip to the AI** to look up officials | ⚠️ Conflicts with "learner-typed text goes to the AI only in Study Buddy". Option: zip only (no street address), or a non-AI lookup |
+| Address / zip | Not stored (only official names are cached) | Zip code, and a street address **only when the zip spans several districts**, for the lookup | Matches the AI Policy: used once, cleared right after, never saved. The screen now says "Your address is used only for this search. We don't save it." |
 | Filing date, field office | Never asked or stored | No | The plan asks "when is your interview or when do you hope to be ready" — month only, device only; never asks which office |
 | N-400 answers | Never collected | No | N-400 coaching uses the six made-up practice people; only section completion is saved |
 | Audio | No (reading audio upload removed) | No | Mock interview opens the microphone only to draw a live level meter and for the browser's own speech-to-text; nothing is recorded |
 | Transcripts (speech-to-text) | **No** (interview transcripts removed) | **Yes, for scoring**: civics spoken answers, interview answers, reading (text only for a tip), lesson practice | Expected: scoring needs the words; nothing is kept. Mock interview personal/morals questions are answered as a practice person |
-| Typed answers | Not stored | **Civics quiz (old Practice card) sends typed answers to the AI**; tutor lessons check typed answers on the device | ⚠️ Known conflict listed in CLAUDE.md |
+| Typed answers | Not stored | Civics quiz: answers that clearly match an accepted answer are now checked on the device; only the rest go to the AI, with emails/phone numbers stripped. Tutor lessons check typed answers on the device | Matches the AI Policy's Civics Practice Grading section. A note under the answer box says "Answer only the civics question. Don't include personal information." |
 | Learner identity with AI calls | — | No email or name is included in any AI prompt | Persona instructions contain only the tutor's name/tone |
 
-## 3. AI Policy.md — what the policy needs to say
+## 3. AI Policy.md
 
-*AI Policy.md wasn't provided in this repo, so this is the list of points the app's behavior requires the policy to cover. Paste the policy and I'll mark which are already there.*
-
-1. Which features send text to an AI provider (via Base44): Ask Vía questions; spoken answers (as text) for civics, interview, lesson and quick-check scoring; reading transcripts for a tip; Representative Finder address/zip; civics quiz typed answers; on-demand translation of fixed app text.
-2. That no audio is sent or stored; speech is turned into text by the learner's own browser.
-3. That no account email or name is sent to the AI.
-4. That AI never writes or changes official USCIS answers; accepted answers always come from the official question list; explanations are human-reviewed before learners see them (draft explanations are hidden).
-5. That the tutor is not a lawyer, won't answer questions about the learner's own case or eligibility, and points to "Talk to a lawyer first".
-6. What is stored and for how long (section 1): Ask Vía history and tutor messages until Delete My Data; quick check levels and tutor settings until Delete My Data; the target date only on the device.
-7. That "Talk to a person" messages go by email to the team and are kept under the team's email retention.
-8. That tutors in My Classroom can see progress (not Ask Vía history, not the target date).
-9. AI provider/model and whether the provider may retain or train on data (depends on Base44's terms — needs confirming).
+The policy was compared with the app on 2026-10-21. A revised draft with every change marked is in `docs/AI-Policy-updated.md`. Main differences: the policy still describes Study Buddy emails to tutors (removed), tutor leaderboards (removed), and "nothing from a mock interview is saved" (scores are saved, not transcripts); and it doesn't yet cover Ask Vía's case-question declines, quick check levels, tutor settings, the device-only target date and plan, lesson explanations, N-400 coaching with practice people, or "Talk to a person".
 
 ## 4. "Free. No ads. We never record your voice or ask about your case."
 
@@ -65,6 +55,6 @@ This line **is not on the home screen yet**. Checked against the code, before ad
 
 - **Free / No ads:** no payment or ads code is used (`@stripe/*` packages are installed but not imported anywhere in `src`). ✔
 - **We never record your voice:** true now — reading audio upload was removed; the interview opens the mic only for a live level meter; speech-to-text runs in the browser. ✔ (Suggested wording for accuracy: "We never record or keep your voice.")
-- **We never ask about your case:** mostly true — the tutor never asks; mock interview personal/morals questions and N-400 coaching use practice people; the plan asks only for a month, on the device. ⚠️ Two places ask for personal information that isn't "case" information but is sensitive: Representative Finder asks for a **street address** (sent to the AI), and Study Buddy/Ask Vía lets learners type anything (protected by the note, stripping, and declines).
+- **We never ask about your case:** true — the tutor never asks; mock interview personal/morals questions and N-400 coaching use practice people; the plan asks only for a month, on the device; Ask Vía declines case questions. The representative lookup may ask for a street address only to find elected officials, and doesn't save it.
 
-**Recommendation before adding the line:** make Representative Finder zip-only (or stop sending it to the AI), then the sentence is accurate. Add the line under the home hero once that's done.
+**Conclusion:** the line is accurate. The representative lookup asks for an address only to find elected officials (not about the learner's case), uses it once and doesn't save it. It can be added to the home screen.

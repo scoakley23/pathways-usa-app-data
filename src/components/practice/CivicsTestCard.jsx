@@ -9,6 +9,7 @@ import { toast } from "sonner";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { base44 } from '@/api/base44Client';
 import { checkCivicsAnswer } from '@/components/civics/checkCivicsAnswer';
+import { matchOfficialAnswer } from '@/lib/practiceChecks';
 
 import { getPersonalizedAnswer } from '@/components/civics/RepresentativeFinder';
 import { LANGUAGES } from '@/hooks/useLessonTranslation';
@@ -113,6 +114,12 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
     if (!userAnswer.trim()) return;
     if (isListening && recognitionRef.current) {
       try { recognitionRef.current.stop(); } catch (e) {}
+    }
+    // Answers that clearly match an accepted answer are checked on the
+    // device; only the rest go to the AI (which judges meaning).
+    if (!isChanging && (!isLocation || personalizedAnswer) && matchOfficialAnswer(userAnswer, personalizedAnswer || question.answer).isCorrect) {
+      setVerificationResult({ is_correct: true, feedback: '' });
+      return;
     }
     setVerifying(true);
     try {
@@ -272,6 +279,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
                       className="text-base min-h-[48px]"
                     />
                   )}
+                  <p className="text-sm text-pw-muted mt-2">Answer only the civics question. Don't include personal information.</p>
 
                   <div className="space-y-1">
                     <PrimaryButton
