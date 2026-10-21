@@ -8,6 +8,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import RoleSelectionDialog from '@/components/onboarding/RoleSelectionDialog';
 import NotificationCenter from '@/components/notifications/NotificationCenter';
 import StudyBuddy from '@/components/ai/StudyBuddy';
+import TutorOnboardingDialog from '@/components/persona/TutorOnboardingDialog';
 import DailyPracticeReminder from '@/components/notifications/DailyPracticeReminder';
 import { Toaster } from "sonner";
 
@@ -17,6 +18,8 @@ export default function Layout({ children }) {
   const [role, setRole] = React.useState(null);
   const [isOpen, setIsOpen] = React.useState(false);
   const [showOnboarding, setShowOnboarding] = React.useState(false);
+  const [showTutorSetup, setShowTutorSetup] = React.useState(false);
+  const closeTutorSetup = React.useCallback(() => setShowTutorSetup(false), []);
 
   React.useEffect(() => {
     const checkUser = async () => {
@@ -251,9 +254,11 @@ export default function Layout({ children }) {
                   }
                   setRole(selectedRole);
                   setShowOnboarding(false);
+                  if (selectedRole === 'student') setShowTutorSetup(true);
               }}
           />
       )}
+      {showTutorSetup && <TutorOnboardingDialog onDone={closeTutorSetup} />}
       <StudyBuddy />
       <DailyPracticeReminder />
       <Toaster />

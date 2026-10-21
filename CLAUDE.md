@@ -32,16 +32,17 @@ Pathways USA is a free U.S. citizenship test prep app (civics, reading, writing,
   - **Data**: Base44 entities, defined in `base44/entities/*.jsonc`, used as `base44.entities.<Name>.list/filter/create/update`. Records (including the civics question bank, interview questions, reading/writing sentences) live in the Base44 database, not in repo files.
   - **Auth/user**: `base44.auth.me()` / `base44.auth.updateMe()` (the `User` entity holds extra fields).
   - **AI**: `base44.integrations.Core.InvokeLLM({ prompt, response_json_schema?, file_urls?, add_context_from_internet? })`. Also `SendEmail`, `UploadFile`.
+- **AI tutor persona** (default name "Vía"; not the human tutor in My Classroom): config and `buildTutorInstructions()` in `src/lib/tutorPersona.js`; UI in `src/components/persona/`.
 - **Pages** are auto-registered from `src/pages/` (`src/pages.config.js` is auto-generated; only `mainPage` is editable). `src/Layout.jsx` wraps all pages. Feature components live in `src/components/<area>/`.
 - **Speech**: browser Web Speech API (`SpeechRecognition`, `lang = 'en-US'`) produces a transcript; scoring is word matching (`src/components/utils/wordDiff.js`) plus an `InvokeLLM` evaluation. Text-to-speech: `src/components/utils/textToSpeech.jsx` (`speakText(text, lang)`).
 - **Languages/i18n**: no i18n library. The chosen language is `localStorage['pathways_language']` (`src/hooks/useAppLanguage.js`; list in `LANGUAGES` in `src/hooks/useLessonTranslation.js`). UI strings are written in English and translated on demand with `InvokeLLM`, cached per language in localStorage (`useHomeTranslation`, `useN400Translation`, `useLawyerChecklistTranslation`). RTL languages: `ar`, `fa`, `ur`, `he`.
-- **Build/deploy**: `npm run dev`, `npm run build`, `npm run lint`. No test runner is installed yet. The live app runs on Base44: this repo is two-way synced with Base44 on `main`, so **merging to `main` updates the live app**. Work on branches and merge via pull request. Running locally needs the Base44 env vars (`VITE_BASE44_APP_ID`, `VITE_BASE44_BACKEND_URL`).
+- **Build/deploy**: `npm run dev`, `npm run build`, `npm run lint`, `npm test` (Vitest; tests are `src/**/*.test.js`, config in `vitest.config.js`). The live app runs on Base44: this repo is two-way synced with Base44 on `main`, so **merging to `main` updates the live app**. Work on branches and merge via pull request. Running locally needs the Base44 env vars (`VITE_BASE44_APP_ID`, `VITE_BASE44_BACKEND_URL`).
 
 ## Where learner data is saved today
 
 | Where | What | Notes |
 | --- | --- | --- |
-| `User` (account) | display name, points, badges, max streak | reset by `DeleteMyData` (the sign-in account itself can't be deleted from the app) |
+| `User` (account) | display name, points, badges, max streak, `tutor_profile` (AI tutor name/avatar/tone/English mix) | reset by `DeleteMyData` (the sign-in account itself can't be deleted from the app) |
 | `PublicProfile` | display name, points, badge count, role, tutor invite code, cached representative names | address/zip used only for lookup |
 | `UserProgress` | per sentence/word/civics question: status, SRS fields, scores, attempts | |
 | `LessonProgress` | per lesson: completed, quiz scores, needs_review | |
