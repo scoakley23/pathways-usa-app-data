@@ -3,9 +3,10 @@ import { base44 } from '@/api/base44Client';
 import { toast } from 'sonner';
 
 /**
- * Shared CRUD hook for admin content management (Sentences, CivicsQuestions, VocabularyWords).
+ * Shared CRUD hook for admin content management (Sentences, CivicsQuestions, VocabularyWords, Places).
+ * `listFn` (optional) replaces the default list() call, e.g. to read past 5,000 records.
  */
-export function useContentManager(entityName, itemName) {
+export function useContentManager(entityName, itemName, listFn) {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -13,7 +14,7 @@ export function useContentManager(entityName, itemName) {
   const fetchItems = useCallback(async () => {
     setIsLoading(true);
     try {
-      const data = await base44.entities[entityName].list();
+      const data = listFn ? await listFn() : await base44.entities[entityName].list();
       setItems(data);
     } catch (error) {
       console.error(`Failed to fetch ${itemName}s:`, error);
@@ -21,7 +22,7 @@ export function useContentManager(entityName, itemName) {
     } finally {
       setIsLoading(false);
     }
-  }, [entityName, itemName]);
+  }, [entityName, itemName, listFn]);
 
   const createItem = async (formData) => {
     setIsSubmitting(true);

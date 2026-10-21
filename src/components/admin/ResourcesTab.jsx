@@ -9,6 +9,7 @@ import { toast } from 'sonner';
 import { useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import ResourceDialog from '@/components/admin/ResourceDialog';
+import { listAllResources } from '@/components/resources/listAllResources';
 import { useContentManager } from '@/hooks/useContentManager';
 import { categoryById, parseCsv, cleanResourceRow, resourceKey, loadZipTable } from '@/lib/resourceHub';
 
@@ -19,7 +20,7 @@ const BATCH = 50;
 // in the list (same name, street address and ZIP) are skipped, so an import
 // can be re-run.
 export default function ResourcesTab() {
-  const { items, isLoading, isSubmitting, fetchItems, createItem, updateItem, deleteItem } = useContentManager('CommunityResource', 'place');
+  const { items, isLoading, isSubmitting, fetchItems, createItem, updateItem, deleteItem } = useContentManager('CommunityResource', 'place', listAllResources);
   const queryClient = useQueryClient();
   const [searchQuery, setSearchQuery] = useState('');
   const [isDialogOpen, setIsDialogOpen] = useState(false);
