@@ -1,1 +1,3437 @@
-{}
+{
+  "Abraham Lincoln is famous for many things. Name one.": {
+    "question": "Abraham Lincoln is famous for many things. Name one.",
+    "answers": [
+      "Freed the slaves (Emancipation Proclamation)",
+      "Saved (or preserved) the Union",
+      "Led the United States during the Civil War",
+      "16th president of the United States",
+      "Delivered the Gettysburg Address"
+    ],
+    "status": "draft",
+    "explanation": "Abraham Lincoln was the 16th president of the United States. He led the country during the Civil War, from 1861 to 1865. In 1863 he signed the Emancipation Proclamation, which freed slaves in the Confederate states. That same year he gave the Gettysburg Address, a short and famous speech. He worked to save, or preserve, the Union.",
+    "keyWords": [
+      {
+        "en": "Civil War",
+        "translation": "Civil War"
+      },
+      {
+        "en": "Emancipation Proclamation",
+        "translation": "Emancipation Proclamation"
+      },
+      {
+        "en": "Union",
+        "translation": "Union"
+      },
+      {
+        "en": "Gettysburg Address",
+        "translation": "Gettysburg Address"
+      }
+    ]
+  },
+  "Alexander Hamilton is famous for many things. Name one.": {
+    "question": "Alexander Hamilton is famous for many things. Name one.",
+    "answers": [
+      "First Secretary of the Treasury",
+      "One of the writers of the Federalist Papers",
+      "Helped establish the First Bank of the United States",
+      "Aide to General George Washington",
+      "Member of the Continental Congress"
+    ],
+    "status": "draft",
+    "explanation": "Alexander Hamilton was one of the Founding Fathers. During the Revolutionary War, he worked as an aide to General George Washington. He was the first Secretary of the Treasury, in charge of the country's money. He helped start the First Bank of the United States. With James Madison and John Jay, he wrote the Federalist Papers to support the new Constitution.",
+    "keyWords": [
+      {
+        "en": "Secretary of the Treasury",
+        "translation": "Secretary of the Treasury"
+      },
+      {
+        "en": "Federalist Papers",
+        "translation": "Federalist Papers"
+      },
+      {
+        "en": "Aide",
+        "translation": "Aide"
+      },
+      {
+        "en": "Continental Congress",
+        "translation": "Continental Congress"
+      }
+    ]
+  },
+  "Benjamin Franklin is famous for many things. Name one.": {
+    "question": "Benjamin Franklin is famous for many things. Name one.",
+    "answers": [
+      "Founded the first free public libraries",
+      "First Postmaster General of the United States",
+      "Helped write the Declaration of Independence",
+      "Inventor",
+      "U.S. diplomat"
+    ],
+    "status": "draft",
+    "explanation": "Benjamin Franklin was one of the most famous early Americans. He was an inventor and a writer. He helped write the Declaration of Independence in 1776. He was a U.S. diplomat in France and helped get support for the American Revolution. He was also the first Postmaster General, in charge of the mail, and he founded the first free public libraries.",
+    "keyWords": [
+      {
+        "en": "Inventor",
+        "translation": "Inventor"
+      },
+      {
+        "en": "diplomat",
+        "translation": "diplomat"
+      },
+      {
+        "en": "Postmaster General",
+        "translation": "Postmaster General"
+      },
+      {
+        "en": "public libraries",
+        "translation": "public libraries"
+      }
+    ]
+  },
+  "During the Cold War, what was one main concern of the United States?": {
+    "question": "During the Cold War, what was one main concern of the United States?",
+    "answers": [
+      "Communism",
+      "Nuclear war"
+    ],
+    "status": "draft",
+    "explanation": "The Cold War was a long conflict between the United States and the Soviet Union. It began after World War II and ended in 1991. The two countries did not fight each other directly, so it was called \"cold.\" The United States was worried about the spread of communism. Both countries had nuclear weapons, so people also feared a nuclear war.",
+    "keyWords": [
+      {
+        "en": "Cold War",
+        "translation": "Cold War"
+      },
+      {
+        "en": "Communism",
+        "translation": "Communism"
+      },
+      {
+        "en": "Nuclear war",
+        "translation": "Nuclear war"
+      },
+      {
+        "en": "concern",
+        "translation": "concern"
+      }
+    ]
+  },
+  "Dwight Eisenhower is famous for many things. Name one.": {
+    "question": "Dwight Eisenhower is famous for many things. Name one.",
+    "answers": [
+      "General during World War II",
+      "President at the end of (during) the Korean War",
+      "34th president of the United States",
+      "Signed the Federal-Aid Highway Act of 1956 (Created the Interstate System)"
+    ],
+    "status": "draft",
+    "explanation": "Dwight Eisenhower was an important general during World War II. He led the Allied forces in Europe. Later, he became the 34th president of the United States, from 1953 to 1961. He was president when the fighting in the Korean War ended in 1953. In 1956 he signed a law that created the Interstate System of highways.",
+    "keyWords": [
+      {
+        "en": "General",
+        "translation": "General"
+      },
+      {
+        "en": "World War II",
+        "translation": "World War II"
+      },
+      {
+        "en": "Korean War",
+        "translation": "Korean War"
+      },
+      {
+        "en": "Interstate System",
+        "translation": "Interstate System"
+      }
+    ]
+  },
+  "George Washington is famous for many things. Name one.": {
+    "question": "George Washington is famous for many things. Name one.",
+    "answers": [
+      "“Father of Our Country”",
+      "First president of the United States",
+      "General of the Continental Army",
+      "President of the Constitutional Convention"
+    ],
+    "status": "draft",
+    "explanation": "George Washington was the general of the Continental Army during the Revolutionary War. After the war, he led the Constitutional Convention in 1787, where the Constitution was written. In 1789 he became the first president of the United States. Because of his important role in creating the nation, people call him the \"Father of Our Country.\"",
+    "keyWords": [
+      {
+        "en": "Father of Our Country",
+        "translation": "Father of Our Country"
+      },
+      {
+        "en": "First president",
+        "translation": "First president"
+      },
+      {
+        "en": "Continental Army",
+        "translation": "Continental Army"
+      },
+      {
+        "en": "Constitutional Convention",
+        "translation": "Constitutional Convention"
+      }
+    ]
+  },
+  "How are changes made to the U.S. Constitution?": {
+    "question": "How are changes made to the U.S. Constitution?",
+    "answers": [
+      "Amendments",
+      "The amendment process"
+    ],
+    "status": "draft",
+    "explanation": "The Constitution can be changed, but it is not easy. A change or addition to the Constitution is called an amendment. Usually, two-thirds of both houses of Congress must approve an amendment. Then three-fourths of the states must approve it too. This is called the amendment process.",
+    "keyWords": [
+      {
+        "en": "changes",
+        "translation": "changes"
+      },
+      {
+        "en": "Constitution",
+        "translation": "Constitution"
+      },
+      {
+        "en": "amendment",
+        "translation": "amendment"
+      },
+      {
+        "en": "amendment process",
+        "translation": "amendment process"
+      }
+    ]
+  },
+  "How can people become United States citizens?": {
+    "question": "How can people become United States citizens?",
+    "answers": [
+      "Be born in the United States, under the conditions set by the 14th Amendment",
+      "Naturalize",
+      "Derive citizenship (under conditions set by Congress)"
+    ],
+    "status": "draft",
+    "explanation": "There are three general ways to become a U.S. citizen. Most people born in the United States are citizens, under the conditions set by the 14th Amendment. Other people can naturalize, which means they apply and complete a legal process to become citizens. Some children derive citizenship from a parent, under conditions set by Congress. This is general information only; for your own situation, talk to a lawyer.",
+    "keyWords": [
+      {
+        "en": "citizens",
+        "translation": "citizens"
+      },
+      {
+        "en": "14th Amendment",
+        "translation": "14th Amendment"
+      },
+      {
+        "en": "Naturalize",
+        "translation": "Naturalize"
+      },
+      {
+        "en": "Derive citizenship",
+        "translation": "Derive citizenship"
+      }
+    ]
+  },
+  "How long do Supreme Court justices serve?": {
+    "question": "How long do Supreme Court justices serve?",
+    "answers": [
+      "(For) life",
+      "Lifetime appointment",
+      "(Until) retirement"
+    ],
+    "status": "draft",
+    "explanation": "Supreme Court justices do not have a fixed term. They have a lifetime appointment, so they can serve for life. Many justices serve until retirement or until they die. This rule helps judges make decisions without worrying about losing their jobs.",
+    "keyWords": [
+      {
+        "en": "Supreme Court",
+        "translation": "Supreme Court"
+      },
+      {
+        "en": "justices",
+        "translation": "justices"
+      },
+      {
+        "en": "Lifetime appointment",
+        "translation": "Lifetime appointment"
+      },
+      {
+        "en": "retirement",
+        "translation": "retirement"
+      }
+    ]
+  },
+  "How long is a term for a U.S. senator?": {
+    "question": "How long is a term for a U.S. senator?",
+    "answers": [
+      "Six (6) years"
+    ],
+    "status": "draft",
+    "explanation": "A U.S. senator is elected for a term of six years. A term is the length of time a person serves in office. Senators can be elected again many times. Elections are staggered: about one-third of the Senate is elected every two years.",
+    "keyWords": [
+      {
+        "en": "term",
+        "translation": "term"
+      },
+      {
+        "en": "senator",
+        "translation": "senator"
+      },
+      {
+        "en": "Six (6) years",
+        "translation": "Six (6) years"
+      }
+    ]
+  },
+  "How long is a term for a member of the House of Representatives?": {
+    "question": "How long is a term for a member of the House of Representatives?",
+    "answers": [
+      "Two (2) years"
+    ],
+    "status": "draft",
+    "explanation": "A member of the House of Representatives serves a term of two years. A term is the length of time a person serves in office. Elections for the House happen every two years, in even-numbered years. All 435 voting seats are up for election at the same time. Representatives can be elected again many times.",
+    "keyWords": [
+      {
+        "en": "House of Representatives",
+        "translation": "House of Representatives"
+      },
+      {
+        "en": "term",
+        "translation": "term"
+      },
+      {
+        "en": "member",
+        "translation": "member"
+      },
+      {
+        "en": "Two (2) years",
+        "translation": "Two (2) years"
+      }
+    ]
+  },
+  "How many Supreme Court justices are usually needed to decide a case?": {
+    "question": "How many Supreme Court justices are usually needed to decide a case?",
+    "answers": [
+      "Five (5)"
+    ],
+    "status": "draft",
+    "explanation": "The Supreme Court has nine justices. To decide a case, a majority must agree. A majority of nine is five. So usually five justices are needed to decide a case. The justices who agree write the opinion of the Court.",
+    "keyWords": [
+      {
+        "en": "Supreme Court justices",
+        "translation": "Supreme Court justices"
+      },
+      {
+        "en": "decide a case",
+        "translation": "decide a case"
+      },
+      {
+        "en": "Five (5)",
+        "translation": "Five (5)"
+      }
+    ]
+  },
+  "How many U.S. senators are there?": {
+    "question": "How many U.S. senators are there?",
+    "answers": [
+      "One hundred (100)"
+    ],
+    "status": "draft",
+    "explanation": "There are 100 U.S. senators. Each of the 50 states has two senators. Big states and small states have the same number of senators. This gives every state an equal voice in the Senate.",
+    "keyWords": [
+      {
+        "en": "senators",
+        "translation": "senators"
+      },
+      {
+        "en": "One hundred (100)",
+        "translation": "One hundred (100)"
+      }
+    ]
+  },
+  "How many amendments does the U.S. Constitution have?": {
+    "question": "How many amendments does the U.S. Constitution have?",
+    "answers": [
+      "Twenty-seven (27)"
+    ],
+    "status": "draft",
+    "explanation": "An amendment is a change or addition to the Constitution. The U.S. Constitution has 27 amendments. The first ten amendments are called the Bill of Rights, and they were added in 1791. The most recent amendment, the 27th, was added in 1992.",
+    "keyWords": [
+      {
+        "en": "amendments",
+        "translation": "amendments"
+      },
+      {
+        "en": "Constitution",
+        "translation": "Constitution"
+      },
+      {
+        "en": "Twenty-seven (27)",
+        "translation": "Twenty-seven (27)"
+      }
+    ]
+  },
+  "How many seats are on the Supreme Court?": {
+    "question": "How many seats are on the Supreme Court?",
+    "answers": [
+      "Nine (9)"
+    ],
+    "status": "draft",
+    "explanation": "The Supreme Court has nine seats. One seat is for the Chief Justice, and the other eight are for associate justices. The Constitution does not set this number; Congress does. The number has been nine since 1869.",
+    "keyWords": [
+      {
+        "en": "seats",
+        "translation": "seats"
+      },
+      {
+        "en": "Supreme Court",
+        "translation": "Supreme Court"
+      },
+      {
+        "en": "Nine (9)",
+        "translation": "Nine (9)"
+      }
+    ]
+  },
+  "How many senators does each state have?": {
+    "question": "How many senators does each state have?",
+    "answers": [
+      "Two (2)"
+    ],
+    "status": "draft",
+    "explanation": "Each state has two senators. It does not matter how many people live in the state. This gives small states and big states an equal voice in the Senate. With 50 states, there are 100 senators in total.",
+    "keyWords": [
+      {
+        "en": "senators",
+        "translation": "senators"
+      },
+      {
+        "en": "each state",
+        "translation": "each state"
+      },
+      {
+        "en": "Two (2)",
+        "translation": "Two (2)"
+      }
+    ]
+  },
+  "How many voting members are in the House of Representatives?": {
+    "question": "How many voting members are in the House of Representatives?",
+    "answers": [
+      "Four hundred thirty-five (435)"
+    ],
+    "status": "draft",
+    "explanation": "The House of Representatives has 435 voting members. The number of representatives for each state depends on its population. States with more people have more representatives. Every state has at least one. There are also a few delegates from places like Washington, D.C., but they cannot vote on final passage of laws.",
+    "keyWords": [
+      {
+        "en": "voting members",
+        "translation": "voting members"
+      },
+      {
+        "en": "House of Representatives",
+        "translation": "House of Representatives"
+      },
+      {
+        "en": "Four hundred thirty-five (435)",
+        "translation": "Four hundred thirty-five (435)"
+      }
+    ]
+  },
+  "If the president can no longer serve, who becomes president?": {
+    "question": "If the president can no longer serve, who becomes president?",
+    "answers": [
+      "The Vice President (of the United States)"
+    ],
+    "status": "draft",
+    "explanation": "If the president dies, resigns, or can no longer serve, the Vice President becomes president. This is the first step in the line of succession. The Constitution and the 25th Amendment explain this rule. It makes sure the country always has a leader.",
+    "keyWords": [
+      {
+        "en": "Vice President",
+        "translation": "Vice President"
+      },
+      {
+        "en": "serve",
+        "translation": "serve"
+      },
+      {
+        "en": "president",
+        "translation": "president"
+      }
+    ]
+  },
+  "It is important for all men age 18 through 25 to register for the Selective Service. Name one reason why.": {
+    "question": "It is important for all men age 18 through 25 to register for the Selective Service. Name one reason why.",
+    "answers": [
+      "Required by law",
+      "Civic duty",
+      "Makes the draft fair, if needed"
+    ],
+    "status": "draft",
+    "explanation": "The Selective Service is a system that keeps a list of men who could be called to the military in an emergency. The law requires most men age 18 through 25 who live in the United States to register. Registering is also a civic duty. If the country ever needs a draft, the list helps make it fair. This is general information; if you have questions about your own situation, talk to a lawyer.",
+    "keyWords": [
+      {
+        "en": "Selective Service",
+        "translation": "Selective Service"
+      },
+      {
+        "en": "register",
+        "translation": "register"
+      },
+      {
+        "en": "Required by law",
+        "translation": "Required by law"
+      },
+      {
+        "en": "Civic duty",
+        "translation": "Civic duty"
+      },
+      {
+        "en": "draft",
+        "translation": "draft"
+      }
+    ]
+  },
+  "James Madison is famous for many things. Name one.": {
+    "question": "James Madison is famous for many things. Name one.",
+    "answers": [
+      "“Father of the Constitution”",
+      "Fourth president of the United States",
+      "President during the War of 1812",
+      "One of the writers of the Federalist Papers"
+    ],
+    "status": "draft",
+    "explanation": "James Madison is called the \"Father of the Constitution\" because he did so much to plan and write it. With Alexander Hamilton and John Jay, he wrote the Federalist Papers to support the Constitution. Later, he became the fourth president of the United States. He was president during the War of 1812, a war with Britain.",
+    "keyWords": [
+      {
+        "en": "Father of the Constitution",
+        "translation": "Father of the Constitution"
+      },
+      {
+        "en": "Fourth president",
+        "translation": "Fourth president"
+      },
+      {
+        "en": "War of 1812",
+        "translation": "War of 1812"
+      },
+      {
+        "en": "Federalist Papers",
+        "translation": "Federalist Papers"
+      }
+    ]
+  },
+  "Many documents influenced the U.S. Constitution. Name one.": {
+    "question": "Many documents influenced the U.S. Constitution. Name one.",
+    "answers": [
+      "Declaration of Independence",
+      "Articles of Confederation",
+      "Federalist Papers",
+      "Anti-Federalist Papers",
+      "Virginia Declaration of Rights",
+      "Fundamental Orders of Connecticut",
+      "Mayflower Compact",
+      "Iroquois Great Law of Peace"
+    ],
+    "status": "draft",
+    "explanation": "The writers of the Constitution learned from many earlier documents and ideas. The Mayflower Compact of 1620 was an early agreement for self-government. The Declaration of Independence of 1776 explained basic rights. The Articles of Confederation were the first plan for the national government, but they were too weak. You can name any one of the documents on the official list.",
+    "keyWords": [
+      {
+        "en": "influenced",
+        "translation": "influenced"
+      },
+      {
+        "en": "Declaration of Independence",
+        "translation": "Declaration of Independence"
+      },
+      {
+        "en": "Articles of Confederation",
+        "translation": "Articles of Confederation"
+      },
+      {
+        "en": "Mayflower Compact",
+        "translation": "Mayflower Compact"
+      }
+    ]
+  },
+  "Martin Luther King, Jr. is famous for many things. Name one.": {
+    "question": "Martin Luther King, Jr. is famous for many things. Name one.",
+    "answers": [
+      "Fought for civil rights",
+      "Worked for equality for all Americans",
+      "Worked to ensure that people would “not be judged by the color of their skin, but by the content of their character”"
+    ],
+    "status": "draft",
+    "explanation": "Martin Luther King, Jr. was a leader of the civil rights movement in the 1950s and 1960s. He fought for civil rights and worked for equality for all Americans. He used peaceful protest, not violence. In a famous speech in 1963, he said he hoped people would \"not be judged by the color of their skin, but by the content of their character.\"",
+    "keyWords": [
+      {
+        "en": "civil rights",
+        "translation": "civil rights"
+      },
+      {
+        "en": "equality",
+        "translation": "equality"
+      },
+      {
+        "en": "color of their skin",
+        "translation": "color of their skin"
+      },
+      {
+        "en": "character",
+        "translation": "character"
+      }
+    ]
+  },
+  "Name one American Indian tribe in the United States.": {
+    "question": "Name one American Indian tribe in the United States.",
+    "answers": [
+      "Apache",
+      "Blackfeet",
+      "Cayuga",
+      "Cherokee",
+      "Cheyenne",
+      "Chippewa",
+      "Choctaw",
+      "Creek",
+      "Crow",
+      "Hopi",
+      "Huron",
+      "Inupiat",
+      "Lakota",
+      "Mohawk",
+      "Mohegan",
+      "Navajo",
+      "Oneida",
+      "Onondaga",
+      "Pueblo",
+      "Seminole",
+      "Seneca",
+      "Shawnee",
+      "Sioux",
+      "Teton",
+      "Tuscarora",
+      "For a complete list of tribes, please visit bia.gov."
+    ],
+    "status": "draft",
+    "explanation": "American Indians, also called Native Americans, lived in North America long before Europeans arrived. Today there are more than 570 federally recognized tribes in the United States. Each tribe has its own history, culture, and government. You can name any one tribe from the official list, such as the Cherokee or the Navajo. For a complete list, you can visit bia.gov.",
+    "keyWords": [
+      {
+        "en": "American Indian",
+        "translation": "American Indian"
+      },
+      {
+        "en": "tribe",
+        "translation": "tribe"
+      },
+      {
+        "en": "bia.gov",
+        "translation": "bia.gov"
+      }
+    ]
+  },
+  "Name one U.S. military conflict after the September 11, 2001 attacks.": {
+    "question": "Name one U.S. military conflict after the September 11, 2001 attacks.",
+    "answers": [
+      "(Global) War on Terror",
+      "War in Afghanistan",
+      "War in Iraq"
+    ],
+    "status": "draft",
+    "explanation": "On September 11, 2001, terrorists attacked the United States and killed almost 3,000 people. After the attacks, the United States began the Global War on Terror. In 2001, U.S. forces went to Afghanistan. In 2003, the War in Iraq began. You can name any one of these conflicts.",
+    "keyWords": [
+      {
+        "en": "September 11, 2001",
+        "translation": "September 11, 2001"
+      },
+      {
+        "en": "military conflict",
+        "translation": "military conflict"
+      },
+      {
+        "en": "War on Terror",
+        "translation": "War on Terror"
+      },
+      {
+        "en": "Afghanistan",
+        "translation": "Afghanistan"
+      },
+      {
+        "en": "Iraq",
+        "translation": "Iraq"
+      }
+    ]
+  },
+  "Name one example of an American innovation.": {
+    "question": "Name one example of an American innovation.",
+    "answers": [
+      "Light bulb",
+      "Automobile (cars, internal combustion engine)",
+      "Skyscrapers",
+      "Airplane",
+      "Assembly line",
+      "Landing on the moon",
+      "Integrated circuit (IC)"
+    ],
+    "status": "draft",
+    "explanation": "An innovation is a new idea, invention, or way of doing something. Americans created many important innovations. Thomas Edison made a practical light bulb in 1879. The Wright brothers flew the first airplane in 1903. In 1969, American astronauts were the first people to land on the moon.",
+    "keyWords": [
+      {
+        "en": "innovation",
+        "translation": "innovation"
+      },
+      {
+        "en": "Light bulb",
+        "translation": "Light bulb"
+      },
+      {
+        "en": "Airplane",
+        "translation": "Airplane"
+      },
+      {
+        "en": "Assembly line",
+        "translation": "Assembly line"
+      },
+      {
+        "en": "Landing on the moon",
+        "translation": "Landing on the moon"
+      }
+    ]
+  },
+  "Name one leader of the women’s rights movement in the 1800s.": {
+    "question": "Name one leader of the women’s rights movement in the 1800s.",
+    "answers": [
+      "Susan B. Anthony",
+      "Elizabeth Cady Stanton",
+      "Sojourner Truth",
+      "Harriet Tubman",
+      "Lucretia Mott",
+      "Lucy Stone"
+    ],
+    "status": "draft",
+    "explanation": "In the 1800s, women in the United States could not vote and had fewer rights than men. Many women worked to change this. In 1848, Elizabeth Cady Stanton and Lucretia Mott helped lead a meeting about women's rights in Seneca Falls, New York. Susan B. Anthony worked for many years for women's right to vote. Women won the right to vote in 1920 with the 19th Amendment.",
+    "keyWords": [
+      {
+        "en": "rights movement",
+        "translation": "rights movement"
+      },
+      {
+        "en": "leader",
+        "translation": "leader"
+      },
+      {
+        "en": "Susan B. Anthony",
+        "translation": "Susan B. Anthony"
+      },
+      {
+        "en": "Elizabeth Cady Stanton",
+        "translation": "Elizabeth Cady Stanton"
+      }
+    ]
+  },
+  "Name one power of the U.S. Congress.": {
+    "question": "Name one power of the U.S. Congress.",
+    "answers": [
+      "Writes laws",
+      "Declares war",
+      "Makes the federal budget"
+    ],
+    "status": "draft",
+    "explanation": "Congress is the legislative branch of the federal government. It has two parts: the Senate and the House of Representatives. Its main job is to write laws. Congress also has the power to declare war. It makes the federal budget, which decides how the government spends money.",
+    "keyWords": [
+      {
+        "en": "Congress",
+        "translation": "Congress"
+      },
+      {
+        "en": "power",
+        "translation": "power"
+      },
+      {
+        "en": "Writes laws",
+        "translation": "Writes laws"
+      },
+      {
+        "en": "Declares war",
+        "translation": "Declares war"
+      },
+      {
+        "en": "federal budget",
+        "translation": "federal budget"
+      }
+    ]
+  },
+  "Name one power of the president.": {
+    "question": "Name one power of the president.",
+    "answers": [
+      "Signs bills into law",
+      "Vetoes bills",
+      "Enforces laws",
+      "Commander in Chief (of the military)",
+      "Chief diplomat",
+      "Appoints federal judges"
+    ],
+    "status": "draft",
+    "explanation": "The president leads the executive branch, which enforces laws. The president can sign bills into law or veto them, which means saying no. The president is the Commander in Chief of the military. As chief diplomat, the president works with other countries. The president also appoints federal judges, and the Senate must approve them.",
+    "keyWords": [
+      {
+        "en": "Signs bills into law",
+        "translation": "Signs bills into law"
+      },
+      {
+        "en": "Vetoes bills",
+        "translation": "Vetoes bills"
+      },
+      {
+        "en": "Enforces laws",
+        "translation": "Enforces laws"
+      },
+      {
+        "en": "Commander in Chief",
+        "translation": "Commander in Chief"
+      },
+      {
+        "en": "Appoints federal judges",
+        "translation": "Appoints federal judges"
+      }
+    ]
+  },
+  "Name one power that is only for the federal government.": {
+    "question": "Name one power that is only for the federal government.",
+    "answers": [
+      "Print paper money",
+      "Mint coins",
+      "Declare war",
+      "Create an army",
+      "Make treaties",
+      "Set foreign policy"
+    ],
+    "status": "draft",
+    "explanation": "The Constitution divides power between the federal (national) government and the states. Some powers belong only to the federal government. For example, only the federal government can print paper money and mint coins. Only it can declare war, create an army, and make treaties with other countries. This way, the country speaks with one voice to the world.",
+    "keyWords": [
+      {
+        "en": "federal government",
+        "translation": "federal government"
+      },
+      {
+        "en": "Print paper money",
+        "translation": "Print paper money"
+      },
+      {
+        "en": "Mint coins",
+        "translation": "Mint coins"
+      },
+      {
+        "en": "Make treaties",
+        "translation": "Make treaties"
+      },
+      {
+        "en": "foreign policy",
+        "translation": "foreign policy"
+      }
+    ]
+  },
+  "Name one power that is only for the states.": {
+    "question": "Name one power that is only for the states.",
+    "answers": [
+      "Provide schooling and education",
+      "Provide protection (police)",
+      "Provide safety (fire departments)",
+      "Give a driver’s license",
+      "Approve zoning and land use"
+    ],
+    "status": "draft",
+    "explanation": "Under the Constitution, some powers belong to the states, not the federal government. States provide schooling and education. They provide protection with police and safety with fire departments. States give driver's licenses. They also approve zoning and land use, which means deciding how land can be used.",
+    "keyWords": [
+      {
+        "en": "states",
+        "translation": "states"
+      },
+      {
+        "en": "schooling and education",
+        "translation": "schooling and education"
+      },
+      {
+        "en": "police",
+        "translation": "police"
+      },
+      {
+        "en": "fire departments",
+        "translation": "fire departments"
+      },
+      {
+        "en": "zoning",
+        "translation": "zoning"
+      }
+    ]
+  },
+  "Name one reason why the Americans declared independence from Britain.": {
+    "question": "Name one reason why the Americans declared independence from Britain.",
+    "answers": [
+      "High taxes",
+      "Taxation without representation",
+      "British soldiers stayed in Americans’ houses (boarding, quartering)",
+      "They did not have self-government",
+      "Boston Massacre",
+      "Boston Tea Party (Tea Act)",
+      "Stamp Act",
+      "Sugar Act",
+      "Townshend Acts",
+      "Intolerable (Coercive) Acts"
+    ],
+    "status": "draft",
+    "explanation": "In the 1760s and 1770s, Britain made the American colonies pay new taxes, such as the Stamp Act and the Sugar Act. The colonists had no representatives in the British Parliament, so they said this was \"taxation without representation.\" British soldiers stayed in Americans' houses, and the colonists did not have self-government. Events like the Boston Massacre (1770) and the Boston Tea Party (1773) increased the anger. In 1776, the colonies declared independence.",
+    "keyWords": [
+      {
+        "en": "independence",
+        "translation": "independence"
+      },
+      {
+        "en": "High taxes",
+        "translation": "High taxes"
+      },
+      {
+        "en": "Taxation without representation",
+        "translation": "Taxation without representation"
+      },
+      {
+        "en": "self-government",
+        "translation": "self-government"
+      },
+      {
+        "en": "Boston Tea Party",
+        "translation": "Boston Tea Party"
+      }
+    ]
+  },
+  "Name one thing the U.S. Constitution does.": {
+    "question": "Name one thing the U.S. Constitution does.",
+    "answers": [
+      "Forms the government",
+      "Defines powers of government",
+      "Defines the parts of government",
+      "Protects the rights of the people"
+    ],
+    "status": "draft",
+    "explanation": "The U.S. Constitution was written in 1787. It forms the government of the United States. It defines the parts of government: the legislative, executive, and judicial branches. It defines the powers of each part and sets limits on them. It also protects the rights of the people.",
+    "keyWords": [
+      {
+        "en": "Constitution",
+        "translation": "Constitution"
+      },
+      {
+        "en": "Forms the government",
+        "translation": "Forms the government"
+      },
+      {
+        "en": "Defines powers",
+        "translation": "Defines powers"
+      },
+      {
+        "en": "Protects the rights",
+        "translation": "Protects the rights"
+      }
+    ]
+  },
+  "Name one war fought by the United States in the 1800s.": {
+    "question": "Name one war fought by the United States in the 1800s.",
+    "answers": [
+      "War of 1812",
+      "Mexican-American War",
+      "Civil War",
+      "Spanish-American War"
+    ],
+    "status": "draft",
+    "explanation": "In the 1800s, the United States fought several wars. The War of 1812 was against Great Britain. The Mexican-American War was fought from 1846 to 1848. The Civil War (1861–1865) was fought inside the country, and the Spanish-American War was in 1898. You can name any one of these four wars.",
+    "keyWords": [
+      {
+        "en": "war",
+        "translation": "war"
+      },
+      {
+        "en": "1800s",
+        "translation": "1800s"
+      },
+      {
+        "en": "Civil War",
+        "translation": "Civil War"
+      },
+      {
+        "en": "War of 1812",
+        "translation": "War of 1812"
+      }
+    ]
+  },
+  "Name one war fought by the United States in the 1900s.": {
+    "question": "Name one war fought by the United States in the 1900s.",
+    "answers": [
+      "World War I",
+      "World War II",
+      "Korean War",
+      "Vietnam War",
+      "(Persian) Gulf War"
+    ],
+    "status": "draft",
+    "explanation": "In the 1900s, the United States fought in several big wars. World War I and World War II involved many countries around the world. The Korean War started in 1950, and the Vietnam War lasted many years. The Gulf War, also called the Persian Gulf War, was in 1991. You can name any one of these wars.",
+    "keyWords": [
+      {
+        "en": "1900s",
+        "translation": "1900s"
+      },
+      {
+        "en": "World War II",
+        "translation": "World War II"
+      },
+      {
+        "en": "Korean War",
+        "translation": "Korean War"
+      },
+      {
+        "en": "Vietnam War",
+        "translation": "Vietnam War"
+      }
+    ]
+  },
+  "Name the U.S. war between the North and the South.": {
+    "question": "Name the U.S. war between the North and the South.",
+    "answers": [
+      "The Civil War"
+    ],
+    "status": "draft",
+    "explanation": "The war between the North and the South was the Civil War. It lasted from 1861 to 1865. Several Southern states left the Union and formed the Confederacy. The North (the Union) won, and the country stayed together.",
+    "keyWords": [
+      {
+        "en": "North",
+        "translation": "North"
+      },
+      {
+        "en": "South",
+        "translation": "South"
+      },
+      {
+        "en": "Civil War",
+        "translation": "Civil War"
+      }
+    ]
+  },
+  "Name the three branches of government.": {
+    "question": "Name the three branches of government.",
+    "answers": [
+      "Legislative, executive, and judicial",
+      "Congress, president, and the courts"
+    ],
+    "status": "draft",
+    "explanation": "The U.S. government has three branches, or parts. The legislative branch is Congress, and it makes the laws. The executive branch is led by the president, and it carries out the laws. The judicial branch is the courts, and it explains the laws. You can say the three branches by their names or by who leads them.",
+    "keyWords": [
+      {
+        "en": "branches",
+        "translation": "branches"
+      },
+      {
+        "en": "legislative",
+        "translation": "legislative"
+      },
+      {
+        "en": "executive",
+        "translation": "executive"
+      },
+      {
+        "en": "judicial",
+        "translation": "judicial"
+      },
+      {
+        "en": "courts",
+        "translation": "courts"
+      }
+    ]
+  },
+  "Name three national U.S. holidays.": {
+    "question": "Name three national U.S. holidays.",
+    "answers": [
+      "New Year’s Day",
+      "Martin Luther King, Jr. Day",
+      "Presidents Day (Washington’s Birthday)",
+      "Memorial Day",
+      "Juneteenth",
+      "Independence Day",
+      "Labor Day",
+      "Columbus Day",
+      "Veterans Day",
+      "Thanksgiving Day",
+      "Christmas Day"
+    ],
+    "status": "draft",
+    "explanation": "National holidays are special days for the whole country. Many government offices and banks close on these days. Some holidays honor people, like Martin Luther King, Jr. Day and Presidents Day. Independence Day, on July 4, celebrates the birthday of the nation. You need to name three holidays from the official list.",
+    "keyWords": [
+      {
+        "en": "holidays",
+        "translation": "holidays"
+      },
+      {
+        "en": "Independence Day",
+        "translation": "Independence Day"
+      },
+      {
+        "en": "Thanksgiving Day",
+        "translation": "Thanksgiving Day"
+      },
+      {
+        "en": "Labor Day",
+        "translation": "Labor Day"
+      }
+    ]
+  },
+  "Name two important ideas from the Declaration of Independence and the U.S. Constitution.": {
+    "question": "Name two important ideas from the Declaration of Independence and the U.S. Constitution.",
+    "answers": [
+      "Equality",
+      "Liberty",
+      "Social contract",
+      "Natural rights",
+      "Limited government",
+      "Self-government"
+    ],
+    "status": "draft",
+    "explanation": "The Declaration of Independence and the Constitution share some big ideas. Equality means all people have the same basic worth. Liberty means freedom. Limited government means the government has only the powers the people give it. You need to name two of the ideas on the official list.",
+    "keyWords": [
+      {
+        "en": "Equality",
+        "translation": "Equality"
+      },
+      {
+        "en": "Liberty",
+        "translation": "Liberty"
+      },
+      {
+        "en": "Natural rights",
+        "translation": "Natural rights"
+      },
+      {
+        "en": "Limited government",
+        "translation": "Limited government"
+      },
+      {
+        "en": "Self-government",
+        "translation": "Self-government"
+      }
+    ]
+  },
+  "Name two promises that new citizens make in the Oath of Allegiance.": {
+    "question": "Name two promises that new citizens make in the Oath of Allegiance.",
+    "answers": [
+      "Give up loyalty to other countries",
+      "Defend the (U.S.) Constitution",
+      "Obey the laws of the United States",
+      "Serve in the military (if needed)",
+      "Serve (help, do important work for) the nation (if needed)",
+      "Be loyal to the United States"
+    ],
+    "status": "draft",
+    "explanation": "At the naturalization ceremony, new citizens say the Oath of Allegiance. An oath is a serious, formal promise. In it, new citizens promise to be loyal to the United States and to support and defend the Constitution. They also promise to obey the laws and to serve the nation if needed. You need to name two promises from the official list.",
+    "keyWords": [
+      {
+        "en": "Oath of Allegiance",
+        "translation": "Oath of Allegiance"
+      },
+      {
+        "en": "promises",
+        "translation": "promises"
+      },
+      {
+        "en": "loyal",
+        "translation": "loyal"
+      },
+      {
+        "en": "Defend",
+        "translation": "Defend"
+      },
+      {
+        "en": "Obey the laws",
+        "translation": "Obey the laws"
+      }
+    ]
+  },
+  "Name your U.S. representative.": {
+    "question": "Name your U.S. representative.",
+    "answers": [
+      "Answers vary by where you live."
+    ],
+    "status": "draft",
+    "explanation": "Your U.S. representative is the person who represents your area in the House of Representatives. Each state is divided into districts, and each district elects one representative. Representatives are elected for two-year terms. The answer depends on where you live, so find the representative for your own district before your interview. You can use the app’s \"Find My Representative\" tool.",
+    "keyWords": [
+      {
+        "en": "representative",
+        "translation": "representative"
+      },
+      {
+        "en": "where you live",
+        "translation": "where you live"
+      }
+    ]
+  },
+  "Some states have more representatives than other states. Why?": {
+    "question": "Some states have more representatives than other states. Why?",
+    "answers": [
+      "(Because of) the state’s population",
+      "(Because) they have more people",
+      "(Because) some states have more people"
+    ],
+    "status": "draft",
+    "explanation": "The number of representatives for each state depends on how many people live there. States with more people have more representatives in the House. Every 10 years, the census counts the people in the country. After the census, the number of representatives for each state can change. Every state has at least one representative.",
+    "keyWords": [
+      {
+        "en": "representatives",
+        "translation": "representatives"
+      },
+      {
+        "en": "population",
+        "translation": "population"
+      },
+      {
+        "en": "more people",
+        "translation": "more people"
+      }
+    ]
+  },
+  "Supreme Court justices serve for life. Why?": {
+    "question": "Supreme Court justices serve for life. Why?",
+    "answers": [
+      "To be independent (of politics)",
+      "To limit outside (political) influence"
+    ],
+    "status": "draft",
+    "explanation": "Supreme Court justices are the judges on the highest court in the country. The president chooses them, and the Senate must approve them. After that, they can serve for the rest of their lives. Because they do not need to win elections or worry about losing their jobs, they can decide cases fairly. This keeps the court independent from politics.",
+    "keyWords": [
+      {
+        "en": "Supreme Court",
+        "translation": "Supreme Court"
+      },
+      {
+        "en": "justices",
+        "translation": "justices"
+      },
+      {
+        "en": "for life",
+        "translation": "for life"
+      },
+      {
+        "en": "independent",
+        "translation": "independent"
+      },
+      {
+        "en": "influence",
+        "translation": "influence"
+      }
+    ]
+  },
+  "The American Revolution had many important events. Name one.": {
+    "question": "The American Revolution had many important events. Name one.",
+    "answers": [
+      "(Battle of) Bunker Hill",
+      "Declaration of Independence",
+      "Washington Crossing the Delaware (Battle of Trenton)",
+      "(Battle of) Saratoga",
+      "Valley Forge (Encampment)",
+      "(Battle of) Yorktown (British surrender at Yorktown)"
+    ],
+    "status": "draft",
+    "explanation": "The American Revolution was the war for independence from Great Britain. The Battle of Bunker Hill was in 1775, and the Declaration of Independence was signed in 1776. George Washington’s army spent a hard winter at Valley Forge in 1777–1778. The British army surrendered at Yorktown in 1781. You can name any one event from the official list.",
+    "keyWords": [
+      {
+        "en": "American Revolution",
+        "translation": "American Revolution"
+      },
+      {
+        "en": "Battle",
+        "translation": "Battle"
+      },
+      {
+        "en": "Declaration of Independence",
+        "translation": "Declaration of Independence"
+      },
+      {
+        "en": "British surrender",
+        "translation": "British surrender"
+      }
+    ]
+  },
+  "The Civil War had many important events. Name one.": {
+    "question": "The Civil War had many important events. Name one.",
+    "answers": [
+      "(Battle of) Fort Sumter",
+      "Emancipation Proclamation",
+      "(Battle of) Vicksburg",
+      "(Battle of) Gettysburg",
+      "Sherman’s March",
+      "(Surrender at) Appomattox",
+      "(Battle of) Antietam/Sharpsburg",
+      "Lincoln was assassinated."
+    ],
+    "status": "draft",
+    "explanation": "The Civil War started in 1861 with the attack on Fort Sumter. In 1863, President Lincoln issued the Emancipation Proclamation, and the Union won at Gettysburg and Vicksburg. The war ended in 1865 when the South surrendered at Appomattox. Soon after, President Lincoln was assassinated. You can name any one event from the official list.",
+    "keyWords": [
+      {
+        "en": "Civil War",
+        "translation": "Civil War"
+      },
+      {
+        "en": "events",
+        "translation": "events"
+      },
+      {
+        "en": "Emancipation Proclamation",
+        "translation": "Emancipation Proclamation"
+      },
+      {
+        "en": "Surrender",
+        "translation": "Surrender"
+      },
+      {
+        "en": "assassinated",
+        "translation": "assassinated"
+      }
+    ]
+  },
+  "The Federalist Papers supported the passage of the U.S. Constitution. Name one of the writers.": {
+    "question": "The Federalist Papers supported the passage of the U.S. Constitution. Name one of the writers.",
+    "answers": [
+      "(James) Madison",
+      "(Alexander) Hamilton",
+      "(John) Jay",
+      "Publius"
+    ],
+    "status": "draft",
+    "explanation": "The Federalist Papers were 85 essays written in 1787 and 1788. They asked the people to support the new Constitution. Three men wrote them: James Madison, Alexander Hamilton, and John Jay. They all signed the essays with one shared pen name, “Publius.” You can name any one of the writers or say “Publius.”",
+    "keyWords": [
+      {
+        "en": "Federalist Papers",
+        "translation": "Federalist Papers"
+      },
+      {
+        "en": "writers",
+        "translation": "writers"
+      },
+      {
+        "en": "Constitution",
+        "translation": "Constitution"
+      },
+      {
+        "en": "Madison",
+        "translation": "Madison"
+      }
+    ]
+  },
+  "The Nation’s first motto was “E Pluribus Unum.” What does that mean?": {
+    "question": "The Nation’s first motto was “E Pluribus Unum.” What does that mean?",
+    "answers": [
+      "Out of many, one",
+      "We all become one"
+    ],
+    "status": "draft",
+    "explanation": "“E Pluribus Unum” is Latin. It means “Out of many, one.” At first, it described 13 separate colonies joining together to make one nation. Today it also reminds us that people from many backgrounds become one country. You can see these words on the Great Seal and on U.S. coins.",
+    "keyWords": [
+      {
+        "en": "motto",
+        "translation": "motto"
+      },
+      {
+        "en": "E Pluribus Unum",
+        "translation": "E Pluribus Unum"
+      },
+      {
+        "en": "Out of many, one",
+        "translation": "Out of many, one"
+      }
+    ]
+  },
+  "The President of the United States can serve only two terms. Why?": {
+    "question": "The President of the United States can serve only two terms. Why?",
+    "answers": [
+      "(Because of) the 22nd Amendment",
+      "To keep the president from becoming too powerful"
+    ],
+    "status": "draft",
+    "explanation": "A president can be elected only two times. This rule comes from the 22nd Amendment to the Constitution, added in 1951. Before that, President Franklin D. Roosevelt was elected four times. The limit helps keep one person from staying in power too long or becoming too powerful.",
+    "keyWords": [
+      {
+        "en": "two terms",
+        "translation": "two terms"
+      },
+      {
+        "en": "22nd Amendment",
+        "translation": "22nd Amendment"
+      },
+      {
+        "en": "too powerful",
+        "translation": "too powerful"
+      }
+    ]
+  },
+  "The President of the United States is elected for how many years?": {
+    "question": "The President of the United States is elected for how many years?",
+    "answers": [
+      "Four (4) years"
+    ],
+    "status": "draft",
+    "explanation": "The president is elected for a term of four years. Presidential elections happen every four years, in November. A new president takes office in January after the election. A president can be elected for a second four-year term.",
+    "keyWords": [
+      {
+        "en": "elected",
+        "translation": "elected"
+      },
+      {
+        "en": "years",
+        "translation": "years"
+      },
+      {
+        "en": "Four",
+        "translation": "Four"
+      }
+    ]
+  },
+  "The President of the United States is in charge of which branch of government?": {
+    "question": "The President of the United States is in charge of which branch of government?",
+    "answers": [
+      "Executive branch"
+    ],
+    "status": "draft",
+    "explanation": "The president is in charge of the executive branch. This branch carries out and enforces the laws that Congress makes. The vice president, the Cabinet, and many federal departments and agencies are also part of this branch. They all work under the president.",
+    "keyWords": [
+      {
+        "en": "in charge of",
+        "translation": "in charge of"
+      },
+      {
+        "en": "Executive branch",
+        "translation": "Executive branch"
+      },
+      {
+        "en": "branch of government",
+        "translation": "branch of government"
+      }
+    ]
+  },
+  "The U.S. Constitution starts with the words “We the People.” What does “We the People” mean?": {
+    "question": "The U.S. Constitution starts with the words “We the People.” What does “We the People” mean?",
+    "answers": [
+      "Self-government",
+      "Popular sovereignty",
+      "Consent of the governed",
+      "People should govern themselves",
+      "(Example of) social contract"
+    ],
+    "status": "draft",
+    "explanation": "The Constitution begins with the words “We the People.” This shows that the power of the government comes from the people. The people choose their leaders, and the government needs the consent, or agreement, of the people. This idea is called self-government or popular sovereignty.",
+    "keyWords": [
+      {
+        "en": "We the People",
+        "translation": "We the People"
+      },
+      {
+        "en": "Self-government",
+        "translation": "Self-government"
+      },
+      {
+        "en": "Popular sovereignty",
+        "translation": "Popular sovereignty"
+      },
+      {
+        "en": "Consent of the governed",
+        "translation": "Consent of the governed"
+      }
+    ]
+  },
+  "The colonists came to America for many reasons. Name one.": {
+    "question": "The colonists came to America for many reasons. Name one.",
+    "answers": [
+      "Freedom",
+      "Political liberty",
+      "Religious freedom",
+      "Economic opportunity",
+      "Escape persecution"
+    ],
+    "status": "draft",
+    "explanation": "Colonists were people from Europe who came to live in America in the 1600s and 1700s. Many wanted freedom, including the freedom to practice their religion. Some wanted to escape persecution, which means being treated badly because of who they are or what they believe. Others came for economic opportunity, like land and work. You can name any one reason from the official list.",
+    "keyWords": [
+      {
+        "en": "colonists",
+        "translation": "colonists"
+      },
+      {
+        "en": "Religious freedom",
+        "translation": "Religious freedom"
+      },
+      {
+        "en": "Economic opportunity",
+        "translation": "Economic opportunity"
+      },
+      {
+        "en": "Escape persecution",
+        "translation": "Escape persecution"
+      }
+    ]
+  },
+  "The executive branch has many parts. Name one.": {
+    "question": "The executive branch has many parts. Name one.",
+    "answers": [
+      "President (of the United States)",
+      "Cabinet",
+      "Federal departments and agencies"
+    ],
+    "status": "draft",
+    "explanation": "The executive branch carries out the laws of the country. The president leads it. The Cabinet is a group of top advisers who help the president. Federal departments and agencies do the daily work of the government. You can name any one of these parts.",
+    "keyWords": [
+      {
+        "en": "executive branch",
+        "translation": "executive branch"
+      },
+      {
+        "en": "Cabinet",
+        "translation": "Cabinet"
+      },
+      {
+        "en": "Federal departments",
+        "translation": "Federal departments"
+      },
+      {
+        "en": "agencies",
+        "translation": "agencies"
+      }
+    ]
+  },
+  "The words “Life, Liberty, and the pursuit of Happiness” are in what founding document?": {
+    "question": "The words “Life, Liberty, and the pursuit of Happiness” are in what founding document?",
+    "answers": [
+      "Declaration of Independence"
+    ],
+    "status": "draft",
+    "explanation": "The words “Life, Liberty, and the pursuit of Happiness” are in the Declaration of Independence. Thomas Jefferson wrote most of this document, and it was adopted on July 4, 1776. These words describe rights that all people have. “Pursuit” means trying to reach something.",
+    "keyWords": [
+      {
+        "en": "Liberty",
+        "translation": "Liberty"
+      },
+      {
+        "en": "pursuit of Happiness",
+        "translation": "pursuit of Happiness"
+      },
+      {
+        "en": "founding document",
+        "translation": "founding document"
+      },
+      {
+        "en": "Declaration of Independence",
+        "translation": "Declaration of Independence"
+      }
+    ]
+  },
+  "There are four amendments to the U.S. Constitution about who can vote. Describe one of them.": {
+    "question": "There are four amendments to the U.S. Constitution about who can vote. Describe one of them.",
+    "answers": [
+      "Citizens eighteen (18) and older (can vote).",
+      "You don’t have to pay (a poll tax) to vote.",
+      "Any citizen can vote. (Women and men can vote.)",
+      "A male citizen of any race (can vote)."
+    ],
+    "status": "draft",
+    "explanation": "Over time, four amendments made voting open to more citizens. The 15th Amendment (1870) says a male citizen of any race can vote. The 19th Amendment (1920) gave women the right to vote. The 24th Amendment (1964) ended poll taxes, so you do not have to pay to vote. The 26th Amendment (1971) lets citizens 18 and older vote.",
+    "keyWords": [
+      {
+        "en": "amendments",
+        "translation": "amendments"
+      },
+      {
+        "en": "vote",
+        "translation": "vote"
+      },
+      {
+        "en": "poll tax",
+        "translation": "poll tax"
+      },
+      {
+        "en": "eighteen",
+        "translation": "eighteen"
+      },
+      {
+        "en": "any race",
+        "translation": "any race"
+      }
+    ]
+  },
+  "There are three branches of government. Why?": {
+    "question": "There are three branches of government. Why?",
+    "answers": [
+      "So one part does not become too powerful",
+      "Checks and balances",
+      "Separation of powers"
+    ],
+    "status": "draft",
+    "explanation": "The government has three branches so that no one part becomes too powerful. This is called separation of powers. Each branch can also limit the other branches. This is called checks and balances. For example, the president can veto a law, and the courts can decide that a law goes against the Constitution.",
+    "keyWords": [
+      {
+        "en": "branches",
+        "translation": "branches"
+      },
+      {
+        "en": "too powerful",
+        "translation": "too powerful"
+      },
+      {
+        "en": "Checks and balances",
+        "translation": "Checks and balances"
+      },
+      {
+        "en": "Separation of powers",
+        "translation": "Separation of powers"
+      }
+    ]
+  },
+  "There were 13 original states. Name five.": {
+    "question": "There were 13 original states. Name five.",
+    "answers": [
+      "New Hampshire",
+      "Massachusetts",
+      "Rhode Island",
+      "Connecticut",
+      "New York",
+      "New Jersey",
+      "Pennsylvania",
+      "Delaware",
+      "Maryland",
+      "Virginia",
+      "North Carolina",
+      "South Carolina",
+      "Georgia"
+    ],
+    "status": "draft",
+    "explanation": "The 13 original states were the 13 British colonies that declared independence in 1776. They were all along the Atlantic coast, in the eastern part of the country. Some are in the North, like New York and Massachusetts. Others are in the South, like Virginia and Georgia. You need to name five of them.",
+    "keyWords": [
+      {
+        "en": "original states",
+        "translation": "original states"
+      },
+      {
+        "en": "New York",
+        "translation": "New York"
+      },
+      {
+        "en": "Virginia",
+        "translation": "Virginia"
+      },
+      {
+        "en": "Massachusetts",
+        "translation": "Massachusetts"
+      }
+    ]
+  },
+  "Thomas Jefferson is famous for many things. Name one.": {
+    "question": "Thomas Jefferson is famous for many things. Name one.",
+    "answers": [
+      "Writer of the Declaration of Independence",
+      "Third president of the United States",
+      "Doubled the size of the United States (Louisiana Purchase)",
+      "First Secretary of State",
+      "Founded the University of Virginia",
+      "Writer of the Virginia Statute on Religious Freedom"
+    ],
+    "status": "draft",
+    "explanation": "Thomas Jefferson was one of the Founding Fathers. He was the main writer of the Declaration of Independence in 1776. He was the first Secretary of State and the third president of the United States. As president, he bought the Louisiana Territory from France in 1803, which doubled the size of the country. You can name any one fact from the official list.",
+    "keyWords": [
+      {
+        "en": "Thomas Jefferson",
+        "translation": "Thomas Jefferson"
+      },
+      {
+        "en": "Declaration of Independence",
+        "translation": "Declaration of Independence"
+      },
+      {
+        "en": "Third president",
+        "translation": "Third president"
+      },
+      {
+        "en": "Louisiana Purchase",
+        "translation": "Louisiana Purchase"
+      }
+    ]
+  },
+  "What U.S. war ended slavery?": {
+    "question": "What U.S. war ended slavery?",
+    "answers": [
+      "The Civil War"
+    ],
+    "status": "draft",
+    "explanation": "The Civil War (1861–1865) ended slavery in the United States. Slavery was one of the main causes of the war between the North and the South. During the war, President Lincoln issued the Emancipation Proclamation. In 1865, the 13th Amendment ended slavery in the whole country.",
+    "keyWords": [
+      {
+        "en": "war",
+        "translation": "war"
+      },
+      {
+        "en": "slavery",
+        "translation": "slavery"
+      },
+      {
+        "en": "Civil War",
+        "translation": "Civil War"
+      }
+    ]
+  },
+  "What amendment says all persons born or naturalized in the United States, and subject to the jurisdiction thereof, are U.S. citizens?": {
+    "question": "What amendment says all persons born or naturalized in the United States, and subject to the jurisdiction thereof, are U.S. citizens?",
+    "answers": [
+      "14th Amendment"
+    ],
+    "status": "draft",
+    "explanation": "The 14th Amendment was added to the Constitution in 1868, after the Civil War. It says that people born in the United States, or naturalized here, are U.S. citizens. “Naturalized” means a person became a citizen through the legal process, like the one you are studying for. The amendment also promises all citizens equal protection of the laws.",
+    "keyWords": [
+      {
+        "en": "amendment",
+        "translation": "amendment"
+      },
+      {
+        "en": "born",
+        "translation": "born"
+      },
+      {
+        "en": "naturalized",
+        "translation": "naturalized"
+      },
+      {
+        "en": "citizens",
+        "translation": "citizens"
+      },
+      {
+        "en": "14th Amendment",
+        "translation": "14th Amendment"
+      }
+    ]
+  },
+  "What are the two parts of the U.S. Congress?": {
+    "question": "What are the two parts of the U.S. Congress?",
+    "answers": [
+      "Senate and House (of Representatives)"
+    ],
+    "status": "draft",
+    "explanation": "Congress is the legislative branch, which makes federal laws. It has two parts: the Senate and the House of Representatives. The Senate has 100 senators, two from each state. The House has 435 voting members, and states with more people have more of them. A bill must pass both parts before it can become a law.",
+    "keyWords": [
+      {
+        "en": "Congress",
+        "translation": "Congress"
+      },
+      {
+        "en": "Senate",
+        "translation": "Senate"
+      },
+      {
+        "en": "House",
+        "translation": "House"
+      },
+      {
+        "en": "Representatives",
+        "translation": "Representatives"
+      }
+    ]
+  },
+  "What are three rights of everyone living in the United States?": {
+    "question": "What are three rights of everyone living in the United States?",
+    "answers": [
+      "Freedom of expression",
+      "Freedom of speech",
+      "Freedom of assembly",
+      "Freedom to petition the government",
+      "Freedom of religion",
+      "The right to bear arms"
+    ],
+    "status": "draft",
+    "explanation": "Some rights belong to everyone living in the United States, not only to citizens. Many of these rights come from the First Amendment, like freedom of speech, freedom of religion, and freedom of assembly. Assembly means meeting together in a group. The right to bear arms comes from the Second Amendment. You need to name three rights from the official list.",
+    "keyWords": [
+      {
+        "en": "rights",
+        "translation": "rights"
+      },
+      {
+        "en": "Freedom of speech",
+        "translation": "Freedom of speech"
+      },
+      {
+        "en": "Freedom of religion",
+        "translation": "Freedom of religion"
+      },
+      {
+        "en": "assembly",
+        "translation": "assembly"
+      },
+      {
+        "en": "bear arms",
+        "translation": "bear arms"
+      }
+    ]
+  },
+  "What are two Cabinet-level positions?": {
+    "question": "What are two Cabinet-level positions?",
+    "answers": [
+      "Attorney General",
+      "Secretary of Agriculture",
+      "Secretary of Commerce",
+      "Secretary of Education",
+      "Secretary of Energy",
+      "Secretary of Health and Human Services",
+      "Secretary of Homeland Security",
+      "Secretary of Housing and Urban Development",
+      "Secretary of the Interior",
+      "Secretary of Labor",
+      "Secretary of State",
+      "Secretary of Transportation",
+      "Secretary of the Treasury",
+      "Secretary of Veterans Affairs",
+      "Secretary of War (Defense)",
+      "Vice-President",
+      "Administrator of the Environmental Protection Agency",
+      "Administrator of the Small Business Administration",
+      "Director of the Central Intelligence Agency",
+      "Director of the Office of Management and Budget",
+      "Director of National Intelligence",
+      "United States Trade Representative"
+    ],
+    "status": "draft",
+    "explanation": "The Cabinet is a group of top leaders who advise the president. Most of them lead a federal department, like the Secretary of State or the Secretary of the Treasury. The Attorney General leads the Department of Justice. The vice president is also part of the Cabinet. You need to name two positions from the official list.",
+    "keyWords": [
+      {
+        "en": "Cabinet",
+        "translation": "Cabinet"
+      },
+      {
+        "en": "positions",
+        "translation": "positions"
+      },
+      {
+        "en": "Secretary of State",
+        "translation": "Secretary of State"
+      },
+      {
+        "en": "Attorney General",
+        "translation": "Attorney General"
+      },
+      {
+        "en": "Vice-President",
+        "translation": "Vice-President"
+      }
+    ]
+  },
+  "What are two examples of civic participation in the United States?": {
+    "question": "What are two examples of civic participation in the United States?",
+    "answers": [
+      "Vote",
+      "Run for office",
+      "Join a political party",
+      "Help with a campaign",
+      "Join a civic group",
+      "Join a community group",
+      "Give an elected official your opinion (on an issue)",
+      "Contact elected officials",
+      "Support or oppose an issue or policy",
+      "Write to a newspaper"
+    ],
+    "status": "draft",
+    "explanation": "Civic participation means taking part in the life of your community and your country. Voting is one important way to participate. People also join community groups, help with campaigns, or run for office. You can also contact elected officials to share your opinion on an issue. You need to name two examples from the official list.",
+    "keyWords": [
+      {
+        "en": "civic participation",
+        "translation": "civic participation"
+      },
+      {
+        "en": "Vote",
+        "translation": "Vote"
+      },
+      {
+        "en": "Run for office",
+        "translation": "Run for office"
+      },
+      {
+        "en": "Contact elected officials",
+        "translation": "Contact elected officials"
+      }
+    ]
+  },
+  "What did the Emancipation Proclamation do?": {
+    "question": "What did the Emancipation Proclamation do?",
+    "answers": [
+      "Freed the slaves",
+      "Freed slaves in the Confederacy",
+      "Freed slaves in the Confederate states",
+      "Freed slaves in most Southern states"
+    ],
+    "status": "draft",
+    "explanation": "President Abraham Lincoln issued the Emancipation Proclamation on January 1, 1863, during the Civil War. “Emancipation” means being made free. The proclamation freed the slaves in the Confederate states, which were fighting against the Union. Later, in 1865, the 13th Amendment ended slavery in the whole country.",
+    "keyWords": [
+      {
+        "en": "Emancipation Proclamation",
+        "translation": "Emancipation Proclamation"
+      },
+      {
+        "en": "Freed",
+        "translation": "Freed"
+      },
+      {
+        "en": "slaves",
+        "translation": "slaves"
+      },
+      {
+        "en": "Confederate states",
+        "translation": "Confederate states"
+      }
+    ]
+  },
+  "What did the civil rights movement do?": {
+    "question": "What did the civil rights movement do?",
+    "answers": [
+      "Fought to end racial discrimination"
+    ],
+    "status": "draft",
+    "explanation": "The civil rights movement was a large effort by many Americans, mostly in the 1950s and 1960s. Black Americans and their supporters worked to end racial discrimination, which means treating people unfairly because of their race. They held peaceful marches, protests, and boycotts. Dr. Martin Luther King, Jr. was one of its most famous leaders. The movement helped bring new laws, such as the Civil Rights Act of 1964.",
+    "keyWords": [
+      {
+        "en": "civil rights movement",
+        "translation": "civil rights movement"
+      },
+      {
+        "en": "racial discrimination",
+        "translation": "racial discrimination"
+      },
+      {
+        "en": "fought",
+        "translation": "fought"
+      }
+    ]
+  },
+  "What do we show loyalty to when we say the Pledge of Allegiance?": {
+    "question": "What do we show loyalty to when we say the Pledge of Allegiance?",
+    "answers": [
+      "The United States",
+      "The flag"
+    ],
+    "status": "draft",
+    "explanation": "The Pledge of Allegiance is a short promise of loyalty. People often say it while standing and facing the flag, with the right hand over the heart. When you say it, you show loyalty to the United States and to the flag. You can give either of these two answers.",
+    "keyWords": [
+      {
+        "en": "loyalty",
+        "translation": "loyalty"
+      },
+      {
+        "en": "Pledge of Allegiance",
+        "translation": "Pledge of Allegiance"
+      },
+      {
+        "en": "flag",
+        "translation": "flag"
+      }
+    ]
+  },
+  "What does the Bill of Rights protect?": {
+    "question": "What does the Bill of Rights protect?",
+    "answers": [
+      "(The basic) rights of Americans",
+      "(The basic) rights of people living in the United States"
+    ],
+    "status": "draft",
+    "explanation": "The Bill of Rights is the name for the first ten amendments (changes) to the Constitution. It was added in 1791. It protects the basic rights of Americans and of people living in the United States. Examples are freedom of speech, freedom of religion, and the right to a fair trial.",
+    "keyWords": [
+      {
+        "en": "Bill of Rights",
+        "translation": "Bill of Rights"
+      },
+      {
+        "en": "protect",
+        "translation": "protect"
+      },
+      {
+        "en": "basic",
+        "translation": "basic"
+      },
+      {
+        "en": "rights",
+        "translation": "rights"
+      }
+    ]
+  },
+  "What does the President’s Cabinet do?": {
+    "question": "What does the President’s Cabinet do?",
+    "answers": [
+      "Advises the President (of the United States)"
+    ],
+    "status": "draft",
+    "explanation": "The Cabinet is a group of top leaders in the executive branch. Most of them lead big government departments, such as the Department of State or the Department of Defense. The President chooses them, and the Senate must approve most of them. The Cabinet's job is to advise the President, which means to give the President advice and information.",
+    "keyWords": [
+      {
+        "en": "Cabinet",
+        "translation": "Cabinet"
+      },
+      {
+        "en": "advises",
+        "translation": "advises"
+      },
+      {
+        "en": "President",
+        "translation": "President"
+      }
+    ]
+  },
+  "What does the judicial branch do?": {
+    "question": "What does the judicial branch do?",
+    "answers": [
+      "Reviews laws",
+      "Explains laws",
+      "Resolves disputes (disagreements) about the law",
+      "Decides if a law goes against the (U.S.) Constitution"
+    ],
+    "status": "draft",
+    "explanation": "The judicial branch is the part of government made up of the courts. Judges review and explain laws. They also resolve disputes, or disagreements, about the law. The courts can decide if a law goes against the Constitution. You can give any one of these accepted answers.",
+    "keyWords": [
+      {
+        "en": "judicial branch",
+        "translation": "judicial branch"
+      },
+      {
+        "en": "Reviews laws",
+        "translation": "Reviews laws"
+      },
+      {
+        "en": "disputes",
+        "translation": "disputes"
+      },
+      {
+        "en": "Constitution",
+        "translation": "Constitution"
+      }
+    ]
+  },
+  "What founding document said the American colonies were free from Britain?": {
+    "question": "What founding document said the American colonies were free from Britain?",
+    "answers": [
+      "Declaration of Independence"
+    ],
+    "status": "draft",
+    "explanation": "In the 1700s, the American colonies were ruled by Britain. The colonists were unhappy with British laws and taxes. On July 4, 1776, leaders approved the Declaration of Independence. This document said the colonies were free from Britain. Thomas Jefferson was its main writer.",
+    "keyWords": [
+      {
+        "en": "Declaration of Independence",
+        "translation": "Declaration of Independence"
+      },
+      {
+        "en": "colonies",
+        "translation": "colonies"
+      },
+      {
+        "en": "free from Britain",
+        "translation": "free from Britain"
+      },
+      {
+        "en": "founding document",
+        "translation": "founding document"
+      }
+    ]
+  },
+  "What founding document was written in 1787?": {
+    "question": "What founding document was written in 1787?",
+    "answers": [
+      "(U.S.) Constitution"
+    ],
+    "status": "draft",
+    "explanation": "In 1787, leaders from the states met in Philadelphia at the Constitutional Convention. There they wrote the U.S. Constitution. It created the plan for the national government and its three branches. The Constitution is still the supreme law of the land today.",
+    "keyWords": [
+      {
+        "en": "Constitution",
+        "translation": "Constitution"
+      },
+      {
+        "en": "1787",
+        "translation": "1787"
+      },
+      {
+        "en": "written",
+        "translation": "written"
+      }
+    ]
+  },
+  "What group of people was taken and sold as slaves?": {
+    "question": "What group of people was taken and sold as slaves?",
+    "answers": [
+      "Africans",
+      "People from Africa"
+    ],
+    "status": "draft",
+    "explanation": "For more than 200 years, people from Africa were taken from their homes by force. They were brought to America on ships and sold as slaves. Enslaved people had to work without pay and had no freedom. Slavery in the United States ended in 1865 with the 13th Amendment.",
+    "keyWords": [
+      {
+        "en": "slaves",
+        "translation": "slaves"
+      },
+      {
+        "en": "Africans",
+        "translation": "Africans"
+      },
+      {
+        "en": "sold",
+        "translation": "sold"
+      },
+      {
+        "en": "taken",
+        "translation": "taken"
+      }
+    ]
+  },
+  "What is Independence Day?": {
+    "question": "What is Independence Day?",
+    "answers": [
+      "A holiday to celebrate U.S. independence (from Britain)",
+      "The country’s birthday"
+    ],
+    "status": "draft",
+    "explanation": "Independence Day is on July 4. It is a holiday to celebrate U.S. independence from Britain. On July 4, 1776, the Declaration of Independence was approved. That is why people call it the country's birthday. Many Americans celebrate with parades, family meals, and fireworks.",
+    "keyWords": [
+      {
+        "en": "Independence Day",
+        "translation": "Independence Day"
+      },
+      {
+        "en": "holiday",
+        "translation": "holiday"
+      },
+      {
+        "en": "celebrate",
+        "translation": "celebrate"
+      },
+      {
+        "en": "birthday",
+        "translation": "birthday"
+      }
+    ]
+  },
+  "What is Memorial Day?": {
+    "question": "What is Memorial Day?",
+    "answers": [
+      "A holiday to honor soldiers who died in military service"
+    ],
+    "status": "draft",
+    "explanation": "Memorial Day is a national holiday on the last Monday in May. It is a day to honor soldiers who died in military service. Many people visit cemeteries and place flags or flowers on graves. Do not confuse it with Veterans Day, which honors all people who have served.",
+    "keyWords": [
+      {
+        "en": "Memorial Day",
+        "translation": "Memorial Day"
+      },
+      {
+        "en": "honor",
+        "translation": "honor"
+      },
+      {
+        "en": "soldiers who died",
+        "translation": "soldiers who died"
+      },
+      {
+        "en": "military service",
+        "translation": "military service"
+      }
+    ]
+  },
+  "What is Veterans Day?": {
+    "question": "What is Veterans Day?",
+    "answers": [
+      "A holiday to honor people in the (U.S.) military",
+      "A holiday to honor people who have served (in the U.S. military)"
+    ],
+    "status": "draft",
+    "explanation": "Veterans Day is a national holiday on November 11. It honors people who have served in the U.S. military. A veteran is a person who served in the Army, Navy, Air Force, or another military service. Unlike Memorial Day, it honors all who served, both living and dead.",
+    "keyWords": [
+      {
+        "en": "Veterans Day",
+        "translation": "Veterans Day"
+      },
+      {
+        "en": "military",
+        "translation": "military"
+      },
+      {
+        "en": "served",
+        "translation": "served"
+      },
+      {
+        "en": "honor",
+        "translation": "honor"
+      }
+    ]
+  },
+  "What is one part of the judicial branch?": {
+    "question": "What is one part of the judicial branch?",
+    "answers": [
+      "Supreme Court",
+      "Federal Courts"
+    ],
+    "status": "draft",
+    "explanation": "The judicial branch is the system of courts. The Supreme Court is the highest court in the country. Below it are the other federal courts, which hear cases about federal law. You can name either the Supreme Court or the federal courts.",
+    "keyWords": [
+      {
+        "en": "judicial branch",
+        "translation": "judicial branch"
+      },
+      {
+        "en": "Supreme Court",
+        "translation": "Supreme Court"
+      },
+      {
+        "en": "Federal Courts",
+        "translation": "Federal Courts"
+      }
+    ]
+  },
+  "What is one way Americans can serve their country?": {
+    "question": "What is one way Americans can serve their country?",
+    "answers": [
+      "Vote",
+      "Pay taxes",
+      "Obey the law",
+      "Serve in the military",
+      "Run for office",
+      "Work for local, state, or federal government"
+    ],
+    "status": "draft",
+    "explanation": "There are many ways to serve, or help, your country. Some are duties for everyone, like paying taxes and obeying the law. Citizens can also vote and run for office. People can serve in the military or work for local, state, or federal government. You can give any one of these accepted answers.",
+    "keyWords": [
+      {
+        "en": "serve their country",
+        "translation": "serve their country"
+      },
+      {
+        "en": "Pay taxes",
+        "translation": "Pay taxes"
+      },
+      {
+        "en": "Obey the law",
+        "translation": "Obey the law"
+      },
+      {
+        "en": "Run for office",
+        "translation": "Run for office"
+      },
+      {
+        "en": "Vote",
+        "translation": "Vote"
+      }
+    ]
+  },
+  "What is the capital of the United States?": {
+    "question": "What is the capital of the United States?",
+    "answers": [
+      "Washington, D.C."
+    ],
+    "status": "draft",
+    "explanation": "The capital of the United States is Washington, D.C. \"D.C.\" means District of Columbia. It is not part of any state. The President, Congress, and the Supreme Court all work in Washington, D.C.",
+    "keyWords": [
+      {
+        "en": "capital",
+        "translation": "capital"
+      },
+      {
+        "en": "Washington, D.C.",
+        "translation": "Washington, D.C."
+      }
+    ]
+  },
+  "What is the capital of your state?": {
+    "question": "What is the capital of your state?",
+    "answers": [
+      "Answers vary by where you live."
+    ],
+    "status": "draft",
+    "explanation": "Each of the 50 states has its own capital city. The capital is where the state government works, including the governor and the state legislature. The answer depends on the state where you live. Find your own state's capital before your interview. The capital is not always the biggest city in the state.",
+    "keyWords": [
+      {
+        "en": "capital",
+        "translation": "capital"
+      },
+      {
+        "en": "your state",
+        "translation": "your state"
+      },
+      {
+        "en": "where you live",
+        "translation": "where you live"
+      }
+    ]
+  },
+  "What is the economic system of the United States?": {
+    "question": "What is the economic system of the United States?",
+    "answers": [
+      "Capitalism",
+      "Free market economy"
+    ],
+    "status": "draft",
+    "explanation": "The economic system of the United States is capitalism, also called a free market economy. In this system, people and private companies own most businesses. They decide what to make and sell, and prices are set mostly by buyers and sellers. You can give either answer.",
+    "keyWords": [
+      {
+        "en": "economic system",
+        "translation": "economic system"
+      },
+      {
+        "en": "Capitalism",
+        "translation": "Capitalism"
+      },
+      {
+        "en": "Free market economy",
+        "translation": "Free market economy"
+      }
+    ]
+  },
+  "What is the form of government of the United States?": {
+    "question": "What is the form of government of the United States?",
+    "answers": [
+      "Republic",
+      "Constitution-based federal republic",
+      "Representative democracy"
+    ],
+    "status": "draft",
+    "explanation": "The United States is a republic. In a republic, the people elect representatives to make decisions and laws for them. That is why it is also called a representative democracy. It is a federal republic based on the Constitution, so power is shared between the national government and the states. You can give any one of these accepted answers.",
+    "keyWords": [
+      {
+        "en": "form of government",
+        "translation": "form of government"
+      },
+      {
+        "en": "Republic",
+        "translation": "Republic"
+      },
+      {
+        "en": "Representative democracy",
+        "translation": "Representative democracy"
+      },
+      {
+        "en": "federal",
+        "translation": "federal"
+      }
+    ]
+  },
+  "What is the highest court in the United States?": {
+    "question": "What is the highest court in the United States?",
+    "answers": [
+      "Supreme Court"
+    ],
+    "status": "draft",
+    "explanation": "The Supreme Court is the highest court in the United States. It is part of the judicial branch. Its decisions are final, and other courts must follow them. Today the Supreme Court has nine justices, or judges.",
+    "keyWords": [
+      {
+        "en": "highest court",
+        "translation": "highest court"
+      },
+      {
+        "en": "Supreme Court",
+        "translation": "Supreme Court"
+      }
+    ]
+  },
+  "What is the name of the President of the United States now?": {
+    "question": "What is the name of the President of the United States now?",
+    "answers": [
+      "Answers change. Check uscis.gov for the current answer."
+    ],
+    "status": "draft",
+    "explanation": "The President is the head of the executive branch and leads the national government. Americans elect the President every four years. The person in this office can change after an election. Before your interview, check uscis.gov for the current answer and learn the name.",
+    "keyWords": [
+      {
+        "en": "President",
+        "translation": "President"
+      },
+      {
+        "en": "now",
+        "translation": "now"
+      },
+      {
+        "en": "uscis.gov",
+        "translation": "uscis.gov"
+      }
+    ]
+  },
+  "What is the name of the Speaker of the House of Representatives now?": {
+    "question": "What is the name of the Speaker of the House of Representatives now?",
+    "answers": [
+      "Answers change. Check uscis.gov for the current answer."
+    ],
+    "status": "draft",
+    "explanation": "The Speaker of the House leads the House of Representatives. The members of the House choose the Speaker by voting. The Speaker is second in line to become President, after the Vice President. The person in this role can change, so check uscis.gov for the current answer before your interview.",
+    "keyWords": [
+      {
+        "en": "Speaker",
+        "translation": "Speaker"
+      },
+      {
+        "en": "House of Representatives",
+        "translation": "House of Representatives"
+      },
+      {
+        "en": "uscis.gov",
+        "translation": "uscis.gov"
+      }
+    ]
+  },
+  "What is the name of the Vice President of the United States now?": {
+    "question": "What is the name of the Vice President of the United States now?",
+    "answers": [
+      "Answers change. Check uscis.gov for the current answer."
+    ],
+    "status": "draft",
+    "explanation": "The Vice President works with the President in the executive branch. If the President can no longer serve, the Vice President becomes President. The Vice President is also the President of the Senate. The person in this office can change after an election, so check uscis.gov for the current answer before your interview.",
+    "keyWords": [
+      {
+        "en": "Vice President",
+        "translation": "Vice President"
+      },
+      {
+        "en": "now",
+        "translation": "now"
+      },
+      {
+        "en": "uscis.gov",
+        "translation": "uscis.gov"
+      }
+    ]
+  },
+  "What is the name of the national anthem?": {
+    "question": "What is the name of the national anthem?",
+    "answers": [
+      "The Star-Spangled Banner"
+    ],
+    "status": "draft",
+    "explanation": "A national anthem is the official song of a country. The U.S. national anthem is \"The Star-Spangled Banner.\" Francis Scott Key wrote the words in 1814, during the War of 1812. He saw the American flag still flying over a fort after a battle. People usually stand when the song is played.",
+    "keyWords": [
+      {
+        "en": "national anthem",
+        "translation": "national anthem"
+      },
+      {
+        "en": "Star-Spangled Banner",
+        "translation": "Star-Spangled Banner"
+      }
+    ]
+  },
+  "What is the purpose of the 10th Amendment?": {
+    "question": "What is the purpose of the 10th Amendment?",
+    "answers": [
+      "(It states that the) powers not given to the federal government belong to the states or to the people."
+    ],
+    "status": "draft",
+    "explanation": "The 10th Amendment is part of the Bill of Rights. It says that powers not given to the federal government belong to the states or to the people. This limits the power of the national government. For example, states make many of their own rules about schools and driver's licenses.",
+    "keyWords": [
+      {
+        "en": "10th Amendment",
+        "translation": "10th Amendment"
+      },
+      {
+        "en": "powers",
+        "translation": "powers"
+      },
+      {
+        "en": "federal government",
+        "translation": "federal government"
+      },
+      {
+        "en": "states",
+        "translation": "states"
+      }
+    ]
+  },
+  "What is the rule of law?": {
+    "question": "What is the rule of law?",
+    "answers": [
+      "Everyone must follow the law.",
+      "Leaders must obey the law.",
+      "Government must obey the law.",
+      "No one is above the law."
+    ],
+    "status": "draft",
+    "explanation": "The rule of law means that everyone must follow the law. This includes regular people, leaders, and the government itself. No one is above the law, not even the President. You can give any one of these accepted answers.",
+    "keyWords": [
+      {
+        "en": "rule of law",
+        "translation": "rule of law"
+      },
+      {
+        "en": "obey",
+        "translation": "obey"
+      },
+      {
+        "en": "above the law",
+        "translation": "above the law"
+      },
+      {
+        "en": "Everyone",
+        "translation": "Everyone"
+      }
+    ]
+  },
+  "What is the supreme law of the land?": {
+    "question": "What is the supreme law of the land?",
+    "answers": [
+      "(U.S.) Constitution"
+    ],
+    "status": "draft",
+    "explanation": "The supreme law of the land is the U.S. Constitution. \"Supreme\" means highest. No other law in the country can go against it. All levels of government, federal, state, and local, must follow the Constitution.",
+    "keyWords": [
+      {
+        "en": "supreme law of the land",
+        "translation": "supreme law of the land"
+      },
+      {
+        "en": "Constitution",
+        "translation": "Constitution"
+      }
+    ]
+  },
+  "What major event happened on September 11, 2001 in the United States?": {
+    "question": "What major event happened on September 11, 2001 in the United States?",
+    "answers": [
+      "Terrorists attacked the United States",
+      "Terrorists took over two planes and crashed them into the World Trade Center in New York City",
+      "Terrorists took over a plane and crashed into the Pentagon in Arlington, Virginia",
+      "Terrorists took over a plane originally aimed at Washington, D.C., and crashed in a field in Pennsylvania"
+    ],
+    "status": "draft",
+    "explanation": "On September 11, 2001, terrorists attacked the United States and took over four passenger planes. Two planes crashed into the World Trade Center in New York City, and one crashed into the Pentagon in Arlington, Virginia. The fourth plane was aimed at Washington, D.C., but crashed in a field in Pennsylvania. Almost 3,000 people died. You can give any one of the accepted answers.",
+    "keyWords": [
+      {
+        "en": "Terrorists attacked",
+        "translation": "Terrorists attacked"
+      },
+      {
+        "en": "World Trade Center",
+        "translation": "World Trade Center"
+      },
+      {
+        "en": "Pentagon",
+        "translation": "Pentagon"
+      },
+      {
+        "en": "September 11, 2001",
+        "translation": "September 11, 2001"
+      }
+    ]
+  },
+  "What part of the federal government writes laws?": {
+    "question": "What part of the federal government writes laws?",
+    "answers": [
+      "(U.S.) Congress",
+      "(U.S. or national) legislature",
+      "Legislative branch"
+    ],
+    "status": "draft",
+    "explanation": "Congress is the legislative branch of the federal government. Its main job is to write laws. Congress has two parts: the Senate and the House of Representatives. A bill must pass both parts before it goes to the President. You can say Congress, the legislature, or the legislative branch.",
+    "keyWords": [
+      {
+        "en": "writes laws",
+        "translation": "writes laws"
+      },
+      {
+        "en": "Congress",
+        "translation": "Congress"
+      },
+      {
+        "en": "legislature",
+        "translation": "legislature"
+      },
+      {
+        "en": "Legislative branch",
+        "translation": "Legislative branch"
+      }
+    ]
+  },
+  "What territory did the United States buy from France in 1803?": {
+    "question": "What territory did the United States buy from France in 1803?",
+    "answers": [
+      "Louisiana Territory",
+      "Louisiana"
+    ],
+    "status": "draft",
+    "explanation": "In 1803, the United States bought the Louisiana Territory from France. This is called the Louisiana Purchase. Thomas Jefferson was President at the time. The land was very large, between the Mississippi River and the Rocky Mountains. It almost doubled the size of the country.",
+    "keyWords": [
+      {
+        "en": "territory",
+        "translation": "territory"
+      },
+      {
+        "en": "Louisiana",
+        "translation": "Louisiana"
+      },
+      {
+        "en": "France",
+        "translation": "France"
+      },
+      {
+        "en": "1803",
+        "translation": "1803"
+      }
+    ]
+  },
+  "What war did the Americans fight to win independence from Britain?": {
+    "question": "What war did the Americans fight to win independence from Britain?",
+    "answers": [
+      "American Revolution",
+      "The (American) Revolutionary War",
+      "War for (American) Independence"
+    ],
+    "status": "draft",
+    "explanation": "The American colonies fought a war against Britain to win their independence. This war is called the American Revolution or the Revolutionary War. It began in 1775 and ended in 1783. George Washington led the American army. You can give any one of these accepted names.",
+    "keyWords": [
+      {
+        "en": "independence",
+        "translation": "independence"
+      },
+      {
+        "en": "American Revolution",
+        "translation": "American Revolution"
+      },
+      {
+        "en": "Revolutionary War",
+        "translation": "Revolutionary War"
+      },
+      {
+        "en": "Britain",
+        "translation": "Britain"
+      }
+    ]
+  },
+  "What was the Great Depression?": {
+    "question": "What was the Great Depression?",
+    "answers": [
+      "Longest economic recession in modern history"
+    ],
+    "status": "draft",
+    "explanation": "The Great Depression was the longest economic recession in modern history. It began in 1929, when the stock market crashed. Many banks and businesses closed, and millions of people lost their jobs. It lasted through the 1930s. President Franklin Roosevelt created many programs to help people during this time.",
+    "keyWords": [
+      {
+        "en": "Great Depression",
+        "translation": "Great Depression"
+      },
+      {
+        "en": "economic recession",
+        "translation": "economic recession"
+      },
+      {
+        "en": "Longest",
+        "translation": "Longest"
+      }
+    ]
+  },
+  "When did all men get the right to vote?": {
+    "question": "When did all men get the right to vote?",
+    "answers": [
+      "After the Civil War",
+      "During Reconstruction",
+      "(With the) 15th Amendment",
+      "1870"
+    ],
+    "status": "draft",
+    "explanation": "Before the Civil War, most Black men could not vote. After the war, during a time called Reconstruction, the country added the 15th Amendment to the Constitution. It was ratified in 1870. It said that a man could not be denied the right to vote because of his race. You can give any one of these accepted answers.",
+    "keyWords": [
+      {
+        "en": "right to vote",
+        "translation": "right to vote"
+      },
+      {
+        "en": "Civil War",
+        "translation": "Civil War"
+      },
+      {
+        "en": "Reconstruction",
+        "translation": "Reconstruction"
+      },
+      {
+        "en": "15th Amendment",
+        "translation": "15th Amendment"
+      }
+    ]
+  },
+  "When did all women get the right to vote?": {
+    "question": "When did all women get the right to vote?",
+    "answers": [
+      "1920",
+      "After World War I",
+      "(With the) 19th Amendment"
+    ],
+    "status": "draft",
+    "explanation": "For a long time, women in most of the country could not vote. Women and their supporters worked for many years to change this. In 1920, after World War I, the 19th Amendment was added to the Constitution. It gave women across the country the right to vote. You can give any one of these accepted answers.",
+    "keyWords": [
+      {
+        "en": "women",
+        "translation": "women"
+      },
+      {
+        "en": "right to vote",
+        "translation": "right to vote"
+      },
+      {
+        "en": "19th Amendment",
+        "translation": "19th Amendment"
+      },
+      {
+        "en": "World War I",
+        "translation": "World War I"
+      }
+    ]
+  },
+  "When did the Great Depression start?": {
+    "question": "When did the Great Depression start?",
+    "answers": [
+      "The Great Crash (1929)",
+      "Stock market crash of 1929"
+    ],
+    "status": "draft",
+    "explanation": "The Great Depression was a time of serious economic trouble in the United States and the world. It began in 1929, when prices on the stock market fell very quickly. This event is called the Great Crash, or the stock market crash of 1929. After the crash, many banks and businesses closed, and millions of people lost their jobs.",
+    "keyWords": [
+      {
+        "en": "Great Depression",
+        "translation": "Great Depression"
+      },
+      {
+        "en": "stock market",
+        "translation": "stock market"
+      },
+      {
+        "en": "crash",
+        "translation": "crash"
+      }
+    ]
+  },
+  "When was the Declaration of Independence adopted?": {
+    "question": "When was the Declaration of Independence adopted?",
+    "answers": [
+      "July 4, 1776"
+    ],
+    "status": "draft",
+    "explanation": "The Declaration of Independence was adopted on July 4, 1776. On that day, leaders of the 13 colonies approved the document and said they were free from British rule. This is why Americans celebrate Independence Day every year on July 4. It is a national holiday.",
+    "keyWords": [
+      {
+        "en": "Declaration of Independence",
+        "translation": "Declaration of Independence"
+      },
+      {
+        "en": "adopted",
+        "translation": "adopted"
+      }
+    ]
+  },
+  "Where is the Statue of Liberty?": {
+    "question": "Where is the Statue of Liberty?",
+    "answers": [
+      "New York (Harbor)",
+      "Liberty Island [Also acceptable are New Jersey, near New York City, and on the Hudson (River).]"
+    ],
+    "status": "draft",
+    "explanation": "The Statue of Liberty stands on Liberty Island in New York Harbor. France gave the statue to the United States as a gift, and it was opened in 1886. For many immigrants arriving by ship, it was one of the first things they saw in America. Today it is a symbol of freedom and welcome.",
+    "keyWords": [
+      {
+        "en": "Statue of Liberty",
+        "translation": "Statue of Liberty"
+      },
+      {
+        "en": "Liberty Island",
+        "translation": "Liberty Island"
+      },
+      {
+        "en": "Harbor",
+        "translation": "Harbor"
+      }
+    ]
+  },
+  "Who appoints federal judges?": {
+    "question": "Who appoints federal judges?",
+    "answers": [
+      "The President (of the United States)"
+    ],
+    "status": "draft",
+    "explanation": "Federal judges work in the national court system, including the Supreme Court. The President chooses and appoints them. Then the Senate must approve the President's choice. Federal judges can serve for life, so this is an important decision.",
+    "keyWords": [
+      {
+        "en": "appoints",
+        "translation": "appoints"
+      },
+      {
+        "en": "federal judges",
+        "translation": "federal judges"
+      },
+      {
+        "en": "President",
+        "translation": "President"
+      }
+    ]
+  },
+  "Who can vote in federal elections, run for federal office, and serve on a jury in the United States?": {
+    "question": "Who can vote in federal elections, run for federal office, and serve on a jury in the United States?",
+    "answers": [
+      "Citizens",
+      "Citizens of the United States",
+      "U.S. citizens"
+    ],
+    "status": "draft",
+    "explanation": "Some rights and duties belong only to U.S. citizens. Only citizens can vote in federal elections, such as the election for President. Only citizens can run for federal office, like Congress. Only citizens can serve on a jury in a court.",
+    "keyWords": [
+      {
+        "en": "vote",
+        "translation": "vote"
+      },
+      {
+        "en": "federal elections",
+        "translation": "federal elections"
+      },
+      {
+        "en": "jury",
+        "translation": "jury"
+      },
+      {
+        "en": "citizens",
+        "translation": "citizens"
+      }
+    ]
+  },
+  "Who does a U.S. senator represent?": {
+    "question": "Who does a U.S. senator represent?",
+    "answers": [
+      "Citizens of their state",
+      "People of their state"
+    ],
+    "status": "draft",
+    "explanation": "A U.S. senator works in the Senate, which is part of Congress. Each state has two senators. A senator represents all the people of their state, not just one city or area. Senators speak and vote for the people of their whole state.",
+    "keyWords": [
+      {
+        "en": "senator",
+        "translation": "senator"
+      },
+      {
+        "en": "represent",
+        "translation": "represent"
+      },
+      {
+        "en": "state",
+        "translation": "state"
+      }
+    ]
+  },
+  "Who does a member of the House of Representatives represent?": {
+    "question": "Who does a member of the House of Representatives represent?",
+    "answers": [
+      "Citizens in their (congressional) district",
+      "Citizens in their district",
+      "People from their (congressional) district",
+      "People in their district"
+    ],
+    "status": "draft",
+    "explanation": "The House of Representatives is part of Congress. Each state is divided into areas called congressional districts. Each member of the House represents the people in one district. States with more people have more districts, so they have more representatives.",
+    "keyWords": [
+      {
+        "en": "House of Representatives",
+        "translation": "House of Representatives"
+      },
+      {
+        "en": "district",
+        "translation": "district"
+      },
+      {
+        "en": "represent",
+        "translation": "represent"
+      }
+    ]
+  },
+  "Who elects U.S. senators?": {
+    "question": "Who elects U.S. senators?",
+    "answers": [
+      "Citizens from their state"
+    ],
+    "status": "draft",
+    "explanation": "U.S. senators are elected by the citizens of their state. Every voter in the state can vote for senators. A senator serves a six-year term. Since 1913, the 17th Amendment has given voters the power to elect senators directly.",
+    "keyWords": [
+      {
+        "en": "elects",
+        "translation": "elects"
+      },
+      {
+        "en": "senators",
+        "translation": "senators"
+      },
+      {
+        "en": "Citizens from their state",
+        "translation": "Citizens from their state"
+      }
+    ]
+  },
+  "Who elects members of the House of Representatives?": {
+    "question": "Who elects members of the House of Representatives?",
+    "answers": [
+      "Citizens from their (congressional) district"
+    ],
+    "status": "draft",
+    "explanation": "Members of the House of Representatives are elected by the citizens of their congressional district. Voters choose one representative for their district. Representatives serve two-year terms. Elections for the House happen every two years.",
+    "keyWords": [
+      {
+        "en": "elects",
+        "translation": "elects"
+      },
+      {
+        "en": "House of Representatives",
+        "translation": "House of Representatives"
+      },
+      {
+        "en": "district",
+        "translation": "district"
+      }
+    ]
+  },
+  "Who is Commander in Chief of the U.S. military?": {
+    "question": "Who is Commander in Chief of the U.S. military?",
+    "answers": [
+      "The President (of the United States)"
+    ],
+    "status": "draft",
+    "explanation": "The Commander in Chief is the leader of all the U.S. armed forces. The Constitution gives this role to the President. This means the military is led by a person elected by the people. The military does not lead itself.",
+    "keyWords": [
+      {
+        "en": "Commander in Chief",
+        "translation": "Commander in Chief"
+      },
+      {
+        "en": "military",
+        "translation": "military"
+      },
+      {
+        "en": "President",
+        "translation": "President"
+      }
+    ]
+  },
+  "Who is one of your state’s U.S. senators now?": {
+    "question": "Who is one of your state’s U.S. senators now?",
+    "answers": [
+      "Answers vary by where you live."
+    ],
+    "status": "draft",
+    "explanation": "Every state has two U.S. senators who work in Congress in Washington, D.C. Senators serve six-year terms, and they are elected at different times. The answer depends on the state where you live. Before your interview, find the names of your state's senators. You can use the app's \"Find My Representative\" tool.",
+    "keyWords": [
+      {
+        "en": "senators",
+        "translation": "senators"
+      },
+      {
+        "en": "state",
+        "translation": "state"
+      },
+      {
+        "en": "Answers vary by where you live",
+        "translation": "Answers vary by where you live"
+      }
+    ]
+  },
+  "Who is the Chief Justice of the United States now?": {
+    "question": "Who is the Chief Justice of the United States now?",
+    "answers": [
+      "Answers change. Check uscis.gov for the current answer."
+    ],
+    "status": "draft",
+    "explanation": "The Chief Justice is the head of the Supreme Court, the highest court in the United States. The President chooses the Chief Justice, and the Senate must approve. The person in this job can change over time. Before your interview, check uscis.gov for the current name.",
+    "keyWords": [
+      {
+        "en": "Chief Justice",
+        "translation": "Chief Justice"
+      },
+      {
+        "en": "uscis.gov",
+        "translation": "uscis.gov"
+      },
+      {
+        "en": "Answers change",
+        "translation": "Answers change"
+      }
+    ]
+  },
+  "Who is the governor of your state now?": {
+    "question": "Who is the governor of your state now?",
+    "answers": [
+      "Answers vary by where you live."
+    ],
+    "status": "draft",
+    "explanation": "The governor is the leader of a state government, much like the President leads the national government. Each state elects its own governor. The answer depends on the state where you live. Before your interview, find the name of your state's governor now. You can use the app's \"Find My Representative\" tool.",
+    "keyWords": [
+      {
+        "en": "governor",
+        "translation": "governor"
+      },
+      {
+        "en": "state",
+        "translation": "state"
+      },
+      {
+        "en": "Answers vary by where you live",
+        "translation": "Answers vary by where you live"
+      }
+    ]
+  },
+  "Who lived in America before the Europeans arrived?": {
+    "question": "Who lived in America before the Europeans arrived?",
+    "answers": [
+      "American Indians",
+      "Native Americans"
+    ],
+    "status": "draft",
+    "explanation": "People lived in America for thousands of years before Europeans came. These people are called American Indians or Native Americans. There were many different tribes and nations, each with its own language and culture. Many tribes still live in the United States today.",
+    "keyWords": [
+      {
+        "en": "Europeans",
+        "translation": "Europeans"
+      },
+      {
+        "en": "American Indians",
+        "translation": "American Indians"
+      },
+      {
+        "en": "Native Americans",
+        "translation": "Native Americans"
+      }
+    ]
+  },
+  "Who signs bills to become laws?": {
+    "question": "Who signs bills to become laws?",
+    "answers": [
+      "The President (of the United States)"
+    ],
+    "status": "draft",
+    "explanation": "A bill is an idea for a new law. First, Congress must pass the bill. Then the President signs it, and it becomes a law. This is one way the branches of government work together.",
+    "keyWords": [
+      {
+        "en": "signs",
+        "translation": "signs"
+      },
+      {
+        "en": "bills",
+        "translation": "bills"
+      },
+      {
+        "en": "laws",
+        "translation": "laws"
+      },
+      {
+        "en": "President",
+        "translation": "President"
+      }
+    ]
+  },
+  "Who vetoes bills?": {
+    "question": "Who vetoes bills?",
+    "answers": [
+      "The President (of the United States)"
+    ],
+    "status": "draft",
+    "explanation": "To veto means to say no to a bill. The President can veto a bill that Congress has passed. Then the bill does not become a law. Congress can still pass it if two-thirds of both the House and the Senate vote for it again. This is part of the system of checks and balances.",
+    "keyWords": [
+      {
+        "en": "vetoes",
+        "translation": "vetoes"
+      },
+      {
+        "en": "bills",
+        "translation": "bills"
+      },
+      {
+        "en": "President",
+        "translation": "President"
+      }
+    ]
+  },
+  "Who was president during the Great Depression and World War II?": {
+    "question": "Who was president during the Great Depression and World War II?",
+    "answers": [
+      "(Franklin) Roosevelt"
+    ],
+    "status": "draft",
+    "explanation": "Franklin Delano Roosevelt was President during the Great Depression and most of World War II. He was elected four times, more than any other President. He started programs called the New Deal to help people find work. He died in 1945, shortly before the war ended.",
+    "keyWords": [
+      {
+        "en": "Great Depression",
+        "translation": "Great Depression"
+      },
+      {
+        "en": "World War II",
+        "translation": "World War II"
+      },
+      {
+        "en": "Roosevelt",
+        "translation": "Roosevelt"
+      }
+    ]
+  },
+  "Who was the United States’ main rival during the Cold War?": {
+    "question": "Who was the United States’ main rival during the Cold War?",
+    "answers": [
+      "Soviet Union",
+      "USSR",
+      "Russia"
+    ],
+    "status": "draft",
+    "explanation": "The Cold War was a long conflict after World War II, from about 1947 to 1991. The main rival of the United States was the Soviet Union, also called the USSR. Russia was the largest part of the Soviet Union. The two countries competed for power and influence around the world, but they did not fight each other directly.",
+    "keyWords": [
+      {
+        "en": "Cold War",
+        "translation": "Cold War"
+      },
+      {
+        "en": "rival",
+        "translation": "rival"
+      },
+      {
+        "en": "Soviet Union",
+        "translation": "Soviet Union"
+      }
+    ]
+  },
+  "Who wrote the Declaration of Independence?": {
+    "question": "Who wrote the Declaration of Independence?",
+    "answers": [
+      "(Thomas) Jefferson"
+    ],
+    "status": "draft",
+    "explanation": "Thomas Jefferson wrote the Declaration of Independence in 1776. A small group of leaders asked him to write the first draft. Jefferson later became the third President of the United States. His words \"all men are created equal\" are some of the most famous in American history.",
+    "keyWords": [
+      {
+        "en": "wrote",
+        "translation": "wrote"
+      },
+      {
+        "en": "Declaration of Independence",
+        "translation": "Declaration of Independence"
+      },
+      {
+        "en": "Jefferson",
+        "translation": "Jefferson"
+      }
+    ]
+  },
+  "Why did the United States enter World War I?": {
+    "question": "Why did the United States enter World War I?",
+    "answers": [
+      "Because Germany attacked U.S. (civilian) ships",
+      "To support the Allied Powers (England, France, Italy, and Russia)",
+      "To oppose the Central Powers (Germany, Austria-Hungary, the Ottoman Empire, and Bulgaria)"
+    ],
+    "status": "draft",
+    "explanation": "World War I began in Europe in 1914, and the United States joined in 1917. One reason was that Germany attacked U.S. ships, including ships with civilians. The United States joined to support the Allied Powers, such as England, France, Italy, and Russia, and to oppose the Central Powers, led by Germany. You can give any one of these accepted answers.",
+    "keyWords": [
+      {
+        "en": "World War I",
+        "translation": "World War I"
+      },
+      {
+        "en": "Germany attacked",
+        "translation": "Germany attacked"
+      },
+      {
+        "en": "Allied Powers",
+        "translation": "Allied Powers"
+      },
+      {
+        "en": "Central Powers",
+        "translation": "Central Powers"
+      }
+    ]
+  },
+  "Why did the United States enter World War II?": {
+    "question": "Why did the United States enter World War II?",
+    "answers": [
+      "(Bombing of) Pearl Harbor",
+      "Japanese attacked Pearl Harbor",
+      "To support the Allied Powers (England, France, and Russia)",
+      "To oppose the Axis Powers (Germany, Italy, and Japan)"
+    ],
+    "status": "draft",
+    "explanation": "On December 7, 1941, Japan attacked Pearl Harbor, a U.S. Navy base in Hawaii. The next day, the United States declared war on Japan. The United States then fought to support the Allied Powers, such as England, France, and Russia, and to oppose the Axis Powers: Germany, Italy, and Japan. You can give any one of these accepted answers.",
+    "keyWords": [
+      {
+        "en": "World War II",
+        "translation": "World War II"
+      },
+      {
+        "en": "Pearl Harbor",
+        "translation": "Pearl Harbor"
+      },
+      {
+        "en": "Allied Powers",
+        "translation": "Allied Powers"
+      },
+      {
+        "en": "Axis Powers",
+        "translation": "Axis Powers"
+      }
+    ]
+  },
+  "Why did the United States enter the Korean War?": {
+    "question": "Why did the United States enter the Korean War?",
+    "answers": [
+      "To stop the spread of communism"
+    ],
+    "status": "draft",
+    "explanation": "The Korean War lasted from 1950 to 1953. North Korea, which had a communist government, invaded South Korea. The United States joined the war to stop the spread of communism. This was part of the larger Cold War.",
+    "keyWords": [
+      {
+        "en": "Korean War",
+        "translation": "Korean War"
+      },
+      {
+        "en": "spread",
+        "translation": "spread"
+      },
+      {
+        "en": "communism",
+        "translation": "communism"
+      }
+    ]
+  },
+  "Why did the United States enter the Persian Gulf War?": {
+    "question": "Why did the United States enter the Persian Gulf War?",
+    "answers": [
+      "To force the Iraqi military from Kuwait"
+    ],
+    "status": "draft",
+    "explanation": "In 1990, the military of Iraq invaded Kuwait, a small country next to it. In 1991, the United States and many other countries fought to force the Iraqi military out of Kuwait. This was the Persian Gulf War. The war was short, and Kuwait became free again.",
+    "keyWords": [
+      {
+        "en": "Persian Gulf War",
+        "translation": "Persian Gulf War"
+      },
+      {
+        "en": "Iraqi military",
+        "translation": "Iraqi military"
+      },
+      {
+        "en": "Kuwait",
+        "translation": "Kuwait"
+      },
+      {
+        "en": "force",
+        "translation": "force"
+      }
+    ]
+  },
+  "Why did the United States enter the Vietnam War?": {
+    "question": "Why did the United States enter the Vietnam War?",
+    "answers": [
+      "To stop the spread of communism"
+    ],
+    "status": "draft",
+    "explanation": "Vietnam was divided into a communist North and a non-communist South. The United States entered the Vietnam War to stop the spread of communism. Many American soldiers fought there, mostly in the 1960s and early 1970s. Like the Korean War, it was part of the Cold War.",
+    "keyWords": [
+      {
+        "en": "Vietnam War",
+        "translation": "Vietnam War"
+      },
+      {
+        "en": "spread",
+        "translation": "spread"
+      },
+      {
+        "en": "communism",
+        "translation": "communism"
+      }
+    ]
+  },
+  "Why do U.S. representatives serve shorter terms than U.S. senators?": {
+    "question": "Why do U.S. representatives serve shorter terms than U.S. senators?",
+    "answers": [
+      "To more closely follow public opinion"
+    ],
+    "status": "draft",
+    "explanation": "Representatives serve two-year terms, and senators serve six-year terms. Because representatives face elections more often, they must pay close attention to what voters think. This helps the House more closely follow public opinion. The longer Senate terms give senators more time to think about long-term issues.",
+    "keyWords": [
+      {
+        "en": "shorter terms",
+        "translation": "shorter terms"
+      },
+      {
+        "en": "representatives",
+        "translation": "representatives"
+      },
+      {
+        "en": "public opinion",
+        "translation": "public opinion"
+      }
+    ]
+  },
+  "Why does each state have two senators?": {
+    "question": "Why does each state have two senators?",
+    "answers": [
+      "Equal representation (for small states)",
+      "The Great Compromise (Connecticut Compromise)"
+    ],
+    "status": "draft",
+    "explanation": "When the Constitution was written, large states and small states disagreed about how many votes each state should have in Congress. They made an agreement called the Great Compromise, or Connecticut Compromise. In the House, states with more people get more members. In the Senate, every state gets two senators, so small states have equal representation.",
+    "keyWords": [
+      {
+        "en": "two senators",
+        "translation": "two senators"
+      },
+      {
+        "en": "Equal representation",
+        "translation": "Equal representation"
+      },
+      {
+        "en": "Great Compromise",
+        "translation": "Great Compromise"
+      }
+    ]
+  },
+  "Why does the flag have 13 stripes?": {
+    "question": "Why does the flag have 13 stripes?",
+    "answers": [
+      "(Because there were) 13 original colonies",
+      "(Because the stripes) represent the original colonies"
+    ],
+    "status": "draft",
+    "explanation": "The American flag has 13 red and white stripes. The stripes represent the 13 original colonies. These colonies declared independence from Great Britain in 1776. They became the first 13 states.",
+    "keyWords": [
+      {
+        "en": "flag",
+        "translation": "flag"
+      },
+      {
+        "en": "stripes",
+        "translation": "stripes"
+      },
+      {
+        "en": "original colonies",
+        "translation": "original colonies"
+      }
+    ]
+  },
+  "Why does the flag have 50 stars?": {
+    "question": "Why does the flag have 50 stars?",
+    "answers": [
+      "(Because there is) one star for each state",
+      "(Because) each star represents a state",
+      "(Because there are) 50 states"
+    ],
+    "status": "draft",
+    "explanation": "The American flag has 50 white stars on a blue background. Each star represents one state. There are 50 states, so there are 50 stars. When a new state joined, a star was added; the last change was in 1960, after Hawaii became a state.",
+    "keyWords": [
+      {
+        "en": "flag",
+        "translation": "flag"
+      },
+      {
+        "en": "stars",
+        "translation": "stars"
+      },
+      {
+        "en": "each state",
+        "translation": "each state"
+      }
+    ]
+  },
+  "Why is it important to pay federal taxes?": {
+    "question": "Why is it important to pay federal taxes?",
+    "answers": [
+      "Required by law",
+      "All people pay to fund the federal government",
+      "Required by the (U.S.) Constitution (16th Amendment)",
+      "Civic duty"
+    ],
+    "status": "draft",
+    "explanation": "Federal taxes pay for the work of the national government, such as the military, roads, and many services. Paying them is required by law. The 16th Amendment to the Constitution allows the federal government to collect income tax. All people pay their share, and it is also seen as a civic duty.",
+    "keyWords": [
+      {
+        "en": "federal taxes",
+        "translation": "federal taxes"
+      },
+      {
+        "en": "Required by law",
+        "translation": "Required by law"
+      },
+      {
+        "en": "16th Amendment",
+        "translation": "16th Amendment"
+      },
+      {
+        "en": "Civic duty",
+        "translation": "Civic duty"
+      }
+    ]
+  },
+  "Why is the Declaration of Independence important?": {
+    "question": "Why is the Declaration of Independence important?",
+    "answers": [
+      "It says America is free from British control.",
+      "It says all people are created equal.",
+      "It identifies inherent rights.",
+      "It identifies individual freedoms."
+    ],
+    "status": "draft",
+    "explanation": "The Declaration of Independence said that the American colonies were free from British control. It also said that all people are created equal. It names rights that people are born with, such as life, liberty, and the pursuit of happiness. These ideas about individual freedoms are still important in the United States today.",
+    "keyWords": [
+      {
+        "en": "British control",
+        "translation": "British control"
+      },
+      {
+        "en": "created equal",
+        "translation": "created equal"
+      },
+      {
+        "en": "inherent rights",
+        "translation": "inherent rights"
+      },
+      {
+        "en": "individual freedoms",
+        "translation": "individual freedoms"
+      }
+    ]
+  },
+  "Why is the Electoral College important?": {
+    "question": "Why is the Electoral College important?",
+    "answers": [
+      "It decides who is elected president.",
+      "It provides a compromise between the popular election of the president and congressional selection."
+    ],
+    "status": "draft",
+    "explanation": "Americans do not vote for the President directly. Each state has a number of electors, and their votes decide who is elected President. A candidate needs a majority of the electoral votes, 270 out of 538, to win. The Founders created this system as a compromise between election by the people and selection by Congress.",
+    "keyWords": [
+      {
+        "en": "Electoral College",
+        "translation": "Electoral College"
+      },
+      {
+        "en": "elected president",
+        "translation": "elected president"
+      },
+      {
+        "en": "compromise",
+        "translation": "compromise"
+      },
+      {
+        "en": "popular election",
+        "translation": "popular election"
+      }
+    ]
+  },
+  "Why were the Federalist Papers important?": {
+    "question": "Why were the Federalist Papers important?",
+    "answers": [
+      "They helped people understand the (U.S.) Constitution.",
+      "They supported passing the (U.S.) Constitution."
+    ],
+    "status": "draft",
+    "explanation": "The Federalist Papers were 85 essays written in 1787 and 1788. Their authors were James Madison, Alexander Hamilton, and John Jay. The essays helped people understand the new Constitution. They also supported passing, or approving, the Constitution.",
+    "keyWords": [
+      {
+        "en": "Federalist Papers",
+        "translation": "Federalist Papers"
+      },
+      {
+        "en": "understand",
+        "translation": "understand"
+      },
+      {
+        "en": "Constitution",
+        "translation": "Constitution"
+      },
+      {
+        "en": "supported",
+        "translation": "supported"
+      }
+    ]
+  }
+}

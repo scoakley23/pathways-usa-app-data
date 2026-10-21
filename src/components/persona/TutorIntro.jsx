@@ -59,6 +59,7 @@ export default function TutorIntro({ t, language = 'en' }) {
           {t('qc_start')} <ArrowRight className="w-5 h-5 shrink-0" aria-hidden="true" />
         </Link>
         <p className="text-base text-pw-muted">{t('intro_time')}</p>
+        <p className="text-base font-bold">{t('hero_promise')}</p>
       </div>
     </section>
   );

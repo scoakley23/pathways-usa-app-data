@@ -114,7 +114,11 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
     if (!lesson?.id) return;
     setLoading(true);
     try {
-      const currentUser = await base44.auth.me();
+      // Signed-out learners can still practice; they just don't save progress.
+      let currentUser = null;
+      try {
+        currentUser = await base44.auth.me();
+      } catch (e) {}
       setUser(currentUser);
 
       const [lessonFlashcards, civics2025, civics2008, progressList] = await Promise.all([
@@ -332,7 +336,12 @@ Please provide a brief, simple explanation (2-3 sentences) of this concept in pl
   };
 
   const handleMarkComplete = async () => {
-    if (!user?.email) return;
+    if (!user?.email) {
+      toast.info('Sign in to save your progress.', {
+        action: { label: 'Sign in', onClick: () => base44.auth.redirectToLogin(window.location.href) },
+      });
+      return;
+    }
     
     try {
       const existing = await base44.entities.LessonProgress.filter(

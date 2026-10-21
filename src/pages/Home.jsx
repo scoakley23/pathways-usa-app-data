@@ -14,7 +14,7 @@ import { SKILL_BG, SkillTag } from '@/components/pathways/ui';
 const SKILL_CARDS = [
   { art: 'book', skill: 'reading', title: 'feat_reading_title', desc: 'feat_reading_desc', to: '/Practice?mode=reading' },
   { art: 'pencil', skill: 'writing', title: 'feat_dictation_title', desc: 'feat_dictation_desc', to: '/Practice?mode=dictation' },
-  { art: 'scroll', skill: 'writing', title: 'feat_vocab_title', desc: 'feat_vocab_desc', to: '/Practice' },
+  { art: 'cards', skill: 'writing', title: 'feat_vocab_title', desc: 'feat_vocab_desc', to: '/Practice' },
   { art: 'capitol', skill: 'civics', title: 'feat_civics_title', desc: 'feat_civics_desc', to: '/Practice?mode=civics' },
 ];
 

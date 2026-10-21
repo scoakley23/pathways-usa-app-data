@@ -18,6 +18,7 @@ export const HOME_STRINGS = {
   hero_start: 'Start',
   hero_continue: 'Continue',
   hero_flex: 'Every step stays open — explore in any order you like.',
+  hero_promise: 'Free. We never record your voice or ask about your case.',
   path_title: 'Your path',
   path_done_of: '{n} of 5 done',
   you_are_here: "You're here",

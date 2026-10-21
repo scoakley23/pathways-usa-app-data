@@ -72,7 +72,7 @@ export default function RepresentativeFinder({ userEmail, onDataLoaded }) {
       ...data,
       governor_photo_url: govPhoto,
       senators: (data.senators || []).map((s, i) => ({ ...s, photo_url: senatorResults[i] })),
-      representative: { ...data.representative, photo_url: repPhoto },
+      representative: data.representative ? { ...data.representative, photo_url: repPhoto } : data.representative,
     };
   };
 
@@ -343,6 +343,7 @@ Double check all names are spelled correctly.`,
                 className="h-12 text-base bg-white"
                 autoFocus
               />
+              <p className="text-sm text-pw-muted">Your address is used only for this search. We don't save it.</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 <SecondaryButton
                   onClick={() => { setNeedsAddress(false); setStreetAddress(''); }}
@@ -431,14 +432,16 @@ Double check all names are spelled correctly.`,
                 </div>
               </div>
             ))}
-            <div className="flex items-center gap-3 bg-pw-soft rounded-2xl p-3">
-              <OfficialPhoto photoUrl={results.representative?.photo_url} name={results.representative?.name} size="md" />
-              <div className="min-w-0">
-                <p className="text-sm text-pw-muted">US Representative</p>
-                <p className="font-bold">{results.representative.name}</p>
-                <p className="text-sm text-pw-muted">{results.representative.party} — District {results.representative.district}</p>
+            {results.representative?.name && (
+              <div className="flex items-center gap-3 bg-pw-soft rounded-2xl p-3">
+                <OfficialPhoto photoUrl={results.representative.photo_url} name={results.representative.name} size="md" />
+                <div className="min-w-0">
+                  <p className="text-sm text-pw-muted">US Representative</p>
+                  <p className="font-bold">{results.representative.name}</p>
+                  <p className="text-sm text-pw-muted">{results.representative.party} — District {results.representative.district}</p>
+                </div>
               </div>
-            </div>
+            )}
           </RaisedCard>
         </div>
       )}
@@ -454,6 +457,7 @@ export function getPersonalizedAnswer(question, representativeData) {
     return (representativeData.senators || []).map(s => s.name).join(" and ");
   }
   if (q.includes("representative") || q.includes("house of representatives")) {
+    if (!representativeData.representative?.name) return null;
     return `${representativeData.representative.name} (District ${representativeData.representative.district})`;
   }
   if (q.includes("governor")) {

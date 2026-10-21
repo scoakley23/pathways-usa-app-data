@@ -35,6 +35,7 @@ export default function RoadmapHero({ roadmap, t }) {
         <p className="text-base text-pw-muted">
           {t('hero_flex')}
         </p>
+        <p className="text-base font-bold">{t('hero_promise')}</p>
       </div>
     </section>
   );
