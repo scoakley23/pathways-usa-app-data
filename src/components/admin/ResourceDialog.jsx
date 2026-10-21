@@ -5,11 +5,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from 'sonner';
-import { RESOURCE_CATEGORIES, COST_LABELS, cleanResourceRow, loadZipTable } from '@/lib/resourceHub';
+import { RESOURCE_CATEGORIES, COST_LABELS, cleanResourceRow, loadZipTable, placeServices } from '@/lib/resourceHub';
 
 const EMPTY = {
   name: '', category: 'legal', address: '', city: '', state: '', zip: '', latitude: '', longitude: '',
-  phone: '', website: '', languages: '', cost: '', description: '', source: '', source_url: '', last_verified: '',
+  phone: '', website: '', logo_url: '', hours: '', languages: '', cost: '', description: '', source: '', source_url: '', last_verified: '',
 };
 
 const SELECT = 'flex min-h-[44px] w-full rounded-2xl border-2 border-pw-line bg-white px-3 text-base text-pw-navy focus-visible:outline-none focus-visible:border-pw-navy';
@@ -21,20 +21,31 @@ export default function ResourceDialog({ open, onOpenChange, onSubmit, initialDa
 
   useEffect(() => {
     if (!open) return;
-    if (!initialData) { setForm({ ...EMPTY, last_verified: new Date().toISOString().slice(0, 10) }); return; }
+    if (!initialData) { setForm({ ...EMPTY, services: [], last_verified: new Date().toISOString().slice(0, 10) }); return; }
     const next = { ...EMPTY };
     Object.keys(EMPTY).forEach((k) => { next[k] = initialData[k] ?? ''; });
     next.languages = (initialData.languages || []).join('; ');
+    next.services = placeServices(initialData);
     // A ZIP-center pin is recomputed from the ZIP, so a changed ZIP moves it.
     if (initialData.location_precision === 'zip') { next.latitude = ''; next.longitude = ''; }
     setForm(next);
   }, [open, initialData]);
 
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
+  const toggleService = (id) => setForm((f) => {
+    const list = f.services || [];
+    return { ...f, services: list.includes(id) ? list.filter((s) => s !== id) : [...list, id] };
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { record, error } = cleanResourceRow({ ...form, is_active: initialData?.is_active ?? true }, await loadZipTable());
+    // Keep the fields this form doesn't show (source id, relevance note).
+    const { record, error } = cleanResourceRow({
+      ...form,
+      external_id: initialData?.external_id || '',
+      relevance_note: initialData?.relevance_note || '',
+      is_active: initialData?.is_active ?? true,
+    }, await loadZipTable());
     if (error) { toast.error(error); return; }
     onSubmit(record);
   };
@@ -80,8 +91,21 @@ export default function ResourceDialog({ open, onOpenChange, onSubmit, initialDa
             {field('longitude', 'Longitude (optional)', { inputMode: 'decimal' })}
           </div>
           <p className="text-sm text-pw-muted -mt-2">Leave empty to put the pin at the center of the ZIP code.</p>
+          <fieldset className="space-y-2">
+            <legend className="text-sm font-bold text-pw-navy">Also offers</legend>
+            <div className="flex flex-wrap gap-x-4 gap-y-2">
+              {RESOURCE_CATEGORIES.filter((c) => c.id !== form.category).map((c) => (
+                <label key={c.id} className="flex items-center gap-2 min-h-[44px] text-base text-pw-navy">
+                  <input type="checkbox" className="w-5 h-5" checked={(form.services || []).includes(c.id)} onChange={() => toggleService(c.id)} />
+                  {c.label}
+                </label>
+              ))}
+            </div>
+          </fieldset>
           {field('phone', 'Phone')}
           {field('website', 'Website')}
+          {field('hours', 'Hours')}
+          {field('logo_url', 'Logo link (https, optional)')}
           {field('languages', 'Languages (separate with ;)', { placeholder: 'English; Spanish' })}
           <div className="space-y-2">
             <Label htmlFor="res-description" className="text-sm font-bold text-pw-navy">Description</Label>

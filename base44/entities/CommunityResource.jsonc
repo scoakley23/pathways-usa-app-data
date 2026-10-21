@@ -17,6 +17,21 @@
       ],
       "default": "other"
     },
+    "services": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "legal",
+          "esl",
+          "citizenship_class",
+          "uscis",
+          "library",
+          "other"
+        ]
+      },
+      "description": "Everything the place offers (includes category). A place shows under each of these filters."
+    },
     "address": {
       "type": "string",
       "description": "Public street address of the place (never a learner's address)"
@@ -52,6 +67,14 @@
     "website": {
       "type": "string"
     },
+    "logo_url": {
+      "type": "string",
+      "description": "https link to the place's public logo (e.g. its National Literacy Directory logo). Loaded only when a learner opens the place's summary."
+    },
+    "hours": {
+      "type": "string",
+      "description": "Opening hours as the source lists them"
+    },
     "languages": {
       "type": "array",
       "items": {
@@ -81,6 +104,14 @@
     "last_verified": {
       "type": "string",
       "description": "Date (YYYY-MM-DD) an admin last checked this listing"
+    },
+    "external_id": {
+      "type": "string",
+      "description": "Source id, e.g. \"nld:205491\", \"doj:<org>|<address>\", \"uscis:boston-ma\". Lets re-imports update the same place."
+    },
+    "relevance_note": {
+      "type": "string",
+      "description": "Why an import hid or flagged this place (e.g. \"Children's program\"). Admin only; not shown to learners."
     },
     "is_active": {
       "type": "boolean",

@@ -8,7 +8,9 @@ import json, sys, time, urllib.request, urllib.parse
 out = sys.argv[1]
 KEEP = ['id', 'title', 'slug', 'street_address', 'address_2', 'city', 'state', 'zip_code_tx', 'lat', 'lng',
         'primary_contact_phone_tx', 'phone_extension', 'website_url', 'costs', 'cost_description',
-        'education_services_cb', 'instruction_type_cb', 'status', 'deleted_at', 'updated_at']
+        'education_services_cb', 'instruction_type_cb', 'status', 'deleted_at', 'updated_at',
+        # Shown publicly on each program's NLD page:
+        'other_information', 'logo', 'hours_of_operation']
 CAP, DELAY = 500, 1.5
 progs, calls = {}, 0
 

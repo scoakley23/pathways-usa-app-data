@@ -1,19 +1,18 @@
 import React, { Suspense, lazy, useMemo, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { Crosshair, Loader2, MapPin, Navigation, Phone, Globe, Map as MapIcon, List, AlertTriangle, ExternalLink } from 'lucide-react';
+import { Crosshair, Loader2, MapPin, Map as MapIcon, List, AlertTriangle, ExternalLink } from 'lucide-react';
 import { listAllResources } from '@/components/resources/listAllResources';
 import { Input } from '@/components/ui/input';
-import { PrimaryButton, SecondaryButton, RaisedCard, Tag } from '@/components/pathways/ui';
+import { PrimaryButton, SecondaryButton, RaisedCard } from '@/components/pathways/ui';
 import {
-  RESOURCE_CATEGORIES, COST_LABELS, DIRECTORY_LINKS, categoryById, nearestResources, formatDistance, fullAddress,
-  directionsUrl, telHref, safeWebsite, normalizeZip, zipToLatLng, loadZipTable, isPoBoxOnly,
+  RESOURCE_CATEGORIES, COST_LABELS, DIRECTORY_LINKS, nearestResources, formatDistance, fullAddress,
+  normalizeZip, zipToLatLng, loadZipTable,
 } from '@/lib/resourceHub';
+import { ServiceTags, PlaceActions } from '@/components/resources/PlaceSummary';
 
 const ResourceMap = lazy(() => import('@/components/resources/ResourceMap'));
 
 const RADIUS_OPTIONS = [10, 25, 50, 100];
-const LINK_BTN =
-  'min-h-[44px] rounded-2xl font-bold inline-flex items-center justify-center gap-2 px-4 text-base transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2';
 
 // "Help near you": the learner shares their location (browser permission) or
 // types a ZIP code. Either way the location stays in this component's memory
@@ -81,10 +80,8 @@ export default function ResourceFinder() {
   const toggleCategory = (id) =>
     setCategories((prev) => (prev.includes(id) ? prev.filter((c) => c !== id) : [...prev, id]));
 
-  const selectPlace = (id) => {
-    setSelectedId(id);
-    document.getElementById(`resource-${id}`)?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  };
+  // Tapping a pin opens its summary on the map and highlights its card below.
+  const selectPlace = (id) => setSelectedId(id);
 
   return (
     <div className="space-y-4">
@@ -178,7 +175,7 @@ export default function ResourceFinder() {
           </div>
 
           {showMap && results.length > 0 && (
-            <div className="h-[280px] sm:h-[380px] rounded-3xl overflow-hidden border border-pw-line shadow-raised bg-pw-soft isolate">
+            <div className="h-[360px] sm:h-[420px] rounded-3xl overflow-hidden border border-pw-line shadow-raised bg-pw-soft isolate">
               <Suspense fallback={<div className="h-full grid place-items-center text-pw-muted"><Loader2 className="w-6 h-6 animate-spin" /></div>}>
                 <ResourceMap origin={origin} places={results} selectedId={selectedId} onSelect={selectPlace} />
               </Suspense>
@@ -235,10 +232,7 @@ export default function ResourceFinder() {
 }
 
 function ResourceCard({ r, selected, onSelect }) {
-  const cat = categoryById(r.category);
   const address = fullAddress(r);
-  const tel = telHref(r.phone);
-  const site = safeWebsite(r.website);
   return (
     <li id={`resource-${r.id}`} className="scroll-mt-24">
       <RaisedCard
@@ -246,8 +240,8 @@ function ResourceCard({ r, selected, onSelect }) {
         className={`space-y-3 ${selected ? 'ring-2 ring-pw-red' : ''}`}
         onClick={onSelect}
       >
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <Tag tone={cat.tone}>{cat.label}</Tag>
+        <div className="flex flex-wrap items-start justify-between gap-2">
+          <ServiceTags r={r} />
           <span className="text-base font-bold text-pw-muted">{formatDistance(r.distance)}</span>
         </div>
         <div className="space-y-1">
@@ -257,29 +251,14 @@ function ResourceCard({ r, selected, onSelect }) {
             <p className="text-sm text-pw-muted">Map pin shows the ZIP code area, not the exact building.</p>
           )}
           {r.description && <p className="text-base text-pw-muted leading-relaxed">{r.description}</p>}
+          {r.hours && <p className="text-base text-pw-muted">Hours: {r.hours}</p>}
           {(r.languages?.length > 0 || COST_LABELS[r.cost]) && (
             <p className="text-base text-pw-muted">
               {[COST_LABELS[r.cost], r.languages?.length ? `Languages: ${r.languages.join(', ')}` : ''].filter(Boolean).join(' · ')}
             </p>
           )}
         </div>
-        <div className="flex flex-wrap gap-2">
-          {!isPoBoxOnly(r.address) && (
-            <a href={directionsUrl(r)} target="_blank" rel="noopener noreferrer" className={`${LINK_BTN} bg-pw-navy text-white hover:bg-pw-navy-deep`}>
-              <Navigation className="w-5 h-5" aria-hidden="true" /> Directions
-            </a>
-          )}
-          {tel && (
-            <a href={tel} className={`${LINK_BTN} bg-white text-pw-navy border-2 border-pw-navy hover:bg-pw-soft`}>
-              <Phone className="w-5 h-5" aria-hidden="true" /> Call
-            </a>
-          )}
-          {site && (
-            <a href={site} target="_blank" rel="noopener noreferrer" className={`${LINK_BTN} bg-white text-pw-navy border-2 border-pw-navy hover:bg-pw-soft`}>
-              <Globe className="w-5 h-5" aria-hidden="true" /> Website
-            </a>
-          )}
-        </div>
+        <PlaceActions r={r} />
         {r.last_verified && <p className="text-sm text-pw-muted">Last checked {r.last_verified}</p>}
       </RaisedCard>
     </li>
