@@ -26,6 +26,8 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
   const [inputMode, setInputMode] = useState('speak');
   const [isListening, setIsListening] = useState(false);
   const recognitionRef = useRef(null);
+  // Refs don't trigger re-renders, so track recognizer readiness in state for the mic button
+  const [srReady, setSrReady] = useState(false);
 
   const SUPPORTED_LANGUAGES = LANGUAGES.filter(l => l.value !== 'en');
 
@@ -99,6 +101,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
     recognition.onerror = () => setIsListening(false);
     recognition.onend = () => setIsListening(false);
     recognitionRef.current = recognition;
+    setSrReady(true);
     return () => {
       if (recognitionRef.current) {
         try { recognitionRef.current.stop(); } catch (e) {}
@@ -276,7 +279,7 @@ In the real USCIS interview, answers don't need to be word-for-word — as long 
                               recognitionRef.current?.start();
                             }
                           }}
-                          disabled={!recognitionRef.current}
+                          disabled={!srReady}
                           className={isListening ? 'bg-red-500 hover:bg-red-600' : 'bg-indigo-600 hover:bg-indigo-700'}
                         >
                           {isListening ? <MicOff className="w-4 h-4 mr-2" /> : <Mic className="w-4 h-4 mr-2" />}
