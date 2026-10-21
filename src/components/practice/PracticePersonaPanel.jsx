@@ -1,6 +1,5 @@
 import React from 'react';
 import { Badge } from '@/components/ui/badge';
-import { CheckCircle2 } from 'lucide-react';
 import { EXAMPLE_APPLICANTS } from '@/components/n400/exampleApplicants';
 
 // Interview sections where the learner answers as a practice person instead
@@ -52,7 +51,6 @@ export function PersonaPicker({ selectedId, onSelect }) {
             >
               <img src={p.image} alt="" className="w-10 h-10 rounded-full object-cover shrink-0" />
               <span className="text-sm font-semibold text-slate-800 leading-tight">{p.name}</span>
-              {selected && <CheckCircle2 className="w-4 h-4 text-indigo-600 shrink-0 ml-auto" />}
             </button>
           );
         })}
