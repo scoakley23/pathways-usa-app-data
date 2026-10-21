@@ -9,6 +9,8 @@ export const HOME_STRINGS = {
   intro_hello: "Hi, I'm {name}. I'll be your teacher.",
   intro_body: "I'll teach you, practice with you, and walk with you to your interview, one step at a time. First, a quick check shows me what you already know.",
   intro_time: 'About 10 minutes. You can skip any part.',
+  intro_first_step: 'Your first step',
+  intro_after: 'After the quick check, your study plan and daily practice appear here.',
   promise_title: 'How Pathways teaches',
   promise_official_tag: 'Official answers',
   promise_official_title: 'Every answer comes from USCIS',
