@@ -8,7 +8,6 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import RoleSelectionDialog from '@/components/onboarding/RoleSelectionDialog';
 import NotificationCenter from '@/components/notifications/NotificationCenter';
 import StudyBuddy, { openTutorChat } from '@/components/ai/StudyBuddy';
-import PathwaysMark from '@/components/pathways/PathwaysMark';
 import TabBar from '@/components/pathways/TabBar';
 import TutorOnboardingDialog from '@/components/persona/TutorOnboardingDialog';
 import DailyPracticeReminder from '@/components/notifications/DailyPracticeReminder';
@@ -162,7 +161,11 @@ export default function Layout({ children }) {
       <nav aria-label="Site" className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-pw-line">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2 cursor-pointer">
-            <PathwaysMark size={40} />
+            <img 
+              src="https://media.base44.com/images/public/6931bd654d327c7b2e36bfed/f90c67bf6_Screenshot2026-07-22at33716PM.png" 
+              alt="Pathways Logo"
+              className="w-10 h-10 rounded-xl object-cover ring-1 ring-pw-line"
+            />
             <span className="font-extrabold text-xl tracking-tight text-pw-navy">
               Pathways
             </span>
