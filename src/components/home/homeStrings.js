@@ -9,6 +9,18 @@ export const HOME_STRINGS = {
   intro_hello: "Hi, I'm {name}. I'll be your teacher.",
   intro_body: "I'll teach you, practice with you, and walk with you to your interview, one step at a time. First, a quick check shows me what you already know.",
   intro_time: 'About 10 minutes. You can skip any part.',
+  promise_title: 'How Pathways teaches',
+  promise_official_tag: 'Official answers',
+  promise_official_title: 'Every answer comes from USCIS',
+  promise_official_body:
+    'Civics questions and accepted answers come word for word from the official USCIS lists for the 2008 and 2025 tests. Reading and writing practice uses the official USCIS vocabulary lists. Your tutor can explain an answer, but never changes it.',
+  promise_official_note: 'Pathways is not part of USCIS or the U.S. government.',
+  promise_language_tag: 'Your language',
+  promise_language_title: 'Learn in your language, test in English',
+  promise_language_body:
+    "Your tutor can teach the lessons in {n} languages besides English. It's perfectly fine to learn in the language you know best.",
+  promise_language_english:
+    'Your interview and test are in English, so we also practice English with you, one step at a time, until you feel confident.',
   practice_title: 'Practice one skill',
   practice_desc: 'Each skill is one part of your interview.',
   hero_start_here: 'Start here',
