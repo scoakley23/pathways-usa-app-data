@@ -153,7 +153,7 @@ export default function StudyBuddy() {
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end pointer-events-none">
       {isOpen && (
-        <Card className="w-[350px] h-[500px] shadow-2xl border-blue-200 mb-4 pointer-events-auto flex flex-col animate-in slide-in-from-bottom-10 fade-in duration-300">
+        <Card className="w-[calc(100vw-3rem)] max-w-[350px] h-[500px] shadow-2xl border-blue-200 mb-4 pointer-events-auto flex flex-col animate-in slide-in-from-bottom-10 fade-in duration-300">
           <CardHeader className="bg-blue-600 text-white rounded-t-xl p-3 flex flex-col gap-3 shrink-0">
             <div className="flex items-center justify-between w-full">
                 <div className="flex items-center gap-2">
