@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Mic, MicOff, Volume2, Check, ArrowRight, AlertCircle, Loader2, Activity, RotateCcw } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
 import { toast } from "sonner";
 import { base44 } from '@/api/base44Client';
 import { speakText } from "@/components/utils/textToSpeech";
@@ -17,8 +16,6 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext }) {
   const [wordResults, setWordResults] = useState(null);
 
   const recognitionRef = useRef(null);
-  const mediaRecorderRef = useRef(null);
-  const audioChunksRef = useRef([]);
   const spokenTextRef = useRef('');
   const silenceTimeoutRef = useRef(null);
 
@@ -57,7 +54,6 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext }) {
         setAnalysis(null);
         setWordResults(null);
         spokenTextRef.current = '';
-        startRecording();
         resetSilenceTimer();
       };
 
@@ -75,13 +71,12 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext }) {
         if (silenceTimeoutRef.current) clearTimeout(silenceTimeoutRef.current);
         setIsListening(false);
         setStatus('error');
-        stopRecording();
       };
 
       recognitionRef.current.onend = () => {
         if (silenceTimeoutRef.current) clearTimeout(silenceTimeoutRef.current);
         setIsListening(false);
-        stopRecording();
+        analyzeReading();
       };
     } else {
       setStatus('unsupported');
@@ -89,48 +84,12 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext }) {
 
     return () => {
       if (silenceTimeoutRef.current) clearTimeout(silenceTimeoutRef.current);
-      if (recognitionRef.current) recognitionRef.current.stop();
-      if (mediaRecorderRef.current && mediaRecorderRef.current.state === 'recording') {
-        mediaRecorderRef.current.stop();
+      if (recognitionRef.current) {
+        recognitionRef.current.onend = null;
+        recognitionRef.current.stop();
       }
     };
   }, [sentence]);
-
-  const startRecording = async () => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      const mimeType = MediaRecorder.isTypeSupported('audio/webm')
-        ? 'audio/webm'
-        : (MediaRecorder.isTypeSupported('audio/mp4') ? 'audio/mp4' : '');
-
-      const options = mimeType ? { mimeType } : undefined;
-      mediaRecorderRef.current = new MediaRecorder(stream, options);
-      audioChunksRef.current = [];
-
-      mediaRecorderRef.current.ondataavailable = (event) => {
-        if (event.data.size > 0) {
-          audioChunksRef.current.push(event.data);
-        }
-      };
-
-      mediaRecorderRef.current.onstop = () => {
-        const type = mediaRecorderRef.current.mimeType || 'audio/webm';
-        const audioBlob = new Blob(audioChunksRef.current, { type });
-        analyzeAudio(audioBlob);
-        stream.getTracks().forEach(track => track.stop());
-      };
-
-      mediaRecorderRef.current.start();
-    } catch (err) {
-      console.error("Error accessing microphone:", err);
-    }
-  };
-
-  const stopRecording = () => {
-    if (mediaRecorderRef.current && mediaRecorderRef.current.state === 'recording') {
-      mediaRecorderRef.current.stop();
-    }
-  };
 
   const toggleListening = () => {
     if (isListening) {
@@ -166,10 +125,13 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext }) {
     return `You missed: "${missing.join('", "')}". Read more slowly and enunciate each word clearly.`;
   };
 
-  const analyzeAudio = async (audioBlob) => {
+  // Scores come only from the browser's live transcript and word matching.
+  // No audio is recorded or uploaded; only the target sentence and the
+  // transcript text go to the AI, for a short tip.
+  const analyzeReading = async () => {
     // ── 1. Word-level diff using the real-time speech recognition transcript ──
     // This is deterministic and CANNOT be tricked by the LLM — it's ground truth.
-    const transcript = spokenTextRef.current || spokenText;
+    const transcript = spokenTextRef.current;
     const diff = wordDiff(sentence.text, transcript);
     setWordResults(diff.words);
 
@@ -177,114 +139,53 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext }) {
 
     // ── 2. No speech detected → automatic fail (score 0) ──
     if (!transcript || transcript.trim().length < 2 || diff.spokenWordCount === 0) {
-      const result = {
+      setAnalysis({
         transcription: '(no speech detected)',
-        pronunciation_score: 0,
-        intonation_score: 0,
-        fluency_score: 0,
         overall_score: 0,
+        matched_count: 0,
+        total_words: diff.totalWords,
         phoneme_feedback: "We couldn't detect any speech. Make sure your microphone is working and speak clearly into it.",
         general_feedback: 'No speech detected'
-      };
-      setAnalysis(result);
+      });
       setStatus('retry');
       onComplete(false, 0);
       return;
     }
 
+    // ── 3. Score = word accuracy ──
+    const overall = wordAccuracy;
+
+    // ── 4. Optional AI tip from text only (never changes the score) ──
     setIsAnalyzing(true);
-
-    let llmResult = null;
-
-    // ── 3. LLM analysis for pronunciation quality (NOT transcription) ──
-    if (audioBlob && audioBlob.size > 500) {
+    let tip = null;
+    if (diff.matchedCount < diff.totalWords) {
       try {
-        const fileExt = audioBlob.type.includes('mp4') ? 'mp4' : 'webm';
-        const file = new File([audioBlob], `reading_practice.${fileExt}`, { type: audioBlob.type });
-        const { file_url } = await base44.integrations.Core.UploadFile({ file });
-
-        const prompt = `You are a STRICT English pronunciation evaluator for USCIS citizenship test preparation.
+        const res = await base44.integrations.Core.InvokeLLM({
+          prompt: `An English learner preparing for the USCIS reading test read this sentence aloud.
 
 TARGET SENTENCE: "${sentence.text}"
-SPEECH-TO-TEXT TRANSCRIPT (from real-time recognition, reliable): "${transcript}"
-WORD MATCH ACCURACY: ${wordAccuracy}% (${diff.matchedCount} of ${diff.totalWords} words matched)
+WHAT SPEECH RECOGNITION HEARD: "${transcript}"
 
-Listen to the audio and evaluate pronunciation quality ONLY. Do NOT re-transcribe — the transcript above is ground truth.
-
-STRICT SCORING RULES — these are MANDATORY and override your own judgment:
-- If WORD MATCH ACCURACY is below 60%, pronunciation_score MUST be below 50. The person said the wrong words.
-- If WORD MATCH ACCURACY is below 40%, ALL scores MUST be below 30.
-- If WORD MATCH ACCURACY is below 20%, ALL scores MUST be below 15.
-- If the audio is mostly silence, background noise, mumbling, or inaudible, ALL scores MUST be below 20.
-- Do NOT assume the person said the right words if the transcript doesn't match the target.
-- Accent is acceptable. Saying completely wrong words or being inaudible is NOT acceptable.
-
-Evaluate each category 0-100:
-- pronunciation_score: Clarity of individual sounds and correct word production
-- intonation_score: Natural sentence rhythm, stress, and intonation patterns
-- fluency_score: Smooth, continuous delivery without excessive pauses or hesitation
-- overall_score: MUST equal round(wordAccuracy * 0.6 + pronunciation * 0.2 + fluency * 0.1 + intonation * 0.1)
-
-Provide specific, actionable feedback on which sounds or words need improvement.`;
-
-        llmResult = await base44.integrations.Core.InvokeLLM({
-          prompt,
-          file_urls: [file_url],
+In one or two short, encouraging sentences at an A2 English level, give one practical tip for the words they missed or said differently. Do not give a score.`,
           response_json_schema: {
             type: "object",
-            properties: {
-              pronunciation_score: { type: "number" },
-              intonation_score: { type: "number" },
-              fluency_score: { type: "number" },
-              overall_score: { type: "number" },
-              phoneme_feedback: { type: "string" },
-              general_feedback: { type: "string" }
-            },
-            required: ["pronunciation_score", "intonation_score", "fluency_score", "overall_score", "phoneme_feedback", "general_feedback"]
+            properties: { tip: { type: "string" } },
+            required: ["tip"]
           }
         });
+        tip = res?.tip || null;
       } catch (error) {
-        console.error("LLM analysis failed, using word-accuracy fallback", error);
+        console.error("AI tip failed, using word-match feedback", error);
       }
     }
-
     setIsAnalyzing(false);
-
-    // ── 4. Calculate final scores — word accuracy is the dominant, deterministic factor ──
-    let pronunciation = llmResult?.pronunciation_score ?? wordAccuracy;
-    let intonation = llmResult?.intonation_score ?? Math.round(wordAccuracy * 0.5);
-    let fluency = llmResult?.fluency_score ?? Math.round(wordAccuracy * 0.7);
-
-    // Cross-validate: LLM CANNOT override word accuracy (prevents false high scores)
-    if (wordAccuracy < 60) {
-      pronunciation = Math.min(pronunciation, wordAccuracy + 10);
-    }
-    if (wordAccuracy < 40) {
-      pronunciation = Math.min(pronunciation, 30);
-      intonation = Math.min(intonation, 30);
-      fluency = Math.min(fluency, 30);
-    }
-    if (wordAccuracy < 20) {
-      pronunciation = Math.min(pronunciation, 15);
-      intonation = Math.min(intonation, 15);
-      fluency = Math.min(fluency, 15);
-    }
-
-    // Overall = weighted, word accuracy is dominant (60%)
-    let overall = Math.round(wordAccuracy * 0.6 + pronunciation * 0.2 + fluency * 0.1 + intonation * 0.1);
-
-    // Hard cap: if word accuracy is poor, overall can never exceed it
-    if (wordAccuracy < 50) {
-      overall = Math.min(overall, wordAccuracy);
-    }
 
     const result = {
       transcription: transcript,
-      pronunciation_score: Math.round(pronunciation),
-      intonation_score: Math.round(intonation),
-      fluency_score: Math.round(fluency),
       overall_score: overall,
-      phoneme_feedback: llmResult?.phoneme_feedback || generateFallbackFeedback(diff),
+      matched_count: diff.matchedCount,
+      total_words: diff.totalWords,
+      phoneme_feedback: tip || generateFallbackFeedback(diff),
       general_feedback: overall >= 70
         ? 'Great job! Your reading is clear and accurate.'
         : wordAccuracy < 50
@@ -364,7 +265,7 @@ Provide specific, actionable feedback on which sounds or words need improvement.
                 ) : isAnalyzing ? (
                     <div className="flex flex-col items-center gap-3 text-slate-500">
                          <Loader2 className="w-8 h-8 animate-spin text-purple-600" />
-                         <p className="text-sm font-medium">Analyzing your pronunciation...</p>
+                         <p className="text-sm font-medium">Checking your reading...</p>
                     </div>
                 ) : status === 'manual' ? (
                     <div className="flex flex-col items-center animate-in fade-in slide-in-from-bottom-4">
@@ -410,23 +311,9 @@ Provide specific, actionable feedback on which sounds or words need improvement.
                             </div>
                          </div>
 
-                         <div className="grid grid-cols-3 gap-4 mb-4">
-                            <div className="text-center">
-                                <p className="text-xs text-slate-500 mb-1">Pronunciation</p>
-                                <Progress value={analysis.pronunciation_score} className="h-2" />
-                                <span className="text-xs font-medium mt-1 block">{analysis.pronunciation_score}%</span>
-                            </div>
-                            <div className="text-center">
-                                <p className="text-xs text-slate-500 mb-1">Intonation</p>
-                                <Progress value={analysis.intonation_score} className="h-2" />
-                                <span className="text-xs font-medium mt-1 block">{analysis.intonation_score}%</span>
-                            </div>
-                            <div className="text-center">
-                                <p className="text-xs text-slate-500 mb-1">Fluency</p>
-                                <Progress value={analysis.fluency_score} className="h-2" />
-                                <span className="text-xs font-medium mt-1 block">{analysis.fluency_score}%</span>
-                            </div>
-                         </div>
+                         <p className="text-sm text-slate-600 mb-4">
+                            Words read correctly: <span className="font-semibold text-slate-800">{analysis.matched_count} of {analysis.total_words}</span>
+                         </p>
 
                          {analysis.phoneme_feedback && (
                              <div className="bg-white p-2 rounded-lg border border-slate-100 text-left">

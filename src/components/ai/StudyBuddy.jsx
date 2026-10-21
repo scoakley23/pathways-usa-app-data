@@ -18,10 +18,10 @@ import { getSavedLanguage, RTL_LANGUAGES } from '@/hooks/useAppLanguage';
 // hand; other languages are translated once by AI and cached on the device.
 // Bump the cache key whenever the English text changes.
 const PRIVACY_NOTE = {
-  en: "Don't share your immigration status, A-number, case details, or address. Your questions are saved and may be emailed to your tutor.",
-  es: 'No comparta su estatus migratorio, número A, detalles de su caso ni su dirección. Sus preguntas se guardan y pueden enviarse por correo electrónico a su tutor.',
+  en: "Don't share your immigration status, A-number, case details, or address. Your questions are saved to your account so you can see them in History.",
+  es: 'No comparta su estatus migratorio, número A, detalles de su caso ni su dirección. Sus preguntas se guardan en su cuenta para que pueda verlas en el Historial.',
 };
-const PRIVACY_NOTE_CACHE_KEY = 'pathways_sb_privacy_v1_';
+const PRIVACY_NOTE_CACHE_KEY = 'pathways_sb_privacy_v2_';
 
 function usePrivacyNote(language) {
   const [note, setNote] = useState(PRIVACY_NOTE[language] || PRIVACY_NOTE.en);
@@ -73,7 +73,6 @@ export default function StudyBuddy() {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState(null);
-  const [tutorEmail, setTutorEmail] = useState(null);
   const [language, setLanguage] = useState('en');
   const scrollRef = useRef(null);
   const appLanguage = getSavedLanguage();
@@ -84,16 +83,6 @@ export default function StudyBuddy() {
       try {
         const currentUser = await base44.auth.me();
         setUser(currentUser);
-        
-        // Find active tutor
-        const rels = await base44.entities.TutorRelationship.filter({
-          student_email: currentUser.email,
-          status: 'active'
-        });
-        
-        if (rels.length > 0) {
-          setTutorEmail(rels[0].tutor_email);
-        }
       } catch (e) {
         // Not logged in or other error
       }
@@ -151,16 +140,6 @@ export default function StudyBuddy() {
             created_at: new Date().toISOString()
         });
       }
-
-      // 3. Notify Tutor if exists
-      if (tutorEmail && user) {
-        await base44.integrations.Core.SendEmail({
-          to: tutorEmail,
-          subject: `Student Question: ${user.email}`,
-          body: `Hello,\n\nYour student ${user.email} asked the AI Study Buddy a question:\n\n"${userQuestion}"\n\nThe AI answered:\n"${answerText}"\n\nYou might want to follow up with them directly.\n\nBest,\nCitizenship Learning Hub`
-        });
-      }
-
     } catch (error) {
       console.error("Study Buddy Error:", error);
       toast.error("Sorry, I couldn't answer that right now.");

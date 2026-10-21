@@ -41,17 +41,18 @@ Pathways USA is a free U.S. citizenship test prep app (civics, reading, writing,
 
 | Where | What | Notes |
 | --- | --- | --- |
-| `User` (account) | display name, points, badges, max streak, **`test_date`** | `test_date` is set by `TestDateTracker` — conflicts with the target-date rule |
+| `User` (account) | display name, points, badges, max streak | reset by `DeleteMyData` (the sign-in account itself can't be deleted from the app) |
 | `PublicProfile` | display name, points, badge count, role, tutor invite code, cached representative names | address/zip used only for lookup |
 | `UserProgress` | per sentence/word/civics question: status, SRS fields, scores, attempts | |
 | `LessonProgress` | per lesson: completed, quiz scores, needs_review | |
 | `LessonNotes` | learner's free-text notes per lesson | |
 | `N400SectionProgress` | section completed + date only | |
-| `InterviewSession` | scores **and the learner's spoken-answer transcripts** (`results[].response`) | conflicts with "no transcripts" rule |
-| `AIStudyLog` | Study Buddy question + answer + email | question also **emailed to the learner's tutor** |
+| `InterviewSession` | per-question scores only | transcripts stay in memory for the end-of-interview report |
+| `AIStudyLog` | Study Buddy question + answer + email | shown to the learner in Study History; not emailed |
 | `Message`, `Notification` | tutor/student messages and in-app notifications | |
 | `TutorRelationship`, `Assignment` | tutor links, assigned items, tutor feedback | |
-| Base44 file storage | **reading-practice audio** uploaded via `UploadFile` for AI scoring (`ReadingPracticeCard`) | conflicts with "no audio stored" rule |
-| `localStorage` | language, civics version, voice settings, cached translations, daily reminder flag, role cache, pending tutor invite | device only |
+| `localStorage` | target date (`pathways_target_date`), language, civics version, voice settings, cached translations, daily reminder flag, role cache, pending tutor invite | device only; cleared by `DeleteMyData` |
 
-Known conflicts with the rules above (do not fix unless a prompt asks): leaderboard, points, and streaks in `src/components/gamification/`; the three rows marked above.
+Reading practice scores from the browser transcript and word matching; no audio is recorded or uploaded (Base44 can't delete uploaded files).
+
+Known conflicts with the rules above (do not fix unless a prompt asks): leaderboard, points, and streaks in `src/components/gamification/` (planned for Prompt 6).
