@@ -343,6 +343,7 @@ Double check all names are spelled correctly.`,
                 className="h-12 text-base bg-white"
                 autoFocus
               />
+              <p className="text-sm text-pw-muted">Your address is used only for this search. We don't save it.</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 <SecondaryButton
                   onClick={() => { setNeedsAddress(false); setStreetAddress(''); }}

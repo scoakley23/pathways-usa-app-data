@@ -12,7 +12,7 @@ Pathways USA is a free U.S. citizenship test prep app (civics, reading, writing,
 - Never store a learner's immigration status, A-number, case details, filing date, field office, address, or N-400 answers.
 - No audio or speech transcripts are stored; only scores.
 - The learner's target date lives **only** in browser storage on their device (wrap every `localStorage` read/write in try/catch).
-- Learner-typed text goes to the AI only in Study Buddy / Ask-the-tutor, and never with personal identifiers (email, name) attached.
+- Learner text (typed or spoken-as-text) goes to the AI only in the features the AI Policy describes: Ask Vía, civics answer grading, interview/lesson answer scoring, and the representative lookup (zip, plus a street address only when the zip spans several districts). Never with personal identifiers (email, name), never saved, and emails/phone numbers are stripped first where learners type freely. Check answers on the device first when that's enough.
 
 ### Design ("Calm and confident")
 - Manrope font, navy `#14264A`, accent red `#D9483F`, page `#F3F5F9`, cards white with `#DEE4EE` border, 16px corners.
@@ -64,4 +64,4 @@ Pathways USA is a free U.S. citizenship test prep app (civics, reading, writing,
 
 Reading practice scores from the browser transcript and word matching; no audio is recorded or uploaded (Base44 can't delete uploaded files).
 
-Known conflicts with the rules above (do not fix unless a prompt asks): the civics quiz (`CivicsTestCard`) sends typed answers to the AI (tutor lessons check typed answers on the device instead); Representative Finder sends the street address and zip to the AI for the lookup (not stored). Leaderboards and streak displays were removed in Prompt 6; points and badges remain.
+Known conflicts with the rules above: none open. Leaderboards and streak displays were removed in Prompt 6; points and badges remain. Keep `docs/AI-Policy-updated.md` in sync when data handling changes.

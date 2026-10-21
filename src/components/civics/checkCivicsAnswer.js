@@ -1,4 +1,5 @@
 import { base44 } from '@/api/base44Client';
+import { redactIdentifiers } from '@/lib/askTutor';
 
 export const isChangingAnswer = (question) => (question?.answer || '').startsWith('Answers change');
 export const isLocationAnswer = (question) => (question?.answer || '').startsWith('Answers vary');
@@ -8,7 +9,9 @@ export const isLocationAnswer = (question) => (question?.answer || '').startsWit
 // With `teach` ({ instructions, languageName }), the AI also returns short
 // teaching feedback in the tutor's voice: what was right and one tip, in the
 // learner's language and in English.
-export async function checkCivicsAnswer(question, userAnswer, { personalizedAnswer = null, teach = null } = {}) {
+// Emails and phone numbers are removed from the answer before it is sent.
+export async function checkCivicsAnswer(question, rawAnswer, { personalizedAnswer = null, teach = null } = {}) {
+  const userAnswer = redactIdentifiers(rawAnswer);
   const isChanging = isChangingAnswer(question);
   const isLocation = isLocationAnswer(question);
 
