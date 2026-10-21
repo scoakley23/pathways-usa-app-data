@@ -17,7 +17,10 @@ only when every box below is true.
 
 **Explanation**
 - [ ] It is accurate. Facts, names, numbers, and dates are correct.
-- [ ] It is 3 to 5 short sentences.
+- [ ] It is 3 to 5 short sentences. **List questions** ("Name one…" with
+  many accepted answers) may instead use 1–2 intro sentences, a blank line,
+  then one line per accepted answer: `• <answer>: <one short sentence>`, in
+  the official order, with no extra answers.
 - [ ] It is easy to read (about level A2–B1): short sentences, common words.
 - [ ] It is neutral: no political opinions, no jokes, nothing about any party.
 - [ ] It gives no legal advice. It never tells the learner how to answer
@@ -25,6 +28,12 @@ only when every box below is true.
 - [ ] For "Answers change" / "Answers vary" questions, it tells the learner to
   check the current answer (uscis.gov) or their own state's officials, and
   does not name a person as the answer.
+  (The app shows the confirmed current officials from
+  `content/civics/current-officials.json`, set in Admin → Current officials,
+  and the learner's own officials from Find My Representative.)
+- [ ] An optional `link` (`{ "url", "label" }`, e.g. a Listen link) goes to an
+  official https site (.gov, .mil or .si.edu) and the label is in the file's
+  language.
 - [ ] Translations (not `en.json`) read naturally, like a teacher wrote them,
   and use the polite form of "you" (Spanish: "usted").
 

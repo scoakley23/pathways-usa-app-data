@@ -1,10 +1,14 @@
 import { splitOfficialAnswers } from './practiceChecks';
+import { currentAnswerFor } from './currentAnswers';
 
 // Lesson explanations for the civics questions (Prompt 7: teach first, then
 // practice). They are CONTENT files, reviewed by a person, not generated live:
 //   content/explanations/<lang>.json = { "<official question>": {
 //     question, answers, status: 'draft' | 'reviewed', explanation,
-//     keyWords: [{ en, translation }] } }
+//     keyWords: [{ en, translation }], link?: { url, label } } }
+// `explanation` may use line breaks: an intro, then one "• answer: ..." line
+// per accepted answer (list questions). `link` is an optional Listen/Learn
+// more link to an official site (see LINK_HOSTS).
 // Only "reviewed" entries are shown. See content/explanations/REVIEW.md.
 const files = import.meta.glob('../../content/explanations/*.json', { eager: true, import: 'default' });
 
@@ -20,7 +24,17 @@ export const TRANSLATION_SOON = { en: 'Translation coming soon.', es: 'Traducci�
 
 const reviewed = (entry) => (entry && entry.status === 'reviewed' && entry.explanation ? entry : null);
 
-// Pure selection rule. Returns { text, keyWords, source, comingSoon, englishText }:
+// Optional links may only point to official sites over https.
+export const isAllowedLink = (url) => {
+  try {
+    const u = new URL(url);
+    return u.protocol === 'https:' && /(\.gov|\.mil|\.si\.edu)$/.test(u.hostname);
+  } catch (e) {
+    return false;
+  }
+};
+
+// Pure selection rule. Returns { text, keyWords, link, source, comingSoon, englishText }:
 // - the learner's language entry, only if reviewed (source 'mine');
 // - else the reviewed English entry (source 'english'), with comingSoon=true
 //   for non-English learners ("Translation coming soon.");
@@ -30,9 +44,9 @@ export function selectExplanation(questionText, language = 'en', tables = EXPLAN
   const english = reviewed(tables.en?.[questionText]);
   const mine = reviewed(tables[language]?.[questionText]);
   const englishText = english ? english.explanation : null;
-  if (mine) return { text: mine.explanation, keyWords: mine.keyWords || [], source: 'mine', comingSoon: false, englishText };
-  if (english) return { text: english.explanation, keyWords: english.keyWords || [], source: 'english', comingSoon: language !== 'en', englishText };
-  return { text: null, keyWords: [], source: null, comingSoon: false, englishText: null };
+  if (mine) return { text: mine.explanation, keyWords: mine.keyWords || [], link: mine.link || english?.link || null, source: 'mine', comingSoon: false, englishText };
+  if (english) return { text: english.explanation, keyWords: english.keyWords || [], link: english.link || null, source: 'english', comingSoon: language !== 'en', englishText };
+  return { text: null, keyWords: [], link: null, source: null, comingSoon: false, englishText: null };
 }
 
 export function getExplanation(questionText, language = 'en') {
@@ -68,13 +82,15 @@ export function pickNextToLearn(questions, progressRows, n = 2) {
 }
 
 // Teach-then-practice lesson: per question, explain → bridge → speak.
-export function buildLearnLesson(questions, language = 'en', lookup = getExplanation) {
+// `representativeData` (the learner's saved Find My Representative result)
+// fills in "your state's" answers on the bridge step.
+export function buildLearnLesson(questions, language = 'en', lookup = getExplanation, { representativeData = null } = {}) {
   const steps = [];
   for (const q of questions) {
     const explanation = lookup(q.question, language);
     const { text, note } = explainText(explanation, language);
-    steps.push({ type: 'explain', text, note, questionId: q.id });
-    steps.push({ type: 'show-english', question: q, keyWords: explanation.keyWords, questionId: q.id });
+    steps.push({ type: 'explain', text, note, link: explanation.link || null, questionId: q.id });
+    steps.push({ type: 'show-english', question: q, keyWords: explanation.keyWords, now: currentAnswerFor(q, { representativeData }), questionId: q.id });
     steps.push({ type: 'practice-speaking', question: q, questionId: q.id });
   }
   return { id: 'learn-civics', title: 'Learn civics', steps };
@@ -96,6 +112,10 @@ export function findExplanationProblems(tables, officialQuestions) {
       const expected = splitOfficialAnswers(q.answer);
       if (JSON.stringify(entry.answers) !== JSON.stringify(expected)) {
         problems.push(`${where}: answers differ from the official answer list ${JSON.stringify(expected)}`);
+      }
+      if (entry.link !== undefined) {
+        if (!entry.link || !isAllowedLink(entry.link.url)) problems.push(`${where}: link.url must be an https link to a .gov, .mil or .si.edu site`);
+        if (!entry.link?.label || typeof entry.link.label !== 'string') problems.push(`${where}: link.label is missing`);
       }
       const source = `${q.question} ${expected.join(' ')}`.toLowerCase();
       for (const k of entry.keyWords || []) {

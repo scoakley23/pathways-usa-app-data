@@ -2404,7 +2404,11 @@
         "en": "Star-Spangled Banner",
         "translation": "bandera adornada de estrellas"
       }
-    ]
+    ],
+    "link": {
+      "url": "https://www.loc.gov/item/ihas.100010509/",
+      "label": "Escuchar la canción (Biblioteca del Congreso)"
+    }
   },
   "What is the purpose of the 10th Amendment?": {
     "question": "What is the purpose of the 10th Amendment?",
