@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { BookOpen, Mic, CheckCircle, LogOut, Menu, Settings, GraduationCap, User, House, School, FileText, MapPin } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -9,12 +9,13 @@ import RoleSelectionDialog from '@/components/onboarding/RoleSelectionDialog';
 import NotificationCenter from '@/components/notifications/NotificationCenter';
 import StudyBuddy, { openTutorChat } from '@/components/ai/StudyBuddy';
 import TabBar from '@/components/pathways/TabBar';
-import TutorOnboardingDialog from '@/components/persona/TutorOnboardingDialog';
+import { AutoReadContext } from '@/components/persona/useAutoRead';
 import DailyPracticeReminder from '@/components/notifications/DailyPracticeReminder';
 import { Toaster } from "sonner";
 
 // Lesson screens are "focus mode": they have a pinned Continue button, so the
-// chat button and the tab bar stay off them.
+// chat button and the tab bar stay off them. The tutor also reads each
+// message aloud on these screens (onboarding, quick check, lessons).
 const FOCUS_ROUTES = ['/quick-check', '/tutor-demo', '/learn', '/review', '/n400-coach'];
 
 export default function Layout({ children }) {
@@ -23,8 +24,7 @@ export default function Layout({ children }) {
   const [role, setRole] = React.useState(null);
   const [isOpen, setIsOpen] = React.useState(false);
   const [showOnboarding, setShowOnboarding] = React.useState(false);
-  const [showTutorSetup, setShowTutorSetup] = React.useState(false);
-  const closeTutorSetup = React.useCallback(() => setShowTutorSetup(false), []);
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     const checkUser = async () => {
@@ -245,12 +245,14 @@ export default function Layout({ children }) {
       </nav>
 
       <main id="main" tabIndex={-1} key={role || 'init'} className={`container mx-auto px-4 pt-6 max-w-5xl focus:outline-none ${showTabs ? 'pb-32 lg:pb-24' : 'pb-24'}`}>
+        <AutoReadContext.Provider value={focusMode}>
         {React.Children.map(children, child => {
             if (React.isValidElement(child)) {
                 return React.cloneElement(child, { cachedUser: user, cachedRole: role });
             }
             return child;
         })}
+        </AutoReadContext.Provider>
       </main>
 
       <footer className={`border-t border-pw-line bg-white mt-8 ${showTabs ? 'pb-24 lg:pb-0' : ''}`}>
@@ -272,11 +274,12 @@ export default function Layout({ children }) {
                   }
                   setRole(selectedRole);
                   setShowOnboarding(false);
-                  if (selectedRole === 'student') setShowTutorSetup(true);
+                  // New learners go straight to "Getting started" (language,
+                  // tutor, where they are), then the quick check.
+                  if (selectedRole === 'student') navigate('/quick-check');
               }}
           />
       )}
-      {showTutorSetup && <TutorOnboardingDialog onDone={closeTutorSetup} />}
       {!focusMode && <StudyBuddy aboveTabBar={showTabs} />}
       {showTabs && <TabBar pathname={location.pathname} onAskTutor={askTutor} />}
       <DailyPracticeReminder />

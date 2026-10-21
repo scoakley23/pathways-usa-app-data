@@ -34,6 +34,12 @@ for (const file of readdirSync(join(root, dir)).filter((f) => f.endsWith('.json'
     if (JSON.stringify(e.answers) !== JSON.stringify(expected)) {
       report(`${where}: answers ${JSON.stringify(e.answers)} differ from official ${JSON.stringify(expected)}`);
     }
+    if (e.link !== undefined) {
+      let ok = false;
+      try { const u = new URL(e.link?.url); ok = u.protocol === 'https:' && /(\.gov|\.mil|\.si\.edu)$/.test(u.hostname); } catch (err) { ok = false; }
+      if (!ok) report(`${where}: link.url must be an https link to a .gov, .mil or .si.edu site`);
+      if (!e.link?.label) report(`${where}: link.label is missing`);
+    }
     const source = `${q.question} ${expected.join(' ')}`.toLowerCase();
     for (const k of e.keyWords || []) {
       if (!k?.en || !source.includes(String(k.en).toLowerCase())) report(`${where}: key word "${k?.en}" is not in the official text`);

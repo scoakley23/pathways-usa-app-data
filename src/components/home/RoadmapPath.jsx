@@ -2,9 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Check, Notebook, BookOpen, Mic, CalendarCheck, Star } from 'lucide-react';
-import LanguageSelector from '@/components/lessons/LanguageSelector';
 import { ROADMAP_STOPS } from './roadmapStops';
-import { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
+import { isRTL } from '@/hooks/useAppLanguage';
 import TutorAvatar from '@/components/persona/TutorAvatar';
 import useTutorProfile from '@/components/persona/useTutorProfile';
 
@@ -30,11 +29,11 @@ function pathThrough(points) {
   return d;
 }
 
-export default function RoadmapPath({ roadmap, t, language, onLanguageChange, translating }) {
+export default function RoadmapPath({ roadmap, t, language }) {
   const { loading, currentStop, done, doneCount } = roadmap;
   const { profile } = useTutorProfile();
 
-  const mirror = RTL_LANGUAGES.includes((language || 'en').slice(0, 2).toLowerCase());
+  const mirror = isRTL(language);
   const stops = ROADMAP_STOPS.map((s) => ({
     ...s,
     name: t(`stop${s.id}_name`),
@@ -58,9 +57,6 @@ export default function RoadmapPath({ roadmap, t, language, onLanguageChange, tr
   return (
     <section aria-label={t('path_title')} dir={mirror ? 'rtl' : 'ltr'}>
       <div className="max-w-[480px] mx-auto">
-        <div className="flex justify-end mb-2">
-          <LanguageSelector language={language} onLanguageChange={onLanguageChange} translating={translating} />
-        </div>
         <div className="flex items-baseline justify-between mb-3">
           <h2 className="text-2xl font-extrabold tracking-[-0.5px] text-pw-navy">{t('path_title')}</h2>
           <span className="text-base font-bold text-pw-muted min-h-[20px]">

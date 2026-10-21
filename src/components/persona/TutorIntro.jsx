@@ -52,14 +52,22 @@ export default function TutorIntro({ t, language = 'en' }) {
             <ListenButton text={`${helloEn} ${HOME_STRINGS.intro_body}`} language="en" label="English" tutorName={profile.name} />
           )}
         </div>
-        <Link
-          to="/quick-check"
-          className="w-full min-h-[56px] rounded-2xl bg-pw-navy text-white font-bold text-lg flex items-center justify-center gap-2 px-4 text-center shadow-lift hover:bg-pw-navy-deep transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2"
-        >
-          {t('qc_start')} <ArrowRight className="w-5 h-5 shrink-0" aria-hidden="true" />
-        </Link>
-        <p className="text-base text-pw-muted">{t('intro_time')}</p>
+        {/* The one next step: tap here, not scroll. */}
+        <div className="rounded-2xl bg-pw-soft p-3 sm:p-4 space-y-2">
+          <p id="tutor-intro-first-step" className="text-base font-extrabold flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-pw-red shrink-0" aria-hidden="true" /> {t('intro_first_step')}
+          </p>
+          <Link
+            to="/quick-check"
+            aria-describedby="tutor-intro-first-step"
+            className="w-full min-h-[64px] rounded-2xl bg-pw-navy text-white font-extrabold text-xl flex items-center justify-center gap-2 px-4 text-center shadow-lift hover:bg-pw-navy-deep transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2"
+          >
+            {t('qc_start')} <ArrowRight className="w-6 h-6 shrink-0" aria-hidden="true" />
+          </Link>
+          <p className="text-base text-pw-muted">{t('intro_time')}</p>
+        </div>
         <p className="text-base font-bold">{t('hero_promise')}</p>
+        <p className="text-base text-pw-muted">{t('intro_after')}</p>
       </div>
     </section>
   );

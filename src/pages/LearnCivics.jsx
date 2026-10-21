@@ -54,6 +54,7 @@ export default function LearnCivics() {
   const [language] = useAppLanguage();
   const [user, setUser] = useState(undefined);
   const [picked, setPicked] = useState(null);
+  const [representativeData, setRepresentativeData] = useState(null);
   const [stage, setStage] = useState('intro'); // intro | lesson | done
   const [results, setResults] = useState([]);
   const [saving, setSaving] = useState(false);
@@ -67,10 +68,13 @@ export default function LearnCivics() {
     if (!user) return;
     setPicked(null);
     try {
-      const [questions, progress] = await Promise.all([
+      const [questions, progress, profiles] = await Promise.all([
         base44.entities.CivicsQuestion.filter({ version: '2025' }, null, 500),
         base44.entities.UserProgress.filter({ user_email: user.email, content_type: 'civics_question' }, null, 1000),
+        // The learner's own officials ("your state's ..." questions), if they used Find My Representative.
+        base44.entities.PublicProfile.filter({ user_email: user.email.toLowerCase().trim() }, '-created_date', 1).catch(() => []),
       ]);
+      setRepresentativeData(profiles[0]?.representative_data || null);
       setPicked(pickNextToLearn(questions, progress, count));
     } catch (e) {
       toast.error("Couldn't load your lesson. Please check your connection.");
@@ -80,7 +84,7 @@ export default function LearnCivics() {
 
   useEffect(() => { load(); }, [load]);
 
-  const lesson = useMemo(() => (picked ? buildLearnLesson(picked, language) : null), [picked, language]);
+  const lesson = useMemo(() => (picked ? buildLearnLesson(picked, language, undefined, { representativeData }) : null), [picked, language, representativeData]);
 
   const finish = async ({ states }) => {
     // Each question's practice step: correct only if answered correctly.

@@ -2,10 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import TopicArt from '@/components/art/TopicArt';
 import RoadmapHero from '@/components/home/RoadmapHero';
+import StartHereCard from '@/components/home/StartHereCard';
 import TodayCard from '@/components/persona/TodayCard';
 import RoadmapPath from '@/components/home/RoadmapPath';
+import LanguageSelector from '@/components/lessons/LanguageSelector';
+import HomePromises from '@/components/home/HomePromises';
+import { useAuth } from '@/lib/AuthContext';
 import useRoadmapProgress from '@/components/home/useRoadmapProgress';
-import useAppLanguage, { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
+import useAppLanguage, { isRTL } from '@/hooks/useAppLanguage';
 import useHomeTranslation from '@/hooks/useHomeTranslation';
 import { ArrowRight, FileText, Search } from 'lucide-react';
 import { SKILL_BG, SkillTag } from '@/components/pathways/ui';
@@ -29,23 +33,29 @@ export default function Home({ cachedUser, cachedRole }) {
       setTimeout(() => document.getElementById('ready-to-file')?.scrollIntoView({ behavior: 'smooth' }), 300);
     }
   }, []);
-  const rtl = RTL_LANGUAGES.includes((language || 'en').slice(0, 2).toLowerCase());
+  const rtl = isRTL(language);
   // Learners start with their tutor (Today, or the tutor's introduction);
-  // tutors and signed-out visitors see the overview hero.
+  // signed-out visitors see "Start here"; tutors see the overview hero.
+  // (Auth is known before pages render, so signed-in users never see it.)
+  const { isAuthenticated } = useAuth();
   const learner = cachedUser && cachedRole !== 'tutor';
+  const hero = !isAuthenticated
+    ? <StartHereCard t={t} />
+    : learner ? <TodayCard language={language} homeT={t} /> : <RoadmapHero roadmap={roadmap} t={t} />;
 
   return (
     <div className="flex flex-col gap-6 pb-8" dir={rtl ? 'rtl' : 'ltr'}>
-      {/* Today (learners with a plan) or the tutor's introduction */}
-      {learner ? <TodayCard language={language} homeT={t} /> : <RoadmapHero roadmap={roadmap} t={t} />}
+      {/* Language first, so even the first card can be read in it */}
+      <div className="flex justify-end -mb-2">
+        <LanguageSelector language={language} onLanguageChange={setLanguage} translating={translating} />
+      </div>
+      {/* Today / the tutor's introduction (learners), Start here (signed out) */}
+      {hero}
       {/* Roadmap */}
-      <RoadmapPath
-        roadmap={roadmap}
-        t={t}
-        language={language}
-        onLanguageChange={setLanguage}
-        translating={translating}
-      />
+      <RoadmapPath roadmap={roadmap} t={t} language={language} />
+
+      {/* Official USCIS answers; learn in your language, test in English */}
+      <HomePromises t={t} />
 
       {/* Practice one skill */}
       <section aria-labelledby="practice-title" className="space-y-3">

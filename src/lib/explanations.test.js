@@ -65,7 +65,7 @@ describe('selectExplanation', () => {
 
   it('uses the learner language when it is reviewed', () => {
     expect(selectExplanation(Q1, 'es', tables)).toEqual({
-      text: 'Texto en español.', keyWords: tables.es[Q1].keyWords, source: 'mine', comingSoon: false, englishText: 'English text.',
+      text: 'Texto en español.', keyWords: tables.es[Q1].keyWords, link: null, source: 'mine', comingSoon: false, englishText: 'English text.',
     });
     expect(selectExplanation(Q1, 'en', tables)).toMatchObject({ text: 'English text.', source: 'mine', comingSoon: false });
   });
@@ -81,7 +81,7 @@ describe('selectExplanation', () => {
 
   it('returns nothing when English is not reviewed', () => {
     const t = { en: { [Q1]: entry('draft', 'Draft.') }, es: { [Q1]: entry('draft', 'Borrador.') } };
-    expect(selectExplanation(Q1, 'es', t)).toEqual({ text: null, keyWords: [], source: null, comingSoon: false, englishText: null });
+    expect(selectExplanation(Q1, 'es', t)).toEqual({ text: null, keyWords: [], link: null, source: null, comingSoon: false, englishText: null });
     expect(selectExplanation(Q1, 'en', t).source).toBe(null);
     expect(selectExplanation('Unknown?', 'en', tables).source).toBe(null);
   });
@@ -131,5 +131,26 @@ describe('pickNextToLearn and buildLearnLesson', () => {
     expect(lesson.steps.map((s) => s.type)).toEqual(['explain', 'show-english', 'practice-speaking', 'explain', 'show-english', 'practice-speaking']);
     expect(lesson.steps[2].question).toBe(qs[0]);
     expect(lesson.steps[0].text.en).toBe('Explanation coming soon.');
+  });
+});
+
+describe('links and current answers', () => {
+  it('accepts only https links to official sites, with a label', () => {
+    const ok = entry('draft', 'x', { link: { url: 'https://www.loc.gov/item/x/', label: 'Listen' } });
+    expect(findExplanationProblems({ en: { [Q1]: ok } }, OFFICIAL)).toEqual([]);
+    for (const url of ['http://www.loc.gov/x', 'https://example.com/x', 'https://loc.gov.evil.com/x', 'javascript:alert(1)']) {
+      const bad = entry('draft', 'x', { link: { url, label: 'Listen' } });
+      expect(findExplanationProblems({ en: { [Q1]: bad } }, OFFICIAL)).toHaveLength(1);
+    }
+    const noLabel = entry('draft', 'x', { link: { url: 'https://www.loc.gov/x' } });
+    expect(findExplanationProblems({ en: { [Q1]: noLabel } }, OFFICIAL)).toHaveLength(1);
+  });
+
+  it('passes the link to the explain step and the learner\'s own answer to the bridge', () => {
+    const lookup = () => ({ text: 'T.', keyWords: [], link: { url: 'https://www.loc.gov/x', label: 'Listen' }, source: 'mine', comingSoon: false, englishText: 'T.' });
+    const q = { id: 'g', version: '2025', question: 'Who is the governor of your state now?', answer: 'Answers vary by where you live.' };
+    const lesson = buildLearnLesson([q], 'en', lookup, { representativeData: { governor: 'Pat Example' } });
+    expect(lesson.steps[0].link.label).toBe('Listen');
+    expect(lesson.steps[1].now).toEqual({ kind: 'yours', text: 'Pat Example' });
   });
 });

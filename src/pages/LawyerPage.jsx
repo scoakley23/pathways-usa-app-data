@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { ExternalLink, AlertTriangle, Scale, Lock, Loader2 } from 'lucide-react';
 import PageHeader from '@/components/PageHeader';
 import { RaisedCard } from '@/components/pathways/ui';
-import useAppLanguage, { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
+import useAppLanguage, { isRTL } from '@/hooks/useAppLanguage';
 import useLawyerChecklistTranslation from '@/hooks/useLawyerChecklistTranslation';
 import { LAWYER_CHECKLIST_ITEMS, LEGAL_HELP_LINKS } from '@/components/lawyer/lawyerChecklist';
 import ResourceFinder from '@/components/resources/ResourceFinder';
@@ -25,7 +25,7 @@ export default function LawyerPage({ cachedUser }) {
   }, [location.pathname]);
   const isAdmin = cachedUser?.role === 'admin';
   const [language] = useAppLanguage();
-  const rtl = RTL_LANGUAGES.includes((language || 'en').slice(0, 2).toLowerCase());
+  const rtl = isRTL(language);
   const { translation, isTranslating } = useLawyerChecklistTranslation(language);
   const hasTranslation = language && language !== 'en' && translation?.length > 0;
 

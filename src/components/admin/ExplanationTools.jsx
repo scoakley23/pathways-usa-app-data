@@ -31,7 +31,7 @@ const clearSaved = (lang) => {
 
 const byText = (a, b) => (a < b ? -1 : a > b ? 1 : 0);
 
-function downloadJson(filename, value) {
+export function downloadJson(filename, value) {
   const blob = new Blob([`${JSON.stringify(value, null, 2)}\n`], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');

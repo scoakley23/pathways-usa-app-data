@@ -7,6 +7,7 @@ import CivicsQuestionsTab from '@/components/admin/CivicsQuestionsTab';
 import VocabularyWordsTab from '@/components/admin/VocabularyWordsTab';
 import ResourcesTab from '@/components/admin/ResourcesTab';
 import ExplanationTools from '@/components/admin/ExplanationTools';
+import CurrentOfficialsTool from '@/components/admin/CurrentOfficialsTool';
 import PageHeader from '@/components/PageHeader';
 import { Link } from 'react-router-dom';
 
@@ -91,6 +92,8 @@ export default function Admin() {
       </Tabs>
 
       <ExplanationTools />
+
+      <CurrentOfficialsTool />
     </div>
   );
 }

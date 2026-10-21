@@ -8,13 +8,16 @@
 
 | Data | Where | What exactly | Who can see it |
 | --- | --- | --- | --- |
-| Tutor settings | `User.tutor_profile` (Base44) | tutor name, avatar id, tone, English mix | learner; Pathways staff |
+| Tutor settings | `User.tutor_profile` (Base44) | tutor name, avatar id (`a1`–`a6`, or `custom`), tone, English mix | learner; Pathways staff |
+| Learner's own tutor photo | `localStorage` `pathways_tutor_photo` (this device only) | 384px JPEG, center-cropped on the device; never uploaded or sent to the AI | only someone using this browser |
 | Quick check results | `User.skill_levels` (Base44) | one level per skill (civics / reading / writing / speaking) + date. No answers, no transcripts, no per-question results | learner; Pathways staff |
 | Teach / review progress (Prompt 7) | `UserProgress` (Base44, existing entity) | per civics question: practicing/mastered, interval, last result, scores | learner; their tutor in My Classroom; Pathways staff |
 | N-400 section completion (Prompt 9) | `N400SectionProgress` (Base44, existing entity) | section id + title, completed, date. Never form answers | learner; their tutor; Pathways staff |
 | Target date | `localStorage` `pathways_target_date` (this device only) | `yyyy-mm-dd` | only someone using this browser |
 | Plan settings | `localStorage` `pathways_plan` | mode (date / unknown / study) + start date | this device only |
 | Today checkmarks, visit dates, dismissed check-ins | `localStorage` `pathways_done_*`, `pathways_last_visit`, `pathways_missed_today`, `pathways_checkins_dismissed` | task ids, dates | this device only |
+| Getting started answers | `localStorage` `pathways_stage`, `civicsVersion`, `pathways_onboarded` | broad stage (preparing / applied / interview / learning), civics test version (2008 / 2025), done flag; never a date or case detail | this device only |
+| Read out loud setting | `localStorage` `pathways_auto_read` | on / off | this device only |
 | Text size, cached translations of fixed text | `localStorage` `pathways_text_size`, `pathways_*_tr_*`, `pathways_tutor_lines_*`, `pathways_today_*`, `pathways_ask_tutor_*` | settings; translated app text (no learner text) | this device only |
 | Ask Vía questions and answers | `AIStudyLog` (Base44, existing entity) | learner's question, the answer, language, email. **Declined case/eligibility questions are not saved** | learner (Study History); Pathways staff. Not tutors |
 | Messages to a tutor | `Message` (Base44, existing entity) | message text | learner, that tutor; Pathways staff |
@@ -38,7 +41,7 @@ Searched all `InvokeLLM`, `SendEmail`, `UploadFile`, entity `create/update`, and
 | --- | --- | --- | --- |
 | Immigration status, A-number, case details | No field stores them | Only if a learner types them into Ask Vía | Privacy note above the chat; email/phone numbers are stripped before sending; case questions are declined (local keyword check before the AI, plus the AI flags them) and not saved. Free text in **Lesson notes** and **tutor messages** could contain anything the learner types (stored, not sent to AI) |
 | Address / zip | Not stored (only official names are cached) | Zip code, and a street address **only when the zip spans several districts**, for the lookup | Matches the AI Policy: used once, cleared right after, never saved. The screen now says "Your address is used only for this search. We don't save it." |
-| Filing date, field office | Never asked or stored | No | The plan asks "when is your interview or when do you hope to be ready" — month only, device only; never asks which office |
+| Filing date, field office | Never asked or stored | No | The plan asks "when is your interview or when do you hope to be ready" — month only, device only; never asks which office. Getting started asks only whether Form N-400 was sent before or after October 20, 2025, and keeps just the civics test version (2008 / 2025) on the device |
 | N-400 answers | Never collected | No | N-400 coaching uses the six made-up practice people; only section completion is saved |
 | Audio | No (reading audio upload removed) | No | Mock interview opens the microphone only to draw a live level meter and for the browser's own speech-to-text; nothing is recorded |
 | Transcripts (speech-to-text) | **No** (interview transcripts removed) | **Yes, for scoring**: civics spoken answers, interview answers, reading (text only for a tip), lesson practice | Expected: scoring needs the words; nothing is kept. Mock interview personal/morals questions are answered as a practice person |
