@@ -3,7 +3,7 @@ import { base44 } from '@/api/base44Client';
 import { RaisedCard } from '@/components/pathways/ui';
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Trophy, AlertTriangle, BookOpen, TrendingUp, TrendingDown, Loader2, Users, Star, Target } from 'lucide-react';
+import { AlertTriangle, BookOpen, TrendingUp, TrendingDown, Loader2, Users, Star, Target } from 'lucide-react';
 import { toast } from "sonner";
 import StudyPathDialog from './StudyPathDialog';
 
@@ -65,7 +65,8 @@ export default function StudentActivityMonitor({ currentUserEmail, students }) {
     }
   };
 
-  // --- Leaderboard ---
+  // --- Student overview (alphabetical; no ranking or points — CLAUDE.md:
+  // no leaderboards) ---
   const leaderboard = useMemo(() => {
     return activeStudents.map(s => {
       const sProgress = lessonProgress.filter(p => p.user_email === s.student_email);
@@ -84,9 +85,8 @@ export default function StudentActivityMonitor({ currentUserEmail, students }) {
         n400Sections,
         quizzesTaken: quizzed.length,
         masteredItems: masteredPractice,
-        totalPoints: (completed * 10) + (quizzed.length * 5) + (masteredPractice * 3) + (avgScore || 0),
       };
-    }).sort((a, b) => b.totalPoints - a.totalPoints);
+    }).sort((a, b) => a.name.localeCompare(b.name));
   }, [activeStudents, lessonProgress, userProgress, n400Progress]);
 
   // --- Struggling Students ---
@@ -154,14 +154,14 @@ export default function StudentActivityMonitor({ currentUserEmail, students }) {
         <SummaryTile
           icon={Star}
           tone="bg-pw-green-soft text-pw-green-ink"
-          value={leaderboard[0]?.avgScore != null ? `${leaderboard[0].avgScore}%` : '—'}
-          label="Top Quiz Score"
+          value={leaderboard.reduce((s, x) => s + x.lessonsCompleted, 0)}
+          label="Lessons Completed"
         />
       </div>
 
       <Tabs defaultValue="leaderboard">
         <TabsList className="grid grid-cols-3 w-full">
-          <TabsTrigger value="leaderboard" className="flex-col sm:flex-row gap-1 sm:gap-1.5 px-1 text-sm sm:text-base"><Trophy className="w-4 h-4" aria-hidden="true" />Leaderboard</TabsTrigger>
+          <TabsTrigger value="leaderboard" className="flex-col sm:flex-row gap-1 sm:gap-1.5 px-1 text-sm sm:text-base"><Users className="w-4 h-4" aria-hidden="true" />Students</TabsTrigger>
           <TabsTrigger value="struggling" className="flex-col sm:flex-row gap-1 sm:gap-1.5 px-1 text-sm sm:text-base">
             <AlertTriangle className="w-4 h-4" aria-hidden="true" />
             <span className="inline-flex items-center gap-1">
@@ -174,10 +174,10 @@ export default function StudentActivityMonitor({ currentUserEmail, students }) {
           <TabsTrigger value="studypaths" className="flex-col sm:flex-row gap-1 sm:gap-1.5 px-1 text-sm sm:text-base"><BookOpen className="w-4 h-4" aria-hidden="true" />Study Paths</TabsTrigger>
         </TabsList>
 
-        {/* LEADERBOARD TAB */}
+        {/* STUDENTS TAB */}
         <TabsContent value="leaderboard" className="mt-4 space-y-3">
-          {leaderboard.map((student, idx) => (
-            <LeaderboardRow key={student.email} student={student} rank={idx + 1} />
+          {leaderboard.map((student) => (
+            <StudentRow key={student.email} student={student} />
           ))}
         </TabsContent>
 
@@ -271,7 +271,7 @@ function Initial({ name, tone = 'bg-pw-navy text-white' }) {
   );
 }
 
-function LeaderboardRow({ student, rank }) {
+function StudentRow({ student }) {
 
   const scoreColor = (s) => {
     if (s == null) return 'text-pw-muted';
@@ -279,16 +279,13 @@ function LeaderboardRow({ student, rank }) {
   };
 
   return (
-    <RaisedCard padding="p-4" className={`flex flex-wrap items-center gap-x-4 gap-y-3 ${rank <= 3 ? 'border-pw-navy/40' : ''}`}>
-        <div className="w-8 text-center shrink-0">
-          {rank <= 3 ? <Star className="w-6 h-6 mx-auto text-pw-red" aria-label={`#${rank}`} /> : <span className="text-lg font-extrabold text-pw-muted">#{rank}</span>}
-        </div>
+    <RaisedCard padding="p-4" className="flex flex-wrap items-center gap-x-4 gap-y-3">
         <Initial name={student.name} />
         <div className="flex-1 min-w-0">
           <p className="font-bold text-pw-navy">{student.name}</p>
           <p className="text-sm text-pw-muted truncate">{student.email}</p>
         </div>
-        <div className="grid grid-cols-4 gap-2 sm:gap-4 text-center w-full sm:w-auto shrink-0 rounded-2xl bg-pw-soft sm:bg-transparent py-2 sm:py-0">
+        <div className="grid grid-cols-3 gap-2 sm:gap-4 text-center w-full sm:w-auto shrink-0 rounded-2xl bg-pw-soft sm:bg-transparent py-2 sm:py-0">
           <div>
             <p className={`font-extrabold text-lg ${scoreColor(student.avgScore)}`}>
               {student.avgScore != null ? `${student.avgScore}%` : '—'}
@@ -302,10 +299,6 @@ function LeaderboardRow({ student, rank }) {
           <div>
             <p className="font-extrabold text-lg text-pw-navy">{student.n400Sections}</p>
             <p className="text-sm text-pw-muted">N-400</p>
-          </div>
-          <div>
-            <p className="font-extrabold text-lg text-pw-navy">{student.totalPoints}</p>
-            <p className="text-sm text-pw-muted">Points</p>
           </div>
         </div>
     </RaisedCard>

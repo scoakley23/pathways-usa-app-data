@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { pickCivicsQuestions, buildPretestLesson, levelFor, scorePretest, toSavedLevels, PRETEST_PARTS } from './pretest';
+import { pickCivicsQuestions, buildPretestLesson, levelFor, scorePretest, toSavedLevels, mergeLevels, PRETEST_PARTS } from './pretest';
 
 const civics = [
   ...Array.from({ length: 15 }, (_, i) => ({ version: '2025', question: `Q${i}?`, answer: `A${i}` })),
@@ -112,5 +112,16 @@ describe('toSavedLevels', () => {
   it('keeps only the four levels and a date', () => {
     const saved = toSavedLevels({ civics: 'strong', reading: null, writing: 'bogus', speaking: 'start_here', answers: ['x'] }, new Date('2026-10-21T00:00:00Z'));
     expect(saved).toEqual({ civics: 'strong', reading: null, writing: null, speaking: 'start_here', checked_at: '2026-10-21T00:00:00.000Z' });
+  });
+});
+
+describe('partial re-check', () => {
+  it('builds only the requested part', () => {
+    const l = buildPretestLesson(sources, 'en', undefined, ['speaking']);
+    expect(new Set(l.steps.map((s) => s.part))).toEqual(new Set(['speaking']));
+  });
+  it('keeps earlier levels for skills not re-checked', () => {
+    expect(mergeLevels({ civics: 'strong', reading: 'start_here', writing: null, speaking: 'start_here' }, { speaking: 'getting_there', civics: null }, ['speaking']))
+      .toEqual({ civics: 'strong', reading: 'start_here', writing: null, speaking: 'getting_there' });
   });
 });

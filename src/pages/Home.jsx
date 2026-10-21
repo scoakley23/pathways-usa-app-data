@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import TopicArt from '@/components/art/TopicArt';
 import RoadmapHero from '@/components/home/RoadmapHero';
-import QuickCheckCard from '@/components/persona/QuickCheckCard';
+import TodayCard from '@/components/persona/TodayCard';
 import RoadmapPath from '@/components/home/RoadmapPath';
 import useRoadmapProgress from '@/components/home/useRoadmapProgress';
 import useAppLanguage, { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
@@ -19,9 +19,10 @@ export default function Home({ cachedUser, cachedRole }) {
 
   return (
     <div className="flex flex-col gap-6 pb-8" dir={rtl ? 'rtl' : 'ltr'}>
+      {/* Today (learners with a plan) or "Start with a quick check" */}
+      {cachedUser && cachedRole !== 'tutor' && <TodayCard language={language} homeT={t} />}
       {/* Hero Section */}
       <RoadmapHero roadmap={roadmap} t={t} />
-      {cachedUser && cachedRole !== 'tutor' && <QuickCheckCard variant="home" t={t} language={language} />}
       {/* Roadmap */}
       <RoadmapPath
         roadmap={roadmap}

@@ -12,7 +12,9 @@ import useTutorProfile from '@/components/persona/useTutorProfile';
 import { languageNameFor } from '@/components/persona/languageName';
 import { PrimaryButton, QuietButton, Tag } from '@/components/pathways/ui';
 import useAppLanguage from '@/hooks/useAppLanguage';
-import { buildPretestLesson, scorePretest, toSavedLevels } from '@/lib/pretest';
+import { buildPretestLesson, scorePretest, toSavedLevels, mergeLevels, PRETEST_PARTS } from '@/lib/pretest';
+import PlanSetup from '@/components/persona/PlanSetup';
+import { loadPlanSettings } from '@/lib/planSettings';
 
 const INTRO = {
   en: "Let's see where you are today. It takes about 10 minutes: civics, reading, writing, and speaking. You can skip any part. I'll use the results to plan your practice.",
@@ -34,7 +36,14 @@ export default function QuickCheck() {
   const { profile, loaded } = useTutorProfile();
   const [language] = useAppLanguage();
   const [sources, setSources] = useState(null);
-  const [stage, setStage] = useState('intro'); // intro | lesson | results
+  const [stage, setStage] = useState('intro'); // intro | lesson | results | plan
+  // ?part=speaking re-checks one skill (the 2-week check-in) and keeps the rest.
+  const [parts] = useState(() => {
+    const p = new URLSearchParams(window.location.search).get('part');
+    return PRETEST_PARTS.includes(p) ? [p] : PRETEST_PARTS;
+  });
+  const [previous, setPrevious] = useState(null);
+  const hasPlan = !!loadPlanSettings();
   const [levels, setLevels] = useState(null);
   const [saving, setSaving] = useState(false);
 
@@ -47,13 +56,15 @@ export default function QuickCheck() {
     ])
       .then(([civics, reading, writing, speaking]) => setSources({ civics, reading, writing, speaking }))
       .catch(() => setSources({ civics: [], reading: [], writing: [], speaking: [] }));
+    base44.auth.me().then((u) => setPrevious(u?.skill_levels || null)).catch(() => {});
   }, []);
 
-  const lesson = useMemo(() => (sources ? buildPretestLesson(sources, language) : null), [sources, language]);
+  const lesson = useMemo(() => (sources ? buildPretestLesson(sources, language, undefined, parts) : null), [sources, language, parts]);
   const goHome = () => navigate(createPageUrl('Home'));
 
   const finish = async ({ states, skipped }) => {
-    const result = scorePretest(lesson, states, skipped);
+    const scored = scorePretest(lesson, states, skipped);
+    const result = parts.length < PRETEST_PARTS.length ? mergeLevels(previous, scored, parts) : scored;
     setLevels(result);
     setStage('results');
     window.scrollTo({ top: 0 });
@@ -105,6 +116,10 @@ export default function QuickCheck() {
         </>
       )}
 
+      {stage === 'plan' && (
+        <PlanSetup profile={profile} language={language} onDone={goHome} />
+      )}
+
       {stage === 'results' && levels && (
         <>
           <TutorMessage
@@ -114,8 +129,8 @@ export default function QuickCheck() {
             en={summary(levels, 'en')}
           />
           <SkillLevels levels={levels} language={language} />
-          <PrimaryButton large className="w-full" onClick={goHome} disabled={saving}>
-            {saving ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Done'}
+          <PrimaryButton large className="w-full" onClick={hasPlan ? goHome : () => { setStage('plan'); window.scrollTo({ top: 0 }); }} disabled={saving}>
+            {saving ? <Loader2 className="w-5 h-5 animate-spin" /> : hasPlan ? 'Done' : 'Make my plan'}
           </PrimaryButton>
           <QuietButton className="w-full" onClick={() => setStage('intro')}>Take it again</QuietButton>
         </>

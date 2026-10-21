@@ -77,13 +77,21 @@ export default function Practice() {
       hasMounted.current = true;
   }, [mode]);
 
-  // Open a specific practice mode when arriving via ?mode= (e.g. the roadmap's Speak stop)
+  // Open a specific practice mode when arriving via ?mode= (the roadmap's
+  // Speak stop, or a task on the Today card). Sessions that load content wait
+  // for the signed-in user so progress ordering works.
+  const startedFromUrl = React.useRef(false);
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('mode') === 'interview') {
+    const urlMode = new URLSearchParams(window.location.search).get('mode');
+    if (startedFromUrl.current || !urlMode) return;
+    if (urlMode === 'interview') {
+      startedFromUrl.current = true;
       setMode('interview');
+    } else if (['reading', 'dictation', 'civics'].includes(urlMode) && currentUser) {
+      startedFromUrl.current = true;
+      startSession(urlMode);
     }
-  }, []);
+  }, [currentUser]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Seed Reading Data if empty
   useEffect(() => {

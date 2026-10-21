@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Trophy, Flame, Star, GraduationCap, School, Save, Loader2, Volume2 } from 'lucide-react';
+import { Trophy, Star, GraduationCap, School, Save, Loader2, Volume2 } from 'lucide-react';
 import BadgesDisplay from '@/components/gamification/BadgesDisplay';
 import TutorDashboard from '@/components/tutor/TutorDashboard';
 import { toast } from "sonner";
@@ -129,7 +129,7 @@ export default function Profile() {
             </div>
 
             {(!publicProfile || publicProfile.account_type !== 'tutor') && (
-            <div className="mt-5 grid grid-cols-3 gap-2 text-center">
+            <div className="mt-5 grid grid-cols-2 gap-2 text-center">
               <div className="rounded-2xl bg-pw-soft py-3 px-1">
                 <p className="text-2xl font-extrabold">{user.points || 0}</p>
                 <p className="text-sm text-pw-muted font-bold">Points</p>
@@ -137,10 +137,6 @@ export default function Profile() {
               <div className="rounded-2xl bg-pw-soft py-3 px-1">
                 <p className="text-2xl font-extrabold">{(user.badges || []).length}</p>
                 <p className="text-sm text-pw-muted font-bold">Badges</p>
-              </div>
-              <div className="rounded-2xl bg-pw-soft py-3 px-1">
-                <p className="text-2xl font-extrabold">{user.max_streak || 0}</p>
-                <p className="text-sm text-pw-muted font-bold">Streak</p>
               </div>
             </div>
             )}
@@ -186,20 +182,13 @@ export default function Profile() {
           ) : (
             <>
               {/* Detailed Stats */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <div className="grid grid-cols-3 gap-3">
                 <RaisedCard padding="p-4">
                   <span className={`${iconSquare} bg-pw-blue-soft text-pw-blue-ink`}>
                     <Trophy className="w-5 h-5" aria-hidden="true" />
                   </span>
                   <p className="mt-3 text-3xl font-extrabold leading-none">{user.total_correct || 0}</p>
                   <p className="mt-1 text-sm font-bold text-pw-muted">Correct Answers</p>
-                </RaisedCard>
-                <RaisedCard padding="p-4">
-                  <span className={`${iconSquare} bg-pw-red-soft text-pw-red-ink`}>
-                    <Flame className="w-5 h-5" aria-hidden="true" />
-                  </span>
-                  <p className="mt-3 text-3xl font-extrabold leading-none">{user.current_streak || 0}</p>
-                  <p className="mt-1 text-sm font-bold text-pw-muted">Current Streak</p>
                 </RaisedCard>
                 <RaisedCard padding="p-4">
                   <span className={`${iconSquare} bg-pw-teal-soft text-pw-teal-ink`}>

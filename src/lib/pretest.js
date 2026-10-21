@@ -69,7 +69,8 @@ const pick = (t, language) => ({ en: t.en, mine: language === 'es' ? t.es : null
 
 // sources: { civics: CivicsQuestion[], reading: ReadingSentence[],
 //            writing: Sentence[], speaking: InterviewQuestion[] (small_talk) }
-export function buildPretestLesson(sources, language = 'en', rand) {
+// `parts` limits the check to some skills (the 2-week re-check of one skill).
+export function buildPretestLesson(sources, language = 'en', rand, parts = PRETEST_PARTS) {
   const items = {
     civics: pickCivicsQuestions(sources.civics, COUNTS.civics, rand),
     reading: sample((sources.reading || []).filter((s) => s.text), COUNTS.reading, rand),
@@ -79,7 +80,7 @@ export function buildPretestLesson(sources, language = 'en', rand) {
 
   const steps = [];
   for (const part of PRETEST_PARTS) {
-    if (!items[part].length) continue;
+    if (!parts.includes(part) || !items[part].length) continue;
     const intro = INTROS[part];
     steps.push({ type: 'part-intro', part, art: intro.art, title: pick(intro.title, language), text: pick(intro.text, language) });
     for (const item of items[part]) {
@@ -126,4 +127,11 @@ export function toSavedLevels(levels, now = new Date()) {
   const clean = {};
   for (const part of PRETEST_PARTS) clean[part] = LEVELS[levels?.[part]] ? levels[part] : null;
   return { ...clean, checked_at: now.toISOString() };
+}
+
+// After a partial re-check, keep the earlier levels for skills not checked.
+export function mergeLevels(previous, result, parts = PRETEST_PARTS) {
+  const out = {};
+  for (const part of PRETEST_PARTS) out[part] = parts.includes(part) ? result[part] ?? null : previous?.[part] ?? null;
+  return out;
 }
