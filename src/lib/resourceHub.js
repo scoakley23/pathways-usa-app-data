@@ -152,6 +152,9 @@ export function safeWebsite(url) {
   const withScheme = /^https?:\/\//i.test(value) ? value : `https://${value}`;
   try {
     const parsed = new URL(withScheme);
+    // An email typed as a website ("name@example.org") parses as a URL with
+    // a user name; drop it rather than link to it.
+    if (parsed.username || parsed.password) return '';
     return parsed.protocol === 'https:' || parsed.protocol === 'http:' ? parsed.href : '';
   } catch {
     return '';

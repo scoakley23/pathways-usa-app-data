@@ -4,9 +4,9 @@ import { MapContainer, TileLayer, Marker, Tooltip, useMap } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
 
 // Map for the Resource Hub. Loaded lazily (React.lazy) so Leaflet is only
-// downloaded on this page. Tiles come from OpenStreetMap, which sees the map
-// area being viewed (like any web map); the learner's location is not sent
-// anywhere else and is not saved.
+// downloaded on this page. Map tiles come from the USGS National Map, which
+// sees the map area being viewed (like any web map); the learner's
+// location is not sent anywhere else and is not saved.
 
 // Simple navy pins; the selected place gets the red dot (style A).
 const pin = (selected) =>
@@ -43,10 +43,16 @@ export default function ResourceMap({ origin, places, selectedId, onSelect }) {
       className="h-full w-full"
       attributionControl
     >
+      {/* USGS National Map tiles: public domain U.S. government maps, no key
+          or account needed. (OpenStreetMap's volunteer tile servers block
+          apps, and CARTO now requires an API key.) The referrer policy makes
+          each tile request name this site even if the page sends no referrer. */}
       <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
-        maxZoom={19}
+        attribution='Map: <a href="https://www.usgs.gov/programs/national-geospatial-program/national-map">USGS The National Map</a>'
+        url="https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}"
+        maxNativeZoom={16}
+        maxZoom={18}
+        referrerPolicy="strict-origin-when-cross-origin"
       />
       <FitToResults origin={origin} places={places} />
       <Marker position={[origin.lat, origin.lng]} icon={youAreHere} interactive={false} keyboard={false} />

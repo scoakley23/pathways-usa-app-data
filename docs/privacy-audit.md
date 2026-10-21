@@ -72,5 +72,5 @@ The "Talk to a lawyer first" page became the **Resource Hub** (`/resources`; `/l
 | Places | `CommunityResource` (Base44, new entity) | public listings: name, category, public address, coordinates, phone, website, languages, cost, source, last checked. No learner data | everyone who opens the page; edited by admins |
 
 - ZIP to coordinates uses a bundled Census ZIP table (`src/data/zipCentroids.json`, loaded only when needed), so no lookup service sees the ZIP.
-- Outside requests: OpenStreetMap map tiles (show the map area being viewed), and Google Maps only when the learner taps "Directions" (destination address only).
+- Outside requests: USGS National Map tiles (a U.S. government server; it sees the map area being viewed), and Google Maps only when the learner taps "Directions" (destination address only).
 

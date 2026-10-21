@@ -1,7 +1,7 @@
 import React, { Suspense, lazy, useMemo, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Crosshair, Loader2, MapPin, Navigation, Phone, Globe, Map as MapIcon, List, AlertTriangle, ExternalLink } from 'lucide-react';
-import { base44 } from '@/api/base44Client';
+import { listAllResources } from '@/components/resources/listAllResources';
 import { Input } from '@/components/ui/input';
 import { PrimaryButton, SecondaryButton, RaisedCard, Tag } from '@/components/pathways/ui';
 import {
@@ -30,7 +30,7 @@ export default function ResourceFinder() {
 
   const { data: resources = [], isLoading, isError } = useQuery({
     queryKey: ['communityResources'],
-    queryFn: () => base44.entities.CommunityResource.list('name', 5000),
+    queryFn: listAllResources,
     staleTime: 30 * 60 * 1000,
   });
 

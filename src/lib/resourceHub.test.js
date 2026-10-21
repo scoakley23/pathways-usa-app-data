@@ -90,6 +90,7 @@ describe('links', () => {
   it('only allows http(s) websites', () => {
     expect(safeWebsite('example.org')).toBe('https://example.org/');
     expect(safeWebsite('javascript:alert(1)')).toBe('');
+    expect(safeWebsite('someone@example.org')).toBe('');
     expect(safeWebsite('')).toBe('');
   });
   it('builds tel links', () => {
