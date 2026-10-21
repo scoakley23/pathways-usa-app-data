@@ -51,7 +51,7 @@ export default function StudyHistory() {
               </span>
            </div>
            <h3 className="text-xl font-extrabold">No questions yet</h3>
-           <p className="text-base text-pw-muted mt-1 mb-5">Use the Study Buddy to ask questions while you practice!</p>
+           <p className="text-base text-pw-muted mt-1 mb-5">Use Ask Vía (the chat button) to ask questions while you practice!</p>
            <Link to={createPageUrl('Practice')} className="inline-block w-full sm:w-auto">
              <Button className="w-full sm:w-auto">Go to Practice</Button>
            </Link>
