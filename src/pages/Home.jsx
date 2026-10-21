@@ -15,6 +15,12 @@ export default function Home({ cachedUser, cachedRole }) {
   const roadmap = useRoadmapProgress(cachedUser);
   const [language, setLanguage] = useAppLanguage();
   const { t, translating } = useHomeTranslation(language);
+  // /?ready=1 (end of the N-400 coach) jumps to "Ready to file?".
+  React.useEffect(() => {
+    if (new URLSearchParams(window.location.search).get('ready')) {
+      setTimeout(() => document.getElementById('ready-to-file')?.scrollIntoView({ behavior: 'smooth' }), 300);
+    }
+  }, []);
   const rtl = RTL_LANGUAGES.includes((language || 'en').slice(0, 2).toLowerCase());
 
   return (
@@ -75,8 +81,8 @@ export default function Home({ cachedUser, cachedRole }) {
         </Link>
       </section>
 
-      {/* USCIS Resources Section */}
-      <section>
+      {/* USCIS Resources Section ("Ready to file?") */}
+      <section id="ready-to-file" className="scroll-mt-24">
         <div className="rounded-3xl bg-white border border-pw-line shadow-raised overflow-hidden text-pw-navy">
           <div className="bg-pw-blue-soft px-5 pt-4 pb-3">
             <TopicArt name="flag" className="w-full h-20" />

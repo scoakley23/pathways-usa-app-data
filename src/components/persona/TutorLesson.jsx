@@ -29,7 +29,9 @@ function stepTag(step, lesson) {
 // bottom that unlocks when the step is done. Lessons with `skippableParts`
 // show "Skip this part" on each part intro.
 // onFinish({ states, skipped }) — states[i].outcome holds each answer's result.
-export default function TutorLesson({ lesson, profile, language = 'en', languageName = 'English', onFinish, onExit }) {
+// extraSteps: more step types for one kind of lesson ({ type: Component });
+// a component with `needsAnswer = true` waits for an answer like practice steps.
+export default function TutorLesson({ lesson, profile, language = 'en', languageName = 'English', onFinish, onExit, extraSteps }) {
   const [index, setIndex] = useState(0);
   const [states, setStates] = useState({});
   const [skipped, setSkipped] = useState(() => new Set());
@@ -43,7 +45,9 @@ export default function TutorLesson({ lesson, profile, language = 'en', language
   const setState = (s) => setStates((prev) => ({ ...prev, [index]: s }));
   const ui = (key) => ({ en: UI[key].en, mine: language === 'es' ? UI[key].es : null });
   const ctx = { profile, language, languageName, line, ui, sizeClass };
-  const Step = STEPS[step.type];
+  const Extra = extraSteps?.[step.type];
+  const Step = Extra || STEPS[step.type];
+  const ready = Extra ? (!Extra.needsAnswer || !!(state.answered || state.shown)) : canContinue(step, state);
   const isLast = index === steps.length - 1;
   const tag = stepTag(step, lesson);
 
@@ -95,7 +99,7 @@ export default function TutorLesson({ lesson, profile, language = 'en', language
       </AnimatePresence>
 
       <div className="sticky bottom-0 -mx-4 px-4 pt-6 pb-4 bg-gradient-to-t from-pw-page via-pw-page to-transparent">
-        <PrimaryButton large className="w-full" onClick={() => goTo(index + 1)} disabled={!canContinue(step, state)}>
+        <PrimaryButton large className="w-full" onClick={() => goTo(index + 1)} disabled={!ready}>
           {step.type === 'part-intro' ? 'Start' : isLast ? 'Finish' : 'Continue'}
         </PrimaryButton>
         {step.type === 'part-intro' && lesson.skippableParts && (
