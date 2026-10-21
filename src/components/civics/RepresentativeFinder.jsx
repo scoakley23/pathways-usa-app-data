@@ -65,14 +65,14 @@ export default function RepresentativeFinder({ userEmail, onDataLoaded }) {
   const enrichPhotos = async (data) => {
     const [govPhoto, ...senatorResults] = await Promise.all([
       fetchWikipediaPhoto(data.governor_wikipedia_title),
-      ...data.senators.map(s => fetchWikipediaPhoto(s.wikipedia_title)),
+      ...(data.senators || []).map(s => fetchWikipediaPhoto(s.wikipedia_title)),
     ]);
     const repPhoto = await fetchWikipediaPhoto(data.representative?.wikipedia_title);
 
     return {
       ...data,
       governor_photo_url: govPhoto,
-      senators: data.senators.map((s, i) => ({ ...s, photo_url: senatorResults[i] })),
+      senators: (data.senators || []).map((s, i) => ({ ...s, photo_url: senatorResults[i] })),
       representative: { ...data.representative, photo_url: repPhoto },
     };
   };
@@ -424,7 +424,7 @@ Double check all names are spelled correctly.`,
                   <p className="text-xs text-slate-500 uppercase tracking-wide">US Senators</p>
                 </div>
               </div>
-              {results.senators.map((senator, i) => (
+              {(results.senators || []).map((senator, i) => (
                 <div key={i} className="flex items-center gap-4 pl-2">
                   <OfficialPhoto photoUrl={senator.photo_url} name={senator.name} size="md" />
                   <div>
@@ -456,7 +456,7 @@ export function getPersonalizedAnswer(question, representativeData) {
   const q = question.toLowerCase();
   if (!q.includes("your")) return null; // only personalize location-specific questions (e.g. "your state's U.S. senators")
   if (q.includes("senator") || q.includes("senators")) {
-    return representativeData.senators.map(s => s.name).join(" and ");
+    return (representativeData.senators || []).map(s => s.name).join(" and ");
   }
   if (q.includes("representative") || q.includes("house of representatives")) {
     return `${representativeData.representative.name} (District ${representativeData.representative.district})`;
