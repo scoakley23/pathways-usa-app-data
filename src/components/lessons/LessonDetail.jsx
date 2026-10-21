@@ -243,15 +243,18 @@ In the real USCIS interview, answers don't need to be word-for-word — as long 
     if (isListening && recognitionRef.current) {
       try { recognitionRef.current.stop(); } catch (e) {}
     }
+    setTypedAnswer('');
+    setShowAnswer(false);
+    setShowExplanation(false);
+    setExplanation(null);
+    setVerificationResult(null);
+    setSelfCheckMode(false);
     if (currentQuestion + 1 < displayQuizzes.length) {
       setCurrentQuestion(currentQuestion + 1);
-      setTypedAnswer('');
-      setShowAnswer(false);
-      setShowExplanation(false);
-      setExplanation(null);
-      setVerificationResult(null);
-      setSelfCheckMode(false);
     } else {
+      // Move past the last question so the results screen renders,
+      // even when finishQuiz can't save (e.g. signed out).
+      setCurrentQuestion(displayQuizzes.length);
       finishQuiz(totalAnswered > 0 ? (newScore / displayQuizzes.length) * 100 : 0);
     }
   };
