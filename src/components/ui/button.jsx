@@ -10,13 +10,13 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-pw-navy text-white hover:bg-[#0F1B36]",
+          "bg-pw-navy text-white hover:bg-pw-navy-deep",
         destructive:
-          "bg-pw-red text-white hover:bg-pw-red-ink",
+          "bg-pw-red-ink text-white hover:bg-pw-red-deep",
         outline:
           "border-2 border-pw-line bg-white text-pw-navy hover:border-pw-navy",
         secondary:
-          "bg-pw-soft text-pw-navy hover:bg-[#E2E8F2]",
+          "bg-pw-soft text-pw-navy hover:bg-pw-soft-hover",
         ghost: "text-pw-navy hover:bg-pw-soft",
         link: "text-pw-navy underline underline-offset-4 decoration-pw-red/60 hover:decoration-pw-red",
       },

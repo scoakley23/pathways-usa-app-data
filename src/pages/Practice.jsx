@@ -16,7 +16,7 @@ import RepresentativeFinder from '@/components/civics/RepresentativeFinder';
 import PracticePathProgress from '@/components/practice/PracticePathProgress';
 import PageHeader from '@/components/PageHeader';
 import TopicArt from '@/components/art/TopicArt';
-import { Tag } from '@/components/pathways/ui';
+import { SKILL_BG, SkillTag, Tag } from '@/components/pathways/ui';
 import { toast } from "sonner";
 import VoiceSettings from '@/components/utils/VoiceSettings';
 
@@ -467,20 +467,23 @@ export default function Practice() {
   };
 
   if (mode === 'menu') {
-    const banner = (art) => (
-      <div className="bg-pw-blue-soft px-4 pt-3 pb-2 -mx-6 -mt-6 mb-4 rounded-t-3xl">
-        <TopicArt name={art} className="w-full h-16" accent={false} />
-      </div>
+    // Each card shows its interview skill in that skill's color.
+    const banner = (art, skill) => (
+      <>
+        <div className={`${SKILL_BG[skill]} px-4 pt-3 pb-2 -mx-6 -mt-6 mb-4 rounded-t-3xl`}>
+          <TopicArt name={art} className="w-full h-16" accent={false} />
+        </div>
+        <SkillTag skill={skill} className="self-start mb-1" />
+      </>
     );
     const label = 'text-sm font-bold text-pw-navy';
     return (
       <div className="max-w-5xl mx-auto space-y-6 pb-12">
         <PageHeader
-          title="Practice Dashboard"
-          subtitle="Choose your study mode to prepare for your citizenship test."
-          tag="Practice"
-          tagTone="red"
+          title="Practice"
+          subtitle="Practice each part of the interview."
           art="book"
+          guide="Pick one skill: reading, writing, civics, or speaking. Each one is a part of your interview."
         />
         <div className="flex justify-center">
           <VoiceSettings />
@@ -521,7 +524,7 @@ export default function Practice() {
           {/* 1. Reading Mode */}
           <Card className="overflow-hidden hover:shadow-lift transition-all duration-300 cursor-pointer" onClick={() => startSession('reading')}>
             <CardHeader>
-              {banner('book')}
+              {banner('book', 'reading')}
               <CardTitle className="text-xl">Reading</CardTitle>
               <CardDescription>
                 Read official USCIS sentences aloud to practice pronunciation.
@@ -535,7 +538,7 @@ export default function Practice() {
           {/* 2. Writing Vocab */}
           <Card className="overflow-hidden hover:shadow-lift transition-all duration-300">
             <CardHeader>
-              {banner('scroll')}
+              {banner('scroll', 'writing')}
               <CardTitle className="text-xl">Writing Vocab</CardTitle>
               <CardDescription>
                 Practice writing official vocabulary words.
@@ -557,7 +560,7 @@ export default function Practice() {
           {/* 3. Sentence Dictation */}
           <Card className="overflow-hidden hover:shadow-lift transition-all duration-300 cursor-pointer" onClick={() => startSession('dictation')}>
             <CardHeader>
-              {banner('pencil')}
+              {banner('pencil', 'writing')}
               <CardTitle className="text-xl">Sentence Dictation</CardTitle>
               <CardDescription>
                 Listen to full sentences and write them down correctly.
@@ -571,11 +574,8 @@ export default function Practice() {
           {/* 4. Civics Test */}
           <Card className="overflow-hidden hover:shadow-lift transition-all duration-300">
             <CardHeader>
-              {banner('capitol')}
-              <div className="flex justify-between items-start gap-2">
-                 <CardTitle className="text-xl">Civics Test</CardTitle>
-                 <Badge variant="outline">Quiz</Badge>
-              </div>
+              {banner('capitol', 'civics')}
+              <CardTitle className="text-xl">Civics Test</CardTitle>
               <CardDescription className="mb-4">
                 Practice the civics questions for the 2025 and 2008 tests.
               </CardDescription>
@@ -629,13 +629,13 @@ export default function Practice() {
           className="group w-full text-left rounded-3xl bg-white border border-pw-line shadow-raised overflow-hidden hover:shadow-lift transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2"
         >
           <div className="flex flex-col sm:flex-row">
-            <div className="sm:w-56 shrink-0 bg-pw-red-soft px-4 py-4 grid place-items-center">
+            <div className={`sm:w-56 shrink-0 ${SKILL_BG.speaking} px-4 py-4 grid place-items-center`}>
               <TopicArt name="speech" className="w-full h-20" />
             </div>
             <div className="flex-1 p-5 sm:p-6">
               <div className="flex flex-wrap items-center gap-3 mb-2">
+                <SkillTag skill="speaking" />
                 <h3 className="text-2xl font-extrabold text-pw-navy">Mock Interview Practice</h3>
-                <Tag tone="red">NEW</Tag>
               </div>
               <p className="text-base text-pw-muted mb-4">
                 Simulate your real citizenship interview with realistic questions from all sections: small talk, personal information, morals & ethics, and oath requirements.

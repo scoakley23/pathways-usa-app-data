@@ -5,6 +5,8 @@ import { Check, Notebook, BookOpen, Mic, CalendarCheck, Star } from 'lucide-reac
 import LanguageSelector from '@/components/lessons/LanguageSelector';
 import { ROADMAP_STOPS } from './roadmapStops';
 import { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
+import TutorAvatar from '@/components/persona/TutorAvatar';
+import useTutorProfile from '@/components/persona/useTutorProfile';
 
 const STOP_ICONS = { 1: Notebook, 2: BookOpen, 3: Mic, 4: CalendarCheck };
 
@@ -30,6 +32,7 @@ function pathThrough(points) {
 
 export default function RoadmapPath({ roadmap, t, language, onLanguageChange, translating }) {
   const { loading, currentStop, done, doneCount } = roadmap;
+  const { profile } = useTutorProfile();
 
   const mirror = RTL_LANGUAGES.includes((language || 'en').slice(0, 2).toLowerCase());
   const stops = ROADMAP_STOPS.map((s) => ({
@@ -112,7 +115,8 @@ export default function RoadmapPath({ roadmap, t, language, onLanguageChange, tr
             const isOath = stop.id === 5;
             const x = xsPct[i];
             const onLeft = x < 50;
-            const ariaLabel = `${stop.name}: ${stop.short}.${isCurrent ? ' You are here.' : ''}`;
+            const withYou = t('tutor_with_you').split('{name}').join(profile.name);
+            const ariaLabel = `${stop.name}: ${stop.short}.${isCurrent ? ` ${t('you_are_here')}. ${withYou}` : ''}`;
             const focusRing =
               'focus:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2 rounded-full';
 
@@ -131,14 +135,19 @@ export default function RoadmapPath({ roadmap, t, language, onLanguageChange, tr
                 </Link>
               );
             } else if (isCurrent) {
+              // The learner's tutor stands at their current stop: the path
+              // shows where they are, the tutor shows who is guiding them.
               const Icon = STOP_ICONS[stop.id];
               marker = (
                 <Link
                   to={stopUrl(stop)}
                   aria-label={ariaLabel}
-                  className={`flex items-center justify-center w-[68px] h-[68px] rounded-full bg-pw-red border-[5px] border-white shadow-lift ${focusRing}`}
+                  className={`relative block rounded-full bg-white p-1 ring-4 ring-pw-red shadow-lift ${focusRing}`}
                 >
-                  <Icon className="w-7 h-7 text-white" />
+                  <TutorAvatar avatar={profile.avatar} size={64} decorative />
+                  <span className="absolute -bottom-1 -right-1 w-8 h-8 rounded-full bg-pw-navy border-[3px] border-white grid place-items-center">
+                    <Icon className="w-4 h-4 text-white" aria-hidden="true" />
+                  </span>
                 </Link>
               );
             } else if (isDone) {

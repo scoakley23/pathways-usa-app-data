@@ -167,7 +167,7 @@ export default function StudentActivityMonitor({ currentUserEmail, students }) {
             <span className="inline-flex items-center gap-1">
               Struggling
               {strugglingStudents.length > 0 && (
-                <span className="px-1.5 py-0.5 bg-pw-red text-white text-xs rounded-full leading-none">{strugglingStudents.length}</span>
+                <span className="px-1.5 py-0.5 bg-pw-red-ink text-white text-xs rounded-full leading-none">{strugglingStudents.length}</span>
               )}
             </span>
           </TabsTrigger>

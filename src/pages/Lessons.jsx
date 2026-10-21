@@ -6,7 +6,7 @@ import LessonDetail from '@/components/lessons/LessonDetail.jsx';
 import RecommendationsPanel from '@/components/lessons/RecommendationsPanel';
 import PageHeader from '@/components/PageHeader';
 import TopicArt, { TOPIC_ART } from '@/components/art/TopicArt';
-import { RaisedCard, Tag } from '@/components/pathways/ui';
+import { RaisedCard, SKILL_TONE, Tag } from '@/components/pathways/ui';
 import { toast } from "sonner";
 
 export default function Lessons() {
@@ -115,10 +115,11 @@ export default function Lessons() {
     <div className="space-y-8 text-pw-navy">
       <PageHeader
         title="Civics Lessons"
-        subtitle="Learn the key concepts you need to know for your U.S. citizenship test with video lessons, detailed content, and practice quizzes."
+        subtitle="Video lessons and quizzes about U.S. history and government."
         tag="Civics"
-        tagTone="red"
+        tagTone={SKILL_TONE.civics}
         art="scroll"
+        guide="Learn the ideas behind the civics questions here. Then practice the questions with me."
       />
 
       {/* Recommendations */}

@@ -1,16 +1,21 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import { BookOpen, Mic, CheckCircle, LogOut, Menu, Settings, GraduationCap, User, Notebook, School, FileQuestion } from 'lucide-react';
+import { BookOpen, Mic, CheckCircle, LogOut, Menu, Settings, GraduationCap, User, House, School, FileText } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { base44 } from '@/api/base44Client';
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import RoleSelectionDialog from '@/components/onboarding/RoleSelectionDialog';
 import NotificationCenter from '@/components/notifications/NotificationCenter';
-import StudyBuddy from '@/components/ai/StudyBuddy';
+import StudyBuddy, { openTutorChat } from '@/components/ai/StudyBuddy';
+import TabBar from '@/components/pathways/TabBar';
 import TutorOnboardingDialog from '@/components/persona/TutorOnboardingDialog';
 import DailyPracticeReminder from '@/components/notifications/DailyPracticeReminder';
 import { Toaster } from "sonner";
+
+// Lesson screens are "focus mode": they have a pinned Continue button, so the
+// chat button and the tab bar stay off them.
+const FOCUS_ROUTES = ['/quick-check', '/tutor-demo', '/learn', '/review', '/n400-coach'];
 
 export default function Layout({ children }) {
   const location = useLocation();
@@ -105,16 +110,16 @@ export default function Layout({ children }) {
 
   const getNavItems = React.useMemo(() => {
     const items = [
-      { label: 'Home', path: '/', icon: BookOpen },
+      { label: 'Today', path: '/', icon: House },
     ];
 
     // Dynamic Navigation based on Role
     if (role === 'tutor') {
         items.push({ label: 'Tutor Portal', path: '/Tutor', icon: GraduationCap });
     } else {
+        items.push({ label: 'Learn', path: '/Lessons', icon: BookOpen });
         items.push({ label: 'Practice', path: '/Practice', icon: Mic });
-        items.push({ label: 'Lessons', path: '/Lessons', icon: Notebook });
-        items.push({ label: 'N-400 Guide', path: '/n400-guide', icon: FileQuestion });
+        items.push({ label: 'N-400', path: '/n400-guide', icon: FileText });
         items.push({ label: 'Progress', path: '/Progress', icon: CheckCircle });
         
         if (role === 'student' || (!role && user)) {
@@ -140,10 +145,20 @@ export default function Layout({ children }) {
     window.location.href = '/';
   };
 
+  const focusMode = FOCUS_ROUTES.includes(location.pathname);
+  const showTabs = role !== 'tutor' && !focusMode;
+  const askTutor = () => (user ? openTutorChat() : base44.auth.redirectToLogin());
+
   return (
     <div className="min-h-screen bg-pw-page font-sans text-pw-navy">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-2xl focus:bg-pw-navy focus:text-white focus:font-bold focus:px-4 focus:py-3"
+      >
+        Skip to main content
+      </a>
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-pw-line">
+      <nav aria-label="Site" className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-pw-line">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2 cursor-pointer">
             <img 
@@ -190,8 +205,8 @@ export default function Layout({ children }) {
             {user && <NotificationCenter userEmail={user.email} />}
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
-                <Button variant="outline" size="icon" aria-label="Open menu">
-                  <Menu className="w-6 h-6" />
+                <Button variant="outline" className="min-h-11 gap-2 px-3 font-bold">
+                  <Menu className="w-5 h-5" aria-hidden="true" /> Menu
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-pw-page">
@@ -228,7 +243,7 @@ export default function Layout({ children }) {
         </div>
       </nav>
 
-      <main key={role || 'init'} className="container mx-auto px-4 pt-6 pb-24 max-w-5xl">
+      <main id="main" tabIndex={-1} key={role || 'init'} className={`container mx-auto px-4 pt-6 max-w-5xl focus:outline-none ${showTabs ? 'pb-32 lg:pb-24' : 'pb-24'}`}>
         {React.Children.map(children, child => {
             if (React.isValidElement(child)) {
                 return React.cloneElement(child, { cachedUser: user, cachedRole: role });
@@ -237,7 +252,7 @@ export default function Layout({ children }) {
         })}
       </main>
 
-      <footer className="border-t border-pw-line bg-white mt-8">
+      <footer className={`border-t border-pw-line bg-white mt-8 ${showTabs ? 'pb-24 lg:pb-0' : ''}`}>
         <div className="container mx-auto px-4 py-5 max-w-5xl">
           <p className="text-sm text-center text-pw-muted">
             Pathways is an independent nonprofit education app. Not affiliated with USCIS or any government agency. Not legal advice.
@@ -261,8 +276,8 @@ export default function Layout({ children }) {
           />
       )}
       {showTutorSetup && <TutorOnboardingDialog onDone={closeTutorSetup} />}
-      {/* Lesson screens have a pinned Continue button; keep the chat button off them. */}
-      {!['/quick-check', '/tutor-demo', '/learn', '/review', '/n400-coach'].includes(location.pathname) && <StudyBuddy />}
+      {!focusMode && <StudyBuddy aboveTabBar={showTabs} />}
+      {showTabs && <TabBar pathname={location.pathname} onAskTutor={askTutor} />}
       <DailyPracticeReminder />
       <Toaster />
     </div>

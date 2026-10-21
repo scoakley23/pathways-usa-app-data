@@ -4,12 +4,12 @@ import { Check, ChevronRight, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { base44 } from '@/api/base44Client';
 import TutorMessage from './TutorMessage';
-import QuickCheckCard from './QuickCheckCard';
+import TutorIntro from './TutorIntro';
 import PlanSetup from './PlanSetup';
 import useTutorProfile from './useTutorProfile';
 import useTodayText from './useTodayText';
 import { partName } from './SkillLevels';
-import { PrimaryButton, QuietButton, RaisedCard, SecondaryButton, Tag } from '@/components/pathways/ui';
+import { PrimaryButton, QuietButton, RaisedCard, SecondaryButton, SkillDot, Tag } from '@/components/pathways/ui';
 import { N400_SECTIONS } from '@/components/n400/n400Content';
 import { tasksForDay, extraTasks, totalMinutes, dayIndex } from '@/lib/studyPlan';
 import { loadPlanSettings, loadDone, saveDone, touchVisit, ymd } from '@/lib/planSettings';
@@ -18,6 +18,9 @@ import { recentResults, adjustedLevels, lowSkills, checkIns } from '@/lib/checkI
 const SECTION_IDS = N400_SECTIONS.map((s) => s.id);
 const SECTION_TITLE = Object.fromEntries(N400_SECTIONS.map((s) => [s.id, s.title]));
 const DISMISS_KEY = 'pathways_checkins_dismissed'; // { date, ids }
+
+// Which interview skill a task practices (for its color).
+const taskSkill = (kind) => (kind.startsWith('civics') ? 'civics' : kind);
 
 const timeOfDay = (d) => (d.getHours() < 12 ? 'morning' : d.getHours() < 18 ? 'afternoon' : 'evening');
 
@@ -51,7 +54,8 @@ function practiceDaysThisWeek(dates, today) {
 }
 
 // The "Today" card (Prompt 6) with check-ins (Prompt 8). Learners without
-// a plan or quick check results see "Start with a quick check" instead.
+// a plan or quick check results meet their tutor and start the quick check.
+// The title is the Home page's h1.
 export default function TodayCard({ language = 'en', homeT }) {
   const today = useMemo(() => new Date(), []);
   const { profile, loaded: profileLoaded, saveProfile } = useTutorProfile();
@@ -122,7 +126,7 @@ export default function TodayCard({ language = 'en', homeT }) {
     return <RaisedCard className="grid place-items-center min-h-[120px]"><Loader2 className="w-6 h-6 animate-spin text-pw-navy" /></RaisedCard>;
   }
   if (data.signedOut) return null;
-  if (!data.levels && !plan) return <QuickCheckCard variant="home" t={homeT} language={language} />;
+  if (!data.levels && !plan) return <TutorIntro t={homeT} language={language} />;
 
   const allDone = tasks.length > 0 && tasks.every((task) => done.includes(task.id));
   const toggle = (id) => {
@@ -176,7 +180,7 @@ export default function TodayCard({ language = 'en', homeT }) {
   return (
     <section aria-labelledby="today-title" className="space-y-4 text-pw-navy">
       <div className="flex items-center justify-between gap-3">
-        <h2 id="today-title" className="text-[28px] leading-tight font-extrabold">{t('title')}</h2>
+        <h1 id="today-title" className="text-[32px] leading-tight font-extrabold tracking-[-0.5px]">{t('title')}</h1>
         <Tag tone="teal">{t('minutes', { m })}</Tag>
       </div>
 
@@ -187,6 +191,7 @@ export default function TodayCard({ language = 'en', homeT }) {
       <TutorMessage
         profile={profile}
         language={language}
+        expression={allDone ? 'proud' : 'greeting'}
         mine={allDone ? mine('done') : greetingMine}
         en={allDone ? en('done') : greetingEn}
       />
@@ -233,7 +238,10 @@ export default function TodayCard({ language = 'en', homeT }) {
               >
                 <span className="flex-1 min-w-0">
                   <span className={`block font-bold leading-snug ${isDone ? 'text-pw-muted line-through decoration-pw-muted/50' : ''}`}>{taskLabel(task)}</span>
-                  <span className="block text-sm text-pw-muted">{t('minutes', { m: task.minutes })}</span>
+                  <span className="flex items-center gap-2 text-sm text-pw-muted">
+                    <SkillDot skill={taskSkill(task.kind)} />
+                    {taskSkill(task.kind) === 'n400' ? 'N-400' : partName(taskSkill(task.kind), language)} · {t('minutes', { m: task.minutes })}
+                  </span>
                 </span>
                 <ChevronRight className="w-5 h-5 text-pw-muted shrink-0" aria-label={t('open')} />
               </Link>

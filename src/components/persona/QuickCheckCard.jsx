@@ -5,7 +5,7 @@ import TopicArt from '@/components/art/TopicArt';
 import SkillLevels from './SkillLevels';
 import { RaisedCard, Tag } from '@/components/pathways/ui';
 
-const linkBtn = 'min-h-[52px] w-full rounded-2xl font-bold text-lg inline-flex items-center justify-center bg-pw-navy text-white hover:bg-[#0F1B36] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2';
+const linkBtn = 'min-h-[52px] w-full rounded-2xl font-bold text-lg inline-flex items-center justify-center bg-pw-navy text-white hover:bg-pw-navy-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2';
 const quietLink = 'min-h-[44px] w-full rounded-2xl font-bold inline-flex items-center justify-center text-pw-navy hover:bg-pw-soft';
 
 // Offers the quick check. `variant="home"` shows only until the learner has

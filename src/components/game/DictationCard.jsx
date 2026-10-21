@@ -129,7 +129,7 @@ export default function DictationCard({ sentence, onComplete, onNext }) {
             onClick={speak}
             aria-label="Play the sentence"
             className={`w-16 h-16 shrink-0 rounded-full grid place-items-center shadow-lift transition-colors focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-pw-red/40
-              ${isPlaying ? 'bg-pw-soft text-pw-navy ring-4 ring-pw-navy/20' : 'bg-pw-navy text-white hover:bg-[#0F1B36]'}`}
+              ${isPlaying ? 'bg-pw-soft text-pw-navy ring-4 ring-pw-navy/20' : 'bg-pw-navy text-white hover:bg-pw-navy-deep'}`}
           >
             <Volume2 className={`w-7 h-7 ${isPlaying ? 'animate-pulse' : ''}`} aria-hidden="true" />
           </motion.button>

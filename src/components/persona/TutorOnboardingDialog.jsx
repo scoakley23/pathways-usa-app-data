@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import TutorSetup from './TutorSetup';
+import TutorAvatar from './TutorAvatar';
+import TextSizePicker from './TextSizePicker';
 import useTutorProfile from './useTutorProfile';
 import { DEFAULT_TUTOR_PROFILE } from '@/lib/tutorPersona';
 
@@ -33,11 +35,15 @@ export default function TutorOnboardingDialog({ onDone }) {
     <Dialog open onOpenChange={(open) => { if (!open) finish(DEFAULT_TUTOR_PROFILE); }}>
       <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto rounded-3xl">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-extrabold text-pw-navy">Meet your tutor</DialogTitle>
+          <div className="flex items-center gap-3">
+            <TutorAvatar avatar={profile.avatar} size={64} decorative expression="greeting" />
+            <DialogTitle className="text-2xl font-extrabold text-pw-navy">Meet {profile.name}, your tutor</DialogTitle>
+          </div>
           <DialogDescription className="text-base text-pw-muted">
-            Your tutor explains each step and helps you practice. You can change this any time in Profile.
+            {profile.name} will be your teacher: explaining each step, practicing with you, and guiding you to your interview. You can change your tutor's name, picture, and way of talking now or any time in Profile.
           </DialogDescription>
         </DialogHeader>
+        <TextSizePicker className="pb-4 border-b border-pw-line" />
         <TutorSetup
           initialProfile={profile}
           onSave={finish}

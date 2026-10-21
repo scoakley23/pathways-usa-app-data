@@ -98,7 +98,7 @@ export default function SayItBack({ targets }) {
       <button
         type="button"
         onClick={toggle}
-        className={`min-h-[52px] rounded-full bg-pw-red text-white font-bold text-base pl-2 pr-6 inline-flex items-center gap-3 transition-shadow hover:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2 ${
+        className={`min-h-[52px] rounded-full bg-pw-red-ink text-white font-bold text-base pl-2 pr-6 inline-flex items-center gap-3 transition-shadow hover:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2 ${
           isListening ? 'ring-8 ring-pw-red/25' : 'ring-4 ring-pw-red/15'
         }`}
       >

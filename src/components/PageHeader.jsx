@@ -3,11 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import TopicArt from '@/components/art/TopicArt';
 import { Tag } from '@/components/pathways/ui';
+import TutorLine from '@/components/persona/TutorLine';
 
 // Page header (style A): back button, optional tag, big title, subtitle, and
 // an optional line drawing. `children` (actions) sit under the title on
-// phones and on the right on wider screens.
-export default function PageHeader({ title, subtitle, children, tag, tagTone = 'navy', art }) {
+// phones and on the right on wider screens. `guide` is one line from the
+// learner's tutor saying what the page is for.
+export default function PageHeader({ title, subtitle, children, tag, tagTone = 'navy', art, guide }) {
   const navigate = useNavigate();
 
   const handleBack = () => {
@@ -40,6 +42,7 @@ export default function PageHeader({ title, subtitle, children, tag, tagTone = '
           </div>
           {children && <div className="sm:shrink-0">{children}</div>}
         </div>
+        {guide && <TutorLine className="mt-4 max-w-2xl">{guide}</TutorLine>}
       </div>
     </header>
   );

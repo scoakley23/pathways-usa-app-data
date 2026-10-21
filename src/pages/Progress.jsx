@@ -80,7 +80,12 @@ export default function Progress() {
 
   return (
     <div className="space-y-6 text-pw-navy">
-      <PageHeader title="Your Progress" subtitle="Track your journey to citizenship" art="flag">
+      <PageHeader
+        title="Your Progress"
+        subtitle="How far you've come on your path."
+        art="flag"
+        guide="Here you can see what you've practiced and how your skills are growing. It helps us choose what to practice next."
+      >
         <TestDateTracker />
       </PageHeader>
 

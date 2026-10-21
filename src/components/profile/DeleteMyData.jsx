@@ -110,7 +110,7 @@ export default function DeleteMyData({ userEmail }) {
                 <AlertDialogCancel>Cancel</AlertDialogCancel>
                 <AlertDialogAction
                   onClick={(e) => { e.preventDefault(); handleDelete(); }}
-                  className="bg-pw-red text-white hover:bg-pw-red-ink"
+                  className="bg-pw-red-ink text-white hover:bg-pw-red-deep"
                 >
                   Yes, delete everything
                 </AlertDialogAction>
