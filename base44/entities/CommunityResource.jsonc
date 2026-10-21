@@ -1,0 +1,95 @@
+{
+  "name": "CommunityResource",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "legal",
+        "esl",
+        "citizenship_class",
+        "uscis",
+        "library",
+        "other"
+      ],
+      "default": "other"
+    },
+    "address": {
+      "type": "string",
+      "description": "Public street address of the place (never a learner's address)"
+    },
+    "city": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string",
+      "description": "Two-letter state code"
+    },
+    "zip": {
+      "type": "string"
+    },
+    "latitude": {
+      "type": "number"
+    },
+    "longitude": {
+      "type": "number"
+    },
+    "location_precision": {
+      "type": "string",
+      "enum": [
+        "exact",
+        "zip"
+      ],
+      "default": "exact",
+      "description": "\"zip\" means the pin sits at the center of the ZIP code, not the building"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "website": {
+      "type": "string"
+    },
+    "languages": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "cost": {
+      "type": "string",
+      "enum": [
+        "",
+        "free",
+        "low_cost",
+        "varies"
+      ],
+      "default": ""
+    },
+    "description": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string",
+      "description": "Where this listing came from, e.g. \"DOJ EOIR Recognized Organizations roster\""
+    },
+    "source_url": {
+      "type": "string"
+    },
+    "last_verified": {
+      "type": "string",
+      "description": "Date (YYYY-MM-DD) an admin last checked this listing"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Hidden from learners when false"
+    }
+  },
+  "required": [
+    "name",
+    "category"
+  ]
+}
