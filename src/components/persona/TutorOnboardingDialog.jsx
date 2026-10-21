@@ -36,7 +36,7 @@ export default function TutorOnboardingDialog({ onDone }) {
       <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto rounded-3xl">
         <DialogHeader>
           <div className="flex items-center gap-3">
-            <TutorAvatar avatar={profile.avatar} size={64} decorative />
+            <TutorAvatar avatar={profile.avatar} size={64} decorative expression="greeting" />
             <DialogTitle className="text-2xl font-extrabold text-pw-navy">Meet {profile.name}, your tutor</DialogTitle>
           </div>
           <DialogDescription className="text-base text-pw-muted">

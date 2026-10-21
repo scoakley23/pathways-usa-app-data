@@ -186,7 +186,7 @@ export function SpeakingStep({ step, ctx, state, setState }) {
 
   return (
     <div className="space-y-4">
-      <TutorMessage profile={ctx.profile} language={ctx.language} {...ctx.ui('speakPrompt')} />
+      <TutorMessage profile={ctx.profile} language={ctx.language} {...ctx.ui('speakPrompt')} expression="listening" />
       <QuestionCard ctx={ctx} text={question.question}>
         {!state.answered && (speech.supported ? (
           <MicButton speech={speech} busy={checking} />
@@ -250,7 +250,7 @@ export function WritingStep({ step, ctx, state, setState }) {
 
   return (
     <div className="space-y-4">
-      <TutorMessage profile={ctx.profile} language={ctx.language} {...ctx.ui('writePrompt')} />
+      <TutorMessage profile={ctx.profile} language={ctx.language} {...ctx.ui('writePrompt')} expression="listening" />
       <RaisedCard className={`text-pw-navy ${ctx.sizeClass}`}>
         <div className="flex items-center gap-4">
           <button
@@ -311,7 +311,7 @@ export function ReadingStep({ step, ctx, state, setState }) {
 
   return (
     <div className="space-y-4">
-      <TutorMessage profile={ctx.profile} language={ctx.language} {...ctx.ui('readPrompt')} />
+      <TutorMessage profile={ctx.profile} language={ctx.language} {...ctx.ui('readPrompt')} expression="listening" />
       <RaisedCard className={`text-pw-navy ${ctx.sizeClass}`}>
         <Eyebrow className="mb-2">Read out loud</Eyebrow>
         <p className="text-[1.375em] font-extrabold leading-snug">{step.sentence}</p>
@@ -362,7 +362,7 @@ export function InterviewStep({ step, ctx, state, setState }) {
 
   return (
     <div className="space-y-4">
-      <TutorMessage profile={ctx.profile} language={ctx.language} {...ctx.ui('interviewPrompt')} />
+      <TutorMessage profile={ctx.profile} language={ctx.language} {...ctx.ui('interviewPrompt')} expression="listening" />
       <QuestionCard ctx={ctx} text={step.question.question}>
         {!state.answered && (speech.supported ? <MicButton speech={speech} busy={checking} /> : (
           <p className="mt-4 text-pw-muted">Speaking needs a browser with speech recognition, like Chrome or Safari. You can skip this part.</p>
@@ -424,6 +424,7 @@ export function CheckStep({ step, ctx, state, setState }) {
         <TutorMessage
           profile={ctx.profile}
           language={ctx.language}
+          expression={state.result.isCorrect ? 'proud' : 'default'}
           {...(state.result.isCorrect ? l : { en: after(l.en, a.en), mine: after(l.mine, a.mine) })}
         />
       )}

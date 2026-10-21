@@ -191,6 +191,7 @@ export default function TodayCard({ language = 'en', homeT }) {
       <TutorMessage
         profile={profile}
         language={language}
+        expression={allDone ? 'proud' : 'greeting'}
         mine={allDone ? mine('done') : greetingMine}
         en={allDone ? en('done') : greetingEn}
       />

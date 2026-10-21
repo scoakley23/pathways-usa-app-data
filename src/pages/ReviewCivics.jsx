@@ -168,7 +168,7 @@ export default function ReviewCivics() {
 
       {stage === 'done' && (
         <>
-          <TutorMessage profile={profile} language={language} {...say(LINES.done(right, results.length), language)} />
+          <TutorMessage profile={profile} language={language} {...say(LINES.done(right, results.length), language)} expression={right > 0 ? 'proud' : 'default'} />
           <ul className="space-y-3">
             {results.map(({ question, correct, heard, next }) => (
               <li key={question.id}>

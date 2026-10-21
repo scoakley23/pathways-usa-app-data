@@ -103,7 +103,7 @@ export default function QuickCheck() {
 
       {stage === 'intro' && (
         <>
-          <TutorMessage profile={profile} language={language} mine={language === 'es' ? INTRO.es : null} en={INTRO.en} />
+          <TutorMessage profile={profile} language={language} mine={language === 'es' ? INTRO.es : null} en={INTRO.en} expression="greeting" />
           {lesson.steps.length === 0 ? (
             <p className="text-pw-muted">The quick check isn't ready yet. Please try again later.</p>
           ) : (

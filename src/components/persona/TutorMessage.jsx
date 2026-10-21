@@ -22,14 +22,15 @@ export function ListenButton({ text, language, label = 'Listen', tutorName, clas
 // The tutor's avatar and speech bubble. `mine` is the text in the learner's
 // language; `en` is the English version, shown under it in the same bubble.
 // Every message has a Listen button (and "English" when both are shown).
-export default function TutorMessage({ profile, language = 'en', mine, en, children }) {
+// `expression` picks the tutor's face (see TutorAvatar).
+export default function TutorMessage({ profile, language = 'en', mine, en, children, expression = 'default' }) {
   const { className: sizeClass } = useTextSize();
   const showMine = !!mine && language !== 'en';
   const dir = RTL_LANGUAGES.includes(language) ? 'rtl' : 'ltr';
 
   return (
     <div className={`flex items-start gap-3 text-pw-navy ${sizeClass}`}>
-      <TutorAvatar avatar={profile.avatar} size={52} />
+      <TutorAvatar avatar={profile.avatar} size={52} expression={expression} />
       <div className="min-w-0 flex-1 rounded-2xl rounded-tl-md bg-white border border-pw-line shadow-raised p-4">
         {showMine ? (
           <>

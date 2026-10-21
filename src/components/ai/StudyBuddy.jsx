@@ -91,12 +91,12 @@ function usePrivacyNote(language) {
 // One assistant bubble: learner-language text, English under it, Listen
 // buttons, and an optional action (the lawyer link on a decline) right after
 // the first paragraph so it is visible without scrolling.
-function TutorBubble({ profile, language, mine, en, action }) {
+function TutorBubble({ profile, language, mine, en, action, expression }) {
   const showMine = !!mine && language !== 'en';
   const dir = RTL_LANGUAGES.includes(language) ? 'rtl' : 'ltr';
   return (
     <div className="flex gap-2 items-start">
-      <TutorAvatar avatar={profile.avatar} size={28} className="mt-1" />
+      <TutorAvatar avatar={profile.avatar} size={28} className="mt-1" expression={expression} />
       <div className="min-w-0 flex-1 px-3 py-3 rounded-2xl rounded-tl-md bg-white border border-pw-line text-pw-navy text-base leading-snug">
         {showMine && <p dir={dir} className="whitespace-pre-line">{mine}</p>}
         {showMine && action}
@@ -237,6 +237,7 @@ export default function StudyBuddy({ aboveTabBar = false }) {
           key={i}
           profile={profile}
           language={language}
+          expression="greeting"
           en={`${intro.en} ${ASK_LINES.invite}`}
           mine={intro.mine && invite ? `${intro.mine} ${invite}` : null}
         />
@@ -331,7 +332,7 @@ export default function StudyBuddy({ aboveTabBar = false }) {
                 ))}
                 {isLoading && (
                   <div className="flex gap-2 items-start">
-                    <TutorAvatar avatar={profile.avatar} size={28} className="mt-1" />
+                    <TutorAvatar avatar={profile.avatar} size={28} className="mt-1" expression="listening" />
                     <div className="bg-white border border-pw-line p-3 rounded-2xl rounded-tl-md" role="status" aria-label="Thinking">
                       <Loader2 className="w-4 h-4 animate-spin text-pw-muted" />
                     </div>

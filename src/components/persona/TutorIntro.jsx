@@ -30,7 +30,7 @@ export default function TutorIntro({ t, language = 'en' }) {
           <circle cx="190" cy="10" r="5" fill="#D9483F" />
         </svg>
         <span className="relative rounded-full bg-white p-1.5 shadow-lift">
-          <TutorAvatar avatar={profile.avatar} size={104} decorative />
+          <TutorAvatar avatar={profile.avatar} size={104} decorative expression="greeting" />
         </span>
         <div className="relative pb-2">
           <Tag tone="navy">{t('intro_tag')}</Tag>

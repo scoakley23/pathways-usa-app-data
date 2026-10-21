@@ -171,7 +171,7 @@ export default function LearnCivics() {
 
       {stage === 'done' && (
         <>
-          <TutorMessage profile={profile} language={language} {...say(LINES.done(n), language)} />
+          <TutorMessage profile={profile} language={language} {...say(LINES.done(n), language)} expression="proud" />
           <RaisedCard>
             <Eyebrow className="mb-3">You learned</Eyebrow>
             <ul className="space-y-3">
