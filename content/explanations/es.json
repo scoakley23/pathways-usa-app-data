@@ -1,1 +1,3437 @@
-{}
+{
+  "Abraham Lincoln is famous for many things. Name one.": {
+    "question": "Abraham Lincoln is famous for many things. Name one.",
+    "answers": [
+      "Freed the slaves (Emancipation Proclamation)",
+      "Saved (or preserved) the Union",
+      "Led the United States during the Civil War",
+      "16th president of the United States",
+      "Delivered the Gettysburg Address"
+    ],
+    "status": "draft",
+    "explanation": "Abraham Lincoln fue el presidente número 16 de los Estados Unidos. Dirigió el país durante la Guerra Civil, de 1861 a 1865. En 1863 firmó la Proclamación de Emancipación, que liberó a los esclavos en los estados confederados. Ese mismo año dio el Discurso de Gettysburg, un discurso corto y muy conocido. Luchó por salvar, o preservar, la Unión.",
+    "keyWords": [
+      {
+        "en": "Civil War",
+        "translation": "Guerra Civil"
+      },
+      {
+        "en": "Emancipation Proclamation",
+        "translation": "Proclamación de Emancipación"
+      },
+      {
+        "en": "Union",
+        "translation": "la Unión (el país unido)"
+      },
+      {
+        "en": "Gettysburg Address",
+        "translation": "Discurso de Gettysburg"
+      }
+    ]
+  },
+  "Alexander Hamilton is famous for many things. Name one.": {
+    "question": "Alexander Hamilton is famous for many things. Name one.",
+    "answers": [
+      "First Secretary of the Treasury",
+      "One of the writers of the Federalist Papers",
+      "Helped establish the First Bank of the United States",
+      "Aide to General George Washington",
+      "Member of the Continental Congress"
+    ],
+    "status": "draft",
+    "explanation": "Alexander Hamilton fue uno de los Padres Fundadores. Durante la Guerra de Independencia, trabajó como ayudante del general George Washington. Fue el primer Secretario del Tesoro, encargado del dinero del país. Ayudó a crear el Primer Banco de los Estados Unidos. Junto con James Madison y John Jay, escribió los Documentos Federalistas para apoyar la nueva Constitución.",
+    "keyWords": [
+      {
+        "en": "Secretary of the Treasury",
+        "translation": "Secretario del Tesoro"
+      },
+      {
+        "en": "Federalist Papers",
+        "translation": "Documentos Federalistas"
+      },
+      {
+        "en": "Aide",
+        "translation": "ayudante"
+      },
+      {
+        "en": "Continental Congress",
+        "translation": "Congreso Continental"
+      }
+    ]
+  },
+  "Benjamin Franklin is famous for many things. Name one.": {
+    "question": "Benjamin Franklin is famous for many things. Name one.",
+    "answers": [
+      "Founded the first free public libraries",
+      "First Postmaster General of the United States",
+      "Helped write the Declaration of Independence",
+      "Inventor",
+      "U.S. diplomat"
+    ],
+    "status": "draft",
+    "explanation": "Benjamin Franklin fue uno de los primeros estadounidenses más famosos. Fue inventor y escritor. Ayudó a escribir la Declaración de Independencia en 1776. Fue diplomático de los Estados Unidos en Francia y consiguió apoyo para la Revolución Americana. También fue el primer Director General de Correos, encargado del correo, y fundó las primeras bibliotecas públicas gratuitas.",
+    "keyWords": [
+      {
+        "en": "Inventor",
+        "translation": "inventor"
+      },
+      {
+        "en": "diplomat",
+        "translation": "diplomático"
+      },
+      {
+        "en": "Postmaster General",
+        "translation": "Director General de Correos"
+      },
+      {
+        "en": "public libraries",
+        "translation": "bibliotecas públicas"
+      }
+    ]
+  },
+  "During the Cold War, what was one main concern of the United States?": {
+    "question": "During the Cold War, what was one main concern of the United States?",
+    "answers": [
+      "Communism",
+      "Nuclear war"
+    ],
+    "status": "draft",
+    "explanation": "La Guerra Fría fue un largo conflicto entre los Estados Unidos y la Unión Soviética. Empezó después de la Segunda Guerra Mundial y terminó en 1991. Los dos países no pelearon directamente entre sí; por eso se llamó \"fría\". A los Estados Unidos le preocupaba la expansión del comunismo. Los dos países tenían armas nucleares, y la gente también temía una guerra nuclear.",
+    "keyWords": [
+      {
+        "en": "Cold War",
+        "translation": "Guerra Fría"
+      },
+      {
+        "en": "Communism",
+        "translation": "comunismo"
+      },
+      {
+        "en": "Nuclear war",
+        "translation": "guerra nuclear"
+      },
+      {
+        "en": "concern",
+        "translation": "preocupación"
+      }
+    ]
+  },
+  "Dwight Eisenhower is famous for many things. Name one.": {
+    "question": "Dwight Eisenhower is famous for many things. Name one.",
+    "answers": [
+      "General during World War II",
+      "President at the end of (during) the Korean War",
+      "34th president of the United States",
+      "Signed the Federal-Aid Highway Act of 1956 (Created the Interstate System)"
+    ],
+    "status": "draft",
+    "explanation": "Dwight Eisenhower fue un general importante durante la Segunda Guerra Mundial. Dirigió a las fuerzas aliadas en Europa. Después fue el presidente número 34 de los Estados Unidos, de 1953 a 1961. Era presidente cuando terminaron los combates de la Guerra de Corea en 1953. En 1956 firmó una ley que creó el sistema de carreteras interestatales.",
+    "keyWords": [
+      {
+        "en": "General",
+        "translation": "general (militar)"
+      },
+      {
+        "en": "World War II",
+        "translation": "Segunda Guerra Mundial"
+      },
+      {
+        "en": "Korean War",
+        "translation": "Guerra de Corea"
+      },
+      {
+        "en": "Interstate System",
+        "translation": "sistema de carreteras interestatales"
+      }
+    ]
+  },
+  "George Washington is famous for many things. Name one.": {
+    "question": "George Washington is famous for many things. Name one.",
+    "answers": [
+      "“Father of Our Country”",
+      "First president of the United States",
+      "General of the Continental Army",
+      "President of the Constitutional Convention"
+    ],
+    "status": "draft",
+    "explanation": "George Washington fue el general del Ejército Continental durante la Guerra de Independencia. Después de la guerra, presidió la Convención Constitucional de 1787, donde se escribió la Constitución. En 1789 se convirtió en el primer presidente de los Estados Unidos. Por su papel tan importante en la creación de la nación, se le llama el \"Padre de la Patria\".",
+    "keyWords": [
+      {
+        "en": "Father of Our Country",
+        "translation": "Padre de la Patria"
+      },
+      {
+        "en": "First president",
+        "translation": "primer presidente"
+      },
+      {
+        "en": "Continental Army",
+        "translation": "Ejército Continental"
+      },
+      {
+        "en": "Constitutional Convention",
+        "translation": "Convención Constitucional"
+      }
+    ]
+  },
+  "How are changes made to the U.S. Constitution?": {
+    "question": "How are changes made to the U.S. Constitution?",
+    "answers": [
+      "Amendments",
+      "The amendment process"
+    ],
+    "status": "draft",
+    "explanation": "La Constitución se puede cambiar, pero no es fácil. Un cambio o una adición a la Constitución se llama enmienda. Normalmente, dos tercios de las dos cámaras del Congreso deben aprobar la enmienda. Luego, tres cuartas partes de los estados también deben aprobarla. Esto se llama el proceso de enmienda.",
+    "keyWords": [
+      {
+        "en": "changes",
+        "translation": "cambios"
+      },
+      {
+        "en": "Constitution",
+        "translation": "Constitución"
+      },
+      {
+        "en": "amendment",
+        "translation": "enmienda"
+      },
+      {
+        "en": "amendment process",
+        "translation": "proceso de enmienda"
+      }
+    ]
+  },
+  "How can people become United States citizens?": {
+    "question": "How can people become United States citizens?",
+    "answers": [
+      "Be born in the United States, under the conditions set by the 14th Amendment",
+      "Naturalize",
+      "Derive citizenship (under conditions set by Congress)"
+    ],
+    "status": "draft",
+    "explanation": "Hay tres formas generales de ser ciudadano de los Estados Unidos. La mayoría de las personas que nacen en los Estados Unidos son ciudadanas, según las condiciones de la Enmienda 14. Otras personas pueden naturalizarse, es decir, solicitar y completar un proceso legal para ser ciudadanas. Algunos niños derivan la ciudadanía de uno de sus padres, según las condiciones que establece el Congreso. Esta es solo información general; para su caso personal, consulte con un abogado.",
+    "keyWords": [
+      {
+        "en": "citizens",
+        "translation": "ciudadanos"
+      },
+      {
+        "en": "14th Amendment",
+        "translation": "Enmienda 14"
+      },
+      {
+        "en": "Naturalize",
+        "translation": "naturalizarse"
+      },
+      {
+        "en": "Derive citizenship",
+        "translation": "derivar la ciudadanía"
+      }
+    ]
+  },
+  "How long do Supreme Court justices serve?": {
+    "question": "How long do Supreme Court justices serve?",
+    "answers": [
+      "(For) life",
+      "Lifetime appointment",
+      "(Until) retirement"
+    ],
+    "status": "draft",
+    "explanation": "Los jueces de la Corte Suprema no tienen un período fijo. Su nombramiento es de por vida, así que pueden servir toda la vida. Muchos jueces sirven hasta que se jubilan o hasta que mueren. Esta regla ayuda a que los jueces tomen decisiones sin miedo a perder su trabajo.",
+    "keyWords": [
+      {
+        "en": "Supreme Court",
+        "translation": "Corte Suprema"
+      },
+      {
+        "en": "justices",
+        "translation": "jueces"
+      },
+      {
+        "en": "Lifetime appointment",
+        "translation": "nombramiento de por vida"
+      },
+      {
+        "en": "retirement",
+        "translation": "jubilación, retiro"
+      }
+    ]
+  },
+  "How long is a term for a U.S. senator?": {
+    "question": "How long is a term for a U.S. senator?",
+    "answers": [
+      "Six (6) years"
+    ],
+    "status": "draft",
+    "explanation": "Un senador de los Estados Unidos es elegido por un período de seis años. El período es el tiempo que una persona ocupa su cargo. Los senadores pueden ser reelegidos muchas veces. Las elecciones son escalonadas: cada dos años se elige más o menos a un tercio del Senado.",
+    "keyWords": [
+      {
+        "en": "term",
+        "translation": "período (en el cargo)"
+      },
+      {
+        "en": "senator",
+        "translation": "senador"
+      },
+      {
+        "en": "Six (6) years",
+        "translation": "seis años"
+      }
+    ]
+  },
+  "How long is a term for a member of the House of Representatives?": {
+    "question": "How long is a term for a member of the House of Representatives?",
+    "answers": [
+      "Two (2) years"
+    ],
+    "status": "draft",
+    "explanation": "Un miembro de la Cámara de Representantes sirve por un período de dos años. El período es el tiempo que una persona ocupa su cargo. Las elecciones para la Cámara son cada dos años, en los años pares. Los 435 puestos con voto se eligen al mismo tiempo. Los representantes pueden ser reelegidos muchas veces.",
+    "keyWords": [
+      {
+        "en": "House of Representatives",
+        "translation": "Cámara de Representantes"
+      },
+      {
+        "en": "term",
+        "translation": "período (en el cargo)"
+      },
+      {
+        "en": "member",
+        "translation": "miembro"
+      },
+      {
+        "en": "Two (2) years",
+        "translation": "dos años"
+      }
+    ]
+  },
+  "How many Supreme Court justices are usually needed to decide a case?": {
+    "question": "How many Supreme Court justices are usually needed to decide a case?",
+    "answers": [
+      "Five (5)"
+    ],
+    "status": "draft",
+    "explanation": "La Corte Suprema tiene nueve jueces. Para decidir un caso, la mayoría debe estar de acuerdo. La mayoría de nueve es cinco. Por eso, normalmente se necesitan cinco jueces para decidir un caso. Los jueces que están de acuerdo escriben la opinión de la Corte.",
+    "keyWords": [
+      {
+        "en": "Supreme Court justices",
+        "translation": "jueces de la Corte Suprema"
+      },
+      {
+        "en": "decide a case",
+        "translation": "decidir un caso"
+      },
+      {
+        "en": "Five (5)",
+        "translation": "cinco"
+      }
+    ]
+  },
+  "How many U.S. senators are there?": {
+    "question": "How many U.S. senators are there?",
+    "answers": [
+      "One hundred (100)"
+    ],
+    "status": "draft",
+    "explanation": "Hay 100 senadores en los Estados Unidos. Cada uno de los 50 estados tiene dos senadores. Los estados grandes y los pequeños tienen el mismo número de senadores. Así, todos los estados tienen una voz igual en el Senado.",
+    "keyWords": [
+      {
+        "en": "senators",
+        "translation": "senadores"
+      },
+      {
+        "en": "One hundred (100)",
+        "translation": "cien"
+      }
+    ]
+  },
+  "How many amendments does the U.S. Constitution have?": {
+    "question": "How many amendments does the U.S. Constitution have?",
+    "answers": [
+      "Twenty-seven (27)"
+    ],
+    "status": "draft",
+    "explanation": "Una enmienda es un cambio o una adición a la Constitución. La Constitución de los Estados Unidos tiene 27 enmiendas. Las primeras diez enmiendas se llaman la Carta de Derechos, y se agregaron en 1791. La enmienda más reciente, la número 27, se agregó en 1992.",
+    "keyWords": [
+      {
+        "en": "amendments",
+        "translation": "enmiendas"
+      },
+      {
+        "en": "Constitution",
+        "translation": "Constitución"
+      },
+      {
+        "en": "Twenty-seven (27)",
+        "translation": "veintisiete"
+      }
+    ]
+  },
+  "How many seats are on the Supreme Court?": {
+    "question": "How many seats are on the Supreme Court?",
+    "answers": [
+      "Nine (9)"
+    ],
+    "status": "draft",
+    "explanation": "La Corte Suprema tiene nueve puestos. Un puesto es para el Presidente de la Corte Suprema y los otros ocho son para los jueces asociados. La Constitución no fija este número; lo fija el Congreso. El número ha sido nueve desde 1869.",
+    "keyWords": [
+      {
+        "en": "seats",
+        "translation": "puestos"
+      },
+      {
+        "en": "Supreme Court",
+        "translation": "Corte Suprema"
+      },
+      {
+        "en": "Nine (9)",
+        "translation": "nueve"
+      }
+    ]
+  },
+  "How many senators does each state have?": {
+    "question": "How many senators does each state have?",
+    "answers": [
+      "Two (2)"
+    ],
+    "status": "draft",
+    "explanation": "Cada estado tiene dos senadores. No importa cuántas personas vivan en el estado. Así, los estados pequeños y los grandes tienen una voz igual en el Senado. Con 50 estados, hay 100 senadores en total.",
+    "keyWords": [
+      {
+        "en": "senators",
+        "translation": "senadores"
+      },
+      {
+        "en": "each state",
+        "translation": "cada estado"
+      },
+      {
+        "en": "Two (2)",
+        "translation": "dos"
+      }
+    ]
+  },
+  "How many voting members are in the House of Representatives?": {
+    "question": "How many voting members are in the House of Representatives?",
+    "answers": [
+      "Four hundred thirty-five (435)"
+    ],
+    "status": "draft",
+    "explanation": "La Cámara de Representantes tiene 435 miembros con derecho a voto. El número de representantes de cada estado depende de su población. Los estados con más habitantes tienen más representantes. Cada estado tiene por lo menos uno. También hay algunos delegados de lugares como Washington, D.C., pero no pueden votar en la aprobación final de las leyes.",
+    "keyWords": [
+      {
+        "en": "voting members",
+        "translation": "miembros con derecho a voto"
+      },
+      {
+        "en": "House of Representatives",
+        "translation": "Cámara de Representantes"
+      },
+      {
+        "en": "Four hundred thirty-five (435)",
+        "translation": "cuatrocientos treinta y cinco"
+      }
+    ]
+  },
+  "If the president can no longer serve, who becomes president?": {
+    "question": "If the president can no longer serve, who becomes president?",
+    "answers": [
+      "The Vice President (of the United States)"
+    ],
+    "status": "draft",
+    "explanation": "Si el presidente muere, renuncia o ya no puede servir, el Vicepresidente se convierte en presidente. Este es el primer paso en la línea de sucesión. La Constitución y la Enmienda 25 explican esta regla. Así el país siempre tiene un líder.",
+    "keyWords": [
+      {
+        "en": "Vice President",
+        "translation": "Vicepresidente"
+      },
+      {
+        "en": "serve",
+        "translation": "servir (en el cargo)"
+      },
+      {
+        "en": "president",
+        "translation": "presidente"
+      }
+    ]
+  },
+  "It is important for all men age 18 through 25 to register for the Selective Service. Name one reason why.": {
+    "question": "It is important for all men age 18 through 25 to register for the Selective Service. Name one reason why.",
+    "answers": [
+      "Required by law",
+      "Civic duty",
+      "Makes the draft fair, if needed"
+    ],
+    "status": "draft",
+    "explanation": "El Servicio Selectivo es un sistema que tiene una lista de hombres que podrían ser llamados al servicio militar en una emergencia. La ley exige que la mayoría de los hombres de 18 a 25 años que viven en los Estados Unidos se inscriban. Inscribirse también es un deber cívico. Si algún día el país necesita un reclutamiento militar, la lista ayuda a que sea justo. Esta es información general; si tiene preguntas sobre su caso personal, consulte con un abogado.",
+    "keyWords": [
+      {
+        "en": "Selective Service",
+        "translation": "Servicio Selectivo"
+      },
+      {
+        "en": "register",
+        "translation": "inscribirse"
+      },
+      {
+        "en": "Required by law",
+        "translation": "exigido por la ley"
+      },
+      {
+        "en": "Civic duty",
+        "translation": "deber cívico"
+      },
+      {
+        "en": "draft",
+        "translation": "reclutamiento militar obligatorio"
+      }
+    ]
+  },
+  "James Madison is famous for many things. Name one.": {
+    "question": "James Madison is famous for many things. Name one.",
+    "answers": [
+      "“Father of the Constitution”",
+      "Fourth president of the United States",
+      "President during the War of 1812",
+      "One of the writers of the Federalist Papers"
+    ],
+    "status": "draft",
+    "explanation": "A James Madison se le llama el \"Padre de la Constitución\" porque trabajó mucho para planearla y escribirla. Junto con Alexander Hamilton y John Jay, escribió los Documentos Federalistas para apoyar la Constitución. Después fue el cuarto presidente de los Estados Unidos. Fue presidente durante la Guerra de 1812, una guerra contra Gran Bretaña.",
+    "keyWords": [
+      {
+        "en": "Father of the Constitution",
+        "translation": "Padre de la Constitución"
+      },
+      {
+        "en": "Fourth president",
+        "translation": "cuarto presidente"
+      },
+      {
+        "en": "War of 1812",
+        "translation": "Guerra de 1812"
+      },
+      {
+        "en": "Federalist Papers",
+        "translation": "Documentos Federalistas"
+      }
+    ]
+  },
+  "Many documents influenced the U.S. Constitution. Name one.": {
+    "question": "Many documents influenced the U.S. Constitution. Name one.",
+    "answers": [
+      "Declaration of Independence",
+      "Articles of Confederation",
+      "Federalist Papers",
+      "Anti-Federalist Papers",
+      "Virginia Declaration of Rights",
+      "Fundamental Orders of Connecticut",
+      "Mayflower Compact",
+      "Iroquois Great Law of Peace"
+    ],
+    "status": "draft",
+    "explanation": "Los autores de la Constitución aprendieron de muchos documentos e ideas anteriores. El Pacto del Mayflower de 1620 fue un acuerdo temprano de autogobierno. La Declaración de Independencia de 1776 explicó derechos básicos. Los Artículos de la Confederación fueron el primer plan de gobierno nacional, pero eran demasiado débiles. Puede nombrar cualquiera de los documentos de la lista oficial.",
+    "keyWords": [
+      {
+        "en": "influenced",
+        "translation": "influyeron"
+      },
+      {
+        "en": "Declaration of Independence",
+        "translation": "Declaración de Independencia"
+      },
+      {
+        "en": "Articles of Confederation",
+        "translation": "Artículos de la Confederación"
+      },
+      {
+        "en": "Mayflower Compact",
+        "translation": "Pacto del Mayflower"
+      }
+    ]
+  },
+  "Martin Luther King, Jr. is famous for many things. Name one.": {
+    "question": "Martin Luther King, Jr. is famous for many things. Name one.",
+    "answers": [
+      "Fought for civil rights",
+      "Worked for equality for all Americans",
+      "Worked to ensure that people would “not be judged by the color of their skin, but by the content of their character”"
+    ],
+    "status": "draft",
+    "explanation": "Martin Luther King, Jr. fue un líder del movimiento por los derechos civiles en los años 1950 y 1960. Luchó por los derechos civiles y trabajó por la igualdad de todos los estadounidenses. Usó la protesta pacífica, no la violencia. En un discurso famoso de 1963, dijo que esperaba que las personas no fueran juzgadas por el color de su piel, sino por su carácter.",
+    "keyWords": [
+      {
+        "en": "civil rights",
+        "translation": "derechos civiles"
+      },
+      {
+        "en": "equality",
+        "translation": "igualdad"
+      },
+      {
+        "en": "color of their skin",
+        "translation": "color de su piel"
+      },
+      {
+        "en": "character",
+        "translation": "carácter"
+      }
+    ]
+  },
+  "Name one American Indian tribe in the United States.": {
+    "question": "Name one American Indian tribe in the United States.",
+    "answers": [
+      "Apache",
+      "Blackfeet",
+      "Cayuga",
+      "Cherokee",
+      "Cheyenne",
+      "Chippewa",
+      "Choctaw",
+      "Creek",
+      "Crow",
+      "Hopi",
+      "Huron",
+      "Inupiat",
+      "Lakota",
+      "Mohawk",
+      "Mohegan",
+      "Navajo",
+      "Oneida",
+      "Onondaga",
+      "Pueblo",
+      "Seminole",
+      "Seneca",
+      "Shawnee",
+      "Sioux",
+      "Teton",
+      "Tuscarora",
+      "For a complete list of tribes, please visit bia.gov."
+    ],
+    "status": "draft",
+    "explanation": "Los indígenas americanos, también llamados nativos americanos, vivían en América del Norte mucho antes de que llegaran los europeos. Hoy hay más de 570 tribus reconocidas por el gobierno federal en los Estados Unidos. Cada tribu tiene su propia historia, cultura y gobierno. Puede nombrar cualquier tribu de la lista oficial, como los cheroqui o los navajo. Para ver la lista completa, puede visitar bia.gov.",
+    "keyWords": [
+      {
+        "en": "American Indian",
+        "translation": "indígena americano"
+      },
+      {
+        "en": "tribe",
+        "translation": "tribu"
+      },
+      {
+        "en": "bia.gov",
+        "translation": "bia.gov (sitio web de Asuntos Indígenas)"
+      }
+    ]
+  },
+  "Name one U.S. military conflict after the September 11, 2001 attacks.": {
+    "question": "Name one U.S. military conflict after the September 11, 2001 attacks.",
+    "answers": [
+      "(Global) War on Terror",
+      "War in Afghanistan",
+      "War in Iraq"
+    ],
+    "status": "draft",
+    "explanation": "El 11 de septiembre de 2001, unos terroristas atacaron a los Estados Unidos y mataron a casi 3,000 personas. Después de los ataques, los Estados Unidos comenzó la Guerra Global contra el Terrorismo. En 2001, las fuerzas de los Estados Unidos fueron a Afganistán. En 2003 comenzó la Guerra de Irak. Puede nombrar cualquiera de estos conflictos.",
+    "keyWords": [
+      {
+        "en": "September 11, 2001",
+        "translation": "11 de septiembre de 2001"
+      },
+      {
+        "en": "military conflict",
+        "translation": "conflicto militar"
+      },
+      {
+        "en": "War on Terror",
+        "translation": "Guerra contra el Terrorismo"
+      },
+      {
+        "en": "Afghanistan",
+        "translation": "Afganistán"
+      },
+      {
+        "en": "Iraq",
+        "translation": "Irak"
+      }
+    ]
+  },
+  "Name one example of an American innovation.": {
+    "question": "Name one example of an American innovation.",
+    "answers": [
+      "Light bulb",
+      "Automobile (cars, internal combustion engine)",
+      "Skyscrapers",
+      "Airplane",
+      "Assembly line",
+      "Landing on the moon",
+      "Integrated circuit (IC)"
+    ],
+    "status": "draft",
+    "explanation": "Una innovación es una idea, un invento o una forma nueva de hacer algo. Los estadounidenses crearon muchas innovaciones importantes. Thomas Edison creó una bombilla práctica en 1879. Los hermanos Wright volaron el primer avión en 1903. En 1969, astronautas estadounidenses fueron las primeras personas en llegar a la luna.",
+    "keyWords": [
+      {
+        "en": "innovation",
+        "translation": "innovación"
+      },
+      {
+        "en": "Light bulb",
+        "translation": "bombilla, foco"
+      },
+      {
+        "en": "Airplane",
+        "translation": "avión"
+      },
+      {
+        "en": "Assembly line",
+        "translation": "línea de ensamblaje"
+      },
+      {
+        "en": "Landing on the moon",
+        "translation": "llegada a la luna"
+      }
+    ]
+  },
+  "Name one leader of the women’s rights movement in the 1800s.": {
+    "question": "Name one leader of the women’s rights movement in the 1800s.",
+    "answers": [
+      "Susan B. Anthony",
+      "Elizabeth Cady Stanton",
+      "Sojourner Truth",
+      "Harriet Tubman",
+      "Lucretia Mott",
+      "Lucy Stone"
+    ],
+    "status": "draft",
+    "explanation": "En el siglo XIX, las mujeres en los Estados Unidos no podían votar y tenían menos derechos que los hombres. Muchas mujeres trabajaron para cambiar esto. En 1848, Elizabeth Cady Stanton y Lucretia Mott ayudaron a dirigir una reunión sobre los derechos de la mujer en Seneca Falls, Nueva York. Susan B. Anthony trabajó durante muchos años por el derecho de la mujer al voto. Las mujeres ganaron el derecho al voto en 1920 con la Enmienda 19.",
+    "keyWords": [
+      {
+        "en": "rights movement",
+        "translation": "movimiento por los derechos"
+      },
+      {
+        "en": "leader",
+        "translation": "líder"
+      },
+      {
+        "en": "Susan B. Anthony",
+        "translation": "Susan B. Anthony"
+      },
+      {
+        "en": "Elizabeth Cady Stanton",
+        "translation": "Elizabeth Cady Stanton"
+      }
+    ]
+  },
+  "Name one power of the U.S. Congress.": {
+    "question": "Name one power of the U.S. Congress.",
+    "answers": [
+      "Writes laws",
+      "Declares war",
+      "Makes the federal budget"
+    ],
+    "status": "draft",
+    "explanation": "El Congreso es la rama legislativa del gobierno federal. Tiene dos partes: el Senado y la Cámara de Representantes. Su trabajo principal es escribir las leyes. El Congreso también tiene el poder de declarar la guerra. Además, hace el presupuesto federal, que decide cómo gasta el dinero el gobierno.",
+    "keyWords": [
+      {
+        "en": "Congress",
+        "translation": "Congreso"
+      },
+      {
+        "en": "power",
+        "translation": "poder"
+      },
+      {
+        "en": "Writes laws",
+        "translation": "escribe las leyes"
+      },
+      {
+        "en": "Declares war",
+        "translation": "declara la guerra"
+      },
+      {
+        "en": "federal budget",
+        "translation": "presupuesto federal"
+      }
+    ]
+  },
+  "Name one power of the president.": {
+    "question": "Name one power of the president.",
+    "answers": [
+      "Signs bills into law",
+      "Vetoes bills",
+      "Enforces laws",
+      "Commander in Chief (of the military)",
+      "Chief diplomat",
+      "Appoints federal judges"
+    ],
+    "status": "draft",
+    "explanation": "El presidente dirige la rama ejecutiva, que hace cumplir las leyes. El presidente puede firmar proyectos de ley para convertirlos en leyes, o vetarlos, es decir, rechazarlos. El presidente es el Comandante en Jefe de las fuerzas armadas. Como jefe de la diplomacia, el presidente trabaja con otros países. También nombra a los jueces federales, y el Senado debe aprobarlos.",
+    "keyWords": [
+      {
+        "en": "Signs bills into law",
+        "translation": "firma proyectos de ley"
+      },
+      {
+        "en": "Vetoes bills",
+        "translation": "veta proyectos de ley"
+      },
+      {
+        "en": "Enforces laws",
+        "translation": "hace cumplir las leyes"
+      },
+      {
+        "en": "Commander in Chief",
+        "translation": "Comandante en Jefe"
+      },
+      {
+        "en": "Appoints federal judges",
+        "translation": "nombra a los jueces federales"
+      }
+    ]
+  },
+  "Name one power that is only for the federal government.": {
+    "question": "Name one power that is only for the federal government.",
+    "answers": [
+      "Print paper money",
+      "Mint coins",
+      "Declare war",
+      "Create an army",
+      "Make treaties",
+      "Set foreign policy"
+    ],
+    "status": "draft",
+    "explanation": "La Constitución divide el poder entre el gobierno federal (nacional) y los estados. Algunos poderes son solo del gobierno federal. Por ejemplo, solo el gobierno federal puede imprimir billetes y acuñar monedas. Solo él puede declarar la guerra, crear un ejército y hacer tratados con otros países. Así, el país habla con una sola voz ante el mundo.",
+    "keyWords": [
+      {
+        "en": "federal government",
+        "translation": "gobierno federal"
+      },
+      {
+        "en": "Print paper money",
+        "translation": "imprimir billetes"
+      },
+      {
+        "en": "Mint coins",
+        "translation": "acuñar monedas"
+      },
+      {
+        "en": "Make treaties",
+        "translation": "hacer tratados"
+      },
+      {
+        "en": "foreign policy",
+        "translation": "política exterior"
+      }
+    ]
+  },
+  "Name one power that is only for the states.": {
+    "question": "Name one power that is only for the states.",
+    "answers": [
+      "Provide schooling and education",
+      "Provide protection (police)",
+      "Provide safety (fire departments)",
+      "Give a driver’s license",
+      "Approve zoning and land use"
+    ],
+    "status": "draft",
+    "explanation": "Según la Constitución, algunos poderes son de los estados y no del gobierno federal. Los estados se encargan de las escuelas y la educación. Dan protección con la policía y seguridad con los bomberos. Los estados otorgan las licencias de manejo. También aprueban la zonificación y el uso del suelo, es decir, deciden cómo se puede usar la tierra.",
+    "keyWords": [
+      {
+        "en": "states",
+        "translation": "estados"
+      },
+      {
+        "en": "schooling and education",
+        "translation": "escuelas y educación"
+      },
+      {
+        "en": "police",
+        "translation": "policía"
+      },
+      {
+        "en": "fire departments",
+        "translation": "departamentos de bomberos"
+      },
+      {
+        "en": "zoning",
+        "translation": "zonificación"
+      }
+    ]
+  },
+  "Name one reason why the Americans declared independence from Britain.": {
+    "question": "Name one reason why the Americans declared independence from Britain.",
+    "answers": [
+      "High taxes",
+      "Taxation without representation",
+      "British soldiers stayed in Americans’ houses (boarding, quartering)",
+      "They did not have self-government",
+      "Boston Massacre",
+      "Boston Tea Party (Tea Act)",
+      "Stamp Act",
+      "Sugar Act",
+      "Townshend Acts",
+      "Intolerable (Coercive) Acts"
+    ],
+    "status": "draft",
+    "explanation": "En las décadas de 1760 y 1770, Gran Bretaña obligó a las colonias americanas a pagar nuevos impuestos, como la Ley del Timbre y la Ley del Azúcar. Los colonos no tenían representantes en el Parlamento británico, y por eso hablaban de \"impuestos sin representación\". Los soldados británicos se alojaban en las casas de los colonos, y ellos no tenían autogobierno. Hechos como la Masacre de Boston (1770) y el Motín del Té de Boston (1773) aumentaron el enojo. En 1776, las colonias declararon su independencia.",
+    "keyWords": [
+      {
+        "en": "independence",
+        "translation": "independencia"
+      },
+      {
+        "en": "High taxes",
+        "translation": "impuestos altos"
+      },
+      {
+        "en": "Taxation without representation",
+        "translation": "impuestos sin representación"
+      },
+      {
+        "en": "self-government",
+        "translation": "autogobierno"
+      },
+      {
+        "en": "Boston Tea Party",
+        "translation": "Motín del Té de Boston"
+      }
+    ]
+  },
+  "Name one thing the U.S. Constitution does.": {
+    "question": "Name one thing the U.S. Constitution does.",
+    "answers": [
+      "Forms the government",
+      "Defines powers of government",
+      "Defines the parts of government",
+      "Protects the rights of the people"
+    ],
+    "status": "draft",
+    "explanation": "La Constitución de los Estados Unidos se escribió en 1787. Forma el gobierno de los Estados Unidos. Define las partes del gobierno: las ramas legislativa, ejecutiva y judicial. Define los poderes de cada parte y les pone límites. También protege los derechos del pueblo.",
+    "keyWords": [
+      {
+        "en": "Constitution",
+        "translation": "Constitución"
+      },
+      {
+        "en": "Forms the government",
+        "translation": "forma el gobierno"
+      },
+      {
+        "en": "Defines powers",
+        "translation": "define los poderes"
+      },
+      {
+        "en": "Protects the rights",
+        "translation": "protege los derechos"
+      }
+    ]
+  },
+  "Name one war fought by the United States in the 1800s.": {
+    "question": "Name one war fought by the United States in the 1800s.",
+    "answers": [
+      "War of 1812",
+      "Mexican-American War",
+      "Civil War",
+      "Spanish-American War"
+    ],
+    "status": "draft",
+    "explanation": "En el siglo XIX (los años 1800), Estados Unidos participó en varias guerras. La Guerra de 1812 fue contra Gran Bretaña. La Guerra entre México y Estados Unidos ocurrió de 1846 a 1848. La Guerra Civil (1861–1865) fue dentro del país, y la Guerra Hispano-Estadounidense fue en 1898. Usted puede nombrar cualquiera de estas cuatro guerras.",
+    "keyWords": [
+      {
+        "en": "war",
+        "translation": "guerra"
+      },
+      {
+        "en": "1800s",
+        "translation": "los años 1800 (siglo XIX)"
+      },
+      {
+        "en": "Civil War",
+        "translation": "Guerra Civil"
+      },
+      {
+        "en": "War of 1812",
+        "translation": "Guerra de 1812"
+      }
+    ]
+  },
+  "Name one war fought by the United States in the 1900s.": {
+    "question": "Name one war fought by the United States in the 1900s.",
+    "answers": [
+      "World War I",
+      "World War II",
+      "Korean War",
+      "Vietnam War",
+      "(Persian) Gulf War"
+    ],
+    "status": "draft",
+    "explanation": "En el siglo XX (los años 1900), Estados Unidos participó en varias guerras grandes. La Primera y la Segunda Guerra Mundial incluyeron a muchos países del mundo. La Guerra de Corea empezó en 1950, y la Guerra de Vietnam duró muchos años. La Guerra del Golfo, también llamada Guerra del Golfo Pérsico, fue en 1991. Usted puede nombrar cualquiera de estas guerras.",
+    "keyWords": [
+      {
+        "en": "1900s",
+        "translation": "los años 1900 (siglo XX)"
+      },
+      {
+        "en": "World War II",
+        "translation": "Segunda Guerra Mundial"
+      },
+      {
+        "en": "Korean War",
+        "translation": "Guerra de Corea"
+      },
+      {
+        "en": "Vietnam War",
+        "translation": "Guerra de Vietnam"
+      }
+    ]
+  },
+  "Name the U.S. war between the North and the South.": {
+    "question": "Name the U.S. war between the North and the South.",
+    "answers": [
+      "The Civil War"
+    ],
+    "status": "draft",
+    "explanation": "La guerra entre el Norte y el Sur fue la Guerra Civil. Duró de 1861 a 1865. Varios estados del Sur se separaron de la Unión y formaron la Confederación. El Norte (la Unión) ganó y el país siguió unido.",
+    "keyWords": [
+      {
+        "en": "North",
+        "translation": "Norte"
+      },
+      {
+        "en": "South",
+        "translation": "Sur"
+      },
+      {
+        "en": "Civil War",
+        "translation": "Guerra Civil"
+      }
+    ]
+  },
+  "Name the three branches of government.": {
+    "question": "Name the three branches of government.",
+    "answers": [
+      "Legislative, executive, and judicial",
+      "Congress, president, and the courts"
+    ],
+    "status": "draft",
+    "explanation": "El gobierno de Estados Unidos tiene tres ramas, o partes. La rama legislativa es el Congreso, que hace las leyes. La rama ejecutiva la dirige el presidente y se encarga de aplicar las leyes. La rama judicial son los tribunales, que explican las leyes. Usted puede decir los nombres de las tres ramas o quiénes las forman.",
+    "keyWords": [
+      {
+        "en": "branches",
+        "translation": "ramas"
+      },
+      {
+        "en": "legislative",
+        "translation": "legislativa"
+      },
+      {
+        "en": "executive",
+        "translation": "ejecutiva"
+      },
+      {
+        "en": "judicial",
+        "translation": "judicial"
+      },
+      {
+        "en": "courts",
+        "translation": "tribunales (cortes)"
+      }
+    ]
+  },
+  "Name three national U.S. holidays.": {
+    "question": "Name three national U.S. holidays.",
+    "answers": [
+      "New Year’s Day",
+      "Martin Luther King, Jr. Day",
+      "Presidents Day (Washington’s Birthday)",
+      "Memorial Day",
+      "Juneteenth",
+      "Independence Day",
+      "Labor Day",
+      "Columbus Day",
+      "Veterans Day",
+      "Thanksgiving Day",
+      "Christmas Day"
+    ],
+    "status": "draft",
+    "explanation": "Los días feriados nacionales son días especiales para todo el país. Muchas oficinas del gobierno y bancos cierran esos días. Algunos feriados honran a personas, como el Día de Martin Luther King, Jr. y el Día de los Presidentes. El Día de la Independencia, el 4 de julio, celebra el nacimiento de la nación. Usted debe nombrar tres feriados de la lista oficial.",
+    "keyWords": [
+      {
+        "en": "holidays",
+        "translation": "días feriados"
+      },
+      {
+        "en": "Independence Day",
+        "translation": "Día de la Independencia"
+      },
+      {
+        "en": "Thanksgiving Day",
+        "translation": "Día de Acción de Gracias"
+      },
+      {
+        "en": "Labor Day",
+        "translation": "Día del Trabajo"
+      }
+    ]
+  },
+  "Name two important ideas from the Declaration of Independence and the U.S. Constitution.": {
+    "question": "Name two important ideas from the Declaration of Independence and the U.S. Constitution.",
+    "answers": [
+      "Equality",
+      "Liberty",
+      "Social contract",
+      "Natural rights",
+      "Limited government",
+      "Self-government"
+    ],
+    "status": "draft",
+    "explanation": "La Declaración de Independencia y la Constitución comparten algunas ideas importantes. La igualdad significa que todas las personas tienen el mismo valor básico. La libertad significa ser libre. Un gobierno limitado tiene solo los poderes que el pueblo le da. Usted debe nombrar dos de las ideas de la lista oficial.",
+    "keyWords": [
+      {
+        "en": "Equality",
+        "translation": "igualdad"
+      },
+      {
+        "en": "Liberty",
+        "translation": "libertad"
+      },
+      {
+        "en": "Natural rights",
+        "translation": "derechos naturales"
+      },
+      {
+        "en": "Limited government",
+        "translation": "gobierno limitado"
+      },
+      {
+        "en": "Self-government",
+        "translation": "autogobierno"
+      }
+    ]
+  },
+  "Name two promises that new citizens make in the Oath of Allegiance.": {
+    "question": "Name two promises that new citizens make in the Oath of Allegiance.",
+    "answers": [
+      "Give up loyalty to other countries",
+      "Defend the (U.S.) Constitution",
+      "Obey the laws of the United States",
+      "Serve in the military (if needed)",
+      "Serve (help, do important work for) the nation (if needed)",
+      "Be loyal to the United States"
+    ],
+    "status": "draft",
+    "explanation": "En la ceremonia de naturalización, los nuevos ciudadanos dicen el Juramento de Lealtad. Un juramento es una promesa seria y formal. En él, prometen ser leales a Estados Unidos y apoyar y defender la Constitución. También prometen obedecer las leyes y servir a la nación si es necesario. Usted debe nombrar dos promesas de la lista oficial.",
+    "keyWords": [
+      {
+        "en": "Oath of Allegiance",
+        "translation": "Juramento de Lealtad"
+      },
+      {
+        "en": "promises",
+        "translation": "promesas"
+      },
+      {
+        "en": "loyal",
+        "translation": "leal"
+      },
+      {
+        "en": "Defend",
+        "translation": "defender"
+      },
+      {
+        "en": "Obey the laws",
+        "translation": "obedecer las leyes"
+      }
+    ]
+  },
+  "Name your U.S. representative.": {
+    "question": "Name your U.S. representative.",
+    "answers": [
+      "Answers vary by where you live."
+    ],
+    "status": "draft",
+    "explanation": "Su representante federal es la persona que representa a su zona en la Cámara de Representantes. Cada estado se divide en distritos, y cada distrito elige a un representante. Los representantes se eligen por un período de dos años. La respuesta depende de dónde vive usted, así que busque al representante de su distrito antes de la entrevista. Puede usar la herramienta \"Find My Representative\" (Buscar a mi representante) de la aplicación.",
+    "keyWords": [
+      {
+        "en": "representative",
+        "translation": "representante"
+      },
+      {
+        "en": "where you live",
+        "translation": "donde usted vive"
+      }
+    ]
+  },
+  "Some states have more representatives than other states. Why?": {
+    "question": "Some states have more representatives than other states. Why?",
+    "answers": [
+      "(Because of) the state’s population",
+      "(Because) they have more people",
+      "(Because) some states have more people"
+    ],
+    "status": "draft",
+    "explanation": "El número de representantes de cada estado depende de cuántas personas viven allí. Los estados con más habitantes tienen más representantes en la Cámara. Cada 10 años, el censo cuenta a las personas del país. Después del censo, el número de representantes de cada estado puede cambiar. Todos los estados tienen por lo menos un representante.",
+    "keyWords": [
+      {
+        "en": "representatives",
+        "translation": "representantes"
+      },
+      {
+        "en": "population",
+        "translation": "población"
+      },
+      {
+        "en": "more people",
+        "translation": "más personas"
+      }
+    ]
+  },
+  "Supreme Court justices serve for life. Why?": {
+    "question": "Supreme Court justices serve for life. Why?",
+    "answers": [
+      "To be independent (of politics)",
+      "To limit outside (political) influence"
+    ],
+    "status": "draft",
+    "explanation": "Los jueces de la Corte Suprema trabajan en el tribunal más alto del país. El presidente los elige y el Senado debe aprobarlos. Después, pueden servir por el resto de su vida. Como no necesitan ganar elecciones ni temer perder su puesto, pueden decidir los casos de manera justa. Así la corte se mantiene independiente de la política.",
+    "keyWords": [
+      {
+        "en": "Supreme Court",
+        "translation": "Corte Suprema"
+      },
+      {
+        "en": "justices",
+        "translation": "jueces"
+      },
+      {
+        "en": "for life",
+        "translation": "de por vida"
+      },
+      {
+        "en": "independent",
+        "translation": "independiente"
+      },
+      {
+        "en": "influence",
+        "translation": "influencia"
+      }
+    ]
+  },
+  "The American Revolution had many important events. Name one.": {
+    "question": "The American Revolution had many important events. Name one.",
+    "answers": [
+      "(Battle of) Bunker Hill",
+      "Declaration of Independence",
+      "Washington Crossing the Delaware (Battle of Trenton)",
+      "(Battle of) Saratoga",
+      "Valley Forge (Encampment)",
+      "(Battle of) Yorktown (British surrender at Yorktown)"
+    ],
+    "status": "draft",
+    "explanation": "La Revolución Americana fue la guerra por la independencia de Gran Bretaña. La Batalla de Bunker Hill fue en 1775, y la Declaración de Independencia se firmó en 1776. El ejército de George Washington pasó un invierno muy duro en Valley Forge en 1777–1778. El ejército británico se rindió en Yorktown en 1781. Usted puede nombrar cualquier evento de la lista oficial.",
+    "keyWords": [
+      {
+        "en": "American Revolution",
+        "translation": "Revolución Americana"
+      },
+      {
+        "en": "Battle",
+        "translation": "batalla"
+      },
+      {
+        "en": "Declaration of Independence",
+        "translation": "Declaración de Independencia"
+      },
+      {
+        "en": "British surrender",
+        "translation": "rendición británica"
+      }
+    ]
+  },
+  "The Civil War had many important events. Name one.": {
+    "question": "The Civil War had many important events. Name one.",
+    "answers": [
+      "(Battle of) Fort Sumter",
+      "Emancipation Proclamation",
+      "(Battle of) Vicksburg",
+      "(Battle of) Gettysburg",
+      "Sherman’s March",
+      "(Surrender at) Appomattox",
+      "(Battle of) Antietam/Sharpsburg",
+      "Lincoln was assassinated."
+    ],
+    "status": "draft",
+    "explanation": "La Guerra Civil empezó en 1861 con el ataque a Fort Sumter. En 1863, el presidente Lincoln dio la Proclamación de Emancipación, y la Unión ganó en Gettysburg y Vicksburg. La guerra terminó en 1865, cuando el Sur se rindió en Appomattox. Poco después, el presidente Lincoln fue asesinado. Usted puede nombrar cualquier evento de la lista oficial.",
+    "keyWords": [
+      {
+        "en": "Civil War",
+        "translation": "Guerra Civil"
+      },
+      {
+        "en": "events",
+        "translation": "eventos"
+      },
+      {
+        "en": "Emancipation Proclamation",
+        "translation": "Proclamación de Emancipación"
+      },
+      {
+        "en": "Surrender",
+        "translation": "rendición"
+      },
+      {
+        "en": "assassinated",
+        "translation": "asesinado"
+      }
+    ]
+  },
+  "The Federalist Papers supported the passage of the U.S. Constitution. Name one of the writers.": {
+    "question": "The Federalist Papers supported the passage of the U.S. Constitution. Name one of the writers.",
+    "answers": [
+      "(James) Madison",
+      "(Alexander) Hamilton",
+      "(John) Jay",
+      "Publius"
+    ],
+    "status": "draft",
+    "explanation": "Los Documentos Federalistas (Federalist Papers) fueron 85 ensayos escritos en 1787 y 1788. Pedían al pueblo apoyar la nueva Constitución. Los escribieron tres hombres: James Madison, Alexander Hamilton y John Jay. Todos firmaron los ensayos con un mismo seudónimo: “Publius”. Usted puede nombrar a cualquiera de los escritores o decir “Publius”.",
+    "keyWords": [
+      {
+        "en": "Federalist Papers",
+        "translation": "Documentos Federalistas"
+      },
+      {
+        "en": "writers",
+        "translation": "escritores"
+      },
+      {
+        "en": "Constitution",
+        "translation": "Constitución"
+      },
+      {
+        "en": "Madison",
+        "translation": "Madison"
+      }
+    ]
+  },
+  "The Nation’s first motto was “E Pluribus Unum.” What does that mean?": {
+    "question": "The Nation’s first motto was “E Pluribus Unum.” What does that mean?",
+    "answers": [
+      "Out of many, one",
+      "We all become one"
+    ],
+    "status": "draft",
+    "explanation": "“E Pluribus Unum” es una frase en latín. Significa “De muchos, uno”. Al principio, describía cómo 13 colonias separadas se unieron para formar una sola nación. Hoy también nos recuerda que personas de muchos orígenes forman un solo país. Estas palabras aparecen en el Gran Sello y en las monedas de Estados Unidos.",
+    "keyWords": [
+      {
+        "en": "motto",
+        "translation": "lema"
+      },
+      {
+        "en": "E Pluribus Unum",
+        "translation": "E Pluribus Unum (De muchos, uno)"
+      },
+      {
+        "en": "Out of many, one",
+        "translation": "De muchos, uno"
+      }
+    ]
+  },
+  "The President of the United States can serve only two terms. Why?": {
+    "question": "The President of the United States can serve only two terms. Why?",
+    "answers": [
+      "(Because of) the 22nd Amendment",
+      "To keep the president from becoming too powerful"
+    ],
+    "status": "draft",
+    "explanation": "Un presidente solo puede ser elegido dos veces. Esta regla viene de la Enmienda 22 de la Constitución, que se aprobó en 1951. Antes de eso, el presidente Franklin D. Roosevelt fue elegido cuatro veces. El límite ayuda a evitar que una persona se quede en el poder demasiado tiempo o tenga demasiado poder.",
+    "keyWords": [
+      {
+        "en": "two terms",
+        "translation": "dos períodos"
+      },
+      {
+        "en": "22nd Amendment",
+        "translation": "Enmienda 22"
+      },
+      {
+        "en": "too powerful",
+        "translation": "demasiado poderoso"
+      }
+    ]
+  },
+  "The President of the United States is elected for how many years?": {
+    "question": "The President of the United States is elected for how many years?",
+    "answers": [
+      "Four (4) years"
+    ],
+    "status": "draft",
+    "explanation": "El presidente es elegido por un período de cuatro años. Las elecciones presidenciales son cada cuatro años, en noviembre. El nuevo presidente empieza su cargo en enero, después de la elección. Un presidente puede ser elegido para un segundo período de cuatro años.",
+    "keyWords": [
+      {
+        "en": "elected",
+        "translation": "elegido"
+      },
+      {
+        "en": "years",
+        "translation": "años"
+      },
+      {
+        "en": "Four",
+        "translation": "cuatro"
+      }
+    ]
+  },
+  "The President of the United States is in charge of which branch of government?": {
+    "question": "The President of the United States is in charge of which branch of government?",
+    "answers": [
+      "Executive branch"
+    ],
+    "status": "draft",
+    "explanation": "El presidente dirige la rama ejecutiva. Esta rama aplica y hace cumplir las leyes que hace el Congreso. El vicepresidente, el Gabinete y muchos departamentos y agencias federales también forman parte de esta rama. Todos trabajan bajo la dirección del presidente.",
+    "keyWords": [
+      {
+        "en": "in charge of",
+        "translation": "a cargo de"
+      },
+      {
+        "en": "Executive branch",
+        "translation": "rama ejecutiva"
+      },
+      {
+        "en": "branch of government",
+        "translation": "rama del gobierno"
+      }
+    ]
+  },
+  "The U.S. Constitution starts with the words “We the People.” What does “We the People” mean?": {
+    "question": "The U.S. Constitution starts with the words “We the People.” What does “We the People” mean?",
+    "answers": [
+      "Self-government",
+      "Popular sovereignty",
+      "Consent of the governed",
+      "People should govern themselves",
+      "(Example of) social contract"
+    ],
+    "status": "draft",
+    "explanation": "La Constitución empieza con las palabras “We the People” (“Nosotros, el Pueblo”). Esto muestra que el poder del gobierno viene del pueblo. El pueblo elige a sus líderes, y el gobierno necesita el consentimiento, o el acuerdo, del pueblo. Esta idea se llama autogobierno o soberanía popular.",
+    "keyWords": [
+      {
+        "en": "We the People",
+        "translation": "Nosotros, el Pueblo"
+      },
+      {
+        "en": "Self-government",
+        "translation": "autogobierno"
+      },
+      {
+        "en": "Popular sovereignty",
+        "translation": "soberanía popular"
+      },
+      {
+        "en": "Consent of the governed",
+        "translation": "consentimiento de los gobernados"
+      }
+    ]
+  },
+  "The colonists came to America for many reasons. Name one.": {
+    "question": "The colonists came to America for many reasons. Name one.",
+    "answers": [
+      "Freedom",
+      "Political liberty",
+      "Religious freedom",
+      "Economic opportunity",
+      "Escape persecution"
+    ],
+    "status": "draft",
+    "explanation": "Los colonos eran personas de Europa que vinieron a vivir a América en los años 1600 y 1700. Muchos buscaban libertad, incluida la libertad de practicar su religión. Algunos querían escapar de la persecución, es decir, del maltrato por ser quienes eran o por lo que creían. Otros vinieron por oportunidades económicas, como tierra y trabajo. Usted puede nombrar cualquier razón de la lista oficial.",
+    "keyWords": [
+      {
+        "en": "colonists",
+        "translation": "colonos"
+      },
+      {
+        "en": "Religious freedom",
+        "translation": "libertad religiosa"
+      },
+      {
+        "en": "Economic opportunity",
+        "translation": "oportunidad económica"
+      },
+      {
+        "en": "Escape persecution",
+        "translation": "escapar de la persecución"
+      }
+    ]
+  },
+  "The executive branch has many parts. Name one.": {
+    "question": "The executive branch has many parts. Name one.",
+    "answers": [
+      "President (of the United States)",
+      "Cabinet",
+      "Federal departments and agencies"
+    ],
+    "status": "draft",
+    "explanation": "La rama ejecutiva se encarga de aplicar las leyes del país. El presidente la dirige. El Gabinete es un grupo de asesores principales que ayudan al presidente. Los departamentos y agencias federales hacen el trabajo diario del gobierno. Usted puede nombrar cualquiera de estas partes.",
+    "keyWords": [
+      {
+        "en": "executive branch",
+        "translation": "rama ejecutiva"
+      },
+      {
+        "en": "Cabinet",
+        "translation": "Gabinete"
+      },
+      {
+        "en": "Federal departments",
+        "translation": "departamentos federales"
+      },
+      {
+        "en": "agencies",
+        "translation": "agencias"
+      }
+    ]
+  },
+  "The words “Life, Liberty, and the pursuit of Happiness” are in what founding document?": {
+    "question": "The words “Life, Liberty, and the pursuit of Happiness” are in what founding document?",
+    "answers": [
+      "Declaration of Independence"
+    ],
+    "status": "draft",
+    "explanation": "Las palabras “Life, Liberty, and the pursuit of Happiness” (“la vida, la libertad y la búsqueda de la felicidad”) están en la Declaración de Independencia. Thomas Jefferson escribió la mayor parte de este documento, que se aprobó el 4 de julio de 1776. Estas palabras describen derechos que tienen todas las personas. “Pursuit” significa “búsqueda”, es decir, tratar de alcanzar algo.",
+    "keyWords": [
+      {
+        "en": "Liberty",
+        "translation": "libertad"
+      },
+      {
+        "en": "pursuit of Happiness",
+        "translation": "búsqueda de la felicidad"
+      },
+      {
+        "en": "founding document",
+        "translation": "documento fundacional"
+      },
+      {
+        "en": "Declaration of Independence",
+        "translation": "Declaración de Independencia"
+      }
+    ]
+  },
+  "There are four amendments to the U.S. Constitution about who can vote. Describe one of them.": {
+    "question": "There are four amendments to the U.S. Constitution about who can vote. Describe one of them.",
+    "answers": [
+      "Citizens eighteen (18) and older (can vote).",
+      "You don’t have to pay (a poll tax) to vote.",
+      "Any citizen can vote. (Women and men can vote.)",
+      "A male citizen of any race (can vote)."
+    ],
+    "status": "draft",
+    "explanation": "Con el tiempo, cuatro enmiendas permitieron votar a más ciudadanos. La Enmienda 15 (1870) dice que un ciudadano hombre de cualquier raza puede votar. La Enmienda 19 (1920) dio a las mujeres el derecho al voto. La Enmienda 24 (1964) eliminó los impuestos para votar, así que no hay que pagar para votar. La Enmienda 26 (1971) permite votar a los ciudadanos de 18 años o más.",
+    "keyWords": [
+      {
+        "en": "amendments",
+        "translation": "enmiendas"
+      },
+      {
+        "en": "vote",
+        "translation": "votar"
+      },
+      {
+        "en": "poll tax",
+        "translation": "impuesto para votar"
+      },
+      {
+        "en": "eighteen",
+        "translation": "dieciocho"
+      },
+      {
+        "en": "any race",
+        "translation": "cualquier raza"
+      }
+    ]
+  },
+  "There are three branches of government. Why?": {
+    "question": "There are three branches of government. Why?",
+    "answers": [
+      "So one part does not become too powerful",
+      "Checks and balances",
+      "Separation of powers"
+    ],
+    "status": "draft",
+    "explanation": "El gobierno tiene tres ramas para que ninguna parte tenga demasiado poder. Esto se llama separación de poderes. Cada rama también puede limitar a las otras. Esto se llama pesos y contrapesos. Por ejemplo, el presidente puede vetar una ley, y los tribunales pueden decidir que una ley va en contra de la Constitución.",
+    "keyWords": [
+      {
+        "en": "branches",
+        "translation": "ramas"
+      },
+      {
+        "en": "too powerful",
+        "translation": "demasiado poderoso"
+      },
+      {
+        "en": "Checks and balances",
+        "translation": "pesos y contrapesos"
+      },
+      {
+        "en": "Separation of powers",
+        "translation": "separación de poderes"
+      }
+    ]
+  },
+  "There were 13 original states. Name five.": {
+    "question": "There were 13 original states. Name five.",
+    "answers": [
+      "New Hampshire",
+      "Massachusetts",
+      "Rhode Island",
+      "Connecticut",
+      "New York",
+      "New Jersey",
+      "Pennsylvania",
+      "Delaware",
+      "Maryland",
+      "Virginia",
+      "North Carolina",
+      "South Carolina",
+      "Georgia"
+    ],
+    "status": "draft",
+    "explanation": "Los 13 estados originales fueron las 13 colonias británicas que declararon su independencia en 1776. Todos estaban en la costa del océano Atlántico, en el este del país. Algunos están en el Norte, como Nueva York y Massachusetts. Otros están en el Sur, como Virginia y Georgia. Usted debe nombrar cinco de ellos.",
+    "keyWords": [
+      {
+        "en": "original states",
+        "translation": "estados originales"
+      },
+      {
+        "en": "New York",
+        "translation": "Nueva York"
+      },
+      {
+        "en": "Virginia",
+        "translation": "Virginia"
+      },
+      {
+        "en": "Massachusetts",
+        "translation": "Massachusetts"
+      }
+    ]
+  },
+  "Thomas Jefferson is famous for many things. Name one.": {
+    "question": "Thomas Jefferson is famous for many things. Name one.",
+    "answers": [
+      "Writer of the Declaration of Independence",
+      "Third president of the United States",
+      "Doubled the size of the United States (Louisiana Purchase)",
+      "First Secretary of State",
+      "Founded the University of Virginia",
+      "Writer of the Virginia Statute on Religious Freedom"
+    ],
+    "status": "draft",
+    "explanation": "Thomas Jefferson fue uno de los Padres Fundadores. Fue el principal autor de la Declaración de Independencia en 1776. Fue el primer Secretario de Estado y el tercer presidente de Estados Unidos. Como presidente, compró el territorio de Luisiana a Francia en 1803, y así el país duplicó su tamaño. Usted puede nombrar cualquier dato de la lista oficial.",
+    "keyWords": [
+      {
+        "en": "Thomas Jefferson",
+        "translation": "Thomas Jefferson"
+      },
+      {
+        "en": "Declaration of Independence",
+        "translation": "Declaración de Independencia"
+      },
+      {
+        "en": "Third president",
+        "translation": "tercer presidente"
+      },
+      {
+        "en": "Louisiana Purchase",
+        "translation": "Compra de Luisiana"
+      }
+    ]
+  },
+  "What U.S. war ended slavery?": {
+    "question": "What U.S. war ended slavery?",
+    "answers": [
+      "The Civil War"
+    ],
+    "status": "draft",
+    "explanation": "La Guerra Civil (1861–1865) terminó con la esclavitud en Estados Unidos. La esclavitud fue una de las causas principales de la guerra entre el Norte y el Sur. Durante la guerra, el presidente Lincoln dio la Proclamación de Emancipación. En 1865, la Enmienda 13 terminó con la esclavitud en todo el país.",
+    "keyWords": [
+      {
+        "en": "war",
+        "translation": "guerra"
+      },
+      {
+        "en": "slavery",
+        "translation": "esclavitud"
+      },
+      {
+        "en": "Civil War",
+        "translation": "Guerra Civil"
+      }
+    ]
+  },
+  "What amendment says all persons born or naturalized in the United States, and subject to the jurisdiction thereof, are U.S. citizens?": {
+    "question": "What amendment says all persons born or naturalized in the United States, and subject to the jurisdiction thereof, are U.S. citizens?",
+    "answers": [
+      "14th Amendment"
+    ],
+    "status": "draft",
+    "explanation": "La Enmienda 14 se agregó a la Constitución en 1868, después de la Guerra Civil. Dice que las personas nacidas en Estados Unidos, o naturalizadas aquí, son ciudadanos estadounidenses. “Naturalizada” quiere decir que la persona se hizo ciudadana por medio del proceso legal, como el que usted está estudiando. Esta enmienda también promete a todos los ciudadanos igual protección de las leyes.",
+    "keyWords": [
+      {
+        "en": "amendment",
+        "translation": "enmienda"
+      },
+      {
+        "en": "born",
+        "translation": "nacido"
+      },
+      {
+        "en": "naturalized",
+        "translation": "naturalizado"
+      },
+      {
+        "en": "citizens",
+        "translation": "ciudadanos"
+      },
+      {
+        "en": "14th Amendment",
+        "translation": "Enmienda 14"
+      }
+    ]
+  },
+  "What are the two parts of the U.S. Congress?": {
+    "question": "What are the two parts of the U.S. Congress?",
+    "answers": [
+      "Senate and House (of Representatives)"
+    ],
+    "status": "draft",
+    "explanation": "El Congreso es la rama legislativa, que hace las leyes federales. Tiene dos partes: el Senado y la Cámara de Representantes. El Senado tiene 100 senadores, dos por cada estado. La Cámara tiene 435 miembros con voto, y los estados con más habitantes tienen más. Un proyecto de ley debe ser aprobado por las dos partes antes de convertirse en ley.",
+    "keyWords": [
+      {
+        "en": "Congress",
+        "translation": "Congreso"
+      },
+      {
+        "en": "Senate",
+        "translation": "Senado"
+      },
+      {
+        "en": "House",
+        "translation": "Cámara (de Representantes)"
+      },
+      {
+        "en": "Representatives",
+        "translation": "Representantes"
+      }
+    ]
+  },
+  "What are three rights of everyone living in the United States?": {
+    "question": "What are three rights of everyone living in the United States?",
+    "answers": [
+      "Freedom of expression",
+      "Freedom of speech",
+      "Freedom of assembly",
+      "Freedom to petition the government",
+      "Freedom of religion",
+      "The right to bear arms"
+    ],
+    "status": "draft",
+    "explanation": "Algunos derechos son para todas las personas que viven en Estados Unidos, no solo para los ciudadanos. Muchos vienen de la Primera Enmienda, como la libertad de expresión, la libertad de religión y la libertad de reunión. Reunión significa juntarse en grupo. El derecho a portar armas viene de la Segunda Enmienda. Usted debe nombrar tres derechos de la lista oficial.",
+    "keyWords": [
+      {
+        "en": "rights",
+        "translation": "derechos"
+      },
+      {
+        "en": "Freedom of speech",
+        "translation": "libertad de expresión"
+      },
+      {
+        "en": "Freedom of religion",
+        "translation": "libertad de religión"
+      },
+      {
+        "en": "assembly",
+        "translation": "reunión"
+      },
+      {
+        "en": "bear arms",
+        "translation": "portar armas"
+      }
+    ]
+  },
+  "What are two Cabinet-level positions?": {
+    "question": "What are two Cabinet-level positions?",
+    "answers": [
+      "Attorney General",
+      "Secretary of Agriculture",
+      "Secretary of Commerce",
+      "Secretary of Education",
+      "Secretary of Energy",
+      "Secretary of Health and Human Services",
+      "Secretary of Homeland Security",
+      "Secretary of Housing and Urban Development",
+      "Secretary of the Interior",
+      "Secretary of Labor",
+      "Secretary of State",
+      "Secretary of Transportation",
+      "Secretary of the Treasury",
+      "Secretary of Veterans Affairs",
+      "Secretary of War (Defense)",
+      "Vice-President",
+      "Administrator of the Environmental Protection Agency",
+      "Administrator of the Small Business Administration",
+      "Director of the Central Intelligence Agency",
+      "Director of the Office of Management and Budget",
+      "Director of National Intelligence",
+      "United States Trade Representative"
+    ],
+    "status": "draft",
+    "explanation": "El Gabinete es un grupo de altos funcionarios que aconsejan al presidente. La mayoría dirige un departamento federal, como el Secretario de Estado o el Secretario del Tesoro. El Procurador General (Attorney General) dirige el Departamento de Justicia. El vicepresidente también forma parte del Gabinete. Usted debe nombrar dos cargos de la lista oficial.",
+    "keyWords": [
+      {
+        "en": "Cabinet",
+        "translation": "Gabinete"
+      },
+      {
+        "en": "positions",
+        "translation": "cargos"
+      },
+      {
+        "en": "Secretary of State",
+        "translation": "Secretario de Estado"
+      },
+      {
+        "en": "Attorney General",
+        "translation": "Procurador General"
+      },
+      {
+        "en": "Vice-President",
+        "translation": "vicepresidente"
+      }
+    ]
+  },
+  "What are two examples of civic participation in the United States?": {
+    "question": "What are two examples of civic participation in the United States?",
+    "answers": [
+      "Vote",
+      "Run for office",
+      "Join a political party",
+      "Help with a campaign",
+      "Join a civic group",
+      "Join a community group",
+      "Give an elected official your opinion (on an issue)",
+      "Contact elected officials",
+      "Support or oppose an issue or policy",
+      "Write to a newspaper"
+    ],
+    "status": "draft",
+    "explanation": "La participación cívica significa tomar parte en la vida de su comunidad y de su país. Votar es una forma importante de participar. Las personas también se unen a grupos comunitarios, ayudan en campañas o se postulan para un cargo. También se puede contactar a los funcionarios electos para dar su opinión sobre un tema. Usted debe nombrar dos ejemplos de la lista oficial.",
+    "keyWords": [
+      {
+        "en": "civic participation",
+        "translation": "participación cívica"
+      },
+      {
+        "en": "Vote",
+        "translation": "votar"
+      },
+      {
+        "en": "Run for office",
+        "translation": "postularse para un cargo"
+      },
+      {
+        "en": "Contact elected officials",
+        "translation": "contactar a los funcionarios electos"
+      }
+    ]
+  },
+  "What did the Emancipation Proclamation do?": {
+    "question": "What did the Emancipation Proclamation do?",
+    "answers": [
+      "Freed the slaves",
+      "Freed slaves in the Confederacy",
+      "Freed slaves in the Confederate states",
+      "Freed slaves in most Southern states"
+    ],
+    "status": "draft",
+    "explanation": "El presidente Abraham Lincoln dio la Proclamación de Emancipación el 1 de enero de 1863, durante la Guerra Civil. “Emancipación” significa ser liberado. La proclamación liberó a los esclavos en los estados confederados, que luchaban contra la Unión. Más tarde, en 1865, la Enmienda 13 terminó con la esclavitud en todo el país.",
+    "keyWords": [
+      {
+        "en": "Emancipation Proclamation",
+        "translation": "Proclamación de Emancipación"
+      },
+      {
+        "en": "Freed",
+        "translation": "liberó"
+      },
+      {
+        "en": "slaves",
+        "translation": "esclavos"
+      },
+      {
+        "en": "Confederate states",
+        "translation": "estados confederados"
+      }
+    ]
+  },
+  "What did the civil rights movement do?": {
+    "question": "What did the civil rights movement do?",
+    "answers": [
+      "Fought to end racial discrimination"
+    ],
+    "status": "draft",
+    "explanation": "El movimiento por los derechos civiles fue un gran esfuerzo de muchos estadounidenses, sobre todo en las décadas de 1950 y 1960. Los afroamericanos y quienes los apoyaban lucharon para terminar con la discriminación racial, es decir, el trato injusto a las personas por su raza. Organizaron marchas pacíficas, protestas y boicots. El Dr. Martin Luther King, Jr. fue uno de sus líderes más conocidos. Gracias a este movimiento se aprobaron nuevas leyes, como la Ley de Derechos Civiles de 1964.",
+    "keyWords": [
+      {
+        "en": "civil rights movement",
+        "translation": "movimiento por los derechos civiles"
+      },
+      {
+        "en": "racial discrimination",
+        "translation": "discriminación racial"
+      },
+      {
+        "en": "fought",
+        "translation": "luchó"
+      }
+    ]
+  },
+  "What do we show loyalty to when we say the Pledge of Allegiance?": {
+    "question": "What do we show loyalty to when we say the Pledge of Allegiance?",
+    "answers": [
+      "The United States",
+      "The flag"
+    ],
+    "status": "draft",
+    "explanation": "El Juramento a la Bandera (Pledge of Allegiance) es una breve promesa de lealtad. Las personas suelen decirlo de pie, mirando la bandera, con la mano derecha sobre el corazón. Al decirlo, se muestra lealtad a los Estados Unidos y a la bandera. Usted puede dar cualquiera de estas dos respuestas.",
+    "keyWords": [
+      {
+        "en": "loyalty",
+        "translation": "lealtad"
+      },
+      {
+        "en": "Pledge of Allegiance",
+        "translation": "Juramento a la Bandera"
+      },
+      {
+        "en": "flag",
+        "translation": "bandera"
+      }
+    ]
+  },
+  "What does the Bill of Rights protect?": {
+    "question": "What does the Bill of Rights protect?",
+    "answers": [
+      "(The basic) rights of Americans",
+      "(The basic) rights of people living in the United States"
+    ],
+    "status": "draft",
+    "explanation": "La Carta de Derechos (Bill of Rights) es el nombre de las primeras diez enmiendas (cambios) a la Constitución. Se agregó en 1791. Protege los derechos básicos de los estadounidenses y de las personas que viven en los Estados Unidos. Algunos ejemplos son la libertad de expresión, la libertad de religión y el derecho a un juicio justo.",
+    "keyWords": [
+      {
+        "en": "Bill of Rights",
+        "translation": "Carta de Derechos"
+      },
+      {
+        "en": "protect",
+        "translation": "proteger"
+      },
+      {
+        "en": "basic",
+        "translation": "básicos"
+      },
+      {
+        "en": "rights",
+        "translation": "derechos"
+      }
+    ]
+  },
+  "What does the President’s Cabinet do?": {
+    "question": "What does the President’s Cabinet do?",
+    "answers": [
+      "Advises the President (of the United States)"
+    ],
+    "status": "draft",
+    "explanation": "El Gabinete es un grupo de altos funcionarios del poder ejecutivo. La mayoría dirige grandes departamentos del gobierno, como el Departamento de Estado o el Departamento de Defensa. El Presidente los elige, y el Senado debe aprobar a la mayoría de ellos. La función del Gabinete es asesorar al Presidente, es decir, darle consejos e información.",
+    "keyWords": [
+      {
+        "en": "Cabinet",
+        "translation": "Gabinete"
+      },
+      {
+        "en": "advises",
+        "translation": "asesora"
+      },
+      {
+        "en": "President",
+        "translation": "Presidente"
+      }
+    ]
+  },
+  "What does the judicial branch do?": {
+    "question": "What does the judicial branch do?",
+    "answers": [
+      "Reviews laws",
+      "Explains laws",
+      "Resolves disputes (disagreements) about the law",
+      "Decides if a law goes against the (U.S.) Constitution"
+    ],
+    "status": "draft",
+    "explanation": "El poder judicial es la parte del gobierno formada por los tribunales. Los jueces revisan y explican las leyes. También resuelven disputas, o desacuerdos, sobre la ley. Los tribunales pueden decidir si una ley va en contra de la Constitución. Usted puede dar cualquiera de estas respuestas aceptadas.",
+    "keyWords": [
+      {
+        "en": "judicial branch",
+        "translation": "poder judicial"
+      },
+      {
+        "en": "Reviews laws",
+        "translation": "revisa las leyes"
+      },
+      {
+        "en": "disputes",
+        "translation": "disputas"
+      },
+      {
+        "en": "Constitution",
+        "translation": "Constitución"
+      }
+    ]
+  },
+  "What founding document said the American colonies were free from Britain?": {
+    "question": "What founding document said the American colonies were free from Britain?",
+    "answers": [
+      "Declaration of Independence"
+    ],
+    "status": "draft",
+    "explanation": "En el siglo XVIII, las colonias americanas estaban bajo el gobierno de Gran Bretaña. Los colonos no estaban contentos con las leyes y los impuestos británicos. El 4 de julio de 1776, los líderes aprobaron la Declaración de Independencia. Este documento dijo que las colonias eran libres de Gran Bretaña. Thomas Jefferson fue su autor principal.",
+    "keyWords": [
+      {
+        "en": "Declaration of Independence",
+        "translation": "Declaración de Independencia"
+      },
+      {
+        "en": "colonies",
+        "translation": "colonias"
+      },
+      {
+        "en": "free from Britain",
+        "translation": "libres de Gran Bretaña"
+      },
+      {
+        "en": "founding document",
+        "translation": "documento fundacional"
+      }
+    ]
+  },
+  "What founding document was written in 1787?": {
+    "question": "What founding document was written in 1787?",
+    "answers": [
+      "(U.S.) Constitution"
+    ],
+    "status": "draft",
+    "explanation": "En 1787, líderes de los estados se reunieron en Filadelfia en la Convención Constitucional. Allí escribieron la Constitución de los Estados Unidos. Este documento creó el plan del gobierno nacional y sus tres poderes. Hoy, la Constitución sigue siendo la ley suprema del país.",
+    "keyWords": [
+      {
+        "en": "Constitution",
+        "translation": "Constitución"
+      },
+      {
+        "en": "1787",
+        "translation": "1787"
+      },
+      {
+        "en": "written",
+        "translation": "escrito"
+      }
+    ]
+  },
+  "What group of people was taken and sold as slaves?": {
+    "question": "What group of people was taken and sold as slaves?",
+    "answers": [
+      "Africans",
+      "People from Africa"
+    ],
+    "status": "draft",
+    "explanation": "Durante más de 200 años, personas de África fueron sacadas a la fuerza de sus hogares. Las traían a América en barcos y las vendían como esclavos. Las personas esclavizadas tenían que trabajar sin pago y no tenían libertad. La esclavitud en los Estados Unidos terminó en 1865 con la Enmienda 13.",
+    "keyWords": [
+      {
+        "en": "slaves",
+        "translation": "esclavos"
+      },
+      {
+        "en": "Africans",
+        "translation": "africanos"
+      },
+      {
+        "en": "sold",
+        "translation": "vendidos"
+      },
+      {
+        "en": "taken",
+        "translation": "llevados"
+      }
+    ]
+  },
+  "What is Independence Day?": {
+    "question": "What is Independence Day?",
+    "answers": [
+      "A holiday to celebrate U.S. independence (from Britain)",
+      "The country’s birthday"
+    ],
+    "status": "draft",
+    "explanation": "El Día de la Independencia es el 4 de julio. Es un día festivo para celebrar la independencia de los Estados Unidos de Gran Bretaña. El 4 de julio de 1776 se aprobó la Declaración de Independencia. Por eso se le llama el cumpleaños del país. Muchos estadounidenses lo celebran con desfiles, comidas en familia y fuegos artificiales.",
+    "keyWords": [
+      {
+        "en": "Independence Day",
+        "translation": "Día de la Independencia"
+      },
+      {
+        "en": "holiday",
+        "translation": "día festivo"
+      },
+      {
+        "en": "celebrate",
+        "translation": "celebrar"
+      },
+      {
+        "en": "birthday",
+        "translation": "cumpleaños"
+      }
+    ]
+  },
+  "What is Memorial Day?": {
+    "question": "What is Memorial Day?",
+    "answers": [
+      "A holiday to honor soldiers who died in military service"
+    ],
+    "status": "draft",
+    "explanation": "El Día de los Caídos (Memorial Day) es un día festivo nacional el último lunes de mayo. Es un día para honrar a los soldados que murieron en el servicio militar. Muchas personas visitan los cementerios y ponen banderas o flores en las tumbas. No lo confunda con el Día de los Veteranos, que honra a todas las personas que han servido.",
+    "keyWords": [
+      {
+        "en": "Memorial Day",
+        "translation": "Día de los Caídos"
+      },
+      {
+        "en": "honor",
+        "translation": "honrar"
+      },
+      {
+        "en": "soldiers who died",
+        "translation": "soldados que murieron"
+      },
+      {
+        "en": "military service",
+        "translation": "servicio militar"
+      }
+    ]
+  },
+  "What is Veterans Day?": {
+    "question": "What is Veterans Day?",
+    "answers": [
+      "A holiday to honor people in the (U.S.) military",
+      "A holiday to honor people who have served (in the U.S. military)"
+    ],
+    "status": "draft",
+    "explanation": "El Día de los Veteranos es un día festivo nacional el 11 de noviembre. Honra a las personas que han servido en las fuerzas armadas de los Estados Unidos. Un veterano es una persona que sirvió en el Ejército, la Marina, la Fuerza Aérea u otro servicio militar. A diferencia del Día de los Caídos, honra a todos los que sirvieron, vivos y fallecidos.",
+    "keyWords": [
+      {
+        "en": "Veterans Day",
+        "translation": "Día de los Veteranos"
+      },
+      {
+        "en": "military",
+        "translation": "fuerzas armadas"
+      },
+      {
+        "en": "served",
+        "translation": "han servido"
+      },
+      {
+        "en": "honor",
+        "translation": "honrar"
+      }
+    ]
+  },
+  "What is one part of the judicial branch?": {
+    "question": "What is one part of the judicial branch?",
+    "answers": [
+      "Supreme Court",
+      "Federal Courts"
+    ],
+    "status": "draft",
+    "explanation": "El poder judicial es el sistema de tribunales. La Corte Suprema es el tribunal más alto del país. Debajo de ella están los demás tribunales federales, que ven casos sobre leyes federales. Usted puede nombrar la Corte Suprema o los tribunales federales.",
+    "keyWords": [
+      {
+        "en": "judicial branch",
+        "translation": "poder judicial"
+      },
+      {
+        "en": "Supreme Court",
+        "translation": "Corte Suprema"
+      },
+      {
+        "en": "Federal Courts",
+        "translation": "tribunales federales"
+      }
+    ]
+  },
+  "What is one way Americans can serve their country?": {
+    "question": "What is one way Americans can serve their country?",
+    "answers": [
+      "Vote",
+      "Pay taxes",
+      "Obey the law",
+      "Serve in the military",
+      "Run for office",
+      "Work for local, state, or federal government"
+    ],
+    "status": "draft",
+    "explanation": "Hay muchas maneras de servir, o ayudar, al país. Algunas son deberes de todos, como pagar impuestos y obedecer la ley. Los ciudadanos también pueden votar y postularse a un cargo público. Las personas pueden servir en las fuerzas armadas o trabajar para el gobierno local, estatal o federal. Usted puede dar cualquiera de estas respuestas aceptadas.",
+    "keyWords": [
+      {
+        "en": "serve their country",
+        "translation": "servir a su país"
+      },
+      {
+        "en": "Pay taxes",
+        "translation": "pagar impuestos"
+      },
+      {
+        "en": "Obey the law",
+        "translation": "obedecer la ley"
+      },
+      {
+        "en": "Run for office",
+        "translation": "postularse a un cargo"
+      },
+      {
+        "en": "Vote",
+        "translation": "votar"
+      }
+    ]
+  },
+  "What is the capital of the United States?": {
+    "question": "What is the capital of the United States?",
+    "answers": [
+      "Washington, D.C."
+    ],
+    "status": "draft",
+    "explanation": "La capital de los Estados Unidos es Washington, D.C. \"D.C.\" significa Distrito de Columbia. No forma parte de ningún estado. El Presidente, el Congreso y la Corte Suprema trabajan en Washington, D.C.",
+    "keyWords": [
+      {
+        "en": "capital",
+        "translation": "capital"
+      },
+      {
+        "en": "Washington, D.C.",
+        "translation": "Washington, D.C."
+      }
+    ]
+  },
+  "What is the capital of your state?": {
+    "question": "What is the capital of your state?",
+    "answers": [
+      "Answers vary by where you live."
+    ],
+    "status": "draft",
+    "explanation": "Cada uno de los 50 estados tiene su propia ciudad capital. La capital es donde trabaja el gobierno del estado, incluido el gobernador y la legislatura estatal. La respuesta depende del estado donde usted vive. Busque la capital de su estado antes de la entrevista. La capital no siempre es la ciudad más grande del estado.",
+    "keyWords": [
+      {
+        "en": "capital",
+        "translation": "capital"
+      },
+      {
+        "en": "your state",
+        "translation": "su estado"
+      },
+      {
+        "en": "where you live",
+        "translation": "donde usted vive"
+      }
+    ]
+  },
+  "What is the economic system of the United States?": {
+    "question": "What is the economic system of the United States?",
+    "answers": [
+      "Capitalism",
+      "Free market economy"
+    ],
+    "status": "draft",
+    "explanation": "El sistema económico de los Estados Unidos es el capitalismo, también llamado economía de libre mercado. En este sistema, las personas y las empresas privadas son dueñas de la mayoría de los negocios. Ellas deciden qué producir y vender, y los precios los fijan sobre todo los compradores y vendedores. Usted puede dar cualquiera de las dos respuestas.",
+    "keyWords": [
+      {
+        "en": "economic system",
+        "translation": "sistema económico"
+      },
+      {
+        "en": "Capitalism",
+        "translation": "capitalismo"
+      },
+      {
+        "en": "Free market economy",
+        "translation": "economía de libre mercado"
+      }
+    ]
+  },
+  "What is the form of government of the United States?": {
+    "question": "What is the form of government of the United States?",
+    "answers": [
+      "Republic",
+      "Constitution-based federal republic",
+      "Representative democracy"
+    ],
+    "status": "draft",
+    "explanation": "Los Estados Unidos es una república. En una república, el pueblo elige representantes para que tomen decisiones y hagan leyes por ellos. Por eso también se le llama democracia representativa. Es una república federal basada en la Constitución, así que el poder se comparte entre el gobierno nacional y los estados. Usted puede dar cualquiera de estas respuestas aceptadas.",
+    "keyWords": [
+      {
+        "en": "form of government",
+        "translation": "forma de gobierno"
+      },
+      {
+        "en": "Republic",
+        "translation": "república"
+      },
+      {
+        "en": "Representative democracy",
+        "translation": "democracia representativa"
+      },
+      {
+        "en": "federal",
+        "translation": "federal"
+      }
+    ]
+  },
+  "What is the highest court in the United States?": {
+    "question": "What is the highest court in the United States?",
+    "answers": [
+      "Supreme Court"
+    ],
+    "status": "draft",
+    "explanation": "La Corte Suprema es el tribunal más alto de los Estados Unidos. Forma parte del poder judicial. Sus decisiones son finales, y los demás tribunales deben seguirlas. Hoy la Corte Suprema tiene nueve jueces.",
+    "keyWords": [
+      {
+        "en": "highest court",
+        "translation": "tribunal más alto"
+      },
+      {
+        "en": "Supreme Court",
+        "translation": "Corte Suprema"
+      }
+    ]
+  },
+  "What is the name of the President of the United States now?": {
+    "question": "What is the name of the President of the United States now?",
+    "answers": [
+      "Answers change. Check uscis.gov for the current answer."
+    ],
+    "status": "draft",
+    "explanation": "El Presidente es el jefe del poder ejecutivo y dirige el gobierno nacional. Los estadounidenses eligen al Presidente cada cuatro años. La persona en este cargo puede cambiar después de una elección. Antes de su entrevista, consulte uscis.gov para ver la respuesta actual y aprenda el nombre.",
+    "keyWords": [
+      {
+        "en": "President",
+        "translation": "Presidente"
+      },
+      {
+        "en": "now",
+        "translation": "ahora"
+      },
+      {
+        "en": "uscis.gov",
+        "translation": "uscis.gov"
+      }
+    ]
+  },
+  "What is the name of the Speaker of the House of Representatives now?": {
+    "question": "What is the name of the Speaker of the House of Representatives now?",
+    "answers": [
+      "Answers change. Check uscis.gov for the current answer."
+    ],
+    "status": "draft",
+    "explanation": "El Presidente de la Cámara de Representantes (Speaker of the House) dirige la Cámara. Los miembros de la Cámara eligen al Speaker por votación. El Speaker es el segundo en la línea para ocupar la presidencia, después del Vicepresidente. La persona en este cargo puede cambiar, así que consulte uscis.gov para ver la respuesta actual antes de su entrevista.",
+    "keyWords": [
+      {
+        "en": "Speaker",
+        "translation": "presidente de la Cámara"
+      },
+      {
+        "en": "House of Representatives",
+        "translation": "Cámara de Representantes"
+      },
+      {
+        "en": "uscis.gov",
+        "translation": "uscis.gov"
+      }
+    ]
+  },
+  "What is the name of the Vice President of the United States now?": {
+    "question": "What is the name of the Vice President of the United States now?",
+    "answers": [
+      "Answers change. Check uscis.gov for the current answer."
+    ],
+    "status": "draft",
+    "explanation": "El Vicepresidente trabaja con el Presidente en el poder ejecutivo. Si el Presidente ya no puede servir, el Vicepresidente pasa a ser Presidente. El Vicepresidente también es el presidente del Senado. La persona en este cargo puede cambiar después de una elección, así que consulte uscis.gov para ver la respuesta actual antes de su entrevista.",
+    "keyWords": [
+      {
+        "en": "Vice President",
+        "translation": "Vicepresidente"
+      },
+      {
+        "en": "now",
+        "translation": "ahora"
+      },
+      {
+        "en": "uscis.gov",
+        "translation": "uscis.gov"
+      }
+    ]
+  },
+  "What is the name of the national anthem?": {
+    "question": "What is the name of the national anthem?",
+    "answers": [
+      "The Star-Spangled Banner"
+    ],
+    "status": "draft",
+    "explanation": "Un himno nacional es la canción oficial de un país. El himno nacional de los Estados Unidos es \"The Star-Spangled Banner\" (La bandera adornada de estrellas). Francis Scott Key escribió la letra en 1814, durante la Guerra de 1812. Él vio la bandera estadounidense todavía ondeando sobre un fuerte después de una batalla. Por lo general, las personas se ponen de pie cuando se toca el himno.",
+    "keyWords": [
+      {
+        "en": "national anthem",
+        "translation": "himno nacional"
+      },
+      {
+        "en": "Star-Spangled Banner",
+        "translation": "bandera adornada de estrellas"
+      }
+    ]
+  },
+  "What is the purpose of the 10th Amendment?": {
+    "question": "What is the purpose of the 10th Amendment?",
+    "answers": [
+      "(It states that the) powers not given to the federal government belong to the states or to the people."
+    ],
+    "status": "draft",
+    "explanation": "La Décima Enmienda es parte de la Carta de Derechos. Dice que los poderes que no se le dan al gobierno federal pertenecen a los estados o al pueblo. Esto limita el poder del gobierno nacional. Por ejemplo, los estados hacen muchas de sus propias reglas sobre las escuelas y las licencias de conducir.",
+    "keyWords": [
+      {
+        "en": "10th Amendment",
+        "translation": "Décima Enmienda"
+      },
+      {
+        "en": "powers",
+        "translation": "poderes"
+      },
+      {
+        "en": "federal government",
+        "translation": "gobierno federal"
+      },
+      {
+        "en": "states",
+        "translation": "estados"
+      }
+    ]
+  },
+  "What is the rule of law?": {
+    "question": "What is the rule of law?",
+    "answers": [
+      "Everyone must follow the law.",
+      "Leaders must obey the law.",
+      "Government must obey the law.",
+      "No one is above the law."
+    ],
+    "status": "draft",
+    "explanation": "El estado de derecho significa que todos deben cumplir la ley. Esto incluye a las personas comunes, a los líderes y al propio gobierno. Nadie está por encima de la ley, ni siquiera el Presidente. Usted puede dar cualquiera de estas respuestas aceptadas.",
+    "keyWords": [
+      {
+        "en": "rule of law",
+        "translation": "estado de derecho"
+      },
+      {
+        "en": "obey",
+        "translation": "obedecer"
+      },
+      {
+        "en": "above the law",
+        "translation": "por encima de la ley"
+      },
+      {
+        "en": "Everyone",
+        "translation": "todos"
+      }
+    ]
+  },
+  "What is the supreme law of the land?": {
+    "question": "What is the supreme law of the land?",
+    "answers": [
+      "(U.S.) Constitution"
+    ],
+    "status": "draft",
+    "explanation": "La ley suprema del país es la Constitución de los Estados Unidos. \"Suprema\" significa la más alta. Ninguna otra ley del país puede ir en contra de ella. Todos los niveles de gobierno, federal, estatal y local, deben seguir la Constitución.",
+    "keyWords": [
+      {
+        "en": "supreme law of the land",
+        "translation": "ley suprema del país"
+      },
+      {
+        "en": "Constitution",
+        "translation": "Constitución"
+      }
+    ]
+  },
+  "What major event happened on September 11, 2001 in the United States?": {
+    "question": "What major event happened on September 11, 2001 in the United States?",
+    "answers": [
+      "Terrorists attacked the United States",
+      "Terrorists took over two planes and crashed them into the World Trade Center in New York City",
+      "Terrorists took over a plane and crashed into the Pentagon in Arlington, Virginia",
+      "Terrorists took over a plane originally aimed at Washington, D.C., and crashed in a field in Pennsylvania"
+    ],
+    "status": "draft",
+    "explanation": "El 11 de septiembre de 2001, unos terroristas atacaron a los Estados Unidos y tomaron el control de cuatro aviones de pasajeros. Dos aviones chocaron contra el World Trade Center en la ciudad de Nueva York, y uno chocó contra el Pentágono en Arlington, Virginia. El cuarto avión iba hacia Washington, D.C., pero cayó en un campo de Pensilvania. Murieron casi 3,000 personas. Usted puede dar cualquiera de las respuestas aceptadas.",
+    "keyWords": [
+      {
+        "en": "Terrorists attacked",
+        "translation": "terroristas atacaron"
+      },
+      {
+        "en": "World Trade Center",
+        "translation": "World Trade Center"
+      },
+      {
+        "en": "Pentagon",
+        "translation": "Pentágono"
+      },
+      {
+        "en": "September 11, 2001",
+        "translation": "11 de septiembre de 2001"
+      }
+    ]
+  },
+  "What part of the federal government writes laws?": {
+    "question": "What part of the federal government writes laws?",
+    "answers": [
+      "(U.S.) Congress",
+      "(U.S. or national) legislature",
+      "Legislative branch"
+    ],
+    "status": "draft",
+    "explanation": "El Congreso es el poder legislativo del gobierno federal. Su función principal es escribir las leyes. El Congreso tiene dos partes: el Senado y la Cámara de Representantes. Un proyecto de ley debe ser aprobado por las dos partes antes de llegar al Presidente. Usted puede decir el Congreso, la legislatura o el poder legislativo.",
+    "keyWords": [
+      {
+        "en": "writes laws",
+        "translation": "escribe las leyes"
+      },
+      {
+        "en": "Congress",
+        "translation": "Congreso"
+      },
+      {
+        "en": "legislature",
+        "translation": "legislatura"
+      },
+      {
+        "en": "Legislative branch",
+        "translation": "poder legislativo"
+      }
+    ]
+  },
+  "What territory did the United States buy from France in 1803?": {
+    "question": "What territory did the United States buy from France in 1803?",
+    "answers": [
+      "Louisiana Territory",
+      "Louisiana"
+    ],
+    "status": "draft",
+    "explanation": "En 1803, los Estados Unidos compró el Territorio de Luisiana a Francia. Esto se conoce como la Compra de Luisiana. Thomas Jefferson era el Presidente en ese momento. El territorio era muy grande, entre el río Misisipi y las Montañas Rocosas. Casi duplicó el tamaño del país.",
+    "keyWords": [
+      {
+        "en": "territory",
+        "translation": "territorio"
+      },
+      {
+        "en": "Louisiana",
+        "translation": "Luisiana"
+      },
+      {
+        "en": "France",
+        "translation": "Francia"
+      },
+      {
+        "en": "1803",
+        "translation": "1803"
+      }
+    ]
+  },
+  "What war did the Americans fight to win independence from Britain?": {
+    "question": "What war did the Americans fight to win independence from Britain?",
+    "answers": [
+      "American Revolution",
+      "The (American) Revolutionary War",
+      "War for (American) Independence"
+    ],
+    "status": "draft",
+    "explanation": "Las colonias americanas pelearon una guerra contra Gran Bretaña para ganar su independencia. Esta guerra se llama la Revolución Americana o la Guerra Revolucionaria. Empezó en 1775 y terminó en 1783. George Washington dirigió el ejército estadounidense. Usted puede dar cualquiera de estos nombres aceptados.",
+    "keyWords": [
+      {
+        "en": "independence",
+        "translation": "independencia"
+      },
+      {
+        "en": "American Revolution",
+        "translation": "Revolución Americana"
+      },
+      {
+        "en": "Revolutionary War",
+        "translation": "Guerra Revolucionaria"
+      },
+      {
+        "en": "Britain",
+        "translation": "Gran Bretaña"
+      }
+    ]
+  },
+  "What was the Great Depression?": {
+    "question": "What was the Great Depression?",
+    "answers": [
+      "Longest economic recession in modern history"
+    ],
+    "status": "draft",
+    "explanation": "La Gran Depresión fue la recesión económica más larga de la historia moderna. Empezó en 1929, cuando cayó la bolsa de valores. Muchos bancos y negocios cerraron, y millones de personas perdieron su trabajo. Duró durante toda la década de 1930. El presidente Franklin Roosevelt creó muchos programas para ayudar a la gente en esa época.",
+    "keyWords": [
+      {
+        "en": "Great Depression",
+        "translation": "Gran Depresión"
+      },
+      {
+        "en": "economic recession",
+        "translation": "recesión económica"
+      },
+      {
+        "en": "Longest",
+        "translation": "más larga"
+      }
+    ]
+  },
+  "When did all men get the right to vote?": {
+    "question": "When did all men get the right to vote?",
+    "answers": [
+      "After the Civil War",
+      "During Reconstruction",
+      "(With the) 15th Amendment",
+      "1870"
+    ],
+    "status": "draft",
+    "explanation": "Antes de la Guerra Civil, la mayoría de los hombres afroamericanos no podían votar. Después de la guerra, en una época llamada la Reconstrucción, el país agregó la Enmienda 15 a la Constitución. Fue ratificada en 1870. Decía que a un hombre no se le podía negar el derecho al voto por su raza. Usted puede dar cualquiera de estas respuestas aceptadas.",
+    "keyWords": [
+      {
+        "en": "right to vote",
+        "translation": "derecho al voto"
+      },
+      {
+        "en": "Civil War",
+        "translation": "Guerra Civil"
+      },
+      {
+        "en": "Reconstruction",
+        "translation": "Reconstrucción"
+      },
+      {
+        "en": "15th Amendment",
+        "translation": "Enmienda 15"
+      }
+    ]
+  },
+  "When did all women get the right to vote?": {
+    "question": "When did all women get the right to vote?",
+    "answers": [
+      "1920",
+      "After World War I",
+      "(With the) 19th Amendment"
+    ],
+    "status": "draft",
+    "explanation": "Durante mucho tiempo, las mujeres en la mayor parte del país no podían votar. Las mujeres y quienes las apoyaban trabajaron muchos años para cambiar esto. En 1920, después de la Primera Guerra Mundial, se agregó la Enmienda 19 a la Constitución. Esta enmienda dio a las mujeres de todo el país el derecho al voto. Usted puede dar cualquiera de estas respuestas aceptadas.",
+    "keyWords": [
+      {
+        "en": "women",
+        "translation": "mujeres"
+      },
+      {
+        "en": "right to vote",
+        "translation": "derecho al voto"
+      },
+      {
+        "en": "19th Amendment",
+        "translation": "Enmienda 19"
+      },
+      {
+        "en": "World War I",
+        "translation": "Primera Guerra Mundial"
+      }
+    ]
+  },
+  "When did the Great Depression start?": {
+    "question": "When did the Great Depression start?",
+    "answers": [
+      "The Great Crash (1929)",
+      "Stock market crash of 1929"
+    ],
+    "status": "draft",
+    "explanation": "La Gran Depresión fue una época de graves problemas económicos en los Estados Unidos y en el mundo. Comenzó en 1929, cuando los precios de la bolsa de valores cayeron muy rápido. Ese evento se llama la Gran Caída, o el colapso de la bolsa de 1929. Después, muchos bancos y negocios cerraron, y millones de personas perdieron su trabajo.",
+    "keyWords": [
+      {
+        "en": "Great Depression",
+        "translation": "Gran Depresión"
+      },
+      {
+        "en": "stock market",
+        "translation": "bolsa de valores"
+      },
+      {
+        "en": "crash",
+        "translation": "colapso, caída"
+      }
+    ]
+  },
+  "When was the Declaration of Independence adopted?": {
+    "question": "When was the Declaration of Independence adopted?",
+    "answers": [
+      "July 4, 1776"
+    ],
+    "status": "draft",
+    "explanation": "La Declaración de Independencia fue adoptada el 4 de julio de 1776. Ese día, los líderes de las 13 colonias aprobaron el documento y dijeron que ya no estaban bajo el dominio británico. Por eso, cada año los estadounidenses celebran el Día de la Independencia el 4 de julio. Es un día feriado nacional.",
+    "keyWords": [
+      {
+        "en": "Declaration of Independence",
+        "translation": "Declaración de Independencia"
+      },
+      {
+        "en": "adopted",
+        "translation": "adoptada, aprobada"
+      }
+    ]
+  },
+  "Where is the Statue of Liberty?": {
+    "question": "Where is the Statue of Liberty?",
+    "answers": [
+      "New York (Harbor)",
+      "Liberty Island [Also acceptable are New Jersey, near New York City, and on the Hudson (River).]"
+    ],
+    "status": "draft",
+    "explanation": "La Estatua de la Libertad está en la Isla de la Libertad, en el puerto de Nueva York. Francia le regaló la estatua a los Estados Unidos, y se inauguró en 1886. Para muchos inmigrantes que llegaban en barco, era una de las primeras cosas que veían en América. Hoy es un símbolo de libertad y de bienvenida.",
+    "keyWords": [
+      {
+        "en": "Statue of Liberty",
+        "translation": "Estatua de la Libertad"
+      },
+      {
+        "en": "Liberty Island",
+        "translation": "Isla de la Libertad"
+      },
+      {
+        "en": "Harbor",
+        "translation": "puerto, bahía"
+      }
+    ]
+  },
+  "Who appoints federal judges?": {
+    "question": "Who appoints federal judges?",
+    "answers": [
+      "The President (of the United States)"
+    ],
+    "status": "draft",
+    "explanation": "Los jueces federales trabajan en el sistema de cortes nacionales, incluida la Corte Suprema. El presidente los elige y los nombra. Después, el Senado tiene que aprobar la elección del presidente. Los jueces federales pueden servir de por vida, así que es una decisión importante.",
+    "keyWords": [
+      {
+        "en": "appoints",
+        "translation": "nombra, designa"
+      },
+      {
+        "en": "federal judges",
+        "translation": "jueces federales"
+      },
+      {
+        "en": "President",
+        "translation": "presidente"
+      }
+    ]
+  },
+  "Who can vote in federal elections, run for federal office, and serve on a jury in the United States?": {
+    "question": "Who can vote in federal elections, run for federal office, and serve on a jury in the United States?",
+    "answers": [
+      "Citizens",
+      "Citizens of the United States",
+      "U.S. citizens"
+    ],
+    "status": "draft",
+    "explanation": "Algunos derechos y deberes son solo para los ciudadanos de los Estados Unidos. Solo los ciudadanos pueden votar en las elecciones federales, como la elección del presidente. Solo los ciudadanos pueden ser candidatos a un cargo federal, como el Congreso. Y solo los ciudadanos pueden formar parte de un jurado en una corte.",
+    "keyWords": [
+      {
+        "en": "vote",
+        "translation": "votar"
+      },
+      {
+        "en": "federal elections",
+        "translation": "elecciones federales"
+      },
+      {
+        "en": "jury",
+        "translation": "jurado"
+      },
+      {
+        "en": "citizens",
+        "translation": "ciudadanos"
+      }
+    ]
+  },
+  "Who does a U.S. senator represent?": {
+    "question": "Who does a U.S. senator represent?",
+    "answers": [
+      "Citizens of their state",
+      "People of their state"
+    ],
+    "status": "draft",
+    "explanation": "Un senador de los Estados Unidos trabaja en el Senado, que es parte del Congreso. Cada estado tiene dos senadores. Un senador representa a todas las personas de su estado, no solo a una ciudad o a una zona. Los senadores hablan y votan en nombre de la gente de todo su estado.",
+    "keyWords": [
+      {
+        "en": "senator",
+        "translation": "senador"
+      },
+      {
+        "en": "represent",
+        "translation": "representar"
+      },
+      {
+        "en": "state",
+        "translation": "estado"
+      }
+    ]
+  },
+  "Who does a member of the House of Representatives represent?": {
+    "question": "Who does a member of the House of Representatives represent?",
+    "answers": [
+      "Citizens in their (congressional) district",
+      "Citizens in their district",
+      "People from their (congressional) district",
+      "People in their district"
+    ],
+    "status": "draft",
+    "explanation": "La Cámara de Representantes es parte del Congreso. Cada estado está dividido en zonas llamadas distritos del Congreso. Cada miembro de la Cámara representa a las personas de un distrito. Los estados con más habitantes tienen más distritos y, por eso, más representantes.",
+    "keyWords": [
+      {
+        "en": "House of Representatives",
+        "translation": "Cámara de Representantes"
+      },
+      {
+        "en": "district",
+        "translation": "distrito"
+      },
+      {
+        "en": "represent",
+        "translation": "representar"
+      }
+    ]
+  },
+  "Who elects U.S. senators?": {
+    "question": "Who elects U.S. senators?",
+    "answers": [
+      "Citizens from their state"
+    ],
+    "status": "draft",
+    "explanation": "Los senadores de los Estados Unidos son elegidos por los ciudadanos de su estado. Todos los votantes del estado pueden votar por los senadores. Un senador sirve un período de seis años. Desde 1913, la Enmienda 17 da a los votantes el poder de elegir directamente a los senadores.",
+    "keyWords": [
+      {
+        "en": "elects",
+        "translation": "elige"
+      },
+      {
+        "en": "senators",
+        "translation": "senadores"
+      },
+      {
+        "en": "Citizens from their state",
+        "translation": "ciudadanos de su estado"
+      }
+    ]
+  },
+  "Who elects members of the House of Representatives?": {
+    "question": "Who elects members of the House of Representatives?",
+    "answers": [
+      "Citizens from their (congressional) district"
+    ],
+    "status": "draft",
+    "explanation": "Los miembros de la Cámara de Representantes son elegidos por los ciudadanos de su distrito del Congreso. Los votantes eligen a un representante para su distrito. Los representantes sirven períodos de dos años. Las elecciones para la Cámara se hacen cada dos años.",
+    "keyWords": [
+      {
+        "en": "elects",
+        "translation": "elige"
+      },
+      {
+        "en": "House of Representatives",
+        "translation": "Cámara de Representantes"
+      },
+      {
+        "en": "district",
+        "translation": "distrito"
+      }
+    ]
+  },
+  "Who is Commander in Chief of the U.S. military?": {
+    "question": "Who is Commander in Chief of the U.S. military?",
+    "answers": [
+      "The President (of the United States)"
+    ],
+    "status": "draft",
+    "explanation": "El comandante en jefe es el líder de todas las fuerzas armadas de los Estados Unidos. La Constitución le da este papel al presidente. Esto significa que el ejército está dirigido por una persona elegida por el pueblo. Las fuerzas armadas no se dirigen solas.",
+    "keyWords": [
+      {
+        "en": "Commander in Chief",
+        "translation": "comandante en jefe"
+      },
+      {
+        "en": "military",
+        "translation": "fuerzas armadas, ejército"
+      },
+      {
+        "en": "President",
+        "translation": "presidente"
+      }
+    ]
+  },
+  "Who is one of your state’s U.S. senators now?": {
+    "question": "Who is one of your state’s U.S. senators now?",
+    "answers": [
+      "Answers vary by where you live."
+    ],
+    "status": "draft",
+    "explanation": "Cada estado tiene dos senadores que trabajan en el Congreso, en Washington, D.C. Los senadores sirven períodos de seis años y se eligen en fechas distintas. La respuesta depende del estado donde usted vive. Antes de su entrevista, busque los nombres de los senadores de su estado. Puede usar la herramienta \"Find My Representative\" (Buscar a mi representante) de la aplicación.",
+    "keyWords": [
+      {
+        "en": "senators",
+        "translation": "senadores"
+      },
+      {
+        "en": "state",
+        "translation": "estado"
+      },
+      {
+        "en": "Answers vary by where you live",
+        "translation": "las respuestas dependen de dónde vive"
+      }
+    ]
+  },
+  "Who is the Chief Justice of the United States now?": {
+    "question": "Who is the Chief Justice of the United States now?",
+    "answers": [
+      "Answers change. Check uscis.gov for the current answer."
+    ],
+    "status": "draft",
+    "explanation": "El presidente de la Corte Suprema es el líder del tribunal más alto de los Estados Unidos. El presidente del país elige a esta persona, y el Senado tiene que aprobarla. La persona en este cargo puede cambiar con el tiempo. Antes de su entrevista, revise uscis.gov para saber el nombre actual.",
+    "keyWords": [
+      {
+        "en": "Chief Justice",
+        "translation": "presidente de la Corte Suprema"
+      },
+      {
+        "en": "uscis.gov",
+        "translation": "uscis.gov (sitio oficial)"
+      },
+      {
+        "en": "Answers change",
+        "translation": "las respuestas cambian"
+      }
+    ]
+  },
+  "Who is the governor of your state now?": {
+    "question": "Who is the governor of your state now?",
+    "answers": [
+      "Answers vary by where you live."
+    ],
+    "status": "draft",
+    "explanation": "El gobernador es el líder del gobierno de un estado, así como el presidente dirige el gobierno nacional. Cada estado elige a su propio gobernador. La respuesta depende del estado donde usted vive. Antes de su entrevista, busque el nombre del gobernador actual de su estado. Puede usar la herramienta \"Find My Representative\" (Buscar a mi representante) de la aplicación.",
+    "keyWords": [
+      {
+        "en": "governor",
+        "translation": "gobernador"
+      },
+      {
+        "en": "state",
+        "translation": "estado"
+      },
+      {
+        "en": "Answers vary by where you live",
+        "translation": "las respuestas dependen de dónde vive"
+      }
+    ]
+  },
+  "Who lived in America before the Europeans arrived?": {
+    "question": "Who lived in America before the Europeans arrived?",
+    "answers": [
+      "American Indians",
+      "Native Americans"
+    ],
+    "status": "draft",
+    "explanation": "Muchas personas vivían en América miles de años antes de que llegaran los europeos. A estas personas se les llama indígenas americanos o nativos americanos. Había muchas tribus y naciones diferentes, cada una con su propio idioma y cultura. Muchas tribus todavía viven hoy en los Estados Unidos.",
+    "keyWords": [
+      {
+        "en": "Europeans",
+        "translation": "europeos"
+      },
+      {
+        "en": "American Indians",
+        "translation": "indígenas americanos"
+      },
+      {
+        "en": "Native Americans",
+        "translation": "nativos americanos"
+      }
+    ]
+  },
+  "Who signs bills to become laws?": {
+    "question": "Who signs bills to become laws?",
+    "answers": [
+      "The President (of the United States)"
+    ],
+    "status": "draft",
+    "explanation": "Un proyecto de ley es una propuesta para una nueva ley. Primero, el Congreso tiene que aprobar el proyecto. Después, el presidente lo firma y se convierte en ley. Esta es una forma en que las ramas del gobierno trabajan juntas.",
+    "keyWords": [
+      {
+        "en": "signs",
+        "translation": "firma"
+      },
+      {
+        "en": "bills",
+        "translation": "proyectos de ley"
+      },
+      {
+        "en": "laws",
+        "translation": "leyes"
+      },
+      {
+        "en": "President",
+        "translation": "presidente"
+      }
+    ]
+  },
+  "Who vetoes bills?": {
+    "question": "Who vetoes bills?",
+    "answers": [
+      "The President (of the United States)"
+    ],
+    "status": "draft",
+    "explanation": "Vetar significa decir que no a un proyecto de ley. El presidente puede vetar un proyecto que el Congreso aprobó. Entonces, el proyecto no se convierte en ley. Pero el Congreso todavía puede aprobarlo si dos tercios de la Cámara y del Senado votan otra vez a favor. Esto es parte del sistema de pesos y contrapesos.",
+    "keyWords": [
+      {
+        "en": "vetoes",
+        "translation": "veta, rechaza"
+      },
+      {
+        "en": "bills",
+        "translation": "proyectos de ley"
+      },
+      {
+        "en": "President",
+        "translation": "presidente"
+      }
+    ]
+  },
+  "Who was president during the Great Depression and World War II?": {
+    "question": "Who was president during the Great Depression and World War II?",
+    "answers": [
+      "(Franklin) Roosevelt"
+    ],
+    "status": "draft",
+    "explanation": "Franklin Delano Roosevelt fue presidente durante la Gran Depresión y la mayor parte de la Segunda Guerra Mundial. Fue elegido cuatro veces, más que cualquier otro presidente. Creó programas llamados el Nuevo Trato (New Deal) para ayudar a la gente a encontrar trabajo. Murió en 1945, poco antes del fin de la guerra.",
+    "keyWords": [
+      {
+        "en": "Great Depression",
+        "translation": "Gran Depresión"
+      },
+      {
+        "en": "World War II",
+        "translation": "Segunda Guerra Mundial"
+      },
+      {
+        "en": "Roosevelt",
+        "translation": "Roosevelt"
+      }
+    ]
+  },
+  "Who was the United States’ main rival during the Cold War?": {
+    "question": "Who was the United States’ main rival during the Cold War?",
+    "answers": [
+      "Soviet Union",
+      "USSR",
+      "Russia"
+    ],
+    "status": "draft",
+    "explanation": "La Guerra Fría fue un conflicto largo después de la Segunda Guerra Mundial, más o menos de 1947 a 1991. El principal rival de los Estados Unidos fue la Unión Soviética, también llamada la URSS (USSR). Rusia era la parte más grande de la Unión Soviética. Los dos países compitieron por el poder y la influencia en el mundo, pero no pelearon directamente entre sí.",
+    "keyWords": [
+      {
+        "en": "Cold War",
+        "translation": "Guerra Fría"
+      },
+      {
+        "en": "rival",
+        "translation": "rival"
+      },
+      {
+        "en": "Soviet Union",
+        "translation": "Unión Soviética"
+      }
+    ]
+  },
+  "Who wrote the Declaration of Independence?": {
+    "question": "Who wrote the Declaration of Independence?",
+    "answers": [
+      "(Thomas) Jefferson"
+    ],
+    "status": "draft",
+    "explanation": "Thomas Jefferson escribió la Declaración de Independencia en 1776. Un pequeño grupo de líderes le pidió que escribiera el primer borrador. Más tarde, Jefferson fue el tercer presidente de los Estados Unidos. Sus palabras \"todos los hombres son creados iguales\" están entre las más famosas de la historia del país.",
+    "keyWords": [
+      {
+        "en": "wrote",
+        "translation": "escribió"
+      },
+      {
+        "en": "Declaration of Independence",
+        "translation": "Declaración de Independencia"
+      },
+      {
+        "en": "Jefferson",
+        "translation": "Jefferson"
+      }
+    ]
+  },
+  "Why did the United States enter World War I?": {
+    "question": "Why did the United States enter World War I?",
+    "answers": [
+      "Because Germany attacked U.S. (civilian) ships",
+      "To support the Allied Powers (England, France, Italy, and Russia)",
+      "To oppose the Central Powers (Germany, Austria-Hungary, the Ottoman Empire, and Bulgaria)"
+    ],
+    "status": "draft",
+    "explanation": "La Primera Guerra Mundial empezó en Europa en 1914, y los Estados Unidos entraron en 1917. Una razón fue que Alemania atacó barcos estadounidenses, incluso barcos con civiles. Los Estados Unidos entraron para apoyar a las Potencias Aliadas, como Inglaterra, Francia, Italia y Rusia, y para oponerse a las Potencias Centrales, dirigidas por Alemania. Puede dar cualquiera de estas respuestas aceptadas.",
+    "keyWords": [
+      {
+        "en": "World War I",
+        "translation": "Primera Guerra Mundial"
+      },
+      {
+        "en": "Germany attacked",
+        "translation": "Alemania atacó"
+      },
+      {
+        "en": "Allied Powers",
+        "translation": "Potencias Aliadas"
+      },
+      {
+        "en": "Central Powers",
+        "translation": "Potencias Centrales"
+      }
+    ]
+  },
+  "Why did the United States enter World War II?": {
+    "question": "Why did the United States enter World War II?",
+    "answers": [
+      "(Bombing of) Pearl Harbor",
+      "Japanese attacked Pearl Harbor",
+      "To support the Allied Powers (England, France, and Russia)",
+      "To oppose the Axis Powers (Germany, Italy, and Japan)"
+    ],
+    "status": "draft",
+    "explanation": "El 7 de diciembre de 1941, Japón atacó Pearl Harbor, una base de la Marina de los Estados Unidos en Hawái. Al día siguiente, los Estados Unidos le declararon la guerra a Japón. Después, el país luchó para apoyar a las Potencias Aliadas, como Inglaterra, Francia y Rusia, y para oponerse a las Potencias del Eje: Alemania, Italia y Japón. Puede dar cualquiera de estas respuestas aceptadas.",
+    "keyWords": [
+      {
+        "en": "World War II",
+        "translation": "Segunda Guerra Mundial"
+      },
+      {
+        "en": "Pearl Harbor",
+        "translation": "Pearl Harbor"
+      },
+      {
+        "en": "Allied Powers",
+        "translation": "Potencias Aliadas"
+      },
+      {
+        "en": "Axis Powers",
+        "translation": "Potencias del Eje"
+      }
+    ]
+  },
+  "Why did the United States enter the Korean War?": {
+    "question": "Why did the United States enter the Korean War?",
+    "answers": [
+      "To stop the spread of communism"
+    ],
+    "status": "draft",
+    "explanation": "La Guerra de Corea duró de 1950 a 1953. Corea del Norte, que tenía un gobierno comunista, invadió a Corea del Sur. Los Estados Unidos entraron en la guerra para detener la expansión del comunismo. Esto fue parte de la Guerra Fría.",
+    "keyWords": [
+      {
+        "en": "Korean War",
+        "translation": "Guerra de Corea"
+      },
+      {
+        "en": "spread",
+        "translation": "expansión"
+      },
+      {
+        "en": "communism",
+        "translation": "comunismo"
+      }
+    ]
+  },
+  "Why did the United States enter the Persian Gulf War?": {
+    "question": "Why did the United States enter the Persian Gulf War?",
+    "answers": [
+      "To force the Iraqi military from Kuwait"
+    ],
+    "status": "draft",
+    "explanation": "En 1990, el ejército de Irak invadió Kuwait, un país pequeño que está a su lado. En 1991, los Estados Unidos y muchos otros países lucharon para obligar al ejército iraquí a salir de Kuwait. Esa fue la Guerra del Golfo Pérsico. La guerra fue corta, y Kuwait volvió a ser libre.",
+    "keyWords": [
+      {
+        "en": "Persian Gulf War",
+        "translation": "Guerra del Golfo Pérsico"
+      },
+      {
+        "en": "Iraqi military",
+        "translation": "ejército iraquí"
+      },
+      {
+        "en": "Kuwait",
+        "translation": "Kuwait"
+      },
+      {
+        "en": "force",
+        "translation": "obligar"
+      }
+    ]
+  },
+  "Why did the United States enter the Vietnam War?": {
+    "question": "Why did the United States enter the Vietnam War?",
+    "answers": [
+      "To stop the spread of communism"
+    ],
+    "status": "draft",
+    "explanation": "Vietnam estaba dividido en un Norte comunista y un Sur no comunista. Los Estados Unidos entraron en la Guerra de Vietnam para detener la expansión del comunismo. Muchos soldados estadounidenses lucharon allí, sobre todo en los años sesenta y a comienzos de los setenta. Igual que la Guerra de Corea, fue parte de la Guerra Fría.",
+    "keyWords": [
+      {
+        "en": "Vietnam War",
+        "translation": "Guerra de Vietnam"
+      },
+      {
+        "en": "spread",
+        "translation": "expansión"
+      },
+      {
+        "en": "communism",
+        "translation": "comunismo"
+      }
+    ]
+  },
+  "Why do U.S. representatives serve shorter terms than U.S. senators?": {
+    "question": "Why do U.S. representatives serve shorter terms than U.S. senators?",
+    "answers": [
+      "To more closely follow public opinion"
+    ],
+    "status": "draft",
+    "explanation": "Los representantes sirven períodos de dos años, y los senadores, de seis años. Como los representantes tienen elecciones con más frecuencia, deben prestar mucha atención a lo que piensan los votantes. Así, la Cámara sigue más de cerca la opinión pública. Los períodos más largos del Senado dan a los senadores más tiempo para pensar en temas a largo plazo.",
+    "keyWords": [
+      {
+        "en": "shorter terms",
+        "translation": "períodos más cortos"
+      },
+      {
+        "en": "representatives",
+        "translation": "representantes"
+      },
+      {
+        "en": "public opinion",
+        "translation": "opinión pública"
+      }
+    ]
+  },
+  "Why does each state have two senators?": {
+    "question": "Why does each state have two senators?",
+    "answers": [
+      "Equal representation (for small states)",
+      "The Great Compromise (Connecticut Compromise)"
+    ],
+    "status": "draft",
+    "explanation": "Cuando se escribió la Constitución, los estados grandes y los pequeños no estaban de acuerdo sobre cuántos votos debía tener cada estado en el Congreso. Hicieron un acuerdo llamado el Gran Compromiso, o Compromiso de Connecticut. En la Cámara, los estados con más habitantes tienen más miembros. En el Senado, cada estado tiene dos senadores, así que los estados pequeños tienen representación igual.",
+    "keyWords": [
+      {
+        "en": "two senators",
+        "translation": "dos senadores"
+      },
+      {
+        "en": "Equal representation",
+        "translation": "representación igual"
+      },
+      {
+        "en": "Great Compromise",
+        "translation": "Gran Compromiso"
+      }
+    ]
+  },
+  "Why does the flag have 13 stripes?": {
+    "question": "Why does the flag have 13 stripes?",
+    "answers": [
+      "(Because there were) 13 original colonies",
+      "(Because the stripes) represent the original colonies"
+    ],
+    "status": "draft",
+    "explanation": "La bandera de los Estados Unidos tiene 13 franjas rojas y blancas. Las franjas representan las 13 colonias originales. Estas colonias declararon su independencia de Gran Bretaña en 1776. Se convirtieron en los primeros 13 estados.",
+    "keyWords": [
+      {
+        "en": "flag",
+        "translation": "bandera"
+      },
+      {
+        "en": "stripes",
+        "translation": "franjas"
+      },
+      {
+        "en": "original colonies",
+        "translation": "colonias originales"
+      }
+    ]
+  },
+  "Why does the flag have 50 stars?": {
+    "question": "Why does the flag have 50 stars?",
+    "answers": [
+      "(Because there is) one star for each state",
+      "(Because) each star represents a state",
+      "(Because there are) 50 states"
+    ],
+    "status": "draft",
+    "explanation": "La bandera de los Estados Unidos tiene 50 estrellas blancas sobre un fondo azul. Cada estrella representa un estado. Hay 50 estados, por eso hay 50 estrellas. Cuando un nuevo estado se unía al país, se agregaba una estrella; el último cambio fue en 1960, después de que Hawái se convirtió en estado.",
+    "keyWords": [
+      {
+        "en": "flag",
+        "translation": "bandera"
+      },
+      {
+        "en": "stars",
+        "translation": "estrellas"
+      },
+      {
+        "en": "each state",
+        "translation": "cada estado"
+      }
+    ]
+  },
+  "Why is it important to pay federal taxes?": {
+    "question": "Why is it important to pay federal taxes?",
+    "answers": [
+      "Required by law",
+      "All people pay to fund the federal government",
+      "Required by the (U.S.) Constitution (16th Amendment)",
+      "Civic duty"
+    ],
+    "status": "draft",
+    "explanation": "Los impuestos federales pagan el trabajo del gobierno nacional, como las fuerzas armadas, las carreteras y muchos servicios. Pagarlos es obligatorio por ley. La Enmienda 16 de la Constitución permite que el gobierno federal cobre impuestos sobre los ingresos. Todas las personas pagan su parte, y también se considera un deber cívico.",
+    "keyWords": [
+      {
+        "en": "federal taxes",
+        "translation": "impuestos federales"
+      },
+      {
+        "en": "Required by law",
+        "translation": "obligatorio por ley"
+      },
+      {
+        "en": "16th Amendment",
+        "translation": "Enmienda 16"
+      },
+      {
+        "en": "Civic duty",
+        "translation": "deber cívico"
+      }
+    ]
+  },
+  "Why is the Declaration of Independence important?": {
+    "question": "Why is the Declaration of Independence important?",
+    "answers": [
+      "It says America is free from British control.",
+      "It says all people are created equal.",
+      "It identifies inherent rights.",
+      "It identifies individual freedoms."
+    ],
+    "status": "draft",
+    "explanation": "La Declaración de Independencia dijo que las colonias americanas eran libres del control británico. También dijo que todas las personas son creadas iguales. Nombra derechos con los que las personas nacen, como la vida, la libertad y la búsqueda de la felicidad. Estas ideas sobre las libertades individuales siguen siendo importantes hoy en los Estados Unidos.",
+    "keyWords": [
+      {
+        "en": "British control",
+        "translation": "control británico"
+      },
+      {
+        "en": "created equal",
+        "translation": "creadas iguales"
+      },
+      {
+        "en": "inherent rights",
+        "translation": "derechos inherentes"
+      },
+      {
+        "en": "individual freedoms",
+        "translation": "libertades individuales"
+      }
+    ]
+  },
+  "Why is the Electoral College important?": {
+    "question": "Why is the Electoral College important?",
+    "answers": [
+      "It decides who is elected president.",
+      "It provides a compromise between the popular election of the president and congressional selection."
+    ],
+    "status": "draft",
+    "explanation": "Los estadounidenses no votan por el presidente de forma directa. Cada estado tiene un número de electores, y sus votos deciden quién es elegido presidente. Un candidato necesita la mayoría de los votos electorales, 270 de 538, para ganar. Los fundadores crearon este sistema como un compromiso entre la elección por el pueblo y la selección por el Congreso.",
+    "keyWords": [
+      {
+        "en": "Electoral College",
+        "translation": "Colegio Electoral"
+      },
+      {
+        "en": "elected president",
+        "translation": "elegido presidente"
+      },
+      {
+        "en": "compromise",
+        "translation": "compromiso, acuerdo"
+      },
+      {
+        "en": "popular election",
+        "translation": "elección popular"
+      }
+    ]
+  },
+  "Why were the Federalist Papers important?": {
+    "question": "Why were the Federalist Papers important?",
+    "answers": [
+      "They helped people understand the (U.S.) Constitution.",
+      "They supported passing the (U.S.) Constitution."
+    ],
+    "status": "draft",
+    "explanation": "Los Documentos Federalistas fueron 85 ensayos escritos en 1787 y 1788. Sus autores fueron James Madison, Alexander Hamilton y John Jay. Los ensayos ayudaron a la gente a entender la nueva Constitución. También apoyaron la aprobación de la Constitución.",
+    "keyWords": [
+      {
+        "en": "Federalist Papers",
+        "translation": "Documentos Federalistas"
+      },
+      {
+        "en": "understand",
+        "translation": "entender"
+      },
+      {
+        "en": "Constitution",
+        "translation": "Constitución"
+      },
+      {
+        "en": "supported",
+        "translation": "apoyaron"
+      }
+    ]
+  }
+}
