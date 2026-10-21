@@ -1,6 +1,10 @@
 // English source strings for the home screen. Keys are stable; values are
 // translated at runtime by useHomeTranslation and cached per language.
 export const HOME_STRINGS = {
+  qc_time: 'About 10 minutes',
+  qc_title: 'Start with a quick check',
+  qc_desc: 'Your tutor checks your civics, reading, writing, and speaking, then plans your practice. You can skip any part.',
+  qc_start: 'Start the quick check',
   hero_start_here: 'Start here',
   hero_step_of: 'Step {n} of 5',
   hero_title: 'Walk into your interview ready.',

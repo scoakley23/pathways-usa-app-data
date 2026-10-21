@@ -4,6 +4,7 @@ import { createPageUrl } from '@/utils';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import RoadmapHero from '@/components/home/RoadmapHero';
+import QuickCheckCard from '@/components/persona/QuickCheckCard';
 import RoadmapPath from '@/components/home/RoadmapPath';
 import useRoadmapProgress from '@/components/home/useRoadmapProgress';
 import useAppLanguage, { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
@@ -11,7 +12,7 @@ import useHomeTranslation from '@/hooks/useHomeTranslation';
 import { Mic, BookOpen, GraduationCap, Notebook, FileText, FileQuestion, Search, ExternalLink } from 'lucide-react';
 
 
-export default function Home({ cachedUser }) {
+export default function Home({ cachedUser, cachedRole }) {
   const roadmap = useRoadmapProgress(cachedUser);
   const [language, setLanguage] = useAppLanguage();
   const { t, translating } = useHomeTranslation(language);
@@ -21,6 +22,7 @@ export default function Home({ cachedUser }) {
     <div className="flex flex-col gap-8 pb-8" dir={rtl ? 'rtl' : 'ltr'}>
       {/* Hero Section */}
       <RoadmapHero roadmap={roadmap} t={t} />
+      {cachedUser && cachedRole !== 'tutor' && <QuickCheckCard variant="home" t={t} language={language} />}
       {/* Roadmap */}
       <RoadmapPath
         roadmap={roadmap}

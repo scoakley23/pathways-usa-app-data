@@ -11,6 +11,8 @@ import BadgesDisplay from '@/components/gamification/BadgesDisplay';
 import PracticeCalendar from '@/components/progress/PracticeCalendar';
 import ProgressChart from '@/components/progress/ProgressChart';
 import TestDateTracker from '@/components/progress/TestDateTracker';
+import QuickCheckCard from '@/components/persona/QuickCheckCard';
+import useAppLanguage from '@/hooks/useAppLanguage';
 import { Progress as ProgressBar } from "@/components/ui/progress";
 import PageHeader from '@/components/PageHeader';
 
@@ -19,6 +21,7 @@ export default function Progress() {
   const [isLoading, setIsLoading] = useState(true);
   const [stats, setStats] = useState({ total: 0, mastered: 0 });
   const [userData, setUserData] = useState(null);
+  const [language] = useAppLanguage();
 
   useEffect(() => {
     fetchProgress();
@@ -78,6 +81,8 @@ export default function Progress() {
       <PageHeader title="Your Progress" subtitle="Track your journey to citizenship">
         <TestDateTracker />
       </PageHeader>
+
+      <QuickCheckCard variant="progress" language={language} />
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">

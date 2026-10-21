@@ -8,14 +8,8 @@ import TutorLesson from '@/components/persona/TutorLesson';
 import TutorMessage from '@/components/persona/TutorMessage';
 import useTutorProfile from '@/components/persona/useTutorProfile';
 import useAppLanguage from '@/hooks/useAppLanguage';
-import { LANGUAGES } from '@/hooks/useLessonTranslation';
+import { languageNameFor } from '@/components/persona/languageName';
 import { buildDemoLesson } from '@/lib/demoLesson';
-
-// English name of the app language, e.g. "Español (Spanish)" -> "Spanish".
-const languageNameFor = (code) => {
-  const label = LANGUAGES.find((l) => l.value === code)?.label || 'English';
-  return label.match(/\(([^)]+)\)/)?.[1] || label;
-};
 
 // Admin-only page to click through the tutor lesson screens (Prompt 3).
 // Saves no progress.
@@ -67,6 +61,7 @@ export default function TutorDemo() {
           language={language}
           languageName={languageNameFor(language)}
           onFinish={() => setFinished(true)}
+          onExit={() => setFinished(true)}
         />
       )}
       {finished && (

@@ -72,7 +72,7 @@ export default function TestDateTracker() {
           </PopoverContent>
         </Popover>
       </div>
-      <p className="text-sm text-slate-500">Your date stays on this phone. We don't save it.</p>
+      <p className="text-sm text-hero-muted">Your date stays on this phone. We don't save it.</p>
     </div>
   );
 }

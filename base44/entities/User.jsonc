@@ -33,6 +33,17 @@
         "tone": { "type": "string", "enum": ["warm", "direct", "coach", "officer"] },
         "english_mix": { "type": "string", "enum": ["mostly_mine", "half", "mostly_english"] }
       }
+    },
+    "skill_levels": {
+      "type": "object",
+      "description": "Quick check results: one level per skill and the date. No answers, transcripts, or per-question results are stored.",
+      "properties": {
+        "civics": { "type": ["string", "null"], "enum": ["strong", "getting_there", "start_here", null] },
+        "reading": { "type": ["string", "null"], "enum": ["strong", "getting_there", "start_here", null] },
+        "writing": { "type": ["string", "null"], "enum": ["strong", "getting_there", "start_here", null] },
+        "speaking": { "type": ["string", "null"], "enum": ["strong", "getting_there", "start_here", null] },
+        "checked_at": { "type": "string", "format": "date-time" }
+      }
     }
   },
   "required": [

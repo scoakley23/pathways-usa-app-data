@@ -22,9 +22,29 @@ module.exports = {
     			md: 'none',
     			lg: 'none',
     			xl: 'none',
-    			'2xl': 'none'
+    			'2xl': 'none',
+    			raised: '0 8px 24px rgba(20, 38, 74, 0.08)',
+    			lift: '0 12px 32px rgba(20, 38, 74, 0.14)'
     		},
     		colors: {
+    			// "Calm and confident" design tokens (see CLAUDE.md)
+    			pw: {
+    				navy: '#14264A',
+    				red: '#D9483F',
+    				page: '#F3F5F9',
+    				line: '#DEE4EE',
+    				muted: '#4A5A78',
+    				soft: '#EEF2F8',
+    				'red-soft': '#FDECEA',
+    				'red-ink': '#B53A32',
+    				'blue-soft': '#E6EEF9',
+    				'blue-ink': '#1F4C8F',
+    				'teal-soft': '#E3F2F1',
+    				'teal-ink': '#1E6B66',
+    				'green-soft': '#E3F4EA',
+    				'green-ink': '#2E7D4F',
+    				highlight: '#FFF4D6'
+    			},
     			background: 'hsl(var(--background))',
     			foreground: 'hsl(var(--foreground))',
     			slate: {
