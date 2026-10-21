@@ -5,11 +5,12 @@ Pathways USA is a free U.S. citizenship test prep app (civics, reading, writing,
 ## Rules (always follow)
 
 ### Legal and content
-- Pathways USA is a free education app, **not a legal service**. Nothing may tell a learner how THEY should answer an N-400 question about their own history, or whether THEY are eligible. Point legal questions to the "Talk to a lawyer first" page (`src/pages/LawyerPage.jsx`).
+- Pathways USA is a free education app, **not a legal service**. Nothing may tell a learner how THEY should answer an N-400 question about their own history, or whether THEY are eligible. Point legal questions to the "Talk to a lawyer first" section of the Resource Hub (`src/pages/LawyerPage.jsx`, `/lawyer-first`).
 - Official civics questions and answers come from the app's USCIS question lists (`CivicsQuestion` records, versions `2008` and `2025`). AI may **explain** them but must never change, add, or invent official answers.
 
 ### Privacy
 - Never store a learner's immigration status, A-number, case details, filing date, field office, address, or N-400 answers.
+- A learner's location (browser location or typed ZIP on the Resource Hub) is used on the device only, to sort places by distance: never saved, never in a URL, never sent to the AI or Base44.
 - No audio or speech transcripts are stored; only scores.
 - The learner's target date lives **only** in browser storage on their device (wrap every `localStorage` read/write in try/catch).
 - Learner text (typed or spoken-as-text) goes to the AI only in the features the AI Policy describes: Ask Vía, civics answer grading, interview/lesson answer scoring, and the representative lookup (zip, plus a street address only when the zip spans several districts). Never with personal identifiers (email, name), never saved, and emails/phone numbers are stripped first where learners type freely. Check answers on the device first when that's enough.
@@ -46,6 +47,7 @@ Pathways USA is a free U.S. citizenship test prep app (civics, reading, writing,
 - **N-400 coaching (Prompt 9)**: `/n400-coach` (`src/pages/N400Coach.jsx`, `src/lib/n400Lesson.js`, steps in `src/components/persona/n400Steps.jsx`); practice-person scoring via `personaScoringBlock()` in `PracticePersonaPanel.jsx`. Saves only section completion.
 - **Ask Vía + Talk to a person (Prompt 10)**: `src/components/ai/StudyBuddy.jsx`, `TalkToPerson.jsx`, logic in `src/lib/askTutor.js`. Support email and reply time live in `src/config/support.js` (form disabled until both are set).
 - **Privacy audit**: `docs/privacy-audit.md` (Prompt 11).
+- **Resource Hub**: `/resources` (also `/lawyer-first`, which scrolls to the lawyer section), page `src/pages/LawyerPage.jsx`. "Find help near you" (`src/components/resources/ResourceFinder.jsx`; map `ResourceMap.jsx` is lazy-loaded Leaflet + OpenStreetMap tiles) lists `CommunityResource` places (categories: legal, esl, citizenship_class, uscis, library, other) near the learner. Logic and import cleaning in `src/lib/resourceHub.js`; ZIP coordinates from the bundled Census table `src/data/zipCentroids.json`. Places are human-checked listings only (never AI-found), managed in Admin → Places (add/edit/hide, CSV/JSON import; format in `content/resources/README.md`).
 - **Pages** are auto-registered from `src/pages/` (`src/pages.config.js` is auto-generated; only `mainPage` is editable). `src/Layout.jsx` wraps all pages. Feature components live in `src/components/<area>/`.
 - **Speech**: browser Web Speech API (`SpeechRecognition`, `lang = 'en-US'`) produces a transcript; scoring is word matching (`src/components/utils/wordDiff.js`) plus an `InvokeLLM` evaluation. Text-to-speech: `src/components/utils/textToSpeech.jsx` (`speakText(text, lang)`).
 - **Languages/i18n**: no i18n library. The chosen language is `localStorage['pathways_language']` (`src/hooks/useAppLanguage.js`; list in `LANGUAGES` in `src/hooks/useLessonTranslation.js`). UI strings are written in English and translated on demand with `InvokeLLM`, cached per language in localStorage (`useHomeTranslation`, `useN400Translation`, `useLawyerChecklistTranslation`). RTL languages: `ar`, `fa`, `ur`, `he`.
@@ -56,6 +58,7 @@ Pathways USA is a free U.S. citizenship test prep app (civics, reading, writing,
 | Where | What | Notes |
 | --- | --- | --- |
 | `User` (account) | display name, points, badges, max streak, `tutor_profile` (AI tutor name/avatar (`a1`–`a6` or `custom`)/tone/English mix), `skill_levels` (quick check: civics/reading/writing/speaking level + date only) | reset by `DeleteMyData` (the sign-in account itself can't be deleted from the app) |
+| `CommunityResource` | public place listings for the Resource Hub (no learner data) | admin-managed |
 | `PublicProfile` | display name, points, badge count, role, tutor invite code, cached representative names | address/zip used only for lookup |
 | `UserProgress` | per sentence/word/civics question: status, SRS fields, scores, attempts | |
 | `LessonProgress` | per lesson: completed, quiz scores, needs_review | |

@@ -61,3 +61,16 @@ This line **is not on the home screen yet**. Checked against the code, before ad
 - **We never ask about your case:** true — the tutor never asks; mock interview personal/morals questions and N-400 coaching use practice people; the plan asks only for a month, on the device; Ask Vía declines case questions. The representative lookup may ask for a street address only to find elected officials, and doesn't save it.
 
 **Conclusion:** the line is accurate. The representative lookup asks for an address only to find elected officials (not about the learner's case), uses it once and doesn't save it. It can be added to the home screen.
+
+## Addendum — Resource Hub (October 2026)
+
+The "Talk to a lawyer first" page became the **Resource Hub** (`/resources`; `/lawyer-first` still works and opens the lawyer section). It adds "Find help near you" (`src/components/resources/ResourceFinder.jsx`, logic in `src/lib/resourceHub.js`).
+
+| Data | Where | What exactly | Who can see it |
+| --- | --- | --- | --- |
+| Learner's location (browser location or typed ZIP) | React state on the page only | latitude/longitude or ZIP, for sorting by distance | nobody; not saved, not in the URL, not sent to the AI or to Base44 |
+| Places | `CommunityResource` (Base44, new entity) | public listings: name, category, public address, coordinates, phone, website, languages, cost, source, last checked. No learner data | everyone who opens the page; edited by admins |
+
+- ZIP to coordinates uses a bundled Census ZIP table (`src/data/zipCentroids.json`, loaded only when needed), so no lookup service sees the ZIP.
+- Outside requests: OpenStreetMap map tiles (show the map area being viewed), and Google Maps only when the learner taps "Directions" (destination address only).
+

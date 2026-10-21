@@ -77,6 +77,11 @@ const AuthenticatedApp = () => {
           <LawyerPage />
         </LayoutWrapper>
       } />
+      <Route path="resources" element={
+        <LayoutWrapper currentPageName="LawyerPage">
+          <LawyerPage />
+        </LayoutWrapper>
+      } />
       <Route path="quick-check" element={
         <LayoutWrapper currentPageName="QuickCheck">
           <QuickCheck />

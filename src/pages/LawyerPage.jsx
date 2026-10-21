@@ -1,15 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { ExternalLink, AlertTriangle, Scale, Lock, Loader2 } from 'lucide-react';
 import PageHeader from '@/components/PageHeader';
 import { RaisedCard } from '@/components/pathways/ui';
 import useAppLanguage, { isRTL } from '@/hooks/useAppLanguage';
 import useLawyerChecklistTranslation from '@/hooks/useLawyerChecklistTranslation';
 import { LAWYER_CHECKLIST_ITEMS, LEGAL_HELP_LINKS } from '@/components/lawyer/lawyerChecklist';
+import ResourceFinder from '@/components/resources/ResourceFinder';
 
-// "Talk to a lawyer first" — a plain, read-only list of situations where the
-// learner should get legal help before filing. There are no checkboxes, no
-// buttons, no inputs, and nothing on this page is tracked or saved.
+// Resource Hub (/resources, and /lawyer-first for older links). Two parts:
+// 1. "Find help near you" — a map and list of legal help, classes, and USCIS
+//    offices (ResourceFinder). The learner's location is used on the device
+//    only and is never saved or sent anywhere.
+// 2. "Talk to a lawyer first" — a plain, read-only list of situations where
+//    the learner should get legal help before filing. No checkboxes, no
+//    inputs, and nothing in it is tracked or saved.
 export default function LawyerPage({ cachedUser }) {
+  const location = useLocation();
+  useEffect(() => {
+    // Links that say "Talk to a lawyer first" land on that section.
+    if (location.pathname === '/lawyer-first') {
+      document.getElementById('lawyer-first')?.scrollIntoView({ block: 'start' });
+    }
+  }, [location.pathname]);
   const isAdmin = cachedUser?.role === 'admin';
   const [language] = useAppLanguage();
   const rtl = isRTL(language);
@@ -19,20 +32,22 @@ export default function LawyerPage({ cachedUser }) {
   return (
     <div className="space-y-6" dir={rtl ? 'rtl' : 'ltr'}>
       <PageHeader
-        title="Talk to a lawyer first"
-        subtitle="Before you answer hard questions or file your application."
-        tag="Legal help"
-        tagTone="red"
-        art="scroll"
-        guide="I'm a study tutor, not a lawyer. If anything on this page sounds like you, please talk to a lawyer or accredited representative before you file."
+        title="Resource Hub"
+        subtitle="Help near you, and when to talk to a lawyer first."
+        tag="Help near you"
+        tagTone="blue"
+        art="compass"
+        guide="I'm a study tutor, not a lawyer. Here you can find free legal help, classes, and offices near you, and see when to talk to a lawyer before you file."
       />
 
-      <RaisedCard className="space-y-3 md:p-6">
+      <ResourceFinder />
+
+      <RaisedCard id="lawyer-first" className="space-y-3 md:p-6 scroll-mt-24">
         <div className="flex items-center gap-3">
-          <div className="w-11 h-11 rounded-2xl grid place-items-center bg-pw-blue-soft text-pw-blue-ink shrink-0">
+          <div className="w-11 h-11 rounded-2xl grid place-items-center bg-pw-red-soft text-pw-red-ink shrink-0">
             <Scale className="w-5 h-5" />
           </div>
-          <h2 className="text-[22px] leading-snug font-extrabold text-pw-navy">When to get help first</h2>
+          <h2 className="text-[22px] leading-snug font-extrabold text-pw-navy">Talk to a lawyer first</h2>
         </div>
         <p className="text-base text-pw-navy leading-relaxed">
           Most people can apply on their own. But if <strong>ANY</strong> of these are true for you, talk to a
@@ -118,8 +133,8 @@ export default function LawyerPage({ cachedUser }) {
       </div>
 
       <p className="text-base leading-relaxed text-pw-muted">
-        This page explains when to get legal help. It is not legal advice about your situation, and nothing you
-        read here is saved or shared.
+        This page helps you find help and explains when to get legal help. It is not legal advice about your
+        situation. Nothing you read or search here, including your location, is saved or shared.
       </p>
     </div>
   );

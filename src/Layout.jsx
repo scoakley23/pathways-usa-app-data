@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import { BookOpen, Mic, CheckCircle, LogOut, Menu, Settings, GraduationCap, User, House, School, FileText } from 'lucide-react';
+import { BookOpen, Mic, CheckCircle, LogOut, Menu, Settings, GraduationCap, User, House, School, FileText, MapPin } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { base44 } from '@/api/base44Client';
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -129,6 +129,7 @@ export default function Layout({ children }) {
         }
     }
 
+    items.push({ label: 'Resources', path: '/resources', icon: MapPin });
     items.push({ label: 'Profile', path: '/Profile', icon: User });
 
     if (user?.role === 'admin') {
