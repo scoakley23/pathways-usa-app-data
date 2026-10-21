@@ -115,13 +115,21 @@ export function formatDistance(miles) {
   return `${Math.round(miles)} mi`;
 }
 
-// Active resources with usable coordinates, in the chosen categories, within
-// `radiusMiles` of `origin`, nearest first. Each result gets `distance`.
+// Everything a place offers: its main category first, then any other
+// services (e.g. a legal clinic that also teaches English).
+export function placeServices(r) {
+  const all = [r?.category, ...(Array.isArray(r?.services) ? r.services : [])];
+  return [...new Set(all.filter((s) => CATEGORY_IDS.includes(s)))];
+}
+
+// Active resources with usable coordinates, offering any of the chosen
+// categories, within `radiusMiles` of `origin`, nearest first. Each result
+// gets `distance`.
 export function nearestResources(resources, origin, { categories = CATEGORY_IDS, radiusMiles = 50, limit = 30 } = {}) {
   if (!origin || !isValidLatLng(origin.lat, origin.lng)) return [];
   const wanted = new Set(categories);
   return (resources || [])
-    .filter((r) => r && r.is_active !== false && wanted.has(r.category) && isValidLatLng(r.latitude, r.longitude))
+    .filter((r) => r && r.is_active !== false && placeServices(r).some((s) => wanted.has(s)) && isValidLatLng(r.latitude, r.longitude))
     .map((r) => ({ ...r, distance: distanceMiles(origin, { lat: r.latitude, lng: r.longitude }) }))
     .filter((r) => r.distance <= radiusMiles)
     .sort((a, b) => a.distance - b.distance || String(a.name).localeCompare(String(b.name)))
@@ -164,9 +172,18 @@ export function safeWebsite(url) {
 // ---- Admin import -------------------------------------------------------
 
 export const IMPORT_COLUMNS = [
-  'name', 'category', 'address', 'city', 'state', 'zip', 'latitude', 'longitude',
-  'phone', 'website', 'languages', 'cost', 'description', 'source', 'source_url', 'last_verified',
+  'name', 'category', 'services', 'address', 'city', 'state', 'zip', 'latitude', 'longitude',
+  'phone', 'website', 'logo_url', 'hours', 'languages', 'cost', 'description', 'source', 'source_url',
+  'last_verified', 'external_id', 'relevance_note', 'is_active',
 ];
+
+// Logos are shown as images, so only https links are kept.
+export function safeLogoUrl(url) {
+  const value = safeWebsite(url);
+  return value.startsWith('https://') ? value : '';
+}
+
+const splitList = (v) => (Array.isArray(v) ? v : String(v || '').split(/[;|,]/)).map((x) => String(x).trim()).filter(Boolean);
 
 // Small CSV parser (quotes, escaped quotes, commas and newlines in quotes).
 export function parseCsv(text) {
@@ -223,15 +240,16 @@ export function cleanResourceRow(row, zipTable) {
     location_precision = 'zip';
   }
 
-  const languages = Array.isArray(r.languages)
-    ? r.languages
-    : String(r.languages || '').split(/[;|]/);
+  const languages = splitList(r.languages);
+  const services = [...new Set([category, ...splitList(r.services).map((s) => s.toLowerCase())])]
+    .filter((s) => CATEGORY_IDS.includes(s));
   const cost = String(r.cost || '').trim().toLowerCase().replace(/[\s-]+/g, '_');
 
   return {
     record: {
       name,
       category,
+      services,
       address: String(r.address || '').trim(),
       city: String(r.city || '').trim(),
       state: String(r.state || '').trim().toUpperCase().slice(0, 2),
@@ -241,12 +259,16 @@ export function cleanResourceRow(row, zipTable) {
       location_precision: r.location_precision === 'zip' ? 'zip' : location_precision,
       phone: String(r.phone || '').trim(),
       website: safeWebsite(r.website),
-      languages: languages.map((l) => String(l).trim()).filter(Boolean),
+      logo_url: safeLogoUrl(r.logo_url),
+      hours: String(r.hours || '').trim().slice(0, 300),
+      languages,
       cost: COST_LABELS[cost] ? cost : '',
       description: String(r.description || '').trim(),
       source: String(r.source || '').trim(),
       source_url: safeWebsite(r.source_url),
       last_verified: String(r.last_verified || '').trim(),
+      external_id: String(r.external_id || '').trim(),
+      relevance_note: String(r.relevance_note || '').trim().slice(0, 300),
       is_active: r.is_active === false || String(r.is_active).toLowerCase() === 'false' ? false : true,
     },
   };
@@ -257,6 +279,45 @@ export function cleanResourceRow(row, zipTable) {
 const keyPart = (v) => String(v || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 export function resourceKey(r) {
   return `${keyPart(r.name)}|${keyPart(r.address)}|${normalizeZip(r.zip)}`;
+}
+
+// Compares an import file with the places already saved. A row matches an
+// existing place by its source id (external_id) or, for places saved before
+// ids existed, by name + street address + ZIP. Matched places get only the
+// fields that changed; unmatched rows are new. Nothing is saved here.
+const UPDATABLE = [
+  'name', 'category', 'services', 'address', 'city', 'state', 'zip', 'latitude', 'longitude', 'location_precision',
+  'phone', 'website', 'logo_url', 'hours', 'languages', 'cost', 'description', 'source', 'source_url',
+  'last_verified', 'external_id', 'relevance_note', 'is_active',
+];
+const sameValue = (a, b) => {
+  const norm = (v) => (v === undefined || v === null ? '' : Array.isArray(v) ? JSON.stringify(v) : String(v));
+  return norm(a) === norm(b) || (Array.isArray(b) && b.length === 0 && (a === undefined || a === null));
+};
+export function planImport(rows, existing, zipTable) {
+  const byId = new Map();
+  const byKey = new Map();
+  for (const e of existing || []) {
+    if (e.external_id) byId.set(e.external_id, e);
+    byKey.set(resourceKey(e), e);
+  }
+  const plan = { creates: [], updates: [], unchanged: 0, hiding: 0, problems: [], duplicates: 0 };
+  const seen = new Set();
+  (rows || []).forEach((row, i) => {
+    const { record, error } = cleanResourceRow(row, zipTable);
+    if (error) { plan.problems.push(`Row ${i + 2}: ${error}`); return; }
+    const match = (record.external_id && byId.get(record.external_id)) || byKey.get(resourceKey(record));
+    const seenKey = match ? `id:${match.id}` : record.external_id || resourceKey(record);
+    if (seen.has(seenKey)) { plan.duplicates++; return; }
+    seen.add(seenKey);
+    if (!match) { plan.creates.push(record); return; }
+    const changes = {};
+    for (const f of UPDATABLE) if (!sameValue(match[f], record[f])) changes[f] = record[f];
+    if (!Object.keys(changes).length) { plan.unchanged++; return; }
+    if (changes.is_active === false && match.is_active !== false) plan.hiding++;
+    plan.updates.push({ id: match.id, ...changes });
+  });
+  return plan;
 }
 
 // A P.O. box has no door to give directions to.

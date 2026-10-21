@@ -49,6 +49,27 @@ To rebuild (Python 3 and `pdftotext`; scripts in `scripts/resources/`):
 - Program names are NLD's (some are generic, e.g. "Library Classes and Events"); edit in Admin if needed.
 - To refresh: `harvest_nld.py nld.json` (about 50 requests, 1.5 s apart), then `build_nld.py nld.json content/resources/seed-nld-classes.json` from the repo root.
 
+## October 2026 update: `update-2026-10.json` (+ `review-2026-10.csv`)
+
+One file that **updates** the 5,585 places already imported from the two seed files. Import it in Admin → Places → Import CSV/JSON; the confirmation should say about **0 new, 5,585 updated (about 220 hidden)**. Running it again changes nothing.
+
+What it changes:
+- **Source ids** (`external_id`: `uscis:…`, `doj:…`, `nld:…`) so later imports update the same place.
+- **Services**: each place lists everything it offers (`services`), so a place can show under several filters. "Free legal help" is given **only** to DOJ-recognized organizations, never inferred from a website.
+- **Merged duplicates**: 56 NLD programs that are the same organization and place as a DOJ listing (same phone or street address and ZIP, and a shared distinctive word in the name) are hidden; the DOJ listing gains their class services, website, logo and hours.
+- **Not relevant (hidden, not deleted)**: 172 programs for children, K-12 schools, youth programs, and family-literacy programs without adult English classes, judged from the program's name and NLD description.
+- **Flagged, still shown** (about 470): programs that couldn't be confirmed as adult programs, libraries whose description leads with children's programs, websites that talk mostly about children's programs, and 14 that mention immigration consulting or notario services (check these are not notarios). Admin → Places → Show: "Shown, but flagged to check".
+- **Hours** (2,968), **logos** (1,906, NLD's own image links, loaded only when a learner opens a place's summary), **websites**, and **languages** only where stated: NLD's "Instruction in Spanish" flag, or explicit phrases such as "classes taught in …", "bilingual …", "staff speak …".
+
+`review-2026-10.csv` lists every hidden, merged and flagged place with its reason, NLD page and website, for a person to check. To change a decision, edit the place in Admin → Places (Show / Hide).
+
+How it was built (keyword rules, not AI; scripts in `scripts/resources/`):
+1. `harvest_nld.py nld.json` (public listing fields only, incl. description, logo, hours)
+2. `fetch_sites.py nld.json sites.json` then `fetch_sites.py nld.json sites.json --retry-errors` (front page of each program's website; robots.txt respected; emails removed). 2,685 of 3,353 websites could be read.
+3. `build_update.py nld.json sites.json content/resources/update-2026-10.json content/resources/review-2026-10.csv`
+
+Note: a place an admin renamed before this update won't match by name and would be added again; check Admin for a renamed place's twin after importing.
+
 Not imported, linked instead (the "Search national directories" card on the Resource Hub):
 - **ImmigrationLawHelp.org**: its robots.txt asks crawlers to stay out of its search pages. Most of its legal providers are DOJ-recognized organizations, which are in the seed file. Ask Pro Bono Net (who runs it) for a data export before importing.
 - **CareerOneStop library finder**: blocks automated access. It is a search tool, not a list.

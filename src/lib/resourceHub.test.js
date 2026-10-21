@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import {
   normalizeZip, zipToLatLng, distanceMiles, formatDistance, nearestResources,
   directionsUrl, safeWebsite, telHref, parseCsv, cleanResourceRow, resourceKey, isValidLatLng, isPoBoxOnly,
+  placeServices, safeLogoUrl, planImport,
 } from './resourceHub';
 
 // Fake test places only.
@@ -136,5 +137,54 @@ describe('import', () => {
     expect(isPoBoxOnly('P.O. Box 12')).toBe(true);
     expect(isPoBoxOnly('PO Box 12')).toBe(true);
     expect(isPoBoxOnly('12 Box Elder St')).toBe(false);
+  });
+});
+
+describe('services', () => {
+  it('lists the main category first, then other valid services', () => {
+    expect(placeServices({ category: 'legal', services: ['esl', 'legal', 'bogus'] })).toEqual(['legal', 'esl']);
+    expect(placeServices({ category: 'esl' })).toEqual(['esl']);
+  });
+  it('a place shows up under any of its services', () => {
+    const both = place({ name: 'Both', category: 'legal', services: ['legal', 'esl'], latitude: 42.361, longitude: -71.06 });
+    expect(nearestResources([both], BOSTON, { categories: ['esl'] }).map((r) => r.name)).toEqual(['Both']);
+    expect(nearestResources([both], BOSTON, { categories: ['uscis'] })).toEqual([]);
+  });
+  it('cleans services, logo, hours and id on import', () => {
+    const { record } = cleanResourceRow({
+      name: 'Test', category: 'legal', zip: '02138', services: 'esl; citizenship_class; nope',
+      logo_url: 'http://example.org/logo.png', hours: ' Mon-Fri 9-5 ', external_id: 'test:1',
+    }, ZIPS);
+    expect(record).toMatchObject({ services: ['legal', 'esl', 'citizenship_class'], logo_url: '', hours: 'Mon-Fri 9-5', external_id: 'test:1' });
+    expect(safeLogoUrl('https://example.org/logo.png')).toBe('https://example.org/logo.png');
+  });
+});
+
+describe('planImport', () => {
+  const saved = [
+    { id: 'a', name: 'Test Clinic', category: 'legal', address: '1 Main St', zip: '02138', latitude: 42.38, longitude: -71.134, location_precision: 'zip', is_active: true },
+    { id: 'b', name: 'Kids Club', category: 'esl', address: '2 Oak Ave', zip: '02138', latitude: 42.38, longitude: -71.134, location_precision: 'zip', is_active: true, external_id: 'test:kids' },
+  ];
+  it('updates matched places with only the changed fields, and adds new ones', () => {
+    const plan = planImport([
+      { name: 'Test Clinic', category: 'legal', services: 'legal;esl', address: '1 Main St', zip: '02138', website: 'example.org' },
+      { name: 'Renamed Kids Club', category: 'esl', address: '2 Oak Ave', zip: '02138', external_id: 'test:kids', is_active: false },
+      { name: 'New Place', category: 'esl', zip: '02138' },
+      { name: 'New Place', category: 'esl', zip: '02138' },
+      { name: '', category: 'esl', zip: '02138' },
+    ], saved, ZIPS);
+    expect(plan.creates.map((r) => r.name)).toEqual(['New Place']);
+    expect(plan.duplicates).toBe(1);
+    expect(plan.problems).toHaveLength(1);
+    expect(plan.hiding).toBe(1);
+    const a = plan.updates.find((u) => u.id === 'a');
+    expect(a).toMatchObject({ services: ['legal', 'esl'], website: 'https://example.org/' });
+    expect(a).not.toHaveProperty('name');
+    expect(plan.updates.find((u) => u.id === 'b')).toMatchObject({ name: 'Renamed Kids Club', is_active: false });
+  });
+  it('counts unchanged places', () => {
+    const plan = planImport([{ name: 'Test Clinic', category: 'legal', services: ['legal'], address: '1 Main St', zip: '02138', external_id: '' }],
+      [{ ...saved[0], services: ['legal'], languages: [], phone: '', website: '', logo_url: '', hours: '', cost: '', description: '', source: '', source_url: '', last_verified: '', city: '', state: '', external_id: '' }], ZIPS);
+    expect(plan).toMatchObject({ unchanged: 1, updates: [], creates: [] });
   });
 });

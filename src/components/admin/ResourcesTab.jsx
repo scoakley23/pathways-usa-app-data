@@ -11,14 +11,29 @@ import { base44 } from '@/api/base44Client';
 import ResourceDialog from '@/components/admin/ResourceDialog';
 import { listAllResources } from '@/components/resources/listAllResources';
 import { useContentManager } from '@/hooks/useContentManager';
-import { categoryById, parseCsv, cleanResourceRow, resourceKey, loadZipTable } from '@/lib/resourceHub';
+import { categoryById, parseCsv, planImport, loadZipTable, placeServices } from '@/lib/resourceHub';
 
-const BATCH = 50;
+const CREATE_BATCH = 50;
+const UPDATE_BATCH = 200;
+const SHOW_ROWS = 300;
+
+// Base44 sometimes refuses a burst of requests; wait and try a batch again
+// (2 s, 5 s, 15 s) before giving up.
+async function withRetry(fn) {
+  for (const wait of [2000, 5000, 15000, 0]) {
+    try {
+      return await fn();
+    } catch (err) {
+      if (!wait) throw err;
+      await new Promise((r) => setTimeout(r, wait));
+    }
+  }
+}
 
 // Admin: places shown on the Resource Hub map. Import takes a CSV or JSON
-// file in the format described in content/resources/README.md; rows already
-// in the list (same name, street address and ZIP) are skipped, so an import
-// can be re-run.
+// file in the format described in content/resources/README.md. Rows that
+// match a saved place (by source id, or name + street address + ZIP) update
+// it; other rows are added. Re-running a file never makes duplicates.
 export default function ResourcesTab() {
   const { items, isLoading, isSubmitting, fetchItems, createItem, updateItem, deleteItem } = useContentManager('CommunityResource', 'place', listAllResources);
   const queryClient = useQueryClient();
@@ -26,6 +41,7 @@ export default function ResourcesTab() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
   const [importing, setImporting] = useState(null); // { done, total }
+  const [show, setShow] = useState('all'); // all | shown | hidden | flagged
   const fileRef = useRef(null);
 
   useEffect(() => { fetchItems(); }, [fetchItems]);
@@ -61,38 +77,40 @@ export default function ResourcesTab() {
       const text = await file.text();
       const rows = /\.json$/i.test(file.name) ? JSON.parse(text) : parseCsv(text);
       if (!Array.isArray(rows)) throw new Error('The JSON file must be a list of places.');
-      const zipTable = await loadZipTable();
-      const seen = new Set(items.map(resourceKey));
-      const records = [];
-      const problems = [];
-      let duplicates = 0;
-      rows.forEach((row, i) => {
-        const { record, error } = cleanResourceRow(row, zipTable);
-        if (error) { problems.push(`Row ${i + 2}: ${error}`); return; }
-        const key = resourceKey(record);
-        if (seen.has(key)) { duplicates++; return; }
-        seen.add(key);
-        records.push(record);
-      });
-      if (!records.length) {
-        toast.error(`Nothing new to import. ${duplicates} already listed, ${problems.length} with problems.`);
-        if (problems.length) console.warn('Import problems:\n' + problems.join('\n'));
+      const plan = planImport(rows, items, await loadZipTable());
+      if (plan.problems.length) console.warn('Import problems:\n' + plan.problems.join('\n'));
+      const work = plan.creates.length + plan.updates.length;
+      if (!work) {
+        toast.error(`Nothing to change. ${plan.unchanged} already up to date, ${plan.problems.length} rows with problems.`);
         return;
       }
-      if (!window.confirm(`Import ${records.length} new places? (${duplicates} already listed, ${problems.length} rows skipped.)`)) return;
-      setImporting({ done: 0, total: records.length });
-      for (let i = 0; i < records.length; i += BATCH) {
-        await base44.entities.CommunityResource.bulkCreate(records.slice(i, i + BATCH));
-        setImporting({ done: Math.min(i + BATCH, records.length), total: records.length });
+      const summary = [
+        `${plan.creates.length} new places`,
+        `${plan.updates.length} places updated${plan.hiding ? ` (${plan.hiding} of them hidden)` : ''}`,
+        `${plan.unchanged} already up to date`,
+        plan.duplicates ? `${plan.duplicates} repeated rows skipped` : '',
+        plan.problems.length ? `${plan.problems.length} rows with problems skipped` : '',
+      ].filter(Boolean).join('\n');
+      if (!window.confirm(`Import this file?\n\n${summary}`)) return;
+      let done = 0;
+      setImporting({ done, total: work });
+      for (let i = 0; i < plan.creates.length; i += CREATE_BATCH) {
+        const batch = plan.creates.slice(i, i + CREATE_BATCH);
+        await withRetry(() => base44.entities.CommunityResource.bulkCreate(batch));
+        done += batch.length;
+        setImporting({ done, total: work });
       }
-      toast.success(`Imported ${records.length} places`);
-      if (problems.length) {
-        toast.warning(`${problems.length} rows were skipped. See the browser console for details.`);
-        console.warn('Import problems:\n' + problems.join('\n'));
+      for (let i = 0; i < plan.updates.length; i += UPDATE_BATCH) {
+        const batch = plan.updates.slice(i, i + UPDATE_BATCH);
+        await withRetry(() => base44.entities.CommunityResource.bulkUpdate(batch));
+        done += batch.length;
+        setImporting({ done, total: work });
       }
+      toast.success(`Done: ${plan.creates.length} added, ${plan.updates.length} updated`);
+      if (plan.problems.length) toast.warning(`${plan.problems.length} rows were skipped. See the browser console for details.`);
     } catch (err) {
       console.error('Import failed:', err);
-      toast.error(`Import failed: ${err.message || 'unknown error'}`);
+      toast.error(`Import stopped: ${err.message || 'unknown error'}. Run the same file again to finish; finished places are not repeated.`);
     } finally {
       setImporting(null);
       refresh();
@@ -101,8 +119,11 @@ export default function ResourcesTab() {
 
   const q = searchQuery.toLowerCase();
   const filtered = items.filter((r) =>
+    (show === 'all' || (show === 'shown' && r.is_active !== false) || (show === 'hidden' && r.is_active === false) ||
+      (show === 'flagged' && r.relevance_note && r.is_active !== false)) &&
     [r.name, r.city, r.state, r.zip, r.category].some((v) => String(v || '').toLowerCase().includes(q))
   );
+  const visible = filtered.slice(0, SHOW_ROWS);
 
   if (isLoading) {
     return <div className="flex justify-center py-12"><Loader2 className="w-8 h-8 animate-spin text-pw-navy" /></div>;
@@ -126,9 +147,24 @@ export default function ResourcesTab() {
           </Button>
         </div>
       </div>
-      <p className="text-sm text-pw-muted">
-        {items.length} places ({items.filter((r) => r.is_active === false).length} hidden). Learners see only places that are not hidden.
-      </p>
+      <div className="flex flex-wrap items-center gap-3">
+        <label htmlFor="places-show" className="text-sm font-bold text-pw-navy">Show</label>
+        <select
+          id="places-show"
+          value={show}
+          onChange={(e) => setShow(e.target.value)}
+          className="min-h-[44px] rounded-2xl border-2 border-pw-line bg-white px-3 text-base text-pw-navy"
+        >
+          <option value="all">All places</option>
+          <option value="shown">Shown to learners</option>
+          <option value="hidden">Hidden</option>
+          <option value="flagged">Shown, but flagged to check</option>
+        </select>
+        <p className="text-sm text-pw-muted">
+          {items.length} places ({items.filter((r) => r.is_active === false).length} hidden). Learners see only places that are not hidden.
+          {filtered.length > SHOW_ROWS && ` Showing the first ${SHOW_ROWS} of ${filtered.length}; search to narrow.`}
+        </p>
+      </div>
       <div className="border border-pw-line rounded-3xl bg-white shadow-raised overflow-hidden">
         <Table className="text-base [&_th]:px-2 [&_td]:px-2 sm:[&_th]:px-4 sm:[&_td]:px-4 [&_th]:text-sm [&_th]:font-bold [&_th]:text-pw-muted">
           <TableHeader>
@@ -143,13 +179,20 @@ export default function ResourcesTab() {
             {filtered.length === 0 ? (
               <TableRow><TableCell colSpan={4} className="text-center h-32 text-pw-muted">No places found.</TableCell></TableRow>
             ) : (
-              filtered.map((r) => (
+              visible.map((r) => (
                 <TableRow key={r.id} className={r.is_active === false ? 'opacity-60' : ''}>
                   <TableCell className="font-semibold text-pw-navy">
                     {r.name}
                     {r.is_active === false && <span className="ml-2 text-sm font-normal text-pw-muted">(hidden)</span>}
+                    {r.relevance_note && <span className="block text-sm font-normal text-pw-muted">{r.relevance_note}</span>}
                   </TableCell>
-                  <TableCell><Badge variant="secondary" className="font-semibold whitespace-nowrap">{categoryById(r.category).label}</Badge></TableCell>
+                  <TableCell>
+                    <div className="flex flex-wrap gap-1">
+                      {placeServices(r).map((s) => (
+                        <Badge key={s} variant="secondary" className="font-semibold whitespace-nowrap">{categoryById(s).label}</Badge>
+                      ))}
+                    </div>
+                  </TableCell>
                   <TableCell className="text-pw-muted">{[r.city, r.state].filter(Boolean).join(', ') || '—'}</TableCell>
                   <TableCell className="text-right">
                     <DropdownMenu>

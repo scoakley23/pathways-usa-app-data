@@ -73,4 +73,6 @@ The "Talk to a lawyer first" page became the **Resource Hub** (`/resources`; `/l
 
 - ZIP to coordinates uses a bundled Census ZIP table (`src/data/zipCentroids.json`, loaded only when needed), so no lookup service sees the ZIP.
 - Outside requests: USGS National Map tiles (a U.S. government server; it sees the map area being viewed), and Google Maps only when the learner taps "Directions" (destination address only).
+- Place logos load from nld.org only when a learner opens a place's summary on the map (`referrerPolicy="no-referrer"`).
+- Relevance checks, services and languages are worked out by keyword rules in `scripts/resources/build_update.py` from NLD's public program descriptions and each program's public website front page, before import. No learner data is involved; hidden places keep their reason in the admin-only `relevance_note`.
 

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import L from 'leaflet';
-import { MapContainer, TileLayer, Marker, Tooltip, useMap } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Tooltip, Popup, useMap } from 'react-leaflet';
+import { PlaceSummary } from '@/components/resources/PlaceSummary';
 import 'leaflet/dist/leaflet.css';
 
 // Map for the Resource Hub. Loaded lazily (React.lazy) so Leaflet is only
@@ -66,6 +67,9 @@ export default function ResourceMap({ origin, places, selectedId, onSelect }) {
           eventHandlers={{ click: () => onSelect(p.id) }}
         >
           <Tooltip direction="top" offset={[0, -10]}>{p.name}</Tooltip>
+          <Popup maxWidth={280} minWidth={220} autoPanPadding={[16, 16]}>
+            <PlaceSummary r={p} />
+          </Popup>
         </Marker>
       ))}
     </MapContainer>
