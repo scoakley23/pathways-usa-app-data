@@ -12,8 +12,13 @@ def miles(a, b):
     h = math.sin((la2 - la1) / 2) ** 2 + math.cos(la1) * math.cos(la2) * math.sin((lo2 - lo1) / 2) ** 2
     return 7917.6 * math.asin(math.sqrt(h))
 
+EMAIL = re.compile(r'[\w.+-]+@[\w-]+(\.[\w-]+)+')
+
+# Program staff sometimes type a personal email into the phone or website box;
+# emails are never imported.
 def clean(v):
-    return re.sub(r'\s+', ' ', str(v or '')).strip()
+    v = EMAIL.sub('', str(v or ''))
+    return re.sub(r'\s+', ' ', v).strip(' ,;')
 
 recs, skipped = [], 0
 for p in json.load(open(src)):
@@ -48,7 +53,8 @@ for p in json.load(open(src)):
     address = ', '.join(a for a in [clean(p.get('street_address')), clean(p.get('address_2'))] if a)
     phone = clean(p.get('primary_contact_phone_tx'))
     if clean(p.get('phone_extension')):
-        phone += f" ext. {clean(p.get('phone_extension'))}"
+        phone = f"{phone} ext. {clean(p.get('phone_extension'))}".strip()
+    phone = re.sub(r'^ext\.\s*', '', phone)
     recs.append({
         'name': clean(p.get('title')),
         'category': 'citizenship_class' if citizenship else 'esl',

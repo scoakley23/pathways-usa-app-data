@@ -117,7 +117,7 @@ The Resource Hub shows nearby free legal help, English and citizenship classes, 
 
 The map pictures come from the U.S. Geological Survey's National Map, a public government map service; like any web map, it receives requests for the area being shown. "Directions" opens Google Maps with only the place's public address; the maps app asks for the starting point itself.
 
-The list of places is written and checked by the Pathways team from public sources (such as the USCIS office list and the U.S. Department of Justice list of recognized organizations). The AI does not find, write, or recommend places. Pathways USA does not run or endorse these places, and the page reminds learners that only lawyers and DOJ-accredited representatives can give immigration legal advice.
+The list of places is written and checked by the Pathways team from public sources (such as the USCIS office list, the U.S. Department of Justice list of recognized organizations, and the National Literacy Directory's public class listings). The AI does not find, write, or recommend places. Pathways USA does not run or endorse these places, and the page reminds learners that only lawyers and DOJ-accredited representatives can give immigration legal advice.
 
 ## Translations of App Text
 Fixed app text (for example, menu labels and the tutor's standard messages) may be translated into the learner's language by the AI service and saved on the learner's device so it is translated only once. English and Spanish versions of key messages are written by people. No learner text is included in these translations.

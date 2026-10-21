@@ -25,7 +25,7 @@ Re-running an import is safe: rows with the same name, street address and ZIP as
 
 ## Starting data: `seed-resources.json`
 
-1,651 places, built 2026-10-21. Import it in **Admin → Places → Import CSV/JSON**.
+1,651 places (USCIS offices and legal help), built 2026-10-21. Import it first in **Admin → Places → Import CSV/JSON**.
 
 | Category | Count | Source |
 | --- | --- | --- |
@@ -40,9 +40,17 @@ To rebuild (Python 3 and `pdftotext`; scripts in `scripts/resources/`):
 3. `build_seed.py occam_offices.json doj.json content/resources/seed-resources.json`
 4. `geocode_census.py content/resources/seed-resources.json` (from the repo root).
 
+## English and citizenship classes: `seed-nld-classes.json`
+
+3,947 programs from the **National Literacy Directory** (https://www.nld.org), downloaded 2026-10-21: every program offering "Become a U.S. citizen" (1,486, category `citizenship_class`) or "Learn English" but not citizenship (2,461, category `esl`). Import it in **Admin → Places** after `seed-resources.json`; 13 programs NLD lists twice are skipped automatically.
+
+- Public listing fields only: program name, address, phone, website, map coordinates (from NLD; 3,916 exact, others at the ZIP center), whether some teaching is in Spanish or online, and "Free" only when the program's own cost note says free.
+- NLD's search endpoint also returns each program contact's name, email, and account details. `harvest_nld.py` drops those before anything is written to disk, and `build_nld.py` removes any email typed into another field. Never import them.
+- Program names are NLD's (some are generic, e.g. "Library Classes and Events"); edit in Admin if needed.
+- To refresh: `harvest_nld.py nld.json` (about 50 requests, 1.5 s apart), then `build_nld.py nld.json content/resources/seed-nld-classes.json` from the repo root.
+
 Not imported, linked instead (the "Search national directories" card on the Resource Hub):
 - **ImmigrationLawHelp.org**: its robots.txt asks crawlers to stay out of its search pages. Most of its legal providers are DOJ-recognized organizations, which are in the seed file. Ask Pro Bono Net (who runs it) for a data export before importing.
-- **National Literacy Directory** (English and citizenship classes): not imported yet. Its listings could be imported with public fields only. Its search endpoint also returns program contacts' names, emails and account codes, which must never be imported.
 - **CareerOneStop library finder**: blocks automated access. It is a search tool, not a list.
 
 ## Starting sources
