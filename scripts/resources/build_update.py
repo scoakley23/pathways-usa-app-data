@@ -40,17 +40,16 @@ FAMILY = re.compile(r'\bfamily literacy\b|\bparents? and (their )?children\b', r
 PARENT_ENGLISH = re.compile(r'\bparents?\b.{0,80}\b(english|esl|esol)\b|\b(english|esl|esol)\b.{0,80}\bparents?\b', re.I)
 CITIZEN = re.compile(r'\b(citizenship|naturali[sz]ation|civics test|n-?400)\b', re.I)
 ESL = re.compile(r'\b(esol|esl|english as a (second|new) language|english language (learners?|classes)|learn english|english classes)\b', re.I)
-LEGAL = re.compile(r'\b(immigration legal (services|help|assistance)|doj[- ]accredited|accredited representatives?|'
-                   r'recognized organization|board of immigration appeals|daca renewals?|immigration attorneys?)\b', re.I)
+CONSULTANT = re.compile(r'\b(immigration consult(ant|ants|ation|ing)|notari[oa]s?|notary public|tax and immigration)\b', re.I)
 LANGS = ['Spanish', 'Arabic', 'Chinese', 'Mandarin', 'Cantonese', 'Vietnamese', 'Korean', 'Tagalog', 'French', 'Haitian Creole',
          'Portuguese', 'Russian', 'Ukrainian', 'Polish', 'Somali', 'Amharic', 'Tigrinya', 'Swahili', 'Nepali', 'Burmese', 'Karen',
          'Dari', 'Pashto', 'Farsi', 'Persian', 'Urdu', 'Hindi', 'Bengali', 'Punjabi', 'Gujarati', 'Japanese', 'Hmong', 'Khmer',
          'Lao', 'Thai', 'Italian', 'German', 'Greek', 'Turkish', 'Hebrew', 'Kinyarwanda', 'Kirundi', 'Oromo']
 LANG_RX = '|'.join(re.escape(l) for l in LANGS)
-# Only explicit statements, e.g. "classes taught in Spanish and Arabic",
-# "bilingual Spanish", "we speak Vietnamese".
-LANG_STMT = re.compile(rf"\b(?:taught|offered|available|instruction|classes|tutoring|services|staff speaks?|we speak|bilingual(?: in)?)"
-                       rf"(?: (?:are|is|also))?(?: (?:offered|available|taught|provided))?(?: in)? ((?:(?:{LANG_RX})(?:,? (?:and|or|&) |, )?)+)", re.I)
+# Only explicit statements about teaching or staff, e.g. "classes taught in
+# Spanish and Arabic", "bilingual Hmong/English", "staff speak Somali".
+LANG_STMT = re.compile(rf"\b(?:taught in|instruction in|offered in|classes in|tutoring in|bilingual(?: in)?|"
+                       rf"staff (?:also )?speaks?|we (?:also )?speak|se habla)\s+((?:(?:{LANG_RX})(?:,? (?:and|or|&) |, |/)?)+)", re.I)
 
 def languages_in(t):
     found = []
@@ -90,11 +89,22 @@ def same_org(a, b, place=''):
 
 def verdict(name, desc, site, services):
     """Returns (keep, note). note is '' for a clear keep."""
+    keep, note = _verdict(name, desc, site, services)
+    # Public libraries and family centers listed for English usually serve
+    # adults too, even when their description leads with children's programs:
+    # flag them for a person instead of hiding them.
+    if not keep and re.search(r'\b(library|libraries|family (resource|center))\b', name, re.I) and \
+            not re.search(r'\b(imagination library|kids|children|preschool|early)\b', name, re.I):
+        return True, note.replace('program', 'program?') + ' - check'
+    return keep, note
+
+def _verdict(name, desc, site, services):
     n_youth = bool(YOUTH.search(name))
     n_adult = bool(ADULT.search(name)) or bool(re.search(r'\b(college|adult|community education|continuing education)\b', name, re.I))
     d_youth, d_adult = len(YOUTH.findall(desc)), len(ADULT.findall(desc))
     s_youth, s_adult = len(YOUTH.findall(site)), len(ADULT.findall(site))
-    adult_explicit = re.search(r'\badults?\b|\besol\b|\besl\b|\bimmigrants?\b|\brefugees?\b|\bcitizenship\b', desc + ' ' + name, re.I)
+    adult_explicit = re.search(r'\badults?\b|\besol\b|\besl\b|\bell\b|\bimmigrants?\b|\brefugees?\b|\bcitizenship\b|'
+                               r'speakers of other languages|english language learners?|english as a (second|new) language', desc + ' ' + name, re.I)
     family_only = bool(FAMILY.search(name + ' ' + desc)) and not PARENT_ENGLISH.search(desc + ' ' + site) and not adult_explicit
     if n_youth and not n_adult:
         # A school name is often just where an adult class meets.
@@ -111,8 +121,10 @@ def verdict(name, desc, site, services):
         return True, ''
     if not desc and not site:
         return True, 'No description or website to confirm it serves adults - check'
+    # A website front page alone (e.g. a public library's) often talks about
+    # children's programs, so it can only flag a place, never hide it.
     if s_youth > 2 * max(1, s_adult) and not d_adult:
-        return False, "Children's / youth program (website)"
+        return True, "Website talks mostly about children's programs - check"
     if s_adult or d_adult:
         return True, ''
     return True, 'Could not confirm it serves adults - check'
@@ -135,7 +147,7 @@ for r in seed_main:
     row['services'] = [r['category']]
     rows.append(row)
 
-counts = {'kept': 0, 'hidden': 0, 'flagged': 0, 'merged': 0, 'logo': 0, 'languages': 0, 'hours': 0, 'legal_added': 0}
+counts = {'kept': 0, 'hidden': 0, 'flagged': 0, 'merged': 0, 'logo': 0, 'languages': 0, 'hours': 0}
 for r in seed_nld:
     slug = r['source_url'].rstrip('/').rsplit('/', 1)[-1]
     p = nld.get(slug)
@@ -156,8 +168,10 @@ for r in seed_nld:
         services.append('citizenship_class')
     if '6' in services_cb or ESL.search(desc):
         services.append('esl')
-    if LEGAL.search(desc) or LEGAL.search(site):
-        services.append('legal'); counts['legal_added'] += 1
+    # "Free legal help" is only for DOJ-recognized organizations (from the DOJ
+    # roster, or merged with one below), never inferred from website text.
+    if CONSULTANT.search(desc) or CONSULTANT.search(site):
+        note = (note + '; ' if note else '') + 'Mentions immigration consulting or notario services - check it is not a notario'
     if re.search(r'\blibrary\b', r['name'], re.I):
         services.append('library')
     services = list(dict.fromkeys(services))
