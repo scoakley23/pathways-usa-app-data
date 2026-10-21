@@ -13,6 +13,7 @@ import { toast } from "sonner";
 import { ensurePublicProfile } from '@/lib/profileService';
 import VoiceSettings from '@/components/utils/VoiceSettings';
 import DeleteMyData from '@/components/profile/DeleteMyData';
+import YourTutorCard from '@/components/persona/YourTutorCard';
 import PageHeader from '@/components/PageHeader';
 
 export default function Profile() {
@@ -227,6 +228,12 @@ export default function Profile() {
                   </Card>
               </div>
             </>
+          )}
+
+          {!(publicProfile && publicProfile.account_type === 'tutor') && (
+            <div className="w-full">
+              <YourTutorCard />
+            </div>
           )}
 
           <div className="w-full">

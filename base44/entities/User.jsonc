@@ -23,6 +23,16 @@
       "type": "number",
       "default": 0,
       "description": "Highest daily streak achieved"
+    },
+    "tutor_profile": {
+      "type": "object",
+      "description": "The learner's AI tutor settings. Not sensitive. The explanation language is the app language (stored on the device), not here.",
+      "properties": {
+        "name": { "type": "string", "description": "Tutor name, max 20 characters. Default: Vía" },
+        "avatar": { "type": "string", "enum": ["a1", "a2", "a3", "a4", "a5", "a6"] },
+        "tone": { "type": "string", "enum": ["warm", "direct", "coach", "officer"] },
+        "english_mix": { "type": "string", "enum": ["mostly_mine", "half", "mostly_english"] }
+      }
     }
   },
   "required": [

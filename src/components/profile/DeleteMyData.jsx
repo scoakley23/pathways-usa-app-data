@@ -57,7 +57,7 @@ export default function DeleteMyData({ userEmail }) {
       // The sign-in account itself can't be deleted from the app, so reset
       // the learner fields stored on it.
       setProgress('Resetting your account details...');
-      await base44.auth.updateMe({ display_name: 'Learner', points: 0, badges: [], max_streak: 0 });
+      await base44.auth.updateMe({ display_name: 'Learner', points: 0, badges: [], max_streak: 0, tutor_profile: null });
       clearDeviceData();
       setProgress('Done. Signing you out...');
       toast.success("Your data has been deleted. You are being signed out.");
@@ -79,7 +79,7 @@ export default function DeleteMyData({ userEmail }) {
         <CardDescription>
           Permanently erase everything tied to your email: your chat messages (including the copies in the other person's history),
           AI study buddy history, lesson notes, progress & quiz scores, mock interview scores, N-400 guide section completion, assignments,
-          tutor connections, notifications, and your profile. Your points, badges, and display name are reset, and the app's data on
+          tutor connections, notifications, and your profile. Your points, badges, display name, and tutor settings are reset, and the app's data on
           this device (your target date, language, and settings) is cleared. This cannot be undone.
         </CardDescription>
       </CardHeader>
