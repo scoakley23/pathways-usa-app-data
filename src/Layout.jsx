@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import { BookOpen, Mic, CheckCircle, LogOut, Menu, X, Settings, GraduationCap, User, MessageSquare, Notebook, School, FileQuestion } from 'lucide-react';
+import { BookOpen, Mic, CheckCircle, LogOut, Menu, Settings, GraduationCap, User, Notebook, School, FileQuestion } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { base44 } from '@/api/base44Client';
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -261,7 +261,8 @@ export default function Layout({ children }) {
           />
       )}
       {showTutorSetup && <TutorOnboardingDialog onDone={closeTutorSetup} />}
-      <StudyBuddy />
+      {/* Lesson screens have a pinned Continue button; keep the chat button off them. */}
+      {!['/quick-check', '/tutor-demo'].includes(location.pathname) && <StudyBuddy />}
       <DailyPracticeReminder />
       <Toaster />
     </div>

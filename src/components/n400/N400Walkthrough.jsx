@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { RaisedCard, Tag } from '@/components/pathways/ui';
 import { Volume2, Loader2, FileText, MessagesSquare } from 'lucide-react';
 import { speakText } from '@/components/utils/textToSpeech';
 import { EXAMPLE_APPLICANTS } from './exampleApplicants';
@@ -75,13 +73,13 @@ export default function N400Walkthrough() {
   };
 
   const toggleClasses = (active) =>
-    `flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
-      active ? 'bg-white shadow text-slate-900' : 'text-slate-500 hover:text-slate-700'
+    `flex-1 sm:flex-none min-h-[44px] flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-base leading-tight font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red ${
+      active ? 'bg-white shadow-raised text-pw-navy' : 'text-pw-muted hover:text-pw-navy'
     }`;
 
   return (
     <div className="space-y-5">
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
         {EXAMPLE_APPLICANTS.map((p) => (
           <N400PersonaCard
             key={p.id}
@@ -95,37 +93,32 @@ export default function N400Walkthrough() {
         ))}
       </div>
 
-      <Card className="rounded-2xl">
-        <CardContent className="p-5 md:p-6 space-y-5">
+      <RaisedCard className="space-y-5 md:p-6">
           <div className="flex flex-col sm:flex-row gap-4">
             <img
               src={applicant.image}
               alt={`Illustration of ${applicant.name}, a fictional practice person`}
-              className="w-20 h-20 rounded-2xl object-cover border-2 border-slate-200 shrink-0"
+              className="w-20 h-20 rounded-2xl object-cover border-2 border-pw-line bg-pw-blue-soft shrink-0"
             />
-            <div className="space-y-1.5">
-              <div className="flex flex-wrap items-center gap-2">
-                <h2 className="text-xl font-extrabold text-slate-900">{applicant.name}</h2>
-                <Badge variant="outline" className="text-amber-700 border-amber-300 bg-amber-50">
-                  Practice person. Not real.
-                </Badge>
-              </div>
-              <p className="text-sm text-slate-600">{applicant.blurb}</p>
+            <div className="space-y-2">
+              <Tag tone="red">Practice person. Not real.</Tag>
+              <h2 className="text-2xl font-extrabold text-pw-navy leading-tight">{applicant.name}</h2>
+              <p className="text-base text-pw-muted">{applicant.blurb}</p>
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-2 bg-slate-100 rounded-xl p-1 w-fit">
-            <button type="button" onClick={() => setMode('qa')} className={toggleClasses(mode === 'qa')}>
-              <MessagesSquare className="w-4 h-4" /> Interview Q&A
+          <div className="flex gap-1 bg-pw-soft rounded-2xl p-1 w-full sm:w-fit">
+            <button type="button" onClick={() => setMode('qa')} aria-pressed={mode === 'qa'} className={toggleClasses(mode === 'qa')}>
+              <MessagesSquare className="w-5 h-5 shrink-0" /> <span>Interview Q&A</span>
             </button>
-            <button type="button" onClick={() => setMode('form')} className={toggleClasses(mode === 'form')}>
-              <FileText className="w-4 h-4" /> Their N-400 form
+            <button type="button" onClick={() => setMode('form')} aria-pressed={mode === 'form'} className={toggleClasses(mode === 'form')}>
+              <FileText className="w-5 h-5 shrink-0" /> <span>Their <span className="whitespace-nowrap">N-400</span> form</span>
             </button>
           </div>
 
           {mode === 'form' ? (
             <div className="space-y-3">
-              <p className="text-sm leading-relaxed" style={{ color: '#4A5A78' }}>
+              <p className="text-base leading-relaxed text-pw-muted">
                 This is what {firstName}'s Form N-400 would look like, using the answers above — laid out like
                 the official 14-page paper form, part by part. It is long because the real form is long. This
                 form is an example for learning — it is not real, and this guide does not fill out or file any
@@ -135,7 +128,7 @@ export default function N400Walkthrough() {
             </div>
           ) : (
             <div className="space-y-5">
-              <p className="text-sm leading-relaxed" style={{ color: '#4A5A78' }}>
+              <p className="text-base leading-relaxed text-pw-muted">
                 See how {firstName} would answer the questions in the guide. These examples help you understand the
                 questions — every real applicant's answers are their own. Example answers are in English, like the
                 real interview. Nothing here is legal advice.
@@ -143,31 +136,28 @@ export default function N400Walkthrough() {
 
               {buildWalkthrough(applicant).map((group) => (
                 <div key={group.title} className="space-y-3">
-                  <h3 className="text-xs font-bold uppercase tracking-wide" style={{ color: '#4A5A78' }}>
-                    {group.title}
-                  </h3>
+                  <h3 className="text-xs font-bold uppercase tracking-widest text-pw-muted">{group.title}</h3>
                   {group.pairs.map((pair, i) => {
                     const key = `${group.title}-${i}`;
                     return (
-                      <div key={key} className="rounded-xl border border-slate-200 p-4 space-y-2">
-                        <p className="text-sm font-semibold text-slate-800">Officer asks: {pair.q}</p>
-                        <div className="flex items-start gap-3">
-                          <p className="text-sm text-slate-700 italic flex-1">
+                      <div key={key} className="rounded-2xl border border-pw-line bg-white p-4 space-y-3">
+                        <p className="text-base font-bold text-pw-navy">Officer asks: {pair.q}</p>
+                        <div className="flex items-start gap-3 rounded-xl bg-pw-soft px-3 py-2.5">
+                          <p className="text-base text-pw-navy italic flex-1 self-center">
                             {firstName} answers: “{pair.a}”
                           </p>
-                          <Button
-                            variant="ghost"
-                            size="icon"
+                          <button
+                            type="button"
                             aria-label="Listen to this example answer"
-                            className="rounded-full w-9 h-9 shrink-0"
+                            className="w-11 h-11 rounded-full bg-white border border-pw-line text-pw-navy hover:bg-pw-blue-soft grid place-items-center shrink-0 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red"
                             onClick={() => (playingKey === key ? setPlayingKey(null) : speak(key, pair.a))}
                           >
                             {playingKey === key ? (
-                              <Loader2 className="w-4 h-4 animate-spin" />
+                              <Loader2 className="w-5 h-5 animate-spin" />
                             ) : (
-                              <Volume2 className="w-4 h-4" />
+                              <Volume2 className="w-5 h-5" />
                             )}
-                          </Button>
+                          </button>
                         </div>
                       </div>
                     );
@@ -176,8 +166,7 @@ export default function N400Walkthrough() {
               ))}
             </div>
           )}
-        </CardContent>
-      </Card>
+      </RaisedCard>
     </div>
   );
 }
