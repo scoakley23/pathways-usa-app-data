@@ -5,6 +5,7 @@ import RoadmapHero from '@/components/home/RoadmapHero';
 import StartHereCard from '@/components/home/StartHereCard';
 import TodayCard from '@/components/persona/TodayCard';
 import RoadmapPath from '@/components/home/RoadmapPath';
+import HomePromises from '@/components/home/HomePromises';
 import { useAuth } from '@/lib/AuthContext';
 import useRoadmapProgress from '@/components/home/useRoadmapProgress';
 import useAppLanguage, { isRTL } from '@/hooks/useAppLanguage';
@@ -53,6 +54,9 @@ export default function Home({ cachedUser, cachedRole }) {
         onLanguageChange={setLanguage}
         translating={translating}
       />
+
+      {/* Official USCIS answers; learn in your language, test in English */}
+      <HomePromises t={t} />
 
       {/* Practice one skill */}
       <section aria-labelledby="practice-title" className="space-y-3">
