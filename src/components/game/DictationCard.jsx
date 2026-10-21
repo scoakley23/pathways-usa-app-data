@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { base44 } from '@/api/base44Client';
+import { checkDictation } from '@/lib/practiceChecks';
 
 export default function DictationCard({ sentence, onComplete, onNext }) {
   const [stage, setStage] = useState('listen'); // listen, check, result
@@ -74,13 +75,8 @@ export default function DictationCard({ sentence, onComplete, onNext }) {
     });
   };
 
-  // Clean text for comparison (remove punctuation, case insensitive)
-  const normalize = (text) => {
-    return text.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "").trim();
-  };
-
   const checkAnswer = () => {
-    const isCorrect = normalize(userInput) === normalize(sentence.text);
+    const { isCorrect } = checkDictation(sentence.text, userInput);
     setFeedback(isCorrect ? 'correct' : 'incorrect');
     setStage('result');
     

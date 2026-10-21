@@ -7,6 +7,7 @@ import SentencesTab from '@/components/admin/SentencesTab';
 import CivicsQuestionsTab from '@/components/admin/CivicsQuestionsTab';
 import VocabularyWordsTab from '@/components/admin/VocabularyWordsTab';
 import PageHeader from '@/components/PageHeader';
+import { Link } from 'react-router-dom';
 
 export default function Admin() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -50,7 +51,12 @@ export default function Admin() {
         title="Admin Dashboard"
         subtitle="Manage all practice content — sentences, civics questions, and vocabulary words."
       >
-        <GenerateLessonsButton />
+        <div className="flex flex-wrap gap-2">
+          <Link to="/tutor-demo" className="inline-flex items-center min-h-[44px] rounded-xl border-2 border-[#14264A] px-4 font-semibold text-[#14264A]">
+            Tutor demo
+          </Link>
+          <GenerateLessonsButton />
+        </div>
       </PageHeader>
 
       <Tabs defaultValue="sentences">

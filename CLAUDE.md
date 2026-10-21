@@ -33,6 +33,7 @@ Pathways USA is a free U.S. citizenship test prep app (civics, reading, writing,
   - **Auth/user**: `base44.auth.me()` / `base44.auth.updateMe()` (the `User` entity holds extra fields).
   - **AI**: `base44.integrations.Core.InvokeLLM({ prompt, response_json_schema?, file_urls?, add_context_from_internet? })`. Also `SendEmail`, `UploadFile`.
 - **AI tutor persona** (default name "Vía"; not the human tutor in My Classroom): config and `buildTutorInstructions()` in `src/lib/tutorPersona.js`; UI in `src/components/persona/`.
+- **Tutor lessons**: `TutorLesson` (`src/components/persona/`) renders a lesson = `{ id, title, steps }`; step types and rules in `src/lib/tutorLesson.js`. Practice checks are shared: `checkCivicsAnswer()` (`src/components/civics/`, AI, spoken answers) and `checkDictation()` / `matchOfficialAnswer()` (`src/lib/practiceChecks.js`, on-device, for typed answers). Feedback always shows official accepted answers from the question bank, never AI-written ones. Admin-only demo at `/tutor-demo`.
 - **Pages** are auto-registered from `src/pages/` (`src/pages.config.js` is auto-generated; only `mainPage` is editable). `src/Layout.jsx` wraps all pages. Feature components live in `src/components/<area>/`.
 - **Speech**: browser Web Speech API (`SpeechRecognition`, `lang = 'en-US'`) produces a transcript; scoring is word matching (`src/components/utils/wordDiff.js`) plus an `InvokeLLM` evaluation. Text-to-speech: `src/components/utils/textToSpeech.jsx` (`speakText(text, lang)`).
 - **Languages/i18n**: no i18n library. The chosen language is `localStorage['pathways_language']` (`src/hooks/useAppLanguage.js`; list in `LANGUAGES` in `src/hooks/useLessonTranslation.js`). UI strings are written in English and translated on demand with `InvokeLLM`, cached per language in localStorage (`useHomeTranslation`, `useN400Translation`, `useLawyerChecklistTranslation`). RTL languages: `ar`, `fa`, `ur`, `he`.
@@ -52,8 +53,8 @@ Pathways USA is a free U.S. citizenship test prep app (civics, reading, writing,
 | `AIStudyLog` | Study Buddy question + answer + email | shown to the learner in Study History; not emailed |
 | `Message`, `Notification` | tutor/student messages and in-app notifications | |
 | `TutorRelationship`, `Assignment` | tutor links, assigned items, tutor feedback | |
-| `localStorage` | target date (`pathways_target_date`), language, civics version, voice settings, cached translations, daily reminder flag, role cache, pending tutor invite | device only; cleared by `DeleteMyData` |
+| `localStorage` | target date (`pathways_target_date`), text size (`pathways_text_size`), language, civics version, voice settings, cached translations, daily reminder flag, role cache, pending tutor invite | device only; cleared by `DeleteMyData` |
 
 Reading practice scores from the browser transcript and word matching; no audio is recorded or uploaded (Base44 can't delete uploaded files).
 
-Known conflicts with the rules above (do not fix unless a prompt asks): leaderboard, points, and streaks in `src/components/gamification/` (planned for Prompt 6).
+Known conflicts with the rules above (do not fix unless a prompt asks): leaderboard, points, and streaks in `src/components/gamification/` (planned for Prompt 6); the civics quiz (`CivicsTestCard`) sends typed answers to the AI (tutor lessons check typed answers on the device instead).

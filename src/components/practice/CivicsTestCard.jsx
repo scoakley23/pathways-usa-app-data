@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { base44 } from '@/api/base44Client';
+import { checkCivicsAnswer } from '@/components/civics/checkCivicsAnswer';
 
 import { getPersonalizedAnswer } from '@/components/civics/RepresentativeFinder';
 import { LANGUAGES } from '@/hooks/useLessonTranslation';
@@ -113,40 +114,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
     }
     setVerifying(true);
     try {
-      let prompt;
-      if (isChanging) {
-        prompt = `You are a USCIS citizenship test examiner. The official answer to this question changes over time (for example, the current President, Vice President, Speaker of the House of Representatives, or Chief Justice).
-Question: ${question.question}
-Student's Answer: ${userAnswer}
-
-Use current information from the web to determine if the student's answer correctly names the current officeholder or current fact asked about. In the real USCIS interview, answers don't need to be word-for-word — as long as the meaning is correct, it counts.`;
-      } else if (isLocation && !personalizedAnswer) {
-        prompt = `You are a USCIS citizenship test examiner. The official answer to this question depends on where the student lives (their state's U.S. senators, their U.S. representative, their governor, or their state capital).
-Question: ${question.question}
-Student's Answer: ${userAnswer}
-
-Use current information from the web to determine if the student's answer plausibly names a currently serving U.S. official of the right kind, or a real U.S. state capital. Since the student's location is unknown, accept any currently valid answer of the right kind.`;
-      } else {
-        prompt = `You are a USCIS citizenship test examiner. Determine if the student's spoken answer is correct.
-
-Question: ${question.question}
-Official Answer: ${personalizedAnswer || question.answer}
-Student's Answer: ${userAnswer}
-
-In the real USCIS interview, answers don't need to be word-for-word — as long as the meaning is correct, it counts. Determine if the student's answer conveys the correct meaning.`;
-      }
-      const needsWeb = isChanging || (isLocation && !personalizedAnswer);
-      const result = await base44.integrations.Core.InvokeLLM({
-        prompt,
-        ...(needsWeb ? { add_context_from_internet: true, model: 'gemini_3_flash' } : {}),
-        response_json_schema: {
-          type: "object",
-          properties: {
-            is_correct: { type: "boolean" },
-            feedback: { type: "string" }
-          }
-        }
-      });
+      const result = await checkCivicsAnswer(question, userAnswer, { personalizedAnswer });
       setVerificationResult(result);
     } catch (e) {
       console.error('Failed to verify answer:', e);
