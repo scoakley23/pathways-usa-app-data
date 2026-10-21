@@ -41426,7 +41426,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/spectrum-storytime",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171840",
   "services": [
    "esl"
@@ -41691,7 +41691,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/1000-books-before-kindergarten-1",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:178259",
   "services": [
    "esl"
@@ -41770,7 +41770,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/st-columba-english-language-learning-program",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:161270",
   "services": [
    "esl"
@@ -41822,7 +41822,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/broader-horizons-brighter-futures",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164705",
   "services": [
    "citizenship_class"
@@ -42066,7 +42066,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/new-life-amec-educational-hope",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:178437",
   "services": [
    "esl"
@@ -42366,7 +42366,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/washington-height-community-outreach-inc",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:186611",
   "services": [
    "citizenship_class",
@@ -42500,7 +42500,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/goodwill-easter-seals-gulf-coast-0",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:140139",
   "services": [
    "esl"
@@ -42526,7 +42526,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/vision-academy-of-learning",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:205865",
   "services": [
    "esl"
@@ -42792,7 +42792,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/asvab-prep",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:162451",
   "services": [
    "esl"
@@ -42954,7 +42954,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/russellville-high-school-media-center",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164972",
   "services": [
    "esl"
@@ -43253,7 +43253,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/literacy-coalition-south-central-arkansas-3",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:119347",
   "services": [
    "esl"
@@ -43657,7 +43657,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/green-forest-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:162558",
   "services": [
    "esl",
@@ -43872,7 +43872,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/1-1-literacy-tutoring-k-12",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:178490",
   "services": [
    "esl"
@@ -44435,7 +44435,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/prescott-nevada-county-library-and-educational-facility",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:197149",
   "services": [
    "citizenship_class",
@@ -44465,7 +44465,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/education-programs",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:205992",
   "services": [
    "esl"
@@ -44596,7 +44596,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/springdale-family-literacy-program",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171886",
   "services": [
    "esl"
@@ -44701,7 +44701,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/ssvlo-literacy-programs",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:162397",
   "services": [
    "esl"
@@ -44840,7 +44840,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/azcend-family-resource-center",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:186653",
   "services": [
    "esl"
@@ -45082,7 +45082,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/a-vocational-educational-services",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:161700",
   "services": [
    "esl"
@@ -45242,7 +45242,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/grad-solutions-2",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:186778",
   "services": [
    "citizenship_class",
@@ -45379,7 +45379,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/queen-peace-catholic-school",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:67998",
   "services": [
    "esl"
@@ -45620,7 +45620,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/arizona-center-for-youth-resources",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:197344",
   "services": [
    "esl"
@@ -45728,7 +45728,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/leaf-bret-tarver-isaac-preschool",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:163396",
   "services": [
    "esl"
@@ -45834,7 +45834,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/pheonix-rescue-mission-2",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:193145",
   "services": [
    "esl"
@@ -45940,7 +45940,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/rio-salado-virtual-learning-academy",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:205921",
   "services": [
    "esl"
@@ -46724,7 +46724,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/come-back-kids-dr-milo-p-johnson-center-for-learning",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:163245",
   "services": [
    "esl"
@@ -47020,7 +47020,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/hospitality-food-service",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:165098",
   "services": [
    "citizenship_class",
@@ -47047,7 +47047,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/medical-assistant-course",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:165091",
   "services": [
    "citizenship_class",
@@ -47456,7 +47456,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/chester-literacy",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:204914",
   "services": [
    "citizenship_class",
@@ -47564,7 +47564,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/coachella-valley-adult-school",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171158",
   "services": [
    "citizenship_class",
@@ -47591,7 +47591,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/colusa-county-literacy-program",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:138327",
   "services": [
    "citizenship_class",
@@ -47810,7 +47810,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/come-back-kids-corona",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:163228",
   "services": [
    "esl"
@@ -47838,7 +47838,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/yosemite-literacy-project",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:206273",
   "services": [
    "citizenship_class",
@@ -48030,7 +48030,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/la-county-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:206212",
   "services": [
    "citizenship_class",
@@ -48220,7 +48220,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/humboldt-literacy-project-2",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:204633",
   "services": [
    "citizenship_class",
@@ -48494,7 +48494,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/fresno-state-parent-university-program",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164970",
   "services": [
    "citizenship_class",
@@ -48577,7 +48577,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/fresno-state-parent-university",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:161506",
   "services": [
    "esl"
@@ -49420,7 +49420,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/urban-conservation-corps-of-inland-empire-indio",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:163667",
   "services": [
    "esl"
@@ -49474,7 +49474,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/h-o-o-p-after-school-literacy-program",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:204788",
   "services": [
    "esl"
@@ -49554,7 +49554,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/come-back-kids-jurupa-valley",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:163238",
   "services": [
    "esl"
@@ -49607,7 +49607,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/orange-county-youth-center-wioa",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:163662",
   "services": [
    "esl"
@@ -49879,7 +49879,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/abram-friedman-occupational-center-1",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:163907",
   "services": [
    "citizenship_class",
@@ -49989,7 +49989,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/east-los-angeles-skills-center-2",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:163909",
   "services": [
    "citizenship_class",
@@ -50016,7 +50016,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/eastside-learning-center-eastside-lc",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:163923",
   "services": [
    "citizenship_class",
@@ -50728,7 +50728,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/gem-academy-wioa",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:163658",
   "services": [
    "esl"
@@ -51649,7 +51649,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/citizenship-program-2",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:193245",
   "services": [
    "citizenship_class"
@@ -52056,7 +52056,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/butte-county-library-literacy-services",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:142237",
   "services": [
    "citizenship_class",
@@ -52358,7 +52358,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/come-back-kids-perris",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:163243",
   "services": [
    "esl"
@@ -52384,7 +52384,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/come-back-kids-val-verde-perris",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:163240",
   "services": [
    "esl"
@@ -53036,7 +53036,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/come-back-kids-riverside-yoc",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:163231",
   "services": [
    "esl"
@@ -53062,7 +53062,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/come-back-kids-school-of-career-education",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:163248",
   "services": [
    "esl"
@@ -53088,7 +53088,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/come-back-kids-arlington-rlc",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:163227",
   "services": [
    "esl"
@@ -53166,7 +53166,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/come-back-kids-rubidoux-yoc",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:163229",
   "services": [
    "esl"
@@ -53354,7 +53354,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/elk-grove-adult-and-community-education-2",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:197268",
   "services": [
    "citizenship_class",
@@ -53408,7 +53408,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/natomas-unified",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:68782",
   "services": [
    "citizenship_class",
@@ -53730,7 +53730,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/urban-conservation-corps-of-inland-empire-san-bernardino",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:163661",
   "services": [
    "esl"
@@ -53864,7 +53864,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/pazzaz-inc-educational-enrichment-program",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:68885",
   "services": [
    "esl"
@@ -53971,7 +53971,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/downtown-continuation-hs-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:162209",
   "services": [
    "esl",
@@ -54181,7 +54181,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/come-back-kids-betty-gibbel-rlc-san-jacinto",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:163244",
   "services": [
    "esl"
@@ -54453,7 +54453,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/w-i-n-t-e-r-youthbuild",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:163669",
   "services": [
    "esl"
@@ -54508,7 +54508,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/conservation-corps-north-bay-1",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:178010",
   "services": [
    "esl"
@@ -54750,7 +54750,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/santa-barbara-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:63912",
   "services": [
    "esl",
@@ -54857,7 +54857,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/volunteer-centers-santa-cruz-county",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:142248",
   "services": [
    "citizenship_class",
@@ -54994,7 +54994,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/youth-connections-wioa-santa-rosa",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:163670",
   "services": [
    "esl"
@@ -55076,7 +55076,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/simi-institute-for-careers-education",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:163590",
   "services": [
    "citizenship_class",
@@ -56083,7 +56083,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/pajaro-valley-unified-school-district-raising-a-reader",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164459",
   "services": [
    "citizenship_class",
@@ -56193,7 +56193,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/glenn-county-literacy-projects-1",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:165252",
   "services": [
    "esl"
@@ -56277,7 +56277,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/sbcc-bring-me-a-book",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:162722",
   "services": [
    "esl"
@@ -56844,7 +56844,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/boulderreads",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:66470",
   "services": [
    "esl"
@@ -57058,7 +57058,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/community-hubs",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:206407",
   "services": [
    "citizenship_class",
@@ -57650,7 +57650,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/intensive-english-program",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164682",
   "services": [
    "esl"
@@ -57676,7 +57676,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/delta-county-literacy-program",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:68070",
   "services": [
    "esl"
@@ -58975,7 +58975,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/transition-to-employment-services",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:162788",
   "services": [
    "esl"
@@ -59139,7 +59139,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/women-and-families-center",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:170933",
   "services": [
    "citizenship_class",
@@ -59568,7 +59568,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/oic-of-new-london-county-inc-learning-academy",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:206180",
   "services": [
    "citizenship_class",
@@ -59597,7 +59597,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/oic-of-new-london-county-learning-academy",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:205804",
   "services": [
    "esl"
@@ -60347,7 +60347,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/bridge-family-resource-center",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:154438",
   "services": [
    "esl"
@@ -60756,7 +60756,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/youthbuild-dc-public-charter-school",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:205284",
   "services": [
    "esl"
@@ -61815,7 +61815,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/escambia-county-road-prison",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:170704",
   "services": [
    "esl"
@@ -62078,7 +62078,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/embry-riddle-language-institute",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:162766",
   "services": [
    "esl"
@@ -62130,7 +62130,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/limitless-learning",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:161387",
   "services": [
    "esl"
@@ -62262,7 +62262,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/alfalit-literacy-for-all",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:204632",
   "services": [
    "esl"
@@ -62447,7 +62447,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/broward-county-library-1",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:160608",
   "services": [
    "esl",
@@ -62476,7 +62476,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/ctace-broward-county-public-schools",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:161047",
   "services": [
    "esl"
@@ -62692,7 +62692,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/learn-to-read-of-st-lucie-co",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:178045",
   "services": [
    "citizenship_class",
@@ -62800,7 +62800,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/after-school-literacy-computer-program",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:165219",
   "services": [
    "citizenship_class",
@@ -63286,7 +63286,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/lake-placid-elementary-school",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:205628",
   "services": [
    "esl"
@@ -63578,7 +63578,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/ps-youth-s-after-school-program",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164498",
   "services": [
    "esl"
@@ -63604,7 +63604,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/do-good-41-inc",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:174545",
   "services": [
    "esl"
@@ -63906,7 +63906,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/center-information-orientation-inc",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:60854",
   "services": [
    "esl"
@@ -64010,7 +64010,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/pierre-toussaint-leadership-learning-center",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:161549",
   "services": [
    "esl"
@@ -64038,7 +64038,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/project-leap-literacy-for-empowerment-and-progress",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:206100",
   "services": [
    "esl"
@@ -64092,7 +64092,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/youth-program",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171954",
   "services": [
    "esl"
@@ -64170,7 +64170,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/santa-rosa-correctional-institution-academic-programs",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164223",
   "services": [
    "esl"
@@ -64307,7 +64307,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/grace-place-children-and-families-inc",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:67278",
   "services": [
    "citizenship_class",
@@ -64414,7 +64414,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/mom-and-tot-english",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:68854",
   "services": [
    "esl"
@@ -64544,7 +64544,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/english-cafe",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:162467",
   "services": [
    "esl"
@@ -64622,7 +64622,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/ready-2-read-3",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:162555",
   "services": [
    "esl"
@@ -64915,7 +64915,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/english-for-arabic-speakers",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:162719",
   "services": [
    "esl"
@@ -65204,7 +65204,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/lva-escarosa",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:60812",
   "services": [
    "esl"
@@ -65389,7 +65389,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/ffd-literacy-program",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:162751",
   "services": [
    "esl"
@@ -65523,7 +65523,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/safety-harbor-public-library-1",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:162399",
   "services": [
    "esl",
@@ -65629,7 +65629,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/seminole-county-public-schools",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:69040",
   "services": [
    "esl"
@@ -65902,7 +65902,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/reading-fun-at-fundamental",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:204879",
   "services": [
    "esl"
@@ -66119,7 +66119,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/florida-institute-for-community-studies-fics-multicultural-family-center",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:162256",
   "services": [
    "esl"
@@ -66390,7 +66390,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/legacy-elite-christian-preparatory-school",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:163571",
   "services": [
    "esl"
@@ -66554,7 +66554,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/royal-writers-organization-corporation",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164044",
   "services": [
    "esl"
@@ -66606,7 +66606,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/imagine-school-west-melbourne",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:170769",
   "services": [
    "esl"
@@ -66973,7 +66973,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/cook-county-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:151811",
   "services": [
    "esl",
@@ -67131,7 +67131,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/turner-county-family-engagement",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171952",
   "services": [
    "esl"
@@ -67316,7 +67316,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/agape-remah-resource-center-inc",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:178556",
   "services": [
    "esl"
@@ -67368,7 +67368,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/atlanta-fulton-public-library-foundation",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:205700",
   "services": [
    "esl",
@@ -67820,7 +67820,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/buford-branch-gwinnett-county-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:170948",
   "services": [
    "citizenship_class",
@@ -67877,7 +67877,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/cairo-high-school",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:170398",
   "services": [
    "esl"
@@ -68548,7 +68548,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/dacula-branch-gwinnett-county-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171396",
   "services": [
    "citizenship_class",
@@ -68578,7 +68578,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/hamilton-mill-branch-gwinnett-county-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171400",
   "services": [
    "citizenship_class",
@@ -68849,7 +68849,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/family-connection-inc",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:68481",
   "services": [
    "esl"
@@ -68929,7 +68929,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/training-4-universal-emerging-tech",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:186681",
   "services": [
    "citizenship_class",
@@ -68984,7 +68984,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/duluth-branch-gwinnett-county-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171397",
   "services": [
    "citizenship_class",
@@ -69091,7 +69091,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/first-foundation-kids-inc",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:193195",
   "services": [
    "esl"
@@ -69222,7 +69222,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/mental-fitness-21st-century-learning-at-fairburn-youth-center",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:174629",
   "services": [
    "esl"
@@ -69277,7 +69277,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/fayette-county-language-camp",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:174589",
   "services": [
    "esl"
@@ -69464,7 +69464,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/grayson-branch-gwinnett-county-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171399",
   "services": [
    "citizenship_class",
@@ -69492,7 +69492,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/banks-county-family-connection",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:161899",
   "services": [
    "esl"
@@ -69518,7 +69518,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/banks-county-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:161902",
   "services": [
    "esl",
@@ -69626,7 +69626,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/clayton-county-library-system",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:178410",
   "services": [
    "citizenship_class",
@@ -69680,7 +69680,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/collins-hill-branch-gwinnett-county-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171395",
   "services": [
    "citizenship_class",
@@ -69710,7 +69710,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/five-forks-branch-gwinnett-county-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171398",
   "services": [
    "citizenship_class",
@@ -69740,7 +69740,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/lawrenceville-branch-gwinnett-county-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171401",
   "services": [
    "citizenship_class",
@@ -69770,7 +69770,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/lilburn-branch-gwinnett-county-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171402",
   "services": [
    "citizenship_class",
@@ -69800,7 +69800,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/mountain-park-branch-gwinnett-county-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171403",
   "services": [
    "citizenship_class",
@@ -69958,7 +69958,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/macon-county-chiefs-diploma-program",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171989",
   "services": [
    "esl"
@@ -69984,7 +69984,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/microsoft-office-training",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164006",
   "services": [
    "citizenship_class",
@@ -70038,7 +70038,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/tutoring-2",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164007",
   "services": [
    "citizenship_class",
@@ -70171,7 +70171,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/carrie-dorsey-perry-memorial-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:67680",
   "services": [
    "esl",
@@ -70198,7 +70198,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/coweta-public-library-system",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:162779",
   "services": [
    "esl",
@@ -70282,7 +70282,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/norcross-branch-gwinnett-county-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171404",
   "services": [
    "citizenship_class",
@@ -70392,7 +70392,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/peachtree-corners-branch-gwinnett-county-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171405",
   "services": [
    "citizenship_class",
@@ -70661,7 +70661,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/centerville-branch-gwinnett-county-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171394",
   "services": [
    "citizenship_class",
@@ -70689,7 +70689,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/snellville-branch-gwinnett-county-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171406",
   "services": [
    "citizenship_class",
@@ -70879,7 +70879,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/suwanee-branch-gwinnett-county-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171407",
   "services": [
    "citizenship_class",
@@ -70962,7 +70962,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/lifehouse",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:178461",
   "services": [
    "citizenship_class",
@@ -71071,7 +71071,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/quality-of-life-association",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171068",
   "services": [
    "esl"
@@ -71097,7 +71097,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/south-georgia-regional-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:68676",
   "services": [
    "esl",
@@ -71450,7 +71450,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/carnegie-evans-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:186661",
   "services": [
    "esl",
@@ -72204,7 +72204,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/pati-s-libelulas",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:197180",
   "services": [
    "citizenship_class",
@@ -72259,7 +72259,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/all-cultures-equal",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:172051",
   "services": [
    "citizenship_class",
@@ -72845,7 +72845,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/good-samaritan-network-inc",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:172049",
   "services": [
    "esl"
@@ -72873,7 +72873,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/literacy-tutoring-program",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:205698",
   "services": [
    "esl"
@@ -72955,7 +72955,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/berwyn-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:66195",
   "services": [
    "citizenship_class",
@@ -73711,7 +73711,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/daughters-of-destiny-computer-technology-program",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:161392",
   "services": [
    "esl"
@@ -73763,7 +73763,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/howard-area-community-center-0",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:69266",
   "services": [
    "esl"
@@ -73841,7 +73841,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/lakeside-community-committee",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:68941",
   "services": [
    "esl"
@@ -73867,7 +73867,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/leaning-helps-everyone",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:170894",
   "services": [
    "esl"
@@ -73919,7 +73919,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/lvtra-community-learning-center",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:162574",
   "services": [
    "esl"
@@ -73945,7 +73945,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/mary-ward-center",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:68591",
   "services": [
    "esl"
@@ -74051,7 +74051,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/senior-community-service-employment-program",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:186620",
   "services": [
    "esl"
@@ -74239,7 +74239,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/east-st-louis-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:121184",
   "services": [
    "esl",
@@ -74294,7 +74294,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/gail-borden-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:170917",
   "services": [
    "citizenship_class",
@@ -74480,7 +74480,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/english-conversation-group-glendale",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:147157",
   "services": [
    "esl"
@@ -74746,7 +74746,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/tutoring-english-to-advance-change-teach",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171027",
   "services": [
    "citizenship_class",
@@ -75013,7 +75013,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/english-spanish-conversation",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:186633",
   "services": [
    "citizenship_class",
@@ -75146,7 +75146,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/paris-alternative-learning-site-2",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:197101",
   "services": [
    "citizenship_class",
@@ -75626,7 +75626,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/villa-park-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:162495",
   "services": [
    "esl",
@@ -75876,7 +75876,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/wood-dale-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171847",
   "services": [
    "esl",
@@ -76413,7 +76413,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/educa-educational-and-cultural-advancement-latinos",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:68801",
   "services": [
    "esl"
@@ -77378,7 +77378,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/literacy-coalition-kokomo-howard-counties-inc",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:142232",
   "services": [
    "citizenship_class",
@@ -77703,7 +77703,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/morgan-county-coalition-literacy",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:68983",
   "services": [
    "esl"
@@ -77810,7 +77810,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/kindergarten-countdown-4-week-camps",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:172041",
   "services": [
    "esl"
@@ -77994,7 +77994,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/amigos-richmond-latino-center-english-language-program",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:178608",
   "services": [
    "esl"
@@ -78216,7 +78216,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/perry-county-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:205691",
   "services": [
    "esl",
@@ -78489,7 +78489,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/arkansas-city-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:162641",
   "services": [
    "esl",
@@ -78571,7 +78571,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/emporia-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:204523",
   "services": [
    "citizenship_class",
@@ -78815,7 +78815,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/hutchinson-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:62518",
   "services": [
    "esl",
@@ -79374,7 +79374,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/turon-community-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:206440",
   "services": [
    "esl",
@@ -79401,7 +79401,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/wichita-international-language-and-learning-center",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:68864",
   "services": [
    "citizenship_class",
@@ -79637,7 +79637,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/refuge-bg",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:178136",
   "services": [
    "citizenship_class",
@@ -79874,7 +79874,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/carroll-county-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:67787",
   "services": [
    "esl",
@@ -80486,7 +80486,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/russell-county-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:163066",
   "services": [
    "esl",
@@ -80697,7 +80697,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/face-family-and-community-engagement-fayette-county-public-schools",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:205928",
   "services": [
    "citizenship_class",
@@ -81268,7 +81268,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/dyslexia-tutoring",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164727",
   "services": [
    "citizenship_class",
@@ -82676,7 +82676,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/new-hope-learning-center",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:163542",
   "services": [
    "esl"
@@ -82867,7 +82867,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/read-with-me-family-group",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:170851",
   "services": [
    "esl"
@@ -82893,7 +82893,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/reading-for-the-family-1",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164706",
   "services": [
    "esl"
@@ -83103,7 +83103,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/basic-english-language-instruction",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:163346",
   "services": [
    "esl"
@@ -83606,7 +83606,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/the-life-changers-of-ne-louisiana-public-education-program",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:170886",
   "services": [
    "esl"
@@ -83686,7 +83686,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/generation-success",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:165041",
   "services": [
    "citizenship_class",
@@ -83744,7 +83744,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/academic-enrichment",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:170380",
   "services": [
    "esl"
@@ -83852,7 +83852,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/einstein-charter-schools",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:178323",
   "services": [
    "esl"
@@ -84008,7 +84008,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/rolling-hills-ministries",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:162716",
   "services": [
    "esl"
@@ -84995,7 +84995,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/training-resources-america-inc-0",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:69185",
   "services": [
    "esl"
@@ -85021,7 +85021,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/community-learning-center-159443",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:178270",
   "services": [
    "citizenship_class",
@@ -85076,7 +85076,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/worldteach-english-language-acquisition-programs",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:170928",
   "services": [
    "esl"
@@ -85159,7 +85159,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/phoenix-charter-academy-chelsea",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:178316",
   "services": [
    "esl"
@@ -85346,7 +85346,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/preservation-literacy-circle",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:165140",
   "services": [
    "esl"
@@ -85504,7 +85504,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/progente-connections",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:193298",
   "services": [
    "citizenship_class",
@@ -85743,7 +85743,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/enchanted-circle-theater",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:162424",
   "services": [
    "esl"
@@ -85771,7 +85771,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/igualidad",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164493",
   "services": [
    "esl"
@@ -86449,7 +86449,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/umass-dartmouth-workers-education-program",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:163575",
   "services": [
    "esl"
@@ -86849,7 +86849,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/training-resources-america-inc-3",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:69188",
   "services": [
    "esl"
@@ -87141,7 +87141,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/boys-girls-club-family-center",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:172034",
   "services": [
    "esl"
@@ -87167,7 +87167,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/springfield-boys-girls-club",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:165207",
   "services": [
    "esl"
@@ -87300,7 +87300,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/families-learning-together-early-literacy-education-care",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164368",
   "services": [
    "esl"
@@ -87487,7 +87487,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/beaman-memorial-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164609",
   "services": [
    "esl",
@@ -87700,7 +87700,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/training-resources-america-inc",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:69163",
   "services": [
    "esl"
@@ -87939,7 +87939,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/new-faith-community",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:68832",
   "services": [
    "esl"
@@ -88095,7 +88095,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/helping-up-mission",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164238",
   "services": [
    "esl"
@@ -89152,7 +89152,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/headstart",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:154280",
   "services": [
    "esl"
@@ -89689,7 +89689,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/hsp-carroll-county-family-center",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:67513",
   "services": [
    "esl"
@@ -90225,7 +90225,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/lewiston-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:160857",
   "services": [
    "esl",
@@ -90917,7 +90917,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/ann-arbor-public-schools",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:61790",
   "services": [
    "esl"
@@ -91103,7 +91103,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/michigan-works-learning-lab-benzonia-bacn-0",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:152211",
   "services": [
    "citizenship_class",
@@ -91158,7 +91158,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/michigan-works-learning-lab-cadillac",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:68271",
   "services": [
    "citizenship_class",
@@ -91638,7 +91638,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/detroit-public-schools-community-district",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:162741",
   "services": [
    "esl"
@@ -91928,7 +91928,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/east-lansing-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:174584",
   "services": [
    "esl",
@@ -91955,7 +91955,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/c-o-f-y-center-new-beginnings-literacy-program",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:174622",
   "services": [
    "citizenship_class",
@@ -92248,7 +92248,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/oceana-hispanic-center",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164289",
   "services": [
    "citizenship_class",
@@ -92409,7 +92409,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/michigan-works-learning-lab-kalkaska",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:68274",
   "services": [
    "citizenship_class",
@@ -92804,7 +92804,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/michigan-works-learning-lab-manistee",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:68275",
   "services": [
    "citizenship_class",
@@ -93102,7 +93102,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/michigan-works-learning-lab-petoskey",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:68277",
   "services": [
    "citizenship_class",
@@ -93446,7 +93446,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/michigan-works-learning-lab-traverse-city",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:68278",
   "services": [
    "citizenship_class",
@@ -93763,7 +93763,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/writers-group",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:170959",
   "services": [
    "esl"
@@ -94081,7 +94081,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/braham-cambridge-isanti-mora-and-princeton",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:62153",
   "services": [
    "esl"
@@ -94533,7 +94533,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/west-abe-glencoe-silver-lake",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:165266",
   "services": [
    "esl"
@@ -94798,7 +94798,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/lakeville-area-learning-center",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:68111",
   "services": [
    "esl"
@@ -95172,7 +95172,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/saint-mary-s-university-of-minnesota",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:170775",
   "services": [
    "esl"
@@ -95732,7 +95732,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/pace-literacy-program-isd-720",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:67508",
   "services": [
    "esl"
@@ -95760,7 +95760,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/hands-across-the-world",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:178346",
   "services": [
    "citizenship_class",
@@ -97751,7 +97751,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/st-louis-county-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164951",
   "services": [
    "citizenship_class",
@@ -97807,7 +97807,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/teach-me-black-brown",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:186573",
   "services": [
    "esl"
@@ -98288,7 +98288,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/business-development-program",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171970",
   "services": [
    "esl"
@@ -98366,7 +98366,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/the-joanne-parrish-knight-family-center-at-central-institute-for-the-deaf",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:161800",
   "services": [
    "esl"
@@ -98762,7 +98762,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/children-s-story-hour",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:190272",
   "services": [
    "esl"
@@ -99027,7 +99027,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/connecting-the-dots",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164881",
   "services": [
    "esl"
@@ -99079,7 +99079,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/madcaap-new-attitudes-education",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:162427",
   "services": [
    "esl"
@@ -99366,7 +99366,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/the-connection",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:170913",
   "services": [
    "citizenship_class",
@@ -99471,7 +99471,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/t-k-martin-ignite-dyslexia-program",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:170905",
   "services": [
    "esl"
@@ -99684,7 +99684,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/smsd-parent-center",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:204683",
   "services": [
    "esl"
@@ -99710,7 +99710,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/dream-preparatory-inc",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:165022",
   "services": [
    "esl"
@@ -100214,7 +100214,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/early-literacy-family-workshops",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164387",
   "services": [
    "citizenship_class",
@@ -100323,7 +100323,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/family-resource-center-at-emma",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:161349",
   "services": [
    "esl"
@@ -100433,7 +100433,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/english-language-acquisition-program",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:206375",
   "services": [
    "citizenship_class",
@@ -100594,7 +100594,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/isla-immersion-for-spanish-language-acquisition",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:165328",
   "services": [
    "esl"
@@ -100779,7 +100779,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/hope-in-literacy",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:163286",
   "services": [
    "esl"
@@ -100805,7 +100805,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/learning-together-aprendiendo-juntos",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:205502",
   "services": [
    "esl"
@@ -100857,7 +100857,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/one-on-one-literacy-tutoring-5",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:204723",
   "services": [
    "esl"
@@ -100883,7 +100883,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/ourbridge-for-kids",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:174661",
   "services": [
    "esl"
@@ -100961,7 +100961,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/ties-4-guys-mm",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171850",
   "services": [
    "esl"
@@ -101315,7 +101315,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/blazing-foundation",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:163254",
   "services": [
    "esl"
@@ -101367,7 +101367,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/r-e-a-d",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:162887",
   "services": [
    "esl"
@@ -101393,7 +101393,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/bladen-smart-start-a-partnership-for-children",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164008",
   "services": [
    "esl"
@@ -101716,7 +101716,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/coalition-diverse-language-communities",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:154381",
   "services": [
    "esl"
@@ -101821,7 +101821,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/generation-y-center-inc",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:206370",
   "services": [
    "citizenship_class"
@@ -102166,7 +102166,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/pathway-program",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:205453",
   "services": [
    "esl"
@@ -102670,7 +102670,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/maggie-s-outreach-community-economic-development-center",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:161293",
   "services": [
    "esl"
@@ -102935,7 +102935,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/graham-county-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:178638",
   "services": [
    "esl",
@@ -103362,7 +103362,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/reaching-for-the-stars-empowerment-inc",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:205612",
   "services": [
    "esl"
@@ -103574,7 +103574,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/h-e-r-path",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:206174",
   "services": [
    "esl"
@@ -104435,7 +104435,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/center-for-people-in-need",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:162503",
   "services": [
    "esl"
@@ -104461,7 +104461,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/lincoln-public-schools",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:62534",
   "services": [
    "esl"
@@ -104592,7 +104592,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/completely-kids",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:152023",
   "services": [
    "citizenship_class",
@@ -104939,7 +104939,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/english-second-language",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:205762",
   "services": [
    "esl"
@@ -105465,7 +105465,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/above-the-notch-community-school",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:186697",
   "services": [
    "esl"
@@ -105809,7 +105809,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/jr-taxation",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:163601",
   "services": [
    "citizenship_class",
@@ -105945,7 +105945,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/hispanic-family-center-south-jersey",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:65303",
   "services": [
    "esl"
@@ -106135,7 +106135,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/library-classes-and-events",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164867",
   "services": [
    "citizenship_class",
@@ -106404,7 +106404,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/greater-bergen-community-action",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:192586",
   "services": [
    "citizenship_class",
@@ -106855,7 +106855,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/ell-english-language-learning",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:186503",
   "services": [
    "citizenship_class",
@@ -107336,7 +107336,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/basic-literacy-and-numeracy",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164483",
   "services": [
    "citizenship_class",
@@ -107390,7 +107390,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/general-equivelancy-test-preparation-program",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164484",
   "services": [
    "citizenship_class",
@@ -107603,7 +107603,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/english-for-non-english-speakers-2",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:204902",
   "services": [
    "esl"
@@ -107790,7 +107790,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/center-for-family-resources-inc",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:172100",
   "services": [
    "esl"
@@ -108004,7 +108004,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/puerta-al-futuro-0",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:68930",
   "services": [
    "esl"
@@ -108136,7 +108136,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/adult-basic-education-math-english",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171807",
   "services": [
    "esl"
@@ -108296,7 +108296,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/hcst-community-resource-center",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:205277",
   "services": [
    "esl"
@@ -108484,7 +108484,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/abq-charter-academy",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:161760",
   "services": [
    "esl"
@@ -108590,7 +108590,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/tenderlove-innovations",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171097",
   "services": [
    "esl"
@@ -108642,7 +108642,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/carlsbad-literacy-program",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:142252",
   "services": [
    "esl"
@@ -108697,7 +108697,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/kha-p-o-community-school",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:170401",
   "services": [
    "citizenship_class",
@@ -108914,7 +108914,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/hidalgo-county-literacy-program",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:142112",
   "services": [
    "citizenship_class",
@@ -109105,7 +109105,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/santa-fe-learning-center-the-homeshcool-classroom",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:170962",
   "services": [
    "esl"
@@ -109239,7 +109239,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/taos-education-career-center",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:165059",
   "services": [
    "citizenship_class",
@@ -109561,7 +109561,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/nynpa-newspapers-education",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:68512",
   "services": [
    "esl"
@@ -110501,7 +110501,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/language-literacy-resource-center",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:170475",
   "services": [
    "citizenship_class",
@@ -110660,7 +110660,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/bedford-stuyvesant-new-beginnings-charter-school",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:178425",
   "services": [
    "esl"
@@ -110741,7 +110741,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/english-language-program-4",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:206427",
   "services": [
    "esl"
@@ -111034,7 +111034,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/tasc-preparation-course",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171214",
   "services": [
    "esl"
@@ -111302,7 +111302,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/canastota-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:205910",
   "services": [
    "esl",
@@ -111385,7 +111385,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/literacy-new-york-2",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:206426",
   "services": [
    "citizenship_class"
@@ -111493,7 +111493,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/suny-cobleskill-center-for-academic-support-and-excellence-case",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:178462",
   "services": [
    "esl"
@@ -111782,7 +111782,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/language-and-literacy-skills-classes",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:205501",
   "services": [
    "citizenship_class",
@@ -112108,7 +112108,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/open-doors-english",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:178291",
   "services": [
    "esl"
@@ -112537,7 +112537,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/paltrohelp-inc",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:206186",
   "services": [
    "esl"
@@ -112672,7 +112672,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/manlius-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:197266",
   "services": [
    "esl",
@@ -113187,7 +113187,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/english-in-action",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:163600",
   "services": [
    "esl"
@@ -113343,7 +113343,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/read-a-recipe-for-literacy",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164900",
   "services": [
    "esl"
@@ -113695,7 +113695,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/wheels-lower-grades",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164479",
   "services": [
    "esl"
@@ -113937,7 +113937,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/esboces",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:161068",
   "services": [
    "esl"
@@ -114339,7 +114339,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/central-librarylibrary-resource-center",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:59979",
   "services": [
    "esl",
@@ -114732,7 +114732,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/sacred-heart-center-new-americans",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:142347",
   "services": [
    "citizenship_class",
@@ -114922,7 +114922,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/four-county-career-center-1",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:163547",
   "services": [
    "esl"
@@ -114948,7 +114948,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/ashland-aspire",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:163570",
   "services": [
    "esl"
@@ -115000,7 +115000,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/capacity-development-integration-and-youth-tutoring-nuestros-ninos-el-futuro",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:206366",
   "services": [
    "esl"
@@ -115160,7 +115160,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/adult-education-solutions-program",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:178633",
   "services": [
    "citizenship_class",
@@ -115402,7 +115402,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/best-community-resource-center",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:178486",
   "services": [
    "citizenship_class",
@@ -115753,7 +115753,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/thea-bowman-center",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164723",
   "services": [
    "esl"
@@ -116016,7 +116016,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/child-development-council-franklin-county-inc",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:67944",
   "services": [
    "citizenship_class",
@@ -116043,7 +116043,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/columbus-city-schools-able",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:61440",
   "services": [
    "citizenship_class",
@@ -117180,7 +117180,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/the-loveland-literacy-project",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:161204",
   "services": [
    "esl"
@@ -117367,7 +117367,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/licking-county-jvsc-tec",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:61414",
   "services": [
    "esl"
@@ -117393,7 +117393,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/licking-county-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:170708",
   "services": [
    "esl",
@@ -117420,7 +117420,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/ehove-norwalk-city-schools-aspire",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:163552",
   "services": [
    "citizenship_class",
@@ -117716,7 +117716,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/penta-career-center",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:65405",
   "services": [
    "esl"
@@ -117742,7 +117742,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/pickerington-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:205660",
   "services": [
    "esl",
@@ -117875,7 +117875,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/reed-memorial-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164638",
   "services": [
    "esl",
@@ -118219,7 +118219,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/twinsburg-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:186485",
   "services": [
    "citizenship_class",
@@ -118875,7 +118875,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/cwf-proctor-program",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:177954",
   "services": [
    "esl"
@@ -119117,7 +119117,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/literacy-link-inc",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:142266",
   "services": [
    "esl"
@@ -119467,7 +119467,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/thomas-j-harrison-pryor-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:161376",
   "services": [
    "esl",
@@ -119520,7 +119520,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/seminole-public-library-new-literacy-program",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:161321",
   "services": [
    "esl",
@@ -120030,7 +120030,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/centro-cultural",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:162130",
   "services": [
    "esl"
@@ -120384,7 +120384,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/kids-unlimited-academy-charter-school",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164617",
   "services": [
    "esl",
@@ -120714,7 +120714,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/sutherlin-library-volunteers",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:172014",
   "services": [
    "esl",
@@ -120849,7 +120849,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/lehigh-valley-reads",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164561",
   "services": [
    "esl"
@@ -120982,7 +120982,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/garage-youth-center",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:197093",
   "services": [
    "esl"
@@ -121035,7 +121035,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/f-d-campbell-memorial-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:186749",
   "services": [
    "esl",
@@ -121114,7 +121114,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/boyertown-community-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:162883",
   "services": [
    "esl",
@@ -121327,7 +121327,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/clarion-community-learning-workshop",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:162834",
   "services": [
    "esl"
@@ -121380,7 +121380,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/intermediate-unit-1-6",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:145260",
   "services": [
    "esl"
@@ -121459,7 +121459,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/community-action-inc-dubois",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:204559",
   "services": [
    "esl"
@@ -121696,7 +121696,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/folcroft-public-library-literacy-center",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:172093",
   "services": [
    "esl",
@@ -121829,7 +121829,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/ywca-westmoreland-county-literacy-program",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:142250",
   "services": [
    "esl"
@@ -122149,7 +122149,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/la-comunidad-hispana",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:64642",
   "services": [
    "esl"
@@ -122204,7 +122204,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/rsvp-volunteers",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:205879",
   "services": [
    "esl"
@@ -122230,7 +122230,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/innovation-academy-camps",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:178518",
   "services": [
    "esl"
@@ -122544,7 +122544,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/lifelong-learning-center-3",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:205872",
   "services": [
    "esl"
@@ -122728,7 +122728,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/milton-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:178578",
   "services": [
    "citizenship_class",
@@ -122781,7 +122781,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/montgomery-area-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:206005",
   "services": [
    "esl",
@@ -123017,7 +123017,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/ace-a",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164100",
   "services": [
    "citizenship_class",
@@ -123178,7 +123178,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/tabadul",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:174674",
   "services": [
    "citizenship_class",
@@ -123309,7 +123309,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/center-for-literacy-at-busrod-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:170447",
   "services": [
    "esl",
@@ -123336,7 +123336,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/center-for-literacy-at-bustleton-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:170448",
   "services": [
    "esl",
@@ -123363,7 +123363,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/center-for-literacy-at-ccp-west",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:170449",
   "services": [
    "esl"
@@ -123389,7 +123389,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/center-for-literacy-at-george-washington-hs",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:170453",
   "services": [
    "esl"
@@ -123415,7 +123415,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/center-for-literacy-at-south-philadelphia-hs",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:170455",
   "services": [
    "esl"
@@ -123441,7 +123441,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/center-for-literacy-at-southwark-school",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:170454",
   "services": [
    "esl"
@@ -123467,7 +123467,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/center-for-literacy-at-southwest-cdc",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:170451",
   "services": [
    "esl"
@@ -123493,7 +123493,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/community-learning-center-1",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:64623",
   "services": [
    "esl"
@@ -123599,7 +123599,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/free-library-of-philadelphia",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:162507",
   "services": [
    "esl",
@@ -123653,7 +123653,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/ingles",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:197333",
   "services": [
    "esl"
@@ -124129,7 +124129,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/let-s-speak-english",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:163681",
   "services": [
    "esl"
@@ -124155,7 +124155,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/propel-schools",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:170816",
   "services": [
    "esl"
@@ -124771,7 +124771,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/intermediate-unit-1-5",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:145259",
   "services": [
    "esl"
@@ -124876,7 +124876,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/intermediate-unit-1-3",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:145257",
   "services": [
    "esl"
@@ -124902,7 +124902,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/intermediate-unit-1-2",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:145255",
   "services": [
    "esl"
@@ -125143,7 +125143,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/east-providence-library-literacy",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:163607",
   "services": [
    "citizenship_class",
@@ -125442,7 +125442,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/providence-public-schools-rosetta-stone-program",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:161741",
   "services": [
    "esl"
@@ -125470,7 +125470,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/strengthening-families-through-music-and-language",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:161327",
   "services": [
    "esl"
@@ -125576,7 +125576,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/project-riral",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:64442",
   "services": [
    "esl"
@@ -126033,7 +126033,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/pact-parent-and-child-together",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171043",
   "services": [
    "esl"
@@ -126138,7 +126138,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/aiken-county-first-steps",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:68988",
   "services": [
    "esl"
@@ -126164,7 +126164,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/megiddo-dream-station",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:118573",
   "services": [
    "esl"
@@ -126270,7 +126270,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/strides",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:68370",
   "services": [
    "esl"
@@ -126296,7 +126296,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/greenwood-county-library-adult-literacy-esl",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:165067",
   "services": [
    "citizenship_class",
@@ -126858,7 +126858,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/ccs-learning-center",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:205654",
   "services": [
    "esl"
@@ -126937,7 +126937,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/spartanburg-county-public-libraries-headquarters",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:120917",
   "services": [
    "esl"
@@ -127224,7 +127224,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/brookings-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:186551",
   "services": [
    "esl",
@@ -127331,7 +127331,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/english-class",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:205585",
   "services": [
    "esl"
@@ -127677,7 +127677,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/bolivar-hardeman-county-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164497",
   "services": [
    "esl",
@@ -127730,7 +127730,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/ella-cohort",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:196989",
   "services": [
    "esl"
@@ -127811,7 +127811,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/international-literacy-center",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:170891",
   "services": [
    "citizenship_class",
@@ -127919,7 +127919,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/youth-literacy-2",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:174577",
   "services": [
    "citizenship_class",
@@ -128159,7 +128159,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/teacher-teacher-visits",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164763",
   "services": [
    "esl"
@@ -128185,7 +128185,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/laughter-reads-2",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:204924",
   "services": [
    "esl"
@@ -128368,7 +128368,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/summer-reading-camp",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:162749",
   "services": [
    "esl"
@@ -128501,7 +128501,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/rocklife-youth",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:205614",
   "services": [
    "esl"
@@ -128739,7 +128739,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/st-mary-s-church-and-school",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:174560",
   "services": [
    "esl"
@@ -128792,7 +128792,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/read-speak-succeed-english-language-and-literacy-development-ela",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:206118",
   "services": [
    "esl"
@@ -128900,7 +128900,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/12-month-conversational-english-skills-program-at-laurel-church-of-christ",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:172057",
   "services": [
    "esl"
@@ -128981,7 +128981,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/classes-to-learn-english-for-spanish-speakers-at-cumberland-church",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:192642",
   "services": [
    "esl"
@@ -129007,7 +129007,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/conversational-english-for-intermediate-advanced-speakers-at-first-baptist-concord",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:192646",
   "services": [
    "esl"
@@ -129059,7 +129059,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/ell-at-west-hills-elementary-school",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:192647",
   "services": [
    "esl"
@@ -129189,7 +129189,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/florence-crittenton-agency",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:161922",
   "services": [
    "esl"
@@ -129215,7 +129215,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/friends-of-literacy-12-month-program-reading-writing-and-conversational-english",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171985",
   "services": [
    "esl"
@@ -129293,7 +129293,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/language-life-skills-program-9-month-program-aug-april",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171983",
   "services": [
    "esl"
@@ -129319,7 +129319,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/language-life-skills-program-at-providence-church",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:192645",
   "services": [
    "esl"
@@ -129345,7 +129345,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/language-literacy-shared-reading-project-deaf-mentor-tutors",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:178503",
   "services": [
    "esl"
@@ -129401,7 +129401,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/ywca-knoxville-s-phyllis-wheatley-center",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:161768",
   "services": [
    "esl"
@@ -129427,7 +129427,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/center-for-english-integration-services-at-west-lonsdale",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:192640",
   "services": [
    "esl"
@@ -129479,7 +129479,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/wilson-county-schools-family-resource-center",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:68336",
   "services": [
    "esl"
@@ -129722,7 +129722,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/memphis-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:162572",
   "services": [
    "citizenship_class",
@@ -129883,7 +129883,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/mahogany-resource-development-center",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164696",
   "services": [
    "esl"
@@ -130575,7 +130575,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/conexion-americas",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:68946",
   "services": [
    "esl"
@@ -130739,7 +130739,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/john-overton-high-school",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:154487",
   "services": [
    "esl"
@@ -130925,7 +130925,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/the-aloe-family-after-school-bilingual-tutoring-2",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:205681",
   "services": [
    "esl"
@@ -131056,7 +131056,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/language-life-skills-program-at-grace-lutheran-church-of-oak-ridge",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:192657",
   "services": [
    "esl"
@@ -131136,7 +131136,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/iglesia-christiana-la-luz-de-jesus-church",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:192652",
   "services": [
    "esl"
@@ -131162,7 +131162,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/conversation-bible-integration-classes-at-temple-baptist-church-curtis-hudson-building",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171981",
   "services": [
    "esl"
@@ -131240,7 +131240,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/craft-time-at-the-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164374",
   "services": [
    "citizenship_class",
@@ -131322,7 +131322,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/stem-at-parrott-wood-memorial-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164375",
   "services": [
    "citizenship_class",
@@ -131725,7 +131725,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/fresh-start-mentoring-service",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:67939",
   "services": [
    "esl"
@@ -131751,7 +131751,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/water-rock",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:66466",
   "services": [
    "esl"
@@ -131995,7 +131995,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/austin-voices-for-education-and-youth",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:170974",
   "services": [
    "esl"
@@ -132075,7 +132075,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/english-forward",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164740",
   "services": [
    "esl"
@@ -132127,7 +132127,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/literacy-coalition-central-texas",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:66244",
   "services": [
    "esl"
@@ -132262,7 +132262,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/rising-readers-and-family-leaders",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:206199",
   "services": [
    "esl"
@@ -132343,7 +132343,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/maurine-gray-literacy-center",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:63341",
   "services": [
    "esl"
@@ -132666,7 +132666,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/gateway-libraries-2",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:69225",
   "services": [
    "esl",
@@ -132888,7 +132888,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/traphene-hickman-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:205369",
   "services": [
    "citizenship_class",
@@ -132942,7 +132942,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/sbpl-literacy-program",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:204520",
   "services": [
    "esl"
@@ -133492,7 +133492,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/rboc",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:178071",
   "services": [
    "citizenship_class",
@@ -133519,7 +133519,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/rboc-education-reading",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171431",
   "services": [
    "citizenship_class",
@@ -133784,7 +133784,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/uplift-education",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164229",
   "services": [
    "esl"
@@ -133972,7 +133972,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/university-of-north-texas-speech-and-hearing-center",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:170868",
   "services": [
    "esl"
@@ -134139,7 +134139,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/integra-academy",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:205977",
   "services": [
    "citizenship_class",
@@ -134197,7 +134197,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/city-of-eagle-pass-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171910",
   "services": [
    "esl",
@@ -134936,7 +134936,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/hope-literacy-inc",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:66290",
   "services": [
    "esl"
@@ -134962,7 +134962,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/literacy-connexus-142226",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:142226",
   "services": [
    "esl"
@@ -135260,7 +135260,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/literacy-highland-lakes",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:63418",
   "services": [
    "citizenship_class",
@@ -135340,7 +135340,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:161342",
   "services": [
    "esl",
@@ -135369,7 +135369,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/computer-basics-1",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171077",
   "services": [
    "citizenship_class",
@@ -135398,7 +135398,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/connecting-through-language-and-art",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171084",
   "services": [
    "citizenship_class",
@@ -135534,7 +135534,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/casa-del-llano-inc-0",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:69144",
   "services": [
    "esl"
@@ -135952,7 +135952,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/boat-people-sos-houston",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:67614",
   "services": [
    "esl"
@@ -135978,7 +135978,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/bridging-for-tomorrow-youth-programs",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:178263",
   "services": [
    "esl"
@@ -136004,7 +136004,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/brighter-future-inc",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:66348",
   "services": [
    "esl"
@@ -136294,7 +136294,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/knowledge-first-empowerment-academy",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:66117",
   "services": [
    "esl"
@@ -136481,7 +136481,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/knowledge-is-key",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:206052",
   "services": [
    "esl"
@@ -136534,7 +136534,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/huntsville-public-library-literacy-program-0",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:69083",
   "services": [
    "esl",
@@ -136889,7 +136889,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/cross-cares-international-literacy-numeracy",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:186612",
   "services": [
    "esl"
@@ -136996,7 +136996,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/superior-academy-of-laredo",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:163610",
   "services": [
    "esl"
@@ -137078,7 +137078,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/responsiveed",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171568",
   "services": [
    "esl"
@@ -137130,7 +137130,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/online-esl-assistance",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:162686",
   "services": [
    "esl"
@@ -137211,7 +137211,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/lockhart-adult-learning-center-1",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:161819",
   "services": [
    "citizenship_class",
@@ -137565,7 +137565,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/midlothian-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:206354",
   "services": [
    "citizenship_class",
@@ -137867,7 +137867,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/pittsburg-camp-county-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:161534",
   "services": [
    "esl",
@@ -138035,7 +138035,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/the-academy",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:206223",
   "services": [
    "esl"
@@ -138338,7 +138338,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/john-ed-keeter-public-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:142160",
   "services": [
    "citizenship_class",
@@ -138752,7 +138752,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/san-benito-cisd-family-and-community-engagement",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164263",
   "services": [
    "citizenship_class"
@@ -138836,7 +138836,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/clases-de-ciudadania-1",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:178607",
   "services": [
    "citizenship_class"
@@ -138862,7 +138862,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/clases-de-ingles",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:178606",
   "services": [
    "esl"
@@ -139316,7 +139316,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/university-texas-tyler-school-education",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:121059",
   "services": [
    "esl"
@@ -139560,7 +139560,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/early-literacy-programs-for-families",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:164691",
   "services": [
    "esl"
@@ -139908,7 +139908,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/plazas-comunitarias-honeyville",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:68795",
   "services": [
    "esl"
@@ -140307,7 +140307,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/literacy-action-center-0",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:65140",
   "services": [
    "esl"
@@ -140467,7 +140467,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/esl-workshop",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:163725",
   "services": [
    "esl"
@@ -140732,7 +140732,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/weta-kids-ready-to-learn",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171028",
   "services": [
    "esl"
@@ -140891,7 +140891,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/charlotte-learning-center",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:142009",
   "services": [
    "citizenship_class",
@@ -141081,7 +141081,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/english-learning-cafe",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:170923",
   "services": [
    "esl"
@@ -141241,7 +141241,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/central-rappahannock-regional-library-cooper-branch",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:161593",
   "services": [
    "esl",
@@ -141666,7 +141666,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/central-rappahannock-regional-library-headquarters-library",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:161447",
   "services": [
    "esl",
@@ -141693,7 +141693,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/central-rappahannock-regional-library-england-run-branch",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:161448",
   "services": [
    "esl",
@@ -141720,7 +141720,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/central-rappahannock-regional-library-salem-church-branch",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:161590",
   "services": [
    "esl",
@@ -141747,7 +141747,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/central-rappahannock-regional-library-towne-centre-branch",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:186363",
   "services": [
    "esl",
@@ -141933,7 +141933,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/central-rappahannock-regional-library-newton-branch",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:161595",
   "services": [
    "esl",
@@ -142464,7 +142464,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/central-rappahannock-regional-library-montross-branch",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:161594",
   "services": [
    "esl",
@@ -142809,7 +142809,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/community-outreach-program-roanoke",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:151829",
   "services": [
    "esl"
@@ -142941,7 +142941,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/emerge",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:161301",
   "services": [
    "esl"
@@ -142993,7 +142993,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/central-rappahannock-regional-library-snow-branch",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:161592",
   "services": [
    "esl",
@@ -143046,7 +143046,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/central-rappahannock-regional-library-fried-center",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:186364",
   "services": [
    "esl",
@@ -143073,7 +143073,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/central-rappahannock-regional-library-porter-branch",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:161449",
   "services": [
    "esl",
@@ -143558,7 +143558,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/prince-william-public-libraries",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171911",
   "services": [
    "citizenship_class",
@@ -143639,7 +143639,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/one-one-literacy-program",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:60349",
   "services": [
    "esl"
@@ -144121,7 +144121,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/para-los-ninos-de-highline",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:65612",
   "services": [
    "esl"
@@ -144417,7 +144417,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/family-engagement",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:171556",
   "services": [
    "esl"
@@ -145524,7 +145524,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/journey-house",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:62099",
   "services": [
    "esl"
@@ -145550,7 +145550,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/repairers-of-the-breach-literacy-center",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:172112",
   "services": [
    "esl"
@@ -145603,7 +145603,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/page-forward-volunteers-literacy-clark-county-0",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:68964",
   "services": [
    "esl"
@@ -146595,7 +146595,7 @@
   "source": "National Literacy Directory",
   "source_url": "https://www.nld.org/family-learning-center-2",
   "last_verified": "2026-10-21",
-  "is_active": true,
+  "is_active": false,
   "external_id": "nld:206034",
   "services": [
    "citizenship_class",

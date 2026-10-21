@@ -51,14 +51,14 @@ To rebuild (Python 3 and `pdftotext`; scripts in `scripts/resources/`):
 
 ## October 2026 update: `update-2026-10.json` (+ `review-2026-10.csv`)
 
-One file that **updates** the 5,585 places already imported from the two seed files. Import it in Admin → Places → Import CSV/JSON; the confirmation should say about **0 new, 5,585 updated (about 220 hidden)**. Running it again changes nothing.
+One file that **updates** the 5,585 places already imported from the two seed files. Import it in Admin → Places → Import CSV/JSON; the confirmation should say about **0 new, 5,585 updated (about 690 hidden)**, or, if you already imported the first version of this file, **469 updated (469 hidden)**. Running it again changes nothing, and never undoes a place you have checked.
 
 What it changes:
 - **Source ids** (`external_id`: `uscis:…`, `doj:…`, `nld:…`) so later imports update the same place.
 - **Services**: each place lists everything it offers (`services`), so a place can show under several filters. "Free legal help" is given **only** to DOJ-recognized organizations, never inferred from a website.
 - **Merged duplicates**: 56 NLD programs that are the same organization and place as a DOJ listing (same phone or street address and ZIP, and a shared distinctive word in the name) are hidden; the DOJ listing gains their class services, website, logo and hours.
 - **Not relevant (hidden, not deleted)**: 172 programs for children, K-12 schools, youth programs, and family-literacy programs without adult English classes, judged from the program's name and NLD description.
-- **Flagged, still shown** (about 470): programs that couldn't be confirmed as adult programs, libraries whose description leads with children's programs, websites that talk mostly about children's programs, and 14 that mention immigration consulting or notario services (check these are not notarios). Admin → Places → Show: "Shown, but flagged to check".
+- **Hidden until you check them** (469): programs that couldn't be confirmed as adult programs, libraries whose description leads with children's programs, websites that talk mostly about children's programs, and 14 that mention immigration consulting or notario services (check these are not notarios). Find them in Admin → Places → Show: "Waiting for your check". For each one, choose **Show** (it goes live) or **Keep hidden (checked)**. Either way it's marked "Checked: …" and later imports won't change that decision.
 - **Hours** (2,968), **logos** (1,906, NLD's own image links, loaded only when a learner opens a place's summary), **websites**, and **languages** only where stated: NLD's "Instruction in Spanish" flag, or explicit phrases such as "classes taught in …", "bilingual …", "staff speak …".
 
 `review-2026-10.csv` lists every hidden, merged and flagged place with its reason, NLD page and website, for a person to check. To change a decision, edit the place in Admin → Places (Show / Hide).

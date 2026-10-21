@@ -14,6 +14,9 @@ import { useContentManager } from '@/hooks/useContentManager';
 import { categoryById, parseCsv, planImport, loadZipTable, placeServices } from '@/lib/resourceHub';
 
 const CREATE_BATCH = 50;
+
+// Places an import hid until a person checks them ("... - check").
+const needsCheck = (r) => /- check\b/.test(r.relevance_note || '');
 const UPDATE_BATCH = 200;
 const SHOW_ROWS = 300;
 
@@ -41,7 +44,7 @@ export default function ResourcesTab() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
   const [importing, setImporting] = useState(null); // { done, total }
-  const [show, setShow] = useState('all'); // all | shown | hidden | flagged
+  const [show, setShow] = useState('all'); // all | shown | check | removed | hidden
   const fileRef = useRef(null);
 
   useEffect(() => { fetchItems(); }, [fetchItems]);
@@ -60,9 +63,23 @@ export default function ResourcesTab() {
     }
   };
 
-  const toggleActive = async (r) => {
+  // A place waiting for a check that should stay hidden.
+  const keepHidden = async (r) => {
     try {
-      await base44.entities.CommunityResource.update(r.id, { is_active: r.is_active === false });
+      await base44.entities.CommunityResource.update(r.id, { is_active: false, relevance_note: 'Checked: not relevant' });
+      refresh();
+    } catch {
+      toast.error('Could not update the place');
+    }
+  };
+
+  const toggleActive = async (r) => {
+    // Showing a place that was waiting for a check marks it as checked.
+    const showing = r.is_active === false;
+    const changes = { is_active: showing };
+    if (showing && needsCheck(r)) changes.relevance_note = 'Checked: shown';
+    try {
+      await base44.entities.CommunityResource.update(r.id, changes);
       refresh();
     } catch {
       toast.error('Could not update the place');
@@ -120,7 +137,8 @@ export default function ResourcesTab() {
   const q = searchQuery.toLowerCase();
   const filtered = items.filter((r) =>
     (show === 'all' || (show === 'shown' && r.is_active !== false) || (show === 'hidden' && r.is_active === false) ||
-      (show === 'flagged' && r.relevance_note && r.is_active !== false)) &&
+      (show === 'check' && needsCheck(r)) ||
+      (show === 'removed' && r.is_active === false && !needsCheck(r))) &&
     [r.name, r.city, r.state, r.zip, r.category].some((v) => String(v || '').toLowerCase().includes(q))
   );
   const visible = filtered.slice(0, SHOW_ROWS);
@@ -157,8 +175,9 @@ export default function ResourcesTab() {
         >
           <option value="all">All places</option>
           <option value="shown">Shown to learners</option>
-          <option value="hidden">Hidden</option>
-          <option value="flagged">Shown, but flagged to check</option>
+          <option value="check">Waiting for your check</option>
+          <option value="removed">Hidden as not relevant</option>
+          <option value="hidden">All hidden</option>
         </select>
         <p className="text-sm text-pw-muted">
           {items.length} places ({items.filter((r) => r.is_active === false).length} hidden). Learners see only places that are not hidden.
@@ -205,6 +224,11 @@ export default function ResourcesTab() {
                         <DropdownMenuItem onClick={() => toggleActive(r)}>
                           {r.is_active === false ? <><Eye className="mr-2 h-4 w-4" /> Show</> : <><EyeOff className="mr-2 h-4 w-4" /> Hide</>}
                         </DropdownMenuItem>
+                        {needsCheck(r) && (
+                          <DropdownMenuItem onClick={() => keepHidden(r)}>
+                            <EyeOff className="mr-2 h-4 w-4" /> Keep hidden (checked)
+                          </DropdownMenuItem>
+                        )}
                         <DropdownMenuItem
                           onClick={async () => { await deleteItem(r.id); queryClient.invalidateQueries({ queryKey: ['communityResources'] }); }}
                           className="text-pw-red-ink focus:text-pw-red-ink"

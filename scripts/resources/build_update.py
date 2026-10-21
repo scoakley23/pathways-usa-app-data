@@ -7,7 +7,8 @@
 #   - every place gets a source id (external_id) and a services list;
 #   - NLD programs get hours, logo, website, languages and a relevance
 #     verdict: K-12 / youth / family-only programs are hidden (not deleted),
-#     with the reason in relevance_note;
+#     and programs that need a person's check ("... - check") are hidden until
+#     checked, with the reason in relevance_note;
 #   - a DOJ legal organization and an NLD program at the same place (same
 #     phone, or same street address and ZIP) become one listing: the DOJ
 #     place gains the class services, website and logo, the NLD copy is hidden.
@@ -217,8 +218,11 @@ for r in seed_nld:
         counts['hidden'] += 1
         review.append([r['name'], r['city'], r['state'], 'hidden', note, r['source_url'], website])
     elif note:
+        # Flagged places stay hidden until a person checks them (Admin ->
+        # Places -> "Waiting for your check" -> Show).
+        row['is_active'] = False
         counts['flagged'] += 1
-        review.append([r['name'], r['city'], r['state'], 'shown, check', note, r['source_url'], website])
+        review.append([r['name'], r['city'], r['state'], 'hidden until checked', note, r['source_url'], website])
     else:
         counts['kept'] += 1
     rows.append(row)
