@@ -106,7 +106,7 @@ export default function StudentProgressReport({ isOpen, onClose, studentEmail })
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[800px] h-[85vh] overflow-y-auto">
-        <DialogHeader>
+        <DialogHeader className="min-w-0">
           <DialogTitle className="break-all pr-8">Progress Report: {studentEmail}</DialogTitle>
         </DialogHeader>
 
@@ -115,7 +115,7 @@ export default function StudentProgressReport({ isOpen, onClose, studentEmail })
             <Loader2 className="w-8 h-8 animate-spin text-pw-navy" />
           </div>
         ) : (
-          <div className="space-y-6">
+          <div className="space-y-6 min-w-0">
             
             {/* Overview Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">

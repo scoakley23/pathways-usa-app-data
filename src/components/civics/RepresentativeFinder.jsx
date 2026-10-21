@@ -320,7 +320,6 @@ Double check all names are spelled correctly.`,
                 onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
                 className="h-12 text-base min-w-0"
                 maxLength={10}
-                inputMode="numeric"
               />
               <PrimaryButton
                 onClick={handleSearch}

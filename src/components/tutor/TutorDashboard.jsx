@@ -199,7 +199,7 @@ export default function TutorDashboard({ currentUserEmail, students }) {
             <CardTitle className="text-sm font-bold text-pw-muted">Common Topic</CardTitle>
           </CardHeader>
           <CardContent className="p-4 pt-0 md:p-5 md:pt-0">
-            <div className="text-2xl font-extrabold text-pw-navy capitalize">{metrics.mostCommonType.replace('_', ' ')}</div>
+            <div className="text-xl font-extrabold text-pw-navy capitalize leading-tight">{metrics.mostCommonType.replace('_', ' ')}</div>
             <p className="text-sm text-pw-muted">most assigned type</p>
           </CardContent>
         </Card>

@@ -148,7 +148,7 @@ export default function StudentActivityMonitor({ currentUserEmail, students }) {
   return (
     <div className="space-y-6 animate-in fade-in">
       {/* Summary Row */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+      <div className="grid grid-cols-3 gap-2 sm:gap-3">
         <SummaryTile icon={Users} tone="bg-pw-blue-soft text-pw-blue-ink" value={activeStudents.length} label="Active Students" />
         <SummaryTile icon={AlertTriangle} tone="bg-pw-red-soft text-pw-red-ink" value={strugglingStudents.length} label="Need Attention" />
         <SummaryTile
@@ -251,13 +251,13 @@ export default function StudentActivityMonitor({ currentUserEmail, students }) {
 
 function SummaryTile({ icon: Icon, tone, value, label }) {
   return (
-    <RaisedCard padding="p-4" className="flex items-center gap-3">
-      <div className={`w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 ${tone}`} aria-hidden="true">
+    <RaisedCard padding="p-3 sm:p-4" className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3">
+      <div className={`w-10 h-10 sm:w-11 sm:h-11 rounded-2xl flex items-center justify-center shrink-0 ${tone}`} aria-hidden="true">
         <Icon className="w-5 h-5" />
       </div>
       <div>
         <p className="text-2xl font-extrabold text-pw-navy leading-tight">{value}</p>
-        <p className="text-sm text-pw-muted font-bold">{label}</p>
+        <p className="text-sm text-pw-muted font-bold leading-tight">{label}</p>
       </div>
     </RaisedCard>
   );

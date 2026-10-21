@@ -269,7 +269,7 @@ export default function MyTutor({ currentUserEmail }) {
             <DialogHeader>
                 <DialogTitle>Chat with Tutor</DialogTitle>
             </DialogHeader>
-            <div className="flex-1 overflow-hidden">
+            <div className="flex-1 min-h-0 overflow-hidden">
                 <ChatInterface 
                     currentUserEmail={currentUserEmail}
                     otherUserEmail={selectedTutor}

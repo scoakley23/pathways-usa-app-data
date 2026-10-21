@@ -108,7 +108,7 @@ export default function ChatInterface({ otherUserEmail, currentUserEmail }) {
   };
 
   return (
-    <div className="flex flex-col h-[500px] max-h-full border border-pw-line rounded-3xl bg-white overflow-hidden">
+    <div className="flex flex-col h-full min-h-[320px] border border-pw-line rounded-3xl bg-white overflow-hidden">
       <div className="p-4 border-b border-pw-line bg-pw-soft">
         <h3 className="font-bold text-base text-pw-navy flex items-center gap-2 min-w-0">
           <User className="w-4 h-4 shrink-0" aria-hidden="true" /> <span className="truncate">Chat with {otherUserEmail}</span>

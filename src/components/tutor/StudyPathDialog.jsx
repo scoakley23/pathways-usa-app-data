@@ -195,12 +195,14 @@ export default function StudyPathDialog({ isOpen, onClose, student, tutorEmail }
                         : 'border-pw-line bg-white hover:border-pw-navy/40'
                     }`}
                   >
-                    <div className="flex flex-wrap items-center gap-2">
+                    <div className="flex items-center gap-3 min-w-0">
                       <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 ${isSelected ? 'bg-pw-navy border-pw-navy' : 'border-pw-line'}`}>
                         {isSelected && <CheckCircle className="w-3 h-3 text-white" />}
                       </div>
-                      <span className="font-bold text-pw-navy text-base">{topic}</span>
-                      {isWeak && <span className="text-sm px-2 py-0.5 bg-pw-red-soft text-pw-red-ink rounded-full font-bold">Weak</span>}
+                      <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                        <span className="font-bold text-pw-navy text-base">{topic}</span>
+                        {isWeak && <span className="text-sm px-2 py-0.5 bg-pw-red-soft text-pw-red-ink rounded-full font-bold">Weak</span>}
+                      </span>
                     </div>
                     <span className="text-sm text-pw-muted shrink-0">{count} lesson{count !== 1 ? 's' : ''}</span>
                   </button>
