@@ -12,6 +12,58 @@ import { createPageUrl } from '@/utils';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { speakText } from "@/components/utils/textToSpeech";
 import { LANGUAGES } from '@/hooks/useLessonTranslation';
+import { getSavedLanguage, RTL_LANGUAGES } from '@/hooks/useAppLanguage';
+
+// Privacy note shown above the chat box. English and Spanish are written by
+// hand; other languages are translated once by AI and cached on the device.
+// Bump the cache key whenever the English text changes.
+const PRIVACY_NOTE = {
+  en: "Don't share your immigration status, A-number, case details, or address. Your questions are saved and may be emailed to your tutor.",
+  es: 'No comparta su estatus migratorio, número A, detalles de su caso ni su dirección. Sus preguntas se guardan y pueden enviarse por correo electrónico a su tutor.',
+};
+const PRIVACY_NOTE_CACHE_KEY = 'pathways_sb_privacy_v1_';
+
+function usePrivacyNote(language) {
+  const [note, setNote] = useState(PRIVACY_NOTE[language] || PRIVACY_NOTE.en);
+
+  useEffect(() => {
+    if (PRIVACY_NOTE[language]) {
+      setNote(PRIVACY_NOTE[language]);
+      return;
+    }
+    setNote(PRIVACY_NOTE.en);
+    try {
+      const cached = localStorage.getItem(PRIVACY_NOTE_CACHE_KEY + language);
+      if (cached) {
+        setNote(cached);
+        return;
+      }
+    } catch (e) {
+      // ignore
+    }
+
+    let cancelled = false;
+    const langName = LANGUAGES.find((l) => l.value === language)?.label || language;
+    base44.integrations.Core.InvokeLLM({
+      prompt: `Translate this privacy note for an app that helps immigrants study for the U.S. citizenship test into ${langName}. Keep "A-number" understandable (you may add the local term). Return only the translated text.\n\n${PRIVACY_NOTE.en}`,
+    }).then((res) => {
+      if (cancelled || typeof res !== 'string' || !res.trim()) return;
+      setNote(res.trim());
+      try {
+        localStorage.setItem(PRIVACY_NOTE_CACHE_KEY + language, res.trim());
+      } catch (e) {
+        // ignore
+      }
+    }).catch(() => {
+      // keep English
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [language]);
+
+  return note;
+}
 
 export default function StudyBuddy() {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,6 +76,8 @@ export default function StudyBuddy() {
   const [tutorEmail, setTutorEmail] = useState(null);
   const [language, setLanguage] = useState('en');
   const scrollRef = useRef(null);
+  const appLanguage = getSavedLanguage();
+  const privacyNote = usePrivacyNote(appLanguage);
 
   useEffect(() => {
     const init = async () => {
@@ -206,7 +260,13 @@ export default function StudyBuddy() {
              </div>
           </CardContent>
 
-          <CardFooter className="p-3 bg-white border-t shrink-0">
+          <CardFooter className="p-3 bg-white border-t shrink-0 flex-col gap-2">
+            <p
+              dir={RTL_LANGUAGES.includes(appLanguage) ? 'rtl' : 'ltr'}
+              className="w-full text-base leading-snug text-slate-600"
+            >
+              {privacyNote}
+            </p>
             <form onSubmit={handleSend} className="flex w-full gap-2">
               <Input 
                 placeholder="Ask a question..." 

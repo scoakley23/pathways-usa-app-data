@@ -569,12 +569,12 @@ export default function Practice() {
                  <div className="space-y-1">
                    <label className="text-xs font-medium text-slate-600">Version:</label>
                    <Select value={civicsVersion} onValueChange={(v) => { setCivicsVersion(v); localStorage.setItem('civicsVersion', v); }}>
-                      <SelectTrigger className="h-8 text-xs">
+                      <SelectTrigger className="h-auto min-h-8 text-xs text-left">
                           <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
                           <SelectItem value="2025">2025</SelectItem>
-                          <SelectItem value="2008">2008</SelectItem>
+                          <SelectItem value="2008">Applied before Oct 20, 2025? Choose 2008.</SelectItem>
                       </SelectContent>
                    </Select>
                    <p className="text-xs text-slate-500 leading-snug">

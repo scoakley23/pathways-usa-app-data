@@ -10,6 +10,7 @@ import { toast } from "sonner";
 import InterviewReport from './InterviewReport';
 import InterviewHistory from './InterviewHistory';
 import VirtualInterviewer, { AVATAR_URL } from './VirtualInterviewer';
+import PracticePersonaPanel, { PersonaPicker, isPersonaSection, getPersona, personaFacts } from './PracticePersonaPanel';
 
 // Long text is now spoken in chunks, so the fallback timeout must cover all of them.
 const speechTimeoutMs = (text) => {
@@ -36,6 +37,11 @@ export default function InterviewPractice({ onComplete, onNext }) {
   const [conversation, setConversation] = useState([]);
   const [showTyping, setShowTyping] = useState(false);
   const [varyOfficer, setVaryOfficer] = useState(false);
+  const [personaId, setPersonaId] = useState(() => getPersona().id);
+  const persona = getPersona(personaId);
+  // presentQuestion runs from timers, so read the persona through a ref.
+  const personaRef = useRef(persona);
+  personaRef.current = persona;
 
   const standardQuestionsRef = useRef([]);
   // Guards against the greeting's speech-end and safety-timer paths both
@@ -184,8 +190,13 @@ export default function InterviewPractice({ onComplete, onNext }) {
     setShowTyping(true);
     setInterviewerState('idle');
 
+    const enteringPersona = isPersonaSection(q) && !isPersonaSection(questions[index - 1]);
+    const intro = enteringPersona
+      ? `For the next questions, please answer as ${personaRef.current.name}, the practice person on your screen.`
+      : q.intro;
+
     setTimeout(() => {
-      const spoken = q.intro ? `${q.intro} ${q.question}` : q.question;
+      const spoken = intro ? `${intro} ${q.question}` : q.question;
       setShowTyping(false);
       setConversation(prev => [...prev, { role: 'interviewer', text: spoken, id: `q_${index}` }]);
       setInterviewerState('speaking');
@@ -250,15 +261,23 @@ export default function InterviewPractice({ onComplete, onNext }) {
     setIsAnalyzing(true);
 
     const q = questions[currentIndex];
+    const personaBlock = isPersonaSection(q)
+      ? `
+The candidate is NOT answering about themselves. They are role-playing a fictional practice person, ${persona.name}. Judge CONTENT against this person's facts, not the example response. If a yes/no question is not covered by the facts, this person's correct answer is "No". For other questions not covered by the facts, any simple, reasonable invented answer is acceptable. Write the corrected version as ${persona.name} would answer.
+
+PRACTICE PERSON FACTS (fictional):
+${personaFacts(persona)}
+`
+      : '';
     try {
       const result = await base44.integrations.Core.InvokeLLM({
         prompt: `You are an experienced USCIS citizenship interview officer and ESL instructor evaluating a naturalization candidate.
 
 INTERVIEW QUESTION: "${q.question}"
-EXPECTED RESPONSE: "${q.expected_response}"
+EXAMPLE RESPONSE: "${q.expected_response}"
 CANDIDATE'S SPOKEN RESPONSE: "${response}"
 RESPONSE TYPE: ${q.response_type}
-
+${personaBlock}
 Evaluate on 4 dimensions. Be honest but encouraging.
 
 CONTENT (0-100): Does the answer address the question correctly and completely?
@@ -317,7 +336,17 @@ Also provide:
         passed: passedCount >= questions.length * 0.7,
         question_count: questions.length,
         passed_count: passedCount,
-        results
+        // Scores only: the learner's spoken answers (and the AI text built
+        // from them) stay in memory for the report and are never saved.
+        results: results.map(r => ({
+          question: r.question,
+          section: r.section,
+          content_score: r.content_score,
+          grammar_score: r.grammar_score,
+          fluency_score: r.fluency_score,
+          overall_score: r.overall_score,
+          is_acceptable: r.is_acceptable
+        }))
       });
     } catch (e) {
       console.error('Failed to save interview session', e);
@@ -397,6 +426,8 @@ Also provide:
         onStart={startInterview}
         varyOfficer={varyOfficer}
         onToggleVary={() => setVaryOfficer(v => !v)}
+        personaId={personaId}
+        onSelectPersona={setPersonaId}
       />
       <InterviewHistory />
     </div>
@@ -457,6 +488,8 @@ Also provide:
               <Volume2 className="w-4 h-4" /> Repeat Question
             </Button>
           </div>
+
+          {isPersonaSection(current) && <PracticePersonaPanel persona={persona} />}
 
           {/* Conversation Transcript */}
           <div
@@ -671,7 +704,7 @@ function FeedbackPanel({ feedback, response, expected }) {
   );
 }
 
-function InterviewIntro({ questions, onStart, varyOfficer, onToggleVary }) {
+function InterviewIntro({ questions, onStart, varyOfficer, onToggleVary, personaId, onSelectPersona }) {
   const sections = [...new Set(questions.map(q => q.section))];
   const sectionNames = { small_talk: 'Small Talk', personal_info: 'Personal Information', morals_ethics: 'Morals & Ethics', oath_requirements: 'Oath Requirements' };
 
@@ -732,6 +765,12 @@ function InterviewIntro({ questions, onStart, varyOfficer, onToggleVary }) {
                   ))}
                 </div>
               </div>
+
+              {questions.some(isPersonaSection) && (
+                <div className="max-w-sm mx-auto">
+                  <PersonaPicker selectedId={personaId} onSelect={onSelectPersona} />
+                </div>
+              )}
 
               <button
                 onClick={onToggleVary}
