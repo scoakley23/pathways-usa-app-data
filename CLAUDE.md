@@ -1,0 +1,57 @@
+# CLAUDE.md — Pathways USA
+
+Pathways USA is a free U.S. citizenship test prep app (civics, reading, writing, speaking, N-400 guide). It was built in Base44 and exported to this repo.
+
+## Rules (always follow)
+
+### Legal and content
+- Pathways USA is a free education app, **not a legal service**. Nothing may tell a learner how THEY should answer an N-400 question about their own history, or whether THEY are eligible. Point legal questions to the "Talk to a lawyer first" page (`src/pages/LawyerPage.jsx`).
+- Official civics questions and answers come from the app's USCIS question lists (`CivicsQuestion` records, versions `2008` and `2025`). AI may **explain** them but must never change, add, or invent official answers.
+
+### Privacy
+- Never store a learner's immigration status, A-number, case details, filing date, field office, address, or N-400 answers.
+- No audio or speech transcripts are stored; only scores.
+- The learner's target date lives **only** in browser storage on their device (wrap every `localStorage` read/write in try/catch).
+- Learner-typed text goes to the AI only in Study Buddy / Ask-the-tutor, and never with personal identifiers (email, name) attached.
+
+### Design ("Calm and confident")
+- Manrope font, navy `#14264A`, accent red `#D9483F`, page `#F3F5F9`, cards white with `#DEE4EE` border, 16px corners.
+- Mobile-first at 360px wide. Buttons at least 44px tall. Body text at least 16px.
+
+### Tutor tone
+- Respectful and adult. No cartoon mascots, leaderboards, hearts/lives, or punishing streaks.
+
+### How to work
+- Change only what a prompt asks. Show a plan before changing code.
+- Test with fake information only.
+
+## Stack
+
+- **React 18 + Vite**, JavaScript (JSX), Tailwind CSS, shadcn/ui (`src/components/ui/`), lucide icons, TanStack Query, react-router.
+- **Base44** is the backend: `@base44/sdk` client in `src/api/base44Client.js`, plus `@base44/vite-plugin`.
+  - **Data**: Base44 entities, defined in `base44/entities/*.jsonc`, used as `base44.entities.<Name>.list/filter/create/update`. Records (including the civics question bank, interview questions, reading/writing sentences) live in the Base44 database, not in repo files.
+  - **Auth/user**: `base44.auth.me()` / `base44.auth.updateMe()` (the `User` entity holds extra fields).
+  - **AI**: `base44.integrations.Core.InvokeLLM({ prompt, response_json_schema?, file_urls?, add_context_from_internet? })`. Also `SendEmail`, `UploadFile`.
+- **Pages** are auto-registered from `src/pages/` (`src/pages.config.js` is auto-generated; only `mainPage` is editable). `src/Layout.jsx` wraps all pages. Feature components live in `src/components/<area>/`.
+- **Speech**: browser Web Speech API (`SpeechRecognition`, `lang = 'en-US'`) produces a transcript; scoring is word matching (`src/components/utils/wordDiff.js`) plus an `InvokeLLM` evaluation. Text-to-speech: `src/components/utils/textToSpeech.jsx` (`speakText(text, lang)`).
+- **Languages/i18n**: no i18n library. The chosen language is `localStorage['pathways_language']` (`src/hooks/useAppLanguage.js`; list in `LANGUAGES` in `src/hooks/useLessonTranslation.js`). UI strings are written in English and translated on demand with `InvokeLLM`, cached per language in localStorage (`useHomeTranslation`, `useN400Translation`, `useLawyerChecklistTranslation`). RTL languages: `ar`, `fa`, `ur`, `he`.
+- **Build/deploy**: `npm run dev`, `npm run build`, `npm run lint`. No test runner is installed yet. The live app runs on Base44: this repo is two-way synced with Base44 on `main`, so **merging to `main` updates the live app**. Work on branches and merge via pull request. Running locally needs the Base44 env vars (`VITE_BASE44_APP_ID`, `VITE_BASE44_BACKEND_URL`).
+
+## Where learner data is saved today
+
+| Where | What | Notes |
+| --- | --- | --- |
+| `User` (account) | display name, points, badges, max streak, **`test_date`** | `test_date` is set by `TestDateTracker` — conflicts with the target-date rule |
+| `PublicProfile` | display name, points, badge count, role, tutor invite code, cached representative names | address/zip used only for lookup |
+| `UserProgress` | per sentence/word/civics question: status, SRS fields, scores, attempts | |
+| `LessonProgress` | per lesson: completed, quiz scores, needs_review | |
+| `LessonNotes` | learner's free-text notes per lesson | |
+| `N400SectionProgress` | section completed + date only | |
+| `InterviewSession` | scores **and the learner's spoken-answer transcripts** (`results[].response`) | conflicts with "no transcripts" rule |
+| `AIStudyLog` | Study Buddy question + answer + email | question also **emailed to the learner's tutor** |
+| `Message`, `Notification` | tutor/student messages and in-app notifications | |
+| `TutorRelationship`, `Assignment` | tutor links, assigned items, tutor feedback | |
+| Base44 file storage | **reading-practice audio** uploaded via `UploadFile` for AI scoring (`ReadingPracticeCard`) | conflicts with "no audio stored" rule |
+| `localStorage` | language, civics version, voice settings, cached translations, daily reminder flag, role cache, pending tutor invite | device only |
+
+Known conflicts with the rules above (do not fix unless a prompt asks): leaderboard, points, and streaks in `src/components/gamification/`; the three rows marked above.
