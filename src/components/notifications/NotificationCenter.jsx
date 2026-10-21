@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
-import { Bell, Check, Trash2, Settings, AlertCircle } from 'lucide-react';
+import { Bell, Check, Trash2, AlertCircle } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -9,7 +9,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { toast } from "sonner";
 import { formatDistanceToNow } from 'date-fns';

@@ -15,7 +15,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
 import { Tag } from '@/components/pathways/ui';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";

@@ -8,9 +8,9 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Tag } from '@/components/pathways/ui';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from "@/components/ui/dialog";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } from 'recharts';
-import { Loader2, TrendingUp, Users, CheckCircle, AlertCircle, Mail, Filter, Search, Send } from 'lucide-react';
-import { format, subDays, isSameDay, startOfDay } from 'date-fns';
+import { XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } from 'recharts';
+import { Loader2, TrendingUp, Mail, Send } from 'lucide-react';
+import { format, subDays, startOfDay } from 'date-fns';
 import { toast } from "sonner";
 
 export default function TutorDashboard({ currentUserEmail, students }) {
