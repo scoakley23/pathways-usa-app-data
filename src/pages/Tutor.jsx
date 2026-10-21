@@ -94,6 +94,7 @@ export default function Tutor({ cachedUser, cachedRole }) {
         subtitle={role === 'tutor'
             ? 'Manage your students, assign practice, and track their progress.'
             : 'Connect with your tutor and check your assignments.'}
+        guide={role === 'tutor' ? undefined : 'This is for a human teacher, if you have one. They can send you practice and messages.'}
       />
 
       <div className="mt-6 animate-in fade-in slide-in-from-bottom-4 duration-500">

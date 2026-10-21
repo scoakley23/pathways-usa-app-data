@@ -596,7 +596,7 @@ Please provide a brief, simple explanation (2-3 sentences) of this concept in pl
                               }
                             }}
                             disabled={!recognitionRef.current}
-                            className={`min-h-[52px] rounded-full px-6 inline-flex items-center justify-center gap-2 text-base font-bold text-white transition-colors ring-8 ring-pw-red-soft disabled:opacity-40 focus-visible:outline-none focus-visible:ring-pw-red ${isListening ? 'bg-pw-red-ink' : 'bg-pw-red hover:bg-pw-red-ink'}`}
+                            className={`min-h-[52px] rounded-full px-6 inline-flex items-center justify-center gap-2 text-base font-bold text-white transition-colors ring-8 ring-pw-red-soft disabled:opacity-40 focus-visible:outline-none focus-visible:ring-pw-red ${isListening ? 'bg-pw-red-deep' : 'bg-pw-red-ink hover:bg-pw-red-deep'}`}
                           >
                             {isListening ? <MicOff className="w-5 h-5" aria-hidden="true" /> : <Mic className="w-5 h-5" aria-hidden="true" />}
                             {isListening ? 'Stop Listening' : 'Start Speaking'}
@@ -806,7 +806,7 @@ Please provide a brief, simple explanation (2-3 sentences) of this concept in pl
               <button
                 type="button"
                 onClick={() => handleNavigate(nextLesson)}
-                className="w-full min-h-[44px] rounded-2xl bg-pw-navy text-white p-4 flex items-center justify-end gap-2 text-right hover:bg-[#0F1B36] transition-colors min-w-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2"
+                className="w-full min-h-[44px] rounded-2xl bg-pw-navy text-white p-4 flex items-center justify-end gap-2 text-right hover:bg-pw-navy-deep transition-colors min-w-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2"
               >
                 <div className="overflow-hidden min-w-0">
                   <div className="text-sm font-bold text-white/75">Next</div>

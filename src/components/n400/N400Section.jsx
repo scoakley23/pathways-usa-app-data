@@ -40,7 +40,7 @@ export default function N400Section({ section, isAdmin, language, completed, onC
             type="button"
             onClick={() => setOpen(!open)}
             aria-expanded={open}
-            className="w-full min-h-[48px] rounded-2xl bg-pw-soft hover:bg-[#E2E8F2] text-pw-navy font-bold text-base px-4 inline-flex items-center justify-between gap-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2"
+            className="w-full min-h-[48px] rounded-2xl bg-pw-soft hover:bg-pw-soft-hover text-pw-navy font-bold text-base px-4 inline-flex items-center justify-between gap-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2"
           >
             {open
               ? 'Hide questions'

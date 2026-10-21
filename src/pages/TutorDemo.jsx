@@ -39,7 +39,7 @@ export default function TutorDemo() {
   if (user?.role !== 'admin') {
     return (
       <div className="flex flex-col items-center justify-center min-h-[40vh] gap-3 text-center">
-        <AlertCircle className="w-12 h-12 text-[#D9483F]" />
+        <AlertCircle className="w-12 h-12 text-pw-red" />
         <h2 className="text-2xl font-bold text-slate-800">Access Denied</h2>
         <p className="text-slate-600">This demo is for admins only.</p>
       </div>
@@ -71,11 +71,11 @@ export default function TutorDemo() {
             <button
               type="button"
               onClick={() => { setFinished(false); setRunId(runId + 1); }}
-              className="min-h-[44px] flex-1 rounded-xl font-semibold text-white bg-[#14264A]"
+              className="min-h-[44px] flex-1 rounded-xl font-semibold text-white bg-pw-navy"
             >
               Start again
             </button>
-            <Link to={createPageUrl('Profile')} className="min-h-[44px] flex-1 rounded-xl font-semibold border-2 border-[#14264A] text-[#14264A] inline-flex items-center justify-center">
+            <Link to={createPageUrl('Profile')} className="min-h-[44px] flex-1 rounded-xl font-semibold border-2 border-pw-navy text-pw-navy inline-flex items-center justify-center">
               Change tutor or text size
             </Link>
           </div>

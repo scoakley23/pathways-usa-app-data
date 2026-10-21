@@ -161,7 +161,7 @@ export default function ReviewCivics() {
               Your next review: {nextDate.toLocaleDateString(language === 'en' ? 'en-US' : language, { weekday: 'long', month: 'long', day: 'numeric' })}.
             </p>
           )}
-          <Link to="/learn" className={`${linkClass} bg-pw-navy text-white hover:bg-[#0F1B36]`}>Learn a new question</Link>
+          <Link to="/learn" className={`${linkClass} bg-pw-navy text-white hover:bg-pw-navy-deep`}>Learn a new question</Link>
           <Link to="/" className={`${linkClass} text-base min-h-[44px] hover:bg-pw-soft`}>Back to Today</Link>
         </>
       )}
@@ -187,7 +187,7 @@ export default function ReviewCivics() {
               </li>
             ))}
           </ul>
-          <Link to="/" aria-disabled={saving} className={`${linkClass} bg-pw-navy text-white hover:bg-[#0F1B36] ${saving ? 'pointer-events-none opacity-60' : ''}`}>
+          <Link to="/" aria-disabled={saving} className={`${linkClass} bg-pw-navy text-white hover:bg-pw-navy-deep ${saving ? 'pointer-events-none opacity-60' : ''}`}>
             {saving ? <Loader2 className="w-5 h-5 animate-spin" aria-label="Saving" /> : 'Back to Today'}
           </Link>
           <Link to="/learn" className={`${linkClass} text-base min-h-[44px] hover:bg-pw-soft`}>Learn a new question</Link>

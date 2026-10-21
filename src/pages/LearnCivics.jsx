@@ -164,7 +164,7 @@ export default function LearnCivics() {
       {stage === 'intro' && picked.length === 0 && (
         <>
           <TutorMessage profile={profile} language={language} {...say(LINES.allStarted, language)} />
-          <Link to="/review" className={`${linkClass} bg-pw-navy text-white hover:bg-[#0F1B36]`}>Review civics</Link>
+          <Link to="/review" className={`${linkClass} bg-pw-navy text-white hover:bg-pw-navy-deep`}>Review civics</Link>
           <Link to="/" className={`${linkClass} text-base min-h-[44px] hover:bg-pw-soft`}>Back to Today</Link>
         </>
       )}
@@ -181,7 +181,7 @@ export default function LearnCivics() {
             </ul>
             <p className="text-base text-pw-muted mt-4">Quick check: in 3 days.</p>
           </RaisedCard>
-          <Link to="/" aria-disabled={saving} className={`${linkClass} bg-pw-navy text-white hover:bg-[#0F1B36] ${saving ? 'pointer-events-none opacity-60' : ''}`}>
+          <Link to="/" aria-disabled={saving} className={`${linkClass} bg-pw-navy text-white hover:bg-pw-navy-deep ${saving ? 'pointer-events-none opacity-60' : ''}`}>
             {saving ? <Loader2 className="w-5 h-5 animate-spin" aria-label="Saving" /> : 'Back to Today'}
           </Link>
           <QuietButton className="w-full" onClick={learnMore} disabled={saving}>Learn more questions</QuietButton>

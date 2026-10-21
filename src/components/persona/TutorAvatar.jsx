@@ -22,15 +22,18 @@ const HAIR = {
   bob: 'M31 50c-1-16 7-25 17-25s18 9 17 25M31 50h5M65 50h-5M34 38c5-4 9-6 14-6s9 2 14 6',
 };
 
-export default function TutorAvatar({ avatar = 'a1', size = 56, className = '' }) {
+// `decorative` hides the portrait from screen readers when the tutor's name
+// is already in the text next to it.
+export default function TutorAvatar({ avatar = 'a1', size = 56, className = '', decorative = false }) {
   const a = AVATARS[avatar] || AVATARS.a1;
   return (
     <svg
       viewBox="0 0 96 96"
       width={size}
       height={size}
-      role="img"
-      aria-label={a.label}
+      role={decorative ? undefined : 'img'}
+      aria-label={decorative ? undefined : a.label}
+      aria-hidden={decorative ? 'true' : undefined}
       className={`rounded-full shrink-0 ${className}`}
     >
       <circle cx="48" cy="48" r="48" fill={a.bg} />

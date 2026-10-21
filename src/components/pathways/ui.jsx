@@ -12,6 +12,39 @@ const TAG_TONES = {
 };
 const DOT = { red: 'bg-pw-red', blue: 'bg-pw-blue-ink', teal: 'bg-pw-teal-ink', green: 'bg-pw-green-ink', navy: 'bg-pw-navy' };
 
+// One color per interview skill, used for every tag, card, and task of that
+// skill so color helps learners find their way.
+export const SKILL_TONE = {
+  civics: 'blue',
+  reading: 'teal',
+  writing: 'green',
+  speaking: 'red',
+  n400: 'navy',
+};
+export const SKILL_BG = {
+  civics: 'bg-pw-blue-soft',
+  reading: 'bg-pw-teal-soft',
+  writing: 'bg-pw-green-soft',
+  speaking: 'bg-pw-red-soft',
+  n400: 'bg-pw-soft',
+};
+export const SKILL_LABEL = {
+  civics: 'Civics',
+  reading: 'Reading',
+  writing: 'Writing',
+  speaking: 'Speaking',
+  n400: 'Form N-400',
+};
+
+// Small colored dot for a skill, for lists where a full tag is too loud.
+export function SkillDot({ skill, className = '' }) {
+  return <span className={`inline-block w-2.5 h-2.5 rounded-full shrink-0 ${DOT[SKILL_TONE[skill]]} ${className}`} aria-hidden="true" />;
+}
+
+export function SkillTag({ skill, className = '' }) {
+  return <Tag tone={SKILL_TONE[skill]} className={className}>{SKILL_LABEL[skill]}</Tag>;
+}
+
 export function Tag({ tone = 'navy', children, className = '' }) {
   return (
     <span className={`inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-bold ${TAG_TONES[tone]} ${className}`}>
@@ -44,7 +77,7 @@ export function SegmentedProgress({ current, total, label }) {
 const BTN = 'min-h-[44px] rounded-2xl font-bold inline-flex items-center justify-center gap-2 transition-colors disabled:opacity-40 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2';
 
 export function PrimaryButton({ className = '', large = false, ...props }) {
-  return <button type="button" className={`${BTN} bg-pw-navy text-white hover:bg-[#0F1B36] px-5 ${large ? 'min-h-[52px] text-lg' : 'text-base'} ${className}`} {...props} />;
+  return <button type="button" className={`${BTN} bg-pw-navy text-white hover:bg-pw-navy-deep px-5 ${large ? 'min-h-[52px] text-lg' : 'text-base'} ${className}`} {...props} />;
 }
 
 export function SecondaryButton({ className = '', ...props }) {
@@ -56,7 +89,7 @@ export function QuietButton({ className = '', ...props }) {
 }
 
 export function PillButton({ className = '', ...props }) {
-  return <button type="button" className={`${BTN} rounded-full bg-pw-soft text-pw-navy hover:bg-[#E2E8F2] px-4 text-base font-semibold ${className}`} {...props} />;
+  return <button type="button" className={`${BTN} rounded-full bg-pw-soft text-pw-navy hover:bg-pw-soft-hover px-4 text-base font-semibold ${className}`} {...props} />;
 }
 
 export function RaisedCard({ className = '', padding = 'p-5', children, ...props }) {

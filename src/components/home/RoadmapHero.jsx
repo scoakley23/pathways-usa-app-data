@@ -28,7 +28,7 @@ export default function RoadmapHero({ roadmap, t }) {
         </p>
         <Link
           to={createPageUrl(currentStop.path) + (currentStop.query ? `?${currentStop.query}` : '')}
-          className="w-full min-h-[56px] rounded-2xl bg-pw-navy text-white font-bold text-lg flex items-center justify-center gap-2 px-4 text-center shadow-lift hover:bg-[#0F1B36] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2"
+          className="w-full min-h-[56px] rounded-2xl bg-pw-navy text-white font-bold text-lg flex items-center justify-center gap-2 px-4 text-center shadow-lift hover:bg-pw-navy-deep transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2"
         >
           {action} <ArrowRight className="w-5 h-5 shrink-0" />
         </Link>

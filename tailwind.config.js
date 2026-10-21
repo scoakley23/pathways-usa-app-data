@@ -31,13 +31,16 @@ module.exports = {
     			// "Calm and confident" design tokens (see CLAUDE.md)
     			pw: {
     				navy: '#14264A',
+    				'navy-deep': '#0F1B36',
     				red: '#D9483F',
     				page: '#F3F5F9',
     				line: '#DEE4EE',
     				muted: '#4A5A78',
     				soft: '#EEF2F8',
+    				'soft-hover': '#E2E8F2',
     				'red-soft': '#FDECEA',
     				'red-ink': '#B53A32',
+    				'red-deep': '#962E28',
     				'blue-soft': '#E6EEF9',
     				'blue-ink': '#1F4C8F',
     				'teal-soft': '#E3F2F1',

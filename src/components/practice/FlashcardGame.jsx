@@ -57,7 +57,7 @@ export default function FlashcardGame({ words, onComplete }) {
             <button
               type="button"
               aria-label="Listen"
-              className="mt-6 w-12 h-12 grid place-items-center rounded-full bg-pw-soft text-pw-navy hover:bg-[#E2E8F2] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red"
+              className="mt-6 w-12 h-12 grid place-items-center rounded-full bg-pw-soft text-pw-navy hover:bg-pw-soft-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red"
               onClick={(e) => speak(currentWord.word, e)}
             >
               <Volume2 className="w-6 h-6" aria-hidden="true" />

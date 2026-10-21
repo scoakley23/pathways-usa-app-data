@@ -108,7 +108,7 @@ export default function Profile() {
 
   return (
     <div className="max-w-5xl mx-auto space-y-6 pb-12 text-pw-navy">
-      <PageHeader title="Profile" />
+      <PageHeader title="Profile" guide="Change my name, my picture, and how I talk to you. You can also make the text bigger." />
       <div className="flex flex-col md:flex-row gap-6 items-start">
         
         {/* Left Column: Profile Card */}

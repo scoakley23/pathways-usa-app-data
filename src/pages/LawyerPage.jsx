@@ -24,6 +24,7 @@ export default function LawyerPage({ cachedUser }) {
         tag="Legal help"
         tagTone="red"
         art="scroll"
+        guide="I'm a study tutor, not a lawyer. If anything on this page sounds like you, please talk to a lawyer or accredited representative before you file."
       />
 
       <RaisedCard className="space-y-3 md:p-6">

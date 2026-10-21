@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { createPageUrl } from '@/utils';
 import TopicArt from '@/components/art/TopicArt';
 import RoadmapHero from '@/components/home/RoadmapHero';
 import TodayCard from '@/components/persona/TodayCard';
@@ -9,6 +8,15 @@ import useRoadmapProgress from '@/components/home/useRoadmapProgress';
 import useAppLanguage, { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
 import useHomeTranslation from '@/hooks/useHomeTranslation';
 import { ArrowRight, FileText, Search } from 'lucide-react';
+import { SKILL_BG, SkillTag } from '@/components/pathways/ui';
+
+// "Practice one skill": each card opens that skill's practice directly.
+const SKILL_CARDS = [
+  { art: 'book', skill: 'reading', title: 'feat_reading_title', desc: 'feat_reading_desc', to: '/Practice?mode=reading' },
+  { art: 'pencil', skill: 'writing', title: 'feat_dictation_title', desc: 'feat_dictation_desc', to: '/Practice?mode=dictation' },
+  { art: 'scroll', skill: 'writing', title: 'feat_vocab_title', desc: 'feat_vocab_desc', to: '/Practice' },
+  { art: 'capitol', skill: 'civics', title: 'feat_civics_title', desc: 'feat_civics_desc', to: '/Practice?mode=civics' },
+];
 
 
 export default function Home({ cachedUser, cachedRole }) {
@@ -22,13 +30,14 @@ export default function Home({ cachedUser, cachedRole }) {
     }
   }, []);
   const rtl = RTL_LANGUAGES.includes((language || 'en').slice(0, 2).toLowerCase());
+  // Learners start with their tutor (Today, or the tutor's introduction);
+  // tutors and signed-out visitors see the overview hero.
+  const learner = cachedUser && cachedRole !== 'tutor';
 
   return (
     <div className="flex flex-col gap-6 pb-8" dir={rtl ? 'rtl' : 'ltr'}>
-      {/* Today (learners with a plan) or "Start with a quick check" */}
-      {cachedUser && cachedRole !== 'tutor' && <TodayCard language={language} homeT={t} />}
-      {/* Hero Section */}
-      <RoadmapHero roadmap={roadmap} t={t} />
+      {/* Today (learners with a plan) or the tutor's introduction */}
+      {learner ? <TodayCard language={language} homeT={t} /> : <RoadmapHero roadmap={roadmap} t={t} />}
       {/* Roadmap */}
       <RoadmapPath
         roadmap={roadmap}
@@ -38,23 +47,24 @@ export default function Home({ cachedUser, cachedRole }) {
         translating={translating}
       />
 
-      {/* Features Section */}
-      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {[
-          { art: 'book', title: 'feat_reading_title', desc: 'feat_reading_desc' },
-          { art: 'pencil', title: 'feat_dictation_title', desc: 'feat_dictation_desc' },
-          { art: 'scroll', title: 'feat_vocab_title', desc: 'feat_vocab_desc' },
-          { art: 'capitol', title: 'feat_civics_title', desc: 'feat_civics_desc' },
-        ].map((f) => (
+      {/* Practice one skill */}
+      <section aria-labelledby="practice-title" className="space-y-3">
+        <div>
+          <h2 id="practice-title" className="text-2xl font-extrabold tracking-[-0.5px] text-pw-navy">{t('practice_title')}</h2>
+          <p className="text-base text-pw-muted">{t('practice_desc')}</p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {SKILL_CARDS.map((f) => (
           <Link
             key={f.title}
-            to={createPageUrl('Practice')}
+            to={f.to}
             className="group flex sm:flex-col items-stretch rounded-3xl bg-white border border-pw-line shadow-raised overflow-hidden hover:-translate-y-0.5 hover:shadow-lift transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2"
           >
-            <div className="w-24 sm:w-auto shrink-0 bg-pw-blue-soft px-2 sm:px-4 pt-3 pb-2 grid place-items-center">
+            <div className={`w-24 sm:w-auto shrink-0 ${SKILL_BG[f.skill]} px-2 sm:px-4 pt-3 pb-2 grid place-items-center`}>
               <TopicArt name={f.art} className="w-full h-14 sm:h-16" accent={false} />
             </div>
             <div className="p-4 sm:p-5 space-y-1 sm:space-y-2 min-w-0">
+              <SkillTag skill={f.skill} />
               <h3 className="text-xl font-extrabold text-pw-navy flex items-center justify-between gap-2">
                 {t(f.title)} <ArrowRight className="w-5 h-5 text-pw-muted group-hover:text-pw-navy shrink-0" aria-hidden="true" />
               </h3>
@@ -62,6 +72,7 @@ export default function Home({ cachedUser, cachedRole }) {
             </div>
           </Link>
         ))}
+        </div>
       </section>
 
       {/* N-400 Question Guide */}
@@ -70,10 +81,11 @@ export default function Home({ cachedUser, cachedRole }) {
           to="/n400-guide"
           className="group flex items-stretch rounded-3xl bg-white border border-pw-line shadow-raised overflow-hidden hover:-translate-y-0.5 hover:shadow-lift transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2"
         >
-          <div className="w-24 sm:w-40 shrink-0 bg-pw-blue-soft px-2 grid place-items-center">
+          <div className={`w-24 sm:w-40 shrink-0 ${SKILL_BG.n400} px-2 grid place-items-center`}>
             <TopicArt name="scroll" className="w-full h-14" accent={false} />
           </div>
-          <div className="min-w-0 flex-1 p-4 sm:p-5">
+          <div className="min-w-0 flex-1 p-4 sm:p-5 space-y-1">
+            <SkillTag skill="n400" />
             <h3 className="text-xl font-extrabold text-pw-navy">{t('n400_title')}</h3>
             <p className="text-base text-pw-muted">{t('n400_desc')}</p>
           </div>
@@ -100,7 +112,7 @@ export default function Home({ cachedUser, cachedRole }) {
                 href="https://www.uscis.gov/citizenship/apply-for-naturalization"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="min-h-[52px] rounded-2xl bg-pw-navy text-white font-bold text-base inline-flex items-center justify-center gap-2 px-6 hover:bg-[#0F1B36] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2"
+                className="min-h-[52px] rounded-2xl bg-pw-navy text-white font-bold text-base inline-flex items-center justify-center gap-2 px-6 hover:bg-pw-navy-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2"
               >
                 <FileText className="w-5 h-5" /> {t('btn_apply')}
               </a>

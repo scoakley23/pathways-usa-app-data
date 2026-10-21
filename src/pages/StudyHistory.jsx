@@ -39,6 +39,7 @@ export default function StudyHistory() {
         title="Study Question History"
         subtitle="Review your past questions and answers"
         art="speech"
+        guide="These are the questions you asked me before, with my answers."
       />
 
       {loading ? (

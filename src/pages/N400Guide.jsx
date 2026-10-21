@@ -8,6 +8,7 @@ import { N400_SECTIONS } from '@/components/n400/n400Content';
 import N400Walkthrough from '@/components/n400/N400Walkthrough';
 import useAppLanguage from '@/hooks/useAppLanguage';
 import LanguageSelector from '@/components/lessons/LanguageSelector';
+import { SKILL_TONE } from '@/components/pathways/ui';
 
 // N-400 Question Guide: explains what questions on the naturalization
 // application mean. No learner answers are collected here — only whole-section
@@ -66,8 +67,9 @@ export default function N400Guide({ cachedUser }) {
         title="N-400 Question Guide"
         subtitle="Understand the questions on the naturalization application (Form N-400)."
         tag="Form N-400"
-        tagTone="blue"
+        tagTone={SKILL_TONE.n400}
         art="pencil"
+        guide="I can explain what each question and its key words mean. I can't tell you how to answer about your own life. For that, talk to a lawyer."
       />
 
       <p className="text-base leading-relaxed text-pw-muted">
