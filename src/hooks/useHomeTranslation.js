@@ -4,7 +4,7 @@ import { toast } from 'sonner';
 import { LANGUAGES } from './useLessonTranslation';
 import { HOME_STRINGS } from '@/components/home/homeStrings';
 
-const CACHE_PREFIX = 'pathways_home_tr_v6_'; // bump when HOME_STRINGS changes
+const CACHE_PREFIX = 'pathways_home_tr_v7_'; // bump when HOME_STRINGS changes
 
 // Translates the home screen's static strings via AI, cached per language in
 // localStorage so each language is translated only once.

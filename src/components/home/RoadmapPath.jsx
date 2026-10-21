@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Check, Notebook, BookOpen, Mic, CalendarCheck, Star } from 'lucide-react';
-import LanguageSelector from '@/components/lessons/LanguageSelector';
 import { ROADMAP_STOPS } from './roadmapStops';
 import { isRTL } from '@/hooks/useAppLanguage';
 import TutorAvatar from '@/components/persona/TutorAvatar';
@@ -30,7 +29,7 @@ function pathThrough(points) {
   return d;
 }
 
-export default function RoadmapPath({ roadmap, t, language, onLanguageChange, translating }) {
+export default function RoadmapPath({ roadmap, t, language }) {
   const { loading, currentStop, done, doneCount } = roadmap;
   const { profile } = useTutorProfile();
 
@@ -58,9 +57,6 @@ export default function RoadmapPath({ roadmap, t, language, onLanguageChange, tr
   return (
     <section aria-label={t('path_title')} dir={mirror ? 'rtl' : 'ltr'}>
       <div className="max-w-[480px] mx-auto">
-        <div className="flex justify-end mb-2">
-          <LanguageSelector language={language} onLanguageChange={onLanguageChange} translating={translating} />
-        </div>
         <div className="flex items-baseline justify-between mb-3">
           <h2 className="text-2xl font-extrabold tracking-[-0.5px] text-pw-navy">{t('path_title')}</h2>
           <span className="text-base font-bold text-pw-muted min-h-[20px]">

@@ -5,6 +5,7 @@ import RoadmapHero from '@/components/home/RoadmapHero';
 import StartHereCard from '@/components/home/StartHereCard';
 import TodayCard from '@/components/persona/TodayCard';
 import RoadmapPath from '@/components/home/RoadmapPath';
+import LanguageSelector from '@/components/lessons/LanguageSelector';
 import HomePromises from '@/components/home/HomePromises';
 import { useAuth } from '@/lib/AuthContext';
 import useRoadmapProgress from '@/components/home/useRoadmapProgress';
@@ -44,16 +45,14 @@ export default function Home({ cachedUser, cachedRole }) {
 
   return (
     <div className="flex flex-col gap-6 pb-8" dir={rtl ? 'rtl' : 'ltr'}>
+      {/* Language first, so even the first card can be read in it */}
+      <div className="flex justify-end -mb-2">
+        <LanguageSelector language={language} onLanguageChange={setLanguage} translating={translating} />
+      </div>
       {/* Today / the tutor's introduction (learners), Start here (signed out) */}
       {hero}
       {/* Roadmap */}
-      <RoadmapPath
-        roadmap={roadmap}
-        t={t}
-        language={language}
-        onLanguageChange={setLanguage}
-        translating={translating}
-      />
+      <RoadmapPath roadmap={roadmap} t={t} language={language} />
 
       {/* Official USCIS answers; learn in your language, test in English */}
       <HomePromises t={t} />
