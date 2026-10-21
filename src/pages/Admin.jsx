@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AlertCircle, FileText, HelpCircle, BookOpen } from 'lucide-react';
-import GenerateLessonsButton from '@/components/admin/GenerateLessonsButton';
 import SentencesTab from '@/components/admin/SentencesTab';
 import CivicsQuestionsTab from '@/components/admin/CivicsQuestionsTab';
 import VocabularyWordsTab from '@/components/admin/VocabularyWordsTab';
@@ -57,7 +56,6 @@ export default function Admin() {
           <Link to="/tutor-demo" className="inline-flex items-center justify-center min-h-[44px] rounded-2xl border-2 border-pw-navy bg-white px-4 text-base font-bold text-pw-navy hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2">
             Tutor demo
           </Link>
-          <GenerateLessonsButton />
         </div>
       </PageHeader>
 
