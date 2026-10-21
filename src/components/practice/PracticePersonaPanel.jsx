@@ -26,6 +26,17 @@ export function personaFacts(p) {
   ].join('\n');
 }
 
+// Scoring instructions for answers given AS a practice person (shared by the
+// mock interview and N-400 coaching).
+export function personaScoringBlock(p) {
+  return `
+The candidate is NOT answering about themselves. They are role-playing a fictional practice person, ${p.name}. Judge CONTENT against this person's facts, not the example response. If a yes/no question is not covered by the facts, this person's correct answer is "No". For other questions not covered by the facts, any simple, reasonable invented answer is acceptable. Write the corrected version as ${p.name} would answer.
+
+PRACTICE PERSON FACTS (fictional):
+${personaFacts(p)}
+`;
+}
+
 // Picker shown before the interview starts.
 export function PersonaPicker({ selectedId, onSelect }) {
   return (

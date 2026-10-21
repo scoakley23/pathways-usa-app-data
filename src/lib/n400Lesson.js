@@ -31,7 +31,7 @@ export const N400_LINES = {
 const fill = (t, vars) => {
   let s = t;
   for (const [k, v] of Object.entries(vars)) s = s.split(`{${k}}`).join(v);
-  return s;
+  return s.replace(/\.\./g, '.'); // titles like "U.S." before a period
 };
 const line = (key, language, vars = {}) => {
   const p = pick(N400_LINES[key], language);

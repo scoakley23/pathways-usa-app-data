@@ -9,7 +9,7 @@ import TutorMessage from '@/components/persona/TutorMessage';
 import useTutorProfile from '@/components/persona/useTutorProfile';
 import { languageNameFor } from '@/components/persona/languageName';
 import { N400_STEPS } from '@/components/persona/n400Steps';
-import { personaFacts } from '@/components/practice/PracticePersonaPanel';
+import { personaScoringBlock } from '@/components/practice/PracticePersonaPanel';
 import { PrimaryButton, Tag } from '@/components/pathways/ui';
 import { N400_SECTIONS } from '@/components/n400/n400Content';
 import { EXAMPLE_APPLICANTS } from '@/components/n400/exampleApplicants';
@@ -44,7 +44,7 @@ export default function N400Coach() {
   const section = useMemo(() => pickSection(N400_SECTIONS, completed, requested), [completed.join(','), requested]); // eslint-disable-line react-hooks/exhaustive-deps
   const persona = section ? personaForSection(N400_SECTIONS, section, EXAMPLE_APPLICANTS) : null;
   const lesson = useMemo(
-    () => (section ? buildN400Lesson({ section, persona, personaFactsText: personaFacts(persona), language }) : null),
+    () => (section ? buildN400Lesson({ section, persona, personaFactsText: personaScoringBlock(persona), language }) : null),
     [section, persona, language],
   );
 
