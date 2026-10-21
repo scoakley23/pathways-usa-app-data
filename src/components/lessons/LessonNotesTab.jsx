@@ -72,19 +72,19 @@ export default function LessonNotesTab({ lesson, userEmail }) {
 
   if (loading) return (
     <div className="flex items-center justify-center p-12">
-      <Loader2 className="w-6 h-6 animate-spin text-indigo-500" />
+      <Loader2 className="w-6 h-6 animate-spin text-pw-navy" />
     </div>
   );
 
   return (
-    <div className="space-y-3">
-      <div className="flex items-center justify-between">
-        <p className="text-sm text-slate-500">Write notes for this lesson. They auto-save as you type.</p>
-        <div className="flex items-center gap-2">
-          {isSaving && <span className="text-xs text-slate-400 flex items-center gap-1"><Loader2 className="w-3 h-3 animate-spin" /> Saving...</span>}
-          {!isSaving && lastSaved && <span className="text-xs text-green-600 flex items-center gap-1"><CheckCircle className="w-3 h-3" /> Saved</span>}
-          <Button size="sm" onClick={() => saveNote()} disabled={isSaving} className="bg-indigo-600 hover:bg-indigo-700">
-            <Save className="w-3.5 h-3.5 mr-1" /> Save
+    <div className="space-y-3 text-pw-navy">
+      <div className="flex items-center justify-between gap-3 flex-wrap">
+        <p className="text-base text-pw-muted">Write notes for this lesson. They auto-save as you type.</p>
+        <div className="flex items-center gap-2" aria-live="polite">
+          {isSaving && <span className="text-sm font-bold text-pw-muted flex items-center gap-1"><Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> Saving...</span>}
+          {!isSaving && lastSaved && <span className="text-sm font-bold text-pw-green-ink flex items-center gap-1"><CheckCircle className="w-4 h-4" aria-hidden="true" /> Saved</span>}
+          <Button size="sm" onClick={() => saveNote()} disabled={isSaving}>
+            <Save className="w-4 h-4" /> Save
           </Button>
         </div>
       </div>
@@ -92,7 +92,8 @@ export default function LessonNotesTab({ lesson, userEmail }) {
         value={content}
         onChange={handleChange}
         placeholder="Start typing your notes here..."
-        className="min-h-[300px] resize-y text-base leading-relaxed"
+        aria-label="Lesson notes"
+        className="min-h-[300px] resize-y text-base leading-relaxed rounded-2xl border-pw-line"
       />
     </div>
   );

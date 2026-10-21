@@ -21,7 +21,7 @@ export default function PracticeCalendar({ history }) {
 
   const modifiersStyles = {
     practiced: {
-      backgroundColor: '#1F3A6B', // brand navy
+      backgroundColor: '#14264A', // pw-navy
       color: 'white',
       fontWeight: 'bold',
       borderRadius: '100%'
@@ -31,18 +31,20 @@ export default function PracticeCalendar({ history }) {
   const selectedDayData = practicedDates[format(date || new Date(), 'yyyy-MM-dd')] || [];
 
   return (
-    <Card className="h-full">
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <CalendarIcon className="w-5 h-5 text-blue-600" />
+    <Card>
+      <CardHeader className="p-5 sm:p-6">
+        <CardTitle className="flex items-center gap-3 text-xl">
+          <span className="w-10 h-10 rounded-2xl bg-pw-blue-soft text-pw-blue-ink grid place-items-center shrink-0">
+            <CalendarIcon className="w-5 h-5" aria-hidden="true" />
+          </span>
           Practice Calendar
         </CardTitle>
       </CardHeader>
-      <CardContent className="flex flex-col md:flex-row gap-8">
+      <CardContent className="p-5 pt-0 sm:p-6 sm:pt-0 flex flex-col md:flex-row gap-6">
         <div className="flex-shrink-0 mx-auto md:mx-0">
            <div className="flex items-center gap-2 mb-2 justify-center md:justify-start">
-             <div className="w-3 h-3 rounded-full bg-green-500" />
-             <span className="text-xs text-slate-500">Day Practiced</span>
+             <div className="w-3 h-3 rounded-full bg-pw-navy" aria-hidden="true" />
+             <span className="text-sm text-pw-muted">Day Practiced</span>
            </div>
            <Calendar
             mode="single"
@@ -50,35 +52,35 @@ export default function PracticeCalendar({ history }) {
             onSelect={setDate}
             modifiers={modifiers}
             modifiersStyles={modifiersStyles}
-            className="rounded-md border shadow-sm bg-white p-4"
+            className="rounded-2xl border border-pw-line bg-white p-2 sm:p-3"
           />
         </div>
-        
-        <div className="flex-1 space-y-4">
-            <h4 className="font-semibold text-slate-900 border-b pb-2">
+
+        <div className="flex-1 min-w-0 space-y-3">
+            <h4 className="text-lg font-extrabold text-pw-navy">
                 Activity for {date ? format(date, 'MMMM do, yyyy') : 'Selected Date'}
             </h4>
-            
+
             {selectedDayData.length > 0 ? (
-                <div className="space-y-3 max-h-[300px] overflow-y-auto pr-2">
+                <div className="space-y-3 max-h-[300px] overflow-y-auto pr-1">
                     {selectedDayData.map((item, idx) => (
-                        <div key={idx} className="flex items-start gap-3 p-3 rounded-lg bg-slate-50 border border-slate-100">
+                        <div key={idx} className="flex items-start gap-3 p-4 rounded-2xl bg-white border border-pw-line">
                             {item.status === 'mastered' ? (
-                                <CheckCircle className="w-5 h-5 text-green-500 mt-0.5" />
+                                <CheckCircle className="w-5 h-5 text-pw-green-ink mt-0.5 shrink-0" aria-hidden="true" />
                             ) : (
-                                <div className="w-5 h-5 rounded-full border-2 border-slate-300 mt-0.5" />
+                                <div className="w-5 h-5 rounded-full border-2 border-pw-line mt-0.5 shrink-0" aria-hidden="true" />
                             )}
-                            <div>
-                                <p className="font-medium text-slate-800 text-sm">
+                            <div className="min-w-0">
+                                <p className="font-semibold text-pw-navy text-base">
                                     {item.sentence?.text || item.content?.text || item.content?.word || item.content?.question || "Practice Session"}
                                 </p>
-                                <div className="flex gap-2 mt-1">
-                                    <span className={`text-xs px-2 py-0.5 rounded-full ${
-                                        item.status === 'mastered' ? 'bg-green-100 text-green-700' : 'bg-slate-200 text-slate-600'
+                                <div className="flex items-center gap-2 mt-2">
+                                    <span className={`text-sm font-bold px-3 py-0.5 rounded-full ${
+                                        item.status === 'mastered' ? 'bg-pw-green-soft text-pw-green-ink' : 'bg-pw-soft text-pw-navy'
                                     }`}>
                                         {item.status === 'mastered' ? 'Mastered' : 'Practiced'}
                                     </span>
-                                    <span className="text-xs text-slate-400">
+                                    <span className="text-sm text-pw-muted">
                                         {format(new Date(item.last_practiced), 'h:mm a')}
                                     </span>
                                 </div>
@@ -87,7 +89,7 @@ export default function PracticeCalendar({ history }) {
                     ))}
                 </div>
             ) : (
-                <div className="text-center py-12 text-slate-500 bg-slate-50 rounded-lg border border-dashed border-slate-200">
+                <div className="text-center py-10 px-4 text-base text-pw-muted bg-pw-soft rounded-2xl">
                     <p>No activity recorded for this day.</p>
                 </div>
             )}

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Badge } from '@/components/ui/badge';
 import { CheckCircle2 } from 'lucide-react';
+import { Tag } from '@/components/pathways/ui';
 
 // One fictional person in the example-applicants picker. Every persona is
 // made up; the disclaimer badge is always shown.
@@ -9,27 +9,26 @@ export default function N400PersonaCard({ applicant, selected, onSelect }) {
     <button
       type="button"
       onClick={onSelect}
-      className={`text-left rounded-2xl border-2 p-4 space-y-3 bg-white transition-all hover:-translate-y-0.5 ${
-        selected ? 'border-indigo-600 ring-2 ring-indigo-200' : 'border-slate-200 hover:border-indigo-300'
+      aria-pressed={selected}
+      className={`w-full text-left rounded-2xl border-2 p-4 flex items-start gap-4 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2 ${
+        selected ? 'border-pw-navy bg-pw-soft' : 'border-pw-line bg-white hover:border-pw-navy/40'
       }`}
     >
-      <div className="flex items-start justify-between">
-        <img
-          src={applicant.image}
-          alt={`Illustration of ${applicant.name}, a fictional practice person`}
-          className="w-16 h-16 rounded-full object-cover border-2 border-slate-200"
-        />
-        {selected && <CheckCircle2 className="w-5 h-5 text-indigo-600 shrink-0" />}
-      </div>
-      <div>
-        <p className="font-bold text-slate-900">{applicant.name}</p>
-        <p className="text-xs" style={{ color: '#4A5A78' }}>
+      <img
+        src={applicant.image}
+        alt={`Illustration of ${applicant.name}, a fictional practice person`}
+        className="w-14 h-14 rounded-full object-cover border-2 border-pw-line bg-pw-blue-soft shrink-0"
+      />
+      <div className="min-w-0 flex-1 space-y-2">
+        <div className="flex items-start justify-between gap-2">
+          <p className="font-bold text-base text-pw-navy leading-snug">{applicant.name}</p>
+          {selected && <CheckCircle2 className="w-5 h-5 text-pw-navy shrink-0" aria-hidden="true" />}
+        </div>
+        <p className="text-sm text-pw-muted leading-snug">
           {applicant.job} · age {applicant.age} · {applicant.yearsInUS} years in the U.S.
         </p>
+        <Tag tone="red">Practice person. Not real.</Tag>
       </div>
-      <Badge variant="outline" className="text-amber-700 border-amber-300 bg-amber-50">
-        Practice person. Not real.
-      </Badge>
     </button>
   );
 }

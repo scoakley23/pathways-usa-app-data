@@ -59,14 +59,14 @@ export default function RoadmapPath({ roadmap, t, language, onLanguageChange, tr
           <LanguageSelector language={language} onLanguageChange={onLanguageChange} translating={translating} />
         </div>
         <div className="flex items-baseline justify-between mb-3">
-          <h2 className="text-2xl font-extrabold tracking-[-0.5px] text-slate-900">{t('path_title')}</h2>
-          <span className="text-sm font-semibold text-slate-500 min-h-[20px]">
+          <h2 className="text-2xl font-extrabold tracking-[-0.5px] text-pw-navy">{t('path_title')}</h2>
+          <span className="text-base font-bold text-pw-muted min-h-[20px]">
             {loading ? '' : t('path_done_of').replace('{n}', doneCount)}
           </span>
         </div>
 
         <div
-          className="relative rounded-3xl bg-indigo-700 overflow-hidden"
+          className="relative rounded-3xl bg-white border border-pw-line shadow-raised overflow-hidden"
           style={{ height: PANEL_HEIGHT }}
         >
           {/* Winding road */}
@@ -80,7 +80,7 @@ export default function RoadmapPath({ roadmap, t, language, onLanguageChange, tr
             <path
               d={dottedPath}
               fill="none"
-              stroke="#5F7FB8"
+              stroke="#9AA8C2"
               strokeWidth={6}
               strokeLinecap="round"
               strokeDasharray="0.5 12"
@@ -89,7 +89,7 @@ export default function RoadmapPath({ roadmap, t, language, onLanguageChange, tr
             <path
               d={solidPath}
               fill="none"
-              stroke="#FFFFFF"
+              stroke="#14264A"
               strokeWidth={6}
               strokeLinecap="round"
               vectorEffect="non-scaling-stroke"
@@ -97,13 +97,13 @@ export default function RoadmapPath({ roadmap, t, language, onLanguageChange, tr
           </svg>
 
           {/* Tiny stars */}
-          <div aria-hidden="true" className="absolute top-[130px] left-[58%] w-1.5 h-1.5 rounded-full bg-road-dim" />
-          <div aria-hidden="true" className="absolute top-[410px] left-[8%] w-1 h-1 rounded-full bg-road-dim opacity-70" />
-          <div aria-hidden="true" className="absolute top-[560px] left-[54%] w-1.5 h-1.5 rounded-full bg-road-dim" />
+          <div aria-hidden="true" className="absolute top-[130px] left-[58%] w-1.5 h-1.5 rounded-full bg-pw-red/50" />
+          <div aria-hidden="true" className="absolute top-[410px] left-[8%] w-1 h-1 rounded-full bg-pw-line" />
+          <div aria-hidden="true" className="absolute top-[560px] left-[54%] w-1.5 h-1.5 rounded-full bg-pw-line" />
 
           {/* Hills */}
-          <div aria-hidden="true" className="absolute -bottom-20 -left-24 w-72 h-44 rounded-full bg-indigo-600" />
-          <div aria-hidden="true" className="absolute -bottom-24 -right-10 w-64 h-48 rounded-full bg-indigo-600/70" />
+          <div aria-hidden="true" className="absolute -bottom-20 -left-24 w-72 h-44 rounded-full bg-pw-blue-soft" />
+          <div aria-hidden="true" className="absolute -bottom-24 -right-10 w-64 h-48 rounded-full bg-pw-soft" />
 
           {/* Stops */}
           {stops.map((stop, i) => {
@@ -114,7 +114,7 @@ export default function RoadmapPath({ roadmap, t, language, onLanguageChange, tr
             const onLeft = x < 50;
             const ariaLabel = `${stop.name}: ${stop.short}.${isCurrent ? ' You are here.' : ''}`;
             const focusRing =
-              'focus:outline-none focus-visible:ring-2 focus-visible:ring-white rounded-full';
+              'focus:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2 rounded-full';
 
             let marker;
             if (isOath) {
@@ -122,10 +122,10 @@ export default function RoadmapPath({ roadmap, t, language, onLanguageChange, tr
                 <Link
                   to={stopUrl(stop)}
                   aria-label={ariaLabel}
-                  className="flex flex-col items-center gap-1 rounded-3xl p-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                  className="flex flex-col items-center gap-1 rounded-3xl p-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-pw-red"
                 >
-                  <Star className="w-12 h-12 text-red-500 fill-red-500" strokeWidth={1.5} />
-                  <span className="text-xs font-bold uppercase tracking-wide text-white">
+                  <Star className="w-12 h-12 text-pw-red fill-pw-red" strokeWidth={1.5} />
+                  <span className="text-sm font-extrabold uppercase tracking-wide text-pw-navy">
                     {t('oath_day')}
                   </span>
                 </Link>
@@ -136,7 +136,7 @@ export default function RoadmapPath({ roadmap, t, language, onLanguageChange, tr
                 <Link
                   to={stopUrl(stop)}
                   aria-label={ariaLabel}
-                  className={`flex items-center justify-center w-[68px] h-[68px] rounded-full bg-red-500 border-[5px] border-white ${focusRing}`}
+                  className={`flex items-center justify-center w-[68px] h-[68px] rounded-full bg-pw-red border-[5px] border-white shadow-lift ${focusRing}`}
                 >
                   <Icon className="w-7 h-7 text-white" />
                 </Link>
@@ -147,11 +147,11 @@ export default function RoadmapPath({ roadmap, t, language, onLanguageChange, tr
                 <Link
                   to={stopUrl(stop)}
                   aria-label={ariaLabel}
-                  className={`relative flex items-center justify-center w-12 h-12 rounded-full bg-indigo-300 ${focusRing}`}
+                  className={`relative flex items-center justify-center w-12 h-12 rounded-full bg-pw-navy ${focusRing}`}
                 >
-                  <Icon className="w-5 h-5 text-slate-800" />
-                  <span className="absolute -bottom-0.5 -right-0.5 w-4 h-4 rounded-full bg-white border border-indigo-300 flex items-center justify-center">
-                    <Check className="w-2.5 h-2.5 text-slate-800" strokeWidth={3.5} />
+                  <Icon className="w-5 h-5 text-white" />
+                  <span className="absolute -bottom-0.5 -right-0.5 w-5 h-5 rounded-full bg-pw-green-soft border-2 border-white flex items-center justify-center">
+                    <Check className="w-3 h-3 text-pw-green-ink" strokeWidth={3.5} />
                   </span>
                 </Link>
               );
@@ -161,9 +161,9 @@ export default function RoadmapPath({ roadmap, t, language, onLanguageChange, tr
                 <Link
                   to={stopUrl(stop)}
                   aria-label={ariaLabel}
-                  className={`flex items-center justify-center w-12 h-12 rounded-full border-2 border-road-outline ${focusRing}`}
+                  className={`flex items-center justify-center w-12 h-12 rounded-full bg-white border-2 border-pw-line ${focusRing}`}
                 >
-                  <Icon className="w-5 h-5 text-white" />
+                  <Icon className="w-5 h-5 text-pw-navy" />
                 </Link>
               );
             }
@@ -171,14 +171,14 @@ export default function RoadmapPath({ roadmap, t, language, onLanguageChange, tr
             const text = (
               <div className={onLeft ? 'text-left' : 'text-right'}>
                 {isCurrent && (
-                  <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-here-label">
+                  <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-pw-red-ink">
                     {t('you_are_here')}
                   </p>
                 )}
                 {!isOath && (
-                  <p className="text-base font-bold text-white leading-tight">{stop.name}</p>
+                  <p className="text-base font-extrabold text-pw-navy leading-tight">{stop.name}</p>
                 )}
-                <p className="text-xs text-indigo-200 leading-snug mt-0.5">{stop.short}</p>
+                <p className="text-sm text-pw-muted leading-snug mt-0.5">{stop.short}</p>
               </div>
             );
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Badge } from '@/components/ui/badge';
+import { Tag } from '@/components/pathways/ui';
 import { EXAMPLE_APPLICANTS } from '@/components/n400/exampleApplicants';
 
 // Interview sections where the learner answers as a practice person instead
@@ -29,10 +29,10 @@ export function personaFacts(p) {
 // Picker shown before the interview starts.
 export function PersonaPicker({ selectedId, onSelect }) {
   return (
-    <div className="bg-white rounded-xl p-4 border border-slate-100 text-left space-y-3">
+    <div className="bg-white rounded-3xl p-5 border border-pw-line shadow-raised text-left space-y-4 text-pw-navy">
       <div>
-        <p className="font-bold text-slate-800">Choose a practice person</p>
-        <p className="text-base text-slate-600 leading-snug">
+        <p className="text-lg font-extrabold">Choose a practice person</p>
+        <p className="text-base text-pw-muted leading-snug mt-1">
           In Personal Information and Morals &amp; Ethics, you answer as this person, not about yourself.
         </p>
       </div>
@@ -45,12 +45,12 @@ export function PersonaPicker({ selectedId, onSelect }) {
               type="button"
               onClick={() => onSelect(p.id)}
               aria-pressed={selected}
-              className={`min-h-[44px] flex items-center gap-2 rounded-xl border-2 p-2 text-left transition-colors ${
-                selected ? 'border-indigo-600 bg-indigo-50' : 'border-slate-200 hover:border-indigo-300'
+              className={`min-h-[56px] flex items-center gap-2 rounded-2xl border-2 p-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red ${
+                selected ? 'border-pw-navy bg-pw-soft' : 'border-pw-line bg-white hover:border-pw-navy'
               }`}
             >
-              <img src={p.image} alt="" className="w-10 h-10 rounded-full object-cover shrink-0" />
-              <span className="text-sm font-semibold text-slate-800 leading-tight">{p.name}</span>
+              <img src={p.image} alt="" className="w-10 h-10 rounded-full object-cover shrink-0 bg-pw-blue-soft" />
+              <span className="text-sm font-bold leading-tight">{p.name}</span>
             </button>
           );
         })}
@@ -74,39 +74,37 @@ export default function PracticePersonaPanel({ persona }) {
   ];
 
   return (
-    <div className="rounded-2xl border border-amber-200 bg-amber-50/60 p-4 space-y-3">
+    <div className="rounded-3xl bg-pw-teal-soft p-5 space-y-4 text-pw-navy">
       <div className="flex items-center gap-3">
         <img
           src={p.image}
           alt={`Illustration of ${p.name}, a fictional practice person`}
-          className="w-14 h-14 rounded-full object-cover border-2 border-white shadow-sm shrink-0"
+          className="w-14 h-14 rounded-full object-cover border-2 border-white bg-white shadow-raised shrink-0"
         />
         <div className="min-w-0">
-          <p className="text-base font-bold text-slate-900">Answer as {p.name}</p>
-          <Badge variant="outline" className="text-amber-700 border-amber-300 bg-amber-50">
-            Practice person. Not real.
-          </Badge>
+          <p className="text-lg font-extrabold leading-tight mb-1">Answer as {p.name}</p>
+          <Tag tone="teal" className="bg-white">Practice person. Not real.</Tag>
         </div>
       </div>
 
-      <dl className="grid grid-cols-[auto,1fr] gap-x-3 gap-y-1 text-sm">
+      <dl className="grid grid-cols-[auto,1fr] gap-x-3 gap-y-1.5 text-base bg-white rounded-2xl p-4">
         {rows.map(([label, value]) => (
           <React.Fragment key={label}>
-            <dt className="font-semibold text-slate-600">{label}</dt>
-            <dd className="text-slate-800">{value}</dd>
+            <dt className="font-bold text-pw-muted">{label}</dt>
+            <dd className="min-w-0 break-words">{value}</dd>
           </React.Fragment>
         ))}
       </dl>
 
-      <div className="text-sm space-y-1">
+      <div className="text-base space-y-1.5">
         {p.gmc.map((g) => (
-          <p key={g.q} className="text-slate-800">
-            <span className="text-slate-600">{g.q}</span> <span className="font-semibold">{g.a}</span>
+          <p key={g.q}>
+            <span className="text-pw-muted">{g.q}</span> <span className="font-bold">{g.a}</span>
           </p>
         ))}
       </div>
 
-      <p className="text-sm text-slate-600 leading-snug">
+      <p className="text-sm text-pw-teal-ink font-semibold leading-snug">
         Not on the card? For yes/no questions, {p.name.split(' ')[0]}'s answer is "No." For other questions, make up a simple answer.
       </p>
     </div>

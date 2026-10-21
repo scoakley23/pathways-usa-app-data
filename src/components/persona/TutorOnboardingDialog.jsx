@@ -31,10 +31,10 @@ export default function TutorOnboardingDialog({ onDone }) {
 
   return (
     <Dialog open onOpenChange={(open) => { if (!open) finish(DEFAULT_TUTOR_PROFILE); }}>
-      <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto rounded-2xl">
+      <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto rounded-3xl">
         <DialogHeader>
-          <DialogTitle className="text-xl">Meet your tutor</DialogTitle>
-          <DialogDescription className="text-base">
+          <DialogTitle className="text-2xl font-extrabold text-pw-navy">Meet your tutor</DialogTitle>
+          <DialogDescription className="text-base text-pw-muted">
             Your tutor explains each step and helps you practice. You can change this any time in Profile.
           </DialogDescription>
         </DialogHeader>

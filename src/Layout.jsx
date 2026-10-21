@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import { BookOpen, Mic, CheckCircle, LogOut, Menu, X, Settings, GraduationCap, User, MessageSquare, Notebook, School, FileQuestion } from 'lucide-react';
+import { BookOpen, Mic, CheckCircle, LogOut, Menu, Settings, GraduationCap, User, Notebook, School, FileQuestion } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { base44 } from '@/api/base44Client';
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -141,29 +141,30 @@ export default function Layout({ children }) {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-900">
+    <div className="min-h-screen bg-pw-page font-sans text-pw-navy">
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 w-full bg-slate-900">
+      <nav className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-pw-line">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2 cursor-pointer">
             <img 
               src="https://media.base44.com/images/public/6931bd654d327c7b2e36bfed/f90c67bf6_Screenshot2026-07-22at33716PM.png" 
               alt="Pathways Logo"
-              className="w-10 h-10 rounded-xl transform hover:scale-105 transition-transform object-cover ring-1 ring-white/25"
+              className="w-10 h-10 rounded-xl object-cover ring-1 ring-pw-line"
             />
-            <span className="font-extrabold text-xl tracking-tight text-white">
+            <span className="font-extrabold text-xl tracking-tight text-pw-navy">
               Pathways
             </span>
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden lg:flex items-center gap-1">
             {navItems.map((item) => (
               <Link 
                 key={item.path}
                 to={createPageUrl(item.path.replace('/', ''))}
-                className={`text-sm font-medium transition-colors flex items-center gap-2 px-3 py-2 rounded-md
-                  ${location.pathname === item.path ? 'bg-white/10 text-white' : 'text-indigo-200 hover:text-white'}`}
+                aria-current={location.pathname === item.path ? 'page' : undefined}
+                className={`text-base font-bold transition-colors flex items-center gap-2 px-3 min-h-11 rounded-xl
+                  ${location.pathname === item.path ? 'bg-pw-soft text-pw-navy' : 'text-pw-muted hover:text-pw-navy hover:bg-pw-soft'}`}
               >
                 <item.icon className="w-4 h-4" />
                 {item.label}
@@ -173,48 +174,49 @@ export default function Layout({ children }) {
                 {user && <NotificationCenter userEmail={user.email} />}
 
                 {user ? (
-              <Button variant="ghost" size="sm" onClick={handleLogout} className="ml-2 text-indigo-200 hover:text-white hover:bg-white/10">
+              <Button variant="ghost" size="sm" onClick={handleLogout} className="ml-2 text-pw-muted">
                 <LogOut className="w-4 h-4 mr-2" />
                 Sign Out
               </Button>
             ) : (
-               <Button size="sm" onClick={() => base44.auth.redirectToLogin()} className="ml-2 bg-white text-slate-900 hover:bg-slate-100">
+               <Button size="sm" onClick={() => base44.auth.redirectToLogin()} className="ml-2">
                 Sign In
               </Button>
             )}
           </div>
 
           {/* Mobile Nav */}
-          <div className="md:hidden flex items-center gap-2">
+          <div className="lg:hidden flex items-center gap-2">
             {user && <NotificationCenter userEmail={user.email} />}
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
-                <Button variant="outline" size="icon" className="border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white">
+                <Button variant="outline" size="icon" aria-label="Open menu">
                   <Menu className="w-6 h-6" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-                <div className="flex flex-col gap-4 mt-8">
+              <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-pw-page">
+                <div className="flex flex-col gap-1 mt-8">
                   {navItems.map((item) => (
                     <Link 
                       key={item.path} 
                       to={createPageUrl(item.path.replace('/', ''))}
                       onClick={() => setIsOpen(false)}
-                      className={`text-lg font-medium transition-colors flex items-center gap-3 px-4 py-3 rounded-lg
-                        ${location.pathname === item.path ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-50'}`}
+                      aria-current={location.pathname === item.path ? 'page' : undefined}
+                      className={`text-lg font-bold transition-colors flex items-center gap-3 px-4 min-h-[52px] rounded-2xl
+                        ${location.pathname === item.path ? 'bg-white text-pw-navy shadow-raised border-l-4 border-pw-red' : 'text-pw-muted hover:bg-white hover:text-pw-navy'}`}
                     >
                       <item.icon className="w-5 h-5" />
                       {item.label}
                     </Link>
                   ))}
-                   <div className="border-t border-slate-100 my-2 pt-4">
+                   <div className="border-t border-pw-line my-2 pt-4">
                     {user ? (
-                      <Button variant="ghost" className="w-full justify-start text-red-600 hover:bg-red-50 hover:text-red-700" onClick={handleLogout}>
+                      <Button variant="ghost" className="w-full justify-start text-pw-red-ink hover:bg-pw-red-soft" onClick={handleLogout}>
                         <LogOut className="w-5 h-5 mr-3" />
                         Sign Out
                       </Button>
                     ) : (
-                      <Button className="w-full bg-blue-700 hover:bg-blue-800" onClick={() => base44.auth.redirectToLogin()}>
+                      <Button className="w-full" onClick={() => base44.auth.redirectToLogin()}>
                         Sign In
                       </Button>
                     )}
@@ -226,7 +228,7 @@ export default function Layout({ children }) {
         </div>
       </nav>
 
-      <main key={role || 'init'} className="container mx-auto px-4 pt-16 pb-8 max-w-5xl">
+      <main key={role || 'init'} className="container mx-auto px-4 pt-6 pb-24 max-w-5xl">
         {React.Children.map(children, child => {
             if (React.isValidElement(child)) {
                 return React.cloneElement(child, { cachedUser: user, cachedRole: role });
@@ -235,9 +237,9 @@ export default function Layout({ children }) {
         })}
       </main>
 
-      <footer className="border-t border-slate-200 bg-white mt-8">
-        <div className="container mx-auto px-4 py-4 max-w-5xl">
-          <p className="text-xs text-center" style={{ color: '#4A5A78' }}>
+      <footer className="border-t border-pw-line bg-white mt-8">
+        <div className="container mx-auto px-4 py-5 max-w-5xl">
+          <p className="text-sm text-center text-pw-muted">
             Pathways is an independent nonprofit education app. Not affiliated with USCIS or any government agency. Not legal advice.
           </p>
         </div>
@@ -259,7 +261,8 @@ export default function Layout({ children }) {
           />
       )}
       {showTutorSetup && <TutorOnboardingDialog onDone={closeTutorSetup} />}
-      <StudyBuddy />
+      {/* Lesson screens have a pinned Continue button; keep the chat button off them. */}
+      {!['/quick-check', '/tutor-demo'].includes(location.pathname) && <StudyBuddy />}
       <DailyPracticeReminder />
       <Toaster />
     </div>

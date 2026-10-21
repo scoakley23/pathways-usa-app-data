@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Volume2, Eye, Check, X, ArrowRight, RefreshCw, Edit3, Globe, Languages, Loader2 } from 'lucide-react';
+import { Volume2, Check, X, ArrowRight, Edit3, Globe, Loader2 } from 'lucide-react';
 import { speakText } from "@/components/utils/textToSpeech";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Eyebrow, PrimaryButton, RaisedCard, SecondaryButton } from '@/components/pathways/ui';
 import { Input } from "@/components/ui/input";
-import { Progress } from "@/components/ui/progress";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { base44 } from '@/api/base44Client';
+import { checkDictation } from '@/lib/practiceChecks';
 
 export default function DictationCard({ sentence, onComplete, onNext }) {
   const [stage, setStage] = useState('listen'); // listen, check, result
@@ -74,13 +73,8 @@ export default function DictationCard({ sentence, onComplete, onNext }) {
     });
   };
 
-  // Clean text for comparison (remove punctuation, case insensitive)
-  const normalize = (text) => {
-    return text.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "").trim();
-  };
-
   const checkAnswer = () => {
-    const isCorrect = normalize(userInput) === normalize(sentence.text);
+    const { isCorrect } = checkDictation(sentence.text, userInput);
     setFeedback(isCorrect ? 'correct' : 'incorrect');
     setStage('result');
     
@@ -99,12 +93,12 @@ export default function DictationCard({ sentence, onComplete, onNext }) {
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto">
-      <div className="flex justify-end mb-4">
-        <div className="flex items-center gap-2 bg-white/50 backdrop-blur-sm p-1 rounded-lg border border-slate-200">
-          <Globe className="w-4 h-4 text-slate-500 ml-2" />
+    <div className="w-full max-w-2xl mx-auto space-y-4 text-pw-navy">
+      <div className="flex justify-end">
+        <div className="flex items-center gap-1 bg-white pl-3 rounded-2xl border border-pw-line">
+          <Globe className="w-4 h-4 text-pw-muted" aria-hidden="true" />
           <Select value={selectedLanguage} onValueChange={setSelectedLanguage}>
-            <SelectTrigger className="w-[140px] h-8 text-xs border-0 bg-transparent focus:ring-0">
+            <SelectTrigger aria-label="Translate to" className="w-[150px] min-h-[44px] text-sm border-0 bg-transparent shadow-none focus:ring-0">
               <SelectValue placeholder="Translate to..." />
             </SelectTrigger>
             <SelectContent>
@@ -117,167 +111,163 @@ export default function DictationCard({ sentence, onComplete, onNext }) {
         </div>
       </div>
 
-      <Card className="bg-white shadow-xl border-0 overflow-hidden rounded-2xl">
-        <div className="h-2 bg-indigo-600" />
-        
-        <CardContent className="p-8 md:p-12 flex flex-col items-center text-center">
-          
-          {/* Step Indicator */}
-          <div className="flex items-center gap-2 text-sm font-semibold text-slate-400 mb-8 uppercase tracking-wider">
-            <span className={stage === 'listen' ? "text-blue-600" : ""}>1. Listen</span>
-            <span className="text-slate-300">→</span>
-            <span className={stage === 'check' ? "text-blue-600" : ""}>2. Write</span>
-            <span className="text-slate-300">→</span>
-            <span className={stage === 'result' ? "text-blue-600" : ""}>3. Check</span>
-          </div>
+      <RaisedCard>
+        {/* Step Indicator */}
+        <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs font-bold uppercase tracking-widest text-pw-muted mb-5">
+          <li className={stage === 'listen' ? 'text-pw-navy' : ''} aria-current={stage === 'listen' ? 'step' : undefined}>1. Listen</li>
+          <li aria-hidden="true" className="text-pw-line">→</li>
+          <li className={stage === 'check' ? 'text-pw-navy' : ''} aria-current={stage === 'check' ? 'step' : undefined}>2. Write</li>
+          <li aria-hidden="true" className="text-pw-line">→</li>
+          <li className={stage === 'result' ? 'text-pw-navy' : ''} aria-current={stage === 'result' ? 'step' : undefined}>3. Check</li>
+        </ol>
 
-          {/* Audio Section */}
-          <div className="mb-8 relative">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={speak}
-              className={`w-32 h-32 rounded-full flex items-center justify-center shadow-lg transition-all duration-300
-                ${isPlaying ? 'bg-blue-100 text-blue-600 ring-4 ring-blue-200' : 'bg-blue-600 text-white hover:bg-blue-700 hover:shadow-blue-200'}`}
+        {/* Audio Section */}
+        <div className="flex items-center gap-4">
+          <motion.button
+            type="button"
+            whileTap={{ scale: 0.95 }}
+            onClick={speak}
+            aria-label="Play the sentence"
+            className={`w-16 h-16 shrink-0 rounded-full grid place-items-center shadow-lift transition-colors focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-pw-red/40
+              ${isPlaying ? 'bg-pw-soft text-pw-navy ring-4 ring-pw-navy/20' : 'bg-pw-navy text-white hover:bg-[#0F1B36]'}`}
+          >
+            <Volume2 className={`w-7 h-7 ${isPlaying ? 'animate-pulse' : ''}`} aria-hidden="true" />
+          </motion.button>
+          <div className="min-w-0">
+            <p className="font-bold">Click to listen</p>
+            <p className="text-sm text-pw-muted">Write what you hear on your paper</p>
+          </div>
+        </div>
+
+        <AnimatePresence mode="wait">
+          {stage === 'listen' && (
+            <motion.div
+              key="listen"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="w-full mt-6"
             >
-              <Volume2 className={`w-12 h-12 ${isPlaying ? 'animate-pulse' : ''}`} />
-            </motion.button>
-            <p className="mt-4 text-slate-600 font-medium">Click to listen</p>
-            <p className="text-sm text-slate-400">Write what you hear on your paper</p>
-          </div>
+              <PrimaryButton large onClick={() => setStage('check')} className="w-full">
+                I wrote it down <Edit3 className="w-5 h-5" aria-hidden="true" />
+              </PrimaryButton>
+            </motion.div>
+          )}
 
-          <AnimatePresence mode="wait">
-            {stage === 'listen' && (
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
+          {stage === 'check' && (
+            <motion.div
+              key="check"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="w-full space-y-3 mt-6"
+            >
+              <label htmlFor="dictation-input" className="block text-sm font-semibold text-pw-muted">Optional: Type here to auto-check</label>
+              <Input
+                id="dictation-input"
+                value={userInput}
+                onChange={(e) => setUserInput(e.target.value)}
+                placeholder="Type sentence here..."
+                className="text-base min-h-[48px]"
+                onKeyDown={(e) => e.key === 'Enter' && checkAnswer()}
+                autoFocus
+              />
+              <PrimaryButton
+                large
+                onClick={checkAnswer}
                 className="w-full"
+                disabled={!userInput.trim()}
               >
-                <Button 
-                  onClick={() => setStage('check')} 
-                  className="w-full max-w-sm bg-slate-900 text-white hover:bg-slate-800 h-12 text-lg rounded-xl"
-                >
-                  I wrote it down <Edit3 className="ml-2 w-4 h-4" />
-                </Button>
-              </motion.div>
+                Check My Answer
+              </PrimaryButton>
+              <SecondaryButton
+                onClick={() => { setFeedback('manual'); setStage('result'); }}
+                className="w-full border-pw-line"
+              >
+                Just Reveal Answer
+              </SecondaryButton>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </RaisedCard>
+
+      {stage === 'result' && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="w-full space-y-4"
+        >
+          <div className={`rounded-3xl p-5 ${feedback === 'correct' ? 'bg-pw-green-soft' : feedback === 'incorrect' ? 'bg-pw-red-soft' : 'bg-white border border-pw-line shadow-raised'}`}>
+            {feedback === 'correct' && (
+              <div className="flex items-center gap-3 mb-4 text-pw-green-ink animate-in fade-in">
+                <span className="w-10 h-10 bg-white rounded-full grid place-items-center shrink-0">
+                  <Check className="w-6 h-6" aria-hidden="true" />
+                </span>
+                <p className="text-xl font-extrabold">Excellent work!</p>
+              </div>
             )}
 
-            {stage === 'check' && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                className="w-full space-y-6"
-              >
-                <div className="text-left w-full max-w-lg mx-auto bg-slate-50 p-6 rounded-xl border border-slate-200">
-                   <p className="text-sm text-slate-500 mb-2 font-medium">Optional: Type here to auto-check</p>
-                   <Input
-                    value={userInput}
-                    onChange={(e) => setUserInput(e.target.value)}
-                    placeholder="Type sentence here..."
-                    className="text-lg p-6 bg-white shadow-sm border-slate-300 focus:ring-2 focus:ring-blue-500"
-                    onKeyDown={(e) => e.key === 'Enter' && checkAnswer()}
-                    autoFocus
-                   />
+            {feedback === 'incorrect' && (
+              <div className="mb-4 animate-in fade-in">
+                <div className="flex items-center gap-3 text-pw-red-ink">
+                  <span className="w-10 h-10 bg-white rounded-full grid place-items-center shrink-0">
+                    <X className="w-6 h-6" aria-hidden="true" />
+                  </span>
+                  <p className="text-xl font-extrabold">Keep practicing!</p>
                 </div>
-
-                <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                  <Button 
-                    onClick={checkAnswer} 
-                    className="bg-green-600 hover:bg-green-700 h-12 px-8 text-lg rounded-xl"
-                    disabled={!userInput.trim()}
-                  >
-                    Check My Answer
-                  </Button>
-                  <Button 
-                    variant="outline"
-                    onClick={() => { setFeedback('manual'); setStage('result'); }} 
-                    className="h-12 px-8 text-lg rounded-xl border-slate-300"
-                  >
-                    Just Reveal Answer
-                  </Button>
+                <div className="mt-3">
+                  <p className="text-sm text-pw-muted">You wrote:</p>
+                  <p className="italic line-through text-pw-navy/75">{userInput}</p>
                 </div>
-              </motion.div>
+              </div>
             )}
 
-            {stage === 'result' && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="w-full space-y-8"
-              >
-                <div className="bg-slate-50 rounded-xl p-8 border border-slate-200 w-full relative overflow-hidden">
-                  <p className="text-sm text-slate-500 uppercase tracking-wider font-bold mb-2">Correct Sentence</p>
-                  <h3 className="text-2xl md:text-3xl font-bold text-slate-800 leading-relaxed mb-2">
-                    {sentence.text}
-                  </h3>
-                  
-                  {selectedLanguage && selectedLanguage !== 'none' && (
-                    <div className="mt-4 pt-4 border-t border-slate-200">
-                      {isTranslating ? (
-                        <div className="flex items-center justify-center gap-2 text-slate-500">
-                          <Loader2 className="w-4 h-4 animate-spin" /> Translating...
-                        </div>
-                      ) : (
-                        <div className="text-lg text-blue-700 font-medium bg-blue-50 p-3 rounded-lg inline-block animate-in fade-in">
-                          <span className="mr-2 opacity-75 text-sm uppercase tracking-wide">{SUPPORTED_LANGUAGES.find(l => l.code === selectedLanguage)?.name}:</span>
-                          {translation}
-                        </div>
-                      )}
+            <div className={feedback === 'manual' ? '' : 'bg-white rounded-2xl p-4'}>
+              <Eyebrow className="mb-2">Correct Sentence</Eyebrow>
+              <h3 className="text-[1.375rem] md:text-3xl font-extrabold leading-snug">
+                {sentence.text}
+              </h3>
+
+              {selectedLanguage && selectedLanguage !== 'none' && (
+                <div className="mt-3">
+                  {isTranslating ? (
+                    <div className="flex items-center gap-2 text-pw-muted text-sm">
+                      <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> Translating...
+                    </div>
+                  ) : (
+                    <div className="text-base font-semibold text-pw-blue-ink bg-pw-blue-soft px-4 py-3 rounded-2xl animate-in fade-in">
+                      <span className="mr-2 text-xs font-bold uppercase tracking-widest opacity-80">{SUPPORTED_LANGUAGES.find(l => l.code === selectedLanguage)?.name}:</span>
+                      {translation}
                     </div>
                   )}
                 </div>
+              )}
+            </div>
+          </div>
 
-                {feedback === 'correct' && (
-                  <div className="flex flex-col items-center text-green-600 animate-in fade-in slide-in-from-bottom-4">
-                    <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-2">
-                      <Check className="w-6 h-6" />
-                    </div>
-                    <p className="text-xl font-bold">Excellent work!</p>
-                  </div>
-                )}
+          {feedback === 'manual' && (
+            <RaisedCard className="animate-in fade-in slide-in-from-bottom-4">
+              <p className="text-lg font-bold mb-3">Did you write it correctly?</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <SecondaryButton onClick={() => onComplete(false)} className="border-pw-line">
+                  <X className="w-4 h-4" aria-hidden="true" /> No, I made a mistake
+                </SecondaryButton>
+                <PrimaryButton onClick={() => {
+                  onComplete(true);
+                }}>
+                  <Check className="w-4 h-4" aria-hidden="true" /> Yes, it matches
+                </PrimaryButton>
+              </div>
+            </RaisedCard>
+          )}
 
-                {feedback === 'incorrect' && (
-                  <div className="flex flex-col items-center text-red-500 animate-in fade-in slide-in-from-bottom-4">
-                    <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mb-2">
-                      <X className="w-6 h-6" />
-                    </div>
-                    <p className="text-xl font-bold">Keep practicing!</p>
-                    <div className="mt-2 text-slate-600">
-                      <p className="text-sm">You wrote:</p>
-                      <p className="italic line-through opacity-75">{userInput}</p>
-                    </div>
-                  </div>
-                )}
-
-                 {feedback === 'manual' && (
-                  <div className="flex flex-col items-center animate-in fade-in slide-in-from-bottom-4">
-                    <p className="text-lg font-medium text-slate-700 mb-4">Did you write it correctly?</p>
-                    <div className="flex gap-4">
-                      <Button onClick={() => onComplete(false)} variant="outline" className="border-red-200 hover:bg-red-50 text-red-700">
-                        <X className="w-4 h-4 mr-2" /> No, I made a mistake
-                      </Button>
-                      <Button onClick={() => {
-                        onComplete(true);
-                      }} className="bg-green-600 hover:bg-green-700">
-                        <Check className="w-4 h-4 mr-2" /> Yes, it matches
-                      </Button>
-                    </div>
-                  </div>
-                )}
-
-                {(feedback === 'correct' || feedback === 'incorrect') && (
-                  <Button onClick={onNext} className="w-full max-w-xs h-12 text-lg rounded-xl bg-blue-600 hover:bg-blue-700 shadow-lg shadow-blue-200">
-                    Next Sentence <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                )}
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-        </CardContent>
-      </Card>
+          {(feedback === 'correct' || feedback === 'incorrect') && (
+            <PrimaryButton large onClick={onNext} className="w-full">
+              Next Sentence <ArrowRight className="w-5 h-5" aria-hidden="true" />
+            </PrimaryButton>
+          )}
+        </motion.div>
+      )}
     </div>
   );
 }

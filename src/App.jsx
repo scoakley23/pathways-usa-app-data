@@ -11,6 +11,8 @@ import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import N400Guide from './pages/N400Guide';
 import LawyerPage from './pages/LawyerPage';
+import TutorDemo from './pages/TutorDemo';
+import QuickCheck from './pages/QuickCheck';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -70,6 +72,16 @@ const AuthenticatedApp = () => {
       <Route path="lawyer-first" element={
         <LayoutWrapper currentPageName="LawyerPage">
           <LawyerPage />
+        </LayoutWrapper>
+      } />
+      <Route path="quick-check" element={
+        <LayoutWrapper currentPageName="QuickCheck">
+          <QuickCheck />
+        </LayoutWrapper>
+      } />
+      <Route path="tutor-demo" element={
+        <LayoutWrapper currentPageName="TutorDemo">
+          <TutorDemo />
         </LayoutWrapper>
       } />
       <Route path="*" element={<PageNotFound />} />

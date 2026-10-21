@@ -56,30 +56,30 @@ export default function CivicsQuestionDialog({ open, onOpenChange, onSubmit, ini
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4 py-4">
           <div className="space-y-2">
-            <Label htmlFor="question">Question</Label>
+            <Label htmlFor="question" className="text-sm font-bold text-pw-navy">Question</Label>
             <Textarea
               id="question"
               value={formData.question}
               onChange={(e) => setFormData({ ...formData, question: e.target.value })}
               placeholder="e.g., What is the supreme law of the land?"
               required
-              className="min-h-[80px]"
+              className="min-h-[80px] rounded-2xl border-2 border-pw-line text-base md:text-base text-pw-navy focus-visible:border-pw-navy"
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="answer">Answer</Label>
+            <Label htmlFor="answer" className="text-sm font-bold text-pw-navy">Answer</Label>
             <Textarea
               id="answer"
               value={formData.answer}
               onChange={(e) => setFormData({ ...formData, answer: e.target.value })}
               placeholder="e.g., The Constitution"
               required
-              className="min-h-[80px]"
+              className="min-h-[80px] rounded-2xl border-2 border-pw-line text-base md:text-base text-pw-navy focus-visible:border-pw-navy"
             />
           </div>
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="version">Version</Label>
+              <Label htmlFor="version" className="text-sm font-bold text-pw-navy">Version</Label>
               <Select
                 value={formData.version}
                 onValueChange={(value) => setFormData({ ...formData, version: value })}
@@ -94,7 +94,7 @@ export default function CivicsQuestionDialog({ open, onOpenChange, onSubmit, ini
               </Select>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="difficulty">Difficulty</Label>
+              <Label htmlFor="difficulty" className="text-sm font-bold text-pw-navy">Difficulty</Label>
               <Select
                 value={formData.difficulty}
                 onValueChange={(value) => setFormData({ ...formData, difficulty: value })}
@@ -110,7 +110,7 @@ export default function CivicsQuestionDialog({ open, onOpenChange, onSubmit, ini
               </Select>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="category">Category</Label>
+              <Label htmlFor="category" className="text-sm font-bold text-pw-navy">Category</Label>
               <Input
                 id="category"
                 value={formData.category}
@@ -119,7 +119,7 @@ export default function CivicsQuestionDialog({ open, onOpenChange, onSubmit, ini
               />
             </div>
           </div>
-          <DialogFooter>
+          <DialogFooter className="gap-2">
             <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
               Cancel
             </Button>

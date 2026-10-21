@@ -30,7 +30,7 @@ function renderTextWithTooltips(text) {
       <Tooltip key={`glossary-${key++}`}>
         <TooltipTrigger asChild>
           <span
-            className="underline decoration-dotted decoration-blue-400 underline-offset-2 cursor-help text-blue-700 hover:text-blue-900"
+            className="underline decoration-dotted decoration-pw-red decoration-2 underline-offset-4 cursor-help font-bold text-pw-navy hover:bg-pw-highlight rounded-sm focus-visible:outline-none focus-visible:bg-pw-highlight"
             tabIndex={0}
           >
             {matchedText}
