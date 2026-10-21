@@ -72,6 +72,15 @@ const ART = {
       <path d="M138 40h18c5 0 8 3 8 8v14c0 5-3 8-8 8h-4v10l-12-10h-2" />
     </>
   ),
+  // Vocabulary (word cards)
+  cards: (
+    <>
+      <path d="M82 68H60c-2 0-4-2-4-4V22c0-2 2-4 4-4h54c2 0 4 2 4 4v8" />
+      <path d="M64 30h14M64 40h10" />
+      <path d="M88 30h56c3 0 6 3 6 6v40c0 3-3 6-6 6H88c-3 0-6-3-6-6V36c0-3 3-6 6-6z" />
+      <path d="M94 46h44M94 56h30M94 66h38" />
+    </>
+  ),
   // Quick check / pretest
   compass: (
     <>
