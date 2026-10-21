@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
 
 /**
@@ -55,10 +55,10 @@ export default function DailyPracticeReminder() {
         await base44.entities.Notification.create({
           user_email: normalizedEmail,
           type: 'system',
-          title: 'Daily Practice Reminder',
+          title: 'Your practice for today',
           message:
-            "You haven't practiced today! Complete at least one lesson to keep your streak going.",
-          link: '/Practice',
+            'A few short tasks are ready on your Today card whenever you have time.',
+          link: '/',
           read: false,
         });
 

@@ -3,12 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Volume2, Eye, ArrowRight, Globe, Loader2, CheckCircle, AlertCircle, Keyboard, MicOff, ChevronRight, Mic } from 'lucide-react';
 import { speakText } from "@/components/utils/textToSpeech";
 import AIExplanation from '@/components/ai/AIExplanation';
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Eyebrow, PillButton, PrimaryButton, QuietButton, RaisedCard, SecondaryButton, Tag } from '@/components/pathways/ui';
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { base44 } from '@/api/base44Client';
+import { checkCivicsAnswer } from '@/components/civics/checkCivicsAnswer';
 
 import { getPersonalizedAnswer } from '@/components/civics/RepresentativeFinder';
 import { LANGUAGES } from '@/hooks/useLessonTranslation';
@@ -26,6 +26,8 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
   const [inputMode, setInputMode] = useState('speak');
   const [isListening, setIsListening] = useState(false);
   const recognitionRef = useRef(null);
+  // Refs don't trigger re-renders, so track recognizer readiness in state for the mic button
+  const [srReady, setSrReady] = useState(false);
 
   const SUPPORTED_LANGUAGES = LANGUAGES.filter(l => l.value !== 'en');
 
@@ -99,6 +101,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
     recognition.onerror = () => setIsListening(false);
     recognition.onend = () => setIsListening(false);
     recognitionRef.current = recognition;
+    setSrReady(true);
     return () => {
       if (recognitionRef.current) {
         try { recognitionRef.current.stop(); } catch (e) {}
@@ -113,40 +116,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
     }
     setVerifying(true);
     try {
-      let prompt;
-      if (isChanging) {
-        prompt = `You are a USCIS citizenship test examiner. The official answer to this question changes over time (for example, the current President, Vice President, Speaker of the House of Representatives, or Chief Justice).
-Question: ${question.question}
-Student's Answer: ${userAnswer}
-
-Use current information from the web to determine if the student's answer correctly names the current officeholder or current fact asked about. In the real USCIS interview, answers don't need to be word-for-word — as long as the meaning is correct, it counts.`;
-      } else if (isLocation && !personalizedAnswer) {
-        prompt = `You are a USCIS citizenship test examiner. The official answer to this question depends on where the student lives (their state's U.S. senators, their U.S. representative, their governor, or their state capital).
-Question: ${question.question}
-Student's Answer: ${userAnswer}
-
-Use current information from the web to determine if the student's answer plausibly names a currently serving U.S. official of the right kind, or a real U.S. state capital. Since the student's location is unknown, accept any currently valid answer of the right kind.`;
-      } else {
-        prompt = `You are a USCIS citizenship test examiner. Determine if the student's spoken answer is correct.
-
-Question: ${question.question}
-Official Answer: ${personalizedAnswer || question.answer}
-Student's Answer: ${userAnswer}
-
-In the real USCIS interview, answers don't need to be word-for-word — as long as the meaning is correct, it counts. Determine if the student's answer conveys the correct meaning.`;
-      }
-      const needsWeb = isChanging || (isLocation && !personalizedAnswer);
-      const result = await base44.integrations.Core.InvokeLLM({
-        prompt,
-        ...(needsWeb ? { add_context_from_internet: true, model: 'gemini_3_flash' } : {}),
-        response_json_schema: {
-          type: "object",
-          properties: {
-            is_correct: { type: "boolean" },
-            feedback: { type: "string" }
-          }
-        }
-      });
+      const result = await checkCivicsAnswer(question, userAnswer, { personalizedAnswer });
       setVerificationResult(result);
     } catch (e) {
       console.error('Failed to verify answer:', e);
@@ -169,13 +139,17 @@ In the real USCIS interview, answers don't need to be word-for-word — as long 
     });
   };
 
+  const officialLink = <a href="https://www.uscis.gov/citizenship/testupdates" target="_blank" rel="noopener noreferrer" className="font-bold text-pw-navy underline underline-offset-2 hover:text-pw-red-ink">uscis.gov</a>;
+  const segBtn = (active) => `min-h-[44px] flex items-center justify-center gap-2 px-4 rounded-full text-base font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red ${active ? 'bg-white text-pw-navy shadow-raised' : 'text-pw-muted hover:text-pw-navy'}`;
+
   return (
-    <div className="w-full max-w-2xl mx-auto">
-       <div className="flex justify-end mb-4">
-        <div className="flex items-center gap-2 bg-white/50 backdrop-blur-sm p-1 rounded-lg border border-slate-200">
-          <Globe className="w-4 h-4 text-slate-500 ml-2" />
+    <div className="w-full max-w-2xl mx-auto space-y-4 text-pw-navy">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <Tag tone="blue">{question.version} Civics Test</Tag>
+        <div className="flex items-center gap-1 bg-white pl-3 rounded-2xl border border-pw-line ml-auto">
+          <Globe className="w-4 h-4 text-pw-muted" aria-hidden="true" />
           <Select value={selectedLanguage} onValueChange={setSelectedLanguage}>
-            <SelectTrigger className="w-[140px] h-8 text-xs border-0 bg-transparent focus:ring-0">
+            <SelectTrigger aria-label="Translate to" className="w-[124px] min-h-[44px] text-sm border-0 bg-transparent shadow-none focus:ring-0 px-2">
               <SelectValue placeholder="Translate to..." />
             </SelectTrigger>
             <SelectContent>
@@ -188,86 +162,74 @@ In the real USCIS interview, answers don't need to be word-for-word — as long 
         </div>
       </div>
 
-      <Card className="bg-white shadow-xl border-0 overflow-hidden rounded-2xl">
-        <div className="h-2 bg-indigo-600" />
-        
-        <CardContent className="p-8 md:p-12 flex flex-col items-center text-center min-h-[400px] justify-center">
-          
-          <div className="mb-8 w-full">
-            <span className="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold uppercase tracking-wide mb-4">
-              {question.version} Civics Test
-            </span>
-            <h3 className="text-2xl md:text-3xl font-bold text-slate-800 leading-relaxed mb-4">
-              {question.question}
-            </h3>
+      <RaisedCard>
+        <Eyebrow className="mb-2">The officer asks</Eyebrow>
+        <h3 className="text-[1.375rem] md:text-3xl font-extrabold leading-snug mb-3">
+          {question.question}
+        </h3>
 
-             {/* Translation Display for Question */}
-             {selectedLanguage && selectedLanguage !== 'none' && (
-                <div className="mb-4">
-                    {isTranslating ? (
-                         <div className="flex items-center justify-center gap-2 text-slate-400 text-sm">
-                            <Loader2 className="w-3 h-3 animate-spin" /> Translating...
-                        </div>
-                    ) : (
-                        <p className="text-lg text-indigo-700 font-medium animate-in fade-in bg-indigo-50 p-3 rounded-lg inline-block">
-                            {translation.split('Answer:')[0].replace('Question:', '').trim()}
-                        </p>
-                    )}
-                </div>
+        {/* Translation Display for Question */}
+        {selectedLanguage && selectedLanguage !== 'none' && (
+          <div className="mb-3">
+            {isTranslating ? (
+              <div className="flex items-center gap-2 text-pw-muted text-sm">
+                <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> Translating...
+              </div>
+            ) : (
+              <p className="text-base font-semibold animate-in fade-in bg-pw-blue-soft text-pw-blue-ink px-4 py-3 rounded-2xl">
+                {translation.split('Answer:')[0].replace('Question:', '').trim()}
+              </p>
             )}
           </div>
+        )}
 
-          <div className="mb-8">
-             <Button
-              variant="outline"
-              size="icon"
-              onClick={() => speak(question.question)}
-              className={`rounded-full w-12 h-12 ${isPlaying ? 'text-indigo-600 border-indigo-200 bg-indigo-50' : ''}`}
+        <PillButton
+          onClick={() => speak(question.question)}
+          aria-label="Listen to the question"
+          className={isPlaying ? 'ring-2 ring-pw-navy/30' : ''}
+        >
+          <Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" /> Listen
+        </PillButton>
+
+        <AnimatePresence mode="wait">
+          {!verificationResult && !isRevealed ? (
+            <motion.div
+              key="ask"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="w-full space-y-4 mt-6"
             >
-              <Volume2 className="w-5 h-5" />
-            </Button>
-          </div>
+              {!selfCheckMode ? (
+                <>
+                  <div className="grid grid-cols-2 gap-1 p-1 bg-pw-soft rounded-full" role="group" aria-label="Answer by">
+                    <button
+                      type="button"
+                      aria-pressed={inputMode === 'type'}
+                      onClick={() => { if (isListening && recognitionRef.current) { try { recognitionRef.current.stop(); } catch (e) {} } setInputMode('type'); }}
+                      className={segBtn(inputMode === 'type')}
+                    >
+                      <Keyboard className="w-4 h-4" aria-hidden="true" /> Type
+                    </button>
+                    <button
+                      type="button"
+                      aria-pressed={inputMode === 'speak'}
+                      onClick={() => {
+                        if (!recognitionRef.current) { toast.error('Voice input is not supported in this browser'); return; }
+                        setInputMode('speak');
+                      }}
+                      className={segBtn(inputMode === 'speak')}
+                    >
+                      <Mic className="w-4 h-4" aria-hidden="true" /> Speak
+                    </button>
+                  </div>
 
-          <AnimatePresence mode="wait">
-            {!verificationResult && !isRevealed ? (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                className="w-full space-y-4"
-              >
-                {!selfCheckMode ? (
-                  <>
-                    <div className="flex gap-1 p-1 bg-slate-100 rounded-lg w-fit mx-auto">
-                      <button
-                        onClick={() => { if (isListening && recognitionRef.current) { try { recognitionRef.current.stop(); } catch (e) {} } setInputMode('type'); }}
-                        className={`flex items-center px-3 py-1.5 rounded-md text-sm font-medium transition-all ${inputMode === 'type' ? 'bg-white shadow-sm text-indigo-700' : 'text-slate-500 hover:text-slate-700'}`}
-                      >
-                        <Keyboard className="w-4 h-4 mr-1.5" /> Type
-                      </button>
-                      <button
-                        onClick={() => {
-                          if (!recognitionRef.current) { toast.error('Voice input is not supported in this browser'); return; }
-                          setInputMode('speak');
-                        }}
-                        className={`flex items-center px-3 py-1.5 rounded-md text-sm font-medium transition-all ${inputMode === 'speak' ? 'bg-white shadow-sm text-indigo-700' : 'text-slate-500 hover:text-slate-700'}`}
-                      >
-                        <Mic className="w-4 h-4 mr-1.5" /> Speak
-                      </button>
-                    </div>
-
-                    {inputMode === 'speak' ? (
-                      <div className="space-y-3">
-                        <div className="min-h-[48px] p-3 rounded-lg border border-slate-200 bg-slate-50">
-                          {userAnswer ? (
-                            <p className="text-slate-800">{userAnswer}</p>
-                          ) : (
-                            <p className="text-slate-400">
-                              {isListening ? 'Listening...' : 'Tap the microphone and speak your answer'}
-                            </p>
-                          )}
-                        </div>
-                        <Button
+                  {inputMode === 'speak' ? (
+                    <div className="flex flex-col items-center">
+                      <div className="relative mt-4">
+                        <span className={`absolute inset-0 rounded-full bg-pw-red/20 transition-transform ${isListening ? 'scale-150 animate-pulse' : 'scale-125'}`} aria-hidden="true" />
+                        <button
+                          type="button"
                           onClick={() => {
                             if (isListening) {
                               recognitionRef.current?.stop();
@@ -276,209 +238,213 @@ In the real USCIS interview, answers don't need to be word-for-word — as long 
                               recognitionRef.current?.start();
                             }
                           }}
-                          disabled={!recognitionRef.current}
-                          className={isListening ? 'bg-red-500 hover:bg-red-600' : 'bg-indigo-600 hover:bg-indigo-700'}
+                          disabled={!srReady}
+                          aria-label={isListening ? 'Stop Listening' : 'Start Speaking'}
+                          className="relative w-20 h-20 rounded-full bg-pw-red text-white grid place-items-center shadow-lift disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-pw-navy/30"
                         >
-                          {isListening ? <MicOff className="w-4 h-4 mr-2" /> : <Mic className="w-4 h-4 mr-2" />}
-                          {isListening ? 'Stop Listening' : 'Start Speaking'}
-                        </Button>
+                          {isListening ? <MicOff className="w-8 h-8" /> : <Mic className="w-8 h-8" />}
+                        </button>
                       </div>
-                    ) : (
-                      <Input
-                        placeholder="Type your answer here..."
-                        value={userAnswer}
-                        onChange={(e) => setUserAnswer(e.target.value)}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter' && userAnswer.trim() && !verifying) {
-                            checkAnswer();
-                          }
-                        }}
-                        className="text-base"
-                      />
-                    )}
-
-                    <div className="space-y-2">
-                      <Button
-                        onClick={checkAnswer}
-                        disabled={!userAnswer.trim() || verifying}
-                        className="h-12 px-8 text-lg rounded-xl bg-indigo-600 hover:bg-indigo-700"
-                      >
-                        {verifying ? (
-                          <>
-                            <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                            Verifying...
-                          </>
+                      <p className="mt-4 text-base font-semibold text-center" aria-hidden="true">
+                        {isListening ? 'Stop Listening' : 'Start Speaking'}
+                      </p>
+                      <div className="w-full min-h-[52px] mt-3 px-4 py-3 rounded-2xl bg-pw-soft text-center" aria-live="polite">
+                        {userAnswer ? (
+                          <p className="italic">“{userAnswer}”</p>
                         ) : (
-                          <>
-                            <CheckCircle className="w-5 h-5 mr-2" />
-                            Submit Answer
-                          </>
-                        )}
-                      </Button>
-                      <button
-                        onClick={() => setSelfCheckMode(true)}
-                        className="text-xs text-slate-400 hover:text-slate-600 underline block mx-auto"
-                      >
-                        Having trouble? Show answer to self-check
-                      </button>
-                    </div>
-                  </>
-                ) : (
-                  <Button
-                    onClick={() => setIsRevealed(true)}
-                    className="h-12 px-8 text-lg rounded-xl bg-indigo-600 hover:bg-indigo-700"
-                  >
-                    <Eye className="mr-2 w-5 h-5" /> Show Answer
-                  </Button>
-                )}
-              </motion.div>
-            ) : verificationResult ? (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="w-full space-y-6"
-              >
-                {verificationResult.is_correct ? (
-                  <div className="space-y-6">
-                    <div className="bg-green-50 border border-green-200 rounded-xl p-6 text-center">
-                      <CheckCircle className="w-12 h-12 text-green-600 mx-auto mb-3" />
-                      <h3 className="text-xl font-bold text-green-800 mb-2">Correct!</h3>
-                      <p className="text-green-900 text-sm">{verificationResult.feedback}</p>
-                    </div>
-                    <div className="flex justify-center">
-                      <Button onClick={() => handleResult(true)} className="bg-green-600 hover:bg-green-700 px-8">
-                        Next Question
-                        <ChevronRight className="w-4 h-4 ml-2" />
-                      </Button>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="space-y-6">
-                    <div className="bg-red-50 border border-red-200 rounded-xl p-6">
-                      <div className="flex items-center gap-2 mb-3">
-                        <AlertCircle className="w-6 h-6 text-red-600" />
-                        <span className="font-bold text-red-800 text-lg">Not quite right</span>
-                      </div>
-                      <p className="text-red-900 text-sm mb-4">{verificationResult.feedback}</p>
-                      <div className="pt-4 border-t border-red-200">
-                        <p className="text-sm text-slate-500 mb-1">Official answer:</p>
-                        {isChanging ? (
-                          <p className="text-lg font-medium text-slate-800">Answers change. Check the current answer on <a href="https://www.uscis.gov/citizenship/testupdates" target="_blank" rel="noopener noreferrer" className="text-indigo-700 underline hover:text-indigo-900">uscis.gov</a></p>
-                        ) : isLocation && !personalizedAnswer ? (
-                          <p className="text-lg font-medium text-slate-800">Answers vary by where you live. Use the Representative Finder on your Practice dashboard to get your answer.</p>
-                        ) : personalizedAnswer ? (
-                          <>
-                            <p className="text-lg font-bold text-green-800">{personalizedAnswer}</p>
-                            <p className="text-sm text-slate-500 mt-1">Sample: {question.answer}</p>
-                          </>
-                        ) : (
-                          <p className="text-lg font-medium text-slate-800">{question.answer}</p>
+                          <p className="text-pw-muted">
+                            {isListening ? 'Listening...' : 'Tap the microphone and speak your answer'}
+                          </p>
                         )}
                       </div>
                     </div>
-                    <AIExplanation
-                      question={question.question}
-                      answer={personalizedAnswer || question.answer}
-                    />
-                    <div className="flex justify-center">
-                      <Button onClick={() => handleResult(false)} className="bg-indigo-600 hover:bg-indigo-700 px-8">
-                        Continue
-                        <ChevronRight className="w-4 h-4 ml-2" />
-                      </Button>
-                    </div>
-                  </div>
-                )}
-              </motion.div>
-            ) : (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="w-full space-y-8"
-              >
-                <div className="bg-slate-50 rounded-xl p-8 border border-slate-200 w-full">
-                  {personalizedAnswer ? (
-                    <>
-                      <p className="text-sm text-green-600 uppercase tracking-wider font-bold mb-2">Correct Answer for You</p>
-                      <div className="mb-4 bg-green-50 border border-green-200 rounded-lg p-4">
-                        <p className="text-xl font-bold text-green-800">{personalizedAnswer}</p>
-                      </div>
-                      <div className="border-t border-slate-200 pt-3 mt-3">
-                        <p className="text-xs text-slate-400 uppercase tracking-wider mb-1">Official Sample Answer</p>
-                        <p className="text-base text-slate-500">{question.answer}</p>
-                      </div>
-                    </>
                   ) : (
-                    <>
-                      <p className="text-sm text-slate-500 uppercase tracking-wider font-bold mb-2">Answer</p>
-                      {isChanging ? (
-                        <p className="text-xl font-medium text-slate-800 leading-relaxed">
-                          Answers change. Check the current answer on <a href="https://www.uscis.gov/citizenship/testupdates" target="_blank" rel="noopener noreferrer" className="text-indigo-700 underline hover:text-indigo-900">uscis.gov</a>
-                        </p>
-                      ) : isLocation && !personalizedAnswer ? (
-                        <p className="text-xl font-medium text-slate-800 leading-relaxed">
-                          Answers vary by where you live. Use the Representative Finder on your Practice dashboard to get your answer.
-                        </p>
-                      ) : (
-                        <p className="text-xl font-medium text-slate-800 leading-relaxed">
-                          {question.answer}
-                        </p>
-                      )}
-                    </>
+                    <Input
+                      placeholder="Type your answer here..."
+                      aria-label="Your answer"
+                      value={userAnswer}
+                      onChange={(e) => setUserAnswer(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' && userAnswer.trim() && !verifying) {
+                          checkAnswer();
+                        }
+                      }}
+                      className="text-base min-h-[48px]"
+                    />
                   )}
 
-                   {/* Translation Display for Answer */}
-                    {selectedLanguage && selectedLanguage !== 'none' && !isTranslating && translation.includes('Answer:') && (
-                       <p className="text-lg text-indigo-700 font-medium mt-2 animate-in fade-in">
-                           {translation.split('Answer:')[1].trim()}
-                       </p>
-                    )}
-
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => speak(personalizedAnswer || question.answer)}
-                    className="mt-4 text-slate-500 hover:text-indigo-600"
-                  >
-                    <Volume2 className="w-4 h-4 mr-1" /> Listen to answer
-                    </Button>
-
-                    <AIExplanation 
-                    question={question.question} 
-                    answer={personalizedAnswer || question.answer} 
-                    />
-                    </div>
-
-                <div className="flex flex-col items-center space-y-4">
-                  <p className="text-slate-600 font-medium">How did you do?</p>
-                  <div className="flex gap-4">
-                     <Button 
-                        variant="outline" 
-                        className="border-orange-200 hover:bg-orange-50 text-orange-700 min-w-[120px]"
-                        onClick={() => handleResult(false)}
-                     >
-                        Hard / Missed
-                     </Button>
-                     <Button 
-                        className="bg-green-600 hover:bg-green-700 min-w-[120px]"
-                        onClick={() => handleResult(true)}
-                     >
-                        Easy / Got it
-                     </Button>
+                  <div className="space-y-1">
+                    <PrimaryButton
+                      large
+                      onClick={checkAnswer}
+                      disabled={!userAnswer.trim() || verifying}
+                      className="w-full"
+                    >
+                      {verifying ? (
+                        <>
+                          <Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" />
+                          Verifying...
+                        </>
+                      ) : (
+                        <>
+                          <CheckCircle className="w-5 h-5" aria-hidden="true" />
+                          Submit Answer
+                        </>
+                      )}
+                    </PrimaryButton>
+                    <QuietButton
+                      onClick={() => setSelfCheckMode(true)}
+                      className="w-full text-sm text-pw-muted underline underline-offset-2"
+                    >
+                      Having trouble? Show answer to self-check
+                    </QuietButton>
                   </div>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+                </>
+              ) : (
+                <PrimaryButton large onClick={() => setIsRevealed(true)} className="w-full">
+                  <Eye className="w-5 h-5" aria-hidden="true" /> Show Answer
+                </PrimaryButton>
+              )}
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
+      </RaisedCard>
 
-        </CardContent>
-      </Card>
-       {!verificationResult && !isRevealed && (
-         <div className="mt-6 flex justify-center">
-            <Button variant="ghost" onClick={onNext} className="text-slate-500 hover:text-slate-800">
-                Skip to next <ArrowRight className="w-4 h-4 ml-1" />
-            </Button>
-         </div>
-       )}
+      {verificationResult ? (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="w-full space-y-4"
+        >
+          {verificationResult.is_correct ? (
+            <>
+              <div className="bg-pw-green-soft rounded-3xl p-5">
+                <div className="flex items-center gap-3 mb-2">
+                  <span className="w-10 h-10 rounded-full bg-white grid place-items-center text-pw-green-ink shrink-0">
+                    <CheckCircle className="w-6 h-6" aria-hidden="true" />
+                  </span>
+                  <h3 className="text-xl font-extrabold text-pw-green-ink">Correct!</h3>
+                </div>
+                <p className="leading-relaxed">{verificationResult.feedback}</p>
+              </div>
+              <PrimaryButton large onClick={() => handleResult(true)} className="w-full">
+                Next Question
+                <ChevronRight className="w-5 h-5" aria-hidden="true" />
+              </PrimaryButton>
+            </>
+          ) : (
+            <>
+              <div className="bg-pw-red-soft rounded-3xl p-5">
+                <div className="flex items-center gap-3 mb-2">
+                  <span className="w-10 h-10 rounded-full bg-white grid place-items-center text-pw-red-ink shrink-0">
+                    <AlertCircle className="w-6 h-6" aria-hidden="true" />
+                  </span>
+                  <span className="font-extrabold text-pw-red-ink text-xl">Not quite right</span>
+                </div>
+                <p className="leading-relaxed mb-4">{verificationResult.feedback}</p>
+                <div className="bg-white rounded-2xl p-4">
+                  <Eyebrow className="mb-1">Official answer:</Eyebrow>
+                  {isChanging ? (
+                    <p className="text-lg font-bold">Answers change. Check the current answer on {officialLink}</p>
+                  ) : isLocation && !personalizedAnswer ? (
+                    <p className="text-lg font-bold">Answers vary by where you live. Use the Representative Finder on your Practice dashboard to get your answer.</p>
+                  ) : personalizedAnswer ? (
+                    <>
+                      <p className="text-lg font-extrabold">{personalizedAnswer}</p>
+                      <p className="text-sm text-pw-muted mt-1">Sample: {question.answer}</p>
+                    </>
+                  ) : (
+                    <p className="text-lg font-bold">{question.answer}</p>
+                  )}
+                </div>
+              </div>
+              <AIExplanation
+                question={question.question}
+                answer={personalizedAnswer || question.answer}
+              />
+              <PrimaryButton large onClick={() => handleResult(false)} className="w-full">
+                Continue
+                <ChevronRight className="w-5 h-5" aria-hidden="true" />
+              </PrimaryButton>
+            </>
+          )}
+        </motion.div>
+      ) : isRevealed ? (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="w-full space-y-4"
+        >
+          <RaisedCard>
+            {personalizedAnswer ? (
+              <>
+                <Eyebrow className="mb-2 text-pw-green-ink">Correct Answer for You</Eyebrow>
+                <div className="mb-4 bg-pw-green-soft rounded-2xl p-4">
+                  <p className="text-xl font-extrabold text-pw-green-ink">{personalizedAnswer}</p>
+                </div>
+                <Eyebrow className="mb-1">Official Sample Answer</Eyebrow>
+                <p className="text-base text-pw-muted">{question.answer}</p>
+              </>
+            ) : (
+              <>
+                <Eyebrow className="mb-2">Answer</Eyebrow>
+                {isChanging ? (
+                  <p className="text-xl font-bold leading-relaxed">
+                    Answers change. Check the current answer on {officialLink}
+                  </p>
+                ) : isLocation && !personalizedAnswer ? (
+                  <p className="text-xl font-bold leading-relaxed">
+                    Answers vary by where you live. Use the Representative Finder on your Practice dashboard to get your answer.
+                  </p>
+                ) : (
+                  <p className="text-xl font-extrabold leading-relaxed">
+                    {question.answer}
+                  </p>
+                )}
+              </>
+            )}
+
+            {/* Translation Display for Answer */}
+            {selectedLanguage && selectedLanguage !== 'none' && !isTranslating && translation.includes('Answer:') && (
+              <p className="text-base font-semibold mt-3 bg-pw-blue-soft text-pw-blue-ink px-4 py-3 rounded-2xl animate-in fade-in">
+                {translation.split('Answer:')[1].trim()}
+              </p>
+            )}
+
+            <PillButton
+              onClick={() => speak(personalizedAnswer || question.answer)}
+              className="mt-4"
+            >
+              <Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" /> Listen to answer
+            </PillButton>
+
+            <div className="mt-4">
+              <AIExplanation
+                question={question.question}
+                answer={personalizedAnswer || question.answer}
+              />
+            </div>
+          </RaisedCard>
+
+          <RaisedCard>
+            <p className="font-bold mb-3">How did you do?</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <SecondaryButton onClick={() => handleResult(false)} className="border-pw-line">
+                Hard / Missed
+              </SecondaryButton>
+              <PrimaryButton onClick={() => handleResult(true)}>
+                Easy / Got it
+              </PrimaryButton>
+            </div>
+          </RaisedCard>
+        </motion.div>
+      ) : null}
+
+      {!verificationResult && !isRevealed && (
+        <QuietButton onClick={onNext} className="w-full text-pw-muted">
+          Skip to next <ArrowRight className="w-4 h-4" aria-hidden="true" />
+        </QuietButton>
+      )}
     </div>
   );
 }

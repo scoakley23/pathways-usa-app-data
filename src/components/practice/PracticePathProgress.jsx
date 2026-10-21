@@ -57,8 +57,8 @@ export default function PracticePathProgress({ userEmail }) {
   const currentKey = STEPS.find((s) => !stats[s.key] || stats[s.key].practiced === 0)?.key;
 
   return (
-    <div className="bg-white rounded-3xl border border-slate-200 p-6">
-      <h2 className="text-sm font-semibold text-slate-400 uppercase tracking-wide mb-5">
+    <div className="bg-white rounded-3xl border border-pw-line shadow-raised p-5 text-pw-navy">
+      <h2 className="text-xs font-bold text-pw-muted uppercase tracking-widest mb-5">
         Your Learning Path
       </h2>
       <div className="flex items-start justify-between">
@@ -71,26 +71,26 @@ export default function PracticePathProgress({ userEmail }) {
             <React.Fragment key={step.key}>
               <div className="flex flex-col items-center text-center flex-1 min-w-0">
                 <div
-                  className={`w-16 h-16 rounded-full flex items-center justify-center mb-3 ring-2 transition-all ${
+                  className={`w-14 h-14 rounded-full flex items-center justify-center mb-3 ring-2 transition-all ${
                     isActive
-                      ? 'bg-indigo-300 text-indigo-800 ring-indigo-200'
+                      ? 'bg-pw-green-soft text-pw-green-ink ring-transparent'
                       : step.key === currentKey
-                        ? 'bg-red-50 text-red-500 ring-red-200'
-                        : 'bg-slate-50 text-slate-300 ring-transparent'
+                        ? 'bg-pw-red-soft text-pw-red-ink ring-pw-red/30'
+                        : 'bg-pw-soft text-pw-muted ring-transparent'
                   }`}
                 >
-                  {isActive ? <Check className="w-7 h-7" /> : <Icon className="w-7 h-7" />}
+                  {isActive ? <Check className="w-6 h-6" aria-hidden="true" /> : <Icon className="w-6 h-6" aria-hidden="true" />}
                 </div>
-                <p className="font-semibold text-sm text-slate-800">{step.label}</p>
-                <p className="text-xs text-slate-400 mb-1">{step.desc}</p>
-                <p className="text-xs font-medium text-slate-500">
+                <p className="font-bold text-base">{step.label}</p>
+                <p className="text-sm text-pw-muted leading-tight mb-1">{step.desc}</p>
+                <p className="text-sm font-semibold text-pw-navy">
                   {loading ? '—' : `${data.mastered} mastered`}
                 </p>
               </div>
               {idx < STEPS.length - 1 && (
-                <div className="flex-1 h-0.5 bg-slate-100 mx-1 mt-8 rounded-full overflow-hidden">
+                <div className="flex-1 h-0.5 bg-pw-line mx-1 mt-7 rounded-full overflow-hidden max-w-[2rem]">
                   <div
-                    className={`h-full ${isActive ? 'bg-indigo-300' : ''}`}
+                    className={`h-full ${isActive ? 'bg-pw-green-ink' : ''}`}
                     style={{ width: isActive ? '100%' : '0%' }}
                   />
                 </div>

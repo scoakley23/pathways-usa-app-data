@@ -38,27 +38,27 @@ export default function TestDateTracker() {
   const daysLeft = date ? differenceInDays(date, new Date()) : null;
 
   return (
-    <div className="flex flex-col items-end gap-1">
-      <div className="flex items-center gap-4">
+    <div className="rounded-3xl bg-white border border-pw-line p-4 space-y-3 sm:min-w-[280px]">
+      <div className="flex flex-wrap items-center gap-3">
         {date && (
-          <div className="text-right hidden sm:block">
-            <p className="text-xs text-slate-500 font-semibold uppercase">Time Remaining</p>
-            <p className={`text-2xl font-bold ${daysLeft < 30 ? 'text-orange-600' : 'text-blue-600'}`}>
+          <div className="flex-1 min-w-[120px]">
+            <p className="text-xs text-pw-muted font-bold uppercase tracking-widest">Time Remaining</p>
+            <p className={`text-2xl font-extrabold ${daysLeft < 30 ? 'text-pw-red-ink' : 'text-pw-navy'}`}>
               {daysLeft > 0 ? `${daysLeft} Days` : daysLeft === 0 ? 'Today!' : 'Passed'}
             </p>
           </div>
         )}
-      
+
         <Popover>
           <PopoverTrigger asChild>
             <Button
               variant={"outline"}
               className={cn(
-                "w-[240px] justify-start text-left font-normal border-slate-200 bg-white hover:bg-slate-50",
-                !date && "text-muted-foreground"
+                "w-full sm:w-auto flex-1 justify-start text-left font-semibold",
+                !date && "text-pw-muted"
               )}
             >
-              <CalendarIcon className="mr-2 h-4 w-4" />
+              <CalendarIcon className="h-4 w-4" aria-hidden="true" />
               {date ? format(date, "PPP") : <span>Set Test Date</span>}
             </Button>
           </PopoverTrigger>
@@ -72,7 +72,7 @@ export default function TestDateTracker() {
           </PopoverContent>
         </Popover>
       </div>
-      <p className="text-sm text-slate-500">Your date stays on this phone. We don't save it.</p>
+      <p className="text-sm text-pw-muted">Your date stays on this phone. We don't save it.</p>
     </div>
   );
 }

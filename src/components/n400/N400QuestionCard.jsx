@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Volume2, Loader2, Lightbulb, BookOpen, HelpCircle, Languages } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { Tag, PillButton } from '@/components/pathways/ui';
 import { speakText } from '@/components/utils/textToSpeech';
 import { LANGUAGES } from '@/hooks/useLessonTranslation';
 import SayItBack from './SayItBack';
@@ -14,10 +12,11 @@ function Chip({ active, onClick, children }) {
     <button
       type="button"
       onClick={onClick}
-      className={`px-3 py-1.5 rounded-full text-sm font-semibold border transition-colors ${
+      aria-pressed={active}
+      className={`min-h-[44px] px-4 py-2 rounded-full text-base leading-tight text-left font-semibold border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2 ${
         active
-          ? 'bg-[#1F3A6B] text-white border-[#1F3A6B]'
-          : 'bg-white text-slate-600 border-slate-300 hover:bg-slate-100'
+          ? 'bg-pw-navy text-white border-pw-navy'
+          : 'bg-white text-pw-navy border-pw-line hover:bg-pw-soft'
       }`}
     >
       {children}
@@ -53,59 +52,51 @@ export default function N400QuestionCard({ sectionId, question, isAdmin, languag
   ];
 
   return (
-    <Card className="rounded-2xl">
-      <CardContent className="p-5 md:p-6 space-y-4">
+    <div className="rounded-2xl border border-pw-line bg-white p-4 sm:p-5 space-y-4">
         <div className="flex flex-wrap items-center gap-2">
-          <Badge className="bg-[#1F3A6B]">Item {question.label}</Badge>
-          {isAdmin && question.status === 'draft' && (
-            <Badge variant="outline" className="text-amber-700 border-amber-300 bg-amber-50">
-              Draft — pending review
-            </Badge>
-          )}
+          <Tag tone="blue">Item {question.label}</Tag>
+          {isAdmin && question.status === 'draft' && <Tag tone="red">Draft — pending review</Tag>}
         </div>
 
-        <div className="flex items-start justify-between gap-4">
-          <blockquote className="text-base md:text-lg font-semibold text-slate-800 border-l-4 border-slate-300 pl-4 leading-relaxed">
-            {question.official}
-          </blockquote>
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={() => speak(question.official)}
-            aria-label="Listen to the question"
-            className="rounded-full w-11 h-11 shrink-0"
-          >
-            {isPlaying ? <Loader2 className="w-5 h-5 animate-spin" /> : <Volume2 className="w-5 h-5" />}
-          </Button>
-        </div>
+        <blockquote className="text-lg sm:text-xl font-extrabold text-pw-navy leading-snug">
+          {question.official}
+        </blockquote>
+        <PillButton
+          onClick={() => speak(question.official)}
+          aria-label="Listen to the question"
+          className="bg-pw-blue-soft text-pw-blue-ink hover:bg-pw-blue-soft/70"
+        >
+          {isPlaying ? <Loader2 className="w-5 h-5 animate-spin" /> : <Volume2 className="w-5 h-5" />}
+          <span aria-hidden="true">Listen</span>
+        </PillButton>
 
         <div className="flex flex-wrap gap-2">
           <Chip active={showMeaning} onClick={() => setShowMeaning(!showMeaning)}>
             <span className="flex items-center gap-1.5">
-              <Lightbulb className="w-3.5 h-3.5" /> What it means
+              <Lightbulb className="w-4 h-4" /> What it means
             </span>
           </Chip>
           <Chip active={showWords} onClick={() => setShowWords(!showWords)}>
             <span className="flex items-center gap-1.5">
-              <BookOpen className="w-3.5 h-3.5" /> Words to know ({question.words.length})
+              <BookOpen className="w-4 h-4" /> Words to know ({question.words.length})
             </span>
           </Chip>
           <Chip active={showPhrasings} onClick={() => setShowPhrasings(!showPhrasings)}>
             <span className="flex items-center gap-1.5">
-              <HelpCircle className="w-3.5 h-3.5" /> How the officer might ask ({question.officerPhrasings.length})
+              <HelpCircle className="w-4 h-4" /> How the officer might ask ({question.officerPhrasings.length})
             </span>
           </Chip>
           {language && language !== 'en' && (
             <Chip active={showTranslation} onClick={() => setShowTranslation(!showTranslation)}>
               <span className="flex items-center gap-1.5">
-                <Languages className="w-3.5 h-3.5" /> In {langName}
+                <Languages className="w-4 h-4" /> In {langName}
               </span>
             </Chip>
           )}
         </div>
 
         {showMeaning && (
-          <p className="text-slate-700 leading-relaxed">{question.meaning}</p>
+          <p className="rounded-2xl bg-pw-soft px-4 py-3 text-base text-pw-navy leading-relaxed">{question.meaning}</p>
         )}
 
         {showWords && (
@@ -118,8 +109,8 @@ export default function N400QuestionCard({ sectionId, question, isAdmin, languag
               ))}
             </div>
             {openWord !== null && question.words[openWord] && (
-              <p className="rounded-xl bg-slate-50 border border-slate-200 px-4 py-3 text-slate-700 leading-relaxed">
-                <span className="font-semibold text-slate-900">{question.words[openWord].word}</span> —{' '}
+              <p className="rounded-2xl bg-pw-soft px-4 py-3 text-base text-pw-navy leading-relaxed">
+                <span className="font-bold">{question.words[openWord].word}</span> —{' '}
                 {question.words[openWord].definition}
               </p>
             )}
@@ -136,33 +127,33 @@ export default function N400QuestionCard({ sectionId, question, isAdmin, languag
               ))}
             </div>
             {activePhrase !== null && question.officerPhrasings[activePhrase] && (
-              <div className="flex items-center gap-3 rounded-xl bg-slate-50 border border-slate-200 px-4 py-3">
-                <p className="text-slate-700 italic flex-1">“{question.officerPhrasings[activePhrase]}”</p>
-                <Button
-                  variant="ghost"
-                  size="icon"
+              <div className="flex items-center gap-3 rounded-2xl bg-pw-soft px-4 py-3">
+                <p className="text-base text-pw-navy italic flex-1">“{question.officerPhrasings[activePhrase]}”</p>
+                <button
+                  type="button"
                   aria-label="Listen to this phrasing"
                   onClick={() => speak(question.officerPhrasings[activePhrase])}
+                  className="w-11 h-11 shrink-0 rounded-full bg-white text-pw-navy border border-pw-line hover:bg-pw-blue-soft grid place-items-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red"
                 >
-                  <Volume2 className="w-4 h-4" />
-                </Button>
+                  <Volume2 className="w-5 h-5" />
+                </button>
               </div>
             )}
           </div>
         )}
 
         {showTranslation && language !== 'en' && (
-          <div className="rounded-xl border border-blue-100 bg-blue-50/60 p-4 space-y-3">
-            <p className="text-xs italic" style={{ color: '#4A5A78' }}>
+          <div className="rounded-2xl bg-pw-blue-soft p-4 space-y-3">
+            <p className="text-sm italic text-pw-blue-ink">
               Machine translation. If anything is unclear, ask a person you trust or a lawyer.
             </p>
             {isTranslating ? (
-              <p className="flex items-center gap-2 text-sm text-slate-500">
+              <p className="flex items-center gap-2 text-sm text-pw-muted">
                 <Loader2 className="w-4 h-4 animate-spin" /> Translating…
               </p>
             ) : translation ? (
-              <div className="space-y-3 text-slate-700">
-                <p className="font-semibold">{translation.official}</p>
+              <div className="space-y-3 text-base text-pw-navy">
+                <p className="font-bold">{translation.official}</p>
                 <p>{translation.meaning}</p>
                 {translation.words?.length > 0 && (
                   <ul className="space-y-1">
@@ -182,22 +173,21 @@ export default function N400QuestionCard({ sectionId, question, isAdmin, languag
                 )}
               </div>
             ) : (
-              <p className="text-sm text-slate-500">Translation unavailable.</p>
+              <p className="text-sm text-pw-muted">Translation unavailable.</p>
             )}
           </div>
         )}
 
         <SayItBack targets={sayItBackTargets} />
 
-        <p className="border-t border-slate-200 pt-3 text-xs leading-relaxed" style={{ color: '#4A5A78' }}>
+        <p className="border-t border-pw-line pt-3 text-sm leading-relaxed text-pw-muted">
           This explains what the question means. It is not legal advice about how you should answer. If you are
           not sure your answer is “no,”{' '}
-          <Link to="/lawyer-first" className="underline font-semibold" style={{ color: '#1F3A6B' }}>
+          <Link to="/lawyer-first" className="underline font-bold text-pw-navy">
             talk to a lawyer before you file
           </Link>
           .
         </p>
-      </CardContent>
-    </Card>
+    </div>
   );
 }

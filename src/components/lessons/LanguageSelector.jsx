@@ -11,11 +11,11 @@ import { LANGUAGES } from '@/hooks/useLessonTranslation';
 export default function LanguageSelector({ language, onLanguageChange, translating }) {
   return (
     <Select value={language} onValueChange={onLanguageChange} disabled={translating}>
-      <SelectTrigger className="w-[140px] h-9">
+      <SelectTrigger className="w-[160px] min-h-[44px] bg-white" aria-label="Lesson language">
         {translating ? (
-          <Loader2 className="w-4 h-4 animate-spin mr-2 text-blue-600" />
+          <Loader2 className="w-4 h-4 animate-spin mr-2 text-pw-navy" />
         ) : (
-          <Globe className="w-4 h-4 mr-2 text-slate-500" />
+          <Globe className="w-4 h-4 mr-2 text-pw-muted" />
         )}
         <SelectValue />
       </SelectTrigger>

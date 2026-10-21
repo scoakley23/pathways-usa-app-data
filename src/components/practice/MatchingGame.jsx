@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Button } from "@/components/ui/button";
+import { motion } from 'framer-motion';
 import { Card } from "@/components/ui/card";
-import { Check, X } from 'lucide-react';
+import { Check } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export default function MatchingGame({ words, onComplete }) {
@@ -80,7 +79,7 @@ export default function MatchingGame({ words, onComplete }) {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
         {items.map((item) => {
           const isSelected = selectedIds.includes(item.id);
           const isMatched = matchedIds.includes(item.id);
@@ -98,19 +97,19 @@ export default function MatchingGame({ words, onComplete }) {
               <Card
                 onClick={() => handleCardClick(item)}
                 className={`
-                  h-32 p-4 flex items-center justify-center text-center cursor-pointer transition-all duration-300 border-2
+                  relative h-32 p-3 flex items-center justify-center text-center cursor-pointer transition-all duration-300 border-2 rounded-2xl shadow-none
                   ${isMatched 
-                    ? 'bg-green-50 border-green-500 opacity-50' 
+                    ? 'bg-pw-green-soft border-pw-green-ink/40' 
                     : isSelected 
                       ? isError 
-                        ? 'bg-red-50 border-red-500 animate-shake'
-                        : 'bg-blue-50 border-blue-500 shadow-md ring-2 ring-blue-200' 
-                      : 'bg-white border-slate-200 hover:border-blue-300 hover:shadow-sm'
+                        ? 'bg-pw-red-soft border-pw-red animate-shake'
+                        : 'bg-pw-soft border-pw-navy' 
+                      : 'bg-white border-pw-line hover:border-pw-navy'
                   }
                 `}
               >
-                {isMatched && <Check className="w-6 h-6 text-green-600 absolute top-2 right-2" />}
-                <span className={`text-sm md:text-base font-medium ${isMatched ? 'text-green-800' : 'text-slate-700'}`}>
+                {isMatched && <Check className="w-5 h-5 text-pw-green-ink absolute top-2 right-2" aria-label="Matched" />}
+                <span className={`text-base font-semibold leading-snug ${isMatched ? 'text-pw-green-ink' : 'text-pw-navy'}`}>
                   {item.content}
                 </span>
               </Card>
@@ -118,8 +117,8 @@ export default function MatchingGame({ words, onComplete }) {
           );
         })}
       </div>
-      <div className="mt-8 text-center">
-        <p className="text-slate-500">
+      <div className="mt-6 text-center">
+        <p className="text-base text-pw-muted">
           Match the words with their definitions. {matchedIds.length / 2} / {items.length / 2} pairs found.
         </p>
       </div>

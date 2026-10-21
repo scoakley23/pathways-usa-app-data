@@ -6,34 +6,34 @@ export default function KeyPointsDisplay({ keyPoints }) {
   if (!keyPoints || keyPoints.length === 0) return null;
 
   return (
-    <div className="bg-indigo-50 border border-indigo-200 rounded-2xl p-6">
-      <h3 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-3">
-        <div className="p-2 bg-blue-600 rounded-lg">
-          <CheckCircle className="w-6 h-6 text-white" />
-        </div>
+    <div className="rounded-3xl bg-white border border-pw-line shadow-raised p-5 text-pw-navy">
+      <h3 className="text-2xl font-extrabold mb-4 flex items-center gap-3">
+        <span className="w-10 h-10 rounded-xl bg-pw-green-soft grid place-items-center shrink-0">
+          <CheckCircle className="w-6 h-6 text-pw-green-ink" aria-hidden="true" />
+        </span>
         Key Points to Remember
       </h3>
-      <ul className="space-y-4">
+      <ul className="space-y-3">
         {keyPoints.map((point, idx) => {
           const pointText = typeof point === 'string' ? point : point.text;
           const definition = typeof point === 'string' ? null : point.definition;
           const imageUrl = typeof point === 'string' ? null : point.image_url;
           
           return (
-            <li key={idx} className="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow space-y-3">
+            <li key={idx} className="p-4 bg-white rounded-2xl border border-pw-line space-y-3">
               <div className="flex items-start gap-3">
-                <span className="flex items-center justify-center w-7 h-7 rounded-full bg-indigo-600 text-white text-sm font-bold shrink-0">
+                <span className="flex items-center justify-center w-8 h-8 rounded-full bg-pw-navy text-white text-sm font-bold shrink-0">
                   {idx + 1}
                 </span>
-                <span className="text-slate-800 leading-relaxed font-medium flex-1"><GlossaryText>{pointText}</GlossaryText></span>
+                <span className="text-base text-pw-navy leading-relaxed font-semibold flex-1 pt-1"><GlossaryText>{pointText}</GlossaryText></span>
               </div>
               {definition && (
-                <div className="ml-10 p-3 bg-blue-50 rounded-lg border-l-4 border-blue-400">
-                  <p className="text-sm text-slate-700 italic">{definition}</p>
+                <div className="ml-11 p-3 bg-pw-blue-soft rounded-xl">
+                  <p className="text-base text-pw-blue-ink">{definition}</p>
                 </div>
               )}
               {imageUrl && (
-                <div className="ml-10 rounded-lg overflow-hidden border border-slate-300">
+                <div className="ml-11 rounded-2xl overflow-hidden border border-pw-line">
                   <img 
                     src={imageUrl} 
                     alt={pointText}

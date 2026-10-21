@@ -1,0 +1,108 @@
+// Fixed text for the plan and Today card: English + hand-written Spanish.
+// Other languages are AI-translated once and cached (useTranslatedLines);
+// bump TODAY_CACHE_KEY when the English changes.
+export const TODAY_CACHE_KEY = 'today_v1';
+
+export const TODAY_EN = {
+  title: 'Today',
+  greet_morning: 'Good morning!',
+  greet_afternoon: 'Good afternoon!',
+  greet_evening: 'Good evening!',
+  warm_tasks: '{n} short tasks today, about {m} minutes.',
+  direct_tasks: '{n} tasks today. About {m} minutes.',
+  coach_tasks: "Today's goal: {n} tasks, about {m} minutes. Let's go.",
+  officer_tasks: "Today's practice: {n} tasks, about {m} minutes.",
+  done: 'Nice work. See you tomorrow.',
+  keep_going: 'Keep going',
+  days_week: "You've practiced {n} days this week",
+  days_week_one: "You've practiced 1 day this week",
+  days_week_none: "This week's practice starts today",
+  ready: 'Ready on {n} of {t} civics questions',
+  mark_done: 'Mark as done',
+  mark_not_done: 'Mark as not done',
+  open: 'Open',
+  plan_ask: 'When is your interview, or when do you hope to be ready?',
+  plan_ask_again: "This phone doesn't have your date yet. When is your interview, or when do you hope to be ready?",
+  pick_month: 'Pick a month',
+  month_label: 'Month',
+  use_month: 'Use this month',
+  dont_know: "I don't know yet",
+  dont_know_note: "We'll plan for 12 weeks. You can change it later.",
+  just_study: 'Just let me study',
+  date_note: "Your date stays on this phone. We don't save it.",
+  processing: 'See USCIS processing times (optional)',
+  welcome_back: "Welcome back! Let's do a shorter plan today.",
+  low_skill: "We're adding more {skills} practice this week because it has been hard lately. That's normal.",
+  recheck: "It's been 2 weeks. Want a 5-minute re-check of {skill}? We'll update your plan.",
+  recheck_btn: 'Start the re-check',
+  mix: 'Your scores are high. Want to use a bit more English?',
+  mix_btn: 'Yes, more English',
+  not_now: 'Not now',
+  task_civics_learn: 'Learn 2 new civics questions',
+  task_civics_review: 'Quick review of civics questions',
+  task_reading: 'Read sentences out loud',
+  task_writing: 'Write sentences you hear',
+  task_speaking: 'Practice interview questions',
+  task_n400: 'N-400 Guide: {section}',
+  minutes: '{m} min',
+};
+
+export const TODAY_ES = {
+  title: 'Hoy',
+  greet_morning: '¡Buenos días!',
+  greet_afternoon: '¡Buenas tardes!',
+  greet_evening: '¡Buenas noches!',
+  warm_tasks: '{n} tareas cortas hoy, unos {m} minutos.',
+  direct_tasks: '{n} tareas hoy. Unos {m} minutos.',
+  coach_tasks: 'Meta de hoy: {n} tareas, unos {m} minutos. ¡Vamos!',
+  officer_tasks: 'Práctica de hoy: {n} tareas, unos {m} minutos.',
+  done: 'Buen trabajo. Hasta mañana.',
+  keep_going: 'Seguir practicando',
+  days_week: 'Ha practicado {n} días esta semana',
+  days_week_one: 'Ha practicado 1 día esta semana',
+  days_week_none: 'La práctica de esta semana empieza hoy',
+  ready: 'Domina {n} de {t} preguntas de educación cívica',
+  mark_done: 'Marcar como hecha',
+  mark_not_done: 'Marcar como no hecha',
+  open: 'Abrir',
+  plan_ask: '¿Cuándo es su entrevista, o cuándo espera estar listo o lista?',
+  plan_ask_again: 'Este teléfono todavía no tiene su fecha. ¿Cuándo es su entrevista, o cuándo espera estar listo o lista?',
+  pick_month: 'Elegir un mes',
+  month_label: 'Mes',
+  use_month: 'Usar este mes',
+  dont_know: 'Todavía no sé',
+  dont_know_note: 'Planearemos para 12 semanas. Puede cambiarlo después.',
+  just_study: 'Solo quiero estudiar',
+  date_note: 'Su fecha se queda en este teléfono. No la guardamos.',
+  processing: 'Ver los tiempos de trámite de USCIS (opcional)',
+  welcome_back: '¡Bienvenido o bienvenida de nuevo! Hoy hagamos un plan más corto.',
+  low_skill: 'Esta semana agregamos más práctica de {skills} porque ha sido difícil. Es normal.',
+  recheck: 'Ya pasaron 2 semanas. ¿Quiere revisar {skill} en 5 minutos? Actualizaremos su plan.',
+  recheck_btn: 'Empezar la revisión',
+  mix: 'Sus resultados son altos. ¿Quiere usar un poco más de inglés?',
+  mix_btn: 'Sí, más inglés',
+  not_now: 'Ahora no',
+  task_civics_learn: 'Aprender 2 preguntas nuevas de educación cívica',
+  task_civics_review: 'Repaso rápido de educación cívica',
+  task_reading: 'Leer oraciones en voz alta',
+  task_writing: 'Escribir oraciones que escucha',
+  task_speaking: 'Practicar preguntas de la entrevista',
+  task_n400: 'Guía del N-400: {section}',
+  minutes: '{m} min',
+};
+
+// t(key, vars) for the learner's language, English fallback.
+export function makeT(translate) {
+  return (key, vars = {}) => {
+    let s = translate(key) || TODAY_EN[key] || key;
+    for (const [k, v] of Object.entries(vars)) s = s.split(`{${k}}`).join(String(v));
+    return s;
+  };
+}
+
+// The English line, filled the same way (shown under the learner's language).
+export function en(key, vars = {}) {
+  let s = TODAY_EN[key] || key;
+  for (const [k, v] of Object.entries(vars)) s = s.split(`{${k}}`).join(String(v));
+  return s;
+}

@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
+import { Eyebrow, PillButton, PrimaryButton, QuietButton, RaisedCard, SecondaryButton, Tag } from '@/components/pathways/ui';
 import { Mic, MicOff, Volume2, ArrowRight, Check, X, Loader2, ChevronDown, ChevronUp, FileText, Bot, BarChart3 } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { speakText, stopSpeaking, getRandomVoice } from "@/components/utils/textToSpeech";
 import { toast } from "sonner";
 import InterviewReport from './InterviewReport';
+import { evaluateInterviewAnswer } from './evaluateInterviewAnswer';
 import InterviewHistory from './InterviewHistory';
 import VirtualInterviewer, { AVATAR_URL } from './VirtualInterviewer';
 import PracticePersonaPanel, { PersonaPicker, isPersonaSection, getPersona, personaFacts } from './PracticePersonaPanel';
@@ -270,43 +269,7 @@ ${personaFacts(persona)}
 `
       : '';
     try {
-      const result = await base44.integrations.Core.InvokeLLM({
-        prompt: `You are an experienced USCIS citizenship interview officer and ESL instructor evaluating a naturalization candidate.
-
-INTERVIEW QUESTION: "${q.question}"
-EXAMPLE RESPONSE: "${q.expected_response}"
-CANDIDATE'S SPOKEN RESPONSE: "${response}"
-RESPONSE TYPE: ${q.response_type}
-${personaBlock}
-Evaluate on 4 dimensions. Be honest but encouraging.
-
-CONTENT (0-100): Does the answer address the question correctly and completely?
-GRAMMAR (0-100): Are sentences grammatically correct? Note specific errors.
-FLUENCY (0-100): Does it sound natural and conversational?
-PRONUNCIATION NOTES: Based on the transcribed text, note any likely pronunciation issues for non-native speakers.
-
-Also provide:
-- A corrected/improved version of their response
-- 2-3 specific, actionable improvement tips
-- Whether this answer would pass the actual interview`,
-        response_json_schema: {
-          type: "object",
-          properties: {
-            content_score: { type: "number" },
-            grammar_score: { type: "number" },
-            fluency_score: { type: "number" },
-            overall_score: { type: "number" },
-            is_acceptable: { type: "boolean" },
-            content_feedback: { type: "string" },
-            grammar_feedback: { type: "string" },
-            fluency_feedback: { type: "string" },
-            pronunciation_notes: { type: "string" },
-            corrected_version: { type: "string" },
-            improvement_tips: { type: "string" }
-          },
-          required: ["content_score", "grammar_score", "fluency_score", "overall_score", "is_acceptable", "content_feedback", "grammar_feedback", "fluency_feedback", "corrected_version", "improvement_tips"]
-        }
-      });
+      const result = await evaluateInterviewAnswer(q, response, personaBlock);
       setFeedback(result);
       setInterviewerState('idle');
       setSessionResults(prev => [...prev, {
@@ -398,17 +361,17 @@ Also provide:
   const formatTime = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
 
   if (isLoadingQuestions) return (
-    <Card className="p-12 text-center">
-      <Loader2 className="w-10 h-10 animate-spin mx-auto mb-4 text-indigo-600" />
-      <p className="text-slate-600 font-medium">Loading interview questions...</p>
-    </Card>
+    <RaisedCard padding="p-10" className="text-center text-pw-navy">
+      <Loader2 className="w-10 h-10 animate-spin mx-auto mb-4 text-pw-navy" aria-hidden="true" />
+      <p className="font-semibold text-pw-muted">Loading interview questions...</p>
+    </RaisedCard>
   );
 
   if (questions.length === 0) return (
-    <Card className="p-12 text-center">
-      <p className="text-slate-600 mb-4">No interview questions found.</p>
-      <Button onClick={() => window.location.reload()} variant="outline">Reload</Button>
-    </Card>
+    <RaisedCard padding="p-10" className="text-center text-pw-navy">
+      <p className="text-pw-muted mb-4">No interview questions found.</p>
+      <SecondaryButton onClick={() => window.location.reload()}>Reload</SecondaryButton>
+    </RaisedCard>
   );
 
   if (showReport) return (
@@ -450,162 +413,150 @@ Also provide:
   }[interviewerState];
 
   return (
-    <div className="w-full max-w-3xl mx-auto space-y-4">
-      {/* Progress Bar */}
-      <div className="bg-white rounded-xl p-4 shadow-sm border border-slate-100">
-        <div className="flex justify-between items-center mb-2 text-sm font-medium text-slate-600">
+    <div className="w-full max-w-3xl mx-auto space-y-4 text-pw-navy">
+      {/* Progress */}
+      <div>
+        <div className="flex justify-between items-center gap-3 mb-2 text-sm font-semibold text-pw-muted">
           <span>Question {currentIndex + 1} of {questions.length}</span>
           <span>{sessionResults.filter(r => r.is_acceptable).length} passed so far</span>
         </div>
-        <Progress value={progress} className="h-2" />
-        <div className="flex gap-1 mt-2">
+        <div
+          className="flex gap-1"
+          role="progressbar"
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={Math.round(progress)}
+          aria-label={`Question ${currentIndex + 1} of ${questions.length}`}
+        >
           {questions.map((_, i) => (
-            <div key={i} className={`h-1.5 flex-1 rounded-full transition-colors ${
+            <div key={i} className={`h-2 flex-1 rounded-full transition-colors ${
               i < sessionResults.length
-                ? (sessionResults[i]?.is_acceptable ? 'bg-green-500' : 'bg-red-400')
-                : i === currentIndex ? 'bg-indigo-400' : 'bg-slate-200'
+                ? (sessionResults[i]?.is_acceptable ? 'bg-pw-green-ink' : 'bg-pw-red')
+                : i === currentIndex ? 'bg-pw-navy' : 'bg-pw-line'
             }`} />
           ))}
         </div>
       </div>
 
-      {/* Interview Card */}
-      <Card className="bg-white shadow-xl border-0 overflow-hidden">
-        <div className="h-1.5 bg-indigo-600" />
-        <CardContent className="p-6 md:p-8 space-y-5">
+      {/* Section tag + repeat */}
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <Tag tone="blue">{sectionLabel}</Tag>
+        <PillButton onClick={speakQuestion} disabled={interviewerState === 'speaking'}>
+          <Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" /> Repeat Question
+        </PillButton>
+      </div>
 
-          {/* Virtual Interviewer */}
-          <div className="flex flex-col items-center pt-2">
-            <VirtualInterviewer state={interviewerState} />
-          </div>
+      {/* Virtual Interviewer */}
+      <RaisedCard padding="p-4">
+        <VirtualInterviewer state={interviewerState} />
+      </RaisedCard>
 
-          {/* Section badge + repeat */}
-          <div className="flex items-center justify-between">
-            <span className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-bold uppercase tracking-wide">
-              {sectionLabel}
-            </span>
-            <Button variant="ghost" size="sm" onClick={speakQuestion} className="text-indigo-500 hover:text-indigo-700 gap-1.5" disabled={interviewerState === 'speaking'}>
-              <Volume2 className="w-4 h-4" /> Repeat Question
-            </Button>
-          </div>
+      {isPersonaSection(current) && <PracticePersonaPanel persona={persona} />}
 
-          {isPersonaSection(current) && <PracticePersonaPanel persona={persona} />}
+      {/* Conversation Transcript */}
+      <div
+        ref={transcriptRef}
+        className="rounded-3xl bg-pw-soft p-3 space-y-3 max-h-[360px] overflow-y-auto"
+      >
+        {conversation.map((msg) => (
+          <MessageBubble key={msg.id} role={msg.role} text={msg.text} />
+        ))}
+        {showTyping && <TypingIndicator />}
 
-          {/* Conversation Transcript */}
-          <div
-            ref={transcriptRef}
-            className="bg-slate-50 rounded-2xl border border-slate-100 p-4 space-y-3 max-h-[280px] overflow-y-auto"
-          >
-            {conversation.map((msg) => (
-              <MessageBubble key={msg.id} role={msg.role} text={msg.text} />
-            ))}
-            {showTyping && <TypingIndicator />}
-
-            {/* Live recording bubble */}
-            {isListening && (
-              <div className="flex justify-end">
-                <div className="bg-indigo-100 rounded-2xl rounded-tr-sm px-4 py-2.5 max-w-[75%]">
-                  <div className="flex items-center gap-1 h-8">
-                    {[...Array(12)].map((_, i) => (
-                      <div
-                        key={i}
-                        className="w-1.5 bg-indigo-500 rounded-full transition-all duration-75"
-                        style={{ height: `${Math.max(6, Math.random() * audioLevel * 0.5 + audioLevel * 0.5)}px`, opacity: 0.6 + Math.random() * 0.4 }}
-                      />
-                    ))}
-                  </div>
-                  {userResponse && <p className="text-sm text-slate-700 italic mt-1">"{userResponse}"</p>}
-                  <p className="text-xs text-indigo-500 font-medium mt-1">Recording... {formatTime(recordingTime)}</p>
-                </div>
+        {/* Live recording bubble */}
+        {isListening && (
+          <div className="flex justify-end">
+            <div className="bg-pw-red-soft rounded-2xl rounded-tr-md px-4 py-3 max-w-[85%]">
+              <div className="flex items-center gap-1 h-8" aria-hidden="true">
+                {[...Array(12)].map((_, i) => (
+                  <div
+                    key={i}
+                    className="w-1.5 bg-pw-red rounded-full transition-all duration-75"
+                    style={{ height: `${Math.max(6, Math.random() * audioLevel * 0.5 + audioLevel * 0.5)}px`, opacity: 0.6 + Math.random() * 0.4 }}
+                  />
+                ))}
               </div>
-            )}
-
-            {/* Thinking bubble */}
-            {isAnalyzing && (
-              <div className="flex justify-start">
-                <img src={AVATAR_URL} className="w-8 h-8 rounded-full object-cover mr-2 shrink-0 border-2 border-white shadow-sm" alt="" />
-                <div className="bg-white border border-slate-200 rounded-2xl rounded-tl-sm px-4 py-3 flex gap-1 shadow-sm">
-                  {[0, 1, 2].map(i => (
-                    <motion.div
-                      key={i}
-                      className="w-2 h-2 bg-indigo-400 rounded-full"
-                      animate={{ y: [0, -4, 0] }}
-                      transition={{ duration: 0.6, repeat: Infinity, delay: i * 0.15 }}
-                    />
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Status */}
-          <p className="text-center text-sm font-medium text-slate-500">{statusText}</p>
-
-          {/* Controls */}
-          {!feedback ? (
-            <div className="flex flex-col items-center gap-3">
-              <div className="flex gap-3 items-center">
-                <Button
-                  onClick={toggleListening}
-                  size="lg"
-                  className={`h-14 w-14 rounded-full shadow-lg transition-all ${
-                    isListening
-                      ? 'bg-red-500 hover:bg-red-600 ring-4 ring-red-100'
-                      : 'bg-indigo-600 hover:bg-indigo-700 hover:scale-105'
-                  }`}
-                  disabled={isAnalyzing}
-                >
-                  {isListening ? <MicOff className="w-6 h-6" /> : <Mic className="w-6 h-6" />}
-                </Button>
-                {userResponse && !isListening && (
-                  <Button
-                    onClick={analyzeResponse}
-                    size="lg"
-                    className="bg-indigo-600 hover:bg-indigo-700 px-6 rounded-xl"
-                    disabled={isAnalyzing}
-                  >
-                    Evaluate Answer
-                  </Button>
-                )}
-              </div>
-              <Button variant="ghost" size="sm" onClick={handleSkip} className="text-slate-400 hover:text-slate-600 text-xs">
-                Skip this question
-              </Button>
+              {userResponse && <p className="text-base text-pw-navy italic mt-1">"{userResponse}"</p>}
+              <p className="text-sm text-pw-red-ink font-semibold mt-1">Recording... {formatTime(recordingTime)}</p>
             </div>
-          ) : (
-            <>
-              <FeedbackPanel feedback={feedback} response={userResponse} expected={current.expected_response} />
-              <Button
-                onClick={handleNext}
-                size="lg"
-                className="bg-indigo-600 hover:bg-indigo-700 w-full rounded-xl h-12 text-base"
+          </div>
+        )}
+
+        {/* Thinking bubble */}
+        {isAnalyzing && <TypingIndicator />}
+      </div>
+
+      {/* Controls */}
+      {!feedback ? (
+        <RaisedCard>
+          <div className="flex flex-col items-center">
+            <div className="relative">
+              <span className={`absolute inset-0 rounded-full bg-pw-red/20 transition-transform ${isListening ? 'scale-150 animate-pulse' : 'scale-125'}`} aria-hidden="true" />
+              <button
+                type="button"
+                onClick={toggleListening}
+                disabled={isAnalyzing}
+                aria-label={isListening ? 'Stop recording' : 'Record your answer'}
+                className="relative w-20 h-20 rounded-full bg-pw-red text-white grid place-items-center shadow-lift disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-pw-navy/30"
               >
-                {currentIndex < questions.length - 1 ? (
-                  <><ArrowRight className="w-5 h-5 mr-2" /> Next Question</>
-                ) : (
-                  <><FileText className="w-5 h-5 mr-2" /> See Full Report</>
-                )}
-              </Button>
-            </>
+                {isListening ? <MicOff className="w-8 h-8" /> : <Mic className="w-8 h-8" />}
+              </button>
+            </div>
+            <p className="mt-4 text-base font-semibold text-center" aria-live="polite">{statusText}</p>
+          </div>
+          {userResponse && !isListening && (
+            <PrimaryButton
+              large
+              onClick={analyzeResponse}
+              className="w-full mt-5"
+              disabled={isAnalyzing}
+            >
+              Evaluate Answer
+            </PrimaryButton>
           )}
-        </CardContent>
-      </Card>
+          <QuietButton onClick={handleSkip} className="w-full mt-2 text-pw-muted">
+            Skip this question
+          </QuietButton>
+        </RaisedCard>
+      ) : (
+        <>
+          <p className="text-center text-base font-semibold text-pw-muted" aria-live="polite">{statusText}</p>
+          <FeedbackPanel feedback={feedback} response={userResponse} expected={current.expected_response} />
+          <PrimaryButton large onClick={handleNext} className="w-full">
+            {currentIndex < questions.length - 1 ? (
+              <><ArrowRight className="w-5 h-5" aria-hidden="true" /> Next Question</>
+            ) : (
+              <><FileText className="w-5 h-5" aria-hidden="true" /> See Full Report</>
+            )}
+          </PrimaryButton>
+        </>
+      )}
     </div>
   );
 }
 
+function OfficerAvatar() {
+  return (
+    <img src={AVATAR_URL} className="w-11 h-11 rounded-full object-cover shrink-0 border-2 border-white bg-pw-blue-soft shadow-raised" alt="" />
+  );
+}
+
+// Officer lines look like the tutor's messages; the learner's answers sit on the right in navy.
 function MessageBubble({ role, text }) {
   const isInterviewer = role === 'interviewer';
+  if (isInterviewer) {
+    return (
+      <div className="flex items-start gap-3">
+        <OfficerAvatar />
+        <div className="min-w-0 flex-1 rounded-2xl rounded-tl-md bg-white border border-pw-line shadow-raised p-4">
+          <p className="text-base leading-relaxed text-pw-navy">{text}</p>
+        </div>
+      </div>
+    );
+  }
   return (
-    <div className={`flex ${isInterviewer ? 'justify-start' : 'justify-end'}`}>
-      {isInterviewer && (
-        <img src={AVATAR_URL} className="w-8 h-8 rounded-full object-cover mr-2 shrink-0 border-2 border-white shadow-sm" alt="" />
-      )}
-      <div className={`max-w-[75%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed ${
-        isInterviewer
-          ? 'bg-white border border-slate-200 text-slate-800 rounded-tl-sm shadow-sm'
-          : 'bg-indigo-600 text-white rounded-tr-sm'
-      }`}>
+    <div className="flex justify-end">
+      <div className="max-w-[85%] rounded-2xl rounded-tr-md bg-pw-navy text-white px-4 py-3 text-base leading-relaxed">
         {text}
       </div>
     </div>
@@ -614,13 +565,13 @@ function MessageBubble({ role, text }) {
 
 function TypingIndicator() {
   return (
-    <div className="flex justify-start">
-      <img src={AVATAR_URL} className="w-8 h-8 rounded-full object-cover mr-2 shrink-0 border-2 border-white shadow-sm" alt="" />
-      <div className="bg-white border border-slate-200 rounded-2xl rounded-tl-sm px-4 py-3 flex gap-1 shadow-sm">
+    <div className="flex items-start gap-3">
+      <OfficerAvatar />
+      <div className="rounded-2xl rounded-tl-md bg-white border border-pw-line shadow-raised px-4 py-4 flex gap-1.5">
         {[0, 1, 2].map(i => (
           <motion.div
             key={i}
-            className="w-2 h-2 bg-slate-400 rounded-full"
+            className="w-2 h-2 bg-pw-muted rounded-full"
             animate={{ y: [0, -4, 0] }}
             transition={{ duration: 0.6, repeat: Infinity, delay: i * 0.15 }}
           />
@@ -630,75 +581,77 @@ function TypingIndicator() {
   );
 }
 
+const scoreColor = (s) => s >= 80 ? 'text-pw-green-ink' : s >= 60 ? 'text-pw-blue-ink' : 'text-pw-red-ink';
+const barColor = (s) => s >= 80 ? 'bg-pw-green-ink' : s >= 60 ? 'bg-pw-blue-ink' : 'bg-pw-red';
+
 function FeedbackPanel({ feedback, response, expected }) {
   const [expanded, setExpanded] = useState(false);
   const passed = feedback.is_acceptable;
 
-  const scoreColor = (s) => s >= 80 ? 'text-green-600' : s >= 60 ? 'text-yellow-600' : 'text-red-500';
-  const barColor = (s) => s >= 80 ? 'bg-green-500' : s >= 60 ? 'bg-yellow-400' : 'bg-red-400';
-
   return (
-    <div className="w-full space-y-4 animate-in fade-in slide-in-from-bottom-2">
-      <div className="flex items-center gap-4 p-4 rounded-xl bg-white border border-slate-200">
-        <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 ${passed ? 'bg-green-100' : 'bg-orange-100'}`}>
-          {passed ? <Check className="w-7 h-7 text-green-600" /> : <X className="w-7 h-7 text-orange-500" />}
+    <div className="w-full space-y-3 animate-in fade-in slide-in-from-bottom-2">
+      <div className={`flex items-center gap-4 p-5 rounded-3xl ${passed ? 'bg-pw-green-soft' : 'bg-pw-red-soft'}`}>
+        <div className={`w-12 h-12 rounded-full bg-white flex items-center justify-center shrink-0 ${passed ? 'text-pw-green-ink' : 'text-pw-red-ink'}`}>
+          {passed ? <Check className="w-7 h-7" aria-hidden="true" /> : <X className="w-7 h-7" aria-hidden="true" />}
         </div>
-        <div className="flex-1">
-          <p className="font-bold text-lg text-slate-900">{passed ? 'Good Answer!' : 'Needs Practice'}</p>
-          <p className="text-sm text-slate-500">{passed ? 'This would pass in a real interview.' : 'Review the feedback below.'}</p>
+        <div className="flex-1 min-w-0">
+          <p className={`font-extrabold text-lg ${passed ? 'text-pw-green-ink' : 'text-pw-red-ink'}`}>{passed ? 'Good Answer!' : 'Needs Practice'}</p>
+          <p className="text-sm text-pw-navy">{passed ? 'This would pass in a real interview.' : 'Review the feedback below.'}</p>
         </div>
-        <div className="text-right">
-          <p className={`text-3xl font-bold ${scoreColor(feedback.overall_score)}`}>{feedback.overall_score}</p>
-          <p className="text-xs text-slate-400">/ 100</p>
+        <div className="text-right shrink-0">
+          <p className="text-3xl font-extrabold text-pw-navy leading-none">{feedback.overall_score}</p>
+          <p className="text-sm text-pw-muted">/ 100</p>
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-3 gap-2">
         {[
           { label: 'Content', score: feedback.content_score },
           { label: 'Grammar', score: feedback.grammar_score },
           { label: 'Fluency', score: feedback.fluency_score },
         ].map(({ label, score }) => (
-          <div key={label} className="bg-white rounded-xl p-3 border border-slate-100 text-center">
-            <p className={`text-2xl font-bold ${scoreColor(score)}`}>{score}</p>
-            <div className="w-full bg-slate-100 rounded-full h-1.5 my-1.5">
+          <div key={label} className="bg-white rounded-2xl p-3 border border-pw-line shadow-raised text-center">
+            <p className={`text-2xl font-extrabold ${scoreColor(score)}`}>{score}</p>
+            <div className="w-full bg-pw-soft rounded-full h-1.5 my-1.5">
               <div className={`h-1.5 rounded-full ${barColor(score)}`} style={{ width: `${score}%` }} />
             </div>
-            <p className="text-xs text-slate-500 font-medium">{label}</p>
+            <p className="text-sm text-pw-muted font-semibold">{label}</p>
           </div>
         ))}
       </div>
 
       {feedback.corrected_version && (
-        <div className="bg-indigo-50 border border-indigo-200 rounded-xl p-4">
-          <p className="text-xs font-bold text-indigo-600 uppercase tracking-wide mb-1">Better Way to Say It</p>
-          <p className="text-slate-800 italic">"{feedback.corrected_version}"</p>
+        <div className="bg-pw-blue-soft rounded-3xl p-5">
+          <Eyebrow className="mb-2 text-pw-blue-ink">Better Way to Say It</Eyebrow>
+          <p className="text-pw-navy font-bold leading-relaxed">"{feedback.corrected_version}"</p>
         </div>
       )}
 
       <button
+        type="button"
         onClick={() => setExpanded(!expanded)}
-        className="w-full flex items-center justify-between bg-slate-100 hover:bg-slate-200 px-4 py-3 rounded-xl transition-colors text-sm font-semibold text-slate-700"
+        aria-expanded={expanded}
+        className="w-full min-h-[48px] flex items-center justify-between bg-white border border-pw-line hover:bg-pw-soft px-4 py-3 rounded-2xl transition-colors text-base font-bold text-pw-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red"
       >
         <span>Detailed Feedback</span>
-        {expanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+        {expanded ? <ChevronUp className="w-5 h-5" aria-hidden="true" /> : <ChevronDown className="w-5 h-5" aria-hidden="true" />}
       </button>
 
       {expanded && (
-        <div className="space-y-3 animate-in fade-in slide-in-from-top-2">
+        <RaisedCard className="space-y-4 animate-in fade-in slide-in-from-top-2">
           {[
-            { color: 'border-blue-400', title: 'Content', text: feedback.content_feedback },
-            { color: 'border-indigo-400', title: 'Grammar', text: feedback.grammar_feedback },
-            { color: 'border-purple-400', title: 'Fluency', text: feedback.fluency_feedback },
-            feedback.pronunciation_notes && { color: 'border-teal-400', title: 'Pronunciation Notes', text: feedback.pronunciation_notes },
-            { color: 'border-amber-400', title: 'Tips to Improve', text: feedback.improvement_tips },
-          ].filter(Boolean).map(({ color, title, text }) => (
-            <div key={title} className={`bg-white p-4 rounded-xl border-l-4 ${color} shadow-sm`}>
-              <p className="text-sm font-bold text-slate-700 mb-1">{title}</p>
-              <p className="text-sm text-slate-600 leading-relaxed">{text}</p>
+            { title: 'Content', text: feedback.content_feedback },
+            { title: 'Grammar', text: feedback.grammar_feedback },
+            { title: 'Fluency', text: feedback.fluency_feedback },
+            feedback.pronunciation_notes && { title: 'Pronunciation Notes', text: feedback.pronunciation_notes },
+            { title: 'Tips to Improve', text: feedback.improvement_tips },
+          ].filter(Boolean).map(({ title, text }) => (
+            <div key={title}>
+              <Eyebrow className="mb-1">{title}</Eyebrow>
+              <p className="text-base text-pw-navy leading-relaxed">{text}</p>
             </div>
           ))}
-        </div>
+        </RaisedCard>
       )}
     </div>
   );
@@ -709,84 +662,77 @@ function InterviewIntro({ questions, onStart, varyOfficer, onToggleVary, persona
   const sectionNames = { small_talk: 'Small Talk', personal_info: 'Personal Information', morals_ethics: 'Morals & Ethics', oath_requirements: 'Oath Requirements' };
 
   return (
-    <div className="w-full max-w-2xl mx-auto">
-      <Card className="bg-indigo-50 border border-indigo-200 overflow-hidden">
-        <div className="h-2 bg-indigo-600" />
-        <CardContent className="p-10 text-center space-y-6">
-          {/* Avatar preview */}
-          <div className="flex flex-col items-center gap-3">
-            <div className="relative w-28 h-28">
-              <motion.div
-                className="absolute -inset-1.5 rounded-full ring-4 ring-indigo-300"
-                animate={{ scale: [1, 1.05, 1], opacity: [0.3, 0.6, 0.3] }}
-                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-              />
-              <img
-                src={AVATAR_URL}
-                alt="Officer Martinez"
-                className="w-28 h-28 rounded-full object-cover border-4 border-white shadow-lg relative z-10"
-              />
-            </div>
-            <div>
-              <p className="font-bold text-lg text-slate-800">Officer Martinez</p>
-              <p className="text-sm text-slate-500">Your USCIS Interviewer</p>
-            </div>
+    <div className="w-full max-w-2xl mx-auto space-y-4 text-pw-navy">
+      <RaisedCard>
+        {/* Avatar preview */}
+        <div className="flex items-center gap-4">
+          <div className="relative w-20 h-20 shrink-0">
+            <motion.div
+              className="absolute -inset-1.5 rounded-full ring-4 ring-pw-blue-soft"
+              animate={{ scale: [1, 1.05, 1], opacity: [0.5, 1, 0.5] }}
+              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+            />
+            <img
+              src={AVATAR_URL}
+              alt="Officer Martinez"
+              className="w-20 h-20 rounded-full object-cover border-4 border-white bg-pw-blue-soft shadow-raised relative z-10"
+            />
           </div>
-
-          <div>
-            <h2 className="text-3xl font-bold text-slate-900 mb-2">Mock Interview</h2>
-            <p className="text-lg text-slate-500 max-w-md mx-auto">
-              Have a conversation with Officer Martinez. She'll ask you real interview questions and evaluate your responses.
-            </p>
+          <div className="min-w-0">
+            <p className="font-extrabold text-lg">Officer Martinez</p>
+            <p className="text-sm text-pw-muted">Your USCIS Interviewer</p>
           </div>
+        </div>
 
-              <div className="grid grid-cols-2 gap-3 text-left max-w-sm mx-auto">
-                {[
-                  { Icon: Mic, text: `${questions.length} questions across ${sections.length} sections` },
-                  { Icon: Volume2, text: 'Officer speaks questions aloud' },
-                  { Icon: Bot, text: 'Real-time AI evaluation' },
-                  { Icon: BarChart3, text: 'Content, grammar & fluency scores' },
-                ].map(({ Icon, text }) => (
-                  <div key={text} className="flex items-start gap-2 bg-white p-3 rounded-xl border border-slate-100">
-                    <Icon className="w-5 h-5 text-indigo-600 shrink-0" />
-                    <p className="text-sm text-slate-700 font-medium">{text}</p>
-                  </div>
-                ))}
-              </div>
+        <h2 className="text-[1.75rem] font-extrabold leading-tight mt-5 mb-2">Mock Interview</h2>
+        <p className="text-base text-pw-muted leading-relaxed">
+          Have a conversation with Officer Martinez. She'll ask you real interview questions and evaluate your responses.
+        </p>
 
-              <div className="bg-white rounded-xl p-4 border border-slate-100 text-left max-w-sm mx-auto">
-                <p className="text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Sections Covered</p>
-                <div className="space-y-1">
-                  {sections.map(s => (
-                    <div key={s} className="flex items-center gap-2 text-sm text-slate-700">
-                      <div className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
-                      {sectionNames[s] || s}
-                    </div>
-                  ))}
-                </div>
-              </div>
+        <div className="grid grid-cols-2 gap-2 mt-5">
+          {[
+            { Icon: Mic, text: `${questions.length} questions across ${sections.length} sections` },
+            { Icon: Volume2, text: 'Officer speaks questions aloud' },
+            { Icon: Bot, text: 'Real-time AI evaluation' },
+            { Icon: BarChart3, text: 'Content, grammar & fluency scores' },
+          ].map(({ Icon, text }) => (
+            <div key={text} className="flex flex-col gap-2 bg-pw-soft p-3 rounded-2xl">
+              <Icon className="w-5 h-5 text-pw-navy shrink-0" aria-hidden="true" />
+              <p className="text-sm font-semibold leading-snug">{text}</p>
+            </div>
+          ))}
+        </div>
 
-              {questions.some(isPersonaSection) && (
-                <div className="max-w-sm mx-auto">
-                  <PersonaPicker selectedId={personaId} onSelect={onSelectPersona} />
-                </div>
-              )}
+        <div className="mt-5">
+          <Eyebrow className="mb-2">Sections Covered</Eyebrow>
+          <div className="flex flex-wrap gap-2">
+            {sections.map(s => (
+              <Tag key={s} tone="blue">{sectionNames[s] || s}</Tag>
+            ))}
+          </div>
+        </div>
+      </RaisedCard>
 
-              <button
-                onClick={onToggleVary}
-                className="flex items-center justify-center gap-3 bg-white rounded-xl p-3 border border-slate-100 w-full max-w-sm mx-auto text-left"
-              >
-                <span className={`w-11 h-6 rounded-full relative transition-colors shrink-0 ${varyOfficer ? 'bg-indigo-600' : 'bg-slate-300'}`}>
-                  <span className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform ${varyOfficer ? 'translate-x-5' : ''}`} />
-                </span>
-                <span className="text-sm text-slate-700 font-medium">Different officer voice each interview</span>
-              </button>
+      {questions.some(isPersonaSection) && (
+        <PersonaPicker selectedId={personaId} onSelect={onSelectPersona} />
+      )}
 
-              <Button onClick={onStart} size="lg" className="bg-indigo-600 hover:bg-indigo-700 h-14 px-12 text-lg rounded-2xl shadow-lg shadow-indigo-200">
-                Start Interview
-              </Button>
-        </CardContent>
-      </Card>
+      <button
+        type="button"
+        role="switch"
+        aria-checked={varyOfficer}
+        onClick={onToggleVary}
+        className="flex items-center gap-3 bg-white rounded-2xl px-4 py-3 min-h-[56px] border border-pw-line w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red"
+      >
+        <span className={`w-11 h-6 rounded-full relative transition-colors shrink-0 ${varyOfficer ? 'bg-pw-navy' : 'bg-pw-line'}`}>
+          <span className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform ${varyOfficer ? 'translate-x-5' : ''}`} />
+        </span>
+        <span className="text-base font-semibold">Different officer voice each interview</span>
+      </button>
+
+      <PrimaryButton large onClick={onStart} className="w-full">
+        Start Interview
+      </PrimaryButton>
     </div>
   );
 }

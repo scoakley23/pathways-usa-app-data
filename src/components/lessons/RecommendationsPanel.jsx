@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Lightbulb, TrendingUp, AlertCircle, Award } from 'lucide-react';
+import { Lightbulb, TrendingUp, AlertCircle } from 'lucide-react';
+import { RaisedCard, Tag } from '@/components/pathways/ui';
 
 export default function RecommendationsPanel({ userEmail, onSelectLesson }) {
   const [recommendations, setRecommendations] = useState([]);
@@ -135,45 +134,42 @@ export default function RecommendationsPanel({ userEmail, onSelectLesson }) {
   return (
     <div className="space-y-4">
       {recommendations.map((rec, idx) => (
-        <Card key={idx} className={`border-2 ${
-          rec.priority === 'high' ? 'border-orange-300 bg-orange-50' :
-          rec.priority === 'medium' ? 'border-blue-300 bg-blue-50' :
-          'border-green-300 bg-green-50'
-        }`}>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-lg flex items-center gap-2">
-              {rec.type === 'needs_review' && <AlertCircle className="w-5 h-5 text-orange-600" />}
-              {rec.type === 'retry' && <TrendingUp className="w-5 h-5 text-blue-600" />}
-              {rec.type === 'continue' && <Lightbulb className="w-5 h-5 text-green-600" />}
-              <span className="text-slate-900">
-                {rec.type === 'needs_review' && 'Needs Attention'}
-                {rec.type === 'retry' && 'Practice Again'}
-                {rec.type === 'continue' && 'Recommended for You'}
-              </span>
-            </CardTitle>
-            <p className="text-sm text-slate-600">{rec.reason}</p>
-          </CardHeader>
-          <CardContent className="space-y-2">
+        <RaisedCard key={idx} className="space-y-4 text-pw-navy">
+          <div className="space-y-2">
+            <Tag tone={rec.priority === 'high' ? 'red' : rec.priority === 'medium' ? 'blue' : 'teal'}>
+              {rec.type === 'needs_review' && 'Needs Attention'}
+              {rec.type === 'retry' && 'Practice Again'}
+              {rec.type === 'continue' && 'Recommended for You'}
+            </Tag>
+            <h2 className="text-xl font-extrabold flex items-start gap-2">
+              {rec.type === 'needs_review' && <AlertCircle className="w-6 h-6 shrink-0 text-pw-red-ink" aria-hidden="true" />}
+              {rec.type === 'retry' && <TrendingUp className="w-6 h-6 shrink-0 text-pw-blue-ink" aria-hidden="true" />}
+              {rec.type === 'continue' && <Lightbulb className="w-6 h-6 shrink-0 text-pw-teal-ink" aria-hidden="true" />}
+              <span>{rec.reason}</span>
+            </h2>
+          </div>
+          <div className="space-y-3">
             {rec.lessons.map(lesson => (
               <div 
                 key={lesson.id}
-                className="flex items-center justify-between p-3 bg-white rounded-lg border hover:border-slate-300 transition-colors"
+                className="flex items-center justify-between gap-3 p-4 bg-white rounded-2xl border border-pw-line hover:border-pw-navy transition-colors"
               >
-                <div>
-                  <p className="font-medium text-slate-900">{lesson.title}</p>
-                  <p className="text-xs text-slate-500">{lesson.topic}</p>
+                <div className="min-w-0">
+                  <p className="text-base font-bold">{lesson.title}</p>
+                  <p className="text-sm text-pw-muted">{lesson.topic}</p>
                 </div>
                 <Button 
                   size="sm"
                   onClick={() => onSelectLesson(lesson)}
                   variant="outline"
+                  className="shrink-0"
                 >
                   Start
                 </Button>
               </div>
             ))}
-          </CardContent>
-        </Card>
+          </div>
+        </RaisedCard>
       ))}
     </div>
   );

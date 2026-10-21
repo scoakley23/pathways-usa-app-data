@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
 import { ChevronDown, ChevronUp, CheckCircle2, Hourglass } from 'lucide-react';
+import { RaisedCard, Tag, PrimaryButton } from '@/components/pathways/ui';
 import N400QuestionCard from './N400QuestionCard';
 
 // One section of the N-400 guide. Learners only see approved question cards;
@@ -14,53 +12,64 @@ export default function N400Section({ section, isAdmin, language, completed, onC
     : section.questions.filter((q) => q.status === 'approved');
 
   return (
-    <Card className="rounded-2xl">
-      <CardContent className="p-5 md:p-6 space-y-4">
-        <div className="flex items-start justify-between gap-3">
-          <div>
-            <h2 className="text-xl font-extrabold text-slate-900">{section.title}</h2>
-            <p className="text-sm" style={{ color: '#4A5A78' }}>
-              {section.partLabel}
-            </p>
-          </div>
-          <div className="flex flex-col items-end gap-2">
-            {isAdmin && section.status === 'draft' && (
-              <Badge variant="outline" className="text-amber-700 border-amber-300 bg-amber-50">
-                Draft
-              </Badge>
-            )}
-            {completed && (
-              <Badge className="bg-green-100 text-green-700 border border-green-200">Completed</Badge>
-            )}
-          </div>
+    <RaisedCard padding="p-4 sm:p-6" className={`space-y-4 ${completed ? 'border-pw-green-ink/30' : ''}`}>
+      <div>
+        <div className="min-w-0 space-y-1">
+          {(completed || (isAdmin && section.status === 'draft')) && (
+            <div className="flex flex-wrap gap-2 mb-2">
+              {completed && (
+                <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-bold bg-pw-green-soft text-pw-green-ink">
+                  <CheckCircle2 className="w-4 h-4" aria-hidden="true" /> Completed
+                </span>
+              )}
+              {isAdmin && section.status === 'draft' && <Tag tone="red">Draft</Tag>}
+            </div>
+          )}
+          <h2 className="text-[22px] leading-snug font-extrabold text-pw-navy px-1">{section.title}</h2>
+          <p className="text-sm text-pw-muted px-1">{section.partLabel}</p>
         </div>
+      </div>
 
-        {visibleCards.length === 0 ? (
-          <p className="text-sm flex items-center gap-2" style={{ color: '#4A5A78' }}>
-            <Hourglass className="w-4 h-4" /> Coming soon — this section is still being prepared.
-          </p>
-        ) : (
-          <>
-            <Button variant="outline" onClick={() => setOpen(!open)} className="w-full justify-between">
-              {open
-                ? 'Hide questions'
-                : `Show ${visibleCards.length} question card${visibleCards.length > 1 ? 's' : ''}`}
-              {open ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-            </Button>
-            {open && (
-              <div className="space-y-4">
-                {visibleCards.map((q) => (
-                  <N400QuestionCard key={q.id} sectionId={section.id} question={q} isAdmin={isAdmin} language={language} />
-                ))}
-                <Button className="w-full h-11" disabled={completed} onClick={() => onComplete(section.id)}>
-                  <CheckCircle2 className="w-4 h-4 mr-2" />
-                  {completed ? 'Section completed' : `Mark "${section.title}" as complete`}
-                </Button>
-              </div>
-            )}
-          </>
-        )}
-      </CardContent>
-    </Card>
+      {visibleCards.length === 0 ? (
+        <p className="text-base flex items-center gap-2 rounded-2xl bg-pw-soft px-4 py-3 text-pw-muted">
+          <Hourglass className="w-4 h-4 shrink-0" /> Coming soon — this section is still being prepared.
+        </p>
+      ) : (
+        <>
+          <button
+            type="button"
+            onClick={() => setOpen(!open)}
+            aria-expanded={open}
+            className="w-full min-h-[48px] rounded-2xl bg-pw-soft hover:bg-[#E2E8F2] text-pw-navy font-bold text-base px-4 inline-flex items-center justify-between gap-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2"
+          >
+            {open
+              ? 'Hide questions'
+              : `Show ${visibleCards.length} question card${visibleCards.length > 1 ? 's' : ''}`}
+            {open ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+          </button>
+          {open && (
+            <div className="space-y-4">
+              {visibleCards.map((q) => (
+                <N400QuestionCard key={q.id} sectionId={section.id} question={q} isAdmin={isAdmin} language={language} />
+              ))}
+              {completed ? (
+                <div
+                  className="w-full min-h-[52px] rounded-2xl bg-pw-green-soft text-pw-green-ink font-bold text-base inline-flex items-center justify-center gap-2 px-4"
+                  role="status"
+                >
+                  <CheckCircle2 className="w-5 h-5" />
+                  Section completed
+                </div>
+              ) : (
+                <PrimaryButton large className="w-full" onClick={() => onComplete(section.id)}>
+                  <CheckCircle2 className="w-5 h-5" />
+                  {`Mark "${section.title}" as complete`}
+                </PrimaryButton>
+              )}
+            </div>
+          )}
+        </>
+      )}
+    </RaisedCard>
   );
 }

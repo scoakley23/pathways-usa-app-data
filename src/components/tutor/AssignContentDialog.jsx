@@ -9,14 +9,9 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Check, Search, Loader2 } from 'lucide-react';
 import { Input } from "@/components/ui/input";
@@ -167,12 +162,14 @@ export default function AssignContentDialog({ isOpen, onClose, studentEmail, tut
     return '';
   };
 
+  const fieldLabel = "text-sm font-bold text-pw-navy";
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[600px] h-[80vh] flex flex-col">
+      <DialogContent className="sm:max-w-[600px] h-[85vh] sm:h-[80vh] flex flex-col">
         <DialogHeader>
           <DialogTitle>Assign Practice</DialogTitle>
-          <DialogDescription>
+          <DialogDescription className="break-all">
             Select content to assign to {studentEmail}
           </DialogDescription>
         </DialogHeader>
@@ -180,27 +177,28 @@ export default function AssignContentDialog({ isOpen, onClose, studentEmail, tut
         <div className="flex flex-col gap-4 flex-1 overflow-hidden">
           <Tabs value={contentType} onValueChange={setContentType} className="w-full">
             <TabsList className="grid w-full grid-cols-4">
-              <TabsTrigger value="sentence">Sentences</TabsTrigger>
-              <TabsTrigger value="vocabulary">Vocab</TabsTrigger>
-              <TabsTrigger value="civics_question">Civics</TabsTrigger>
-              <TabsTrigger value="custom">Custom</TabsTrigger>
+              <TabsTrigger value="sentence" className="px-1 text-sm sm:text-base">Sentences</TabsTrigger>
+              <TabsTrigger value="vocabulary" className="px-1 text-sm sm:text-base">Vocab</TabsTrigger>
+              <TabsTrigger value="civics_question" className="px-1 text-sm sm:text-base">Civics</TabsTrigger>
+              <TabsTrigger value="custom" className="px-1 text-sm sm:text-base">Custom</TabsTrigger>
             </TabsList>
           </Tabs>
 
           {contentType === 'custom' ? (
-            <div className="flex-1 p-4 space-y-4 overflow-y-auto">
-                <div className="space-y-2">
-                    <h3 className="text-sm font-medium">Create Custom Assignment</h3>
-                    <p className="text-xs text-slate-500">Create content tailored to your student's needs.</p>
+            <div className="flex-1 py-1 space-y-4 overflow-y-auto">
+                <div className="space-y-1">
+                    <h3 className="text-lg font-extrabold text-pw-navy">Create Custom Assignment</h3>
+                    <p className="text-base text-pw-muted">Create content tailored to your student's needs.</p>
                 </div>
 
-                <div className="flex p-1 bg-slate-100 rounded-lg">
+                <div className="flex p-1 bg-white border border-pw-line rounded-2xl gap-1">
                     {['sentence', 'vocabulary', 'civics_question'].map(type => (
                         <button
                             key={type}
                             onClick={() => setCustomType(type)}
-                            className={`flex-1 text-xs font-medium py-2 rounded-md transition-all ${
-                                customType === type ? 'bg-white shadow text-blue-600' : 'text-slate-500 hover:text-slate-700'
+                            aria-pressed={customType === type}
+                            className={`flex-1 min-h-[44px] text-sm font-bold rounded-xl transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red ${
+                                customType === type ? 'bg-pw-navy text-white' : 'text-pw-muted hover:bg-pw-soft'
                             }`}
                         >
                             {type === 'civics_question' ? 'Civics Q&A' : type.charAt(0).toUpperCase() + type.slice(1)}
@@ -210,7 +208,7 @@ export default function AssignContentDialog({ isOpen, onClose, studentEmail, tut
 
                 {customType === 'sentence' && (
                     <div className="space-y-2 animate-in fade-in">
-                        <label className="text-xs font-medium text-slate-700">Sentence Text</label>
+                        <label className={fieldLabel}>Sentence Text</label>
                         <Input
                             placeholder="Type sentence here..."
                             value={searchQuery}
@@ -224,7 +222,7 @@ export default function AssignContentDialog({ isOpen, onClose, studentEmail, tut
                 {customType === 'vocabulary' && (
                     <div className="space-y-4 animate-in fade-in">
                         <div className="space-y-2">
-                            <label className="text-xs font-medium text-slate-700">Word or Phrase</label>
+                            <label className={fieldLabel}>Word or Phrase</label>
                             <Input
                                 placeholder="e.g. Amendment"
                                 value={customData.word}
@@ -232,7 +230,7 @@ export default function AssignContentDialog({ isOpen, onClose, studentEmail, tut
                             />
                         </div>
                         <div className="space-y-2">
-                            <label className="text-xs font-medium text-slate-700">Definition</label>
+                            <label className={fieldLabel}>Definition</label>
                             <Input
                                 placeholder="e.g. A change to the Constitution"
                                 value={customData.definition}
@@ -247,7 +245,7 @@ export default function AssignContentDialog({ isOpen, onClose, studentEmail, tut
                 {customType === 'civics_question' && (
                     <div className="space-y-4 animate-in fade-in">
                         <div className="space-y-2">
-                            <label className="text-xs font-medium text-slate-700">Question</label>
+                            <label className={fieldLabel}>Question</label>
                             <Input
                                 placeholder="e.g. What is the supreme law of the land?"
                                 value={customData.question}
@@ -255,7 +253,7 @@ export default function AssignContentDialog({ isOpen, onClose, studentEmail, tut
                             />
                         </div>
                         <div className="space-y-2">
-                            <label className="text-xs font-medium text-slate-700">Answer</label>
+                            <label className={fieldLabel}>Answer</label>
                             <Input
                                 placeholder="e.g. The Constitution"
                                 value={customData.answer}
@@ -270,22 +268,23 @@ export default function AssignContentDialog({ isOpen, onClose, studentEmail, tut
           ) : (
             <>
               <div className="relative">
-                <Search className="absolute left-2 top-2.5 h-4 w-4 text-slate-500" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-pw-muted" aria-hidden="true" />
                 <Input
                   placeholder="Search content..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-8"
+                  className="pl-9"
+                  aria-label="Search content"
                 />
               </div>
 
-              <ScrollArea className="flex-1 border rounded-md p-2">
+              <ScrollArea className="flex-1 border border-pw-line rounded-2xl p-2">
                 {isLoading ? (
               <div className="flex justify-center py-8">
-                <Loader2 className="w-6 h-6 animate-spin text-slate-400" />
+                <Loader2 className="w-6 h-6 animate-spin text-pw-navy" />
               </div>
             ) : filteredItems.length === 0 ? (
-              <p className="text-center text-slate-500 py-8">No content found.</p>
+              <p className="text-center text-base text-pw-muted py-8">No content found.</p>
             ) : (
               <div className="space-y-2">
                 {filteredItems.map((item) => (
@@ -298,14 +297,14 @@ export default function AssignContentDialog({ isOpen, onClose, studentEmail, tut
                             : [...prev, item.id]
                         );
                     }}
-                    className={`p-3 rounded-lg border cursor-pointer transition-colors flex justify-between items-start hover:bg-slate-50
-                      ${selectedIds.includes(item.id) ? 'border-blue-500 bg-blue-50' : 'border-slate-200'}`}
+                    className={`min-h-[48px] p-3 rounded-2xl border-2 cursor-pointer transition-colors flex justify-between items-start gap-2
+                      ${selectedIds.includes(item.id) ? 'border-pw-navy bg-pw-soft' : 'border-pw-line bg-white hover:border-pw-navy/40'}`}
                   >
-                    <p className="text-sm font-medium text-slate-800 pr-4 line-clamp-2">
+                    <p className="text-base font-semibold text-pw-navy line-clamp-2">
                       {getItemLabel(item)}
                     </p>
                     {selectedIds.includes(item.id) && (
-                      <Check className="w-4 h-4 text-blue-600 mt-1 flex-shrink-0" />
+                      <Check className="w-5 h-5 text-pw-navy mt-0.5 flex-shrink-0" />
                     )}
                   </div>
                 ))}
@@ -316,14 +315,13 @@ export default function AssignContentDialog({ isOpen, onClose, studentEmail, tut
           )}
         </div>
 
-        <DialogFooter className="mt-4">
+        <DialogFooter className="mt-4 gap-2">
           <Button variant="outline" onClick={onClose}>Cancel</Button>
           <Button 
             onClick={handleAssign} 
             disabled={(contentType !== 'custom' && selectedIds.length === 0) || isAssigning} 
-            className="bg-blue-600 hover:bg-blue-700"
           >
-            {isAssigning ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
+            {isAssigning ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
             {contentType === 'custom' ? 'Assign Custom Task' : `Assign Selected (${selectedIds.length})`}
           </Button>
         </DialogFooter>

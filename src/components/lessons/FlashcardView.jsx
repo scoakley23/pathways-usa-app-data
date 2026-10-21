@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, RotateCcw } from 'lucide-react';
+import { Tag } from '@/components/pathways/ui';
 
 export default function FlashcardView({ flashcards }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -9,7 +9,7 @@ export default function FlashcardView({ flashcards }) {
 
   if (!flashcards || flashcards.length === 0) {
     return (
-      <div className="text-center py-8 text-slate-500">
+      <div className="text-center py-8 text-base text-pw-muted">
         No flashcards available for this lesson.
       </div>
     );
@@ -32,16 +32,20 @@ export default function FlashcardView({ flashcards }) {
   };
 
   return (
-    <div className="space-y-4">
-      <div className="flex justify-between items-center text-sm text-slate-600">
-        <span>Card {currentIndex + 1} of {flashcards.length}</span>
-        <span>Click card to flip</span>
+    <div className="space-y-4 text-pw-navy">
+      <div className="flex justify-between items-center gap-2">
+        <Tag tone="blue">Card {currentIndex + 1} of {flashcards.length}</Tag>
+        <span className="text-sm font-bold text-pw-muted">Click card to flip</span>
       </div>
 
       <div
         onClick={handleFlip}
+        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleFlip(); } }}
+        role="button"
+        tabIndex={0}
+        aria-pressed={isFlipped}
         style={{ perspective: '1000px' }}
-        className="cursor-pointer w-full h-80"
+        className="cursor-pointer w-full h-80 rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2"
       >
         <div
           style={{
@@ -56,11 +60,11 @@ export default function FlashcardView({ flashcards }) {
           {/* Front of card */}
           <div
             style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
-            className="absolute inset-0 rounded-xl border bg-white shadow flex items-center justify-center p-8"
+            className="absolute inset-0 rounded-3xl border border-pw-line bg-white shadow-raised flex items-center justify-center p-6"
           >
             <div className="text-center space-y-4">
-              <span className="text-sm font-semibold text-blue-600 uppercase tracking-wide">Term</span>
-              <h3 className="text-3xl font-bold text-slate-900">{currentCard.term}</h3>
+              <span className="text-xs font-bold uppercase tracking-widest text-pw-muted">Term</span>
+              <h3 className="text-3xl font-extrabold text-pw-navy break-words">{currentCard.term}</h3>
             </div>
           </div>
 
@@ -71,15 +75,15 @@ export default function FlashcardView({ flashcards }) {
               WebkitBackfaceVisibility: 'hidden',
               transform: 'rotateY(180deg)',
             }}
-            className="absolute inset-0 rounded-xl border bg-blue-50 border-blue-200 shadow flex items-center justify-center p-8"
+            className="absolute inset-0 rounded-3xl bg-pw-blue-soft shadow-raised flex items-center justify-center p-6 overflow-y-auto"
           >
             <div className="text-center space-y-4">
-              <span className="text-sm font-semibold text-blue-700 uppercase tracking-wide">Definition</span>
-              <p className="text-xl text-slate-800 leading-relaxed">{currentCard.definition}</p>
+              <span className="text-xs font-bold uppercase tracking-widest text-pw-blue-ink">Definition</span>
+              <p className="text-xl font-bold text-pw-navy leading-relaxed">{currentCard.definition}</p>
               {currentCard.example && (
-                <div className="mt-4 pt-4 border-t border-blue-300">
-                  <span className="text-xs font-semibold text-blue-600 uppercase">Example</span>
-                  <p className="text-sm text-slate-700 mt-2 italic">{currentCard.example}</p>
+                <div className="mt-4 pt-4 border-t border-pw-line">
+                  <span className="text-xs font-bold uppercase tracking-widest text-pw-blue-ink">Example</span>
+                  <p className="text-base text-pw-muted mt-2 italic">{currentCard.example}</p>
                 </div>
               )}
             </div>
@@ -87,7 +91,7 @@ export default function FlashcardView({ flashcards }) {
         </div>
       </div>
 
-      <div className="flex items-center justify-between gap-4">
+      <div className="grid grid-cols-2 gap-2">
         <Button
           onClick={handlePrevious}
           variant="outline"
@@ -104,6 +108,7 @@ export default function FlashcardView({ flashcards }) {
           }}
           variant="ghost"
           size="sm"
+          className="col-span-2 order-last"
         >
           <RotateCcw className="w-4 h-4 mr-2" />
           Restart

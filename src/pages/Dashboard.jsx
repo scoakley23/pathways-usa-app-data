@@ -63,55 +63,53 @@ export default function Dashboard({ cachedUser }) {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
+        <Loader2 className="w-8 h-8 animate-spin text-pw-navy" aria-hidden="true" />
       </div>
     );
   }
 
+  const tile = 'rounded-3xl bg-white border border-pw-line shadow-raised p-4';
+  const iconSquare = 'w-10 h-10 rounded-2xl grid place-items-center';
+
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 text-pw-navy">
       <PageHeader
         title="Lesson Progress"
         subtitle="Your completion status across all citizenship topics"
+        art="book"
       />
 
       {/* Status summary cards */}
-      <div className="flex flex-wrap items-center gap-4">
-        <Card className="flex-1 min-w-[140px]">
-          <CardContent className="p-4 flex items-center gap-3">
-            <CheckCircle className="w-5 h-5 text-green-600" />
-            <div>
-              <p className="text-2xl font-bold text-slate-900">{completedLessons}</p>
-              <p className="text-xs text-slate-600">Completed</p>
-            </div>
-          </CardContent>
-        </Card>
-        <Card className="flex-1 min-w-[140px]">
-          <CardContent className="p-4 flex items-center gap-3">
-            <Clock className="w-5 h-5 text-amber-600" />
-            <div>
-              <p className="text-2xl font-bold text-slate-900">{inProgressLessons}</p>
-              <p className="text-xs text-slate-600">In Progress</p>
-            </div>
-          </CardContent>
-        </Card>
-        <Card className="flex-1 min-w-[140px]">
-          <CardContent className="p-4 flex items-center gap-3">
-            <Circle className="w-5 h-5 text-slate-400" />
-            <div>
-              <p className="text-2xl font-bold text-slate-900">{notStartedLessons}</p>
-              <p className="text-xs text-slate-600">Not Started</p>
-            </div>
-          </CardContent>
-        </Card>
+      <div className="grid grid-cols-3 gap-3">
+        <div className={tile}>
+          <span className={`${iconSquare} bg-pw-green-soft text-pw-green-ink`}>
+            <CheckCircle className="w-5 h-5" aria-hidden="true" />
+          </span>
+          <p className="mt-3 text-3xl font-extrabold leading-none">{completedLessons}</p>
+          <p className="mt-1 text-sm font-bold text-pw-muted">Completed</p>
+        </div>
+        <div className={tile}>
+          <span className={`${iconSquare} bg-pw-blue-soft text-pw-blue-ink`}>
+            <Clock className="w-5 h-5" aria-hidden="true" />
+          </span>
+          <p className="mt-3 text-3xl font-extrabold leading-none">{inProgressLessons}</p>
+          <p className="mt-1 text-sm font-bold text-pw-muted">In Progress</p>
+        </div>
+        <div className={tile}>
+          <span className={`${iconSquare} bg-pw-soft text-pw-muted`}>
+            <Circle className="w-5 h-5" aria-hidden="true" />
+          </span>
+          <p className="mt-3 text-3xl font-extrabold leading-none">{notStartedLessons}</p>
+          <p className="mt-1 text-sm font-bold text-pw-muted">Not Started</p>
+        </div>
       </div>
 
       {/* Lesson grid by topic */}
       {lessonsByTopic.length > 0 ? (
-        <div className="space-y-6">
+        <div className="space-y-8">
           {lessonsByTopic.map(({ topic, lessons: topicLessons }) => (
-            <div key={topic}>
-              <h3 className="text-sm font-semibold text-slate-700 mb-3">{topic}</h3>
+            <section key={topic}>
+              <h3 className="text-xl font-extrabold mb-4">{topic}</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                 {topicLessons.map((lesson) => (
                   <LessonStatusCard
@@ -121,13 +119,15 @@ export default function Dashboard({ cachedUser }) {
                   />
                 ))}
               </div>
-            </div>
+            </section>
           ))}
         </div>
       ) : (
-        <Card className="border-0 shadow-sm">
-          <CardContent className="p-8 text-center text-slate-500">
-            <BookOpen className="w-10 h-10 mx-auto mb-2 text-slate-300" />
+        <Card>
+          <CardContent className="p-8 text-center text-base text-pw-muted">
+            <span className="w-14 h-14 mx-auto mb-3 rounded-2xl bg-pw-soft text-pw-muted grid place-items-center">
+              <BookOpen className="w-7 h-7" aria-hidden="true" />
+            </span>
             No lessons available yet.
           </CardContent>
         </Card>

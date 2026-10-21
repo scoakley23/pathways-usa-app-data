@@ -1,5 +1,5 @@
 import React from 'react';
-import { CheckBox, YesNo, PartBar, Item, Field, GroupIntro, Note, FormPage } from './N400FormPrimitives';
+import { CheckBox, YesNo, PartBar, Item, Field, Note, FormPage } from './N400FormPrimitives';
 
 // Pages 5-7 of the practice copy: Part 6 (children), Part 7 (employment and
 // schools), and Part 8 (time outside the United States).

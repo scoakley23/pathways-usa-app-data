@@ -15,8 +15,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
-import { Badge } from "@/components/ui/badge";
+import { Tag } from '@/components/pathways/ui';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { CheckCircle, Clock, AlertCircle, Loader2 } from 'lucide-react';
@@ -106,93 +105,93 @@ export default function StudentProgressReport({ isOpen, onClose, studentEmail })
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[800px] h-[85vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle>Progress Report: {studentEmail}</DialogTitle>
+        <DialogHeader className="min-w-0">
+          <DialogTitle className="break-all pr-8">Progress Report: {studentEmail}</DialogTitle>
         </DialogHeader>
 
         {isLoading ? (
           <div className="flex justify-center py-20">
-            <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
+            <Loader2 className="w-8 h-8 animate-spin text-pw-navy" />
           </div>
         ) : (
-          <div className="space-y-6">
+          <div className="space-y-6 min-w-0">
             
             {/* Overview Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               <Card>
                 <CardContent className="p-4 flex items-center gap-4">
-                  <div className="p-3 bg-blue-100 text-blue-700 rounded-full">
+                  <div className="p-3 bg-pw-blue-soft text-pw-blue-ink rounded-2xl" aria-hidden="true">
                     <Clock className="w-5 h-5" />
                   </div>
                   <div>
-                    <p className="text-sm text-slate-500">Total Practiced</p>
-                    <p className="text-2xl font-bold">{stats.totalPracticed}</p>
+                    <p className="text-sm font-bold text-pw-muted">Total Practiced</p>
+                    <p className="text-2xl font-extrabold text-pw-navy">{stats.totalPracticed}</p>
                   </div>
                 </CardContent>
               </Card>
               <Card>
                 <CardContent className="p-4 flex items-center gap-4">
-                  <div className="p-3 bg-green-100 text-green-700 rounded-full">
+                  <div className="p-3 bg-pw-green-soft text-pw-green-ink rounded-2xl" aria-hidden="true">
                     <CheckCircle className="w-5 h-5" />
                   </div>
                   <div>
-                    <p className="text-sm text-slate-500">Mastered</p>
-                    <p className="text-2xl font-bold">{stats.mastered}</p>
+                    <p className="text-sm font-bold text-pw-muted">Mastered</p>
+                    <p className="text-2xl font-extrabold text-pw-navy">{stats.mastered}</p>
                   </div>
                 </CardContent>
               </Card>
                <Card>
                 <CardContent className="p-4 flex items-center gap-4">
-                  <div className="p-3 bg-purple-100 text-purple-700 rounded-full">
+                  <div className="p-3 bg-pw-soft text-pw-navy rounded-2xl" aria-hidden="true">
                     <AlertCircle className="w-5 h-5" />
                   </div>
                   <div>
-                    <p className="text-sm text-slate-500">Assignments</p>
-                    <p className="text-2xl font-bold">{assignments.length}</p>
+                    <p className="text-sm font-bold text-pw-muted">Assignments</p>
+                    <p className="text-2xl font-extrabold text-pw-navy">{assignments.length}</p>
                   </div>
                 </CardContent>
               </Card>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Weaknesses / To Improve */}
-              <Card className="border-orange-200 bg-orange-50/30">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-bold text-orange-800 uppercase tracking-wide">Needs Practice</CardTitle>
+              <Card className="bg-pw-red-soft border-transparent shadow-none">
+                <CardHeader className="p-5 pb-2">
+                  <CardTitle className="text-xs font-bold text-pw-red-ink uppercase tracking-widest">Needs Practice</CardTitle>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="p-5 pt-0">
                   {stats.weaknesses.length > 0 ? (
                     <ul className="space-y-2">
                       {stats.weaknesses.map((item, idx) => (
-                         <li key={idx} className="text-sm text-slate-700 flex items-start gap-2">
-                           <span className="mt-1 w-1.5 h-1.5 rounded-full bg-orange-400 flex-shrink-0" />
+                         <li key={idx} className="text-base text-pw-navy flex items-start gap-2">
+                           <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-pw-red flex-shrink-0" aria-hidden="true" />
                            {getLabel(item)}
                          </li>
                       ))}
                     </ul>
                   ) : (
-                    <p className="text-sm text-slate-500">No specific weaknesses identified yet.</p>
+                    <p className="text-base text-pw-muted">No specific weaknesses identified yet.</p>
                   )}
                 </CardContent>
               </Card>
 
                {/* Strengths */}
-              <Card className="border-green-200 bg-green-50/30">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-bold text-green-800 uppercase tracking-wide">Mastered Content</CardTitle>
+              <Card className="bg-pw-green-soft border-transparent shadow-none">
+                <CardHeader className="p-5 pb-2">
+                  <CardTitle className="text-xs font-bold text-pw-green-ink uppercase tracking-widest">Mastered Content</CardTitle>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="p-5 pt-0">
                   {stats.strengths.length > 0 ? (
                     <ul className="space-y-2">
                       {stats.strengths.map((item, idx) => (
-                         <li key={idx} className="text-sm text-slate-700 flex items-start gap-2">
-                           <CheckCircle className="w-3.5 h-3.5 text-green-500 mt-0.5 flex-shrink-0" />
+                         <li key={idx} className="text-base text-pw-navy flex items-start gap-2">
+                           <CheckCircle className="w-4 h-4 text-pw-green-ink mt-1 flex-shrink-0" aria-hidden="true" />
                            {getLabel(item)}
                          </li>
                       ))}
                     </ul>
                   ) : (
-                    <p className="text-sm text-slate-500">Keep practicing to master content!</p>
+                    <p className="text-base text-pw-muted">Keep practicing to master content!</p>
                   )}
                 </CardContent>
               </Card>
@@ -200,8 +199,9 @@ export default function StudentProgressReport({ isOpen, onClose, studentEmail })
 
             {/* Assignment History */}
             <div>
-              <h4 className="font-semibold text-slate-900 mb-3">Recent Assignments</h4>
+              <h4 className="text-lg font-extrabold text-pw-navy mb-3">Recent Assignments</h4>
               {assignments.length > 0 ? (
+                 <div className="rounded-2xl border border-pw-line overflow-x-auto">
                  <Table>
                   <TableHeader>
                     <TableRow>
@@ -214,29 +214,29 @@ export default function StudentProgressReport({ isOpen, onClose, studentEmail })
                   <TableBody>
                     {assignments.map((a) => (
                       <TableRow key={a.id}>
-                        <TableCell>{format(new Date(a.assigned_date), 'MMM d')}</TableCell>
+                        <TableCell className="whitespace-nowrap text-pw-muted">{format(new Date(a.assigned_date), 'MMM d')}</TableCell>
                         <TableCell className="max-w-[200px] truncate">
                            {a.content_type === 'custom' ? `Custom: ${a.custom_content}` : (
                                 a.content_type.replace('_', ' ')
                            )}
                         </TableCell>
                         <TableCell>
-                          <Badge variant={a.status === 'completed' ? 'default' : 'outline'} className={a.status === 'completed' ? 'bg-green-600' : ''}>
+                          <Tag tone={a.status === 'completed' ? 'green' : 'blue'} className="capitalize whitespace-nowrap">
                             {a.status}
-                          </Badge>
+                          </Tag>
                         </TableCell>
                         <TableCell>
                             {a.status === 'completed' && (
                                 a.tutor_feedback ? (
-                                    <span className="text-xs text-slate-600" title={a.tutor_feedback}>
-                                        <CheckCircle className="w-3 h-3 inline mr-1 text-green-500" />
+                                    <span className="text-sm text-pw-green-ink font-bold whitespace-nowrap" title={a.tutor_feedback}>
+                                        <CheckCircle className="w-4 h-4 inline mr-1" aria-hidden="true" />
                                         Sent
                                     </span>
                                 ) : (
                                     <Button 
                                         size="sm" 
                                         variant="outline" 
-                                        className="h-7 text-xs"
+                                        className="whitespace-nowrap"
                                         onClick={() => setSelectedAssignmentForFeedback(a)}
                                     >
                                         Give Feedback
@@ -248,8 +248,9 @@ export default function StudentProgressReport({ isOpen, onClose, studentEmail })
                     ))}
                   </TableBody>
                 </Table>
+                 </div>
               ) : (
-                <div className="text-center py-4 border rounded-lg bg-slate-50 text-slate-500 text-sm">
+                <div className="text-center py-6 border border-dashed border-pw-line rounded-2xl bg-white text-pw-muted text-base">
                   No assignments given yet.
                 </div>
               )}
@@ -262,7 +263,7 @@ export default function StudentProgressReport({ isOpen, onClose, studentEmail })
                         <DialogTitle>Provide Feedback</DialogTitle>
                     </DialogHeader>
                     <div className="space-y-4 py-2">
-                        <p className="text-sm text-slate-500">
+                        <p className="text-base text-pw-muted">
                             Add a note for the student regarding their assignment.
                         </p>
                         <Input

@@ -57,7 +57,7 @@ export default function DeleteMyData({ userEmail }) {
       // The sign-in account itself can't be deleted from the app, so reset
       // the learner fields stored on it.
       setProgress('Resetting your account details...');
-      await base44.auth.updateMe({ display_name: 'Learner', points: 0, badges: [], max_streak: 0, tutor_profile: null });
+      await base44.auth.updateMe({ display_name: 'Learner', points: 0, badges: [], max_streak: 0, tutor_profile: null, skill_levels: null });
       clearDeviceData();
       setProgress('Done. Signing you out...');
       toast.success("Your data has been deleted. You are being signed out.");
@@ -71,33 +71,36 @@ export default function DeleteMyData({ userEmail }) {
   };
 
   return (
-    <Card className="border-red-200 bg-red-50/40">
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2 text-red-700">
-          <AlertTriangle className="w-5 h-5" /> Delete My Data
+    <Card className="border-2 border-pw-red/40 bg-pw-red-soft/40">
+      <CardHeader className="p-5 sm:p-6">
+        <CardTitle className="flex items-center gap-3 text-xl text-pw-red-ink">
+          <span className="w-10 h-10 rounded-2xl bg-pw-red-soft text-pw-red-ink grid place-items-center shrink-0">
+            <AlertTriangle className="w-5 h-5" aria-hidden="true" />
+          </span>
+          Delete My Data
         </CardTitle>
-        <CardDescription>
+        <CardDescription className="text-pw-navy">
           Permanently erase everything tied to your email: your chat messages (including the copies in the other person's history),
           AI study buddy history, lesson notes, progress & quiz scores, mock interview scores, N-400 guide section completion, assignments,
-          tutor connections, notifications, and your profile. Your points, badges, display name, and tutor settings are reset, and the app's data on
+          tutor connections, notifications, and your profile. Your points, badges, display name, tutor settings, and quick check levels are reset, and the app's data on
           this device (your target date, language, and settings) is cleared. This cannot be undone.
         </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="p-5 pt-0 sm:p-6 sm:pt-0">
         {deleting ? (
-          <p className="text-sm text-red-700 flex items-center gap-2">
-            <Loader2 className="w-4 h-4 animate-spin" /> {progress}
+          <p role="status" className="text-base font-bold text-pw-red-ink flex items-center gap-2">
+            <Loader2 className="w-4 h-4 animate-spin shrink-0" aria-hidden="true" /> {progress}
           </p>
         ) : (
           <AlertDialog>
             <AlertDialogTrigger asChild>
-              <Button variant="destructive">
-                <Trash2 className="w-4 h-4 mr-2" /> Delete all my data
+              <Button variant="destructive" className="w-full sm:w-auto">
+                <Trash2 className="w-4 h-4" aria-hidden="true" /> Delete all my data
               </Button>
             </AlertDialogTrigger>
             <AlertDialogContent>
               <AlertDialogHeader>
-                <AlertDialogTitle>Delete all your data?</AlertDialogTitle>
+                <AlertDialogTitle className="text-pw-red-ink">Delete all your data?</AlertDialogTitle>
                 <AlertDialogDescription>
                   This permanently removes your chats, study history, notes, progress, interview scores, assignments, and profile from Pathways USA, and clears the app's data on this device.
                   Your saved representatives information is included. This action cannot be undone — you'll be signed out afterwards.
@@ -107,7 +110,7 @@ export default function DeleteMyData({ userEmail }) {
                 <AlertDialogCancel>Cancel</AlertDialogCancel>
                 <AlertDialogAction
                   onClick={(e) => { e.preventDefault(); handleDelete(); }}
-                  className="bg-red-600 hover:bg-red-700"
+                  className="bg-pw-red text-white hover:bg-pw-red-ink"
                 >
                   Yes, delete everything
                 </AlertDialogAction>
