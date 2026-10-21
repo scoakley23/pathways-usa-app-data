@@ -17,12 +17,13 @@ module.exports = {
     			sm: 'calc(var(--radius) - 4px)'
     		},
     		boxShadow: {
+    			// Two soft navy shadows only (style A); standard sizes map onto them.
     			sm: 'none',
     			DEFAULT: 'none',
-    			md: 'none',
-    			lg: 'none',
-    			xl: 'none',
-    			'2xl': 'none',
+    			md: '0 8px 24px rgba(20, 38, 74, 0.08)',
+    			lg: '0 8px 24px rgba(20, 38, 74, 0.08)',
+    			xl: '0 12px 32px rgba(20, 38, 74, 0.14)',
+    			'2xl': '0 12px 32px rgba(20, 38, 74, 0.14)',
     			raised: '0 8px 24px rgba(20, 38, 74, 0.08)',
     			lift: '0 12px 32px rgba(20, 38, 74, 0.14)'
     		},

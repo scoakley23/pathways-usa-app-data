@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { ArrowRight } from 'lucide-react';
-import { ROADMAP_STOPS } from './roadmapStops';
+import TopicArt from '@/components/art/TopicArt';
+import { Tag } from '@/components/pathways/ui';
 
 export default function RoadmapHero({ roadmap, t }) {
   const { loading, currentStop, isNew } = roadmap;
@@ -15,26 +16,23 @@ export default function RoadmapHero({ roadmap, t }) {
   const action = `${isNew ? t('hero_start') : t('hero_continue')}: ${t(`stop${currentStop.id}_name`)}`;
 
   return (
-    <section className="bg-slate-900 -mx-4 -mt-16 pt-16 pb-10">
-      <div className="max-w-2xl mx-auto px-6 pt-10 pb-2 text-center space-y-4">
-        <p className="text-xs font-bold uppercase tracking-[0.18em] text-hero-label min-h-[16px]">
-          {label}
-        </p>
-        <h1 className="text-[38px] leading-[1.1] font-extrabold tracking-[-1px] text-white">
+    <section className="rounded-3xl bg-pw-blue-soft px-5 pt-5 pb-6 text-pw-navy">
+      <div className="max-w-2xl mx-auto space-y-4">
+        <TopicArt name="capitol" className="w-full h-24" />
+        <div className="min-h-[36px]">{label && <Tag tone="red">{label}</Tag>}</div>
+        <h1 className="text-[36px] sm:text-[42px] leading-[1.1] font-extrabold tracking-[-1px]">
           {t('hero_title')}
         </h1>
-        <p className="text-base text-hero-muted min-h-[24px]">
+        <p className="text-lg text-pw-muted min-h-[28px]">
           {loading ? '' : `${t('hero_today')}: ${t(`stop${currentStop.id}_desc`)}.`}
         </p>
         <Link
           to={createPageUrl(currentStop.path) + (currentStop.query ? `?${currentStop.query}` : '')}
-          className="block"
+          className="w-full min-h-[56px] rounded-2xl bg-pw-navy text-white font-bold text-lg flex items-center justify-center gap-2 px-4 text-center shadow-lift hover:bg-[#0F1B36] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2"
         >
-          <button className="w-full h-14 rounded-2xl bg-white text-slate-900 font-bold text-base flex items-center justify-center gap-2 hover:bg-slate-100 transition-colors">
-            {action} <ArrowRight className="w-5 h-5" />
-          </button>
+          {action} <ArrowRight className="w-5 h-5 shrink-0" />
         </Link>
-        <p className="text-sm text-hero-muted">
+        <p className="text-base text-pw-muted">
           {t('hero_flex')}
         </p>
       </div>

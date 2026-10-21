@@ -3,7 +3,7 @@ import { base44 } from '@/api/base44Client';
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Mic, BookA, GraduationCap, Clock, ArrowRight, CheckCircle, Play, Loader2, Sparkles, Layers } from 'lucide-react';
+import { Mic, BookA, GraduationCap, Clock, ArrowRight, CheckCircle, Loader2, Sparkles, Layers } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import DictationCard from '@/components/game/DictationCard';
 import CivicsTestCard from '@/components/practice/CivicsTestCard';
@@ -15,6 +15,8 @@ import StudyBuddy from '@/components/ai/StudyBuddy';
 import RepresentativeFinder from '@/components/civics/RepresentativeFinder';
 import PracticePathProgress from '@/components/practice/PracticePathProgress';
 import PageHeader from '@/components/PageHeader';
+import TopicArt from '@/components/art/TopicArt';
+import { Tag } from '@/components/pathways/ui';
 import { toast } from "sonner";
 import VoiceSettings from '@/components/utils/VoiceSettings';
 
@@ -457,11 +459,20 @@ export default function Practice() {
   };
 
   if (mode === 'menu') {
+    const banner = (art) => (
+      <div className="bg-pw-blue-soft px-4 pt-3 pb-2 -mx-6 -mt-6 mb-4 rounded-t-3xl">
+        <TopicArt name={art} className="w-full h-16" accent={false} />
+      </div>
+    );
+    const label = 'text-sm font-bold text-pw-navy';
     return (
-      <div className="max-w-5xl mx-auto space-y-8 pb-12">
+      <div className="max-w-5xl mx-auto space-y-6 pb-12">
         <PageHeader
           title="Practice Dashboard"
           subtitle="Choose your study mode to prepare for your citizenship test."
+          tag="Practice"
+          tagTone="red"
+          art="book"
         />
         <div className="flex justify-center">
           <VoiceSettings />
@@ -470,55 +481,54 @@ export default function Practice() {
         <PracticePathProgress userEmail={currentUser?.email} />
 
         {assignments.length > 0 && (
-        <div className="bg-white border border-slate-200 rounded-xl p-6 mb-8">
-          <h2 className="font-bold text-slate-900 flex items-center gap-2 mb-4">
+        <div className="bg-white border border-pw-line shadow-raised rounded-3xl p-5">
+          <h2 className="text-xl font-extrabold text-pw-navy flex items-center gap-2 mb-4">
             <Clock className="w-5 h-5" /> Assignments from your Tutor
           </h2>
             <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
               {assignments.map(a => (
-                <Card key={a.id} className="cursor-pointer hover:shadow-md transition-all border-blue-100" onClick={() => startAssignment(a)}>
-                  <CardContent className="p-4 flex justify-between items-center">
-                    <div className="overflow-hidden mr-2">
-                      <p className="font-semibold text-blue-800 text-sm capitalize truncate">
-                        {a.content_type === 'custom' ? (a.custom_content || 'Custom Task') : a.content_type.replace('_', ' ')}
-                      </p>
-                      <p className="text-xs text-slate-500">
-                        Assigned {new Date(a.assigned_date).toLocaleDateString()}
-                      </p>
-                    </div>
-                    <Button size="sm" className="h-8 shrink-0">Start</Button>
-                  </CardContent>
-                </Card>
+                <button
+                  key={a.id}
+                  type="button"
+                  onClick={() => startAssignment(a)}
+                  className="text-left rounded-2xl border-2 border-pw-line bg-white hover:border-pw-navy p-4 flex justify-between items-center gap-2 min-h-[64px] transition-colors"
+                >
+                  <div className="overflow-hidden">
+                    <p className="font-bold text-pw-navy text-base capitalize truncate">
+                      {a.content_type === 'custom' ? (a.custom_content || 'Custom Task') : a.content_type.replace('_', ' ')}
+                    </p>
+                    <p className="text-sm text-pw-muted">
+                      Assigned {new Date(a.assigned_date).toLocaleDateString()}
+                    </p>
+                  </div>
+                  <span className="shrink-0 rounded-xl bg-pw-navy text-white font-bold px-4 min-h-11 inline-flex items-center">Start</span>
+                </button>
               ))}
             </div>
         </div>
         )}
 
-        <div className="grid md:grid-cols-4 gap-4">
-          
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
           {/* 1. Reading Mode */}
-          <Card className="hover:shadow-xl transition-all duration-300 border-slate-200 group cursor-pointer" onClick={() => startSession('reading')}>
+          <Card className="overflow-hidden hover:shadow-lift transition-all duration-300 cursor-pointer" onClick={() => startSession('reading')}>
             <CardHeader>
-              <div className="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                <BookA className="w-6 h-6" />
-              </div>
-              <CardTitle>Reading</CardTitle>
+              {banner('book')}
+              <CardTitle className="text-xl">Reading</CardTitle>
               <CardDescription>
                 Read official USCIS sentences aloud to practice pronunciation.
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Button className="w-full">Start Reading</Button>
+              <Button className="w-full"><BookA className="w-4 h-4" /> Start Reading</Button>
             </CardContent>
           </Card>
 
           {/* 2. Writing Vocab */}
-          <Card className="hover:shadow-xl transition-all duration-300 border-slate-200 group">
+          <Card className="overflow-hidden hover:shadow-lift transition-all duration-300">
             <CardHeader>
-              <div className="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                <Mic className="w-6 h-6" />
-              </div>
-              <CardTitle>Writing Vocab</CardTitle>
+              {banner('scroll')}
+              <CardTitle className="text-xl">Writing Vocab</CardTitle>
               <CardDescription>
                 Practice writing official vocabulary words.
               </CardDescription>
@@ -537,39 +547,35 @@ export default function Practice() {
           </Card>
 
           {/* 3. Sentence Dictation */}
-          <Card className="hover:shadow-xl transition-all duration-300 border-slate-200 group cursor-pointer" onClick={() => startSession('dictation')}>
+          <Card className="overflow-hidden hover:shadow-lift transition-all duration-300 cursor-pointer" onClick={() => startSession('dictation')}>
             <CardHeader>
-              <div className="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                <Mic className="w-6 h-6" />
-              </div>
-              <CardTitle>Sentence Dictation</CardTitle>
+              {banner('pencil')}
+              <CardTitle className="text-xl">Sentence Dictation</CardTitle>
               <CardDescription>
                 Listen to full sentences and write them down correctly.
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Button className="w-full">Start Dictation</Button>
+              <Button className="w-full"><Mic className="w-4 h-4" /> Start Dictation</Button>
             </CardContent>
           </Card>
 
           {/* 4. Civics Test */}
-          <Card className="hover:shadow-xl transition-all duration-300 border-slate-200 group">
+          <Card className="overflow-hidden hover:shadow-lift transition-all duration-300">
             <CardHeader>
-              <div className="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                <GraduationCap className="w-6 h-6" />
-              </div>
-              <div className="flex justify-between items-start">
-                 <CardTitle>Civics Test</CardTitle>
-                 <Badge variant="outline" className="text-xs">Quiz</Badge>
+              {banner('capitol')}
+              <div className="flex justify-between items-start gap-2">
+                 <CardTitle className="text-xl">Civics Test</CardTitle>
+                 <Badge variant="outline">Quiz</Badge>
               </div>
               <CardDescription className="mb-4">
                 Practice the civics questions for the 2025 and 2008 tests.
               </CardDescription>
-              <div className="space-y-3" onClick={(e) => e.stopPropagation()}>
-                 <div className="space-y-1">
-                   <label className="text-xs font-medium text-slate-600">Version:</label>
+              <div className="space-y-4 pt-2" onClick={(e) => e.stopPropagation()}>
+                 <div className="space-y-2">
+                   <label className={label}>Version:</label>
                    <Select value={civicsVersion} onValueChange={(v) => { setCivicsVersion(v); localStorage.setItem('civicsVersion', v); }}>
-                      <SelectTrigger className="h-auto min-h-8 text-xs text-left">
+                      <SelectTrigger className="h-auto text-left">
                           <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
@@ -577,19 +583,19 @@ export default function Practice() {
                           <SelectItem value="2008">Applied before Oct 20, 2025? Choose 2008.</SelectItem>
                       </SelectContent>
                    </Select>
-                   <p className="text-xs text-slate-500 leading-snug">
+                   <p className="text-sm text-pw-muted leading-snug">
                       {civicsVersion === '2025'
                         ? 'The officer asks up to 20 questions from this list of 128. You pass with 12 correct.'
                         : 'The officer asks up to 10 questions from this list of 100. You pass with 6 correct.'}
                    </p>
-                   <a href="https://www.uscis.gov/citizenship/2025-test" target="_blank" rel="noopener noreferrer" className="text-xs text-indigo-600 hover:underline inline-block">
+                   <a href="https://www.uscis.gov/citizenship/2025-test" target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-pw-navy underline underline-offset-4 decoration-pw-red/60 hover:decoration-pw-red inline-block">
                       Not sure which test you'll take? Check uscis.gov.
                    </a>
                  </div>
-                 <div className="space-y-1">
-                   <label className="text-xs font-medium text-slate-600">Difficulty:</label>
+                 <div className="space-y-2">
+                   <label className={label}>Difficulty:</label>
                    <Select value={civicsDifficulty} onValueChange={setCivicsDifficulty}>
-                      <SelectTrigger className="h-8 text-xs">
+                      <SelectTrigger>
                           <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
@@ -603,40 +609,38 @@ export default function Practice() {
               </div>
             </CardHeader>
             <CardContent>
-              <Button onClick={() => startSession('civics')} className="w-full">Start Quiz</Button>
+              <Button onClick={() => startSession('civics')} className="w-full"><GraduationCap className="w-4 h-4" /> Start Quiz</Button>
             </CardContent>
           </Card>
         </div>
 
         {/* Interview Practice Section */}
-        <div className="mt-8">
-          <Card className="transition-all cursor-pointer" onClick={() => setMode('interview')}>
-            <CardContent className="p-8">
-              <div className="flex items-center gap-6">
-                <div className="w-16 h-16 bg-indigo-600 rounded-2xl flex items-center justify-center shrink-0">
-                  <svg className="w-9 h-9 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-                  </svg>
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-2">
-                    <h3 className="text-2xl font-bold text-slate-900">Mock Interview Practice</h3>
-                    <Badge className="bg-indigo-600">NEW</Badge>
-                  </div>
-                  <p className="text-slate-600 mb-4">
-                    Simulate your real citizenship interview with realistic questions from all sections: small talk, personal information, morals & ethics, and oath requirements.
-                  </p>
-                  <div className="flex flex-wrap gap-2 text-xs text-slate-600">
-                    <span className="px-3 py-1 bg-white rounded-full border border-indigo-200">AI-powered feedback</span>
-                    <span className="px-3 py-1 bg-white rounded-full border border-indigo-200">Speech practice</span>
-                    <span className="px-3 py-1 bg-white rounded-full border border-indigo-200">Real interview format</span>
-                  </div>
-                </div>
-                <ArrowRight className="w-6 h-6 text-indigo-600 shrink-0" />
+        <button
+          type="button"
+          onClick={() => setMode('interview')}
+          className="group w-full text-left rounded-3xl bg-white border border-pw-line shadow-raised overflow-hidden hover:shadow-lift transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2"
+        >
+          <div className="flex flex-col sm:flex-row">
+            <div className="sm:w-56 shrink-0 bg-pw-red-soft px-4 py-4 grid place-items-center">
+              <TopicArt name="speech" className="w-full h-20" />
+            </div>
+            <div className="flex-1 p-5 sm:p-6">
+              <div className="flex flex-wrap items-center gap-3 mb-2">
+                <h3 className="text-2xl font-extrabold text-pw-navy">Mock Interview Practice</h3>
+                <Tag tone="red">NEW</Tag>
               </div>
-            </CardContent>
-          </Card>
-        </div>
+              <p className="text-base text-pw-muted mb-4">
+                Simulate your real citizenship interview with realistic questions from all sections: small talk, personal information, morals & ethics, and oath requirements.
+              </p>
+              <div className="flex flex-wrap items-center gap-2">
+                <Tag tone="navy">AI-powered feedback</Tag>
+                <Tag tone="navy">Speech practice</Tag>
+                <Tag tone="navy">Real interview format</Tag>
+                <ArrowRight className="w-6 h-6 text-pw-navy ml-auto shrink-0" aria-hidden="true" />
+              </div>
+            </div>
+          </div>
+        </button>
 
         {/* Representative Finder — moved to bottom */}
         <RepresentativeFinder
@@ -650,11 +654,11 @@ export default function Practice() {
   if (sessionComplete) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] text-center space-y-6 animate-in fade-in">
-        <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
+        <div className="w-20 h-20 bg-pw-green-soft text-pw-green-ink rounded-full flex items-center justify-center">
           <CheckCircle className="w-10 h-10" />
         </div>
-        <h2 className="text-3xl font-bold text-slate-900">Session Complete!</h2>
-        <p className="text-slate-600">You've finished your practice session.</p>
+        <h2 className="text-3xl font-extrabold text-pw-navy">Session Complete!</h2>
+        <p className="text-lg text-pw-muted">You've finished your practice session.</p>
         <Button onClick={() => setMode('menu')} className="min-w-[200px]">
           Back to Dashboard
         </Button>
@@ -663,9 +667,9 @@ export default function Practice() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto py-8 space-y-8">
+    <div className="max-w-3xl mx-auto py-2 space-y-6">
       <div className="flex items-center justify-between">
-        <Button variant="ghost" onClick={() => setMode('menu')} className="text-slate-500">
+        <Button variant="outline" onClick={() => setMode('menu')}>
           &larr; Exit Practice
         </Button>
         <Badge variant="outline" className="capitalize">{mode.replace('_', ' ')}</Badge>
@@ -673,7 +677,7 @@ export default function Practice() {
 
       {isLoading ? (
         <div className="flex justify-center py-20">
-            <Loader2 className="w-10 h-10 animate-spin text-blue-600" />
+            <Loader2 className="w-10 h-10 animate-spin text-pw-navy" />
         </div>
       ) : content.length > 0 ? (
          mode === 'reading' ? (
@@ -721,7 +725,7 @@ export default function Practice() {
          )
       ) : (
          <div className="text-center py-20">
-            <p className="text-slate-500">No content found for this mode.</p>
+            <p className="text-lg text-pw-muted">No content found for this mode.</p>
             <Button onClick={() => setMode('menu')} className="mt-4">Go Back</Button>
          </div>
          )}
