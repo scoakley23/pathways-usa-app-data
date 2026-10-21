@@ -43,7 +43,7 @@ export default function Home({ cachedUser, cachedRole }) {
         {[
           { art: 'book', title: 'feat_reading_title', desc: 'feat_reading_desc' },
           { art: 'pencil', title: 'feat_dictation_title', desc: 'feat_dictation_desc' },
-          { art: 'scroll', title: 'feat_vocab_title', desc: 'feat_vocab_desc' },
+          { art: 'cards', title: 'feat_vocab_title', desc: 'feat_vocab_desc' },
           { art: 'capitol', title: 'feat_civics_title', desc: 'feat_civics_desc' },
         ].map((f) => (
           <Link
