@@ -9,7 +9,7 @@ import InterviewReport from './InterviewReport';
 import { evaluateInterviewAnswer } from './evaluateInterviewAnswer';
 import InterviewHistory from './InterviewHistory';
 import VirtualInterviewer, { AVATAR_URL } from './VirtualInterviewer';
-import PracticePersonaPanel, { PersonaPicker, isPersonaSection, getPersona, personaFacts } from './PracticePersonaPanel';
+import PracticePersonaPanel, { PersonaPicker, isPersonaSection, getPersona, personaScoringBlock } from './PracticePersonaPanel';
 
 // Long text is now spoken in chunks, so the fallback timeout must cover all of them.
 const speechTimeoutMs = (text) => {
@@ -260,14 +260,7 @@ export default function InterviewPractice({ onComplete, onNext }) {
     setIsAnalyzing(true);
 
     const q = questions[currentIndex];
-    const personaBlock = isPersonaSection(q)
-      ? `
-The candidate is NOT answering about themselves. They are role-playing a fictional practice person, ${persona.name}. Judge CONTENT against this person's facts, not the example response. If a yes/no question is not covered by the facts, this person's correct answer is "No". For other questions not covered by the facts, any simple, reasonable invented answer is acceptable. Write the corrected version as ${persona.name} would answer.
-
-PRACTICE PERSON FACTS (fictional):
-${personaFacts(persona)}
-`
-      : '';
+    const personaBlock = isPersonaSection(q) ? personaScoringBlock(persona) : '';
     try {
       const result = await evaluateInterviewAnswer(q, response, personaBlock);
       setFeedback(result);

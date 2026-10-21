@@ -13,6 +13,9 @@ import N400Guide from './pages/N400Guide';
 import LawyerPage from './pages/LawyerPage';
 import TutorDemo from './pages/TutorDemo';
 import QuickCheck from './pages/QuickCheck';
+import LearnCivics from './pages/LearnCivics';
+import ReviewCivics from './pages/ReviewCivics';
+import N400Coach from './pages/N400Coach';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -77,6 +80,21 @@ const AuthenticatedApp = () => {
       <Route path="quick-check" element={
         <LayoutWrapper currentPageName="QuickCheck">
           <QuickCheck />
+        </LayoutWrapper>
+      } />
+      <Route path="n400-coach" element={
+        <LayoutWrapper currentPageName="N400Coach">
+          <N400Coach />
+        </LayoutWrapper>
+      } />
+      <Route path="learn" element={
+        <LayoutWrapper currentPageName="LearnCivics">
+          <LearnCivics />
+        </LayoutWrapper>
+      } />
+      <Route path="review" element={
+        <LayoutWrapper currentPageName="ReviewCivics">
+          <ReviewCivics />
         </LayoutWrapper>
       } />
       <Route path="tutor-demo" element={

@@ -23,6 +23,9 @@ function N400PersonaStep({ step, ctx, state, setState }) {
 }
 
 N400PersonaStep.needsAnswer = true;
+N400CardStep.tag = { tone: 'blue', label: 'Learn · N-400' };
+N400PersonaStep.tag = { tone: 'red', label: 'Practice · Interview' };
+N400LawyerStep.tag = { tone: 'navy', label: 'Before you file' };
 
 // Section end: if you're not sure your answer is "no", talk to a lawyer.
 function N400LawyerStep({ step, ctx }) {

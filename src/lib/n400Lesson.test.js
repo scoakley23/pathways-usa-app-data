@@ -47,4 +47,5 @@ describe('N-400 coaching lessons', () => {
       expect(section.questions.some((x) => x.officerPhrasings?.[0] === q.question)).toBe(true);
     }
   });
+  it('reads cleanly when a title ends with a period', () => { expect(buildN400Lesson({ section: { id: 'x', title: 'Time Outside the U.S.', questions: [] }, persona: { id: 'p', name: 'P' }, personaFactsText: '' }).steps[0].text.en).toMatch(/U\.S\. First/); });
 });

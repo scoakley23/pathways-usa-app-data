@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { canContinue, progressLabel, progressPercent, nextPartIndex } from './tutorLesson';
+import { canContinue, progressLabel, progressPercent, nextPartIndex, markKeyWords } from './tutorLesson';
 
 describe('canContinue', () => {
   it('lets explain and show-english steps continue right away', () => {
@@ -44,5 +44,28 @@ describe('nextPartIndex', () => {
   });
   it('moves one step when there are no parts', () => {
     expect(nextPartIndex([{ type: 'explain' }, { type: 'explain' }], 0)).toBe(1);
+  });
+});
+
+describe('markKeyWords', () => {
+  const join = (parts) => parts.map((p) => p.text).join('');
+
+  it('marks key words case-insensitively and keeps the text', () => {
+    const text = 'What is the supreme law of the United States?';
+    const parts = markKeyWords(text, ['Supreme Law', 'united states']);
+    expect(join(parts)).toBe(text);
+    expect(parts.filter((p) => p.mark).map((p) => p.text)).toEqual(['supreme law', 'United States']);
+  });
+
+  it('matches whole words only and prefers longer phrases', () => {
+    expect(markKeyWords('the senators', ['senator']).some((p) => p.mark)).toBe(false);
+    const parts = markKeyWords('House of Representatives', ['House', 'House of Representatives']);
+    expect(parts).toEqual([{ text: 'House of Representatives', mark: true }]);
+  });
+
+  it('handles punctuation in key words and empty input', () => {
+    expect(markKeyWords('(U.S.) Constitution', ['(U.S.)']).filter((p) => p.mark).map((p) => p.text)).toEqual(['(U.S.)']);
+    expect(markKeyWords('Text', [])).toEqual([{ text: 'Text', mark: false }]);
+    expect(markKeyWords('', ['a'])).toEqual([]);
   });
 });

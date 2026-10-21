@@ -12,6 +12,8 @@ import { evaluateInterviewAnswer } from '@/components/practice/evaluateInterview
 import { buildTutorInstructions } from '@/lib/tutorPersona';
 import { checkDictation, matchOfficialAnswer, splitOfficialAnswers } from '@/lib/practiceChecks';
 import { READING_PASS } from '@/lib/pretest';
+import { markKeyWords } from '@/lib/tutorLesson';
+import { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
 
 // Fixed lines inside lessons (English + hand-written Spanish).
 export const UI = {
@@ -86,21 +88,60 @@ export function PartIntroStep({ step, ctx }) {
 }
 
 export function ExplainStep({ step, ctx }) {
-  return <TutorMessage profile={ctx.profile} language={ctx.language} mine={step.text.mine} en={step.text.en} />;
+  const note = step.note;
+  return (
+    <TutorMessage profile={ctx.profile} language={ctx.language} mine={step.text.mine} en={step.text.en}>
+      {note && (
+        <p className="mt-3 text-sm font-semibold text-pw-muted">
+          {ctx.language !== 'en' && note.mine ? `${note.mine} · ${note.en}` : note.en}
+        </p>
+      )}
+    </TutorMessage>
+  );
 }
 
+// Text with key words in yellow marks (official text is never changed).
+function Marked({ text, words }) {
+  return markKeyWords(text, words).map((p, i) => (p.mark
+    ? <mark key={i} className="bg-pw-highlight text-pw-navy rounded px-0.5">{p.text}</mark>
+    : <React.Fragment key={i}>{p.text}</React.Fragment>));
+}
+
+// Bridge: the official English question and accepted answers. With
+// `keyWords` ([{ en, translation }]), the key words are highlighted and
+// listed with their translation in the learner's language.
 export function ShowEnglishStep({ step, ctx }) {
   const accepted = splitOfficialAnswers(step.question.answer);
+  const keyWords = (step.keyWords || []).filter((k) => k && k.en);
+  const words = keyWords.map((k) => k.en);
+  const translated = keyWords.filter((k) => k.translation && k.translation.trim().toLowerCase() !== k.en.trim().toLowerCase());
+  const dir = RTL_LANGUAGES.includes(ctx.language) ? 'rtl' : 'ltr';
   return (
     <div className="space-y-4">
       <TutorMessage profile={ctx.profile} language={ctx.language} {...ctx.ui('showEnglish')} />
-      <QuestionCard ctx={ctx} text={step.question.question}>
+      <RaisedCard className={`text-pw-navy ${ctx.sizeClass}`}>
+        <Eyebrow className="mb-2">The officer asks</Eyebrow>
+        <p className="text-[1.375em] font-extrabold leading-snug mb-3"><Marked text={step.question.question} words={words} /></p>
+        <ListenButton text={step.question.question} language="en" />
         <Eyebrow className="mt-5 mb-2">Accepted answers</Eyebrow>
         <ul className="space-y-1 mb-3">
-          {accepted.map((a) => <li key={a} className="font-bold">{a}</li>)}
+          {accepted.map((a) => <li key={a} className="font-bold"><Marked text={a} words={words} /></li>)}
         </ul>
         <ListenButton text={accepted.join('. ')} language="en" />
-      </QuestionCard>
+      </RaisedCard>
+      {translated.length > 0 && (
+        <RaisedCard className={`text-pw-navy ${ctx.sizeClass}`}>
+          <Eyebrow className="mb-3">{ctx.language === 'es' ? 'Palabras clave · Key words' : 'Key words'}</Eyebrow>
+          <ul className="divide-y divide-pw-line">
+            {translated.map((k) => (
+              <li key={k.en} className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 py-2.5">
+                <span className="font-bold"><mark className="bg-pw-highlight text-pw-navy rounded px-1">{k.en}</mark></span>
+                <span dir={dir} lang={ctx.language} className="text-pw-muted">{k.translation}</span>
+              </li>
+            ))}
+          </ul>
+        </RaisedCard>
+      )}
     </div>
   );
 }
@@ -307,7 +348,8 @@ export function InterviewStep({ step, ctx, state, setState }) {
     setChecking(true);
     setFailed(false);
     try {
-      const r = await evaluateInterviewAnswer(step.question, transcript);
+      // step.extra: more scoring instructions, e.g. a practice person's facts.
+      const r = await evaluateInterviewAnswer(step.question, transcript, step.extra || '');
       const score = Number(r?.overall_score) || 0;
       setState({ answered: true, heard: transcript, outcome: { score }, result: { isCorrect: !!r.is_acceptable, better: r.corrected_version, tip: r.improvement_tips } });
     } catch (e) {
