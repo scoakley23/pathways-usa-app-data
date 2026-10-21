@@ -6,7 +6,7 @@ import TodayCard from '@/components/persona/TodayCard';
 import RoadmapPath from '@/components/home/RoadmapPath';
 import HomePromises from '@/components/home/HomePromises';
 import useRoadmapProgress from '@/components/home/useRoadmapProgress';
-import useAppLanguage, { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
+import useAppLanguage, { isRTL } from '@/hooks/useAppLanguage';
 import useHomeTranslation from '@/hooks/useHomeTranslation';
 import { ArrowRight, FileText, Search } from 'lucide-react';
 import { SKILL_BG, SkillTag } from '@/components/pathways/ui';
@@ -30,7 +30,7 @@ export default function Home({ cachedUser, cachedRole }) {
       setTimeout(() => document.getElementById('ready-to-file')?.scrollIntoView({ behavior: 'smooth' }), 300);
     }
   }, []);
-  const rtl = RTL_LANGUAGES.includes((language || 'en').slice(0, 2).toLowerCase());
+  const rtl = isRTL(language);
   // Learners start with their tutor (Today, or the tutor's introduction);
   // tutors and signed-out visitors see the overview hero.
   const learner = cachedUser && cachedRole !== 'tutor';
