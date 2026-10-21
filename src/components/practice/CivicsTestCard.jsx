@@ -143,10 +143,10 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
     <div className="w-full max-w-2xl mx-auto space-y-4 text-pw-navy">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <Tag tone="blue">{question.version} Civics Test</Tag>
-        <div className="flex items-center gap-1 bg-white pl-3 rounded-2xl border border-pw-line">
+        <div className="flex items-center gap-1 bg-white pl-3 rounded-2xl border border-pw-line ml-auto">
           <Globe className="w-4 h-4 text-pw-muted" aria-hidden="true" />
           <Select value={selectedLanguage} onValueChange={setSelectedLanguage}>
-            <SelectTrigger aria-label="Translate to" className="w-[150px] min-h-[44px] text-sm border-0 bg-transparent shadow-none focus:ring-0">
+            <SelectTrigger aria-label="Translate to" className="w-[124px] min-h-[44px] text-sm border-0 bg-transparent shadow-none focus:ring-0 px-2">
               <SelectValue placeholder="Translate to..." />
             </SelectTrigger>
             <SelectContent>
@@ -425,7 +425,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
 
           <RaisedCard>
             <p className="font-bold mb-3">How did you do?</p>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               <SecondaryButton onClick={() => handleResult(false)} className="border-pw-line">
                 Hard / Missed
               </SecondaryButton>
