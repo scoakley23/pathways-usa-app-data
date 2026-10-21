@@ -16,6 +16,17 @@ export const RESOURCE_CATEGORIES = [
 
 export const CATEGORY_IDS = RESOURCE_CATEGORIES.map((c) => c.id);
 
+// Map pin color per main category: the same colors as the category tags
+// (tailwind pw tokens: red, teal-ink, green-ink, blue-ink, navy).
+export const PIN_COLORS = {
+  legal: '#D9483F',
+  esl: '#1E6B66',
+  citizenship_class: '#2E7D4F',
+  uscis: '#1F4C8F',
+  library: '#14264A',
+  other: '#14264A',
+};
+
 // National search tools for what the map doesn't list yet. Learners search
 // on these sites directly; nothing from this app is sent to them.
 export const DIRECTORY_LINKS = [
