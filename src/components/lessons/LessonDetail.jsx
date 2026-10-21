@@ -457,7 +457,7 @@ Please provide a brief, simple explanation (2-3 sentences) of this concept in pl
           <TabsTrigger value="quiz" className="flex items-center gap-1.5">
             Quiz
             {quizCompleted && lessonProgress?.best_score > 0 && (
-              <span className="text-sm text-pw-green-ink font-bold ml-0.5">{Math.round(lessonProgress.best_score)}%</span>
+              <span className="text-sm font-bold ml-0.5 opacity-80">{Math.round(lessonProgress.best_score)}%</span>
             )}
           </TabsTrigger>
         </TabsList>
@@ -672,7 +672,7 @@ Please provide a brief, simple explanation (2-3 sentences) of this concept in pl
                                 {verificationResult.feedback && <p className="text-base mb-3">{verificationResult.feedback}</p>}
                                 <div className="mt-3 rounded-xl bg-white p-3">
                                   <p className="text-sm font-bold text-pw-muted mb-1">Official answer:</p>
-                                  <p className="text-base font-bold text-pw-navy">{displayQuizzes[currentQuestion].answer}</p>
+                                  <p className="text-base font-bold text-pw-navy [overflow-wrap:anywhere]">{displayQuizzes[currentQuestion].answer}</p>
                                 </div>
                               </div>
                               <QuizExplanationPanel
@@ -691,11 +691,11 @@ Please provide a brief, simple explanation (2-3 sentences) of this concept in pl
                                 <EyeOff className="w-4 h-4" aria-hidden="true" />
                                 <span className="text-sm font-bold">Official Answer:</span>
                               </div>
-                              <p className="text-lg font-extrabold text-pw-navy">{displayQuizzes[currentQuestion].answer}</p>
+                              <p className="text-lg font-extrabold text-pw-navy [overflow-wrap:anywhere]">{displayQuizzes[currentQuestion].answer}</p>
                             </div>
                             <div className={optionRow}>
                               <p className="text-sm font-bold text-pw-muted mb-1">Your answer:</p>
-                              <p className="text-base text-pw-navy">{typedAnswer}</p>
+                              <p className="text-base text-pw-navy [overflow-wrap:anywhere]">{typedAnswer}</p>
                             </div>
                             {showExplanation ? (
                               <QuizExplanationPanel
