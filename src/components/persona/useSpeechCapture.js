@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { stopReading } from './useAutoRead';
 
 // English speech-to-text for practice steps. The transcript stays in memory
 // only; nothing is recorded or saved. `onDone(transcript)` runs when
@@ -38,6 +39,7 @@ export default function useSpeechCapture(onDone) {
   }, [supported]);
 
   const start = useCallback(() => {
+    stopReading(); // the microphone must not hear the tutor
     transcriptRef.current = '';
     setTranscript('');
     try { recognitionRef.current?.start(); } catch (e) { /* already started */ }

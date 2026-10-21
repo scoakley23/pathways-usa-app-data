@@ -15,6 +15,8 @@ import useAppLanguage from '@/hooks/useAppLanguage';
 import { buildPretestLesson, scorePretest, toSavedLevels, mergeLevels, PRETEST_PARTS } from '@/lib/pretest';
 import PlanSetup from '@/components/persona/PlanSetup';
 import { loadPlanSettings } from '@/lib/planSettings';
+import GettingStarted from '@/components/persona/GettingStarted';
+import { isOnboarded } from '@/lib/onboarding';
 
 const INTRO = {
   en: "Let's see where you are today. It takes about 10 minutes: civics, reading, writing, and speaking. You can skip any part. I'll use the results to plan your practice.",
@@ -31,17 +33,19 @@ function summary(levels, language) {
 }
 
 // "Start with a quick check" (Prompt 4). Saves only the four skill levels.
+// The first time on a device, "Getting started" comes first (language,
+// tutor picture, where they are in the process, sound and text size).
 export default function QuickCheck() {
   const navigate = useNavigate();
   const { profile, loaded } = useTutorProfile();
-  const [language] = useAppLanguage();
+  const [language, setLanguage] = useAppLanguage();
   const [sources, setSources] = useState(null);
-  const [stage, setStage] = useState('intro'); // intro | lesson | results | plan
   // ?part=speaking re-checks one skill (the 2-week check-in) and keeps the rest.
   const [parts] = useState(() => {
     const p = new URLSearchParams(window.location.search).get('part');
     return PRETEST_PARTS.includes(p) ? [p] : PRETEST_PARTS;
   });
+  const [stage, setStage] = useState(() => (parts.length === PRETEST_PARTS.length && !isOnboarded() ? 'welcome' : 'intro')); // welcome | intro | lesson | results | plan
   const [previous, setPrevious] = useState(null);
   const hasPlan = !!loadPlanSettings();
   const [levels, setLevels] = useState(null);
@@ -77,6 +81,14 @@ export default function QuickCheck() {
       setSaving(false);
     }
   };
+
+  if (stage === 'welcome' && loaded) {
+    return (
+      <div className="max-w-xl mx-auto">
+        <GettingStarted language={language} onLanguageChange={setLanguage} onDone={() => { setStage('intro'); window.scrollTo({ top: 0 }); }} />
+      </div>
+    );
+  }
 
   if (!loaded || !lesson) return <Loader2 className="w-6 h-6 animate-spin mx-auto mt-16 text-pw-navy" />;
 
