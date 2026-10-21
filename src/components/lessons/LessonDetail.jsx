@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { base44 } from '@/api/base44Client';
-import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ArrowLeft, Loader2, Play, CheckCircle, RotateCcw, AlertCircle, Eye, EyeOff, Mic, MicOff, Keyboard, ChevronLeft, ChevronRight, Lightbulb, BookOpen } from 'lucide-react';
+import { ArrowLeft, Loader2, Play, CheckCircle, RotateCcw, AlertCircle, EyeOff, Mic, MicOff, Keyboard, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Input } from "@/components/ui/input";
 import ReactMarkdown from 'react-markdown';
 import FlashcardView from '@/components/lessons/FlashcardView';
@@ -13,6 +12,8 @@ import GlossaryText from '@/components/lessons/GlossaryText';
 import { toast } from "sonner";
 import { useLessonTranslation } from '@/hooks/useLessonTranslation';
 import LanguageSelector from '@/components/lessons/LanguageSelector';
+import TopicArt, { TOPIC_ART } from '@/components/art/TopicArt';
+import { RaisedCard, Tag, SegmentedProgress } from '@/components/pathways/ui';
 
 export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNavigateLesson }) {
   const [user, setUser] = useState(null);
@@ -364,55 +365,66 @@ Please provide a brief, simple explanation (2-3 sentences) of this concept in pl
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
+        <Loader2 className="w-8 h-8 animate-spin text-pw-navy" />
       </div>
     );
   }
 
+  const optionRow = 'w-full min-h-[44px] rounded-2xl border border-pw-line bg-white p-4';
+  const modeBtn = (active) => `flex items-center justify-center min-h-[44px] px-4 rounded-full text-base font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red ${active ? 'bg-pw-navy text-white' : 'text-pw-navy hover:bg-white'}`;
+  const resultPct = displayQuizzes.length ? (score / displayQuizzes.length) * 100 : 0;
+
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 text-pw-navy">
       {/* Header */}
-      <div className="flex items-center justify-between flex-wrap gap-3">
-        <Button variant="ghost" onClick={onBack} className="text-slate-600">
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to Lessons
-        </Button>
-        <div className="flex items-center gap-3">
+      <header className="rounded-3xl bg-pw-blue-soft px-4 pt-4 pb-5 sm:px-6 space-y-4">
+        <div className="flex items-center justify-between gap-3">
+          <button
+            type="button"
+            onClick={onBack}
+            className="min-h-[44px] shrink-0 rounded-2xl bg-white border border-pw-line text-pw-navy hover:bg-pw-soft transition-colors inline-flex items-center gap-2 px-4 text-base font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red"
+          >
+            <ArrowLeft className="w-5 h-5" aria-hidden="true" />
+            Back to Lessons
+          </button>
+          {TOPIC_ART[lesson.topic] && (
+            <TopicArt name={TOPIC_ART[lesson.topic]} className="h-16 w-auto max-w-[40%]" />
+          )}
+        </div>
+
+        {/* Title */}
+        <div>
+          {displayLesson.topic && <Tag tone="blue" className="mb-3">{displayLesson.topic}</Tag>}
+          <h1 className="text-[28px] sm:text-[34px] leading-tight font-extrabold tracking-[-0.5px]">{displayLesson.title}</h1>
+          {displayLesson.description && (
+            <p className="text-pw-muted text-lg mt-1">{displayLesson.description}</p>
+          )}
+        </div>
+
+        <div className="flex items-center gap-3 flex-wrap">
           <LanguageSelector
             language={language}
             onLanguageChange={setLanguage}
             translating={translating}
           />
           {translating ? (
-            <div className="flex items-center gap-2 px-4 py-2 bg-blue-50 border border-blue-200 rounded-lg">
-              <Loader2 className="w-4 h-4 animate-spin text-blue-600" />
-              <span className="text-blue-700 text-sm">Translating...</span>
-            </div>
+            <Tag tone="blue">
+              <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />
+              Translating...
+            </Tag>
           ) : lessonProgress?.completed && lessonProgress?.quiz_attempts > 0 ? (
-            <div className="flex items-center gap-2 px-4 py-2 bg-green-50 border border-green-200 rounded-lg">
-              <CheckCircle className="w-5 h-5 text-green-600" />
-              <span className="text-green-700 font-medium">Lesson Completed</span>
-            </div>
+            <Tag tone="green">
+              Lesson Completed
+            </Tag>
           ) : (
-            <div className="flex items-center gap-2 px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg">
-              <div className="w-2 h-2 rounded-full bg-amber-400" />
-              <span className="text-slate-500 text-sm">Complete the flashcards and quiz to finish</span>
-            </div>
+            <p className="text-base text-pw-muted">Complete the flashcards and quiz to finish</p>
           )}
         </div>
-      </div>
-
-      {/* Title */}
-      <div>
-        <h1 className="text-3xl font-bold text-slate-900">{displayLesson.title}</h1>
-        {displayLesson.description && (
-          <p className="text-slate-600 mt-2">{displayLesson.description}</p>
-        )}
-      </div>
+      </header>
 
       {/* Video */}
       {videoId ? (
-        <div className="w-full rounded-xl overflow-hidden shadow-lg bg-black">
+        <div className="w-full rounded-3xl overflow-hidden shadow-raised bg-black">
           <div className="relative" style={{ paddingBottom: '56.25%' }}>
             <iframe
               className="absolute inset-0 w-full h-full"
@@ -426,7 +438,7 @@ Please provide a brief, simple explanation (2-3 sentences) of this concept in pl
         </div>
       ) : (
         lesson.video_url && (
-          <div className="w-full rounded-xl bg-slate-100 p-8 text-center text-slate-500">
+          <div className="w-full rounded-3xl bg-pw-soft p-8 text-center text-base text-pw-muted">
             Video not available
           </div>
         )
@@ -440,12 +452,12 @@ Please provide a brief, simple explanation (2-3 sentences) of this concept in pl
           </TabsTrigger>
           <TabsTrigger value="flashcards" className="flex items-center gap-1.5" onClick={() => setFlashcardsViewed(true)}>
             Flashcards
-            {flashcardsViewed && <CheckCircle className="w-3 h-3 text-green-500" />}
+            {flashcardsViewed && <CheckCircle className="w-4 h-4 text-pw-green-ink" aria-label="Viewed" />}
           </TabsTrigger>
           <TabsTrigger value="quiz" className="flex items-center gap-1.5">
             Quiz
             {quizCompleted && lessonProgress?.best_score > 0 && (
-              <span className="text-xs text-green-600 font-medium ml-0.5">{Math.round(lessonProgress.best_score)}%</span>
+              <span className="text-sm text-pw-green-ink font-bold ml-0.5">{Math.round(lessonProgress.best_score)}%</span>
             )}
           </TabsTrigger>
         </TabsList>
@@ -457,8 +469,8 @@ Please provide a brief, simple explanation (2-3 sentences) of this concept in pl
           )}
 
           {displayLesson.content && (
-            <Card className="p-6">
-              <div className="prose prose-slate max-w-none">
+            <RaisedCard>
+              <div className="prose prose-slate max-w-none text-base leading-relaxed text-pw-navy [&_h1]:text-2xl [&_h2]:text-xl [&_h3]:text-lg [&_h1]:font-extrabold [&_h2]:font-extrabold [&_h3]:font-extrabold [&_h1]:mt-6 [&_h2]:mt-6 [&_h3]:mt-6 [&_h1]:mb-2 [&_h2]:mb-2 [&_h3]:mb-2 [&>*:first-child]:mt-0 [&_p]:my-3 [&_ul]:list-disc [&_ol]:list-decimal [&_ul]:pl-6 [&_ol]:pl-6 [&_ul]:my-3 [&_ol]:my-3 [&_li]:my-1 [&_li]:marker:text-pw-red [&_strong]:font-extrabold [&_a]:underline [&_a]:decoration-pw-red">
                 <ReactMarkdown
                   components={{
                     p: ({ children }) => <p><GlossaryText>{children}</GlossaryText></p>,
@@ -468,122 +480,130 @@ Please provide a brief, simple explanation (2-3 sentences) of this concept in pl
                   {displayLesson.content}
                 </ReactMarkdown>
               </div>
-            </Card>
+            </RaisedCard>
           )}
         </TabsContent>
 
         {/* Flashcards Tab */}
         <TabsContent value="flashcards" className="mt-4">
-          <Card className="p-6">
+          <RaisedCard>
             <FlashcardView flashcards={displayFlashcards} />
-          </Card>
+          </RaisedCard>
         </TabsContent>
 
         {/* Quiz Tab */}
         <TabsContent value="quiz" className="mt-4">
-          <Card className="p-6">
+          <RaisedCard>
             {displayQuizzes.length === 0 ? (
-              <div className="text-center py-8 text-slate-500">
+              <div className="text-center py-8 text-base text-pw-muted">
                 No USCIS civics questions available for this topic yet.
               </div>
             ) : !quizStarted ? (
-              <div className="text-center py-8 space-y-4">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto">
-                  <Play className="w-8 h-8 text-blue-600" />
+              <div className="space-y-4">
+                <div className="rounded-2xl bg-pw-blue-soft p-3">
+                  <TopicArt name="speech" className="w-full h-20" />
                 </div>
-                <h3 className="text-xl font-semibold text-slate-900">Oral Civics Practice</h3>
-                <p className="text-slate-600 max-w-md mx-auto">
+                <Tag tone="blue">{displayQuizzes.length} questions from the {questionVersion} civics test</Tag>
+                <h3 className="text-2xl font-extrabold">Oral Civics Practice</h3>
+                <p className="text-base text-pw-muted leading-relaxed">
                   Just like the real USCIS interview — read the question, then speak or type your answer.
                   Your response will be verified automatically, just like a real officer would assess it.
                 </p>
-                <p className="text-sm text-slate-500">
-                  {displayQuizzes.length} questions from the {questionVersion} civics test
-                </p>
                 {lessonProgress && lessonProgress.quiz_attempts > 0 && (
-                  <p className="text-sm text-slate-500">
+                  <p className="text-base font-bold">
                     Previous best: {Math.round(lessonProgress.best_score)}% ({lessonProgress.quiz_attempts} attempt{lessonProgress.quiz_attempts > 1 ? 's' : ''})
                   </p>
                 )}
-                <Button onClick={startQuiz} className="bg-blue-600 hover:bg-blue-700">
+                <Button onClick={startQuiz} size="lg" className="w-full sm:w-auto">
+                  <Play className="w-5 h-5" aria-hidden="true" />
                   Start Practice
                 </Button>
               </div>
             ) : currentQuestion < displayQuizzes.length ? (
               <div className="space-y-6">
                 {/* Progress */}
-                <div className="flex items-center justify-between text-sm text-slate-500">
-                  <span>Question {currentQuestion + 1} of {displayQuizzes.length}</span>
-                  <span>Score: {score}/{answeredCount}</span>
-                </div>
-                <div className="w-full bg-slate-200 rounded-full h-2">
-                  <div
-                    className="bg-blue-600 h-2 rounded-full transition-all"
-                    style={{ width: `${((currentQuestion + (showAnswer ? 1 : 0)) / displayQuizzes.length) * 100}%` }}
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-sm font-bold text-pw-muted">
+                    <span>Question {currentQuestion + 1} of {displayQuizzes.length}</span>
+                    <span>Score: {score}/{answeredCount}</span>
+                  </div>
+                  <SegmentedProgress
+                    current={currentQuestion}
+                    total={displayQuizzes.length}
+                    label={`Question ${currentQuestion + 1} of ${displayQuizzes.length}`}
                   />
                 </div>
 
                 {/* Question */}
                 <div>
-                  <h3 className="text-lg font-semibold text-slate-900 mb-1">
+                  <Tag tone="blue" className="mb-3">
+                    {displayQuizzes[currentQuestion].version} Civics Test
+                  </Tag>
+                  <h3 className="text-2xl font-extrabold leading-snug mb-5">
                     {cleanQuestionText(displayQuizzes[currentQuestion].question)}
                   </h3>
-                  <p className="text-xs text-slate-400 mb-4">
-                    {displayQuizzes[currentQuestion].version} Civics Test
-                  </p>
                   
                   {/* Answer input area */}
-                  <div className="space-y-3">
+                  <div className="space-y-4">
                     {/* Mode toggle */}
                     {!showAnswer && (
-                      <div className="flex gap-1 p-1 bg-slate-100 rounded-lg w-fit">
+                      <div className="flex gap-1 p-1 bg-pw-soft rounded-full w-fit" role="group" aria-label="Answer mode">
                         <button
+                          type="button"
+                          aria-pressed={inputMode === 'type'}
                           onClick={() => { if (isListening && recognitionRef.current) { try { recognitionRef.current.stop(); } catch (e) {} } setInputMode('type'); }}
-                          className={`flex items-center px-3 py-1.5 rounded-md text-sm font-medium transition-all ${inputMode === 'type' ? 'bg-white shadow-sm text-blue-700' : 'text-slate-500 hover:text-slate-700'}`}
+                          className={modeBtn(inputMode === 'type')}
                         >
-                          <Keyboard className="w-4 h-4 mr-1.5" /> Type
+                          <Keyboard className="w-4 h-4 mr-1.5" aria-hidden="true" /> Type
                         </button>
                         <button
+                          type="button"
+                          aria-pressed={inputMode === 'speak'}
                           onClick={() => {
                             if (!recognitionRef.current) { toast.error('Voice input is not supported in this browser'); return; }
                             setInputMode('speak');
                           }}
-                          className={`flex items-center px-3 py-1.5 rounded-md text-sm font-medium transition-all ${inputMode === 'speak' ? 'bg-white shadow-sm text-blue-700' : 'text-slate-500 hover:text-slate-700'}`}
+                          className={modeBtn(inputMode === 'speak')}
                         >
-                          <Mic className="w-4 h-4 mr-1.5" /> Speak
+                          <Mic className="w-4 h-4 mr-1.5" aria-hidden="true" /> Speak
                         </button>
                       </div>
                     )}
 
                     {inputMode === 'speak' && !showAnswer ? (
-                      <div className="space-y-3">
-                        <div className="min-h-[48px] p-3 rounded-lg border border-slate-200 bg-slate-50">
+                      <div className="space-y-4">
+                        <div className={`${optionRow} min-h-[56px] bg-pw-soft border-transparent`} aria-live="polite">
                           {typedAnswer ? (
-                            <p className="text-slate-800">{typedAnswer}</p>
+                            <p className="text-base text-pw-navy">{typedAnswer}</p>
                           ) : (
-                            <p className="text-slate-400">
+                            <p className="text-base text-pw-muted">
                               {isListening ? 'Listening...' : 'Tap the microphone and speak your answer'}
                             </p>
                           )}
                         </div>
-                        <Button
-                          onClick={() => {
-                            if (isListening) {
-                              recognitionRef.current?.stop();
-                            } else {
-                              setTypedAnswer('');
-                              recognitionRef.current?.start();
-                            }
-                          }}
-                          disabled={!recognitionRef.current}
-                          className={isListening ? 'bg-red-500 hover:bg-red-600' : 'bg-blue-600 hover:bg-blue-700'}
-                        >
-                          {isListening ? <MicOff className="w-4 h-4 mr-2" /> : <Mic className="w-4 h-4 mr-2" />}
-                          {isListening ? 'Stop Listening' : 'Start Speaking'}
-                        </Button>
+                        <div className="flex justify-center">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              if (isListening) {
+                                recognitionRef.current?.stop();
+                              } else {
+                                setTypedAnswer('');
+                                recognitionRef.current?.start();
+                              }
+                            }}
+                            disabled={!recognitionRef.current}
+                            className={`min-h-[52px] rounded-full px-6 inline-flex items-center justify-center gap-2 text-base font-bold text-white transition-colors ring-8 ring-pw-red-soft disabled:opacity-40 focus-visible:outline-none focus-visible:ring-pw-red ${isListening ? 'bg-pw-red-ink' : 'bg-pw-red hover:bg-pw-red-ink'}`}
+                          >
+                            {isListening ? <MicOff className="w-5 h-5" aria-hidden="true" /> : <Mic className="w-5 h-5" aria-hidden="true" />}
+                            {isListening ? 'Stop Listening' : 'Start Speaking'}
+                          </button>
+                        </div>
                       </div>
                     ) : !showAnswer ? (
                       <Input
                         placeholder="Type your answer here..."
+                        aria-label="Your answer"
                         value={typedAnswer}
                         onChange={(e) => setTypedAnswer(e.target.value)}
                         onKeyDown={(e) => {
@@ -600,24 +620,26 @@ Please provide a brief, simple explanation (2-3 sentences) of this concept in pl
                         <Button
                           onClick={checkAnswer}
                           disabled={!typedAnswer.trim() || verifying}
-                          className="bg-blue-600 hover:bg-blue-700"
+                          size="lg"
+                          className="w-full"
                         >
                           {verifying ? (
                             <>
-                              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                              <Loader2 className="w-4 h-4 animate-spin" />
                               Verifying...
                             </>
                           ) : (
                             <>
-                              <CheckCircle className="w-4 h-4 mr-2" />
+                              <CheckCircle className="w-4 h-4" />
                               Submit Answer
                             </>
                           )}
                         </Button>
                         {!selfCheckMode && (
                           <button
+                            type="button"
                             onClick={() => setSelfCheckMode(true)}
-                            className="text-xs text-slate-400 hover:text-slate-600 underline block"
+                            className="min-h-[44px] w-full text-sm font-bold text-pw-muted hover:text-pw-navy underline underline-offset-4 decoration-pw-line"
                           >
                             Having trouble? Reveal answer to self-check
                           </button>
@@ -628,31 +650,29 @@ Please provide a brief, simple explanation (2-3 sentences) of this concept in pl
                         {!selfCheckMode && verificationResult ? (
                           verificationResult.is_correct ? (
                             <div className="space-y-4">
-                              <div className="p-4 rounded-lg bg-green-50 border border-green-200">
-                                <div className="flex items-center gap-2 mb-2">
-                                  <CheckCircle className="w-5 h-5 text-green-600" />
-                                  <span className="font-semibold text-green-800">Correct!</span>
+                              <div className="p-4 rounded-2xl bg-pw-green-soft text-pw-green-ink">
+                                <div className="flex items-center gap-2 mb-1">
+                                  <CheckCircle className="w-5 h-5" aria-hidden="true" />
+                                  <span className="text-lg font-extrabold">Correct!</span>
                                 </div>
-                                <p className="text-green-900 text-sm">{verificationResult.feedback}</p>
+                                {verificationResult.feedback && <p className="text-base">{verificationResult.feedback}</p>}
                               </div>
-                              <div className="flex justify-center">
-                                <Button onClick={markCorrect} className="bg-green-600 hover:bg-green-700">
-                                  Next Question
-                                  <ChevronRight className="w-4 h-4 ml-2" />
-                                </Button>
-                              </div>
+                              <Button onClick={markCorrect} size="lg" className="w-full">
+                                Next Question
+                                <ChevronRight className="w-4 h-4" />
+                              </Button>
                             </div>
                           ) : (
                             <div className="space-y-4">
-                              <div className="p-4 rounded-lg bg-red-50 border border-red-200">
-                                <div className="flex items-center gap-2 mb-2">
-                                  <AlertCircle className="w-5 h-5 text-red-600" />
-                                  <span className="font-semibold text-red-800">Not quite right</span>
+                              <div className="p-4 rounded-2xl bg-pw-red-soft text-pw-red-ink">
+                                <div className="flex items-center gap-2 mb-1">
+                                  <AlertCircle className="w-5 h-5" aria-hidden="true" />
+                                  <span className="text-lg font-extrabold">Not quite right</span>
                                 </div>
-                                <p className="text-red-900 text-sm mb-3">{verificationResult.feedback}</p>
-                                <div className="pt-3 border-t border-red-200">
-                                  <p className="text-sm text-slate-500 mb-1">Official answer:</p>
-                                  <p className="text-slate-800 font-medium">{displayQuizzes[currentQuestion].answer}</p>
+                                {verificationResult.feedback && <p className="text-base mb-3">{verificationResult.feedback}</p>}
+                                <div className="mt-3 rounded-xl bg-white p-3">
+                                  <p className="text-sm font-bold text-pw-muted mb-1">Official answer:</p>
+                                  <p className="text-base font-bold text-pw-navy">{displayQuizzes[currentQuestion].answer}</p>
                                 </div>
                               </div>
                               <QuizExplanationPanel
@@ -666,16 +686,16 @@ Please provide a brief, simple explanation (2-3 sentences) of this concept in pl
                           )
                         ) : (
                           <>
-                            <div className="p-4 rounded-lg bg-blue-50 border border-blue-200">
+                            <div className="p-4 rounded-2xl bg-pw-blue-soft text-pw-blue-ink">
                               <div className="flex items-center gap-2 mb-1">
-                                <EyeOff className="w-4 h-4 text-blue-600" />
-                                <span className="text-sm font-semibold text-blue-800">Official Answer:</span>
+                                <EyeOff className="w-4 h-4" aria-hidden="true" />
+                                <span className="text-sm font-bold">Official Answer:</span>
                               </div>
-                              <p className="text-blue-900 font-medium">{displayQuizzes[currentQuestion].answer}</p>
+                              <p className="text-lg font-extrabold text-pw-navy">{displayQuizzes[currentQuestion].answer}</p>
                             </div>
-                            <div className="p-4 rounded-lg bg-slate-50 border border-slate-200">
-                              <p className="text-sm text-slate-500 mb-1">Your answer:</p>
-                              <p className="text-slate-800">{typedAnswer}</p>
+                            <div className={optionRow}>
+                              <p className="text-sm font-bold text-pw-muted mb-1">Your answer:</p>
+                              <p className="text-base text-pw-navy">{typedAnswer}</p>
                             </div>
                             {showExplanation ? (
                               <QuizExplanationPanel
@@ -686,13 +706,13 @@ Please provide a brief, simple explanation (2-3 sentences) of this concept in pl
                                 onContinue={handleContinueFromExplanation}
                               />
                             ) : (
-                              <div className="flex gap-3 justify-center">
-                                <Button onClick={markCorrect} className="bg-green-600 hover:bg-green-700">
-                                  <CheckCircle className="w-4 h-4 mr-2" />
+                              <div className="flex flex-col sm:flex-row gap-3 sm:justify-center">
+                                <Button onClick={markCorrect} className="w-full sm:w-auto">
+                                  <CheckCircle className="w-4 h-4" />
                                   I got it right
                                 </Button>
-                                <Button onClick={markIncorrect} variant="outline" className="border-red-300 text-red-700 hover:bg-red-50">
-                                  <RotateCcw className="w-4 h-4 mr-2" />
+                                <Button onClick={markIncorrect} variant="outline" className="w-full sm:w-auto text-pw-red-ink">
+                                  <RotateCcw className="w-4 h-4" />
                                   I need to practice this
                                 </Button>
                               </div>
@@ -706,88 +726,98 @@ Please provide a brief, simple explanation (2-3 sentences) of this concept in pl
               </div>
             ) : (
               /* Quiz Results */
-              <div className="text-center py-8 space-y-4">
-                <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto ${
-                  (score / displayQuizzes.length) * 100 >= 80 ? 'bg-green-100' :
-                  (score / displayQuizzes.length) * 100 >= 60 ? 'bg-yellow-100' : 'bg-red-100'
+              <div className="text-center py-4 space-y-4">
+                <div className={`w-24 h-24 rounded-full flex items-center justify-center mx-auto ${
+                  resultPct >= 80 ? 'bg-pw-green-soft text-pw-green-ink' :
+                  resultPct >= 60 ? 'bg-pw-blue-soft text-pw-blue-ink' : 'bg-pw-red-soft text-pw-red-ink'
                 }`}>
-                  <span className="text-2xl font-bold">{Math.round((score / displayQuizzes.length) * 100)}%</span>
+                  <span className="text-3xl font-extrabold">{Math.round((score / displayQuizzes.length) * 100)}%</span>
                 </div>
-                <h3 className="text-xl font-semibold text-slate-900">Practice Complete!</h3>
-                <p className="text-slate-600">
+                <h3 className="text-2xl font-extrabold">Practice Complete!</h3>
+                <p className="text-lg text-pw-muted">
                   You got {score} out of {displayQuizzes.length} correct
                 </p>
                 
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 max-w-md mx-auto text-left">
-                  <p className="text-sm text-blue-800">
+                <div className="bg-pw-blue-soft rounded-2xl p-4 max-w-md mx-auto text-left">
+                  <p className="text-base text-pw-blue-ink">
                     <strong>Remember:</strong> In the real USCIS interview, an officer will ask you these questions 
                     verbally. Your answers don't need to be word-for-word — as long as you convey the correct 
                     meaning, you'll pass!
                   </p>
                 </div>
 
-                <div className="space-y-4 pt-4">
+                <div className="space-y-4 pt-2">
                   {!flashcardsViewed && displayFlashcards.length > 0 && (
-                    <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm text-amber-700 flex items-center gap-2 max-w-md mx-auto">
-                      <AlertCircle className="w-4 h-4 shrink-0" />
+                    <div className="bg-pw-red-soft rounded-2xl p-3 text-base text-pw-red-ink flex items-center gap-2 max-w-md mx-auto text-left">
+                      <AlertCircle className="w-5 h-5 shrink-0" aria-hidden="true" />
                       Review the flashcards tab before marking this lesson complete.
                     </div>
                   )}
-                  <div className="flex justify-center gap-3 flex-wrap">
-                    <Button variant="outline" onClick={startQuiz}>
-                      <RotateCcw className="w-4 h-4 mr-2" />
+                  <div className="flex flex-col sm:flex-row sm:justify-center gap-3">
+                    <Button variant="outline" onClick={startQuiz} className="w-full sm:w-auto">
+                      <RotateCcw className="w-4 h-4" />
                       Retry Practice
                     </Button>
                     <Button 
                       onClick={handleMarkComplete} 
-                      className="bg-green-600 hover:bg-green-700"
+                      className="w-full sm:w-auto"
                       disabled={!flashcardsViewed && displayFlashcards.length > 0}
                     >
-                      <CheckCircle className="w-4 h-4 mr-2" />
+                      <CheckCircle className="w-4 h-4" />
                       Mark Complete
                     </Button>
                     {nextLesson && (
-                      <Button onClick={() => handleNavigate(nextLesson)} className="bg-blue-600 hover:bg-blue-700">
+                      <Button onClick={() => handleNavigate(nextLesson)} variant="secondary" className="w-full sm:w-auto">
                         Next Lesson
-                        <ChevronRight className="w-4 h-4 ml-2" />
+                        <ChevronRight className="w-4 h-4" />
                       </Button>
                     )}
                   </div>
                 </div>
               </div>
             )}
-          </Card>
+          </RaisedCard>
         </TabsContent>
 
       </Tabs>
 
       {/* Lesson Navigation */}
       {lessons && lessons.length > 1 && (
-        <div className="flex items-center justify-between gap-4 pt-6 border-t border-slate-200">
-          {prevLesson ? (
-            <Button variant="outline" onClick={() => handleNavigate(prevLesson)} className="flex items-center gap-2 max-w-[40%]">
-              <ChevronLeft className="w-4 h-4 shrink-0" />
-              <div className="text-left overflow-hidden">
-                <div className="text-xs text-slate-400">Previous</div>
-                <div className="text-sm font-medium truncate">{prevLesson.title}</div>
-              </div>
-            </Button>
-          ) : <div className="max-w-[40%]" />}
-          
-          <Button variant="ghost" onClick={onBack} className="text-slate-500 shrink-0">
+        <nav aria-label="Lesson navigation" className="space-y-3 pt-6 border-t border-pw-line">
+          <div className="grid grid-cols-2 gap-3">
+            {prevLesson ? (
+              <button
+                type="button"
+                onClick={() => handleNavigate(prevLesson)}
+                className={`${optionRow} flex items-center gap-2 text-left hover:border-pw-navy transition-colors min-w-0`}
+              >
+                <ChevronLeft className="w-5 h-5 shrink-0" aria-hidden="true" />
+                <div className="overflow-hidden min-w-0">
+                  <div className="text-sm font-bold text-pw-muted">Previous</div>
+                  <div className="text-base font-bold truncate">{prevLesson.title}</div>
+                </div>
+              </button>
+            ) : <div />}
+
+            {nextLesson ? (
+              <button
+                type="button"
+                onClick={() => handleNavigate(nextLesson)}
+                className="w-full min-h-[44px] rounded-2xl bg-pw-navy text-white p-4 flex items-center justify-end gap-2 text-right hover:bg-[#0F1B36] transition-colors min-w-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2"
+              >
+                <div className="overflow-hidden min-w-0">
+                  <div className="text-sm font-bold text-white/75">Next</div>
+                  <div className="text-base font-bold truncate">{nextLesson.title}</div>
+                </div>
+                <ChevronRight className="w-5 h-5 shrink-0" aria-hidden="true" />
+              </button>
+            ) : <div />}
+          </div>
+
+          <Button variant="ghost" onClick={onBack} className="w-full">
             All Lessons
           </Button>
-          
-          {nextLesson ? (
-            <Button onClick={() => handleNavigate(nextLesson)} className="bg-blue-600 hover:bg-blue-700 flex items-center gap-2 max-w-[40%]">
-              <div className="text-right overflow-hidden">
-                <div className="text-xs text-blue-200">Next</div>
-                <div className="text-sm font-medium truncate">{nextLesson.title}</div>
-              </div>
-              <ChevronRight className="w-4 h-4 shrink-0" />
-            </Button>
-          ) : <div className="max-w-[40%]" />}
-        </div>
+        </nav>
       )}
     </div>
   );

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Loader2, Volume2 } from 'lucide-react';
 import TutorAvatar from './TutorAvatar';
+import { PrimaryButton, QuietButton } from '@/components/pathways/ui';
 import useTranslatedLines from './useTranslatedLines';
 import useAppLanguage, { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
 import { speakText } from '@/components/utils/textToSpeech';
@@ -15,7 +16,6 @@ import {
   spokenTutorName,
 } from '@/lib/tutorPersona';
 
-const NAVY = '#14264A';
 const LINES = fixedTutorLines();
 
 function OptionButton({ selected, onClick, children, className = '' }) {
@@ -24,10 +24,9 @@ function OptionButton({ selected, onClick, children, className = '' }) {
       type="button"
       onClick={onClick}
       aria-pressed={selected}
-      className={`min-h-[44px] rounded-2xl border-2 px-3 py-2 text-left transition-colors ${
-        selected ? 'bg-[#EEF2F8]' : 'bg-white border-[#DEE4EE] hover:border-[#9AA8C2]'
+      className={`min-h-[44px] rounded-2xl border-2 px-4 py-3 text-left text-pw-navy transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2 ${
+        selected ? 'border-pw-navy bg-pw-soft' : 'bg-white border-pw-line hover:border-pw-muted'
       } ${className}`}
-      style={selected ? { borderColor: NAVY } : undefined}
     >
       {children}
     </button>
@@ -39,8 +38,7 @@ function ListenButton({ text, language, label }) {
     <button
       type="button"
       onClick={() => speakText(text, language)}
-      className="min-h-[44px] inline-flex items-center gap-2 rounded-xl px-3 text-base font-semibold hover:bg-[#EEF2F8]"
-      style={{ color: NAVY }}
+      className="min-h-[44px] -ml-3 inline-flex items-center gap-2 rounded-2xl px-3 text-base font-bold text-pw-navy hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red"
     >
       <Volume2 className="w-5 h-5" /> {label}
     </button>
@@ -71,20 +69,20 @@ export default function TutorSetup({ initialProfile, onSave, onSkip, saveLabel =
   const sayInEnglish = englishLines.join(' ').replace(profile.name, spokenTutorName(profile.name, 'en'));
 
   return (
-    <div className="space-y-6 text-base" style={{ color: NAVY }}>
+    <div className="space-y-6 text-base text-pw-navy">
       {/* Preview */}
-      <div className="rounded-2xl border border-[#DEE4EE] bg-[#F3F5F9] p-4">
+      <div className="rounded-3xl bg-pw-blue-soft p-4">
         <div className="flex items-start gap-3">
           <TutorAvatar avatar={profile.avatar} size={56} />
           <div className="min-w-0 flex-1 space-y-2">
             {mineLines && (
-              <div className="rounded-2xl rounded-tl-sm bg-white border border-[#DEE4EE] p-3">
+              <div className="rounded-2xl rounded-tl-sm bg-white border border-pw-line p-3">
                 <p dir={RTL_LANGUAGES.includes(language) ? 'rtl' : 'ltr'}>{mineLines.join(' ')}</p>
                 <ListenButton text={mineLines.join(' ')} language={language} label="Listen" />
               </div>
             )}
-            <div className={`rounded-2xl p-3 ${mineLines ? 'bg-[#EEF2F8]' : 'rounded-tl-sm bg-white border border-[#DEE4EE]'}`}>
-              {mineLines && <p className="text-sm font-semibold uppercase tracking-wide text-[#4A5A78]">English</p>}
+            <div className={`rounded-2xl p-3 ${mineLines ? 'bg-white/60' : 'rounded-tl-sm bg-white border border-pw-line'}`}>
+              {mineLines && <p className="text-sm font-semibold uppercase tracking-wide text-pw-muted">English</p>}
               <p>{englishLines.join(' ')}</p>
               <ListenButton text={sayInEnglish} language="en" label={mineLines ? 'Listen in English' : 'Listen'} />
             </div>
@@ -100,18 +98,18 @@ export default function TutorSetup({ initialProfile, onSave, onSkip, saveLabel =
           value={nameInput}
           maxLength={MAX_TUTOR_NAME_LENGTH}
           onChange={(e) => setNameInput(e.target.value)}
-          className="w-full min-h-[44px] rounded-xl border border-[#DEE4EE] bg-white px-3 text-base focus:outline-none focus:ring-2 focus:ring-[#14264A]"
+          className="w-full min-h-[48px] rounded-2xl border-2 border-pw-line bg-white px-4 text-base text-pw-navy focus:outline-none focus:border-pw-navy focus:ring-2 focus:ring-pw-navy/20"
         />
-        <p className="text-sm text-[#4A5A78]">“Vía” means “way” or “path.” You can give your tutor any name.</p>
+        <p className="text-sm text-pw-muted">“Vía” means “way” or “path.” You can give your tutor any name.</p>
       </div>
 
       {/* Avatar */}
       <fieldset className="space-y-2">
         <legend className="font-bold mb-2">Picture</legend>
-        <div className="grid grid-cols-3 gap-2">
+        <div className="grid grid-cols-3 gap-3">
           {TUTOR_AVATARS.map((id) => (
-            <OptionButton key={id} selected={profile.avatar === id} onClick={() => set('avatar', id)} className="flex justify-center">
-              <TutorAvatar avatar={id} size={56} />
+            <OptionButton key={id} selected={profile.avatar === id} onClick={() => set('avatar', id)} className="flex justify-center !px-2 !py-2">
+              <TutorAvatar avatar={id} size={64} />
             </OptionButton>
           ))}
         </div>
@@ -124,7 +122,7 @@ export default function TutorSetup({ initialProfile, onSave, onSkip, saveLabel =
           {Object.entries(TUTOR_TONES).map(([id, t]) => (
             <OptionButton key={id} selected={profile.tone === id} onClick={() => set('tone', id)}>
               <span className="block font-semibold">{t.label}</span>
-              <span className="block text-sm text-[#4A5A78]">{t.description}</span>
+              <span className="block text-sm text-pw-muted">{t.description}</span>
             </OptionButton>
           ))}
         </div>
@@ -141,29 +139,19 @@ export default function TutorSetup({ initialProfile, onSave, onSkip, saveLabel =
               </OptionButton>
             ))}
           </div>
-          <p className="text-sm text-[#4A5A78]">Your tutor explains in your app language. You can change this any time.</p>
+          <p className="text-sm text-pw-muted">Your tutor explains in your app language. You can change this any time.</p>
         </fieldset>
       )}
 
       <div className="flex flex-col-reverse sm:flex-row gap-2 sm:justify-end">
         {onSkip && (
-          <button
-            type="button"
-            onClick={onSkip}
-            className="min-h-[44px] rounded-xl px-4 font-semibold hover:bg-[#EEF2F8]"
-          >
+          <QuietButton onClick={onSkip}>
             Skip for now
-          </button>
+          </QuietButton>
         )}
-        <button
-          type="button"
-          disabled={saving}
-          onClick={() => onSave(profile)}
-          className="min-h-[44px] rounded-xl px-5 font-semibold text-white inline-flex items-center justify-center gap-2 disabled:opacity-60"
-          style={{ backgroundColor: NAVY }}
-        >
+        <PrimaryButton disabled={saving} onClick={() => onSave(profile)}>
           {saving && <Loader2 className="w-4 h-4 animate-spin" />} {saveLabel}
-        </button>
+        </PrimaryButton>
       </div>
     </div>
   );

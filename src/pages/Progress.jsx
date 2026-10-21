@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, Clock, Award, Zap, Flag, ArrowRight } from 'lucide-react';
+import { CheckCircle, Clock, Award, Flag, ArrowRight } from 'lucide-react';
 import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
@@ -15,6 +14,7 @@ import QuickCheckCard from '@/components/persona/QuickCheckCard';
 import useAppLanguage from '@/hooks/useAppLanguage';
 import { Progress as ProgressBar } from "@/components/ui/progress";
 import PageHeader from '@/components/PageHeader';
+import { RaisedCard } from '@/components/pathways/ui';
 
 export default function Progress() {
   const [history, setHistory] = useState([]);
@@ -71,127 +71,125 @@ export default function Progress() {
     }
   };
 
-  if (isLoading) return <div className="p-8 text-center text-slate-500">Loading progress...</div>;
+  if (isLoading) return <div className="p-8 text-center text-base text-pw-muted">Loading progress...</div>;
 
   // Calculate Preparedness Score (Simple metric: Mastered / 100 * 100, cap at 100)
   const preparedness = Math.min(Math.round((stats.mastered / 100) * 100), 100);
 
+  const tileLink = 'block rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2';
+
   return (
-    <div className="space-y-8">
-      <PageHeader title="Your Progress" subtitle="Track your journey to citizenship">
+    <div className="space-y-6 text-pw-navy">
+      <PageHeader title="Your Progress" subtitle="Track your journey to citizenship" art="compass">
         <TestDateTracker />
       </PageHeader>
 
       <QuickCheckCard variant="progress" language={language} />
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <Link to={createPageUrl('StudyHistory')} className="block">
-          <Card className="hover:shadow-md transition-all cursor-pointer group">
-            <CardContent className="p-6 flex items-center gap-4">
-              <div className="w-12 h-12 bg-blue-200 text-blue-700 rounded-full flex items-center justify-center">
-                <Clock className="w-6 h-6" />
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+        <Link to={createPageUrl('StudyHistory')} className={tileLink}>
+          <RaisedCard className="h-full hover:shadow-lift transition-shadow">
+            <div className="flex items-start justify-between">
+              <div className="w-12 h-12 rounded-2xl bg-pw-blue-soft text-pw-blue-ink grid place-items-center">
+                <Clock className="w-6 h-6" aria-hidden="true" />
               </div>
-              <div className="flex-1">
-                <p className="text-sm text-slate-500 font-medium">Total Practiced</p>
-                <p className="text-3xl font-bold text-slate-900">{stats.total}</p>
-              </div>
-              <ArrowRight className="w-5 h-5 text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity" />
-            </CardContent>
-          </Card>
-        </Link>
-
-        <Link to={createPageUrl('Dashboard')} className="block">
-          <Card className="hover:shadow-md transition-all cursor-pointer group">
-            <CardContent className="p-6 flex items-center gap-4">
-              <div className="w-12 h-12 bg-green-200 text-green-700 rounded-full flex items-center justify-center">
-                <Award className="w-6 h-6" />
-              </div>
-              <div className="flex-1">
-                <p className="text-sm text-slate-500 font-medium">Items Mastered</p>
-                <p className="text-3xl font-bold text-slate-900">{stats.mastered}</p>
-              </div>
-              <ArrowRight className="w-5 h-5 text-green-600 opacity-0 group-hover:opacity-100 transition-opacity" />
-            </CardContent>
-          </Card>
-        </Link>
-
-         <Card className="md:col-span-2">
-          <CardContent className="p-6">
-            <div className="flex justify-between items-center mb-2">
-                 <div className="flex items-center gap-2">
-                     <div className="w-8 h-8 bg-emerald-200 text-emerald-700 rounded-full flex items-center justify-center">
-                        <Flag className="w-4 h-4" />
-                    </div>
-                    <p className="font-bold text-slate-900">Test Preparedness</p>
-                 </div>
-                 <span className="text-2xl font-bold text-emerald-700">{preparedness}%</span>
+              <ArrowRight className="w-5 h-5 text-pw-muted" aria-hidden="true" />
             </div>
-            <ProgressBar value={preparedness} className="h-3 bg-emerald-200" />
-            <p className="text-xs text-slate-500 mt-2">Based on mastered content items (Goal: 100)</p>
-          </CardContent>
-        </Card>
+            <p className="mt-4 text-4xl font-extrabold leading-none">{stats.total}</p>
+            <p className="mt-2 text-sm font-bold text-pw-muted">Total Practiced</p>
+          </RaisedCard>
+        </Link>
+
+        <Link to={createPageUrl('Dashboard')} className={tileLink}>
+          <RaisedCard className="h-full hover:shadow-lift transition-shadow">
+            <div className="flex items-start justify-between">
+              <div className="w-12 h-12 rounded-2xl bg-pw-green-soft text-pw-green-ink grid place-items-center">
+                <Award className="w-6 h-6" aria-hidden="true" />
+              </div>
+              <ArrowRight className="w-5 h-5 text-pw-muted" aria-hidden="true" />
+            </div>
+            <p className="mt-4 text-4xl font-extrabold leading-none">{stats.mastered}</p>
+            <p className="mt-2 text-sm font-bold text-pw-muted">Items Mastered</p>
+          </RaisedCard>
+        </Link>
+
+        <RaisedCard className="col-span-2">
+          <div className="flex justify-between items-center gap-3 mb-4">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-2xl bg-pw-teal-soft text-pw-teal-ink grid place-items-center shrink-0">
+                <Flag className="w-6 h-6" aria-hidden="true" />
+              </div>
+              <p className="text-lg font-extrabold">Test Preparedness</p>
+            </div>
+            <span className="text-3xl font-extrabold">{preparedness}%</span>
+          </div>
+          <ProgressBar value={preparedness} className="h-3 bg-pw-soft" aria-label="Test Preparedness" />
+          <p className="text-sm text-pw-muted mt-3">Based on mastered content items (Goal: 100)</p>
+        </RaisedCard>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-2 space-y-8">
-             {/* Calendar */}
-            <PracticeCalendar history={history} />
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="lg:col-span-2 space-y-6">
+          {/* Calendar */}
+          <PracticeCalendar history={history} />
 
-             {/* Progress Chart */}
-             <ProgressChart userEmail={userData?.email} />
+          {/* Progress Chart */}
+          <ProgressChart userEmail={userData?.email} />
 
-             {/* Badges Section */}
-            <Card>
-                <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                    <Award className="w-5 h-5 text-red-500" />
-                    Achievements
-                </CardTitle>
-                </CardHeader>
-                <CardContent>
-                <BadgesDisplay earnedBadges={userData?.badges || []} />
-                </CardContent>
-            </Card>
+          {/* Badges Section */}
+          <Card>
+            <CardHeader className="p-5 sm:p-6">
+              <CardTitle className="flex items-center gap-3 text-xl">
+                <span className="w-10 h-10 rounded-2xl bg-pw-red-soft text-pw-red-ink grid place-items-center shrink-0">
+                  <Award className="w-5 h-5" aria-hidden="true" />
+                </span>
+                Achievements
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="p-5 pt-0 sm:p-6 sm:pt-0">
+              <BadgesDisplay earnedBadges={userData?.badges || []} />
+            </CardContent>
+          </Card>
         </div>
 
-        <div className="lg:col-span-1 space-y-8">
-             {/* Recent List Sidebar */}
-            <Card className="h-full max-h-[600px] flex flex-col">
-                <CardHeader>
-                    <CardTitle>Recent Activity</CardTitle>
-                </CardHeader>
-                <CardContent className="flex-1 overflow-y-auto pr-2">
-                    {history.length > 0 ? (
-                        <div className="space-y-4">
-                            {history.map((item) => (
-                                <div key={item.id} className="border-b pb-3 last:border-0">
-                                    <p className="text-xs text-slate-400 mb-1">
-                                        {format(new Date(item.last_practiced), 'MMM d, h:mm a')}
-                                    </p>
-                                    <p className="font-medium text-slate-800 text-sm line-clamp-2">
-                                        {item.content?.text || item.content?.word || item.content?.question || 'Unknown'}
-                                    </p>
-                                    <div className="flex justify-between items-center mt-2">
-                                        <Badge variant="outline" className="text-[10px] h-5">
-                                            {item.content_type || 'Sentence'}
-                                        </Badge>
-                                        {item.status === 'mastered' ? (
-                                            <CheckCircle className="w-4 h-4 text-green-500" />
-                                        ) : (
-                                            <div className="w-4 h-4 rounded-full border-2 border-slate-200" />
-                                        )}
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    ) : (
-                        <div className="text-center py-8 text-slate-500">
-                            No history yet.
-                        </div>
-                    )}
-                </CardContent>
-            </Card>
+        <div className="lg:col-span-1 space-y-6">
+          {/* Recent List Sidebar */}
+          <Card className="lg:h-full max-h-[600px] flex flex-col">
+            <CardHeader className="p-5 sm:p-6">
+              <CardTitle className="text-xl">Recent Activity</CardTitle>
+            </CardHeader>
+            <CardContent className="flex-1 overflow-y-auto p-5 pt-0 sm:p-6 sm:pt-0">
+              {history.length > 0 ? (
+                <div className="space-y-3">
+                  {history.map((item) => (
+                    <div key={item.id} className="rounded-2xl border border-pw-line bg-white p-4">
+                      <p className="text-sm text-pw-muted mb-1">
+                        {format(new Date(item.last_practiced), 'MMM d, h:mm a')}
+                      </p>
+                      <p className="font-semibold text-pw-navy text-base line-clamp-2">
+                        {item.content?.text || item.content?.word || item.content?.question || 'Unknown'}
+                      </p>
+                      <div className="flex justify-between items-center mt-3">
+                        <Badge variant="secondary">
+                          {item.content_type || 'Sentence'}
+                        </Badge>
+                        {item.status === 'mastered' ? (
+                          <CheckCircle className="w-5 h-5 text-pw-green-ink" aria-label="Mastered" />
+                        ) : (
+                          <div className="w-5 h-5 rounded-full border-2 border-pw-line" aria-hidden="true" />
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-8 text-base text-pw-muted rounded-2xl bg-pw-soft">
+                  No history yet.
+                </div>
+              )}
+            </CardContent>
+          </Card>
         </div>
       </div>
     </div>

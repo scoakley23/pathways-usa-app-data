@@ -31,24 +31,24 @@ export default function VocabularyWordsTab() {
   );
 
   if (isLoading) {
-    return <div className="flex justify-center py-12"><Loader2 className="w-8 h-8 animate-spin text-blue-600" /></div>;
+    return <div className="flex justify-center py-12"><Loader2 className="w-8 h-8 animate-spin text-pw-navy" /></div>;
   }
 
   return (
     <div className="space-y-4">
       <div className="flex flex-col sm:flex-row justify-between gap-3">
         <div className="relative flex-1 max-w-sm">
-          <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-slate-500" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-pw-muted" aria-hidden="true" />
           <Input type="search" placeholder="Search words..." className="pl-9" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
         </div>
-        <Button onClick={() => { setEditingItem(null); setIsDialogOpen(true); }} className="bg-blue-600 hover:bg-blue-700">
-          <Plus className="w-4 h-4 mr-2" /> Add Word
+        <Button onClick={() => { setEditingItem(null); setIsDialogOpen(true); }} className="w-full sm:w-auto">
+          <Plus className="w-4 h-4" /> Add Word
         </Button>
       </div>
-      <div className="border rounded-lg bg-white shadow-sm overflow-hidden">
-        <Table>
+      <div className="border border-pw-line rounded-3xl bg-white shadow-raised overflow-hidden">
+        <Table className="text-base [&_th]:px-2 [&_td]:px-2 sm:[&_th]:px-4 sm:[&_td]:px-4 [&_th]:text-sm [&_th]:font-bold [&_th]:text-pw-muted">
           <TableHeader>
-            <TableRow className="bg-slate-50">
+            <TableRow className="bg-pw-soft hover:bg-pw-soft">
               <TableHead className="w-[20%]">Word</TableHead>
               <TableHead className="w-[20%]">Category</TableHead>
               <TableHead className="w-[50%]">Definition</TableHead>
@@ -57,22 +57,22 @@ export default function VocabularyWordsTab() {
           </TableHeader>
           <TableBody>
             {filtered.length === 0 ? (
-              <TableRow><TableCell colSpan={4} className="text-center h-32 text-slate-500">No vocabulary words found.</TableCell></TableRow>
+              <TableRow><TableCell colSpan={4} className="text-center h-32 text-pw-muted">No vocabulary words found.</TableCell></TableRow>
             ) : (
               filtered.map((w) => (
                 <TableRow key={w.id}>
-                  <TableCell className="font-medium text-slate-800">{w.word}</TableCell>
-                  <TableCell><Badge variant="secondary" className="bg-slate-100 text-slate-600">{w.category || "—"}</Badge></TableCell>
-                  <TableCell className="text-slate-600">{w.definition || "—"}</TableCell>
+                  <TableCell className="font-semibold text-pw-navy">{w.word}</TableCell>
+                  <TableCell><Badge variant="secondary" className="font-semibold whitespace-nowrap">{w.category || "—"}</Badge></TableCell>
+                  <TableCell className="text-pw-muted">{w.definition || "—"}</TableCell>
                   <TableCell className="text-right">
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="h-8 w-8 p-0"><MoreHorizontal className="h-4 w-4" /></Button>
+                        <Button variant="ghost" size="icon" aria-label="Actions"><MoreHorizontal className="h-5 w-5" /></Button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end">
                         <DropdownMenuLabel>Actions</DropdownMenuLabel>
                         <DropdownMenuItem onClick={() => { setEditingItem(w); setIsDialogOpen(true); }}><Pencil className="mr-2 h-4 w-4" /> Edit</DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => deleteItem(w.id)} className="text-red-600 focus:text-red-600"><Trash2 className="mr-2 h-4 w-4" /> Delete</DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => deleteItem(w.id)} className="text-pw-red-ink focus:text-pw-red-ink"><Trash2 className="mr-2 h-4 w-4" /> Delete</DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>
                   </TableCell>

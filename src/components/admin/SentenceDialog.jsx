@@ -56,20 +56,20 @@ export default function SentenceDialog({ open, onOpenChange, onSubmit, initialDa
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4 py-4">
           <div className="space-y-2">
-            <Label htmlFor="text">Sentence Text</Label>
+            <Label htmlFor="text" className="text-sm font-bold text-pw-navy">Sentence Text</Label>
             <Textarea
               id="text"
               value={formData.text}
               onChange={(e) => setFormData({ ...formData, text: e.target.value })}
               placeholder="e.g., The White House is in Washington, D.C."
               required
-              className="min-h-[100px]"
+              className="min-h-[100px] rounded-2xl border-2 border-pw-line text-base md:text-base text-pw-navy focus-visible:border-pw-navy"
             />
           </div>
           
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="category">Category</Label>
+              <Label htmlFor="category" className="text-sm font-bold text-pw-navy">Category</Label>
               <Select
                 value={formData.category}
                 onValueChange={(value) => setFormData({ ...formData, category: value })}
@@ -88,7 +88,7 @@ export default function SentenceDialog({ open, onOpenChange, onSubmit, initialDa
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="difficulty">Difficulty</Label>
+              <Label htmlFor="difficulty" className="text-sm font-bold text-pw-navy">Difficulty</Label>
               <Select
                 value={formData.difficulty}
                 onValueChange={(value) => setFormData({ ...formData, difficulty: value })}
@@ -105,7 +105,7 @@ export default function SentenceDialog({ open, onOpenChange, onSubmit, initialDa
             </div>
           </div>
 
-          <DialogFooter>
+          <DialogFooter className="gap-2">
             <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
               Cancel
             </Button>

@@ -4,6 +4,12 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { TrendingUp, Loader2 } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 
+// Chart colors match the pw tokens (recharts needs raw values).
+const NAVY = '#14264A';
+const RED = '#D9483F';
+const LINE = '#DEE4EE';
+const MUTED = '#4A5A78';
+
 export default function ProgressChart({ userEmail }) {
   const [chartData, setChartData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -79,7 +85,7 @@ export default function ProgressChart({ userEmail }) {
     return (
       <Card>
         <CardContent className="flex items-center justify-center py-12">
-          <Loader2 className="w-6 h-6 animate-spin text-blue-600" />
+          <Loader2 className="w-6 h-6 animate-spin text-pw-navy" aria-hidden="true" />
         </CardContent>
       </Card>
     );
@@ -88,14 +94,16 @@ export default function ProgressChart({ userEmail }) {
   if (chartData.length === 0) {
     return (
       <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <TrendingUp className="w-5 h-5 text-blue-600" />
+        <CardHeader className="p-5 sm:p-6">
+          <CardTitle className="flex items-center gap-3 text-xl">
+            <span className="w-10 h-10 rounded-2xl bg-pw-blue-soft text-pw-blue-ink grid place-items-center shrink-0">
+              <TrendingUp className="w-5 h-5" aria-hidden="true" />
+            </span>
             Improvement Over Time
           </CardTitle>
         </CardHeader>
-        <CardContent>
-          <div className="text-center py-8 text-slate-500">
+        <CardContent className="p-5 pt-0 sm:p-6 sm:pt-0">
+          <div className="text-center py-8 px-4 text-base text-pw-muted bg-pw-soft rounded-2xl">
             Complete lessons and take quizzes to see your progress over time.
           </div>
         </CardContent>
@@ -105,59 +113,62 @@ export default function ProgressChart({ userEmail }) {
 
   return (
     <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <TrendingUp className="w-5 h-5 text-blue-600" />
+      <CardHeader className="p-5 sm:p-6">
+        <CardTitle className="flex items-center gap-3 text-xl">
+          <span className="w-10 h-10 rounded-2xl bg-pw-blue-soft text-pw-blue-ink grid place-items-center shrink-0">
+            <TrendingUp className="w-5 h-5" aria-hidden="true" />
+          </span>
           Improvement Over Time
         </CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="p-3 pt-0 sm:p-6 sm:pt-0">
         <div className="h-72">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={chartData} margin={{ top: 5, right: 20, left: 0, bottom: 5 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#DEE4EE" />
+              <CartesianGrid strokeDasharray="3 3" stroke={LINE} />
               <XAxis
                 dataKey="date"
-                tick={{ fontSize: 12, fill: '#4A5A78' }}
+                tick={{ fontSize: 12, fill: MUTED }}
                 tickLine={false}
-                axisLine={{ stroke: '#DEE4EE' }}
+                axisLine={{ stroke: LINE }}
               />
               <YAxis
                 yAxisId="left"
-                tick={{ fontSize: 12, fill: '#4A5A78' }}
+                tick={{ fontSize: 12, fill: MUTED }}
                 tickLine={false}
-                axisLine={{ stroke: '#DEE4EE' }}
+                axisLine={{ stroke: LINE }}
                 domain={[0, 100]}
-                label={{ value: 'Quiz Score %', angle: -90, position: 'insideLeft', style: { fontSize: 11, fill: '#1F3A6B' } }}
+                label={{ value: 'Quiz Score %', angle: -90, position: 'insideLeft', style: { fontSize: 12, fill: NAVY, fontWeight: 700 } }}
               />
               <YAxis
                 yAxisId="right"
                 orientation="right"
-                tick={{ fontSize: 12, fill: '#4A5A78' }}
+                tick={{ fontSize: 12, fill: MUTED }}
                 tickLine={false}
-                axisLine={{ stroke: '#DEE4EE' }}
+                axisLine={{ stroke: LINE }}
                 allowDecimals={false}
-                label={{ value: 'Lessons', angle: 90, position: 'insideRight', style: { fontSize: 11, fill: '#1F3A6B' } }}
+                label={{ value: 'Lessons', angle: 90, position: 'insideRight', style: { fontSize: 12, fill: NAVY, fontWeight: 700 } }}
               />
               <Tooltip
                 contentStyle={{
                   backgroundColor: '#fff',
-                  border: '1px solid #e2e8f0',
-                  borderRadius: '8px',
-                  fontSize: '13px'
+                  border: `1px solid ${LINE}`,
+                  borderRadius: '16px',
+                  fontSize: '14px',
+                  color: NAVY
                 }}
               />
               <Legend
-                wrapperStyle={{ fontSize: '13px', paddingTop: '12px' }}
+                wrapperStyle={{ fontSize: '14px', paddingTop: '12px', color: NAVY }}
               />
               <Line
                 yAxisId="left"
                 type="monotone"
                 dataKey="quizScore"
                 name="Avg Quiz Score"
-                stroke="#3b82f6"
-                strokeWidth={2}
-                dot={{ r: 4, fill: '#1F3A6B', strokeWidth: 2, stroke: '#fff' }}
+                stroke={NAVY}
+                strokeWidth={2.5}
+                dot={{ r: 4, fill: NAVY, strokeWidth: 2, stroke: '#fff' }}
                 activeDot={{ r: 6 }}
               />
               <Line
@@ -165,9 +176,10 @@ export default function ProgressChart({ userEmail }) {
                 type="monotone"
                 dataKey="lessonsCompleted"
                 name="Lessons Completed"
-                stroke="#10b981"
-                strokeWidth={2}
-                dot={{ r: 4, fill: '#1F3A6B', strokeWidth: 2, stroke: '#fff' }}
+                stroke={RED}
+                strokeWidth={2.5}
+                strokeDasharray="6 4"
+                dot={{ r: 4, fill: RED, strokeWidth: 2, stroke: '#fff' }}
                 activeDot={{ r: 6 }}
               />
             </LineChart>

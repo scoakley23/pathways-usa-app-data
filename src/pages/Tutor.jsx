@@ -46,17 +46,19 @@ export default function Tutor({ cachedUser, cachedRole }) {
   if (isLoading) {
       return (
           <div className="flex justify-center items-center min-h-[50vh]">
-              <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
+              <Loader2 className="w-8 h-8 animate-spin text-pw-navy" />
           </div>
       );
   }
 
   if (!user) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[50vh] text-center space-y-4">
-        <School className="w-16 h-16 text-blue-200" />
-        <h2 className="text-2xl font-bold text-slate-800">Sign in to access Tutor features</h2>
-        <p className="text-slate-600">Connect with students or tutors to track progress together.</p>
+      <div className="flex flex-col items-center justify-center min-h-[50vh] text-center space-y-4 px-4">
+        <div className="w-20 h-20 rounded-3xl bg-pw-blue-soft flex items-center justify-center" aria-hidden="true">
+          <School className="w-10 h-10 text-pw-blue-ink" />
+        </div>
+        <h2 className="text-2xl font-extrabold text-pw-navy">Sign in to access Tutor features</h2>
+        <p className="text-base text-pw-muted">Connect with students or tutors to track progress together.</p>
       </div>
     );
   }
@@ -64,18 +66,18 @@ export default function Tutor({ cachedUser, cachedRole }) {
   if (!role) {
       return (
           <div className="flex flex-col items-center justify-center min-h-[50vh] text-center space-y-4">
-              <Loader2 className="w-12 h-12 animate-spin text-blue-200" />
-              <p className="text-slate-500">Setting up your profile...</p>
+              <Loader2 className="w-12 h-12 animate-spin text-pw-navy/40" />
+              <p className="text-base text-pw-muted">Setting up your profile...</p>
               <div className="flex flex-col gap-2 mt-4">
                   <button 
                     onClick={() => { setIsLoading(true); fetchUserData(); }} 
-                    className="text-sm font-semibold text-blue-600 hover:text-blue-800 underline"
+                    className="min-h-[44px] px-4 text-base font-bold text-pw-navy underline underline-offset-4 decoration-pw-red/60 hover:decoration-pw-red rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red"
                   >
                     Check again
                   </button>
                   <button 
                     onClick={() => window.location.reload()} 
-                    className="text-xs text-slate-400 hover:text-slate-600"
+                    className="min-h-[44px] px-4 text-sm font-semibold text-pw-muted hover:text-pw-navy rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red"
                   >
                     Reload Page
                   </button>
@@ -87,6 +89,7 @@ export default function Tutor({ cachedUser, cachedRole }) {
   return (
     <div className="max-w-5xl mx-auto space-y-8">
       <PageHeader
+        art="speech"
         title={role === 'tutor' ? 'Tutor Dashboard' : 'My Classroom'}
         subtitle={role === 'tutor'
             ? 'Manage your students, assign practice, and track their progress.'

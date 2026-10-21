@@ -30,7 +30,7 @@ export default function Admin() {
   if (!authChecked) {
     return (
       <div className="flex justify-center items-center min-h-[50vh]">
-        <div className="w-8 h-8 border-4 border-slate-200 border-t-blue-600 rounded-full animate-spin" />
+        <div className="w-8 h-8 border-4 border-pw-line border-t-pw-navy rounded-full animate-spin" />
       </div>
     );
   }
@@ -38,9 +38,11 @@ export default function Admin() {
   if (!currentUser || currentUser.role !== 'admin') {
     return (
       <div className="flex flex-col items-center justify-center min-h-[50vh] text-center space-y-4">
-        <AlertCircle className="w-16 h-16 text-red-500" />
-        <h2 className="text-2xl font-bold text-slate-800">Access Denied</h2>
-        <p className="text-slate-600">You do not have permission to view this page.</p>
+        <div className="w-20 h-20 rounded-3xl bg-pw-red-soft flex items-center justify-center" aria-hidden="true">
+          <AlertCircle className="w-10 h-10 text-pw-red-ink" />
+        </div>
+        <h2 className="text-2xl font-extrabold text-pw-navy">Access Denied</h2>
+        <p className="text-base text-pw-muted">You do not have permission to view this page.</p>
       </div>
     );
   }
@@ -52,7 +54,7 @@ export default function Admin() {
         subtitle="Manage all practice content — sentences, civics questions, and vocabulary words."
       >
         <div className="flex flex-wrap gap-2">
-          <Link to="/tutor-demo" className="inline-flex items-center min-h-[44px] rounded-xl border-2 border-[#14264A] px-4 font-semibold text-[#14264A]">
+          <Link to="/tutor-demo" className="inline-flex items-center justify-center min-h-[44px] rounded-2xl border-2 border-pw-navy bg-white px-4 text-base font-bold text-pw-navy hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2">
             Tutor demo
           </Link>
           <GenerateLessonsButton />
@@ -61,14 +63,14 @@ export default function Admin() {
 
       <Tabs defaultValue="sentences">
         <TabsList className="grid w-full grid-cols-3 max-w-md">
-          <TabsTrigger value="sentences" className="flex items-center gap-2">
-            <FileText className="w-4 h-4" /> Sentences
+          <TabsTrigger value="sentences" className="flex items-center gap-1.5 px-1 text-sm sm:text-base">
+            <FileText className="w-4 h-4 hidden sm:block" aria-hidden="true" /> Sentences
           </TabsTrigger>
-          <TabsTrigger value="civics" className="flex items-center gap-2">
-            <HelpCircle className="w-4 h-4" /> Civics Q's
+          <TabsTrigger value="civics" className="flex items-center gap-1.5 px-1 text-sm sm:text-base">
+            <HelpCircle className="w-4 h-4 hidden sm:block" aria-hidden="true" /> Civics Q's
           </TabsTrigger>
-          <TabsTrigger value="vocab" className="flex items-center gap-2">
-            <BookOpen className="w-4 h-4" /> Vocabulary
+          <TabsTrigger value="vocab" className="flex items-center gap-1.5 px-1 text-sm sm:text-base">
+            <BookOpen className="w-4 h-4 hidden sm:block" aria-hidden="true" /> Vocabulary
           </TabsTrigger>
         </TabsList>
         <TabsContent value="sentences" className="mt-6">

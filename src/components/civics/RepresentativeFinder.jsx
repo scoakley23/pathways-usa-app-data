@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent } from "@/components/ui/card";
+import { Eyebrow, PrimaryButton, RaisedCard, SecondaryButton } from '@/components/pathways/ui';
 import { MapPin, Loader2, Building2, Users, Landmark, CheckCircle2 } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import OfficialPhoto from '@/components/civics/OfficialPhoto';
@@ -297,154 +296,151 @@ Double check all names are spelled correctly.`,
   };
 
   return (
-    <section className="py-12">
-      <div className="text-center mb-8">
-        <div className="inline-flex items-center justify-center w-14 h-14 bg-red-100 text-red-600 rounded-2xl mb-4">
-          <MapPin className="w-7 h-7" />
+    <section className="py-6 text-pw-navy">
+      <RaisedCard className="max-w-3xl mx-auto">
+        <div className="flex items-start gap-4 mb-4">
+          <div className="w-12 h-12 shrink-0 bg-pw-red-soft text-pw-red-ink rounded-2xl grid place-items-center">
+            <MapPin className="w-6 h-6" aria-hidden="true" />
+          </div>
+          <h2 className="text-2xl font-extrabold leading-tight pt-1.5">Who Represents Me?</h2>
         </div>
-        <h2 className="text-3xl font-bold text-slate-900">Who Represents Me?</h2>
-        <p className="text-slate-500 mt-2 max-w-lg mx-auto">
+        <p className="text-base text-pw-muted leading-relaxed">
           Enter your zip code to find your Senators, Representative, Governor, and State Capital — your answers will be used during civics practice.
         </p>
-        <p className="text-xs text-slate-400 mt-1">Your address is used only for this lookup and is never saved.</p>
-      </div>
+        <p className="text-sm text-pw-muted mt-2">Your address is used only for this lookup and is never saved.</p>
 
-      <div className="max-w-md mx-auto mb-8">
-        {!needsAddress ? (
-          <div className="flex gap-3">
-            <Input
-              placeholder="Enter your zip code..."
-              value={zipCode}
-              onChange={(e) => { setZipCode(e.target.value); setSaved(false); setNeedsAddress(false); }}
-              onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-              className="h-12 text-lg"
-              maxLength={10}
-            />
-            <Button
-              onClick={handleSearch}
-              disabled={loading}
-              className="h-12 px-6 bg-red-600 hover:bg-red-700"
-            >
-              {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Search'}
-            </Button>
-          </div>
-        ) : (
-          <div className="space-y-3 bg-amber-50 border border-amber-200 rounded-xl p-4">
-            <p className="text-amber-800 text-sm font-medium">
-              This zip code spans multiple congressional districts. Please enter your street address so we can find your exact representative.
-            </p>
-            <Input
-              placeholder="Enter your street address (e.g. 123 Main St)..."
-              value={streetAddress}
-              onChange={(e) => setStreetAddress(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-              className="h-12"
-              autoFocus
-            />
-            <div className="flex gap-3">
-              <Button
-                variant="outline"
-                onClick={() => { setNeedsAddress(false); setStreetAddress(''); }}
-                className="flex-1"
-              >
-                Cancel
-              </Button>
-              <Button
+        <div className="mt-5">
+          {!needsAddress ? (
+            <div className="flex gap-2">
+              <Input
+                placeholder="Enter your zip code..."
+                aria-label="Zip code"
+                value={zipCode}
+                onChange={(e) => { setZipCode(e.target.value); setSaved(false); setNeedsAddress(false); }}
+                onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+                className="h-12 text-base min-w-0"
+                maxLength={10}
+                inputMode="numeric"
+              />
+              <PrimaryButton
                 onClick={handleSearch}
-                disabled={loading || !streetAddress.trim()}
-                className="flex-1 bg-amber-600 hover:bg-amber-700"
+                disabled={loading}
+                className="h-12 shrink-0"
               >
-                {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Find My Representative'}
-              </Button>
+                {loading ? <Loader2 className="w-5 h-5 animate-spin" aria-label="Searching" /> : 'Search'}
+              </PrimaryButton>
             </div>
+          ) : (
+            <div className="space-y-3 bg-pw-blue-soft rounded-2xl p-4">
+              <p className="text-pw-blue-ink text-base font-semibold leading-snug">
+                This zip code spans multiple congressional districts. Please enter your street address so we can find your exact representative.
+              </p>
+              <Input
+                placeholder="Enter your street address (e.g. 123 Main St)..."
+                aria-label="Street address"
+                value={streetAddress}
+                onChange={(e) => setStreetAddress(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+                className="h-12 text-base bg-white"
+                autoFocus
+              />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <SecondaryButton
+                  onClick={() => { setNeedsAddress(false); setStreetAddress(''); }}
+                  className="border-pw-line"
+                >
+                  Cancel
+                </SecondaryButton>
+                <PrimaryButton
+                  onClick={handleSearch}
+                  disabled={loading || !streetAddress.trim()}
+                >
+                  {loading ? <Loader2 className="w-5 h-5 animate-spin" aria-label="Searching" /> : 'Find My Representative'}
+                </PrimaryButton>
+              </div>
+            </div>
+          )}
+          <div aria-live="polite">
+            {loading && (
+              <p className="text-pw-muted text-sm mt-3 flex items-center gap-2">
+                <Loader2 className="w-4 h-4 animate-spin shrink-0" aria-hidden="true" /> Searching house.gov, senate.gov, and nga.org...
+              </p>
+            )}
+            {saving && !loading && (
+              <p className="text-pw-muted text-sm mt-3 flex items-center gap-2">
+                <Loader2 className="w-4 h-4 animate-spin shrink-0" aria-hidden="true" /> Saving to your profile...
+              </p>
+            )}
+            {saved && !loading && !saving && (
+              <p className="text-pw-green-ink text-sm font-semibold mt-3 flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 shrink-0" aria-hidden="true" /> Representatives saved — your address was not.
+              </p>
+            )}
+            {error && <p className="text-pw-red-ink text-sm font-semibold mt-3" role="alert">{error}</p>}
           </div>
-        )}
-        {loading && (
-          <p className="text-blue-600 text-sm mt-3 text-center flex items-center justify-center gap-2">
-            <Loader2 className="w-4 h-4 animate-spin" /> Searching house.gov, senate.gov, and nga.org...
-          </p>
-        )}
-        {saving && !loading && (
-          <p className="text-blue-600 text-sm mt-2 text-center flex items-center justify-center gap-1">
-            <Loader2 className="w-3 h-3 animate-spin" /> Saving to your profile...
-          </p>
-        )}
-        {saved && !loading && !saving && (
-          <p className="text-green-600 text-sm mt-2 text-center flex items-center justify-center gap-1">
-            <CheckCircle2 className="w-3 h-3" /> Representatives saved — your address was not.
-          </p>
-        )}
-        {error && <p className="text-red-500 text-sm mt-2 text-center">{error}</p>}
-      </div>
+        </div>
+      </RaisedCard>
 
       {loading && !results && (
-        <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto mt-4">
-          <div className="rounded-xl bg-slate-100 animate-pulse h-48" />
-          <div className="rounded-xl bg-slate-100 animate-pulse h-48" />
+        <div className="grid md:grid-cols-2 gap-4 max-w-3xl mx-auto mt-4">
+          <div className="rounded-3xl bg-pw-soft animate-pulse h-48" />
+          <div className="rounded-3xl bg-pw-soft animate-pulse h-48" />
         </div>
       )}
 
       {results && (
-        <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-          <Card className="border border-slate-200 bg-indigo-50">
-            <CardContent className="p-6 space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-blue-100 text-blue-700 rounded-lg flex items-center justify-center">
-                  <Landmark className="w-5 h-5" />
-                </div>
-                <div>
-                  <p className="text-xs text-slate-500 uppercase tracking-wide">State Information</p>
-                  <p className="text-lg font-bold text-slate-900">{results.state} ({results.state_abbreviation})</p>
-                </div>
+        <div className="grid md:grid-cols-2 gap-4 max-w-3xl mx-auto mt-4">
+          <RaisedCard className="space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 shrink-0 bg-pw-blue-soft text-pw-blue-ink rounded-xl grid place-items-center">
+                <Landmark className="w-5 h-5" aria-hidden="true" />
               </div>
-              <div className="flex items-center gap-3 pl-2">
-                <Building2 className="w-4 h-4 text-slate-400" />
-                <div>
-                  <p className="text-xs text-slate-500">State Capital</p>
-                  <p className="font-semibold text-slate-800">{results.state_capital}</p>
-                </div>
+              <div className="min-w-0">
+                <Eyebrow>State Information</Eyebrow>
+                <p className="text-lg font-extrabold">{results.state} ({results.state_abbreviation})</p>
               </div>
-              <div className="flex items-center gap-4 pl-2">
-                <OfficialPhoto photoUrl={results.governor_photo_url} name={results.governor} size="md" />
-                <div>
-                  <p className="text-xs text-slate-500">Governor</p>
-                  <p className="font-semibold text-slate-800">{results.governor} <span className="text-xs text-slate-400">({results.governor_party})</span></p>
-                </div>
+            </div>
+            <div className="flex items-center gap-3 bg-pw-soft rounded-2xl p-3">
+              <Building2 className="w-5 h-5 text-pw-muted shrink-0" aria-hidden="true" />
+              <div>
+                <p className="text-sm text-pw-muted">State Capital</p>
+                <p className="font-bold">{results.state_capital}</p>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+            <div className="flex items-center gap-3 bg-pw-soft rounded-2xl p-3">
+              <OfficialPhoto photoUrl={results.governor_photo_url} name={results.governor} size="md" />
+              <div className="min-w-0">
+                <p className="text-sm text-pw-muted">Governor</p>
+                <p className="font-bold">{results.governor} <span className="text-sm font-normal text-pw-muted">({results.governor_party})</span></p>
+              </div>
+            </div>
+          </RaisedCard>
 
-          <Card className="border border-slate-200 bg-red-50">
-            <CardContent className="p-6 space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-red-100 text-red-700 rounded-lg flex items-center justify-center">
-                  <Users className="w-5 h-5" />
-                </div>
-                <div>
-                  <p className="text-xs text-slate-500 uppercase tracking-wide">US Senators</p>
+          <RaisedCard className="space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 shrink-0 bg-pw-red-soft text-pw-red-ink rounded-xl grid place-items-center">
+                <Users className="w-5 h-5" aria-hidden="true" />
+              </div>
+              <Eyebrow>US Senators</Eyebrow>
+            </div>
+            {results.senators.map((senator, i) => (
+              <div key={i} className="flex items-center gap-3 bg-pw-soft rounded-2xl p-3">
+                <OfficialPhoto photoUrl={senator.photo_url} name={senator.name} size="md" />
+                <div className="min-w-0">
+                  <p className="font-bold">{senator.name}</p>
+                  <p className="text-sm text-pw-muted">{senator.party}</p>
                 </div>
               </div>
-              {results.senators.map((senator, i) => (
-                <div key={i} className="flex items-center gap-4 pl-2">
-                  <OfficialPhoto photoUrl={senator.photo_url} name={senator.name} size="md" />
-                  <div>
-                    <p className="font-semibold text-slate-800">{senator.name}</p>
-                    <p className="text-xs text-slate-400">{senator.party}</p>
-                  </div>
-                </div>
-              ))}
-              <div className="border-t border-slate-100 pt-3">
-                <div className="flex items-center gap-4 pl-2">
-                  <OfficialPhoto photoUrl={results.representative?.photo_url} name={results.representative?.name} size="md" />
-                  <div>
-                    <p className="text-xs text-slate-500">US Representative</p>
-                    <p className="font-semibold text-slate-800">{results.representative.name}</p>
-                    <p className="text-xs text-slate-400">{results.representative.party} — District {results.representative.district}</p>
-                  </div>
-                </div>
+            ))}
+            <div className="flex items-center gap-3 bg-pw-soft rounded-2xl p-3">
+              <OfficialPhoto photoUrl={results.representative?.photo_url} name={results.representative?.name} size="md" />
+              <div className="min-w-0">
+                <p className="text-sm text-pw-muted">US Representative</p>
+                <p className="font-bold">{results.representative.name}</p>
+                <p className="text-sm text-pw-muted">{results.representative.party} — District {results.representative.district}</p>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </RaisedCard>
         </div>
       )}
     </section>

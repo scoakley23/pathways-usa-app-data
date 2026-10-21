@@ -153,33 +153,34 @@ export default function StudyBuddy() {
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end pointer-events-none">
       {isOpen && (
-        <Card className="w-[calc(100vw-3rem)] max-w-[350px] h-[500px] shadow-2xl border-blue-200 mb-4 pointer-events-auto flex flex-col animate-in slide-in-from-bottom-10 fade-in duration-300">
-          <CardHeader className="bg-blue-600 text-white rounded-t-xl p-3 flex flex-col gap-3 shrink-0">
+        <Card className="w-[calc(100vw-3rem)] max-w-[350px] h-[500px] max-h-[calc(100vh-7rem)] shadow-lift border-pw-line overflow-hidden mb-4 pointer-events-auto flex flex-col animate-in slide-in-from-bottom-10 fade-in duration-300">
+          <CardHeader className="bg-white text-pw-navy border-b border-pw-line p-3 flex flex-col gap-2 space-y-0 shrink-0">
             <div className="flex items-center justify-between w-full">
                 <div className="flex items-center gap-2">
-                <Bot className="w-6 h-6" />
-                <CardTitle className="text-base">AI Study Buddy</CardTitle>
+                <span className="w-9 h-9 rounded-xl bg-pw-blue-soft text-pw-blue-ink flex items-center justify-center" aria-hidden="true"><Bot className="w-5 h-5" /></span>
+                <CardTitle className="text-lg">AI Study Buddy</CardTitle>
                 </div>
                 <div className="flex items-center gap-1">
                     <Link to={createPageUrl('StudyHistory')}>
-                        <Button variant="ghost" size="icon" className="text-blue-100 hover:text-white hover:bg-blue-700 h-8 w-8" title="View History">
+                        <Button variant="ghost" size="icon" className="text-pw-muted hover:text-pw-navy" title="View History" aria-label="View History">
                             <History className="w-4 h-4" />
                         </Button>
                     </Link>
                     <Button 
                     variant="ghost" 
                     size="icon" 
-                    className="text-blue-100 hover:text-white hover:bg-blue-700 h-8 w-8"
+                    className="text-pw-muted hover:text-pw-navy"
                     onClick={() => setIsOpen(false)}
+                    aria-label="Close"
                     >
                     <X className="w-5 h-5" />
                     </Button>
                 </div>
             </div>
             <div className="flex items-center gap-2 w-full">
-                <Globe className="w-4 h-4 text-blue-100" />
+                <Globe className="w-4 h-4 text-pw-muted shrink-0" aria-hidden="true" />
                 <Select value={language} onValueChange={setLanguage}>
-                    <SelectTrigger className="h-8 bg-blue-700 border-none text-white text-xs focus:ring-0 focus:ring-offset-0">
+                    <SelectTrigger className="min-h-11 h-11 bg-pw-soft border-transparent text-pw-navy text-sm font-semibold" aria-label="Language">
                         <SelectValue placeholder="Language" />
                     </SelectTrigger>
                     <SelectContent>
@@ -191,7 +192,7 @@ export default function StudyBuddy() {
             </div>
           </CardHeader>
           
-          <CardContent className="flex-1 p-0 overflow-hidden bg-slate-50">
+          <CardContent className="flex-1 p-0 overflow-hidden bg-pw-page">
              <div className="h-full overflow-y-auto p-4 space-y-4" ref={scrollRef}>
                 {messages.map((msg, i) => (
                   <div 
@@ -203,22 +204,23 @@ export default function StudyBuddy() {
                   >
                     <div className={cn(
                       "w-8 h-8 rounded-full flex items-center justify-center shrink-0",
-                      msg.role === 'user' ? "bg-blue-100 text-blue-600" : "bg-blue-600 text-white"
+                      msg.role === 'user' ? "bg-pw-soft text-pw-navy" : "bg-pw-blue-soft text-pw-blue-ink"
                     )}>
                       {msg.role === 'user' ? <User className="w-5 h-5" /> : <Bot className="w-5 h-5" />}
                     </div>
                     <div className={cn(
-                      "p-3 rounded-2xl text-sm group relative",
+                      "p-3 rounded-2xl text-base leading-snug group relative",
                       msg.role === 'user' 
-                        ? "bg-blue-600 text-white rounded-tr-none" 
-                        : "bg-white border border-slate-200 text-slate-700 rounded-tl-none shadow-sm"
+                        ? "bg-pw-navy text-white rounded-tr-md" 
+                        : "bg-white border border-pw-line text-pw-navy rounded-tl-md"
                     )}>
                       {msg.content}
                       {msg.role === 'assistant' && (
                           <button 
                             onClick={() => speak(msg.content)}
-                            className="absolute -right-8 top-1/2 -translate-y-1/2 p-1.5 text-slate-400 hover:text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity"
+                            className="absolute -right-8 top-1/2 -translate-y-1/2 p-1.5 rounded-lg text-pw-muted hover:text-pw-navy opacity-0 group-hover:opacity-100 focus-visible:opacity-100 transition-opacity"
                             title="Read aloud"
+                            aria-label="Read aloud"
                           >
                               <Volume2 className="w-4 h-4" />
                           </button>
@@ -228,21 +230,21 @@ export default function StudyBuddy() {
                 ))}
                 {isLoading && (
                   <div className="flex gap-2">
-                    <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center shrink-0">
+                    <div className="w-8 h-8 rounded-full bg-pw-blue-soft text-pw-blue-ink flex items-center justify-center shrink-0">
                       <Bot className="w-5 h-5" />
                     </div>
-                    <div className="bg-white border border-slate-200 p-3 rounded-2xl rounded-tl-none shadow-sm">
-                      <Loader2 className="w-4 h-4 animate-spin text-slate-400" />
+                    <div className="bg-white border border-pw-line p-3 rounded-2xl rounded-tl-md">
+                      <Loader2 className="w-4 h-4 animate-spin text-pw-muted" />
                     </div>
                   </div>
                 )}
              </div>
           </CardContent>
 
-          <CardFooter className="p-3 bg-white border-t shrink-0 flex-col gap-2">
+          <CardFooter className="p-3 bg-white border-t border-pw-line shrink-0 flex-col gap-2">
             <p
               dir={RTL_LANGUAGES.includes(appLanguage) ? 'rtl' : 'ltr'}
-              className="w-full text-base leading-snug text-slate-600"
+              className="w-full text-base leading-snug text-pw-muted"
             >
               {privacyNote}
             </p>
@@ -251,9 +253,10 @@ export default function StudyBuddy() {
                 placeholder="Ask a question..." 
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                className="flex-1"
+                className="flex-1 min-w-0"
+                aria-label="Ask a question..."
               />
-              <Button type="submit" size="icon" disabled={isLoading || !input.trim()} className="bg-blue-600 hover:bg-blue-700">
+              <Button type="submit" size="icon" disabled={isLoading || !input.trim()} aria-label="Send" className="shrink-0">
                 <Send className="w-4 h-4" />
               </Button>
             </form>
@@ -264,10 +267,11 @@ export default function StudyBuddy() {
       <Button
         onClick={() => setIsOpen(!isOpen)}
         size="lg"
+        aria-label="AI Study Buddy"
         className={cn(
-          "rounded-full h-14 w-14 shadow-xl pointer-events-auto transition-all duration-300",
+          "rounded-full h-14 w-14 p-0 [&_svg]:size-6 shadow-lift pointer-events-auto transition-all duration-300",
           isOpen ? "rotate-90 opacity-0 scale-0" : "rotate-0 opacity-100 scale-100",
-          "bg-blue-600 hover:bg-blue-700 text-white"
+          "bg-pw-navy hover:bg-[#0F1B36] text-white"
         )}
       >
         <MessageCircle className="w-7 h-7" />
@@ -278,7 +282,8 @@ export default function StudyBuddy() {
          <Button
             onClick={() => setIsOpen(false)}
             size="lg"
-            className="rounded-full h-14 w-14 shadow-xl pointer-events-auto bg-slate-800 hover:bg-slate-900 text-white absolute bottom-0 right-0"
+            className="rounded-full h-14 w-14 p-0 [&_svg]:size-6 shadow-lift pointer-events-auto bg-pw-navy hover:bg-[#0F1B36] text-white absolute bottom-0 right-0"
+            aria-label="Close"
           >
             <X className="w-7 h-7" />
           </Button>

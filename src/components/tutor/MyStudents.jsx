@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Plus, UserCheck, Clock, UserX, MessageCircle, FileText, BarChart, MoreHorizontal, Check, X, Link } from 'lucide-react';
+import { Plus, MessageCircle, FileText, BarChart, MoreHorizontal, Check, X, Link, RefreshCw } from 'lucide-react';
+import { Tag, RaisedCard } from '@/components/pathways/ui';
 import ChatInterface from '@/components/chat/ChatInterface';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import {
@@ -12,7 +11,6 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import AssignContentDialog from './AssignContentDialog';
@@ -176,31 +174,36 @@ The Citizenship Hub Team`;
     if (action === 'report') setIsReportOpen(true);
   };
 
+  const viewBtn = (active) => `flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 min-h-[44px] px-2 sm:px-4 py-1.5 rounded-xl text-sm sm:text-base font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red ${active ? 'bg-pw-navy text-white' : 'text-pw-muted hover:text-pw-navy hover:bg-pw-soft'}`;
+
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center mb-4">
-        <div className="flex bg-slate-100 p-1 rounded-lg">
+      <div className="flex justify-between items-center gap-2 mb-4">
+        <div className="grid grid-cols-3 flex-1 sm:flex-none bg-white border border-pw-line p-1 rounded-2xl gap-1">
             <button 
                 onClick={() => { setView('list'); fetchStudents(); }}
-                className={`flex items-center px-4 py-2 rounded-md text-sm font-medium transition-all ${view === 'list' ? 'bg-white shadow-sm text-blue-700' : 'text-slate-500 hover:text-slate-700'}`}
+                className={viewBtn(view === 'list')}
+                aria-pressed={view === 'list'}
             >
-                <Users className="w-4 h-4 mr-2" /> My Students
+                <Users className="w-4 h-4" aria-hidden="true" /> My Students
             </button>
             <button 
                 onClick={() => setView('dashboard')}
-                className={`flex items-center px-4 py-2 rounded-md text-sm font-medium transition-all ${view === 'dashboard' ? 'bg-white shadow-sm text-blue-700' : 'text-slate-500 hover:text-slate-700'}`}
+                className={viewBtn(view === 'dashboard')}
+                aria-pressed={view === 'dashboard'}
             >
-                <LayoutDashboard className="w-4 h-4 mr-2" /> Dashboard
+                <LayoutDashboard className="w-4 h-4" aria-hidden="true" /> Dashboard
             </button>
             <button 
                 onClick={() => setView('monitor')}
-                className={`flex items-center px-4 py-2 rounded-md text-sm font-medium transition-all ${view === 'monitor' ? 'bg-white shadow-sm text-blue-700' : 'text-slate-500 hover:text-slate-700'}`}
+                className={viewBtn(view === 'monitor')}
+                aria-pressed={view === 'monitor'}
             >
-                <Activity className="w-4 h-4 mr-2" /> Activity
+                <Activity className="w-4 h-4" aria-hidden="true" /> Activity
             </button>
         </div>
-        <Button variant="ghost" size="sm" onClick={fetchStudents} title="Refresh List">
-            <div className="w-4 h-4 border-2 border-slate-400 border-t-transparent rounded-full hover:animate-spin" />
+        <Button variant="ghost" size="icon" onClick={fetchStudents} title="Refresh List" aria-label="Refresh List" className="shrink-0">
+            <RefreshCw className="w-5 h-5 text-pw-muted" />
         </Button>
       </div>
 
@@ -210,151 +213,142 @@ The Citizenship Hub Team`;
           <StudentActivityMonitor currentUserEmail={currentUserEmail} students={students} />
       ) : (
         <>
-          <Card>
-            <CardHeader>
-              <CardTitle>Add New Student</CardTitle>
-            </CardHeader>
-            <CardContent>
+          <RaisedCard>
+              <h2 className="text-xl font-extrabold text-pw-navy mb-4">Add New Student</h2>
                {/* Invite Code Section */}
-               <div className="mb-6 bg-indigo-50 border border-indigo-100 rounded-lg p-4 flex flex-col md:flex-row items-center justify-between gap-4">
+               <div className="mb-6 bg-pw-blue-soft rounded-2xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
                    <div>
-                       <h3 className="text-sm font-bold text-indigo-900 mb-1">Your Class Invite Code</h3>
-                       <p className="text-xs text-indigo-700">Share this code with your students. They can enter it to join your class instantly.</p>
+                       <h3 className="text-base font-bold text-pw-navy mb-1">Your Class Invite Code</h3>
+                       <p className="text-sm text-pw-blue-ink">Share this code with your students. They can enter it to join your class instantly.</p>
                    </div>
                    <div className="flex items-center gap-2 flex-wrap">
-                       <code className="bg-white px-4 py-2 rounded-lg border-2 border-indigo-200 text-xl font-mono font-bold text-indigo-600 tracking-wider">
+                       <code className="bg-white px-4 py-2 rounded-xl border border-pw-line text-xl font-mono font-extrabold text-pw-navy tracking-wider">
                            {inviteCode || "..."}
                        </code>
                        <Button 
                            size="sm" 
-                           variant="ghost" 
+                           variant="outline" 
                            onClick={() => {
                                navigator.clipboard.writeText(inviteCode);
                                toast.success("Code copied!");
                            }}
-                           className="text-indigo-600 hover:bg-indigo-100"
                        >
                            Copy Code
                        </Button>
                        <Button
                            size="sm"
-                           variant="ghost"
+                           variant="outline"
                            onClick={() => {
                                const link = `${window.location.origin}/?tutor_invite=${encodeURIComponent(currentUserEmail)}`;
                                navigator.clipboard.writeText(link);
                                toast.success("Invite link copied!");
                            }}
-                           className="text-indigo-600 hover:bg-indigo-100"
                        >
-                           <Link className="w-3 h-3 mr-1" /> Copy Link
+                           <Link className="w-4 h-4" /> Copy Link
                        </Button>
                    </div>
                </div>
 
                <div className="relative my-6">
                    <div className="absolute inset-0 flex items-center">
-                       <span className="w-full border-t" />
+                       <span className="w-full border-t border-pw-line" />
                    </div>
-                   <div className="relative flex justify-center text-xs uppercase">
-                       <span className="bg-white px-2 text-muted-foreground">Or invite by email</span>
+                   <div className="relative flex justify-center">
+                       <span className="bg-white px-3 text-xs font-bold uppercase tracking-widest text-pw-muted">Or invite by email</span>
                    </div>
                </div>
 
-              <div className="mb-4 text-sm text-slate-600 bg-slate-50 p-3 rounded-md border border-slate-100">
-                  <p>Enter your student's email address below. They will receive an invitation email.</p>
-              </div>
-              <form onSubmit={addStudent} className="flex gap-4">
+              <p className="mb-4 text-base text-pw-muted">
+                  Enter your student's email address below. They will receive an invitation email.
+              </p>
+              <form onSubmit={addStudent} className="flex flex-col sm:flex-row gap-3">
                 <Input
                   placeholder="Student's Email Address"
                   value={newStudentEmail}
                   onChange={(e) => setNewStudentEmail(e.target.value)}
                   type="email"
                   required
+                  aria-label="Student's Email Address"
                 />
-                <Button type="submit" disabled={isSubmitting}>
-                  <Plus className="w-4 h-4 mr-2" /> {isSubmitting ? 'Adding...' : 'Add Student'}
+                <Button type="submit" disabled={isSubmitting} className="w-full sm:w-auto">
+                  <Plus className="w-4 h-4" /> {isSubmitting ? 'Adding...' : 'Add Student'}
                 </Button>
               </form>
-            </CardContent>
-          </Card>
+          </RaisedCard>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       
         {students.map((rel) => (
-          <Card key={rel.id} className="hover:shadow-md transition-shadow">
-            <CardContent className="p-6">
-              <div className="flex justify-between items-start mb-4">
-                 <div>
-                    <h3 className="font-semibold text-lg truncate max-w-[180px]" title={rel.student_email}>
+          <RaisedCard key={rel.id}>
+              <div className="flex justify-between items-start gap-2 mb-4">
+                 <div className="min-w-0">
+                    <h3 className="font-extrabold text-lg text-pw-navy truncate" title={rel.student_email}>
                         {rel.student_email.split('@')[0]}
                     </h3>
-                    <p className="text-xs text-slate-500 truncate max-w-[180px]">{rel.student_email}</p>
+                    <p className="text-sm text-pw-muted truncate">{rel.student_email}</p>
                  </div>
                  <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
-                            <MoreHorizontal className="h-4 w-4" />
+                        <Button variant="ghost" size="icon" className="shrink-0" aria-label="Actions">
+                            <MoreHorizontal className="h-5 w-5" />
                         </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
                         <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                        <DropdownMenuItem onClick={() => handleAction(rel, 'chat')}>
+                        <DropdownMenuItem onClick={() => handleAction(rel, 'chat')} className="min-h-[44px] text-base">
                             <MessageCircle className="mr-2 h-4 w-4" /> Chat
                         </DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => handleAction(rel, 'assign')}>
+                        <DropdownMenuItem onClick={() => handleAction(rel, 'assign')} className="min-h-[44px] text-base">
                             <FileText className="mr-2 h-4 w-4" /> Assign Practice
                         </DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => handleAction(rel, 'report')}>
+                        <DropdownMenuItem onClick={() => handleAction(rel, 'report')} className="min-h-[44px] text-base">
                             <BarChart className="mr-2 h-4 w-4" /> View Report
                         </DropdownMenuItem>
                     </DropdownMenuContent>
                  </DropdownMenu>
               </div>
               
-              <div className="mt-4 pt-4 border-t border-slate-100">
+              <div className="mt-4 pt-4 border-t border-pw-line">
                  {rel.status === 'pending' ? (
                     rel.created_by !== currentUserEmail ? (
-                     <div className="bg-blue-50 p-3 rounded-md border border-blue-100">
-                         <span className="text-xs font-bold text-blue-700 block mb-2">Student requested to join</span>
+                     <div className="bg-pw-teal-soft p-4 rounded-2xl">
+                         <span className="text-sm font-bold text-pw-teal-ink block mb-3">Student requested to join</span>
                          <div className="flex gap-2">
-                             <Button size="sm" className="bg-blue-600 hover:bg-blue-700 flex-1 h-8" onClick={() => handleResponse(rel.id, 'active')}>
-                                 <Check className="w-3 h-3 mr-1" /> Accept
+                             <Button className="flex-1" onClick={() => handleResponse(rel.id, 'active')}>
+                                 <Check className="w-4 h-4" /> Accept
                              </Button>
-                             <Button size="sm" variant="outline" className="text-slate-600 hover:bg-slate-100 flex-1 h-8" onClick={() => handleResponse(rel.id, 'rejected')}>
-                                 <X className="w-3 h-3 mr-1" /> Reject
+                             <Button variant="outline" className="flex-1" onClick={() => handleResponse(rel.id, 'rejected')}>
+                                 <X className="w-4 h-4" /> Reject
                              </Button>
                          </div>
                      </div>
                     ) : (
-                     <div className="bg-yellow-50 p-3 rounded-md border border-yellow-100 flex items-center justify-between">
-                         <span className="text-sm font-medium text-yellow-800 flex items-center">
-                             <Clock className="w-4 h-4 mr-2" /> Invitation Sent
-                         </span>
-                         <span className="text-xs text-yellow-600">Pending acceptance</span>
+                     <div className="flex flex-wrap items-center justify-between gap-2">
+                         <Tag tone="blue">Invitation Sent</Tag>
+                         <span className="text-sm text-pw-muted">Pending acceptance</span>
                      </div>
                     )
                  ) : (
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between gap-2">
                         <div className="flex items-center">
-                            {rel.status === 'active' && <Badge className="bg-green-100 text-green-700 border-green-200"><UserCheck className="w-3 h-3 mr-1"/> Active</Badge>}
-                            {rel.status === 'rejected' && <Badge variant="destructive"><UserX className="w-3 h-3 mr-1"/> Rejected</Badge>}
+                            {rel.status === 'active' && <Tag tone="green">Active</Tag>}
+                            {rel.status === 'rejected' && <Tag tone="red">Rejected</Tag>}
                         </div>
                         <div className="flex gap-2">
                             <Button variant="outline" size="sm" onClick={() => handleAction(rel, 'assign')} disabled={rel.status !== 'active'}>
                                 Assign
                             </Button>
-                            <Button variant="ghost" size="sm" onClick={() => handleAction(rel, 'chat')} disabled={rel.status !== 'active'}>
-                                <MessageCircle className="w-4 h-4 text-slate-500" />
+                            <Button variant="ghost" size="icon" onClick={() => handleAction(rel, 'chat')} disabled={rel.status !== 'active'} aria-label="Chat">
+                                <MessageCircle className="w-5 h-5 text-pw-muted" />
                             </Button>
                         </div>
                     </div>
                  )}
               </div>
-              </CardContent>
-              </Card>
+          </RaisedCard>
               ))}
         {students.length === 0 && (
-            <div className="col-span-full text-center py-10 text-slate-500">
+            <div className="col-span-full text-center py-10 px-5 text-base text-pw-muted bg-white rounded-3xl border border-dashed border-pw-line">
                 No students yet. Add one above!
             </div>
         )}
@@ -364,10 +358,10 @@ The Citizenship Hub Team`;
 
       {/* Chat Dialog */}
       <Dialog open={isChatOpen} onOpenChange={setIsChatOpen}>
-        <DialogContent className="max-w-3xl h-[80vh] flex flex-col p-0 gap-0">
-            <div className="px-6 py-4 border-b">
+        <DialogContent className="max-w-3xl h-[80vh] flex flex-col p-0 gap-0 overflow-hidden">
+            <div className="px-6 py-4 border-b border-pw-line">
                 <DialogHeader>
-                    <DialogTitle>Chat with {selectedStudent?.student_email}</DialogTitle>
+                    <DialogTitle className="break-all pr-8">Chat with {selectedStudent?.student_email}</DialogTitle>
                 </DialogHeader>
             </div>
             <div className="flex-1 overflow-hidden">

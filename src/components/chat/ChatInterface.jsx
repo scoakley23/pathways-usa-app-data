@@ -108,18 +108,18 @@ export default function ChatInterface({ otherUserEmail, currentUserEmail }) {
   };
 
   return (
-    <div className="flex flex-col h-[500px] border rounded-xl bg-white shadow-sm">
-      <div className="p-4 border-b bg-slate-50 rounded-t-xl">
-        <h3 className="font-semibold text-slate-800 flex items-center gap-2">
-          <User className="w-4 h-4" /> Chat with {otherUserEmail}
+    <div className="flex flex-col h-[500px] max-h-full border border-pw-line rounded-3xl bg-white overflow-hidden">
+      <div className="p-4 border-b border-pw-line bg-pw-soft">
+        <h3 className="font-bold text-base text-pw-navy flex items-center gap-2 min-w-0">
+          <User className="w-4 h-4 shrink-0" aria-hidden="true" /> <span className="truncate">Chat with {otherUserEmail}</span>
         </h3>
       </div>
       
       <ScrollArea className="flex-1 p-4">
         {isLoading ? (
-          <div className="text-center text-slate-400 mt-10">Loading chat...</div>
+          <div className="text-center text-base text-pw-muted mt-10">Loading chat...</div>
         ) : messages.length === 0 ? (
-          <div className="text-center text-slate-400 mt-10">No messages yet. Say hi!</div>
+          <div className="text-center text-base text-pw-muted mt-10">No messages yet. Say hi!</div>
         ) : (
           <div className="space-y-4">
             {messages.map((msg) => {
@@ -130,14 +130,14 @@ export default function ChatInterface({ otherUserEmail, currentUserEmail }) {
                   className={`flex ${isMe ? 'justify-end' : 'justify-start'}`}
                 >
                   <div
-                    className={`max-w-[80%] rounded-2xl px-4 py-2 text-sm ${
+                    className={`max-w-[80%] rounded-2xl px-4 py-2 text-base ${
                       isMe
-                        ? 'bg-blue-600 text-white rounded-br-none'
-                        : 'bg-slate-100 text-slate-800 rounded-bl-none'
+                        ? 'bg-pw-navy text-white rounded-br-md'
+                        : 'bg-pw-soft text-pw-navy rounded-bl-md'
                     }`}
                   >
                     <p>{msg.content}</p>
-                    <p className={`text-[10px] mt-1 ${isMe ? 'text-blue-200' : 'text-slate-400'}`}>
+                    <p className={`text-xs mt-1 ${isMe ? 'text-white/70' : 'text-pw-muted'}`}>
                       {format(new Date(msg.created_date), 'h:mm a')}
                     </p>
                   </div>
@@ -149,15 +149,16 @@ export default function ChatInterface({ otherUserEmail, currentUserEmail }) {
         )}
       </ScrollArea>
 
-      <div className="p-4 border-t bg-white rounded-b-xl">
+      <div className="p-3 border-t border-pw-line bg-white">
         <form onSubmit={sendMessage} className="flex gap-2">
           <Input
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
             placeholder="Type a message..."
-            className="flex-1"
+            className="flex-1 min-w-0"
+            aria-label="Type a message..."
           />
-          <Button type="submit" size="icon" className="bg-blue-600 hover:bg-blue-700">
+          <Button type="submit" size="icon" aria-label="Send" className="shrink-0">
             <Send className="w-4 h-4" />
           </Button>
         </form>

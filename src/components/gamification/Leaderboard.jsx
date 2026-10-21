@@ -1,8 +1,7 @@
 import React from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Trophy, Medal, Flame, Crown } from 'lucide-react';
+import { Trophy, Flame, Crown } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export default function Leaderboard() {
@@ -53,20 +52,22 @@ export default function Leaderboard() {
 
   return (
     <Card className="w-full h-full">
-      <CardHeader className="pb-2">
-        <CardTitle className="flex items-center gap-2 text-xl">
-          <Trophy className="w-5 h-5 text-yellow-500" />
+      <CardHeader className="p-5 pb-3 sm:p-6 sm:pb-3">
+        <CardTitle className="flex items-center gap-3 text-xl">
+          <span className="w-10 h-10 rounded-2xl bg-pw-blue-soft text-pw-blue-ink grid place-items-center shrink-0">
+            <Trophy className="w-5 h-5" aria-hidden="true" />
+          </span>
           Leaderboard
         </CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="p-5 pt-0 sm:p-6 sm:pt-0">
         {isLoading ? (
           <div className="space-y-4">
-             {[1,2,3].map(i => <Skeleton key={i} className="h-12 w-full rounded-lg" />)}
+             {[1,2,3].map(i => <Skeleton key={i} className="h-14 w-full rounded-2xl" />)}
           </div>
         ) : leaders.length === 0 ? (
-           <div className="text-center py-8 text-slate-500">
-             <Crown className="w-12 h-12 mx-auto text-slate-300 mb-2" />
+           <div className="text-center py-8 px-4 text-base text-pw-muted bg-pw-soft rounded-2xl">
+             <Crown className="w-10 h-10 mx-auto text-pw-muted mb-2" aria-hidden="true" />
              <p>Be the first to join the leaderboard!</p>
            </div>
         ) : (
@@ -74,28 +75,24 @@ export default function Leaderboard() {
             {leaders.map((leader, index) => (
               <div 
                 key={leader.id} 
-                className={`flex items-center justify-between p-3 rounded-xl border ${
-                  index === 0 ? 'bg-yellow-50 border-yellow-200' : 
-                  index === 1 ? 'bg-slate-50 border-slate-200' : 
-                  index === 2 ? 'bg-orange-50 border-orange-200' : 'bg-white border-slate-100'
+                className={`flex items-center justify-between gap-3 min-h-[56px] px-4 py-3 rounded-2xl border ${
+                  index < 3 ? 'bg-pw-soft border-pw-line' : 'bg-white border-pw-line'
                 }`}
               >
-                <div className="flex items-center gap-3">
-                  <div className={`w-6 h-6 flex items-center justify-center font-bold rounded-full text-xs
-                    ${index === 0 ? 'bg-yellow-500 text-white' : 
-                      index === 1 ? 'bg-slate-500 text-white' : 
-                      index === 2 ? 'bg-orange-500 text-white' : 'bg-slate-100 text-slate-500'
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className={`w-8 h-8 shrink-0 flex items-center justify-center font-bold rounded-full text-sm
+                    ${index < 3 ? 'bg-pw-navy text-white' : 'bg-pw-soft text-pw-navy'
                     }`}
                   >
                     {index + 1}
                   </div>
-                  <div className="font-medium text-slate-700">
+                  <div className="font-semibold text-base text-pw-navy truncate">
                     {leader.display_name || 'Anonymous'}
                   </div>
-                  {index < 3 && <Flame className="w-4 h-4 text-orange-500 fill-orange-500" />}
+                  {index < 3 && <Flame className="w-4 h-4 shrink-0 text-pw-red" aria-hidden="true" />}
                 </div>
-                <div className="font-bold text-slate-900">
-                  {leader.points?.toLocaleString()} <span className="text-xs font-normal text-slate-500">pts</span>
+                <div className="font-extrabold text-base text-pw-navy shrink-0">
+                  {leader.points?.toLocaleString()} <span className="text-sm font-semibold text-pw-muted">pts</span>
                 </div>
               </div>
             ))}

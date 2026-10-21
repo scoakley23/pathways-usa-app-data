@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
+import { Tag } from '@/components/pathways/ui';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from "@/components/ui/dialog";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } from 'recharts';
 import { Loader2, TrendingUp, Users, CheckCircle, AlertCircle, Mail, Filter, Search, Send } from 'lucide-react';
@@ -155,85 +155,85 @@ export default function TutorDashboard({ currentUserEmail, students }) {
   };
 
   if (isLoading) {
-    return <div className="flex justify-center py-10"><Loader2 className="w-8 h-8 animate-spin text-blue-600" /></div>;
+    return <div className="flex justify-center py-10"><Loader2 className="w-8 h-8 animate-spin text-pw-navy" /></div>;
   }
 
   return (
     <div className="space-y-6 animate-in fade-in">
       <div className="flex justify-end">
           <Button variant="outline" size="sm" onClick={fetchData} disabled={isLoading}>
-              <TrendingUp className="w-4 h-4 mr-2" /> Refresh Data
+              <TrendingUp className="w-4 h-4" /> Refresh Data
           </Button>
       </div>
       {/* Metrics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
         <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-slate-500">Completion Rate</CardTitle>
+          <CardHeader className="p-4 pb-1 md:p-5 md:pb-1">
+            <CardTitle className="text-sm font-bold text-pw-muted">Completion Rate</CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{metrics.completionRate}%</div>
-            <p className="text-xs text-slate-500">of assigned tasks completed</p>
+          <CardContent className="p-4 pt-0 md:p-5 md:pt-0">
+            <div className="text-2xl font-extrabold text-pw-navy">{metrics.completionRate}%</div>
+            <p className="text-sm text-pw-muted">of assigned tasks completed</p>
           </CardContent>
         </Card>
         <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-slate-500">Active Students</CardTitle>
+          <CardHeader className="p-4 pb-1 md:p-5 md:pb-1">
+            <CardTitle className="text-sm font-bold text-pw-muted">Active Students</CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{metrics.activeStudents}</div>
-            <p className="text-xs text-slate-500">currently enrolled</p>
+          <CardContent className="p-4 pt-0 md:p-5 md:pt-0">
+            <div className="text-2xl font-extrabold text-pw-navy">{metrics.activeStudents}</div>
+            <p className="text-sm text-pw-muted">currently enrolled</p>
           </CardContent>
         </Card>
         <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-slate-500">Total Assignments</CardTitle>
+          <CardHeader className="p-4 pb-1 md:p-5 md:pb-1">
+            <CardTitle className="text-sm font-bold text-pw-muted">Total Assignments</CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{metrics.totalAssignments}</div>
-            <p className="text-xs text-slate-500">tasks created</p>
+          <CardContent className="p-4 pt-0 md:p-5 md:pt-0">
+            <div className="text-2xl font-extrabold text-pw-navy">{metrics.totalAssignments}</div>
+            <p className="text-sm text-pw-muted">tasks created</p>
           </CardContent>
         </Card>
         <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-slate-500">Common Topic</CardTitle>
+          <CardHeader className="p-4 pb-1 md:p-5 md:pb-1">
+            <CardTitle className="text-sm font-bold text-pw-muted">Common Topic</CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold capitalize">{metrics.mostCommonType.replace('_', ' ')}</div>
-            <p className="text-xs text-slate-500">most assigned type</p>
+          <CardContent className="p-4 pt-0 md:p-5 md:pt-0">
+            <div className="text-2xl font-extrabold text-pw-navy capitalize">{metrics.mostCommonType.replace('_', ' ')}</div>
+            <p className="text-sm text-pw-muted">most assigned type</p>
           </CardContent>
         </Card>
       </div>
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
-        <div className="flex justify-between items-center">
-            <TabsList>
-                <TabsTrigger value="overview">Overview & Trends</TabsTrigger>
-                <TabsTrigger value="assignments">Assignments Management</TabsTrigger>
+        <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-3">
+            <TabsList className="grid grid-cols-2 w-full md:w-auto">
+                <TabsTrigger value="overview" className="whitespace-normal text-center leading-tight">Overview & Trends</TabsTrigger>
+                <TabsTrigger value="assignments" className="whitespace-normal text-center leading-tight">Assignments Management</TabsTrigger>
             </TabsList>
-            <Button onClick={() => setIsMessageDialogOpen(true)} className="bg-blue-600 hover:bg-blue-700">
-                <Mail className="w-4 h-4 mr-2" /> Bulk Message
+            <Button onClick={() => setIsMessageDialogOpen(true)} className="w-full md:w-auto">
+                <Mail className="w-4 h-4" /> Bulk Message
             </Button>
         </div>
 
         <TabsContent value="overview" className="space-y-4">
             <Card>
                 <CardHeader>
-                    <CardTitle>Activity Trends (Last 14 Days)</CardTitle>
+                    <CardTitle className="text-lg">Activity Trends (Last 14 Days)</CardTitle>
                     <CardDescription>Track when assignments are given vs. completed</CardDescription>
                 </CardHeader>
-                <CardContent className="h-[300px]">
+                <CardContent className="h-[300px] px-2 md:px-6">
                     <ResponsiveContainer width="100%" height="100%">
-                        <LineChart data={chartData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-                            <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                            <XAxis dataKey="date" />
-                            <YAxis allowDecimals={false} />
+                        <LineChart data={chartData} margin={{ top: 5, right: 16, left: -16, bottom: 5 }}>
+                            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#DEE4EE" />
+                            <XAxis dataKey="date" tick={{ fill: '#4A5A78', fontSize: 12 }} />
+                            <YAxis allowDecimals={false} tick={{ fill: '#4A5A78', fontSize: 12 }} />
                             <Tooltip 
-                                contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
+                                contentStyle={{ borderRadius: '16px', border: '1px solid #DEE4EE', boxShadow: '0 8px 24px rgba(20, 38, 74, 0.08)' }}
                             />
                             <Legend />
-                            <Line type="monotone" dataKey="assigned" name="Assigned" stroke="#1F3A6B" strokeWidth={2} activeDot={{ r: 6 }} />
-                            <Line type="monotone" dataKey="completed" name="Completed" stroke="#22c55e" strokeWidth={2} activeDot={{ r: 6 }} />
+                            <Line type="monotone" dataKey="assigned" name="Assigned" stroke="#14264A" strokeWidth={2} activeDot={{ r: 6 }} />
+                            <Line type="monotone" dataKey="completed" name="Completed" stroke="#2E7D4F" strokeDasharray="6 3" strokeWidth={2} activeDot={{ r: 6 }} />
                         </LineChart>
                     </ResponsiveContainer>
                 </CardContent>
@@ -244,10 +244,10 @@ export default function TutorDashboard({ currentUserEmail, students }) {
             <Card>
                 <CardHeader>
                     <div className="flex flex-col md:flex-row justify-between gap-4">
-                        <CardTitle>Assignment History</CardTitle>
+                        <CardTitle className="text-lg">Assignment History</CardTitle>
                         <div className="flex gap-2 flex-wrap">
                             <Select value={studentFilter} onValueChange={setStudentFilter}>
-                                <SelectTrigger className="w-[180px]">
+                                <SelectTrigger className="w-full sm:w-[180px]">
                                     <SelectValue placeholder="Filter by Student" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -258,7 +258,7 @@ export default function TutorDashboard({ currentUserEmail, students }) {
                                 </SelectContent>
                             </Select>
                             <Select value={statusFilter} onValueChange={setStatusFilter}>
-                                <SelectTrigger className="w-[130px]">
+                                <SelectTrigger className="flex-1 sm:flex-none sm:w-[140px]">
                                     <SelectValue placeholder="Status" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -268,7 +268,7 @@ export default function TutorDashboard({ currentUserEmail, students }) {
                                 </SelectContent>
                             </Select>
                             <Select value={typeFilter} onValueChange={setTypeFilter}>
-                                <SelectTrigger className="w-[130px]">
+                                <SelectTrigger className="flex-1 sm:flex-none sm:w-[140px]">
                                     <SelectValue placeholder="Type" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -283,7 +283,7 @@ export default function TutorDashboard({ currentUserEmail, students }) {
                     </div>
                 </CardHeader>
                 <CardContent>
-                    <div className="rounded-md border">
+                    <div className="rounded-2xl border border-pw-line overflow-x-auto">
                         <Table>
                             <TableHeader>
                                 <TableRow>
@@ -298,29 +298,29 @@ export default function TutorDashboard({ currentUserEmail, students }) {
                             <TableBody>
                                 {filteredAssignments.length === 0 ? (
                                     <TableRow>
-                                        <TableCell colSpan={6} className="text-center py-8 text-slate-500">
+                                        <TableCell colSpan={6} className="text-center py-8 text-base text-pw-muted">
                                             No assignments found matching filters
                                         </TableCell>
                                     </TableRow>
                                 ) : (
                                     filteredAssignments.map((assignment) => (
                                         <TableRow key={assignment.id}>
-                                            <TableCell className="font-medium">{assignment.student_email.split('@')[0]}</TableCell>
+                                            <TableCell className="font-bold text-pw-navy">{assignment.student_email.split('@')[0]}</TableCell>
                                             <TableCell className="capitalize">{assignment.content_type.replace('_', ' ')}</TableCell>
-                                            <TableCell className="max-w-[200px] truncate text-slate-500">
+                                            <TableCell className="max-w-[200px] truncate text-pw-muted">
                                                 {assignment.custom_content || "Standard Content"}
                                             </TableCell>
                                             <TableCell>
                                                 {assignment.status === 'completed' ? (
-                                                    <Badge className="bg-green-100 text-green-700 hover:bg-green-100">Completed</Badge>
+                                                    <Tag tone="green" className="whitespace-nowrap">Completed</Tag>
                                                 ) : (
-                                                    <Badge variant="outline" className="bg-yellow-50 text-yellow-700 hover:bg-yellow-50">Pending</Badge>
+                                                    <Tag tone="blue" className="whitespace-nowrap">Pending</Tag>
                                                 )}
                                             </TableCell>
-                                            <TableCell className="text-xs text-slate-500">
+                                            <TableCell className="text-sm text-pw-muted whitespace-nowrap">
                                                 {format(new Date(assignment.assigned_date), 'MMM d, yyyy')}
                                             </TableCell>
-                                            <TableCell className="text-xs text-slate-500">
+                                            <TableCell className="text-sm text-pw-muted whitespace-nowrap">
                                                 {assignment.completed_date ? format(new Date(assignment.completed_date), 'MMM d, yyyy') : '-'}
                                             </TableCell>
                                         </TableRow>
@@ -345,7 +345,7 @@ export default function TutorDashboard({ currentUserEmail, students }) {
           </DialogHeader>
           <div className="space-y-4 py-4">
             <div className="space-y-2">
-                <label className="text-sm font-medium">Subject</label>
+                <label className="text-sm font-bold text-pw-navy">Subject</label>
                 <Input 
                     value={messageSubject} 
                     onChange={(e) => setMessageSubject(e.target.value)}
@@ -353,7 +353,7 @@ export default function TutorDashboard({ currentUserEmail, students }) {
                 />
             </div>
             <div className="space-y-2">
-                <label className="text-sm font-medium">Message</label>
+                <label className="text-sm font-bold text-pw-navy">Message</label>
                 <Input 
                     value={messageBody} 
                     onChange={(e) => setMessageBody(e.target.value)}
@@ -363,10 +363,10 @@ export default function TutorDashboard({ currentUserEmail, students }) {
                 />
             </div>
           </div>
-          <DialogFooter>
+          <DialogFooter className="gap-2">
             <Button variant="outline" onClick={() => setIsMessageDialogOpen(false)}>Cancel</Button>
-            <Button onClick={handleBulkMessage} disabled={isSending} className="bg-blue-600 hover:bg-blue-700">
-                {isSending ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <Send className="w-4 h-4 mr-2" />}
+            <Button onClick={handleBulkMessage} disabled={isSending}>
+                {isSending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
                 Send Message
             </Button>
           </DialogFooter>

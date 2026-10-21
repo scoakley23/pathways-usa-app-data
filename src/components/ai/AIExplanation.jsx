@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button } from "@/components/ui/button";
+import { PillButton } from '@/components/pathways/ui';
 import { Sparkles, Loader2, ChevronDown, ChevronUp } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -40,23 +40,20 @@ export default function AIExplanation({ question, answer, context = "US Civics T
   return (
     <div className="mt-4 w-full">
       {!isOpen && !explanation ? (
-        <Button 
-            variant="ghost" 
-            size="sm" 
-            onClick={getExplanation}
-            className="text-indigo-600 hover:text-indigo-700 hover:bg-indigo-50 text-xs font-medium"
-        >
-            <Sparkles className="w-3 h-3 mr-1.5" />
+        <PillButton onClick={getExplanation}>
+            <Sparkles className="w-5 h-5 shrink-0" aria-hidden="true" />
             Explain with AI
-        </Button>
+        </PillButton>
       ) : (
-        <div className="border border-indigo-100 bg-indigo-50/50 rounded-lg overflow-hidden transition-all">
+        <div className="bg-pw-blue-soft rounded-2xl overflow-hidden transition-all text-left">
             <button 
+                type="button"
                 onClick={() => setIsOpen(!isOpen)}
-                className="w-full flex items-center justify-between p-3 text-xs font-medium text-indigo-700 hover:bg-indigo-50"
+                aria-expanded={isOpen}
+                className="w-full min-h-[44px] flex items-center justify-between px-4 py-3 text-sm font-bold text-pw-blue-ink rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red"
             >
-                <span className="flex items-center"><Sparkles className="w-3 h-3 mr-1.5" /> AI Explanation</span>
-                {isOpen ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
+                <span className="flex items-center gap-2"><Sparkles className="w-4 h-4" aria-hidden="true" /> AI Explanation</span>
+                {isOpen ? <ChevronUp className="w-5 h-5" aria-hidden="true" /> : <ChevronDown className="w-5 h-5" aria-hidden="true" />}
             </button>
             
             <AnimatePresence>
@@ -65,14 +62,14 @@ export default function AIExplanation({ question, answer, context = "US Civics T
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        className="px-3 pb-3"
+                        className="px-4 pb-4"
                     >
                         {loading ? (
-                            <div className="flex items-center gap-2 text-slate-500 text-xs py-2">
-                                <Loader2 className="w-3 h-3 animate-spin" /> Thinking...
+                            <div className="flex items-center gap-2 text-pw-muted text-sm py-1">
+                                <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> Thinking...
                             </div>
                         ) : (
-                            <p className="text-sm text-slate-700 leading-relaxed">
+                            <p className="text-base text-pw-navy leading-relaxed">
                                 {explanation}
                             </p>
                         )}

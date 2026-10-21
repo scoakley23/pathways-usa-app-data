@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
 import { Button } from "@/components/ui/button";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { MessageCircle, Check, X, UserCheck, Clock, Plus, Hash, Mail } from 'lucide-react';
+import { MessageCircle, Check, X, Clock, Hash, Mail, RefreshCw } from 'lucide-react';
+import { Tag, RaisedCard } from '@/components/pathways/ui';
 import { Input } from "@/components/ui/input";
 import ChatInterface from '@/components/chat/ChatInterface';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -156,32 +155,31 @@ export default function MyTutor({ currentUserEmail }) {
 
   return (
     <div className="space-y-6">
-        <div className="flex justify-between items-center">
-            <h2 className="text-xl font-semibold text-slate-800">My Tutors</h2>
-            <Button variant="ghost" size="sm" onClick={fetchTutors} title="Refresh">
-                <div className="w-4 h-4 border-2 border-slate-400 border-t-transparent rounded-full hover:animate-spin" />
+        <div className="flex justify-between items-center gap-3">
+            <h2 className="text-2xl font-extrabold text-pw-navy">My Tutors</h2>
+            <Button variant="ghost" size="icon" onClick={fetchTutors} title="Refresh" aria-label="Refresh">
+                <RefreshCw className="w-5 h-5 text-pw-muted" />
             </Button>
         </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {tutors.map((rel) => (
-          <Card key={rel.id} className="hover:shadow-md transition-shadow">
-            <CardContent className="p-6">
-              <div className="flex justify-between items-start mb-4">
-                <div>
-                    <h3 className="font-semibold text-lg">{rel.tutor_email}</h3>
-                    <div className="mt-1">
-                         {rel.status === 'active' && <Badge className="bg-green-100 text-green-700"><UserCheck className="w-3 h-3 mr-1"/> Active Tutor</Badge>}
+          <RaisedCard key={rel.id}>
+              <div className="flex flex-wrap justify-between items-start gap-3">
+                <div className="min-w-0">
+                    <h3 className="font-extrabold text-lg text-pw-navy break-all">{rel.tutor_email}</h3>
+                    <div className="mt-2">
+                        {rel.status === 'active' && <Tag tone="green">Active Tutor</Tag>}
                         {rel.status === 'pending' && (
                             rel.created_by === currentUserEmail 
-                            ? <Badge variant="outline" className="bg-yellow-50 text-yellow-700"><Clock className="w-3 h-3 mr-1"/> Request Sent</Badge>
-                            : <Badge variant="outline" className="bg-blue-50 text-blue-700"><MessageCircle className="w-3 h-3 mr-1"/> Invite Received</Badge>
+                            ? <Tag tone="blue">Request Sent</Tag>
+                            : <Tag tone="teal">Invite Received</Tag>
                         )}
                     </div>
                 </div>
                 
                 {rel.status === 'active' && (
                     <Button variant="outline" size="sm" onClick={() => setSelectedTutor(rel.tutor_email)}>
-                        <MessageCircle className="w-4 h-4 mr-2" /> Chat
+                        <MessageCircle className="w-4 h-4" /> Chat
                     </Button>
                 )}
               </div>
@@ -189,90 +187,85 @@ export default function MyTutor({ currentUserEmail }) {
               {rel.status === 'pending' && (
                 <div className="mt-4">
                   {rel.created_by === currentUserEmail ? (
-                      <div className="w-full flex items-center justify-center gap-2 text-sm font-medium text-yellow-700 bg-yellow-50 border border-yellow-100 py-2 rounded-md">
-                          <Clock className="w-4 h-4" /> Request Pending Approval
+                      <div className="w-full flex items-center justify-center gap-2 text-base font-semibold text-pw-blue-ink bg-pw-blue-soft py-3 px-4 rounded-2xl">
+                          <Clock className="w-4 h-4" aria-hidden="true" /> Request Pending Approval
                       </div>
                   ) : (
-                      <div className="bg-blue-50 p-3 rounded-md border border-blue-100">
-                          <span className="text-xs font-bold text-blue-700 block mb-2">Tutor invited you</span>
+                      <div className="bg-pw-teal-soft p-4 rounded-2xl">
+                          <span className="text-sm font-bold text-pw-teal-ink block mb-3">Tutor invited you</span>
                           <div className="flex gap-2">
-                            <Button size="sm" className="bg-blue-600 hover:bg-blue-700 flex-1" onClick={() => handleResponse(rel.id, 'active')}>
-                                <Check className="w-4 h-4 mr-2" /> Accept
+                            <Button className="flex-1" onClick={() => handleResponse(rel.id, 'active')}>
+                                <Check className="w-4 h-4" /> Accept
                             </Button>
-                            <Button size="sm" variant="outline" className="text-slate-600 hover:bg-slate-100 flex-1" onClick={() => handleResponse(rel.id, 'rejected')}>
-                                <X className="w-4 h-4 mr-2" /> Decline
+                            <Button variant="outline" className="flex-1" onClick={() => handleResponse(rel.id, 'rejected')}>
+                                <X className="w-4 h-4" /> Decline
                             </Button>
                           </div>
                       </div>
                   )}
                 </div>
               )}
-            </CardContent>
-          </Card>
+          </RaisedCard>
         ))}
         {tutors.length === 0 && (
-            <div className="col-span-full text-center py-10 text-slate-500 bg-slate-50 rounded-xl border border-dashed border-slate-300">
-                <p className="mb-2">No tutors yet.</p>
-                <p className="text-sm">Ask your tutor for their <span className="font-semibold text-indigo-600">Invite Code</span> or ask them to invite you by email.</p>
+            <div className="col-span-full text-center py-10 px-5 text-pw-muted bg-white rounded-3xl border border-dashed border-pw-line">
+                <p className="mb-2 text-lg font-bold text-pw-navy">No tutors yet.</p>
+                <p className="text-base">Ask your tutor for their <span className="font-bold text-pw-navy">Invite Code</span> or ask them to invite you by email.</p>
             </div>
         )}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
           {/* Join by Code Section */}
-          <Card className="border-indigo-100 bg-indigo-50/50">
-              <CardHeader>
-                  <CardTitle className="text-lg flex items-center gap-2 text-indigo-900">
-                      <Hash className="w-5 h-5" /> Join with Code
-                  </CardTitle>
-              </CardHeader>
-              <CardContent>
-                  <form onSubmit={joinByCode} className="flex gap-4">
-                      <Input 
-                          placeholder="7-char code" 
-                          value={inviteCode}
-                          onChange={(e) => setInviteCode(e.target.value.toUpperCase())}
-                          className="bg-white font-mono uppercase"
-                      />
-                      <Button type="submit" disabled={isJoining || !inviteCode} className="bg-indigo-600 hover:bg-indigo-700">
-                          Join
-                      </Button>
-                  </form>
-                  <p className="text-xs text-slate-500 mt-2">
-                      Enter the code provided by your tutor.
-                  </p>
-              </CardContent>
-          </Card>
+          <RaisedCard>
+              <h3 className="text-lg font-extrabold flex items-center gap-2 text-pw-navy mb-4">
+                  <span className="w-10 h-10 rounded-xl bg-pw-blue-soft text-pw-blue-ink flex items-center justify-center" aria-hidden="true"><Hash className="w-5 h-5" /></span>
+                  Join with Code
+              </h3>
+              <form onSubmit={joinByCode} className="flex gap-3">
+                  <Input 
+                      placeholder="7-char code" 
+                      value={inviteCode}
+                      onChange={(e) => setInviteCode(e.target.value.toUpperCase())}
+                      className="bg-white font-mono uppercase min-w-0"
+                      aria-label="Invite code"
+                  />
+                  <Button type="submit" disabled={isJoining || !inviteCode}>
+                      Join
+                  </Button>
+              </form>
+              <p className="text-sm text-pw-muted mt-3">
+                  Enter the code provided by your tutor.
+              </p>
+          </RaisedCard>
 
           {/* Join by Email Section */}
-          <Card className="border-blue-100 bg-blue-50/50">
-              <CardHeader>
-                  <CardTitle className="text-lg flex items-center gap-2 text-blue-900">
-                      <Mail className="w-5 h-5" /> Request by Email
-                  </CardTitle>
-              </CardHeader>
-              <CardContent>
-                  <form onSubmit={addTutorByEmail} className="flex gap-4">
-                      <Input 
-                          placeholder="Tutor's Email" 
-                          value={tutorEmailInput}
-                          onChange={(e) => setTutorEmailInput(e.target.value)}
-                          type="email"
-                          className="bg-white"
-                      />
-                      <Button type="submit" disabled={isJoining || !tutorEmailInput} className="bg-blue-600 hover:bg-blue-700">
-                          Request
-                      </Button>
-                  </form>
-                  <p className="text-xs text-slate-500 mt-2">
-                      Send a connection request to your tutor's email.
-                  </p>
-              </CardContent>
-          </Card>
+          <RaisedCard>
+              <h3 className="text-lg font-extrabold flex items-center gap-2 text-pw-navy mb-4">
+                  <span className="w-10 h-10 rounded-xl bg-pw-teal-soft text-pw-teal-ink flex items-center justify-center" aria-hidden="true"><Mail className="w-5 h-5" /></span>
+                  Request by Email
+              </h3>
+              <form onSubmit={addTutorByEmail} className="flex gap-3">
+                  <Input 
+                      placeholder="Tutor's Email" 
+                      value={tutorEmailInput}
+                      onChange={(e) => setTutorEmailInput(e.target.value)}
+                      type="email"
+                      className="bg-white min-w-0"
+                      aria-label="Tutor's Email"
+                  />
+                  <Button type="submit" disabled={isJoining || !tutorEmailInput}>
+                      Request
+                  </Button>
+              </form>
+              <p className="text-sm text-pw-muted mt-3">
+                  Send a connection request to your tutor's email.
+              </p>
+          </RaisedCard>
       </div>
 
       <Dialog open={!!selectedTutor} onOpenChange={(open) => !open && setSelectedTutor(null)}>
-        <DialogContent className="max-w-2xl h-[600px] flex flex-col">
+        <DialogContent className="max-w-2xl h-[600px] max-h-[90vh] flex flex-col">
             <DialogHeader>
                 <DialogTitle>Chat with Tutor</DialogTitle>
             </DialogHeader>

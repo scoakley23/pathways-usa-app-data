@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { User } from 'lucide-react';
 
 export default function OfficialPhoto({ photoUrl, name, size = 'md' }) {
   const [imgError, setImgError] = useState(false);
@@ -21,11 +20,11 @@ export default function OfficialPhoto({ photoUrl, name, size = 'md' }) {
     : '?';
 
   const bgColors = [
-    'bg-blue-200 text-blue-800',
-    'bg-red-200 text-red-800',
-    'bg-green-200 text-green-800',
-    'bg-purple-200 text-purple-800',
-    'bg-amber-200 text-amber-800',
+    'bg-pw-blue-soft text-pw-blue-ink',
+    'bg-pw-red-soft text-pw-red-ink',
+    'bg-pw-green-soft text-pw-green-ink',
+    'bg-pw-teal-soft text-pw-teal-ink',
+    'bg-pw-soft text-pw-navy',
   ];
 
   const colorIndex = name ? name.charCodeAt(0) % bgColors.length : 0;
@@ -33,7 +32,7 @@ export default function OfficialPhoto({ photoUrl, name, size = 'md' }) {
 
   if (!photoUrl || imgError) {
     return (
-      <div className={`${sizes[size]} rounded-full ${bgColor} flex items-center justify-center border-2 border-white shadow`}>
+      <div className={`${sizes[size]} rounded-full ${bgColor} flex items-center justify-center border-2 border-white shadow-raised`}>
         <span className={`font-bold ${size === 'sm' ? 'text-xs' : 'text-sm'}`}>{initials}</span>
       </div>
     );
@@ -43,7 +42,7 @@ export default function OfficialPhoto({ photoUrl, name, size = 'md' }) {
     <img
       src={photoUrl}
       alt={name || 'Official'}
-      className={`${sizes[size]} rounded-full object-cover border-2 border-white shadow`}
+      className={`${sizes[size]} rounded-full object-cover border-2 border-white bg-pw-soft shadow-raised`}
       onError={() => setImgError(true)}
     />
   );
