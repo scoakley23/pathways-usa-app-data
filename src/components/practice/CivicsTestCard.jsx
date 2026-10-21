@@ -26,6 +26,8 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
   const [inputMode, setInputMode] = useState('speak');
   const [isListening, setIsListening] = useState(false);
   const recognitionRef = useRef(null);
+  // Refs don't trigger re-renders, so track recognizer readiness in state for the mic button
+  const [srReady, setSrReady] = useState(false);
 
   const SUPPORTED_LANGUAGES = LANGUAGES.filter(l => l.value !== 'en');
 
@@ -99,6 +101,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
     recognition.onerror = () => setIsListening(false);
     recognition.onend = () => setIsListening(false);
     recognitionRef.current = recognition;
+    setSrReady(true);
     return () => {
       if (recognitionRef.current) {
         try { recognitionRef.current.stop(); } catch (e) {}
@@ -235,7 +238,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
                               recognitionRef.current?.start();
                             }
                           }}
-                          disabled={!recognitionRef.current}
+                          disabled={!srReady}
                           aria-label={isListening ? 'Stop Listening' : 'Start Speaking'}
                           className="relative w-20 h-20 rounded-full bg-pw-red text-white grid place-items-center shadow-lift disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-pw-navy/30"
                         >
