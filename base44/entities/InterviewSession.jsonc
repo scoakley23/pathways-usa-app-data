@@ -25,7 +25,7 @@
     },
     "results": {
       "type": "array",
-      "description": "Per-question results with response transcripts and feedback",
+      "description": "Per-question scores only. Spoken answers (transcripts) and feedback built from them are never stored.",
       "items": {
         "type": "object",
         "properties": {
@@ -34,10 +34,6 @@
           },
           "section": {
             "type": "string"
-          },
-          "response": {
-            "type": "string",
-            "description": "The learner's spoken answer (transcript)"
           },
           "expected": {
             "type": "string"
@@ -56,17 +52,10 @@
           },
           "is_acceptable": {
             "type": "boolean"
-          },
-          "corrected_version": {
-            "type": "string"
-          },
-          "improvement_tips": {
-            "type": "string"
           }
         },
         "required": [
-          "question",
-          "response"
+          "question"
         ]
       }
     }

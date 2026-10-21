@@ -23,15 +23,9 @@
       "type": "number",
       "default": 0,
       "description": "Highest daily streak achieved"
-    },
-    "test_date": {
-      "type": "string",
-      "format": "date-time",
-      "description": "Scheduled citizenship test date"
     }
   },
   "required": [
-    "display_name",
-    "test_date"
+    "display_name"
   ]
 }

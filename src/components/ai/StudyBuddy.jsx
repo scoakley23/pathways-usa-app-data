@@ -12,6 +12,58 @@ import { createPageUrl } from '@/utils';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { speakText } from "@/components/utils/textToSpeech";
 import { LANGUAGES } from '@/hooks/useLessonTranslation';
+import { getSavedLanguage, RTL_LANGUAGES } from '@/hooks/useAppLanguage';
+
+// Privacy note shown above the chat box. English and Spanish are written by
+// hand; other languages are translated once by AI and cached on the device.
+// Bump the cache key whenever the English text changes.
+const PRIVACY_NOTE = {
+  en: "Don't share your immigration status, A-number, case details, or address. Your questions are saved to your account so you can see them in History.",
+  es: 'No comparta su estatus migratorio, número A, detalles de su caso ni su dirección. Sus preguntas se guardan en su cuenta para que pueda verlas en el Historial.',
+};
+const PRIVACY_NOTE_CACHE_KEY = 'pathways_sb_privacy_v2_';
+
+function usePrivacyNote(language) {
+  const [note, setNote] = useState(PRIVACY_NOTE[language] || PRIVACY_NOTE.en);
+
+  useEffect(() => {
+    if (PRIVACY_NOTE[language]) {
+      setNote(PRIVACY_NOTE[language]);
+      return;
+    }
+    setNote(PRIVACY_NOTE.en);
+    try {
+      const cached = localStorage.getItem(PRIVACY_NOTE_CACHE_KEY + language);
+      if (cached) {
+        setNote(cached);
+        return;
+      }
+    } catch (e) {
+      // ignore
+    }
+
+    let cancelled = false;
+    const langName = LANGUAGES.find((l) => l.value === language)?.label || language;
+    base44.integrations.Core.InvokeLLM({
+      prompt: `Translate this privacy note for an app that helps immigrants study for the U.S. citizenship test into ${langName}. Keep "A-number" understandable (you may add the local term). Return only the translated text.\n\n${PRIVACY_NOTE.en}`,
+    }).then((res) => {
+      if (cancelled || typeof res !== 'string' || !res.trim()) return;
+      setNote(res.trim());
+      try {
+        localStorage.setItem(PRIVACY_NOTE_CACHE_KEY + language, res.trim());
+      } catch (e) {
+        // ignore
+      }
+    }).catch(() => {
+      // keep English
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [language]);
+
+  return note;
+}
 
 export default function StudyBuddy() {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,25 +73,16 @@ export default function StudyBuddy() {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState(null);
-  const [tutorEmail, setTutorEmail] = useState(null);
   const [language, setLanguage] = useState('en');
   const scrollRef = useRef(null);
+  const appLanguage = getSavedLanguage();
+  const privacyNote = usePrivacyNote(appLanguage);
 
   useEffect(() => {
     const init = async () => {
       try {
         const currentUser = await base44.auth.me();
         setUser(currentUser);
-        
-        // Find active tutor
-        const rels = await base44.entities.TutorRelationship.filter({
-          student_email: currentUser.email,
-          status: 'active'
-        });
-        
-        if (rels.length > 0) {
-          setTutorEmail(rels[0].tutor_email);
-        }
       } catch (e) {
         // Not logged in or other error
       }
@@ -97,16 +140,6 @@ export default function StudyBuddy() {
             created_at: new Date().toISOString()
         });
       }
-
-      // 3. Notify Tutor if exists
-      if (tutorEmail && user) {
-        await base44.integrations.Core.SendEmail({
-          to: tutorEmail,
-          subject: `Student Question: ${user.email}`,
-          body: `Hello,\n\nYour student ${user.email} asked the AI Study Buddy a question:\n\n"${userQuestion}"\n\nThe AI answered:\n"${answerText}"\n\nYou might want to follow up with them directly.\n\nBest,\nCitizenship Learning Hub`
-        });
-      }
-
     } catch (error) {
       console.error("Study Buddy Error:", error);
       toast.error("Sorry, I couldn't answer that right now.");
@@ -120,7 +153,7 @@ export default function StudyBuddy() {
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end pointer-events-none">
       {isOpen && (
-        <Card className="w-[350px] h-[500px] shadow-2xl border-blue-200 mb-4 pointer-events-auto flex flex-col animate-in slide-in-from-bottom-10 fade-in duration-300">
+        <Card className="w-[calc(100vw-3rem)] max-w-[350px] h-[500px] shadow-2xl border-blue-200 mb-4 pointer-events-auto flex flex-col animate-in slide-in-from-bottom-10 fade-in duration-300">
           <CardHeader className="bg-blue-600 text-white rounded-t-xl p-3 flex flex-col gap-3 shrink-0">
             <div className="flex items-center justify-between w-full">
                 <div className="flex items-center gap-2">
@@ -206,7 +239,13 @@ export default function StudyBuddy() {
              </div>
           </CardContent>
 
-          <CardFooter className="p-3 bg-white border-t shrink-0">
+          <CardFooter className="p-3 bg-white border-t shrink-0 flex-col gap-2">
+            <p
+              dir={RTL_LANGUAGES.includes(appLanguage) ? 'rtl' : 'ltr'}
+              className="w-full text-base leading-snug text-slate-600"
+            >
+              {privacyNote}
+            </p>
             <form onSubmit={handleSend} className="flex w-full gap-2">
               <Input 
                 placeholder="Ask a question..." 

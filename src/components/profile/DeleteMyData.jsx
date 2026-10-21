@@ -9,6 +9,23 @@ import {
 import { Trash2, Loader2, AlertTriangle } from 'lucide-react';
 import { toast } from "sonner";
 
+// Everything the app keeps in this browser: language, target date, voice
+// settings, cached translations, civics version, reminders, role cache.
+const isAppStorageKey = (key) =>
+  key.startsWith('pathways_') ||
+  key.startsWith('daily_reminder_') ||
+  key.startsWith('role_') ||
+  key === 'civicsVersion' ||
+  key === 'pending_tutor_invite';
+
+function clearDeviceData() {
+  try {
+    Object.keys(localStorage).filter(isAppStorageKey).forEach((key) => localStorage.removeItem(key));
+  } catch (e) {
+    // Storage blocked: nothing to clear.
+  }
+}
+
 export default function DeleteMyData({ userEmail }) {
   const [deleting, setDeleting] = useState(false);
   const [progress, setProgress] = useState('');
@@ -37,6 +54,11 @@ export default function DeleteMyData({ userEmail }) {
         setProgress(`Removing ${steps[i][0]} (${i + 1}/${steps.length})...`);
         await base44.entities[steps[i][1]].deleteMany(steps[i][2]);
       }
+      // The sign-in account itself can't be deleted from the app, so reset
+      // the learner fields stored on it.
+      setProgress('Resetting your account details...');
+      await base44.auth.updateMe({ display_name: 'Learner', points: 0, badges: [], max_streak: 0 });
+      clearDeviceData();
       setProgress('Done. Signing you out...');
       toast.success("Your data has been deleted. You are being signed out.");
       setTimeout(async () => { await base44.auth.logout(); }, 1500);
@@ -56,8 +78,9 @@ export default function DeleteMyData({ userEmail }) {
         </CardTitle>
         <CardDescription>
           Permanently erase everything tied to your email: your chat messages (including the copies in the other person's history),
-          AI study buddy history, lesson notes, progress & quiz scores, N-400 guide section completion, assignments, tutor connections, notifications, and your profile.
-          This cannot be undone.
+          AI study buddy history, lesson notes, progress & quiz scores, mock interview scores, N-400 guide section completion, assignments,
+          tutor connections, notifications, and your profile. Your points, badges, and display name are reset, and the app's data on
+          this device (your target date, language, and settings) is cleared. This cannot be undone.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -76,7 +99,7 @@ export default function DeleteMyData({ userEmail }) {
               <AlertDialogHeader>
                 <AlertDialogTitle>Delete all your data?</AlertDialogTitle>
                 <AlertDialogDescription>
-                  This permanently removes your chats, study history, notes, progress, assignments, and profile from Pathways USA.
+                  This permanently removes your chats, study history, notes, progress, interview scores, assignments, and profile from Pathways USA, and clears the app's data on this device.
                   Your saved representatives information is included. This action cannot be undone — you'll be signed out afterwards.
                 </AlertDialogDescription>
               </AlertDialogHeader>
