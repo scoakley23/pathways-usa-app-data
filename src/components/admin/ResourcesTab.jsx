@@ -16,7 +16,8 @@ const BATCH = 50;
 
 // Admin: places shown on the Resource Hub map. Import takes a CSV or JSON
 // file in the format described in content/resources/README.md; rows already
-// in the list (same name + ZIP) are skipped, so an import can be re-run.
+// in the list (same name, street address and ZIP) are skipped, so an import
+// can be re-run.
 export default function ResourcesTab() {
   const { items, isLoading, isSubmitting, fetchItems, createItem, updateItem, deleteItem } = useContentManager('CommunityResource', 'place');
   const queryClient = useQueryClient();

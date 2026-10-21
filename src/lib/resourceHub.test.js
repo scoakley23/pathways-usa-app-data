@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import {
   normalizeZip, zipToLatLng, distanceMiles, formatDistance, nearestResources,
-  directionsUrl, safeWebsite, telHref, parseCsv, cleanResourceRow, resourceKey, isValidLatLng,
+  directionsUrl, safeWebsite, telHref, parseCsv, cleanResourceRow, resourceKey, isValidLatLng, isPoBoxOnly,
 } from './resourceHub';
 
 // Fake test places only.
@@ -28,6 +28,10 @@ describe('zipToLatLng', () => {
   it('looks up the table', () => {
     expect(zipToLatLng('02138', ZIPS)).toEqual({ lat: 42.38, lng: -71.134 });
     expect(zipToLatLng('99999', ZIPS)).toBeNull();
+  });
+  it('falls back to the nearest ZIP in the same area for P.O.-box ZIPs', () => {
+    expect(zipToLatLng('02140', ZIPS)).toEqual({ lat: 42.38, lng: -71.134 });
+    expect(zipToLatLng('02238', ZIPS)).toBeNull(); // different first three digits
     expect(zipToLatLng('02138', null)).toBeNull();
   });
 });
@@ -119,9 +123,17 @@ describe('import', () => {
   it('explains bad rows', () => {
     expect(cleanResourceRow({ category: 'legal', zip: '02138' }, ZIPS).error).toMatch(/name/);
     expect(cleanResourceRow({ name: 'A', category: 'bank', zip: '02138' }, ZIPS).error).toMatch(/category/);
-    expect(cleanResourceRow({ name: 'A', category: 'legal', zip: '99999' }, ZIPS).error).toMatch(/coordinates/);
+    expect(cleanResourceRow({ name: 'A', category: 'legal', zip: '55555' }, ZIPS).error).toMatch(/coordinates/);
   });
-  it('matches duplicates by name and ZIP', () => {
-    expect(resourceKey({ name: 'Test  Clinic', zip: '2138' })).toBe(resourceKey({ name: 'test clinic', zip: '02138-0001' }));
+  it('matches duplicates by name, address and ZIP', () => {
+    expect(resourceKey({ name: 'Test  Clinic', address: '1 Main St.', zip: '2138' }))
+      .toBe(resourceKey({ name: 'test clinic', address: '1 main st', zip: '02138-0001' }));
+    expect(resourceKey({ name: 'Test Clinic', address: '1 Main St', zip: '02138' }))
+      .not.toBe(resourceKey({ name: 'Test Clinic', address: '2 Oak Ave', zip: '02138' }));
+  });
+  it('spots P.O. box addresses', () => {
+    expect(isPoBoxOnly('P.O. Box 12')).toBe(true);
+    expect(isPoBoxOnly('PO Box 12')).toBe(true);
+    expect(isPoBoxOnly('12 Box Elder St')).toBe(false);
   });
 });

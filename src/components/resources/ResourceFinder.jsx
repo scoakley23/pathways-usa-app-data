@@ -1,12 +1,12 @@
 import React, { Suspense, lazy, useMemo, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { Crosshair, Loader2, MapPin, Navigation, Phone, Globe, Map as MapIcon, List, AlertTriangle } from 'lucide-react';
+import { Crosshair, Loader2, MapPin, Navigation, Phone, Globe, Map as MapIcon, List, AlertTriangle, ExternalLink } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { Input } from '@/components/ui/input';
 import { PrimaryButton, SecondaryButton, RaisedCard, Tag } from '@/components/pathways/ui';
 import {
-  RESOURCE_CATEGORIES, COST_LABELS, categoryById, nearestResources, formatDistance, fullAddress,
-  directionsUrl, telHref, safeWebsite, normalizeZip, zipToLatLng, loadZipTable,
+  RESOURCE_CATEGORIES, COST_LABELS, DIRECTORY_LINKS, categoryById, nearestResources, formatDistance, fullAddress,
+  directionsUrl, telHref, safeWebsite, normalizeZip, zipToLatLng, loadZipTable, isPoBoxOnly,
 } from '@/lib/resourceHub';
 
 const ResourceMap = lazy(() => import('@/components/resources/ResourceMap'));
@@ -200,6 +200,29 @@ export default function ResourceFinder() {
         </div>
       )}
 
+      <RaisedCard className="space-y-3 md:p-6">
+        <h2 className="text-[22px] leading-snug font-extrabold text-pw-navy">Search national directories</h2>
+        <p className="text-base text-pw-muted">Our map doesn&apos;t list every place yet. These sites have more.</p>
+        <ul className="space-y-2">
+          {DIRECTORY_LINKS.map((link) => (
+            <li key={link.url}>
+              <a
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-start gap-3 rounded-2xl bg-pw-soft p-4 min-h-[44px] text-pw-navy hover:bg-pw-soft-hover transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2"
+              >
+                <span className="min-w-0 flex-1 space-y-1">
+                  <span className="block text-base font-bold group-hover:underline">{link.label}</span>
+                  <span className="block text-base text-pw-muted">{link.description}</span>
+                </span>
+                <ExternalLink className="w-5 h-5 shrink-0 mt-0.5" aria-hidden="true" />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </RaisedCard>
+
       <div className="rounded-3xl bg-pw-red-soft p-4 sm:p-5 flex items-start gap-3">
         <AlertTriangle className="w-5 h-5 text-pw-red-ink shrink-0 mt-0.5" aria-hidden="true" />
         <p className="text-base text-pw-navy leading-relaxed">
@@ -241,9 +264,11 @@ function ResourceCard({ r, selected, onSelect }) {
           )}
         </div>
         <div className="flex flex-wrap gap-2">
-          <a href={directionsUrl(r)} target="_blank" rel="noopener noreferrer" className={`${LINK_BTN} bg-pw-navy text-white hover:bg-pw-navy-deep`}>
-            <Navigation className="w-5 h-5" aria-hidden="true" /> Directions
-          </a>
+          {!isPoBoxOnly(r.address) && (
+            <a href={directionsUrl(r)} target="_blank" rel="noopener noreferrer" className={`${LINK_BTN} bg-pw-navy text-white hover:bg-pw-navy-deep`}>
+              <Navigation className="w-5 h-5" aria-hidden="true" /> Directions
+            </a>
+          )}
           {tel && (
             <a href={tel} className={`${LINK_BTN} bg-white text-pw-navy border-2 border-pw-navy hover:bg-pw-soft`}>
               <Phone className="w-5 h-5" aria-hidden="true" /> Call

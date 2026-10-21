@@ -16,6 +16,31 @@ export const RESOURCE_CATEGORIES = [
 
 export const CATEGORY_IDS = RESOURCE_CATEGORIES.map((c) => c.id);
 
+// National search tools for what the map doesn't list yet. Learners search
+// on these sites directly; nothing from this app is sent to them.
+export const DIRECTORY_LINKS = [
+  {
+    label: 'National Literacy Directory',
+    url: 'https://www.nld.org/programs',
+    description: 'English, citizenship, and adult education classes near you. Call 877-389-6874 for help.',
+  },
+  {
+    label: 'ImmigrationLawHelp.org',
+    url: 'https://www.immigrationlawhelp.org',
+    description: 'Free and low-cost nonprofit immigration legal services, by state and language.',
+  },
+  {
+    label: 'CareerOneStop — Find libraries',
+    url: 'https://www.careeronestop.org/LocalHelp/CommunityServices/find-libraries.aspx',
+    description: 'Public libraries near you. Many have free English classes, computers, and citizenship books.',
+  },
+  {
+    label: 'USCIS — Find a field office',
+    url: 'https://www.uscis.gov/about-us/find-a-uscis-office/field-offices',
+    description: 'The official USCIS office list. Go only when you have an appointment notice.',
+  },
+];
+
 export const COST_LABELS = { free: 'Free', low_cost: 'Low cost', varies: 'Cost varies' };
 
 export function categoryById(id) {
@@ -39,9 +64,23 @@ export function isValidLatLng(lat, lng) {
 }
 
 // Coordinates for a ZIP from the bundled Census ZIP table (on device).
+// P.O.-box and single-building ZIPs (e.g. 44199) aren't in the Census table,
+// so those fall back to the numerically nearest ZIP with the same first three
+// digits, which is almost always the same town.
 export function zipToLatLng(zip, table) {
   const z = normalizeZip(zip);
-  const hit = z && table ? table[z] : null;
+  if (!z || !table) return null;
+  let hit = table[z];
+  if (!hit) {
+    const n = Number(z);
+    let best = Infinity;
+    for (let d = 1; d < 100 && best === Infinity; d++) {
+      for (const c of [n - d, n + d]) {
+        const key = String(c).padStart(5, '0');
+        if (key.slice(0, 3) === z.slice(0, 3) && table[key]) { hit = table[key]; best = d; break; }
+      }
+    }
+  }
   return hit ? { lat: hit[0], lng: hit[1] } : null;
 }
 
@@ -210,7 +249,14 @@ export function cleanResourceRow(row, zipTable) {
   };
 }
 
-// Same place = same name and ZIP (case and spacing ignored).
+// Same place = same name, street address and ZIP (case, spacing and
+// punctuation ignored). One organization can have two offices in one ZIP.
+const keyPart = (v) => String(v || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 export function resourceKey(r) {
-  return `${String(r.name || '').trim().toLowerCase().replace(/\s+/g, ' ')}|${normalizeZip(r.zip)}`;
+  return `${keyPart(r.name)}|${keyPart(r.address)}|${normalizeZip(r.zip)}`;
+}
+
+// A P.O. box has no door to give directions to.
+export function isPoBoxOnly(address) {
+  return /^\s*(p\.?\s*o\.?\s*box|post office box)\b/i.test(String(address || ''));
 }
