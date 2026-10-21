@@ -3,8 +3,8 @@ import TopicArt from '@/components/art/TopicArt';
 import { RaisedCard, Tag } from '@/components/pathways/ui';
 import { LANGUAGES } from '@/hooks/useLessonTranslation';
 
-// Languages the tutor can teach in besides English.
-const OTHER_LANGUAGES = LANGUAGES.filter((l) => l.value !== 'en').length;
+// Languages the tutor can teach in (English included).
+const LANGUAGE_COUNT = LANGUAGES.length;
 
 // Two promises on Home: answers come from USCIS, and lessons can be in the
 // learner's language while the interview itself is in English.
@@ -31,7 +31,7 @@ export default function HomePromises({ t }) {
           <div className="p-5 space-y-2">
             <Tag tone="green">{t('promise_language_tag')}</Tag>
             <h3 className="text-xl font-extrabold text-pw-navy">{t('promise_language_title')}</h3>
-            <p className="text-base text-pw-muted">{t('promise_language_body').replace('{n}', OTHER_LANGUAGES)}</p>
+            <p className="text-base text-pw-muted">{t('promise_language_body').replace('{n}', LANGUAGE_COUNT)}</p>
             <p className="text-base text-pw-navy font-bold">{t('promise_language_english')}</p>
           </div>
         </RaisedCard>

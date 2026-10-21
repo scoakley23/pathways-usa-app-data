@@ -18,7 +18,7 @@ export const HOME_STRINGS = {
   promise_language_tag: 'Your language',
   promise_language_title: 'Learn in your language, test in English',
   promise_language_body:
-    "Your tutor can teach the lessons in {n} languages besides English. It's perfectly fine to learn in the language you know best.",
+    "Your tutor can teach the lessons in {n} languages. It's perfectly fine to learn in the language you know best.",
   promise_language_english:
     'Your interview and test are in English, so we also practice English with you, one step at a time, until you feel confident.',
   practice_title: 'Practice one skill',
