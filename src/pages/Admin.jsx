@@ -5,6 +5,7 @@ import { AlertCircle, FileText, HelpCircle, BookOpen } from 'lucide-react';
 import SentencesTab from '@/components/admin/SentencesTab';
 import CivicsQuestionsTab from '@/components/admin/CivicsQuestionsTab';
 import VocabularyWordsTab from '@/components/admin/VocabularyWordsTab';
+import ExplanationTools from '@/components/admin/ExplanationTools';
 import PageHeader from '@/components/PageHeader';
 import { Link } from 'react-router-dom';
 
@@ -81,6 +82,8 @@ export default function Admin() {
           <VocabularyWordsTab />
         </TabsContent>
       </Tabs>
+
+      <ExplanationTools />
     </div>
   );
 }

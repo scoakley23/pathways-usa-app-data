@@ -49,7 +49,7 @@ export default function TutorLesson({ lesson, profile, language = 'en', language
   const Step = Extra || STEPS[step.type];
   const ready = Extra ? (!Extra.needsAnswer || !!(state.answered || state.shown)) : canContinue(step, state);
   const isLast = index === steps.length - 1;
-  const tag = stepTag(step, lesson);
+  const tag = Extra?.tag || stepTag(step, lesson);
 
   const goTo = (i, nextSkipped = skipped) => {
     if (i >= steps.length) {

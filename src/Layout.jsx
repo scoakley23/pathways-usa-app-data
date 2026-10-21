@@ -262,7 +262,7 @@ export default function Layout({ children }) {
       )}
       {showTutorSetup && <TutorOnboardingDialog onDone={closeTutorSetup} />}
       {/* Lesson screens have a pinned Continue button; keep the chat button off them. */}
-      {!['/quick-check', '/tutor-demo'].includes(location.pathname) && <StudyBuddy />}
+      {!['/quick-check', '/tutor-demo', '/learn', '/review', '/n400-coach'].includes(location.pathname) && <StudyBuddy />}
       <DailyPracticeReminder />
       <Toaster />
     </div>
