@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Loader2, Volume2 } from 'lucide-react';
 import TutorAvatar from './TutorAvatar';
+import { CustomPhotoTile, NameSuggestions } from './TutorChoices';
 import { PrimaryButton, QuietButton } from '@/components/pathways/ui';
 import useTranslatedLines from './useTranslatedLines';
 import useAppLanguage, { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
 import { speakText } from '@/components/utils/textToSpeech';
 import {
+  CUSTOM_AVATAR,
   ENGLISH_MIX,
   FIXED_LINES_ES,
   MAX_TUTOR_NAME_LENGTH,
@@ -101,6 +103,7 @@ export default function TutorSetup({ initialProfile, onSave, onSkip, saveLabel =
           className="w-full min-h-[48px] rounded-2xl border-2 border-pw-line bg-white px-4 text-base text-pw-navy focus:outline-none focus:border-pw-navy focus:ring-2 focus:ring-pw-navy/20"
         />
         <p className="text-sm text-pw-muted">“Vía” means “way” or “path.” You can give your tutor any name.</p>
+        <NameSuggestions value={nameInput} onPick={setNameInput} />
       </div>
 
       {/* Avatar */}
@@ -112,6 +115,7 @@ export default function TutorSetup({ initialProfile, onSave, onSkip, saveLabel =
               <TutorAvatar avatar={id} size={64} />
             </OptionButton>
           ))}
+          <CustomPhotoTile size={64} selected={profile.avatar === CUSTOM_AVATAR} onPick={() => set('avatar', CUSTOM_AVATAR)} />
         </div>
       </fieldset>
 

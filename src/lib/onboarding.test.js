@@ -5,13 +5,13 @@ import {
 
 describe('onboardingSteps', () => {
   it('skips the test and interview questions for people who have not applied', () => {
-    expect(onboardingSteps({ stage: 'preparing' })).toEqual(['start', 'language', 'tutor', 'stage', 'settings']);
-    expect(onboardingSteps({ stage: 'learning' })).toEqual(['start', 'language', 'tutor', 'stage', 'settings']);
-    expect(onboardingSteps({})).toEqual(['start', 'language', 'tutor', 'stage', 'settings']);
+    expect(onboardingSteps({ stage: 'preparing' })).toEqual(['start', 'language', 'tutor', 'name', 'stage', 'settings']);
+    expect(onboardingSteps({ stage: 'learning' })).toEqual(['start', 'language', 'tutor', 'name', 'stage', 'settings']);
+    expect(onboardingSteps({})).toEqual(['start', 'language', 'tutor', 'name', 'stage', 'settings']);
   });
   it('asks which test after applying, and the month once an interview is scheduled', () => {
-    expect(onboardingSteps({ stage: 'applied' })).toEqual(['start', 'language', 'tutor', 'stage', 'filed', 'settings']);
-    expect(onboardingSteps({ stage: 'interview' })).toEqual(['start', 'language', 'tutor', 'stage', 'filed', 'interview', 'settings']);
+    expect(onboardingSteps({ stage: 'applied' })).toEqual(['start', 'language', 'tutor', 'name', 'stage', 'filed', 'settings']);
+    expect(onboardingSteps({ stage: 'interview' })).toEqual(['start', 'language', 'tutor', 'name', 'stage', 'filed', 'interview', 'settings']);
   });
   it('moves to the next step and ends after settings', () => {
     expect(nextStep('stage', { stage: 'interview' })).toBe('filed');
