@@ -32,7 +32,8 @@ export default function TutorIntro({ t, language = 'en' }) {
         <span className="relative rounded-full bg-white p-1.5 shadow-lift">
           <TutorAvatar avatar={profile.avatar} size={104} decorative expression="greeting" />
         </span>
-        <div className="relative pb-2">
+        <div className="relative pb-2 flex flex-wrap gap-2">
+          <Tag tone="red">{t('hero_start_here')}</Tag>
           <Tag tone="navy">{t('intro_tag')}</Tag>
         </div>
       </div>

@@ -5,6 +5,12 @@ export const DEFAULT_TUTOR_NAME = 'Vía';
 export const MAX_TUTOR_NAME_LENGTH = 20;
 
 export const TUTOR_AVATARS = ['a1', 'a2', 'a3', 'a4', 'a5', 'a6'];
+// The learner's own photo. Only the word 'custom' is saved to the account;
+// the photo itself stays on the device (src/lib/tutorPhoto.js).
+export const CUSTOM_AVATAR = 'custom';
+
+// Names learners can pick with one tap (they can also type any name).
+export const SUGGESTED_TUTOR_NAMES = ['Vía', 'Tala', 'Noor', 'Mira', 'Senda', 'Lumi', 'Libby', 'Ana', 'Sol', 'Luz'];
 
 export const TUTOR_TONES = {
   warm: {
@@ -77,7 +83,7 @@ export function normalizeTutorProfile(profile) {
   const name = typeof p.name === 'string' ? p.name.trim().slice(0, MAX_TUTOR_NAME_LENGTH) : '';
   return {
     name: name || DEFAULT_TUTOR_NAME,
-    avatar: TUTOR_AVATARS.includes(p.avatar) ? p.avatar : DEFAULT_TUTOR_PROFILE.avatar,
+    avatar: TUTOR_AVATARS.includes(p.avatar) || p.avatar === CUSTOM_AVATAR ? p.avatar : DEFAULT_TUTOR_PROFILE.avatar,
     tone: TUTOR_TONES[p.tone] ? p.tone : DEFAULT_TUTOR_PROFILE.tone,
     english_mix: ENGLISH_MIX[p.english_mix] ? p.english_mix : DEFAULT_TUTOR_PROFILE.english_mix,
   };

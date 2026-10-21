@@ -10,6 +10,9 @@ import {
   DEFAULT_TUTOR_PROFILE,
   fixedTutorLines,
   FIXED_LINES_ES,
+  CUSTOM_AVATAR,
+  MAX_TUTOR_NAME_LENGTH,
+  SUGGESTED_TUTOR_NAMES,
 } from './tutorPersona';
 
 describe('normalizeTutorProfile', () => {
@@ -33,6 +36,21 @@ describe('normalizeTutorProfile', () => {
     expect(p.avatar).toBe(DEFAULT_TUTOR_PROFILE.avatar);
     expect(p.tone).toBe(DEFAULT_TUTOR_PROFILE.tone);
     expect(p.english_mix).toBe(DEFAULT_TUTOR_PROFILE.english_mix);
+  });
+});
+
+describe('custom tutor picture and suggested names', () => {
+  it('keeps the custom (device photo) avatar', () => {
+    expect(normalizeTutorProfile({ avatar: CUSTOM_AVATAR }).avatar).toBe(CUSTOM_AVATAR);
+  });
+
+  it('suggests short, unique names that fit the limit, starting with Vía', () => {
+    expect(SUGGESTED_TUTOR_NAMES[0]).toBe('Vía');
+    expect(new Set(SUGGESTED_TUTOR_NAMES.map((n) => n.toLowerCase())).size).toBe(SUGGESTED_TUTOR_NAMES.length);
+    for (const n of SUGGESTED_TUTOR_NAMES) {
+      expect(n.length).toBeLessThanOrEqual(MAX_TUTOR_NAME_LENGTH);
+      expect(normalizeTutorProfile({ name: n }).name).toBe(n);
+    }
   });
 });
 

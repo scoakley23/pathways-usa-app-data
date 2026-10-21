@@ -8,7 +8,8 @@
 
 | Data | Where | What exactly | Who can see it |
 | --- | --- | --- | --- |
-| Tutor settings | `User.tutor_profile` (Base44) | tutor name, avatar id, tone, English mix | learner; Pathways staff |
+| Tutor settings | `User.tutor_profile` (Base44) | tutor name, avatar id (`a1`–`a6`, or `custom`), tone, English mix | learner; Pathways staff |
+| Learner's own tutor photo | `localStorage` `pathways_tutor_photo` (this device only) | 384px JPEG, center-cropped on the device; never uploaded or sent to the AI | only someone using this browser |
 | Quick check results | `User.skill_levels` (Base44) | one level per skill (civics / reading / writing / speaking) + date. No answers, no transcripts, no per-question results | learner; Pathways staff |
 | Teach / review progress (Prompt 7) | `UserProgress` (Base44, existing entity) | per civics question: practicing/mastered, interval, last result, scores | learner; their tutor in My Classroom; Pathways staff |
 | N-400 section completion (Prompt 9) | `N400SectionProgress` (Base44, existing entity) | section id + title, completed, date. Never form answers | learner; their tutor; Pathways staff |
