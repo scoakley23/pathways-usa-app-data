@@ -4,7 +4,7 @@ import { createPageUrl } from '@/utils';
 import { Check, Notebook, BookOpen, Mic, CalendarCheck, Star } from 'lucide-react';
 import LanguageSelector from '@/components/lessons/LanguageSelector';
 import { ROADMAP_STOPS } from './roadmapStops';
-import { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
+import { isRTL } from '@/hooks/useAppLanguage';
 import TutorAvatar from '@/components/persona/TutorAvatar';
 import useTutorProfile from '@/components/persona/useTutorProfile';
 
@@ -34,7 +34,7 @@ export default function RoadmapPath({ roadmap, t, language, onLanguageChange, tr
   const { loading, currentStop, done, doneCount } = roadmap;
   const { profile } = useTutorProfile();
 
-  const mirror = RTL_LANGUAGES.includes((language || 'en').slice(0, 2).toLowerCase());
+  const mirror = isRTL(language);
   const stops = ROADMAP_STOPS.map((s) => ({
     ...s,
     name: t(`stop${s.id}_name`),
