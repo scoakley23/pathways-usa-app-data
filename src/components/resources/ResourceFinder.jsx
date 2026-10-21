@@ -1,18 +1,20 @@
-import React, { Suspense, lazy, useMemo, useState } from 'react';
+import React, { Suspense, lazy, useEffect, useMemo, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { Crosshair, Loader2, MapPin, Map as MapIcon, List, AlertTriangle, ExternalLink } from 'lucide-react';
+import { Crosshair, Loader2, MapPin, Map as MapIcon, List, AlertTriangle, ExternalLink, Maximize2, X, ChevronUp } from 'lucide-react';
 import { listAllResources } from '@/components/resources/listAllResources';
 import { Input } from '@/components/ui/input';
 import { PrimaryButton, SecondaryButton, RaisedCard } from '@/components/pathways/ui';
 import {
-  RESOURCE_CATEGORIES, COST_LABELS, DIRECTORY_LINKS, nearestResources, formatDistance, fullAddress,
+  RESOURCE_CATEGORIES, COST_LABELS, DIRECTORY_LINKS, PIN_COLORS, nearestResources, formatDistance, fullAddress, categoryById,
   normalizeZip, zipToLatLng, loadZipTable,
 } from '@/lib/resourceHub';
-import { ServiceTags, PlaceActions } from '@/components/resources/PlaceSummary';
+import { ServiceTags, PlaceActions, PlaceSummary } from '@/components/resources/PlaceSummary';
 
 const ResourceMap = lazy(() => import('@/components/resources/ResourceMap'));
 
 const RADIUS_OPTIONS = [10, 25, 50, 100];
+const LIST_STEP = 30; // list cards shown at a time; the map shows every place
+const MAP_LIMIT = 2000;
 
 // "Help near you": the learner shares their location (browser permission) or
 // types a ZIP code. Either way the location stays in this component's memory
@@ -26,6 +28,9 @@ export default function ResourceFinder() {
   const [radius, setRadius] = useState(25);
   const [selectedId, setSelectedId] = useState(null);
   const [showMap, setShowMap] = useState(true);
+  const [fullscreen, setFullscreen] = useState(false);
+  const [sheetOpen, setSheetOpen] = useState(false);
+  const [listCount, setListCount] = useState(LIST_STEP);
 
   const { data: resources = [], isLoading, isError } = useQuery({
     queryKey: ['communityResources'],
@@ -34,9 +39,33 @@ export default function ResourceFinder() {
   });
 
   const results = useMemo(
-    () => nearestResources(resources, origin, { categories, radiusMiles: radius, limit: 30 }),
+    () => nearestResources(resources, origin, { categories, radiusMiles: radius, limit: MAP_LIMIT }),
     [resources, origin, categories, radius],
   );
+  const selected = results.find((r) => r.id === selectedId) || null;
+
+  // A new search starts the list from the top.
+  useEffect(() => { setListCount(LIST_STEP); }, [origin, categories, radius]);
+
+  // Full screen: stop the page behind from scrolling; Escape closes it.
+  useEffect(() => {
+    if (!fullscreen) return undefined;
+    const before = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const onKey = (e) => { if (e.key === 'Escape') setFullscreen(false); };
+    window.addEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = before;
+      window.removeEventListener('keydown', onKey);
+      setSheetOpen(false);
+    };
+  }, [fullscreen]);
+
+  // "Search this area": the map's center, kept on the device like a ZIP.
+  const searchArea = (center) => {
+    setOrigin({ ...center, label: 'this map area', fromMap: true });
+    setSelectedId(null);
+  };
 
   const locateMe = () => {
     if (!navigator.geolocation) {
@@ -80,8 +109,7 @@ export default function ResourceFinder() {
   const toggleCategory = (id) =>
     setCategories((prev) => (prev.includes(id) ? prev.filter((c) => c !== id) : [...prev, id]));
 
-  // Tapping a pin opens its summary on the map and highlights its card below.
-  const selectPlace = (id) => setSelectedId(id);
+
 
   return (
     <div className="space-y-4">
@@ -164,9 +192,9 @@ export default function ResourceFinder() {
         <div className="space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <p className="text-base text-pw-navy" aria-live="polite">
-              <strong>{results.length === 30 ? '30+' : results.length}</strong> {results.length === 1 ? 'place' : 'places'} within {radius} miles of {origin.label}
+              <strong>{results.length}</strong> {results.length === 1 ? 'place' : 'places'} within {radius} miles of {origin.label}
             </p>
-            {results.length > 0 && (
+            {(results.length > 0 || origin.fromMap) && (
               <SecondaryButton onClick={() => setShowMap((v) => !v)} aria-pressed={showMap}>
                 {showMap ? <List className="w-5 h-5" aria-hidden="true" /> : <MapIcon className="w-5 h-5" aria-hidden="true" />}
                 {showMap ? 'Hide map' : 'Show map'}
@@ -174,25 +202,95 @@ export default function ResourceFinder() {
             )}
           </div>
 
-          {showMap && results.length > 0 && (
-            <div className="h-[360px] sm:h-[420px] rounded-3xl overflow-hidden border border-pw-line shadow-raised bg-pw-soft isolate">
-              <Suspense fallback={<div className="h-full grid place-items-center text-pw-muted"><Loader2 className="w-6 h-6 animate-spin" /></div>}>
-                <ResourceMap origin={origin} places={results} selectedId={selectedId} onSelect={selectPlace} />
-              </Suspense>
-            </div>
+          {showMap && (results.length > 0 || origin.fromMap) && (
+            <>
+              <div
+                className={fullscreen
+                  ? 'fixed inset-0 !mt-0 z-[70] bg-white flex flex-col'
+                  : 'relative h-[380px] sm:h-[440px] rounded-3xl overflow-hidden border border-pw-line shadow-raised bg-pw-soft isolate'}
+                role={fullscreen ? 'dialog' : undefined}
+                aria-modal={fullscreen ? 'true' : undefined}
+                aria-label={fullscreen ? 'Map of places near you' : undefined}
+              >
+                {fullscreen && (
+                  <div className="flex items-center justify-between gap-3 px-4 py-2 border-b border-pw-line bg-white">
+                    <p className="text-base font-bold text-pw-navy truncate">{results.length} places · {origin.label}</p>
+                    <SecondaryButton onClick={() => setFullscreen(false)} aria-label="Close full-screen map">
+                      <X className="w-5 h-5" aria-hidden="true" /> Close
+                    </SecondaryButton>
+                  </div>
+                )}
+                <div className="relative flex-1 h-full min-h-0 isolate">
+                  <Suspense fallback={<div className="h-full grid place-items-center text-pw-muted"><Loader2 className="w-6 h-6 animate-spin" /></div>}>
+                    <ResourceMap
+                      origin={origin}
+                      places={results}
+                      selectedId={selectedId}
+                      onSelect={setSelectedId}
+                      onSearchArea={searchArea}
+                      fullscreen={fullscreen}
+                    />
+                  </Suspense>
+                  {!fullscreen && (
+                    <button
+                      type="button"
+                      onClick={() => setFullscreen(true)}
+                      aria-label="Open the map full screen"
+                      className="absolute bottom-3 right-3 z-[1000] w-11 h-11 rounded-xl bg-white border border-pw-line shadow-raised grid place-items-center text-pw-navy hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red"
+                    >
+                      <Maximize2 className="w-5 h-5" aria-hidden="true" />
+                    </button>
+                  )}
+                  {selected && (
+                    <div className={`absolute inset-x-2 z-[1000] ${fullscreen ? (sheetOpen ? 'hidden' : 'bottom-16') : 'bottom-2'}`}>
+                      <div className="relative rounded-2xl bg-white border border-pw-line shadow-lift p-3 pr-12 max-h-[70%] overflow-y-auto">
+                        <button
+                          type="button"
+                          onClick={() => setSelectedId(null)}
+                          aria-label="Close summary"
+                          className="absolute top-1 right-1 w-11 h-11 grid place-items-center rounded-xl text-pw-muted hover:bg-pw-soft"
+                        >
+                          <X className="w-5 h-5" aria-hidden="true" />
+                        </button>
+                        <PlaceSummary r={selected} />
+                      </div>
+                    </div>
+                  )}
+                </div>
+                {fullscreen && (
+                  <ListSheet
+                    places={results}
+                    open={sheetOpen}
+                    onToggle={setSheetOpen}
+                    onPick={(id) => { setSelectedId(id); setSheetOpen(false); }}
+                  />
+                )}
+              </div>
+              <MapLegend places={results} />
+            </>
           )}
 
           {results.length === 0 ? (
             <RaisedCard className="space-y-2">
-              <p className="text-base font-bold text-pw-navy">No places found nearby yet.</p>
+              <p className="text-base font-bold text-pw-navy">No places found here yet.</p>
               <p className="text-base text-pw-muted">
-                Try a bigger distance or more categories. You can also search the national directories below.
+                Try a bigger distance, more categories, or move the map and search that area. You can also search the
+                national directories below.
               </p>
             </RaisedCard>
           ) : (
-            <ul className="space-y-3">
-              {results.map((r) => <ResourceCard key={r.id} r={r} selected={r.id === selectedId} onSelect={() => setSelectedId(r.id)} />)}
-            </ul>
+            <>
+              <ul className="space-y-3">
+                {results.slice(0, listCount).map((r) => (
+                  <ResourceCard key={r.id} r={r} selected={r.id === selectedId} onSelect={() => setSelectedId(r.id)} />
+                ))}
+              </ul>
+              {results.length > listCount && (
+                <SecondaryButton className="w-full" onClick={() => setListCount((n) => n + LIST_STEP)}>
+                  Show more ({results.length - listCount} more)
+                </SecondaryButton>
+              )}
+            </>
           )}
         </div>
       )}
@@ -262,5 +360,90 @@ function ResourceCard({ r, selected, onSelect }) {
         {r.last_verified && <p className="text-sm text-pw-muted">Last checked {r.last_verified}</p>}
       </RaisedCard>
     </li>
+  );
+}
+
+// Which pin color means what, for the categories on the map right now.
+function MapLegend({ places }) {
+  const shown = [...new Set(places.map((p) => p.category))];
+  if (!shown.length) return null;
+  return (
+    <ul className="flex flex-wrap gap-x-4 gap-y-1 px-1" aria-label="Map key">
+      {RESOURCE_CATEGORIES.filter((c) => shown.includes(c.id)).map((c) => (
+        <li key={c.id} className="flex items-center gap-2 text-sm text-pw-muted">
+          <span className="w-3 h-3 rounded-full border-2 border-white shadow-raised" style={{ background: PIN_COLORS[c.id] }} aria-hidden="true" />
+          {c.label}
+        </li>
+      ))}
+      <li className="flex items-center gap-2 text-sm text-pw-muted">
+        <span className="w-4 h-4 rounded-full bg-pw-navy text-white text-[9px] font-extrabold grid place-items-center" aria-hidden="true">3</span>
+        Group of places (tap to zoom)
+      </li>
+    </ul>
+  );
+}
+
+// Full-screen map's list: a panel at the bottom that opens with a tap or an
+// upward swipe, and closes with a downward swipe.
+function ListSheet({ places, open, onToggle, onPick }) {
+  const [startY, setStartY] = useState(null);
+  const [count, setCount] = useState(LIST_STEP);
+  const onTouchEnd = (e) => {
+    if (startY == null) return;
+    const dy = e.changedTouches[0].clientY - startY;
+    if (dy < -40) onToggle(true);
+    if (dy > 40) onToggle(false);
+    setStartY(null);
+  };
+  return (
+    <div
+      className={`border-t border-pw-line bg-white shadow-lift rounded-t-3xl flex flex-col ${open ? 'h-[60vh]' : ''} pb-[env(safe-area-inset-bottom)]`}
+      onTouchStart={(e) => setStartY(e.touches[0].clientY)}
+      onTouchEnd={onTouchEnd}
+    >
+      <button
+        type="button"
+        onClick={() => onToggle(!open)}
+        aria-expanded={open}
+        className="w-full min-h-[52px] flex flex-col items-center justify-center gap-1 text-base font-bold text-pw-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-pw-red rounded-t-3xl"
+      >
+        <span className="w-10 h-1.5 rounded-full bg-pw-line" aria-hidden="true" />
+        <span className="flex items-center gap-2">
+          <ChevronUp className={`w-5 h-5 transition-transform ${open ? 'rotate-180' : ''}`} aria-hidden="true" />
+          {open ? 'Hide list' : `Show list (${places.length})`}
+        </span>
+      </button>
+      {open && (
+        <ul className="flex-1 overflow-y-auto px-3 pb-3 space-y-2">
+          {places.slice(0, count).map((p) => (
+            <li key={p.id}>
+              <button
+                type="button"
+                onClick={() => onPick(p.id)}
+                className="w-full text-left rounded-2xl border border-pw-line p-3 min-h-[44px] hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red"
+              >
+                <span className="flex items-start justify-between gap-3">
+                  <span className="min-w-0">
+                    <span className="block text-base font-bold text-pw-navy leading-snug">{p.name}</span>
+                    <span className="flex items-center gap-2 text-sm text-pw-muted mt-0.5">
+                      <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: PIN_COLORS[p.category] }} aria-hidden="true" />
+                      {categoryById(p.category).label}
+                    </span>
+                  </span>
+                  <span className="text-sm font-bold text-pw-muted whitespace-nowrap">{formatDistance(p.distance)}</span>
+                </span>
+              </button>
+            </li>
+          ))}
+          {places.length > count && (
+            <li>
+              <SecondaryButton className="w-full" onClick={() => setCount((n) => n + LIST_STEP)}>
+                Show more ({places.length - count} more)
+              </SecondaryButton>
+            </li>
+          )}
+        </ul>
+      )}
+    </div>
   );
 }
