@@ -24,6 +24,11 @@ describe('splitOfficialAnswers', () => {
       .toEqual(['sets up the government', 'defines the government', 'protects rights']);
     expect(splitOfficialAnswers('Washington, D.C.')).toEqual(['Washington, D.C.']);
   });
+
+  it('splits the exported " / " lists but keeps a slash inside a word', () => {
+    expect(splitOfficialAnswers('Communism / Nuclear war')).toEqual(['Communism', 'Nuclear war']);
+    expect(splitOfficialAnswers('(Battle of) Antietam/Sharpsburg')).toEqual(['(Battle of) Antietam/Sharpsburg']);
+  });
 });
 
 describe('matchOfficialAnswer', () => {

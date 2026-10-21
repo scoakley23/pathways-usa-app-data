@@ -16,10 +16,11 @@ export function checkDictation(target, typed) {
 }
 
 // An official answer field can list several accepted answers, one per line or
-// separated by ";" or "•". Commas are kept ("Washington, D.C.").
+// separated by ";", "•", or " / " (the exported list). Commas are kept
+// ("Washington, D.C."), and so is a slash inside a word ("Antietam/Sharpsburg").
 export function splitOfficialAnswers(answer) {
   return (answer || '')
-    .split(/\n|;|•/)
+    .split(/\n|;|•|\s\/\s/)
     .map((a) => a.trim())
     .filter(Boolean);
 }
