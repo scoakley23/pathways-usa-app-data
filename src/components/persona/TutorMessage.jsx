@@ -60,11 +60,11 @@ export default function TutorMessage({ profile, language = 'en', mine, en, child
       <div className="min-w-0 flex-1 rounded-2xl rounded-tl-md bg-white border border-pw-line shadow-raised p-4">
         {showMine ? (
           <>
-            <p dir={dir} className="leading-relaxed">{mine}</p>
-            {en && <p className="leading-relaxed text-pw-muted mt-2">{en}</p>}
+            <p dir={dir} className="leading-relaxed whitespace-pre-line">{mine}</p>
+            {en && <p className="leading-relaxed whitespace-pre-line text-pw-muted mt-2">{en}</p>}
           </>
         ) : (
-          en && <p className="leading-relaxed">{en}</p>
+          en && <p className="leading-relaxed whitespace-pre-line">{en}</p>
         )}
         <div className="flex flex-wrap gap-2 mt-3">
           {speaking ? (

@@ -2404,7 +2404,11 @@
         "en": "Star-Spangled Banner",
         "translation": "Star-Spangled Banner"
       }
-    ]
+    ],
+    "link": {
+      "url": "https://www.loc.gov/item/ihas.100010509/",
+      "label": "Listen to the song (Library of Congress)"
+    }
   },
   "What is the purpose of the 10th Amendment?": {
     "question": "What is the purpose of the 10th Amendment?",

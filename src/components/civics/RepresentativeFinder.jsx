@@ -449,22 +449,5 @@ Double check all names are spelled correctly.`,
   );
 }
 
-export function getPersonalizedAnswer(question, representativeData) {
-  if (!representativeData || !question) return null;
-  const q = question.toLowerCase();
-  if (!q.includes("your")) return null; // only personalize location-specific questions (e.g. "your state's U.S. senators")
-  if (q.includes("senator") || q.includes("senators")) {
-    return (representativeData.senators || []).map(s => s.name).join(" and ");
-  }
-  if (q.includes("representative") || q.includes("house of representatives")) {
-    if (!representativeData.representative?.name) return null;
-    return `${representativeData.representative.name} (District ${representativeData.representative.district})`;
-  }
-  if (q.includes("governor")) {
-    return representativeData.governor;
-  }
-  if (q.includes("capital")) {
-    return representativeData.state_capital;
-  }
-  return null;
-}
+// Moved to src/lib/currentAnswers.js (shared with lessons); kept here for existing imports.
+export { getPersonalizedAnswer } from '@/lib/currentAnswers';

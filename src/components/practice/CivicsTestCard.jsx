@@ -11,7 +11,7 @@ import { base44 } from '@/api/base44Client';
 import { checkCivicsAnswer } from '@/components/civics/checkCivicsAnswer';
 import { matchOfficialAnswer } from '@/lib/practiceChecks';
 
-import { getPersonalizedAnswer } from '@/components/civics/RepresentativeFinder';
+import { getPersonalizedAnswer, currentAnswerFor } from '@/lib/currentAnswers';
 import { LANGUAGES } from '@/hooks/useLessonTranslation';
 
 export default function CivicsTestCard({ question, onComplete, onNext, representativeData }) {
@@ -85,6 +85,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
   const isChanging = (question.answer || '').startsWith('Answers change');
   const isLocation = (question.answer || '').startsWith('Answers vary');
   const personalizedAnswer = isLocation ? getPersonalizedAnswer(question.question, representativeData) : null;
+  const current = isChanging ? currentAnswerFor(question) : null;
 
   // Speech recognition setup
   useEffect(() => {
@@ -352,7 +353,12 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
                 <p className="leading-relaxed mb-4">{verificationResult.feedback}</p>
                 <div className="bg-white rounded-2xl p-4">
                   <Eyebrow className="mb-1">Official answer:</Eyebrow>
-                  {isChanging ? (
+                  {isChanging && current?.kind === 'current' ? (
+                    <>
+                      <p className="text-lg font-extrabold">{current.text}</p>
+                      <p className="text-sm text-pw-muted mt-1">Checked on {current.checkedOn} from {officialLink}</p>
+                    </>
+                  ) : isChanging ? (
                     <p className="text-lg font-bold">Answers change. Check the current answer on {officialLink}</p>
                   ) : isLocation && !personalizedAnswer ? (
                     <p className="text-lg font-bold">Answers vary by where you live. Use the Representative Finder on your Practice dashboard to get your answer.</p>

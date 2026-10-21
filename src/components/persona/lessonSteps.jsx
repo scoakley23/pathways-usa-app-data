@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Loader2, Mic, Square, Check, Volume2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Loader2, Mic, Square, Check, Volume2, ExternalLink } from 'lucide-react';
 import TutorMessage, { ListenButton } from './TutorMessage';
 import TeachingFeedback from './TeachingFeedback';
 import useSpeechCapture from './useSpeechCapture';
@@ -27,6 +28,12 @@ export const UI = {
   listenAgain: { en: 'Listen again and check these words:', es: 'Escuche otra vez y revise estas palabras:' },
   readAgain: { en: 'Read these words again slowly:', es: 'Lea otra vez, despacio, estas palabras:' },
   checkNext: { en: 'Thank you. On to the next one.', es: 'Gracias. Vamos a la siguiente.' },
+  currentAnswer: { en: 'Current answer', es: 'Respuesta actual' },
+  yourAnswer: { en: 'Your answer', es: 'Su respuesta' },
+  checkedOn: { en: 'Checked on {date} from', es: 'Revisado el {date} en' },
+  checkUscis: { en: 'This answer changes. Check the current answer on', es: 'Esta respuesta cambia. Vea la respuesta actual en' },
+  findYours: { en: 'This answer depends on where you live. Find yours with Find My Representative.', es: 'Esta respuesta depende de dónde vive. Búsquela con Find My Representative.' },
+  findButton: { en: 'Find my representatives', es: 'Buscar mis representantes' },
   checkFailed: { en: "I couldn't check that answer. Please try again.", es: 'No pude revisar esa respuesta. Por favor, intente otra vez.' },
 };
 
@@ -88,7 +95,7 @@ export function PartIntroStep({ step, ctx }) {
 }
 
 export function ExplainStep({ step, ctx }) {
-  const note = step.note;
+  const { note, link } = step;
   return (
     <TutorMessage profile={ctx.profile} language={ctx.language} mine={step.text.mine} en={step.text.en}>
       {note && (
@@ -96,7 +103,57 @@ export function ExplainStep({ step, ctx }) {
           {ctx.language !== 'en' && note.mine ? `${note.mine} · ${note.en}` : note.en}
         </p>
       )}
+      {link && (
+        <a
+          href={link.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-3 min-h-[44px] rounded-2xl bg-white text-pw-navy border-2 border-pw-navy px-4 font-bold inline-flex items-center gap-2 hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2"
+        >
+          <Volume2 className="w-5 h-5" aria-hidden="true" /> {link.label}
+          <ExternalLink className="w-4 h-4" aria-hidden="true" />
+          <span className="sr-only">(opens in a new tab)</span>
+        </a>
+      )}
     </TutorMessage>
+  );
+}
+
+// "Answers change / vary" questions: the confirmed current official, or the
+// learner's own official from Find My Representative (see currentAnswers.js).
+function NowAnswer({ now, ctx }) {
+  if (!now) return null;
+  const t = (key) => { const v = ctx.ui(key); return ctx.language === 'es' && v.mine ? v.mine : v.en; };
+  const uscis = (
+    <a href={now.source} target="_blank" rel="noopener noreferrer" className="font-bold underline underline-offset-2 hover:text-pw-red-ink">uscis.gov</a>
+  );
+  return (
+    <div className="mt-4 rounded-2xl bg-pw-blue-soft p-4">
+      {now.kind === 'current' && (
+        <>
+          <Eyebrow className="mb-1">{t('currentAnswer')}</Eyebrow>
+          <p className="text-[1.25em] font-extrabold">{now.text}</p>
+          <ListenButton text={now.text} language="en" />
+          <p className="text-sm text-pw-muted mt-2">{t('checkedOn').replace('{date}', now.checkedOn)} {uscis}</p>
+        </>
+      )}
+      {now.kind === 'check' && <p className="font-semibold">{t('checkUscis')} {uscis}.</p>}
+      {now.kind === 'yours' && (
+        <>
+          <Eyebrow className="mb-1">{t('yourAnswer')}</Eyebrow>
+          <p className="text-[1.25em] font-extrabold">{now.text}</p>
+          <ListenButton text={now.text} language="en" />
+        </>
+      )}
+      {now.kind === 'find' && (
+        <>
+          <p className="font-semibold">{t('findYours')}</p>
+          <Link to="/Practice" className="mt-3 min-h-[44px] rounded-2xl bg-pw-navy text-white px-4 font-bold inline-flex items-center hover:bg-pw-navy-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2">
+            {t('findButton')}
+          </Link>
+        </>
+      )}
+    </div>
   );
 }
 
@@ -128,6 +185,7 @@ export function ShowEnglishStep({ step, ctx }) {
           {accepted.map((a) => <li key={a} className="font-bold"><Marked text={a} words={words} /></li>)}
         </ul>
         <ListenButton text={accepted.join('. ')} language="en" />
+        <NowAnswer now={step.now} ctx={ctx} />
       </RaisedCard>
       {translated.length > 0 && (
         <RaisedCard className={`text-pw-navy ${ctx.sizeClass}`}>
