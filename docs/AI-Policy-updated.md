@@ -50,6 +50,10 @@ Lessons explain each civics question in the learner's language before practice. 
 
 **Target date and study plan:** the learner's interview or target date is saved **only on their own device** (browser storage), never to Pathways USA's database or the AI. The daily plan is calculated on the device from the learner's saved levels and progress. Daily checkmarks and visit dates are also kept only on the device. If the learner uses a new device, the app asks for the date again.
 
+**Getting started:** before the first quick check, the app asks which language to use, which tutor picture to show, and, in broad terms, where the learner is in the citizenship process (getting ready to apply, applied, interview scheduled, or just learning). If they have applied, it asks only whether Form N-400 was sent before or after October 20, 2025, to choose the 2008 or 2025 civics test. These answers are kept **only on the learner's device** and are not sent to the AI; only the tutor picture is saved to the account, as part of tutor settings. The app never asks for a filing date, case number, or field office.
+
+**Reading aloud:** in onboarding, the quick check, and lessons, the tutor's messages are read aloud using the device's built-in voices. Nothing is recorded and no audio is sent anywhere. Learners can turn this off; the setting is saved on the device.
+
 **Check-ins:** the app may suggest a shorter plan after missed days, more practice for a skill that has been hard, a short re-check every two weeks, or more English when scores are high. These are shown in the app only (no email or text messages) and are based on progress the app already saves.
 
 ## Tutor Access and Tutor Data
