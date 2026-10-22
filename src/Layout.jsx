@@ -11,6 +11,7 @@ import StudyBuddy, { openTutorChat } from '@/components/ai/StudyBuddy';
 import TabBar from '@/components/pathways/TabBar';
 import { AutoReadContext } from '@/components/persona/useAutoRead';
 import DailyPracticeReminder from '@/components/notifications/DailyPracticeReminder';
+import TutorInvitePrompt from '@/components/tutor/TutorInvitePrompt';
 import { Toaster } from "sonner";
 
 // Lesson screens are "focus mode": they have a pinned Continue button, so the
@@ -59,46 +60,6 @@ export default function Layout({ children }) {
           setShowOnboarding(true);
         }
         
-        // Handle invite links for students
-        const currentProfile = allProfiles.find(p => p.account_type) || allProfiles[0];
-        if (currentProfile && currentProfile.account_type === 'student') {
-            const params = new URLSearchParams(location.search);
-            const urlInviteEmail = params.get('tutor_invite');
-            
-            if (urlInviteEmail) {
-                localStorage.setItem('pending_tutor_invite', urlInviteEmail);
-            }
-
-            const storedInviteEmail = localStorage.getItem('pending_tutor_invite');
-            const inviteTutorEmail = urlInviteEmail || storedInviteEmail;
-            
-            if (inviteTutorEmail) {
-                 try {
-                     const tutorEmail = inviteTutorEmail.toLowerCase().trim();
-                     const existing = await base44.entities.TutorRelationship.filter(
-                         { student_email: normalizedEmail, tutor_email: tutorEmail }, null, 1
-                     );
-                     
-                     if (existing.length === 0) {
-                         await base44.entities.TutorRelationship.create({
-                             student_email: normalizedEmail,
-                             tutor_email: tutorEmail,
-                             status: 'active'
-                         });
-                     } else if (existing[0].status !== 'active') {
-                         await base44.entities.TutorRelationship.update(existing[0].id, { status: 'active' });
-                     }
-                     
-                     localStorage.removeItem('pending_tutor_invite');
-                     if (urlInviteEmail) {
-                        const newUrl = window.location.pathname;
-                        window.history.replaceState({}, document.title, newUrl);
-                     }
-                 } catch (err) {
-                     console.error("Error processing invite", err);
-                 }
-            }
-        }
       } catch (e) {
         console.error("Auth check error:", e);
         setShowOnboarding(false);
@@ -280,6 +241,7 @@ export default function Layout({ children }) {
               }}
           />
       )}
+      {role === 'student' && !focusMode && <TutorInvitePrompt search={location.search} />}
       {!focusMode && <StudyBuddy aboveTabBar={showTabs} />}
       {showTabs && <TabBar pathname={location.pathname} onAskTutor={askTutor} />}
       <DailyPracticeReminder />

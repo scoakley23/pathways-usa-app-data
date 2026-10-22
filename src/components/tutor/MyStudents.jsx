@@ -19,6 +19,7 @@ import TutorDashboard from './TutorDashboard';
 import StudentActivityMonitor from './StudentActivityMonitor';
 import { LayoutDashboard, Users, Activity } from 'lucide-react';
 import { toast } from "sonner";
+import { inviteStudent, respondToLink, requesterOf } from '@/lib/tutorLinks';
 
 export default function MyStudents({ currentUserEmail }) {
   const [view, setView] = useState('list'); // 'list', 'dashboard', or 'monitor'
@@ -42,8 +43,8 @@ export default function MyStudents({ currentUserEmail }) {
       try {
           const normalizedEmail = currentUserEmail.toLowerCase().trim();
 
-          // Fetch all profiles for this tutor and use the one with account_type=tutor
-          const allProfiles = await base44.entities.PublicProfile.list('-created_date', 1000);
+          // This tutor's own profiles; use the one with account_type=tutor
+          const allProfiles = await base44.entities.PublicProfile.filter({ user_email: normalizedEmail }, '-created_date', 100);
           const profile = allProfiles.find(p => p.user_email === normalizedEmail && p.account_type === 'tutor')
               || allProfiles.find(p => p.user_email === normalizedEmail);
           
@@ -99,12 +100,7 @@ export default function MyStudents({ currentUserEmail }) {
           return;
       }
 
-    const newRel = await base44.entities.TutorRelationship.create({
-      tutor_email: currentUserEmail.toLowerCase().trim(),
-      student_email: studentEmailLower,
-      status: 'pending',
-      created_by: currentUserEmail.toLowerCase().trim() // Track who created it
-    });
+    const newRel = await inviteStudent(studentEmailLower);
 
     setStudents(prev => [...prev, newRel]);
     setNewStudentEmail("");
@@ -146,7 +142,7 @@ The Citizenship Hub Team`;
 
   const handleResponse = async (id, status) => {
     try {
-      await base44.entities.TutorRelationship.update(id, { status });
+      await respondToLink(id, status === 'active');
       
       // Notify Student
       const rel = students.find(s => s.id === id);
@@ -163,7 +159,7 @@ The Citizenship Hub Team`;
       toast.success(`Request ${status}`);
       fetchStudents();
     } catch (error) {
-      toast.error("Action failed");
+      toast.error(error.message || "Action failed");
     }
   };
 
@@ -310,7 +306,7 @@ The Citizenship Hub Team`;
               
               <div className="mt-4 pt-4 border-t border-pw-line">
                  {rel.status === 'pending' ? (
-                    rel.created_by !== currentUserEmail ? (
+                    requesterOf(rel) !== currentUserEmail.toLowerCase().trim() ? (
                      <div className="bg-pw-teal-soft p-4 rounded-2xl">
                          <span className="text-sm font-bold text-pw-teal-ink block mb-3">Student requested to join</span>
                          <div className="flex gap-2">

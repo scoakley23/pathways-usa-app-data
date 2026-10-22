@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import ChatInterface from '@/components/chat/ChatInterface';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { toast } from "sonner";
+import { joinClassByCode, requestTutor, respondToLink, requesterOf } from '@/lib/tutorLinks';
 
 export default function MyTutor({ currentUserEmail }) {
   const [tutors, setTutors] = useState([]);
@@ -31,11 +32,11 @@ export default function MyTutor({ currentUserEmail }) {
 
   const handleResponse = async (id, status) => {
     try {
-      await base44.entities.TutorRelationship.update(id, { status });
+      await respondToLink(id, status === 'active');
       toast.success(`Tutor request ${status}`);
       fetchTutors();
     } catch (error) {
-      toast.error("Action failed");
+      toast.error(error.message || "Action failed");
     }
   };
 
@@ -45,32 +46,13 @@ export default function MyTutor({ currentUserEmail }) {
       setIsJoining(true);
 
       try {
-          const cleanCode = inviteCode.replace(/\s+/g, '').toUpperCase();
-
-          // Fetch ALL tutor profiles and do a client-side case-insensitive match
-          // (query-filter on invite_code is unreliable across backends)
-          const allProfiles = await base44.entities.PublicProfile.list('-created_date', 1000);
-
-          // Try exact match first, then O/0 swap fallbacks
-          const variants = [cleanCode, cleanCode.replace(/0/g, 'O'), cleanCode.replace(/O/g, '0')];
-          
-          const tutorProfile = allProfiles.find(p =>
-              p.account_type === 'tutor' &&
-              p.invite_code &&
-              variants.includes(p.invite_code.toUpperCase())
-          );
-
-          if (!tutorProfile) {
-              toast.error("Invalid invite code. Please check and try again.");
-              return;
-          }
-
-          await connectWithTutor(tutorProfile.user_email, 'active');
+          const { already } = await joinClassByCode(inviteCode);
+          toast.success(already ? "You are already in this class." : "Successfully joined class!");
           setInviteCode("");
-
+          fetchTutors();
       } catch (error) {
           console.error("Join error", error);
-          toast.error("Failed to join class. Please try again.");
+          toast.error(error.message || "Failed to join class. Please try again.");
       } finally {
           setIsJoining(false);
       }
@@ -83,73 +65,49 @@ export default function MyTutor({ currentUserEmail }) {
       
       try {
         const email = tutorEmailInput.toLowerCase().trim();
-        await connectWithTutor(email, 'pending');
+        await requestTutorByEmail(email);
         setTutorEmailInput("");
       } catch (e) {
           console.error(e);
+          toast.error(e.message || "Request failed. Please try again.");
       } finally {
           setIsJoining(false);
       }
   };
 
-  const connectWithTutor = async (tutorEmail, initialStatus = 'pending') => {
+  const requestTutorByEmail = async (tutorEmail) => {
       const studentEmailNormalized = currentUserEmail.toLowerCase().trim();
       const tutorEmailNormalized = tutorEmail.toLowerCase().trim();
 
-      if (tutorEmailNormalized === studentEmailNormalized) {
-          toast.error("You cannot add yourself as a tutor.");
-          return;
+      await requestTutor(tutorEmailNormalized);
+
+      // Send email notification to the Tutor
+      const appUrl = window.location.origin;
+      const emailSubject = "New Student Request - Citizenship Learning Hub";
+      const emailBody = `Hello! \n\n${studentEmailNormalized} has requested to join your class on the Citizenship Learning Hub. \n\nPlease log in to your Tutor Dashboard to accept or decline this request:\n${appUrl}/Tutor\n\nBest regards,\nThe Citizenship Hub Team`;
+      
+      try {
+          base44.integrations.Core.SendEmail({
+             from_name: "Citizenship Learning Hub",
+             to: tutorEmailNormalized,
+             subject: emailSubject,
+             body: emailBody
+          }).catch(err => console.error("Failed to send email notification", err));
+          
+          // In-App Notification
+          await base44.entities.Notification.create({
+              user_email: tutorEmailNormalized,
+              type: 'request',
+              title: 'New Student Request',
+              message: `${studentEmailNormalized} wants to join your class.`,
+              link: '/Tutor'
+          });
+
+      } catch (e) {
+          console.error("Email dispatch error", e);
       }
 
-      // Check if relationship already exists
-      const existing = await base44.entities.TutorRelationship.filter({
-          student_email: studentEmailNormalized, tutor_email: tutorEmailNormalized
-      });
-
-      if (existing.length > 0) {
-          toast.error("You are already connected with this tutor.");
-          return;
-      }
-
-      // Create relationship
-      await base44.entities.TutorRelationship.create({
-          student_email: studentEmailNormalized,
-          tutor_email: tutorEmailNormalized,
-          status: initialStatus,
-          created_by: studentEmailNormalized
-      });
-
-      if (initialStatus === 'active') {
-         toast.success(`Successfully joined class!`);
-      } else {
-         // Send email notification to the Tutor
-         const appUrl = window.location.origin;
-         const emailSubject = "New Student Request - Citizenship Learning Hub";
-         const emailBody = `Hello! \n\n${studentEmailNormalized} has requested to join your class on the Citizenship Learning Hub. \n\nPlease log in to your Tutor Dashboard to accept or decline this request:\n${appUrl}/Tutor\n\nBest regards,\nThe Citizenship Hub Team`;
-         
-         try {
-             base44.integrations.Core.SendEmail({
-                from_name: "Citizenship Learning Hub",
-                to: tutorEmailNormalized,
-                subject: emailSubject,
-                body: emailBody
-             }).catch(err => console.error("Failed to send email notification", err));
-             
-             // In-App Notification
-             await base44.entities.Notification.create({
-                 user_email: tutorEmailNormalized,
-                 type: 'request',
-                 title: 'New Student Request',
-                 message: `${studentEmailNormalized} wants to join your class.`,
-                 link: '/Tutor'
-             });
-
-         } catch (e) {
-             console.error("Email dispatch error", e);
-         }
-
-         toast.success(`Request sent to ${tutorEmailNormalized}`);
-      }
+      toast.success(`Request sent to ${tutorEmailNormalized}`);
       fetchTutors();
   };
 
@@ -170,7 +128,7 @@ export default function MyTutor({ currentUserEmail }) {
                     <div className="mt-2">
                         {rel.status === 'active' && <Tag tone="green">Active Tutor</Tag>}
                         {rel.status === 'pending' && (
-                            rel.created_by === currentUserEmail 
+                            requesterOf(rel) === currentUserEmail.toLowerCase().trim() 
                             ? <Tag tone="blue">Request Sent</Tag>
                             : <Tag tone="teal">Invite Received</Tag>
                         )}
@@ -186,7 +144,7 @@ export default function MyTutor({ currentUserEmail }) {
 
               {rel.status === 'pending' && (
                 <div className="mt-4">
-                  {rel.created_by === currentUserEmail ? (
+                  {requesterOf(rel) === currentUserEmail.toLowerCase().trim() ? (
                       <div className="w-full flex items-center justify-center gap-2 text-base font-semibold text-pw-blue-ink bg-pw-blue-soft py-3 px-4 rounded-2xl">
                           <Clock className="w-4 h-4" aria-hidden="true" /> Request Pending Approval
                       </div>
