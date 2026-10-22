@@ -93,7 +93,7 @@ export function buildLearnLesson(questions, language = 'en', lookup = getExplana
     steps.push({ type: 'show-english', question: q, keyWords: explanation.keyWords, now: currentAnswerFor(q, { representativeData }), questionId: q.id });
     steps.push({ type: 'practice-speaking', question: q, questionId: q.id });
   }
-  return { id: 'learn-civics', title: 'Learn civics', steps };
+  return { id: 'learn-civics', title: 'Learn civics', steps, posters: true };
 }
 
 // Checks every explanation file against the exported official questions

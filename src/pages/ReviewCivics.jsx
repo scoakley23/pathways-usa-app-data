@@ -90,6 +90,7 @@ export default function ReviewCivics() {
   const lesson = useMemo(() => (due ? {
     id: 'review-civics',
     title: 'Review civics',
+    posters: true,
     steps: due.map(({ question }) => ({ type: 'practice-speaking', question, mode: 'check', part: 'civics' })),
   } : null), [due]);
 
