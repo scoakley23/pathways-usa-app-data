@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
 import { Loader2, Volume2 } from 'lucide-react';
-import TutorAvatar from './TutorAvatar';
-import { CustomPhotoTile, NameSuggestions } from './TutorChoices';
+import { NameSuggestions } from './TutorChoices';
 import { PrimaryButton, QuietButton } from '@/components/pathways/ui';
 import useTranslatedLines from './useTranslatedLines';
 import useAppLanguage, { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
 import { speakText } from '@/components/utils/textToSpeech';
 import {
-  CUSTOM_AVATAR,
   ENGLISH_MIX,
   FIXED_LINES_ES,
   MAX_TUTOR_NAME_LENGTH,
-  TUTOR_AVATARS,
   TUTOR_TONES,
   fixedTutorLines,
   normalizeTutorProfile,
@@ -47,7 +44,7 @@ function ListenButton({ text, language, label }) {
   );
 }
 
-// "Your tutor" screen: name, avatar, tone, English mix, and a preview line.
+// "Your tutor" screen: name, tone, English mix, and a preview line.
 // Used in onboarding and in Profile.
 export default function TutorSetup({ initialProfile, onSave, onSkip, saveLabel = 'Save', saving = false }) {
   const [draft, setDraft] = useState(() => normalizeTutorProfile(initialProfile));
@@ -73,22 +70,20 @@ export default function TutorSetup({ initialProfile, onSave, onSkip, saveLabel =
   return (
     <div className="space-y-6 text-base text-pw-navy">
       {/* Preview */}
-      <div className="rounded-3xl bg-pw-blue-soft p-4">
-        <div className="flex items-start gap-3">
-          <TutorAvatar avatar={profile.avatar} size={56} />
-          <div className="min-w-0 flex-1 space-y-2">
-            {mineLines && (
-              <div className="rounded-2xl rounded-tl-sm bg-white border border-pw-line p-3">
-                <p dir={RTL_LANGUAGES.includes(language) ? 'rtl' : 'ltr'}>{mineLines.join(' ')}</p>
-                <ListenButton text={mineLines.join(' ')} language={language} label="Listen" />
-              </div>
-            )}
-            <div className={`rounded-2xl p-3 ${mineLines ? 'bg-white/60' : 'rounded-tl-sm bg-white border border-pw-line'}`}>
-              {mineLines && <p className="text-sm font-semibold uppercase tracking-wide text-pw-muted">English</p>}
-              <p>{englishLines.join(' ')}</p>
-              <ListenButton text={sayInEnglish} language="en" label={mineLines ? 'Listen in English' : 'Listen'} />
+      <div className="rounded-[14px] bg-pw-blue-soft p-4">
+        <div className="space-y-2">
+          {mineLines && (
+            <div className="rounded-2xl rounded-tl-sm bg-white border border-pw-line p-3">
+              <p dir={RTL_LANGUAGES.includes(language) ? 'rtl' : 'ltr'}>{mineLines.join(' ')}</p>
+              <ListenButton text={mineLines.join(' ')} language={language} label="Listen" />
             </div>
+          )}
+          <div className={`rounded-2xl p-3 ${mineLines ? 'bg-white/60' : 'rounded-tl-sm bg-white border border-pw-line'}`}>
+            {mineLines && <p className="text-sm font-semibold uppercase tracking-wide text-pw-muted">English</p>}
+            <p>{englishLines.join(' ')}</p>
+            <ListenButton text={sayInEnglish} language="en" label={mineLines ? 'Listen in English' : 'Listen'} />
           </div>
+          <p className="font-display italic text-lg text-pw-muted">— {profile.name}</p>
         </div>
       </div>
 
@@ -105,19 +100,6 @@ export default function TutorSetup({ initialProfile, onSave, onSkip, saveLabel =
         <p className="text-sm text-pw-muted">“Vía” means “way” or “path.” You can give your tutor any name.</p>
         <NameSuggestions value={nameInput} onPick={setNameInput} />
       </div>
-
-      {/* Avatar */}
-      <fieldset className="space-y-2">
-        <legend className="font-bold mb-2">Picture</legend>
-        <div className="grid grid-cols-3 gap-3">
-          {TUTOR_AVATARS.map((id) => (
-            <OptionButton key={id} selected={profile.avatar === id} onClick={() => set('avatar', id)} className="flex justify-center !px-2 !py-2">
-              <TutorAvatar avatar={id} size={64} />
-            </OptionButton>
-          ))}
-          <CustomPhotoTile size={64} selected={profile.avatar === CUSTOM_AVATAR} onPick={() => set('avatar', CUSTOM_AVATAR)} />
-        </div>
-      </fieldset>
 
       {/* Tone */}
       <fieldset className="space-y-2">

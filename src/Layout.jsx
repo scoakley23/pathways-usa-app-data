@@ -9,6 +9,8 @@ import RoleSelectionDialog from '@/components/onboarding/RoleSelectionDialog';
 import NotificationCenter from '@/components/notifications/NotificationCenter';
 import StudyBuddy, { openTutorChat } from '@/components/ai/StudyBuddy';
 import TabBar from '@/components/pathways/TabBar';
+import { PathwaysLockup } from '@/components/pathways/ui';
+import { clearTutorPhoto } from '@/lib/tutorPhoto';
 import { AutoReadContext } from '@/components/persona/useAutoRead';
 import DailyPracticeReminder from '@/components/notifications/DailyPracticeReminder';
 import TutorInvitePrompt from '@/components/tutor/TutorInvitePrompt';
@@ -26,6 +28,10 @@ export default function Layout({ children }) {
   const [isOpen, setIsOpen] = React.useState(false);
   const [showOnboarding, setShowOnboarding] = React.useState(false);
   const navigate = useNavigate();
+
+  // Vía is always the V mark now: delete any old tutor photo left on this
+  // device (once per app load; cheap and harmless when there is none).
+  React.useEffect(() => { clearTutorPhoto(); }, []);
 
   React.useEffect(() => {
     const checkUser = async () => {
@@ -78,7 +84,7 @@ export default function Layout({ children }) {
     if (role === 'tutor') {
         items.push({ label: 'Tutor Portal', path: '/Tutor', icon: GraduationCap });
     } else {
-        items.push({ label: 'Learn', path: '/Lessons', icon: BookOpen });
+        items.push({ label: 'Lessons', path: '/Lessons', icon: BookOpen });
         items.push({ label: 'Practice', path: '/Practice', icon: Mic });
         items.push({ label: 'Interview Day', path: '/interview-day', icon: CalendarCheck });
         items.push({ label: 'N-400', path: '/n400-guide', icon: FileText });
@@ -123,15 +129,8 @@ export default function Layout({ children }) {
       {/* Navigation */}
       <nav aria-label="Site" className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-pw-line">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 cursor-pointer">
-            <img 
-              src="https://media.base44.com/images/public/6931bd654d327c7b2e36bfed/f90c67bf6_Screenshot2026-07-22at33716PM.png" 
-              alt="Pathways Logo"
-              className="w-10 h-10 rounded-xl object-cover ring-1 ring-pw-line"
-            />
-            <span className="font-extrabold text-xl tracking-tight text-pw-navy">
-              Pathways
-            </span>
+          <Link to="/" aria-label="Pathways, home" className="shrink-0 flex items-center min-h-11 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy">
+            <PathwaysLockup size={30} />
           </Link>
 
           {/* Desktop Nav */}
@@ -141,10 +140,10 @@ export default function Layout({ children }) {
                 key={item.path}
                 to={createPageUrl(item.path.replace('/', ''))}
                 aria-current={location.pathname === item.path ? 'page' : undefined}
-                className={`text-base font-bold transition-colors flex items-center gap-2 px-3 min-h-11 rounded-xl
+                className={`text-base font-bold whitespace-nowrap transition-colors flex items-center gap-2 px-2.5 xl:px-3 min-h-11 rounded-xl
                   ${location.pathname === item.path ? 'bg-pw-soft text-pw-navy' : 'text-pw-muted hover:text-pw-navy hover:bg-pw-soft'}`}
               >
-                <item.icon className="w-4 h-4" />
+                <item.icon className="w-4 h-4 hidden xl:block" aria-hidden="true" />
                 {item.label}
               </Link>
                 ))}
@@ -181,7 +180,7 @@ export default function Layout({ children }) {
                       onClick={() => setIsOpen(false)}
                       aria-current={location.pathname === item.path ? 'page' : undefined}
                       className={`text-lg font-bold transition-colors flex items-center gap-3 px-4 min-h-[52px] rounded-2xl
-                        ${location.pathname === item.path ? 'bg-white text-pw-navy shadow-raised border-l-4 border-pw-red' : 'text-pw-muted hover:bg-white hover:text-pw-navy'}`}
+                        ${location.pathname === item.path ? 'bg-white text-pw-navy shadow-raised border-l-4 border-pw-navy' : 'text-pw-muted hover:bg-white hover:text-pw-navy'}`}
                     >
                       <item.icon className="w-5 h-5" />
                       {item.label}
@@ -219,7 +218,8 @@ export default function Layout({ children }) {
 
       <footer className={`border-t border-pw-line bg-white mt-8 ${showTabs ? 'pb-24 lg:pb-0' : ''}`}>
         <div className="container mx-auto px-4 py-5 max-w-5xl">
-          <p className="text-sm text-center text-pw-muted">
+          <p className="text-base text-center text-pw-navy font-semibold">Free practice · Not affiliated with USCIS</p>
+          <p className="mt-1 text-sm text-center text-pw-muted">
             Pathways is an independent nonprofit education app. Not affiliated with USCIS or any government agency. Not legal advice.
           </p>
         </div>

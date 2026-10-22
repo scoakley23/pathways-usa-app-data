@@ -4,7 +4,6 @@ import { createPageUrl } from '@/utils';
 import { Check, Notebook, BookOpen, Mic, CalendarCheck, Star } from 'lucide-react';
 import { ROADMAP_STOPS } from './roadmapStops';
 import { isRTL } from '@/hooks/useAppLanguage';
-import TutorAvatar from '@/components/persona/TutorAvatar';
 import useTutorProfile from '@/components/persona/useTutorProfile';
 
 const STOP_ICONS = { 1: Notebook, 2: BookOpen, 3: Mic, 4: CalendarCheck };
@@ -96,7 +95,6 @@ export default function RoadmapPath({ roadmap, t, language }) {
           </svg>
 
           {/* Tiny stars */}
-          <div aria-hidden="true" className="absolute top-[130px] left-[58%] w-1.5 h-1.5 rounded-full bg-pw-red/50" />
           <div aria-hidden="true" className="absolute top-[410px] left-[8%] w-1 h-1 rounded-full bg-pw-line" />
           <div aria-hidden="true" className="absolute top-[560px] left-[54%] w-1.5 h-1.5 rounded-full bg-pw-line" />
 
@@ -114,7 +112,7 @@ export default function RoadmapPath({ roadmap, t, language }) {
             const withYou = t('tutor_with_you').split('{name}').join(profile.name);
             const ariaLabel = `${stop.name}: ${stop.short}.${isCurrent ? ` ${t('you_are_here')}. ${withYou}` : ''}`;
             const focusRing =
-              'focus:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2 rounded-full';
+              'focus:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2 rounded-full';
 
             let marker;
             if (isOath) {
@@ -122,28 +120,25 @@ export default function RoadmapPath({ roadmap, t, language }) {
                 <Link
                   to={stopUrl(stop)}
                   aria-label={ariaLabel}
-                  className="flex flex-col items-center gap-1 rounded-3xl p-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-pw-red"
+                  className="flex flex-col items-center gap-1 rounded-3xl p-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
                 >
-                  <Star className="w-12 h-12 text-pw-red fill-pw-red" strokeWidth={1.5} />
+                  <Star className="w-12 h-12 text-pw-navy fill-pw-navy" strokeWidth={1.5} />
                   <span className="text-sm font-extrabold uppercase tracking-wide text-pw-navy">
                     {t('oath_day')}
                   </span>
                 </Link>
               );
             } else if (isCurrent) {
-              // The learner's tutor stands at their current stop: the path
-              // shows where they are, the tutor shows who is guiding them.
+              // The learner's current stop: a larger navy marker. (Vía's mark
+              // shows once per screen, in the tab bar, not on the path.)
               const Icon = STOP_ICONS[stop.id];
               marker = (
                 <Link
                   to={stopUrl(stop)}
                   aria-label={ariaLabel}
-                  className={`relative block rounded-full bg-white p-1 ring-4 ring-pw-red shadow-lift ${focusRing}`}
+                  className={`relative grid place-items-center w-16 h-16 rounded-full bg-pw-navy ring-4 ring-pw-navy/20 shadow-lift ${focusRing}`}
                 >
-                  <TutorAvatar avatar={profile.avatar} size={64} decorative />
-                  <span className="absolute -bottom-1 -right-1 w-8 h-8 rounded-full bg-pw-navy border-[3px] border-white grid place-items-center">
-                    <Icon className="w-4 h-4 text-white" aria-hidden="true" />
-                  </span>
+                  <Icon className="w-7 h-7 text-white" aria-hidden="true" />
                 </Link>
               );
             } else if (isDone) {

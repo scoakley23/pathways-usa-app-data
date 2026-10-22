@@ -1,7 +1,6 @@
 // "Getting started": the questions before the first quick check. Answers
-// stay on this device (like the target date). Only the tutor picture and
-// name are saved to the account (User.tutor_profile, as before); a photo of
-// the learner's own stays on the device (src/lib/tutorPhoto.js). We never ask for
+// stay on this device (like the target date). Only the tutor name is
+// saved to the account (User.tutor_profile, as before). We never ask for
 // dates, case numbers, or anything else about the learner's case.
 
 export const ONBOARDED_KEY = 'pathways_onboarded'; // '1' once finished or skipped
@@ -40,7 +39,7 @@ export function saveFiledAnswer(answer) {
 // only makes sense once they have applied; the interview month only once an
 // interview is scheduled.
 export function onboardingSteps({ stage } = {}) {
-  const steps = ['start', 'language', 'tutor', 'name', 'stage'];
+  const steps = ['start', 'language', 'name', 'stage'];
   if (stage === 'applied' || stage === 'interview') steps.push('filed');
   if (stage === 'interview') steps.push('interview');
   steps.push('settings');
