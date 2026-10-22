@@ -3,18 +3,20 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { base44 } from '@/api/base44Client';
-import TopicArt from '@/components/art/TopicArt';
 import TutorLesson from '@/components/persona/TutorLesson';
 import TutorMessage from '@/components/persona/TutorMessage';
 import useTutorProfile from '@/components/persona/useTutorProfile';
 import { languageNameFor } from '@/components/persona/languageName';
 import { N400_STEPS } from '@/components/persona/n400Steps';
 import { PrimaryButton, Tag } from '@/components/pathways/ui';
+import N400Folder from '@/components/n400/N400Folder';
 import { N400_SECTIONS } from '@/components/n400/n400Content';
 import useAppLanguage from '@/hooks/useAppLanguage';
-import { allDoneLine, buildN400Lesson, pickSection } from '@/lib/n400Lesson';
+import { allDoneLine, buildN400Lesson, liveSections, pickSection } from '@/lib/n400Lesson';
 
-const linkBtn = 'w-full min-h-[52px] rounded-2xl font-bold text-lg inline-flex items-center justify-center px-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2';
+const linkBtn = 'w-full min-h-[52px] rounded-xl font-semibold text-lg inline-flex items-center justify-center px-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2';
+// Folder tabs open that section's lesson (the page reads ?section= once).
+const openSection = (id) => window.location.assign(`/n400-coach?section=${id}`);
 
 // N-400 coaching (Prompt 9): this week's N-400 Guide section as a tutor
 // lesson. Never collects, fills in, or stores form answers — only that the
@@ -44,6 +46,7 @@ export default function N400Coach() {
     () => (section ? buildN400Lesson({ section, language }) : null),
     [section, language],
   );
+  const sections = liveSections(N400_SECTIONS);
 
   const markComplete = async () => {
     if (!user?.email || !section) return;
@@ -80,11 +83,10 @@ export default function N400Coach() {
     const msg = allDone ? allDoneLine(language) : null;
     return (
       <div className="max-w-xl mx-auto space-y-5 text-pw-navy">
-        <div className="rounded-3xl bg-pw-blue-soft px-4 pt-4 pb-5">
-          <TopicArt name="pencil" />
-          <Tag tone="green" className="mt-2">{allDone ? 'All sections done' : 'Section done'}</Tag>
-          <h1 className="text-[28px] leading-tight font-extrabold mt-3">N-400 Guide</h1>
-        </div>
+        <h1 className="sr-only">N-400 coach</h1>
+        <N400Folder sections={sections} activeId={section?.id} completedIds={completed} onSelect={openSection}>
+          <Tag tone="green">{allDone ? 'All sections done' : 'Section done'}</Tag>
+        </N400Folder>
         {allDone ? (
           <>
             <TutorMessage profile={profile} language={language} mine={msg.mine} en={msg.en} />
@@ -104,19 +106,24 @@ export default function N400Coach() {
   }
 
   return (
-    <TutorLesson
-      lesson={lesson}
-      profile={profile}
-      language={language}
-      languageName={languageNameFor(language)}
-      extraSteps={N400_STEPS}
-      onFinish={async () => {
-        await markComplete();
-        setStage('done');
-        window.scrollTo({ top: 0 });
-      }}
-      onExit={() => navigate('/')}
-    />
+    <div className="space-y-5">
+      <div className="max-w-xl mx-auto">
+        <N400Folder sections={sections} activeId={section.id} completedIds={completed} onSelect={openSection} />
+      </div>
+      <TutorLesson
+        lesson={lesson}
+        profile={profile}
+        language={language}
+        languageName={languageNameFor(language)}
+        extraSteps={N400_STEPS}
+        onFinish={async () => {
+          await markComplete();
+          setStage('done');
+          window.scrollTo({ top: 0 });
+        }}
+        onExit={() => navigate('/')}
+      />
+    </div>
   );
 }
 
