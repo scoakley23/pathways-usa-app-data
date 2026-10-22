@@ -16,6 +16,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Check, Search, Loader2 } from 'lucide-react';
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
+import { assignPractice } from '@/lib/tutorLinks';
 
 export default function AssignContentDialog({ isOpen, onClose, studentEmail, tutorEmail }) {
   const [contentType, setContentType] = useState('sentence');
@@ -100,12 +101,8 @@ export default function AssignContentDialog({ isOpen, onClose, studentEmail, tut
          }
 
          let assignmentData = {
-            tutor_email: tutorEmail,
-            student_email: studentEmail,
             content_type: 'custom',
             content_id: 'custom',
-            status: 'pending',
-            assigned_date: new Date().toISOString(),
             custom_type: customType
          };
 
@@ -120,20 +117,16 @@ export default function AssignContentDialog({ isOpen, onClose, studentEmail, tut
              assignmentData.custom_data = { question: customData.question, answer: customData.answer };
          }
 
-         await base44.entities.Assignment.create(assignmentData);
+         await assignPractice(studentEmail, [assignmentData]);
       } else {
           if (selectedIds.length === 0) return;
           
           const assignments = selectedIds.map(id => ({
-            tutor_email: tutorEmail,
-            student_email: studentEmail,
             content_type: contentType,
-            content_id: id,
-            status: 'pending',
-            assigned_date: new Date().toISOString()
+            content_id: id
           }));
 
-          await base44.entities.Assignment.bulkCreate(assignments);
+          await assignPractice(studentEmail, assignments);
       }
       
       // Notify Student
@@ -149,7 +142,7 @@ export default function AssignContentDialog({ isOpen, onClose, studentEmail, tut
       onClose();
     } catch (error) {
       console.error("Error assigning content", error);
-      toast.error("Failed to assign content");
+      toast.error(error.message || "Failed to assign content");
     } finally {
       setIsAssigning(false);
     }

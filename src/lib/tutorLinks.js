@@ -23,6 +23,10 @@ export const joinClassByCode = (code) => tutorLink('join', { code });
 export const joinClassByEmail = (tutorEmail) => tutorLink('join', { tutorEmail });
 export const requestTutor = (tutorEmail) => tutorLink('request', { tutorEmail }).then(r => r.relationship);
 export const inviteStudent = (studentEmail) => tutorLink('invite', { studentEmail }).then(r => r.relationship);
+// Sends practice to an actively linked student; the server sets who it's
+// from and to, the status, and the date.
+export const assignPractice = (studentEmail, assignments) =>
+  tutorLink('assign', { studentEmail, assignments }).then(r => r.count);
 export const respondToLink = (id, accept) => tutorLink('respond', { id, accept }).then(r => r.relationship);
 
 // { [studentEmail]: { userProgress, lessonProgress, n400Progress } }, only for

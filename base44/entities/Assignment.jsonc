@@ -3,10 +3,12 @@
   "type": "object",
   "properties": {
     "tutor_email": {
-      "type": "string"
+      "type": "string",
+      "rls": { "write": false }
     },
     "student_email": {
-      "type": "string"
+      "type": "string",
+      "rls": { "write": false }
     },
     "content_type": {
       "type": "string",
@@ -68,7 +70,7 @@
     "content_type"
   ],
   "rls": {
-    "create": { "data.tutor_email": "{{user.email}}" },
+    "create": false,
     "read": { "$or": [{ "data.tutor_email": "{{user.email}}" }, { "data.student_email": "{{user.email}}" }] },
     "update": { "$or": [{ "data.tutor_email": "{{user.email}}" }, { "data.student_email": "{{user.email}}" }] },
     "delete": { "$or": [{ "data.tutor_email": "{{user.email}}" }, { "data.student_email": "{{user.email}}" }] }

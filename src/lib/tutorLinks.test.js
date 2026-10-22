@@ -5,6 +5,7 @@ import {
   canRespond,
   planJoin,
   hasActiveLink,
+  cleanAssignment,
 } from '../../base44/shared/tutorLinks.js';
 
 const tutor = 'tutor@example.com';
@@ -65,5 +66,31 @@ describe('joining and access', () => {
     expect(hasActiveLink([rel({ status: 'active' })], tutor, student)).toBe(true);
     expect(hasActiveLink([rel({ status: 'pending' })], tutor, student)).toBe(false);
     expect(hasActiveLink([rel({ status: 'active' })], 'other@example.com', student)).toBe(false);
+  });
+});
+
+describe('assignments', () => {
+  it('keeps only content fields', () => {
+    expect(cleanAssignment({
+      content_type: 'civics_question', content_id: 'q1',
+      tutor_email: 'someone@example.com', student_email: 'x@example.com', status: 'completed',
+    })).toEqual({ content_type: 'civics_question', content_id: 'q1' });
+  });
+
+  it('keeps custom content and data', () => {
+    expect(cleanAssignment({
+      content_type: 'custom', content_id: 'custom', custom_type: 'vocabulary',
+      custom_content: 'vote: choose', custom_data: { word: 'vote', definition: 'choose' },
+    })).toEqual({
+      content_type: 'custom', content_id: 'custom', custom_type: 'vocabulary',
+      custom_content: 'vote: choose', custom_data: { word: 'vote', definition: 'choose' },
+    });
+  });
+
+  it('refuses unknown types and missing ids', () => {
+    expect(cleanAssignment({ content_type: 'quiz', content_id: 'a' })).toBeNull();
+    expect(cleanAssignment({ content_type: 'sentence' })).toBeNull();
+    expect(cleanAssignment({ content_type: 'custom', custom_type: 'essay' })).toBeNull();
+    expect(cleanAssignment(null)).toBeNull();
   });
 });

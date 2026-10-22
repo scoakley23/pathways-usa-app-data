@@ -7,12 +7,17 @@
 //   request    { tutorEmail }      student asks a tutor   → pending link
 //   invite     { studentEmail }    tutor invites a student → pending link
 //   respond    { id, accept }      the other person accepts or declines
+//   assign     { studentEmail, assignments } tutor sends practice to an
+//              actively linked student → { count }
 import { createClientFromRequest } from "npm:@base44/sdk@0.8.56";
 import {
   normalizeEmail,
   findTutorByCode,
   canRespond,
   planJoin,
+  hasActiveLink,
+  cleanAssignment,
+  MAX_ASSIGNMENTS,
 } from "../../shared/tutorLinks.js";
 
 const fail = (error, status = 400) => Response.json({ error }, { status });
@@ -91,6 +96,23 @@ export default async function (req) {
         const status = body.accept ? "active" : "rejected";
         await db.TutorRelationship.update(rel.id, { status });
         return Response.json({ relationship: { ...rel, status } });
+      }
+
+      case "assign": {
+        const studentEmail = normalizeEmail(body.studentEmail);
+        const link = studentEmail ? await findLink(me, studentEmail) : null;
+        if (!link || !hasActiveLink([link], me, studentEmail)) {
+          return fail("You can only send practice to your own active students.", 403);
+        }
+        const items = Array.isArray(body.assignments) ? body.assignments : [];
+        if (items.length === 0 || items.length > MAX_ASSIGNMENTS) return fail("Choose between 1 and 200 items.");
+        const cleaned = items.map(cleanAssignment);
+        if (cleaned.some(a => !a)) return fail("Some items couldn't be assigned.");
+        const assigned_date = new Date().toISOString();
+        await db.Assignment.bulkCreate(cleaned.map(a => ({
+          ...a, tutor_email: me, student_email: studentEmail, status: "pending", assigned_date,
+        })));
+        return Response.json({ count: cleaned.length });
       }
 
       default:
