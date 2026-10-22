@@ -41,10 +41,10 @@ import TalkToPerson from './TalkToPerson';
 // hand; other languages are translated once by AI and cached on the device.
 // Bump the cache key whenever the English text changes.
 const PRIVACY_NOTE = {
-  en: "Don't share your immigration status, A-number, case details, or address. Your questions are saved to your account so you can see them in History.",
-  es: 'No comparta su estatus migratorio, número A, detalles de su caso ni su dirección. Sus preguntas se guardan en su cuenta para que pueda verlas en el Historial.',
+  en: "Your chats with Vía are private. Your tutor can't see them. Don't share your immigration status, A-number, case details, or address. Your questions are saved to your account so you can see them in History.",
+  es: 'Sus conversaciones con Vía son privadas. Su tutor no puede verlas. No comparta su estatus migratorio, número A, detalles de su caso ni su dirección. Sus preguntas se guardan en su cuenta para que pueda verlas en el Historial.',
 };
-const PRIVACY_NOTE_CACHE_KEY = 'pathways_sb_privacy_v2_';
+const PRIVACY_NOTE_CACHE_KEY = 'pathways_sb_privacy_v3_';
 
 function usePrivacyNote(language) {
   const [note, setNote] = useState(PRIVACY_NOTE[language] || PRIVACY_NOTE.en);
