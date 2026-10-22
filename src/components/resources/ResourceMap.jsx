@@ -90,7 +90,7 @@ const clusterIcon = (cluster) => {
   const size = n < 10 ? 36 : n < 100 ? 42 : 50;
   return L.divIcon({
     className: '',
-    html: `<span style="display:grid;place-items:center;width:${size}px;height:${size}px;border-radius:9999px;background:#14264A;color:#fff;font:800 15px Manrope,system-ui,sans-serif;border:3px solid #fff;box-shadow:0 2px 8px rgba(20,38,74,.4)">${n}</span>`,
+    html: `<span style="display:grid;place-items:center;width:${size}px;height:${size}px;border-radius:9999px;background:#14264A;color:#fff;font:700 15px 'Instrument Sans',system-ui,sans-serif;border:3px solid #fff;box-shadow:0 2px 8px rgba(20,38,74,.4)">${n}</span>`,
     iconSize: [size, size],
     iconAnchor: [size / 2, size / 2],
   });
