@@ -18,7 +18,7 @@ import RehearsalResults from './RehearsalResults';
 // no Base44 writes and no browser storage. Leaving or refreshing loses it.
 // Only reads: the question and sentence lists, and the learner's saved
 // Find My Representative names (for "Answers vary" civics questions).
-export default function RehearsalRunner({ personaId, version, userEmail, onStop }) {
+export default function RehearsalRunner({ version, userEmail, onStop }) {
   const [part, setPart] = useState(0);
   const [content, setContent] = useState(null);
   const [passed, setPassed] = useState({});
@@ -75,7 +75,7 @@ export default function RehearsalRunner({ personaId, version, userEmail, onStop 
         <OathStep onDone={() => finishPart(null)} />
       ) : current.id === 'interview' ? (
         <InterviewPractice
-          rehearsal={{ personaId, onFinish: (results, count) => finishPart('speaking', speakingPassed(results, count)) }}
+          rehearsal={{ onFinish: (results, count) => finishPart('speaking', speakingPassed(results, count)) }}
         />
       ) : current.id === 'reading' ? (
         <QuestionPart

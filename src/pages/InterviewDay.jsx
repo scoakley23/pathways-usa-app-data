@@ -3,7 +3,6 @@ import { Loader2 } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import PageHeader from '@/components/PageHeader';
 import { PrimaryButton, RaisedCard } from '@/components/pathways/ui';
-import { getPersona } from '@/components/practice/PracticePersonaPanel';
 import InterviewDayGuide from '@/components/interview-day/InterviewDayGuide';
 import RehearsalStart from '@/components/interview-day/RehearsalStart';
 import RehearsalRunner from '@/components/interview-day/RehearsalRunner';
@@ -25,7 +24,6 @@ function defaultVersion() {
 // storage. Its answers, scores, and choices live only in page memory.
 export default function InterviewDay() {
   const [user, setUser] = useState(undefined);
-  const [personaId, setPersonaId] = useState(() => getPersona().id);
   const [version, setVersion] = useState(defaultVersion);
   const [running, setRunning] = useState(false);
 
@@ -40,7 +38,6 @@ export default function InterviewDay() {
     return (
       <div className="max-w-2xl mx-auto">
         <RehearsalRunner
-          personaId={personaId}
           version={version}
           userEmail={user.email.toLowerCase().trim()}
           onStop={stop}
@@ -66,8 +63,6 @@ export default function InterviewDay() {
         <Loader2 className="w-6 h-6 animate-spin mx-auto text-pw-navy" aria-label="Loading" />
       ) : user ? (
         <RehearsalStart
-          personaId={personaId}
-          onSelectPersona={setPersonaId}
           version={version}
           onSelectVersion={setVersion}
           onStart={start}

@@ -1,15 +1,14 @@
 import React from 'react';
 import { ShieldCheck } from 'lucide-react';
 import { PrimaryButton, RaisedCard } from '@/components/pathways/ui';
-import { PersonaPicker } from '@/components/practice/PracticePersonaPanel';
 
 const VERSIONS = [
   { id: '2025', label: '2025 test' },
   { id: '2008', label: '2008 test' },
 ];
 
-// Start screen: practice notice, practice person, civics version.
-export default function RehearsalStart({ personaId, onSelectPersona, version, onSelectVersion, onStart, starting }) {
+// Start screen: practice notice, how the N-400 part works, civics version.
+export default function RehearsalStart({ version, onSelectVersion, onStart, starting }) {
   return (
     <section aria-labelledby="rehearsal-title" className="space-y-4 text-pw-navy">
       <h2 id="rehearsal-title" className="text-[22px] leading-snug font-extrabold">Full rehearsal</h2>
@@ -21,11 +20,11 @@ export default function RehearsalStart({ personaId, onSelectPersona, version, on
         </p>
       </div>
 
-      <PersonaPicker
-        selectedId={personaId}
-        onSelect={onSelectPersona}
-        description="In the N-400 part, you answer as this person, not about yourself."
-      />
+      <RaisedCard>
+        <p className="text-base leading-relaxed">
+          In the part about your application, you don&apos;t answer the questions. You say in your own words what the officer is asking, and we check that you understood.
+        </p>
+      </RaisedCard>
 
       <RaisedCard className="space-y-3">
         <p id="civics-version-label" className="text-lg font-extrabold">Civics test</p>

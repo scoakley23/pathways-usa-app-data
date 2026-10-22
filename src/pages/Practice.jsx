@@ -581,7 +581,7 @@ export default function Practice() {
           </PartCard>
 
           <PartCard i={3} part="Speaking" title="Mock interview">
-            <p className="text-base text-pw-muted">Answer an officer's questions out loud: small talk, personal information, morals and the oath. For questions about your history, you answer as a practice person.</p>
+            <p className="text-base text-pw-muted">Talk with an officer out loud: small talk and the oath. For questions about your application, you say what the officer is asking, not your answer.</p>
             <PrimaryButton onClick={() => setMode('interview')} className="w-full mt-auto"><Mic className="w-5 h-5" aria-hidden="true" /> Start the interview</PrimaryButton>
           </PartCard>
         </div>

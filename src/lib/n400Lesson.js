@@ -1,8 +1,9 @@
 // N-400 coaching (Prompt 9): one N-400 Guide section as a tutor lesson.
 // 1. Learn it: the existing question cards (meaning, words, how the officer
 //    might ask) and Say it back, introduced by the tutor.
-// 2. Practice as a practice person: a short interview round answering as
-//    one of the six made-up people (never about the learner).
+// 2. Practice understanding: the officer asks a few questions the way they
+//    might at the interview; the learner says what each one is asking
+//    (never answers it), and only that understanding is checked.
 // 3. Section end: talk to a lawyer if you're not sure your answer is "no".
 // Nothing the learner says is saved; only section completion is.
 
@@ -11,12 +12,12 @@ const pick = (t, language) => ({ en: t.en, mine: language === 'es' ? t.es : null
 
 export const N400_LINES = {
   intro: T(
-    "This week: {title}. First we'll learn what the questions mean. Then you'll practice answering as a practice person — not about yourself.",
-    'Esta semana: {title}. Primero vamos a aprender qué significan las preguntas. Luego va a practicar respondiendo como una persona de práctica, no sobre usted.',
+    "This week: {title}. First we'll learn what the questions mean. Then you'll practice understanding them when the officer asks.",
+    'Esta semana: {title}. Primero vamos a aprender qué significan las preguntas. Luego va a practicar cómo entenderlas cuando el oficial las pregunta.',
   ),
   practice: T(
-    "Now a short interview. Answer as {name}, using the facts on their card. This is practice only. Don't answer about yourself.",
-    'Ahora, una entrevista corta. Responda como {name}, con los datos de su tarjeta. Es solo práctica. No responda sobre usted.',
+    "Now the officer asks a few of these questions. Don't answer them. Tell me in English what each question is asking.",
+    'Ahora el oficial le hace algunas de estas preguntas. No las conteste. Dígame en inglés qué está preguntando cada una.',
   ),
   lawyer: T(
     "That's the end of this section. If you're not sure your answer is \"no\" to any of these questions, talk to a lawyer before you file.",
@@ -50,35 +51,26 @@ export function pickSection(sections, completed = [], requestedId) {
   return live.find((s) => !completed.includes(s.id)) || null;
 }
 
-// Practice person for this section: rotates through the six people.
-export function personaForSection(sections, section, personas) {
-  const i = Math.max(0, liveSections(sections).findIndex((s) => s.id === section.id));
-  return personas[i % personas.length];
-}
-
 // Officer questions for the practice round: the first "how the officer
-// might ask" phrasing of up to 3 approved questions.
+// might ask" phrasing of up to 3 approved questions, with the team's plain
+// meaning (used only to check the learner's understanding).
 export function practiceQuestions(section, max = 3) {
   return section.questions
     .filter((q) => q.status === 'approved' && q.officerPhrasings?.length)
     .slice(0, max)
-    .map((q) => ({
-      question: q.officerPhrasings[0],
-      expected_response: "A short, truthful answer that matches the practice person's facts.",
-      response_type: 'open_ended',
-    }));
+    .map((q) => ({ question: q.officerPhrasings[0], meaning: q.meaning || '' }));
 }
 
-export function buildN400Lesson({ section, persona, personaFactsText, language = 'en' }) {
+export function buildN400Lesson({ section, language = 'en' }) {
   const steps = [{ type: 'explain', text: line('intro', language, { title: section.title }) }];
   for (const q of section.questions.filter((x) => x.status === 'approved')) {
     steps.push({ type: 'n400-card', sectionId: section.id, question: q });
   }
   const practice = practiceQuestions(section);
   if (practice.length) {
-    steps.push({ type: 'explain', text: line('practice', language, { name: persona.name }) });
-    for (const question of practice) {
-      steps.push({ type: 'n400-persona', question, personaId: persona.id, extra: personaFactsText });
+    steps.push({ type: 'explain', text: line('practice', language) });
+    for (const { question, meaning } of practice) {
+      steps.push({ type: 'n400-understand', question: { question }, meaning });
     }
   }
   steps.push({ type: 'n400-lawyer', text: line('lawyer', language) });
