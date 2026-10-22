@@ -124,6 +124,11 @@ export default function ResourceFinder() {
           Free legal help, English and citizenship classes, and USCIS offices. Your location is used only on this
           screen to sort places by distance. It is not saved or shared.
         </p>
+        <p className="text-base text-pw-muted leading-relaxed">
+          Where these places come from: the U.S. Department of Justice list of recognized legal-help organizations,
+          the National Literacy Directory, and the list of USCIS field offices. A person checks each place before it
+          is added.
+        </p>
 
         <div className="flex flex-col sm:flex-row gap-3">
           <PrimaryButton onClick={locateMe} disabled={status.busy} className="sm:shrink-0">
