@@ -22,6 +22,10 @@
     "created_by": {
       "type": "string",
       "description": "Email of person who created the relationship (tutor or student)"
+    },
+    "requested_by": {
+      "type": "string",
+      "description": "Email of the person who sent the request; set only by the tutor-link function"
     }
   },
   "required": [

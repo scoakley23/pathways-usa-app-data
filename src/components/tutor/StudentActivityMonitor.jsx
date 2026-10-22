@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { base44 } from '@/api/base44Client';
 import { RaisedCard } from '@/components/pathways/ui';
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AlertTriangle, BookOpen, TrendingUp, TrendingDown, Loader2, Users, Star, Target } from 'lucide-react';
 import { toast } from "sonner";
 import StudyPathDialog from './StudyPathDialog';
+import { getStudentProgress } from '@/lib/tutorLinks';
 
 const TOPIC_COLORS = {
   'Principles of American Democracy': 'bg-pw-blue-soft text-pw-blue-ink',
@@ -34,30 +34,12 @@ export default function StudentActivityMonitor({ currentUserEmail, students }) {
     setIsLoading(true);
     try {
       const emails = activeStudents.map(s => s.student_email);
-      // Fetch lesson progress for all students
-      const allProgress = await Promise.all(
-        emails.map(email =>
-          base44.entities.LessonProgress.filter({ user_email: email }, null, 200)
-        )
-      );
-      const flatProgress = allProgress.flat();
-      setLessonProgress(flatProgress);
-
-      // Fetch UserProgress (civics/sentence/vocab practice)
-      const allUserProgress = await Promise.all(
-        emails.map(email =>
-          base44.entities.UserProgress.filter({ user_email: email }, null, 200)
-        )
-      );
-      setUserProgress(allUserProgress.flat());
-
-      // Fetch N-400 guide section completion (section level only)
-      const allN400 = await Promise.all(
-        emails.map(email =>
-          base44.entities.N400SectionProgress.filter({ user_email: email }, null, 200)
-        )
-      );
-      setN400Progress(allN400.flat());
+      // Lesson, practice, and N-400 section progress (section level only),
+      // returned only for students with an active link to this tutor
+      const byStudent = Object.values(await getStudentProgress(emails));
+      setLessonProgress(byStudent.flatMap(p => p.lessonProgress));
+      setUserProgress(byStudent.flatMap(p => p.userProgress));
+      setN400Progress(byStudent.flatMap(p => p.n400Progress));
     } catch (e) {
       toast.error('Failed to load student activity');
     } finally {

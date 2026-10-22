@@ -21,6 +21,7 @@ import { Input } from "@/components/ui/input";
 import { CheckCircle, Clock, AlertCircle, Loader2 } from 'lucide-react';
 import { format } from 'date-fns';
 import { toast } from "sonner";
+import { getStudentProgress } from '@/lib/tutorLinks';
 
 export default function StudentProgressReport({ isOpen, onClose, studentEmail }) {
   const [progress, setProgress] = useState([]);
@@ -44,13 +45,12 @@ export default function StudentProgressReport({ isOpen, onClose, studentEmail })
   const fetchReport = async () => {
     setIsLoading(true);
     try {
-      // Fetch UserProgress
-      const allProgress = await base44.entities.UserProgress.list();
-      const studentProgress = allProgress.filter(p => p.user_email === studentEmail);
+      // Fetch UserProgress (only returned when this tutor has an active link)
+      const byStudent = await getStudentProgress([studentEmail]);
+      const studentProgress = byStudent[studentEmail.toLowerCase().trim()]?.userProgress || [];
       
       // Fetch Assignments
-      const allAssignments = await base44.entities.Assignment.list();
-      const studentAssignments = allAssignments.filter(a => a.student_email === studentEmail);
+      const studentAssignments = await base44.entities.Assignment.filter({ student_email: studentEmail }, '-assigned_date', 500);
 
       // Get content details to enrich progress
       // Optimization: In a real app, we'd query specific IDs, but here we list all for simplicity

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { GraduationCap, School, X } from 'lucide-react';
 import { toast } from "sonner";
 import { ensurePublicProfile } from '@/lib/profileService';
+import { lookupInviteCode, joinClassByCode } from '@/lib/tutorLinks';
 
 export default function RoleSelectionDialog({ isOpen, onComplete, userEmail, userName }) {
   const [step, setStep] = useState(null);
@@ -79,6 +80,18 @@ useEffect(() => {
   }
 }, [isOpen, currentUser]);
 
+ // Returns true if the invite code belongs to a tutor; otherwise shows why not.
+ const checkInviteCode = async (code) => {
+  try {
+    await lookupInviteCode(code);
+    return true;
+  } catch (error) {
+    toast.error(error.message || 'Invalid invite code. Please check and try again.');
+    setIsSubmitting(false);
+    return false;
+  }
+ };
+
  const handleSignUp = async () => {
   if (!email || !password || !selectedRole) {
     toast.error('Please fill in all fields');
@@ -95,29 +108,8 @@ useEffect(() => {
     const normalizedEmail = email.toLowerCase().trim();
 
     // 2. Check if invite code is valid (for students)
-    let tutorEmail = null;
-    if (selectedRole === 'student' && inviteCode) {
-      console.log("=== INVITE CODE DEBUG ===");
-      console.log("Looking for code:", inviteCode);
-      
-      // Fetch ALL profiles
-      const allProfiles = await base44.entities.PublicProfile.list('-created_date', 1000);
-      const cleanCode = inviteCode.replace(/\s+/g, '').toUpperCase();
-      const variants = [cleanCode, cleanCode.replace(/0/g, 'O'), cleanCode.replace(/O/g, '0')];
-      
-      const matchingTutor = allProfiles.find(p =>
-        p.account_type === 'tutor' &&
-        p.invite_code &&
-        variants.includes(p.invite_code.toUpperCase())
-      );
-      
-      if (!matchingTutor) {
-        toast.error('Invalid invite code. Please check and try again.');
-        setIsSubmitting(false);
-        return;
-      }
-      tutorEmail = matchingTutor.user_email;
-    }
+    const joinCode = selectedRole === 'student' && inviteCode ? inviteCode : null;
+    if (joinCode && !(await checkInviteCode(joinCode))) return;
 
     // 3. Create profile
 
@@ -136,14 +128,9 @@ useEffect(() => {
 
     await ensurePublicProfile(normalizedEmail, profileData);
 
-    // 4. Create relationship if student joined via invite
-    if (selectedRole === 'student' && tutorEmail) {
-      await base44.entities.TutorRelationship.create({
-        tutor_email: tutorEmail,
-        student_email: normalizedEmail,
-        status: 'active',
-        created_by: normalizedEmail
-      });
+    // 4. Join the tutor's class if the student used an invite code
+    if (joinCode) {
+      await joinClassByCode(joinCode);
       toast.success('Successfully joined your tutor!');
     }
 
@@ -197,25 +184,8 @@ useEffect(() => {
     const normalizedEmail = currentUser.email.toLowerCase().trim();
 
     // Handle invite code for students
-    let tutorEmail = null;
-    if (selectedRole === 'student' && inviteCode) {
-      const allProfiles = await base44.entities.PublicProfile.list('-created_date', 1000);
-      const cleanCode2 = inviteCode.replace(/\s+/g, '').toUpperCase();
-      const variants2 = [cleanCode2, cleanCode2.replace(/0/g, 'O'), cleanCode2.replace(/O/g, '0')];
-      
-      const matchingTutor = allProfiles.find(p =>
-        p.account_type === 'tutor' &&
-        p.invite_code &&
-        variants2.includes(p.invite_code.toUpperCase())
-      );
-      
-      if (!matchingTutor) {
-        toast.error('Invalid invite code. Please check and try again.');
-        setIsSubmitting(false);
-        return;
-      }
-      tutorEmail = matchingTutor.user_email;
-    }
+    const joinCode = selectedRole === 'student' && inviteCode ? inviteCode : null;
+    if (joinCode && !(await checkInviteCode(joinCode))) return;
 
     // Prepare profile data
     const profileData = {
@@ -233,21 +203,10 @@ useEffect(() => {
     // Update the existing profile instead of creating a duplicate
     await ensurePublicProfile(normalizedEmail, profileData);
 
-    // Create tutor relationship if joining via invite code
-    if (selectedRole === 'student' && tutorEmail) {
-      const existingRel = await base44.entities.TutorRelationship.filter(
-        { student_email: normalizedEmail, tutor_email: tutorEmail }, null, 1
-      );
-      
-      if (existingRel.length === 0) {
-        await base44.entities.TutorRelationship.create({
-          tutor_email: tutorEmail,
-          student_email: normalizedEmail,
-          status: 'active',
-          created_by: normalizedEmail
-        });
-        toast.success('Connected with your tutor!');
-      }
+    // Join the tutor's class if the student used an invite code
+    if (joinCode) {
+      const { already } = await joinClassByCode(joinCode);
+      if (!already) toast.success('Connected with your tutor!');
     }
 
     toast.success(`Welcome as a ${selectedRole}!`);
