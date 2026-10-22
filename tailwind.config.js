@@ -5,10 +5,14 @@ module.exports = {
     theme: {
     	extend: {
     		fontFamily: {
-    			sans: ['Manrope', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
-    			heading: ['Manrope', 'system-ui', 'sans-serif'],
-    			body: ['Manrope', 'system-ui', 'sans-serif'],
-    			display: ['Manrope', 'system-ui', 'sans-serif'],
+    			// Pathways brand type (docs/redesign/brand-spec.md)
+    			sans: ['"Instrument Sans"', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+    			heading: ['"Instrument Sans"', 'system-ui', 'sans-serif'],
+    			body: ['"Instrument Sans"', 'system-ui', 'sans-serif'],
+    			display: ['"Instrument Serif"', 'Georgia', 'serif'],
+    			hand: ['Caveat', 'cursive'],
+    			form: ['"Courier Prime"', '"Courier New"', 'Courier', 'monospace'],
+    			// The official N-400 paper-form replica keeps its own look.
     			typewriter: ['"Courier New"', 'Courier', 'monospace']
     			},
     		borderRadius: {
@@ -28,14 +32,23 @@ module.exports = {
     			lift: '0 12px 32px rgba(20, 38, 74, 0.14)'
     		},
     		colors: {
-    			// "Calm and confident" design tokens (see CLAUDE.md)
+    			// Pathways brand tokens (docs/redesign/brand-spec.md, see CLAUDE.md)
     			pw: {
-    				navy: '#14264A',
-    				'navy-deep': '#0F1B36',
-    				red: '#D9483F',
-    				page: '#F3F5F9',
+    				navy: '#14264A', // Ink
+    				'navy-deep': '#0F1B36', // Ink deep
+    				ink: '#14264A',
+    				'ink-deep': '#0F1B36',
+    				red: '#D9483F', // Signal red: the dot and small decor only, never text
+    				page: '#F3F5F9', // Mist
     				line: '#DEE4EE',
-    				muted: '#4A5A78',
+    				muted: '#3D4F73',
+    				linen: '#ECEAE4',
+    				slate: '#D5DDEA',
+    				manila: '#EFDFB8', // N-400 only
+    				civics: '#1F4C8F',
+    				reading: '#1E6B66',
+    				writing: '#2E7D4F',
+    				speaking: '#B53A32',
     				soft: '#EEF2F8',
     				'soft-hover': '#E2E8F2',
     				'red-soft': '#FDECEA',

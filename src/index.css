@@ -1,4 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap');
+/* Pathways brand fonts (docs/redesign/brand-spec.md): Instrument Sans for UI and body,
+   Instrument Serif for headlines and Vía's voice, Caveat for Vía's short notes,
+   Courier Prime for N-400 form wording. */
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Courier+Prime:wght@400;700&family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,29 +10,29 @@
 @layer base {
   :root {
     --background: 220 33% 96%;
-    --foreground: 221 44% 16%;
+    --foreground: 220 58% 18%;
     --card: 0 0% 100%;
-    --card-foreground: 221 44% 16%;
+    --card-foreground: 220 58% 18%;
     --popover: 0 0% 100%;
-    --popover-foreground: 221 44% 16%;
-    --primary: 219 55% 27%;
+    --popover-foreground: 220 58% 18%;
+    --primary: 220 58% 18%;
     --primary-foreground: 0 0% 100%;
     --secondary: 218 32% 93%;
-    --secondary-foreground: 219 55% 27%;
+    --secondary-foreground: 220 58% 18%;
     --muted: 220 33% 96%;
-    --muted-foreground: 219 24% 38%;
+    --muted-foreground: 220 31% 35%;
     --accent: 218 32% 93%;
-    --accent-foreground: 219 55% 27%;
+    --accent-foreground: 220 58% 18%;
     --destructive: 4 57% 45%;
     --destructive-foreground: 0 0% 100%;
     --border: 218 32% 90%;
     --input: 218 32% 90%;
-    --ring: 219 55% 27%;
-    --chart-1: 219 55% 27%;
+    --ring: 220 58% 18%;
+    --chart-1: 220 58% 18%;
     --chart-2: 4 67% 55%;
-    --chart-3: 217 67% 80%;
+    --chart-3: 216 64% 34%;
     --chart-4: 220 57% 25%;
-    --chart-5: 219 24% 38%;
+    --chart-5: 220 31% 35%;
     --radius: 1rem;
     --sidebar-background: 220 57% 18%;
     --sidebar-foreground: 220 41% 81%;
@@ -38,7 +41,7 @@
     --sidebar-accent: 221 56% 25%;
     --sidebar-accent-foreground: 0 0% 100%;
     --sidebar-border: 221 56% 25%;
-    --sidebar-ring: 219 55% 27%;
+    --sidebar-ring: 220 58% 18%;
   }
   .dark {
     --background: 220 57% 12%;
@@ -48,7 +51,7 @@
     --popover: 220 57% 16%;
     --popover-foreground: 0 0% 100%;
     --primary: 0 0% 100%;
-    --primary-foreground: 219 55% 27%;
+    --primary-foreground: 220 58% 18%;
     --secondary: 221 56% 25%;
     --secondary-foreground: 0 0% 100%;
     --muted: 221 56% 25%;
@@ -64,7 +67,7 @@
     --chart-2: 4 67% 55%;
     --chart-3: 219 24% 38%;
     --chart-4: 220 41% 81%;
-    --chart-5: 219 55% 27%;
+    --chart-5: 220 58% 18%;
     --sidebar-background: 220 57% 12%;
     --sidebar-foreground: 220 41% 81%;
     --sidebar-primary: 217 67% 80%;
@@ -72,7 +75,7 @@
     --sidebar-accent: 221 56% 25%;
     --sidebar-accent-foreground: 0 0% 100%;
     --sidebar-border: 221 56% 25%;
-    --sidebar-ring: 219 55% 27%;
+    --sidebar-ring: 220 58% 18%;
   }
 }
 
@@ -81,15 +84,15 @@
     @apply border-border outline-ring/50;
   }
   html {
-    font-family: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-family: 'Instrument Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-family: 'Instrument Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
     font-size: 16px;
   }
   h1, h2, h3 {
-    font-family: 'Manrope', system-ui, sans-serif;
+    font-family: 'Instrument Sans', system-ui, sans-serif;
   }
 }
 /* Resource Hub map: the USGS fallback map, made paler so pins stand out. */
