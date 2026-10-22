@@ -244,7 +244,7 @@ export function Folder({ tabs, className = '', children, ...props }) {
   return (
     <div className={className} {...props}>
       {tabs && <div className="flex items-end gap-1.5 overflow-x-auto px-2">{tabs}</div>}
-      <div className="rounded-[14px] bg-pw-manila p-4 text-pw-navy shadow-raised sm:p-6">{children}</div>
+      <div className="rounded-[14px] bg-pw-manila p-3 text-pw-navy shadow-raised sm:p-6">{children}</div>
     </div>
   );
 }
@@ -266,7 +266,7 @@ export function FormQuote({ item, label = 'ON THE FORM · WORD FOR WORD', classN
   return (
     <figure className={`rounded-[10px] border border-pw-line bg-white p-4 ${className}`}>
       <p className="text-xs font-semibold uppercase tracking-[0.14em] text-pw-muted">{label}</p>
-      <blockquote className="mt-2 font-form text-lg leading-relaxed text-pw-navy">{children}</blockquote>
+      <blockquote className="mt-2 font-form text-base sm:text-lg leading-relaxed text-pw-navy">{children}</blockquote>
       {item != null && <figcaption className="mt-2 text-base text-pw-muted">— Form N-400, item {item}</figcaption>}
     </figure>
   );

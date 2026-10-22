@@ -4,6 +4,7 @@ import { BookOpenText, UsersRound, CheckCircle2 } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import PageHeader from '@/components/PageHeader';
 import N400Section from '@/components/n400/N400Section';
+import N400Folder from '@/components/n400/N400Folder';
 import { N400_SECTIONS } from '@/components/n400/n400Content';
 import N400Walkthrough from '@/components/n400/N400Walkthrough';
 import useAppLanguage from '@/hooks/useAppLanguage';
@@ -20,6 +21,10 @@ export default function N400Guide({ cachedUser }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const view = searchParams.get('view') === 'examples' ? 'examples' : 'guide';
   const setView = (next) => setSearchParams(next === 'guide' ? {} : { view: next }, { replace: true });
+  // The open folder tab (?section=…); the first section by default.
+  const activeSection = N400_SECTIONS.find((s) => s.id === searchParams.get('section')) || N400_SECTIONS[0];
+  const openSection = (id) => setSearchParams({ section: id }, { replace: true });
+  const completedIds = progress.filter((p) => p.completed).map((p) => p.section_id);
 
   useEffect(() => {
     if (!cachedUser?.email) return;
@@ -57,7 +62,7 @@ export default function N400Guide({ cachedUser }) {
   };
 
   const optionClasses = (active) =>
-    `text-left rounded-2xl border-2 p-4 space-y-1.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2 ${
+    `text-left rounded-[14px] border-2 p-4 space-y-1.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2 ${
       active ? 'border-pw-navy bg-pw-soft' : 'border-pw-line bg-white hover:border-pw-navy/40'
     }`;
 
@@ -94,7 +99,7 @@ export default function N400Guide({ cachedUser }) {
             {view === 'guide' && <CheckCircle2 className="w-5 h-5 text-pw-navy shrink-0" aria-hidden="true" />}
           </div>
           <span className="text-sm block text-pw-muted">
-            {N400_SECTIONS.length} topics · official questions, words to know, officer phrasings
+            {N400_SECTIONS.length} sections · the form's words, what they mean, how the officer might ask
           </span>
         </button>
         <button
@@ -124,16 +129,16 @@ export default function N400Guide({ cachedUser }) {
             <LanguageSelector language={language} onLanguageChange={changeLanguage} />
           </div>
 
-          {N400_SECTIONS.map((section) => (
+          <N400Folder sections={N400_SECTIONS} activeId={activeSection.id} completedIds={completedIds} onSelect={openSection}>
             <N400Section
-              key={section.id}
-              section={section}
+              key={activeSection.id}
+              section={activeSection}
               isAdmin={isAdmin}
               language={language}
-              completed={progress.some((p) => p.section_id === section.id && p.completed)}
+              completed={completedIds.includes(activeSection.id)}
               onComplete={markComplete}
             />
-          ))}
+          </N400Folder>
         </div>
       )}
     </div>

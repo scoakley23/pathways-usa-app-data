@@ -1,41 +1,21 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Volume2, Loader2, Lightbulb, BookOpen, HelpCircle, Languages } from 'lucide-react';
-import { Tag, PillButton } from '@/components/pathways/ui';
+import { Volume2, Loader2, Languages, Scale } from 'lucide-react';
+import { Eyebrow, ExplainSimplyButton, FormQuote, PillButton, Tag } from '@/components/pathways/ui';
 import { speakText } from '@/components/utils/textToSpeech';
 import { LANGUAGES } from '@/hooks/useLessonTranslation';
 import SayItBack from './SayItBack';
 import useN400Translation from './useN400Translation';
 
-function Chip({ active, onClick, children }) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      aria-pressed={active}
-      className={`min-h-[44px] px-4 py-2 rounded-full text-base leading-tight text-left font-semibold border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2 ${
-        active
-          ? 'bg-pw-navy text-white border-pw-navy'
-          : 'bg-white text-pw-navy border-pw-line hover:bg-pw-soft'
-      }`}
-    >
-      {children}
-    </button>
-  );
-}
-
-// One N-400 question card. Everything is revealed by tapping: what the
-// question means, key words, and officer phrasings all start collapsed, so
-// the learner sees the question first and explores on demand. There is
-// deliberately NO field for the learner to answer the question.
+// One N-400 question card (Phase 6): the form's wording word for word in a
+// FormQuote, then "Explain it simply" revealing the plain meaning, words to
+// know and officer phrasings from n400Content.js (verbatim), then Say it back
+// and "Talk to a lawyer first". There is deliberately NO field for the learner
+// to answer the question.
 export default function N400QuestionCard({ sectionId, question, isAdmin, language }) {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [showMeaning, setShowMeaning] = useState(false);
-  const [showWords, setShowWords] = useState(false);
-  const [showPhrasings, setShowPhrasings] = useState(false);
+  const [explained, setExplained] = useState(false);
   const [showTranslation, setShowTranslation] = useState(false);
-  const [openWord, setOpenWord] = useState(null);
-  const [activePhrase, setActivePhrase] = useState(null);
   const { translation, isTranslating } = useN400Translation(sectionId, question, language);
 
   const speak = (text) => {
@@ -52,98 +32,71 @@ export default function N400QuestionCard({ sectionId, question, isAdmin, languag
   ];
 
   return (
-    <div className="rounded-2xl border border-pw-line bg-white p-4 sm:p-5 space-y-4">
-        <div className="flex flex-wrap items-center gap-2">
-          <Tag tone="blue">Item {question.label}</Tag>
-          {isAdmin && question.status === 'draft' && <Tag tone="red">Draft — pending review</Tag>}
-        </div>
+    <article className="rounded-[14px] border border-pw-line bg-white p-4 sm:p-5 space-y-4 text-pw-navy shadow-raised">
+      <div className="flex flex-wrap items-center gap-2">
+        <Eyebrow>Item {question.label}</Eyebrow>
+        {isAdmin && question.status === 'draft' && <Tag tone="red">Draft — pending review</Tag>}
+      </div>
 
-        <blockquote className="text-lg sm:text-xl font-extrabold text-pw-navy leading-snug">
-          {question.official}
-        </blockquote>
-        <PillButton
-          onClick={() => speak(question.official)}
-          aria-label="Listen to the question"
-          className="bg-pw-blue-soft text-pw-blue-ink hover:bg-pw-blue-soft/70"
-        >
-          {isPlaying ? <Loader2 className="w-5 h-5 animate-spin" /> : <Volume2 className="w-5 h-5" />}
+      <FormQuote item={question.label} className="bg-pw-page">{question.official}</FormQuote>
+
+      <div className="flex flex-wrap gap-2">
+        <PillButton onClick={() => speak(question.official)} aria-label="Listen to the question">
+          {isPlaying ? <Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" /> : <Volume2 className="w-5 h-5" aria-hidden="true" />}
           <span aria-hidden="true">Listen</span>
         </PillButton>
+        <ExplainSimplyButton aria-expanded={explained} onClick={() => setExplained((v) => !v)} />
+        {language && language !== 'en' && (
+          <PillButton aria-pressed={showTranslation} onClick={() => setShowTranslation((v) => !v)}>
+            <Languages className="w-5 h-5" aria-hidden="true" /> In {langName}
+          </PillButton>
+        )}
+      </div>
 
-        <div className="flex flex-wrap gap-2">
-          <Chip active={showMeaning} onClick={() => setShowMeaning(!showMeaning)}>
-            <span className="flex items-center gap-1.5">
-              <Lightbulb className="w-4 h-4" /> What it means
-            </span>
-          </Chip>
-          <Chip active={showWords} onClick={() => setShowWords(!showWords)}>
-            <span className="flex items-center gap-1.5">
-              <BookOpen className="w-4 h-4" /> Words to know ({question.words.length})
-            </span>
-          </Chip>
-          <Chip active={showPhrasings} onClick={() => setShowPhrasings(!showPhrasings)}>
-            <span className="flex items-center gap-1.5">
-              <HelpCircle className="w-4 h-4" /> How the officer might ask ({question.officerPhrasings.length})
-            </span>
-          </Chip>
-          {language && language !== 'en' && (
-            <Chip active={showTranslation} onClick={() => setShowTranslation(!showTranslation)}>
-              <span className="flex items-center gap-1.5">
-                <Languages className="w-4 h-4" /> In {langName}
-              </span>
-            </Chip>
+      {explained && (
+        <div className="space-y-4 rounded-[10px] bg-pw-soft p-4">
+          <div>
+            <Eyebrow className="mb-1">What it means</Eyebrow>
+            <p className="text-lg leading-relaxed">{question.meaning}</p>
+          </div>
+          {question.words.length > 0 && (
+            <div>
+              <Eyebrow className="mb-1">Words to know</Eyebrow>
+              <dl className="space-y-2">
+                {question.words.map((w) => (
+                  <div key={w.word}>
+                    <dt className="font-semibold">{w.word}</dt>
+                    <dd className="text-base leading-relaxed">{w.definition}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          )}
+          {question.officerPhrasings.length > 0 && (
+            <div>
+              <Eyebrow className="mb-1">How the officer might ask</Eyebrow>
+              <ul className="space-y-2">
+                {question.officerPhrasings.map((p, i) => (
+                  <li key={i} className="flex items-center gap-3">
+                    <p className="flex-1 font-display italic text-xl leading-snug">“{p}”</p>
+                    <button
+                      type="button"
+                      aria-label="Listen to this phrasing"
+                      onClick={() => speak(p)}
+                      className="w-11 h-11 shrink-0 rounded-full bg-white text-pw-navy border border-pw-line hover:bg-pw-blue-soft grid place-items-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
+                    >
+                      <Volume2 className="w-5 h-5" aria-hidden="true" />
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
           )}
         </div>
-
-        {showMeaning && (
-          <p className="rounded-2xl bg-pw-soft px-4 py-3 text-base text-pw-navy leading-relaxed">{question.meaning}</p>
-        )}
-
-        {showWords && (
-          <div className="space-y-3">
-            <div className="flex flex-wrap gap-2">
-              {question.words.map((w, i) => (
-                <Chip key={w.word} active={openWord === i} onClick={() => setOpenWord(openWord === i ? null : i)}>
-                  {w.word}
-                </Chip>
-              ))}
-            </div>
-            {openWord !== null && question.words[openWord] && (
-              <p className="rounded-2xl bg-pw-soft px-4 py-3 text-base text-pw-navy leading-relaxed">
-                <span className="font-bold">{question.words[openWord].word}</span> —{' '}
-                {question.words[openWord].definition}
-              </p>
-            )}
-          </div>
-        )}
-
-        {showPhrasings && (
-          <div className="space-y-3">
-            <div className="flex flex-wrap gap-2">
-              {question.officerPhrasings.map((p, i) => (
-                <Chip key={i} active={activePhrase === i} onClick={() => setActivePhrase(activePhrase === i ? null : i)}>
-                  Way {i + 1}
-                </Chip>
-              ))}
-            </div>
-            {activePhrase !== null && question.officerPhrasings[activePhrase] && (
-              <div className="flex items-center gap-3 rounded-2xl bg-pw-soft px-4 py-3">
-                <p className="text-base text-pw-navy italic flex-1">“{question.officerPhrasings[activePhrase]}”</p>
-                <button
-                  type="button"
-                  aria-label="Listen to this phrasing"
-                  onClick={() => speak(question.officerPhrasings[activePhrase])}
-                  className="w-11 h-11 shrink-0 rounded-full bg-white text-pw-navy border border-pw-line hover:bg-pw-blue-soft grid place-items-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red"
-                >
-                  <Volume2 className="w-5 h-5" />
-                </button>
-              </div>
-            )}
-          </div>
-        )}
+      )}
 
         {showTranslation && language !== 'en' && (
-          <div className="rounded-2xl bg-pw-blue-soft p-4 space-y-3">
+          <div className="rounded-[10px] bg-pw-blue-soft p-4 space-y-3">
             <p className="text-sm italic text-pw-blue-ink">
               Machine translation. If anything is unclear, ask a person you trust or a lawyer.
             </p>
@@ -180,14 +133,18 @@ export default function N400QuestionCard({ sectionId, question, isAdmin, languag
 
         <SayItBack targets={sayItBackTargets} />
 
-        <p className="border-t border-pw-line pt-3 text-sm leading-relaxed text-pw-muted">
-          This explains what the question means. It is not legal advice about how you should answer. If you are
-          not sure your answer is “no,”{' '}
-          <Link to="/lawyer-first" className="underline font-bold text-pw-navy">
-            talk to a lawyer before you file
+        <div className="border-t border-pw-line pt-4 space-y-3">
+          <p className="text-base leading-relaxed">
+            We explain what questions mean. How they apply to you is for a lawyer. If you are not sure your answer is “no,” talk to a lawyer before you file.
+          </p>
+          <Link
+            to="/lawyer-first"
+            className="min-h-[48px] rounded-xl border-2 border-pw-navy bg-white text-pw-navy font-semibold text-base inline-flex items-center gap-2 px-4 hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2"
+          >
+            <Scale className="w-5 h-5" aria-hidden="true" /> Talk to a lawyer first
           </Link>
-          .
-        </p>
-    </div>
+          <p className="text-sm text-pw-muted">We never save your answers to the N-400.</p>
+        </div>
+    </article>
   );
 }
