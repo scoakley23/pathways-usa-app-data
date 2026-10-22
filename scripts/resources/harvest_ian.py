@@ -75,6 +75,7 @@ for st in STATES:
                 page = get(f'search?state={st}&page={page_no}')
             except Exception as e:
                 state['errors'][key] = type(e).__name__; save(); break
+            state['errors'].pop(key, None)
             for path in set(re.findall(r'href="/legaldirectory/(organization\.\d+[^"#?]*)"', page)):
                 state['org_paths'][path.split('-')[0]] = path
             m = re.search(r'Page \d+ of (\d+)', ' '.join(lines_of(page)))
@@ -87,12 +88,13 @@ for st in STATES:
 
 # 2. Organization pages.
 for oid, path in sorted(state['org_paths'].items()):
-    if oid in state['orgs']:
-        continue
+    if state['orgs'].get(oid):
+        continue  # already read (a failed read is None and is tried again)
     if out_of_time():
         save(); print('paused', file=sys.stderr); sys.exit(0)
     try:
         lines = lines_of(get(path))
+        state['errors'].pop(oid, None)
     except Exception as e:
         state['errors'][oid] = type(e).__name__; state['orgs'][oid] = None; save(); continue
     name = ''
