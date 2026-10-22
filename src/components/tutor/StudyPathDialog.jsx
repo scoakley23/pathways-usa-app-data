@@ -4,6 +4,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "
 import { Button } from "@/components/ui/button";
 import { Loader2, BookOpen, CheckCircle, AlertTriangle, Wand2 } from 'lucide-react';
 import { toast } from "sonner";
+import { assignPractice } from '@/lib/tutorLinks';
 
 const TOPICS = [
   'Principles of American Democracy',
@@ -86,8 +87,6 @@ export default function StudyPathDialog({ isOpen, onClose, student, tutorEmail }
     try {
       // Create custom assignments for each lesson
       const assignments = lessonsToAssign.map(lesson => ({
-        tutor_email: tutorEmail,
-        student_email: studentEmail,
         content_type: 'custom',
         custom_type: 'sentence',
         custom_content: `Study Path: ${lesson.title}`,
@@ -98,11 +97,9 @@ export default function StudyPathDialog({ isOpen, onClose, student, tutorEmail }
           study_path: true,
           note: note || null,
         },
-        status: 'pending',
-        assigned_date: new Date().toISOString(),
       }));
 
-      await base44.entities.Assignment.bulkCreate(assignments);
+      await assignPractice(studentEmail, assignments);
 
       // Notify student
       const topicList = [...new Set(lessonsToAssign.map(l => l.topic))].join(', ');
@@ -117,7 +114,7 @@ export default function StudyPathDialog({ isOpen, onClose, student, tutorEmail }
       toast.success(`Study path assigned: ${lessonsToAssign.length} lessons sent to ${student.student_email.split('@')[0]}`);
       onClose();
     } catch (e) {
-      toast.error('Failed to assign study path');
+      toast.error(e.message || 'Failed to assign study path');
     } finally {
       setIsAssigning(false);
     }

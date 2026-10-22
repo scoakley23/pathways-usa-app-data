@@ -54,3 +54,26 @@ export function hasActiveLink(rels, tutorEmail, studentEmail) {
     normalizeEmail(r.student_email) === student
   );
 }
+
+// Assignments a tutor sends: keep only the content fields. Who it is from and
+// to, the status and the date are set by the server, never by the request.
+const CONTENT_TYPES = ['sentence', 'vocabulary', 'civics_question', 'custom'];
+const CUSTOM_TYPES = ['sentence', 'vocabulary', 'civics_question'];
+export const MAX_ASSIGNMENTS = 200;
+
+export function cleanAssignment(item) {
+  if (!item || !CONTENT_TYPES.includes(item.content_type)) return null;
+  const out = { content_type: item.content_type };
+  if (item.content_id != null) out.content_id = String(item.content_id);
+  if (item.content_type === 'custom') {
+    if (!CUSTOM_TYPES.includes(item.custom_type)) return null;
+    out.custom_type = item.custom_type;
+    if (item.custom_content != null) out.custom_content = String(item.custom_content);
+    if (item.custom_data && typeof item.custom_data === 'object' && !Array.isArray(item.custom_data)) {
+      out.custom_data = item.custom_data;
+    }
+  } else if (!out.content_id) {
+    return null;
+  }
+  return out;
+}
