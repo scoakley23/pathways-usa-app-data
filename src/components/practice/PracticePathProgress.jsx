@@ -57,7 +57,7 @@ export default function PracticePathProgress({ userEmail }) {
   const currentKey = STEPS.find((s) => !stats[s.key] || stats[s.key].practiced === 0)?.key;
 
   return (
-    <div className="bg-white rounded-3xl border border-pw-line shadow-raised p-5 text-pw-navy">
+    <div className="bg-white rounded-[14px] border border-pw-line shadow-raised p-5 text-pw-navy">
       <h2 className="text-xs font-bold text-pw-muted uppercase tracking-widest mb-5">
         Your Learning Path
       </h2>
@@ -75,7 +75,7 @@ export default function PracticePathProgress({ userEmail }) {
                     isActive
                       ? 'bg-pw-green-soft text-pw-green-ink ring-transparent'
                       : step.key === currentKey
-                        ? 'bg-pw-red-soft text-pw-red-ink ring-pw-red/30'
+                        ? 'bg-pw-red-soft text-pw-red-ink ring-pw-navy/30'
                         : 'bg-pw-soft text-pw-muted ring-transparent'
                   }`}
                 >

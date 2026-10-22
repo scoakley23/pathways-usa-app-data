@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { base44 } from '@/api/base44Client';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
-import { X, Send, User, Loader2, Globe, History, Users, Scale } from 'lucide-react';
+import { Sheet, SheetContent, SheetDescription, SheetTitle } from "@/components/ui/sheet";
+import { Send, User, Loader2, Globe, History, Users, Scale } from 'lucide-react';
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { Link } from 'react-router-dom';
@@ -96,13 +96,13 @@ function TutorBubble({ profile, language, mine, en, action, expression }) {
   const dir = RTL_LANGUAGES.includes(language) ? 'rtl' : 'ltr';
   return (
     <div className="pr-6">
-      <div className="min-w-0 px-3 py-3 rounded-2xl rounded-tl-md bg-white border border-pw-line text-pw-navy text-base leading-snug">
+      <div className="min-w-0 px-4 py-3 rounded-[14px] rounded-tl-md bg-white border border-pw-line text-pw-navy font-display italic text-xl leading-snug">
         {showMine && <p dir={dir} className="whitespace-pre-line">{mine}</p>}
-        {showMine && action}
-        {en && <p className={cn('whitespace-pre-line', showMine && 'text-pw-muted mt-2')}>{en}</p>}
+        {showMine && action && <div className="font-sans not-italic text-base">{action}</div>}
+        {en && <p className={cn('whitespace-pre-line', showMine && 'text-pw-muted text-lg mt-2')}>{en}</p>}
         {!en && !showMine && mine && <p dir={dir} className="whitespace-pre-line">{mine}</p>}
-        {!showMine && action}
-        <div className="flex flex-wrap gap-2 mt-2">
+        {!showMine && action && <div className="font-sans not-italic text-base">{action}</div>}
+        <div className="flex flex-wrap gap-2 mt-2 font-sans not-italic">
           {showMine && <ListenButton text={mine} language={language} tutorName={profile.name} className="px-3" />}
           {en && <ListenButton text={en} language="en" label={showMine ? 'English' : 'Listen'} tutorName={profile.name} className="px-3" />}
         </div>
@@ -116,7 +116,9 @@ export const OPEN_TUTOR_EVENT = 'pathways-open-tutor';
 export const openTutorChat = () => window.dispatchEvent(new Event(OPEN_TUTOR_EVENT));
 
 // `aboveTabBar`: on phones the tab bar opens the chat, so the floating button
-// is hidden there and the chat sits above the bar.
+// is hidden there. The chat is a sheet (Phase 7): full screen on phones, a
+// side drawer on desktop, with Vía's mark in its header (the one mark on
+// screen while it is open).
 export default function StudyBuddy({ aboveTabBar = false }) {
   const [isOpen, setIsOpen] = useState(false);
   const [talkOpen, setTalkOpen] = useState(false);
@@ -255,7 +257,7 @@ export default function StudyBuddy({ aboveTabBar = false }) {
           <Link
             to="/lawyer-first"
             onClick={() => setIsOpen(false)}
-            className="my-3 min-h-[44px] w-full rounded-2xl bg-pw-navy text-white hover:bg-pw-navy-deep px-4 py-2 text-base font-bold inline-flex items-center justify-center gap-2 text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2"
+            className="my-3 min-h-[44px] w-full rounded-2xl bg-pw-navy text-white hover:bg-pw-navy-deep px-4 py-2 text-base font-bold inline-flex items-center justify-center gap-2 text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2"
           >
             <Scale className="w-5 h-5 shrink-0" aria-hidden="true" /> {linkLabel}
           </Link>
@@ -268,37 +270,20 @@ export default function StudyBuddy({ aboveTabBar = false }) {
 
   return (
     <div className={cn('fixed z-50 flex flex-col items-end pointer-events-none', aboveTabBar ? 'right-4 bottom-[calc(5.5rem+env(safe-area-inset-bottom))] lg:right-6 lg:bottom-6' : 'right-6 bottom-6')}>
-      {isOpen && (
-        <Card
-          role="dialog"
-          aria-label={title}
-          className={cn(
-            'w-[calc(100vw-2rem)] max-w-[350px] h-[620px] shadow-lift border-pw-line overflow-hidden mb-4 pointer-events-auto flex flex-col animate-in slide-in-from-bottom-10 fade-in duration-300',
-            aboveTabBar ? 'max-h-[calc(100dvh-11rem)] lg:max-h-[calc(100vh-7rem)]' : 'max-h-[calc(100vh-7rem)]'
-          )}
-        >
-          <CardHeader className="bg-white text-pw-navy border-b border-pw-line p-3 flex flex-col gap-2 space-y-0 shrink-0">
-            <div className="flex items-center justify-between w-full gap-2">
-                <div className="min-w-0">
-                <CardTitle className="text-lg truncate">{title}</CardTitle>
-                <p className="text-sm text-pw-muted truncate">{profile.name} · AI tutor</p>
-                </div>
-                <div className="flex items-center gap-1 shrink-0">
-                    <Link to={createPageUrl('StudyHistory')}>
-                        <Button variant="ghost" size="icon" className="text-pw-muted hover:text-pw-navy" title="View History" aria-label="View History">
-                            <History className="w-4 h-4" />
-                        </Button>
-                    </Link>
-                    <Button 
-                    variant="ghost" 
-                    size="icon" 
-                    className="text-pw-muted hover:text-pw-navy"
-                    onClick={() => setIsOpen(false)}
-                    aria-label="Close"
-                    >
-                    <X className="w-5 h-5" />
-                    </Button>
-                </div>
+      <Sheet open={isOpen} onOpenChange={setIsOpen}>
+        <SheetContent side="right" className="w-full sm:max-w-[420px] p-0 gap-0 flex flex-col bg-pw-page text-pw-navy">
+          <div className="bg-white border-b border-pw-line p-3 pr-16 flex flex-col gap-2 shrink-0">
+            <div className="flex items-center gap-3 min-w-0">
+              <TutorAvatar name={profile.name} size={44} />
+              <div className="min-w-0 flex-1">
+                <SheetTitle className="font-display text-[26px] leading-tight font-normal truncate">{title}</SheetTitle>
+                <SheetDescription className="text-sm font-semibold uppercase tracking-[0.14em] text-pw-muted truncate">{profile.name} · AI tutor</SheetDescription>
+              </div>
+              <Link to={createPageUrl('StudyHistory')} onClick={() => setIsOpen(false)}>
+                <Button variant="ghost" size="icon" className="text-pw-muted hover:text-pw-navy" title="View History" aria-label="View History">
+                  <History className="w-5 h-5" />
+                </Button>
+              </Link>
             </div>
             <div className="flex items-center gap-2 w-full">
                 <Globe className="w-4 h-4 text-pw-muted shrink-0" aria-hidden="true" />
@@ -313,9 +298,9 @@ export default function StudyBuddy({ aboveTabBar = false }) {
                     </SelectContent>
                 </Select>
             </div>
-          </CardHeader>
-          
-          <CardContent className="flex-1 p-0 overflow-hidden bg-pw-page">
+          </div>
+
+          <div className="flex-1 min-h-0 overflow-hidden">
              <div className="relative h-full overflow-y-auto p-3 space-y-4" ref={scrollRef} aria-live="polite">
                 {messages.map((msg, i) => (
                   msg.role === 'assistant' ? renderAssistant(msg, i) : (
@@ -337,9 +322,9 @@ export default function StudyBuddy({ aboveTabBar = false }) {
                   </div>
                 )}
              </div>
-          </CardContent>
+          </div>
 
-          <CardFooter className="p-3 bg-white border-t border-pw-line shrink-0 flex-col gap-2">
+          <div className="p-3 bg-white border-t border-pw-line shrink-0 flex flex-col gap-2 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
             <p
               dir={RTL_LANGUAGES.includes(appLanguage) ? 'rtl' : 'ltr'}
               className="w-full text-base leading-snug text-pw-muted"
@@ -362,13 +347,13 @@ export default function StudyBuddy({ aboveTabBar = false }) {
             <button
               type="button"
               onClick={() => setTalkOpen(true)}
-              className="w-full min-h-[44px] rounded-2xl text-pw-navy hover:bg-pw-soft text-base font-bold inline-flex items-center justify-center gap-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red"
+              className="w-full min-h-[44px] rounded-2xl text-pw-navy hover:bg-pw-soft text-base font-bold inline-flex items-center justify-center gap-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
             >
               <Users className="w-5 h-5" aria-hidden="true" /> Talk to a person
             </button>
-          </CardFooter>
-        </Card>
-      )}
+          </div>
+        </SheetContent>
+      </Sheet>
 
       <TalkToPerson open={talkOpen} onOpenChange={setTalkOpen} userEmail={user.email} language={appLanguage} />
 
@@ -379,7 +364,7 @@ export default function StudyBuddy({ aboveTabBar = false }) {
         aria-label={title}
         aria-expanded={isOpen}
         className={cn(
-          "h-14 rounded-full bg-pw-navy hover:bg-pw-navy-deep text-white shadow-lift pointer-events-auto transition-all duration-300 inline-flex items-center gap-2 pl-1.5 pr-5 font-bold text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2",
+          "h-14 rounded-full bg-pw-navy hover:bg-pw-navy-deep text-white shadow-lift pointer-events-auto transition-all duration-300 inline-flex items-center gap-2 pl-1.5 pr-5 font-bold text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2",
           isOpen ? "opacity-0 scale-0" : "opacity-100 scale-100",
           aboveTabBar && "hidden lg:inline-flex"
         )}
@@ -388,17 +373,6 @@ export default function StudyBuddy({ aboveTabBar = false }) {
         <span className="max-w-[10rem] truncate">{title}</span>
       </button>
 
-      {/* Close button that appears when open to allow closing if the card covers the toggle */}
-      {isOpen && (
-         <Button
-            onClick={() => setIsOpen(false)}
-            size="lg"
-            className={cn("rounded-full h-14 w-14 p-0 [&_svg]:size-6 shadow-lift pointer-events-auto bg-pw-navy hover:bg-pw-navy-deep text-white absolute bottom-0 right-0", aboveTabBar && "hidden lg:inline-flex")}
-            aria-label="Close"
-          >
-            <X className="w-7 h-7" />
-          </Button>
-      )}
     </div>
   );
 }

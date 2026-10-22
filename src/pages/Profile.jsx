@@ -95,7 +95,7 @@ export default function Profile() {
   if (!user) {
     return (
       <div className="text-center py-20">
-        <h2 className="text-2xl font-extrabold text-pw-navy">Please sign in to view your profile</h2>
+        <h2 className="text-[28px] font-display font-normal text-pw-navy">Please sign in to view your profile</h2>
       </div>
     );
   }
@@ -121,7 +121,7 @@ export default function Profile() {
                 </AvatarFallback>
               </Avatar>
               <div className="min-w-0">
-                <h2 className="text-2xl font-extrabold leading-tight break-words">
+                <h2 className="text-[28px] font-display font-normal leading-tight break-words">
                   {displayName || "User"}
                 </h2>
                 <p className="text-pw-muted text-sm break-all">{user.email}</p>

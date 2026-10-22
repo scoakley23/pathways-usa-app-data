@@ -45,7 +45,7 @@ export default function FlashcardView({ flashcards }) {
         tabIndex={0}
         aria-pressed={isFlipped}
         style={{ perspective: '1000px' }}
-        className="cursor-pointer w-full h-80 rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2"
+        className="cursor-pointer w-full h-80 rounded-[14px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2"
       >
         <div
           style={{
@@ -60,7 +60,7 @@ export default function FlashcardView({ flashcards }) {
           {/* Front of card */}
           <div
             style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
-            className="absolute inset-0 rounded-3xl border border-pw-line bg-white shadow-raised flex items-center justify-center p-6"
+            className="absolute inset-0 rounded-[14px] border border-pw-line bg-white shadow-raised flex items-center justify-center p-6"
           >
             <div className="text-center space-y-4">
               <span className="text-xs font-bold uppercase tracking-widest text-pw-muted">Term</span>
@@ -75,7 +75,7 @@ export default function FlashcardView({ flashcards }) {
               WebkitBackfaceVisibility: 'hidden',
               transform: 'rotateY(180deg)',
             }}
-            className="absolute inset-0 rounded-3xl bg-pw-blue-soft shadow-raised flex items-center justify-center p-6 overflow-y-auto"
+            className="absolute inset-0 rounded-[14px] bg-pw-blue-soft shadow-raised flex items-center justify-center p-6 overflow-y-auto"
           >
             <div className="text-center space-y-4">
               <span className="text-xs font-bold uppercase tracking-widest text-pw-blue-ink">Definition</span>

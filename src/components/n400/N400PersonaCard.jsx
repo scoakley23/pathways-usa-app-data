@@ -10,7 +10,7 @@ export default function N400PersonaCard({ applicant, selected, onSelect }) {
       type="button"
       onClick={onSelect}
       aria-pressed={selected}
-      className={`w-full text-left rounded-2xl border-2 p-4 flex items-start gap-4 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2 ${
+      className={`w-full text-left rounded-2xl border-2 p-4 flex items-start gap-4 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2 ${
         selected ? 'border-pw-navy bg-pw-soft' : 'border-pw-line bg-white hover:border-pw-navy/40'
       }`}
     >

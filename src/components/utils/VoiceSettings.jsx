@@ -61,7 +61,7 @@ export default function VoiceSettings() {
           <Volume2 className="w-4 h-4" aria-hidden="true" /> Voice
         </Button>
       </PopoverTrigger>
-      <PopoverContent align="center" className="w-80 max-w-[calc(100vw-2rem)] space-y-5 rounded-3xl border-pw-line shadow-lift p-5 text-pw-navy">
+      <PopoverContent align="center" className="w-80 max-w-[calc(100vw-2rem)] space-y-5 rounded-[14px] border-pw-line shadow-lift p-5 text-pw-navy">
         <div>
           <p className="text-base font-bold mb-2">Voice</p>
           {voicesLoaded && voices.length === 0 ? (

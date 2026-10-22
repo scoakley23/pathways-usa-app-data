@@ -4,7 +4,7 @@ import {
   Target, 
   Star, 
   Zap, 
-  ShieldCheck, 
+  Mountain, 
   BookOpen,
   Lock
 } from 'lucide-react';
@@ -56,7 +56,7 @@ const BADGES_CONFIG = {
     id: "veteran",
     name: "Veteran",
     description: "Earn 1000 points",
-    icon: ShieldCheck,
+    icon: Mountain,
     color: "text-pw-teal-ink bg-pw-teal-soft border-pw-teal-soft"
   }
 };

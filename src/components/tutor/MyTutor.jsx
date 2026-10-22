@@ -114,7 +114,7 @@ export default function MyTutor({ currentUserEmail }) {
   return (
     <div className="space-y-6">
         <div className="flex justify-between items-center gap-3">
-            <h2 className="text-2xl font-extrabold text-pw-navy">My Tutors</h2>
+            <h2 className="text-[28px] font-display font-normal text-pw-navy">My Tutors</h2>
             <Button variant="ghost" size="icon" onClick={fetchTutors} title="Refresh" aria-label="Refresh">
                 <RefreshCw className="w-5 h-5 text-pw-muted" />
             </Button>
@@ -166,7 +166,7 @@ export default function MyTutor({ currentUserEmail }) {
           </RaisedCard>
         ))}
         {tutors.length === 0 && (
-            <div className="col-span-full text-center py-10 px-5 text-pw-muted bg-white rounded-3xl border border-dashed border-pw-line">
+            <div className="col-span-full text-center py-10 px-5 text-pw-muted bg-white rounded-[14px] border border-dashed border-pw-line">
                 <p className="mb-2 text-lg font-bold text-pw-navy">No tutors yet.</p>
                 <p className="text-base">Ask your tutor for their <span className="font-bold text-pw-navy">Invite Code</span> or ask them to invite you by email.</p>
             </div>

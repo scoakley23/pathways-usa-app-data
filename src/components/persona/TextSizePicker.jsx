@@ -16,7 +16,7 @@ export default function TextSizePicker({ className = '' }) {
             type="button"
             aria-pressed={textSize.size === id}
             onClick={() => textSize.changeSize(id)}
-            className={`min-h-[44px] rounded-2xl border-2 px-2 font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2 ${
+            className={`min-h-[44px] rounded-2xl border-2 px-2 font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2 ${
               textSize.size === id ? 'border-pw-navy bg-pw-soft' : 'border-pw-line bg-white hover:border-pw-muted'
             }`}
             style={{ fontSize: t.px }}

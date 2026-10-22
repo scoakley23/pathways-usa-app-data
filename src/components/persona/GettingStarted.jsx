@@ -83,7 +83,7 @@ function ChoiceButton({ selected, onClick, children, className = '' }) {
       type="button"
       onClick={onClick}
       aria-pressed={selected}
-      className={`w-full min-h-[56px] rounded-2xl border-2 px-4 py-3 text-left text-lg font-bold flex items-center gap-3 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2 ${
+      className={`w-full min-h-[56px] rounded-2xl border-2 px-4 py-3 text-left text-lg font-bold flex items-center gap-3 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2 ${
         selected ? 'border-pw-navy bg-pw-soft' : 'border-pw-line bg-white hover:border-pw-navy/50'
       } ${className}`}
     >
@@ -143,14 +143,14 @@ export default function GettingStarted({ language, onLanguageChange, onDone }) {
           <TutorAvatar name={profile.name} size={144} />
         </div>
         <div className="space-y-2">
-          <h1 className="text-[32px] leading-tight font-extrabold">Welcome</h1>
+          <h1 className="font-display text-[40px] leading-tight">Welcome</h1>
           <p className="text-lg text-pw-muted">Tap Start. Your tutor will talk with you.</p>
           <p className="text-lg text-pw-muted" lang="es">Toque Empezar. Le hablaremos en voz alta.</p>
         </div>
         <button
           type="button"
           onClick={() => go('language')}
-          className="w-full min-h-[88px] rounded-3xl bg-pw-navy text-white shadow-lift hover:bg-pw-navy-deep px-4 py-3 flex flex-col items-center justify-center gap-1 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-pw-red/40"
+          className="w-full min-h-[88px] rounded-[14px] bg-pw-navy text-white shadow-lift hover:bg-pw-navy-deep px-4 py-3 flex flex-col items-center justify-center gap-1 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-pw-navy/40"
         >
           <span className="text-2xl font-extrabold flex items-center gap-2"><Volume2 className="w-7 h-7" aria-hidden="true" /> Start</span>
           <span className="text-base font-semibold text-white/80" aria-hidden="true">{START_WORDS.slice(1).join(' · ')}</span>
@@ -167,7 +167,7 @@ export default function GettingStarted({ language, onLanguageChange, onDone }) {
         <div className="flex-1"><SegmentedProgress current={position} total={steps.length - 1} label={`Getting started, step ${position + 1} of ${steps.length - 1}`} /></div>
         <QuietButton className="shrink-0 text-base" onClick={finish}>{label('skip')}</QuietButton>
       </div>
-      <h1 className="text-[28px] leading-tight font-extrabold">{label('title')}</h1>
+      <h1 className="font-display text-[36px] leading-tight">{label('title')}</h1>
 
       {step === 'language' && (
         <>
@@ -257,7 +257,7 @@ export default function GettingStarted({ language, onLanguageChange, onDone }) {
             href={USCIS_TEST}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 min-h-11 text-base font-bold underline underline-offset-4 decoration-pw-red/60 hover:decoration-pw-red"
+            className="inline-flex items-center gap-2 min-h-11 text-base font-bold underline underline-offset-4 decoration-pw-navy/40 hover:decoration-pw-navy"
           >
             {label('filed_link')} <ExternalLink className="w-4 h-4" aria-hidden="true" />
           </a>

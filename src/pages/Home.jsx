@@ -60,7 +60,7 @@ export default function Home({ cachedUser, cachedRole }) {
       {/* Practice one skill */}
       <section aria-labelledby="practice-title" className="space-y-3">
         <div>
-          <h2 id="practice-title" className="text-2xl font-extrabold tracking-[-0.5px] text-pw-navy">{t('practice_title')}</h2>
+          <h2 id="practice-title" className="text-[28px] font-display font-normal text-pw-navy">{t('practice_title')}</h2>
           <p className="text-base text-pw-muted">{t('practice_desc')}</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -68,7 +68,7 @@ export default function Home({ cachedUser, cachedRole }) {
           <Link
             key={f.title}
             to={f.to}
-            className="group flex sm:flex-col items-stretch rounded-3xl bg-white border border-pw-line shadow-raised overflow-hidden hover:-translate-y-0.5 hover:shadow-lift transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2"
+            className="group flex sm:flex-col items-stretch rounded-[14px] bg-white border border-pw-line shadow-raised overflow-hidden hover:-translate-y-0.5 hover:shadow-lift transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2"
           >
             <div className={`w-24 sm:w-auto shrink-0 ${SKILL_BG[f.skill]} px-2 sm:px-4 pt-3 pb-2 grid place-items-center`}>
               <TopicArt name={f.art} className="w-full h-14 sm:h-16" accent={false} />
@@ -89,7 +89,7 @@ export default function Home({ cachedUser, cachedRole }) {
       <section>
         <Link
           to="/n400-guide"
-          className="group flex items-stretch rounded-3xl bg-white border border-pw-line shadow-raised overflow-hidden hover:-translate-y-0.5 hover:shadow-lift transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2"
+          className="group flex items-stretch rounded-[14px] bg-white border border-pw-line shadow-raised overflow-hidden hover:-translate-y-0.5 hover:shadow-lift transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2"
         >
           <div className={`w-24 sm:w-40 shrink-0 ${SKILL_BG.n400} px-2 grid place-items-center`}>
             <TopicArt name="scroll" className="w-full h-14" accent={false} />
@@ -105,15 +105,15 @@ export default function Home({ cachedUser, cachedRole }) {
 
       {/* USCIS Resources Section ("Ready to file?") */}
       <section id="ready-to-file" className="scroll-mt-24">
-        <div className="rounded-3xl bg-white border border-pw-line shadow-raised overflow-hidden text-pw-navy">
+        <div className="rounded-[14px] bg-white border border-pw-line shadow-raised overflow-hidden text-pw-navy">
           <div className="bg-pw-blue-soft px-5 pt-4 pb-3">
-            <TopicArt name="flag" className="w-full h-20" />
+            <TopicArt name="road" className="w-full h-20" />
           </div>
           <div className="p-5 sm:p-8 space-y-4">
-            <h2 className="text-2xl md:text-3xl font-extrabold">{t('ready_title')}</h2>
+            <h2 className="text-[28px] md:text-3xl font-display font-normal">{t('ready_title')}</h2>
             <p className="text-base text-pw-muted max-w-xl">{t('ready_body')}</p>
             <p className="text-base">
-              <Link to="/lawyer-first" className="font-bold underline underline-offset-4 decoration-pw-red/60 hover:decoration-pw-red">
+              <Link to="/lawyer-first" className="font-bold underline underline-offset-4 decoration-pw-navy/40 hover:decoration-pw-navy">
                 {t('ready_lawyer')}
               </Link>
             </p>
@@ -122,7 +122,7 @@ export default function Home({ cachedUser, cachedRole }) {
                 href="https://www.uscis.gov/citizenship/apply-for-naturalization"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="min-h-[52px] rounded-2xl bg-pw-navy text-white font-bold text-base inline-flex items-center justify-center gap-2 px-6 hover:bg-pw-navy-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2"
+                className="min-h-[52px] rounded-2xl bg-pw-navy text-white font-bold text-base inline-flex items-center justify-center gap-2 px-6 hover:bg-pw-navy-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2"
               >
                 <FileText className="w-5 h-5" /> {t('btn_apply')}
               </a>
@@ -130,7 +130,7 @@ export default function Home({ cachedUser, cachedRole }) {
                 href="https://egov.uscis.gov/casestatus/landing.do"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="min-h-[52px] rounded-2xl bg-white border-2 border-pw-navy text-pw-navy font-bold text-base inline-flex items-center justify-center gap-2 px-6 hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2"
+                className="min-h-[52px] rounded-2xl bg-white border-2 border-pw-navy text-pw-navy font-bold text-base inline-flex items-center justify-center gap-2 px-6 hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2"
               >
                 <Search className="w-5 h-5" /> {t('btn_case')}
               </a>

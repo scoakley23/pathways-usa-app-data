@@ -14,7 +14,7 @@ import useAppLanguage from '@/hooks/useAppLanguage';
 import { buildLearnLesson, pickNextToLearn } from '@/lib/explanations';
 import { learnedProgress } from '@/lib/spacedReview';
 
-const linkClass = 'min-h-[52px] w-full rounded-2xl font-bold text-lg inline-flex items-center justify-center px-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2';
+const linkClass = 'min-h-[52px] w-full rounded-2xl font-bold text-lg inline-flex items-center justify-center px-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2';
 
 const say = (t, language) => ({ en: t.en, mine: language === 'es' ? t.es : null });
 
@@ -36,10 +36,10 @@ const LINES = {
 function SignInMessage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-[50vh] text-center space-y-4 px-4">
-      <div className="w-20 h-20 rounded-3xl bg-pw-blue-soft flex items-center justify-center" aria-hidden="true">
+      <div className="w-20 h-20 rounded-[14px] bg-pw-blue-soft flex items-center justify-center" aria-hidden="true">
         <BookOpen className="w-10 h-10 text-pw-blue-ink" />
       </div>
-      <h2 className="text-2xl font-extrabold text-pw-navy">Sign in to learn civics</h2>
+      <h2 className="text-[28px] font-display font-normal text-pw-navy">Sign in to learn civics</h2>
       <p className="text-base text-pw-muted">Your tutor teaches each question first, then you practice it.</p>
     </div>
   );
@@ -151,12 +151,12 @@ export default function LearnCivics() {
 
   return (
     <div className="max-w-xl mx-auto space-y-5 text-pw-navy">
-      <div className="rounded-3xl bg-pw-blue-soft px-4 pt-4 pb-5">
+      <div className="rounded-[14px] bg-pw-blue-soft px-4 pt-4 pb-5">
         <TopicArt name={art} />
         <Tag tone="blue" className="mt-2">
           {stage === 'done' ? 'Lesson done' : picked.length ? `${n} new ${n === 1 ? 'question' : 'questions'}` : 'All started'}
         </Tag>
-        <h1 className="text-[28px] leading-tight font-extrabold mt-3">Learn civics</h1>
+        <h1 className="font-display text-[36px] leading-tight mt-3">Learn civics</h1>
       </div>
 
       {stage === 'intro' && picked.length > 0 && (

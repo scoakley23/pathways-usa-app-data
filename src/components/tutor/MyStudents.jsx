@@ -170,7 +170,7 @@ The Citizenship Hub Team`;
     if (action === 'report') setIsReportOpen(true);
   };
 
-  const viewBtn = (active) => `flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 min-h-[44px] px-2 sm:px-4 py-1.5 rounded-xl text-sm sm:text-base font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red ${active ? 'bg-pw-navy text-white' : 'text-pw-muted hover:text-pw-navy hover:bg-pw-soft'}`;
+  const viewBtn = (active) => `flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 min-h-[44px] px-2 sm:px-4 py-1.5 rounded-xl text-sm sm:text-base font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy ${active ? 'bg-pw-navy text-white' : 'text-pw-muted hover:text-pw-navy hover:bg-pw-soft'}`;
 
   return (
     <div className="space-y-6">
@@ -210,7 +210,7 @@ The Citizenship Hub Team`;
       ) : (
         <>
           <RaisedCard>
-              <h2 className="text-xl font-extrabold text-pw-navy mb-4">Add New Student</h2>
+              <h2 className="text-2xl font-display font-normal text-pw-navy mb-4">Add New Student</h2>
                {/* Invite Code Section */}
                <div className="mb-6 bg-pw-blue-soft rounded-2xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
                    <div>
@@ -344,7 +344,7 @@ The Citizenship Hub Team`;
           </RaisedCard>
               ))}
         {students.length === 0 && (
-            <div className="col-span-full text-center py-10 px-5 text-base text-pw-muted bg-white rounded-3xl border border-dashed border-pw-line">
+            <div className="col-span-full text-center py-10 px-5 text-base text-pw-muted bg-white rounded-[14px] border border-dashed border-pw-line">
                 No students yet. Add one above!
             </div>
         )}

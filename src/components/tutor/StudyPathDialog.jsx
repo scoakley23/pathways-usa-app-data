@@ -158,14 +158,14 @@ export default function StudyPathDialog({ isOpen, onClose, student, tutorEmail }
           <button
             onClick={() => setMode('topic')}
             aria-pressed={mode === 'topic'}
-            className={`flex-1 min-h-[44px] rounded-xl text-base font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red ${mode === 'topic' ? 'bg-pw-navy text-white' : 'text-pw-muted hover:bg-pw-soft'}`}
+            className={`flex-1 min-h-[44px] rounded-xl text-base font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy ${mode === 'topic' ? 'bg-pw-navy text-white' : 'text-pw-muted hover:bg-pw-soft'}`}
           >
             By Topic
           </button>
           <button
             onClick={() => setMode('lesson')}
             aria-pressed={mode === 'lesson'}
-            className={`flex-1 min-h-[44px] rounded-xl text-base font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red ${mode === 'lesson' ? 'bg-pw-navy text-white' : 'text-pw-muted hover:bg-pw-soft'}`}
+            className={`flex-1 min-h-[44px] rounded-xl text-base font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy ${mode === 'lesson' ? 'bg-pw-navy text-white' : 'text-pw-muted hover:bg-pw-soft'}`}
           >
             Pick Lessons
           </button>
@@ -186,7 +186,7 @@ export default function StudyPathDialog({ isOpen, onClose, student, tutorEmail }
                     key={topic}
                     onClick={() => toggleTopic(topic)}
                     aria-pressed={isSelected}
-                    className={`w-full min-h-[52px] flex items-center justify-between gap-2 p-3 rounded-2xl border-2 transition-colors text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red ${
+                    className={`w-full min-h-[52px] flex items-center justify-between gap-2 p-3 rounded-2xl border-2 transition-colors text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy ${
                       isSelected
                         ? 'border-pw-navy bg-pw-soft'
                         : 'border-pw-line bg-white hover:border-pw-navy/40'
@@ -225,7 +225,7 @@ export default function StudyPathDialog({ isOpen, onClose, student, tutorEmail }
                             key={lesson.id}
                             onClick={() => toggleLesson(lesson.id)}
                             aria-pressed={isSelected}
-                            className={`w-full min-h-[48px] flex items-center gap-3 p-3 rounded-2xl border-2 text-left text-base transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red ${
+                            className={`w-full min-h-[48px] flex items-center gap-3 p-3 rounded-2xl border-2 text-left text-base transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy ${
                               isSelected ? 'border-pw-navy bg-pw-soft' : 'border-pw-line bg-white hover:border-pw-navy/40'
                             }`}
                           >
@@ -251,7 +251,7 @@ export default function StudyPathDialog({ isOpen, onClose, student, tutorEmail }
               value={note}
               onChange={e => setNote(e.target.value)}
               placeholder="e.g. Focus on the dates in U.S. History before your interview next month..."
-              className="w-full border-2 border-pw-line rounded-2xl p-3 text-base text-pw-navy placeholder:text-pw-muted/70 resize-none focus:outline-none focus:border-pw-navy focus-visible:ring-2 focus-visible:ring-pw-red/40"
+              className="w-full border-2 border-pw-line rounded-2xl p-3 text-base text-pw-navy placeholder:text-pw-muted/70 resize-none focus:outline-none focus:border-pw-navy focus-visible:ring-2 focus-visible:ring-pw-navy/40"
               rows={2}
             />
           </div>

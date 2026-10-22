@@ -52,7 +52,7 @@ export default function CurrentOfficialsTool() {
   return (
     <section aria-labelledby="officials-heading" className="space-y-4 text-pw-navy">
       <div>
-        <h2 id="officials-heading" className="text-2xl font-extrabold">Current officials</h2>
+        <h2 id="officials-heading" className="text-[28px] font-display font-normal">Current officials</h2>
         <p className="text-base text-pw-muted mt-1">
           Learners see these names for the &quot;Answers change&quot; questions, with the date you checked them.
           {CURRENT_OFFICIALS.checkedOn ? ` Last checked: ${CURRENT_OFFICIALS.checkedOn}.` : ' Not set yet: learners are told to check uscis.gov.'}
@@ -71,7 +71,7 @@ export default function CurrentOfficialsTool() {
               type="text"
               value={answers[f.key]}
               onChange={(e) => setAnswers({ ...answers, [f.key]: e.target.value })}
-              className="w-full min-h-[44px] rounded-xl border border-pw-line px-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red"
+              className="w-full min-h-[44px] rounded-xl border border-pw-line px-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
             />
           </div>
         ))}

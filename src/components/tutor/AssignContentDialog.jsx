@@ -190,7 +190,7 @@ export default function AssignContentDialog({ isOpen, onClose, studentEmail, tut
                             key={type}
                             onClick={() => setCustomType(type)}
                             aria-pressed={customType === type}
-                            className={`flex-1 min-h-[44px] text-sm font-bold rounded-xl transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red ${
+                            className={`flex-1 min-h-[44px] text-sm font-bold rounded-xl transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy ${
                                 customType === type ? 'bg-pw-navy text-white' : 'text-pw-muted hover:bg-pw-soft'
                             }`}
                         >

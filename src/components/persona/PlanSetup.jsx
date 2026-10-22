@@ -59,7 +59,7 @@ export default function PlanSetup({ profile, language, again = false, onDone }) 
           href={PROCESSING_TIMES}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 min-h-11 text-base font-bold text-pw-navy underline underline-offset-4 decoration-pw-red/60 hover:decoration-pw-red"
+          className="inline-flex items-center gap-2 min-h-11 text-base font-bold text-pw-navy underline underline-offset-4 decoration-pw-navy/40 hover:decoration-pw-navy"
         >
           {t('processing')} <ExternalLink className="w-4 h-4" aria-hidden="true" />
         </a>

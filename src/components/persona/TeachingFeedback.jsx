@@ -21,7 +21,7 @@ export default function TeachingFeedback({
       <TutorMessage profile={profile} language={language} mine={mine} en={en} expression={isCorrect ? 'proud' : 'default'} />
 
       {accepted.length > 0 && (
-        <div className={`rounded-3xl p-5 text-pw-navy ${isCorrect ? 'bg-pw-green-soft' : 'bg-white border border-pw-line'} ${sizeClass}`}>
+        <div className={`rounded-[14px] p-5 text-pw-navy ${isCorrect ? 'bg-pw-green-soft' : 'bg-white border border-pw-line'} ${sizeClass}`}>
           <Eyebrow className="mb-2">{acceptLabel}</Eyebrow>
           <ul className="space-y-1 mb-3">
             {accepted.map((a) => (

@@ -141,7 +141,7 @@ export default function RecommendationsPanel({ userEmail, onSelectLesson }) {
               {rec.type === 'retry' && 'Practice Again'}
               {rec.type === 'continue' && 'Recommended for You'}
             </Tag>
-            <h2 className="text-xl font-extrabold flex items-start gap-2">
+            <h2 className="text-2xl font-display font-normal flex items-start gap-2">
               {rec.type === 'needs_review' && <AlertCircle className="w-6 h-6 shrink-0 text-pw-red-ink" aria-hidden="true" />}
               {rec.type === 'retry' && <TrendingUp className="w-6 h-6 shrink-0 text-pw-blue-ink" aria-hidden="true" />}
               {rec.type === 'continue' && <Lightbulb className="w-6 h-6 shrink-0 text-pw-teal-ink" aria-hidden="true" />}

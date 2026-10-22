@@ -11,7 +11,7 @@ const LANGUAGE_COUNT = LANGUAGES.length;
 export default function HomePromises({ t }) {
   return (
     <section aria-labelledby="promises-title" className="space-y-3">
-      <h2 id="promises-title" className="text-2xl font-extrabold tracking-[-0.5px] text-pw-navy">{t('promise_title')}</h2>
+      <h2 id="promises-title" className="text-[28px] font-display font-normal text-pw-navy">{t('promise_title')}</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <RaisedCard padding="p-0" className="overflow-hidden">
           <div className="bg-pw-blue-soft px-4 pt-3 pb-2">

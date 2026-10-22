@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck } from 'lucide-react';
+import { Info } from 'lucide-react';
 import { PrimaryButton, RaisedCard } from '@/components/pathways/ui';
 
 const VERSIONS = [
@@ -11,10 +11,10 @@ const VERSIONS = [
 export default function RehearsalStart({ version, onSelectVersion, onStart, starting }) {
   return (
     <section aria-labelledby="rehearsal-title" className="space-y-4 text-pw-navy">
-      <h2 id="rehearsal-title" className="text-[22px] leading-snug font-extrabold">Full rehearsal</h2>
+      <h2 id="rehearsal-title" className="text-[28px] leading-snug font-display font-normal">Full rehearsal</h2>
 
-      <div className="rounded-3xl bg-pw-blue-soft p-5 flex items-start gap-3">
-        <ShieldCheck className="w-6 h-6 text-pw-blue-ink shrink-0 mt-0.5" aria-hidden="true" />
+      <div className="rounded-[14px] bg-pw-blue-soft p-5 flex items-start gap-3">
+        <Info className="w-6 h-6 text-pw-blue-ink shrink-0 mt-0.5" aria-hidden="true" />
         <p className="text-base font-bold leading-relaxed">
           This is practice. Pathways is not part of USCIS. Your answers are not saved.
         </p>
@@ -35,7 +35,7 @@ export default function RehearsalStart({ version, onSelectVersion, onStart, star
               type="button"
               aria-pressed={version === v.id}
               onClick={() => onSelectVersion(v.id)}
-              className={`min-h-[44px] rounded-full text-base font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red ${
+              className={`min-h-[44px] rounded-full text-base font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy ${
                 version === v.id ? 'bg-white text-pw-navy shadow-raised' : 'text-pw-muted hover:text-pw-navy'
               }`}
             >

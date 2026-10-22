@@ -28,7 +28,7 @@ function N400LawyerStep({ step, ctx }) {
       <TutorMessage profile={ctx.profile} language={ctx.language} mine={step.text.mine} en={step.text.en} />
       <Link
         to="/lawyer-first"
-        className="w-full min-h-[52px] rounded-2xl border-2 border-pw-navy bg-white text-pw-navy font-bold text-lg inline-flex items-center justify-center gap-2 px-4 hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2"
+        className="w-full min-h-[52px] rounded-2xl border-2 border-pw-navy bg-white text-pw-navy font-bold text-lg inline-flex items-center justify-center gap-2 px-4 hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2"
       >
         <Scale className="w-5 h-5" aria-hidden="true" /> Talk to a lawyer first
       </Link>

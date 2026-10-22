@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, Clock, Award, Flag, ArrowRight } from 'lucide-react';
+import { CheckCircle, Clock, Award, Target, ArrowRight } from 'lucide-react';
 import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
@@ -76,14 +76,14 @@ export default function Progress() {
   // Calculate Preparedness Score (Simple metric: Mastered / 100 * 100, cap at 100)
   const preparedness = Math.min(Math.round((stats.mastered / 100) * 100), 100);
 
-  const tileLink = 'block rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2';
+  const tileLink = 'block rounded-[14px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2';
 
   return (
     <div className="space-y-6 text-pw-navy">
       <PageHeader
         title="Your Progress"
         subtitle="How far you've come on your path."
-        art="flag"
+        art="road"
         guide="Here you can see what you've practiced and how your skills are growing. It helps us choose what to practice next."
       >
         <TestDateTracker />
@@ -123,7 +123,7 @@ export default function Progress() {
           <div className="flex justify-between items-center gap-3 mb-4">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-2xl bg-pw-teal-soft text-pw-teal-ink grid place-items-center shrink-0">
-                <Flag className="w-6 h-6" aria-hidden="true" />
+                <Target className="w-6 h-6" aria-hidden="true" />
               </div>
               <p className="text-lg font-extrabold">Test Preparedness</p>
             </div>

@@ -226,10 +226,10 @@ export default function TutorDashboard({ currentUserEmail, students }) {
                     <ResponsiveContainer width="100%" height="100%">
                         <LineChart data={chartData} margin={{ top: 5, right: 16, left: -16, bottom: 5 }}>
                             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#DEE4EE" />
-                            <XAxis dataKey="date" tick={{ fill: '#4A5A78', fontSize: 12 }} />
-                            <YAxis allowDecimals={false} tick={{ fill: '#4A5A78', fontSize: 12 }} />
+                            <XAxis dataKey="date" tick={{ fill: '#3D4F73', fontSize: 12 }} />
+                            <YAxis allowDecimals={false} tick={{ fill: '#3D4F73', fontSize: 12 }} />
                             <Tooltip 
-                                contentStyle={{ borderRadius: '16px', border: '1px solid #DEE4EE', boxShadow: '0 8px 24px rgba(20, 38, 74, 0.08)' }}
+                                contentStyle={{ borderRadius: '14px', border: '1px solid #DEE4EE', boxShadow: '0 8px 24px rgba(20, 38, 74, 0.08)' }}
                             />
                             <Legend />
                             <Line type="monotone" dataKey="assigned" name="Assigned" stroke="#14264A" strokeWidth={2} activeDot={{ r: 6 }} />

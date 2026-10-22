@@ -190,7 +190,7 @@ export default function ExplanationTools() {
   return (
     <section aria-labelledby="explanations-heading" className="space-y-4 text-pw-navy">
       <div>
-        <h2 id="explanations-heading" className="text-2xl font-extrabold">Lesson explanations</h2>
+        <h2 id="explanations-heading" className="text-[28px] font-display font-normal">Lesson explanations</h2>
         <p className="text-base text-pw-muted mt-1">
           Export the official questions, draft explanations with AI, then review them by hand
           (see <code className="text-sm">content/explanations/REVIEW.md</code>). Learners see only reviewed ones.
@@ -216,7 +216,7 @@ export default function ExplanationTools() {
               onClick={() => chooseLang(l.value)}
               aria-pressed={lang === l.value}
               disabled={running}
-              className={`min-h-[44px] rounded-2xl border-2 px-3 text-base font-bold transition-colors disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red ${lang === l.value ? 'border-pw-navy bg-pw-soft' : 'border-pw-line bg-white hover:border-pw-navy'}`}
+              className={`min-h-[44px] rounded-2xl border-2 px-3 text-base font-bold transition-colors disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy ${lang === l.value ? 'border-pw-navy bg-pw-soft' : 'border-pw-line bg-white hover:border-pw-navy'}`}
             >
               {l.label} <span className="font-semibold text-pw-muted">({l.value}.json)</span>
             </button>

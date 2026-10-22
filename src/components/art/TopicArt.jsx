@@ -39,14 +39,20 @@ const ART = {
       <path d="M20 84h160" />
     </>
   ),
-  // Geography and Symbols (the flag)
-  flag: (
+  // Geography and Symbols: a folded map with a route (the brand avoids flags)
+  map: (
     <>
-      <path d="M60 84V10" />
-      <path d="M60 14h84v44H60" />
-      <path d="M60 22h84M60 30h84M60 38h84M60 46h84M60 54h84" />
-      <path d="M60 14h34v24H60z" fill="#F3F5F9" />
-      <path d="M44 84h32" />
+      <path d="M44 22l38-10 36 10 38-10v62l-38 10-36-10-38 10z" />
+      <path d="M82 12v62M118 22v62" />
+      <path d="M58 62c12-12 22 2 34-8s24-4 36-18 14-8 18-10" strokeDasharray="4 6" />
+    </>
+  ),
+  // The road ahead (Progress, Interview Day): two roads merging into one
+  road: (
+    <>
+      <path d="M36 86c18-24 40-34 64-40" />
+      <path d="M170 76c-22-8-46-18-70-30" />
+      <path d="M100 46c22-8 32-20 28-36" />
     </>
   ),
   // Reading
@@ -97,13 +103,14 @@ export const TOPIC_ART = {
   'System of Government': 'capitol',
   'Rights and Responsibilities': 'ballot',
   'U.S. History': 'bell',
-  'Geography and Symbols': 'flag',
+  'Geography and Symbols': 'map',
 };
 
-// The red accent sits top-right, except where it would cover the drawing.
+// The red accent (off by default: a screen keeps only the logo's and Vía's
+// dots) sits top-right, except where it would cover the drawing.
 const ACCENT_LEFT = new Set(['scroll', 'pencil']);
 
-export default function TopicArt({ name, className = 'w-full h-24', accent = true }) {
+export default function TopicArt({ name, className = 'w-full h-24', accent = false }) {
   const art = ART[name] || ART.capitol;
   const cx = ACCENT_LEFT.has(name) ? 28 : 172;
   return (

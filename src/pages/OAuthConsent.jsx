@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { appParams } from "@/lib/app-params";
 import { Button } from "@/components/ui/button";
-import { ShieldCheck, Loader2 } from "lucide-react";
+import { LockKeyhole, Loader2 } from "lucide-react";
 import AuthLayout from "@/components/AuthLayout";
 
 // App-side OAuth consent page for the app's MCP server. The platform redirects
@@ -136,7 +136,7 @@ export default function OAuthConsent() {
 
   if (checking) {
     return (
-      <AuthLayout icon={ShieldCheck} title="Authorize access">
+      <AuthLayout icon={LockKeyhole} title="Authorize access">
         <div className="flex items-center justify-center py-6 text-muted-foreground">
           <Loader2 className="w-5 h-5 mr-2 animate-spin" aria-hidden="true" />
           Loading…
@@ -151,7 +151,7 @@ export default function OAuthConsent() {
   if (decided) {
     return (
       <AuthLayout
-        icon={ShieldCheck}
+        icon={LockKeyhole}
         title={decided === "approve" ? "Access granted" : "Access denied"}
         subtitle={`You can return to ${client} and close this window.`}
       />
@@ -163,7 +163,7 @@ export default function OAuthConsent() {
   // no approve/deny controls.
   if (reconnect) {
     return (
-      <AuthLayout icon={ShieldCheck} title="Reconnect required">
+      <AuthLayout icon={LockKeyhole} title="Reconnect required">
         <div className="p-3 rounded-lg bg-destructive/10 text-destructive text-sm">
           {reconnect}
         </div>
@@ -176,7 +176,7 @@ export default function OAuthConsent() {
   // the error alone, never the approve/deny controls.
   if (error && !info) {
     return (
-      <AuthLayout icon={ShieldCheck} title="Authorize access">
+      <AuthLayout icon={LockKeyhole} title="Authorize access">
         <div className="p-3 rounded-lg bg-destructive/10 text-destructive text-sm">
           {error}
         </div>
@@ -188,7 +188,7 @@ export default function OAuthConsent() {
 
   return (
     <AuthLayout
-      icon={ShieldCheck}
+      icon={LockKeyhole}
       title="Authorize access"
       subtitle={`${client} wants to access ${appName} on your behalf`}
     >

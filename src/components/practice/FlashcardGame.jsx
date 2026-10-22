@@ -49,15 +49,15 @@ export default function FlashcardGame({ words, onComplete }) {
         >
           {/* Front */}
           <Card 
-            className="absolute inset-0 w-full h-full flex flex-col items-center justify-center p-6 bg-white border border-pw-line shadow-raised rounded-3xl backface-hidden"
+            className="absolute inset-0 w-full h-full flex flex-col items-center justify-center p-6 bg-white border border-pw-line shadow-raised rounded-[14px] backface-hidden"
             style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'rotateY(0deg)' }}
           >
             <span className="text-xs font-bold text-pw-muted uppercase tracking-widest mb-4">Word</span>
-            <h2 className="text-4xl font-extrabold text-pw-navy text-center break-words">{currentWord.word}</h2>
+            <h2 className="text-[44px] font-display font-normal text-pw-navy text-center break-words">{currentWord.word}</h2>
             <button
               type="button"
               aria-label="Listen"
-              className="mt-6 w-12 h-12 grid place-items-center rounded-full bg-pw-soft text-pw-navy hover:bg-pw-soft-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red"
+              className="mt-6 w-12 h-12 grid place-items-center rounded-full bg-pw-soft text-pw-navy hover:bg-pw-soft-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
               onClick={(e) => speak(currentWord.word, e)}
             >
               <Volume2 className="w-6 h-6" aria-hidden="true" />
@@ -67,7 +67,7 @@ export default function FlashcardGame({ words, onComplete }) {
 
           {/* Back */}
           <Card 
-            className="absolute inset-0 w-full h-full flex flex-col items-center justify-center p-6 bg-pw-navy border-pw-navy text-white shadow-lift rounded-3xl"
+            className="absolute inset-0 w-full h-full flex flex-col items-center justify-center p-6 bg-pw-navy border-pw-navy text-white shadow-lift rounded-[14px]"
             style={{ 
               transform: 'rotateY(180deg)', 
               backfaceVisibility: 'hidden', 

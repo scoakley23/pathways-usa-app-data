@@ -102,7 +102,7 @@ export default function MatchingGame({ words, onComplete }) {
                     ? 'bg-pw-green-soft border-pw-green-ink/40' 
                     : isSelected 
                       ? isError 
-                        ? 'bg-pw-red-soft border-pw-red animate-shake'
+                        ? 'bg-pw-red-soft border-pw-red-ink animate-shake'
                         : 'bg-pw-soft border-pw-navy' 
                       : 'bg-white border-pw-line hover:border-pw-navy'
                   }

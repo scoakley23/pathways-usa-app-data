@@ -7,7 +7,7 @@ import {
 
 // Text colors use ! so Leaflet's popup link color can't override them.
 const LINK_BTN =
-  'min-h-[44px] rounded-2xl font-bold inline-flex items-center justify-center gap-2 px-4 text-base transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2';
+  'min-h-[44px] rounded-2xl font-bold inline-flex items-center justify-center gap-2 px-4 text-base transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2';
 
 // One tag per service the place offers, main category first.
 export function ServiceTags({ r }) {

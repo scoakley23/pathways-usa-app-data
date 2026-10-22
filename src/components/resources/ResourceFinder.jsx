@@ -118,7 +118,7 @@ export default function ResourceFinder() {
           <div className="w-11 h-11 rounded-2xl grid place-items-center bg-pw-blue-soft text-pw-blue-ink shrink-0">
             <MapPin className="w-5 h-5" aria-hidden="true" />
           </div>
-          <h2 className="text-[22px] leading-snug font-extrabold text-pw-navy">Find help near you</h2>
+          <h2 className="text-[28px] leading-snug font-display font-normal text-pw-navy">Find help near you</h2>
         </div>
         <p className="text-base text-pw-navy leading-relaxed">
           Free legal help, English and citizenship classes, and USCIS offices. Your location is used only on this
@@ -163,7 +163,7 @@ export default function ResourceFinder() {
                   type="button"
                   aria-pressed={on}
                   onClick={() => toggleCategory(c.id)}
-                  className={`min-h-[44px] rounded-full px-4 text-base font-semibold border-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2
+                  className={`min-h-[44px] rounded-full px-4 text-base font-semibold border-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2
                     ${on ? 'bg-pw-navy border-pw-navy text-white hover:bg-pw-navy-deep' : 'bg-white border-pw-line text-pw-navy hover:bg-pw-soft'}`}
                 >
                   {c.label}
@@ -212,7 +212,7 @@ export default function ResourceFinder() {
               <div
                 className={fullscreen
                   ? 'fixed inset-0 !mt-0 z-[70] bg-white flex flex-col'
-                  : 'relative h-[380px] sm:h-[440px] rounded-3xl overflow-hidden border border-pw-line shadow-raised bg-pw-soft isolate'}
+                  : 'relative h-[380px] sm:h-[440px] rounded-[14px] overflow-hidden border border-pw-line shadow-raised bg-pw-soft isolate'}
                 role={fullscreen ? 'dialog' : undefined}
                 aria-modal={fullscreen ? 'true' : undefined}
                 aria-label={fullscreen ? 'Map of places near you' : undefined}
@@ -241,7 +241,7 @@ export default function ResourceFinder() {
                       type="button"
                       onClick={() => setFullscreen(true)}
                       aria-label="Open the map full screen"
-                      className="absolute bottom-3 right-3 z-[1000] w-11 h-11 rounded-xl bg-white border border-pw-line shadow-raised grid place-items-center text-pw-navy hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red"
+                      className="absolute bottom-3 right-3 z-[1000] w-11 h-11 rounded-xl bg-white border border-pw-line shadow-raised grid place-items-center text-pw-navy hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
                     >
                       <Maximize2 className="w-5 h-5" aria-hidden="true" />
                     </button>
@@ -301,7 +301,7 @@ export default function ResourceFinder() {
       )}
 
       <RaisedCard className="space-y-3 md:p-6">
-        <h2 className="text-[22px] leading-snug font-extrabold text-pw-navy">Search national directories</h2>
+        <h2 className="text-[28px] leading-snug font-display font-normal text-pw-navy">Search national directories</h2>
         <p className="text-base text-pw-muted">Our map doesn&apos;t list every place yet. These sites have more.</p>
         <ul className="space-y-2">
           {DIRECTORY_LINKS.map((link) => (
@@ -310,7 +310,7 @@ export default function ResourceFinder() {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-start gap-3 rounded-2xl bg-pw-soft p-4 min-h-[44px] text-pw-navy hover:bg-pw-soft-hover transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2"
+                className="group flex items-start gap-3 rounded-2xl bg-pw-soft p-4 min-h-[44px] text-pw-navy hover:bg-pw-soft-hover transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2"
               >
                 <span className="min-w-0 flex-1 space-y-1">
                   <span className="block text-base font-bold group-hover:underline">{link.label}</span>
@@ -323,7 +323,7 @@ export default function ResourceFinder() {
         </ul>
       </RaisedCard>
 
-      <div className="rounded-3xl bg-pw-red-soft p-4 sm:p-5 flex items-start gap-3">
+      <div className="rounded-[14px] bg-pw-red-soft p-4 sm:p-5 flex items-start gap-3">
         <AlertTriangle className="w-5 h-5 text-pw-red-ink shrink-0 mt-0.5" aria-hidden="true" />
         <p className="text-base text-pw-navy leading-relaxed">
           Pathways USA does not run or endorse these places. Hours and services change, so call before you go. For
@@ -340,7 +340,7 @@ function ResourceCard({ r, selected, onSelect }) {
     <li id={`resource-${r.id}`} className="scroll-mt-24">
       <RaisedCard
         padding="p-4 sm:p-5"
-        className={`space-y-3 ${selected ? 'ring-2 ring-pw-red' : ''}`}
+        className={`space-y-3 ${selected ? 'ring-2 ring-pw-navy' : ''}`}
         onClick={onSelect}
       >
         <div className="flex flex-wrap items-start justify-between gap-2">
@@ -410,7 +410,7 @@ function ListSheet({ places, open, onToggle, onPick }) {
         type="button"
         onClick={() => onToggle(!open)}
         aria-expanded={open}
-        className="w-full min-h-[52px] flex flex-col items-center justify-center gap-1 text-base font-bold text-pw-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-pw-red rounded-t-3xl"
+        className="w-full min-h-[52px] flex flex-col items-center justify-center gap-1 text-base font-bold text-pw-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-pw-navy rounded-t-3xl"
       >
         <span className="w-10 h-1.5 rounded-full bg-pw-line" aria-hidden="true" />
         <span className="flex items-center gap-2">
@@ -425,7 +425,7 @@ function ListSheet({ places, open, onToggle, onPick }) {
               <button
                 type="button"
                 onClick={() => onPick(p.id)}
-                className="w-full text-left rounded-2xl border border-pw-line p-3 min-h-[44px] hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red"
+                className="w-full text-left rounded-2xl border border-pw-line p-3 min-h-[44px] hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
               >
                 <span className="flex items-start justify-between gap-3">
                   <span className="min-w-0">
