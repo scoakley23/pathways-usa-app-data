@@ -10,7 +10,7 @@
 #   - NLD programs without a website: from verify_sites.py (a web-search
 #     candidate whose own pages show the program's phone or address).
 # Existing websites are never replaced. Prints counts.
-import json, re, sys
+import json, re, sys, urllib.parse
 
 ian_path, nld_path, update_path = sys.argv[1:4]
 rows = json.load(open(update_path))
@@ -85,10 +85,22 @@ for r in rows:
         if not r.get('languages') and base_name(r['name']) in org_langs:
             r['languages'] = org_langs[base_name(r['name'])]; counts['doj_languages'] += 1
 
+def tidy(url):
+    # A verified page can be a news story or an event notice; link to the
+    # site's home page instead, and skip sites that are news outlets.
+    p = urllib.parse.urlsplit(url)
+    if re.search(r'news|times|herald|gazette|tribune|patch\.com', p.netloc, re.I):
+        return ''
+    if re.search(r'(news|press|release|article|blog|story|openhouse|event|calendar|fee-schedule)', p.path, re.I):
+        return f'{p.scheme}://{p.netloc}/'
+    return url
+
 for r in rows:
     hit = nld_found.get(r['external_id'])
     if r['external_id'].startswith('nld:') and hit and not r.get('website'):
-        r['website'] = hit['website']; counts['nld_added'] += 1
+        site = tidy(hit['website'])
+        if site:
+            r['website'] = site; counts['nld_added'] += 1
 
 json.dump(rows, open(update_path, 'w'), indent=1, ensure_ascii=False)
 shown = [r for r in rows if r.get('is_active') is not False]
