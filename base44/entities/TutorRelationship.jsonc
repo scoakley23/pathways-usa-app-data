@@ -31,5 +31,11 @@
   "required": [
     "tutor_email",
     "student_email"
-  ]
+  ],
+  "rls": {
+    "create": false,
+    "read": { "$or": [{ "data.tutor_email": "{{user.email}}" }, { "data.student_email": "{{user.email}}" }] },
+    "update": false,
+    "delete": { "$or": [{ "data.tutor_email": "{{user.email}}" }, { "data.student_email": "{{user.email}}" }] }
+  }
 }
