@@ -29,6 +29,7 @@ function stepTag(step, lesson) {
 // bottom that unlocks when the step is done. Lessons with `skippableParts`
 // show "Skip this part" on each part intro.
 // onFinish({ states, skipped }) — states[i].outcome holds each answer's result.
+// lesson.posters: civics questions show as red/blue posters (see SpeakingStep).
 // extraSteps: more step types for one kind of lesson ({ type: Component });
 // a component with `needsAnswer = true` waits for an answer like practice steps.
 export default function TutorLesson({ lesson, profile, language = 'en', languageName = 'English', onFinish, onExit, extraSteps }) {
@@ -44,7 +45,10 @@ export default function TutorLesson({ lesson, profile, language = 'en', language
   const state = states[index] || {};
   const setState = (s) => setStates((prev) => ({ ...prev, [index]: s }));
   const ui = (key) => ({ en: UI[key].en, mine: language === 'es' ? UI[key].es : null });
-  const ctx = { profile, language, languageName, line, ui, sizeClass };
+  // Lessons with `posters` (/learn, /review) show each civics question on a
+  // full-bleed poster; posterIndex/posterTotal count those cards.
+  const speakingSteps = lesson.posters ? steps.filter((s) => s.type === 'practice-speaking') : [];
+  const ctx = { profile, language, languageName, line, ui, sizeClass, posters: !!lesson.posters, posterIndex: speakingSteps.indexOf(step), posterTotal: speakingSteps.length };
   const Extra = extraSteps?.[step.type];
   const Step = Extra || STEPS[step.type];
   const ready = Extra ? (!Extra.needsAnswer || !!(state.answered || state.shown)) : canContinue(step, state);

@@ -5,7 +5,7 @@ import TutorMessage, { ListenButton } from './TutorMessage';
 import TeachingFeedback from './TeachingFeedback';
 import useSpeechCapture from './useSpeechCapture';
 import TopicArt from '@/components/art/TopicArt';
-import { Eyebrow, PrimaryButton, RaisedCard } from '@/components/pathways/ui';
+import { Eyebrow, IndexCard, Poster, PrimaryButton, RaisedCard, posterTone } from '@/components/pathways/ui';
 import { speakText } from '@/components/utils/textToSpeech';
 import { wordDiff } from '@/components/utils/wordDiff';
 import { checkCivicsAnswer } from '@/components/civics/checkCivicsAnswer';
@@ -39,26 +39,27 @@ export const UI = {
 
 const isCheck = (step) => step.mode === 'check';
 
-// Big round microphone button with a soft halo.
-function MicButton({ speech, busy, idleLabel = 'Tap and answer in English' }) {
+// Big round microphone button with a soft halo. `onPoster`: white, for a
+// red or blue poster.
+function MicButton({ speech, busy, idleLabel = 'Tap and answer in English', onPoster = false }) {
   return (
     <div className="flex flex-col items-center mt-6">
       <div className="relative">
-        <span className={`absolute inset-0 rounded-full bg-pw-red/20 transition-transform ${speech.listening ? 'scale-150 animate-pulse' : 'scale-125'}`} aria-hidden="true" />
+        <span className={`absolute inset-0 rounded-full ${onPoster ? 'bg-white/25' : 'bg-pw-red/20'} transition-transform ${speech.listening ? 'scale-150 animate-pulse' : 'scale-125'}`} aria-hidden="true" />
         <button
           type="button"
           onClick={speech.listening ? speech.stop : speech.start}
           disabled={busy}
           aria-label={speech.listening ? 'Stop' : idleLabel}
-          className="relative w-20 h-20 rounded-full bg-pw-red text-white grid place-items-center shadow-lift disabled:opacity-50 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-pw-navy/30"
+          className={`relative w-20 h-20 rounded-full grid place-items-center shadow-lift disabled:opacity-50 focus-visible:outline-none focus-visible:ring-4 ${onPoster ? 'bg-white text-pw-navy focus-visible:ring-white/60' : 'bg-pw-red text-white focus-visible:ring-pw-navy/30'}`}
         >
-          {speech.listening ? <Square className="w-7 h-7 fill-white" /> : <Mic className="w-8 h-8" />}
+          {speech.listening ? <Square className={`w-7 h-7 ${onPoster ? 'fill-pw-navy' : 'fill-white'}`} /> : <Mic className="w-8 h-8" />}
         </button>
       </div>
       <p className="mt-4 text-base font-semibold text-center" aria-live="polite">
         {busy ? 'Checking…' : speech.listening ? 'Listening… tap to stop' : idleLabel}
       </p>
-      {speech.transcript && <p className="mt-2 italic text-pw-muted text-center">“{speech.transcript}”</p>}
+      {speech.transcript && <p className={`mt-2 italic text-center ${onPoster ? '' : 'text-pw-muted'}`}>“{speech.transcript}”</p>}
       {busy && <Loader2 className="w-5 h-5 animate-spin mt-2" />}
     </div>
   );
@@ -173,10 +174,11 @@ export function ShowEnglishStep({ step, ctx }) {
   const words = keyWords.map((k) => k.en);
   const translated = keyWords.filter((k) => k.translation && k.translation.trim().toLowerCase() !== k.en.trim().toLowerCase());
   const dir = RTL_LANGUAGES.includes(ctx.language) ? 'rtl' : 'ltr';
+  const Card = ctx.posters ? IndexCard : RaisedCard;
   return (
     <div className="space-y-4">
       <TutorMessage profile={ctx.profile} language={ctx.language} {...ctx.ui('showEnglish')} />
-      <RaisedCard className={`text-pw-navy ${ctx.sizeClass}`}>
+      <Card className={`text-pw-navy ${ctx.sizeClass}`}>
         <Eyebrow className="mb-2">The officer asks</Eyebrow>
         <p className="text-[1.375em] font-extrabold leading-snug mb-3"><Marked text={step.question.question} words={words} /></p>
         <ListenButton text={step.question.question} language="en" />
@@ -186,7 +188,7 @@ export function ShowEnglishStep({ step, ctx }) {
         </ul>
         <ListenButton text={accepted.join('. ')} language="en" />
         <NowAnswer now={step.now} ctx={ctx} />
-      </RaisedCard>
+      </Card>
       {translated.length > 0 && (
         <RaisedCard className={`text-pw-navy ${ctx.sizeClass}`}>
           <Eyebrow className="mb-3">{ctx.language === 'es' ? 'Palabras clave · Key words' : 'Key words'}</Eyebrow>
@@ -245,23 +247,50 @@ export function SpeakingStep({ step, ctx, state, setState }) {
   return (
     <div className="space-y-4">
       <TutorMessage profile={ctx.profile} language={ctx.language} {...ctx.ui('speakPrompt')} expression="listening" />
-      <QuestionCard ctx={ctx} text={question.question}>
-        {!state.answered && (speech.supported ? (
-          <MicButton speech={speech} busy={checking} />
-        ) : (
-          <form className="flex gap-2 mt-5" onSubmit={(e) => { e.preventDefault(); evaluate(typed, true); }}>
-            <input
-              value={typed}
-              onChange={(e) => setTyped(e.target.value)}
-              placeholder="Type your answer in English"
-              aria-label="Your answer"
-              className="flex-1 min-w-0 min-h-[44px] rounded-2xl border border-pw-line px-4 text-base"
-            />
-            <PrimaryButton type="submit">Check</PrimaryButton>
-          </form>
-        ))}
-        {state.heard && <p className="mt-4 text-pw-muted">You said: <span className="italic">“{state.heard}”</span></p>}
-      </QuestionCard>
+      {ctx.posters ? (
+        <Poster
+          tone={posterTone(Math.max(0, ctx.posterIndex))}
+          className={`-mx-4 sm:mx-0 sm:rounded-[14px] ${ctx.sizeClass}`}
+          label={`Practice · Card ${ctx.posterIndex + 1} of ${ctx.posterTotal}`}
+          question={question.question}
+          questionAs="p"
+        >
+          <ListenButton text={question.question} language="en" />
+          {!state.answered && (speech.supported ? (
+            <MicButton speech={speech} busy={checking} onPoster />
+          ) : (
+            <form className="flex gap-2 mt-5" onSubmit={(e) => { e.preventDefault(); evaluate(typed, true); }}>
+              <input
+                value={typed}
+                onChange={(e) => setTyped(e.target.value)}
+                placeholder="Type your answer in English"
+                aria-label="Your answer"
+                className="flex-1 min-w-0 min-h-[48px] rounded-[10px] bg-white px-4 text-base text-pw-navy placeholder:text-pw-muted"
+              />
+              <button type="submit" className="min-h-[48px] rounded-full bg-white text-pw-navy px-5 font-semibold hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent">Check</button>
+            </form>
+          ))}
+          {state.heard && <p className="mt-4">You said: <span className="italic">“{state.heard}”</span></p>}
+        </Poster>
+      ) : (
+        <QuestionCard ctx={ctx} text={question.question}>
+          {!state.answered && (speech.supported ? (
+            <MicButton speech={speech} busy={checking} />
+          ) : (
+            <form className="flex gap-2 mt-5" onSubmit={(e) => { e.preventDefault(); evaluate(typed, true); }}>
+              <input
+                value={typed}
+                onChange={(e) => setTyped(e.target.value)}
+                placeholder="Type your answer in English"
+                aria-label="Your answer"
+                className="flex-1 min-w-0 min-h-[44px] rounded-2xl border border-pw-line px-4 text-base"
+              />
+              <PrimaryButton type="submit">Check</PrimaryButton>
+            </form>
+          ))}
+          {state.heard && <p className="mt-4 text-pw-muted">You said: <span className="italic">“{state.heard}”</span></p>}
+        </QuestionCard>
+      )}
 
       {state.answered && (isCheck(step) ? <CheckNext ctx={ctx} /> : (
         <TeachingFeedback
