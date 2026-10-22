@@ -73,7 +73,7 @@ export default function useRoadmapProgress(user) {
         1: masteredSentences >= 20, // Read and write: 20+ mastered sentences
         2: lessonsTotal > 0 && lessonsDone >= lessonsTotal / 2, // Learn: half the lessons done with quiz >= 70
         3: passedInterviews >= 1, // Speak: one passed mock interview
-        4: false, // Interview day guide coming soon
+        4: false, // Interview Day saves nothing, so this stop is never marked done
       };
       done[5] = done[1] && done[2] && done[3] && done[4]; // Oath day: everything before it
 

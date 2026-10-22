@@ -17,7 +17,10 @@ const speechTimeoutMs = (text) => {
   return 15000 + (chunks - 1) * 10000;
 };
 
-export default function InterviewPractice({ onComplete, onNext }) {
+// `rehearsal` ({ personaId, onFinish }) is for Interview Day: start right
+// away with that practice person, save nothing, and hand the results to
+// onFinish instead of showing the report. Without it nothing changes.
+export default function InterviewPractice({ onComplete, onNext, rehearsal = null }) {
   const [questions, setQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isListening, setIsListening] = useState(false);
@@ -36,7 +39,7 @@ export default function InterviewPractice({ onComplete, onNext }) {
   const [conversation, setConversation] = useState([]);
   const [showTyping, setShowTyping] = useState(false);
   const [varyOfficer, setVaryOfficer] = useState(false);
-  const [personaId, setPersonaId] = useState(() => getPersona().id);
+  const [personaId, setPersonaId] = useState(() => getPersona(rehearsal?.personaId).id);
   const persona = getPersona(personaId);
   // presentQuestion runs from timers, so read the persona through a ref.
   const personaRef = useRef(persona);
@@ -240,6 +243,13 @@ export default function InterviewPractice({ onComplete, onNext }) {
 
   const startInterview = () => beginSession("Good morning! Welcome to your citizenship interview. Let's get started.");
 
+  // Interview Day starts as soon as the questions are loaded.
+  useEffect(() => {
+    if (rehearsal && !isLoadingQuestions && questions.length > 0 && !sessionStarted) {
+      beginSession("Thank you. Please have a seat. Let's talk for a few minutes, and then I'll go over your application.");
+    }
+  }, [isLoadingQuestions]); // eslint-disable-line react-hooks/exhaustive-deps
+
   const speakQuestion = () => {
     const q = questions[currentIndex];
     if (!q) return;
@@ -309,20 +319,24 @@ export default function InterviewPractice({ onComplete, onNext }) {
     }
   };
 
-  const handleNext = () => {
+  // `results` lets Skip pass the list that already includes the skipped question.
+  const handleNext = (results = sessionResults) => {
     if (currentIndex < questions.length - 1) {
       const nextIndex = currentIndex + 1;
       setCurrentIndex(nextIndex);
       presentQuestion(nextIndex);
+    } else if (rehearsal) {
+      stopSpeaking();
+      rehearsal.onFinish(results, questions.length);
     } else {
       setShowReport(true);
-      saveSession(sessionResults);
-      if (onComplete) onComplete(sessionResults.filter(r => r.is_acceptable).length >= questions.length * 0.7);
+      saveSession(results);
+      if (onComplete) onComplete(results.filter(r => r.is_acceptable).length >= questions.length * 0.7);
     }
   };
 
   const handleSkip = () => {
-    setSessionResults(prev => [...prev, {
+    const results = [...sessionResults, {
       question: questions[currentIndex].question,
       section: questions[currentIndex].section,
       response: '(skipped)',
@@ -333,8 +347,9 @@ export default function InterviewPractice({ onComplete, onNext }) {
       grammar_feedback: '', fluency_feedback: '',
       corrected_version: questions[currentIndex].expected_response,
       improvement_tips: 'Practice answering every question during the interview.'
-    }]);
-    handleNext();
+    }];
+    setSessionResults(results);
+    handleNext(results);
   };
 
   const handleRestart = () => {
@@ -373,6 +388,12 @@ export default function InterviewPractice({ onComplete, onNext }) {
       questions={questions}
       onRestart={handleRestart}
     />
+  );
+
+  if (!sessionStarted && rehearsal) return (
+    <RaisedCard padding="p-10" className="text-center text-pw-navy">
+      <Loader2 className="w-10 h-10 animate-spin mx-auto text-pw-navy" aria-label="Starting" />
+    </RaisedCard>
   );
 
   if (!sessionStarted) return (
@@ -515,9 +536,11 @@ export default function InterviewPractice({ onComplete, onNext }) {
         <>
           <p className="text-center text-base font-semibold text-pw-muted" aria-live="polite">{statusText}</p>
           <FeedbackPanel feedback={feedback} response={userResponse} expected={current.expected_response} />
-          <PrimaryButton large onClick={handleNext} className="w-full">
+          <PrimaryButton large onClick={() => handleNext()} className="w-full">
             {currentIndex < questions.length - 1 ? (
               <><ArrowRight className="w-5 h-5" aria-hidden="true" /> Next Question</>
+            ) : rehearsal ? (
+              <>Continue <ArrowRight className="w-5 h-5" aria-hidden="true" /></>
             ) : (
               <><FileText className="w-5 h-5" aria-hidden="true" /> See Full Report</>
             )}

@@ -8,7 +8,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { base44 } from '@/api/base44Client';
 import { checkDictation } from '@/lib/practiceChecks';
 
-export default function DictationCard({ sentence, onComplete, onNext }) {
+// `testMode` (Interview Day): like the real test, the learner types what they
+// hear and it is checked once; no translation and no "Reveal Answer".
+// Without it nothing changes.
+export default function DictationCard({ sentence, onComplete, onNext, testMode = false }) {
   const [stage, setStage] = useState('listen'); // listen, check, result
   const [userInput, setUserInput] = useState('');
   const [isPlaying, setIsPlaying] = useState(false);
@@ -94,7 +97,7 @@ export default function DictationCard({ sentence, onComplete, onNext }) {
 
   return (
     <div className="w-full max-w-2xl mx-auto space-y-4 text-pw-navy">
-      <div className="flex justify-end">
+      {!testMode && <div className="flex justify-end">
         <div className="flex items-center gap-1 bg-white pl-3 rounded-2xl border border-pw-line">
           <Globe className="w-4 h-4 text-pw-muted" aria-hidden="true" />
           <Select value={selectedLanguage} onValueChange={setSelectedLanguage}>
@@ -109,7 +112,7 @@ export default function DictationCard({ sentence, onComplete, onNext }) {
             </SelectContent>
           </Select>
         </div>
-      </div>
+      </div>}
 
       <RaisedCard>
         {/* Step Indicator */}
@@ -135,7 +138,7 @@ export default function DictationCard({ sentence, onComplete, onNext }) {
           </motion.button>
           <div className="min-w-0">
             <p className="font-bold">Click to listen</p>
-            <p className="text-sm text-pw-muted">Write what you hear on your paper</p>
+            <p className="text-sm text-pw-muted">{testMode ? 'Listen, then type what you hear' : 'Write what you hear on your paper'}</p>
           </div>
         </div>
 
@@ -149,7 +152,7 @@ export default function DictationCard({ sentence, onComplete, onNext }) {
               className="w-full mt-6"
             >
               <PrimaryButton large onClick={() => setStage('check')} className="w-full">
-                I wrote it down <Edit3 className="w-5 h-5" aria-hidden="true" />
+                {testMode ? 'I\'m ready to write' : 'I wrote it down'} <Edit3 className="w-5 h-5" aria-hidden="true" />
               </PrimaryButton>
             </motion.div>
           )}
@@ -162,14 +165,14 @@ export default function DictationCard({ sentence, onComplete, onNext }) {
               exit={{ opacity: 0, y: -20 }}
               className="w-full space-y-3 mt-6"
             >
-              <label htmlFor="dictation-input" className="block text-sm font-semibold text-pw-muted">Optional: Type here to auto-check</label>
+              <label htmlFor="dictation-input" className="block text-sm font-semibold text-pw-muted">{testMode ? 'Type the sentence' : 'Optional: Type here to auto-check'}</label>
               <Input
                 id="dictation-input"
                 value={userInput}
                 onChange={(e) => setUserInput(e.target.value)}
                 placeholder="Type sentence here..."
                 className="text-base min-h-[48px]"
-                onKeyDown={(e) => e.key === 'Enter' && checkAnswer()}
+                onKeyDown={(e) => e.key === 'Enter' && (!testMode || userInput.trim()) && checkAnswer()}
                 autoFocus
               />
               <PrimaryButton
@@ -180,12 +183,14 @@ export default function DictationCard({ sentence, onComplete, onNext }) {
               >
                 Check My Answer
               </PrimaryButton>
-              <SecondaryButton
-                onClick={() => { setFeedback('manual'); setStage('result'); }}
-                className="w-full border-pw-line"
-              >
-                Just Reveal Answer
-              </SecondaryButton>
+              {!testMode && (
+                <SecondaryButton
+                  onClick={() => { setFeedback('manual'); setStage('result'); }}
+                  className="w-full border-pw-line"
+                >
+                  Just Reveal Answer
+                </SecondaryButton>
+              )}
             </motion.div>
           )}
         </AnimatePresence>

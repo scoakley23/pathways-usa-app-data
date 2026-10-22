@@ -24,9 +24,9 @@ export const ROADMAP_STOPS = [
   {
     id: 4,
     name: 'Interview day',
-    desc: 'see what to expect at your interview (guide coming soon)',
-    short: 'What to expect — guide coming soon.',
-    path: 'Progress',
+    desc: 'practice the whole interview, start to finish',
+    short: 'Practice the whole interview, start to finish.',
+    path: 'interview-day',
   },
   {
     id: 5,

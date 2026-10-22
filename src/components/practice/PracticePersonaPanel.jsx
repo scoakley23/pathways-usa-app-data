@@ -37,14 +37,15 @@ ${personaFacts(p)}
 `;
 }
 
-// Picker shown before the interview starts.
-export function PersonaPicker({ selectedId, onSelect }) {
+// Picker shown before the interview starts. `description` replaces the
+// default line (Interview Day uses its own).
+export function PersonaPicker({ selectedId, onSelect, description }) {
   return (
     <div className="bg-white rounded-3xl p-5 border border-pw-line shadow-raised text-left space-y-4 text-pw-navy">
       <div>
         <p className="text-lg font-extrabold">Choose a practice person</p>
         <p className="text-base text-pw-muted leading-snug mt-1">
-          In Personal Information and Morals &amp; Ethics, you answer as this person, not about yourself.
+          {description || <>In Personal Information and Morals &amp; Ethics, you answer as this person, not about yourself.</>}
         </p>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">

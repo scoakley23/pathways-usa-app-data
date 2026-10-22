@@ -14,7 +14,10 @@ import { matchOfficialAnswer } from '@/lib/practiceChecks';
 import { getPersonalizedAnswer, currentAnswerFor } from '@/lib/currentAnswers';
 import { LANGUAGES } from '@/hooks/useLessonTranslation';
 
-export default function CivicsTestCard({ question, onComplete, onNext, representativeData }) {
+// `testMode` (Interview Day): like the real test, one answer per question, no
+// translation, no self-check or reveal, no AI explanation, and "I don't know"
+// instead of Skip. Grading is unchanged. Without it nothing changes.
+export default function CivicsTestCard({ question, onComplete, onNext, representativeData, testMode = false }) {
   const [isRevealed, setIsRevealed] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState('');
@@ -154,7 +157,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
     <div className="w-full max-w-2xl mx-auto space-y-4 text-pw-navy">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <Tag tone="blue">{question.version} Civics Test</Tag>
-        <div className="flex items-center gap-1 bg-white pl-3 rounded-2xl border border-pw-line ml-auto">
+        {!testMode && <div className="flex items-center gap-1 bg-white pl-3 rounded-2xl border border-pw-line ml-auto">
           <Globe className="w-4 h-4 text-pw-muted" aria-hidden="true" />
           <Select value={selectedLanguage} onValueChange={setSelectedLanguage}>
             <SelectTrigger aria-label="Translate to" className="w-[124px] min-h-[44px] text-sm border-0 bg-transparent shadow-none focus:ring-0 px-2">
@@ -167,7 +170,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
               ))}
             </SelectContent>
           </Select>
-        </div>
+        </div>}
       </div>
 
       <RaisedCard>
@@ -301,12 +304,14 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
                         </>
                       )}
                     </PrimaryButton>
-                    <QuietButton
-                      onClick={() => setSelfCheckMode(true)}
-                      className="w-full text-sm text-pw-muted underline underline-offset-2"
-                    >
-                      Having trouble? Show answer to self-check
-                    </QuietButton>
+                    {!testMode && (
+                      <QuietButton
+                        onClick={() => setSelfCheckMode(true)}
+                        className="w-full text-sm text-pw-muted underline underline-offset-2"
+                      >
+                        Having trouble? Show answer to self-check
+                      </QuietButton>
+                    )}
                   </div>
                 </>
               ) : (
@@ -372,10 +377,12 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
                   )}
                 </div>
               </div>
-              <AIExplanation
-                question={question.question}
-                answer={personalizedAnswer || question.answer}
-              />
+              {!testMode && (
+                <AIExplanation
+                  question={question.question}
+                  answer={personalizedAnswer || question.answer}
+                />
+              )}
               <PrimaryButton large onClick={() => handleResult(false)} className="w-full">
                 Continue
                 <ChevronRight className="w-5 h-5" aria-hidden="true" />
@@ -432,12 +439,14 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
               <Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" /> Listen to answer
             </PillButton>
 
-            <div className="mt-4">
-              <AIExplanation
-                question={question.question}
-                answer={personalizedAnswer || question.answer}
-              />
-            </div>
+            {!testMode && (
+              <div className="mt-4">
+                <AIExplanation
+                  question={question.question}
+                  answer={personalizedAnswer || question.answer}
+                />
+              </div>
+            )}
           </RaisedCard>
 
           <RaisedCard>
@@ -454,11 +463,15 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
         </motion.div>
       ) : null}
 
-      {!verificationResult && !isRevealed && (
+      {!verificationResult && !isRevealed && (testMode ? (
+        <QuietButton onClick={() => handleResult(false)} disabled={verifying} className="w-full text-pw-muted">
+          I don&apos;t know
+        </QuietButton>
+      ) : (
         <QuietButton onClick={onNext} className="w-full text-pw-muted">
           Skip to next <ArrowRight className="w-4 h-4" aria-hidden="true" />
         </QuietButton>
-      )}
+      ))}
     </div>
   );
 }

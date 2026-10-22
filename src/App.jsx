@@ -16,6 +16,7 @@ import QuickCheck from './pages/QuickCheck';
 import LearnCivics from './pages/LearnCivics';
 import ReviewCivics from './pages/ReviewCivics';
 import N400Coach from './pages/N400Coach';
+import InterviewDay from './pages/InterviewDay';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -100,6 +101,11 @@ const AuthenticatedApp = () => {
       <Route path="review" element={
         <LayoutWrapper currentPageName="ReviewCivics">
           <ReviewCivics />
+        </LayoutWrapper>
+      } />
+      <Route path="interview-day" element={
+        <LayoutWrapper currentPageName="InterviewDay">
+          <InterviewDay />
         </LayoutWrapper>
       } />
       <Route path="tutor-demo" element={

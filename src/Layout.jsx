@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import { BookOpen, Mic, CheckCircle, LogOut, Menu, Settings, GraduationCap, User, House, School, FileText, MapPin } from 'lucide-react';
+import { BookOpen, Mic, CheckCircle, LogOut, Menu, Settings, GraduationCap, User, House, School, FileText, MapPin, CalendarCheck } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { base44 } from '@/api/base44Client';
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -80,6 +80,7 @@ export default function Layout({ children }) {
     } else {
         items.push({ label: 'Learn', path: '/Lessons', icon: BookOpen });
         items.push({ label: 'Practice', path: '/Practice', icon: Mic });
+        items.push({ label: 'Interview Day', path: '/interview-day', icon: CalendarCheck });
         items.push({ label: 'N-400', path: '/n400-guide', icon: FileText });
         items.push({ label: 'Progress', path: '/Progress', icon: CheckCircle });
         
@@ -244,7 +245,8 @@ export default function Layout({ children }) {
       {role === 'student' && !focusMode && <TutorInvitePrompt search={location.search} />}
       {!focusMode && <StudyBuddy aboveTabBar={showTabs} />}
       {showTabs && <TabBar pathname={location.pathname} onAskTutor={askTutor} />}
-      <DailyPracticeReminder />
+      {/* Interview Day writes nothing, so the daily reminder waits for another page. */}
+      {location.pathname !== '/interview-day' && <DailyPracticeReminder />}
       <Toaster />
     </div>
   );
