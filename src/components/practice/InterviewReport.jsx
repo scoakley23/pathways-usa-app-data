@@ -147,14 +147,14 @@ export default function InterviewReport({ results, questions, onRestart }) {
 
                   {r.corrected_version && (
                     <div className="bg-pw-blue-soft rounded-2xl p-4">
-                      <Eyebrow className="mb-1 text-pw-blue-ink">Better Version</Eyebrow>
+                      <Eyebrow className="mb-1 text-pw-blue-ink">{r.understanding ? 'What the question is asking' : 'Better Version'}</Eyebrow>
                       <p className="font-bold">"{r.corrected_version}"</p>
                     </div>
                   )}
 
                   {r.content_feedback && (
                     <div className="bg-white rounded-2xl p-4">
-                      <Eyebrow className="mb-1">Content Feedback</Eyebrow>
+                      <Eyebrow className="mb-1">{r.understanding ? 'Understanding' : 'Content Feedback'}</Eyebrow>
                       <p className="leading-relaxed">{r.content_feedback}</p>
                     </div>
                   )}

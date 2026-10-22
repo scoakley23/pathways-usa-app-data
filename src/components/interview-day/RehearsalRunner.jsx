@@ -18,7 +18,7 @@ import RehearsalResults from './RehearsalResults';
 // no Base44 writes and no browser storage. Leaving or refreshing loses it.
 // Only reads: the question and sentence lists, and the learner's saved
 // Find My Representative names (for "Answers vary" civics questions).
-export default function RehearsalRunner({ personaId, version, userEmail, onStop }) {
+export default function RehearsalRunner({ version, userEmail, onStop }) {
   const [part, setPart] = useState(0);
   const [content, setContent] = useState(null);
   const [passed, setPassed] = useState({});
@@ -75,7 +75,7 @@ export default function RehearsalRunner({ personaId, version, userEmail, onStop 
         <OathStep onDone={() => finishPart(null)} />
       ) : current.id === 'interview' ? (
         <InterviewPractice
-          rehearsal={{ personaId, onFinish: (results, count) => finishPart('speaking', speakingPassed(results, count)) }}
+          rehearsal={{ onFinish: (results, count) => finishPart('speaking', speakingPassed(results, count)) }}
         />
       ) : current.id === 'reading' ? (
         <QuestionPart
@@ -86,7 +86,7 @@ export default function RehearsalRunner({ personaId, version, userEmail, onStop 
           statusOf={(outcomes) => sentenceStatus(outcomes, content.reading.length)}
           counter={(i) => `Sentence ${i + 1} of up to ${SENTENCE_TRIES}`}
           onDone={(ok) => finishPart('reading', ok)}
-          render={(item, record, next) => <ReadingPracticeCard testMode sentence={item} onComplete={record} onNext={next} />}
+          render={(item, record, next, i) => <ReadingPracticeCard testMode index={i} sentence={item} onComplete={record} onNext={next} />}
         />
       ) : current.id === 'writing' ? (
         <QuestionPart
@@ -97,7 +97,7 @@ export default function RehearsalRunner({ personaId, version, userEmail, onStop 
           statusOf={(outcomes) => sentenceStatus(outcomes, content.writing.length)}
           counter={(i) => `Sentence ${i + 1} of up to ${SENTENCE_TRIES}`}
           onDone={(ok) => finishPart('writing', ok)}
-          render={(item, record, next) => <DictationCard testMode sentence={item} onComplete={record} onNext={next} />}
+          render={(item, record, next, i) => <DictationCard testMode index={i} sentence={item} onComplete={record} onNext={next} />}
         />
       ) : current.id === 'civics' ? (
         <QuestionPart
@@ -111,8 +111,8 @@ export default function RehearsalRunner({ personaId, version, userEmail, onStop 
             return `Question ${i + 1} · ${s.correct} right, ${s.wrong} wrong`;
           }}
           onDone={(ok) => finishPart('civics', ok)}
-          render={(item, record, next) => (
-            <CivicsTestCard testMode question={item} representativeData={content.representativeData} onComplete={record} onNext={next} />
+          render={(item, record, next, i) => (
+            <CivicsTestCard testMode index={i} question={item} representativeData={content.representativeData} onComplete={record} onNext={next} />
           )}
         />
       ) : (
@@ -162,7 +162,7 @@ function QuestionPart({ skill, intro, items, statusOf, counter, onDone, render }
         </RaisedCard>
       ) : (
         <React.Fragment key={items[index].id || index}>
-          {render(items[index], record, next)}
+          {render(items[index], record, next, index)}
         </React.Fragment>
       )}
     </div>

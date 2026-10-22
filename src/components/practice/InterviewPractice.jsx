@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Eyebrow, PillButton, PrimaryButton, QuietButton, RaisedCard, SecondaryButton, Tag } from '@/components/pathways/ui';
+import { Eyebrow, PillButton, Poster, PrimaryButton, RaisedCard, SecondaryButton, Tag, posterOutline, posterSolid, posterTone } from '@/components/pathways/ui';
+import { Link } from 'react-router-dom';
 import { Mic, MicOff, Volume2, ArrowRight, Check, X, Loader2, ChevronDown, ChevronUp, FileText, Bot, BarChart3 } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { speakText, stopSpeaking, getRandomVoice } from "@/components/utils/textToSpeech";
 import { toast } from "sonner";
 import InterviewReport from './InterviewReport';
-import { evaluateInterviewAnswer } from './evaluateInterviewAnswer';
+import { evaluateInterviewAnswer, evaluateUnderstanding, isUnderstandingSection } from './evaluateInterviewAnswer';
 import InterviewHistory from './InterviewHistory';
 import VirtualInterviewer, { AVATAR_URL } from './VirtualInterviewer';
-import PracticePersonaPanel, { PersonaPicker, isPersonaSection, getPersona, personaScoringBlock } from './PracticePersonaPanel';
 
 // Long text is now spoken in chunks, so the fallback timeout must cover all of them.
 const speechTimeoutMs = (text) => {
@@ -17,9 +17,11 @@ const speechTimeoutMs = (text) => {
   return 15000 + (chunks - 1) * 10000;
 };
 
-// `rehearsal` ({ personaId, onFinish }) is for Interview Day: start right
-// away with that practice person, save nothing, and hand the results to
-// onFinish instead of showing the report. Without it nothing changes.
+// `rehearsal` ({ onFinish }) is for Interview Day: start right away, save
+// nothing, and hand the results to onFinish instead of showing the report.
+// Questions about the learner's own history (isUnderstandingSection) are never
+// answered: the learner says what the question is asking, and only that
+// understanding is checked (evaluateUnderstanding).
 export default function InterviewPractice({ onComplete, onNext, rehearsal = null }) {
   const [questions, setQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -39,11 +41,6 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
   const [conversation, setConversation] = useState([]);
   const [showTyping, setShowTyping] = useState(false);
   const [varyOfficer, setVaryOfficer] = useState(false);
-  const [personaId, setPersonaId] = useState(() => getPersona(rehearsal?.personaId).id);
-  const persona = getPersona(personaId);
-  // presentQuestion runs from timers, so read the persona through a ref.
-  const personaRef = useRef(persona);
-  personaRef.current = persona;
 
   const standardQuestionsRef = useRef([]);
   // Guards against the greeting's speech-end and safety-timer paths both
@@ -192,9 +189,9 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
     setShowTyping(true);
     setInterviewerState('idle');
 
-    const enteringPersona = isPersonaSection(q) && !isPersonaSection(questions[index - 1]);
-    const intro = enteringPersona
-      ? `For the next questions, please answer as ${personaRef.current.name}, the practice person on your screen.`
+    const enteringUnderstanding = isUnderstandingSection(q) && !isUnderstandingSection(questions[index - 1]);
+    const intro = enteringUnderstanding
+      ? "The next questions are about your application. Don't answer them here. Tell me in your own words what each question is asking."
       : q.intro;
 
     setTimeout(() => {
@@ -270,16 +267,17 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
     setIsAnalyzing(true);
 
     const q = questions[currentIndex];
-    const personaBlock = isPersonaSection(q) ? personaScoringBlock(persona) : '';
+    const understanding = isUnderstandingSection(q);
     try {
-      const result = await evaluateInterviewAnswer(q, response, personaBlock);
+      const result = understanding ? await evaluateUnderstanding(q, response) : await evaluateInterviewAnswer(q, response);
       setFeedback(result);
       setInterviewerState('idle');
       setSessionResults(prev => [...prev, {
         question: q.question,
         section: q.section,
         response,
-        expected: q.expected_response,
+        expected: understanding ? null : q.expected_response,
+        understanding,
         ...result
       }]);
     } catch (e) {
@@ -403,8 +401,6 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
         onStart={startInterview}
         varyOfficer={varyOfficer}
         onToggleVary={() => setVaryOfficer(v => !v)}
-        personaId={personaId}
-        onSelectPersona={setPersonaId}
       />
       <InterviewHistory />
     </div>
@@ -421,7 +417,7 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
 
   const statusText = {
     speaking: 'Officer Martinez is speaking...',
-    listening: 'Your turn — tap the microphone to answer',
+    listening: isUnderstandingSection(current) ? 'Your turn — tap the microphone and say what it is asking' : 'Your turn — tap the microphone to answer',
     thinking: 'Officer Martinez is evaluating your response...',
     idle: feedback ? 'Review your feedback below' : 'Ready when you are',
   }[interviewerState];
@@ -445,19 +441,11 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
           {questions.map((_, i) => (
             <div key={i} className={`h-2 flex-1 rounded-full transition-colors ${
               i < sessionResults.length
-                ? (sessionResults[i]?.is_acceptable ? 'bg-pw-green-ink' : 'bg-pw-red')
+                ? (sessionResults[i]?.is_acceptable ? 'bg-pw-green-ink' : 'bg-pw-red-ink')
                 : i === currentIndex ? 'bg-pw-navy' : 'bg-pw-line'
             }`} />
           ))}
         </div>
-      </div>
-
-      {/* Section tag + repeat */}
-      <div className="flex flex-wrap items-center justify-between gap-2">
-        <Tag tone="blue">{sectionLabel}</Tag>
-        <PillButton onClick={speakQuestion} disabled={interviewerState === 'speaking'}>
-          <Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" /> Repeat Question
-        </PillButton>
       </div>
 
       {/* Virtual Interviewer */}
@@ -465,7 +453,57 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
         <VirtualInterviewer state={interviewerState} />
       </RaisedCard>
 
-      {isPersonaSection(current) && <PracticePersonaPanel persona={persona} />}
+      {/* The question on a poster, with the microphone (Phase 5) */}
+      <Poster
+        tone={posterTone(currentIndex)}
+        className="-mx-4 sm:mx-0 sm:rounded-[14px]"
+        label={`Interview · Card ${currentIndex + 1} of ${questions.length} · ${sectionLabel}`}
+        progress={{ index: currentIndex, total: questions.length }}
+        question={current.question}
+      >
+        <div className="space-y-4">
+          <PillButton onClick={speakQuestion} disabled={interviewerState === 'speaking'}>
+            <Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" /> Repeat question
+          </PillButton>
+
+          {/* Questions about the learner's history: understanding only */}
+          {isUnderstandingSection(current) && (
+            <div className="rounded-[10px] bg-white/10 border border-white/60 px-4 py-3 space-y-1">
+              <p className="text-base font-semibold">Don't answer this question. Say in English what the officer is asking.</p>
+              <p className="text-base">We explain what questions mean. How they apply to you is for a lawyer. <Link to="/lawyer-first" className="font-semibold underline underline-offset-4">Talk to a lawyer first</Link></p>
+            </div>
+          )}
+
+          {!feedback && (
+            <>
+              <div className="flex flex-col items-center">
+                <div className="relative">
+                  <span className={`absolute inset-0 rounded-full bg-white/25 transition-transform ${isListening ? 'scale-150 animate-pulse' : 'scale-125'}`} aria-hidden="true" />
+                  <button
+                    type="button"
+                    onClick={toggleListening}
+                    disabled={isAnalyzing}
+                    aria-label={isListening ? 'Stop recording' : 'Record your answer'}
+                    className="relative w-20 h-20 rounded-full bg-white text-pw-navy grid place-items-center shadow-lift disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60"
+                  >
+                    {isListening ? <MicOff className="w-8 h-8" /> : <Mic className="w-8 h-8" />}
+                  </button>
+                </div>
+                <p className="mt-4 text-base font-semibold text-center" aria-live="polite">{statusText}</p>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {userResponse && !isListening && (
+                  <button type="button" onClick={analyzeResponse} disabled={isAnalyzing} className={posterSolid}>
+                    Evaluate answer
+                  </button>
+                )}
+                <button type="button" onClick={handleSkip} className={posterOutline}>Skip this question</button>
+              </div>
+            </>
+          )}
+          {feedback && <p className="text-base font-semibold" aria-live="polite">{statusText}</p>}
+        </div>
+      </Poster>
 
       {/* Conversation Transcript */}
       <div
@@ -500,42 +538,10 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
         {isAnalyzing && <TypingIndicator />}
       </div>
 
-      {/* Controls */}
-      {!feedback ? (
-        <RaisedCard>
-          <div className="flex flex-col items-center">
-            <div className="relative">
-              <span className={`absolute inset-0 rounded-full bg-pw-red/20 transition-transform ${isListening ? 'scale-150 animate-pulse' : 'scale-125'}`} aria-hidden="true" />
-              <button
-                type="button"
-                onClick={toggleListening}
-                disabled={isAnalyzing}
-                aria-label={isListening ? 'Stop recording' : 'Record your answer'}
-                className="relative w-20 h-20 rounded-full bg-pw-red text-white grid place-items-center shadow-lift disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-pw-navy/30"
-              >
-                {isListening ? <MicOff className="w-8 h-8" /> : <Mic className="w-8 h-8" />}
-              </button>
-            </div>
-            <p className="mt-4 text-base font-semibold text-center" aria-live="polite">{statusText}</p>
-          </div>
-          {userResponse && !isListening && (
-            <PrimaryButton
-              large
-              onClick={analyzeResponse}
-              className="w-full mt-5"
-              disabled={isAnalyzing}
-            >
-              Evaluate Answer
-            </PrimaryButton>
-          )}
-          <QuietButton onClick={handleSkip} className="w-full mt-2 text-pw-muted">
-            Skip this question
-          </QuietButton>
-        </RaisedCard>
-      ) : (
+      {/* Feedback */}
+      {feedback && (
         <>
-          <p className="text-center text-base font-semibold text-pw-muted" aria-live="polite">{statusText}</p>
-          <FeedbackPanel feedback={feedback} response={userResponse} expected={current.expected_response} />
+          <FeedbackPanel feedback={feedback} response={userResponse} understanding={isUnderstandingSection(current)} />
           <PrimaryButton large onClick={() => handleNext()} className="w-full">
             {currentIndex < questions.length - 1 ? (
               <><ArrowRight className="w-5 h-5" aria-hidden="true" /> Next Question</>
@@ -600,7 +606,7 @@ function TypingIndicator() {
 const scoreColor = (s) => s >= 80 ? 'text-pw-green-ink' : s >= 60 ? 'text-pw-blue-ink' : 'text-pw-red-ink';
 const barColor = (s) => s >= 80 ? 'bg-pw-green-ink' : s >= 60 ? 'bg-pw-blue-ink' : 'bg-pw-red';
 
-function FeedbackPanel({ feedback, response, expected }) {
+function FeedbackPanel({ feedback, response, understanding = false }) {
   const [expanded, setExpanded] = useState(false);
   const passed = feedback.is_acceptable;
 
@@ -611,8 +617,8 @@ function FeedbackPanel({ feedback, response, expected }) {
           {passed ? <Check className="w-7 h-7" aria-hidden="true" /> : <X className="w-7 h-7" aria-hidden="true" />}
         </div>
         <div className="flex-1 min-w-0">
-          <p className={`font-extrabold text-lg ${passed ? 'text-pw-green-ink' : 'text-pw-red-ink'}`}>{passed ? 'Good Answer!' : 'Needs Practice'}</p>
-          <p className="text-sm text-pw-navy">{passed ? 'This would pass in a real interview.' : 'Review the feedback below.'}</p>
+          <p className={`font-extrabold text-lg ${passed ? 'text-pw-green-ink' : 'text-pw-red-ink'}`}>{understanding ? (passed ? 'You understood the question' : 'Not quite yet') : (passed ? 'Good Answer!' : 'Needs Practice')}</p>
+          <p className="text-sm text-pw-navy">{understanding ? (passed ? 'You know what the officer is asking.' : 'Read what it is asking below.') : (passed ? 'This would pass in a real interview.' : 'Review the feedback below.')}</p>
         </div>
         <div className="text-right shrink-0">
           <p className="text-3xl font-extrabold text-pw-navy leading-none">{feedback.overall_score}</p>
@@ -622,7 +628,7 @@ function FeedbackPanel({ feedback, response, expected }) {
 
       <div className="grid grid-cols-3 gap-2">
         {[
-          { label: 'Content', score: feedback.content_score },
+          { label: understanding ? 'Understanding' : 'Content', score: feedback.content_score },
           { label: 'Grammar', score: feedback.grammar_score },
           { label: 'Fluency', score: feedback.fluency_score },
         ].map(({ label, score }) => (
@@ -638,7 +644,7 @@ function FeedbackPanel({ feedback, response, expected }) {
 
       {feedback.corrected_version && (
         <div className="bg-pw-blue-soft rounded-3xl p-5">
-          <Eyebrow className="mb-2 text-pw-blue-ink">Better Way to Say It</Eyebrow>
+          <Eyebrow className="mb-2 text-pw-blue-ink">{understanding ? 'What the question is asking' : 'Better Way to Say It'}</Eyebrow>
           <p className="text-pw-navy font-bold leading-relaxed">"{feedback.corrected_version}"</p>
         </div>
       )}
@@ -656,9 +662,9 @@ function FeedbackPanel({ feedback, response, expected }) {
       {expanded && (
         <RaisedCard className="space-y-4 animate-in fade-in slide-in-from-top-2">
           {[
-            { title: 'Content', text: feedback.content_feedback },
-            { title: 'Grammar', text: feedback.grammar_feedback },
-            { title: 'Fluency', text: feedback.fluency_feedback },
+            { title: understanding ? 'Understanding' : 'Content', text: feedback.content_feedback },
+            feedback.grammar_feedback && { title: 'Grammar', text: feedback.grammar_feedback },
+            feedback.fluency_feedback && { title: 'Fluency', text: feedback.fluency_feedback },
             feedback.pronunciation_notes && { title: 'Pronunciation Notes', text: feedback.pronunciation_notes },
             { title: 'Tips to Improve', text: feedback.improvement_tips },
           ].filter(Boolean).map(({ title, text }) => (
@@ -673,7 +679,7 @@ function FeedbackPanel({ feedback, response, expected }) {
   );
 }
 
-function InterviewIntro({ questions, onStart, varyOfficer, onToggleVary, personaId, onSelectPersona }) {
+function InterviewIntro({ questions, onStart, varyOfficer, onToggleVary }) {
   const sections = [...new Set(questions.map(q => q.section))];
   const sectionNames = { small_talk: 'Small Talk', personal_info: 'Personal Information', morals_ethics: 'Morals & Ethics', oath_requirements: 'Oath Requirements' };
 
@@ -729,8 +735,12 @@ function InterviewIntro({ questions, onStart, varyOfficer, onToggleVary, persona
         </div>
       </RaisedCard>
 
-      {questions.some(isPersonaSection) && (
-        <PersonaPicker selectedId={personaId} onSelect={onSelectPersona} />
+      {questions.some(isUnderstandingSection) && (
+        <RaisedCard className="space-y-2">
+          <Eyebrow>Questions about your application</Eyebrow>
+          <p className="text-base leading-relaxed">For personal information and "Have you ever…" questions, you don't answer. You say in your own words what the officer is asking, and we check that you understood. We never ask about your own history.</p>
+          <p className="text-base">How a question applies to you is for a lawyer. <Link to="/lawyer-first" className="font-semibold underline underline-offset-4">Talk to a lawyer first</Link></p>
+        </RaisedCard>
       )}
 
       <button

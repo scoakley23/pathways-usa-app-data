@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
 import { Button } from "@/components/ui/button";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Mic, BookA, GraduationCap, Clock, ArrowRight, CheckCircle, Loader2, Sparkles, Layers } from 'lucide-react';
+import { Mic, BookA, GraduationCap, Clock, ArrowRight, CheckCircle, Loader2, Sparkles, Layers, Pencil, CalendarCheck } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import DictationCard from '@/components/game/DictationCard';
 import CivicsTestCard from '@/components/practice/CivicsTestCard';
@@ -11,13 +11,28 @@ import FlashcardGame from '@/components/practice/FlashcardGame';
 import MatchingGame from '@/components/practice/MatchingGame';
 import ReadingPracticeCard from '@/components/practice/ReadingPracticeCard';
 import InterviewPractice from '@/components/practice/InterviewPractice';
-import StudyBuddy from '@/components/ai/StudyBuddy';
 import PracticePathProgress from '@/components/practice/PracticePathProgress';
 import PageHeader from '@/components/PageHeader';
-import TopicArt from '@/components/art/TopicArt';
-import { SKILL_BG, SkillTag, Tag } from '@/components/pathways/ui';
+import { PrimaryButton, SecondaryButton, posterTone } from '@/components/pathways/ui';
 import { toast } from "sonner";
 import VoiceSettings from '@/components/utils/VoiceSettings';
+
+// Practice hub: one card per interview part, with a strip that alternates
+// red and blue (Phase 5).
+const STRIP = { red: 'bg-pw-red-ink', blue: 'bg-pw-civics' };
+function PartCard({ i, part, title, children }) {
+  return (
+    <section aria-labelledby={`part-${part}`} className="rounded-[14px] bg-white border border-pw-line shadow-raised overflow-hidden flex flex-col">
+      <div className={`${STRIP[posterTone(i)]} text-white px-5 py-3`}>
+        <p className="text-sm font-semibold uppercase tracking-[0.14em]">Part {i + 1} · {part}</p>
+      </div>
+      <div className="p-5 flex flex-col gap-3 flex-1">
+        <h2 id={`part-${part}`} className="font-display text-[28px] leading-tight">{title}</h2>
+        {children}
+      </div>
+    </section>
+  );
+}
 
 export default function Practice() {
   const [mode, setMode] = useState('menu'); // menu, dictation, vocabulary, civics
@@ -466,23 +481,14 @@ export default function Practice() {
   };
 
   if (mode === 'menu') {
-    // Each card shows its interview skill in that skill's color.
-    const banner = (art, skill) => (
-      <>
-        <div className={`${SKILL_BG[skill]} px-4 pt-3 pb-2 -mx-6 -mt-6 mb-4 rounded-t-3xl`}>
-          <TopicArt name={art} className="w-full h-16" accent={false} />
-        </div>
-        <SkillTag skill={skill} className="self-start mb-1" />
-      </>
-    );
-    const label = 'text-sm font-bold text-pw-navy';
+    const label = 'text-sm font-semibold text-pw-navy';
     return (
       <div className="max-w-5xl mx-auto space-y-6 pb-12">
         <PageHeader
           title="Practice"
           subtitle="Practice each part of the interview."
           art="book"
-          guide="Pick one skill: reading, writing, civics, or speaking. Each one is a part of your interview."
+          guide="Pick one part: civics, reading, writing, or speaking. Each one is a part of your interview."
         />
         <div className="flex justify-center">
           <VoiceSettings />
@@ -518,136 +524,84 @@ export default function Practice() {
         </div>
         )}
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid sm:grid-cols-2 gap-4">
+          <PartCard i={0} part="Civics" title="Civics questions">
+            <p className="text-base text-pw-muted">Answer the official civics questions out loud or by typing.</p>
+            <div className="space-y-2">
+              <label className={label}>Test version</label>
+              <Select value={civicsVersion} onValueChange={(v) => { setCivicsVersion(v); try { localStorage.setItem('civicsVersion', v); } catch (e) { /* storage blocked */ } }}>
+                <SelectTrigger className="h-auto text-left">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="2025">2025</SelectItem>
+                  <SelectItem value="2008">Applied before Oct 20, 2025? Choose 2008.</SelectItem>
+                </SelectContent>
+              </Select>
+              <p className="text-sm text-pw-muted leading-snug">
+                {civicsVersion === '2025'
+                  ? 'The officer asks up to 20 questions from this list of 128. You pass with 12 correct.'
+                  : 'The officer asks up to 10 questions from this list of 100. You pass with 6 correct.'}
+              </p>
+              <a href="https://www.uscis.gov/citizenship/2025-test" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-pw-navy underline underline-offset-4 inline-block min-h-[44px] py-2">
+                Not sure which test you'll take? Check uscis.gov.
+              </a>
+            </div>
+            <div className="space-y-2">
+              <label className={label}>Difficulty</label>
+              <Select value={civicsDifficulty} onValueChange={setCivicsDifficulty}>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All</SelectItem>
+                  <SelectItem value="easy">Easy</SelectItem>
+                  <SelectItem value="medium">Medium</SelectItem>
+                  <SelectItem value="hard">Hard</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <PrimaryButton onClick={() => startSession('civics')} className="w-full mt-auto"><GraduationCap className="w-5 h-5" aria-hidden="true" /> Start civics</PrimaryButton>
+          </PartCard>
 
-          {/* 1. Reading Mode */}
-          <Card className="overflow-hidden hover:shadow-lift transition-all duration-300 cursor-pointer" onClick={() => startSession('reading')}>
-            <CardHeader>
-              {banner('book', 'reading')}
-              <CardTitle className="text-xl">Reading</CardTitle>
-              <CardDescription>
-                Read official USCIS sentences aloud to practice pronunciation.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Button className="w-full"><BookA className="w-4 h-4" /> Start Reading</Button>
-            </CardContent>
-          </Card>
+          <PartCard i={1} part="Reading" title="Read aloud">
+            <p className="text-base text-pw-muted">Read official sentences out loud. We check each word.</p>
+            <PrimaryButton onClick={() => startSession('reading')} className="w-full mt-auto"><BookA className="w-5 h-5" aria-hidden="true" /> Start reading</PrimaryButton>
+          </PartCard>
 
-          {/* 2. Writing Vocab */}
-          <Card className="overflow-hidden hover:shadow-lift transition-all duration-300">
-            <CardHeader>
-              {banner('scroll', 'writing')}
-              <CardTitle className="text-xl">Writing Vocab</CardTitle>
-              <CardDescription>
-                Practice writing official vocabulary words.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-2">
-              <Button onClick={() => startSession('vocabulary', 'dictation')} className="w-full justify-start">
-                <Mic className="w-4 h-4 mr-2" /> Dictation
-              </Button>
-              <Button onClick={() => startSession('vocabulary', 'flashcards')} variant="outline" className="w-full justify-start">
-                <Sparkles className="w-4 h-4 mr-2" /> Flashcards
-              </Button>
-              <Button onClick={() => startSession('vocabulary', 'matching')} variant="outline" className="w-full justify-start">
-                <Layers className="w-4 h-4 mr-2" /> Matching
-              </Button>
-            </CardContent>
-          </Card>
+          <PartCard i={2} part="Writing" title="Listen and write">
+            <p className="text-base text-pw-muted">Listen to a sentence and write it. We check each word.</p>
+            <PrimaryButton onClick={() => startSession('dictation')} className="w-full"><Pencil className="w-5 h-5" aria-hidden="true" /> Start writing</PrimaryButton>
+            <p className={`${label} mt-2`}>Vocabulary words</p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+              <SecondaryButton onClick={() => startSession('vocabulary', 'dictation')}><Mic className="w-5 h-5" aria-hidden="true" /> Dictation</SecondaryButton>
+              <SecondaryButton onClick={() => startSession('vocabulary', 'flashcards')}><Sparkles className="w-5 h-5" aria-hidden="true" /> Flashcards</SecondaryButton>
+              <SecondaryButton onClick={() => startSession('vocabulary', 'matching')}><Layers className="w-5 h-5" aria-hidden="true" /> Matching</SecondaryButton>
+            </div>
+          </PartCard>
 
-          {/* 3. Sentence Dictation */}
-          <Card className="overflow-hidden hover:shadow-lift transition-all duration-300 cursor-pointer" onClick={() => startSession('dictation')}>
-            <CardHeader>
-              {banner('pencil', 'writing')}
-              <CardTitle className="text-xl">Sentence Dictation</CardTitle>
-              <CardDescription>
-                Listen to full sentences and write them down correctly.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Button className="w-full"><Mic className="w-4 h-4" /> Start Dictation</Button>
-            </CardContent>
-          </Card>
-
-          {/* 4. Civics Test */}
-          <Card className="overflow-hidden hover:shadow-lift transition-all duration-300">
-            <CardHeader>
-              {banner('capitol', 'civics')}
-              <CardTitle className="text-xl">Civics Test</CardTitle>
-              <CardDescription className="mb-4">
-                Practice the civics questions for the 2025 and 2008 tests.
-              </CardDescription>
-              <div className="space-y-4 pt-2" onClick={(e) => e.stopPropagation()}>
-                 <div className="space-y-2">
-                   <label className={label}>Version:</label>
-                   <Select value={civicsVersion} onValueChange={(v) => { setCivicsVersion(v); localStorage.setItem('civicsVersion', v); }}>
-                      <SelectTrigger className="h-auto text-left">
-                          <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                          <SelectItem value="2025">2025</SelectItem>
-                          <SelectItem value="2008">Applied before Oct 20, 2025? Choose 2008.</SelectItem>
-                      </SelectContent>
-                   </Select>
-                   <p className="text-sm text-pw-muted leading-snug">
-                      {civicsVersion === '2025'
-                        ? 'The officer asks up to 20 questions from this list of 128. You pass with 12 correct.'
-                        : 'The officer asks up to 10 questions from this list of 100. You pass with 6 correct.'}
-                   </p>
-                   <a href="https://www.uscis.gov/citizenship/2025-test" target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-pw-navy underline underline-offset-4 decoration-pw-red/60 hover:decoration-pw-red inline-block">
-                      Not sure which test you'll take? Check uscis.gov.
-                   </a>
-                 </div>
-                 <div className="space-y-2">
-                   <label className={label}>Difficulty:</label>
-                   <Select value={civicsDifficulty} onValueChange={setCivicsDifficulty}>
-                      <SelectTrigger>
-                          <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                          <SelectItem value="all">All</SelectItem>
-                          <SelectItem value="easy">Easy</SelectItem>
-                          <SelectItem value="medium">Med</SelectItem>
-                          <SelectItem value="hard">Hard</SelectItem>
-                      </SelectContent>
-                   </Select>
-                 </div>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <Button onClick={() => startSession('civics')} className="w-full"><GraduationCap className="w-4 h-4" /> Start Quiz</Button>
-            </CardContent>
-          </Card>
+          <PartCard i={3} part="Speaking" title="Mock interview">
+            <p className="text-base text-pw-muted">Talk with an officer out loud: small talk and the oath. For questions about your application, you say what the officer is asking, not your answer.</p>
+            <PrimaryButton onClick={() => setMode('interview')} className="w-full mt-auto"><Mic className="w-5 h-5" aria-hidden="true" /> Start the interview</PrimaryButton>
+          </PartCard>
         </div>
 
-        {/* Interview Practice Section */}
-        <button
-          type="button"
-          onClick={() => setMode('interview')}
-          className="group w-full text-left rounded-3xl bg-white border border-pw-line shadow-raised overflow-hidden hover:shadow-lift transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2"
+        {/* Mixed practice: the full run-through on Interview Day */}
+        <Link
+          to="/interview-day"
+          className="group flex items-center gap-4 rounded-[14px] bg-white border border-pw-line shadow-raised p-5 hover:border-pw-navy transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
         >
-          <div className="flex flex-col sm:flex-row">
-            <div className={`sm:w-56 shrink-0 ${SKILL_BG.speaking} px-4 py-4 grid place-items-center`}>
-              <TopicArt name="speech" className="w-full h-20" />
-            </div>
-            <div className="flex-1 p-5 sm:p-6">
-              <div className="flex flex-wrap items-center gap-3 mb-2">
-                <SkillTag skill="speaking" />
-                <h3 className="text-2xl font-extrabold text-pw-navy">Mock Interview Practice</h3>
-              </div>
-              <p className="text-base text-pw-muted mb-4">
-                Simulate your real citizenship interview with realistic questions from all sections: small talk, personal information, morals & ethics, and oath requirements.
-              </p>
-              <div className="flex flex-wrap items-center gap-2">
-                <Tag tone="navy">AI-powered feedback</Tag>
-                <Tag tone="navy">Speech practice</Tag>
-                <Tag tone="navy">Real interview format</Tag>
-                <ArrowRight className="w-6 h-6 text-pw-navy ml-auto shrink-0" aria-hidden="true" />
-              </div>
-            </div>
-          </div>
-        </button>
+          <span className="flex flex-col gap-1 shrink-0" aria-hidden="true">
+            <span className="flex gap-1"><span className="w-4 h-4 rounded-[3px] bg-pw-red-ink" /><span className="w-4 h-4 rounded-[3px] bg-pw-civics" /></span>
+            <span className="flex gap-1"><span className="w-4 h-4 rounded-[3px] bg-pw-civics" /><span className="w-4 h-4 rounded-[3px] bg-pw-red-ink" /></span>
+          </span>
+          <span className="flex-1 min-w-0">
+            <span className="block font-display text-[28px] leading-tight">Mixed practice</span>
+            <span className="block text-base text-pw-muted">All four parts in one run, in the order of the real interview. Nothing is saved.</span>
+          </span>
+          <CalendarCheck className="w-6 h-6 text-pw-navy shrink-0" aria-hidden="true" />
+          <ArrowRight className="w-5 h-5 text-pw-muted group-hover:text-pw-navy shrink-0" aria-hidden="true" />
+        </Link>
       </div>
     );
   }
@@ -683,12 +637,16 @@ export default function Practice() {
       ) : content.length > 0 ? (
          mode === 'reading' ? (
             <ReadingPracticeCard 
+                index={currentIndex}
+                total={content.length}
                 sentence={content[currentIndex]}
                 onComplete={handleComplete}
                 onNext={handleNext}
             />
          ) : mode === 'civics' ? (
             <CivicsTestCard 
+                index={currentIndex}
+                total={content.length}
                 question={content[currentIndex]}
                 onComplete={handleComplete}
                 onNext={handleNext}
@@ -711,6 +669,8 @@ export default function Practice() {
             ) : (
               // Default to Dictation for vocabulary
               <DictationCard 
+                  index={currentIndex}
+                  total={content.length}
                   sentence={content[currentIndex]}
                   onComplete={handleComplete}
                   onNext={handleNext}
@@ -719,6 +679,8 @@ export default function Practice() {
          ) : (
             // Dictation (Sentences)
             <DictationCard 
+                index={currentIndex}
+                total={content.length}
                 sentence={content[currentIndex]}
                 onComplete={handleComplete}
                 onNext={handleNext}
@@ -730,7 +692,6 @@ export default function Practice() {
             <Button onClick={() => setMode('menu')} className="mt-4">Go Back</Button>
          </div>
          )}
-         <StudyBuddy />
          </div>
          );
          }

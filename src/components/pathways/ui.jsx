@@ -193,14 +193,37 @@ export function IndexCard({ tab, tabSkill = 'n400', rule = false, padding = 'p-5
 
 const POSTER_BG = { red: 'bg-pw-red-ink', blue: 'bg-pw-civics' };
 
+// Buttons on a red or blue poster: solid white, or a white outline.
+const POSTER_BTN = 'min-h-[48px] rounded-full px-5 inline-flex items-center justify-center gap-2 text-base font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent disabled:opacity-50 disabled:cursor-not-allowed';
+export const posterSolid = `${POSTER_BTN} bg-white text-pw-navy hover:bg-pw-soft`;
+export const posterOutline = `${POSTER_BTN} border-2 border-white text-white hover:bg-white/10`;
+
+// A row of small squares, one per card in alternating poster colors; passed
+// cards are white, the current one is ringed. Hidden for long runs.
+export function PosterSquares({ index = 0, total = 0, className = '' }) {
+  if (!total || total > 24) return null;
+  return (
+    <div className={`flex flex-wrap gap-1.5 ${className}`} aria-hidden="true">
+      {Array.from({ length: total }, (_, k) => (
+        <span
+          key={k}
+          className={`w-3 h-3 rounded-[3px] border border-white ${k < index ? 'bg-white' : POSTER_BG[posterTone(k)]} ${k === index ? 'ring-2 ring-white ring-offset-1 ring-offset-transparent' : ''}`}
+        />
+      ))}
+    </div>
+  );
+}
+
 // Full-bleed test/practice poster: white text on Red ink (≈ 5.6:1) or Civics
 // blue (≈ 8.5:1). Use posterTone(index) to alternate. `answer` shows in
-// Instrument Serif italic; `children` holds the controls.
-export function Poster({ tone = 'red', label, question, answer, questionAs: Q = 'h2', className = '', children, ...props }) {
+// Instrument Serif italic; `progress` ({ index, total }) adds the squares;
+// `children` holds the controls.
+export function Poster({ tone = 'red', label, question, answer, progress, questionAs: Q = 'h2', className = '', children, ...props }) {
   return (
     <section className={`relative ${POSTER_BG[tone] || POSTER_BG.red} text-white px-5 py-8 sm:px-8 sm:py-10 ${className}`} {...props}>
       <PathwaysMark size={36} tone="white" className="absolute right-5 top-6 sm:right-8 sm:top-8" />
       {label && <p className="pr-12 text-sm font-semibold uppercase tracking-[0.14em]">{label}</p>}
+      {progress && <PosterSquares {...progress} className="mt-3 pr-12" />}
       {question && <Q className="mt-4 text-[2rem] leading-tight font-bold sm:text-5xl">{question}</Q>}
       {answer && <p className="mt-5 font-display italic text-2xl leading-snug sm:text-3xl">{answer}</p>}
       {children && <div className="mt-6">{children}</div>}

@@ -9,7 +9,7 @@ import { Eyebrow, IndexCard, Poster, PrimaryButton, RaisedCard, posterTone } fro
 import { speakText } from '@/components/utils/textToSpeech';
 import { wordDiff } from '@/components/utils/wordDiff';
 import { checkCivicsAnswer } from '@/components/civics/checkCivicsAnswer';
-import { evaluateInterviewAnswer } from '@/components/practice/evaluateInterviewAnswer';
+import { evaluateInterviewAnswer, evaluateUnderstanding } from '@/components/practice/evaluateInterviewAnswer';
 import { buildTutorInstructions } from '@/lib/tutorPersona';
 import { checkDictation, matchOfficialAnswer, splitOfficialAnswers } from '@/lib/practiceChecks';
 import { READING_PASS } from '@/lib/pretest';
@@ -23,6 +23,7 @@ export const UI = {
   writePrompt: { en: 'Listen to the sentence. Then write it in English.', es: 'Escuche la oración. Luego escríbala en inglés.' },
   readPrompt: { en: 'Read this sentence out loud, in English.', es: 'Lea esta oración en voz alta, en inglés.' },
   interviewPrompt: { en: "Answer the officer's question in English.", es: 'Conteste la pregunta del oficial en inglés.' },
+  understandPrompt: { en: "Don't answer this question. Say in English what the officer is asking.", es: 'No conteste esta pregunta. Diga en inglés qué está preguntando el oficial.' },
   keyWordsTip: { en: 'Use the key words from one of the accepted answers.', es: 'Use las palabras clave de una de las respuestas aceptadas.' },
   correctIs: { en: 'The correct answer is:', es: 'La respuesta correcta es:' },
   listenAgain: { en: 'Listen again and check these words:', es: 'Escuche otra vez y revise estas palabras:' },
@@ -435,8 +436,12 @@ export function InterviewStep({ step, ctx, state, setState }) {
     setChecking(true);
     setFailed(false);
     try {
-      // step.extra: more scoring instructions, e.g. a practice person's facts.
-      const r = await evaluateInterviewAnswer(step.question, transcript, step.extra || '');
+      // step.understand: say what the question is asking, never answer it
+      // (N-400 questions); only understanding is checked. step.extra: more
+      // scoring instructions for ordinary interview questions.
+      const r = step.understand
+        ? await evaluateUnderstanding(step.question, transcript, { meaning: step.meaning })
+        : await evaluateInterviewAnswer(step.question, transcript, step.extra || '');
       const score = Number(r?.overall_score) || 0;
       setState({ answered: true, heard: transcript, outcome: { score }, result: { isCorrect: !!r.is_acceptable, better: r.corrected_version, tip: r.improvement_tips } });
     } catch (e) {
@@ -449,7 +454,7 @@ export function InterviewStep({ step, ctx, state, setState }) {
 
   return (
     <div className="space-y-4">
-      <TutorMessage profile={ctx.profile} language={ctx.language} {...ctx.ui('interviewPrompt')} expression="listening" />
+      <TutorMessage profile={ctx.profile} language={ctx.language} {...ctx.ui(step.understand ? 'understandPrompt' : 'interviewPrompt')} expression="listening" />
       <QuestionCard ctx={ctx} text={step.question.question}>
         {!state.answered && (speech.supported ? <MicButton speech={speech} busy={checking} /> : (
           <p className="mt-4 text-pw-muted">Speaking needs a browser with speech recognition, like Chrome or Safari. You can skip this part.</p>
@@ -464,7 +469,7 @@ export function InterviewStep({ step, ctx, state, setState }) {
           line={ctx.line}
           isCorrect={state.result.isCorrect}
           tipText={{ en: state.result.tip }}
-          acceptLabel="A good answer"
+          acceptLabel={step.understand ? 'What the question is asking' : 'A good answer'}
           accepted={state.result.better ? [state.result.better] : []}
           shown={state.shown}
           onTryAgain={() => { speech.reset(); setState({}); }}

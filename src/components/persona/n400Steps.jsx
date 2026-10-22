@@ -4,27 +4,21 @@ import { Scale } from 'lucide-react';
 import TutorMessage from './TutorMessage';
 import { InterviewStep } from './lessonSteps';
 import N400QuestionCard from '@/components/n400/N400QuestionCard';
-import PracticePersonaPanel, { getPersona } from '@/components/practice/PracticePersonaPanel';
 
 // Learn it + Say it back: the existing N-400 Guide question card.
 function N400CardStep({ step, ctx }) {
   return <N400QuestionCard sectionId={step.sectionId} question={step.question} isAdmin={false} language={ctx.language} />;
 }
 
-// Practice as a practice person: their card on screen, then one officer
-// question scored like the mock interview (with the person's facts).
-function N400PersonaStep({ step, ctx, state, setState }) {
-  return (
-    <div className="space-y-4">
-      <PracticePersonaPanel persona={getPersona(step.personaId)} />
-      <InterviewStep step={{ ...step, type: 'practice-interview' }} ctx={ctx} state={state} setState={setState} />
-    </div>
-  );
+// Practice understanding: the officer asks one question the way they might
+// at the interview; the learner says what it is asking (never answers it).
+function N400UnderstandStep({ step, ctx, state, setState }) {
+  return <InterviewStep step={{ ...step, type: 'practice-interview', understand: true }} ctx={ctx} state={state} setState={setState} />;
 }
 
-N400PersonaStep.needsAnswer = true;
+N400UnderstandStep.needsAnswer = true;
 N400CardStep.tag = { tone: 'blue', label: 'Learn · N-400' };
-N400PersonaStep.tag = { tone: 'red', label: 'Practice · Interview' };
+N400UnderstandStep.tag = { tone: 'red', label: 'Practice · Understand' };
 N400LawyerStep.tag = { tone: 'navy', label: 'Before you file' };
 
 // Section end: if you're not sure your answer is "no", talk to a lawyer.
@@ -44,6 +38,6 @@ function N400LawyerStep({ step, ctx }) {
 
 export const N400_STEPS = {
   'n400-card': N400CardStep,
-  'n400-persona': N400PersonaStep,
+  'n400-understand': N400UnderstandStep,
   'n400-lawyer': N400LawyerStep,
 };
