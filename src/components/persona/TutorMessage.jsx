@@ -1,6 +1,5 @@
 import React, { useEffect, useId } from 'react';
 import { Square, Volume2 } from 'lucide-react';
-import TutorAvatar from './TutorAvatar';
 import useTextSize from './useTextSize';
 import useAutoRead, { currentSpeakingId, readAloud, stopReading, useSpeakingId } from './useAutoRead';
 import { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
@@ -21,10 +20,11 @@ export function ListenButton({ text, language, label = 'Listen', tutorName, clas
   );
 }
 
-// The tutor's avatar and speech bubble. `mine` is the text in the learner's
+// The tutor's speech bubble, signed "— {name}" (Vía's mark shows once per
+// screen, not on every message). `mine` is the text in the learner's
 // language; `en` is the English version, shown under it in the same bubble.
 // Every message has a Listen button (and "English" when both are shown).
-// `expression` picks the tutor's face (see TutorAvatar).
+// `expression` is no longer shown (the tutor is always the V mark).
 // On auto-read screens (see useAutoRead) the message reads itself aloud when
 // it appears, with a Stop button while it speaks. `readAlso` ({ mine, en }) is
 // read after the message but not shown (e.g. the answer choices).
@@ -52,12 +52,9 @@ export default function TutorMessage({ profile, language = 'en', mine, en, child
   useEffect(() => () => { if (currentSpeakingId() === id) stopReading(); }, [id]);
 
   return (
-    <div className={`flex items-start gap-3 text-pw-navy ${sizeClass}`}>
-      <span className="relative shrink-0">
-        {speaking && <span className="absolute -inset-1 rounded-full ring-4 ring-pw-red/30 motion-safe:animate-pulse" aria-hidden="true" />}
-        <TutorAvatar avatar={profile.avatar} size={52} expression={expression} />
-      </span>
-      <div className="min-w-0 flex-1 rounded-2xl rounded-tl-md bg-white border border-pw-line shadow-raised p-4">
+    <div className={`relative text-pw-navy ${sizeClass}`}>
+      {speaking && <span className="pointer-events-none absolute -inset-1 rounded-[18px] ring-4 ring-pw-navy/20 motion-safe:animate-pulse" aria-hidden="true" />}
+      <div className="relative rounded-[14px] bg-white border border-pw-line shadow-raised p-4">
         {showMine ? (
           <>
             <p dir={dir} className="leading-relaxed whitespace-pre-line">{mine}</p>
@@ -66,6 +63,7 @@ export default function TutorMessage({ profile, language = 'en', mine, en, child
         ) : (
           en && <p className="leading-relaxed whitespace-pre-line">{en}</p>
         )}
+        <p className="mt-1 font-display italic text-lg text-pw-muted">— {profile.name}</p>
         <div className="flex flex-wrap gap-2 mt-3">
           {speaking ? (
             <PillButton onClick={stopReading}>

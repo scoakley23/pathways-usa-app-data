@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { toast } from 'sonner';
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card';
-import TutorAvatar from './TutorAvatar';
 import TutorSetup from './TutorSetup';
 import useTutorProfile from './useTutorProfile';
 import TextSizePicker from './TextSizePicker';
@@ -29,10 +28,8 @@ export default function YourTutorCard() {
   return (
     <Card>
       <CardHeader className="p-5 sm:p-6">
-        <CardTitle className="flex items-center gap-3 text-xl">
-          <TutorAvatar avatar={profile.avatar} size={40} /> Your tutor
-        </CardTitle>
-        <CardDescription>Choose your tutor's name, picture, and way of talking.</CardDescription>
+        <CardTitle className="text-xl">Your tutor</CardTitle>
+        <CardDescription>Choose your tutor's name and way of talking.</CardDescription>
       </CardHeader>
       <CardContent className="p-5 pt-0 sm:p-6 sm:pt-0">
         {loaded && <TutorSetup key="loaded" initialProfile={profile} onSave={handleSave} saving={saving} />}

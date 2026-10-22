@@ -95,9 +95,8 @@ function TutorBubble({ profile, language, mine, en, action, expression }) {
   const showMine = !!mine && language !== 'en';
   const dir = RTL_LANGUAGES.includes(language) ? 'rtl' : 'ltr';
   return (
-    <div className="flex gap-2 items-start">
-      <TutorAvatar avatar={profile.avatar} size={28} className="mt-1" expression={expression} />
-      <div className="min-w-0 flex-1 px-3 py-3 rounded-2xl rounded-tl-md bg-white border border-pw-line text-pw-navy text-base leading-snug">
+    <div className="pr-6">
+      <div className="min-w-0 px-3 py-3 rounded-2xl rounded-tl-md bg-white border border-pw-line text-pw-navy text-base leading-snug">
         {showMine && <p dir={dir} className="whitespace-pre-line">{mine}</p>}
         {showMine && action}
         {en && <p className={cn('whitespace-pre-line', showMine && 'text-pw-muted mt-2')}>{en}</p>}
@@ -280,9 +279,9 @@ export default function StudyBuddy({ aboveTabBar = false }) {
         >
           <CardHeader className="bg-white text-pw-navy border-b border-pw-line p-3 flex flex-col gap-2 space-y-0 shrink-0">
             <div className="flex items-center justify-between w-full gap-2">
-                <div className="flex items-center gap-2 min-w-0">
-                <TutorAvatar avatar={profile.avatar} size={36} />
+                <div className="min-w-0">
                 <CardTitle className="text-lg truncate">{title}</CardTitle>
+                <p className="text-sm text-pw-muted truncate">{profile.name} · AI tutor</p>
                 </div>
                 <div className="flex items-center gap-1 shrink-0">
                     <Link to={createPageUrl('StudyHistory')}>
@@ -331,8 +330,7 @@ export default function StudyBuddy({ aboveTabBar = false }) {
                   )
                 ))}
                 {isLoading && (
-                  <div className="flex gap-2 items-start">
-                    <TutorAvatar avatar={profile.avatar} size={28} className="mt-1" expression="listening" />
+                  <div className="flex">
                     <div className="bg-white border border-pw-line p-3 rounded-2xl rounded-tl-md" role="status" aria-label="Thinking">
                       <Loader2 className="w-4 h-4 animate-spin text-pw-muted" />
                     </div>
@@ -374,7 +372,7 @@ export default function StudyBuddy({ aboveTabBar = false }) {
 
       <TalkToPerson open={talkOpen} onOpenChange={setTalkOpen} userEmail={user.email} language={appLanguage} />
 
-      {/* The tutor's face, always one tap away. */}
+      {/* The tutor's V mark, always one tap away (desktop; phones use the tab bar). */}
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
@@ -386,7 +384,7 @@ export default function StudyBuddy({ aboveTabBar = false }) {
           aboveTabBar && "hidden lg:inline-flex"
         )}
       >
-        <TutorAvatar avatar={profile.avatar} size={44} decorative className="ring-2 ring-white" />
+        <TutorAvatar name={profile.name} size={44} decorative className="ring-2 ring-white rounded-full" />
         <span className="max-w-[10rem] truncate">{title}</span>
       </button>
 

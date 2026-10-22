@@ -4,9 +4,9 @@
 export const DEFAULT_TUTOR_NAME = 'Vía';
 export const MAX_TUTOR_NAME_LENGTH = 20;
 
+// Old tutor picture ids. The tutor is now always Vía's V mark, so these are
+// only kept so saved profiles still normalize; they are not shown.
 export const TUTOR_AVATARS = ['a1', 'a2', 'a3', 'a4', 'a5', 'a6'];
-// The learner's own photo. Only the word 'custom' is saved to the account;
-// the photo itself stays on the device (src/lib/tutorPhoto.js).
 export const CUSTOM_AVATAR = 'custom';
 
 // Names learners can pick with one tap (they can also type any name).
