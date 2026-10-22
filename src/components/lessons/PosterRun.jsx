@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Check, Keyboard, Loader2, Mic, MicOff, RotateCcw } from 'lucide-react';
-import { ExplainSimplyButton, Poster, posterTone } from '@/components/pathways/ui';
+import { ExplainSimplyButton, Poster, posterOutline as outlineWhite, posterSolid as solidWhite, posterTone } from '@/components/pathways/ui';
 import { checkCivicsAnswer, isChangingAnswer, isLocationAnswer } from '@/components/civics/checkCivicsAnswer';
 import { stopReading } from '@/components/persona/useAutoRead';
 import { matchOfficialAnswer, splitOfficialAnswers } from '@/lib/practiceChecks';
@@ -31,10 +31,6 @@ function typedTarget(question) {
 }
 
 const SR = typeof window !== 'undefined' ? window.SpeechRecognition || window.webkitSpeechRecognition : null;
-
-const onPosterBtn = 'min-h-[48px] rounded-full px-5 inline-flex items-center justify-center gap-2 text-base font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent disabled:opacity-50';
-const solidWhite = `${onPosterBtn} bg-white text-pw-navy hover:bg-pw-soft`;
-const outlineWhite = `${onPosterBtn} border-2 border-white text-white hover:bg-white/10`;
 
 // "Go over them": one official question per full-bleed poster, alternating
 // red and blue. Spoken answers are checked by checkCivicsAnswer() (AI, the
@@ -121,14 +117,8 @@ export default function PosterRun({ questions, language = 'en', tutorName = 'Ví
         label={`${label} · Card ${index + 1} of ${total}`}
         question={cleanQuestionText(q.question)}
         answer={result ? `Answer: ${officialAnswerText(q)}` : null}
+        progress={{ index, total }}
       >
-        {/* Small squares: one per card, alternating colors, filled when passed */}
-        <div className="flex flex-wrap gap-1.5 mb-6" aria-hidden="true">
-          {questions.map((_, k) => (
-            <span key={k} className={`w-3 h-3 rounded-[3px] border border-white ${k < index ? 'bg-white' : k === index ? 'bg-white/60' : ''}`} />
-          ))}
-        </div>
-
         {!result ? (
           <div className="space-y-4">
             <div className="flex gap-2" role="group" aria-label="Answer mode">

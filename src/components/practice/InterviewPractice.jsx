@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Eyebrow, PillButton, PrimaryButton, QuietButton, RaisedCard, SecondaryButton, Tag } from '@/components/pathways/ui';
+import { Eyebrow, PillButton, Poster, PrimaryButton, RaisedCard, SecondaryButton, Tag, posterOutline, posterSolid, posterTone } from '@/components/pathways/ui';
+import { Link } from 'react-router-dom';
 import { Mic, MicOff, Volume2, ArrowRight, Check, X, Loader2, ChevronDown, ChevronUp, FileText, Bot, BarChart3 } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { speakText, stopSpeaking, getRandomVoice } from "@/components/utils/textToSpeech";
@@ -445,25 +446,69 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
           {questions.map((_, i) => (
             <div key={i} className={`h-2 flex-1 rounded-full transition-colors ${
               i < sessionResults.length
-                ? (sessionResults[i]?.is_acceptable ? 'bg-pw-green-ink' : 'bg-pw-red')
+                ? (sessionResults[i]?.is_acceptable ? 'bg-pw-green-ink' : 'bg-pw-red-ink')
                 : i === currentIndex ? 'bg-pw-navy' : 'bg-pw-line'
             }`} />
           ))}
         </div>
       </div>
 
-      {/* Section tag + repeat */}
-      <div className="flex flex-wrap items-center justify-between gap-2">
-        <Tag tone="blue">{sectionLabel}</Tag>
-        <PillButton onClick={speakQuestion} disabled={interviewerState === 'speaking'}>
-          <Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" /> Repeat Question
-        </PillButton>
-      </div>
-
       {/* Virtual Interviewer */}
       <RaisedCard padding="p-4">
         <VirtualInterviewer state={interviewerState} />
       </RaisedCard>
+
+      {/* The question on a poster, with the microphone (Phase 5) */}
+      <Poster
+        tone={posterTone(currentIndex)}
+        className="-mx-4 sm:mx-0 sm:rounded-[14px]"
+        label={`Interview · Card ${currentIndex + 1} of ${questions.length} · ${sectionLabel}`}
+        progress={{ index: currentIndex, total: questions.length }}
+        question={current.question}
+      >
+        <div className="space-y-4">
+          <PillButton onClick={speakQuestion} disabled={interviewerState === 'speaking'}>
+            <Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" /> Repeat question
+          </PillButton>
+
+          {/* N-400-style questions: practice as the practice person only */}
+          {isPersonaSection(current) && (
+            <div className="rounded-[10px] bg-white/10 border border-white/60 px-4 py-3 space-y-1">
+              <p className="text-base font-semibold">Answer as {persona.name}, the practice person. This is practice for how the interview sounds, never about your own history.</p>
+              <p className="text-base">How a question applies to you is for a lawyer. <Link to="/lawyer-first" className="font-semibold underline underline-offset-4">Talk to a lawyer first</Link></p>
+            </div>
+          )}
+
+          {!feedback && (
+            <>
+              <div className="flex flex-col items-center">
+                <div className="relative">
+                  <span className={`absolute inset-0 rounded-full bg-white/25 transition-transform ${isListening ? 'scale-150 animate-pulse' : 'scale-125'}`} aria-hidden="true" />
+                  <button
+                    type="button"
+                    onClick={toggleListening}
+                    disabled={isAnalyzing}
+                    aria-label={isListening ? 'Stop recording' : 'Record your answer'}
+                    className="relative w-20 h-20 rounded-full bg-white text-pw-navy grid place-items-center shadow-lift disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60"
+                  >
+                    {isListening ? <MicOff className="w-8 h-8" /> : <Mic className="w-8 h-8" />}
+                  </button>
+                </div>
+                <p className="mt-4 text-base font-semibold text-center" aria-live="polite">{statusText}</p>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {userResponse && !isListening && (
+                  <button type="button" onClick={analyzeResponse} disabled={isAnalyzing} className={posterSolid}>
+                    Evaluate answer
+                  </button>
+                )}
+                <button type="button" onClick={handleSkip} className={posterOutline}>Skip this question</button>
+              </div>
+            </>
+          )}
+          {feedback && <p className="text-base font-semibold" aria-live="polite">{statusText}</p>}
+        </div>
+      </Poster>
 
       {isPersonaSection(current) && <PracticePersonaPanel persona={persona} />}
 
@@ -500,41 +545,9 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
         {isAnalyzing && <TypingIndicator />}
       </div>
 
-      {/* Controls */}
-      {!feedback ? (
-        <RaisedCard>
-          <div className="flex flex-col items-center">
-            <div className="relative">
-              <span className={`absolute inset-0 rounded-full bg-pw-red/20 transition-transform ${isListening ? 'scale-150 animate-pulse' : 'scale-125'}`} aria-hidden="true" />
-              <button
-                type="button"
-                onClick={toggleListening}
-                disabled={isAnalyzing}
-                aria-label={isListening ? 'Stop recording' : 'Record your answer'}
-                className="relative w-20 h-20 rounded-full bg-pw-red text-white grid place-items-center shadow-lift disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-pw-navy/30"
-              >
-                {isListening ? <MicOff className="w-8 h-8" /> : <Mic className="w-8 h-8" />}
-              </button>
-            </div>
-            <p className="mt-4 text-base font-semibold text-center" aria-live="polite">{statusText}</p>
-          </div>
-          {userResponse && !isListening && (
-            <PrimaryButton
-              large
-              onClick={analyzeResponse}
-              className="w-full mt-5"
-              disabled={isAnalyzing}
-            >
-              Evaluate Answer
-            </PrimaryButton>
-          )}
-          <QuietButton onClick={handleSkip} className="w-full mt-2 text-pw-muted">
-            Skip this question
-          </QuietButton>
-        </RaisedCard>
-      ) : (
+      {/* Feedback */}
+      {feedback && (
         <>
-          <p className="text-center text-base font-semibold text-pw-muted" aria-live="polite">{statusText}</p>
           <FeedbackPanel feedback={feedback} response={userResponse} expected={current.expected_response} />
           <PrimaryButton large onClick={() => handleNext()} className="w-full">
             {currentIndex < questions.length - 1 ? (
