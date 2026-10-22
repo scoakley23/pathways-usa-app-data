@@ -5,7 +5,10 @@ import { base44 } from '@/api/base44Client';
 import { speakText } from "@/components/utils/textToSpeech";
 import { wordDiff } from "@/components/utils/wordDiff";
 
-export default function ReadingPracticeCard({ sentence, onComplete, onNext }) {
+// `testMode` (Interview Day): like the real test, one try per sentence and no
+// "Show Answer". A try with no speech heard doesn't count; the learner can
+// try again. Without it nothing changes.
+export default function ReadingPracticeCard({ sentence, onComplete, onNext, testMode = false }) {
   const [isListening, setIsListening] = useState(false);
   const [spokenText, setSpokenText] = useState('');
   const [status, setStatus] = useState('idle'); // idle, listening, processing, success, retry, manual, unsupported
@@ -146,7 +149,7 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext }) {
         general_feedback: 'No speech detected'
       });
       setStatus('retry');
-      onComplete(false, 0);
+      if (!testMode) onComplete(false, 0);
       return;
     }
 
@@ -202,13 +205,16 @@ In one or two short, encouraging sentences at an A2 English level, give one prac
     }
   };
 
+  // Test mode: a try where speech was heard is final.
+  const tried = testMode && !!analysis && analysis.transcription !== '(no speech detected)';
+
   if (status === 'unsupported') {
     return (
       <RaisedCard className="text-center text-pw-navy">
         <AlertCircle className="w-12 h-12 text-pw-red-ink mx-auto mb-4" aria-hidden="true" />
         <h3 className="text-xl font-extrabold">Browser Not Supported</h3>
         <p className="text-pw-muted mt-1">Your browser doesn't support speech recognition. Please use Chrome, Edge, or Safari.</p>
-        <PrimaryButton onClick={onNext} className="mt-5 w-full">Skip</PrimaryButton>
+        <PrimaryButton onClick={() => { if (testMode) onComplete(false, 0); onNext(); }} className="mt-5 w-full">Skip</PrimaryButton>
       </RaisedCard>
     );
   }
@@ -241,7 +247,7 @@ In one or two short, encouraging sentences at an A2 English level, give one prac
         </PillButton>
 
         {/* Controls */}
-        {(!analysis || analysis.overall_score < 70) && status !== 'manual' && (
+        {(!analysis || (analysis.overall_score < 70 && !tried)) && status !== 'manual' && (
           <div className="flex flex-col items-center mt-6">
             <div className="relative">
               <span className={`absolute inset-0 rounded-full bg-pw-red/20 transition-transform ${isListening ? 'scale-150 animate-pulse' : 'scale-125'}`} aria-hidden="true" />
@@ -278,7 +284,7 @@ In one or two short, encouraging sentences at an A2 English level, give one prac
           ) : !analysis && status !== 'manual' ? (
             <p className="text-base font-semibold">Tap microphone to start reading</p>
           ) : null}
-          {analysis && analysis.overall_score < 70 && !isListening && !isAnalyzing && (
+          {analysis && analysis.overall_score < 70 && !isListening && !isAnalyzing && !tried && (
             <p className="text-base font-semibold">Tap the retry button to try again</p>
           )}
         </div>
@@ -340,16 +346,21 @@ In one or two short, encouraging sentences at an A2 English level, give one prac
         </div>
       )}
 
-      {analysis && analysis.overall_score >= 70 && status !== 'manual' && !isListening && !isAnalyzing && (
+      {analysis && (analysis.overall_score >= 70 || tried) && status !== 'manual' && !isListening && !isAnalyzing && (
         <PrimaryButton large onClick={onNext} className="w-full">
           Next Sentence <ArrowRight className="w-5 h-5" aria-hidden="true" />
         </PrimaryButton>
       )}
 
       {/* Show Answer / Skip Button */}
-      {status !== 'success' && status !== 'manual' && !isListening && !isAnalyzing && (
+      {status !== 'success' && status !== 'manual' && !isListening && !isAnalyzing && !testMode && (
         <QuietButton onClick={handleShowAnswer} className="w-full text-pw-muted">
           Can't get it right? Show Answer / Skip
+        </QuietButton>
+      )}
+      {testMode && !tried && !isListening && !isAnalyzing && (
+        <QuietButton onClick={() => { onComplete(false, 0); onNext(); }} className="w-full text-pw-muted">
+          Skip this sentence
         </QuietButton>
       )}
     </div>
