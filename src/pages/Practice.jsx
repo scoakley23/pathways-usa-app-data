@@ -12,7 +12,6 @@ import MatchingGame from '@/components/practice/MatchingGame';
 import ReadingPracticeCard from '@/components/practice/ReadingPracticeCard';
 import InterviewPractice from '@/components/practice/InterviewPractice';
 import StudyBuddy from '@/components/ai/StudyBuddy';
-import RepresentativeFinder from '@/components/civics/RepresentativeFinder';
 import PracticePathProgress from '@/components/practice/PracticePathProgress';
 import PageHeader from '@/components/PageHeader';
 import TopicArt from '@/components/art/TopicArt';
@@ -649,12 +648,6 @@ export default function Practice() {
             </div>
           </div>
         </button>
-
-        {/* Representative Finder — moved to bottom */}
-        <RepresentativeFinder
-          userEmail={currentUser?.email}
-          onDataLoaded={setRepresentativeData}
-        />
       </div>
     );
   }

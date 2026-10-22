@@ -148,7 +148,7 @@ function NowAnswer({ now, ctx }) {
       {now.kind === 'find' && (
         <>
           <p className="font-semibold">{t('findYours')}</p>
-          <Link to="/Practice" className="mt-3 min-h-[44px] rounded-2xl bg-pw-navy text-white px-4 font-bold inline-flex items-center hover:bg-pw-navy-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2">
+          <Link to="/learn#find-representative" className="mt-3 min-h-[44px] rounded-2xl bg-pw-navy text-white px-4 font-bold inline-flex items-center hover:bg-pw-navy-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2">
             {t('findButton')}
           </Link>
         </>

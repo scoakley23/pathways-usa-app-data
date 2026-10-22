@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { BookOpen, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { base44 } from '@/api/base44Client';
 import TopicArt, { TOPIC_ART } from '@/components/art/TopicArt';
+import RepresentativeFinder from '@/components/civics/RepresentativeFinder';
 import TutorLesson from '@/components/persona/TutorLesson';
 import TutorMessage from '@/components/persona/TutorMessage';
 import useTutorProfile from '@/components/persona/useTutorProfile';
@@ -49,6 +50,7 @@ function SignInMessage() {
 // schedule (UserProgress); what the learner says stays in memory.
 export default function LearnCivics() {
   const location = useLocation();
+  const navigate = useNavigate();
   const count = Math.min(5, Math.max(1, parseInt(new URLSearchParams(location.search).get('n'), 10) || 2));
   const { profile, loaded } = useTutorProfile();
   const [language] = useAppLanguage();
@@ -83,6 +85,20 @@ export default function LearnCivics() {
   }, [user, count]);
 
   useEffect(() => { load(); }, [load]);
+
+  // "Find my representatives" in a lesson links to /learn#find-representative:
+  // leave the lesson, scroll to the finder, then drop the hash.
+  const findRep = location.hash === '#find-representative';
+  useEffect(() => {
+    if (findRep) setStage((s) => (s === 'lesson' ? 'intro' : s));
+  }, [findRep]);
+  useEffect(() => {
+    if (!findRep || stage === 'lesson' || !picked) return;
+    const el = document.getElementById('find-representative');
+    if (!el) return;
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    navigate({ search: location.search }, { replace: true });
+  }, [findRep, stage, picked, navigate, location.search]);
 
   const lesson = useMemo(() => (picked ? buildLearnLesson(picked, language, undefined, { representativeData }) : null), [picked, language, representativeData]);
 
@@ -191,6 +207,11 @@ export default function LearnCivics() {
           <QuietButton className="w-full" onClick={learnMore} disabled={saving}>Learn more questions</QuietButton>
         </>
       )}
+
+      {/* Some answers depend on where the learner lives; lessons use this result. */}
+      <div id="find-representative" className="scroll-mt-6">
+        <RepresentativeFinder userEmail={user.email} onDataLoaded={setRepresentativeData} />
+      </div>
     </div>
   );
 }

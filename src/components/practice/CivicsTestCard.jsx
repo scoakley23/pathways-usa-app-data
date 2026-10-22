@@ -361,7 +361,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
                   ) : isChanging ? (
                     <p className="text-lg font-bold">Answers change. Check the current answer on {officialLink}</p>
                   ) : isLocation && !personalizedAnswer ? (
-                    <p className="text-lg font-bold">Answers vary by where you live. Use the Representative Finder on your Practice dashboard to get your answer.</p>
+                    <p className="text-lg font-bold">Answers vary by where you live. Use Find My Representative on the Learn page to get your answer.</p>
                   ) : personalizedAnswer ? (
                     <>
                       <p className="text-lg font-extrabold">{personalizedAnswer}</p>
@@ -408,7 +408,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
                   </p>
                 ) : isLocation && !personalizedAnswer ? (
                   <p className="text-xl font-bold leading-relaxed">
-                    Answers vary by where you live. Use the Representative Finder on your Practice dashboard to get your answer.
+                    Answers vary by where you live. Use Find My Representative on the Learn page to get your answer.
                   </p>
                 ) : (
                   <p className="text-xl font-extrabold leading-relaxed">

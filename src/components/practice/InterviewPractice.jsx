@@ -673,7 +673,7 @@ function InterviewIntro({ questions, onStart, varyOfficer, onToggleVary, persona
           </div>
           <div className="min-w-0">
             <p className="font-extrabold text-lg">Officer Martinez</p>
-            <p className="text-sm text-pw-muted">Your USCIS Interviewer</p>
+            <p className="text-sm text-pw-muted">Your practice USCIS Interviewer</p>
           </div>
         </div>
 
