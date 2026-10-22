@@ -1,7 +1,7 @@
 // Fixed text for the plan and Today card: English + hand-written Spanish.
 // Other languages are AI-translated once and cached (useTranslatedLines);
 // bump TODAY_CACHE_KEY when the English changes.
-export const TODAY_CACHE_KEY = 'today_v1';
+export const TODAY_CACHE_KEY = 'today_v2';
 
 export const TODAY_EN = {
   title: 'Today',
@@ -44,6 +44,26 @@ export const TODAY_EN = {
   task_writing: 'Write sentences you hear',
   task_speaking: 'Practice interview questions',
   task_n400: 'N-400 Guide: {section}',
+  hello_morning: 'Good morning, {name}.',
+  hello_afternoon: 'Good afternoon, {name}.',
+  hello_evening: 'Good evening, {name}.',
+  hello_morning_plain: 'Good morning.',
+  hello_afternoon_plain: 'Good afternoon.',
+  hello_evening_plain: 'Good evening.',
+  stage_preparing: 'Getting ready to apply',
+  stage_applied: 'Waiting for interview',
+  stage_interview: 'Interview scheduled',
+  stage_learning: 'Just learning',
+  task_of: 'Task {n} of {t} · Today',
+  start: 'Start',
+  all_done_title: 'All done for today',
+  also_today: 'Also today',
+  stamp_done: 'Done',
+  stamp_filed: 'Filed',
+  this_week: 'This week',
+  weeks_left: 'About {n} weeks to your interview month',
+  weeks_left_one: 'About 1 week to your interview month',
+  weeks_left_none: 'Your interview month is here',
   minutes: '{m} min',
 };
 
@@ -88,6 +108,26 @@ export const TODAY_ES = {
   task_writing: 'Escribir oraciones que escucha',
   task_speaking: 'Practicar preguntas de la entrevista',
   task_n400: 'Guía del N-400: {section}',
+  hello_morning: 'Buenos días, {name}.',
+  hello_afternoon: 'Buenas tardes, {name}.',
+  hello_evening: 'Buenas noches, {name}.',
+  hello_morning_plain: 'Buenos días.',
+  hello_afternoon_plain: 'Buenas tardes.',
+  hello_evening_plain: 'Buenas noches.',
+  stage_preparing: 'Preparándome para aplicar',
+  stage_applied: 'Esperando la entrevista',
+  stage_interview: 'Entrevista programada',
+  stage_learning: 'Solo aprendiendo',
+  task_of: 'Tarea {n} de {t} · Hoy',
+  start: 'Empezar',
+  all_done_title: 'Todo listo por hoy',
+  also_today: 'También hoy',
+  stamp_done: 'Hecha',
+  stamp_filed: 'Archivada',
+  this_week: 'Esta semana',
+  weeks_left: 'Unas {n} semanas para el mes de su entrevista',
+  weeks_left_one: 'Más o menos 1 semana para el mes de su entrevista',
+  weeks_left_none: 'Ya llegó el mes de su entrevista',
   minutes: '{m} min',
 };
 

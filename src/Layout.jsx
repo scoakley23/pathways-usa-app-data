@@ -11,6 +11,7 @@ import StudyBuddy, { openTutorChat } from '@/components/ai/StudyBuddy';
 import TabBar from '@/components/pathways/TabBar';
 import { PathwaysLockup } from '@/components/pathways/ui';
 import { clearTutorPhoto } from '@/lib/tutorPhoto';
+import { useAuth } from '@/lib/AuthContext';
 import { AutoReadContext } from '@/components/persona/useAutoRead';
 import DailyPracticeReminder from '@/components/notifications/DailyPracticeReminder';
 import TutorInvitePrompt from '@/components/tutor/TutorInvitePrompt';
@@ -28,6 +29,10 @@ export default function Layout({ children }) {
   const [isOpen, setIsOpen] = React.useState(false);
   const [showOnboarding, setShowOnboarding] = React.useState(false);
   const navigate = useNavigate();
+  const { isAuthenticated, isLoadingAuth } = useAuth();
+  // The signed-out splash on Home shows the big stacked logo, so the header
+  // leaves its small one out there.
+  const splash = location.pathname === '/' && !isLoadingAuth && !isAuthenticated;
 
   // Vía is always the V mark now: delete any old tutor photo left on this
   // device (once per app load; cheap and harmless when there is none).
@@ -129,9 +134,11 @@ export default function Layout({ children }) {
       {/* Navigation */}
       <nav aria-label="Site" className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-pw-line">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-          <Link to="/" aria-label="Pathways, home" className="shrink-0 flex items-center min-h-11 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy">
-            <PathwaysLockup size={30} />
-          </Link>
+          {splash ? <span /> : (
+            <Link to="/" aria-label="Pathways, home" className="shrink-0 flex items-center min-h-11 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy">
+              <PathwaysLockup size={30} />
+            </Link>
+          )}
 
           {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-1">
