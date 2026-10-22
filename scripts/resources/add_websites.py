@@ -50,6 +50,21 @@ def ian_langs(o):
     stated = o.get('languages', '')
     return [l for l in LANGS if re.search(rf'\b{re.escape(l)}\b', stated, re.I)]
 
+# Directory websites that, on review, didn't belong to the matched organization.
+REJECT_HOSTS = {'saferoute.org', 'ascafrica.org', 'ciiccolorado.org', 'ilashc.org'}
+
+def clean_site(url):
+    url = (url or '').strip()
+    url = re.sub(r'^(https?://)[a-z]www\.', r'\1www.', url, flags=re.I)  # "lwww." typos in the directory
+    host = urllib.parse.urlsplit(url if '://' in url else 'http://' + url).netloc.lower().removeprefix('www.')
+    if not host or host in REJECT_HOSTS or re.search(r'facebook|instagram|linkedin', host):
+        return ''
+    return url
+
+for o in ian:
+    o['website'] = clean_site(o['website'])
+ian = [o for o in ian if o['website']]
+
 by_phone, by_street = {}, {}
 for o in ian:
     street, zip5 = ian_address(o)

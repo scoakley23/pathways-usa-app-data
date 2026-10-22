@@ -70,6 +70,15 @@ How it was built (keyword rules, not AI; scripts in `scripts/resources/`):
 
 Note: a place an admin renamed before this update won't match by name and would be added again; check Admin for a renamed place's twin after importing.
 
+### Websites added (October 2026, same file)
+
+`update-2026-10.json` also fills in missing **websites** and **languages**. Importing it again after the earlier version should say about **0 new, 911 updated, 0 hidden** (only `website` and `languages` change; places you've checked keep your decision).
+
+- **DOJ legal organizations (812 offices)**: from the Immigration Advocates Network's National Immigration Legal Services Directory (https://www.immigrationadvocates.org/legaldirectory/), read with `harvest_ian.py` (its robots.txt allows the state and organization pages; 20 s between requests). A directory listing is used only when it has the same phone number, or the same street address and ZIP, as the DOJ office and the names share a distinctive word; the organization's other DOJ offices get the same website. Languages come from the directory's "Languages spoken". Four directory websites that didn't belong to the matched organization on review are rejected in `add_websites.py`, and "lwww."-style typos are fixed.
+- **Class programs (81)**: a web search per program without a website, kept only when `verify_sites.py` finds the program's phone number or street address on the site (news or event pages are replaced by the site's home page). 349 programs still have no website; their cards keep address and phone.
+
+To rebuild: `harvest_ian.py ian.json` (resumable; about 7 hours), then `add_websites.py ian.json nld-verified.json content/resources/update-2026-10.json`.
+
 Not imported, linked instead (the "Search national directories" card on the Resource Hub):
 - **ImmigrationLawHelp.org**: its robots.txt asks crawlers to stay out of its search pages. Most of its legal providers are DOJ-recognized organizations, which are in the seed file. Ask Pro Bono Net (who runs it) for a data export before importing.
 - **CareerOneStop library finder**: blocks automated access. It is a search tool, not a list.
