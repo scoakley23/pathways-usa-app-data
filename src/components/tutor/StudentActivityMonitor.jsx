@@ -120,7 +120,7 @@ export default function StudentActivityMonitor({ currentUserEmail, students }) {
   );
 
   if (activeStudents.length === 0) return (
-    <div className="text-center py-12 px-5 text-pw-muted bg-white rounded-3xl border border-dashed border-pw-line">
+    <div className="text-center py-12 px-5 text-pw-muted bg-white rounded-[14px] border border-dashed border-pw-line">
       <Users className="w-12 h-12 mx-auto mb-3 text-pw-muted opacity-50" aria-hidden="true" />
       <p className="font-bold text-lg text-pw-navy">No active students yet.</p>
       <p className="text-base mt-1">Add students and they'll appear here once they're active.</p>
@@ -166,7 +166,7 @@ export default function StudentActivityMonitor({ currentUserEmail, students }) {
         {/* STRUGGLING TAB */}
         <TabsContent value="struggling" className="mt-4 space-y-4">
           {strugglingStudents.length === 0 ? (
-            <div className="text-center py-12 px-5 text-pw-muted bg-white rounded-3xl border border-dashed border-pw-line">
+            <div className="text-center py-12 px-5 text-pw-muted bg-white rounded-[14px] border border-dashed border-pw-line">
               <TrendingUp className="w-10 h-10 mx-auto mb-2 text-pw-green-ink" aria-hidden="true" />
               <p className="font-bold text-base text-pw-navy">All students are performing well!</p>
             </div>
@@ -289,7 +289,7 @@ function StudentRow({ student }) {
 
 function StrugglingCard({ student, onAssign }) {
   return (
-    <RaisedCard className="border-pw-red/30">
+    <RaisedCard className="border-pw-red-ink/30">
         <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
           <div className="flex items-center gap-3 min-w-0">
             <Initial name={student.name} tone="bg-pw-red-soft text-pw-red-ink" />

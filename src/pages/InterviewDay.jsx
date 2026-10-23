@@ -53,7 +53,7 @@ export default function InterviewDay() {
         subtitle="What to expect, and a full practice rehearsal."
         tag="Practice"
         tagTone="navy"
-        art="flag"
+        art="road"
         guide="Here you can practice the whole interview, start to finish. It's practice only, and nothing you say is saved."
       />
 
@@ -69,7 +69,7 @@ export default function InterviewDay() {
         />
       ) : (
         <RaisedCard className="space-y-3 text-pw-navy">
-          <h2 className="text-[22px] leading-snug font-extrabold">Full rehearsal</h2>
+          <h2 className="text-[28px] leading-snug font-display font-normal">Full rehearsal</h2>
           <p className="text-base">Sign in to practice the whole interview, start to finish.</p>
           <PrimaryButton className="w-full" onClick={() => base44.auth.redirectToLogin(window.location.href)}>Sign in</PrimaryButton>
         </RaisedCard>

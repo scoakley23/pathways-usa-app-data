@@ -46,13 +46,13 @@ function MicButton({ speech, busy, idleLabel = 'Tap and answer in English', onPo
   return (
     <div className="flex flex-col items-center mt-6">
       <div className="relative">
-        <span className={`absolute inset-0 rounded-full ${onPoster ? 'bg-white/25' : 'bg-pw-red/20'} transition-transform ${speech.listening ? 'scale-150 animate-pulse' : 'scale-125'}`} aria-hidden="true" />
+        <span className={`absolute inset-0 rounded-full ${onPoster ? 'bg-white/25' : 'bg-pw-navy/15'} transition-transform ${speech.listening ? 'scale-150 animate-pulse' : 'scale-125'}`} aria-hidden="true" />
         <button
           type="button"
           onClick={speech.listening ? speech.stop : speech.start}
           disabled={busy}
           aria-label={speech.listening ? 'Stop' : idleLabel}
-          className={`relative w-20 h-20 rounded-full grid place-items-center shadow-lift disabled:opacity-50 focus-visible:outline-none focus-visible:ring-4 ${onPoster ? 'bg-white text-pw-navy focus-visible:ring-white/60' : 'bg-pw-red text-white focus-visible:ring-pw-navy/30'}`}
+          className={`relative w-20 h-20 rounded-full grid place-items-center shadow-lift disabled:opacity-50 focus-visible:outline-none focus-visible:ring-4 ${onPoster ? 'bg-white text-pw-navy focus-visible:ring-white/60' : 'bg-pw-navy text-white focus-visible:ring-pw-navy/30'}`}
         >
           {speech.listening ? <Square className={`w-7 h-7 ${onPoster ? 'fill-pw-navy' : 'fill-white'}`} /> : <Mic className="w-8 h-8" />}
         </button>
@@ -86,7 +86,7 @@ function QuestionCard({ ctx, eyebrow = 'The officer asks', text, children }) {
 export function PartIntroStep({ step, ctx }) {
   return (
     <div className="space-y-4">
-      <div className="rounded-3xl bg-pw-blue-soft px-4 pt-4 pb-4">
+      <div className="rounded-[14px] bg-pw-blue-soft px-4 pt-4 pb-4">
         <TopicArt name={step.art} />
         <p className="text-[1.375em] font-extrabold mt-2 text-pw-navy">{step.title.mine || step.title.en}</p>
         {step.title.mine && <p className="text-pw-muted">{step.title.en}</p>}
@@ -110,7 +110,7 @@ export function ExplainStep({ step, ctx }) {
           href={link.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-3 min-h-[44px] rounded-2xl bg-white text-pw-navy border-2 border-pw-navy px-4 font-bold inline-flex items-center gap-2 hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2"
+          className="mt-3 min-h-[44px] rounded-2xl bg-white text-pw-navy border-2 border-pw-navy px-4 font-bold inline-flex items-center gap-2 hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2"
         >
           <Volume2 className="w-5 h-5" aria-hidden="true" /> {link.label}
           <ExternalLink className="w-4 h-4" aria-hidden="true" />
@@ -150,7 +150,7 @@ function NowAnswer({ now, ctx }) {
       {now.kind === 'find' && (
         <>
           <p className="font-semibold">{t('findYours')}</p>
-          <Link to="/learn#find-representative" className="mt-3 min-h-[44px] rounded-2xl bg-pw-navy text-white px-4 font-bold inline-flex items-center hover:bg-pw-navy-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2">
+          <Link to="/learn#find-representative" className="mt-3 min-h-[44px] rounded-2xl bg-pw-navy text-white px-4 font-bold inline-flex items-center hover:bg-pw-navy-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2">
             {t('findButton')}
           </Link>
         </>
@@ -345,7 +345,7 @@ export function WritingStep({ step, ctx, state, setState }) {
             type="button"
             onClick={say}
             aria-label="Play the sentence"
-            className="w-16 h-16 shrink-0 rounded-full bg-pw-navy text-white grid place-items-center shadow-lift focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-pw-red/40"
+            className="w-16 h-16 shrink-0 rounded-full bg-pw-navy text-white grid place-items-center shadow-lift focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-pw-navy/40"
           >
             <Volume2 className="w-7 h-7" />
           </button>
@@ -504,7 +504,7 @@ export function CheckStep({ step, ctx, state, setState }) {
               onClick={() => choose(o)}
               aria-pressed={state.choice === o}
               className={`min-h-[52px] rounded-2xl border-2 px-4 py-2 text-left font-bold inline-flex items-center justify-between gap-2 text-pw-navy transition-colors ${
-                isRight ? 'border-pw-green-ink bg-pw-green-soft' : isWrongChoice ? 'border-pw-red bg-pw-red-soft' : 'border-pw-line bg-white hover:border-pw-navy'
+                isRight ? 'border-pw-green-ink bg-pw-green-soft' : isWrongChoice ? 'border-pw-red-ink bg-pw-red-soft' : 'border-pw-line bg-white hover:border-pw-navy'
               }`}
             >
               {o} {isRight && <Check className="w-5 h-5 text-pw-green-ink shrink-0" aria-label="Correct answer" />}

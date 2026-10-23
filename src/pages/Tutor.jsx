@@ -54,10 +54,10 @@ export default function Tutor({ cachedUser, cachedRole }) {
   if (!user) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[50vh] text-center space-y-4 px-4">
-        <div className="w-20 h-20 rounded-3xl bg-pw-blue-soft flex items-center justify-center" aria-hidden="true">
+        <div className="w-20 h-20 rounded-[14px] bg-pw-blue-soft flex items-center justify-center" aria-hidden="true">
           <School className="w-10 h-10 text-pw-blue-ink" />
         </div>
-        <h2 className="text-2xl font-extrabold text-pw-navy">Sign in to access Tutor features</h2>
+        <h2 className="text-[28px] font-display font-normal text-pw-navy">Sign in to access Tutor features</h2>
         <p className="text-base text-pw-muted">Connect with students or tutors to track progress together.</p>
       </div>
     );
@@ -71,13 +71,13 @@ export default function Tutor({ cachedUser, cachedRole }) {
               <div className="flex flex-col gap-2 mt-4">
                   <button 
                     onClick={() => { setIsLoading(true); fetchUserData(); }} 
-                    className="min-h-[44px] px-4 text-base font-bold text-pw-navy underline underline-offset-4 decoration-pw-red/60 hover:decoration-pw-red rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red"
+                    className="min-h-[44px] px-4 text-base font-bold text-pw-navy underline underline-offset-4 decoration-pw-navy/40 hover:decoration-pw-navy rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
                   >
                     Check again
                   </button>
                   <button 
                     onClick={() => window.location.reload()} 
-                    className="min-h-[44px] px-4 text-sm font-semibold text-pw-muted hover:text-pw-navy rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red"
+                    className="min-h-[44px] px-4 text-sm font-semibold text-pw-muted hover:text-pw-navy rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
                   >
                     Reload Page
                   </button>

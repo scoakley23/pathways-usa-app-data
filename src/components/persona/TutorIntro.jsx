@@ -25,7 +25,7 @@ export default function TutorIntro({ t, language = 'en' }) {
       <div className="p-5 sm:p-6 space-y-4">
         <Tag tone="navy">{t('intro_tag')}</Tag>
         <div dir={dir}>
-          <h1 id="tutor-intro-title" className="text-[30px] sm:text-[36px] leading-tight font-extrabold tracking-[-0.5px]">{hello}</h1>
+          <h1 id="tutor-intro-title" className="font-display text-[36px] sm:text-[44px] leading-[1.05]">{hello}</h1>
           <p className="mt-2 text-pw-muted leading-relaxed">{body}</p>
         </div>
         <p className="font-display italic text-lg text-pw-muted">— {profile.name}</p>
@@ -48,7 +48,7 @@ export default function TutorIntro({ t, language = 'en' }) {
           <Link
             to="/quick-check"
             aria-describedby="tutor-intro-first-step"
-            className="w-full min-h-[64px] rounded-2xl bg-pw-navy text-white font-extrabold text-xl flex items-center justify-center gap-2 px-4 text-center shadow-lift hover:bg-pw-navy-deep transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2"
+            className="w-full min-h-[64px] rounded-2xl bg-pw-navy text-white font-extrabold text-xl flex items-center justify-center gap-2 px-4 text-center shadow-lift hover:bg-pw-navy-deep transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2"
           >
             {t('qc_start')} <ArrowRight className="w-6 h-6 shrink-0" aria-hidden="true" />
           </Link>

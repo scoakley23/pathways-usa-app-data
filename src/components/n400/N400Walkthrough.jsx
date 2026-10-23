@@ -73,7 +73,7 @@ export default function N400Walkthrough() {
   };
 
   const toggleClasses = (active) =>
-    `flex-1 sm:flex-none min-h-[44px] flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-base leading-tight font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red ${
+    `flex-1 sm:flex-none min-h-[44px] flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-base leading-tight font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy ${
       active ? 'bg-white shadow-raised text-pw-navy' : 'text-pw-muted hover:text-pw-navy'
     }`;
 
@@ -102,7 +102,7 @@ export default function N400Walkthrough() {
             />
             <div className="space-y-2">
               <Tag tone="red">Practice person. Not real.</Tag>
-              <h2 className="text-2xl font-extrabold text-pw-navy leading-tight">{applicant.name}</h2>
+              <h2 className="text-[28px] font-display font-normal text-pw-navy leading-tight">{applicant.name}</h2>
               <p className="text-base text-pw-muted">{applicant.blurb}</p>
             </div>
           </div>
@@ -149,7 +149,7 @@ export default function N400Walkthrough() {
                           <button
                             type="button"
                             aria-label="Listen to this example answer"
-                            className="w-11 h-11 rounded-full bg-white border border-pw-line text-pw-navy hover:bg-pw-blue-soft grid place-items-center shrink-0 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red"
+                            className="w-11 h-11 rounded-full bg-white border border-pw-line text-pw-navy hover:bg-pw-blue-soft grid place-items-center shrink-0 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
                             onClick={() => (playingKey === key ? setPlayingKey(null) : speak(key, pair.a))}
                           >
                             {playingKey === key ? (

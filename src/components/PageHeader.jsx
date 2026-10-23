@@ -5,8 +5,8 @@ import TopicArt from '@/components/art/TopicArt';
 import { Tag } from '@/components/pathways/ui';
 import TutorLine from '@/components/persona/TutorLine';
 
-// Page header (style A): back button, optional tag, big title, subtitle, and
-// an optional line drawing. `children` (actions) sit under the title on
+// Page header (brand kit): back button, optional tag, big Instrument Serif
+// title, subtitle, and an optional line drawing. `children` (actions) sit under the title on
 // phones and on the right on wider screens. `guide` is one line from the
 // learner's tutor saying what the page is for.
 export default function PageHeader({ title, subtitle, children, tag, tagTone = 'navy', art, guide }) {
@@ -22,7 +22,7 @@ export default function PageHeader({ title, subtitle, children, tag, tagTone = '
 
   return (
     <header className="text-pw-navy">
-      <div className={`rounded-3xl ${art ? 'bg-pw-blue-soft px-4 pt-4 pb-5 sm:px-6' : ''}`}>
+      <div className={`rounded-[14px] ${art ? 'bg-pw-blue-soft px-4 pt-4 pb-5 sm:px-6' : ''}`}>
         <div className="flex items-center justify-between gap-3">
           <button
             type="button"
@@ -37,7 +37,7 @@ export default function PageHeader({ title, subtitle, children, tag, tagTone = '
         <div className="mt-4 flex flex-col sm:flex-row sm:items-end gap-4">
           <div className="min-w-0 flex-1">
             {tag && <Tag tone={tagTone} className="mb-3">{tag}</Tag>}
-            <h1 className="text-[32px] sm:text-[38px] leading-tight font-extrabold tracking-[-0.5px]">{title}</h1>
+            <h1 className="font-display text-[38px] sm:text-[46px] leading-[1.05]">{title}</h1>
             {subtitle && <p className="text-pw-muted text-lg mt-1">{subtitle}</p>}
           </div>
           {children && <div className="sm:shrink-0">{children}</div>}

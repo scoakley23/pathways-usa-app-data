@@ -302,7 +302,7 @@ Double check all names are spelled correctly.`,
           <div className="w-12 h-12 shrink-0 bg-pw-red-soft text-pw-red-ink rounded-2xl grid place-items-center">
             <MapPin className="w-6 h-6" aria-hidden="true" />
           </div>
-          <h2 className="text-2xl font-extrabold leading-tight pt-1.5">Who Represents Me?</h2>
+          <h2 className="text-[28px] font-display font-normal leading-tight pt-1.5">Who Represents Me?</h2>
         </div>
         <p className="text-base text-pw-muted leading-relaxed">
           Enter your zip code to find your Senators, Representative, Governor, and State Capital — your answers will be used during civics practice.
@@ -383,8 +383,8 @@ Double check all names are spelled correctly.`,
 
       {loading && !results && (
         <div className="grid md:grid-cols-2 gap-4 max-w-3xl mx-auto mt-4">
-          <div className="rounded-3xl bg-pw-soft animate-pulse h-48" />
-          <div className="rounded-3xl bg-pw-soft animate-pulse h-48" />
+          <div className="rounded-[14px] bg-pw-soft animate-pulse h-48" />
+          <div className="rounded-[14px] bg-pw-soft animate-pulse h-48" />
         </div>
       )}
 

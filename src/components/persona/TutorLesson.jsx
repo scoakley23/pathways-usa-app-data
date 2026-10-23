@@ -97,7 +97,7 @@ export default function TutorLesson({ lesson, profile, language = 'en', language
           className="pt-5 pb-4"
         >
           {tag && <Tag tone={tag.tone}>{tag.label}</Tag>}
-          <h1 className="text-[28px] leading-tight font-extrabold mt-3 mb-4">{lesson.title}</h1>
+          <h1 className="font-display text-[36px] leading-tight mt-3 mb-4">{lesson.title}</h1>
           <Step step={step} ctx={ctx} state={state} setState={setState} />
         </motion.div>
       </AnimatePresence>

@@ -23,7 +23,7 @@ function OptionButton({ selected, onClick, children, className = '' }) {
       type="button"
       onClick={onClick}
       aria-pressed={selected}
-      className={`min-h-[44px] rounded-2xl border-2 px-4 py-3 text-left text-pw-navy transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2 ${
+      className={`min-h-[44px] rounded-2xl border-2 px-4 py-3 text-left text-pw-navy transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2 ${
         selected ? 'border-pw-navy bg-pw-soft' : 'bg-white border-pw-line hover:border-pw-muted'
       } ${className}`}
     >
@@ -37,7 +37,7 @@ function ListenButton({ text, language, label }) {
     <button
       type="button"
       onClick={() => speakText(text, language)}
-      className="min-h-[44px] -ml-3 inline-flex items-center gap-2 rounded-2xl px-3 text-base font-bold text-pw-navy hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red"
+      className="min-h-[44px] -ml-3 inline-flex items-center gap-2 rounded-2xl px-3 text-base font-bold text-pw-navy hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
     >
       <Volume2 className="w-5 h-5" /> {label}
     </button>

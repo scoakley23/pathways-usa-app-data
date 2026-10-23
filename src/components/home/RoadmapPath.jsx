@@ -57,14 +57,14 @@ export default function RoadmapPath({ roadmap, t, language }) {
     <section aria-label={t('path_title')} dir={mirror ? 'rtl' : 'ltr'}>
       <div className="max-w-[480px] mx-auto">
         <div className="flex items-baseline justify-between mb-3">
-          <h2 className="text-2xl font-extrabold tracking-[-0.5px] text-pw-navy">{t('path_title')}</h2>
+          <h2 className="text-[28px] font-display font-normal text-pw-navy">{t('path_title')}</h2>
           <span className="text-base font-bold text-pw-muted min-h-[20px]">
             {loading ? '' : t('path_done_of').replace('{n}', doneCount)}
           </span>
         </div>
 
         <div
-          className="relative rounded-3xl bg-white border border-pw-line shadow-raised overflow-hidden"
+          className="relative rounded-[14px] bg-white border border-pw-line shadow-raised overflow-hidden"
           style={{ height: PANEL_HEIGHT }}
         >
           {/* Winding road */}
@@ -120,7 +120,7 @@ export default function RoadmapPath({ roadmap, t, language }) {
                 <Link
                   to={stopUrl(stop)}
                   aria-label={ariaLabel}
-                  className="flex flex-col items-center gap-1 rounded-3xl p-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
+                  className="flex flex-col items-center gap-1 rounded-[14px] p-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
                 >
                   <Star className="w-12 h-12 text-pw-navy fill-pw-navy" strokeWidth={1.5} />
                   <span className="text-sm font-extrabold uppercase tracking-wide text-pw-navy">

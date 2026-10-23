@@ -19,7 +19,7 @@ export default function VirtualInterviewer({ state = 'idle', name = 'Officer Mar
 
         {/* Listening ring */}
         {state === 'listening' && (
-          <div className="absolute -inset-1.5 rounded-full ring-2 ring-pw-red/40" />
+          <div className="absolute -inset-1.5 rounded-full ring-2 ring-pw-navy/40" />
         )}
 
         {/* Avatar image */}
@@ -54,7 +54,7 @@ export default function VirtualInterviewer({ state = 'idle', name = 'Officer Mar
 
         {/* Listening mic badge */}
         {state === 'listening' && (
-          <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 z-20 bg-pw-red rounded-full p-1.5 shadow-raised">
+          <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 z-20 bg-pw-navy rounded-full p-1.5 shadow-raised">
             <Mic className="w-4 h-4 text-white" />
           </div>
         )}

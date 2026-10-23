@@ -71,7 +71,7 @@ export default function DeleteMyData({ userEmail }) {
   };
 
   return (
-    <Card className="border-2 border-pw-red/40 bg-pw-red-soft/40">
+    <Card className="border-2 border-pw-red-ink/40 bg-pw-red-soft/40">
       <CardHeader className="p-5 sm:p-6">
         <CardTitle className="flex items-center gap-3 text-xl text-pw-red-ink">
           <span className="w-10 h-10 rounded-2xl bg-pw-red-soft text-pw-red-ink grid place-items-center shrink-0">

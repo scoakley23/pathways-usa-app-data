@@ -15,7 +15,7 @@ export function NameSuggestions({ value, onPick, label = 'Name ideas' }) {
             type="button"
             aria-pressed={selected}
             onClick={() => onPick(n)}
-            className={`min-h-[44px] rounded-full border-2 px-4 text-base font-bold inline-flex items-center gap-1 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2 ${
+            className={`min-h-[44px] rounded-full border-2 px-4 text-base font-bold inline-flex items-center gap-1 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2 ${
               selected ? 'border-pw-navy bg-pw-navy text-white' : 'border-pw-line bg-white text-pw-navy hover:border-pw-navy/50'
             }`}
           >

@@ -38,9 +38,9 @@ export default function LessonStatusCard({ lesson, progress }) {
   const StatusIcon = config.icon;
 
   return (
-    <Link to={createPageUrl('Lessons')} className="block h-full rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2">
+    <Link to={createPageUrl('Lessons')} className="block h-full rounded-[14px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2">
       <Card
-        className={`${config.border} ${config.bg} rounded-3xl shadow-raised hover:shadow-lift transition-all cursor-pointer h-full`}
+        className={`${config.border} ${config.bg} rounded-[14px] shadow-raised hover:shadow-lift transition-all cursor-pointer h-full`}
       >
         <CardContent className="p-4 space-y-2">
           <div className="flex items-start justify-between gap-2">

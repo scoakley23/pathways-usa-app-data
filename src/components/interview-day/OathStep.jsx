@@ -67,7 +67,7 @@ export default function OathStep({ onDone }) {
               type="button"
               onClick={listen}
               aria-label={listening ? 'Stop listening' : 'Say "I do"'}
-              className="relative w-20 h-20 rounded-full bg-pw-red text-white grid place-items-center shadow-lift focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-pw-navy/30"
+              className="relative w-20 h-20 rounded-full bg-pw-navy text-white grid place-items-center shadow-lift focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-pw-navy/30"
             >
               {listening ? <MicOff className="w-8 h-8" /> : <Mic className="w-8 h-8" />}
             </button>

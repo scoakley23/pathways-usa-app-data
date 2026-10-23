@@ -17,7 +17,7 @@ export default function InterviewReport({ results, questions, onRestart }) {
   const isReady = passRate >= 70;
 
   const scoreColor = (s) => s >= 80 ? 'text-pw-green-ink' : s >= 60 ? 'text-pw-blue-ink' : 'text-pw-red-ink';
-  const barColor = (s) => s >= 80 ? 'bg-pw-green-ink' : s >= 60 ? 'bg-pw-blue-ink' : 'bg-pw-red';
+  const barColor = (s) => s >= 80 ? 'bg-pw-green-ink' : s >= 60 ? 'bg-pw-blue-ink' : 'bg-pw-red-ink';
 
   const sectionNames = {
     small_talk: 'Small Talk',
@@ -29,13 +29,13 @@ export default function InterviewReport({ results, questions, onRestart }) {
   return (
     <div className="w-full max-w-3xl mx-auto space-y-4 text-pw-navy">
       {/* Header */}
-      <div className={`rounded-3xl p-6 text-center space-y-5 ${isReady ? 'bg-pw-green-soft' : 'bg-pw-blue-soft'}`}>
+      <div className={`rounded-[14px] p-6 text-center space-y-5 ${isReady ? 'bg-pw-green-soft' : 'bg-pw-blue-soft'}`}>
         <div className={`w-16 h-16 rounded-2xl bg-white flex items-center justify-center mx-auto shadow-raised ${isReady ? 'text-pw-green-ink' : 'text-pw-blue-ink'}`}>
           {isReady ? <Trophy className="w-8 h-8" aria-hidden="true" /> : <Target className="w-8 h-8" aria-hidden="true" />}
         </div>
 
         <div>
-          <h2 className="text-[1.75rem] font-extrabold leading-tight mb-2">
+          <h2 className="text-[32px] font-display font-normal leading-tight mb-2">
             {isReady ? 'Interview Complete!' : 'Keep Practicing!'}
           </h2>
           <p className="text-base text-pw-muted leading-relaxed">
@@ -110,7 +110,7 @@ export default function InterviewReport({ results, questions, onRestart }) {
                 type="button"
                 onClick={() => setExpandedIdx(expandedIdx === i ? null : i)}
                 aria-expanded={expandedIdx === i}
-                className="w-full min-h-[56px] flex items-center gap-3 p-3 bg-white hover:bg-pw-soft transition-colors text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-pw-red"
+                className="w-full min-h-[56px] flex items-center gap-3 p-3 bg-white hover:bg-pw-soft transition-colors text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-pw-navy"
               >
                 <div className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 ${r.is_acceptable ? 'bg-pw-green-soft text-pw-green-ink' : 'bg-pw-red-soft text-pw-red-ink'}`}>
                   {r.is_acceptable

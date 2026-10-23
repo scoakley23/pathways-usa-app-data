@@ -47,7 +47,7 @@ export default function LawyerPage({ cachedUser }) {
           <div className="w-11 h-11 rounded-2xl grid place-items-center bg-pw-red-soft text-pw-red-ink shrink-0">
             <Scale className="w-5 h-5" />
           </div>
-          <h2 className="text-[22px] leading-snug font-extrabold text-pw-navy">Talk to a lawyer first</h2>
+          <h2 className="text-[28px] leading-snug font-display font-normal text-pw-navy">Talk to a lawyer first</h2>
         </div>
         <p className="text-base text-pw-navy leading-relaxed">
           Most people can apply on their own. But if <strong>ANY</strong> of these are true for you, talk to a
@@ -59,7 +59,7 @@ export default function LawyerPage({ cachedUser }) {
 
       <RaisedCard padding="p-4 sm:p-6" className="space-y-4">
         <div className="flex flex-wrap items-center justify-between gap-2 px-1">
-          <h2 className="text-[22px] leading-snug font-extrabold text-pw-navy">If any of these is true for you</h2>
+          <h2 className="text-[28px] leading-snug font-display font-normal text-pw-navy">If any of these is true for you</h2>
           {isTranslating && (
             <p className="flex items-center gap-2 text-sm text-pw-muted">
               <Loader2 className="w-4 h-4 animate-spin" /> Translating…
@@ -99,8 +99,8 @@ export default function LawyerPage({ cachedUser }) {
         )}
       </RaisedCard>
 
-      <section className="rounded-3xl bg-pw-navy text-white p-5 md:p-6 space-y-4 shadow-lift">
-        <h2 className="text-[22px] leading-snug font-extrabold">Find free or low-cost legal help</h2>
+      <section className="rounded-[14px] bg-pw-navy text-white p-5 md:p-6 space-y-4 shadow-lift">
+        <h2 className="text-[28px] leading-snug font-display font-normal">Find free or low-cost legal help</h2>
         <ul className="space-y-3">
           {LEGAL_HELP_LINKS.map((link) => (
             <li key={link.url}>
@@ -108,7 +108,7 @@ export default function LawyerPage({ cachedUser }) {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-start gap-3 rounded-2xl bg-white text-pw-navy p-4 min-h-[44px] hover:bg-pw-soft transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2 focus-visible:ring-offset-pw-navy"
+                className="group flex items-start gap-3 rounded-2xl bg-white text-pw-navy p-4 min-h-[44px] hover:bg-pw-soft transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2 focus-visible:ring-offset-pw-navy"
               >
                 <span className="min-w-0 flex-1 space-y-1">
                   <span className="block text-base font-bold group-hover:underline">{link.label}</span>
@@ -121,10 +121,10 @@ export default function LawyerPage({ cachedUser }) {
         </ul>
       </section>
 
-      <div className="rounded-3xl bg-pw-red-soft p-5 md:p-6 space-y-3">
+      <div className="rounded-[14px] bg-pw-red-soft p-5 md:p-6 space-y-3">
         <div className="flex items-center gap-3">
           <AlertTriangle className="w-6 h-6 text-pw-red-ink shrink-0" aria-hidden="true" />
-          <h2 className="text-[22px] leading-snug font-extrabold text-pw-red-ink">Who can legally help you</h2>
+          <h2 className="text-[28px] leading-snug font-display font-normal text-pw-red-ink">Who can legally help you</h2>
         </div>
         <p className="text-base text-pw-navy leading-relaxed">
           Only lawyers and DOJ-accredited representatives can give immigration legal advice. Notarios and

@@ -102,7 +102,7 @@ export default function NotificationCenter({ userEmail }) {
         <Button variant="ghost" size="icon" className="relative" aria-label="Notifications">
           <Bell className="w-5 h-5 text-pw-navy" />
           {unreadCount > 0 && (
-            <span className="absolute top-2 right-2 w-2.5 h-2.5 bg-pw-red rounded-full ring-2 ring-white" />
+            <span className="absolute top-2 right-2 w-2.5 h-2.5 bg-pw-red-ink rounded-full ring-2 ring-white" />
           )}
         </Button>
       </SheetTrigger>
@@ -143,16 +143,16 @@ export default function NotificationCenter({ userEmail }) {
                         >
                             <div className="flex justify-between items-start gap-2 mb-1">
                                 <h4 className="text-base font-bold text-pw-navy flex items-center gap-2">
-                                    {!n.read && <span className="w-2 h-2 rounded-full bg-pw-red shrink-0" aria-hidden="true" />}
+                                    {!n.read && <span className="w-2 h-2 rounded-full bg-pw-navy shrink-0" aria-hidden="true" />}
                                     {n.title}
                                 </h4>
                                 <div className="flex items-center gap-1 -mt-2 -mr-2 md:opacity-0 md:group-hover:opacity-100 focus-within:opacity-100 transition-opacity">
                                     {!n.read && (
-                                        <button onClick={() => markAsRead(n.id)} className="w-11 h-11 flex items-center justify-center hover:bg-pw-soft rounded-xl text-pw-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red" title="Mark read" aria-label="Mark read">
+                                        <button onClick={() => markAsRead(n.id)} className="w-11 h-11 flex items-center justify-center hover:bg-pw-soft rounded-xl text-pw-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy" title="Mark read" aria-label="Mark read">
                                             <Check className="w-4 h-4" />
                                         </button>
                                     )}
-                                    <button onClick={(e) => deleteNotification(n.id, e)} className="w-11 h-11 flex items-center justify-center hover:bg-pw-red-soft rounded-xl text-pw-red-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red" title="Delete" aria-label="Delete">
+                                    <button onClick={(e) => deleteNotification(n.id, e)} className="w-11 h-11 flex items-center justify-center hover:bg-pw-red-soft rounded-xl text-pw-red-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy" title="Delete" aria-label="Delete">
                                         <Trash2 className="w-4 h-4" />
                                     </button>
                                 </div>
@@ -166,7 +166,7 @@ export default function NotificationCenter({ userEmail }) {
                                     <Link 
                                         to={n.link} 
                                         onClick={() => { setIsOpen(false); markAsRead(n.id); }}
-                                        className="inline-flex items-center min-h-[44px] text-sm font-bold text-pw-navy underline underline-offset-4 decoration-pw-red/60 hover:decoration-pw-red"
+                                        className="inline-flex items-center min-h-[44px] text-sm font-bold text-pw-navy underline underline-offset-4 decoration-pw-navy/40 hover:decoration-pw-navy"
                                     >
                                         View Details
                                     </Link>

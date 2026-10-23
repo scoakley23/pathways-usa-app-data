@@ -50,7 +50,7 @@ export default function AIExplanation({ question, answer, context = "US Civics T
                 type="button"
                 onClick={() => setIsOpen(!isOpen)}
                 aria-expanded={isOpen}
-                className="w-full min-h-[44px] flex items-center justify-between px-4 py-3 text-sm font-bold text-pw-blue-ink rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red"
+                className="w-full min-h-[44px] flex items-center justify-between px-4 py-3 text-sm font-bold text-pw-blue-ink rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
             >
                 <span className="flex items-center gap-2"><Sparkles className="w-4 h-4" aria-hidden="true" /> AI Explanation</span>
                 {isOpen ? <ChevronUp className="w-5 h-5" aria-hidden="true" /> : <ChevronDown className="w-5 h-5" aria-hidden="true" />}

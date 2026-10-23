@@ -68,7 +68,7 @@ export default function Dashboard({ cachedUser }) {
     );
   }
 
-  const tile = 'rounded-3xl bg-white border border-pw-line shadow-raised p-4';
+  const tile = 'rounded-[14px] bg-white border border-pw-line shadow-raised p-4';
   const iconSquare = 'w-10 h-10 rounded-2xl grid place-items-center';
 
   return (

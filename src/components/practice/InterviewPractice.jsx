@@ -508,7 +508,7 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
       {/* Conversation Transcript */}
       <div
         ref={transcriptRef}
-        className="rounded-3xl bg-pw-soft p-3 space-y-3 max-h-[360px] overflow-y-auto"
+        className="rounded-[14px] bg-pw-soft p-3 space-y-3 max-h-[360px] overflow-y-auto"
       >
         {conversation.map((msg) => (
           <MessageBubble key={msg.id} role={msg.role} text={msg.text} />
@@ -523,7 +523,7 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
                 {[...Array(12)].map((_, i) => (
                   <div
                     key={i}
-                    className="w-1.5 bg-pw-red rounded-full transition-all duration-75"
+                    className="w-1.5 bg-pw-red-ink rounded-full transition-all duration-75"
                     style={{ height: `${Math.max(6, Math.random() * audioLevel * 0.5 + audioLevel * 0.5)}px`, opacity: 0.6 + Math.random() * 0.4 }}
                   />
                 ))}
@@ -604,7 +604,7 @@ function TypingIndicator() {
 }
 
 const scoreColor = (s) => s >= 80 ? 'text-pw-green-ink' : s >= 60 ? 'text-pw-blue-ink' : 'text-pw-red-ink';
-const barColor = (s) => s >= 80 ? 'bg-pw-green-ink' : s >= 60 ? 'bg-pw-blue-ink' : 'bg-pw-red';
+const barColor = (s) => s >= 80 ? 'bg-pw-green-ink' : s >= 60 ? 'bg-pw-blue-ink' : 'bg-pw-red-ink';
 
 function FeedbackPanel({ feedback, response, understanding = false }) {
   const [expanded, setExpanded] = useState(false);
@@ -612,7 +612,7 @@ function FeedbackPanel({ feedback, response, understanding = false }) {
 
   return (
     <div className="w-full space-y-3 animate-in fade-in slide-in-from-bottom-2">
-      <div className={`flex items-center gap-4 p-5 rounded-3xl ${passed ? 'bg-pw-green-soft' : 'bg-pw-red-soft'}`}>
+      <div className={`flex items-center gap-4 p-5 rounded-[14px] ${passed ? 'bg-pw-green-soft' : 'bg-pw-red-soft'}`}>
         <div className={`w-12 h-12 rounded-full bg-white flex items-center justify-center shrink-0 ${passed ? 'text-pw-green-ink' : 'text-pw-red-ink'}`}>
           {passed ? <Check className="w-7 h-7" aria-hidden="true" /> : <X className="w-7 h-7" aria-hidden="true" />}
         </div>
@@ -643,7 +643,7 @@ function FeedbackPanel({ feedback, response, understanding = false }) {
       </div>
 
       {feedback.corrected_version && (
-        <div className="bg-pw-blue-soft rounded-3xl p-5">
+        <div className="bg-pw-blue-soft rounded-[14px] p-5">
           <Eyebrow className="mb-2 text-pw-blue-ink">{understanding ? 'What the question is asking' : 'Better Way to Say It'}</Eyebrow>
           <p className="text-pw-navy font-bold leading-relaxed">"{feedback.corrected_version}"</p>
         </div>
@@ -653,7 +653,7 @@ function FeedbackPanel({ feedback, response, understanding = false }) {
         type="button"
         onClick={() => setExpanded(!expanded)}
         aria-expanded={expanded}
-        className="w-full min-h-[48px] flex items-center justify-between bg-white border border-pw-line hover:bg-pw-soft px-4 py-3 rounded-2xl transition-colors text-base font-bold text-pw-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red"
+        className="w-full min-h-[48px] flex items-center justify-between bg-white border border-pw-line hover:bg-pw-soft px-4 py-3 rounded-2xl transition-colors text-base font-bold text-pw-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
       >
         <span>Detailed Feedback</span>
         {expanded ? <ChevronUp className="w-5 h-5" aria-hidden="true" /> : <ChevronDown className="w-5 h-5" aria-hidden="true" />}
@@ -706,7 +706,7 @@ function InterviewIntro({ questions, onStart, varyOfficer, onToggleVary }) {
           </div>
         </div>
 
-        <h2 className="text-[1.75rem] font-extrabold leading-tight mt-5 mb-2">Mock Interview</h2>
+        <h2 className="text-[32px] font-display font-normal leading-tight mt-5 mb-2">Mock Interview</h2>
         <p className="text-base text-pw-muted leading-relaxed">
           Have a conversation with Officer Martinez. She'll ask you real interview questions and evaluate your responses.
         </p>
@@ -748,7 +748,7 @@ function InterviewIntro({ questions, onStart, varyOfficer, onToggleVary }) {
         role="switch"
         aria-checked={varyOfficer}
         onClick={onToggleVary}
-        className="flex items-center gap-3 bg-white rounded-2xl px-4 py-3 min-h-[56px] border border-pw-line w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red"
+        className="flex items-center gap-3 bg-white rounded-2xl px-4 py-3 min-h-[56px] border border-pw-line w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
       >
         <span className={`w-11 h-6 rounded-full relative transition-colors shrink-0 ${varyOfficer ? 'bg-pw-navy' : 'bg-pw-line'}`}>
           <span className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform ${varyOfficer ? 'translate-x-5' : ''}`} />

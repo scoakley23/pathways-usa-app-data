@@ -225,14 +225,14 @@ useEffect(() => {
 
   return (
     <div className="fixed inset-0 z-[9999] bg-pw-navy/50 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-200">
-      <div className="relative w-full max-w-4xl max-h-[calc(100vh-2rem)] overflow-y-auto bg-white rounded-3xl shadow-lift border border-pw-line text-pw-navy">
+      <div className="relative w-full max-w-4xl max-h-[calc(100vh-2rem)] overflow-y-auto bg-white rounded-[14px] shadow-lift border border-pw-line text-pw-navy">
         {step === 'select-role' && (
           <button 
             onClick={async () => {
               await base44.auth.logout();
               window.location.reload();
             }}
-            className="absolute top-3 right-3 z-10 w-11 h-11 flex items-center justify-center rounded-xl hover:bg-pw-soft transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red"
+            className="absolute top-3 right-3 z-10 w-11 h-11 flex items-center justify-center rounded-xl hover:bg-pw-soft transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
             title="Sign out"
             aria-label="Sign out"
           >
@@ -243,7 +243,7 @@ useEffect(() => {
         {step === 'choose' && (
           <div className="p-6 pt-14 sm:p-12 text-center space-y-8">
             <div>
-              <h1 className="text-[28px] sm:text-4xl leading-tight font-extrabold text-pw-navy mb-3">Welcome to Citizenship Learning Hub</h1>
+              <h1 className="font-display text-[36px] sm:text-[48px] leading-tight text-pw-navy mb-3">Welcome to Pathways</h1>
               <p className="text-lg sm:text-xl text-pw-muted">Get started or sign in to continue</p>
             </div>
 
@@ -270,14 +270,14 @@ useEffect(() => {
         {step === 'signup' && !selectedRole && (
           <div className="p-6 pt-14 sm:p-12 space-y-8">
             <div className="text-center space-y-2">
-              <h2 className="text-[26px] sm:text-3xl leading-tight font-extrabold text-pw-navy">Choose Your Role</h2>
+              <h2 className="text-[30px] sm:text-4xl leading-tight font-display font-normal text-pw-navy">Choose Your Role</h2>
               <p className="text-base text-pw-muted">Are you a student or a tutor?</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
               <button 
                 onClick={() => setSelectedRole('student')}
-                className="group p-6 sm:p-8 rounded-3xl border-2 border-pw-line bg-white transition-colors hover:border-pw-navy hover:bg-pw-soft text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red"
+                className="group p-6 sm:p-8 rounded-[14px] border-2 border-pw-line bg-white transition-colors hover:border-pw-navy hover:bg-pw-soft text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
               >
                 <div className="w-16 h-16 rounded-2xl bg-pw-blue-soft text-pw-blue-ink flex items-center justify-center mb-4 mx-auto">
                   <GraduationCap className="w-8 h-8" />
@@ -288,7 +288,7 @@ useEffect(() => {
 
               <button 
                 onClick={() => setSelectedRole('tutor')}
-                className="group p-6 sm:p-8 rounded-3xl border-2 border-pw-line bg-white transition-colors hover:border-pw-navy hover:bg-pw-soft text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red"
+                className="group p-6 sm:p-8 rounded-[14px] border-2 border-pw-line bg-white transition-colors hover:border-pw-navy hover:bg-pw-soft text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
               >
                 <div className="w-16 h-16 rounded-2xl bg-pw-teal-soft text-pw-teal-ink flex items-center justify-center mb-4 mx-auto">
                   <School className="w-8 h-8" />
@@ -301,7 +301,7 @@ useEffect(() => {
             <div className="text-center">
               <button 
                 onClick={() => setStep('choose')}
-                className="min-h-[44px] px-4 text-base font-semibold text-pw-muted hover:text-pw-navy rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red"
+                className="min-h-[44px] px-4 text-base font-semibold text-pw-muted hover:text-pw-navy rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
               >
                 ← Back
               </button>
@@ -320,7 +320,7 @@ useEffect(() => {
                   <School className="w-8 h-8 text-pw-teal-ink" />
                 }
               </div>
-              <h2 className="text-[26px] sm:text-3xl leading-tight font-extrabold text-pw-navy">Sign Up as {selectedRole === 'student' ? 'Student' : 'Tutor'}</h2>
+              <h2 className="text-[30px] sm:text-4xl leading-tight font-display font-normal text-pw-navy">Sign Up as {selectedRole === 'student' ? 'Student' : 'Tutor'}</h2>
               {inviteCode && (
                 <p className="inline-block text-sm text-pw-green-ink bg-pw-green-soft rounded-full px-3 py-1 font-bold mt-3">Using invite: {inviteCode}</p>
               )}
@@ -333,7 +333,7 @@ useEffect(() => {
                   type="text"
                   value={displayName}
                   onChange={(e) => setDisplayName(e.target.value)}
-                  className="w-full min-h-[48px] px-4 py-3 text-base text-pw-navy bg-white border-2 border-pw-line rounded-2xl placeholder:text-pw-muted/70 focus:outline-none focus:border-pw-navy focus-visible:ring-2 focus-visible:ring-pw-red/40"
+                  className="w-full min-h-[48px] px-4 py-3 text-base text-pw-navy bg-white border-2 border-pw-line rounded-2xl placeholder:text-pw-muted/70 focus:outline-none focus:border-pw-navy focus-visible:ring-2 focus-visible:ring-pw-navy/40"
                   placeholder="John Doe"
                 />
               </div>
@@ -344,7 +344,7 @@ useEffect(() => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full min-h-[48px] px-4 py-3 text-base text-pw-navy bg-white border-2 border-pw-line rounded-2xl placeholder:text-pw-muted/70 focus:outline-none focus:border-pw-navy focus-visible:ring-2 focus-visible:ring-pw-red/40"
+                  className="w-full min-h-[48px] px-4 py-3 text-base text-pw-navy bg-white border-2 border-pw-line rounded-2xl placeholder:text-pw-muted/70 focus:outline-none focus:border-pw-navy focus-visible:ring-2 focus-visible:ring-pw-navy/40"
                   placeholder="you@example.com"
                 />
               </div>
@@ -355,7 +355,7 @@ useEffect(() => {
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full min-h-[48px] px-4 py-3 text-base text-pw-navy bg-white border-2 border-pw-line rounded-2xl placeholder:text-pw-muted/70 focus:outline-none focus:border-pw-navy focus-visible:ring-2 focus-visible:ring-pw-red/40"
+                  className="w-full min-h-[48px] px-4 py-3 text-base text-pw-navy bg-white border-2 border-pw-line rounded-2xl placeholder:text-pw-muted/70 focus:outline-none focus:border-pw-navy focus-visible:ring-2 focus-visible:ring-pw-navy/40"
                   placeholder="••••••••"
                 />
               </div>
@@ -369,7 +369,7 @@ useEffect(() => {
                     type="text"
                     value={inviteCode}
                     onChange={(e) => setInviteCode(e.target.value.toUpperCase())}
-                    className="w-full min-h-[48px] px-4 py-3 text-base text-pw-navy bg-white border-2 border-pw-line rounded-2xl placeholder:text-pw-muted/70 focus:outline-none focus:border-pw-navy focus-visible:ring-2 focus-visible:ring-pw-red/40"
+                    className="w-full min-h-[48px] px-4 py-3 text-base text-pw-navy bg-white border-2 border-pw-line rounded-2xl placeholder:text-pw-muted/70 focus:outline-none focus:border-pw-navy focus-visible:ring-2 focus-visible:ring-pw-navy/40"
                     placeholder="ABC1234"
                   />
                   <p className="text-sm text-pw-muted mt-1">Enter your tutor's code to connect</p>
@@ -386,11 +386,11 @@ useEffect(() => {
             </div>
 
             <div className="text-center space-y-1 text-base">
-              <button onClick={() => setSelectedRole(null)} className="min-h-[44px] px-3 font-semibold text-pw-muted hover:text-pw-navy rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red">
+              <button onClick={() => setSelectedRole(null)} className="min-h-[44px] px-3 font-semibold text-pw-muted hover:text-pw-navy rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy">
                 ← Choose different role
               </button>
               <div>
-                <button onClick={() => setStep('login')} className="min-h-[44px] px-3 font-bold text-pw-navy underline underline-offset-4 decoration-pw-red/60 hover:decoration-pw-red rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red">
+                <button onClick={() => setStep('login')} className="min-h-[44px] px-3 font-bold text-pw-navy underline underline-offset-4 decoration-pw-navy/40 hover:decoration-pw-navy rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy">
                   Already have an account? Sign in
                 </button>
               </div>
@@ -401,7 +401,7 @@ useEffect(() => {
         {step === 'login' && (
           <div className="p-6 pt-10 sm:p-12 max-w-md mx-auto space-y-6">
             <div className="text-center">
-              <h2 className="text-[26px] sm:text-3xl leading-tight font-extrabold text-pw-navy mb-2">Welcome Back</h2>
+              <h2 className="text-[30px] sm:text-4xl leading-tight font-display font-normal text-pw-navy mb-2">Welcome Back</h2>
               <p className="text-base text-pw-muted">Sign in to your account</p>
             </div>
 
@@ -412,7 +412,7 @@ useEffect(() => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full min-h-[48px] px-4 py-3 text-base text-pw-navy bg-white border-2 border-pw-line rounded-2xl placeholder:text-pw-muted/70 focus:outline-none focus:border-pw-navy focus-visible:ring-2 focus-visible:ring-pw-red/40"
+                  className="w-full min-h-[48px] px-4 py-3 text-base text-pw-navy bg-white border-2 border-pw-line rounded-2xl placeholder:text-pw-muted/70 focus:outline-none focus:border-pw-navy focus-visible:ring-2 focus-visible:ring-pw-navy/40"
                   placeholder="you@example.com"
                 />
               </div>
@@ -423,7 +423,7 @@ useEffect(() => {
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full min-h-[48px] px-4 py-3 text-base text-pw-navy bg-white border-2 border-pw-line rounded-2xl placeholder:text-pw-muted/70 focus:outline-none focus:border-pw-navy focus-visible:ring-2 focus-visible:ring-pw-red/40"
+                  className="w-full min-h-[48px] px-4 py-3 text-base text-pw-navy bg-white border-2 border-pw-line rounded-2xl placeholder:text-pw-muted/70 focus:outline-none focus:border-pw-navy focus-visible:ring-2 focus-visible:ring-pw-navy/40"
                   placeholder="••••••••"
                 />
               </div>
@@ -438,11 +438,11 @@ useEffect(() => {
             </div>
 
             <div className="text-center space-y-1 text-base">
-              <button onClick={() => setStep('choose')} className="min-h-[44px] px-3 font-semibold text-pw-muted hover:text-pw-navy rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red">
+              <button onClick={() => setStep('choose')} className="min-h-[44px] px-3 font-semibold text-pw-muted hover:text-pw-navy rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy">
                 ← Back
               </button>
               <div>
-                <button onClick={() => setStep('signup')} className="min-h-[44px] px-3 font-bold text-pw-navy underline underline-offset-4 decoration-pw-red/60 hover:decoration-pw-red rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red">
+                <button onClick={() => setStep('signup')} className="min-h-[44px] px-3 font-bold text-pw-navy underline underline-offset-4 decoration-pw-navy/40 hover:decoration-pw-navy rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy">
                   Don't have an account? Sign up
                 </button>
               </div>
@@ -453,7 +453,7 @@ useEffect(() => {
         {step === 'select-role' && (
           <div className="p-6 pt-14 sm:p-12 space-y-8">
             <div className="text-center space-y-2">
-              <h2 className="text-[26px] sm:text-3xl leading-tight font-extrabold text-pw-navy">Complete Your Profile</h2>
+              <h2 className="text-[30px] sm:text-4xl leading-tight font-display font-normal text-pw-navy">Complete Your Profile</h2>
               <p className="text-base text-pw-muted">Choose your role to get started</p>
               <p className="text-sm text-pw-muted break-all">Signed in as {currentUser?.email}</p>
             </div>
@@ -462,7 +462,7 @@ useEffect(() => {
               <button 
                 onClick={() => setSelectedRole('student')}
                 aria-pressed={selectedRole === 'student'}
-                className={`group p-6 sm:p-8 rounded-3xl border-2 transition-colors text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red ${
+                className={`group p-6 sm:p-8 rounded-[14px] border-2 transition-colors text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy ${
                   selectedRole === 'student'
                     ? 'border-pw-navy bg-pw-soft'
                     : 'border-pw-line bg-white hover:border-pw-navy/50'
@@ -480,7 +480,7 @@ useEffect(() => {
               <button 
                 onClick={() => setSelectedRole('tutor')}
                 aria-pressed={selectedRole === 'tutor'}
-                className={`group p-6 sm:p-8 rounded-3xl border-2 transition-colors text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red ${
+                className={`group p-6 sm:p-8 rounded-[14px] border-2 transition-colors text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy ${
                   selectedRole === 'tutor'
                     ? 'border-pw-navy bg-pw-soft'
                     : 'border-pw-line bg-white hover:border-pw-navy/50'
@@ -505,7 +505,7 @@ useEffect(() => {
                   type="text"
                   value={inviteCode}
                   onChange={(e) => setInviteCode(e.target.value.toUpperCase())}
-                  className="w-full min-h-[48px] px-4 py-3 text-base text-pw-navy bg-white border-2 border-pw-line rounded-2xl placeholder:text-pw-muted/70 focus:outline-none focus:border-pw-navy focus-visible:ring-2 focus-visible:ring-pw-red/40"
+                  className="w-full min-h-[48px] px-4 py-3 text-base text-pw-navy bg-white border-2 border-pw-line rounded-2xl placeholder:text-pw-muted/70 focus:outline-none focus:border-pw-navy focus-visible:ring-2 focus-visible:ring-pw-navy/40"
                   placeholder="ABC1234"
                 />
                 <p className="text-sm text-pw-muted mt-1">Enter your tutor's code to connect</p>

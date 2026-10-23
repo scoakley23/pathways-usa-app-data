@@ -38,7 +38,7 @@ export default function TestDateTracker() {
   const daysLeft = date ? differenceInDays(date, new Date()) : null;
 
   return (
-    <div className="rounded-3xl bg-white border border-pw-line p-4 space-y-3 sm:min-w-[280px]">
+    <div className="rounded-[14px] bg-white border border-pw-line p-4 space-y-3 sm:min-w-[280px]">
       <div className="flex flex-wrap items-center gap-3">
         {date && (
           <div className="flex-1 min-w-[120px]">

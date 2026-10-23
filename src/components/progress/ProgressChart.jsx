@@ -6,9 +6,9 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 
 // Chart colors match the pw tokens (recharts needs raw values).
 const NAVY = '#14264A';
-const RED = '#D9483F';
+const RED = '#B53A32'; // Red ink (Signal red is for the dot only)
 const LINE = '#DEE4EE';
-const MUTED = '#4A5A78';
+const MUTED = '#3D4F73'; // pw-muted
 
 export default function ProgressChart({ userEmail }) {
   const [chartData, setChartData] = useState([]);

@@ -164,7 +164,7 @@ export default function StudentProgressReport({ isOpen, onClose, studentEmail })
                     <ul className="space-y-2">
                       {stats.weaknesses.map((item, idx) => (
                          <li key={idx} className="text-base text-pw-navy flex items-start gap-2">
-                           <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-pw-red flex-shrink-0" aria-hidden="true" />
+                           <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-pw-navy flex-shrink-0" aria-hidden="true" />
                            {getLabel(item)}
                          </li>
                       ))}

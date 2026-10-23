@@ -45,7 +45,7 @@ export default function VocabularyWordsTab() {
           <Plus className="w-4 h-4" /> Add Word
         </Button>
       </div>
-      <div className="border border-pw-line rounded-3xl bg-white shadow-raised overflow-hidden">
+      <div className="border border-pw-line rounded-[14px] bg-white shadow-raised overflow-hidden">
         <Table className="text-base [&_th]:px-2 [&_td]:px-2 sm:[&_th]:px-4 sm:[&_td]:px-4 [&_th]:text-sm [&_th]:font-bold [&_th]:text-pw-muted">
           <TableHeader>
             <TableRow className="bg-pw-soft hover:bg-pw-soft">

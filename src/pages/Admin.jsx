@@ -40,10 +40,10 @@ export default function Admin() {
   if (!currentUser || currentUser.role !== 'admin') {
     return (
       <div className="flex flex-col items-center justify-center min-h-[50vh] text-center space-y-4">
-        <div className="w-20 h-20 rounded-3xl bg-pw-red-soft flex items-center justify-center" aria-hidden="true">
+        <div className="w-20 h-20 rounded-[14px] bg-pw-red-soft flex items-center justify-center" aria-hidden="true">
           <AlertCircle className="w-10 h-10 text-pw-red-ink" />
         </div>
-        <h2 className="text-2xl font-extrabold text-pw-navy">Access Denied</h2>
+        <h2 className="text-[28px] font-display font-normal text-pw-navy">Access Denied</h2>
         <p className="text-base text-pw-muted">You do not have permission to view this page.</p>
       </div>
     );
@@ -56,7 +56,7 @@ export default function Admin() {
         subtitle="Manage all practice content — sentences, civics questions, vocabulary words — and Resource Hub places."
       >
         <div className="flex flex-wrap gap-2">
-          <Link to="/tutor-demo" className="inline-flex items-center justify-center min-h-[44px] rounded-2xl border-2 border-pw-navy bg-white px-4 text-base font-bold text-pw-navy hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red focus-visible:ring-offset-2">
+          <Link to="/tutor-demo" className="inline-flex items-center justify-center min-h-[44px] rounded-2xl border-2 border-pw-navy bg-white px-4 text-base font-bold text-pw-navy hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2">
             Tutor demo
           </Link>
         </div>

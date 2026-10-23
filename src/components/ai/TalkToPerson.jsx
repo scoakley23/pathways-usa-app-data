@@ -109,7 +109,7 @@ export default function TalkToPerson({ open, onOpenChange, userEmail, language =
   const lawyerNote = (
     <p dir={dir} className="text-base leading-snug text-pw-navy">
       {t('noLegal')}{' '}
-      <Link to="/lawyer-first" onClick={() => onOpenChange(false)} className="font-bold underline underline-offset-4 decoration-pw-red/60 hover:decoration-pw-red">
+      <Link to="/lawyer-first" onClick={() => onOpenChange(false)} className="font-bold underline underline-offset-4 decoration-pw-navy/40 hover:decoration-pw-navy">
         {t('lawyerLink')}
       </Link>
     </p>

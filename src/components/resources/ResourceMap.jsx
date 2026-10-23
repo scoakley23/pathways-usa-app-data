@@ -209,7 +209,7 @@ function ViewControl({ origin, places, onSearchArea, programmatic }) {
           setMoved(false);
           onSearchArea({ lat: c.lat, lng: c.lng });
         }}
-        className="pointer-events-auto min-h-[44px] rounded-full bg-white px-5 text-base font-bold text-pw-navy shadow-lift border border-pw-line inline-flex items-center gap-2 hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-red"
+        className="pointer-events-auto min-h-[44px] rounded-full bg-white px-5 text-base font-bold text-pw-navy shadow-lift border border-pw-line inline-flex items-center gap-2 hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
       >
         <Search className="w-5 h-5" aria-hidden="true" /> Search this area
       </button>
