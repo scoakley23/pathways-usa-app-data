@@ -55,3 +55,11 @@ Contrast: Ink on Paper/Mist/Linen ≥ 12:1; Muted on Paper ≈ 8.6:1; white on R
 ## Voice
 - Calm, respectful, adult. Plain words. "Explain it simply" everywhere. No mascots, streaks, hearts, leaderboards.
 - Legal line: "We explain what questions mean. How they apply to you is for a lawyer — Talk to a lawyer first."
+
+## Additions (Oct 2026, after the X2 review)
+- **Sky** `#A9CBEC`: light blue. Ink text and ink/white-pill buttons only (white text on Sky fails contrast). Used for the Writing practice tile and one N-400 section tab.
+- **Plum** `#5E4A8C`: white text ≈ 7.4:1. One N-400 section tab.
+- Practice hub order and colors: Reading (Civics blue) · Writing (Sky) · Civics (Red ink) · Speaking, the officer's questions (Ink). Start buttons on the tiles are white.
+- Practice run progress: one star per card. Upcoming cards are white stars, the current one is an outlined star, and a finished card turns green (right), yellow (almost) or red (missed); the screen-reader label says the counts. Stars, never torches or the Statue of Liberty.
+- **Ruled paper** = the learner's own page: white with pale blue rules and a pale margin line. Used for the Listen-and-write surface, the "Explain it simply" sheet, lesson notes, and the N-400 screens. Not on Today or the Practice hub.
+- N-400 opens on a simple folder cover (one short paragraph, the sections-read chips, "Open the folder"), then the section list, then a question.

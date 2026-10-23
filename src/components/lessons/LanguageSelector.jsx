@@ -8,16 +8,23 @@ import {
 } from '@/components/ui/select';
 import { LANGUAGES } from '@/hooks/useLessonTranslation';
 
-export default function LanguageSelector({ language, onLanguageChange, translating }) {
+// `compact`: a small pill (globe + language code) for the app header.
+export default function LanguageSelector({ language, onLanguageChange, translating, compact = false, className = '' }) {
+  const label = LANGUAGES.find((l) => l.value === language)?.label || language;
   return (
     <Select value={language} onValueChange={onLanguageChange} disabled={translating}>
-      <SelectTrigger className="w-[160px] min-h-[44px] bg-white" aria-label="Lesson language">
+      <SelectTrigger
+        className={compact
+          ? `w-auto min-h-[44px] gap-1.5 rounded-full bg-white px-3 font-semibold text-pw-navy [&>svg:last-child]:hidden ${className}`
+          : `w-[160px] min-h-[44px] bg-white ${className}`}
+        aria-label={compact ? `Language: ${label}` : 'Lesson language'}
+      >
         {translating ? (
           <Loader2 className="w-4 h-4 animate-spin mr-2 text-pw-navy" />
         ) : (
-          <Globe className="w-4 h-4 mr-2 text-pw-muted" />
+          <Globe className={`w-4 h-4 ${compact ? 'text-pw-navy' : 'mr-2 text-pw-muted'}`} aria-hidden="true" />
         )}
-        <SelectValue />
+        {compact ? <span className="uppercase">{language.split('-')[0]}</span> : <SelectValue />}
       </SelectTrigger>
       <SelectContent>
         {LANGUAGES.map((opt) => (

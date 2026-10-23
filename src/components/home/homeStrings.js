@@ -23,6 +23,16 @@ export const HOME_STRINGS = {
     "Your tutor can teach the lessons in {n} languages. It's perfectly fine to learn in the language you know best.",
   promise_language_english:
     'Your interview and test are in English, so we also practice English with you, one step at a time, until you feel confident.',
+  study_title: 'How we study together',
+  study_answers_title: 'Answers word for word',
+  study_answers_body:
+    'Civics questions and accepted answers come from the USCIS lists for the 2008 and 2025 tests. {name} explains them but never changes them.',
+  study_language_title: 'Learn in your language, answer in English',
+  study_language_body:
+    'Lessons can be in any of {n} languages. The interview is in English, so we practice your answers in English, one step at a time.',
+  study_privacy_title: 'Your story stays yours',
+  study_privacy_body:
+    'We never record your voice or save your answers to the N-400. Your interview date stays on this phone.',
   practice_title: 'Practice one skill',
   practice_desc: 'Each skill is one part of your interview.',
   hero_start_here: 'Start here',

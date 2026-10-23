@@ -10,6 +10,10 @@ import NotificationCenter from '@/components/notifications/NotificationCenter';
 import StudyBuddy, { openTutorChat } from '@/components/ai/StudyBuddy';
 import TabBar from '@/components/pathways/TabBar';
 import { PathwaysLockup } from '@/components/pathways/ui';
+import LanguageSelector from '@/components/lessons/LanguageSelector';
+import TutorAvatar from '@/components/persona/TutorAvatar';
+import useTutorProfile from '@/components/persona/useTutorProfile';
+import useAppLanguage from '@/hooks/useAppLanguage';
 import { clearTutorPhoto } from '@/lib/tutorPhoto';
 import { useAuth } from '@/lib/AuthContext';
 import { AutoReadContext } from '@/components/persona/useAutoRead';
@@ -30,6 +34,8 @@ export default function Layout({ children }) {
   const [showOnboarding, setShowOnboarding] = React.useState(false);
   const navigate = useNavigate();
   const { isAuthenticated, isLoadingAuth } = useAuth();
+  const [language, setLanguage] = useAppLanguage();
+  const { profile: tutor } = useTutorProfile();
   // The signed-out splash on Home shows the big stacked logo, so the header
   // leaves its small one out there.
   const splash = location.pathname === '/' && !isLoadingAuth && !isAuthenticated;
@@ -113,6 +119,11 @@ export default function Layout({ children }) {
   }, [role, user]);
 
   const navItems = getNavItems;
+  // The four places (tutors: Today and the Tutor Portal) sit in the header on
+  // desktop and in the tab bar on phones; Menu holds the rest.
+  const PRIMARY = role === 'tutor' ? ['/', '/Tutor'] : ['/', '/Lessons', '/Practice', '/n400-guide'];
+  const primaryItems = navItems.filter((item) => PRIMARY.includes(item.path));
+  const isCurrent = (path) => location.pathname.toLowerCase() === path.toLowerCase();
 
   const handleLogout = async () => {
     await base44.auth.logout();
@@ -121,6 +132,11 @@ export default function Layout({ children }) {
 
   const focusMode = FOCUS_ROUTES.includes(location.pathname);
   const showTabs = role !== 'tutor' && !focusMode;
+  // Phones without the tab bar (tutors, lesson screens) find the four places
+  // in Menu too; with the tab bar, Menu lists only the rest.
+  const menuItems = navItems
+    .map((item) => ({ ...item, primary: PRIMARY.includes(item.path) }))
+    .filter((item) => !item.primary || !showTabs);
   const askTutor = () => (user ? openTutorChat() : base44.auth.redirectToLogin());
 
   return (
@@ -131,72 +147,70 @@ export default function Layout({ children }) {
       >
         Skip to main content
       </a>
-      {/* Navigation */}
-      <nav aria-label="Site" className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-pw-line">
-        <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+      {/* Header: the same few places on every screen size. Phones get the
+          tab bar for Today · Lessons · tutor · Practice · N-400; desktop
+          shows those four here plus "Ask {tutor}". Everything else is in Menu. */}
+      <nav aria-label="Site" className="sticky top-0 z-50 w-full bg-pw-page/95 backdrop-blur border-b border-pw-line lg:bg-white/95">
+        <div className="container mx-auto px-4 h-16 lg:h-[72px] max-w-5xl flex items-center justify-between gap-3">
           {splash ? <span /> : (
             <Link to="/" aria-label="Pathways, home" className="shrink-0 flex items-center min-h-11 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy">
               <PathwaysLockup size={30} />
             </Link>
           )}
 
-          {/* Desktop Nav */}
+          {/* Desktop: the four places */}
           <div className="hidden lg:flex items-center gap-1">
-            {navItems.map((item) => (
-              <Link 
+            {primaryItems.map((item) => (
+              <Link
                 key={item.path}
                 to={createPageUrl(item.path.replace('/', ''))}
-                aria-current={location.pathname === item.path ? 'page' : undefined}
-                className={`text-base font-bold whitespace-nowrap transition-colors flex items-center gap-2 px-2.5 xl:px-3 min-h-11 rounded-xl
-                  ${location.pathname === item.path ? 'bg-pw-soft text-pw-navy' : 'text-pw-muted hover:text-pw-navy hover:bg-pw-soft'}`}
+                aria-current={isCurrent(item.path) ? 'page' : undefined}
+                className={`text-base font-semibold whitespace-nowrap transition-colors flex items-center px-4 min-h-11 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2
+                  ${isCurrent(item.path) ? 'bg-pw-navy text-white' : 'text-pw-muted hover:text-pw-navy hover:bg-pw-soft'}`}
               >
-                <item.icon className="w-4 h-4 hidden xl:block" aria-hidden="true" />
                 {item.label}
               </Link>
-                ))}
-
-                {user && <NotificationCenter userEmail={user.email} />}
-
-                {user ? (
-              <Button variant="ghost" size="sm" onClick={handleLogout} className="ml-2 text-pw-muted">
-                <LogOut className="w-4 h-4 mr-2" />
-                Sign Out
-              </Button>
-            ) : (
-               <Button size="sm" onClick={() => base44.auth.redirectToLogin()} className="ml-2">
-                Sign In
-              </Button>
-            )}
+            ))}
           </div>
 
-          {/* Mobile Nav */}
-          <div className="lg:hidden flex items-center gap-2">
+          <div className="flex items-center gap-2">
+            <LanguageSelector compact language={language} onLanguageChange={setLanguage} className="border-pw-line" />
             {user && <NotificationCenter userEmail={user.email} />}
+            {!focusMode && (
+              <button
+                type="button"
+                onClick={askTutor}
+                className="hidden lg:inline-flex items-center gap-2 min-h-11 rounded-full bg-pw-navy text-white pl-1.5 pr-4 text-base font-semibold hover:bg-pw-navy-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2"
+              >
+                <TutorAvatar name={tutor.name} size={34} decorative className="ring-2 ring-white rounded-full" />
+                Ask {tutor.name}
+              </button>
+            )}
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
-                <Button variant="outline" className="min-h-11 gap-2 px-3 font-bold">
-                  <Menu className="w-5 h-5" aria-hidden="true" /> Menu
+                <Button variant="outline" className="min-h-11 gap-2 px-3 font-semibold rounded-full" aria-label="Menu">
+                  <Menu className="w-5 h-5" aria-hidden="true" /> <span className="hidden sm:inline">Menu</span>
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-pw-page">
                 <div className="flex flex-col gap-1 mt-8">
-                  {navItems.map((item) => (
-                    <Link 
-                      key={item.path} 
+                  {menuItems.map((item) => (
+                    <Link
+                      key={item.path}
                       to={createPageUrl(item.path.replace('/', ''))}
                       onClick={() => setIsOpen(false)}
-                      aria-current={location.pathname === item.path ? 'page' : undefined}
-                      className={`text-lg font-bold transition-colors flex items-center gap-3 px-4 min-h-[52px] rounded-2xl
-                        ${location.pathname === item.path ? 'bg-white text-pw-navy shadow-raised border-l-4 border-pw-navy' : 'text-pw-muted hover:bg-white hover:text-pw-navy'}`}
+                      aria-current={isCurrent(item.path) ? 'page' : undefined}
+                      className={`text-lg font-semibold transition-colors flex items-center gap-3 px-4 min-h-[52px] rounded-2xl ${item.primary ? 'lg:hidden' : ''}
+                        ${isCurrent(item.path) ? 'bg-white text-pw-navy shadow-raised' : 'text-pw-muted hover:bg-white hover:text-pw-navy'}`}
                     >
-                      <item.icon className="w-5 h-5" />
+                      <item.icon className="w-5 h-5" aria-hidden="true" />
                       {item.label}
                     </Link>
                   ))}
-                   <div className="border-t border-pw-line my-2 pt-4">
+                  <div className="border-t border-pw-line my-2 pt-4">
                     {user ? (
                       <Button variant="ghost" className="w-full justify-start text-pw-red-ink hover:bg-pw-red-soft" onClick={handleLogout}>
-                        <LogOut className="w-5 h-5 mr-3" />
+                        <LogOut className="w-5 h-5 mr-3" aria-hidden="true" />
                         Sign Out
                       </Button>
                     ) : (
@@ -223,13 +237,10 @@ export default function Layout({ children }) {
         </AutoReadContext.Provider>
       </main>
 
-      <footer className={`border-t border-pw-line bg-white mt-8 ${showTabs ? 'pb-24 lg:pb-0' : ''}`}>
-        <div className="container mx-auto px-4 py-5 max-w-5xl">
-          <p className="text-base text-center text-pw-navy font-semibold">Free practice · Not affiliated with USCIS</p>
-          <p className="mt-1 text-sm text-center text-pw-muted">
-            Pathways is an independent nonprofit education app. Not affiliated with USCIS or any government agency. Not legal advice.
-          </p>
-        </div>
+      <footer className={`mt-8 ${showTabs ? 'pb-24 lg:pb-0' : ''}`}>
+        <p className="container mx-auto px-4 py-6 max-w-5xl text-sm text-center text-pw-muted">
+          Free practice · Not affiliated with USCIS · Not legal advice
+        </p>
       </footer>
 
       {showOnboarding && user && (

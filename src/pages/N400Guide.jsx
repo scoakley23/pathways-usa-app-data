@@ -7,6 +7,7 @@ import N400Section from '@/components/n400/N400Section';
 import N400Folder from '@/components/n400/N400Folder';
 import { N400_SECTIONS } from '@/components/n400/n400Content';
 import N400Walkthrough from '@/components/n400/N400Walkthrough';
+import ReadyToFile from '@/components/n400/ReadyToFile';
 import useAppLanguage from '@/hooks/useAppLanguage';
 import LanguageSelector from '@/components/lessons/LanguageSelector';
 import { SKILL_TONE } from '@/components/pathways/ui';
@@ -25,6 +26,14 @@ export default function N400Guide({ cachedUser }) {
   const activeSection = N400_SECTIONS.find((s) => s.id === searchParams.get('section')) || N400_SECTIONS[0];
   const openSection = (id) => setSearchParams({ section: id }, { replace: true });
   const completedIds = progress.filter((p) => p.completed).map((p) => p.section_id);
+
+  // ?ready=1 (end of the N-400 coach) jumps to "Ready to file?".
+  useEffect(() => {
+    if (searchParams.get('ready')) {
+      const id = setTimeout(() => document.getElementById('ready-to-file')?.scrollIntoView({ behavior: 'smooth' }), 300);
+      return () => clearTimeout(id);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     if (!cachedUser?.email) return;
@@ -141,6 +150,7 @@ export default function N400Guide({ cachedUser }) {
           </N400Folder>
         </div>
       )}
+      <ReadyToFile />
     </div>
   );
 }
