@@ -5,13 +5,14 @@ import RoadmapHero from '@/components/home/RoadmapHero';
 import StartHereCard from '@/components/home/StartHereCard';
 import TodayCard from '@/components/persona/TodayCard';
 import RoadmapPath from '@/components/home/RoadmapPath';
-import LanguageSelector from '@/components/lessons/LanguageSelector';
 import HomePromises from '@/components/home/HomePromises';
+import StudyTogether from '@/components/home/StudyTogether';
+import useTutorProfile from '@/components/persona/useTutorProfile';
 import { useAuth } from '@/lib/AuthContext';
 import useRoadmapProgress from '@/components/home/useRoadmapProgress';
 import useAppLanguage, { isRTL } from '@/hooks/useAppLanguage';
 import useHomeTranslation from '@/hooks/useHomeTranslation';
-import { ArrowRight, FileText, Search } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { SKILL_BG, SkillTag } from '@/components/pathways/ui';
 
 // "Practice one skill": each card opens that skill's practice directly.
@@ -22,36 +23,40 @@ const SKILL_CARDS = [
   { art: 'capitol', skill: 'civics', title: 'feat_civics_title', desc: 'feat_civics_desc', to: '/Practice?mode=civics' },
 ];
 
-
+// Home. Learners see Today and nothing else but "How we study together" (the
+// three promises): the rest of the app is one tap away in the tab bar.
+// Signed-out visitors see the splash and the overview (road, promises, the
+// four skills, the N-400 guide); tutors see the overview hero. The language
+// menu is in the header.
 export default function Home({ cachedUser, cachedRole }) {
   const roadmap = useRoadmapProgress(cachedUser);
   const [language, setLanguage] = useAppLanguage();
   const { t, translating } = useHomeTranslation(language);
-  // /?ready=1 (end of the N-400 coach) jumps to "Ready to file?".
-  React.useEffect(() => {
-    if (new URLSearchParams(window.location.search).get('ready')) {
-      setTimeout(() => document.getElementById('ready-to-file')?.scrollIntoView({ behavior: 'smooth' }), 300);
-    }
-  }, []);
+  const { profile } = useTutorProfile();
   const rtl = isRTL(language);
-  // Learners start with their tutor (Today, or the tutor's introduction);
-  // signed-out visitors see "Start here"; tutors see the overview hero.
-  // (Auth is known before pages render, so signed-in users never see it.)
+  // (Auth is known before pages render, so signed-in users never see the splash.)
   const { isAuthenticated } = useAuth();
-  const learner = cachedUser && cachedRole !== 'tutor';
-  const hero = !isAuthenticated
-    ? <StartHereCard t={t} />
-    : learner ? <TodayCard language={language} homeT={t} /> : <RoadmapHero roadmap={roadmap} t={t} />;
+  const learner = isAuthenticated && cachedUser && cachedRole !== 'tutor';
+
+  // Signed in but the account is still loading: wait rather than flash the overview.
+  if (isAuthenticated && !cachedUser) {
+    return <div className="min-h-[60vh]" aria-busy="true" />;
+  }
+
+  if (learner) {
+    return (
+      <div className="flex flex-col gap-10 pb-8" dir={rtl ? 'rtl' : 'ltr'}>
+        <TodayCard language={language} homeT={t} />
+        <StudyTogether t={t} tutorName={profile.name} language={language} onLanguageChange={setLanguage} translating={translating} />
+      </div>
+    );
+  }
+
+  const hero = !isAuthenticated ? <StartHereCard t={t} /> : <RoadmapHero roadmap={roadmap} t={t} />;
 
   return (
     <div className="flex flex-col gap-6 pb-8" dir={rtl ? 'rtl' : 'ltr'}>
-      {/* Language first, so even the first card can be read in it */}
-      <div className="flex justify-end -mb-2">
-        <LanguageSelector language={language} onLanguageChange={setLanguage} translating={translating} />
-      </div>
-      {/* Today / the tutor's introduction (learners), Start here (signed out) */}
       {hero}
-      {/* Roadmap */}
       <RoadmapPath roadmap={roadmap} t={t} language={language} />
 
       {/* Official USCIS answers; learn in your language, test in English */}
@@ -103,41 +108,6 @@ export default function Home({ cachedUser, cachedRole }) {
         </Link>
       </section>
 
-      {/* USCIS Resources Section ("Ready to file?") */}
-      <section id="ready-to-file" className="scroll-mt-24">
-        <div className="rounded-[14px] bg-white border border-pw-line shadow-raised overflow-hidden text-pw-navy">
-          <div className="bg-pw-blue-soft px-5 pt-4 pb-3">
-            <TopicArt name="road" className="w-full h-20" />
-          </div>
-          <div className="p-5 sm:p-8 space-y-4">
-            <h2 className="text-[28px] md:text-3xl font-display font-normal">{t('ready_title')}</h2>
-            <p className="text-base text-pw-muted max-w-xl">{t('ready_body')}</p>
-            <p className="text-base">
-              <Link to="/lawyer-first" className="font-bold underline underline-offset-4 decoration-pw-navy/40 hover:decoration-pw-navy">
-                {t('ready_lawyer')}
-              </Link>
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <a
-                href="https://www.uscis.gov/citizenship/apply-for-naturalization"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="min-h-[52px] rounded-2xl bg-pw-navy text-white font-bold text-base inline-flex items-center justify-center gap-2 px-6 hover:bg-pw-navy-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2"
-              >
-                <FileText className="w-5 h-5" /> {t('btn_apply')}
-              </a>
-              <a
-                href="https://egov.uscis.gov/casestatus/landing.do"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="min-h-[52px] rounded-2xl bg-white border-2 border-pw-navy text-pw-navy font-bold text-base inline-flex items-center justify-center gap-2 px-6 hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2"
-              >
-                <Search className="w-5 h-5" /> {t('btn_case')}
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

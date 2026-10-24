@@ -90,7 +90,7 @@ export default function N400Coach() {
         {allDone ? (
           <>
             <TutorMessage profile={profile} language={language} mine={msg.mine} en={msg.en} />
-            <Link to="/?ready=1" className={`${linkBtn} bg-pw-navy text-white`}>Ready to file?</Link>
+            <Link to="/n400-guide?ready=1" className={`${linkBtn} bg-pw-navy text-white`}>Ready to file?</Link>
           </>
         ) : (
           <>

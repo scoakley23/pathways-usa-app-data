@@ -1,15 +1,16 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
-import TopicArt from '@/components/art/TopicArt';
-import { Tag } from '@/components/pathways/ui';
 import TutorLine from '@/components/persona/TutorLine';
 
-// Page header (brand kit): back button, optional tag, big Instrument Serif
-// title, subtitle, and an optional line drawing. `children` (actions) sit under the title on
-// phones and on the right on wider screens. `guide` is one line from the
-// learner's tutor saying what the page is for.
-export default function PageHeader({ title, subtitle, children, tag, tagTone = 'navy', art, guide }) {
+// The one page header (brand kit, "X2 everywhere"): a quiet back link, a
+// small caps label (`tag`), the Instrument Serif title, an optional
+// subtitle, and `guide`: one line from the learner's tutor, in serif italic
+// and signed in text. No banner and no drawing, so the page's own content
+// starts right away. `children` (actions) sit under the title on phones and
+// on the right on wider screens. `tagTone` and `art` are accepted for older
+// callers and no longer change anything.
+export default function PageHeader({ title, subtitle, children, tag, guide }) {
   const navigate = useNavigate();
 
   const handleBack = () => {
@@ -22,28 +23,22 @@ export default function PageHeader({ title, subtitle, children, tag, tagTone = '
 
   return (
     <header className="text-pw-navy">
-      <div className={`rounded-[14px] ${art ? 'bg-pw-blue-soft px-4 pt-4 pb-5 sm:px-6' : ''}`}>
-        <div className="flex items-center justify-between gap-3">
-          <button
-            type="button"
-            onClick={handleBack}
-            aria-label="Go back"
-            className="w-11 h-11 shrink-0 rounded-xl bg-white border border-pw-line text-pw-navy hover:bg-pw-soft transition-colors grid place-items-center"
-          >
-            <ArrowLeft className="w-5 h-5" />
-          </button>
-          {art && <TopicArt name={art} className="h-20 w-auto max-w-[60%]" />}
+      <button
+        type="button"
+        onClick={handleBack}
+        className="-ml-2 inline-flex items-center gap-1.5 min-h-11 rounded-full px-2 text-base font-semibold text-pw-muted hover:text-pw-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
+      >
+        <ArrowLeft className="w-4 h-4 rtl:rotate-180" aria-hidden="true" /> Back
+      </button>
+      <div className="mt-2 flex flex-col sm:flex-row sm:items-end gap-4">
+        <div className="min-w-0 flex-1">
+          {tag && <p className="mb-1.5 text-[13px] font-semibold uppercase tracking-[0.14em] text-pw-muted">{tag}</p>}
+          <h1 className="font-display text-[40px] sm:text-[52px] leading-[1.02]">{title}</h1>
+          {subtitle && <p className="text-pw-muted text-lg mt-2 max-w-2xl">{subtitle}</p>}
         </div>
-        <div className="mt-4 flex flex-col sm:flex-row sm:items-end gap-4">
-          <div className="min-w-0 flex-1">
-            {tag && <Tag tone={tagTone} className="mb-3">{tag}</Tag>}
-            <h1 className="font-display text-[38px] sm:text-[46px] leading-[1.05]">{title}</h1>
-            {subtitle && <p className="text-pw-muted text-lg mt-1">{subtitle}</p>}
-          </div>
-          {children && <div className="sm:shrink-0">{children}</div>}
-        </div>
-        {guide && <TutorLine className="mt-4 max-w-2xl">{guide}</TutorLine>}
+        {children && <div className="sm:shrink-0">{children}</div>}
       </div>
+      {guide && <TutorLine className="mt-3 max-w-2xl">{guide}</TutorLine>}
     </header>
   );
 }

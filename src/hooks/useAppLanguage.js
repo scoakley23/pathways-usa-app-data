@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 
 export const RTL_LANGUAGES = ['ar', 'fa', 'ur', 'he', 'prs', 'ps'];
 
@@ -17,9 +17,18 @@ export function getSavedLanguage() {
   }
 }
 
+// Fired when any screen changes the language (the header menu, the Home
+// card), so every mounted useAppLanguage() follows along.
+const LANGUAGE_EVENT = 'pathways-language';
+
 // Shared language preference for the app (stored in pathways_language).
 export default function useAppLanguage() {
   const [language, setLanguage] = useState(getSavedLanguage);
+  useEffect(() => {
+    const follow = (e) => setLanguage(e.detail);
+    window.addEventListener(LANGUAGE_EVENT, follow);
+    return () => window.removeEventListener(LANGUAGE_EVENT, follow);
+  }, []);
   const changeLanguage = useCallback((lang) => {
     setLanguage(lang);
     try {
@@ -27,6 +36,7 @@ export default function useAppLanguage() {
     } catch (e) {
       // ignore
     }
+    window.dispatchEvent(new CustomEvent(LANGUAGE_EVENT, { detail: lang }));
   }, []);
   return [language, changeLanguage];
 }

@@ -45,6 +45,8 @@ module.exports = {
     				linen: '#ECEAE4',
     				slate: '#D5DDEA',
     				manila: '#EFDFB8', // N-400 only
+    				sky: '#A9CBEC', // light blue: Writing practice and an N-400 tab; ink text only (white fails)
+    				plum: '#5E4A8C', // an N-400 section tab; white text ≈ 7.4:1
     				civics: '#1F4C8F',
     				reading: '#1E6B66',
     				writing: '#2E7D4F',

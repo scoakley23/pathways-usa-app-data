@@ -9,8 +9,9 @@ const PROCESSING_TIMES = 'https://egov.uscis.gov/processing-times/';
 
 // "When is your interview, or when do you hope to be ready?" The answer is
 // saved only on this device. Never asks which office or anything about the
-// learner's case.
-export default function PlanSetup({ profile, language, again = false, onDone }) {
+// learner's case. `bare`: just the choices, for when the question was
+// already asked (Vía's note on Today's desk).
+export default function PlanSetup({ profile, language, again = false, bare = false, onDone }) {
   const { t, en, mine } = useTodayText(language);
   const [picking, setPicking] = useState(false);
   const months = useMemo(() => {
@@ -29,7 +30,7 @@ export default function PlanSetup({ profile, language, again = false, onDone }) 
 
   return (
     <div className="space-y-4 text-pw-navy">
-      <TutorMessage profile={profile} language={language} mine={mine(key)} en={en(key)} />
+      {!bare && <TutorMessage profile={profile} language={language} mine={mine(key)} en={en(key)} />}
       <RaisedCard className="space-y-3">
         {!picking ? (
           <PrimaryButton large className="w-full" onClick={() => setPicking(true)}>

@@ -10,7 +10,8 @@ import useTutorProfile from './useTutorProfile';
 import useTodayText from './useTodayText';
 import useTextSize from './useTextSize';
 import { partName } from './SkillLevels';
-import { Eyebrow, IndexCard, PrimaryButton, QuietButton, RaisedCard, SecondaryButton, SKILL_COLOR, Tag } from '@/components/pathways/ui';
+import { IndexCard, RaisedCard, SecondaryButton, SKILL_COLOR, SKILL_ON } from '@/components/pathways/ui';
+import { LEVELS } from '@/lib/pretest';
 import { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
 import { N400_SECTIONS } from '@/components/n400/n400Content';
 import { tasksForDay, extraTasks, totalMinutes, dayIndex } from '@/lib/studyPlan';
@@ -22,6 +23,15 @@ import { firstName, splitTasks, stageKey, timeOfDay, weekSquares, weeksToIntervi
 const SECTION_IDS = N400_SECTIONS.map((s) => s.id);
 const SECTION_TITLE = Object.fromEntries(N400_SECTIONS.map((s) => [s.id, s.title]));
 const DISMISS_KEY = 'pathways_checkins_dismissed'; // { date, ids }
+
+// Vía's notes are handwritten (Caveat) when the text is in Latin script;
+// other scripts keep Instrument Sans so they stay readable.
+const handwritten = (text) => /^[\p{Script=Latin}\p{P}\p{N}\p{Zs}\p{S}]*$/u.test(text || '');
+
+// The four parts in Practice order, and how many of three steps each
+// quick-check level fills.
+const FOUR_PARTS = ['reading', 'writing', 'civics', 'speaking'];
+const LEVEL_STEPS = { start_here: 1, getting_there: 2, strong: 3 };
 
 // Which interview skill a task practices (for its color).
 const taskSkill = (kind) => (kind.startsWith('civics') ? 'civics' : kind);
@@ -70,6 +80,7 @@ export default function TodayCard({ language = 'en', homeT }) {
   const [missedDays] = useState(() => touchVisit(today));
   const [dismissed, setDismissed] = useState(() => loadDismissed(today));
   const [extra, setExtra] = useState(false);
+  const [settingDate, setSettingDate] = useState(false);
   const [stage] = useState(() => loadStage());
   const { className: sizeClass } = useTextSize();
 
@@ -178,7 +189,7 @@ export default function TodayCard({ language = 'en', homeT }) {
   const weeksKey = weeks === 0 ? 'weeks_left_none' : weeks === 1 ? 'weeks_left_one' : 'weeks_left';
 
   const { top, rest } = splitTasks(tasks, done);
-  const waiting = rest.filter((task) => !done.includes(task.id)).length;
+  const next = rest.filter((task) => !done.includes(task.id)).slice(0, 2);
   const skillName = (task) => (taskSkill(task.kind) === 'n400' ? 'N-400' : partName(taskSkill(task.kind), language));
   const taskLabel = (task) => {
     if (task.kind === 'n400') return t('task_n400', { section: SECTION_TITLE[task.section] || '' });
@@ -193,139 +204,207 @@ export default function TodayCard({ language = 'en', homeT }) {
     dismiss(id);
   };
 
+  // The checkmark sits on a skill-colored surface: its ring follows the text
+  // color (white or ink), and a done task gets a filled circle.
   const doneButton = (task, className = '') => {
     const isDone = done.includes(task.id);
+    const onDark = SKILL_ON[taskSkill(task.kind)] === 'text-white';
     return (
       <button
         type="button"
         onClick={() => toggle(task.id)}
         aria-pressed={isDone}
         aria-label={isDone ? t('mark_not_done') : t('mark_done')}
-        className={`min-w-[44px] min-h-[44px] shrink-0 grid place-items-center rounded-xl hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy ${className}`}
+        className={`min-w-[44px] min-h-[44px] shrink-0 grid place-items-center rounded-xl hover:bg-black/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current ${className}`}
       >
-        <span className={`w-7 h-7 rounded-full border-2 grid place-items-center ${isDone ? 'bg-pw-writing border-pw-writing' : 'border-pw-line bg-white'}`}>
-          {isDone && <Check className="w-4 h-4 text-white" strokeWidth={3} aria-hidden="true" />}
+        <span className={`w-7 h-7 rounded-full border-2 border-current grid place-items-center ${isDone ? 'bg-current' : ''}`}>
+          {isDone && <Check className={`w-4 h-4 ${onDark ? 'text-pw-navy' : 'text-white'}`} strokeWidth={3} aria-hidden="true" />}
         </span>
       </button>
     );
   };
 
+  // Mon..Sun initials in the learner's language, for the week squares.
+  const locale = language === 'en' ? 'en-US' : language;
+  const weekdayInitials = Array.from({ length: 7 }, (_, k) => {
+    const d = new Date(2024, 0, 1 + k); // Jan 1 2024 was a Monday
+    try { return d.toLocaleDateString(locale, { weekday: 'narrow' }); } catch (e) { return ''; }
+  });
+  let weekday = '';
+  try { weekday = today.toLocaleDateString(locale, { weekday: 'long' }); } catch (e) { /* ignore */ }
+
+  // One note on the desk at a time, in Vía's handwriting: the date question
+  // first (until the learner answers it), otherwise today's check-in.
+  const note = !plan ? { id: 'plan', kind: 'plan' } : notes[0];
+  const noteText = (n) => {
+    if (n.kind === 'plan') return t('plan_ask_again');
+    if (n.kind === 'welcome-back') return t('welcome_back');
+    if (n.kind === 'low-skill') return t('low_skill', { skills: n.skills.map((s) => partName(s, language)).join(', ') });
+    if (n.kind === 'recheck') return t('recheck', { skill: partName(n.skill, language) });
+    if (n.kind === 'english-mix') return t('mix');
+    return '';
+  };
+  const noteBtn = 'min-h-11 rounded-full px-4 text-[15px] font-semibold inline-flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy';
+
   return (
-    <section aria-labelledby="today-title" className="space-y-5 text-pw-navy">
-      {/* Greeting and Vía's line, signed in text (her mark is in the tab bar) */}
-      <div className={`space-y-3 ${sizeClass}`}>
-        {stageLabel && <Tag tone="navy">{stageLabel}</Tag>}
-        <h1 id="today-title" className="font-display text-[40px] leading-[1.05] sm:text-[48px]">{hello}</h1>
-        <div>
-          {lineMine && <p dir={dir} className="font-display italic text-2xl leading-snug">{lineMine}</p>}
-          <p className={`font-display italic leading-snug ${lineMine ? 'mt-1 text-lg text-pw-muted' : 'text-2xl'}`}>{lineEn}</p>
-          <p className="mt-1 font-display italic text-lg text-pw-muted">— {profile.name}</p>
+    <section aria-labelledby="today-title" className="space-y-6 text-pw-navy">
+      {/* Day and stage, greeting, and Vía's line signed in text (her mark is in the tab bar) */}
+      <div className={`space-y-2 ${sizeClass}`}>
+        <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-pw-muted">
+          {[weekday, stageLabel].filter(Boolean).join(' · ')}
+        </p>
+        <h1 id="today-title" className="font-display text-[44px] leading-[1.02] sm:text-[60px]">{hello}</h1>
+        <div className="max-w-2xl">
+          {lineMine && <p dir={dir} className="font-display italic text-[23px] sm:text-[26px] leading-snug">{lineMine}</p>}
+          <p className={`font-display italic leading-snug ${lineMine ? 'mt-1 text-lg text-pw-muted' : 'text-[23px] sm:text-[26px]'}`}>
+            {lineEn} <span className="whitespace-nowrap text-pw-muted">— {profile.name}</span>
+          </p>
         </div>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 pt-1">
           {lineMine && <ListenButton text={lineMine} language={language} tutorName={profile.name} />}
           <ListenButton text={lineEn} language="en" label={lineMine ? 'English' : 'Listen'} tutorName={profile.name} />
         </div>
       </div>
 
-      {!plan && (
-        <PlanSetup profile={profile} language={language} again onDone={setPlan} />
-      )}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+        {/* The desk: today's next task on top of the stack, the others peeking out */}
+        <div className="lg:col-span-7 space-y-4">
+          <div className="rounded-[22px] bg-pw-slate px-4 pt-6 pb-5 sm:px-7 sm:pt-8 sm:pb-7 space-y-4">
+            <div className="relative pb-4">
+              {next[0] && <div aria-hidden="true" className={`absolute left-2 right-2 bottom-2 h-12 rounded-[16px] ${SKILL_COLOR[taskSkill(next[0].kind)]}`} />}
+              {next[1] && <div aria-hidden="true" className={`absolute left-4 right-4 bottom-0 h-12 rounded-[16px] ${SKILL_COLOR[taskSkill(next[1].kind)]}`} />}
+              {top ? (
+                <div className={`relative flex min-h-[250px] flex-col rounded-[18px] p-5 sm:p-7 shadow-[0_12px_26px_rgba(20,38,74,0.22)] ${SKILL_COLOR[taskSkill(top.kind)]} ${SKILL_ON[taskSkill(top.kind)]}`}>
+                  <p className="text-[13px] font-semibold uppercase tracking-[0.16em]">
+                    {skillName(top)} · {t('task_of', { n: tasks.indexOf(top) + 1, t: n })}
+                  </p>
+                  <h2 className="mt-3 text-[34px] sm:text-[42px] font-bold leading-[1.05] tracking-[-0.01em]">{taskLabel(top)}</h2>
+                  <p className="mt-2 font-display italic text-[21px]">{t('minutes', { m: top.minutes })}</p>
+                  <div className="mt-auto pt-5 flex items-center justify-between gap-3">
+                    <Link
+                      to={top.href}
+                      className={`min-h-[52px] rounded-full font-semibold text-lg inline-flex items-center gap-2 px-7 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current focus-visible:ring-offset-2 focus-visible:ring-offset-transparent ${SKILL_ON[taskSkill(top.kind)] === 'text-white' ? 'bg-white text-pw-navy hover:bg-pw-soft' : 'bg-pw-navy text-white hover:bg-pw-navy-deep'}`}
+                    >
+                      {t('start')} <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" />
+                    </Link>
+                    {doneButton(top)}
+                  </div>
+                </div>
+              ) : (
+                <IndexCard className="relative" padding="p-5 sm:p-7">
+                  <h2 className="font-display text-[34px] leading-tight">{t('all_done_title')}</h2>
+                  <p className="mt-1 text-base text-pw-muted">{t('done')}</p>
+                  {!extra && <SecondaryButton className="mt-4 w-full" onClick={() => setExtra(true)}>{t('keep_going')}</SecondaryButton>}
+                </IndexCard>
+              )}
+            </div>
 
-      {notes.map((note) => (
-        <RaisedCard key={note.id} className="space-y-3 border-l-4 border-l-pw-navy">
-          {note.kind === 'welcome-back' && <p className="text-base">{t('welcome_back')}</p>}
-          {note.kind === 'low-skill' && <p className="text-base">{t('low_skill', { skills: note.skills.map((s) => partName(s, language)).join(', ') })}</p>}
-          {note.kind === 'recheck' && (
-            <>
-              <p className="text-base">{t('recheck', { skill: partName(note.skill, language) })}</p>
-              <Link to={`/quick-check?part=${note.skill}`} className="min-h-11 w-full rounded-xl bg-pw-navy text-white font-semibold inline-flex items-center justify-center px-4 hover:bg-pw-navy-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2">{t('recheck_btn')}</Link>
-            </>
-          )}
-          {note.kind === 'english-mix' && (
-            <>
-              <p className="text-base">{t('mix')}</p>
-              <PrimaryButton className="w-full" onClick={() => moreEnglish(note.next, note.id)}>{t('mix_btn')}</PrimaryButton>
-            </>
-          )}
-          <QuietButton className="w-full" onClick={() => dismiss(note.id)}>{t('not_now')}</QuietButton>
-        </RaisedCard>
-      ))}
+            {note && (
+              <aside
+                aria-label={profile.name}
+                className="ms-auto max-w-[300px] -rotate-[1.5deg] rounded-[4px] bg-white px-4 pt-3 pb-3 shadow-[0_6px_14px_rgba(20,38,74,0.14)] space-y-2"
+              >
+                <p dir={dir} className={`text-pw-navy ${handwritten(noteText(note)) ? 'font-hand font-semibold text-[23px] leading-tight' : 'text-base leading-relaxed'}`}>
+                  {noteText(note)}
+                </p>
+                <p className="font-hand font-semibold text-[21px] leading-none text-pw-muted">— {profile.name}</p>
+                <div className="flex flex-wrap justify-end gap-2 pt-1">
+                  {note.kind === 'plan' && (
+                    <button type="button" onClick={() => setSettingDate((v) => !v)} aria-expanded={settingDate} className={`${noteBtn} bg-pw-soft text-pw-navy hover:bg-pw-soft-hover`}>
+                      {t('pick_month')}
+                    </button>
+                  )}
+                  {note.kind === 'recheck' && (
+                    <Link to={`/quick-check?part=${note.skill}`} className={`${noteBtn} bg-pw-navy text-white hover:bg-pw-navy-deep`}>{t('recheck_btn')}</Link>
+                  )}
+                  {note.kind === 'english-mix' && (
+                    <button type="button" onClick={() => moreEnglish(note.next, note.id)} className={`${noteBtn} bg-pw-navy text-white hover:bg-pw-navy-deep`}>{t('mix_btn')}</button>
+                  )}
+                  {note.kind !== 'plan' && (
+                    <button type="button" onClick={() => dismiss(note.id)} className={`${noteBtn} text-pw-navy hover:bg-pw-soft`}>{t('not_now')}</button>
+                  )}
+                </div>
+              </aside>
+            )}
+          </div>
 
-      {/* The card stack: today's next task on top, the others peeking out */}
-      <div className="rounded-[20px] bg-pw-slate px-4 pt-5 pb-6 sm:px-6">
-        <div className="relative pb-4">
-          {waiting > 0 && <div aria-hidden="true" className="absolute left-3 right-3 top-10 bottom-2 rounded-[14px] bg-white/80 border border-pw-line" />}
-          {waiting > 1 && <div aria-hidden="true" className="absolute left-6 right-6 top-12 bottom-0 rounded-[14px] bg-white/60 border border-pw-line" />}
-          {top ? (
-            <IndexCard className="relative" tab={skillName(top)} tabSkill={taskSkill(top.kind)} padding="p-5 sm:p-6">
-              <Eyebrow>{t('task_of', { n: tasks.indexOf(top) + 1, t: n })}</Eyebrow>
-              <h2 className="mt-2 font-display text-[30px] leading-tight">{taskLabel(top)}</h2>
-              <p className="mt-1 text-base text-pw-muted">{t('minutes', { m: top.minutes })}</p>
-              <div className="mt-5 flex items-center justify-between gap-3">
-                <Link
-                  to={top.href}
-                  className="min-h-[48px] rounded-full bg-pw-navy text-white font-semibold text-lg inline-flex items-center gap-2 px-6 hover:bg-pw-navy-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2"
-                >
-                  {t('start')} <ArrowRight className="w-5 h-5" aria-hidden="true" />
-                </Link>
-                {doneButton(top)}
-              </div>
-            </IndexCard>
-          ) : (
-            <IndexCard className="relative" padding="p-5 sm:p-6">
-              <h2 className="font-display text-[30px] leading-tight">{t('all_done_title')}</h2>
-              <p className="mt-1 text-base text-pw-muted">{t('done')}</p>
-              {!extra && <SecondaryButton className="mt-4 w-full" onClick={() => setExtra(true)}>{t('keep_going')}</SecondaryButton>}
-            </IndexCard>
+          {!plan && settingDate && (
+            <PlanSetup profile={profile} language={language} again bare onDone={setPlan} />
           )}
         </div>
-      </div>
 
-      {/* Also today: the other tasks, finished ones stamped */}
-      {rest.length > 0 && (
-        <div className="space-y-2">
-          <h2 className="text-lg font-semibold">{t('also_today')}</h2>
-          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {rest.map((task) => {
-              const isDone = done.includes(task.id);
-              return (
-                <li key={task.id} className="flex items-stretch rounded-[14px] bg-white border border-pw-line shadow-raised overflow-hidden">
-                  <span className={`w-1.5 shrink-0 ${SKILL_COLOR[taskSkill(task.kind)]}`} aria-hidden="true" />
-                  <Link
-                    to={task.href}
-                    className="flex-1 min-w-0 px-3 py-3 min-h-[64px] hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-pw-navy"
-                  >
-                    <span className="flex items-center gap-2 text-sm text-pw-muted">
-                      {skillName(task)} · {t('minutes', { m: task.minutes })}
+        <div className="lg:col-span-5 space-y-6">
+          {/* Also today: the other tasks, finished ones stamped */}
+          {rest.length > 0 && (
+            <div className="space-y-3">
+              <h2 className="font-display text-[28px] sm:text-[30px] leading-tight">{t('also_today')}</h2>
+              <ul className="grid grid-cols-2 lg:grid-cols-1 gap-3">
+                {rest.map((task) => {
+                  const isDone = done.includes(task.id);
+                  return (
+                    <li key={task.id} className={`relative flex rounded-[16px] overflow-hidden ${SKILL_COLOR[taskSkill(task.kind)]} ${SKILL_ON[taskSkill(task.kind)]}`}>
+                      <Link
+                        to={task.href}
+                        className="flex-1 min-w-0 flex flex-col justify-between gap-3 ps-3.5 pe-1 pt-3.5 pb-4 min-h-[140px] lg:min-h-[96px] hover:bg-black/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-current"
+                      >
+                        <span className="block text-[13px] font-semibold uppercase tracking-[0.12em]">
+                          {skillName(task)} · {t('minutes', { m: task.minutes })}
+                        </span>
+                        <span className="block text-[19px] font-bold leading-tight">{taskLabel(task)}</span>
+                      </Link>
+                      {doneButton(task, 'mt-1.5 me-1')}
                       {isDone && (
-                        <span className="ml-auto -rotate-6 rounded border-2 border-pw-writing px-1.5 text-xs font-bold uppercase tracking-[0.14em] text-pw-writing">
+                        <span className="pointer-events-none absolute end-3 bottom-3 -rotate-[8deg] rounded-md border-2 border-current px-2 py-0.5 text-sm font-bold uppercase tracking-[0.12em]">
                           {t(task.kind === 'n400' ? 'stamp_filed' : 'stamp_done')}
                         </span>
                       )}
-                    </span>
-                    <span className={`block font-semibold leading-snug ${isDone ? 'text-pw-muted' : ''}`}>{taskLabel(task)}</span>
-                  </Link>
-                  {doneButton(task, 'self-center mr-1')}
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      )}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          )}
 
-      {/* The week's rhythm and readiness; no countdown */}
-      <div className="rounded-[14px] bg-white border border-pw-line p-4 space-y-2">
-        <div className="flex items-center justify-between gap-3">
-          <Eyebrow>{t('this_week')}</Eyebrow>
-          <div className="flex gap-1.5" aria-hidden="true">
-            {squares.map((sq, k) => (
-              <span key={k} className={`w-5 h-5 rounded-[4px] ${sq.filled ? 'bg-pw-navy' : 'bg-pw-line'} ${sq.today ? 'ring-2 ring-offset-1 ring-pw-muted' : ''}`} />
-            ))}
+          {/* The four parts (quick check levels, in words too), the week's
+              rhythm and readiness; no countdown */}
+          <div className="rounded-[14px] bg-white border border-pw-line p-4 sm:p-5 space-y-3">
+            <h2 className="text-[13px] font-semibold uppercase tracking-[0.14em] text-pw-muted">{t('four_parts')}</h2>
+            <ul className="space-y-2.5">
+              {FOUR_PARTS.map((part) => {
+                const level = levels[part];
+                const steps = LEVEL_STEPS[level] || 0;
+                const word = level ? (language === 'es' ? LEVELS[level].es : LEVELS[level].label) : t('not_checked');
+                return (
+                  <li key={part} className="grid grid-cols-[88px_minmax(0,1fr)] items-center gap-3">
+                    <span className="text-base font-semibold">{partName(part, language)}</span>
+                    <span className="flex items-center gap-3">
+                      <span className="grid flex-1 grid-cols-3 gap-1" aria-hidden="true">
+                        {[1, 2, 3].map((k) => (
+                          <span key={k} className={`h-3 rounded ${k <= steps ? SKILL_COLOR[part] : 'bg-pw-soft'}`} />
+                        ))}
+                      </span>
+                      <span className="w-[104px] shrink-0 text-[15px] text-pw-muted">{word}</span>
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+            <h2 className="border-t border-pw-line pt-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-pw-muted">{t('this_week')}</h2>
+            <div className="grid grid-cols-7 gap-1.5" aria-hidden="true">
+              {squares.map((sq, k) => (
+                <div key={k} className="flex flex-col items-center gap-1">
+                  <span className={`block w-full aspect-square max-h-9 rounded-md ${sq.filled ? 'bg-pw-navy' : sq.today ? 'bg-white border-2 border-pw-navy' : 'bg-pw-soft'}`} />
+                  <span className="text-[13px] text-pw-muted">{weekdayInitials[k]}</span>
+                </div>
+              ))}
+            </div>
+            <p className="text-base font-semibold">{t(daysKey, { n: daysCount })}</p>
+            {data.civicsTotal > 0 && (
+              <p className="border-t border-pw-line pt-3 font-display text-[22px] leading-snug">{t('ready', { n: data.ready, t: data.civicsTotal })}</p>
+            )}
+            {weeks !== null && <p className="text-[15px] text-pw-muted">{t(weeksKey, { n: weeks })}</p>}
           </div>
         </div>
-        <p className="font-semibold">{t(daysKey, { n: daysCount })}</p>
-        {data.civicsTotal > 0 && <p className="text-pw-muted">{t('ready', { n: data.ready, t: data.civicsTotal })}</p>}
-        {weeks !== null && <p className="text-sm text-pw-muted">{t(weeksKey, { n: weeks })}</p>}
       </div>
     </section>
   );

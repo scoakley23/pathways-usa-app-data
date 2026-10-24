@@ -357,7 +357,7 @@ export default function StudyBuddy({ aboveTabBar = false }) {
 
       <TalkToPerson open={talkOpen} onOpenChange={setTalkOpen} userEmail={user.email} language={appLanguage} />
 
-      {/* The tutor's V mark, always one tap away (desktop; phones use the tab bar). */}
+      {/* The tutor's V mark, one tap away on phones without the tab bar. */}
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
@@ -366,7 +366,9 @@ export default function StudyBuddy({ aboveTabBar = false }) {
         className={cn(
           "h-14 rounded-full bg-pw-navy hover:bg-pw-navy-deep text-white shadow-lift pointer-events-auto transition-all duration-300 inline-flex items-center gap-2 pl-1.5 pr-5 font-bold text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2",
           isOpen ? "opacity-0 scale-0" : "opacity-100 scale-100",
-          aboveTabBar && "hidden lg:inline-flex"
+          // Desktop opens the chat from the header; phones from the tab bar
+          // (or this button where there is no tab bar).
+          aboveTabBar ? "hidden" : "lg:hidden"
         )}
       >
         <TutorAvatar name={profile.name} size={44} decorative className="ring-2 ring-white rounded-full" />
