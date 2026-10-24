@@ -8,37 +8,52 @@ export { posterTone, POSTER_SCHEME };
 // (tokens: tailwind `pw.*`).
 
 const TAG_TONES = {
-  red: 'bg-pw-red-soft text-pw-speaking',
+  red: 'bg-pw-red-soft text-pw-red-ink',
   blue: 'bg-pw-blue-soft text-pw-civics',
   teal: 'bg-pw-teal-soft text-pw-reading',
   green: 'bg-pw-green-soft text-pw-writing',
   navy: 'bg-pw-soft text-pw-navy',
+  sky: 'bg-pw-sky/40 text-pw-navy',
+  manila: 'bg-pw-manila/70 text-pw-navy',
 };
-const DOT = { red: 'bg-pw-speaking', blue: 'bg-pw-civics', teal: 'bg-pw-reading', green: 'bg-pw-writing', navy: 'bg-pw-navy' };
+const DOT = {
+  red: 'bg-pw-red-ink', blue: 'bg-pw-civics', teal: 'bg-pw-reading', green: 'bg-pw-writing', navy: 'bg-pw-navy',
+  sky: 'bg-pw-sky ring-1 ring-pw-navy/40', manila: 'bg-pw-manila ring-1 ring-pw-navy/40',
+};
 
-// One color per interview skill (the brand's subject colors), used for every
-// tag, card, and task of that skill so color helps learners find their way.
+// One color per interview skill, the same everywhere (Practice tiles, Today,
+// tabs, tags): Reading = blue, Writing = Sky, Civics = Red ink, Speaking =
+// Ink, N-400 = Manila. (The `pw-civics` token is the blue; its name predates
+// this scheme.) Sky and Manila are light: they always take ink text.
 export const SKILL_TONE = {
-  civics: 'blue',
-  reading: 'teal',
-  writing: 'green',
-  speaking: 'red',
-  n400: 'navy',
+  civics: 'red',
+  reading: 'blue',
+  writing: 'sky',
+  speaking: 'navy',
+  n400: 'manila',
 };
 export const SKILL_BG = {
-  civics: 'bg-pw-blue-soft',
-  reading: 'bg-pw-teal-soft',
-  writing: 'bg-pw-green-soft',
-  speaking: 'bg-pw-red-soft',
-  n400: 'bg-pw-soft',
+  civics: 'bg-pw-red-soft',
+  reading: 'bg-pw-blue-soft',
+  writing: 'bg-pw-sky/30',
+  speaking: 'bg-pw-soft',
+  n400: 'bg-pw-manila/50',
 };
-// Solid subject color, for tabs and strips with white text (all ≥ 4.5:1).
+// Solid skill color, for tabs, strips and tiles.
 export const SKILL_COLOR = {
-  civics: 'bg-pw-civics',
-  reading: 'bg-pw-reading',
-  writing: 'bg-pw-writing',
-  speaking: 'bg-pw-speaking',
-  n400: 'bg-pw-navy',
+  civics: 'bg-pw-red-ink',
+  reading: 'bg-pw-civics',
+  writing: 'bg-pw-sky',
+  speaking: 'bg-pw-navy',
+  n400: 'bg-pw-manila',
+};
+// Text on the solid skill color (all ≥ 4.5:1).
+export const SKILL_ON = {
+  civics: 'text-white',
+  reading: 'text-white',
+  writing: 'text-pw-navy',
+  speaking: 'text-white',
+  n400: 'text-pw-navy',
 };
 export const SKILL_LABEL = {
   civics: 'Civics',
@@ -179,7 +194,7 @@ export function IndexCard({ tab, tabSkill = 'n400', rule = false, padding = 'p-5
   return (
     <div className={className} {...props}>
       {tab && (
-        <span className={`ml-4 inline-block rounded-t-lg px-3 py-1 text-sm font-semibold text-white ${SKILL_COLOR[tabSkill] || SKILL_COLOR.n400}`}>
+        <span className={`ml-4 inline-block rounded-t-lg px-3 py-1 text-sm font-semibold ${SKILL_COLOR[tabSkill] || SKILL_COLOR.n400} ${SKILL_ON[tabSkill] || SKILL_ON.n400}`}>
           {tab}
         </span>
       )}

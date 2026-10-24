@@ -1,7 +1,7 @@
 // Fixed text for the plan and Today card: English + hand-written Spanish.
 // Other languages are AI-translated once and cached (useTranslatedLines);
 // bump TODAY_CACHE_KEY when the English changes.
-export const TODAY_CACHE_KEY = 'today_v2';
+export const TODAY_CACHE_KEY = 'today_v3';
 
 export const TODAY_EN = {
   title: 'Today',
@@ -65,6 +65,8 @@ export const TODAY_EN = {
   weeks_left_one: 'About 1 week to your interview month',
   weeks_left_none: 'Your interview month is here',
   minutes: '{m} min',
+  four_parts: 'Your four parts',
+  not_checked: 'Not checked yet',
 };
 
 export const TODAY_ES = {
@@ -129,6 +131,8 @@ export const TODAY_ES = {
   weeks_left_one: 'Más o menos 1 semana para el mes de su entrevista',
   weeks_left_none: 'Ya llegó el mes de su entrevista',
   minutes: '{m} min',
+  four_parts: 'Sus cuatro partes',
+  not_checked: 'Sin revisar',
 };
 
 // t(key, vars) for the learner's language, English fallback.

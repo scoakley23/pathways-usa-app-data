@@ -10,7 +10,8 @@ import useTutorProfile from './useTutorProfile';
 import useTodayText from './useTodayText';
 import useTextSize from './useTextSize';
 import { partName } from './SkillLevels';
-import { Eyebrow, IndexCard, RaisedCard, SecondaryButton, SKILL_COLOR } from '@/components/pathways/ui';
+import { IndexCard, RaisedCard, SecondaryButton, SKILL_COLOR, SKILL_ON } from '@/components/pathways/ui';
+import { LEVELS } from '@/lib/pretest';
 import { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
 import { N400_SECTIONS } from '@/components/n400/n400Content';
 import { tasksForDay, extraTasks, totalMinutes, dayIndex } from '@/lib/studyPlan';
@@ -26,6 +27,11 @@ const DISMISS_KEY = 'pathways_checkins_dismissed'; // { date, ids }
 // Vía's notes are handwritten (Caveat) when the text is in Latin script;
 // other scripts keep Instrument Sans so they stay readable.
 const handwritten = (text) => /^[\p{Script=Latin}\p{P}\p{N}\p{Zs}\p{S}]*$/u.test(text || '');
+
+// The four parts in Practice order, and how many of three steps each
+// quick-check level fills.
+const FOUR_PARTS = ['reading', 'writing', 'civics', 'speaking'];
+const LEVEL_STEPS = { start_here: 1, getting_there: 2, strong: 3 };
 
 // Which interview skill a task practices (for its color).
 const taskSkill = (kind) => (kind.startsWith('civics') ? 'civics' : kind);
@@ -183,7 +189,7 @@ export default function TodayCard({ language = 'en', homeT }) {
   const weeksKey = weeks === 0 ? 'weeks_left_none' : weeks === 1 ? 'weeks_left_one' : 'weeks_left';
 
   const { top, rest } = splitTasks(tasks, done);
-  const waiting = rest.filter((task) => !done.includes(task.id)).length;
+  const next = rest.filter((task) => !done.includes(task.id)).slice(0, 2);
   const skillName = (task) => (taskSkill(task.kind) === 'n400' ? 'N-400' : partName(taskSkill(task.kind), language));
   const taskLabel = (task) => {
     if (task.kind === 'n400') return t('task_n400', { section: SECTION_TITLE[task.section] || '' });
@@ -198,18 +204,21 @@ export default function TodayCard({ language = 'en', homeT }) {
     dismiss(id);
   };
 
+  // The checkmark sits on a skill-colored surface: its ring follows the text
+  // color (white or ink), and a done task gets a filled circle.
   const doneButton = (task, className = '') => {
     const isDone = done.includes(task.id);
+    const onDark = SKILL_ON[taskSkill(task.kind)] === 'text-white';
     return (
       <button
         type="button"
         onClick={() => toggle(task.id)}
         aria-pressed={isDone}
         aria-label={isDone ? t('mark_not_done') : t('mark_done')}
-        className={`min-w-[44px] min-h-[44px] shrink-0 grid place-items-center rounded-xl hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy ${className}`}
+        className={`min-w-[44px] min-h-[44px] shrink-0 grid place-items-center rounded-xl hover:bg-black/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current ${className}`}
       >
-        <span className={`w-7 h-7 rounded-full border-2 grid place-items-center ${isDone ? 'bg-pw-writing border-pw-writing' : 'border-pw-line bg-white'}`}>
-          {isDone && <Check className="w-4 h-4 text-white" strokeWidth={3} aria-hidden="true" />}
+        <span className={`w-7 h-7 rounded-full border-2 border-current grid place-items-center ${isDone ? 'bg-current' : ''}`}>
+          {isDone && <Check className={`w-4 h-4 ${onDark ? 'text-pw-navy' : 'text-white'}`} strokeWidth={3} aria-hidden="true" />}
         </span>
       </button>
     );
@@ -262,23 +271,25 @@ export default function TodayCard({ language = 'en', homeT }) {
         <div className="lg:col-span-7 space-y-4">
           <div className="rounded-[22px] bg-pw-slate px-4 pt-6 pb-5 sm:px-7 sm:pt-8 sm:pb-7 space-y-4">
             <div className="relative pb-4">
-              {waiting > 0 && <div aria-hidden="true" className="absolute left-2 right-2 bottom-2 h-12 rounded-[14px] bg-white/85 border border-pw-line" />}
-              {waiting > 1 && <div aria-hidden="true" className="absolute left-4 right-4 bottom-0 h-12 rounded-[14px] bg-white/70 border border-pw-line" />}
+              {next[0] && <div aria-hidden="true" className={`absolute left-2 right-2 bottom-2 h-12 rounded-[16px] ${SKILL_COLOR[taskSkill(next[0].kind)]}`} />}
+              {next[1] && <div aria-hidden="true" className={`absolute left-4 right-4 bottom-0 h-12 rounded-[16px] ${SKILL_COLOR[taskSkill(next[1].kind)]}`} />}
               {top ? (
-                <IndexCard className="relative" tab={skillName(top)} tabSkill={taskSkill(top.kind)} padding="p-5 sm:p-7">
-                  <Eyebrow>{t('task_of', { n: tasks.indexOf(top) + 1, t: n })}</Eyebrow>
-                  <h2 className="mt-2 font-display text-[34px] sm:text-[44px] leading-[1.02]">{taskLabel(top)}</h2>
-                  <p className="mt-2 text-base text-pw-muted">{t('minutes', { m: top.minutes })}</p>
-                  <div className="mt-5 flex items-center justify-between gap-3">
+                <div className={`relative flex min-h-[250px] flex-col rounded-[18px] p-5 sm:p-7 shadow-[0_12px_26px_rgba(20,38,74,0.22)] ${SKILL_COLOR[taskSkill(top.kind)]} ${SKILL_ON[taskSkill(top.kind)]}`}>
+                  <p className="text-[13px] font-semibold uppercase tracking-[0.16em]">
+                    {skillName(top)} · {t('task_of', { n: tasks.indexOf(top) + 1, t: n })}
+                  </p>
+                  <h2 className="mt-3 text-[34px] sm:text-[42px] font-bold leading-[1.05] tracking-[-0.01em]">{taskLabel(top)}</h2>
+                  <p className="mt-2 font-display italic text-[21px]">{t('minutes', { m: top.minutes })}</p>
+                  <div className="mt-auto pt-5 flex items-center justify-between gap-3">
                     <Link
                       to={top.href}
-                      className="min-h-[52px] rounded-full bg-pw-navy text-white font-semibold text-lg inline-flex items-center gap-2 px-7 hover:bg-pw-navy-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2"
+                      className={`min-h-[52px] rounded-full font-semibold text-lg inline-flex items-center gap-2 px-7 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current focus-visible:ring-offset-2 focus-visible:ring-offset-transparent ${SKILL_ON[taskSkill(top.kind)] === 'text-white' ? 'bg-white text-pw-navy hover:bg-pw-soft' : 'bg-pw-navy text-white hover:bg-pw-navy-deep'}`}
                     >
                       {t('start')} <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" />
                     </Link>
                     {doneButton(top)}
                   </div>
-                </IndexCard>
+                </div>
               ) : (
                 <IndexCard className="relative" padding="p-5 sm:p-7">
                   <h2 className="font-display text-[34px] leading-tight">{t('all_done_title')}</h2>
@@ -331,22 +342,19 @@ export default function TodayCard({ language = 'en', homeT }) {
                 {rest.map((task) => {
                   const isDone = done.includes(task.id);
                   return (
-                    <li key={task.id} className="relative flex flex-col rounded-[14px] bg-white border border-pw-line shadow-raised overflow-hidden">
-                      <span className={`h-1.5 shrink-0 ${SKILL_COLOR[taskSkill(task.kind)]}`} aria-hidden="true" />
-                      <div className="flex flex-1 items-start">
-                        <Link
-                          to={task.href}
-                          className="flex-1 min-w-0 px-3 pt-3 pb-4 min-h-[96px] lg:min-h-[64px] hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-pw-navy"
-                        >
-                          <span className="block text-[13px] font-semibold uppercase tracking-[0.1em] text-pw-muted">
-                            {skillName(task)} · {t('minutes', { m: task.minutes })}
-                          </span>
-                          <span className={`mt-1 block text-[17px] font-semibold leading-snug ${isDone ? 'text-pw-muted' : ''}`}>{taskLabel(task)}</span>
-                        </Link>
-                        {doneButton(task, 'mt-1 me-1')}
-                      </div>
+                    <li key={task.id} className={`relative flex rounded-[16px] overflow-hidden ${SKILL_COLOR[taskSkill(task.kind)]} ${SKILL_ON[taskSkill(task.kind)]}`}>
+                      <Link
+                        to={task.href}
+                        className="flex-1 min-w-0 flex flex-col justify-between gap-3 ps-3.5 pe-1 pt-3.5 pb-4 min-h-[140px] lg:min-h-[96px] hover:bg-black/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-current"
+                      >
+                        <span className="block text-[13px] font-semibold uppercase tracking-[0.12em]">
+                          {skillName(task)} · {t('minutes', { m: task.minutes })}
+                        </span>
+                        <span className="block text-[19px] font-bold leading-tight">{taskLabel(task)}</span>
+                      </Link>
+                      {doneButton(task, 'mt-1.5 me-1')}
                       {isDone && (
-                        <span className="pointer-events-none absolute end-3 bottom-3 -rotate-[8deg] rounded-md border-2 border-pw-navy bg-white/90 px-2 py-0.5 text-sm font-bold uppercase tracking-[0.12em] text-pw-navy">
+                        <span className="pointer-events-none absolute end-3 bottom-3 -rotate-[8deg] rounded-md border-2 border-current px-2 py-0.5 text-sm font-bold uppercase tracking-[0.12em]">
                           {t(task.kind === 'n400' ? 'stamp_filed' : 'stamp_done')}
                         </span>
                       )}
@@ -357,9 +365,31 @@ export default function TodayCard({ language = 'en', homeT }) {
             </div>
           )}
 
-          {/* The week's rhythm and readiness; no countdown */}
+          {/* The four parts (quick check levels, in words too), the week's
+              rhythm and readiness; no countdown */}
           <div className="rounded-[14px] bg-white border border-pw-line p-4 sm:p-5 space-y-3">
-            <h2 className="text-[13px] font-semibold uppercase tracking-[0.14em] text-pw-muted">{t('this_week')}</h2>
+            <h2 className="text-[13px] font-semibold uppercase tracking-[0.14em] text-pw-muted">{t('four_parts')}</h2>
+            <ul className="space-y-2.5">
+              {FOUR_PARTS.map((part) => {
+                const level = levels[part];
+                const steps = LEVEL_STEPS[level] || 0;
+                const word = level ? (language === 'es' ? LEVELS[level].es : LEVELS[level].label) : t('not_checked');
+                return (
+                  <li key={part} className="grid grid-cols-[88px_minmax(0,1fr)] items-center gap-3">
+                    <span className="text-base font-semibold">{partName(part, language)}</span>
+                    <span className="flex items-center gap-3">
+                      <span className="grid flex-1 grid-cols-3 gap-1" aria-hidden="true">
+                        {[1, 2, 3].map((k) => (
+                          <span key={k} className={`h-3 rounded ${k <= steps ? SKILL_COLOR[part] : 'bg-pw-soft'}`} />
+                        ))}
+                      </span>
+                      <span className="w-[104px] shrink-0 text-[15px] text-pw-muted">{word}</span>
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+            <h2 className="border-t border-pw-line pt-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-pw-muted">{t('this_week')}</h2>
             <div className="grid grid-cols-7 gap-1.5" aria-hidden="true">
               {squares.map((sq, k) => (
                 <div key={k} className="flex flex-col items-center gap-1">

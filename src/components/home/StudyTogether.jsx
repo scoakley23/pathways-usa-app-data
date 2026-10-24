@@ -6,9 +6,9 @@ import { LANGUAGES } from '@/hooks/useLessonTranslation';
 // card. Answers come from the USCIS lists; learn in your language, answer in
 // English (with the language menu right there); and what we never keep.
 const ROWS = [
-  { n: 1, tone: 'text-pw-civics', title: 'study_answers_title', body: 'study_answers_body' },
-  { n: 2, tone: 'text-pw-reading', title: 'study_language_title', body: 'study_language_body', language: true },
-  { n: 3, tone: 'text-pw-writing', title: 'study_privacy_title', body: 'study_privacy_body' },
+  { n: 1, tone: 'bg-pw-red-ink text-white', title: 'study_answers_title', body: 'study_answers_body' },
+  { n: 2, tone: 'bg-pw-civics text-white', title: 'study_language_title', body: 'study_language_body', language: true },
+  { n: 3, tone: 'bg-pw-sky text-pw-navy', title: 'study_privacy_title', body: 'study_privacy_body' },
 ];
 
 export default function StudyTogether({ t, tutorName, language, onLanguageChange, translating }) {
@@ -18,7 +18,7 @@ export default function StudyTogether({ t, tutorName, language, onLanguageChange
       <ol className="grid grid-cols-1 lg:grid-cols-3 rounded-[14px] bg-white border border-pw-line overflow-hidden divide-y lg:divide-y-0 lg:divide-x divide-pw-line">
         {ROWS.map((row) => (
           <li key={row.n} className="flex lg:flex-col gap-4 lg:gap-2 p-4 sm:p-5">
-            <span className={`font-display text-[36px] leading-[0.9] w-6 shrink-0 ${row.tone}`} aria-hidden="true">{row.n}</span>
+            <span className={`grid place-items-center w-10 h-10 shrink-0 rounded-[10px] font-display text-[26px] leading-none ${row.tone}`} aria-hidden="true">{row.n}</span>
             <div className="space-y-1.5 min-w-0">
               <h3 className="text-[17px] font-semibold">{t(row.title)}</h3>
               <p className="text-base leading-relaxed text-pw-muted">
