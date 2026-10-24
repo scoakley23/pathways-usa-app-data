@@ -47,6 +47,12 @@ module.exports = {
     				manila: '#EFDFB8', // N-400 only
     				sky: '#A9CBEC', // light blue: Writing practice and an N-400 tab; ink text only (white fails)
     				plum: '#5E4A8C', // an N-400 section tab; white text ≈ 7.4:1
+    				// Practice-run stars only (decor, never text): right / almost / missed
+    				go: '#3DBE6B',
+    				almost: '#F4C542',
+    				miss: '#E8574E',
+    				rule: '#C9D6EA', // ruled-paper lines
+    				margin: '#E9B4AE', // ruled-paper margin line
     				civics: '#1F4C8F',
     				reading: '#1E6B66',
     				writing: '#2E7D4F',

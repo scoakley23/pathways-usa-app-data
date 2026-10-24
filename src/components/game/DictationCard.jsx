@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Volume2, Check, X, ArrowRight, Edit3, Globe, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { speakText } from "@/components/utils/textToSpeech";
-import { Poster, posterOutline, posterSolid, posterTone } from '@/components/pathways/ui';
+import { Poster, RuledPaper, posterOutline, posterSolid, posterTone } from '@/components/pathways/ui';
+import { wordScore } from '@/lib/practiceResults';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { base44 } from '@/api/base44Client';
 import { checkDictation } from '@/lib/practiceChecks';
@@ -13,7 +14,7 @@ import { checkDictation } from '@/lib/practiceChecks';
 // Shown as a red/blue poster (Phase 5): `index`/`total` give the card's place
 // in the run. After checking, the sentence is the poster's answer line and
 // the word-by-word check (checkDictation) shows which words were missed.
-export default function DictationCard({ sentence, onComplete, onNext, testMode = false, index = 0, total = 0 }) {
+export default function DictationCard({ sentence, onComplete, onNext, testMode = false, index = 0, total = 0, results = [] }) {
   const [stage, setStage] = useState('listen'); // listen, check, result
   const [userInput, setUserInput] = useState('');
   const [isPlaying, setIsPlaying] = useState(false);
@@ -79,16 +80,11 @@ export default function DictationCard({ sentence, onComplete, onNext, testMode =
   };
 
   const checkAnswer = () => {
-    const { isCorrect } = checkDictation(sentence.text, userInput);
+    const { isCorrect, words: checked } = checkDictation(sentence.text, userInput);
     setFeedback(isCorrect ? 'correct' : 'incorrect');
     setStage('result');
-    
-    if (isCorrect) {
-      // Success animation handled by UI
-      onComplete(true);
-    } else {
-      onComplete(false);
-    }
+    // The word score lets a near miss show as "almost" (yellow star).
+    onComplete(isCorrect, isCorrect ? 100 : wordScore(checked));
   };
 
   const handleStageTransition = () => {
@@ -123,7 +119,7 @@ export default function DictationCard({ sentence, onComplete, onNext, testMode =
         tone={posterTone(index)}
         className="-mx-4 sm:mx-0 sm:rounded-[14px]"
         label={label}
-        progress={total ? { index, total } : null}
+        progress={total ? { index, total, results } : null}
         question={stage === 'result' ? null : (testMode ? 'Listen, then type what you hear.' : 'Listen, then write what you hear.')}
         answer={stage === 'result' ? `Answer: ${sentence.text}` : null}
       >
@@ -149,25 +145,13 @@ export default function DictationCard({ sentence, onComplete, onNext, testMode =
           )}
 
           {stage === 'check' && (
-            <div className="space-y-3">
-              <label htmlFor="dictation-input" className="block text-base font-semibold">{testMode ? 'Type the sentence' : 'Type it here to check it'}</label>
-              <input
-                id="dictation-input"
-                value={userInput}
-                onChange={(e) => setUserInput(e.target.value)}
-                placeholder="Type the sentence here..."
-                className="w-full min-h-[52px] rounded-[10px] bg-white px-4 text-lg text-pw-navy placeholder:text-pw-muted focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
-                onKeyDown={(e) => e.key === 'Enter' && (!testMode || userInput.trim()) && checkAnswer()}
-                autoFocus
-              />
-              <div className="flex flex-wrap gap-2">
-                <button type="button" onClick={checkAnswer} disabled={!userInput.trim()} className={posterSolid}>Check</button>
-                {!testMode && (
-                  <button type="button" onClick={() => { setFeedback('manual'); setStage('result'); }} className={posterOutline}>
-                    Show the sentence
-                  </button>
-                )}
-              </div>
+            <div className="flex flex-wrap gap-2">
+              <button type="button" onClick={checkAnswer} disabled={!userInput.trim()} className={posterSolid}>Check</button>
+              {!testMode && (
+                <button type="button" onClick={() => { setFeedback('manual'); setStage('result'); }} className={posterOutline}>
+                  Show the sentence
+                </button>
+              )}
             </div>
           )}
 
@@ -176,16 +160,7 @@ export default function DictationCard({ sentence, onComplete, onNext, testMode =
               {feedback === 'correct' && <p className="text-2xl font-bold flex items-center gap-2"><Check className="w-6 h-6" aria-hidden="true" /> Right. Every word matches.</p>}
               {feedback === 'incorrect' && (
                 <>
-                  <p className="text-2xl font-bold">Not yet. Check these words:</p>
-                  <p className="flex flex-wrap gap-1.5">
-                    {words.map((w, i) => (
-                      <span key={i} className={`rounded-lg px-2 py-0.5 text-xl font-bold ${w.status === 'correct' ? 'bg-white text-pw-navy' : 'border-2 border-white line-through'}`}>
-                        {w.word}
-                        {w.status !== 'correct' && <span className="sr-only"> (missed)</span>}
-                      </span>
-                    ))}
-                  </p>
-                  <p className="text-base">You wrote: <span className="italic">“{userInput}”</span></p>
+                  <p className="text-2xl font-bold">Not yet. Check the marked words on your page.</p>
                 </>
               )}
 
@@ -217,6 +192,50 @@ export default function DictationCard({ sentence, onComplete, onNext, testMode =
           )}
         </div>
       </Poster>
+
+      {/* The learner's own page: they type on ruled paper; after the check,
+          the words they missed are marked here. */}
+      {(stage === 'check' || (stage === 'result' && feedback !== 'manual')) && (
+        <RuledPaper className="sm:mx-0 -mx-1">
+          {stage === 'check' ? (
+            <>
+              <label htmlFor="dictation-input" className="block text-[13px] font-semibold uppercase tracking-[0.14em] leading-[36px] text-pw-muted">
+                {testMode ? 'Type the sentence' : 'Your sentence'}
+              </label>
+              <textarea
+                id="dictation-input"
+                value={userInput}
+                onChange={(e) => setUserInput(e.target.value)}
+                placeholder="Type the sentence here…"
+                rows={2}
+                className="block w-full resize-none bg-transparent text-[22px] leading-[36px] text-pw-navy placeholder:text-pw-muted focus:outline-none"
+                onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); if (userInput.trim()) checkAnswer(); } }}
+                autoFocus
+              />
+            </>
+          ) : (
+            <>
+              <p className="text-[13px] font-semibold uppercase tracking-[0.14em] leading-[36px] text-pw-muted">You wrote</p>
+              <p className="text-[22px] leading-[36px]">{userInput}</p>
+              {words && (
+                <>
+                  <p className="text-[13px] font-semibold uppercase tracking-[0.14em] leading-[36px] text-pw-muted">The sentence, word by word</p>
+                  <p className="text-[22px] leading-[36px]">
+                    {words.map((w, i) => (
+                      <React.Fragment key={i}>
+                        {w.status === 'correct'
+                          ? <span>{w.word}</span>
+                          : <mark className="rounded bg-pw-highlight px-1 font-semibold text-pw-navy underline decoration-pw-red-ink decoration-2 underline-offset-4">{w.word}<span className="sr-only"> (missed)</span></mark>}
+                        {' '}
+                      </React.Fragment>
+                    ))}
+                  </p>
+                </>
+              )}
+            </>
+          )}
+        </RuledPaper>
+      )}
     </div>
   );
 }

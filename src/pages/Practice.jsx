@@ -1,36 +1,54 @@
 import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Mic, BookA, GraduationCap, Clock, ArrowRight, CheckCircle, Loader2, Sparkles, Layers, Pencil, CalendarCheck } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { ArrowRight, Clock, Loader2, Sparkles, Layers, Mic, SlidersHorizontal, X } from 'lucide-react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import DictationCard from '@/components/game/DictationCard';
 import CivicsTestCard from '@/components/practice/CivicsTestCard';
 import FlashcardGame from '@/components/practice/FlashcardGame';
 import MatchingGame from '@/components/practice/MatchingGame';
 import ReadingPracticeCard from '@/components/practice/ReadingPracticeCard';
 import InterviewPractice from '@/components/practice/InterviewPractice';
-import PracticePathProgress from '@/components/practice/PracticePathProgress';
 import PageHeader from '@/components/PageHeader';
-import { PrimaryButton, SecondaryButton, posterTone } from '@/components/pathways/ui';
+import { PillButton, Poster, PosterStars, SKILL_COLOR, SKILL_ON, posterSolid, posterOutline } from '@/components/pathways/ui';
+import { cardOutcome, countOutcomes } from '@/lib/practiceResults';
 import { toast } from "sonner";
 import VoiceSettings from '@/components/utils/VoiceSettings';
 
-// Practice hub: one card per interview part, with a strip that alternates
-// red and blue (Phase 5).
-const STRIP = { red: 'bg-pw-red-ink', blue: 'bg-pw-civics' };
-function PartCard({ i, part, title, children }) {
+// Practice hub: the four parts of the interview as tiles, in the order
+// Reading · Writing · Civics · Speaking, each in its skill color with a
+// white Start. Tapping one starts right away; a run is full screen
+// (?mode=… hides the app header and tab bar, see Layout).
+const RUN_MODES = ['reading', 'dictation', 'civics', 'interview', 'vocabulary'];
+const RUN_LABEL = {
+  reading: 'Reading · Read aloud',
+  dictation: 'Writing · Listen and write',
+  vocabulary: 'Writing · Vocabulary',
+  civics: 'Civics questions',
+  interview: 'Speaking · The officer’s questions',
+};
+
+function PartTile({ n, skill, label, title, status, onStart }) {
   return (
-    <section aria-labelledby={`part-${part}`} className="rounded-[14px] bg-white border border-pw-line shadow-raised overflow-hidden flex flex-col">
-      <div className={`${STRIP[posterTone(i)]} text-white px-5 py-3`}>
-        <p className="text-sm font-semibold uppercase tracking-[0.14em]">Part {i + 1} · {part}</p>
-      </div>
-      <div className="p-5 flex flex-col gap-3 flex-1">
-        <h2 id={`part-${part}`} className="font-display text-[28px] leading-tight">{title}</h2>
-        {children}
-      </div>
-    </section>
+    <button
+      type="button"
+      onClick={onStart}
+      className={`group text-left rounded-[18px] p-5 min-h-[176px] flex flex-col justify-between gap-4 transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2 ${SKILL_COLOR[skill]} ${SKILL_ON[skill]}`}
+    >
+      <span className="flex items-start justify-between gap-3">
+        <span className="text-[13px] font-semibold uppercase tracking-[0.16em]">Part {n} · {label}</span>
+        <span className="font-display text-[56px] leading-[0.7]" aria-hidden="true">{n}</span>
+      </span>
+      <span className="text-[30px] font-bold leading-[1.08] tracking-[-0.01em]">{title}</span>
+      <span className="flex items-center justify-between gap-3">
+        <span className="font-display italic text-[19px] leading-snug">{status}</span>
+        <span className="shrink-0 min-h-11 rounded-full bg-white text-pw-navy px-5 text-base font-semibold inline-flex items-center gap-1.5 group-hover:bg-pw-soft">
+          Start <ArrowRight className="w-4 h-4 rtl:rotate-180" aria-hidden="true" />
+        </span>
+      </span>
+    </button>
   );
 }
 
@@ -47,6 +65,24 @@ export default function Practice() {
   const [currentUser, setCurrentUser] = useState(null);
   const [representativeData, setRepresentativeData] = useState(null);
   const hasMounted = React.useRef(false);
+  const [results, setResults] = useState([]); // stars: one outcome per card
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const urlMode = searchParams.get('mode');
+
+  // A run lives in the URL (?mode=…) so it is full screen and the browser's
+  // Back closes it. Leaving the run clears the param.
+  const exitRun = () => {
+    setMode('menu');
+    setResults([]);
+    setSearchParams({}, { replace: false });
+  };
+  useEffect(() => {
+    if (!urlMode && mode !== 'menu') {
+      setMode('menu');
+      setResults([]);
+    }
+  }, [urlMode]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadRepresentativeData = async (email) => {
     try {
@@ -96,7 +132,6 @@ export default function Practice() {
   // for the signed-in user so progress ordering works.
   const startedFromUrl = React.useRef(false);
   useEffect(() => {
-    const urlMode = new URLSearchParams(window.location.search).get('mode');
     if (startedFromUrl.current || !urlMode) return;
     if (urlMode === 'interview') {
       startedFromUrl.current = true;
@@ -104,6 +139,9 @@ export default function Practice() {
     } else if (['reading', 'dictation', 'civics'].includes(urlMode) && currentUser) {
       startedFromUrl.current = true;
       startSession(urlMode);
+    } else if (!RUN_MODES.includes(urlMode) || urlMode === 'vocabulary') {
+      // Not something a link can start (or a reload mid-vocabulary): back to the hub.
+      setSearchParams({}, { replace: true });
     }
   }, [currentUser]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -147,22 +185,19 @@ export default function Practice() {
   // Interview Practice Mode
   if (mode === 'interview') {
     return (
-      <div className="space-y-6">
-        <Button variant="ghost" onClick={() => setMode('menu')} className="text-pw-muted hover:text-pw-navy">
-          &larr; Back to Practice Menu
-        </Button>
-        <InterviewPractice 
+      <RunShell label={RUN_LABEL.interview} onClose={exitRun}>
+        <InterviewPractice
           onComplete={(passed) => {
             if (passed) {
               toast.success('Great job! You\'re ready for the interview!');
             } else {
               toast.info('Keep practicing - you\'re getting better!');
             }
-            setMode('menu');
+            exitRun();
           }}
           onNext={() => {}}
         />
-      </div>
+      </RunShell>
     );
   }
 
@@ -252,6 +287,9 @@ export default function Practice() {
   };
 
   const startSession = async (selectedMode, subMode = null) => {
+    startedFromUrl.current = true;
+    if (urlMode !== selectedMode) setSearchParams({ mode: selectedMode });
+    setResults([]);
     setIsLoading(true);
     setMode(selectedMode);
     if (subMode) setVocabSubMode(subMode);
@@ -290,7 +328,7 @@ export default function Practice() {
     } catch (error) {
       console.error("Error starting session", error);
       toast.error("Failed to start practice session");
-      setMode('menu');
+      exitRun();
     } finally {
       setIsLoading(false);
     }
@@ -307,6 +345,8 @@ export default function Practice() {
     else mode = 'dictation';
   }
   setMode(mode);
+  setSearchParams({ mode });
+  setResults([]);
   setCurrentIndex(0);
   setSessionComplete(false);
 
@@ -358,12 +398,12 @@ export default function Practice() {
       item.assignment_id = assignment.id;
     } else {
       toast.error("Content not found");
-      setMode('menu');
+      exitRun();
     }
   } catch (error) {
     console.error("Error loading assignment", error);
     toast.error("Failed to load assignment");
-    setMode('menu');
+    exitRun();
   } finally {
     setIsLoading(false);
   }
@@ -371,6 +411,8 @@ export default function Practice() {
 
   const handleComplete = async (isSuccess, score = null) => {
     const currentItem = content[currentIndex];
+    const at = currentIndex;
+    setResults((prev) => { const next = [...prev]; next[at] = cardOutcome(isSuccess, score); return next; });
     
     if (currentUser) {
        try {
@@ -485,150 +527,154 @@ export default function Practice() {
     return (
       <div className="max-w-5xl mx-auto space-y-6 pb-12">
         <PageHeader
+          tag="The four parts of the interview"
           title="Practice"
-          subtitle="Practice each part of the interview."
-          art="book"
-          guide="Pick one part: civics, reading, writing, or speaking. Each one is a part of your interview."
-        />
-        <div className="flex justify-center">
-          <VoiceSettings />
-        </div>
-
-        <PracticePathProgress userEmail={currentUser?.email} />
+          guide="Pick a part and we start right away. Ten cards, about five minutes."
+        >
+          <PillButton onClick={() => setSettingsOpen(true)} className="bg-white border border-pw-line">
+            <SlidersHorizontal className="w-4 h-4" aria-hidden="true" /> {civicsVersion} test
+          </PillButton>
+        </PageHeader>
 
         {assignments.length > 0 && (
-        <div className="bg-white border border-pw-line shadow-raised rounded-[14px] p-5">
-          <h2 className="text-2xl font-display font-normal text-pw-navy flex items-center gap-2 mb-4">
-            <Clock className="w-5 h-5" /> Assignments from your Tutor
-          </h2>
+          <section aria-labelledby="assigned" className="space-y-3">
+            <h2 id="assigned" className="font-display text-[28px] leading-tight flex items-center gap-2">
+              <Clock className="w-5 h-5" aria-hidden="true" /> From your tutor
+            </h2>
             <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
               {assignments.map(a => (
                 <button
                   key={a.id}
                   type="button"
                   onClick={() => startAssignment(a)}
-                  className="text-left rounded-2xl border-2 border-pw-line bg-white hover:border-pw-navy p-4 flex justify-between items-center gap-2 min-h-[64px] transition-colors"
+                  className="text-left rounded-[14px] border border-pw-line bg-white shadow-raised hover:border-pw-navy p-4 flex justify-between items-center gap-2 min-h-[64px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
                 >
                   <div className="overflow-hidden">
-                    <p className="font-bold text-pw-navy text-base capitalize truncate">
+                    <p className="font-semibold text-pw-navy text-base capitalize truncate">
                       {a.content_type === 'custom' ? (a.custom_content || 'Custom Task') : a.content_type.replace('_', ' ')}
                     </p>
                     <p className="text-sm text-pw-muted">
                       Assigned {new Date(a.assigned_date).toLocaleDateString()}
                     </p>
                   </div>
-                  <span className="shrink-0 rounded-xl bg-pw-navy text-white font-bold px-4 min-h-11 inline-flex items-center">Start</span>
+                  <span className="shrink-0 rounded-full bg-pw-navy text-white font-semibold px-4 min-h-11 inline-flex items-center">Start</span>
                 </button>
               ))}
             </div>
-        </div>
+          </section>
         )}
 
-        <div className="grid sm:grid-cols-2 gap-4">
-          <PartCard i={0} part="Civics" title="Civics questions">
-            <p className="text-base text-pw-muted">Answer the official civics questions out loud or by typing.</p>
-            <div className="space-y-2">
-              <label className={label}>Test version</label>
-              <Select value={civicsVersion} onValueChange={(v) => { setCivicsVersion(v); try { localStorage.setItem('civicsVersion', v); } catch (e) { /* storage blocked */ } }}>
-                <SelectTrigger className="h-auto text-left">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="2025">2025</SelectItem>
-                  <SelectItem value="2008">Applied before Oct 20, 2025? Choose 2008.</SelectItem>
-                </SelectContent>
-              </Select>
-              <p className="text-sm text-pw-muted leading-snug">
-                {civicsVersion === '2025'
-                  ? 'The officer asks up to 20 questions from this list of 128. You pass with 12 correct.'
-                  : 'The officer asks up to 10 questions from this list of 100. You pass with 6 correct.'}
-              </p>
-              <a href="https://www.uscis.gov/citizenship/2025-test" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-pw-navy underline underline-offset-4 inline-block min-h-[44px] py-2">
-                Not sure which test you'll take? Check uscis.gov.
-              </a>
-            </div>
-            <div className="space-y-2">
-              <label className={label}>Difficulty</label>
-              <Select value={civicsDifficulty} onValueChange={setCivicsDifficulty}>
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All</SelectItem>
-                  <SelectItem value="easy">Easy</SelectItem>
-                  <SelectItem value="medium">Medium</SelectItem>
-                  <SelectItem value="hard">Hard</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <PrimaryButton onClick={() => startSession('civics')} className="w-full mt-auto"><GraduationCap className="w-5 h-5" aria-hidden="true" /> Start civics</PrimaryButton>
-          </PartCard>
-
-          <PartCard i={1} part="Reading" title="Read aloud">
-            <p className="text-base text-pw-muted">Read official sentences out loud. We check each word.</p>
-            <PrimaryButton onClick={() => startSession('reading')} className="w-full mt-auto"><BookA className="w-5 h-5" aria-hidden="true" /> Start reading</PrimaryButton>
-          </PartCard>
-
-          <PartCard i={2} part="Writing" title="Listen and write">
-            <p className="text-base text-pw-muted">Listen to a sentence and write it. We check each word.</p>
-            <PrimaryButton onClick={() => startSession('dictation')} className="w-full"><Pencil className="w-5 h-5" aria-hidden="true" /> Start writing</PrimaryButton>
-            <p className={`${label} mt-2`}>Vocabulary words</p>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-              <SecondaryButton onClick={() => startSession('vocabulary', 'dictation')}><Mic className="w-5 h-5" aria-hidden="true" /> Dictation</SecondaryButton>
-              <SecondaryButton onClick={() => startSession('vocabulary', 'flashcards')}><Sparkles className="w-5 h-5" aria-hidden="true" /> Flashcards</SecondaryButton>
-              <SecondaryButton onClick={() => startSession('vocabulary', 'matching')}><Layers className="w-5 h-5" aria-hidden="true" /> Matching</SecondaryButton>
-            </div>
-          </PartCard>
-
-          <PartCard i={3} part="Speaking" title="Mock interview">
-            <p className="text-base text-pw-muted">Talk with an officer out loud: small talk and the oath. For questions about your application, you say what the officer is asking, not your answer.</p>
-            <PrimaryButton onClick={() => setMode('interview')} className="w-full mt-auto"><Mic className="w-5 h-5" aria-hidden="true" /> Start the interview</PrimaryButton>
-          </PartCard>
+        <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
+          <PartTile n={1} skill="reading" label="Reading" title="Read a sentence aloud" status="We check each word" onStart={() => startSession('reading')} />
+          <PartTile n={2} skill="writing" label="Writing" title="Listen and write" status="On ruled paper" onStart={() => startSession('dictation')} />
+          <PartTile n={3} skill="civics" label="Civics" title="Civics questions" status={`The ${civicsVersion} test`} onStart={() => startSession('civics')} />
+          <PartTile n={4} skill="speaking" label="Speaking" title="The officer’s questions" status="Say what each one asks" onStart={() => { setSearchParams({ mode: 'interview' }); setMode('interview'); }} />
         </div>
 
+        {/* Vocabulary games (part of Writing) */}
+        <section aria-labelledby="vocab" className="space-y-2">
+          <h2 id="vocab" className="text-[13px] font-semibold uppercase tracking-[0.14em] text-pw-muted">Writing · Vocabulary games</h2>
+          <div className="flex flex-wrap gap-2">
+            <PillButton onClick={() => startSession('vocabulary', 'dictation')} className="bg-white border border-pw-line"><Mic className="w-4 h-4" aria-hidden="true" /> Word dictation</PillButton>
+            <PillButton onClick={() => startSession('vocabulary', 'flashcards')} className="bg-white border border-pw-line"><Sparkles className="w-4 h-4" aria-hidden="true" /> Flashcards</PillButton>
+            <PillButton onClick={() => startSession('vocabulary', 'matching')} className="bg-white border border-pw-line"><Layers className="w-4 h-4" aria-hidden="true" /> Matching</PillButton>
+          </div>
+        </section>
+
         {/* Mixed practice: the full run-through on Interview Day */}
-        <Link
-          to="/interview-day"
-          className="group flex items-center gap-4 rounded-[14px] bg-white border border-pw-line shadow-raised p-5 hover:border-pw-navy transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
-        >
-          <span className="flex flex-col gap-1 shrink-0" aria-hidden="true">
-            <span className="flex gap-1"><span className="w-4 h-4 rounded-[3px] bg-pw-red-ink" /><span className="w-4 h-4 rounded-[3px] bg-pw-civics" /></span>
-            <span className="flex gap-1"><span className="w-4 h-4 rounded-[3px] bg-pw-civics" /><span className="w-4 h-4 rounded-[3px] bg-pw-red-ink" /></span>
-          </span>
-          <span className="flex-1 min-w-0">
-            <span className="block font-display text-[28px] leading-tight">Mixed practice</span>
-            <span className="block text-base text-pw-muted">All four parts in one run, in the order of the real interview. Nothing is saved.</span>
-          </span>
-          <CalendarCheck className="w-6 h-6 text-pw-navy shrink-0" aria-hidden="true" />
-          <ArrowRight className="w-5 h-5 text-pw-muted group-hover:text-pw-navy shrink-0" aria-hidden="true" />
-        </Link>
+        <div>
+          <span className="ml-4 inline-block rounded-t-lg bg-pw-navy px-3 py-1 text-sm font-semibold text-white">Mixed practice</span>
+          <div className="rounded-[14px] bg-white border border-pw-line shadow-raised p-5 space-y-2">
+            <h2 className="font-display text-[30px] leading-tight">Interview Day</h2>
+            <p className="text-base text-pw-muted max-w-2xl">The whole interview, in order: the oath, the officer’s questions, reading, writing and civics. Nothing is saved.</p>
+            <Link
+              to="/interview-day"
+              className="mt-2 inline-flex min-h-12 items-center gap-2 rounded-full border-2 border-pw-navy px-5 text-base font-semibold text-pw-navy hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2"
+            >
+              Start the run-through <ArrowRight className="w-4 h-4 rtl:rotate-180" aria-hidden="true" />
+            </Link>
+          </div>
+        </div>
+
+        {/* Settings: civics test version, difficulty, voice */}
+        <Sheet open={settingsOpen} onOpenChange={setSettingsOpen}>
+          <SheetContent side="bottom" className="bg-pw-page max-h-[90vh] overflow-y-auto">
+            <SheetHeader>
+              <SheetTitle className="font-display font-normal text-[30px] text-pw-navy text-left">Practice settings</SheetTitle>
+            </SheetHeader>
+            <div className="mx-auto max-w-lg space-y-5 py-4 text-pw-navy">
+              <div className="space-y-2">
+                <label className={label} htmlFor="civics-version">Civics test version</label>
+                <Select value={civicsVersion} onValueChange={(v) => { setCivicsVersion(v); try { localStorage.setItem('civicsVersion', v); } catch (e) { /* storage blocked */ } }}>
+                  <SelectTrigger id="civics-version" className="h-auto min-h-11 text-left bg-white">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="2025">2025</SelectItem>
+                    <SelectItem value="2008">Applied before Oct 20, 2025? Choose 2008.</SelectItem>
+                  </SelectContent>
+                </Select>
+                <p className="text-sm text-pw-muted leading-snug">
+                  {civicsVersion === '2025'
+                    ? 'The officer asks up to 20 questions from this list of 128. You pass with 12 correct.'
+                    : 'The officer asks up to 10 questions from this list of 100. You pass with 6 correct.'}
+                </p>
+                <a href="https://www.uscis.gov/citizenship/2025-test" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-pw-navy underline underline-offset-4 inline-block min-h-[44px] py-2">
+                  Not sure which test you'll take? Check uscis.gov.
+                </a>
+              </div>
+              <div className="space-y-2">
+                <label className={label} htmlFor="civics-difficulty">Civics difficulty</label>
+                <Select value={civicsDifficulty} onValueChange={setCivicsDifficulty}>
+                  <SelectTrigger id="civics-difficulty" className="min-h-11 bg-white">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All</SelectItem>
+                    <SelectItem value="easy">Easy</SelectItem>
+                    <SelectItem value="medium">Medium</SelectItem>
+                    <SelectItem value="hard">Hard</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-2">
+                <p className={label}>Voice</p>
+                <VoiceSettings />
+              </div>
+            </div>
+          </SheetContent>
+        </Sheet>
       </div>
     );
   }
 
   if (sessionComplete) {
+    const counts = countOutcomes(results);
+    const total = content.length;
     return (
-      <div className="flex flex-col items-center justify-center min-h-[60vh] text-center space-y-6 animate-in fade-in">
-        <div className="w-20 h-20 bg-pw-green-soft text-pw-green-ink rounded-full flex items-center justify-center">
-          <CheckCircle className="w-10 h-10" />
-        </div>
-        <h2 className="text-4xl font-display font-normal text-pw-navy">Session Complete!</h2>
-        <p className="text-lg text-pw-muted">You've finished your practice session.</p>
-        <Button onClick={() => setMode('menu')} className="min-w-[200px]">
-          Back to Dashboard
-        </Button>
-      </div>
+      <RunShell label={RUN_LABEL[mode]} onClose={exitRun}>
+        <Poster
+          tone="blue"
+          className="-mx-4 sm:mx-0 sm:rounded-[14px]"
+          label="Practice · Done"
+          question={`${counts.right} of ${total} right`}
+          answer={counts.close ? `${counts.close} almost. One more look and you have them.` : 'Nice work.'}
+        >
+          <div className="space-y-5">
+            <PosterStars index={total} total={total} results={results} />
+            <p className="text-base">{counts.right} right · {counts.close} almost · {counts.missed} missed</p>
+            <div className="flex flex-wrap gap-2">
+              <button type="button" onClick={() => startSession(mode, vocabSubMode)} className={posterSolid}>Practice again</button>
+              <button type="button" onClick={exitRun} className={posterOutline}>Back to Practice</button>
+            </div>
+          </div>
+        </Poster>
+      </RunShell>
     );
   }
 
   return (
-    <div className="max-w-3xl mx-auto py-2 space-y-6">
-      <div className="flex items-center justify-between">
-        <Button variant="outline" onClick={() => setMode('menu')}>
-          &larr; Exit Practice
-        </Button>
-        <Badge variant="outline" className="capitalize">{mode.replace('_', ' ')}</Badge>
-      </div>
+    <RunShell label={RUN_LABEL[mode]} onClose={exitRun}>
 
       {isLoading ? (
         <div className="flex justify-center py-20">
@@ -642,6 +688,7 @@ export default function Practice() {
                 sentence={content[currentIndex]}
                 onComplete={handleComplete}
                 onNext={handleNext}
+                results={results}
             />
          ) : mode === 'civics' ? (
             <CivicsTestCard 
@@ -650,6 +697,7 @@ export default function Practice() {
                 question={content[currentIndex]}
                 onComplete={handleComplete}
                 onNext={handleNext}
+                results={results}
                 representativeData={representativeData}
             />
          ) : mode === 'vocabulary' ? (
@@ -684,14 +732,36 @@ export default function Practice() {
                 sentence={content[currentIndex]}
                 onComplete={handleComplete}
                 onNext={handleNext}
+                results={results}
             />
          )
       ) : (
          <div className="text-center py-20">
             <p className="text-lg text-pw-muted">No content found for this mode.</p>
-            <Button onClick={() => setMode('menu')} className="mt-4">Go Back</Button>
+            <Button onClick={exitRun} className="mt-4">Go Back</Button>
          </div>
          )}
-         </div>
-         );
+    </RunShell>
+  );
          }
+
+// A practice run, full screen: a close button and what is being practiced,
+// then the cards (each poster carries its own stars).
+function RunShell({ label, onClose, children }) {
+  return (
+    <div className="max-w-2xl mx-auto space-y-4 pb-8">
+      <div className="flex items-center gap-3 -mt-2">
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close practice"
+          className="w-11 h-11 shrink-0 rounded-full bg-white border border-pw-line grid place-items-center text-pw-navy hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
+        >
+          <X className="w-5 h-5" aria-hidden="true" />
+        </button>
+        <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-pw-muted">{label}</p>
+      </div>
+      {children}
+    </div>
+  );
+}

@@ -12,7 +12,7 @@ import { wordDiff } from "@/components/utils/wordDiff";
 // Shown as a red/blue poster (Phase 5): `index`/`total` give the card's place
 // in the run. The word-by-word check (wordDiff) and the score stay as they
 // were, shown on the poster.
-export default function ReadingPracticeCard({ sentence, onComplete, onNext, testMode = false, index = 0, total = 0 }) {
+export default function ReadingPracticeCard({ sentence, onComplete, onNext, testMode = false, index = 0, total = 0, results = [] }) {
   const [isListening, setIsListening] = useState(false);
   const [spokenText, setSpokenText] = useState('');
   const [status, setStatus] = useState('idle'); // idle, listening, processing, success, retry, manual, unsupported
@@ -233,7 +233,7 @@ In one or two short, encouraging sentences at an A2 English level, give one prac
         tone={posterTone(index)}
         className="-mx-4 sm:mx-0 sm:rounded-[14px]"
         label={label}
-        progress={total ? { index, total } : null}
+        progress={total ? { index, total, results } : null}
         question={wordResults ? null : sentence.text}
       >
         <div className="space-y-4">

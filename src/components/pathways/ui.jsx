@@ -1,5 +1,6 @@
 import React from 'react';
 import { posterTone, POSTER_SCHEME } from '@/lib/posterTone';
+import { outcomesLabel } from '@/lib/practiceResults';
 
 export { posterTone, POSTER_SCHEME };
 
@@ -213,19 +214,41 @@ const POSTER_BTN = 'min-h-[48px] rounded-full px-5 inline-flex items-center just
 export const posterSolid = `${POSTER_BTN} bg-white text-pw-navy hover:bg-pw-soft`;
 export const posterOutline = `${POSTER_BTN} border-2 border-white text-white hover:bg-white/10`;
 
-// A row of small squares, one per card in alternating poster colors; passed
-// cards are white, the current one is ringed. Hidden for long runs.
-export function PosterSquares({ index = 0, total = 0, className = '' }) {
+// One star per card on a poster run. Upcoming cards are white stars, the
+// current one is an outline, and a finished card takes its result color:
+// green (right), yellow (almost) or red (missed). `results[k]` is 'right' |
+// 'close' | 'missed' (lib/practiceResults); a passed card with no result
+// stays white. Never torches or the Statue of Liberty. Hidden for long runs.
+const STAR = 'M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z';
+const STAR_FILL = { right: 'fill-pw-go', close: 'fill-pw-almost', missed: 'fill-pw-miss' };
+export function PosterStars({ index = 0, total = 0, results = [], className = '' }) {
   if (!total || total > 24) return null;
   return (
-    <div className={`flex flex-wrap gap-1.5 ${className}`} aria-hidden="true">
-      {Array.from({ length: total }, (_, k) => (
-        <span
-          key={k}
-          className={`w-3 h-3 rounded-[3px] border border-white ${k < index ? 'bg-white' : POSTER_BG[posterTone(k)]} ${k === index ? 'ring-2 ring-white ring-offset-1 ring-offset-transparent' : ''}`}
-        />
-      ))}
+    <div className={`flex flex-wrap items-center gap-0.5 ${className}`} role="img" aria-label={outcomesLabel(index, total, results)}>
+      {Array.from({ length: total }, (_, k) => {
+        const current = k === index;
+        const fill = results[k] ? STAR_FILL[results[k]] : current ? 'fill-transparent' : 'fill-white';
+        return (
+          <svg key={k} viewBox="0 0 24 24" className={current ? 'w-[22px] h-[22px]' : 'w-[17px] h-[17px]'} aria-hidden="true">
+            <path d={STAR} className={`${fill} stroke-white`} strokeWidth={current ? 2.2 : 1.4} strokeLinejoin="round" />
+          </svg>
+        );
+      })}
     </div>
+  );
+}
+// Older name.
+export const PosterSquares = PosterStars;
+
+// Ruled paper: the learner's own page (white, pale blue rules, a pale
+// margin line). For the Listen-and-write surface, "Explain it simply", notes
+// and the N-400 screens. Line height matches the rules (`leading-[36px]`).
+export function RuledPaper({ as: Tag = 'div', className = '', children, ...props }) {
+  return (
+    <Tag className={`pw-ruled relative rounded-[6px] bg-white ps-12 pe-5 pt-3 pb-5 text-pw-navy shadow-[0_6px_18px_rgba(20,38,74,0.12)] ${className}`} {...props}>
+      <span aria-hidden="true" className="absolute inset-y-0 start-8 w-0.5 bg-pw-margin" />
+      {children}
+    </Tag>
   );
 }
 
@@ -238,7 +261,7 @@ export function Poster({ tone = 'red', label, question, answer, progress, questi
     <section className={`relative ${POSTER_BG[tone] || POSTER_BG.red} text-white px-5 py-8 sm:px-8 sm:py-10 ${className}`} {...props}>
       <PathwaysMark size={36} tone="white" className="absolute right-5 top-6 sm:right-8 sm:top-8" />
       {label && <p className="pr-12 text-sm font-semibold uppercase tracking-[0.14em]">{label}</p>}
-      {progress && <PosterSquares {...progress} className="mt-3 pr-12" />}
+      {progress && <PosterStars {...progress} className="mt-3 pr-12" />}
       {question && <Q className="mt-4 text-[2rem] leading-tight font-bold sm:text-5xl">{question}</Q>}
       {answer && <p className="mt-5 font-display italic text-2xl leading-snug sm:text-3xl">{answer}</p>}
       {children && <div className="mt-6">{children}</div>}

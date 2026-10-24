@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { cardOutcome } from '@/lib/practiceResults';
 import { Eyebrow, PillButton, Poster, PrimaryButton, RaisedCard, SecondaryButton, Tag, posterOutline, posterSolid, posterTone } from '@/components/pathways/ui';
 import { Link } from 'react-router-dom';
 import { Mic, MicOff, Volume2, ArrowRight, Check, X, Loader2, ChevronDown, ChevronUp, FileText, Bot, BarChart3 } from 'lucide-react';
@@ -424,8 +425,8 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
 
   return (
     <div className="w-full max-w-3xl mx-auto space-y-4 text-pw-navy">
-      {/* Progress */}
-      <div>
+      {/* Progress: the poster's stars show it; this bar only for runs too long for stars */}
+      {questions.length > 24 && <div>
         <div className="flex justify-between items-center gap-3 mb-2 text-sm font-semibold text-pw-muted">
           <span>Question {currentIndex + 1} of {questions.length}</span>
           <span>{sessionResults.filter(r => r.is_acceptable).length} passed so far</span>
@@ -446,7 +447,7 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
             }`} />
           ))}
         </div>
-      </div>
+      </div>}
 
       {/* Virtual Interviewer */}
       <RaisedCard padding="p-4">
@@ -458,7 +459,7 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
         tone={posterTone(currentIndex)}
         className="-mx-4 sm:mx-0 sm:rounded-[14px]"
         label={`Interview · Card ${currentIndex + 1} of ${questions.length} · ${sectionLabel}`}
-        progress={{ index: currentIndex, total: questions.length }}
+        progress={{ index: currentIndex, total: questions.length, results: sessionResults.map((r) => cardOutcome(r.is_acceptable, r.overall_score)) }}
         question={current.question}
       >
         <div className="space-y-4">
