@@ -46,7 +46,7 @@ export default function Home({ cachedUser, cachedRole }) {
   if (learner) {
     return (
       <div className="flex flex-col gap-10 pb-8" dir={rtl ? 'rtl' : 'ltr'}>
-        <TodayCard language={language} homeT={t} />
+        <TodayCard language={language} />
         <StudyTogether t={t} tutorName={profile.name} language={language} onLanguageChange={setLanguage} translating={translating} />
       </div>
     );
