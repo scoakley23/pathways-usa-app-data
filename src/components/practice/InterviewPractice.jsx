@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { cardOutcome } from '@/lib/practiceResults';
-import { Eyebrow, PillButton, Poster, PrimaryButton, RaisedCard, SecondaryButton, Tag, posterOutline, posterSolid, posterTone } from '@/components/pathways/ui';
+import { Eyebrow, Poster, PrimaryButton, RaisedCard, RuledPaper, SecondaryButton, Tag, posterBigButton, posterLink, posterSolid, posterTone, posterTool } from '@/components/pathways/ui';
 import { Link } from 'react-router-dom';
-import { Mic, MicOff, Volume2, ArrowRight, Check, X, Loader2, ChevronDown, ChevronUp, FileText, Bot, BarChart3 } from 'lucide-react';
+import { Mic, MicOff, Volume2, ArrowRight, Check, Loader2, ChevronDown, ChevronUp, FileText, Bot, BarChart3 } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { speakText, stopSpeaking, getRandomVoice } from "@/components/utils/textToSpeech";
 import { toast } from "sonner";
@@ -463,13 +463,13 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
         question={current.question}
       >
         <div className="space-y-4">
-          <PillButton onClick={speakQuestion} disabled={interviewerState === 'speaking'}>
+          <button type="button" onClick={speakQuestion} disabled={interviewerState === 'speaking'} className={`${posterTool} disabled:opacity-60`}>
             <Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" /> Repeat question
-          </PillButton>
+          </button>
 
           {/* Questions about the learner's history: understanding only */}
           {isUnderstandingSection(current) && (
-            <div className="rounded-[10px] bg-white/10 border border-white/60 px-4 py-3 space-y-1">
+            <div className="border-s-2 border-white/70 ps-4 space-y-1">
               <p className="text-base font-semibold">Don't answer this question. Say in English what the officer is asking.</p>
               <p className="text-base">We explain what questions mean. How they apply to you is for a lawyer. <Link to="/lawyer-first" className="font-semibold underline underline-offset-4">Talk to a lawyer first</Link></p>
             </div>
@@ -477,32 +477,58 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
 
           {!feedback && (
             <>
-              <div className="flex flex-col items-center">
+              <div className="flex flex-col items-center pt-2">
                 <div className="relative">
-                  <span className={`absolute inset-0 rounded-full bg-white/25 transition-transform ${isListening ? 'scale-150 animate-pulse' : 'scale-125'}`} aria-hidden="true" />
+                  <span className={`absolute inset-0 rounded-full bg-white/20 transition-transform ${isListening ? 'scale-[1.35] animate-pulse' : 'scale-[1.2]'}`} aria-hidden="true" />
                   <button
                     type="button"
                     onClick={toggleListening}
                     disabled={isAnalyzing}
                     aria-label={isListening ? 'Stop recording' : 'Record your answer'}
-                    className="relative w-20 h-20 rounded-full bg-white text-pw-navy grid place-items-center shadow-lift disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60"
+                    className={posterBigButton}
                   >
-                    {isListening ? <MicOff className="w-8 h-8" /> : <Mic className="w-8 h-8" />}
+                    {isListening ? <MicOff className="w-10 h-10" aria-hidden="true" /> : <Mic className="w-10 h-10" aria-hidden="true" />}
                   </button>
                 </div>
-                <p className="mt-4 text-base font-semibold text-center" aria-live="polite">{statusText}</p>
+                <p className="mt-5 text-lg font-semibold text-center" aria-live="polite">{statusText}</p>
               </div>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap items-center gap-3">
                 {userResponse && !isListening && (
                   <button type="button" onClick={analyzeResponse} disabled={isAnalyzing} className={posterSolid}>
-                    Evaluate answer
+                    {isAnalyzing ? <Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" /> : <Check className="w-5 h-5" aria-hidden="true" />}
+                    {isAnalyzing ? 'Checking…' : 'Check my answer'}
                   </button>
                 )}
-                <button type="button" onClick={handleSkip} className={posterOutline}>Skip this question</button>
+                <button type="button" onClick={handleSkip} className={posterLink}>Skip this question</button>
               </div>
             </>
           )}
-          {feedback && <p className="text-base font-semibold" aria-live="polite">{statusText}</p>}
+
+          {/* The verdict stays on the poster, with the way forward */}
+          {feedback && (
+            <div className="space-y-3" aria-live="polite">
+              <p className="text-2xl font-bold">
+                {isUnderstandingSection(current)
+                  ? (feedback.is_acceptable ? 'You understood the question.' : 'Not quite yet.')
+                  : (feedback.is_acceptable ? 'Good answer.' : 'Not quite yet.')}
+                {' '}<span className="font-display font-normal text-3xl">{feedback.overall_score}/100</span>
+              </p>
+              <p className="text-base">
+                {isUnderstandingSection(current)
+                  ? (feedback.is_acceptable ? 'You know what the officer is asking.' : 'Read what it is asking below.')
+                  : (feedback.is_acceptable ? 'This would pass in a real interview.' : 'Look at the feedback below, then go on.')}
+              </p>
+              <button type="button" onClick={() => handleNext()} className={posterSolid}>
+                {currentIndex < questions.length - 1 ? (
+                  <>Next question <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" /></>
+                ) : rehearsal ? (
+                  <>Continue <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" /></>
+                ) : (
+                  <><FileText className="w-5 h-5" aria-hidden="true" /> See the full report</>
+                )}
+              </button>
+            </div>
+          )}
         </div>
       </Poster>
 
@@ -540,20 +566,7 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
       </div>
 
       {/* Feedback */}
-      {feedback && (
-        <>
-          <FeedbackPanel feedback={feedback} response={userResponse} understanding={isUnderstandingSection(current)} />
-          <PrimaryButton large onClick={() => handleNext()} className="w-full">
-            {currentIndex < questions.length - 1 ? (
-              <><ArrowRight className="w-5 h-5" aria-hidden="true" /> Next Question</>
-            ) : rehearsal ? (
-              <>Continue <ArrowRight className="w-5 h-5" aria-hidden="true" /></>
-            ) : (
-              <><FileText className="w-5 h-5" aria-hidden="true" /> See Full Report</>
-            )}
-          </PrimaryButton>
-        </>
-      )}
+      {feedback && <FeedbackPanel feedback={feedback} understanding={isUnderstandingSection(current)} />}
     </div>
   );
 }
@@ -607,26 +620,14 @@ function TypingIndicator() {
 const scoreColor = (s) => s >= 80 ? 'text-pw-green-ink' : s >= 60 ? 'text-pw-blue-ink' : 'text-pw-red-ink';
 const barColor = (s) => s >= 80 ? 'bg-pw-green-ink' : s >= 60 ? 'bg-pw-blue-ink' : 'bg-pw-red-ink';
 
-function FeedbackPanel({ feedback, response, understanding = false }) {
+// The details under the poster: the three scores, the suggested wording on
+// ruled paper, and the full feedback behind a toggle. The verdict itself is
+// on the poster.
+function FeedbackPanel({ feedback, understanding = false }) {
   const [expanded, setExpanded] = useState(false);
-  const passed = feedback.is_acceptable;
 
   return (
     <div className="w-full space-y-3 animate-in fade-in slide-in-from-bottom-2">
-      <div className={`flex items-center gap-4 p-5 rounded-[14px] ${passed ? 'bg-pw-green-soft' : 'bg-pw-red-soft'}`}>
-        <div className={`w-12 h-12 rounded-full bg-white flex items-center justify-center shrink-0 ${passed ? 'text-pw-green-ink' : 'text-pw-red-ink'}`}>
-          {passed ? <Check className="w-7 h-7" aria-hidden="true" /> : <X className="w-7 h-7" aria-hidden="true" />}
-        </div>
-        <div className="flex-1 min-w-0">
-          <p className={`font-extrabold text-lg ${passed ? 'text-pw-green-ink' : 'text-pw-red-ink'}`}>{understanding ? (passed ? 'You understood the question' : 'Not quite yet') : (passed ? 'Good Answer!' : 'Needs Practice')}</p>
-          <p className="text-sm text-pw-navy">{understanding ? (passed ? 'You know what the officer is asking.' : 'Read what it is asking below.') : (passed ? 'This would pass in a real interview.' : 'Review the feedback below.')}</p>
-        </div>
-        <div className="text-right shrink-0">
-          <p className="text-3xl font-extrabold text-pw-navy leading-none">{feedback.overall_score}</p>
-          <p className="text-sm text-pw-muted">/ 100</p>
-        </div>
-      </div>
-
       <div className="grid grid-cols-3 gap-2">
         {[
           { label: understanding ? 'Understanding' : 'Content', score: feedback.content_score },
@@ -634,7 +635,7 @@ function FeedbackPanel({ feedback, response, understanding = false }) {
           { label: 'Fluency', score: feedback.fluency_score },
         ].map(({ label, score }) => (
           <div key={label} className="bg-white rounded-2xl p-3 border border-pw-line shadow-raised text-center">
-            <p className={`text-2xl font-extrabold ${scoreColor(score)}`}>{score}</p>
+            <p className={`font-display text-[34px] leading-none ${scoreColor(score)}`}>{score}</p>
             <div className="w-full bg-pw-soft rounded-full h-1.5 my-1.5">
               <div className={`h-1.5 rounded-full ${barColor(score)}`} style={{ width: `${score}%` }} />
             </div>
@@ -644,10 +645,10 @@ function FeedbackPanel({ feedback, response, understanding = false }) {
       </div>
 
       {feedback.corrected_version && (
-        <div className="bg-pw-blue-soft rounded-[14px] p-5">
-          <Eyebrow className="mb-2 text-pw-blue-ink">{understanding ? 'What the question is asking' : 'Better Way to Say It'}</Eyebrow>
-          <p className="text-pw-navy font-bold leading-relaxed">"{feedback.corrected_version}"</p>
-        </div>
+        <RuledPaper>
+          <p className="text-[13px] font-semibold uppercase tracking-[0.14em] leading-[36px] text-pw-muted">{understanding ? 'What the question is asking' : 'A better way to say it'}</p>
+          <p className="font-display italic text-[22px] leading-[36px]">“{feedback.corrected_version}”</p>
+        </RuledPaper>
       )}
 
       <button
@@ -656,7 +657,7 @@ function FeedbackPanel({ feedback, response, understanding = false }) {
         aria-expanded={expanded}
         className="w-full min-h-[48px] flex items-center justify-between bg-white border border-pw-line hover:bg-pw-soft px-4 py-3 rounded-2xl transition-colors text-base font-bold text-pw-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
       >
-        <span>Detailed Feedback</span>
+        <span>Detailed feedback</span>
         {expanded ? <ChevronUp className="w-5 h-5" aria-hidden="true" /> : <ChevronDown className="w-5 h-5" aria-hidden="true" />}
       </button>
 
