@@ -108,7 +108,7 @@ export default function Profile() {
 
   return (
     <div className="max-w-5xl mx-auto space-y-6 pb-12 text-pw-navy">
-      <PageHeader title="Profile" guide="Change my name, my picture, and how I talk to you. You can also make the text bigger." />
+      <PageHeader title="Profile" guide="Change my name and how I talk to you. You can also make the text bigger." />
       <div className="flex flex-col md:flex-row gap-6 items-start">
         
         {/* Left Column: Profile Card */}
@@ -131,11 +131,11 @@ export default function Profile() {
             {(!publicProfile || publicProfile.account_type !== 'tutor') && (
             <div className="mt-5 grid grid-cols-2 gap-2 text-center">
               <div className="rounded-2xl bg-pw-soft py-3 px-1">
-                <p className="text-2xl font-extrabold">{user.points || 0}</p>
+                <p className="font-display text-[36px] leading-none">{user.points || 0}</p>
                 <p className="text-sm text-pw-muted font-bold">Points</p>
               </div>
               <div className="rounded-2xl bg-pw-soft py-3 px-1">
-                <p className="text-2xl font-extrabold">{(user.badges || []).length}</p>
+                <p className="font-display text-[36px] leading-none">{(user.badges || []).length}</p>
                 <p className="text-sm text-pw-muted font-bold">Badges</p>
               </div>
             </div>
@@ -144,7 +144,7 @@ export default function Profile() {
 
           <Card>
             <CardHeader className="p-5 sm:p-6">
-              <CardTitle className="text-xl">Edit Profile</CardTitle>
+              <CardTitle>Edit Profile</CardTitle>
             </CardHeader>
             <CardContent className="p-5 pt-0 sm:p-6 sm:pt-0">
               <form onSubmit={handleSaveProfile} className="space-y-4">
@@ -172,7 +172,7 @@ export default function Profile() {
           {publicProfile && publicProfile.account_type === 'tutor' ? (
             <div className="space-y-4">
                 <div className="flex flex-wrap items-center justify-between gap-3">
-                    <h3 className="text-2xl font-extrabold">Classroom Progress</h3>
+                    <h3 className="font-display text-[28px] leading-tight">Classroom Progress</h3>
                     <Button variant="outline" size="sm" onClick={() => window.location.href = '/Tutor'}>
                         <School className="w-4 h-4" /> Manage Students
                     </Button>
@@ -187,21 +187,21 @@ export default function Profile() {
                   <span className={`${iconSquare} bg-pw-blue-soft text-pw-blue-ink`}>
                     <Trophy className="w-5 h-5" aria-hidden="true" />
                   </span>
-                  <p className="mt-3 text-3xl font-extrabold leading-none">{user.total_correct || 0}</p>
+                  <p className="mt-3 font-display font-normal text-[44px] leading-none">{user.total_correct || 0}</p>
                   <p className="mt-1 text-sm font-bold text-pw-muted">Correct Answers</p>
                 </RaisedCard>
                 <RaisedCard padding="p-4">
                   <span className={`${iconSquare} bg-pw-teal-soft text-pw-teal-ink`}>
                     <Star className="w-5 h-5" aria-hidden="true" />
                   </span>
-                  <p className="mt-3 text-3xl font-extrabold leading-none">{user.points || 0}</p>
+                  <p className="mt-3 font-display font-normal text-[44px] leading-none">{user.points || 0}</p>
                   <p className="mt-1 text-sm font-bold text-pw-muted">Total Points</p>
                 </RaisedCard>
                 <RaisedCard padding="p-4">
                   <span className={`${iconSquare} bg-pw-green-soft text-pw-green-ink`}>
                     <GraduationCap className="w-5 h-5" aria-hidden="true" />
                   </span>
-                  <p className="mt-3 text-3xl font-extrabold leading-none">{(user.badges || []).length}</p>
+                  <p className="mt-3 font-display font-normal text-[44px] leading-none">{(user.badges || []).length}</p>
                   <p className="mt-1 text-sm font-bold text-pw-muted">Badges Earned</p>
                 </RaisedCard>
               </div>
@@ -209,7 +209,7 @@ export default function Profile() {
               <div className="w-full">
                   <Card>
                     <CardHeader className="p-5 sm:p-6">
-                      <CardTitle className="flex items-center gap-3 text-xl">
+                      <CardTitle className="flex items-center gap-3">
                         <span className={`${iconSquare} bg-pw-red-soft text-pw-red-ink`}>
                           <Trophy className="w-5 h-5" aria-hidden="true" />
                         </span>
@@ -234,7 +234,7 @@ export default function Profile() {
           <div className="w-full">
             <Card>
               <CardHeader className="p-5 sm:p-6">
-                <CardTitle className="flex items-center gap-3 text-xl">
+                <CardTitle className="flex items-center gap-3">
                   <span className={`${iconSquare} bg-pw-blue-soft text-pw-blue-ink`}>
                     <Volume2 className="w-5 h-5" aria-hidden="true" />
                   </span>

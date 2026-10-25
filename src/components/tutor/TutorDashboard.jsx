@@ -169,7 +169,7 @@ export default function TutorDashboard({ currentUserEmail, students }) {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
         <Card>
           <CardHeader className="p-4 pb-1 md:p-5 md:pb-1">
-            <CardTitle className="text-sm font-bold text-pw-muted">Completion Rate</CardTitle>
+            <CardTitle className="font-sans text-sm font-bold text-pw-muted">Completion Rate</CardTitle>
           </CardHeader>
           <CardContent className="p-4 pt-0 md:p-5 md:pt-0">
             <div className="text-2xl font-extrabold text-pw-navy">{metrics.completionRate}%</div>
@@ -178,7 +178,7 @@ export default function TutorDashboard({ currentUserEmail, students }) {
         </Card>
         <Card>
           <CardHeader className="p-4 pb-1 md:p-5 md:pb-1">
-            <CardTitle className="text-sm font-bold text-pw-muted">Active Students</CardTitle>
+            <CardTitle className="font-sans text-sm font-bold text-pw-muted">Active Students</CardTitle>
           </CardHeader>
           <CardContent className="p-4 pt-0 md:p-5 md:pt-0">
             <div className="text-2xl font-extrabold text-pw-navy">{metrics.activeStudents}</div>
@@ -187,7 +187,7 @@ export default function TutorDashboard({ currentUserEmail, students }) {
         </Card>
         <Card>
           <CardHeader className="p-4 pb-1 md:p-5 md:pb-1">
-            <CardTitle className="text-sm font-bold text-pw-muted">Total Assignments</CardTitle>
+            <CardTitle className="font-sans text-sm font-bold text-pw-muted">Total Assignments</CardTitle>
           </CardHeader>
           <CardContent className="p-4 pt-0 md:p-5 md:pt-0">
             <div className="text-2xl font-extrabold text-pw-navy">{metrics.totalAssignments}</div>
@@ -196,7 +196,7 @@ export default function TutorDashboard({ currentUserEmail, students }) {
         </Card>
         <Card>
           <CardHeader className="p-4 pb-1 md:p-5 md:pb-1">
-            <CardTitle className="text-sm font-bold text-pw-muted">Common Topic</CardTitle>
+            <CardTitle className="font-sans text-sm font-bold text-pw-muted">Common Topic</CardTitle>
           </CardHeader>
           <CardContent className="p-4 pt-0 md:p-5 md:pt-0">
             <div className="text-xl font-extrabold text-pw-navy capitalize leading-tight">{metrics.mostCommonType.replace('_', ' ')}</div>

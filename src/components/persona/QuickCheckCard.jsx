@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
-import TopicArt from '@/components/art/TopicArt';
 import SkillLevels from './SkillLevels';
 import { RaisedCard, Tag } from '@/components/pathways/ui';
 
@@ -23,9 +22,6 @@ export default function QuickCheckCard({ variant = 'home', t = (k, en) => en, la
 
   return (
     <RaisedCard padding="p-0" className="text-pw-navy overflow-hidden">
-      <div className="bg-pw-blue-soft px-5 pt-4 pb-3">
-        <TopicArt name="compass" className="w-full h-20" />
-      </div>
       <div className="p-5 space-y-3">
         {levels ? (
           <>

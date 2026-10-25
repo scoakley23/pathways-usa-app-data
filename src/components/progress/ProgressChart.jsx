@@ -95,7 +95,7 @@ export default function ProgressChart({ userEmail }) {
     return (
       <Card>
         <CardHeader className="p-5 sm:p-6">
-          <CardTitle className="flex items-center gap-3 text-xl">
+          <CardTitle className="flex items-center gap-3">
             <span className="w-10 h-10 rounded-2xl bg-pw-blue-soft text-pw-blue-ink grid place-items-center shrink-0">
               <TrendingUp className="w-5 h-5" aria-hidden="true" />
             </span>
@@ -114,7 +114,7 @@ export default function ProgressChart({ userEmail }) {
   return (
     <Card>
       <CardHeader className="p-5 sm:p-6">
-        <CardTitle className="flex items-center gap-3 text-xl">
+        <CardTitle className="flex items-center gap-3">
           <span className="w-10 h-10 rounded-2xl bg-pw-blue-soft text-pw-blue-ink grid place-items-center shrink-0">
             <TrendingUp className="w-5 h-5" aria-hidden="true" />
           </span>
