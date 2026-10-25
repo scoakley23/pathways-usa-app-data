@@ -33,8 +33,8 @@ const FOUR_PARTS = ['reading', 'writing', 'civics', 'speaking'];
 const LEVEL_STEPS = { start_here: 1, getting_there: 2, strong: 3 };
 
 // Which interview skill a task practices (for its color). The quick check
-// covers all four parts and takes Ink.
-const taskSkill = (kind) => (kind === 'quick-check' ? 'speaking' : kind.startsWith('civics') ? 'civics' : kind);
+// covers all four parts and takes Red ink, like the first poster on board 1.
+const taskSkill = (kind) => (kind === 'quick-check' || kind.startsWith('civics') ? 'civics' : kind);
 
 // A learner's first day (no quick check results and no plan yet): the quick
 // check is the one task on the desk, with Reading and Writing peeking out
