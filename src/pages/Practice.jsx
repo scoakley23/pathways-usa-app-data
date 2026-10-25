@@ -14,6 +14,7 @@ import InterviewPractice from '@/components/practice/InterviewPractice';
 import PageHeader from '@/components/PageHeader';
 import { PillButton, Poster, PosterStars, SKILL_COLOR, SKILL_ON, posterSolid, posterOutline } from '@/components/pathways/ui';
 import { cardOutcome, countOutcomes } from '@/lib/practiceResults';
+import { awardBadges } from '@/lib/awardBadges';
 import { toast } from "sonner";
 import VoiceSettings from '@/components/utils/VoiceSettings';
 
@@ -66,6 +67,10 @@ export default function Practice() {
   const [representativeData, setRepresentativeData] = useState(null);
   const hasMounted = React.useRef(false);
   const [results, setResults] = useState([]); // stars: one outcome per card
+  // Points add up across a run (the user record is only read on load), and
+  // the badge check waits for the run's last save.
+  const pointsRef = React.useRef(0);
+  const savesRef = React.useRef(Promise.resolve());
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const urlMode = searchParams.get('mode');
@@ -103,6 +108,7 @@ export default function Practice() {
           const normalizedEmail = user.email.toLowerCase().trim();
           const normalizedUser = { ...user, email: normalizedEmail };
           setCurrentUser(normalizedUser);
+          pointsRef.current = user.points || 0;
           loadRepresentativeData(normalizedEmail);
           const myAssignments = await base44.entities.Assignment.filter(
             { student_email: normalizedEmail, status: 'pending' }, null, 100
@@ -181,6 +187,15 @@ export default function Practice() {
     };
     seedData();
   }, []);
+
+  // When a run ends, check badges once its saves are done. Full Marks counts
+  // only runs whose answers are checked (not flashcards or matching).
+  useEffect(() => {
+    if (!sessionComplete || !currentUser) return;
+    const checked = mode !== 'vocabulary' || vocabSubMode === 'dictation';
+    const run = checked ? Array.from({ length: content.length }, (_, i) => results[i]) : null;
+    savesRef.current.then(() => awardBadges({ run }));
+  }, [sessionComplete]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Interview Practice Mode
   if (mode === 'interview') {
@@ -409,7 +424,13 @@ export default function Practice() {
   }
 };
 
-  const handleComplete = async (isSuccess, score = null) => {
+  const handleComplete = (isSuccess, score = null) => {
+    const save = saveCard(isSuccess, score);
+    savesRef.current = savesRef.current.then(() => save);
+    return save;
+  };
+
+  const saveCard = async (isSuccess, score = null) => {
     const currentItem = content[currentIndex];
     const at = currentIndex;
     setResults((prev) => { const next = [...prev]; next[at] = cardOutcome(isSuccess, score); return next; });
@@ -505,8 +526,8 @@ export default function Practice() {
 
           // Gamification
           if (isSuccess) {
-             const newPoints = (currentUser.points || 0) + 10;
-             await base44.auth.updateMe({ points: newPoints });
+             pointsRef.current += 10;
+             await base44.auth.updateMe({ points: pointsRef.current });
           }
        } catch (e) {
          console.error("Save progress failed", e);

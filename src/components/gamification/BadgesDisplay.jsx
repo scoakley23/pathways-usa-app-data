@@ -1,9 +1,9 @@
 import React from 'react';
 import { 
-  Flame, 
+  CheckCircle2,
+  ListChecks,
   Target, 
   Star, 
-  Zap, 
   Mountain, 
   BookOpen,
   Lock
@@ -15,51 +15,19 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { motion } from "framer-motion";
+import { BADGES } from '@/lib/badges';
 
-const BADGES_CONFIG = {
-  "first_step": {
-    id: "first_step",
-    name: "First Step",
-    description: "Complete your first sentence correctly",
-    icon: Star,
-    color: "text-pw-blue-ink bg-pw-blue-soft border-pw-blue-soft"
-  },
-  "on_fire": {
-    id: "on_fire",
-    name: "On Fire",
-    description: "Achieve a 5-sentence streak",
-    icon: Flame,
-    color: "text-pw-red-ink bg-pw-red-soft border-pw-red-soft"
-  },
-  "unstoppable": {
-    id: "unstoppable",
-    name: "Unstoppable",
-    description: "Achieve a 10-sentence streak",
-    icon: Zap,
-    color: "text-pw-navy bg-pw-soft border-pw-soft"
-  },
-  "scholar": {
-    id: "scholar",
-    name: "Civics Scholar",
-    description: "Master 50 sentences total",
-    icon: BookOpen,
-    color: "text-pw-blue-ink bg-pw-blue-soft border-pw-blue-soft"
-  },
-  "perfect_week": {
-    id: "perfect_week",
-    name: "Sharpshooter",
-    description: "Get 100% accuracy in a session",
-    icon: Target,
-    color: "text-pw-green-ink bg-pw-green-soft border-pw-green-soft"
-  },
-  "veteran": {
-    id: "veteran",
-    name: "Veteran",
-    description: "Earn 1000 points",
-    icon: Mountain,
-    color: "text-pw-teal-ink bg-pw-teal-soft border-pw-teal-soft"
-  }
+// Names, descriptions and rules live in src/lib/badges.js; this adds the look.
+const BADGE_LOOK = {
+  first_step: { icon: Star, color: "text-pw-blue-ink bg-pw-blue-soft border-pw-blue-soft" },
+  ten_right: { icon: CheckCircle2, color: "text-pw-red-ink bg-pw-red-soft border-pw-red-soft" },
+  fifty_right: { icon: ListChecks, color: "text-pw-navy bg-pw-soft border-pw-soft" },
+  scholar: { icon: BookOpen, color: "text-pw-blue-ink bg-pw-blue-soft border-pw-blue-soft" },
+  full_marks: { icon: Target, color: "text-pw-green-ink bg-pw-green-soft border-pw-green-soft" },
+  points_1000: { icon: Mountain, color: "text-pw-teal-ink bg-pw-teal-soft border-pw-teal-soft" },
 };
+
+const BADGES_CONFIG = Object.fromEntries(BADGES.map((b) => [b.id, { ...b, ...BADGE_LOOK[b.id] }]));
 
 export default function BadgesDisplay({ earnedBadges = [] }) {
   return (
