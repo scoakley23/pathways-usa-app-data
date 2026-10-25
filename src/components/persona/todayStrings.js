@@ -1,7 +1,7 @@
 // Fixed text for the plan and Today card: English + hand-written Spanish.
 // Other languages are AI-translated once and cached (useTranslatedLines);
 // bump TODAY_CACHE_KEY when the English changes.
-export const TODAY_CACHE_KEY = 'today_v3';
+export const TODAY_CACHE_KEY = 'today_v4';
 
 export const TODAY_EN = {
   title: 'Today',
@@ -67,6 +67,11 @@ export const TODAY_EN = {
   minutes: '{m} min',
   four_parts: 'Your four parts',
   not_checked: 'Not checked yet',
+  // First day (no quick check or plan yet): the quick check is the one task.
+  first_line: "Hi, I'm {name}. I'll be your teacher. First, a quick check shows me what you already know.",
+  quick_check_kicker: 'Your first step',
+  task_quick_check: 'A quick check of the four parts',
+  quick_check_sub: 'You can skip any part',
 };
 
 export const TODAY_ES = {
@@ -133,6 +138,10 @@ export const TODAY_ES = {
   minutes: '{m} min',
   four_parts: 'Sus cuatro partes',
   not_checked: 'Sin revisar',
+  first_line: 'Hola, soy {name}. Voy a enseñarle. Primero, una prueba rápida me muestra lo que ya sabe.',
+  quick_check_kicker: 'Su primer paso',
+  task_quick_check: 'Una prueba rápida de las cuatro partes',
+  quick_check_sub: 'Puede saltar cualquier parte',
 };
 
 // t(key, vars) for the learner's language, English fallback.

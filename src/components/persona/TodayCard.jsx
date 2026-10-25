@@ -4,7 +4,6 @@ import { ArrowRight, Check, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { base44 } from '@/api/base44Client';
 import { ListenButton } from './TutorMessage';
-import TutorIntro from './TutorIntro';
 import PlanSetup from './PlanSetup';
 import useTutorProfile from './useTutorProfile';
 import useTodayText from './useTodayText';
@@ -33,8 +32,15 @@ const handwritten = (text) => /^[\p{Script=Latin}\p{P}\p{N}\p{Zs}\p{S}]*$/u.test
 const FOUR_PARTS = ['reading', 'writing', 'civics', 'speaking'];
 const LEVEL_STEPS = { start_here: 1, getting_there: 2, strong: 3 };
 
-// Which interview skill a task practices (for its color).
-const taskSkill = (kind) => (kind.startsWith('civics') ? 'civics' : kind);
+// Which interview skill a task practices (for its color). The quick check
+// covers all four parts and takes Ink.
+const taskSkill = (kind) => (kind === 'quick-check' ? 'speaking' : kind.startsWith('civics') ? 'civics' : kind);
+
+// A learner's first day (no quick check results and no plan yet): the quick
+// check is the one task on the desk, with Reading and Writing peeking out
+// underneath for what comes after.
+const QUICK_CHECK_TASK = { id: 'quick-check', kind: 'quick-check', href: '/quick-check', minutes: 10 };
+const FIRST_DAY_PEEK = ['reading', 'writing'];
 
 function loadDismissed(today) {
   try {
@@ -68,9 +74,10 @@ function practiceDaysThisWeek(dates, today) {
 // The "Today" card (Prompt 6) with check-ins (Prompt 8), laid out as X2
 // (Phase 3): greeting, Vía's line signed in text, a stack of index cards on
 // Slate (top = the next task), "Also today", and the week's rhythm. Learners
-// without a plan or quick check results meet their tutor and start the quick
-// check. The greeting is the Home page's h1.
-export default function TodayCard({ language = 'en', homeT }) {
+// without a plan or quick check results get the same layout: their tutor
+// introduces themself in the line, and the quick check is the one task. The
+// greeting is the Home page's h1.
+export default function TodayCard({ language = 'en' }) {
   const today = useMemo(() => new Date(), []);
   const { profile, loaded: profileLoaded, saveProfile } = useTutorProfile();
   const { t, en, mine } = useTodayText(language);
@@ -128,6 +135,7 @@ export default function TodayCard({ language = 'en', homeT }) {
 
   const tasks = useMemo(() => {
     if (!data || data.signedOut) return [];
+    if (!data.levels && !plan) return [QUICK_CHECK_TASK];
     const base = tasksForDay({
       date: today,
       start: plan?.start || today,
@@ -144,7 +152,7 @@ export default function TodayCard({ language = 'en', homeT }) {
     return <RaisedCard className="grid place-items-center min-h-[120px]"><Loader2 className="w-6 h-6 animate-spin text-pw-navy" /></RaisedCard>;
   }
   if (data.signedOut) return null;
-  if (!data.levels && !plan) return <TutorIntro t={homeT} language={language} />;
+  const firstDay = !data.levels && !plan;
 
   const allDone = tasks.length > 0 && tasks.every((task) => done.includes(task.id));
   const toggle = (id) => {
@@ -162,9 +170,9 @@ export default function TodayCard({ language = 'en', homeT }) {
   const m = totalMinutes(tasks);
   const tod = timeOfDay(today);
   const hello = data.name ? t(`hello_${tod}`, { name: data.name }) : t(`hello_${tod}_plain`);
-  const lineKey = allDone ? 'done' : `${profile.tone}_tasks`;
-  const lineMine = mine(lineKey, { n, m });
-  const lineEn = en(lineKey, { n, m });
+  const lineKey = firstDay ? 'first_line' : allDone ? 'done' : `${profile.tone}_tasks`;
+  const lineMine = mine(lineKey, { n, m, name: profile.name });
+  const lineEn = en(lineKey, { n, m, name: profile.name });
   const dir = RTL_LANGUAGES.includes(language) ? 'rtl' : 'ltr';
   const stageLabel = stageKey(stage) && t(stageKey(stage));
 
@@ -189,9 +197,12 @@ export default function TodayCard({ language = 'en', homeT }) {
   const weeksKey = weeks === 0 ? 'weeks_left_none' : weeks === 1 ? 'weeks_left_one' : 'weeks_left';
 
   const { top, rest } = splitTasks(tasks, done);
-  const next = rest.filter((task) => !done.includes(task.id)).slice(0, 2);
+  const next = firstDay
+    ? FIRST_DAY_PEEK.map((kind) => ({ id: kind, kind }))
+    : rest.filter((task) => !done.includes(task.id)).slice(0, 2);
   const skillName = (task) => (taskSkill(task.kind) === 'n400' ? 'N-400' : partName(taskSkill(task.kind), language));
   const taskLabel = (task) => {
+    if (task.kind === 'quick-check') return t('task_quick_check');
     if (task.kind === 'n400') return t('task_n400', { section: SECTION_TITLE[task.section] || '' });
     return t(`task_${task.kind.replace('-', '_')}`);
   };
@@ -276,10 +287,12 @@ export default function TodayCard({ language = 'en', homeT }) {
               {top ? (
                 <div className={`relative flex min-h-[250px] flex-col rounded-[18px] p-5 sm:p-7 shadow-[0_12px_26px_rgba(20,38,74,0.22)] ${SKILL_COLOR[taskSkill(top.kind)]} ${SKILL_ON[taskSkill(top.kind)]}`}>
                   <p className="text-[13px] font-semibold uppercase tracking-[0.16em]">
-                    {skillName(top)} · {t('task_of', { n: tasks.indexOf(top) + 1, t: n })}
+                    {firstDay ? t('quick_check_kicker') : `${skillName(top)} · ${t('task_of', { n: tasks.indexOf(top) + 1, t: n })}`}
                   </p>
                   <h2 className="mt-3 text-[34px] sm:text-[42px] font-bold leading-[1.05] tracking-[-0.01em]">{taskLabel(top)}</h2>
-                  <p className="mt-2 font-display italic text-[21px]">{t('minutes', { m: top.minutes })}</p>
+                  <p className="mt-2 font-display italic text-[21px]">
+                    {firstDay && `${t('quick_check_sub')} · `}<span className="whitespace-nowrap">{t('minutes', { m: top.minutes })}</span>
+                  </p>
                   <div className="mt-auto pt-5 flex items-center justify-between gap-3">
                     <Link
                       to={top.href}
@@ -287,7 +300,7 @@ export default function TodayCard({ language = 'en', homeT }) {
                     >
                       {t('start')} <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" />
                     </Link>
-                    {doneButton(top)}
+                    {!firstDay && doneButton(top)}
                   </div>
                 </div>
               ) : (
