@@ -1,102 +1,78 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Card } from "@/components/ui/card";
-import { PrimaryButton, SecondaryButton } from '@/components/pathways/ui';
-import { ArrowRight, RotateCcw, Volume2 } from 'lucide-react';
+import { Check, RotateCcw, RefreshCw, Volume2 } from 'lucide-react';
+import { Poster, posterOutline, posterSolid, posterTone, posterTool } from '@/components/pathways/ui';
 import { speakText } from "@/components/utils/textToSpeech";
 
-export default function FlashcardGame({ words, onComplete }) {
-  const [currentIndex, setCurrentIndex] = useState(0);
+// A vocabulary flashcard as a red/blue poster in the run's colors. The word
+// is the front; "Show the definition" flips it, then the learner says whether
+// they knew it. `index`/`total`/`results` come from the run (Practice.jsx),
+// which advances to the next card and records the result for the stars.
+export default function FlashcardGame({ words, index = 0, total, results = [], onComplete }) {
   const [isFlipped, setIsFlipped] = useState(false);
-  const [masteredCount, setMasteredCount] = useState(0);
+  const currentWord = words[index];
+  const count = total ?? words.length;
 
-  const currentWord = words[currentIndex];
-  const isLast = currentIndex === words.length - 1;
+  useEffect(() => { setIsFlipped(false); }, [index]);
 
-  const handleNext = (known) => {
-    if (known) setMasteredCount(prev => prev + 1);
-    
-    // Report performance to parent (for SRS tracking)
-    if (onComplete) {
-      onComplete(known);
-    }
-    
-    if (isLast) {
-      // Session complete
-    } else {
-      setIsFlipped(false);
-      setTimeout(() => setCurrentIndex(prev => prev + 1), 200);
-    }
-  };
-
-  const speak = (text, e) => {
-    e.stopPropagation();
-    speakText(text);
-  };
+  if (!currentWord) return null;
 
   return (
-    <div className="max-w-md mx-auto h-[500px] flex flex-col text-pw-navy">
-      <div className="text-center mb-4 text-sm font-semibold text-pw-muted">
-        Card {currentIndex + 1} of {words.length}
-      </div>
-
-      <div className="flex-1 relative perspective-1000 cursor-pointer group" onClick={() => setIsFlipped(!isFlipped)}>
+    <div className="w-full max-w-2xl mx-auto text-pw-navy">
+      <Poster
+        tone={posterTone(index)}
+        className="-mx-4 sm:mx-0 sm:rounded-[14px] min-h-[420px]"
+        label={`Flashcards · Card ${index + 1} of ${count}`}
+        progress={{ index, total: count, results }}
+      >
         <motion.div
-          className="w-full h-full relative transition-all duration-500"
-          animate={{ rotateY: isFlipped ? 180 : 0 }}
-          transition={{ type: "spring", stiffness: 260, damping: 20 }}
-          style={{ transformStyle: 'preserve-3d' }}
+          key={`${index}-${isFlipped}`}
+          initial={{ rotateY: 90, opacity: 0 }}
+          animate={{ rotateY: 0, opacity: 1 }}
+          transition={{ duration: 0.25 }}
+          className="space-y-5"
+          aria-live="polite"
         >
-          {/* Front */}
-          <Card 
-            className="absolute inset-0 w-full h-full flex flex-col items-center justify-center p-6 bg-white border border-pw-line shadow-raised rounded-[14px] backface-hidden"
-            style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'rotateY(0deg)' }}
-          >
-            <span className="text-xs font-bold text-pw-muted uppercase tracking-widest mb-4">Word</span>
-            <h2 className="text-[44px] font-display font-normal text-pw-navy text-center break-words">{currentWord.word}</h2>
-            <button
-              type="button"
-              aria-label="Listen"
-              className="mt-6 w-12 h-12 grid place-items-center rounded-full bg-pw-soft text-pw-navy hover:bg-pw-soft-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
-              onClick={(e) => speak(currentWord.word, e)}
-            >
-              <Volume2 className="w-6 h-6" aria-hidden="true" />
-            </button>
-            <p className="absolute bottom-6 text-pw-muted text-sm">Click to flip</p>
-          </Card>
-
-          {/* Back */}
-          <Card 
-            className="absolute inset-0 w-full h-full flex flex-col items-center justify-center p-6 bg-pw-navy border-pw-navy text-white shadow-lift rounded-[14px]"
-            style={{ 
-              transform: 'rotateY(180deg)', 
-              backfaceVisibility: 'hidden', 
-              WebkitBackfaceVisibility: 'hidden' 
-            }}
-          >
-            <span className="text-xs font-bold text-white/70 uppercase tracking-widest mb-4">Definition</span>
-            <p className="text-2xl font-medium text-center leading-relaxed">{currentWord.definition}</p>
-            {currentWord.category && (
-               <span className="mt-6 px-3 py-1.5 bg-white/15 rounded-full text-sm font-bold">{currentWord.category}</span>
-            )}
-          </Card>
+          <p className="text-sm font-semibold uppercase tracking-[0.14em]">{isFlipped ? 'Definition' : 'Word'}</p>
+          <h2 className="font-display text-5xl leading-tight break-words sm:text-6xl">{currentWord.word}</h2>
+          {isFlipped && (
+            <>
+              <p className="font-display italic text-2xl leading-snug sm:text-3xl">{currentWord.definition}</p>
+              {currentWord.category && (
+                <span className="inline-block rounded-full bg-white/15 px-3 py-1.5 text-base font-semibold">{currentWord.category}</span>
+              )}
+            </>
+          )}
         </motion.div>
-      </div>
 
-      <div className="mt-6 grid grid-cols-2 gap-2">
-        <SecondaryButton
-          onClick={() => handleNext(false)}
-          className="min-h-[52px] border-pw-line"
-        >
-          <RotateCcw className="w-4 h-4" aria-hidden="true" /> Study Again
-        </SecondaryButton>
-        <PrimaryButton
-          large
-          onClick={() => handleNext(true)}
-        >
-          I Know It <ArrowRight className="w-4 h-4" aria-hidden="true" />
-        </PrimaryButton>
-      </div>
+        <div className="mt-6 space-y-5">
+          <div className="flex flex-wrap items-center gap-2">
+            <button type="button" onClick={() => speakText(currentWord.word)} className={posterTool}>
+              <Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" /> Listen
+            </button>
+            {isFlipped && (
+              <button type="button" onClick={() => setIsFlipped(false)} className={posterTool}>
+                <RefreshCw className="w-5 h-5 shrink-0" aria-hidden="true" /> Flip back
+              </button>
+            )}
+          </div>
+
+          {isFlipped ? (
+            <div className="grid grid-cols-2 gap-2">
+              <button type="button" onClick={() => onComplete?.(false)} className={posterOutline}>
+                <RotateCcw className="w-5 h-5 shrink-0" aria-hidden="true" /> I missed it
+              </button>
+              <button type="button" onClick={() => onComplete?.(true)} className={posterSolid}>
+                <Check className="w-5 h-5 shrink-0" aria-hidden="true" /> I knew it
+              </button>
+            </div>
+          ) : (
+            <button type="button" onClick={() => setIsFlipped(true)} className={`${posterSolid} w-full sm:w-auto`}>
+              Show the definition
+            </button>
+          )}
+        </div>
+      </Poster>
     </div>
   );
 }

@@ -650,7 +650,8 @@ export default function Practice() {
 
   if (sessionComplete) {
     const counts = countOutcomes(results);
-    const total = content.length;
+    // Matching plays up to six pairs, not every card in the run.
+    const total = mode === 'vocabulary' && vocabSubMode === 'matching' ? results.length : content.length;
     return (
       <RunShell label={RUN_LABEL[mode]} onClose={exitRun}>
         <Poster
@@ -704,6 +705,9 @@ export default function Practice() {
             vocabSubMode === 'flashcards' ? (
               <FlashcardGame 
                 words={content} 
+                index={currentIndex}
+                total={content.length}
+                results={results}
                 onComplete={(isSuccess) => {
                   handleComplete(isSuccess);
                   handleNext();
@@ -712,7 +716,11 @@ export default function Practice() {
             ) : vocabSubMode === 'matching' ? (
               <MatchingGame 
                 words={content}
-                onComplete={() => setSessionComplete(true)}
+                onComplete={(pairs) => {
+                  // Every pair ends matched; nothing is saved for this game.
+                  setResults(Array(pairs).fill('right'));
+                  setSessionComplete(true);
+                }}
               />
             ) : (
               // Default to Dictation for vocabulary
@@ -722,6 +730,7 @@ export default function Practice() {
                   sentence={content[currentIndex]}
                   onComplete={handleComplete}
                   onNext={handleNext}
+                  results={results}
               />
             )
          ) : (
