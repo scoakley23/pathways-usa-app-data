@@ -225,12 +225,14 @@ export const posterBigButton = 'relative w-[104px] h-[104px] rounded-full bg-whi
 // green (right), yellow (almost) or red (missed). `results[k]` is 'right' |
 // 'close' | 'missed' (lib/practiceResults); a passed card with no result
 // stays white. Never torches or the Statue of Liberty. Hidden for long runs.
+// The stars sit on an Ink-deep strip: the result colors are too close to the
+// red and blue posters on their own (all ≥ 4.8:1 on the strip).
 const STAR = 'M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z';
 const STAR_FILL = { right: 'fill-pw-go', close: 'fill-pw-almost', missed: 'fill-pw-miss' };
 export function PosterStars({ index = 0, total = 0, results = [], className = '' }) {
   if (!total || total > 24) return null;
   return (
-    <div className={`flex flex-wrap items-center gap-0.5 ${className}`} role="img" aria-label={outcomesLabel(index, total, results)}>
+    <div className={`inline-flex flex-wrap items-center gap-0.5 rounded-[10px] bg-pw-navy-deep px-2 py-1.5 ${className}`} role="img" aria-label={outcomesLabel(index, total, results)}>
       {Array.from({ length: total }, (_, k) => {
         const current = k === index;
         const fill = results[k] ? STAR_FILL[results[k]] : current ? 'fill-transparent' : 'fill-white';
@@ -267,7 +269,7 @@ export function Poster({ tone = 'red', label, question, answer, progress, questi
     <section className={`relative ${POSTER_BG[tone] || POSTER_BG.red} text-white px-5 py-8 sm:px-8 sm:py-10 ${className}`} {...props}>
       <PathwaysMark size={36} tone="white" className="absolute right-5 top-6 sm:right-8 sm:top-8" />
       {label && <p className="pr-12 text-sm font-semibold uppercase tracking-[0.14em]">{label}</p>}
-      {progress && <PosterStars {...progress} className="mt-3 pr-12" />}
+      {progress && <div className="mt-3 pr-12"><PosterStars {...progress} /></div>}
       {question && <Q className="mt-4 text-[2rem] leading-tight font-bold sm:text-5xl">{question}</Q>}
       {answer && <p className="mt-5 font-display italic text-2xl leading-snug sm:text-3xl">{answer}</p>}
       {children && <div className="mt-6">{children}</div>}
