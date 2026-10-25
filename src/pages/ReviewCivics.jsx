@@ -12,6 +12,7 @@ import { Eyebrow, PrimaryButton, RaisedCard, Tag } from '@/components/pathways/u
 import useAppLanguage from '@/hooks/useAppLanguage';
 import { splitOfficialAnswers } from '@/lib/practiceChecks';
 import { dueForReview, nextReviewDate, nextSchedule } from '@/lib/spacedReview';
+import { awardBadges } from '@/lib/awardBadges';
 
 const linkClass = 'min-h-[52px] w-full rounded-2xl font-bold text-lg inline-flex items-center justify-center px-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2';
 
@@ -106,6 +107,7 @@ export default function ReviewCivics() {
     setSaving(true);
     try {
       for (const { row, next } of outcome) await base44.entities.UserProgress.update(row.id, next);
+      awardBadges();
     } catch (e) {
       toast.error("Couldn't save your progress. Please check your connection.");
     } finally {

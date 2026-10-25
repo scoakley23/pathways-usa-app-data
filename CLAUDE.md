@@ -81,4 +81,4 @@ Pathways USA is a free U.S. citizenship test prep app (civics, reading, writing,
 
 Reading practice scores from the browser transcript and word matching; no audio is recorded or uploaded (Base44 can't delete uploaded files).
 
-Known conflicts with the rules above: none open. Leaderboards and streak displays were removed; points and badges remain. Keep `docs/AI-Policy-updated.md` in sync when data handling changes.
+Known conflicts with the rules above: none open. Leaderboards and streak displays were removed; points and badges remain. Badges (`src/lib/badges.js`, saved by `awardBadges()` after a Practice run or `/learn` / `/review`) come from saved progress and points only, never streaks or "in a row". Keep `docs/AI-Policy-updated.md` in sync when data handling changes.
