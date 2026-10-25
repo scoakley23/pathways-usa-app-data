@@ -48,6 +48,7 @@ export default function PosterRun({ questions, language = 'en', tutorName = 'Ví
   const [result, setResult] = useState(null); // { isCorrect } | { selfCheck: true }
   const [explainOpen, setExplainOpen] = useState(false);
   const [correct, setCorrect] = useState(0);
+  const [outcomes, setOutcomes] = useState([]); // stars: 'right' | 'missed'
   const recRef = useRef(null);
 
   useEffect(() => {
@@ -100,6 +101,7 @@ export default function PosterRun({ questions, language = 'en', tutorName = 'Ví
   const next = (gotIt) => {
     const nextCorrect = correct + (gotIt ? 1 : 0);
     setCorrect(nextCorrect);
+    setOutcomes((prev) => { const n = [...prev]; n[index] = gotIt ? 'right' : 'missed'; return n; });
     setAnswer('');
     setResult(null);
     setExplainOpen(false);
@@ -117,7 +119,7 @@ export default function PosterRun({ questions, language = 'en', tutorName = 'Ví
         label={`${label} · Card ${index + 1} of ${total}`}
         question={cleanQuestionText(q.question)}
         answer={result ? `Answer: ${officialAnswerText(q)}` : null}
-        progress={{ index, total }}
+        progress={{ index, total, results: outcomes }}
       >
         {!result ? (
           <div className="space-y-4">

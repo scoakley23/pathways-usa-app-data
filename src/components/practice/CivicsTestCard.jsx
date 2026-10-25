@@ -19,7 +19,7 @@ import { LANGUAGES } from '@/hooks/useLessonTranslation';
 // Shown as a red/blue poster (Phase 5): `index`/`total` give the card's place
 // in the run (color, "CARD 2 OF 6", squares). Feedback stays on the poster
 // and shows official answers only; "Explain it simply" opens a white sheet.
-export default function CivicsTestCard({ question, onComplete, onNext, representativeData, testMode = false, index = 0, total = 0 }) {
+export default function CivicsTestCard({ question, onComplete, onNext, representativeData, testMode = false, index = 0, total = 0, results = [] }) {
   const [explainOpen, setExplainOpen] = useState(false);
   const [isRevealed, setIsRevealed] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -195,7 +195,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
           tone={posterTone(index)}
           className="-mx-4 sm:mx-0 sm:rounded-[14px]"
           label={label}
-          progress={total ? { index, total } : null}
+          progress={total ? { index, total, results } : null}
           question={question.question}
           answer={done ? `Answer: ${answerLine}` : null}
         >
@@ -328,7 +328,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
           </div>
         </Poster>
         {done && explainOpen && !testMode && (
-          <ExplainSheet className="-mx-4 sm:mx-0 sm:mt-2 sm:rounded-[14px]" question={question.question} answer={personalizedAnswer || question.answer} aiFallback />
+          <ExplainSheet className="mt-3" question={question.question} answer={personalizedAnswer || question.answer} aiFallback />
         )}
       </div>
 

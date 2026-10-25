@@ -130,7 +130,11 @@ export default function Layout({ children }) {
     window.location.href = '/';
   };
 
-  const focusMode = FOCUS_ROUTES.includes(location.pathname);
+  // A practice run (/Practice?mode=…) is full screen: no header, tab bar,
+  // chat button or footer; the run has its own close button.
+  const practiceRun = location.pathname.toLowerCase() === '/practice' && new URLSearchParams(location.search).has('mode');
+  const readAloud = FOCUS_ROUTES.includes(location.pathname);
+  const focusMode = readAloud || practiceRun;
   const showTabs = role !== 'tutor' && !focusMode;
   // Phones without the tab bar (tutors, lesson screens) find the four places
   // in Menu too; with the tab bar, Menu lists only the rest.
@@ -150,7 +154,7 @@ export default function Layout({ children }) {
       {/* Header: the same few places on every screen size. Phones get the
           tab bar for Today · Lessons · tutor · Practice · N-400; desktop
           shows those four here plus "Ask {tutor}". Everything else is in Menu. */}
-      <nav aria-label="Site" className="sticky top-0 z-50 w-full bg-pw-page/95 backdrop-blur border-b border-pw-line lg:bg-white/95">
+      {!practiceRun && <nav aria-label="Site" className="sticky top-0 z-50 w-full bg-pw-page/95 backdrop-blur border-b border-pw-line lg:bg-white/95">
         <div className="container mx-auto px-4 h-16 lg:h-[72px] max-w-5xl flex items-center justify-between gap-3">
           {splash ? <span /> : (
             <Link to="/" aria-label="Pathways, home" className="shrink-0 flex items-center min-h-11 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy">
@@ -224,10 +228,10 @@ export default function Layout({ children }) {
             </Sheet>
           </div>
         </div>
-      </nav>
+      </nav>}
 
       <main id="main" tabIndex={-1} key={role || 'init'} className={`container mx-auto px-4 pt-6 max-w-5xl focus:outline-none ${showTabs ? 'pb-32 lg:pb-24' : 'pb-24'}`}>
-        <AutoReadContext.Provider value={focusMode}>
+        <AutoReadContext.Provider value={readAloud}>
         {React.Children.map(children, child => {
             if (React.isValidElement(child)) {
                 return React.cloneElement(child, { cachedUser: user, cachedRole: role });
@@ -237,11 +241,11 @@ export default function Layout({ children }) {
         </AutoReadContext.Provider>
       </main>
 
-      <footer className={`mt-8 ${showTabs ? 'pb-24 lg:pb-0' : ''}`}>
+      {!practiceRun && <footer className={`mt-8 ${showTabs ? 'pb-24 lg:pb-0' : ''}`}>
         <p className="container mx-auto px-4 py-6 max-w-5xl text-sm text-center text-pw-muted">
           Free practice · Not affiliated with USCIS · Not legal advice
         </p>
-      </footer>
+      </footer>}
 
       {showOnboarding && user && (
           <RoleSelectionDialog 

@@ -1,31 +1,46 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { BookOpenText, UsersRound, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import PageHeader from '@/components/PageHeader';
 import N400Section from '@/components/n400/N400Section';
 import N400Folder from '@/components/n400/N400Folder';
+import N400Cover from '@/components/n400/N400Cover';
+import N400SectionList from '@/components/n400/N400SectionList';
 import { N400_SECTIONS } from '@/components/n400/n400Content';
 import N400Walkthrough from '@/components/n400/N400Walkthrough';
 import ReadyToFile from '@/components/n400/ReadyToFile';
 import useAppLanguage from '@/hooks/useAppLanguage';
-import LanguageSelector from '@/components/lessons/LanguageSelector';
-import { SKILL_TONE } from '@/components/pathways/ui';
+import useTutorProfile from '@/components/persona/useTutorProfile';
 
 // N-400 Question Guide: explains what questions on the naturalization
 // application mean. No learner answers are collected here — only whole-section
-// completion is saved.
+// completion is saved. Three steps, so it is never a wall of text at first:
+// the folder cover → the section list (?folder=open) → one section with the
+// form's words (?section=…). Ruled paper behind, the learner's own page.
 export default function N400Guide({ cachedUser }) {
-  const [language, changeLanguage] = useAppLanguage();
+  const [language] = useAppLanguage();
+  const { profile } = useTutorProfile();
   const isAdmin = cachedUser?.role === 'admin';
   const [progress, setProgress] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const view = searchParams.get('view') === 'examples' ? 'examples' : 'guide';
   const setView = (next) => setSearchParams(next === 'guide' ? {} : { view: next }, { replace: true });
-  // The open folder tab (?section=…); the first section by default.
-  const activeSection = N400_SECTIONS.find((s) => s.id === searchParams.get('section')) || N400_SECTIONS[0];
+  const sectionId = searchParams.get('section');
+  const activeSection = N400_SECTIONS.find((s) => s.id === sectionId) || N400_SECTIONS[0];
+  const step = sectionId ? 'section' : searchParams.get('folder') ? 'list' : 'cover';
+  // Moving in (cover → list → section) adds a history step so Back moves out;
+  // switching tabs inside a section does not.
+  const openFolder = () => setSearchParams({ folder: 'open' });
+  const pickSection = (id) => setSearchParams({ section: id });
   const openSection = (id) => setSearchParams({ section: id }, { replace: true });
   const completedIds = progress.filter((p) => p.completed).map((p) => p.section_id);
+  const visibleCount = (s) => (isAdmin ? s.questions : s.questions.filter((q) => q.status === 'approved')).length;
+
+  // Each step (cover, list, a section) starts at the top of the page.
+  useEffect(() => {
+    if (!searchParams.get('ready')) window.scrollTo({ top: 0 });
+  }, [step, sectionId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // ?ready=1 (end of the N-400 coach) jumps to "Ready to file?".
   useEffect(() => {
@@ -70,87 +85,63 @@ export default function N400Guide({ cachedUser }) {
     }
   };
 
-  const optionClasses = (active) =>
-    `text-left rounded-[14px] border-2 p-4 space-y-1.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2 ${
-      active ? 'border-pw-navy bg-pw-soft' : 'border-pw-line bg-white hover:border-pw-navy/40'
+  const toggle = (active) =>
+    `min-h-10 rounded-full px-4 text-[15px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy ${
+      active ? 'bg-white text-pw-navy shadow-raised' : 'text-pw-muted hover:text-pw-navy'
     }`;
+  const backLink = 'inline-flex items-center gap-1.5 min-h-11 rounded-full border border-pw-line bg-white px-4 text-[15px] font-semibold text-pw-navy hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy';
 
   return (
     <div className="space-y-6">
       <PageHeader
-        title="N-400 Question Guide"
-        subtitle="Understand the questions on the naturalization application (Form N-400)."
-        tag="Form N-400"
-        tagTone={SKILL_TONE.n400}
-        art="pencil"
-        guide="I can explain what each question and its key words mean. I can't tell you how to answer about your own life. For that, talk to a lawyer."
-      />
-
-      <p className="text-base leading-relaxed text-pw-muted">
-        This guide explains what each question on Form N-400 means, in plain English. It shows the official
-        question, words to know, and other ways an officer might ask it. This guide does not tell you how to
-        answer any question, and nothing you say here is saved as an answer.
-      </p>
-
-      {/* Sub-pages inside the guide */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl">
-        <button
-          type="button"
-          onClick={() => setView('guide')}
-          aria-pressed={view === 'guide'}
-          className={optionClasses(view === 'guide')}
-        >
-          <div className="flex items-center gap-2">
-            <span className="w-9 h-9 rounded-xl bg-pw-blue-soft text-pw-blue-ink grid place-items-center shrink-0">
-              <BookOpenText className="w-5 h-5" />
-            </span>
-            <span className="font-bold text-pw-navy text-base flex-1">Question guide</span>
-            {view === 'guide' && <CheckCircle2 className="w-5 h-5 text-pw-navy shrink-0" aria-hidden="true" />}
-          </div>
-          <span className="text-sm block text-pw-muted">
-            {N400_SECTIONS.length} sections · the form's words, what they mean, how the officer might ask
-          </span>
-        </button>
-        <button
-          type="button"
-          onClick={() => setView('examples')}
-          aria-pressed={view === 'examples'}
-          className={optionClasses(view === 'examples')}
-        >
-          <div className="flex items-center gap-2">
-            <span className="w-9 h-9 rounded-xl bg-pw-teal-soft text-pw-teal-ink grid place-items-center shrink-0">
-              <UsersRound className="w-5 h-5" />
-            </span>
-            <span className="font-bold text-pw-navy text-base flex-1">Example applicants</span>
-            {view === 'examples' && <CheckCircle2 className="w-5 h-5 text-pw-navy shrink-0" aria-hidden="true" />}
-          </div>
-          <span className="text-sm block text-pw-muted">
-            Meet 6 practice people · see their answers and their N-400 form
-          </span>
-        </button>
-      </div>
+        tag={`Form N-400 · ${completedIds.length} of ${N400_SECTIONS.length} sections read`}
+        title="The N-400, in plain words"
+        guide="I explain what each question means. How it applies to you is a question for a lawyer."
+      >
+        <div role="group" aria-label="View" className="inline-flex rounded-full bg-pw-soft p-1">
+          <button type="button" aria-pressed={view === 'guide'} onClick={() => setView('guide')} className={toggle(view === 'guide')}>Guide</button>
+          <button type="button" aria-pressed={view === 'examples'} onClick={() => setView('examples')} className={toggle(view === 'examples')}>Examples</button>
+        </div>
+      </PageHeader>
 
       {view === 'examples' ? (
         <N400Walkthrough />
       ) : (
-        <div className="space-y-4">
-          <div className="flex justify-end">
-            <LanguageSelector language={language} onLanguageChange={changeLanguage} />
-          </div>
-
-          <N400Folder sections={N400_SECTIONS} activeId={activeSection.id} completedIds={completedIds} onSelect={openSection}>
-            <N400Section
-              key={activeSection.id}
-              section={activeSection}
-              isAdmin={isAdmin}
-              language={language}
-              completed={completedIds.includes(activeSection.id)}
-              onComplete={markComplete}
-            />
-          </N400Folder>
+        <div className="pw-ruled relative -mx-4 px-4 ps-12 py-6 sm:mx-0 sm:rounded-[20px] sm:ps-14">
+          <span aria-hidden="true" className="absolute inset-y-0 start-7 sm:start-9 w-0.5 bg-pw-margin" />
+          {step === 'cover' && (
+            <N400Cover sections={N400_SECTIONS} completedIds={completedIds} onOpen={openFolder} tutorName={profile.name} />
+          )}
+          {step === 'list' && (
+            <div className="space-y-4">
+              <button type="button" onClick={() => setSearchParams({})} className={backLink}>
+                <ArrowLeft className="w-4 h-4 rtl:rotate-180" aria-hidden="true" /> Folder cover
+              </button>
+              <h2 className="font-display text-[34px] leading-tight">Pick a section</h2>
+              <N400SectionList sections={N400_SECTIONS} completedIds={completedIds} countFor={visibleCount} onSelect={pickSection} />
+              <p className="text-center text-[15px]">We never save your answers to the N-400.</p>
+            </div>
+          )}
+          {step === 'section' && (
+            <div className="space-y-4">
+              <button type="button" onClick={openFolder} className={backLink}>
+                <ArrowLeft className="w-4 h-4 rtl:rotate-180" aria-hidden="true" /> All sections
+              </button>
+              <N400Folder sections={N400_SECTIONS} activeId={activeSection.id} completedIds={completedIds} onSelect={openSection}>
+                <N400Section
+                  key={activeSection.id}
+                  section={activeSection}
+                  isAdmin={isAdmin}
+                  language={language}
+                  completed={completedIds.includes(activeSection.id)}
+                  onComplete={markComplete}
+                />
+              </N400Folder>
+            </div>
+          )}
         </div>
       )}
-      <ReadyToFile />
+      {view === 'guide' && step !== 'section' && <ReadyToFile />}
     </div>
   );
 }

@@ -99,3 +99,9 @@
 .pw-muted-tiles {
   filter: grayscale(0.85) contrast(0.85) brightness(1.08);
 }
+
+/* Ruled paper (RuledPaper in ui.jsx): pale blue rules every 36px. */
+.pw-ruled {
+  background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 35px, #C9D6EA 35px, #C9D6EA 36px);
+  background-position: 0 6px;
+}
