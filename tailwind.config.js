@@ -12,8 +12,6 @@ module.exports = {
     			display: ['"Instrument Serif"', 'Georgia', 'serif'],
     			hand: ['Caveat', 'cursive'],
     			form: ['"Courier Prime"', '"Courier New"', 'Courier', 'monospace'],
-    			// The official N-400 paper-form replica keeps its own look.
-    			typewriter: ['"Courier New"', 'Courier', 'monospace']
     			},
     		borderRadius: {
     			lg: 'var(--radius)',

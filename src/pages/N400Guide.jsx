@@ -8,7 +8,7 @@ import N400Folder from '@/components/n400/N400Folder';
 import N400Cover from '@/components/n400/N400Cover';
 import N400SectionList from '@/components/n400/N400SectionList';
 import { N400_SECTIONS } from '@/components/n400/n400Content';
-import N400Walkthrough from '@/components/n400/N400Walkthrough';
+import N400BlankForm from '@/components/n400/N400BlankForm';
 import ReadyToFile from '@/components/n400/ReadyToFile';
 import useAppLanguage from '@/hooks/useAppLanguage';
 import useTutorProfile from '@/components/persona/useTutorProfile';
@@ -24,7 +24,8 @@ export default function N400Guide({ cachedUser }) {
   const isAdmin = cachedUser?.role === 'admin';
   const [progress, setProgress] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const view = searchParams.get('view') === 'examples' ? 'examples' : 'guide';
+  // "See the form" (?view=form; the old ?view=examples link lands here too).
+  const view = ['form', 'examples'].includes(searchParams.get('view')) ? 'form' : 'guide';
   const setView = (next) => setSearchParams(next === 'guide' ? {} : { view: next }, { replace: true });
   const sectionId = searchParams.get('section');
   const activeSection = N400_SECTIONS.find((s) => s.id === sectionId) || N400_SECTIONS[0];
@@ -96,16 +97,18 @@ export default function N400Guide({ cachedUser }) {
       <PageHeader
         tag={`Form N-400 · ${completedIds.length} of ${N400_SECTIONS.length} sections read`}
         title="The N-400, in plain words"
-        guide="I explain what each question means. How it applies to you is a question for a lawyer."
+        guide={view === 'form'
+          ? 'This is what the paper form looks like. It stays blank: we never fill it in or keep answers.'
+          : 'I explain what each question means. How it applies to you is a question for a lawyer.'}
       >
         <div role="group" aria-label="View" className="inline-flex rounded-full bg-pw-soft p-1">
           <button type="button" aria-pressed={view === 'guide'} onClick={() => setView('guide')} className={toggle(view === 'guide')}>Guide</button>
-          <button type="button" aria-pressed={view === 'examples'} onClick={() => setView('examples')} className={toggle(view === 'examples')}>Examples</button>
+          <button type="button" aria-pressed={view === 'form'} onClick={() => setView('form')} className={toggle(view === 'form')}>See the form</button>
         </div>
       </PageHeader>
 
-      {view === 'examples' ? (
-        <N400Walkthrough />
+      {view === 'form' ? (
+        <N400BlankForm sections={N400_SECTIONS} isAdmin={isAdmin} onOpenSection={pickSection} />
       ) : (
         <div className="pw-ruled relative -mx-4 px-4 ps-12 py-6 sm:mx-0 sm:rounded-[20px] sm:ps-14">
           <span aria-hidden="true" className="absolute inset-y-0 start-7 sm:start-9 w-0.5 bg-pw-margin" />
