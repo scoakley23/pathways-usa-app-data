@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Mic, MicOff, Volume2, Check, ArrowRight, AlertCircle, Loader2, RotateCcw } from 'lucide-react';
-import { PillButton, Poster, PrimaryButton, QuietButton, RaisedCard, posterOutline, posterSolid, posterTone } from '@/components/pathways/ui';
+import { Poster, PrimaryButton, QuietButton, RaisedCard, posterBigButton, posterOutline, posterSolid, posterTone, posterTool } from '@/components/pathways/ui';
 import { stopReading } from '@/components/persona/useAutoRead';
 import { base44 } from '@/api/base44Client';
 import { speakText } from "@/components/utils/textToSpeech";
@@ -250,44 +250,42 @@ In one or two short, encouraging sentences at an A2 English level, give one prac
               ))}
             </p>
           )}
-          <PillButton onClick={() => speakText(sentence.text, 'en')}>
+          <button type="button" onClick={() => speakText(sentence.text, 'en')} className={posterTool}>
             <Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" /> Listen
-          </PillButton>
+          </button>
 
           {/* Microphone */}
           {(!analysis || (analysis.overall_score < 70 && !tried)) && status !== 'manual' && (
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center pt-2">
               <div className="relative">
-                <span className={`absolute inset-0 rounded-full bg-white/25 transition-transform ${isListening ? 'scale-150 animate-pulse' : 'scale-125'}`} aria-hidden="true" />
+                <span className={`absolute inset-0 rounded-full bg-white/20 transition-transform ${isListening ? 'scale-[1.35] animate-pulse' : 'scale-[1.2]'}`} aria-hidden="true" />
                 <button
                   type="button"
                   onClick={toggleListening}
                   disabled={isAnalyzing}
-                  aria-label={isListening ? 'Stop' : analysis ? 'Try again' : 'Start reading'}
-                  className="relative w-20 h-20 rounded-full bg-white text-pw-navy grid place-items-center shadow-lift disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60"
+                  aria-label={isListening ? 'Stop listening' : analysis ? 'Try again' : 'Tap and read the sentence aloud'}
+                  className={posterBigButton}
                 >
-                  {isListening ? <MicOff className="w-8 h-8" /> : analysis ? <RotateCcw className="w-8 h-8" /> : <Mic className="w-8 h-8" />}
+                  {isListening ? <MicOff className="w-10 h-10" aria-hidden="true" /> : analysis ? <RotateCcw className="w-10 h-10" aria-hidden="true" /> : <Mic className="w-10 h-10" aria-hidden="true" />}
                 </button>
               </div>
             </div>
           )}
 
           {/* Status line */}
-          <div className="flex flex-col items-center text-center" aria-live="polite">
+          <div className="flex flex-col items-center text-center gap-2" aria-live="polite">
             {isListening ? (
-              <p className="inline-flex items-center gap-2 text-base font-semibold">
-                <span className="w-2 h-2 bg-white rounded-full animate-pulse" aria-hidden="true" />
-                Listening…
-              </p>
+              <p className="text-lg font-semibold">Listening… tap to stop</p>
             ) : isAnalyzing ? (
-              <p className="flex items-center gap-2 text-base font-semibold"><Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" /> Checking your reading…</p>
-            ) : !analysis && status !== 'manual' && spokenText ? (
-              <p className="text-base italic">“{spokenText}”</p>
+              <p className="flex items-center gap-2 text-lg font-semibold"><Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" /> Checking your reading…</p>
             ) : !analysis && status !== 'manual' ? (
-              <p className="text-base font-semibold">Tap the microphone and read the sentence</p>
+              <p className="text-lg font-semibold">Tap and read the sentence aloud</p>
             ) : null}
+            {!analysis && status !== 'manual' && spokenText && (
+              <p className="font-display italic text-2xl leading-snug">“{spokenText}”</p>
+            )}
             {analysis && analysis.overall_score < 70 && !isListening && !isAnalyzing && !tried && (
-              <p className="text-base font-semibold">Tap the microphone to try again</p>
+              <p className="text-lg font-semibold">Tap the microphone to try again</p>
             )}
           </div>
 
@@ -298,10 +296,10 @@ In one or two short, encouraging sentences at an A2 English level, give one prac
               <p className="text-lg">{analysis.general_feedback}</p>
               <p className="text-base">Words read correctly: <span className="font-bold">{analysis.matched_count} of {analysis.total_words}</span></p>
               {analysis.transcription && analysis.transcription !== '(no speech detected)' && (
-                <p className="text-base">You said: <span className="italic">“{analysis.transcription}”</span></p>
+                <p className="text-base">You said: <span className="font-display italic text-xl">“{analysis.transcription}”</span></p>
               )}
               {analysis.phoneme_feedback && (
-                <p className="rounded-[10px] bg-white/10 border border-white/60 px-4 py-3 text-base leading-relaxed">Tip: {analysis.phoneme_feedback}</p>
+                <p className="border-s-2 border-white/70 ps-4 text-base leading-relaxed"><span className="font-semibold">Tip:</span> {analysis.phoneme_feedback}</p>
               )}
             </div>
           )}

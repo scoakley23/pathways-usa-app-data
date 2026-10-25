@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Volume2, Eye, ArrowRight, Globe, Loader2, CheckCircle, Keyboard, MicOff, ChevronRight, Mic } from 'lucide-react';
 import { speakText } from "@/components/utils/textToSpeech";
 import ExplainSheet from '@/components/practice/ExplainSheet';
-import { ExplainSimplyButton, Poster, QuietButton, posterOutline, posterSolid, posterTone } from '@/components/pathways/ui';
+import { ExplainSimplyButton, Poster, QuietButton, posterBigButton, posterLink, posterOutline, posterSolid, posterTone, posterTool } from '@/components/pathways/ui';
 import { stopReading } from '@/components/persona/useAutoRead';
 import { toast } from "sonner";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -170,8 +170,8 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
   const translatedQuestion = translation ? translation.split('Answer:')[0].replace('Question:', '').trim() : '';
   const translatedAnswer = translation.includes('Answer:') ? translation.split('Answer:')[1].trim() : '';
   const label = `${testMode ? 'Civics test' : `Civics ${question.version || ''}`.trim()} · ${total ? `Card ${index + 1} of ${total}` : 'Practice'}`;
-  const tool = 'min-h-11 rounded-full border-2 border-white px-4 inline-flex items-center gap-2 text-base font-semibold text-white hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white';
-  const textLink = 'min-h-11 inline-flex items-center gap-2 text-base font-semibold text-white underline underline-offset-4 decoration-white/60 hover:decoration-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded';
+  const tool = posterTool;
+  const textLink = posterLink;
   const stopListening = () => { if (isListening && recognitionRef.current) { try { recognitionRef.current.stop(); } catch (e) { /* already stopped */ } } };
   const speakNext = (mode) => {
     if (mode === 'speak' && !recognitionRef.current) { toast.error('Voice input is not supported in this browser'); return; }
@@ -248,7 +248,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
                         }}
                         disabled={!srReady}
                         aria-label={isListening ? 'Stop listening' : 'Tap and say your answer'}
-                        className="relative w-[104px] h-[104px] rounded-full bg-white text-pw-navy grid place-items-center shadow-lift disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60"
+                        className={posterBigButton}
                       >
                         {isListening ? <MicOff className="w-10 h-10" aria-hidden="true" /> : <Mic className="w-10 h-10" aria-hidden="true" />}
                       </button>

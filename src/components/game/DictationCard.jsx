@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Volume2, Check, X, ArrowRight, Edit3, Globe, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { speakText } from "@/components/utils/textToSpeech";
-import { Poster, RuledPaper, posterOutline, posterSolid, posterTone } from '@/components/pathways/ui';
+import { Poster, RuledPaper, posterBigButton, posterOutline, posterSolid, posterTone, posterTool } from '@/components/pathways/ui';
 import { wordScore } from '@/lib/practiceResults';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { base44 } from '@/api/base44Client';
@@ -98,23 +98,6 @@ export default function DictationCard({ sentence, onComplete, onNext, testMode =
 
   return (
     <div className="w-full max-w-2xl mx-auto space-y-4 text-pw-navy">
-      {!testMode && <div className="flex justify-end">
-        <div className="flex items-center gap-1 bg-white pl-3 rounded-xl border border-pw-line">
-          <Globe className="w-4 h-4 text-pw-muted" aria-hidden="true" />
-          <Select value={selectedLanguage} onValueChange={setSelectedLanguage}>
-            <SelectTrigger aria-label="Translate to" className="w-[150px] min-h-[44px] text-sm border-0 bg-transparent shadow-none focus:ring-0">
-              <SelectValue placeholder="Translate to..." />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="none">No Translation</SelectItem>
-              {SUPPORTED_LANGUAGES.map(lang => (
-                <SelectItem key={lang.code} value={lang.code}>{lang.name}</SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-      </div>}
-
       <Poster
         tone={posterTone(index)}
         className="-mx-4 sm:mx-0 sm:rounded-[14px]"
@@ -124,19 +107,39 @@ export default function DictationCard({ sentence, onComplete, onNext, testMode =
         answer={stage === 'result' ? `Answer: ${sentence.text}` : null}
       >
         <div className="space-y-4">
-          {/* Play the sentence */}
-          <div className="flex items-center gap-4">
-            <motion.button
-              type="button"
-              whileTap={{ scale: 0.95 }}
-              onClick={speak}
-              aria-label="Play the sentence"
-              className={`w-16 h-16 shrink-0 rounded-full grid place-items-center shadow-lift transition-colors focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60 bg-white text-pw-navy ${isPlaying ? 'ring-4 ring-white/40' : 'hover:bg-pw-soft'}`}
-            >
-              <Volume2 className={`w-7 h-7 ${isPlaying ? 'animate-pulse' : ''}`} aria-hidden="true" />
-            </motion.button>
-            <p className="text-base">{stage === 'result' ? 'Play it again' : testMode ? 'Tap to listen' : 'Tap to listen. Write it on paper, or type it below.'}</p>
-          </div>
+          {/* Play the sentence: the one big button before writing; after
+              that a small "Play again" next to Translate (practice only). */}
+          {stage === 'listen' ? (
+            <div className="flex flex-col items-center pt-2 gap-4">
+              <div className="relative">
+                <span className={`absolute inset-0 rounded-full bg-white/20 transition-transform ${isPlaying ? 'scale-[1.35] animate-pulse' : 'scale-[1.2]'}`} aria-hidden="true" />
+                <motion.button type="button" whileTap={{ scale: 0.95 }} onClick={speak} aria-label="Play the sentence" className={posterBigButton}>
+                  <Volume2 className="w-10 h-10" aria-hidden="true" />
+                </motion.button>
+              </div>
+              <p className="text-lg font-semibold text-center">{testMode ? 'Tap to listen' : 'Tap to listen. Write it on paper, or type it next.'}</p>
+            </div>
+          ) : (
+            <div className="flex flex-wrap items-center gap-2">
+              <button type="button" onClick={speak} className={`${posterTool} ${isPlaying ? 'bg-white/15' : ''}`}>
+                <Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" /> Play again
+              </button>
+              {!testMode && (
+                <Select value={selectedLanguage} onValueChange={setSelectedLanguage}>
+                  <SelectTrigger aria-label="Translate to" className={`${posterTool} w-auto h-auto bg-transparent shadow-none focus:ring-white focus:ring-offset-0 [&>svg]:text-white [&>svg]:opacity-100 data-[placeholder]:text-white [&>span]:text-white`}>
+                    <Globe className="w-5 h-5 shrink-0" aria-hidden="true" />
+                    <SelectValue placeholder="Translate" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="none">No translation</SelectItem>
+                    {SUPPORTED_LANGUAGES.map(lang => (
+                      <SelectItem key={lang.code} value={lang.code}>{lang.name}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              )}
+            </div>
+          )}
 
           {stage === 'listen' && (
             <button type="button" onClick={() => setStage('check')} className={posterSolid}>
@@ -146,7 +149,7 @@ export default function DictationCard({ sentence, onComplete, onNext, testMode =
 
           {stage === 'check' && (
             <div className="flex flex-wrap gap-2">
-              <button type="button" onClick={checkAnswer} disabled={!userInput.trim()} className={posterSolid}>Check</button>
+              {userInput.trim() && <button type="button" onClick={checkAnswer} className={posterSolid}><Check className="w-5 h-5" aria-hidden="true" /> Check my sentence</button>}
               {!testMode && (
                 <button type="button" onClick={() => { setFeedback('manual'); setStage('result'); }} className={posterOutline}>
                   Show the sentence
@@ -168,7 +171,7 @@ export default function DictationCard({ sentence, onComplete, onNext, testMode =
                 isTranslating ? (
                   <p className="flex items-center gap-2 text-base"><Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> Translating…</p>
                 ) : (
-                  <p className="rounded-[10px] bg-white/10 border border-white/60 px-4 py-3 text-base">
+                  <p className="border-s-2 border-white/70 ps-4 text-base">
                     <span className="mr-2 text-sm font-semibold uppercase tracking-[0.14em]">{SUPPORTED_LANGUAGES.find(l => l.code === selectedLanguage)?.name}:</span>
                     {translation}
                   </p>
