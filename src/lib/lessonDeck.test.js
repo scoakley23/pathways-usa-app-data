@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { deckSteps, splitIdeas } from './lessonDeck';
+import { deckSteps, splitIdeas, nextLesson } from './lessonDeck';
 
 describe('deckSteps', () => {
   it('has all five steps for a full lesson', () => {
@@ -24,5 +24,24 @@ describe('splitIdeas', () => {
     expect(splitIdeas('')).toEqual([]);
     expect(splitIdeas(null)).toEqual([]);
     expect(splitIdeas('Intro\n\n## End')).toEqual(['Intro', '## End']);
+  });
+});
+
+describe('nextLesson', () => {
+  const lessons = [{ id: 'a' }, { id: 'b' }, { id: 'c' }];
+  it('suggests a lesson worth going over again first', () => {
+    const progress = [{ lesson_id: 'a', completed: true }, { lesson_id: 'b', completed: false }, { lesson_id: 'c', completed: true, needs_review: true }];
+    expect(nextLesson(lessons, progress)).toEqual({ lesson: { id: 'c' }, reason: 'review' });
+  });
+  it('then a lesson already started', () => {
+    const progress = [{ lesson_id: 'a', completed: true }, { lesson_id: 'b', completed: false }];
+    expect(nextLesson(lessons, progress)).toEqual({ lesson: { id: 'b' }, reason: 'continue' });
+  });
+  it('then the first lesson not started, in order', () => {
+    expect(nextLesson(lessons, [{ lesson_id: 'a', completed: true }])).toEqual({ lesson: { id: 'b' }, reason: 'start' });
+    expect(nextLesson(lessons, [])).toEqual({ lesson: { id: 'a' }, reason: 'start' });
+  });
+  it('is null when every lesson is done', () => {
+    expect(nextLesson(lessons, lessons.map((l) => ({ lesson_id: l.id, completed: true })))).toBeNull();
   });
 });

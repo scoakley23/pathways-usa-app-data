@@ -176,7 +176,7 @@ export default function MyTutor({ currentUserEmail }) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
           {/* Join by Code Section */}
           <RaisedCard>
-              <h3 className="text-lg font-extrabold flex items-center gap-2 text-pw-navy mb-4">
+              <h3 className="font-display text-[26px] leading-tight flex items-center gap-2 text-pw-navy mb-4">
                   <span className="w-10 h-10 rounded-xl bg-pw-blue-soft text-pw-blue-ink flex items-center justify-center" aria-hidden="true"><Hash className="w-5 h-5" /></span>
                   Join with Code
               </h3>
@@ -199,7 +199,7 @@ export default function MyTutor({ currentUserEmail }) {
 
           {/* Join by Email Section */}
           <RaisedCard>
-              <h3 className="text-lg font-extrabold flex items-center gap-2 text-pw-navy mb-4">
+              <h3 className="font-display text-[26px] leading-tight flex items-center gap-2 text-pw-navy mb-4">
                   <span className="w-10 h-10 rounded-xl bg-pw-teal-soft text-pw-teal-ink flex items-center justify-center" aria-hidden="true"><Mail className="w-5 h-5" /></span>
                   Request by Email
               </h3>

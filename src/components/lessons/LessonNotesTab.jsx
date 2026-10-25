@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { base44 } from '@/api/base44Client';
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
 import { Save, Loader2, CheckCircle } from 'lucide-react';
 import { toast } from "sonner";
+import { PillButton, RuledPaper } from '@/components/pathways/ui';
 
-export default function LessonNotesTab({ lesson, userEmail }) {
+// The learner's notes for a lesson, on ruled paper (their own page). Saved
+// to LessonNotes, which only the learner can read; never sent to the AI.
+// Vía's line here is a fixed tip, not a reply to what they wrote.
+export default function LessonNotesTab({ lesson, userEmail, tutorName = 'Vía' }) {
   const [content, setContent] = useState('');
   const [noteId, setNoteId] = useState(null);
   const [isSaving, setIsSaving] = useState(false);
@@ -77,24 +79,31 @@ export default function LessonNotesTab({ lesson, userEmail }) {
   );
 
   return (
-    <div className="space-y-3 text-pw-navy">
+    <RuledPaper className="pb-4">
       <div className="flex items-center justify-between gap-3 flex-wrap">
-        <p className="text-base text-pw-muted">Write notes for this lesson. They auto-save as you type.</p>
-        <div className="flex items-center gap-2" aria-live="polite">
-          {isSaving && <span className="text-sm font-bold text-pw-muted flex items-center gap-1"><Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> Saving...</span>}
-          {!isSaving && lastSaved && <span className="text-sm font-bold text-pw-green-ink flex items-center gap-1"><CheckCircle className="w-4 h-4" aria-hidden="true" /> Saved</span>}
-          <Button size="sm" onClick={() => saveNote()} disabled={isSaving}>
-            <Save className="w-4 h-4" /> Save
-          </Button>
-        </div>
+        <label htmlFor="lesson-notes" className="text-[13px] font-semibold uppercase tracking-[0.14em] leading-[36px] text-pw-muted">
+          My notes
+        </label>
+        <span className="flex items-center gap-2" aria-live="polite">
+          {isSaving && <span className="text-sm font-semibold text-pw-muted flex items-center gap-1"><Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> Saving…</span>}
+          {!isSaving && lastSaved && <span className="text-sm font-semibold text-pw-writing flex items-center gap-1"><CheckCircle className="w-4 h-4" aria-hidden="true" /> Saved</span>}
+        </span>
       </div>
-      <Textarea
+      <textarea
+        id="lesson-notes"
         value={content}
         onChange={handleChange}
-        placeholder="Start typing your notes here..."
-        aria-label="Lesson notes"
-        className="min-h-[300px] resize-y text-base leading-relaxed rounded-2xl border-pw-line"
+        placeholder="Write it in your own words…"
+        rows={7}
+        className="block w-full resize-y bg-transparent text-[19px] leading-[36px] text-pw-navy placeholder:text-pw-muted focus:outline-none"
       />
-    </div>
+      <p className="mt-1 -rotate-1 font-hand font-semibold text-[23px] leading-tight text-pw-civics">Your own words help you remember. — {tutorName}</p>
+      <div className="mt-3 flex items-center justify-between gap-3">
+        <span className="text-[15px] text-pw-muted">Only you see these.</span>
+        <PillButton onClick={() => saveNote()} disabled={isSaving}>
+          <Save className="w-4 h-4" aria-hidden="true" /> Save
+        </PillButton>
+      </div>
+    </RuledPaper>
   );
 }

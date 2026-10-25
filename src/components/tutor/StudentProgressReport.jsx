@@ -157,7 +157,7 @@ export default function StudentProgressReport({ isOpen, onClose, studentEmail })
               {/* Weaknesses / To Improve */}
               <Card className="bg-pw-red-soft border-transparent shadow-none">
                 <CardHeader className="p-5 pb-2">
-                  <CardTitle className="text-xs font-bold text-pw-red-ink uppercase tracking-widest">Needs Practice</CardTitle>
+                  <CardTitle className="font-sans text-xs font-bold text-pw-red-ink uppercase tracking-widest">Needs Practice</CardTitle>
                 </CardHeader>
                 <CardContent className="p-5 pt-0">
                   {stats.weaknesses.length > 0 ? (
@@ -178,7 +178,7 @@ export default function StudentProgressReport({ isOpen, onClose, studentEmail })
                {/* Strengths */}
               <Card className="bg-pw-green-soft border-transparent shadow-none">
                 <CardHeader className="p-5 pb-2">
-                  <CardTitle className="text-xs font-bold text-pw-green-ink uppercase tracking-widest">Mastered Content</CardTitle>
+                  <CardTitle className="font-sans text-xs font-bold text-pw-green-ink uppercase tracking-widest">Mastered Content</CardTitle>
                 </CardHeader>
                 <CardContent className="p-5 pt-0">
                   {stats.strengths.length > 0 ? (

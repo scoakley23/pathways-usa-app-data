@@ -101,7 +101,7 @@ export default function Progress() {
               </div>
               <ArrowRight className="w-5 h-5 text-pw-muted" aria-hidden="true" />
             </div>
-            <p className="mt-4 text-4xl font-extrabold leading-none">{stats.total}</p>
+            <p className="mt-4 font-display font-normal text-[44px] leading-none">{stats.total}</p>
             <p className="mt-2 text-sm font-bold text-pw-muted">Total Practiced</p>
           </RaisedCard>
         </Link>
@@ -114,7 +114,7 @@ export default function Progress() {
               </div>
               <ArrowRight className="w-5 h-5 text-pw-muted" aria-hidden="true" />
             </div>
-            <p className="mt-4 text-4xl font-extrabold leading-none">{stats.mastered}</p>
+            <p className="mt-4 font-display font-normal text-[44px] leading-none">{stats.mastered}</p>
             <p className="mt-2 text-sm font-bold text-pw-muted">Items Mastered</p>
           </RaisedCard>
         </Link>
@@ -125,9 +125,9 @@ export default function Progress() {
               <div className="w-12 h-12 rounded-2xl bg-pw-teal-soft text-pw-teal-ink grid place-items-center shrink-0">
                 <Target className="w-6 h-6" aria-hidden="true" />
               </div>
-              <p className="text-lg font-extrabold">Test Preparedness</p>
+              <p className="font-display text-[26px] leading-tight">Test Preparedness</p>
             </div>
-            <span className="text-3xl font-extrabold">{preparedness}%</span>
+            <span className="font-display text-[44px] leading-none">{preparedness}%</span>
           </div>
           <ProgressBar value={preparedness} className="h-3 bg-pw-soft" aria-label="Test Preparedness" />
           <p className="text-sm text-pw-muted mt-3">Based on mastered content items (Goal: 100)</p>
@@ -145,7 +145,7 @@ export default function Progress() {
           {/* Badges Section */}
           <Card>
             <CardHeader className="p-5 sm:p-6">
-              <CardTitle className="flex items-center gap-3 text-xl">
+              <CardTitle className="flex items-center gap-3">
                 <span className="w-10 h-10 rounded-2xl bg-pw-red-soft text-pw-red-ink grid place-items-center shrink-0">
                   <Award className="w-5 h-5" aria-hidden="true" />
                 </span>
@@ -162,7 +162,7 @@ export default function Progress() {
           {/* Recent List Sidebar */}
           <Card className="lg:h-full max-h-[600px] flex flex-col">
             <CardHeader className="p-5 sm:p-6">
-              <CardTitle className="text-xl">Recent Activity</CardTitle>
+              <CardTitle>Recent Activity</CardTitle>
             </CardHeader>
             <CardContent className="flex-1 overflow-y-auto p-5 pt-0 sm:p-6 sm:pt-0">
               {history.length > 0 ? (

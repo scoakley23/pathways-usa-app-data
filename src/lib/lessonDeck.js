@@ -37,3 +37,18 @@ export function splitIdeas(markdown) {
   if (heading) ideas.push(heading);
   return ideas;
 }
+
+// The lesson to suggest at the top of /Lessons: one worth going over again
+// (low score last time) first, then one already started, then the first one
+// not started, in lesson order. Returns { lesson, reason } or null when every
+// lesson is done. `progress` = LessonProgress records.
+export function nextLesson(lessons = [], progress = []) {
+  const byId = new Map(progress.map((p) => [p.lesson_id, p]));
+  const review = lessons.find((l) => byId.get(l.id)?.needs_review);
+  if (review) return { lesson: review, reason: 'review' };
+  const started = lessons.find((l) => byId.get(l.id) && !byId.get(l.id).completed);
+  if (started) return { lesson: started, reason: 'continue' };
+  const fresh = lessons.find((l) => !byId.get(l.id));
+  if (fresh) return { lesson: fresh, reason: 'start' };
+  return null;
+}
