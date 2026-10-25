@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Navigation, Phone, Globe } from 'lucide-react';
+import { Navigation, Phone, Globe, Bookmark, BookmarkCheck } from 'lucide-react';
 import { Tag } from '@/components/pathways/ui';
 import {
   categoryById, placeServices, formatDistance, fullAddress, directionsUrl, telHref, safeWebsite, safeLogoUrl, isPoBoxOnly,
 } from '@/lib/resourceHub';
+import useSavedPlaces from '@/components/resources/useSavedPlaces';
 
 // Text colors use ! so Leaflet's popup link color can't override them.
 const LINK_BTN =
@@ -18,6 +19,26 @@ export function ServiceTags({ r }) {
         return <Tag key={s} tone={c.tone}>{c.label}</Tag>;
       })}
     </div>
+  );
+}
+
+// Save to (or remove from) the learner's own list. Signed-in learners only.
+export function SaveButton({ r }) {
+  const { canSave, isSaved, toggleSaved, isSaving } = useSavedPlaces();
+  if (!canSave || !r?.id) return null;
+  const saved = isSaved(r.id);
+  const Icon = saved ? BookmarkCheck : Bookmark;
+  return (
+    <button
+      type="button"
+      aria-pressed={saved}
+      aria-label={saved ? `Saved: ${r.name}. Tap to remove from your saved places` : `Save ${r.name} to your saved places`}
+      disabled={isSaving}
+      onClick={(e) => { e.stopPropagation(); toggleSaved(r.id); }}
+      className={`${LINK_BTN} border-2 border-pw-navy disabled:opacity-60 ${saved ? 'bg-pw-soft !text-pw-navy hover:bg-pw-soft-hover' : 'bg-white !text-pw-navy hover:bg-pw-soft'}`}
+    >
+      <Icon className="w-5 h-5" aria-hidden="true" /> {saved ? 'Saved' : 'Save'}
+    </button>
   );
 }
 
@@ -41,6 +62,7 @@ export function PlaceActions({ r }) {
           <Globe className="w-5 h-5" aria-hidden="true" /> Website
         </a>
       )}
+      <SaveButton r={r} />
     </div>
   );
 }

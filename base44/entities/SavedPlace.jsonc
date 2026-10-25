@@ -1,0 +1,23 @@
+{
+  "name": "SavedPlace",
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string"
+    },
+    "resource_id": {
+      "type": "string",
+      "description": "Id of the saved CommunityResource (a public listing). Only the id is kept: no location, no notes."
+    }
+  },
+  "required": [
+    "user_email",
+    "resource_id"
+  ],
+  "rls": {
+    "create": { "data.user_email": "{{user.email}}" },
+    "read": { "data.user_email": "{{user.email}}" },
+    "update": { "data.user_email": "{{user.email}}" },
+    "delete": { "data.user_email": "{{user.email}}" }
+  }
+}

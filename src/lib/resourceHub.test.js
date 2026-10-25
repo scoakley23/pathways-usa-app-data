@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import {
   normalizeZip, zipToLatLng, distanceMiles, formatDistance, nearestResources,
   directionsUrl, safeWebsite, telHref, parseCsv, cleanResourceRow, resourceKey, isValidLatLng, isPoBoxOnly,
-  placeServices, safeLogoUrl, planImport,
+  placeServices, safeLogoUrl, planImport, savedResources,
 } from './resourceHub';
 
 // Fake test places only.
@@ -195,5 +195,24 @@ describe('planImport', () => {
     const plan = planImport([{ name: 'Test Clinic', category: 'legal', services: ['legal'], address: '1 Main St', zip: '02138', external_id: '' }],
       [{ ...saved[0], services: ['legal'], languages: [], phone: '', website: '', logo_url: '', hours: '', cost: '', description: '', source: '', source_url: '', last_verified: '', city: '', state: '', external_id: '' }], ZIPS);
     expect(plan).toMatchObject({ unchanged: 1, updates: [], creates: [] });
+  });
+});
+
+describe('savedResources', () => {
+  const places = [
+    place({ id: 'a', name: 'Far Place', latitude: 40.75, longitude: -74 }),
+    place({ id: 'b', name: 'Near Place' }),
+    place({ id: 'c', name: 'Another Place', is_active: false }),
+    place({ id: 'd', name: 'Not Saved' }),
+  ];
+  it('keeps saved, shown places only, by name without an origin', () => {
+    const list = savedResources(places, ['a', 'b', 'c', 'gone'], null);
+    expect(list.map((r) => r.id)).toEqual(['a', 'b']);
+    expect(list[0].distance).toBeUndefined();
+  });
+  it('sorts nearest first with an origin', () => {
+    const list = savedResources(places, new Set(['a', 'b']), BOSTON);
+    expect(list.map((r) => r.id)).toEqual(['b', 'a']);
+    expect(list[0].distance).toBeLessThan(10);
   });
 });

@@ -47,6 +47,7 @@ export default function DeleteMyData({ userEmail }) {
       ['interview history', 'InterviewSession', { user_email: { $in: variants } }],
       ['profile', 'PublicProfile', { user_email: { $in: variants } }],
       ['N-400 guide progress', 'N400SectionProgress', { user_email: { $in: variants } }],
+      ['saved places', 'SavedPlace', { user_email: { $in: variants } }],
     ];
 
     try {
