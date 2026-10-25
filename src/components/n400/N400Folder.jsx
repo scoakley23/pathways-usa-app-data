@@ -3,15 +3,36 @@ import { Check } from 'lucide-react';
 import { Folder, FolderTab } from '@/components/pathways/ui';
 
 // Short tab labels and colors for the N-400 sections (Part 8, then the Part 9
-// groups), in form order.
+// groups), in form order: seven different colors so each section is easy to
+// find again (folder tabs, the section list, the chips on the cover).
 const TABS = {
-  'time-outside-us': { label: 'Part 8', tone: 'navy' },
-  'citizenship-voting-taxes': { label: 'Citizenship, voting, and taxes', tone: 'civics' },
-  'groups-violence': { label: 'Groups and violence', tone: 'reading' },
-  'crimes-offenses': { label: 'Crimes and offenses', tone: 'writing' },
-  'immigration-history': { label: 'Immigration history', tone: 'speaking' },
-  'selective-service-military': { label: 'Selective Service and military', tone: 'civics' },
-  'oath-questions': { label: 'Oath questions', tone: 'reading' },
+  'time-outside-us': { label: 'Part 8', tone: 'civics' },
+  'citizenship-voting-taxes': { label: 'Citizenship, voting, and taxes', tone: 'reading' },
+  'groups-violence': { label: 'Groups and violence', tone: 'writing' },
+  'crimes-offenses': { label: 'Crimes and offenses', tone: 'speaking' },
+  'immigration-history': { label: 'Immigration history', tone: 'plum' },
+  'selective-service-military': { label: 'Selective Service and military', tone: 'sky' },
+  'oath-questions': { label: 'Oath questions', tone: 'navy' },
+};
+
+// Solid section color with its text color (all ≥ 4.5:1; Sky takes ink).
+export const SECTION_SOLID = {
+  civics: 'bg-pw-civics text-white',
+  reading: 'bg-pw-reading text-white',
+  writing: 'bg-pw-writing text-white',
+  speaking: 'bg-pw-red-ink text-white',
+  plum: 'bg-pw-plum text-white',
+  sky: 'bg-pw-sky text-pw-navy',
+  navy: 'bg-pw-navy text-white',
+};
+export const SECTION_BORDER = {
+  civics: 'border-pw-civics',
+  reading: 'border-pw-reading',
+  writing: 'border-pw-writing',
+  speaking: 'border-pw-red-ink',
+  plum: 'border-pw-plum',
+  sky: 'border-pw-sky',
+  navy: 'border-pw-navy',
 };
 
 export const tabFor = (section) => TABS[section.id] || { label: section.title, tone: 'navy' };

@@ -275,6 +275,8 @@ const FOLDER_TAB_TONE = {
   reading: 'border-pw-reading',
   writing: 'border-pw-writing',
   speaking: 'border-pw-speaking',
+  plum: 'border-pw-plum',
+  sky: 'border-pw-sky',
 };
 
 // Manila folder (N-400 only). `tabs`: a row of FolderTab buttons on top.
