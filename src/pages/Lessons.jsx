@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
-import { BookOpen, Video, ChevronRight } from 'lucide-react';
+import { ArrowRight, BookOpen, Video } from 'lucide-react';
 import LessonDetail from '@/components/lessons/LessonDetail.jsx';
-import RecommendationsPanel from '@/components/lessons/RecommendationsPanel';
 import PageHeader from '@/components/PageHeader';
-import { RaisedCard, SKILL_TONE } from '@/components/pathways/ui';
+import { RaisedCard, SKILL_COLOR, SKILL_ON } from '@/components/pathways/ui';
+import { nextLesson } from '@/lib/lessonDeck';
 import { toast } from "sonner";
+
+const NEXT_LABEL = {
+  review: 'Worth going over again',
+  continue: 'Pick up where you left off',
+  start: 'Next lesson',
+};
 
 export default function Lessons() {
   const [lessons, setLessons] = useState([]);
@@ -95,28 +101,36 @@ export default function Lessons() {
     );
   }
 
+  const doneTotal = lessons.filter((l) => getLessonProgress(l.id)?.completed).length;
+  const next = nextLesson(lessons, progress);
+
   return (
     <div className="space-y-8 text-pw-navy">
       <PageHeader
+        tag={`Civics · ${doneTotal} of ${lessons.length} lessons done`}
         title="Lessons"
-        subtitle="The ideas behind the civics test, one topic at a time."
-        tag="Civics"
-        tagTone={SKILL_TONE.civics}
-        art="scroll"
         guide="Each lesson ends with the exact questions the officer may ask. We go over them together."
       />
 
-      {/* Recommendations */}
-      {user && (
-        <RecommendationsPanel 
-          userEmail={user.email} 
-          onSelectLesson={setSelectedLesson}
-        />
+      {/* The next lesson, as a poster in the civics color */}
+      {next && (
+        <button
+          type="button"
+          onClick={() => setSelectedLesson(next.lesson)}
+          className={`w-full text-left rounded-[18px] p-5 sm:p-7 min-h-[200px] flex flex-col gap-3 shadow-[0_12px_26px_rgba(20,38,74,0.18)] transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2 ${SKILL_COLOR.civics} ${SKILL_ON.civics}`}
+        >
+          <span className="text-[13px] font-semibold uppercase tracking-[0.16em]">{NEXT_LABEL[next.reason]} · {next.lesson.topic}</span>
+          <span className="text-[32px] sm:text-[40px] font-bold leading-[1.05] tracking-[-0.01em]">{next.lesson.title}</span>
+          {next.lesson.description && <span className="font-display italic text-[20px] leading-snug">{next.lesson.description}</span>}
+          <span className="mt-auto pt-2 self-start min-h-[52px] rounded-full bg-white text-pw-navy px-7 text-lg font-semibold inline-flex items-center gap-2">
+            {next.reason === 'start' ? 'Start' : 'Continue'} <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" />
+          </span>
+        </button>
       )}
 
-      {/* The card box: one colored divider per topic, its lessons behind it */}
-      <div className="rounded-[20px] bg-pw-slate p-3 sm:p-5 space-y-6">
-        {topics.map((topic) => {
+      {/* The card box on the desk: one tabbed card per topic, its lessons inside */}
+      <div className="rounded-[22px] bg-pw-slate p-3 pt-5 sm:p-6 space-y-6">
+        {topics.map((topic, ti) => {
           const topicLessons = lessons.filter(l => l.topic === topic.name);
           if (topicLessons.length === 0) return null;
           const doneCount = topicLessons.filter((l) => getLessonProgress(l.id)?.completed).length;
@@ -124,43 +138,47 @@ export default function Lessons() {
 
           return (
             <section key={topic.name} aria-labelledby={headingId}>
-              {/* Divider */}
-              <div className={`rounded-t-[14px] ${topic.color} text-white px-4 py-3 sm:px-5 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1`}>
-                <h2 id={headingId} className="font-display text-[26px] leading-tight">{topic.name}</h2>
-                <p className="text-base font-semibold">{doneCount} of {topicLessons.length} lessons</p>
-              </div>
-              {/* Lesson cards */}
-              <ul className={`rounded-b-[14px] border-x-4 border-b-4 ${topic.border} bg-white/60 p-2 sm:p-3 grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3`}>
-                {topicLessons.map((lesson) => {
-                  const lessonProgress = getLessonProgress(lesson.id);
-                  const isCompleted = !!lessonProgress?.completed;
-                  const hasProgress = !!lessonProgress;
-                  const needsReview = lessonProgress?.needs_review;
+              <span className={`ml-4 inline-block rounded-t-lg px-3 py-1 text-sm font-semibold text-white ${topic.color}`}>Topic {ti + 1}</span>
+              <div className="rounded-[16px] bg-white border border-pw-line shadow-raised p-3 sm:p-4 space-y-3">
+                <div className="px-1 space-y-2">
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                    <h2 id={headingId} className="font-display text-[26px] sm:text-[30px] leading-tight">{topic.name}</h2>
+                    <p className="text-[15px] font-semibold text-pw-muted">{doneCount} of {topicLessons.length} lessons</p>
+                  </div>
+                  <div className="flex gap-1.5" aria-hidden="true">
+                    {topicLessons.map((l, k) => (
+                      <span key={l.id} className={`h-1.5 flex-1 rounded-full ${k < doneCount ? topic.color : 'bg-pw-soft'}`} />
+                    ))}
+                  </div>
+                </div>
+                <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                  {topicLessons.map((lesson) => {
+                    const lessonProgress = getLessonProgress(lesson.id);
+                    const isCompleted = !!lessonProgress?.completed;
+                    const hasProgress = !!lessonProgress;
+                    const needsReview = lessonProgress?.needs_review;
 
-                  return (
-                    <li key={lesson.id}>
-                      <button
-                        type="button"
-                        onClick={() => setSelectedLesson(lesson)}
-                        className="w-full h-full text-left rounded-[14px] bg-white border border-pw-line shadow-raised p-4 min-h-[88px] flex items-start gap-3 hover:border-pw-navy transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
-                      >
-                        <span className="flex-1 min-w-0">
-                          <span className="flex items-center gap-2 text-sm text-pw-muted">
-                            {isCompleted ? (
-                              <span className="-rotate-6 rounded border-2 border-pw-writing px-1.5 text-xs font-bold uppercase tracking-[0.14em] text-pw-writing">Done</span>
-                            ) : hasProgress ? 'In progress' : 'Not started'}
+                    return (
+                      <li key={lesson.id}>
+                        <button
+                          type="button"
+                          onClick={() => setSelectedLesson(lesson)}
+                          className="relative w-full h-full text-left rounded-[12px] bg-pw-page border border-pw-line p-4 min-h-[84px] flex flex-col gap-1 hover:border-pw-navy hover:bg-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
+                        >
+                          <span className="flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.1em] text-pw-muted">
+                            {needsReview ? 'Go over again' : isCompleted ? 'Done' : hasProgress ? 'In progress' : 'Not started'}
                             {lesson.video_url && <Video className="w-4 h-4" aria-label="Has a video" />}
                           </span>
-                          <span className="mt-1 block text-lg font-semibold leading-snug">{lesson.title}</span>
-                          {lesson.description && <span className="mt-1 block text-base text-pw-muted">{lesson.description}</span>}
-                          {needsReview && <span className="mt-1 block text-sm font-semibold text-pw-muted">Worth going over again</span>}
-                        </span>
-                        <ChevronRight className="w-5 h-5 text-pw-muted shrink-0 mt-1" aria-hidden="true" />
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
+                          <span className={`block text-[17px] font-semibold leading-snug ${isCompleted ? 'pe-16' : ''}`}>{lesson.title}</span>
+                          {isCompleted && (
+                            <span className="pointer-events-none absolute end-3 top-3 -rotate-[8deg] rounded-md border-2 border-pw-navy px-2 py-0.5 text-sm font-bold uppercase tracking-[0.12em]" aria-hidden="true">Done</span>
+                          )}
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
             </section>
           );
         })}
@@ -171,7 +189,7 @@ export default function Lessons() {
           <div className="space-y-4">
             <BookOpen className="w-16 h-16 text-pw-line mx-auto" aria-hidden="true" />
             <div>
-              <h3 className="text-xl font-extrabold mb-2">No Lessons Available</h3>
+              <h3 className="font-display text-[28px] mb-2">No lessons yet</h3>
               <p className="text-base text-pw-muted">Lessons are loading. Please check back shortly.</p>
             </div>
           </div>

@@ -344,12 +344,13 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
       {/* Done card: summary, notes, what next */}
       {finished && (
         <div className="space-y-6">
-          <IndexCard padding="p-6">
+          <IndexCard padding="p-6" tab={displayLesson.topic || 'Civics'} tabSkill="civics" className="relative">
+            <span className="pointer-events-none absolute end-5 top-12 -rotate-[8deg] rounded-md border-[2.5px] border-pw-navy px-2.5 py-0.5 text-base font-bold uppercase tracking-[0.12em]" aria-hidden="true">Done</span>
             <Eyebrow>Lesson done</Eyebrow>
-            <h2 className="mt-2 font-display text-[32px] leading-tight">{displayLesson.title}</h2>
+            <h2 className="mt-2 pe-20 font-display text-[32px] leading-tight">{displayLesson.title}</h2>
             {result ? (
               <>
-                <p className="mt-3 text-xl">You knew <span className="font-display text-3xl">{result.correct}</span> of {result.total} questions.</p>
+                <p className="mt-3 text-xl"><span className="font-display text-[44px] leading-none">{result.correct}</span> of {result.total} questions right.</p>
                 <p className="mt-2 text-lg text-pw-muted">At the interview, the officer asks out loud. Your answer doesn't need to be word for word, only right in meaning.</p>
               </>
             ) : questions.length === 0 ? (
@@ -371,11 +372,7 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
               )}
             </div>
           </IndexCard>
-          {user?.email && (
-            <IndexCard tab="My notes" tabSkill="n400">
-              <LessonNotesTab lesson={lesson} userEmail={user.email} />
-            </IndexCard>
-          )}
+          {user?.email && <LessonNotesTab lesson={lesson} userEmail={user.email} tutorName={profile.name} />}
         </div>
       )}
 
