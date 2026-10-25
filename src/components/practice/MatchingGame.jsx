@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Card } from "@/components/ui/card";
-import { Check } from 'lucide-react';
-import confetti from 'canvas-confetti';
+import { Eyebrow } from '@/components/pathways/ui';
 
+// Match each word to its definition: white index cards on the Slate desk.
+// A matched pair gets a navy MATCHED stamp; when all pairs are matched the
+// run ends on the summary poster (`onComplete(pairs)`, nothing is saved).
 export default function MatchingGame({ words, onComplete }) {
   const [items, setItems] = useState([]);
   const [selectedIds, setSelectedIds] = useState([]);
@@ -39,12 +40,8 @@ export default function MatchingGame({ words, onComplete }) {
 
   useEffect(() => {
     if (matchedIds.length > 0 && matchedIds.length === items.length) {
-      confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 }
-      });
-      setTimeout(() => onComplete(true), 1500);
+      const timer = setTimeout(() => onComplete(items.length / 2), 1200);
+      return () => clearTimeout(timer);
     }
   }, [matchedIds, items]);
 
@@ -77,50 +74,64 @@ export default function MatchingGame({ words, onComplete }) {
     }
   };
 
+  const pairs = items.length / 2;
+  const matchedPairs = matchedIds.length / 2;
+  const missed = isChecking && selectedIds.length === 2
+    && items.find(i => i.id === selectedIds[0])?.pairId !== items.find(i => i.id === selectedIds[1])?.pairId;
+
   return (
-    <div className="max-w-4xl mx-auto">
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-        {items.map((item) => {
-          const isSelected = selectedIds.includes(item.id);
-          const isMatched = matchedIds.includes(item.id);
-          const isError = isSelected && selectedIds.length === 2 && !isMatched && isChecking;
-          
-          return (
-            <motion.div
-              key={item.id}
-              layout
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              whileHover={!isMatched && !isChecking ? { scale: 1.05 } : {}}
-              whileTap={!isMatched && !isChecking ? { scale: 0.95 } : {}}
-            >
-              <Card
+    <div className="max-w-4xl mx-auto text-pw-navy">
+      <div className="px-1">
+        <Eyebrow>Matching · Words and meanings</Eyebrow>
+        <h2 className="mt-1 font-display text-3xl leading-tight">Match each word to what it means.</h2>
+      </div>
+      <p className="mt-2 px-1 text-base text-pw-muted" aria-live="polite">
+        <span className="font-display text-2xl text-pw-navy">{matchedPairs}</span> of{' '}
+        <span className="font-display text-2xl text-pw-navy">{pairs}</span> matched
+        {missed && <span className="ms-2 font-semibold text-pw-red-ink">Not a pair. Try again.</span>}
+      </p>
+
+      <div className="mt-4 -mx-4 bg-pw-slate px-3 py-4 sm:mx-0 sm:rounded-[14px] sm:p-5">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+          {items.map((item) => {
+            const isSelected = selectedIds.includes(item.id);
+            const isMatched = matchedIds.includes(item.id);
+            const isError = isSelected && missed;
+
+            return (
+              <motion.button
+                type="button"
+                key={item.id}
+                layout
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={isError ? { x: [0, -6, 6, -4, 4, 0], opacity: 1, scale: 1 } : { scale: 1, opacity: 1, x: 0 }}
+                transition={{ duration: isError ? 0.4 : 0.2 }}
+                whileTap={!isMatched && !isChecking ? { scale: 0.97 } : {}}
                 onClick={() => handleCardClick(item)}
-                className={`
-                  relative h-32 p-3 flex items-center justify-center text-center cursor-pointer transition-all duration-300 border-2 rounded-2xl shadow-none
-                  ${isMatched 
-                    ? 'bg-pw-green-soft border-pw-green-ink/40' 
-                    : isSelected 
-                      ? isError 
-                        ? 'bg-pw-red-soft border-pw-red-ink animate-shake'
-                        : 'bg-pw-soft border-pw-navy' 
-                      : 'bg-white border-pw-line hover:border-pw-navy'
-                  }
-                `}
+                disabled={isMatched}
+                aria-pressed={isSelected}
+                aria-label={isMatched ? `${item.content} (matched)` : item.content}
+                className={`relative min-h-[128px] overflow-hidden rounded-[14px] border bg-white p-3 text-center flex items-center justify-center transition-[box-shadow,border-color,background-color] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2 focus-visible:ring-offset-pw-slate
+                  ${isMatched
+                    ? 'border-pw-line bg-pw-page pt-9 shadow-none cursor-default'
+                    : isError
+                      ? 'border-pw-red-ink ring-2 ring-pw-red-ink shadow-raised'
+                      : isSelected
+                        ? 'border-pw-navy ring-2 ring-pw-navy shadow-lift'
+                        : 'border-pw-line shadow-raised hover:border-pw-navy'}`}
               >
-                {isMatched && <Check className="w-5 h-5 text-pw-green-ink absolute top-2 right-2" aria-label="Matched" />}
-                <span className={`text-base font-semibold leading-snug ${isMatched ? 'text-pw-green-ink' : 'text-pw-navy'}`}>
+                {isMatched && (
+                  <span className="pointer-events-none absolute end-2 top-2 -rotate-[8deg] rounded-md border-2 border-pw-navy px-1.5 text-xs font-bold uppercase tracking-[0.12em] text-pw-navy" aria-hidden="true">
+                    Matched
+                  </span>
+                )}
+                <span className={`leading-snug ${item.type === 'word' ? 'font-display text-2xl' : 'text-base font-medium'} ${isMatched ? 'text-pw-muted' : 'text-pw-navy'}`}>
                   {item.content}
                 </span>
-              </Card>
-            </motion.div>
-          );
-        })}
-      </div>
-      <div className="mt-6 text-center">
-        <p className="text-base text-pw-muted">
-          Match the words with their definitions. {matchedIds.length / 2} / {items.length / 2} pairs found.
-        </p>
+              </motion.button>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
