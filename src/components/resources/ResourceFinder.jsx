@@ -1,14 +1,15 @@
 import React, { Suspense, lazy, useEffect, useMemo, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { Crosshair, Loader2, MapPin, Map as MapIcon, List, AlertTriangle, ExternalLink, Maximize2, X, ChevronUp } from 'lucide-react';
+import { Crosshair, Loader2, MapPin, Map as MapIcon, List, AlertTriangle, ExternalLink, Maximize2, X, ChevronUp, Bookmark } from 'lucide-react';
 import { listAllResources } from '@/components/resources/listAllResources';
 import { Input } from '@/components/ui/input';
 import { PrimaryButton, SecondaryButton, RaisedCard } from '@/components/pathways/ui';
 import {
   RESOURCE_CATEGORIES, COST_LABELS, DIRECTORY_LINKS, PIN_COLORS, nearestResources, formatDistance, fullAddress, categoryById,
-  normalizeZip, zipToLatLng, loadZipTable,
+  normalizeZip, zipToLatLng, loadZipTable, savedResources,
 } from '@/lib/resourceHub';
 import { ServiceTags, PlaceActions, PlaceSummary } from '@/components/resources/PlaceSummary';
+import useSavedPlaces from '@/components/resources/useSavedPlaces';
 
 const ResourceMap = lazy(() => import('@/components/resources/ResourceMap'));
 
@@ -43,6 +44,8 @@ export default function ResourceFinder() {
     [resources, origin, categories, radius],
   );
   const selected = results.find((r) => r.id === selectedId) || null;
+  const { savedIds } = useSavedPlaces();
+  const saved = useMemo(() => savedResources(resources, savedIds, origin), [resources, savedIds, origin]);
 
   // A new search starts the list from the top.
   useEffect(() => { setListCount(LIST_STEP); }, [origin, categories, radius]);
@@ -193,6 +196,8 @@ export default function ResourceFinder() {
         <p className="text-base text-pw-red-ink font-semibold" role="alert">We couldn&apos;t load the list of places. Please try again later.</p>
       )}
 
+      {saved.length > 0 && <SavedPlaces places={saved} />}
+
       {origin && !isLoading && !isError && (
         <div className="space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-2">
@@ -334,10 +339,36 @@ export default function ResourceFinder() {
   );
 }
 
-function ResourceCard({ r, selected, onSelect }) {
+// The learner's saved places, from their account. Shown whether or not they
+// have searched; with a search they come nearest first.
+function SavedPlaces({ places }) {
+  const [open, setOpen] = useState(true);
+  return (
+    <RaisedCard className="space-y-3 md:p-6">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex items-center gap-3">
+          <div className="w-11 h-11 rounded-2xl grid place-items-center bg-pw-soft text-pw-navy shrink-0">
+            <Bookmark className="w-5 h-5" aria-hidden="true" />
+          </div>
+          <h2 className="text-[28px] leading-snug font-display font-normal text-pw-navy">Your saved places</h2>
+        </div>
+        <SecondaryButton onClick={() => setOpen((v) => !v)} aria-expanded={open} aria-controls="saved-places-list">
+          {open ? 'Hide' : `Show (${places.length})`}
+        </SecondaryButton>
+      </div>
+      {open && (
+        <ul id="saved-places-list" className="space-y-3">
+          {places.map((r) => <ResourceCard key={r.id} r={r} idPrefix="saved" />)}
+        </ul>
+      )}
+    </RaisedCard>
+  );
+}
+
+function ResourceCard({ r, selected, onSelect, idPrefix = 'resource' }) {
   const address = fullAddress(r);
   return (
-    <li id={`resource-${r.id}`} className="scroll-mt-24">
+    <li id={`${idPrefix}-${r.id}`} className="scroll-mt-24">
       <RaisedCard
         padding="p-4 sm:p-5"
         className={`space-y-3 ${selected ? 'ring-2 ring-pw-navy' : ''}`}

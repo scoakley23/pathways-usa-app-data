@@ -69,9 +69,11 @@ The "Talk to a lawyer first" page became the **Resource Hub** (`/resources`; `/l
 | --- | --- | --- | --- |
 | Learner's location (browser location or typed ZIP) | React state on the page only | latitude/longitude or ZIP, for sorting by distance | nobody; not saved, not in the URL, not sent to the AI or to Base44 |
 | Places | `CommunityResource` (Base44, new entity) | public listings: name, category, public address, coordinates, phone, website, languages, cost, source, last checked. No learner data | everyone who opens the page; edited by admins |
+| Saved places | `SavedPlace` (Base44, owner-only) | the learner's email (lowercase) + the id of a saved public listing. No location, no notes, no search | the learner only (not tutors, not admins); removed by Delete my data |
 
 - ZIP to coordinates uses a bundled Census ZIP table (`src/data/zipCentroids.json`, loaded only when needed), so no lookup service sees the ZIP.
 - Outside requests: OpenFreeMap map tiles, or USGS National Map tiles as a fallback (they see the map area being viewed), and Google Maps only when the learner taps "Directions" (destination address only).
-- Place logos load from nld.org only when a learner opens a place's summary on the map (`referrerPolicy="no-referrer"`).
+- Place logos load from nld.org or from the place's own website only when a learner opens a place's summary on the map (`referrerPolicy="no-referrer"`). Logo links are found before import by keyword rules (`scripts/resources/find_logos.py`), never by AI.
+- Saved places (signed-in learners, "Save" on a place): only the listing's id is stored with the email, so the list follows the learner to other devices. The places a learner saves can hint at the area they live in and the kind of help they want; that was accepted so the list follows the account, and nothing else (location, ZIP, search) is stored with it.
 - Relevance checks, services and languages are worked out by keyword rules in `scripts/resources/build_update.py` from NLD's public program descriptions and each program's public website front page, before import. No learner data is involved; hidden places keep their reason in the admin-only `relevance_note`.
 

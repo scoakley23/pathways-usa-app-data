@@ -147,6 +147,19 @@ export function nearestResources(resources, origin, { categories = CATEGORY_IDS,
     .slice(0, limit);
 }
 
+// The learner's saved places that are still shown on the hub. With a search
+// origin they get a distance and come nearest first; without one, by name.
+export function savedResources(resources, savedIds, origin) {
+  const ids = new Set(savedIds || []);
+  const withOrigin = origin && isValidLatLng(origin.lat, origin.lng);
+  return (resources || [])
+    .filter((r) => r && ids.has(r.id) && r.is_active !== false)
+    .map((r) => (withOrigin && isValidLatLng(r.latitude, r.longitude)
+      ? { ...r, distance: distanceMiles(origin, { lat: r.latitude, lng: r.longitude }) }
+      : { ...r, distance: undefined }))
+    .sort((a, b) => (a.distance ?? Infinity) - (b.distance ?? Infinity) || String(a.name).localeCompare(String(b.name)));
+}
+
 export function fullAddress(r) {
   const cityLine = [r.city, [r.state, r.zip].filter(Boolean).join(' ')].filter(Boolean).join(', ');
   return [r.address, cityLine].filter(Boolean).join(', ');
