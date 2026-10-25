@@ -79,6 +79,22 @@ Note: a place an admin renamed before this update won't match by name and would 
 
 To rebuild: `harvest_ian.py ian.json` (resumable; about 7 hours), then `add_websites.py ian.json nld-verified.json content/resources/update-2026-10.json`.
 
+### More websites and logos (late October 2026, same file)
+
+`update-2026-10.json` now also has **249 more websites** for DOJ legal offices and **1,606 more logos**. Importing it again should say about **0 new, 1,649 updated, 0 hidden**: only `website` and `logo_url` change (places you've checked keep your show/hide decision). Every added value is listed in `review-2026-10-sites-logos.csv` for a person to spot-check.
+
+Visible places now: websites 4,106 of 4,901 (DOJ 1,113 of 1,559; classes 2,901 of 3,250; USCIS 92 of 92), logos 3,228 (DOJ 822; classes 2,406). USCIS offices get no logo (no seals).
+
+- **Websites (DOJ offices)**: one web search per DOJ organization still without a website (678), keeping a candidate only when `verify_sites.py` finds that office's phone number or street address on the site itself. 243 offices matched; 6 more offices of the same organizations got the same website. The 349 class programs without a website were already searched in the earlier round, so they weren't searched again.
+- **Logos**: `find_logos.py` reads each place's website (robots.txt respected) and takes, in order, the logo the page declares for its organization, a header image marked "logo", or the site's app icon. It keeps a logo only if it is the site's own image (or its image host's), loads over https, is big enough, isn't a photo, and is dark enough to show on a white card. Government sites (`.gov`, `.mil`) and images named "seal" are skipped. Logos load only when a learner opens a place's summary, and a logo that fails to load is hidden. 1,182 of 1,906 websites gave a logo; the rest had none the rules could trust, blocked automated reading, or didn't load.
+- To find a wrong logo: search the review CSV, then clear **Logo link** on the place in Admin → Places. To stop the script picking it again, add the image link to `REJECT` in `find_logos.py`.
+
+To rebuild (scripts in `scripts/resources/`):
+1. Web-search candidates as `{"<external_id>": ["https://…"]}`, plus the offices as `[{id, name, address, city, state, zip, phone}]`; then `verify_sites.py candidates.json places.json verified.json`.
+2. `apply_sites_logos.py content/resources/update-2026-10.json --websites verified.json`
+3. `find_logos.py content/resources/update-2026-10.json logos.json` (resumable; `--retry-errors` re-reads failed sites)
+4. `apply_sites_logos.py content/resources/update-2026-10.json --logos logos.json`
+
 Not imported, linked instead (the "Search national directories" card on the Resource Hub):
 - **ImmigrationLawHelp.org**: its robots.txt asks crawlers to stay out of its search pages. Most of its legal providers are DOJ-recognized organizations, which are in the seed file. Ask Pro Bono Net (who runs it) for a data export before importing.
 - **CareerOneStop library finder**: blocks automated access. It is a search tool, not a list.
