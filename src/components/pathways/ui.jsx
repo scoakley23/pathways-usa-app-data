@@ -213,6 +213,12 @@ const POSTER_BG = { red: 'bg-pw-red-ink', blue: 'bg-pw-civics' };
 const POSTER_BTN = 'min-h-[48px] rounded-full px-5 inline-flex items-center justify-center gap-2 text-base font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent disabled:opacity-50 disabled:cursor-not-allowed';
 export const posterSolid = `${POSTER_BTN} bg-white text-pw-navy hover:bg-pw-soft`;
 export const posterOutline = `${POSTER_BTN} border-2 border-white text-white hover:bg-white/10`;
+// Small tools on a poster (Listen, Translate) and quiet text links
+// ("Type it instead"), shared by every practice card.
+export const posterTool = 'min-h-11 rounded-full border-2 border-white px-4 inline-flex items-center gap-2 text-base font-semibold text-white hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white';
+export const posterLink = 'min-h-11 inline-flex items-center gap-2 text-base font-semibold text-white underline underline-offset-4 decoration-white/60 hover:decoration-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded';
+// The one big white action button on a poster (microphone, play).
+export const posterBigButton = 'relative w-[104px] h-[104px] rounded-full bg-white text-pw-navy grid place-items-center shadow-lift disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60';
 
 // One star per card on a poster run. Upcoming cards are white stars, the
 // current one is an outline, and a finished card takes its result color:
