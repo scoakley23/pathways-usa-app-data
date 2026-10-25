@@ -132,8 +132,12 @@ def base(host):
     return '.'.join(parts[-3:] if len(parts) > 2 and len(parts[-2]) <= 3 and len(parts[-1]) == 2 else parts[-2:])
 
 
+# Logos found to be wrong on review (e.g. a theme's "replace logo" placeholder).
+REJECT = {'https://catholiccharities.org/wp-content/uploads/2022/02/logo.png'}
+
+
 def image_ok(url, page_url):
-    if not url.startswith('https://') or SKIP_IMG.search(url.rsplit('/', 1)[-1]):
+    if not url.startswith('https://') or url in REJECT or SKIP_IMG.search(url.rsplit('/', 1)[-1]):
         return False
     host = urllib.parse.urlsplit(url).netloc.lower()
     if re.search(r'\.(gov|mil)$', host):
@@ -155,13 +159,15 @@ def image_ok(url, page_url):
         im = Image.open(io.BytesIO(data))
         if min(im.size) < 32:
             return False
-        # A white logo made for a dark header would vanish on the white card.
-        rgba = im.convert('RGBA').resize((48, 48))
-        seen = [(r, g, b) for r, g, b, a in rgba.get_flattened_data() if a > 128]
-        if len(seen) < 48 * 48 * 0.1:
+        # A photo has many more colors than a logo.
+        rgb = im.convert('RGBA').convert('RGB').resize((64, 64))
+        if len({(r // 16, g // 16, b // 16) for r, g, b in rgb.get_flattened_data()}) > 500:
             return False
-        light = sum(1 for r, g, b in seen if min(r, g, b) > 225) / len(seen)
-        return not (light > 0.9 and len(seen) < 48 * 48 * 0.95)
+        # A white or pale logo made for a dark header would vanish on the white
+        # card: keep it only if enough of it is visibly darker than white.
+        rgba = im.convert('RGBA').resize((64, 64))
+        ink = sum(1 for r, g, b, a in rgba.get_flattened_data() if a > 128 and min(r, g, b) < 200)
+        return ink >= 64 * 64 * 0.04
     except Exception:
         return False
 
