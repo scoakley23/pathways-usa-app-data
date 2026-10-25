@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Volume2, Eye, ArrowRight, Globe, Loader2, CheckCircle, Keyboard, MicOff, ChevronRight, Mic } from 'lucide-react';
 import { speakText } from "@/components/utils/textToSpeech";
 import ExplainSheet from '@/components/practice/ExplainSheet';
-import { ExplainSimplyButton, PillButton, Poster, QuietButton, Tag, posterOutline, posterSolid, posterTone } from '@/components/pathways/ui';
+import { ExplainSimplyButton, Poster, QuietButton, posterOutline, posterSolid, posterTone } from '@/components/pathways/ui';
 import { stopReading } from '@/components/persona/useAutoRead';
 import { toast } from "sonner";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -17,8 +17,10 @@ import { LANGUAGES } from '@/hooks/useLessonTranslation';
 // translation, no self-check or reveal, no AI explanation, and "I don't know"
 // instead of Skip. Grading is unchanged. Without it nothing changes.
 // Shown as a red/blue poster (Phase 5): `index`/`total` give the card's place
-// in the run (color, "CARD 2 OF 6", squares). Feedback stays on the poster
-// and shows official answers only; "Explain it simply" opens a white sheet.
+// in the run (color, "CARD 2 OF 6", stars). Feedback stays on the poster
+// and shows official answers only; "Explain it simply" opens a ruled sheet.
+// On the poster: Listen and Translate as white outline pills, one big
+// microphone (or "Type it instead"), and Check once there is an answer.
 export default function CivicsTestCard({ question, onComplete, onNext, representativeData, testMode = false, index = 0, total = 0, results = [] }) {
   const [explainOpen, setExplainOpen] = useState(false);
   const [isRevealed, setIsRevealed] = useState(false);
@@ -167,29 +169,18 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
   const done = !!verificationResult || isRevealed;
   const translatedQuestion = translation ? translation.split('Answer:')[0].replace('Question:', '').trim() : '';
   const translatedAnswer = translation.includes('Answer:') ? translation.split('Answer:')[1].trim() : '';
-  const label = `${testMode ? 'Civics test' : 'Practice'} · ${total ? `Card ${index + 1} of ${total}` : `${question.version} civics`}`;
-  const segBtn = (active) => (active ? posterSolid : posterOutline);
+  const label = `${testMode ? 'Civics test' : `Civics ${question.version || ''}`.trim()} · ${total ? `Card ${index + 1} of ${total}` : 'Practice'}`;
+  const tool = 'min-h-11 rounded-full border-2 border-white px-4 inline-flex items-center gap-2 text-base font-semibold text-white hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white';
+  const textLink = 'min-h-11 inline-flex items-center gap-2 text-base font-semibold text-white underline underline-offset-4 decoration-white/60 hover:decoration-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded';
+  const stopListening = () => { if (isListening && recognitionRef.current) { try { recognitionRef.current.stop(); } catch (e) { /* already stopped */ } } };
+  const speakNext = (mode) => {
+    if (mode === 'speak' && !recognitionRef.current) { toast.error('Voice input is not supported in this browser'); return; }
+    if (mode === 'type') stopListening();
+    setInputMode(mode);
+  };
 
   return (
     <div className="w-full max-w-2xl mx-auto space-y-4 text-pw-navy">
-      <div className="flex flex-wrap items-center justify-between gap-2">
-        <Tag tone="blue">{question.version} Civics Test</Tag>
-        {!testMode && <div className="flex items-center gap-1 bg-white pl-3 rounded-xl border border-pw-line ml-auto">
-          <Globe className="w-4 h-4 text-pw-muted" aria-hidden="true" />
-          <Select value={selectedLanguage} onValueChange={setSelectedLanguage}>
-            <SelectTrigger aria-label="Translate to" className="w-[124px] min-h-[44px] text-sm border-0 bg-transparent shadow-none focus:ring-0 px-2">
-              <SelectValue placeholder="Translate to..." />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="none">No Translation</SelectItem>
-              {SUPPORTED_LANGUAGES.map(lang => (
-                <SelectItem key={lang.value} value={lang.value}>{lang.label}</SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>}
-      </div>
-
       <div>
         <Poster
           tone={posterTone(index)}
@@ -199,51 +190,51 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
           question={question.question}
           answer={done ? `Answer: ${answerLine}` : null}
         >
-          <div className="space-y-4">
+          <div className="space-y-5">
+            {/* Tools: listen, and (practice only) translate */}
+            <div className="flex flex-wrap items-center gap-2">
+              <button
+                type="button"
+                onClick={() => speak(done ? (personalizedAnswer || question.answer) : question.question)}
+                aria-label={done ? 'Listen to the answer' : 'Listen to the question'}
+                className={`${tool} ${isPlaying ? 'bg-white/15' : ''}`}
+              >
+                <Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" /> {done ? 'Listen to answer' : 'Listen'}
+              </button>
+              {!testMode && (
+                <Select value={selectedLanguage} onValueChange={setSelectedLanguage}>
+                  <SelectTrigger aria-label="Translate to" className={`${tool} w-auto h-auto bg-transparent shadow-none focus:ring-white focus:ring-offset-0 [&>svg]:text-white [&>svg]:opacity-100 data-[placeholder]:text-white [&>span]:text-white`}>
+                    <Globe className="w-5 h-5 shrink-0" aria-hidden="true" />
+                    <SelectValue placeholder="Translate" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="none">No translation</SelectItem>
+                    {SUPPORTED_LANGUAGES.map(lang => (
+                      <SelectItem key={lang.value} value={lang.value}>{lang.label}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              )}
+            </div>
+
             {/* Translation of the question (and, after answering, the answer) */}
             {selectedLanguage && selectedLanguage !== 'none' && (
               isTranslating ? (
                 <p className="flex items-center gap-2 text-base"><Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> Translating…</p>
               ) : (
-                <div className="rounded-[10px] bg-white/10 border border-white/60 px-4 py-3 space-y-1">
-                  <p className="text-base font-semibold">{translatedQuestion}</p>
+                <div className="border-s-2 border-white/70 ps-4 space-y-1">
+                  <p className="text-lg font-semibold">{translatedQuestion}</p>
                   {done && translatedAnswer && <p className="text-base">{translatedAnswer}</p>}
                 </div>
               )
             )}
 
-            <PillButton onClick={() => speak(done ? (personalizedAnswer || question.answer) : question.question)} aria-label={done ? 'Listen to the answer' : 'Listen to the question'} className={isPlaying ? 'ring-2 ring-white' : ''}>
-              <Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" /> {done ? 'Listen to answer' : 'Listen'}
-            </PillButton>
-
             {!done && (!selfCheckMode ? (
               <>
-                <div className="flex flex-wrap gap-2" role="group" aria-label="Answer by">
-                  <button
-                    type="button"
-                    aria-pressed={inputMode === 'speak'}
-                    onClick={() => {
-                      if (!recognitionRef.current) { toast.error('Voice input is not supported in this browser'); return; }
-                      setInputMode('speak');
-                    }}
-                    className={segBtn(inputMode === 'speak')}
-                  >
-                    <Mic className="w-5 h-5" aria-hidden="true" /> Speak
-                  </button>
-                  <button
-                    type="button"
-                    aria-pressed={inputMode === 'type'}
-                    onClick={() => { if (isListening && recognitionRef.current) { try { recognitionRef.current.stop(); } catch (e) {} } setInputMode('type'); }}
-                    className={segBtn(inputMode === 'type')}
-                  >
-                    <Keyboard className="w-5 h-5" aria-hidden="true" /> Type
-                  </button>
-                </div>
-
                 {inputMode === 'speak' ? (
-                  <div className="flex flex-col items-center">
-                    <div className="relative mt-2">
-                      <span className={`absolute inset-0 rounded-full bg-white/25 transition-transform ${isListening ? 'scale-150 animate-pulse' : 'scale-125'}`} aria-hidden="true" />
+                  <div className="flex flex-col items-center pt-2">
+                    <div className="relative">
+                      <span className={`absolute inset-0 rounded-full bg-white/20 transition-transform ${isListening ? 'scale-[1.35] animate-pulse' : 'scale-[1.2]'}`} aria-hidden="true" />
                       <button
                         type="button"
                         onClick={() => {
@@ -256,40 +247,52 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
                           }
                         }}
                         disabled={!srReady}
-                        aria-label={isListening ? 'Stop Listening' : 'Start Speaking'}
-                        className="relative w-20 h-20 rounded-full bg-white text-pw-navy grid place-items-center shadow-lift disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60"
+                        aria-label={isListening ? 'Stop listening' : 'Tap and say your answer'}
+                        className="relative w-[104px] h-[104px] rounded-full bg-white text-pw-navy grid place-items-center shadow-lift disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60"
                       >
-                        {isListening ? <MicOff className="w-8 h-8" /> : <Mic className="w-8 h-8" />}
+                        {isListening ? <MicOff className="w-10 h-10" aria-hidden="true" /> : <Mic className="w-10 h-10" aria-hidden="true" />}
                       </button>
                     </div>
-                    <p className="mt-4 text-base font-semibold text-center" aria-hidden="true">
-                      {isListening ? 'Stop Listening' : 'Start Speaking'}
+                    <p className="mt-5 text-lg font-semibold text-center" aria-hidden="true">
+                      {isListening ? 'Listening… tap to stop' : 'Tap and say your answer'}
                     </p>
-                    <div className="w-full min-h-[52px] mt-3 px-4 py-3 rounded-[10px] bg-white/10 border border-white/60 text-center" aria-live="polite">
-                      {userAnswer ? <p className="italic">“{userAnswer}”</p> : <p>{isListening ? 'Listening...' : 'Tap the microphone and speak your answer'}</p>}
+                    <div aria-live="polite" className="w-full text-center">
+                      {userAnswer && <p className="mt-3 font-display italic text-2xl leading-snug">“{userAnswer}”</p>}
                     </div>
+                    <button type="button" onClick={() => speakNext('type')} className={`${textLink} mt-2`}>
+                      <Keyboard className="w-5 h-5" aria-hidden="true" /> Type it instead
+                    </button>
                   </div>
                 ) : (
-                  <input
-                    placeholder="Type your answer here..."
-                    aria-label="Your answer"
-                    value={userAnswer}
-                    onChange={(e) => setUserAnswer(e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter' && userAnswer.trim() && !verifying) checkAnswer();
-                    }}
-                    className="w-full min-h-[52px] rounded-[10px] bg-white px-4 text-lg text-pw-navy placeholder:text-pw-muted focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
-                  />
+                  <div className="space-y-2">
+                    <input
+                      placeholder="Type your answer here…"
+                      aria-label="Your answer"
+                      value={userAnswer}
+                      onChange={(e) => setUserAnswer(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' && userAnswer.trim() && !verifying) checkAnswer();
+                      }}
+                      className="w-full min-h-[56px] rounded-[12px] bg-white px-4 text-lg text-pw-navy placeholder:text-pw-muted focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
+                    />
+                    {srReady && (
+                      <button type="button" onClick={() => speakNext('speak')} className={textLink}>
+                        <Mic className="w-5 h-5" aria-hidden="true" /> Speak instead
+                      </button>
+                    )}
+                  </div>
                 )}
-                <p className="text-sm">Answer only the civics question. Don't include personal information.</p>
+                <p className="text-[15px]">Answer only the civics question. Don&apos;t include personal information.</p>
 
                 <div className="flex flex-wrap gap-2">
-                  <button type="button" onClick={checkAnswer} disabled={!userAnswer.trim() || verifying} className={posterSolid}>
-                    {verifying ? <Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" /> : <CheckCircle className="w-5 h-5" aria-hidden="true" />}
-                    {verifying ? 'Checking…' : 'Check'}
-                  </button>
+                  {userAnswer.trim() && (
+                    <button type="button" onClick={checkAnswer} disabled={verifying} className={posterSolid}>
+                      {verifying ? <Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" /> : <CheckCircle className="w-5 h-5" aria-hidden="true" />}
+                      {verifying ? 'Checking…' : 'Check my answer'}
+                    </button>
+                  )}
                   {!testMode && (
-                    <button type="button" onClick={() => setSelfCheckMode(true)} className={posterOutline}>
+                    <button type="button" onClick={() => { stopListening(); setSelfCheckMode(true); }} className={posterOutline}>
                       Show the answer
                     </button>
                   )}
@@ -297,7 +300,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
               </>
             ) : (
               <button type="button" onClick={() => setIsRevealed(true)} className={posterSolid}>
-                <Eye className="w-5 h-5" aria-hidden="true" /> Show Answer
+                <Eye className="w-5 h-5" aria-hidden="true" /> Show the answer
               </button>
             ))}
 
@@ -319,8 +322,8 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
               <div className="space-y-3">
                 <p className="text-lg font-semibold">How did you do?</p>
                 <div className="flex flex-wrap gap-2">
-                  <button type="button" onClick={() => handleResult(true)} className={posterSolid}>Easy / Got it</button>
-                  <button type="button" onClick={() => handleResult(false)} className={posterOutline}>Hard / Missed</button>
+                  <button type="button" onClick={() => handleResult(true)} className={posterSolid}>I knew it</button>
+                  <button type="button" onClick={() => handleResult(false)} className={posterOutline}>I missed it</button>
                   {!testMode && <ExplainSimplyButton onPoster aria-expanded={explainOpen} onClick={() => setExplainOpen((v) => !v)} />}
                 </div>
               </div>
@@ -338,7 +341,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
         </QuietButton>
       ) : (
         <QuietButton onClick={onNext} className="w-full text-pw-muted">
-          Skip to next <ArrowRight className="w-4 h-4" aria-hidden="true" />
+          Skip to next <ArrowRight className="w-4 h-4 rtl:rotate-180" aria-hidden="true" />
         </QuietButton>
       ))}
     </div>
