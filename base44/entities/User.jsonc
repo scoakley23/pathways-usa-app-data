@@ -62,6 +62,19 @@
       "type": ["string", "null"],
       "description": "Pilot: a random ID made once, used only in exports instead of the email."
     },
+    "checkins_stopped": {
+      "type": "boolean",
+      "default": false,
+      "description": "Pilot: the learner chose 'Don't ask me again'. No more check-ins or reminder emails."
+    },
+    "reminder_language": {
+      "type": ["string", "null"],
+      "description": "Pilot: the app language code (e.g. es) for reminder emails, saved only while reminders are on."
+    },
+    "pilot_test_months_ago": {
+      "type": ["number", "null"],
+      "description": "Pilot testing, admins only: pretend sign-up was this many months ago. Ignored for non-admins."
+    },
     "pilot_intro_seen": {
       "type": "boolean",
       "default": false,

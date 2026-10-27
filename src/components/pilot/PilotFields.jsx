@@ -21,12 +21,12 @@ export function Choice({ selected, onClick, children, className = '' }) {
 }
 
 // A question with a few choices plus "I'd rather not say".
-export function ChoiceQuestion({ label, value, onChange, options, t }) {
+export function ChoiceQuestion({ label, value, onChange, options, t, inline = false }) {
   const toggle = (v) => onChange(value === v ? '' : v);
   return (
     <fieldset className="space-y-2">
       <legend className={`${LABEL} mb-2`}>{label}</legend>
-      <div className="flex flex-col gap-2">
+      <div className={inline ? 'flex flex-wrap gap-2' : 'flex flex-col gap-2'}>
         {options.map(([v, text]) => (
           <Choice key={v} selected={value === v} onClick={() => toggle(v)}>{text}</Choice>
         ))}

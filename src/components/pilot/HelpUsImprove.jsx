@@ -6,6 +6,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { buildSignupAnswers, loadPendingCode, clearPendingCode, stageFromOnboarding } from '@/lib/pilot';
 import { loadStage } from '@/lib/onboarding';
 import usePilotText from './pilotStrings';
+import { saveCheckIn } from './checkInData';
 import { ChoiceQuestion, ReadinessQuestion, StateSelect, ProgramCodeField } from './PilotFields';
 
 // "Help us improve Pathways": shown once on Home, after the learner's first
@@ -28,7 +29,7 @@ export default function HelpUsImprove({ user, language = 'en', onDone }) {
     setError(false);
     let answers = null;
     if (save) {
-      answers = buildSignupAnswers({ programCode, state, stage, confidence, reminders });
+      answers = buildSignupAnswers({ programCode, state, stage, confidence, reminders, language });
       if (answers.error) {
         setCodeUnknown(true);
         codeRef.current?.focus();
@@ -38,7 +39,7 @@ export default function HelpUsImprove({ user, language = 'en', onDone }) {
     setSaving(true);
     try {
       if (answers?.checkIn) {
-        await base44.entities.OutcomeCheckIn.create({ user_email: user.email.toLowerCase().trim(), ...answers.checkIn });
+        await saveCheckIn(user.email, answers.checkIn);
       }
       await base44.auth.updateMe(answers ? answers.profile : { pilot_intro_seen: true });
       clearPendingCode();

@@ -1,7 +1,8 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import {
   normalizeProgramCode, isAllowedProgramCode, rememberCodeFromUrl, loadPendingCode, clearPendingCode,
-  stageFromOnboarding, buildSignupAnswers, buildProfileAnswers, shouldShowPilotIntro, newPilotId, PENDING_CODE_KEY,
+  stageFromOnboarding, buildSignupAnswers, buildProfileAnswers, reminderSettings,
+  snoozeCheckIn, isCheckInSnoozed, skipPreInterview, loadPreInterviewSkip, shouldShowPilotIntro, newPilotId, PENDING_CODE_KEY,
 } from './pilot';
 
 let store;
@@ -16,15 +17,15 @@ beforeEach(() => {
 
 describe('program code', () => {
   it('ignores case and spaces', () => {
-    expect(normalizeProgramCode('  houston-pilot ')).toBe('HOUSTON-PILOT');
-    expect(isAllowedProgramCode('houston pilot')).toBe(true);
-    expect(isAllowedProgramCode('HOUSTON')).toBe(false);
+    expect(normalizeProgramCode('  harvard-pilot ')).toBe('HARVARD-PILOT');
+    expect(isAllowedProgramCode('harvard pilot')).toBe(true);
+    expect(isAllowedProgramCode('HARVARD')).toBe(false);
     expect(isAllowedProgramCode('')).toBe(false);
   });
   it('keeps ?code= on the device until the screen is seen', () => {
-    expect(rememberCodeFromUrl('?code=houston-pilot&x=1')).toBe('HOUSTON-PILOT');
-    expect(store[PENDING_CODE_KEY]).toBe('HOUSTON-PILOT');
-    expect(loadPendingCode()).toBe('HOUSTON-PILOT');
+    expect(rememberCodeFromUrl('?code=harvard-pilot&x=1')).toBe('HARVARD-PILOT');
+    expect(store[PENDING_CODE_KEY]).toBe('HARVARD-PILOT');
+    expect(loadPendingCode()).toBe('HARVARD-PILOT');
     clearPendingCode();
     expect(loadPendingCode()).toBe('');
   });
@@ -33,13 +34,13 @@ describe('program code', () => {
     expect(store[PENDING_CODE_KEY]).toBeUndefined();
   });
   it('a link without a code changes nothing', () => {
-    store[PENDING_CODE_KEY] = 'HOUSTON-PILOT';
+    store[PENDING_CODE_KEY] = 'HARVARD-PILOT';
     expect(rememberCodeFromUrl('?invite=ABC')).toBeNull();
-    expect(loadPendingCode()).toBe('HOUSTON-PILOT');
+    expect(loadPendingCode()).toBe('HARVARD-PILOT');
   });
   it('works when storage is blocked', () => {
     globalThis.localStorage = { getItem: () => { throw new Error('no'); }, setItem: () => { throw new Error('no'); }, removeItem: () => { throw new Error('no'); } };
-    expect(rememberCodeFromUrl('?code=HOUSTON-PILOT')).toBe('HOUSTON-PILOT');
+    expect(rememberCodeFromUrl('?code=HARVARD-PILOT')).toBe('HARVARD-PILOT');
     expect(loadPendingCode()).toBe('');
     expect(() => clearPendingCode()).not.toThrow();
   });
@@ -55,16 +56,16 @@ describe('signup answers', () => {
   });
 
   it('saves only the answered questions', () => {
-    const { checkIn, profile, error } = buildSignupAnswers({ programCode: 'houston-pilot', state: 'TX', stage: 'filed_waiting', confidence: '3', reminders: true });
+    const { checkIn, profile, error } = buildSignupAnswers({ programCode: 'harvard-pilot', state: 'TX', stage: 'filed_waiting', confidence: '3', reminders: true, language: 'es' });
     expect(error).toBeNull();
     expect(checkIn).toEqual({ kind: 'signup', stage: 'filed_waiting', confidence: '3' });
-    expect(profile).toEqual({ program_code: 'HOUSTON-PILOT', state: 'TX', checkin_email_reminders: true, pilot_intro_seen: true });
+    expect(profile).toEqual({ program_code: 'HARVARD-PILOT', state: 'TX', checkin_email_reminders: true, reminder_language: 'es', pilot_intro_seen: true });
   });
 
   it('everything left blank: no check-in, reminders off', () => {
     const { checkIn, profile } = buildSignupAnswers({});
     expect(checkIn).toBeNull();
-    expect(profile).toEqual({ program_code: null, state: null, checkin_email_reminders: false, pilot_intro_seen: true });
+    expect(profile).toEqual({ program_code: null, state: null, checkin_email_reminders: false, reminder_language: null, pilot_intro_seen: true });
   });
 
   it('"I\'d rather not say" is saved as prefer_not', () => {
@@ -86,7 +87,7 @@ describe('signup answers', () => {
 
 describe('Profile: state and program code', () => {
   it('saves only state and code', () => {
-    expect(buildProfileAnswers({ programCode: 'houston-pilot', state: 'CA' })).toEqual({ profile: { program_code: 'HOUSTON-PILOT', state: 'CA' }, error: null });
+    expect(buildProfileAnswers({ programCode: 'harvard-pilot', state: 'CA' })).toEqual({ profile: { program_code: 'HARVARD-PILOT', state: 'CA' }, error: null });
     expect(buildProfileAnswers({ programCode: '', state: '' })).toEqual({ profile: { program_code: null, state: null }, error: null });
     expect(buildProfileAnswers({ programCode: 'NOPE', state: 'CA' }).error).toBe('unknown_code');
   });
@@ -113,5 +114,27 @@ describe('pilot id', () => {
     const a = newPilotId();
     expect(a).not.toBe(newPilotId());
     expect(a).not.toMatch(/@/);
+  });
+});
+
+describe('reminders and check-in notes', () => {
+  it('keeps the language only while reminders are on', () => {
+    expect(reminderSettings(true, 'ar')).toEqual({ checkin_email_reminders: true, reminder_language: 'ar' });
+    expect(reminderSettings(true)).toEqual({ checkin_email_reminders: true, reminder_language: 'en' });
+    expect(reminderSettings(false, 'ar')).toEqual({ checkin_email_reminders: false, reminder_language: null });
+  });
+
+  it('"Not now" hides the check-in card for 7 days', () => {
+    const now = new Date('2026-11-02T12:00:00');
+    expect(isCheckInSnoozed(now)).toBe(false);
+    snoozeCheckIn(now);
+    expect(isCheckInSnoozed(new Date('2026-11-08T12:00:00'))).toBe(true);
+    expect(isCheckInSnoozed(new Date('2026-11-09T13:00:00'))).toBe(false);
+  });
+
+  it('remembers a skipped pre-interview question on the device', () => {
+    expect(loadPreInterviewSkip()).toBeNull();
+    skipPreInterview(new Date('2026-11-02T12:00:00Z'));
+    expect(loadPreInterviewSkip()).toBe('2026-11-02T12:00:00.000Z');
   });
 });

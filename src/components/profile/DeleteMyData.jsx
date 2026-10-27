@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Trash2, Loader2, AlertTriangle } from 'lucide-react';
 import { toast } from "sonner";
-import { deleteSteps, ACCOUNT_RESET } from '@/lib/deleteMyData';
+import { deleteSteps, FUNCTION_STEPS, ACCOUNT_RESET } from '@/lib/deleteMyData';
 
 // Everything the app keeps in this browser: language, target date, voice
 // settings, cached translations, civics version, reminders, role cache.
@@ -40,6 +40,10 @@ export default function DeleteMyData({ userEmail }) {
         setProgress(`Removing ${steps[i][0]} (${i + 1}/${steps.length})...`);
         await base44.entities[steps[i][1]].deleteMany(steps[i][2]);
       }
+      for (const [label, fn, body] of FUNCTION_STEPS) {
+        setProgress(`Removing ${label}...`);
+        await base44.functions.invoke(fn, body);
+      }
       // The sign-in account itself can't be deleted from the app, so reset
       // the learner fields stored on it.
       setProgress('Resetting your account details...');
@@ -68,7 +72,7 @@ export default function DeleteMyData({ userEmail }) {
         <CardDescription className="text-pw-navy">
           Permanently erase everything tied to your email: your chat messages (including the copies in the other person's history),
           AI study buddy history, lesson notes, progress & quiz scores, mock interview scores, N-400 guide section completion, assignments,
-          tutor connections, notifications, saved places, your answers to the "Help us improve Pathways" questions, the days you used the app, and your profile. Your points, badges, display name, tutor settings, quick check levels, state, program code and reminder setting are reset, and the app's data on
+          tutor connections, notifications, saved places, your answers to the "Help us improve Pathways" and check-in questions, the days you used the app, the record of reminder emails sent to you, and your profile. Your points, badges, display name, tutor settings, quick check levels, state, program code and reminder setting are reset, and the app's data on
           this device (your target date, language, and settings) is cleared. This cannot be undone.
         </CardDescription>
       </CardHeader>
