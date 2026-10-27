@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { base44 } from '@/api/base44Client';
 import { Link } from 'react-router-dom';
 import TopicArt from '@/components/art/TopicArt';
 import RoadmapHero from '@/components/home/RoadmapHero';
@@ -8,7 +9,11 @@ import RoadmapPath from '@/components/home/RoadmapPath';
 import HomePromises from '@/components/home/HomePromises';
 import StudyTogether from '@/components/home/StudyTogether';
 import HelpUsImprove from '@/components/pilot/HelpUsImprove';
-import { shouldShowPilotIntro } from '@/lib/pilot';
+import CheckInCard from '@/components/pilot/CheckInCard';
+import CheckInForm from '@/components/pilot/CheckInForm';
+import { loadMyCheckIns } from '@/components/pilot/checkInData';
+import { openCheckIn } from '../../base44/shared/pilotCheckIns.js';
+import { shouldShowPilotIntro, isCheckInSnoozed, snoozeCheckIn } from '@/lib/pilot';
 import { loadPlanSettings } from '@/lib/planSettings';
 import useTutorProfile from '@/components/persona/useTutorProfile';
 import { useAuth } from '@/lib/AuthContext';
@@ -29,6 +34,8 @@ const SKILL_CARDS = [
 // Set once the learner answers or skips "Help us improve Pathways", so the
 // screen doesn't come back before Layout reloads the account.
 let pilotAnswered = false;
+// Same for a check-in answered, put off or stopped.
+let checkInsHandled = false;
 
 // Home. Learners see Today and nothing else but "How we study together" (the
 // three promises): the rest of the app is one tap away in the tab bar.
@@ -48,6 +55,28 @@ export default function Home({ cachedUser }) {
   const [pilotDone, setPilotDone] = useState(pilotAnswered);
   const askPilot = learner && !pilotDone && shouldShowPilotIntro({ user: cachedUser, hasPlan: !!loadPlanSettings() });
 
+  // A 3-, 6- or 12-month check-in that is due: a card at the top of Today,
+  // which opens the check-in screen. 'card' | 'form' | 'hidden'.
+  const [checkIn, setCheckIn] = useState(null); // { kind, rows }
+  const [checkInView, setCheckInView] = useState('card');
+  useEffect(() => {
+    if (!learner || askPilot || checkInsHandled || isCheckInSnoozed()) return;
+    let active = true;
+    loadMyCheckIns(cachedUser.email)
+      .then((rows) => {
+        const kind = openCheckIn({ user: cachedUser, rows });
+        if (active && kind) setCheckIn({ kind, rows });
+      })
+      .catch(() => {});
+    return () => { active = false; };
+  }, [learner, askPilot, cachedUser]);
+  const closeCheckIn = () => { checkInsHandled = true; setCheckInView('hidden'); };
+  const notNow = () => { snoozeCheckIn(); closeCheckIn(); };
+  const never = () => {
+    closeCheckIn();
+    base44.auth.updateMe({ checkins_stopped: true }).catch(() => {});
+  };
+
   // Signed in but the account is still loading: wait rather than flash the overview.
   if (isAuthenticated && !cachedUser) {
     return <div className="min-h-[60vh]" aria-busy="true" />;
@@ -61,9 +90,20 @@ export default function Home({ cachedUser }) {
     );
   }
 
+  if (learner && checkIn && checkInView === 'form') {
+    return (
+      <div className="pb-8" dir={rtl ? 'rtl' : 'ltr'}>
+        <CheckInForm kind={checkIn.kind} rows={checkIn.rows} user={cachedUser} language={language} onDone={closeCheckIn} onNotNow={notNow} />
+      </div>
+    );
+  }
+
   if (learner) {
     return (
       <div className="flex flex-col gap-10 pb-8" dir={rtl ? 'rtl' : 'ltr'}>
+        {checkIn && checkInView === 'card' && (
+          <CheckInCard language={language} onOpen={() => setCheckInView('form')} onNotNow={notNow} onNever={never} />
+        )}
         <TodayCard language={language} />
         <StudyTogether t={t} tutorName={profile.name} language={language} onLanguageChange={setLanguage} translating={translating} />
       </div>

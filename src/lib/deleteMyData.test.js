@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { deleteSteps, ACCOUNT_RESET } from './deleteMyData';
+import { deleteSteps, FUNCTION_STEPS, ACCOUNT_RESET } from './deleteMyData';
+import remindersFunction from '../../base44/functions/pilot-reminders/entry.js?raw';
 import userEntity from '../../base44/entities/User.jsonc?raw';
 
 // Every entity that holds a learner's records. A new learner entity must be
@@ -10,7 +11,13 @@ const CONTENT = ['CivicsQuestion', 'CommunityResource', 'Partner', 'InterviewQue
 
 describe('Delete all my data', () => {
   const steps = deleteSteps('Test@Example.com');
-  const covered = steps.map(([, entity]) => entity);
+  // Admin-only records the learner can't delete themselves go through a
+  // backend function.
+  const VIA_FUNCTION = { CheckInReminder: 'pilot-reminders' };
+  const covered = [
+    ...steps.map(([, entity]) => entity),
+    ...Object.entries(VIA_FUNCTION).filter(([, fn]) => FUNCTION_STEPS.some(([, f]) => f === fn)).map(([entity]) => entity),
+  ];
 
   it('covers every learner entity', () => {
     const learnerEntities = Object.values(entityFiles).map((src) => parse(src).name).filter((n) => !CONTENT.includes(n));
@@ -25,9 +32,15 @@ describe('Delete all my data', () => {
     }
   });
 
+  it('the reminder records are forgotten by the learner\'s own email', () => {
+    expect(FUNCTION_STEPS).toContainEqual(['reminder email records', 'pilot-reminders', { action: 'forget' }]);
+    expect(remindersFunction).toMatch(/action === "forget"[\s\S]*CheckInReminder\.deleteMany\(\{ user_email: me \}\)/);
+  });
+
   it('resets the pilot fields on the account', () => {
     expect(ACCOUNT_RESET).toMatchObject({
-      state: null, checkin_email_reminders: false, pilot_id: null, pilot_intro_seen: false,
+      state: null, checkin_email_reminders: false, reminder_language: null,
+      checkins_stopped: false, pilot_test_months_ago: null, pilot_id: null, pilot_intro_seen: false,
     });
     // ...and every extra field the User entity holds.
     const fields = Object.keys(parse(userEntity).properties);

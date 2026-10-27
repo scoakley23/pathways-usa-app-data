@@ -9,6 +9,7 @@ import ResourcesTab from '@/components/admin/ResourcesTab';
 import PartnersTab from '@/components/admin/PartnersTab';
 import ExplanationTools from '@/components/admin/ExplanationTools';
 import CurrentOfficialsTool from '@/components/admin/CurrentOfficialsTool';
+import PilotAdminTool from '@/components/admin/PilotAdminTool';
 import PageHeader from '@/components/PageHeader';
 import { Link } from 'react-router-dom';
 
@@ -101,6 +102,8 @@ export default function Admin() {
       <ExplanationTools />
 
       <CurrentOfficialsTool />
+
+      <PilotAdminTool currentUser={currentUser} />
     </div>
   );
 }

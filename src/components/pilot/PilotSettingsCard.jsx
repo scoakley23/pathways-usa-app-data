@@ -5,25 +5,37 @@ import { base44 } from '@/api/base44Client';
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card';
 import { Switch } from '@/components/ui/switch';
 import { PrimaryButton } from '@/components/pathways/ui';
-import { buildProfileAnswers } from '@/lib/pilot';
+import { buildProfileAnswers, reminderSettings } from '@/lib/pilot';
 import useAppLanguage from '@/hooks/useAppLanguage';
 import usePilotText from './pilotStrings';
 import { StateSelect } from './PilotFields';
 
-// Profile: turn the check-in reminder emails on or off, and change state.
+// Profile: turn the check-in reminder emails on or off, change state, and
+// turn check-in questions back on after "Don't ask me again".
 export default function PilotSettingsCard({ user }) {
   const [language] = useAppLanguage();
   const t = usePilotText(language);
   const [reminders, setReminders] = useState(user?.checkin_email_reminders === true);
+  const [checkIns, setCheckIns] = useState(user?.checkins_stopped !== true);
   const [state, setState] = useState(user?.state || '');
   const [saving, setSaving] = useState(false);
 
   const toggleReminders = async (on) => {
     setReminders(on);
     try {
-      await base44.auth.updateMe({ checkin_email_reminders: on });
+      await base44.auth.updateMe(reminderSettings(on, language));
     } catch (e) {
       setReminders(!on);
+      toast.error(t('error'));
+    }
+  };
+
+  const toggleCheckIns = async (on) => {
+    setCheckIns(on);
+    try {
+      await base44.auth.updateMe({ checkins_stopped: !on });
+    } catch (e) {
+      setCheckIns(!on);
       toast.error(t('error'));
     }
   };
@@ -59,6 +71,14 @@ export default function PilotSettingsCard({ user }) {
             <p className="text-base text-pw-muted">{t('reminders_help')}</p>
           </div>
           <Switch id="pilot-reminders-switch" checked={reminders} onCheckedChange={toggleReminders} className="mt-1 shrink-0" />
+        </div>
+
+        <div className="flex items-start justify-between gap-4">
+          <div className="min-w-0">
+            <label htmlFor="pilot-checkins-switch" className="text-lg font-bold text-pw-navy block">{t('checkins_switch')}</label>
+            <p className="text-base text-pw-muted">{t('checkins_help')}</p>
+          </div>
+          <Switch id="pilot-checkins-switch" checked={checkIns} onCheckedChange={toggleCheckIns} className="mt-1 shrink-0" />
         </div>
 
         <form onSubmit={save} className="space-y-5">

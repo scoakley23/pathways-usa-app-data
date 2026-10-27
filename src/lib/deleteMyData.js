@@ -25,6 +25,12 @@ export function deleteSteps(userEmail) {
   ];
 }
 
+// Records the learner can't reach themselves, removed by a backend function:
+// [what the learner sees, function, body].
+export const FUNCTION_STEPS = [
+  ['reminder email records', 'pilot-reminders', { action: 'forget' }],
+];
+
 export const ACCOUNT_RESET = {
   display_name: 'Learner',
   points: 0,

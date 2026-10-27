@@ -94,6 +94,40 @@ Optional outcome questions for the partner pilot ("Help us improve Pathways", sh
 - **Stage is new server-side data.** Getting started's stage answer stays on the device; the pilot screen only prefills its own stage question from it, and saves it only when the learner presses Save.
 - **Delete my data** deletes `OutcomeCheckIn` and `ActivityDay` and resets the five fields (`src/lib/deleteMyData.js`; `src/lib/deleteMyData.test.js` checks every learner entity and every `User` field is covered).
 
+## Addendum — Pilot check-ins, part 2 (October 2026)
+
+Check-ins at 3, 6 and 12 months, a readiness question before the Mock Interview, and reminder emails (`base44/shared/pilotCheckIns.js`, `base44/functions/pilot-reminders/`, `src/components/pilot/`, `src/components/admin/PilotAdminTool.jsx`).
+
+| Data | Where | What exactly | Who can see it |
+| --- | --- | --- | --- |
+| Check-in answers | `OutcomeCheckIn` (owner-only), kinds `month_3` / `month_6` / `month_12` / `pre_interview` | fixed choices only: filed, interviewed, passed tests (yes / retest / not yet), oath, registered to vote, readiness 1–5, "without Pathways" (yes / maybe / no); every one optional with prefer not | the learner; admins only through the pilot dashboard (Prompt 3) |
+| Reminder sent | `CheckInReminder` (new, **admin-only**) | email + kind + date sent | admins only; never learners or partner staff |
+| Settings | `User` | `checkins_stopped`, `reminder_language` (only while reminders are on), `pilot_test_months_ago` (admins' own testing; ignored for others) | the learner (and admins) |
+| Device notes | `localStorage` | `pathways_checkin_snooze` (7 days), `pathways_preinterview_skipped` | device only |
+
+- **The email** says only "A quick question from Pathways… You have a 1-minute question waiting in Pathways", with the app link and how to stop. A test fails if the subject or body mentions citizenship, immigration, the interview, USCIS, naturalization, the N-400, the oath or visas; AI translations that do are thrown away and the English is sent.
+- **"Send due reminders"** is admin-only in the function itself (not just the page) and returns counts only, never who.
+- **Interview Day** still saves nothing: the readiness question is asked only in the Mock Interview on Practice.
+- **Tutors** still see none of it: `pilotPrivacy.test.js` now also covers `CheckInReminder`, the new fields and `pilot-reminders`.
+- **Delete my data** calls `pilot-reminders` (`forget`) to remove the learner's admin-only reminder records, deletes the check-ins, and resets the new fields.
+- **Open point:** the partner (the program) sees totals only. The admin account that reads individual answers in the dashboard should belong to Pathways staff outside the program.
+
+## Addendum — Pilot dashboard and CSV (October 2026)
+
+`/admin/pilot` (`src/components/pilot-admin/`), data from the `pilot-report` function, numbers in `base44/shared/pilotReport.js`.
+
+| Data | Where | What exactly | Who can see it |
+| --- | --- | --- | --- |
+| Per-learner summary | built by `pilot-report` on request, not stored | `pilot_id`, program code, state, app language, sign-up ISO week and days since sign-up, stage and readiness answers, active days/weeks (ISO weeks only, no dates), retention flags, mock interview count and first/latest score, civics mastered count, first window of each milestone Yes, retest, "without Pathways" | admins only (checked in the function: 404 otherwise; the page shows Page Not Found) |
+| App language | `User.app_language` | language code, saved once a day with the activity date | the learner and admins; reset by Delete my data |
+| CSV | downloaded by an admin | the summary columns above, one row per learner, `pilot_id` only | the admin who downloads it; not offered in Partner view |
+
+- **No emails, names or account ids leave the function.** The summary is built field by field (`learnerSummary()`); tests check that a summary and the CSV contain no `@`, name or exact date.
+- **Partner view** hides the CSV button. Counts are exact everywhere (the founder's decision, 2026-10-27, replacing the earlier "fewer than 5" rule), so small groups can be worked out from totals; report counts and keep the CSV with Pathways.
+- **Program** in the summary is the partner program the learner picked (`ProgramMembership`, unless the program said "not ours"); `User.program_code` is gone.
+- **The function writes one thing:** a `pilot_id` for a learner who doesn't have one yet (made on their first visit otherwise).
+- **Re-identification:** state + language + program in a 30-person CSV can point to one person; the CSV stays with the Pathways admin and isn't shared, as the tracking plan says.
+
 ## Human tutor accounts removed (2026-10-27)
 
 Pathways now focuses on learners studying with Vía. Nobody was using the human-tutor side, so it was removed:

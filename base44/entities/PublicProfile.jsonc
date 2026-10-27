@@ -16,19 +16,6 @@
       "type": "number",
       "default": 0
     },
-    "invite_code": {
-      "type": "string",
-      "description": "Unique code for students to join this tutor's class"
-    },
-    "account_type": {
-      "type": "string",
-      "enum": [
-        "student",
-        "tutor"
-      ],
-      "default": "student",
-      "description": "User's selected role in the app"
-    },
     "representative_data": {
       "type": "object",
       "description": "Cached elected officials' names only (governor, senators, representative name and district, state capital). Addresses and zip codes are used only for the moment of lookup and must never be stored here."

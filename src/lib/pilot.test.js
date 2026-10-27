@@ -1,5 +1,18 @@
-import { describe, it, expect } from 'vitest';
-import { stageFromOnboarding, buildSignupAnswers, buildProfileAnswers, shouldShowPilotIntro, newPilotId } from './pilot';
+import { describe, it, expect, beforeEach } from 'vitest';
+import {
+  stageFromOnboarding, buildSignupAnswers, buildProfileAnswers, reminderSettings,
+  snoozeCheckIn, isCheckInSnoozed, skipPreInterview, loadPreInterviewSkip, shouldShowPilotIntro, newPilotId,
+} from './pilot';
+
+let store;
+beforeEach(() => {
+  store = {};
+  globalThis.localStorage = {
+    getItem: (k) => (k in store ? store[k] : null),
+    setItem: (k, v) => { store[k] = String(v); },
+    removeItem: (k) => { delete store[k]; },
+  };
+});
 
 describe('signup answers', () => {
   it('prefills the stage from Getting started', () => {
@@ -11,15 +24,15 @@ describe('signup answers', () => {
   });
 
   it('saves only the answered questions', () => {
-    const { checkIn, profile } = buildSignupAnswers({ state: 'TX', stage: 'filed_waiting', confidence: '3', reminders: true });
+    const { checkIn, profile } = buildSignupAnswers({ state: 'TX', stage: 'filed_waiting', confidence: '3', reminders: true, language: 'es' });
     expect(checkIn).toEqual({ kind: 'signup', stage: 'filed_waiting', confidence: '3' });
-    expect(profile).toEqual({ state: 'TX', checkin_email_reminders: true, pilot_intro_seen: true });
+    expect(profile).toEqual({ state: 'TX', checkin_email_reminders: true, reminder_language: 'es', pilot_intro_seen: true });
   });
 
   it('everything left blank: no check-in, reminders off', () => {
     const { checkIn, profile } = buildSignupAnswers({});
     expect(checkIn).toBeNull();
-    expect(profile).toEqual({ state: null, checkin_email_reminders: false, pilot_intro_seen: true });
+    expect(profile).toEqual({ state: null, checkin_email_reminders: false, reminder_language: null, pilot_intro_seen: true });
   });
 
   it('"I\'d rather not say" is saved as prefer_not', () => {
@@ -62,5 +75,27 @@ describe('pilot id', () => {
     const a = newPilotId();
     expect(a).not.toBe(newPilotId());
     expect(a).not.toMatch(/@/);
+  });
+});
+
+describe('reminders and check-in notes', () => {
+  it('keeps the language only while reminders are on', () => {
+    expect(reminderSettings(true, 'ar')).toEqual({ checkin_email_reminders: true, reminder_language: 'ar' });
+    expect(reminderSettings(true)).toEqual({ checkin_email_reminders: true, reminder_language: 'en' });
+    expect(reminderSettings(false, 'ar')).toEqual({ checkin_email_reminders: false, reminder_language: null });
+  });
+
+  it('"Not now" hides the check-in card for 7 days', () => {
+    const now = new Date('2026-11-02T12:00:00');
+    expect(isCheckInSnoozed(now)).toBe(false);
+    snoozeCheckIn(now);
+    expect(isCheckInSnoozed(new Date('2026-11-08T12:00:00'))).toBe(true);
+    expect(isCheckInSnoozed(new Date('2026-11-09T13:00:00'))).toBe(false);
+  });
+
+  it('remembers a skipped pre-interview question on the device', () => {
+    expect(loadPreInterviewSkip()).toBeNull();
+    skipPreInterview(new Date('2026-11-02T12:00:00Z'));
+    expect(loadPreInterviewSkip()).toBe('2026-11-02T12:00:00.000Z');
   });
 });

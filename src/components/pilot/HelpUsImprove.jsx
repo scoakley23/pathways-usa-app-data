@@ -6,6 +6,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { buildSignupAnswers, stageFromOnboarding } from '@/lib/pilot';
 import { loadStage } from '@/lib/onboarding';
 import usePilotText from './pilotStrings';
+import { saveCheckIn } from './checkInData';
 import { ChoiceQuestion, ReadinessQuestion, StateSelect } from './PilotFields';
 
 // "Help us improve Pathways": shown once on Home, after the learner's first
@@ -24,11 +25,11 @@ export default function HelpUsImprove({ user, language = 'en', onDone }) {
 
   const finish = async (save) => {
     setError(false);
-    const answers = save ? buildSignupAnswers({ state, stage, confidence, reminders }) : null;
+    const answers = save ? buildSignupAnswers({ state, stage, confidence, reminders, language }) : null;
     setSaving(true);
     try {
       if (answers?.checkIn) {
-        await base44.entities.OutcomeCheckIn.create({ user_email: user.email.toLowerCase().trim(), ...answers.checkIn });
+        await saveCheckIn(user.email, answers.checkIn);
       }
       await base44.auth.updateMe(answers ? answers.profile : { pilot_intro_seen: true });
       onDone?.();

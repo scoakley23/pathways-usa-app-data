@@ -64,11 +64,12 @@ export default function Layout({ children }) {
       .catch(() => {});
   }, [isOpen, user]);
 
-  // Pilot: the days a learner opens the app (date only, once a day).
+  // Pilot: the days a learner opens the app (date only, once a day), plus
+  // their app language code.
   React.useEffect(() => {
     if (!user?.email) return;
-    recordActivityDay(user, { entities: base44.entities, auth: base44.auth }).catch(() => {});
-  }, [user]);
+    recordActivityDay(user, { entities: base44.entities, auth: base44.auth, language }).catch(() => {});
+  }, [user, language]);
 
   // Everyone who signs in is a learner. The first sign-in makes their
   // profile and goes straight to "Getting started" and the quick check.

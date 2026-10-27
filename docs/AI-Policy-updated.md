@@ -121,13 +121,17 @@ Pathways USA asks learners a few optional questions to learn whether the app hel
 
 **Reminder emails:** only if the learner turns them on. The emails do not mention citizenship, immigration or the interview. Learners can turn them off on their Profile page.
 
-**Activity dates:** the app records which days a learner opened it (the date only, not what they did) to measure how often people practice.
+**Activity dates:** the app records which days a learner opened it (the date only, not what they did) to measure how often people practice. It also keeps the code of the language the learner uses the app in, to see which language groups the app reaches.
 
-**Exports and reports:** data used for analysis uses a random ID, never names or email addresses. Pathways USA may share aggregate results (for example, "18 of 30 learners finished a mock interview") with partners, funders and government agencies. It does not sell or license individual learner data.
+**Exports and reports:** data used for analysis uses a random ID, never names or email addresses. Administrators see these answers only in a pilot dashboard that lists learners by that random ID and shows totals; the downloadable file has one row per learner by random ID, with the sign-up week instead of the date, and stays with Pathways USA. Pathways USA may share aggregate results (for example, "18 of 30 learners finished a mock interview") with partners, funders and government agencies. It does not sell or license individual learner data.
 
 **Deletion:** "Delete all my data" erases check-in answers, activity dates and these profile fields.
 
-None of these answers are sent to the AI service.
+**How the check-ins work:** a 3-, 6- or 12-month check-in shows as a card on the learner's Today page for 30 days; a missed one is not asked later. The learner can put it off ("Not now") or stop all check-ins ("Don't ask me again", which also stops reminder emails) and turn them back on in Profile. Milestones already answered "Yes" are not asked again. A learner whose interview is scheduled is also asked once, before a practice mock interview, how ready they feel (not again for 30 days).
+
+**Reminder emails, in detail:** an administrator sends due reminders from the Admin page. Each learner gets at most one email per check-in, and only if they turned reminders on. Pathways keeps an administrator-only record of which reminder was sent to which email address and when, so no one gets two; learners and partner staff cannot see it. While reminders are on, the account also keeps the learner's app language so the email can be in that language; the fixed email text is translated by the AI service (no learner information is sent). The emails are sent through base44's email service.
+
+None of the learners' answers are sent to the AI service.
 
 ## Translations of App Text
 Fixed app text (for example, menu labels and the tutor's standard messages) may be translated into the learner's language by the AI service and saved on the learner's device so it is translated only once. English and Spanish versions of key messages are written by people. No learner text is included in these translations.
@@ -150,7 +154,7 @@ Annual bias audits will be conducted to identify and address any disparities in 
 ## Data Ownership and Learner Rights
 Learners retain full ownership of their data and will be clearly informed about their rights, including the ability to request data deletion at any time. Deletion applies to data held by Pathways USA. Messages a learner sent through the "Talk to a person" form are kept in the Pathways USA mailbox and can be deleted on request.
 
-**How deletion works:** the app's "Delete my data" option erases everything tied to the person's email address: Ask Vía history, notes, practice progress, lesson progress, mock interview history, N-400 Guide progress, saved places, pilot check-in answers, activity dates, partner program choice, notifications, and profile. It also resets the account's tutor settings, quick check levels, points, badges, display name, state and reminder setting, and clears the app's data on that device (including the target date and study plan). The sign-in account itself is deleted on request by emailing pathwaysusacitizenship@gmail.com. Transparent communication about data retention policies and timelines will be provided through the privacy policy and terms of service.
+**How deletion works:** the app's "Delete my data" option erases everything tied to the person's email address: Ask Vía history, notes, practice progress, lesson progress, mock interview history, N-400 Guide progress, saved places, pilot check-in answers, activity dates, the record of reminder emails sent, partner program choice, notifications, and profile. It also resets the account's tutor settings, quick check levels, points, badges, display name, state, app language, reminder and check-in settings, and clears the app's data on that device (including the target date and study plan). The sign-in account itself is deleted on request by emailing pathwaysusacitizenship@gmail.com. Transparent communication about data retention policies and timelines will be provided through the privacy policy and terms of service.
 
 ## Legal and Regulatory Compliance
 Pathways USA is in the process of determining which data protection laws apply to its operations and how to ensure full compliance. This includes reviewing requirements under COPPA, GDPR, and other relevant regulations to protect learner information and maintain legal standards.
