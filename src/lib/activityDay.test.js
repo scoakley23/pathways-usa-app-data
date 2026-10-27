@@ -63,6 +63,13 @@ describe('activity days', () => {
     expect(rows).toHaveLength(1);
   });
 
+  it('keeps the app language on the account, only when it changes', async () => {
+    await recordActivityDay({ ...user, app_language: 'en' }, { today: day('2026-11-05'), entities, auth, language: 'es' });
+    expect(updates).toEqual([{ app_language: 'es' }]);
+    await recordActivityDay({ ...user, app_language: 'es' }, { today: day('2026-11-06'), entities, auth, language: 'es' });
+    expect(updates).toHaveLength(1);
+  });
+
   it('does nothing without a signed-in learner', async () => {
     expect(await recordActivityDay(null, { entities, auth })).toBe(false);
     expect(rows).toHaveLength(0);

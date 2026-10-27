@@ -17,6 +17,7 @@ import LearnCivics from './pages/LearnCivics';
 import ReviewCivics from './pages/ReviewCivics';
 import N400Coach from './pages/N400Coach';
 import InterviewDay from './pages/InterviewDay';
+import PilotDashboard from './components/pilot-admin/PilotDashboard';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -111,6 +112,12 @@ const AuthenticatedApp = () => {
       <Route path="tutor-demo" element={
         <LayoutWrapper currentPageName="TutorDemo">
           <TutorDemo />
+        </LayoutWrapper>
+      } />
+      {/* Admins only: the page itself shows "Page Not Found" to anyone else. */}
+      <Route path="admin/pilot" element={
+        <LayoutWrapper currentPageName="Admin">
+          <PilotDashboard />
         </LayoutWrapper>
       } />
       <Route path="*" element={<PageNotFound />} />

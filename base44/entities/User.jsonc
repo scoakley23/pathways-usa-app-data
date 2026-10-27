@@ -75,6 +75,10 @@
       "type": ["number", "null"],
       "description": "Pilot testing, admins only: pretend sign-up was this many months ago. Ignored for non-admins."
     },
+    "app_language": {
+      "type": ["string", "null"],
+      "description": "Pilot: the app language code (e.g. es), saved once a day with the activity date, for 'Reach by language'."
+    },
     "pilot_intro_seen": {
       "type": "boolean",
       "default": false,

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Loader2, Mail } from 'lucide-react';
+import { Loader2, Mail, BarChart3 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
 import { base44 } from '@/api/base44Client';
 import { Eyebrow, RaisedCard, SecondaryButton } from '@/components/pathways/ui';
@@ -54,6 +55,9 @@ export default function PilotAdminTool({ currentUser }) {
           Press this once a week. Only counts are shown.
         </p>
       </div>
+      <Link to="/admin/pilot" className="inline-flex items-center gap-2 min-h-11 rounded-xl border-2 border-pw-navy bg-white px-4 text-base font-semibold text-pw-navy hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2">
+        <BarChart3 className="w-4 h-4" aria-hidden="true" /> Open the pilot dashboard
+      </Link>
       <div className="space-y-3">
         <SecondaryButton onClick={send} disabled={sending}>
           {sending ? <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> : <Mail className="w-4 h-4" aria-hidden="true" />}

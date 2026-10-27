@@ -102,6 +102,7 @@ export const PILOT_ACCOUNT_RESET = {
   reminder_language: null,
   checkins_stopped: false,
   pilot_test_months_ago: null,
+  app_language: null,
   pilot_id: null,
   pilot_intro_seen: false,
 };
