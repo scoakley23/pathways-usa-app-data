@@ -72,7 +72,7 @@ export default function DeleteMyData({ userEmail }) {
         <CardDescription className="text-pw-navy">
           Permanently erase everything tied to your email: your chat messages (including the copies in the other person's history),
           AI study buddy history, lesson notes, progress & quiz scores, mock interview scores, N-400 guide section completion, assignments,
-          tutor connections, notifications, saved places, your answers to the "Help us improve Pathways" and check-in questions, the days you used the app, the record of reminder emails sent to you, and your profile. Your points, badges, display name, tutor settings, quick check levels, state, program code and reminder setting are reset, and the app's data on
+          tutor connections, notifications, saved places, your answers to the "Help us improve Pathways" and check-in questions, the days you used the app, the record of reminder emails sent to you, and your profile. Your points, badges, display name, tutor settings, quick check levels, state, program code, app language and reminder settings are reset, and the app's data on
           this device (your target date, language, and settings) is cleared. This cannot be undone.
         </CardDescription>
       </CardHeader>

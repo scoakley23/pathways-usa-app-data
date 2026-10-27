@@ -25,3 +25,12 @@ export const US_STATES = [
   ['PR', 'Puerto Rico'], ['GU', 'Guam'], ['VI', 'U.S. Virgin Islands'],
   ['AS', 'American Samoa'], ['MP', 'Northern Mariana Islands'],
 ];
+
+// The partner program's own numbers before Pathways, shown on the pilot
+// dashboard (/admin/pilot) as a reference. They come from the program, not
+// from the app, and its retention may be measured differently.
+export const PROGRAM_BASELINE = {
+  label: 'Harvard program before Pathways',
+  retention: 0.6, // about 60% of learners stay in the class
+  firstTryPass: 0.98, // 98% pass
+};

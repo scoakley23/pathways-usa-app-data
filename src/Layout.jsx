@@ -50,11 +50,12 @@ export default function Layout({ children }) {
   // improve Pathways"; it waits on this device through the sign-in.
   React.useEffect(() => { rememberCodeFromUrl(location.search); }, [location.search]);
 
-  // Pilot: the days a learner opens the app (date only, once a day).
+  // Pilot: the days a learner opens the app (date only, once a day), plus
+  // their app language code.
   React.useEffect(() => {
     if (!user?.email || role !== 'student') return;
-    recordActivityDay(user, { entities: base44.entities, auth: base44.auth }).catch(() => {});
-  }, [user, role]);
+    recordActivityDay(user, { entities: base44.entities, auth: base44.auth, language }).catch(() => {});
+  }, [user, role, language]);
 
   React.useEffect(() => {
     const checkUser = async () => {

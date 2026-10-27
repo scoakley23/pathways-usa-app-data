@@ -111,3 +111,18 @@ Check-ins at 3, 6 and 12 months, a readiness question before the Mock Interview,
 - **Tutors** still see none of it: `pilotPrivacy.test.js` now also covers `CheckInReminder`, the new fields and `pilot-reminders`.
 - **Delete my data** calls `pilot-reminders` (`forget`) to remove the learner's admin-only reminder records, deletes the check-ins, and resets the new fields.
 - **Open point:** the partner (the program) sees totals only. The admin account that reads individual answers in the dashboard should belong to Pathways staff outside the program.
+
+## Addendum — Pilot dashboard and CSV (October 2026)
+
+`/admin/pilot` (`src/components/pilot-admin/`), data from the `pilot-report` function, numbers in `base44/shared/pilotReport.js`.
+
+| Data | Where | What exactly | Who can see it |
+| --- | --- | --- | --- |
+| Per-learner summary | built by `pilot-report` on request, not stored | `pilot_id`, program code, state, app language, sign-up ISO week and days since sign-up, stage and readiness answers, active days/weeks (ISO weeks only, no dates), retention flags, mock interview count and first/latest score, civics mastered count, first window of each milestone Yes, retest, "without Pathways" | admins only (checked in the function: 404 otherwise; the page shows Page Not Found) |
+| App language | `User.app_language` | language code, saved once a day with the activity date | the learner and admins; reset by Delete my data |
+| CSV | downloaded by an admin | the summary columns above, one row per learner, `pilot_id` only | the admin who downloads it; not offered in Partner view |
+
+- **No emails, names or account ids leave the function.** The summary is built field by field (`learnerSummary()`); tests check that a summary and the CSV contain no `@`, name or exact date.
+- **Partner view** shows counts 1–4 as "fewer than 5" and hides their percentages (`SMALL_NUMBER_LIMIT = 5`), including in the weekly chart, and hides the CSV button. Totals can still let someone work out a small group (30 total, 27 yes → 3 no); report counts and keep the CSV with Pathways.
+- **The function writes one thing:** a `pilot_id` for a learner who doesn't have one yet (made on their first visit otherwise).
+- **Re-identification:** state + language + program in a 30-person CSV can point to one person; the CSV stays with the Pathways admin and isn't shared, as the tracking plan says.
