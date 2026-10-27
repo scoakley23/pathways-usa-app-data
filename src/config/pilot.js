@@ -4,7 +4,7 @@
 // arrive with ?code=XXXX on any link, or type it on the "Help us improve
 // Pathways" screen or their Profile. Codes are compared without regard to
 // case or spaces. Separate from the tutor invite code.
-export const ALLOWED_PROGRAM_CODES = ['HOUSTON-PILOT'];
+export const ALLOWED_PROGRAM_CODES = ['HARVARD-PILOT'];
 
 // U.S. states, D.C. and territories for "Which state do you live in?".
 // Only the two-letter code is saved; never a zip code or city.

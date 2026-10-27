@@ -93,3 +93,21 @@ Optional outcome questions for the partner pilot ("Help us improve Pathways", sh
 - **Not sent to the AI.** Only the fixed English text of the screen is translated (`usePilotText`, cached on the device).
 - **Stage is new server-side data.** Getting started's stage answer stays on the device; the pilot screen only prefills its own stage question from it, and saves it only when the learner presses Save.
 - **Delete my data** deletes `OutcomeCheckIn` and `ActivityDay` and resets the five fields (`src/lib/deleteMyData.js`; `src/lib/deleteMyData.test.js` checks every learner entity and every `User` field is covered).
+
+## Addendum — Pilot check-ins, part 2 (October 2026)
+
+Check-ins at 3, 6 and 12 months, a readiness question before the Mock Interview, and reminder emails (`base44/shared/pilotCheckIns.js`, `base44/functions/pilot-reminders/`, `src/components/pilot/`, `src/components/admin/PilotAdminTool.jsx`).
+
+| Data | Where | What exactly | Who can see it |
+| --- | --- | --- | --- |
+| Check-in answers | `OutcomeCheckIn` (owner-only), kinds `month_3` / `month_6` / `month_12` / `pre_interview` | fixed choices only: filed, interviewed, passed tests (yes / retest / not yet), oath, registered to vote, readiness 1–5, "without Pathways" (yes / maybe / no); every one optional with prefer not | the learner; admins only through the pilot dashboard (Prompt 3) |
+| Reminder sent | `CheckInReminder` (new, **admin-only**) | email + kind + date sent | admins only; never learners, tutors or partner staff |
+| Settings | `User` | `checkins_stopped`, `reminder_language` (only while reminders are on), `pilot_test_months_ago` (admins' own testing; ignored for others) | the learner (and admins) |
+| Device notes | `localStorage` | `pathways_checkin_snooze` (7 days), `pathways_preinterview_skipped` | device only |
+
+- **The email** says only "A quick question from Pathways… You have a 1-minute question waiting in Pathways", with the app link and how to stop. A test fails if the subject or body mentions citizenship, immigration, the interview, USCIS, naturalization, the N-400, the oath or visas; AI translations that do are thrown away and the English is sent.
+- **"Send due reminders"** is admin-only in the function itself (not just the page) and returns counts only, never who.
+- **Interview Day** still saves nothing: the readiness question is asked only in the Mock Interview on Practice.
+- **Tutors** still see none of it: `pilotPrivacy.test.js` now also covers `CheckInReminder`, the new fields and `pilot-reminders`.
+- **Delete my data** calls `pilot-reminders` (`forget`) to remove the learner's admin-only reminder records, deletes the check-ins, and resets the new fields.
+- **Open point:** the partner (the program) sees totals only. The admin account that reads individual answers in the dashboard should belong to Pathways staff outside the program.

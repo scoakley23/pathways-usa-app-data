@@ -1,0 +1,31 @@
+// Pilot: which check-in reminder emails were sent, so nobody gets two for
+// the same window. Admin-only: learners, tutors and partner staff can't see
+// it. Written only by the pilot-reminders function; a learner's rows are
+// deleted by "Delete all my data" through that function ("forget").
+{
+  "name": "CheckInReminder",
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string",
+      "enum": ["month_3", "month_6", "month_12"]
+    },
+    "sent_date": {
+      "type": "string",
+      "description": "YYYY-MM-DD the email was sent"
+    }
+  },
+  "required": [
+    "user_email",
+    "kind"
+  ],
+  "rls": {
+    "create": { "user_condition": { "role": "admin" } },
+    "read": { "user_condition": { "role": "admin" } },
+    "update": { "user_condition": { "role": "admin" } },
+    "delete": { "user_condition": { "role": "admin" } }
+  }
+}

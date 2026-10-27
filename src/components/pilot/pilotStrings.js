@@ -3,7 +3,7 @@ import useTranslatedLines from '@/components/persona/useTranslatedLines';
 // English text for the "Help us improve Pathways" screen and the Profile
 // card, translated on demand like Today's text. Bump PILOT_CACHE_KEY when the
 // English changes.
-export const PILOT_CACHE_KEY = 'pilot_v1';
+export const PILOT_CACHE_KEY = 'pilot_v2';
 
 export const PILOT_EN = {
   eyebrow: 'Optional',
@@ -33,6 +33,31 @@ export const PILOT_EN = {
   reminders_switch: 'Email reminders at 3, 6 and 12 months',
   reminders_help: 'A short email asking a 1-minute question. Off unless you turn it on.',
   card_save: 'Save state and code',
+  checkins_switch: 'Check-in questions',
+  checkins_help: 'A 1-minute question at 3, 6 and 12 months.',
+  // Check-ins (3, 6 and 12 months)
+  card_prompt: '1-minute question: how is it going?',
+  card_open: 'Answer',
+  not_now: 'Not now',
+  never: "Don't ask me again",
+  checkin_title: 'How is it going?',
+  since: 'Since you started Pathways, have you…',
+  m_filed: 'sent in your N-400 application?',
+  m_interviewed: 'had your citizenship interview?',
+  m_passed_tests: 'passed the English and civics tests?',
+  m_oath: 'taken the Oath of Allegiance?',
+  m_registered_to_vote: 'registered to vote?',
+  done_label: 'Done',
+  yes: 'Yes',
+  not_yet: 'Not yet',
+  retest: 'I need a retest',
+  maybe: 'Maybe',
+  no: 'No',
+  ready_now: 'How ready do you feel for your interview?',
+  would_have: 'Would you have done this as soon without Pathways?',
+  small_print: "Please don't share dates, case numbers or details. Your tutor can't see this.",
+  // Before a Mock Interview
+  pre_title: 'Before you start',
 };
 
 export default function usePilotText(language) {

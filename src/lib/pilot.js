@@ -55,7 +55,7 @@ export function buildProfileAnswers({ programCode, state } = {}) {
 // The answers on the screen → what to save. Unanswered questions are left
 // out. Returns { checkIn, profile, error }; checkIn is null when no check-in
 // question was answered.
-export function buildSignupAnswers({ programCode, state, stage, confidence, reminders } = {}) {
+export function buildSignupAnswers({ programCode, state, stage, confidence, reminders, language } = {}) {
   const { profile, error } = buildProfileAnswers({ programCode, state });
   if (error) return { checkIn: null, profile: null, error };
 
@@ -67,9 +67,15 @@ export function buildSignupAnswers({ programCode, state, stage, confidence, remi
 
   return {
     checkIn: Object.keys(answers).length ? { kind: 'signup', ...answers } : null,
-    profile: { ...profile, checkin_email_reminders: reminders === true, pilot_intro_seen: true },
+    profile: { ...profile, ...reminderSettings(reminders === true, language), pilot_intro_seen: true },
     error: null,
   };
+}
+
+// Reminder emails on or off. The app language is kept on the account only
+// while reminders are on, so the email can be in that language.
+export function reminderSettings(on, language) {
+  return { checkin_email_reminders: on, reminder_language: on ? (language || 'en') : null };
 }
 
 // Show the screen once, to learners (not tutors), after their first day:
@@ -93,6 +99,25 @@ export const PILOT_ACCOUNT_RESET = {
   program_code: null,
   state: null,
   checkin_email_reminders: false,
+  reminder_language: null,
+  checkins_stopped: false,
+  pilot_test_months_ago: null,
   pilot_id: null,
   pilot_intro_seen: false,
 };
+
+// Device-only notes: "Not now" on the check-in card (hidden for 7 days) and
+// a skipped pre-interview question (not asked again for 30 days).
+export const SNOOZE_KEY = 'pathways_checkin_snooze';
+export const PRE_INTERVIEW_SKIP_KEY = 'pathways_preinterview_skipped';
+const SNOOZE_DAYS = 7;
+
+export function snoozeCheckIn(now = new Date()) {
+  set(SNOOZE_KEY, new Date(new Date(now).getTime() + SNOOZE_DAYS * 24 * 60 * 60 * 1000).toISOString());
+}
+export function isCheckInSnoozed(now = new Date()) {
+  const until = Date.parse(get(SNOOZE_KEY) || '');
+  return Number.isFinite(until) && new Date(now).getTime() < until;
+}
+export const skipPreInterview = (now = new Date()) => set(PRE_INTERVIEW_SKIP_KEY, new Date(now).toISOString());
+export const loadPreInterviewSkip = () => get(PRE_INTERVIEW_SKIP_KEY);

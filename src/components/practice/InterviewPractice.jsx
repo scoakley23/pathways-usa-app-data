@@ -11,6 +11,10 @@ import InterviewReport from './InterviewReport';
 import { evaluateInterviewAnswer, evaluateUnderstanding, isUnderstandingSection } from './evaluateInterviewAnswer';
 import InterviewHistory from './InterviewHistory';
 import VirtualInterviewer, { AVATAR_URL } from './VirtualInterviewer';
+import PreInterviewQuestion from '@/components/pilot/PreInterviewQuestion';
+import { loadMyCheckIns } from '@/components/pilot/checkInData';
+import { loadPreInterviewSkip } from '@/lib/pilot';
+import { shouldAskPreInterview } from '../../../base44/shared/pilotCheckIns.js';
 
 // Long text is now spoken in chunks, so the fallback timeout must cover all of them.
 const speechTimeoutMs = (text) => {
@@ -42,6 +46,10 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
   const [conversation, setConversation] = useState([]);
   const [showTyping, setShowTyping] = useState(false);
   const [varyOfficer, setVaryOfficer] = useState(false);
+  // Pilot: "How ready do you feel?" once before a Mock Interview when the
+  // learner's interview is scheduled. Never in Interview Day (rehearsal).
+  const [pilot, setPilot] = useState(null); // { email, rows }
+  const [askingReady, setAskingReady] = useState(false);
 
   const standardQuestionsRef = useRef([]);
   // Guards against the greeting's speech-end and safety-timer paths both
@@ -241,6 +249,26 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
 
   const startInterview = () => beginSession("Good morning! Welcome to your citizenship interview. Let's get started.");
 
+  useEffect(() => {
+    if (rehearsal) return;
+    let active = true;
+    base44.auth.me()
+      .then(async (u) => {
+        const rows = await loadMyCheckIns(u.email);
+        if (active) setPilot({ email: u.email, rows });
+      })
+      .catch(() => {});
+    return () => { active = false; };
+  }, [rehearsal]);
+
+  const handleStart = () => {
+    if (!rehearsal && pilot && shouldAskPreInterview({ rows: pilot.rows, skippedAt: loadPreInterviewSkip() })) {
+      setAskingReady(true);
+      return;
+    }
+    startInterview();
+  };
+
   // Interview Day starts as soon as the questions are loaded.
   useEffect(() => {
     if (rehearsal && !isLoadingQuestions && questions.length > 0 && !sessionStarted) {
@@ -395,11 +423,20 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
     </RaisedCard>
   );
 
+  if (!sessionStarted && askingReady) return (
+    <div className="w-full max-w-3xl mx-auto">
+      <PreInterviewQuestion
+        email={pilot.email}
+        onDone={() => { setAskingReady(false); setPilot(null); startInterview(); }}
+      />
+    </div>
+  );
+
   if (!sessionStarted) return (
     <div className="w-full max-w-3xl mx-auto space-y-4">
       <InterviewIntro
         questions={questions}
-        onStart={startInterview}
+        onStart={handleStart}
         varyOfficer={varyOfficer}
         onToggleVary={() => setVaryOfficer(v => !v)}
       />
