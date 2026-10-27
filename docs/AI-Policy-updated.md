@@ -10,6 +10,7 @@
 > 5. **New sections:** quick check, tutor settings, study plan and target date (device only), lesson explanations (human-reviewed), N-400 coaching, and "Talk to a person".
 > 6. **Deletion:** updated list of what "Delete my data" erases. The sign-in account itself is deleted on request.
 > 7. **Human tutors removed (October 27):** there are no tutor accounts, My Classroom, assignments or tutor chat any more. The "Tutor Access and Tutor Data" section was removed; Vía, the AI tutor, is unchanged.
+> 8. **Partner programs (October 27):** new section. A learner may say which partner program they study with; the program confirms it. Pilot check-ins no longer ask for a program code.
 
 ## Purpose of This Policy
 This policy establishes guidelines for the responsible use of artificial intelligence at Pathways USA. An AI policy is essential to ensure that technology serves learners ethically, protects their privacy, and aligns with our mission to support adult learners preparing for the U.S. Citizenship Test.
@@ -104,10 +105,19 @@ Signed-in learners can tap "Save" on a place to keep it in "Your saved places" a
 
 The list of places is written and checked by the Pathways team from public sources (such as the USCIS office list, the U.S. Department of Justice list of recognized organizations, and the National Literacy Directory's public class listings). The AI does not find, write, or recommend places. Pathways USA does not run or endorse these places, and the page reminds learners that only lawyers and DOJ-accredited representatives can give immigration legal advice.
 
-## Pilot Check-ins and Outcome Questions
-Pathways USA asks learners a few optional questions to learn whether the app helps. At sign-up, a learner may share their state, a program code from a partner organization, where they are in the citizenship process (not filed yet, filed, or interview scheduled), and how ready they feel. At 3, 6 and 12 months, the app may ask whether they have filed, had their interview, passed the tests, taken the oath and registered to vote. Every question is optional and has an "I'd rather not say" choice. The app never asks for dates, case numbers, A-numbers, addresses or immigration status, and has no free-text boxes for these questions.
+## Partner Programs
+Some learners study with a class or program that works with Pathways USA (a "partner program"). In Getting started, and later on their Profile, a learner may say which partner program they study with, or that they study on their own. This is optional. A partner's link can pick the program in advance; the program's code waits in the browser's storage until the learner answers.
 
-**Who can see the answers:** only Pathways USA administrators. Partner staff cannot see any learner's answers. Partners receive totals only, and any number under 5 is hidden so no learner can be identified.
+**What is saved:** which program the learner picked, whether the program has confirmed them, an optional name the learner gives so the program knows it's them (a name only; anything that looks like an email address or a number is dropped), and, only where the program allows it, whether the learner chose to share their own progress. This record is linked to the learner's email address.
+
+**What the program sees:** the program's staff see a list of the learners who picked their program, showing the name the learner gave, or their email address if they gave none. Staff confirm each learner or mark them "not ours". They never see learners' answers, Ask Vía conversations, notes, pilot check-in answers, or anything about their case. Programs only ever see learners who picked them.
+
+**Changing or leaving:** learners can change or leave their program on their Profile page at any time, and "Delete all my data" removes the record. None of this is sent to the AI service.
+
+## Pilot Check-ins and Outcome Questions
+Pathways USA asks learners a few optional questions to learn whether the app helps. At sign-up, a learner may share their state, where they are in the citizenship process (not filed yet, filed, or interview scheduled), and how ready they feel. At 3, 6 and 12 months, the app may ask whether they have filed, had their interview, passed the tests, taken the oath and registered to vote. Every question is optional and has an "I'd rather not say" choice. The app never asks for dates, case numbers, A-numbers, addresses or immigration status, and has no free-text boxes for these questions.
+
+**Who can see the answers:** only Pathways USA administrators. Partner staff cannot see any learner's answers.
 
 **Reminder emails:** only if the learner turns them on. The emails do not mention citizenship, immigration or the interview. Learners can turn them off on their Profile page.
 
@@ -140,7 +150,7 @@ Annual bias audits will be conducted to identify and address any disparities in 
 ## Data Ownership and Learner Rights
 Learners retain full ownership of their data and will be clearly informed about their rights, including the ability to request data deletion at any time. Deletion applies to data held by Pathways USA. Messages a learner sent through the "Talk to a person" form are kept in the Pathways USA mailbox and can be deleted on request.
 
-**How deletion works:** the app's "Delete my data" option erases everything tied to the person's email address: Ask Vía history, notes, practice progress, lesson progress, mock interview history, N-400 Guide progress, saved places, pilot check-in answers, activity dates, notifications, and profile. It also resets the account's tutor settings, quick check levels, points, badges, display name, state, program code and reminder setting, and clears the app's data on that device (including the target date and study plan). The sign-in account itself is deleted on request by emailing pathwaysusacitizenship@gmail.com. Transparent communication about data retention policies and timelines will be provided through the privacy policy and terms of service.
+**How deletion works:** the app's "Delete my data" option erases everything tied to the person's email address: Ask Vía history, notes, practice progress, lesson progress, mock interview history, N-400 Guide progress, saved places, pilot check-in answers, activity dates, partner program choice, notifications, and profile. It also resets the account's tutor settings, quick check levels, points, badges, display name, state and reminder setting, and clears the app's data on that device (including the target date and study plan). The sign-in account itself is deleted on request by emailing pathwaysusacitizenship@gmail.com. Transparent communication about data retention policies and timelines will be provided through the privacy policy and terms of service.
 
 ## Legal and Regulatory Compliance
 Pathways USA is in the process of determining which data protection laws apply to its operations and how to ensure full compliance. This includes reviewing requirements under COPPA, GDPR, and other relevant regulations to protect learner information and maintain legal standards.

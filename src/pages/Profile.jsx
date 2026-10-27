@@ -13,6 +13,7 @@ import VoiceSettings from '@/components/utils/VoiceSettings';
 import DeleteMyData from '@/components/profile/DeleteMyData';
 import YourTutorCard from '@/components/persona/YourTutorCard';
 import PilotSettingsCard from '@/components/pilot/PilotSettingsCard';
+import ProgramCard from '@/components/partners/ProgramCard';
 import PageHeader from '@/components/PageHeader';
 import { RaisedCard } from '@/components/pathways/ui';
 
@@ -203,6 +204,10 @@ export default function Profile() {
           </div>
           <div className="w-full">
             <YourTutorCard />
+          </div>
+
+          <div className="w-full empty:hidden">
+            <ProgramCard user={user} />
           </div>
 
           <div className="w-full">

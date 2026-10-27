@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { AlertCircle, FileText, HelpCircle, BookOpen, MapPin } from 'lucide-react';
+import { AlertCircle, FileText, HelpCircle, BookOpen, MapPin, Users } from 'lucide-react';
 import SentencesTab from '@/components/admin/SentencesTab';
 import CivicsQuestionsTab from '@/components/admin/CivicsQuestionsTab';
 import VocabularyWordsTab from '@/components/admin/VocabularyWordsTab';
 import ResourcesTab from '@/components/admin/ResourcesTab';
+import PartnersTab from '@/components/admin/PartnersTab';
 import ExplanationTools from '@/components/admin/ExplanationTools';
 import CurrentOfficialsTool from '@/components/admin/CurrentOfficialsTool';
 import PageHeader from '@/components/PageHeader';
@@ -53,7 +54,7 @@ export default function Admin() {
     <div className="space-y-6">
       <PageHeader
         title="Admin Dashboard"
-        subtitle="Manage all practice content — sentences, civics questions, vocabulary words — and Resource Hub places."
+        subtitle="Manage all practice content — sentences, civics questions, vocabulary words — Resource Hub places and partner programs."
       >
         <div className="flex flex-wrap gap-2">
           <Link to="/tutor-demo" className="inline-flex items-center justify-center min-h-[44px] rounded-2xl border-2 border-pw-navy bg-white px-4 text-base font-bold text-pw-navy hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2">
@@ -63,7 +64,7 @@ export default function Admin() {
       </PageHeader>
 
       <Tabs defaultValue="sentences">
-        <TabsList className="grid w-full grid-cols-4 max-w-xl">
+        <TabsList className="grid w-full grid-cols-5 max-w-2xl">
           <TabsTrigger value="sentences" className="flex items-center gap-1.5 px-1 text-sm sm:text-base">
             <FileText className="w-4 h-4 hidden sm:block" aria-hidden="true" /> Sentences
           </TabsTrigger>
@@ -75,6 +76,9 @@ export default function Admin() {
           </TabsTrigger>
           <TabsTrigger value="resources" className="flex items-center gap-1.5 px-1 text-sm sm:text-base">
             <MapPin className="w-4 h-4 hidden sm:block" aria-hidden="true" /> Places
+          </TabsTrigger>
+          <TabsTrigger value="partners" className="flex items-center gap-1.5 px-1 text-sm sm:text-base">
+            <Users className="w-4 h-4 hidden sm:block" aria-hidden="true" /> Partners
           </TabsTrigger>
         </TabsList>
         <TabsContent value="sentences" className="mt-6">
@@ -88,6 +92,9 @@ export default function Admin() {
         </TabsContent>
         <TabsContent value="resources" className="mt-6">
           <ResourcesTab />
+        </TabsContent>
+        <TabsContent value="partners" className="mt-6">
+          <PartnersTab />
         </TabsContent>
       </Tabs>
 

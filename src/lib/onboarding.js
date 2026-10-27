@@ -1,7 +1,9 @@
 // "Getting started": the questions before the first quick check. Answers
 // stay on this device (like the target date). Only the tutor name is
-// saved to the account (User.tutor_profile, as before). We never ask for
-// dates, case numbers, or anything else about the learner's case.
+// saved to the account (User.tutor_profile, as before), and the partner
+// program, if the learner picks one, so the program can confirm it
+// (src/lib/partners.js). We never ask for dates, case numbers, or anything
+// else about the learner's case.
 
 export const ONBOARDED_KEY = 'pathways_onboarded'; // '1' once finished or skipped
 export const STAGE_KEY = 'pathways_stage';
@@ -37,11 +39,13 @@ export function saveFiledAnswer(answer) {
 
 // The steps, in order, given the answers so far. The "which test" question
 // only makes sense once they have applied; the interview month only once an
-// interview is scheduled.
-export function onboardingSteps({ stage } = {}) {
+// interview is scheduled; the program question only when there are partner
+// programs to pick from.
+export function onboardingSteps({ stage, hasPrograms = false } = {}) {
   const steps = ['start', 'language', 'name', 'stage'];
   if (stage === 'applied' || stage === 'interview') steps.push('filed');
   if (stage === 'interview') steps.push('interview');
+  if (hasPrograms) steps.push('program');
   steps.push('settings');
   return steps;
 }

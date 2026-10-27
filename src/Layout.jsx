@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import { BookOpen, Mic, CheckCircle, LogOut, Menu, Settings, User, House, FileText, MapPin, CalendarCheck } from 'lucide-react';
+import { BookOpen, Mic, CheckCircle, LogOut, Menu, Settings, User, House, FileText, MapPin, CalendarCheck, Users } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { base44 } from '@/api/base44Client';
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -14,7 +14,8 @@ import TutorAvatar from '@/components/persona/TutorAvatar';
 import useTutorProfile from '@/components/persona/useTutorProfile';
 import useAppLanguage from '@/hooks/useAppLanguage';
 import { clearTutorPhoto } from '@/lib/tutorPhoto';
-import { rememberCodeFromUrl } from '@/lib/pilot';
+import { staffPrograms } from '@/lib/partners';
+import { rememberProgramFromUrl } from '@/lib/programLink';
 import { recordActivityDay } from '@/lib/activityDay';
 import { ensurePublicProfile } from '@/lib/profileService';
 import { useAuth } from '@/lib/AuthContext';
@@ -28,13 +29,16 @@ import { Toaster } from "sonner";
 const FOCUS_ROUTES = ['/quick-check', '/tutor-demo', '/learn', '/review', '/n400-coach'];
 
 // The account whose profile was checked in this app load (one lookup, not one
-// per page).
+// per page), and whether it works for a partner program (asked the first
+// time Menu opens).
 let profileChecked = null;
+let staffChecked = null;
 
 export default function Layout({ children }) {
   const location = useLocation();
   const [user, setUser] = React.useState(null);
   const [isOpen, setIsOpen] = React.useState(false);
+  const [partnerStaff, setPartnerStaff] = React.useState(false);
   const navigate = useNavigate();
   const { isAuthenticated, isLoadingAuth } = useAuth();
   const [language, setLanguage] = useAppLanguage();
@@ -47,9 +51,18 @@ export default function Layout({ children }) {
   // device (once per app load; cheap and harmless when there is none).
   React.useEffect(() => { clearTutorPhoto(); }, []);
 
-  // A partner's link (?code=XXXX) prefills the program code on "Help us
-  // improve Pathways"; it waits on this device through the sign-in.
-  React.useEffect(() => { rememberCodeFromUrl(location.search); }, [location.search]);
+  // A partner's link (?program=CODE) picks that program in Getting started;
+  // it waits on this device through the sign-in.
+  React.useEffect(() => { rememberProgramFromUrl(location.search); }, [location.search]);
+
+  // Partner program staff get "Partner" in Menu.
+  React.useEffect(() => {
+    if (!isOpen || !user?.email) return;
+    if (staffChecked?.email === user.email) { setPartnerStaff(staffChecked.staff); return; }
+    staffPrograms()
+      .then((list) => { staffChecked = { email: user.email, staff: list.length > 0 }; setPartnerStaff(list.length > 0); })
+      .catch(() => {});
+  }, [isOpen, user]);
 
   // Pilot: the days a learner opens the app (date only, once a day).
   React.useEffect(() => {
@@ -81,6 +94,7 @@ export default function Layout({ children }) {
     items.push({ label: 'N-400', path: '/n400-guide', icon: FileText });
     items.push({ label: 'Progress', path: '/Progress', icon: CheckCircle });
     items.push({ label: 'Resources', path: '/resources', icon: MapPin });
+    if (partnerStaff) items.push({ label: 'Partner', path: '/Partner', icon: Users });
     items.push({ label: 'Profile', path: '/Profile', icon: User });
 
     if (user?.role === 'admin') {
@@ -88,7 +102,7 @@ export default function Layout({ children }) {
     }
 
     return items;
-  }, [user]);
+  }, [user, partnerStaff]);
 
   const navItems = getNavItems;
   // The four places sit in the header on desktop and in the tab bar on

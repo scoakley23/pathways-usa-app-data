@@ -102,3 +102,10 @@ Pathways now focuses on learners studying with Vía. Nobody was using the human-
 - **Gone from Base44:** the `TutorRelationship`, `Assignment` and `Message` entities, the `tutor-link` and `student-progress` functions, `PublicProfile.invite_code` / `account_type`, and `UserProgress.assignment_id`.
 - **Effect on the tables above:** "their tutor" no longer applies anywhere. `UserProgress`, `LessonProgress` and `N400SectionProgress` are visible to the learner and Pathways staff only. Delete my data no longer needs to delete chat messages, assignments or tutor links.
 
+## Partner programs (2026-10-27)
+
+- **New data:** `ProgramMembership` (Base44): the learner's email, the partner code they picked, status (pending / confirmed / removed), an optional name (a name only: `cleanName()` drops anything with "@" or 3+ digits), and a share choice (only where the program allows it). Created and changed only by `base44/functions/partner`; the learner can read and delete their own; Delete my data removes it. `Partner` (admin-only): program name, code, staff emails, switches.
+- **Who sees it:** the program's staff, through `partner` → `members`, see name-or-email and status for learners who picked their program only. The function never reads `OutcomeCheckIn`, `AIStudyLog`, `LessonNotes`, `InterviewSession` or `UserProgress` (`src/lib/partners.test.js`, plus the existing pilot and Ask Vía privacy tests over every function).
+- **Removed:** the free-typed program code on "Help us improve Pathways" and `User.program_code`; `?code=` links were replaced by `?program=CODE`, kept in `localStorage['pathways_program']` until Getting started.
+- **Not sent to the AI.** Partner names are shown as written; only the fixed question text is translated.
+

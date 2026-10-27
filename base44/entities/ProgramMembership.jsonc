@@ -1,0 +1,42 @@
+// "I study with this program": one per learner. Made and changed only by the
+// `partner` function (the program's staff confirm it or say "not ours"). The
+// learner can read it and delete it (leaving the program, or "Delete all my
+// data"). Staff see only the optional name (or the email) and the status.
+{
+  "name": "ProgramMembership",
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string"
+    },
+    "partner_code": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "confirmed", "removed"],
+      "default": "pending",
+      "description": "pending until the program's staff confirm it; removed = the program said it's not theirs"
+    },
+    "display_name": {
+      "type": "string",
+      "description": "Optional name the learner gives so the program knows it's them. A name only."
+    },
+    "share_progress": {
+      "type": "boolean",
+      "default": false,
+      "description": "The learner chose to share their own progress with the program (only where the program allows it)"
+    },
+    "status_changed_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["user_email", "partner_code"],
+  "rls": {
+    "create": false,
+    "read": { "data.user_email": "{{user.email}}" },
+    "update": false,
+    "delete": { "data.user_email": "{{user.email}}" }
+  }
+}

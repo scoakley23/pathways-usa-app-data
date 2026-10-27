@@ -6,7 +6,7 @@ import userEntity from '../../base44/entities/User.jsonc?raw';
 // added here and to deleteSteps().
 const entityFiles = import.meta.glob('../../base44/entities/*.jsonc', { query: '?raw', import: 'default', eager: true });
 const parse = (src) => JSON.parse(src.replace(/^\s*\/\/.*$/gm, ''));
-const CONTENT = ['CivicsQuestion', 'CommunityResource', 'InterviewQuestion', 'Lesson', 'LessonFlashcard', 'LessonQuiz', 'ReadingSentence', 'Sentence', 'VocabularyWord', 'User'];
+const CONTENT = ['CivicsQuestion', 'CommunityResource', 'Partner', 'InterviewQuestion', 'Lesson', 'LessonFlashcard', 'LessonQuiz', 'ReadingSentence', 'Sentence', 'VocabularyWord', 'User'];
 
 describe('Delete all my data', () => {
   const steps = deleteSteps('Test@Example.com');
@@ -27,7 +27,7 @@ describe('Delete all my data', () => {
 
   it('resets the pilot fields on the account', () => {
     expect(ACCOUNT_RESET).toMatchObject({
-      program_code: null, state: null, checkin_email_reminders: false, pilot_id: null, pilot_intro_seen: false,
+      state: null, checkin_email_reminders: false, pilot_id: null, pilot_intro_seen: false,
     });
     // ...and every extra field the User entity holds.
     const fields = Object.keys(parse(userEntity).properties);

@@ -13,6 +13,11 @@ describe('onboardingSteps', () => {
     expect(onboardingSteps({ stage: 'applied' })).toEqual(['start', 'language', 'name', 'stage', 'filed', 'settings']);
     expect(onboardingSteps({ stage: 'interview' })).toEqual(['start', 'language', 'name', 'stage', 'filed', 'interview', 'settings']);
   });
+  it('asks about a program only when there are partner programs', () => {
+    expect(onboardingSteps({ stage: 'preparing', hasPrograms: true })).toEqual(['start', 'language', 'name', 'stage', 'program', 'settings']);
+    expect(onboardingSteps({ stage: 'interview', hasPrograms: true })).toEqual(['start', 'language', 'name', 'stage', 'filed', 'interview', 'program', 'settings']);
+    expect(nextStep('filed', { stage: 'applied', hasPrograms: true })).toBe('program');
+  });
   it('moves to the next step and ends after settings', () => {
     expect(nextStep('stage', { stage: 'interview' })).toBe('filed');
     expect(nextStep('filed', { stage: 'applied' })).toBe('settings');

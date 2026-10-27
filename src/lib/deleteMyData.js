@@ -21,6 +21,7 @@ export function deleteSteps(userEmail) {
     ['saved places', 'SavedPlace', mine],
     ['check-in answers', 'OutcomeCheckIn', mine],
     ['activity dates', 'ActivityDay', mine],
+    ['your program', 'ProgramMembership', mine],
   ];
 }
 

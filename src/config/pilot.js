@@ -1,10 +1,5 @@
-// Pilot settings (docs/AI-Policy-updated.md, "Pilot Check-ins").
-//
-// ALLOWED_PROGRAM_CODES: one code per partner organization. A learner can
-// arrive with ?code=XXXX on any link, or type it on the "Help us improve
-// Pathways" screen or their Profile. Codes are compared without regard to
-// case or spaces. Separate from the tutor invite code.
-export const ALLOWED_PROGRAM_CODES = ['HOUSTON-PILOT'];
+// Pilot settings (docs/AI-Policy-updated.md, "Pilot Check-ins"). Partner
+// programs are Partner records (Admin → Partners), not a list here.
 
 // U.S. states, D.C. and territories for "Which state do you live in?".
 // Only the two-letter code is saved; never a zip code or city.

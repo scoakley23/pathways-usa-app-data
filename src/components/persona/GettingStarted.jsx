@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Check, ExternalLink, Volume2, VolumeX } from 'lucide-react';
+import { Check, ExternalLink, Loader2, Volume2, VolumeX } from 'lucide-react';
 import TutorAvatar from './TutorAvatar';
 import TutorMessage from './TutorMessage';
 import TextSizePicker from './TextSizePicker';
@@ -13,6 +13,10 @@ import { getAvailableVoices, speakText } from '@/components/utils/textToSpeech';
 import { MAX_TUTOR_NAME_LENGTH } from '@/lib/tutorPersona';
 import { markOnboarded, nextStep, onboardingSteps, saveFiledAnswer, saveStage, loadStage } from '@/lib/onboarding';
 import { PrimaryButton, QuietButton, SegmentedProgress } from '@/components/pathways/ui';
+import { Checkbox } from '@/components/ui/checkbox';
+import { listPartners, joinProgram } from '@/lib/partners';
+import { loadPendingProgram, clearPendingProgram } from '@/lib/programLink';
+import { MAX_NAME_LENGTH } from '../../../base44/shared/partners.js';
 
 // English source text. Spanish is written by hand; other languages are
 // translated once by AI and cached on the device (bump the cache key when
@@ -35,6 +39,13 @@ const LINES = {
   filed_after: 'On or after October 20, 2025',
   filed_unsure: "I'm not sure",
   filed_link: 'Which test will I take? (uscis.gov)',
+  program_ask: "Are you studying with a class or program? If you are, they can confirm it's you and see how their learners are doing overall. Never your answers or our chats.",
+  program_none: "No, I'm studying on my own",
+  program_name_label: 'Your name (optional)',
+  program_name_help: "So {program} knows it's you. If you leave it blank, they see your email.",
+  program_share: 'Share my progress with {program}',
+  program_share_help: 'They would see your quick check levels, the lessons you finished and the N-400 sections you read. You can change this in Profile.',
+  program_error: 'Something went wrong. Please try again.',
   settings_ask: 'Last step. I will read everything out loud for you. You can turn this off, and make the text bigger.',
   read_on: 'Read out loud for me',
   read_off: 'No sound, please',
@@ -60,6 +71,13 @@ const LINES_ES = {
   filed_after: 'El 20 de octubre de 2025 o después',
   filed_unsure: 'No estoy seguro/a',
   filed_link: '¿Qué examen tomaré? (uscis.gov)',
+  program_ask: '¿Estudia con una clase o un programa? Si es así, pueden confirmar que es usted y ver cómo van sus estudiantes en general. Nunca sus respuestas ni nuestras conversaciones.',
+  program_none: 'No, estudio por mi cuenta',
+  program_name_label: 'Su nombre (opcional)',
+  program_name_help: 'Para que {program} sepa que es usted. Si lo deja en blanco, verán su correo electrónico.',
+  program_share: 'Compartir mi progreso con {program}',
+  program_share_help: 'Verían sus niveles de la evaluación rápida, las lecciones que terminó y las secciones del N-400 que leyó. Puede cambiarlo en Perfil.',
+  program_error: 'Algo salió mal. Por favor, intente otra vez.',
   settings_ask: 'Último paso. Le leeré todo en voz alta. Puede apagarlo y hacer el texto más grande.',
   read_on: 'Léame en voz alta',
   read_off: 'Sin sonido, por favor',
@@ -67,7 +85,7 @@ const LINES_ES = {
   continue: 'Continuar',
   skip: 'Saltar',
 };
-const CACHE_KEY = 'onboarding_v2';
+const CACHE_KEY = 'onboarding_v3';
 const USCIS_TEST = 'https://www.uscis.gov/citizenship/2025-test';
 
 // "Start" in several languages, for the very first screen (before the
@@ -95,7 +113,8 @@ function ChoiceButton({ selected, onClick, children, className = '' }) {
 
 // The questions before the first quick check: language, tutor name,
 // where they are in the process (and which civics test / interview month
-// when that applies), then sound and text size. Every step can be skipped.
+// when that applies), which partner program they study with (when there
+// are any), then sound and text size. Every step can be skipped.
 export default function GettingStarted({ language, onLanguageChange, onDone }) {
   const { profile, saveProfile } = useTutorProfile();
   const tr = useTranslatedLines(LINES, language, { cacheKey: CACHE_KEY, handWritten: { es: LINES_ES } });
@@ -104,15 +123,37 @@ export default function GettingStarted({ language, onLanguageChange, onDone }) {
   const [noVoice, setNoVoice] = useState(false);
   const [readOn, setReadOn] = useAutoReadSetting();
   const [nameDraft, setNameDraft] = useState(null); // null until the learner edits it
+  const [partners, setPartners] = useState([]);
+  const [program, setProgram] = useState(null); // the picked partner
+  const [learnerName, setLearnerName] = useState('');
+  const [share, setShare] = useState(false);
+  const [joining, setJoining] = useState(false);
+  const [joinError, setJoinError] = useState(false);
 
-  const steps = onboardingSteps({ stage });
+  // Partner programs to pick from (none when signed out or none exist). A
+  // partner's link (?program=CODE) picks theirs.
+  useEffect(() => {
+    let active = true;
+    listPartners()
+      .then((list) => {
+        if (!active) return;
+        setPartners(list);
+        const pending = list.find((p) => p.code === loadPendingProgram());
+        if (pending) setProgram(pending);
+      })
+      .catch(() => {});
+    return () => { active = false; };
+  }, []);
+
+  const hasPrograms = partners.length > 0;
+  const steps = onboardingSteps({ stage, hasPrograms });
   const fill = (s) => (s || '').split('{name}').join(profile.name);
   const say = (key) => ({ en: fill(LINES[key]), mine: language !== 'en' ? fill(tr(key)) || null : null });
   const label = (key) => (language !== 'en' && tr(key)) || LINES[key];
   // Wait a moment for a translation that is still loading before reading.
   const readDelay = language !== 'en' && !tr('continue') ? 1500 : 0;
-  const go = (next, answers = { stage }) => {
-    const n = next || nextStep(step, answers);
+  const go = (next, answers = {}) => {
+    const n = next || nextStep(step, { stage, hasPrograms, ...answers });
     if (!n) { finish(); return; }
     setStep(n);
     window.scrollTo({ top: 0 });
@@ -266,6 +307,73 @@ export default function GettingStarted({ language, onLanguageChange, onDone }) {
 
       {step === 'interview' && (
         <PlanSetup profile={profile} language={language} onDone={() => go()} />
+      )}
+
+      {step === 'program' && (
+        <>
+          <TutorMessage
+            profile={profile}
+            language={language}
+            {...say('program_ask')}
+            readAlso={{ en: [...partners.map((p) => p.name), LINES.program_none].join('. ') + '.', mine: language !== 'en' && tr('program_none') ? [...partners.map((p) => p.name), tr('program_none')].join('. ') + '.' : null }}
+            readDelay={readDelay}
+          />
+          <div className="space-y-2" role="group" aria-label="Your program">
+            {partners.map((p) => (
+              <ChoiceButton key={p.code} selected={program?.code === p.code} onClick={() => { setProgram(p); setShare(false); setJoinError(false); }}>
+                {p.name}
+              </ChoiceButton>
+            ))}
+            <ChoiceButton onClick={() => { setProgram(null); clearPendingProgram(); go(); }}>{label('program_none')}</ChoiceButton>
+          </div>
+          {program && (
+            <form
+              className="space-y-4"
+              onSubmit={async (e) => {
+                e.preventDefault();
+                setJoining(true);
+                setJoinError(false);
+                try {
+                  await joinProgram(program.code, { name: learnerName, share });
+                  clearPendingProgram();
+                  go();
+                } catch (err) {
+                  setJoinError(true);
+                } finally {
+                  setJoining(false);
+                }
+              }}
+            >
+              <div className="space-y-2">
+                <label htmlFor="onboarding-program-name" className="block text-lg font-bold">{label('program_name_label')}</label>
+                <p id="onboarding-program-name-help" className="text-base text-pw-muted">{label('program_name_help').split('{program}').join(program.name)}</p>
+                <input
+                  id="onboarding-program-name"
+                  value={learnerName}
+                  maxLength={MAX_NAME_LENGTH}
+                  autoComplete="name"
+                  aria-describedby="onboarding-program-name-help"
+                  onChange={(e) => setLearnerName(e.target.value)}
+                  className="w-full min-h-[56px] rounded-2xl border-2 border-pw-line bg-white px-4 text-lg font-bold text-pw-navy focus:outline-none focus:border-pw-navy focus:ring-2 focus:ring-pw-navy/20"
+                />
+              </div>
+              {program.shareLearners && (
+                <label htmlFor="onboarding-program-share" className="flex items-start gap-3 min-h-11 cursor-pointer">
+                  <Checkbox id="onboarding-program-share" checked={share} onCheckedChange={(v) => setShare(v === true)} className="mt-1 h-5 w-5" />
+                  <span className="text-base">
+                    <span className="block font-bold">{label('program_share').split('{program}').join(program.name)}</span>
+                    <span className="block text-pw-muted">{label('program_share_help')}</span>
+                  </span>
+                </label>
+              )}
+              {joinError && <p role="alert" className="text-base font-semibold text-pw-red-ink">{label('program_error')}</p>}
+              <PrimaryButton large type="submit" className="w-full" disabled={joining}>
+                {joining && <Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" />}
+                {label('continue')}
+              </PrimaryButton>
+            </form>
+          )}
+        </>
       )}
 
       {step === 'settings' && (

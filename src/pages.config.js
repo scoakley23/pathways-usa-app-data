@@ -51,6 +51,7 @@ import Admin from './pages/Admin';
 import Dashboard from './pages/Dashboard';
 import Home from './pages/Home';
 import Lessons from './pages/Lessons';
+import Partner from './pages/Partner';
 import Practice from './pages/Practice';
 import Profile from './pages/Profile';
 import Progress from './pages/Progress';
@@ -63,6 +64,7 @@ export const PAGES = {
     "Dashboard": Dashboard,
     "Home": Home,
     "Lessons": Lessons,
+    "Partner": Partner,
     "Practice": Practice,
     "Profile": Profile,
     "Progress": Progress,

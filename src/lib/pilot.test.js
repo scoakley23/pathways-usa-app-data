@@ -1,49 +1,5 @@
-import { describe, it, expect, beforeEach } from 'vitest';
-import {
-  normalizeProgramCode, isAllowedProgramCode, rememberCodeFromUrl, loadPendingCode, clearPendingCode,
-  stageFromOnboarding, buildSignupAnswers, buildProfileAnswers, shouldShowPilotIntro, newPilotId, PENDING_CODE_KEY,
-} from './pilot';
-
-let store;
-beforeEach(() => {
-  store = {};
-  globalThis.localStorage = {
-    getItem: (k) => (k in store ? store[k] : null),
-    setItem: (k, v) => { store[k] = String(v); },
-    removeItem: (k) => { delete store[k]; },
-  };
-});
-
-describe('program code', () => {
-  it('ignores case and spaces', () => {
-    expect(normalizeProgramCode('  houston-pilot ')).toBe('HOUSTON-PILOT');
-    expect(isAllowedProgramCode('houston pilot')).toBe(true);
-    expect(isAllowedProgramCode('HOUSTON')).toBe(false);
-    expect(isAllowedProgramCode('')).toBe(false);
-  });
-  it('keeps ?code= on the device until the screen is seen', () => {
-    expect(rememberCodeFromUrl('?code=houston-pilot&x=1')).toBe('HOUSTON-PILOT');
-    expect(store[PENDING_CODE_KEY]).toBe('HOUSTON-PILOT');
-    expect(loadPendingCode()).toBe('HOUSTON-PILOT');
-    clearPendingCode();
-    expect(loadPendingCode()).toBe('');
-  });
-  it('ignores codes that are not program codes (e.g. a sign-in provider\'s ?code=)', () => {
-    expect(rememberCodeFromUrl('?code=4%2F0AfJohXk-random')).toBeNull();
-    expect(store[PENDING_CODE_KEY]).toBeUndefined();
-  });
-  it('a link without a code changes nothing', () => {
-    store[PENDING_CODE_KEY] = 'HOUSTON-PILOT';
-    expect(rememberCodeFromUrl('?invite=ABC')).toBeNull();
-    expect(loadPendingCode()).toBe('HOUSTON-PILOT');
-  });
-  it('works when storage is blocked', () => {
-    globalThis.localStorage = { getItem: () => { throw new Error('no'); }, setItem: () => { throw new Error('no'); }, removeItem: () => { throw new Error('no'); } };
-    expect(rememberCodeFromUrl('?code=HOUSTON-PILOT')).toBe('HOUSTON-PILOT');
-    expect(loadPendingCode()).toBe('');
-    expect(() => clearPendingCode()).not.toThrow();
-  });
-});
+import { describe, it, expect } from 'vitest';
+import { stageFromOnboarding, buildSignupAnswers, buildProfileAnswers, shouldShowPilotIntro, newPilotId } from './pilot';
 
 describe('signup answers', () => {
   it('prefills the stage from Getting started', () => {
@@ -55,16 +11,15 @@ describe('signup answers', () => {
   });
 
   it('saves only the answered questions', () => {
-    const { checkIn, profile, error } = buildSignupAnswers({ programCode: 'houston-pilot', state: 'TX', stage: 'filed_waiting', confidence: '3', reminders: true });
-    expect(error).toBeNull();
+    const { checkIn, profile } = buildSignupAnswers({ state: 'TX', stage: 'filed_waiting', confidence: '3', reminders: true });
     expect(checkIn).toEqual({ kind: 'signup', stage: 'filed_waiting', confidence: '3' });
-    expect(profile).toEqual({ program_code: 'HOUSTON-PILOT', state: 'TX', checkin_email_reminders: true, pilot_intro_seen: true });
+    expect(profile).toEqual({ state: 'TX', checkin_email_reminders: true, pilot_intro_seen: true });
   });
 
   it('everything left blank: no check-in, reminders off', () => {
     const { checkIn, profile } = buildSignupAnswers({});
     expect(checkIn).toBeNull();
-    expect(profile).toEqual({ program_code: null, state: null, checkin_email_reminders: false, pilot_intro_seen: true });
+    expect(profile).toEqual({ state: null, checkin_email_reminders: false, pilot_intro_seen: true });
   });
 
   it('"I\'d rather not say" is saved as prefer_not', () => {
@@ -78,17 +33,12 @@ describe('signup answers', () => {
     expect(checkIn).toBeNull();
     expect(profile.state).toBeNull();
   });
-
-  it('an unknown code is not saved', () => {
-    expect(buildSignupAnswers({ programCode: 'NOPE' })).toEqual({ checkIn: null, profile: null, error: 'unknown_code' });
-  });
 });
 
-describe('Profile: state and program code', () => {
-  it('saves only state and code', () => {
-    expect(buildProfileAnswers({ programCode: 'houston-pilot', state: 'CA' })).toEqual({ profile: { program_code: 'HOUSTON-PILOT', state: 'CA' }, error: null });
-    expect(buildProfileAnswers({ programCode: '', state: '' })).toEqual({ profile: { program_code: null, state: null }, error: null });
-    expect(buildProfileAnswers({ programCode: 'NOPE', state: 'CA' }).error).toBe('unknown_code');
+describe('Profile: state', () => {
+  it('saves only the state', () => {
+    expect(buildProfileAnswers({ state: 'CA' })).toEqual({ state: 'CA' });
+    expect(buildProfileAnswers({ state: '' })).toEqual({ state: null });
   });
 });
 

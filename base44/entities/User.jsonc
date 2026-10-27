@@ -45,10 +45,6 @@
         "checked_at": { "type": "string", "format": "date-time" }
       }
     },
-    "program_code": {
-      "type": ["string", "null"],
-      "description": "Pilot: a partner organization's program code (e.g. HOUSTON-PILOT). Optional. Not the tutor invite code."
-    },
     "state": {
       "type": ["string", "null"],
       "description": "Pilot: two-letter U.S. state or territory code, or prefer_not. Optional. Never a zip code or city."

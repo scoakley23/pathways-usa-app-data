@@ -1,47 +1,36 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Loader2 } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { RaisedCard, PrimaryButton, QuietButton, Eyebrow } from '@/components/pathways/ui';
 import { Checkbox } from '@/components/ui/checkbox';
-import { buildSignupAnswers, loadPendingCode, clearPendingCode, stageFromOnboarding } from '@/lib/pilot';
+import { buildSignupAnswers, stageFromOnboarding } from '@/lib/pilot';
 import { loadStage } from '@/lib/onboarding';
 import usePilotText from './pilotStrings';
-import { ChoiceQuestion, ReadinessQuestion, StateSelect, ProgramCodeField } from './PilotFields';
+import { ChoiceQuestion, ReadinessQuestion, StateSelect } from './PilotFields';
 
 // "Help us improve Pathways": shown once on Home, after the learner's first
 // day (src/lib/pilot.js, shouldShowPilotIntro). Every question is optional;
 // Skip saves nothing but "seen". Answers become one OutcomeCheckIn of kind
-// "signup" plus the pilot fields on the account. Tutors never see any of it.
+// "signup" plus the pilot fields on the account. Partner programs never see
+// any of it.
 export default function HelpUsImprove({ user, language = 'en', onDone }) {
   const t = usePilotText(language);
-  const [programCode, setProgramCode] = useState(() => user?.program_code || loadPendingCode());
   const [state, setState] = useState(user?.state || '');
   const [stage, setStage] = useState(() => stageFromOnboarding(loadStage()));
   const [confidence, setConfidence] = useState('');
   const [reminders, setReminders] = useState(false);
-  const [codeUnknown, setCodeUnknown] = useState(false);
-  const codeRef = useRef(null);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState(false);
 
   const finish = async (save) => {
     setError(false);
-    let answers = null;
-    if (save) {
-      answers = buildSignupAnswers({ programCode, state, stage, confidence, reminders });
-      if (answers.error) {
-        setCodeUnknown(true);
-        codeRef.current?.focus();
-        return;
-      }
-    }
+    const answers = save ? buildSignupAnswers({ state, stage, confidence, reminders }) : null;
     setSaving(true);
     try {
       if (answers?.checkIn) {
         await base44.entities.OutcomeCheckIn.create({ user_email: user.email.toLowerCase().trim(), ...answers.checkIn });
       }
       await base44.auth.updateMe(answers ? answers.profile : { pilot_intro_seen: true });
-      clearPendingCode();
       onDone?.();
     } catch (e) {
       setError(true);
@@ -57,15 +46,6 @@ export default function HelpUsImprove({ user, language = 'en', onDone }) {
           <h1 id="pilot-title" className="font-display text-[36px] leading-tight text-pw-navy">{t('title')}</h1>
           <p className="text-base text-pw-navy">{t('intro')}</p>
         </div>
-
-        <ProgramCodeField
-          id="pilot-code"
-          value={programCode}
-          onChange={(v) => { setProgramCode(v); setCodeUnknown(false); }}
-          unknown={codeUnknown}
-          inputRef={codeRef}
-          t={t}
-        />
 
         <StateSelect id="pilot-state" value={state} onChange={setState} t={t} />
 
