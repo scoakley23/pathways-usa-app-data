@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import {
-  normalizeCode, activePartners, findActivePartner, partnersForStaff, cleanName, planJoin, memberView, canManage,
+  normalizeCode, activePartners, findActivePartner, partnersForStaff, cleanName, planJoin, memberView, canManage, programSummary,
 } from '../../base44/shared/partners.js';
 import { rememberProgramFromUrl, loadPendingProgram, clearPendingProgram, PENDING_PROGRAM_KEY } from './programLink';
 import partnerEntity from '../../base44/entities/Partner.jsonc?raw';
@@ -70,6 +70,64 @@ describe('partner programs', () => {
     expect(canManage({ partner_code: 'HARVARD-CTP' }, staff)).toBe(true);
     expect(canManage({ partner_code: 'EVENING' }, staff)).toBe(false);
     expect(canManage(null, staff)).toBe(false);
+  });
+});
+
+describe('program totals', () => {
+  const today = new Date('2026-10-27T12:00:00Z');
+  const m = (id, email, extra = {}) => ({ id, user_email: email, partner_code: 'HARVARD-CTP', status: 'confirmed', ...extra });
+  const confirmed = [
+    m('m1', 'ana@example.com', { display_name: 'Ana', share_progress: true }),
+    m('m2', 'Bo@Example.com', { share_progress: false }),
+    m('m3', 'cy@example.com', { share_progress: true }),
+  ];
+  const data = {
+    users: [
+      { email: 'ana@example.com', skill_levels: { civics: 'strong', reading: 'getting_there', writing: 'start_here', speaking: 'strong' } },
+      { email: 'bo@example.com', skill_levels: { civics: 'start_here' } },
+      { email: 'cy@example.com', skill_levels: null },
+      { email: 'stranger@example.com', skill_levels: { civics: 'strong' } },
+    ],
+    lessons: [
+      { user_email: 'ana@example.com', completed: true },
+      { user_email: 'ana@example.com', completed: true },
+      { user_email: 'bo@example.com', completed: false },
+      { user_email: 'stranger@example.com', completed: true },
+    ],
+    sections: [{ user_email: 'cy@example.com', completed: true }],
+    activity: [
+      { user_email: 'ana@example.com', date: '2026-10-27' },
+      { user_email: 'ana@example.com', date: '2026-10-26' },
+      { user_email: 'bo@example.com', date: '2026-10-10' },
+      { user_email: 'cy@example.com', date: '2026-08-01' },
+      { user_email: 'stranger@example.com', date: '2026-10-27' },
+    ],
+  };
+
+  it('counts exactly, over confirmed learners only', () => {
+    const { totals } = programSummary(confirmed, data, { today });
+    expect(totals).toMatchObject({
+      learners: 3, activeWeek: 1, activeMonth: 2, quickCheckDone: 2,
+      lessonsCompleted: 2, learnersWithLesson: 1, n400SectionsRead: 1, learnersWithN400: 1,
+    });
+    expect(totals.levels.civics).toEqual({ start_here: 1, getting_there: 0, strong: 1 });
+    expect(totals.levels.writing).toEqual({ start_here: 1, getting_there: 0, strong: 0 });
+  });
+
+  it('lists only learners who chose to share, where the program allows it', () => {
+    expect(programSummary(confirmed, data, { today }).learners).toEqual([]);
+    const { learners } = programSummary(confirmed, data, { today, shareAllowed: true });
+    expect(learners.map((l) => l.name)).toEqual(['Ana', 'cy@example.com']);
+    expect(learners[0]).toEqual({
+      id: 'm1', name: 'Ana',
+      levels: { civics: 'strong', reading: 'getting_there', writing: 'start_here', speaking: 'strong' },
+      lessonsCompleted: 2, n400SectionsRead: 0,
+    });
+  });
+
+  it('never lists when someone was active', () => {
+    const { learners } = programSummary(confirmed, data, { today, shareAllowed: true });
+    for (const l of learners) expect(Object.keys(l).sort()).toEqual(['id', 'lessonsCompleted', 'levels', 'n400SectionsRead', 'name']);
   });
 });
 

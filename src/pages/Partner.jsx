@@ -3,11 +3,14 @@ import { Check, Loader2, X } from 'lucide-react';
 import { toast } from 'sonner';
 import PageHeader from '@/components/PageHeader';
 import { RaisedCard, PrimaryButton, SecondaryButton, QuietButton, PillButton } from '@/components/pathways/ui';
-import { staffPrograms, programMembers, setMemberStatus } from '@/lib/partners';
+import { staffPrograms, programMembers, setMemberStatus, programSummaryFor } from '@/lib/partners';
+import { ProgramTotals, SharedLearners } from '@/components/partners/ProgramSummary';
 
-// /Partner: for a partner program's staff (Partner.staff_emails). Learners
-// who said they study with the program, to confirm or mark "not ours". Staff
-// see the name the learner gave (or their email) and nothing else.
+// /Partner: for a partner program's staff (Partner.staff_emails). Totals
+// over the program's confirmed learners, the learners who chose to share
+// their own progress (where the program allows it), and everyone who said
+// they study with the program, to confirm or mark "not ours". Staff see the
+// name the learner gave (or their email), never answers or chats.
 
 const SECTIONS = [
   { status: 'pending', title: 'Waiting for you', empty: 'No one is waiting.' },
@@ -42,6 +45,7 @@ export default function Partner() {
   const [programs, setPrograms] = useState(null); // null = loading
   const [code, setCode] = useState('');
   const [members, setMembers] = useState(null);
+  const [summary, setSummary] = useState(null);
   const [busyId, setBusyId] = useState(null);
   const [error, setError] = useState(false);
 
@@ -55,9 +59,13 @@ export default function Partner() {
     if (!code) return undefined;
     let active = true;
     setMembers(null);
+    setSummary(null);
     setError(false);
     programMembers(code)
       .then((list) => { if (active) setMembers(list); })
+      .catch(() => { if (active) setError(true); });
+    programSummaryFor(code)
+      .then((s) => { if (active) setSummary(s); })
       .catch(() => { if (active) setError(true); });
     return () => { active = false; };
   }, [code]);
@@ -67,6 +75,7 @@ export default function Partner() {
     try {
       const updated = await setMemberStatus(member.id, status);
       setMembers((list) => list.map((m) => (m.id === member.id ? { ...m, ...updated, since: m.since } : m)));
+      programSummaryFor(code).then(setSummary).catch(() => {});
     } catch (e) {
       toast.error('Something went wrong. Please try again.');
     } finally {
@@ -97,7 +106,7 @@ export default function Partner() {
       <PageHeader
         tag="Partner"
         title={program.name}
-        subtitle="Learners who said they study with you. Confirm the ones you know, and mark anyone else “Not ours”."
+        subtitle="How your learners are doing, and who said they study with you."
       />
 
       {programs.length > 1 && (
@@ -113,13 +122,23 @@ export default function Partner() {
       {error && <p role="alert" className="text-base font-semibold text-pw-red-ink">Couldn't load your learners. Please try again.</p>}
       {!members && !error && <div className="flex justify-center py-10"><Loader2 className="w-6 h-6 animate-spin text-pw-muted" aria-label="Loading" /></div>}
 
+      {summary && <ProgramTotals totals={summary.totals} />}
+      {summary && program.shareLearners && <SharedLearners learners={summary.learners} />}
+
+      {members && (
+        <div className="space-y-1">
+          <h2 className="font-display text-[28px] leading-tight">Who said they study with you</h2>
+          <p className="text-base text-pw-muted">Confirm the ones you know, and mark anyone else “Not ours”. Only confirmed learners count above.</p>
+        </div>
+      )}
+
       {members && SECTIONS.map(({ status, title, empty }) => {
         const list = byStatus(status);
         return (
           <section key={status} aria-labelledby={`partner-${status}`} className="space-y-2">
-            <h2 id={`partner-${status}`} className="font-display text-[28px] leading-tight">
-              {title} <span className="font-display text-pw-muted">{list.length}</span>
-            </h2>
+            <h3 id={`partner-${status}`} className="text-xl font-bold">
+              {title} <span className="font-display font-normal text-pw-muted">{list.length}</span>
+            </h3>
             <RaisedCard padding="px-5 py-2">
               {list.length === 0
                 ? <p className="py-3 text-base text-pw-muted">{empty}</p>
@@ -130,7 +149,7 @@ export default function Partner() {
       })}
 
       <p className="text-base text-pw-muted">
-        You see the name each learner gave you, or their email. Pathways never shows programs a learner's answers, their chats with the AI tutor, or anything about their case.
+        You see the name each learner gave you, or their email. Totals count confirmed learners only. Pathways never shows programs a learner's answers, their chats with the AI tutor, their check-in answers, or anything about their case.
       </p>
     </div>
   );

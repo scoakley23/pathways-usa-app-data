@@ -29,7 +29,13 @@ describe('pilot privacy', () => {
   });
 
   it('no backend function touches pilot data', () => {
-    for (const src of Object.values(functionFiles)) expect(src).not.toMatch(PILOT);
+    // The one exception: a partner program's totals count how many of its
+    // confirmed learners opened the app this week and month (ActivityDay
+    // dates, counted, never listed; src/lib/partners.test.js).
+    const PILOT_BUT_DAYS = new RegExp(PILOT.source.replace('ActivityDay|', ''));
+    for (const [file, src] of Object.entries(functionFiles)) {
+      expect(src, file).not.toMatch(file.endsWith('functions/partner/entry.js') ? PILOT_BUT_DAYS : PILOT);
+    }
   });
 
   it('notifications never touch pilot data', () => {

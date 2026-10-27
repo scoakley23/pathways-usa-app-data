@@ -23,6 +23,8 @@ export const joinProgram = (code, { name, share } = {}) =>
   invoke({ action: 'join', code, name, share }).then((r) => r.membership);
 export const staffPrograms = () => invoke({ action: 'staff' }).then((r) => r.partners || []);
 export const programMembers = (code) => invoke({ action: 'members', code }).then((r) => r.members || []);
+// { totals, learners } over the program's confirmed learners (staff only).
+export const programSummaryFor = (code) => invoke({ action: 'summary', code });
 export const setMemberStatus = (id, status) => invoke({ action: 'setStatus', id, status }).then((r) => r.member);
 
 const emailOf = (user) => (user?.email || '').toLowerCase().trim();
