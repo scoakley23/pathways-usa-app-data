@@ -30,10 +30,6 @@
       "type": "string",
       "format": "date-time"
     },
-    "assignment_id": {
-      "type": "string",
-      "description": "Optional ID of the assignment this progress fulfills"
-    },
     "ease_factor": {
       "type": "number",
       "default": 2.5,

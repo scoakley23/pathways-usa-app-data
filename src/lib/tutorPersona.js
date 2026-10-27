@@ -1,5 +1,4 @@
 // The AI tutor's identity: one config the rest of the app reads.
-// (Not the human tutor in My Classroom — that lives in components/tutor/.)
 
 export const DEFAULT_TUTOR_NAME = 'Vía';
 export const MAX_TUTOR_NAME_LENGTH = 20;

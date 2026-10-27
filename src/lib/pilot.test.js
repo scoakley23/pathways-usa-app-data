@@ -95,16 +95,15 @@ describe('Profile: state and program code', () => {
 describe('when the screen shows', () => {
   const learner = { email: 'test@example.com', skill_levels: { civics: 'strong' } };
   it('learners after their first day, once', () => {
-    expect(shouldShowPilotIntro({ user: learner, role: 'student' })).toBe(true);
-    expect(shouldShowPilotIntro({ user: { ...learner, pilot_intro_seen: true }, role: 'student' })).toBe(false);
+    expect(shouldShowPilotIntro({ user: learner })).toBe(true);
+    expect(shouldShowPilotIntro({ user: { ...learner, pilot_intro_seen: true } })).toBe(false);
   });
   it('not on the first day (no quick check and no plan)', () => {
-    expect(shouldShowPilotIntro({ user: { email: 'test@example.com' }, role: 'student' })).toBe(false);
-    expect(shouldShowPilotIntro({ user: { email: 'test@example.com' }, role: 'student', hasPlan: true })).toBe(true);
+    expect(shouldShowPilotIntro({ user: { email: 'test@example.com' } })).toBe(false);
+    expect(shouldShowPilotIntro({ user: { email: 'test@example.com' }, hasPlan: true })).toBe(true);
   });
-  it('never for tutors or signed-out visitors', () => {
-    expect(shouldShowPilotIntro({ user: learner, role: 'tutor' })).toBe(false);
-    expect(shouldShowPilotIntro({ user: null, role: null })).toBe(false);
+  it('never for signed-out visitors', () => {
+    expect(shouldShowPilotIntro({ user: null })).toBe(false);
   });
 });
 

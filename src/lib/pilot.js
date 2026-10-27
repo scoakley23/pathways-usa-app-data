@@ -72,10 +72,10 @@ export function buildSignupAnswers({ programCode, state, stage, confidence, remi
   };
 }
 
-// Show the screen once, to learners (not tutors), after their first day:
+// Show the screen once, after the learner's first day:
 // new learners finish Getting started and the quick check first.
-export function shouldShowPilotIntro({ user, role, hasPlan = false }) {
-  if (!user || role === 'tutor' || user.pilot_intro_seen) return false;
+export function shouldShowPilotIntro({ user, hasPlan = false }) {
+  if (!user || user.pilot_intro_seen) return false;
   return !!(user.skill_levels || hasPlan);
 }
 

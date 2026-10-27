@@ -89,7 +89,16 @@ Optional outcome questions for the partner pilot ("Help us improve Pathways", sh
 | Pilot profile fields | `User` (account) | `program_code` (must be on the allowed list), `state` (two-letter code or prefer not; never ZIP or city), `checkin_email_reminders` (off by default), `pilot_id` (random, for exports), `pilot_intro_seen` | the learner (and admins, like every `User` field) |
 | Program code from a link | `localStorage['pathways_program_code']` | a known program code from `?code=`, until the screen is answered or skipped | device only |
 
-- **Tutors and partner staff see none of it.** Tutors get learner data only through `base44/functions/student-progress` (UserProgress, LessonProgress, N400SectionProgress) and their own `Assignment`, `Message`, `TutorRelationship`, `PublicProfile` and `Notification` reads; none of these hold pilot data, and `User` is not readable by other users. `src/lib/pilotPrivacy.test.js` fails if a backend function, a tutor/chat/notification screen, or any file other than the screen, the activity recorder and Delete my data touches the new entities or fields.
+- **Partner staff see none of it.** `User` is not readable by other users. `src/lib/pilotPrivacy.test.js` fails if a backend function, a notification screen, or any file other than the screen, the activity recorder and Delete my data touches the new entities or fields. (Human tutor accounts were removed on 2026-10-27; see the last section.)
 - **Not sent to the AI.** Only the fixed English text of the screen is translated (`usePilotText`, cached on the device).
 - **Stage is new server-side data.** Getting started's stage answer stays on the device; the pilot screen only prefills its own stage question from it, and saves it only when the learner presses Save.
 - **Delete my data** deletes `OutcomeCheckIn` and `ActivityDay` and resets the five fields (`src/lib/deleteMyData.js`; `src/lib/deleteMyData.test.js` checks every learner entity and every `User` field is covered).
+
+## Human tutor accounts removed (2026-10-27)
+
+Pathways now focuses on learners studying with Vía. Nobody was using the human-tutor side, so it was removed:
+
+- **Gone from the app:** the role picker at sign-up (everyone is a learner; the first sign-in makes the `PublicProfile` and opens Getting started), the Tutor Portal and My Classroom (`/Tutor`), the Messages page, tutor chat in "Talk to a person" (now the team email form only), "From your tutor" assignments on Practice, and the tutor dashboard on Profile.
+- **Gone from Base44:** the `TutorRelationship`, `Assignment` and `Message` entities, the `tutor-link` and `student-progress` functions, `PublicProfile.invite_code` / `account_type`, and `UserProgress.assignment_id`.
+- **Effect on the tables above:** "their tutor" no longer applies anywhere. `UserProgress`, `LessonProgress` and `N400SectionProgress` are visible to the learner and Pathways staff only. Delete my data no longer needs to delete chat messages, assignments or tutor links.
+

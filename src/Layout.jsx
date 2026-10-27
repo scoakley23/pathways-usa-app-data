@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import { BookOpen, Mic, CheckCircle, LogOut, Menu, Settings, GraduationCap, User, House, School, FileText, MapPin, CalendarCheck } from 'lucide-react';
+import { BookOpen, Mic, CheckCircle, LogOut, Menu, Settings, User, House, FileText, MapPin, CalendarCheck } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { base44 } from '@/api/base44Client';
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import RoleSelectionDialog from '@/components/onboarding/RoleSelectionDialog';
 import NotificationCenter from '@/components/notifications/NotificationCenter';
 import StudyBuddy, { openTutorChat } from '@/components/ai/StudyBuddy';
 import TabBar from '@/components/pathways/TabBar';
@@ -17,10 +16,10 @@ import useAppLanguage from '@/hooks/useAppLanguage';
 import { clearTutorPhoto } from '@/lib/tutorPhoto';
 import { rememberCodeFromUrl } from '@/lib/pilot';
 import { recordActivityDay } from '@/lib/activityDay';
+import { ensurePublicProfile } from '@/lib/profileService';
 import { useAuth } from '@/lib/AuthContext';
 import { AutoReadContext } from '@/components/persona/useAutoRead';
 import DailyPracticeReminder from '@/components/notifications/DailyPracticeReminder';
-import TutorInvitePrompt from '@/components/tutor/TutorInvitePrompt';
 import { Toaster } from "sonner";
 
 // Lesson screens are "focus mode": they have a pinned Continue button, so the
@@ -28,12 +27,14 @@ import { Toaster } from "sonner";
 // message aloud on these screens (onboarding, quick check, lessons).
 const FOCUS_ROUTES = ['/quick-check', '/tutor-demo', '/learn', '/review', '/n400-coach'];
 
+// The account whose profile was checked in this app load (one lookup, not one
+// per page).
+let profileChecked = null;
+
 export default function Layout({ children }) {
   const location = useLocation();
   const [user, setUser] = React.useState(null);
-  const [role, setRole] = React.useState(null);
   const [isOpen, setIsOpen] = React.useState(false);
-  const [showOnboarding, setShowOnboarding] = React.useState(false);
   const navigate = useNavigate();
   const { isAuthenticated, isLoadingAuth } = useAuth();
   const [language, setLanguage] = useAppLanguage();
@@ -52,74 +53,33 @@ export default function Layout({ children }) {
 
   // Pilot: the days a learner opens the app (date only, once a day).
   React.useEffect(() => {
-    if (!user?.email || role !== 'student') return;
+    if (!user?.email) return;
     recordActivityDay(user, { entities: base44.entities, auth: base44.auth }).catch(() => {});
-  }, [user, role]);
+  }, [user]);
 
+  // Everyone who signs in is a learner. The first sign-in makes their
+  // profile and goes straight to "Getting started" and the quick check.
   React.useEffect(() => {
-    const checkUser = async () => {
-      try {
-        const currentUser = await base44.auth.me();
-        setUser(currentUser);
-        
-        const normalizedEmail = currentUser.email.toLowerCase().trim();
-
-        // Check localStorage cache first to avoid re-showing onboarding on every navigation
-        const cachedRole = localStorage.getItem(`role_${normalizedEmail}`);
-        if (cachedRole) {
-          setRole(cachedRole);
-          setShowOnboarding(false);
-          return;
-        }
-        
-        // Look up the user's profile (creation is centralized, so duplicates are prevented at the source)
-        const allProfiles = await base44.entities.PublicProfile.filter(
-             { user_email: normalizedEmail }, '-created_date', 100
-        );
-        
-        const primaryProfile = allProfiles.find(p => p.account_type) || allProfiles[0];
-        if (primaryProfile) {
-          if (primaryProfile.account_type) {
-            localStorage.setItem(`role_${normalizedEmail}`, primaryProfile.account_type);
-          }
-          setRole(primaryProfile.account_type);
-          setShowOnboarding(!primaryProfile.account_type);
-        } else {
-          // No profile - show onboarding
-          setShowOnboarding(true);
-        }
-        
-      } catch (e) {
-        console.error("Auth check error:", e);
-        setShowOnboarding(false);
-      }
-    };
-    
-    checkUser();
-  }, [location.search]);
+    base44.auth.me().then(async (currentUser) => {
+      setUser(currentUser);
+      if (profileChecked === currentUser.email) return;
+      profileChecked = currentUser.email;
+      const name = currentUser.full_name || currentUser.email.split('@')[0];
+      const { created } = await ensurePublicProfile(currentUser.email, {}, { display_name: name });
+      if (created) navigate('/quick-check');
+    }).catch(() => {});
+  }, [location.search, navigate]);
 
   const getNavItems = React.useMemo(() => {
     const items = [
       { label: 'Today', path: '/', icon: House },
     ];
 
-    // Dynamic Navigation based on Role
-    if (role === 'tutor') {
-        items.push({ label: 'Tutor Portal', path: '/Tutor', icon: GraduationCap });
-    } else {
-        items.push({ label: 'Lessons', path: '/Lessons', icon: BookOpen });
-        items.push({ label: 'Practice', path: '/Practice', icon: Mic });
-        items.push({ label: 'Interview Day', path: '/interview-day', icon: CalendarCheck });
-        items.push({ label: 'N-400', path: '/n400-guide', icon: FileText });
-        items.push({ label: 'Progress', path: '/Progress', icon: CheckCircle });
-        
-        if (role === 'student' || (!role && user)) {
-          items.push({ label: 'My Classroom', path: '/Tutor', icon: School });
-        } else if (!user) {
-          items.push({ label: 'Tutors', path: '/Tutor', icon: School });
-        }
-    }
-
+    items.push({ label: 'Lessons', path: '/Lessons', icon: BookOpen });
+    items.push({ label: 'Practice', path: '/Practice', icon: Mic });
+    items.push({ label: 'Interview Day', path: '/interview-day', icon: CalendarCheck });
+    items.push({ label: 'N-400', path: '/n400-guide', icon: FileText });
+    items.push({ label: 'Progress', path: '/Progress', icon: CheckCircle });
     items.push({ label: 'Resources', path: '/resources', icon: MapPin });
     items.push({ label: 'Profile', path: '/Profile', icon: User });
 
@@ -128,12 +88,12 @@ export default function Layout({ children }) {
     }
 
     return items;
-  }, [role, user]);
+  }, [user]);
 
   const navItems = getNavItems;
-  // The four places (tutors: Today and the Tutor Portal) sit in the header on
-  // desktop and in the tab bar on phones; Menu holds the rest.
-  const PRIMARY = role === 'tutor' ? ['/', '/Tutor'] : ['/', '/Lessons', '/Practice', '/n400-guide'];
+  // The four places sit in the header on desktop and in the tab bar on
+  // phones; Menu holds the rest.
+  const PRIMARY = ['/', '/Lessons', '/Practice', '/n400-guide'];
   const primaryItems = navItems.filter((item) => PRIMARY.includes(item.path));
   const isCurrent = (path) => location.pathname.toLowerCase() === path.toLowerCase();
 
@@ -147,8 +107,8 @@ export default function Layout({ children }) {
   const practiceRun = location.pathname.toLowerCase() === '/practice' && new URLSearchParams(location.search).has('mode');
   const readAloud = FOCUS_ROUTES.includes(location.pathname);
   const focusMode = readAloud || practiceRun;
-  const showTabs = role !== 'tutor' && !focusMode;
-  // Phones without the tab bar (tutors, lesson screens) find the four places
+  const showTabs = !focusMode;
+  // Phones without the tab bar (lesson screens) find the four places
   // in Menu too; with the tab bar, Menu lists only the rest.
   const menuItems = navItems
     .map((item) => ({ ...item, primary: PRIMARY.includes(item.path) }))
@@ -242,11 +202,11 @@ export default function Layout({ children }) {
         </div>
       </nav>}
 
-      <main id="main" tabIndex={-1} key={role || 'init'} className={`container mx-auto px-4 pt-6 max-w-5xl focus:outline-none ${showTabs ? 'pb-32 lg:pb-24' : 'pb-24'}`}>
+      <main id="main" tabIndex={-1} className={`container mx-auto px-4 pt-6 max-w-5xl focus:outline-none ${showTabs ? 'pb-32 lg:pb-24' : 'pb-24'}`}>
         <AutoReadContext.Provider value={readAloud}>
         {React.Children.map(children, child => {
             if (React.isValidElement(child)) {
-                return React.cloneElement(child, { cachedUser: user, cachedRole: role });
+                return React.cloneElement(child, { cachedUser: user });
             }
             return child;
         })}
@@ -259,24 +219,6 @@ export default function Layout({ children }) {
         </p>
       </footer>}
 
-      {showOnboarding && user && (
-          <RoleSelectionDialog 
-              isOpen={showOnboarding} 
-              userEmail={user.email}
-              userName={user.full_name}
-              onComplete={(selectedRole) => {
-                  if (user?.email) {
-                    localStorage.setItem(`role_${user.email.toLowerCase().trim()}`, selectedRole);
-                  }
-                  setRole(selectedRole);
-                  setShowOnboarding(false);
-                  // New learners go straight to "Getting started" (language,
-                  // tutor, where they are), then the quick check.
-                  if (selectedRole === 'student') navigate('/quick-check');
-              }}
-          />
-      )}
-      {role === 'student' && !focusMode && <TutorInvitePrompt search={location.search} />}
       {!focusMode && <StudyBuddy aboveTabBar={showTabs} />}
       {showTabs && <TabBar pathname={location.pathname} onAskTutor={askTutor} />}
       {/* Interview Day writes nothing, so the daily reminder waits for another page. */}

@@ -19,12 +19,6 @@ export default function DailyPracticeReminder() {
         // Already reminded today — skip
         if (localStorage.getItem(reminderKey)) return;
 
-        // Only remind students
-        const profiles = await base44.entities.PublicProfile.filter(
-          { user_email: normalizedEmail }, null, 1
-        );
-        if (profiles.length === 0 || profiles[0].account_type !== 'student') return;
-
         // Check UserProgress for any activity today
         const progress = await base44.entities.UserProgress.filter({
           user_email: normalizedEmail,
