@@ -77,3 +77,19 @@ The "Talk to a lawyer first" page became the **Resource Hub** (`/resources`; `/l
 - Saved places (signed-in learners, "Save" on a place): only the listing's id is stored with the email, so the list follows the learner to other devices. The places a learner saves can hint at the area they live in and the kind of help they want; that was accepted so the list follows the account, and nothing else (location, ZIP, search) is stored with it.
 - Relevance checks, services and languages are worked out by keyword rules in `scripts/resources/build_update.py` from NLD's public program descriptions and each program's public website front page, before import. No learner data is involved; hidden places keep their reason in the admin-only `relevance_note`.
 
+
+## Addendum — Pilot check-ins, part 1 (October 2026)
+
+Optional outcome questions for the partner pilot ("Help us improve Pathways", shown once on Home after the learner's first day; `src/components/pilot/`, logic in `src/lib/pilot.js`, codes in `src/config/pilot.js`). AI Policy section: "Pilot Check-ins and Outcome Questions".
+
+| Data | Where | What exactly | Who can see it |
+| --- | --- | --- | --- |
+| Sign-up answers | `OutcomeCheckIn` (Base44, new, owner-only) | email + kind (`signup`) + fixed choices only: stage (not filed / filed, waiting / interview scheduled / prefer not), readiness 1–5 or prefer not. Unanswered questions are left out; no row if nothing was answered. No free text, no dates | the learner only for now (admin reporting comes with the pilot dashboard) |
+| Activity days | `ActivityDay` (Base44, new, owner-only) | email + local date (YYYY-MM-DD), at most one a day (`src/lib/activityDay.js`) | the learner only for now |
+| Pilot profile fields | `User` (account) | `program_code` (must be on the allowed list), `state` (two-letter code or prefer not; never ZIP or city), `checkin_email_reminders` (off by default), `pilot_id` (random, for exports), `pilot_intro_seen` | the learner (and admins, like every `User` field) |
+| Program code from a link | `localStorage['pathways_program_code']` | a known program code from `?code=`, until the screen is answered or skipped | device only |
+
+- **Tutors and partner staff see none of it.** Tutors get learner data only through `base44/functions/student-progress` (UserProgress, LessonProgress, N400SectionProgress) and their own `Assignment`, `Message`, `TutorRelationship`, `PublicProfile` and `Notification` reads; none of these hold pilot data, and `User` is not readable by other users. `src/lib/pilotPrivacy.test.js` fails if a backend function, a tutor/chat/notification screen, or any file other than the screen, the activity recorder and Delete my data touches the new entities or fields.
+- **Not sent to the AI.** Only the fixed English text of the screen is translated (`usePilotText`, cached on the device).
+- **Stage is new server-side data.** Getting started's stage answer stays on the device; the pilot screen only prefills its own stage question from it, and saves it only when the learner presses Save.
+- **Delete my data** deletes `OutcomeCheckIn` and `ActivityDay` and resets the five fields (`src/lib/deleteMyData.js`; `src/lib/deleteMyData.test.js` checks every learner entity and every `User` field is covered).

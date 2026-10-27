@@ -13,6 +13,7 @@ import { ensurePublicProfile } from '@/lib/profileService';
 import VoiceSettings from '@/components/utils/VoiceSettings';
 import DeleteMyData from '@/components/profile/DeleteMyData';
 import YourTutorCard from '@/components/persona/YourTutorCard';
+import PilotSettingsCard from '@/components/pilot/PilotSettingsCard';
 import PageHeader from '@/components/PageHeader';
 import { RaisedCard } from '@/components/pathways/ui';
 
@@ -228,6 +229,12 @@ export default function Profile() {
           {!(publicProfile && publicProfile.account_type === 'tutor') && (
             <div className="w-full">
               <YourTutorCard />
+            </div>
+          )}
+
+          {!(publicProfile && publicProfile.account_type === 'tutor') && (
+            <div className="w-full">
+              <PilotSettingsCard user={user} />
             </div>
           )}
 

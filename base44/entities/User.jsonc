@@ -44,6 +44,28 @@
         "speaking": { "type": ["string", "null"], "enum": ["strong", "getting_there", "start_here", null] },
         "checked_at": { "type": "string", "format": "date-time" }
       }
+    },
+    "program_code": {
+      "type": ["string", "null"],
+      "description": "Pilot: a partner organization's program code (e.g. HOUSTON-PILOT). Optional. Not the tutor invite code."
+    },
+    "state": {
+      "type": ["string", "null"],
+      "description": "Pilot: two-letter U.S. state or territory code, or prefer_not. Optional. Never a zip code or city."
+    },
+    "checkin_email_reminders": {
+      "type": "boolean",
+      "default": false,
+      "description": "Pilot: the learner asked for a short email reminder at 3, 6 and 12 months. Off unless they turn it on."
+    },
+    "pilot_id": {
+      "type": ["string", "null"],
+      "description": "Pilot: a random ID made once, used only in exports instead of the email."
+    },
+    "pilot_intro_seen": {
+      "type": "boolean",
+      "default": false,
+      "description": "Pilot: the learner has seen the 'Help us improve Pathways' screen (answered or skipped)."
     }
   },
   "required": [

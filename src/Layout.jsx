@@ -15,6 +15,8 @@ import TutorAvatar from '@/components/persona/TutorAvatar';
 import useTutorProfile from '@/components/persona/useTutorProfile';
 import useAppLanguage from '@/hooks/useAppLanguage';
 import { clearTutorPhoto } from '@/lib/tutorPhoto';
+import { rememberCodeFromUrl } from '@/lib/pilot';
+import { recordActivityDay } from '@/lib/activityDay';
 import { useAuth } from '@/lib/AuthContext';
 import { AutoReadContext } from '@/components/persona/useAutoRead';
 import DailyPracticeReminder from '@/components/notifications/DailyPracticeReminder';
@@ -43,6 +45,16 @@ export default function Layout({ children }) {
   // Vía is always the V mark now: delete any old tutor photo left on this
   // device (once per app load; cheap and harmless when there is none).
   React.useEffect(() => { clearTutorPhoto(); }, []);
+
+  // A partner's link (?code=XXXX) prefills the program code on "Help us
+  // improve Pathways"; it waits on this device through the sign-in.
+  React.useEffect(() => { rememberCodeFromUrl(location.search); }, [location.search]);
+
+  // Pilot: the days a learner opens the app (date only, once a day).
+  React.useEffect(() => {
+    if (!user?.email || role !== 'student') return;
+    recordActivityDay(user, { entities: base44.entities, auth: base44.auth }).catch(() => {});
+  }, [user, role]);
 
   React.useEffect(() => {
     const checkUser = async () => {

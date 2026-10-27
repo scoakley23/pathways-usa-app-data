@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Trash2, Loader2, AlertTriangle } from 'lucide-react';
 import { toast } from "sonner";
+import { deleteSteps, ACCOUNT_RESET } from '@/lib/deleteMyData';
 
 // Everything the app keeps in this browser: language, target date, voice
 // settings, cached translations, civics version, reminders, role cache.
@@ -32,23 +33,7 @@ export default function DeleteMyData({ userEmail }) {
 
   const handleDelete = async () => {
     setDeleting(true);
-    const email = userEmail.toLowerCase().trim();
-    const variants = [...new Set([email, userEmail])];
-
-    const steps = [
-      ['chat messages', 'Message', { $or: variants.flatMap(v => [{ sender_email: v }, { receiver_email: v }]) }],
-      ['AI study buddy history', 'AIStudyLog', { user_email: { $in: variants } }],
-      ['lesson notes', 'LessonNotes', { user_email: { $in: variants } }],
-      ['lesson progress & quiz history', 'LessonProgress', { user_email: { $in: variants } }],
-      ['practice progress', 'UserProgress', { user_email: { $in: variants } }],
-      ['assignments', 'Assignment', { $or: variants.flatMap(v => [{ student_email: v }, { tutor_email: v }]) }],
-      ['tutor connections', 'TutorRelationship', { $or: variants.flatMap(v => [{ tutor_email: v }, { student_email: v }]) }],
-      ['notifications', 'Notification', { user_email: { $in: variants } }],
-      ['interview history', 'InterviewSession', { user_email: { $in: variants } }],
-      ['profile', 'PublicProfile', { user_email: { $in: variants } }],
-      ['N-400 guide progress', 'N400SectionProgress', { user_email: { $in: variants } }],
-      ['saved places', 'SavedPlace', { user_email: { $in: variants } }],
-    ];
+    const steps = deleteSteps(userEmail);
 
     try {
       for (let i = 0; i < steps.length; i++) {
@@ -58,7 +43,7 @@ export default function DeleteMyData({ userEmail }) {
       // The sign-in account itself can't be deleted from the app, so reset
       // the learner fields stored on it.
       setProgress('Resetting your account details...');
-      await base44.auth.updateMe({ display_name: 'Learner', points: 0, badges: [], max_streak: 0, tutor_profile: null, skill_levels: null });
+      await base44.auth.updateMe(ACCOUNT_RESET);
       clearDeviceData();
       setProgress('Done. Signing you out...');
       toast.success("Your data has been deleted. You are being signed out.");
@@ -83,7 +68,7 @@ export default function DeleteMyData({ userEmail }) {
         <CardDescription className="text-pw-navy">
           Permanently erase everything tied to your email: your chat messages (including the copies in the other person's history),
           AI study buddy history, lesson notes, progress & quiz scores, mock interview scores, N-400 guide section completion, assignments,
-          tutor connections, notifications, and your profile. Your points, badges, display name, tutor settings, and quick check levels are reset, and the app's data on
+          tutor connections, notifications, saved places, your answers to the "Help us improve Pathways" questions, the days you used the app, and your profile. Your points, badges, display name, tutor settings, quick check levels, state, program code and reminder setting are reset, and the app's data on
           this device (your target date, language, and settings) is cleared. This cannot be undone.
         </CardDescription>
       </CardHeader>
@@ -103,7 +88,7 @@ export default function DeleteMyData({ userEmail }) {
               <AlertDialogHeader>
                 <AlertDialogTitle className="text-pw-red-ink">Delete all your data?</AlertDialogTitle>
                 <AlertDialogDescription>
-                  This permanently removes your chats, study history, notes, progress, interview scores, assignments, and profile from Pathways USA, and clears the app's data on this device.
+                  This permanently removes your chats, study history, notes, progress, interview scores, assignments, check-in answers, activity dates, and profile from Pathways USA, and clears the app's data on this device.
                   Your saved representatives information is included. This action cannot be undone — you'll be signed out afterwards.
                 </AlertDialogDescription>
               </AlertDialogHeader>

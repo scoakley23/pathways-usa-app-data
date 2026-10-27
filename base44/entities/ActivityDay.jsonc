@@ -1,0 +1,26 @@
+// The days a learner opened the app: one row per learner per day, the date
+// only (no time, nothing about what they did). Owner-only; erased by
+// "Delete all my data".
+{
+  "name": "ActivityDay",
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string",
+      "description": "The learner's local date, YYYY-MM-DD"
+    }
+  },
+  "required": [
+    "user_email",
+    "date"
+  ],
+  "rls": {
+    "create": { "data.user_email": "{{user.email}}" },
+    "read": { "data.user_email": "{{user.email}}" },
+    "update": { "data.user_email": "{{user.email}}" },
+    "delete": { "data.user_email": "{{user.email}}" }
+  }
+}
