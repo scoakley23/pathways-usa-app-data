@@ -9,7 +9,7 @@ const functionFiles = import.meta.glob('../../base44/{functions,shared}/**/*.{js
 
 // The only app files allowed to touch AIStudyLog: saving (Ask Vía), the
 // learner's own History, and "Delete my data".
-const ALLOWED = ['../components/ai/StudyBuddy.jsx', '../pages/StudyHistory.jsx', '../components/profile/DeleteMyData.jsx'];
+const ALLOWED = ['../components/ai/StudyBuddy.jsx', '../pages/StudyHistory.jsx', './deleteMyData.js'];
 
 describe('Ask Vía privacy', () => {
   it('Ask Vía never emails or notifies anyone', () => {

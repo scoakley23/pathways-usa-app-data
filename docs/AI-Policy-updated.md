@@ -124,6 +124,21 @@ Signed-in learners can tap "Save" on a place to keep it in "Your saved places" a
 
 The list of places is written and checked by the Pathways team from public sources (such as the USCIS office list, the U.S. Department of Justice list of recognized organizations, and the National Literacy Directory's public class listings). The AI does not find, write, or recommend places. Pathways USA does not run or endorse these places, and the page reminds learners that only lawyers and DOJ-accredited representatives can give immigration legal advice.
 
+## Pilot Check-ins and Outcome Questions
+Pathways USA asks learners a few optional questions to learn whether the app helps. At sign-up, a learner may share their state, a program code from a partner organization, where they are in the citizenship process (not filed yet, filed, or interview scheduled), and how ready they feel. At 3, 6 and 12 months, the app may ask whether they have filed, had their interview, passed the tests, taken the oath and registered to vote. Every question is optional and has an "I'd rather not say" choice. The app never asks for dates, case numbers, A-numbers, addresses or immigration status, and has no free-text boxes for these questions.
+
+**Who can see the answers:** only Pathways USA administrators. Tutors and partner staff cannot see any learner's answers. Partners receive totals only, and any number under 5 is hidden so no learner can be identified.
+
+**Reminder emails:** only if the learner turns them on. The emails do not mention citizenship, immigration or the interview. Learners can turn them off on their Profile page.
+
+**Activity dates:** the app records which days a learner opened it (the date only, not what they did) to measure how often people practice.
+
+**Exports and reports:** data used for analysis uses a random ID, never names or email addresses. Pathways USA may share aggregate results (for example, "18 of 30 learners finished a mock interview") with partners, funders and government agencies. It does not sell or license individual learner data.
+
+**Deletion:** "Delete all my data" erases check-in answers, activity dates and these profile fields.
+
+None of these answers are sent to the AI service. The program code is separate from a tutor's invite code: joining a partner's program does not connect the learner to a tutor or share anything with one.
+
 ## Translations of App Text
 Fixed app text (for example, menu labels and the tutor's standard messages) may be translated into the learner's language by the AI service and saved on the learner's device so it is translated only once. English and Spanish versions of key messages are written by people. No learner text is included in these translations.
 
@@ -145,7 +160,7 @@ Annual bias audits will be conducted to identify and address any disparities in 
 ## Data Ownership and Learner Rights
 Learners retain full ownership of their data and will be clearly informed about their rights, including the ability to request data deletion at any time. Deletion applies to data held by Pathways USA. Messages a learner sent through the "Talk to a person" form are kept in the Pathways USA mailbox and can be deleted on request. Tutors have the same rights: they own their data and may request deletion of their account and data at any time.
 
-**How deletion works:** the app's "Delete my data" option erases everything tied to the person's email address: chat messages (both sides of their conversations), Ask Vía history, notes, practice progress, lesson progress, mock interview history, N-400 Guide progress, assignments, notifications, profile, and tutor–learner connections. It also resets the account's tutor settings, quick check levels, points, badges, and display name, and clears the app's data on that device (including the target date and study plan). Because both sides of a conversation are deleted, when one person deletes their data, the shared chat history also disappears for the other person. The sign-in account itself is deleted on request by emailing pathwaysusacitizenship@gmail.com. Transparent communication about data retention policies and timelines will be provided through the privacy policy and terms of service.
+**How deletion works:** the app's "Delete my data" option erases everything tied to the person's email address: chat messages (both sides of their conversations), Ask Vía history, notes, practice progress, lesson progress, mock interview history, N-400 Guide progress, saved places, pilot check-in answers, activity dates, assignments, notifications, profile, and tutor–learner connections. It also resets the account's tutor settings, quick check levels, points, badges, display name, state, program code and reminder setting, and clears the app's data on that device (including the target date and study plan). Because both sides of a conversation are deleted, when one person deletes their data, the shared chat history also disappears for the other person. The sign-in account itself is deleted on request by emailing pathwaysusacitizenship@gmail.com. Transparent communication about data retention policies and timelines will be provided through the privacy policy and terms of service.
 
 ## Legal and Regulatory Compliance
 Pathways USA is in the process of determining which data protection laws apply to its operations and how to ensure full compliance. This includes reviewing requirements under COPPA, GDPR, and other relevant regulations to protect learner information and maintain legal standards.

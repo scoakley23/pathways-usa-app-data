@@ -1,0 +1,42 @@
+// Pilot check-ins (docs/AI-Policy-updated.md, "Pilot Check-ins"). Every answer
+// is optional and a fixed choice: no free text, no dates, case numbers,
+// A-numbers, addresses or immigration status. Only the learner can read or
+// delete their rows; tutors never see them. Erased by "Delete all my data".
+{
+  "name": "OutcomeCheckIn",
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string",
+      "enum": ["signup", "pre_interview", "month_3", "month_6", "month_12"]
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["1", "2", "3", "4", "5", "prefer_not"],
+      "description": "How ready the learner feels for the interview, 1 (not ready) to 5 (very ready)"
+    },
+    "stage": {
+      "type": "string",
+      "enum": ["not_filed", "filed_waiting", "interview_scheduled", "prefer_not"]
+    },
+    "filed": { "type": "string", "enum": ["yes", "not_yet", "prefer_not"] },
+    "interviewed": { "type": "string", "enum": ["yes", "not_yet", "prefer_not"] },
+    "passed_tests": { "type": "string", "enum": ["yes", "retest", "not_yet", "prefer_not"] },
+    "oath": { "type": "string", "enum": ["yes", "not_yet", "prefer_not"] },
+    "registered_to_vote": { "type": "string", "enum": ["yes", "not_yet", "prefer_not"] },
+    "would_have_without_pathways": { "type": "string", "enum": ["yes", "maybe", "no", "prefer_not"] }
+  },
+  "required": [
+    "user_email",
+    "kind"
+  ],
+  "rls": {
+    "create": { "data.user_email": "{{user.email}}" },
+    "read": { "data.user_email": "{{user.email}}" },
+    "update": { "data.user_email": "{{user.email}}" },
+    "delete": { "data.user_email": "{{user.email}}" }
+  }
+}

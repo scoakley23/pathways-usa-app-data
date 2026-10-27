@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import TopicArt from '@/components/art/TopicArt';
 import RoadmapHero from '@/components/home/RoadmapHero';
@@ -7,6 +7,9 @@ import TodayCard from '@/components/persona/TodayCard';
 import RoadmapPath from '@/components/home/RoadmapPath';
 import HomePromises from '@/components/home/HomePromises';
 import StudyTogether from '@/components/home/StudyTogether';
+import HelpUsImprove from '@/components/pilot/HelpUsImprove';
+import { shouldShowPilotIntro } from '@/lib/pilot';
+import { loadPlanSettings } from '@/lib/planSettings';
 import useTutorProfile from '@/components/persona/useTutorProfile';
 import { useAuth } from '@/lib/AuthContext';
 import useRoadmapProgress from '@/components/home/useRoadmapProgress';
@@ -23,6 +26,10 @@ const SKILL_CARDS = [
   { art: 'capitol', skill: 'civics', title: 'feat_civics_title', desc: 'feat_civics_desc', to: '/Practice?mode=civics' },
 ];
 
+// Set once the learner answers or skips "Help us improve Pathways", so the
+// screen doesn't come back before Layout reloads the account.
+let pilotAnswered = false;
+
 // Home. Learners see Today and nothing else but "How we study together" (the
 // three promises): the rest of the app is one tap away in the tab bar.
 // Signed-out visitors see the splash and the overview (road, promises, the
@@ -37,10 +44,22 @@ export default function Home({ cachedUser, cachedRole }) {
   // (Auth is known before pages render, so signed-in users never see the splash.)
   const { isAuthenticated } = useAuth();
   const learner = isAuthenticated && cachedUser && cachedRole !== 'tutor';
+  // "Help us improve Pathways" (optional pilot questions): once, after the
+  // learner's first day, instead of Today.
+  const [pilotDone, setPilotDone] = useState(pilotAnswered);
+  const askPilot = learner && !pilotDone && shouldShowPilotIntro({ user: cachedUser, role: cachedRole, hasPlan: !!loadPlanSettings() });
 
   // Signed in but the account is still loading: wait rather than flash the overview.
   if (isAuthenticated && !cachedUser) {
     return <div className="min-h-[60vh]" aria-busy="true" />;
+  }
+
+  if (askPilot) {
+    return (
+      <div className="pb-8" dir={rtl ? 'rtl' : 'ltr'}>
+        <HelpUsImprove user={cachedUser} language={language} onDone={() => { pilotAnswered = true; setPilotDone(true); }} />
+      </div>
+    );
   }
 
   if (learner) {
