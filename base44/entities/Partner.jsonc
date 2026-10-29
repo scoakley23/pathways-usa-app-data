@@ -1,0 +1,40 @@
+// A partner program (e.g. a citizenship class) that recommends Pathways.
+// Admin-only: managed in Admin → Partners. Learners get only the name and
+// code, and staff their own program's confirm list, through the `partner`
+// function; nobody else ever reads staff_emails.
+{
+  "name": "Partner",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The program's name as learners see it, e.g. Harvard Citizenship Tutoring Program"
+    },
+    "code": {
+      "type": "string",
+      "description": "Short code in capitals, e.g. HARVARD-CTP. Used in the share link (?program=CODE)."
+    },
+    "staff_emails": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Lowercase emails of the program's staff, who can open /Partner"
+    },
+    "share_learners": {
+      "type": "boolean",
+      "default": false,
+      "description": "Learners of this program may choose to share their own progress with it"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Shown to learners. Turn off instead of deleting."
+    }
+  },
+  "required": ["name", "code"],
+  "rls": {
+    "create": { "user_condition": { "role": "admin" } },
+    "read": { "user_condition": { "role": "admin" } },
+    "update": { "user_condition": { "role": "admin" } },
+    "delete": { "user_condition": { "role": "admin" } }
+  }
+}

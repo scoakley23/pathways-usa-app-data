@@ -19,19 +19,28 @@ export default async function (req) {
     if (!user || user.role !== "admin") return Response.json({ error: "Not found." }, { status: 404 });
 
     const db = base44.asServiceRole.entities;
-    // Learners = student profiles. Tutors and admins are left out.
-    const profiles = await db.PublicProfile.filter({ account_type: "student" }, null, 5000);
+    // Learners = everyone with a profile (everyone who signed in is a
+    // learner). Admins are left out below.
+    const profiles = await db.PublicProfile.filter({}, null, 5000);
     const emails = [...new Set(profiles.map((p) => normalizeEmail(p.user_email)).filter(Boolean))];
     if (emails.length === 0) return Response.json({ summaries: [], generated_at: new Date().toISOString() });
 
-    const [users, checkIns, activity, sessions, mastered, civics2025] = await Promise.all([
+    const [users, checkIns, activity, sessions, mastered, civics2025, memberships] = await Promise.all([
       db.User.filter({ email: { $in: emails } }, null, 5000),
       db.OutcomeCheckIn.filter({ user_email: { $in: emails } }, null, 20000),
       db.ActivityDay.filter({ user_email: { $in: emails } }, null, 50000),
       db.InterviewSession.filter({ user_email: { $in: emails } }, null, 20000),
       db.UserProgress.filter({ user_email: { $in: emails }, content_type: "civics_question", status: "mastered" }, null, 50000),
       db.CivicsQuestion.filter({ version: "2025" }, null, 500),
+      db.ProgramMembership.filter({ user_email: { $in: emails } }, "-created_date", 5000),
     ]);
+    // A learner's program = the partner program they picked (Getting started
+    // or Profile), unless the program said "not ours".
+    const programOf = new Map();
+    for (const m of memberships) {
+      const email = normalizeEmail(m.user_email);
+      if (m.status !== "removed" && !programOf.has(email)) programOf.set(email, String(m.partner_code || "").toUpperCase());
+    }
     const civicsIds = new Set(civics2025.map((q) => q.id));
     const mine = (rows, email) => rows.filter((r) => normalizeEmail(r.user_email) === email);
     const now = new Date();
@@ -53,6 +62,7 @@ export default async function (req) {
         activityDates: mine(activity, email).map((r) => r.date),
         sessions: mine(sessions, email),
         civicsMastered: mine(mastered, email).filter((p) => civicsIds.has(p.content_id)).length,
+        programCode: programOf.get(email) || "",
         now,
       }));
     }

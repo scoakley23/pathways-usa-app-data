@@ -89,7 +89,7 @@ Optional outcome questions for the partner pilot ("Help us improve Pathways", sh
 | Pilot profile fields | `User` (account) | `program_code` (must be on the allowed list), `state` (two-letter code or prefer not; never ZIP or city), `checkin_email_reminders` (off by default), `pilot_id` (random, for exports), `pilot_intro_seen` | the learner (and admins, like every `User` field) |
 | Program code from a link | `localStorage['pathways_program_code']` | a known program code from `?code=`, until the screen is answered or skipped | device only |
 
-- **Tutors and partner staff see none of it.** Tutors get learner data only through `base44/functions/student-progress` (UserProgress, LessonProgress, N400SectionProgress) and their own `Assignment`, `Message`, `TutorRelationship`, `PublicProfile` and `Notification` reads; none of these hold pilot data, and `User` is not readable by other users. `src/lib/pilotPrivacy.test.js` fails if a backend function, a tutor/chat/notification screen, or any file other than the screen, the activity recorder and Delete my data touches the new entities or fields.
+- **Partner staff see none of it.** `User` is not readable by other users. `src/lib/pilotPrivacy.test.js` fails if a backend function, a notification screen, or any file other than the screen, the activity recorder and Delete my data touches the new entities or fields. (Human tutor accounts were removed on 2026-10-27; see the last section.)
 - **Not sent to the AI.** Only the fixed English text of the screen is translated (`usePilotText`, cached on the device).
 - **Stage is new server-side data.** Getting started's stage answer stays on the device; the pilot screen only prefills its own stage question from it, and saves it only when the learner presses Save.
 - **Delete my data** deletes `OutcomeCheckIn` and `ActivityDay` and resets the five fields (`src/lib/deleteMyData.js`; `src/lib/deleteMyData.test.js` checks every learner entity and every `User` field is covered).
@@ -101,7 +101,7 @@ Check-ins at 3, 6 and 12 months, a readiness question before the Mock Interview,
 | Data | Where | What exactly | Who can see it |
 | --- | --- | --- | --- |
 | Check-in answers | `OutcomeCheckIn` (owner-only), kinds `month_3` / `month_6` / `month_12` / `pre_interview` | fixed choices only: filed, interviewed, passed tests (yes / retest / not yet), oath, registered to vote, readiness 1–5, "without Pathways" (yes / maybe / no); every one optional with prefer not | the learner; admins only through the pilot dashboard (Prompt 3) |
-| Reminder sent | `CheckInReminder` (new, **admin-only**) | email + kind + date sent | admins only; never learners, tutors or partner staff |
+| Reminder sent | `CheckInReminder` (new, **admin-only**) | email + kind + date sent | admins only; never learners or partner staff |
 | Settings | `User` | `checkins_stopped`, `reminder_language` (only while reminders are on), `pilot_test_months_ago` (admins' own testing; ignored for others) | the learner (and admins) |
 | Device notes | `localStorage` | `pathways_checkin_snooze` (7 days), `pathways_preinterview_skipped` | device only |
 
@@ -123,6 +123,24 @@ Check-ins at 3, 6 and 12 months, a readiness question before the Mock Interview,
 | CSV | downloaded by an admin | the summary columns above, one row per learner, `pilot_id` only | the admin who downloads it; not offered in Partner view |
 
 - **No emails, names or account ids leave the function.** The summary is built field by field (`learnerSummary()`); tests check that a summary and the CSV contain no `@`, name or exact date.
-- **Partner view** shows counts 1–4 as "fewer than 5" and hides their percentages (`SMALL_NUMBER_LIMIT = 5`), including in the weekly chart, and hides the CSV button. Totals can still let someone work out a small group (30 total, 27 yes → 3 no); report counts and keep the CSV with Pathways.
+- **Partner view** hides the CSV button. Counts are exact everywhere (the founder's decision, 2026-10-27, replacing the earlier "fewer than 5" rule), so small groups can be worked out from totals; report counts and keep the CSV with Pathways.
+- **Program** in the summary is the partner program the learner picked (`ProgramMembership`, unless the program said "not ours"); `User.program_code` is gone.
 - **The function writes one thing:** a `pilot_id` for a learner who doesn't have one yet (made on their first visit otherwise).
 - **Re-identification:** state + language + program in a 30-person CSV can point to one person; the CSV stays with the Pathways admin and isn't shared, as the tracking plan says.
+
+## Human tutor accounts removed (2026-10-27)
+
+Pathways now focuses on learners studying with Vía. Nobody was using the human-tutor side, so it was removed:
+
+- **Gone from the app:** the role picker at sign-up (everyone is a learner; the first sign-in makes the `PublicProfile` and opens Getting started), the Tutor Portal and My Classroom (`/Tutor`), the Messages page, tutor chat in "Talk to a person" (now the team email form only), "From your tutor" assignments on Practice, and the tutor dashboard on Profile.
+- **Gone from Base44:** the `TutorRelationship`, `Assignment` and `Message` entities, the `tutor-link` and `student-progress` functions, `PublicProfile.invite_code` / `account_type`, and `UserProgress.assignment_id`.
+- **Effect on the tables above:** "their tutor" no longer applies anywhere. `UserProgress`, `LessonProgress` and `N400SectionProgress` are visible to the learner and Pathways staff only. Delete my data no longer needs to delete chat messages, assignments or tutor links.
+
+## Partner programs (2026-10-27)
+
+- **New data:** `ProgramMembership` (Base44): the learner's email, the partner code they picked, status (pending / confirmed / removed), an optional name (a name only: `cleanName()` drops anything with "@" or 3+ digits), and a share choice (only where the program allows it). Created and changed only by `base44/functions/partner`; the learner can read and delete their own; Delete my data removes it. `Partner` (admin-only): program name, code, staff emails, switches.
+- **Who sees it:** the program's staff, through `partner` → `members`, see name-or-email and status for learners who picked their program only. The function never reads `OutcomeCheckIn`, `AIStudyLog`, `LessonNotes`, `InterviewSession` or `UserProgress` (`src/lib/partners.test.js`, plus the existing pilot and Ask Vía privacy tests over every function).
+- **Removed:** the free-typed program code on "Help us improve Pathways" and `User.program_code`; `?code=` links were replaced by `?program=CODE`, kept in `localStorage['pathways_program']` until Getting started.
+- **Not sent to the AI.** Partner names are shown as written; only the fixed question text is translated.
+- **Totals (step 3):** `partner` → `summary` reads, for the program's confirmed learners only, `User.skill_levels`, finished `LessonProgress` and `N400SectionProgress` rows, and `ActivityDay` dates. Staff get exact counts (`programSummary()`); activity dates are only counted (7 and 30 days), never shown per learner. Per-learner rows exist only where the program has `share_learners` on and the learner turned on "Share my progress", and hold only the name, quick check levels and two counts (`src/lib/partners.test.js`). `src/lib/pilotPrivacy.test.js` now allows `ActivityDay` in the `partner` function only; every other pilot field and entity stays out of all functions.
+

@@ -40,9 +40,8 @@ let checkInsHandled = false;
 // Home. Learners see Today and nothing else but "How we study together" (the
 // three promises): the rest of the app is one tap away in the tab bar.
 // Signed-out visitors see the splash and the overview (road, promises, the
-// four skills, the N-400 guide); tutors see the overview hero. The language
-// menu is in the header.
-export default function Home({ cachedUser, cachedRole }) {
+// four skills, the N-400 guide). The language menu is in the header.
+export default function Home({ cachedUser }) {
   const roadmap = useRoadmapProgress(cachedUser);
   const [language, setLanguage] = useAppLanguage();
   const { t, translating } = useHomeTranslation(language);
@@ -50,11 +49,11 @@ export default function Home({ cachedUser, cachedRole }) {
   const rtl = isRTL(language);
   // (Auth is known before pages render, so signed-in users never see the splash.)
   const { isAuthenticated } = useAuth();
-  const learner = isAuthenticated && cachedUser && cachedRole !== 'tutor';
+  const learner = isAuthenticated && cachedUser;
   // "Help us improve Pathways" (optional pilot questions): once, after the
   // learner's first day, instead of Today.
   const [pilotDone, setPilotDone] = useState(pilotAnswered);
-  const askPilot = learner && !pilotDone && shouldShowPilotIntro({ user: cachedUser, role: cachedRole, hasPlan: !!loadPlanSettings() });
+  const askPilot = learner && !pilotDone && shouldShowPilotIntro({ user: cachedUser, hasPlan: !!loadPlanSettings() });
 
   // A 3-, 6- or 12-month check-in that is due: a card at the top of Today,
   // which opens the check-in screen. 'card' | 'form' | 'hidden'.

@@ -5,15 +5,15 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Trophy, Star, GraduationCap, School, Save, Loader2, Volume2 } from 'lucide-react';
+import { Trophy, Star, GraduationCap, Save, Loader2, Volume2 } from 'lucide-react';
 import BadgesDisplay from '@/components/gamification/BadgesDisplay';
-import TutorDashboard from '@/components/tutor/TutorDashboard';
 import { toast } from "sonner";
 import { ensurePublicProfile } from '@/lib/profileService';
 import VoiceSettings from '@/components/utils/VoiceSettings';
 import DeleteMyData from '@/components/profile/DeleteMyData';
 import YourTutorCard from '@/components/persona/YourTutorCard';
 import PilotSettingsCard from '@/components/pilot/PilotSettingsCard';
+import ProgramCard from '@/components/partners/ProgramCard';
 import PageHeader from '@/components/PageHeader';
 import { RaisedCard } from '@/components/pathways/ui';
 
@@ -23,7 +23,6 @@ export default function Profile() {
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [displayName, setDisplayName] = useState("");
-  const [students, setStudents] = useState([]);
 
   useEffect(() => {
     fetchData();
@@ -40,11 +39,6 @@ export default function Profile() {
       if (profiles.length > 0) {
         setPublicProfile(profiles[0]);
         setDisplayName(profiles[0].display_name || userData.full_name || "");
-        
-        if (profiles[0].account_type === 'tutor') {
-             const rels = await base44.entities.TutorRelationship.filter({ tutor_email: userData.email });
-             setStudents(rels);
-        }
       } else {
         setDisplayName(userData.full_name || "");
       }
@@ -129,7 +123,6 @@ export default function Profile() {
               </div>
             </div>
 
-            {(!publicProfile || publicProfile.account_type !== 'tutor') && (
             <div className="mt-5 grid grid-cols-2 gap-2 text-center">
               <div className="rounded-2xl bg-pw-soft py-3 px-1">
                 <p className="font-display text-[36px] leading-none">{user.points || 0}</p>
@@ -140,7 +133,6 @@ export default function Profile() {
                 <p className="text-sm text-pw-muted font-bold">Badges</p>
               </div>
             </div>
-            )}
           </RaisedCard>
 
           <Card>
@@ -167,76 +159,60 @@ export default function Profile() {
           </Card>
         </div>
 
-        {/* Right Column: Stats & Relationships */}
+        {/* Right Column: Stats & settings */}
         <div className="w-full md:w-2/3 space-y-6">
-          
-          {publicProfile && publicProfile.account_type === 'tutor' ? (
-            <div className="space-y-4">
-                <div className="flex flex-wrap items-center justify-between gap-3">
-                    <h3 className="font-display text-[28px] leading-tight">Classroom Progress</h3>
-                    <Button variant="outline" size="sm" onClick={() => window.location.href = '/Tutor'}>
-                        <School className="w-4 h-4" /> Manage Students
-                    </Button>
-                </div>
-                <TutorDashboard currentUserEmail={user.email} students={students} />
-            </div>
-          ) : (
-            <>
-              {/* Detailed Stats */}
-              <div className="grid grid-cols-3 gap-3">
-                <RaisedCard padding="p-4">
-                  <span className={`${iconSquare} bg-pw-blue-soft text-pw-blue-ink`}>
-                    <Trophy className="w-5 h-5" aria-hidden="true" />
-                  </span>
-                  <p className="mt-3 font-display font-normal text-[44px] leading-none">{user.total_correct || 0}</p>
-                  <p className="mt-1 text-sm font-bold text-pw-muted">Correct Answers</p>
-                </RaisedCard>
-                <RaisedCard padding="p-4">
-                  <span className={`${iconSquare} bg-pw-teal-soft text-pw-teal-ink`}>
-                    <Star className="w-5 h-5" aria-hidden="true" />
-                  </span>
-                  <p className="mt-3 font-display font-normal text-[44px] leading-none">{user.points || 0}</p>
-                  <p className="mt-1 text-sm font-bold text-pw-muted">Total Points</p>
-                </RaisedCard>
-                <RaisedCard padding="p-4">
-                  <span className={`${iconSquare} bg-pw-green-soft text-pw-green-ink`}>
-                    <GraduationCap className="w-5 h-5" aria-hidden="true" />
-                  </span>
-                  <p className="mt-3 font-display font-normal text-[44px] leading-none">{(user.badges || []).length}</p>
-                  <p className="mt-1 text-sm font-bold text-pw-muted">Badges Earned</p>
-                </RaisedCard>
-              </div>
+          {/* Detailed Stats */}
+          <div className="grid grid-cols-3 gap-3">
+            <RaisedCard padding="p-4">
+              <span className={`${iconSquare} bg-pw-blue-soft text-pw-blue-ink`}>
+                <Trophy className="w-5 h-5" aria-hidden="true" />
+              </span>
+              <p className="mt-3 font-display font-normal text-[44px] leading-none">{user.total_correct || 0}</p>
+              <p className="mt-1 text-sm font-bold text-pw-muted">Correct Answers</p>
+            </RaisedCard>
+            <RaisedCard padding="p-4">
+              <span className={`${iconSquare} bg-pw-teal-soft text-pw-teal-ink`}>
+                <Star className="w-5 h-5" aria-hidden="true" />
+              </span>
+              <p className="mt-3 font-display font-normal text-[44px] leading-none">{user.points || 0}</p>
+              <p className="mt-1 text-sm font-bold text-pw-muted">Total Points</p>
+            </RaisedCard>
+            <RaisedCard padding="p-4">
+              <span className={`${iconSquare} bg-pw-green-soft text-pw-green-ink`}>
+                <GraduationCap className="w-5 h-5" aria-hidden="true" />
+              </span>
+              <p className="mt-3 font-display font-normal text-[44px] leading-none">{(user.badges || []).length}</p>
+              <p className="mt-1 text-sm font-bold text-pw-muted">Badges Earned</p>
+            </RaisedCard>
+          </div>
 
-              <div className="w-full">
-                  <Card>
-                    <CardHeader className="p-5 sm:p-6">
-                      <CardTitle className="flex items-center gap-3">
-                        <span className={`${iconSquare} bg-pw-red-soft text-pw-red-ink`}>
-                          <Trophy className="w-5 h-5" aria-hidden="true" />
-                        </span>
-                        Your Badge Collection
-                      </CardTitle>
-                      <CardDescription>Unlock badges by practicing consistently.</CardDescription>
-                    </CardHeader>
-                    <CardContent className="p-5 pt-0 sm:p-6 sm:pt-0">
-                      <BadgesDisplay earnedBadges={user.badges || []} />
-                    </CardContent>
-                  </Card>
-              </div>
-            </>
-          )}
+          <div className="w-full">
+              <Card>
+                <CardHeader className="p-5 sm:p-6">
+                  <CardTitle className="flex items-center gap-3">
+                    <span className={`${iconSquare} bg-pw-red-soft text-pw-red-ink`}>
+                      <Trophy className="w-5 h-5" aria-hidden="true" />
+                    </span>
+                    Your Badge Collection
+                  </CardTitle>
+                  <CardDescription>Unlock badges by practicing consistently.</CardDescription>
+                </CardHeader>
+                <CardContent className="p-5 pt-0 sm:p-6 sm:pt-0">
+                  <BadgesDisplay earnedBadges={user.badges || []} />
+                </CardContent>
+              </Card>
+          </div>
+          <div className="w-full">
+            <YourTutorCard />
+          </div>
 
-          {!(publicProfile && publicProfile.account_type === 'tutor') && (
-            <div className="w-full">
-              <YourTutorCard />
-            </div>
-          )}
+          <div className="w-full empty:hidden">
+            <ProgramCard user={user} />
+          </div>
 
-          {!(publicProfile && publicProfile.account_type === 'tutor') && (
-            <div className="w-full">
-              <PilotSettingsCard user={user} />
-            </div>
-          )}
+          <div className="w-full">
+            <PilotSettingsCard user={user} />
+          </div>
 
           <div className="w-full">
             <Card>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Clock, Loader2, Sparkles, Layers, Mic, SlidersHorizontal, X } from 'lucide-react';
+import { ArrowRight, Loader2, Sparkles, Layers, Mic, SlidersHorizontal, X } from 'lucide-react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
@@ -62,7 +62,6 @@ export default function Practice() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [sessionComplete, setSessionComplete] = useState(false);
-  const [assignments, setAssignments] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
   const [representativeData, setRepresentativeData] = useState(null);
   const hasMounted = React.useRef(false);
@@ -101,7 +100,7 @@ export default function Practice() {
     }
   };
 
-  const loadUserAndAssignments = async () => {
+  const loadUser = async () => {
       try {
         const user = await base44.auth.me();
         if (user) {
@@ -110,25 +109,21 @@ export default function Practice() {
           setCurrentUser(normalizedUser);
           pointsRef.current = user.points || 0;
           loadRepresentativeData(normalizedEmail);
-          const myAssignments = await base44.entities.Assignment.filter(
-            { student_email: normalizedEmail, status: 'pending' }, null, 100
-          );
-          setAssignments(myAssignments);
         }
       } catch (e) {
         console.error("Error loading user data:", e);
       }
   };
 
-  // Fetch pending assignments on load
+  // Load the signed-in learner
   useEffect(() => {
-    loadUserAndAssignments();
+    loadUser();
   }, []);
 
   // Refresh when returning to menu (skip on initial mount to avoid double-fetch)
   useEffect(() => {
       if (hasMounted.current && mode === 'menu') {
-          loadUserAndAssignments();
+          loadUser();
       }
       hasMounted.current = true;
   }, [mode]);
@@ -349,81 +344,6 @@ export default function Practice() {
     }
   };
 
-  const startAssignment = async (assignment) => {
-  setIsLoading(true);
-  let mode = 'dictation';
-  if (assignment.content_type === 'vocabulary') mode = 'vocabulary';
-  if (assignment.content_type === 'civics_question') mode = 'civics';
-  if (assignment.content_type === 'custom') {
-    if (assignment.custom_type === 'vocabulary') mode = 'vocabulary';
-    else if (assignment.custom_type === 'civics_question') mode = 'civics';
-    else mode = 'dictation';
-  }
-  setMode(mode);
-  setSearchParams({ mode });
-  setResults([]);
-  setCurrentIndex(0);
-  setSessionComplete(false);
-
-  try {
-    let item;
-    
-    if (assignment.content_type === 'custom') {
-      // Handle custom assignments
-      if (assignment.custom_type === 'vocabulary' && assignment.custom_data) {
-        item = { 
-          text: assignment.custom_data.word, 
-          word: assignment.custom_data.word,
-          definition: assignment.custom_data.definition,
-          type: 'vocabulary', 
-          id: 'custom_vocab_' + assignment.id 
-        };
-        setMode('vocabulary');
-        setVocabSubMode('flashcards');
-      } else if (assignment.custom_type === 'civics_question' && assignment.custom_data) {
-        item = {
-          question: assignment.custom_data.question,
-          answer: assignment.custom_data.answer,
-          type: 'civics_question',
-          version: 'custom',
-          id: 'custom_civics_' + assignment.id
-        };
-        setMode('civics');
-      } else {
-        const text = assignment.custom_content || (assignment.custom_data && assignment.custom_data.text);
-        item = { text: text, type: 'sentence', id: 'custom_sentence_' + assignment.id };
-      }
-    } else {
-      // Handle standard content - fetch ALL and filter (Base44 ID query workaround)
-      if (assignment.content_type === 'sentence') {
-        const all = await base44.entities.Sentence.list('-created_date', 1000);
-        item = all.find(s => s.id === assignment.content_id);
-      } else if (assignment.content_type === 'vocabulary') {
-        const all = await base44.entities.VocabularyWord.list('-created_date', 1000);
-        const vocab = all.find(v => v.id === assignment.content_id);
-        item = vocab ? { ...vocab, text: vocab.word, type: 'vocabulary' } : null;
-      } else if (assignment.content_type === 'civics_question') {
-        const all = await base44.entities.CivicsQuestion.list('-created_date', 1000);
-        item = all.find(q => q.id === assignment.content_id);
-      }
-    }
-
-    if (item) {
-      setContent([item]);
-      item.assignment_id = assignment.id;
-    } else {
-      toast.error("Content not found");
-      exitRun();
-    }
-  } catch (error) {
-    console.error("Error loading assignment", error);
-    toast.error("Failed to load assignment");
-    exitRun();
-  } finally {
-    setIsLoading(false);
-  }
-};
-
   const handleComplete = (isSuccess, score = null) => {
     const save = saveCard(isSuccess, score);
     savesRef.current = savesRef.current.then(() => save);
@@ -481,7 +401,6 @@ export default function Practice() {
             content_type: mode === 'civics' ? 'civics_question' : (mode === 'vocabulary' ? 'vocabulary' : 'sentence'),
             status: (isSuccess && newConsecutive >= 3) ? 'mastered' : 'practicing',
             last_practiced: new Date().toISOString(),
-            assignment_id: currentItem.assignment_id,
             ease_factor: newEaseFactor,
             interval: newInterval,
             consecutive_correct: newConsecutive,
@@ -496,32 +415,6 @@ export default function Practice() {
               await base44.entities.UserProgress.update(existing[0].id, progressData);
           } else {
               await base44.entities.UserProgress.create(progressData);
-          }
-
-          // Assignment completion logic
-          if (currentItem.assignment_id) {
-            await base44.entities.Assignment.update(currentItem.assignment_id, {
-              status: 'completed',
-              completed_date: new Date().toISOString()
-            });
-            
-            // Notify Tutor
-            // Find the assignment to get tutor email (we filtered it out of state, so we need it from somewhere or assume we have it)
-            const completedAssignment = assignments.find(a => a.id === currentItem.assignment_id);
-            if (completedAssignment) {
-                 await base44.entities.Notification.create({
-                     user_email: completedAssignment.tutor_email,
-                     type: 'assignment',
-                     title: 'Assignment Completed',
-                     message: `${currentUser.email} has completed an assignment.`,
-                     link: '/Tutor'
-                 });
-            }
-
-            // Update local state immediately so it vanishes from list
-            setAssignments(prev => prev.filter(a => a.id !== currentItem.assignment_id));
-            
-            toast.success("Assignment Completed!");
           }
 
           // Gamification
@@ -556,34 +449,6 @@ export default function Practice() {
             <SlidersHorizontal className="w-4 h-4" aria-hidden="true" /> {civicsVersion} test
           </PillButton>
         </PageHeader>
-
-        {assignments.length > 0 && (
-          <section aria-labelledby="assigned" className="space-y-3">
-            <h2 id="assigned" className="font-display text-[28px] leading-tight flex items-center gap-2">
-              <Clock className="w-5 h-5" aria-hidden="true" /> From your tutor
-            </h2>
-            <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-              {assignments.map(a => (
-                <button
-                  key={a.id}
-                  type="button"
-                  onClick={() => startAssignment(a)}
-                  className="text-left rounded-[14px] border border-pw-line bg-white shadow-raised hover:border-pw-navy p-4 flex justify-between items-center gap-2 min-h-[64px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
-                >
-                  <div className="overflow-hidden">
-                    <p className="font-semibold text-pw-navy text-base capitalize truncate">
-                      {a.content_type === 'custom' ? (a.custom_content || 'Custom Task') : a.content_type.replace('_', ' ')}
-                    </p>
-                    <p className="text-sm text-pw-muted">
-                      Assigned {new Date(a.assigned_date).toLocaleDateString()}
-                    </p>
-                  </div>
-                  <span className="shrink-0 rounded-full bg-pw-navy text-white font-semibold px-4 min-h-11 inline-flex items-center">Start</span>
-                </button>
-              ))}
-            </div>
-          </section>
-        )}
 
         <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
           <PartTile n={1} skill="reading" label="Reading" title="Read a sentence aloud" status="We check each word" onStart={() => startSession('reading')} />

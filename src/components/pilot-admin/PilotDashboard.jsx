@@ -8,14 +8,14 @@ import { Switch } from '@/components/ui/switch';
 import { LANGUAGES } from '@/hooks/useLessonTranslation';
 import { US_STATES, PROGRAM_BASELINE } from '@/config/pilot';
 import {
-  pilotMetrics, formatCount, formatShare, toCsv, SMALL_NUMBER_LIMIT, ACTIVATION_DAYS,
+  pilotMetrics, formatCount, formatShare, toCsv, ACTIVATION_DAYS,
 } from '../../../base44/shared/pilotReport.js';
 import WeeklyChart from './WeeklyChart';
 
 // /admin/pilot: the pilot dashboard. Admins only; everyone else sees "Page
 // Not Found". The data comes from the pilot-report function as one summary
 // per learner keyed by pilot_id; no emails or names reach this page.
-// "Partner view" hides counts from 1 to 4 (SMALL_NUMBER_LIMIT) and their %.
+// "Partner view" shows the same exact numbers without the CSV download.
 
 const MILESTONE_LABELS = {
   filed: 'Filed the N-400',
@@ -41,7 +41,7 @@ function Stat({ title, value, definition, children }) {
   );
 }
 
-function CountList({ counts, names = {}, partner }) {
+function CountList({ counts, names = {} }) {
   const entries = Object.entries(counts).sort((a, b) => b[1] - a[1]);
   if (entries.length === 0) return <p className="text-base text-pw-muted">No answers yet.</p>;
   return (
@@ -49,7 +49,7 @@ function CountList({ counts, names = {}, partner }) {
       {entries.map(([key, count]) => (
         <li key={key} className="flex justify-between gap-3 py-1.5 text-base">
           <span className="min-w-0">{names[key] || STAGE_LABELS[key] || key}</span>
-          <span className="font-semibold shrink-0">{formatCount(count, { partner })}</span>
+          <span className="font-semibold shrink-0">{formatCount(count)}</span>
         </li>
       ))}
     </ul>
@@ -101,9 +101,8 @@ export default function PilotDashboard() {
   }
   if (!me || me.role !== 'admin') return <PageNotFound />;
 
-  const share = (c, of) => formatShare(c, of, { partner });
-  const count = (c) => formatCount(c, { partner });
-  const hideAverage = (n) => partner && n < SMALL_NUMBER_LIMIT;
+  const share = (c, of) => formatShare(c, of);
+  const count = (c) => formatCount(c);
 
   const downloadCsv = () => {
     const blob = new Blob([toCsv(filtered)], { type: 'text/csv;charset=utf-8' });
@@ -150,7 +149,7 @@ export default function PilotDashboard() {
 
       {partner && (
         <p role="status" className="rounded-[14px] bg-pw-soft px-4 py-3 text-base">
-          Partner view: counts from 1 to {SMALL_NUMBER_LIMIT - 1} show as "fewer than {SMALL_NUMBER_LIMIT}" and their percentages are hidden. Report counts ("11 of 30"), not only percentages.
+          Partner view: exact numbers, no CSV download. Report counts ("11 of 30"), not only percentages.
         </p>
       )}
       {error && <p role="alert" className="text-base font-semibold text-pw-red-ink">{error}</p>}
@@ -174,7 +173,7 @@ export default function PilotDashboard() {
             </div>
             <RaisedCard className="space-y-3">
               <h3 className="text-lg font-bold">Weekly active learners</h3>
-              <WeeklyChart weeks={m.weekly} partner={partner} />
+              <WeeklyChart weeks={m.weekly} />
               <p className="text-sm text-pw-muted">Learners who opened the app at least once that week (ISO weeks, Monday to Sunday).</p>
             </RaisedCard>
           </section>
@@ -187,13 +186,13 @@ export default function PilotDashboard() {
               </Stat>
               <Stat
                 title="Mock interview score, first → latest"
-                value={m.practice.scoreN === 0 || hideAverage(m.practice.scoreN) ? '—' : `${m.practice.firstScore} → ${m.practice.latestScore}`}
+                value={m.practice.scoreN === 0 ? '—' : `${m.practice.firstScore} → ${m.practice.latestScore}`}
                 definition={`Average overall score (0–100), learners with 2 or more mock interviews (n = ${count(m.practice.scoreN)}).`}
               />
               <Stat title="Civics questions mastered" value={count(m.practice.civicsMastered)} definition="Questions marked mastered in practice, 2025 test, all learners together." />
               <Stat
                 title="Readiness, sign-up → latest"
-                value={m.readiness.n === 0 || hideAverage(m.readiness.n) ? '—' : `${m.readiness.signup} → ${m.readiness.latest}`}
+                value={m.readiness.n === 0 ? '—' : `${m.readiness.signup} → ${m.readiness.latest}`}
                 definition={`Average of "How ready do you feel?" (1–5), learners who answered at sign-up and again later (n = ${count(m.readiness.n)}).`}
               />
             </div>
@@ -238,7 +237,7 @@ export default function PilotDashboard() {
             </RaisedCard>
             <RaisedCard className="space-y-2">
               <h3 className="text-lg font-bold">"Would you have done this as soon without Pathways?"</h3>
-              <CountList counts={m.wouldHave} names={{ yes: 'Yes', maybe: 'Maybe', no: 'No', prefer_not: 'Rather not say' }} partner={partner} />
+              <CountList counts={m.wouldHave} names={{ yes: 'Yes', maybe: 'Maybe', no: 'No', prefer_not: 'Rather not say' }} />
               <p className="text-sm text-pw-muted">Latest answer per learner, asked only after a new Yes.</p>
             </RaisedCard>
           </section>
@@ -246,9 +245,9 @@ export default function PilotDashboard() {
           <section aria-labelledby="pilot-reach" className="space-y-3">
             <h2 id="pilot-reach" className="font-display text-[28px]">Reach</h2>
             <div className="grid gap-4 md:grid-cols-3">
-              <RaisedCard className="space-y-2"><Eyebrow>By state</Eyebrow><CountList counts={m.reach.state} names={{ ...STATE_NAMES, prefer_not: 'Rather not say' }} partner={partner} /></RaisedCard>
-              <RaisedCard className="space-y-2"><Eyebrow>By app language</Eyebrow><CountList counts={m.reach.language} names={LANGUAGE_NAMES} partner={partner} /></RaisedCard>
-              <RaisedCard className="space-y-2"><Eyebrow>By stage at sign-up</Eyebrow><CountList counts={m.reach.stage} partner={partner} /></RaisedCard>
+              <RaisedCard className="space-y-2"><Eyebrow>By state</Eyebrow><CountList counts={m.reach.state} names={{ ...STATE_NAMES, prefer_not: 'Rather not say' }} /></RaisedCard>
+              <RaisedCard className="space-y-2"><Eyebrow>By app language</Eyebrow><CountList counts={m.reach.language} names={LANGUAGE_NAMES} /></RaisedCard>
+              <RaisedCard className="space-y-2"><Eyebrow>By stage at sign-up</Eyebrow><CountList counts={m.reach.stage} /></RaisedCard>
             </div>
           </section>
         </>

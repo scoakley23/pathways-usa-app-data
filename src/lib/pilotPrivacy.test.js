@@ -6,7 +6,7 @@ import remindersFunction from '../../base44/functions/pilot-reminders/entry.js?r
 import reportFunction from '../../base44/functions/pilot-report/entry.js?raw';
 import dashboard from '../components/pilot-admin/PilotDashboard.jsx?raw';
 
-// Pilot answers are the learner's alone: tutors and partner staff never see
+// Pilot answers are the learner's alone: partner staff never see
 // them (docs/AI-Policy-updated.md, "Pilot Check-ins").
 const appFiles = import.meta.glob(['../**/*.{js,jsx}', '!../**/*.test.js'], { query: '?raw', import: 'default', eager: true });
 const functionFiles = import.meta.glob('../../base44/{functions,shared}/**/*.{js,ts}', { query: '?raw', import: 'default', eager: true });
@@ -35,10 +35,16 @@ describe('pilot privacy', () => {
     expect(Object.keys(parse(activityEntity).properties).sort()).toEqual(['date', 'user_email']);
   });
 
-  it('no other backend function (incl. student-progress for tutors) touches pilot data', () => {
+  it('no other backend function touches pilot data', () => {
+    // The one exception: a partner program's totals count how many of its
+    // confirmed learners opened the app this week and month (ActivityDay
+    // dates, counted, never listed; src/lib/partners.test.js).
+    const PILOT_BUT_DAYS = new RegExp(PILOT.source.replace('ActivityDay|', ''));
     const others = Object.entries(functionFiles).filter(([file]) => !PILOT_FUNCTIONS.includes(file));
     expect(others.length).toBeGreaterThan(1);
-    for (const [file, src] of others) expect(src, file).not.toMatch(PILOT);
+    for (const [file, src] of others) {
+      expect(src, file).not.toMatch(file.endsWith('functions/partner/entry.js') ? PILOT_BUT_DAYS : PILOT);
+    }
   });
 
   it('reminder records are admin-only', () => {
@@ -55,11 +61,10 @@ describe('pilot privacy', () => {
     expect(remindersFunction).toMatch(/Response\.json\(\{ sent, skipped: [^}]*, failed \}\)/);
   });
 
-  it('tutor screens, assignments and chat never touch pilot data', () => {
-    const tutorFiles = Object.entries(appFiles).filter(([file]) =>
-      /\/components\/(tutor|chat|notifications)\/|\/pages\/(Tutor|Messages)\.jsx$/.test(file));
-    expect(tutorFiles.length).toBeGreaterThan(5);
-    for (const [file, src] of tutorFiles) expect(src, file).not.toMatch(PILOT);
+  it('notifications never touch pilot data', () => {
+    const files = Object.entries(appFiles).filter(([file]) => /\/components\/notifications\//.test(file));
+    expect(files.length).toBeGreaterThan(0);
+    for (const [file, src] of files) expect(src, file).not.toMatch(PILOT);
   });
 
   it('the pilot report is admins only and sends no emails or names', () => {

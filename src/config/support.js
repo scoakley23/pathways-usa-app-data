@@ -9,13 +9,10 @@ export const REPLY_TIME = '3-5 business days';
 export const SUPPORT_SUBJECT = 'Pathways USA question';
 export const SUPPORT_MAX_LENGTH = 1000;
 
-// Where messages are stored, and for how long:
-// - Messages to a human tutor (My Classroom): Base44 `Message` entity, visible
-//   to the learner and that tutor, kept until the learner uses Delete My Data
-//   (which also removes them from the tutor's history).
-// - Contact-form messages: NOT stored in the app. They are sent by email to
-//   SUPPORT_EMAIL (with the learner's account email so the team can reply) and
-//   live in that mailbox under the team's own email retention.
+// Where messages are stored, and for how long: contact-form messages are NOT
+// stored in the app. They are sent by email to SUPPORT_EMAIL (with the
+// learner's account email so the team can reply) and live in that mailbox
+// under the team's own email retention.
 // - Ask Vía questions and answers: Base44 `AIStudyLog`, shown only to the
 //   learner in Study History, kept until Delete My Data. Questions the tutor
 //   declines (about the learner's own case or eligibility) are not saved.

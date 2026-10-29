@@ -4,9 +4,8 @@
 // Shared by the function and the app, tested from src/lib/pilotReport.test.js.
 import { addMonths, MILESTONES, WINDOWS } from './pilotCheckIns.js';
 
-// Partner view: counts from 1 to SMALL_NUMBER_LIMIT - 1 show as "fewer than
-// 5" and their percentages are hidden.
-export const SMALL_NUMBER_LIMIT = 5;
+// Counts are exact everywhere, Partner view included (Partner view only
+// leaves out the CSV).
 export const ACTIVATION_DAYS = 14;
 // Week N after sign-up = days (N-1)*7+1 … N*7 (day 0 is the sign-up day).
 export const RETENTION_WEEKS = [4, 8];
@@ -36,7 +35,8 @@ export function isoWeek(date) {
 }
 
 // One learner → one summary. No email, name or account id.
-export function learnerSummary({ user = {}, checkIns = [], activityDates = [], sessions = [], civicsMastered = 0, now = new Date() }) {
+// `programCode` is the partner program the learner picked (ProgramMembership).
+export function learnerSummary({ user = {}, checkIns = [], activityDates = [], sessions = [], civicsMastered = 0, programCode = '', now = new Date() }) {
   const signup = toDate(user.created_date);
   const rows = byCreated(checkIns).sort((a, b) => CHECK_IN_ORDER.indexOf(a.kind) - CHECK_IN_ORDER.indexOf(b.kind));
   const signupRow = rows.find((r) => r.kind === 'signup') || {};
@@ -79,7 +79,7 @@ export function learnerSummary({ user = {}, checkIns = [], activityDates = [], s
 
   return {
     pilot_id: user.pilot_id || '',
-    program_code: user.program_code || '',
+    program_code: programCode || '',
     state: user.state || '',
     app_language: user.app_language || '',
     signup_week: signup ? isoWeek(signup) : '',
@@ -176,15 +176,10 @@ export function pilotMetrics(summaries = []) {
   };
 }
 
-// Partner view hides counts from 1 to 4 and their percentages.
-export const isSmall = (count) => count > 0 && count < SMALL_NUMBER_LIMIT;
-export function formatCount(count, { partner = false } = {}) {
-  return partner && isSmall(count) ? `fewer than ${SMALL_NUMBER_LIMIT}` : String(count);
-}
-export function formatShare(count, of, { partner = false } = {}) {
-  const head = `${formatCount(count, { partner })} of ${formatCount(of, { partner })}`;
-  if (!of || (partner && (isSmall(count) || isSmall(of)))) return head;
-  return `${head} (${Math.round((count / of) * 100)}%)`;
+export const formatCount = (count) => String(count);
+export function formatShare(count, of) {
+  const head = `${count} of ${of}`;
+  return of ? `${head} (${Math.round((count / of) * 100)}%)` : head;
 }
 
 // CSV: one row per learner, pilot_id only, sign-up as an ISO week.

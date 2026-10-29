@@ -83,26 +83,3 @@ export function StateSelect({ id, value, onChange, t }) {
     </div>
   );
 }
-
-export function ProgramCodeField({ id, value, onChange, unknown, inputRef, t }) {
-  return (
-    <div className="space-y-2">
-      <label htmlFor={id} className={`${LABEL} block`}>{t('code_label')}</label>
-      <p id={`${id}-help`} className="text-base text-pw-muted">{t('code_help')}</p>
-      <input
-        ref={inputRef}
-        id={id}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        autoCapitalize="characters"
-        autoComplete="off"
-        spellCheck={false}
-        maxLength={40}
-        aria-invalid={unknown || undefined}
-        aria-describedby={`${id}-help${unknown ? ` ${id}-error` : ''}`}
-        className={`${FIELD} uppercase ${unknown ? 'border-pw-red-ink' : ''}`}
-      />
-      {unknown && <p id={`${id}-error`} role="alert" className="text-base font-semibold text-pw-red-ink">{t('code_unknown')}</p>}
-    </div>
-  );
-}

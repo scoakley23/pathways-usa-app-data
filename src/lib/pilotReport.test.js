@@ -1,15 +1,15 @@
 import { describe, it, expect } from 'vitest';
 import {
-  isoWeek, learnerSummary, pilotMetrics, formatCount, formatShare, toCsv, CSV_COLUMNS, SMALL_NUMBER_LIMIT,
+  isoWeek, learnerSummary, pilotMetrics, formatCount, formatShare, toCsv, CSV_COLUMNS,
 } from '../../base44/shared/pilotReport.js';
 
 const d = (s) => new Date(`${s}T12:00:00`);
 const NOW = d('2026-11-30');
 const user = (extra = {}) => ({
   id: 'u1', email: 'test.learner@example.com', full_name: 'Test Learner', pilot_id: 'p-1',
-  created_date: '2026-06-01T15:00:00.000Z', program_code: 'HARVARD-PILOT', state: 'MA', app_language: 'es', ...extra,
+  created_date: '2026-06-01T15:00:00.000Z', state: 'MA', app_language: 'es', ...extra,
 });
-const summary = ({ user: extra, ...args } = {}) => learnerSummary({ now: NOW, ...args, user: user(extra) });
+const summary = ({ user: extra, ...args } = {}) => learnerSummary({ now: NOW, programCode: 'HARVARD-CTP', ...args, user: user(extra) });
 
 describe('ISO weeks', () => {
   it('matches ISO-8601', () => {
@@ -87,7 +87,7 @@ describe('the dashboard numbers', () => {
   const learners = [
     summary({ user: { pilot_id: 'a' }, sessions: [{ created_date: '2026-06-05T00:00:00Z', overall_score: 60 }, { created_date: '2026-07-01T00:00:00Z', overall_score: 90 }], activityDates: ['2026-06-24'],
       checkIns: [{ kind: 'signup', confidence: '2', stage: 'not_filed', created_date: '2026-06-02T00:00:00Z' }, { kind: 'month_3', confidence: '4', filed: 'yes', created_date: '2026-09-02T00:00:00Z' }] }),
-    summary({ user: { pilot_id: 'b', program_code: '', state: 'prefer_not' }, sessions: [{ created_date: '2026-07-01T00:00:00Z', overall_score: 70 }] }),
+    summary({ programCode: '', user: { pilot_id: 'b', state: 'prefer_not' }, sessions: [{ created_date: '2026-07-01T00:00:00Z', overall_score: 70 }] }),
     summary({ user: { pilot_id: 'c', created_date: '2026-11-25T00:00:00Z' } }),
   ];
   const m = pilotMetrics(learners);
@@ -109,14 +109,10 @@ describe('the dashboard numbers', () => {
   });
 });
 
-describe('Partner view', () => {
-  it(`hides counts from 1 to ${SMALL_NUMBER_LIMIT - 1} and their percentages`, () => {
-    expect(formatCount(3, { partner: true })).toBe('fewer than 5');
-    expect(formatCount(0, { partner: true })).toBe('0');
-    expect(formatCount(5, { partner: true })).toBe('5');
+describe('counts', () => {
+  it('are exact everywhere, with the share in brackets', () => {
     expect(formatCount(3)).toBe('3');
-    expect(formatShare(3, 30, { partner: true })).toBe('fewer than 5 of 30');
-    expect(formatShare(11, 30, { partner: true })).toBe('11 of 30 (37%)');
+    expect(formatShare(3, 30)).toBe('3 of 30 (10%)');
     expect(formatShare(11, 30)).toBe('11 of 30 (37%)');
     expect(formatShare(0, 0)).toBe('0 of 0');
   });
@@ -128,7 +124,7 @@ describe('CSV', () => {
     const [head, row] = csv.trim().split('\n');
     expect(head.split(',')).toEqual(CSV_COLUMNS);
     expect(head).toContain('signup_week');
-    expect(row.startsWith('p-1,HARVARD-PILOT,MA,es,2026-W23,')).toBe(true);
+    expect(row.startsWith('p-1,HARVARD-CTP,MA,es,2026-W23,')).toBe(true);
     expect(csv).not.toMatch(/@|Test Learner|2026-06-01/);
     expect(CSV_COLUMNS.join(',')).not.toMatch(/email|name|date/);
   });

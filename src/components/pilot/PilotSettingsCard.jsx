@@ -1,27 +1,23 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Loader2, Save, ClipboardList } from 'lucide-react';
 import { toast } from 'sonner';
 import { base44 } from '@/api/base44Client';
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card';
 import { Switch } from '@/components/ui/switch';
 import { PrimaryButton } from '@/components/pathways/ui';
-import { buildProfileAnswers, loadPendingCode, clearPendingCode, reminderSettings } from '@/lib/pilot';
+import { buildProfileAnswers, reminderSettings } from '@/lib/pilot';
 import useAppLanguage from '@/hooks/useAppLanguage';
 import usePilotText from './pilotStrings';
-import { StateSelect, ProgramCodeField } from './PilotFields';
+import { StateSelect } from './PilotFields';
 
-// Profile: turn the check-in reminder emails on or off, and change state or
-// program code, and turn check-in questions back on after "Don't ask me
-// again". Learners only.
+// Profile: turn the check-in reminder emails on or off, change state, and
+// turn check-in questions back on after "Don't ask me again".
 export default function PilotSettingsCard({ user }) {
   const [language] = useAppLanguage();
   const t = usePilotText(language);
   const [reminders, setReminders] = useState(user?.checkin_email_reminders === true);
   const [checkIns, setCheckIns] = useState(user?.checkins_stopped !== true);
-  const [programCode, setProgramCode] = useState(() => user?.program_code || loadPendingCode());
   const [state, setState] = useState(user?.state || '');
-  const [codeUnknown, setCodeUnknown] = useState(false);
-  const codeRef = useRef(null);
   const [saving, setSaving] = useState(false);
 
   const toggleReminders = async (on) => {
@@ -46,16 +42,9 @@ export default function PilotSettingsCard({ user }) {
 
   const save = async (e) => {
     e.preventDefault();
-    const { profile, error } = buildProfileAnswers({ programCode, state });
-    if (error) {
-      setCodeUnknown(true);
-      codeRef.current?.focus();
-      return;
-    }
     setSaving(true);
     try {
-      await base44.auth.updateMe(profile);
-      clearPendingCode();
+      await base44.auth.updateMe(buildProfileAnswers({ state }));
       toast.success(t('saved'));
     } catch (err) {
       toast.error(t('error'));
@@ -94,15 +83,6 @@ export default function PilotSettingsCard({ user }) {
 
         <form onSubmit={save} className="space-y-5">
           <StateSelect id="profile-state" value={state} onChange={setState} t={t} />
-          <ProgramCodeField
-            id="profile-code"
-            value={programCode}
-            onChange={(v) => { setProgramCode(v); setCodeUnknown(false); }}
-            unknown={codeUnknown}
-            inputRef={codeRef}
-          inputRef={codeRef}
-            t={t}
-          />
           <PrimaryButton type="submit" disabled={saving} className="w-full sm:w-auto">
             {saving ? <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> : <Save className="w-4 h-4" aria-hidden="true" />}
             {t('card_save')}
