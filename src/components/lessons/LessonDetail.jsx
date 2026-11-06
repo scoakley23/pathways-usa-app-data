@@ -10,6 +10,9 @@ import LanguageSelector from '@/components/lessons/LanguageSelector';
 import PosterRun, { cleanQuestionText, officialAnswerText } from '@/components/lessons/PosterRun';
 import { ListenButton } from '@/components/persona/TutorMessage';
 import useTutorProfile from '@/components/persona/useTutorProfile';
+import OfficeholderNote from '@/components/civics/OfficeholderNote';
+import useLearnerLocation from '@/components/civics/useLearnerLocation';
+import { officeholderAnswerFor } from '@/lib/officeholderQuestions';
 import { useLessonTranslation } from '@/hooks/useLessonTranslation';
 import { Eyebrow, ExplainSimplyButton, IndexCard, PrimaryButton, QuietButton, SecondaryButton, SegmentedProgress, Tag } from '@/components/pathways/ui';
 import { questionsForLesson } from '@/lib/lessonQuestions';
@@ -59,6 +62,7 @@ function KeyPointCard({ point, number }) {
 // Saves only what it saved before: LessonProgress (completed, scores).
 export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNavigateLesson }) {
   const { profile } = useTutorProfile();
+  const { location } = useLearnerLocation();
   const [user, setUser] = useState(null);
   const [flashcards, setFlashcards] = useState([]);
   const [questions, setQuestions] = useState([]);
@@ -311,7 +315,8 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
                   <li key={q.id}>
                     <IndexCard tab={`Question ${i + 1}`} tabSkill="civics">
                       <p className="text-xl font-semibold leading-snug">{cleanQuestionText(q.question)}</p>
-                      <p className="mt-3 font-display italic text-xl leading-snug">Answer: {officialAnswerText(q)}</p>
+                      <p className="mt-3 font-display italic text-xl leading-snug">Answer: {officialAnswerText(q, location)}</p>
+                      <OfficeholderNote answer={officeholderAnswerFor(q, location)} graded={false} className="mt-2" />
                       <ListenButton text={cleanQuestionText(q.question)} language="en" className="mt-3" />
                     </IndexCard>
                   </li>

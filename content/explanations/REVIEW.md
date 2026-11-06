@@ -28,9 +28,9 @@ only when every box below is true.
 - [ ] For "Answers change" / "Answers vary" questions, it tells the learner to
   check the current answer (uscis.gov) or their own state's officials, and
   does not name a person as the answer.
-  (The app shows the confirmed current officials from
-  `content/civics/current-officials.json`, set in Admin → Current officials,
-  and the learner's own officials from Find My Representative.)
+  (The app shows the current officials from `src/data/officeholders.json`,
+  checked against official government websites every month, read with the
+  learner's saved "Who Represents Me?" state and district.)
 - [ ] An optional `link` (`{ "url", "label" }`, e.g. a Listen link) goes to an
   official https site (.gov, .mil or .si.edu) and the label is in the file's
   language.

@@ -16,9 +16,17 @@
       "type": "number",
       "default": 0
     },
+    "representative_state": {
+      "type": "string",
+      "description": "From Who Represents Me?: the state, D.C. or territory, as named in src/data/officeholders.json. Names are never stored; the app reads them from that table. Addresses and zip codes are used only for the moment of lookup and must never be stored."
+    },
+    "representative_district": {
+      "type": "string",
+      "description": "From Who Represents Me?: the congressional district number, or At-large."
+    },
     "representative_data": {
       "type": "object",
-      "description": "Cached elected officials' names only (governor, senators, representative name and district, state capital). Addresses and zip codes are used only for the moment of lookup and must never be stored here."
+      "description": "Retired: used to hold AI-found officials' names. The app clears it (keeping only the state and district above) the next time the learner opens a civics screen."
     }
   },
   "required": [

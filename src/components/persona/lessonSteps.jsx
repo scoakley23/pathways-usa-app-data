@@ -8,7 +8,10 @@ import TopicArt from '@/components/art/TopicArt';
 import { Eyebrow, IndexCard, Poster, PrimaryButton, RaisedCard, posterTone } from '@/components/pathways/ui';
 import { speakText } from '@/components/utils/textToSpeech';
 import { wordDiff } from '@/components/utils/wordDiff';
-import { checkCivicsAnswer } from '@/components/civics/checkCivicsAnswer';
+import { checkCivicsAnswer, officeholderCheck } from '@/components/civics/checkCivicsAnswer';
+import OfficeholderNote from '@/components/civics/OfficeholderNote';
+import useLearnerLocation from '@/components/civics/useLearnerLocation';
+import { FIND_REPRESENTATIVE_PATH, MAY_CHANGE_SOON, officeholderAnswerFor } from '@/lib/officeholderQuestions';
 import { evaluateInterviewAnswer, evaluateUnderstanding } from '@/components/practice/evaluateInterviewAnswer';
 import { buildTutorInstructions } from '@/lib/tutorPersona';
 import { checkDictation, matchOfficialAnswer, splitOfficialAnswers } from '@/lib/practiceChecks';
@@ -30,11 +33,11 @@ export const UI = {
   readAgain: { en: 'Read these words again slowly:', es: 'Lea otra vez, despacio, estas palabras:' },
   checkNext: { en: 'Thank you. On to the next one.', es: 'Gracias. Vamos a la siguiente.' },
   currentAnswer: { en: 'Current answer', es: 'Respuesta actual' },
-  yourAnswer: { en: 'Your answer', es: 'Su respuesta' },
-  checkedOn: { en: 'Checked on {date} from', es: 'Revisado el {date} en' },
-  checkUscis: { en: 'This answer changes. Check the current answer on', es: 'Esta respuesta cambia. Vea la respuesta actual en' },
-  findYours: { en: 'This answer depends on where you live. Find yours with Find My Representative.', es: 'Esta respuesta depende de dónde vive. Búsquela con Find My Representative.' },
-  findButton: { en: 'Find my representatives', es: 'Buscar mis representantes' },
+  checkedOn: { en: 'Checked on official government websites on {date}', es: 'Revisado en sitios oficiales del gobierno el {date}' },
+  mayChangeSoon: { en: MAY_CHANGE_SOON, es: 'Esto puede cambiar pronto. En su entrevista, diga el nombre de la persona que tenga el cargo ese día.' },
+  findYours: { en: 'This answer depends on where you live. Use “Who Represents Me?” on the Learn page.', es: 'Esta respuesta depende de dónde vive. Use “Who Represents Me?” en la página Learn.' },
+  findButton: { en: 'Who Represents Me?', es: 'Who Represents Me?' },
+  notCounted: { en: "We can't check this one yet, so it isn't counted as right or wrong.", es: 'Todavía no podemos revisar esta, así que no cuenta como correcta ni incorrecta.' },
   checkFailed: { en: "I couldn't check that answer. Please try again.", es: 'No pude revisar esa respuesta. Por favor, intente otra vez.' },
 };
 
@@ -121,36 +124,28 @@ export function ExplainStep({ step, ctx }) {
   );
 }
 
-// "Answers change / vary" questions: the confirmed current official, or the
-// learner's own official from Find My Representative (see currentAnswers.js).
+// "Answers change / vary" questions: the current officeholder (or capital)
+// from the officeholders table, for "your state's" questions with the
+// learner's saved "Who Represents Me?" place (see currentAnswers.js).
 function NowAnswer({ now, ctx }) {
   if (!now) return null;
   const t = (key) => { const v = ctx.ui(key); return ctx.language === 'es' && v.mine ? v.mine : v.en; };
-  const uscis = (
-    <a href={now.source} target="_blank" rel="noopener noreferrer" className="font-bold underline underline-offset-2 hover:text-pw-red-ink">uscis.gov</a>
-  );
   return (
     <div className="mt-4 rounded-2xl bg-pw-blue-soft p-4">
       {now.kind === 'current' && (
         <>
           <Eyebrow className="mb-1">{t('currentAnswer')}</Eyebrow>
-          <p className="text-[1.25em] font-extrabold">{now.text}</p>
-          <ListenButton text={now.text} language="en" />
-          <p className="text-sm text-pw-muted mt-2">{t('checkedOn').replace('{date}', now.checkedOn)} {uscis}</p>
-        </>
-      )}
-      {now.kind === 'check' && <p className="font-semibold">{t('checkUscis')} {uscis}.</p>}
-      {now.kind === 'yours' && (
-        <>
-          <Eyebrow className="mb-1">{t('yourAnswer')}</Eyebrow>
-          <p className="text-[1.25em] font-extrabold">{now.text}</p>
-          <ListenButton text={now.text} language="en" />
+          {now.accepted.length > 0 && <p className="text-[1.25em] font-extrabold">{now.accepted.join(' · ')}</p>}
+          {now.accepted.length > 0 && <ListenButton text={now.accepted.join('. ')} language="en" />}
+          {now.message && <p className="mt-2">{now.message}</p>}
+          {now.mayChangeSoon && <p className="font-semibold mt-2">{t('mayChangeSoon')}</p>}
+          <p className="text-sm text-pw-muted mt-2">{t('checkedOn').replace('{date}', now.checkedOn)}.</p>
         </>
       )}
       {now.kind === 'find' && (
         <>
           <p className="font-semibold">{t('findYours')}</p>
-          <Link to="/learn#find-representative" className="mt-3 min-h-[44px] rounded-2xl bg-pw-navy text-white px-4 font-bold inline-flex items-center hover:bg-pw-navy-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2">
+          <Link to={FIND_REPRESENTATIVE_PATH} className="mt-3 min-h-[44px] rounded-2xl bg-pw-navy text-white px-4 font-bold inline-flex items-center hover:bg-pw-navy-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2">
             {t('findButton')}
           </Link>
         </>
@@ -209,12 +204,28 @@ export function ShowEnglishStep({ step, ctx }) {
 
 export function SpeakingStep({ step, ctx, state, setState }) {
   const { question } = step;
-  const accepted = splitOfficialAnswers(question.answer);
+  const { location } = useLearnerLocation();
+  // Officeholder / capital questions: accepted names from the officeholders table.
+  const officeholder = officeholderAnswerFor(question, location);
+  const accepted = officeholder ? officeholder.accepted : splitOfficialAnswers(question.answer);
   const [checking, setChecking] = useState(false);
   const [typed, setTyped] = useState('');
 
   const evaluate = async (answer, wasTyped) => {
     if (!answer.trim()) return;
+    // Graded from the table on the device, never the AI. correct === null =
+    // can't be graded (e.g. no saved place): counted neither right nor wrong.
+    const officeholderResult = officeholderCheck(question, answer, location);
+    if (officeholderResult) {
+      const isCorrect = officeholderResult.is_correct;
+      setState({
+        answered: true,
+        heard: wasTyped ? undefined : answer,
+        outcome: { correct: isCorrect },
+        result: { isCorrect, officeholder: officeholderResult.officeholder, tip: isCorrect === false ? ctx.ui('keyWordsTip') : null },
+      });
+      return;
+    }
     const local = () => matchOfficialAnswer(answer, question.answer).isCorrect;
     if (wasTyped) {
       // Typed text never goes to the AI here: check on the device.
@@ -293,19 +304,28 @@ export function SpeakingStep({ step, ctx, state, setState }) {
         </QuestionCard>
       )}
 
-      {state.answered && (isCheck(step) ? <CheckNext ctx={ctx} /> : (
-        <TeachingFeedback
-          profile={ctx.profile}
-          language={ctx.language}
-          line={ctx.line}
-          isCorrect={state.result.isCorrect}
-          rightText={state.result.right}
-          tipText={state.result.tip}
-          accepted={accepted}
-          shown={state.shown}
-          onTryAgain={reset}
-          onShowMe={showMe}
-        />
+      {state.answered && state.result?.isCorrect === null && (
+        <RaisedCard className={`text-pw-navy ${ctx.sizeClass}`}>
+          <p className="font-semibold mb-2">{(() => { const v = ctx.ui('notCounted'); return ctx.language === 'es' && v.mine ? v.mine : v.en; })()}</p>
+          <OfficeholderNote answer={state.result.officeholder} graded={false} />
+        </RaisedCard>
+      )}
+      {state.answered && (isCheck(step) || state.result?.isCorrect === null ? <CheckNext ctx={ctx} /> : (
+        <>
+          <TeachingFeedback
+            profile={ctx.profile}
+            language={ctx.language}
+            line={ctx.line}
+            isCorrect={state.result.isCorrect}
+            rightText={state.result.right}
+            tipText={state.result.tip}
+            accepted={accepted}
+            shown={state.shown}
+            onTryAgain={reset}
+            onShowMe={showMe}
+          />
+          {state.result.officeholder && <OfficeholderNote answer={state.result.officeholder} graded={false} className="px-1" />}
+        </>
       ))}
     </div>
   );

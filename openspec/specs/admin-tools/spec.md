@@ -2,12 +2,12 @@
 
 ## Purpose
 
-Gives app admins the tools to keep content accurate (sentences, civics questions, vocabulary, Resource Hub places, explanations, current officials) without any access to learner data.
+Gives app admins the tools to keep content accurate (sentences, civics questions, vocabulary, Resource Hub places, explanations) without any access to learner data.
 
 ## Requirements
 
 ### Requirement: Admin page is admin-only
-The Admin page SHALL show "Access Denied" to anyone who is not a signed-in admin. Admins SHALL see tabs for sentences, civics questions, vocabulary, and places, plus explanation and current-officials tools and a link to the tutor demo.
+The Admin page SHALL show "Access Denied" to anyone who is not a signed-in admin. Admins SHALL see tabs for sentences, civics questions, vocabulary, and places, plus explanation tools and a link to the tutor demo.
 
 #### Scenario: Learner opens Admin
 - **WHEN** a non-admin opens the Admin page
@@ -37,13 +37,6 @@ Admins SHALL export the 2025 questions and have AI draft explanations in English
 #### Scenario: AI drafts an explanation
 - **WHEN** an admin drafts an explanation
 - **THEN** the draft's answers are copied from the official record and marked draft
-
-### Requirement: Confirm current officials
-Admins SHALL be able to have AI read the USCIS page for the current President, Vice President, Speaker, and Chief Justice, edit the names, and download a dated file to commit. Download SHALL be blocked while the file has problems. Nothing SHALL be saved to the backend.
-
-#### Scenario: Missing name
-- **WHEN** one official's name is empty
-- **THEN** the download button is disabled
 
 ### Requirement: Tutor lesson demo
 Admins SHALL be able to run a demo tutor lesson built from 2025 civics questions that saves no progress. Non-admins SHALL see "This demo is for admins only."

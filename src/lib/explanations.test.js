@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+import { OFFICEHOLDERS } from './officeholders';
 import officialQuestions from '../../content/civics/questions-2025.json';
 import {
   EXPLANATIONS, findExplanationProblems, selectExplanation, explainText, pickNextToLearn, buildLearnLesson,
@@ -149,8 +150,10 @@ describe('links and current answers', () => {
   it('passes the link to the explain step and the learner\'s own answer to the bridge', () => {
     const lookup = () => ({ text: 'T.', keyWords: [], link: { url: 'https://www.loc.gov/x', label: 'Listen' }, source: 'mine', comingSoon: false, englishText: 'T.' });
     const q = { id: 'g', version: '2025', question: 'Who is the governor of your state now?', answer: 'Answers vary by where you live.' };
-    const lesson = buildLearnLesson([q], 'en', lookup, { representativeData: { governor: 'Pat Example' } });
+    const lesson = buildLearnLesson([q], 'en', lookup, { location: { state: 'Ohio', district: '1' } });
     expect(lesson.steps[0].link.label).toBe('Listen');
-    expect(lesson.steps[1].now).toEqual({ kind: 'yours', text: 'Pat Example' });
+    expect(lesson.steps[1].now.kind).toBe('current');
+    expect(lesson.steps[1].now.accepted).toEqual([OFFICEHOLDERS.places.Ohio.governor.name]);
+    expect(buildLearnLesson([q], 'en', lookup).steps[1].now.kind).toBe('find');
   });
 });

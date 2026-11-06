@@ -1,6 +1,7 @@
 // "Ask Vía": the AI tutor chat (formerly Study Buddy). Pure helpers so the
 // safety rules can be tested without a browser.
 import { buildTutorInstructions, normalizeTutorProfile } from './tutorPersona';
+import { VIA_OFFICEHOLDER_RULES, buildViaOfficeholderContext } from './officeholders';
 
 export const MAX_QUESTION_LENGTH = 500;
 
@@ -82,12 +83,19 @@ export const ASK_RESPONSE_SCHEMA = {
   required: ['is_personal_legal', 'answer_en'],
 };
 
-// Persona instructions + the learner's question only (no email, no name).
-export function buildAskPrompt(profile, languageName, question) {
+// Persona instructions, the officeholder rules and official list, and the
+// learner's question only (no email, no name, no account data). `location` is
+// the learner's saved "Who Represents Me?" place ({ state, district }) or
+// null: only those two values go to the AI, as part of the official list.
+export function buildAskPrompt(profile, languageName, question, { location = null, today } = {}) {
   const p = normalizeTutorProfile(profile);
   const isEnglish = /^english$/i.test(String(languageName || '').trim());
   return [
     buildTutorInstructions(p, languageName),
+    '',
+    VIA_OFFICEHOLDER_RULES,
+    '',
+    buildViaOfficeholderContext({ state: location?.state, district: location?.district, message: question, ...(today ? { today } : {}) }),
     '',
     'The learner typed a question in the app chat. Answer it as their tutor: clear, accurate, short, and about the U.S. citizenship test (civics, reading, writing, speaking) or English for the interview.',
     'Set is_personal_legal to true if the learner asks about THEIR OWN immigration case, history, record, status, eligibility, how THEY should answer an N-400 or interview question about themselves, or asks for any other legal advice. When it is true, leave both answers empty.',

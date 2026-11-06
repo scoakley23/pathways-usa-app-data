@@ -1,0 +1,3625 @@
+{
+ "meta": {
+  "checkedOn": "2026-11-05",
+  "checkedOnRange": [
+   "2026-11-05"
+  ],
+  "rowCount": 671,
+  "about": "Current U.S. officeholders and capitals, confirmed on official government websites. This is the ONLY source the app uses for officeholder names."
+ },
+ "national": {
+  "associateJustices": [
+   {
+    "name": "Clarence Thomas",
+    "source": "https://www.supremecourt.gov/about/biographies.aspx"
+   },
+   {
+    "name": "Samuel A. Alito, Jr.",
+    "source": "https://www.supremecourt.gov/about/biographies.aspx"
+   },
+   {
+    "name": "Sonia Sotomayor",
+    "source": "https://www.supremecourt.gov/about/biographies.aspx"
+   },
+   {
+    "name": "Elena Kagan",
+    "source": "https://www.supremecourt.gov/about/biographies.aspx"
+   },
+   {
+    "name": "Neil M. Gorsuch",
+    "source": "https://www.supremecourt.gov/about/biographies.aspx"
+   },
+   {
+    "name": "Brett M. Kavanaugh",
+    "source": "https://www.supremecourt.gov/about/biographies.aspx"
+   },
+   {
+    "name": "Amy Coney Barrett",
+    "source": "https://www.supremecourt.gov/about/biographies.aspx"
+   },
+   {
+    "name": "Ketanji Brown Jackson",
+    "source": "https://www.supremecourt.gov/about/biographies.aspx"
+   }
+  ],
+  "president": {
+   "name": "Donald J. Trump",
+   "source": "https://www.whitehouse.gov/administration/",
+   "notes": "USCIS accepts: Donald J. Trump / Donald Trump / Trump."
+  },
+  "vicePresident": {
+   "name": "JD Vance",
+   "source": "https://www.whitehouse.gov/administration/",
+   "notes": "USCIS accepts: JD Vance / Vance."
+  },
+  "speaker": {
+   "name": "Mike Johnson",
+   "source": "https://clerk.house.gov/",
+   "notes": "USCIS accepts: Mike Johnson / Johnson / James Michael Johnson (birth name). Also Representative for Louisiana's 4th district. A new Speaker is elected when the 120th Congress convenes (Jan 2027); re-check then."
+  },
+  "chiefJustice": {
+   "name": "John G. Roberts, Jr.",
+   "source": "https://www.supremecourt.gov/about/biographies.aspx",
+   "notes": "USCIS accepts: John Roberts / John G. Roberts, Jr. / Roberts."
+  }
+ },
+ "places": {
+  "Alabama": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Katie Boyd Britt",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    },
+    {
+     "name": "Tommy Tuberville",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml",
+     "notes": "Senate seat was on the Nov 3, 2026 ballot; this term ends Jan 3, 2027. Re-check senate.gov after Jan 3, 2027."
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Barry Moore",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Shomari Figures",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "3": {
+     "name": "Mike Rogers",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "4": {
+     "name": "Robert B. Aderholt",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "5": {
+     "name": "Dale W. Strong",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "6": {
+     "name": "Gary J. Palmer",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "7": {
+     "name": "Terri A. Sewell",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Kay Ivey",
+    "source": "https://www.nga.org/governors/alabama/",
+    "notes": "EXPECTED CHANGE: governor's race on Nov 3, 2026 ballot and this governor is term-limited or not on the ballot (NGA elections map). A new governor takes office in the coming weeks/months; re-check nga.org."
+   },
+   "capital": {
+    "name": "Montgomery",
+    "source": "https://ahc.alabama.gov/alabama-state-capitol.aspx",
+    "notes": "Confirmed via State Capitol address (Alabama Historical Commission)."
+   }
+  },
+  "Alaska": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Lisa Murkowski",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    },
+    {
+     "name": "Dan Sullivan",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml",
+     "notes": "Senate seat was on the Nov 3, 2026 ballot; this term ends Jan 3, 2027. Re-check senate.gov after Jan 3, 2027."
+    }
+   ],
+   "representatives": {
+    "At-large": {
+     "name": "Nicholas J. Begich III",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Mike Dunleavy",
+    "source": "https://www.nga.org/governors/alaska/",
+    "notes": "EXPECTED CHANGE: governor's race on Nov 3, 2026 ballot and this governor is term-limited or not on the ballot (NGA elections map). A new governor takes office in the coming weeks/months; re-check nga.org."
+   },
+   "capital": {
+    "name": "Juneau",
+    "source": "https://alaska.gov/kids/learn/capitol.htm"
+   }
+  },
+  "Arizona": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Ruben Gallego",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    },
+    {
+     "name": "Mark Kelly",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "David Schweikert",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Elijah Crane",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "3": {
+     "name": "Yassamin Ansari",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "4": {
+     "name": "Greg Stanton",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "5": {
+     "name": "Andy Biggs",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "6": {
+     "name": "Juan Ciscomani",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "7": {
+     "name": "Adelita S. Grijalva",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "8": {
+     "name": "Abraham J. Hamadeh",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "9": {
+     "name": "Paul A. Gosar",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Katie Hobbs",
+    "source": "https://www.nga.org/governors/arizona/",
+    "notes": "Governor's race on Nov 3, 2026 ballot; incumbent sought reelection (NGA elections map). Re-check nga.org after results are certified."
+   },
+   "capital": {
+    "name": "Phoenix",
+    "source": "https://azleg.gov/const/20/9.htm",
+    "notes": "Arizona Constitution Art. 20 §9."
+   }
+  },
+  "Arkansas": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "John Boozman",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    },
+    {
+     "name": "Tom Cotton",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml",
+     "notes": "Senate seat was on the Nov 3, 2026 ballot; this term ends Jan 3, 2027. Re-check senate.gov after Jan 3, 2027."
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Eric A. \"Rick\" Crawford",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "J. French Hill",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "3": {
+     "name": "Steve Womack",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "4": {
+     "name": "Bruce Westerman",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Sarah Huckabee Sanders",
+    "source": "https://www.nga.org/governors/arkansas/",
+    "notes": "Governor's race on Nov 3, 2026 ballot; incumbent sought reelection (NGA elections map). Re-check nga.org after results are certified."
+   },
+   "capital": {
+    "name": "Little Rock",
+    "source": "https://www.sos.arkansas.gov/state-capitol/state-capitol-tour-information/",
+    "notes": "Confirmed via State Capitol address."
+   }
+  },
+  "California": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Alex Padilla",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    },
+    {
+     "name": "Adam B. Schiff",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "James Gallagher",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "Sworn in Jun 10, 2026 (special election), replacing Doug LaMalfa (died Jan 6, 2026). All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Jared Huffman",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "3": {
+     "name": "Kevin Kiley",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "4": {
+     "name": "Mike Thompson",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "5": {
+     "name": "Tom McClintock",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "6": {
+     "name": "Ami Bera",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "7": {
+     "name": "Doris O. Matsui",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "8": {
+     "name": "John Garamendi",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "9": {
+     "name": "Josh Harder",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "10": {
+     "name": "Mark DeSaulnier",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "11": {
+     "name": "Nancy Pelosi",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "12": {
+     "name": "Lateefah Simon",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "13": {
+     "name": "Adam Gray",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "14": {
+     "name": "Aisha Wahab",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "RECENT CHANGE: sworn in Sep 2, 2026 after special election (Aug 18, 2026), replacing Eric Swalwell (resigned Apr 14, 2026). All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "15": {
+     "name": "Kevin Mullin",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "16": {
+     "name": "Sam T. Liccardo",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "17": {
+     "name": "Ro Khanna",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "18": {
+     "name": "Zoe Lofgren",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "19": {
+     "name": "Jimmy Panetta",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "20": {
+     "name": "Vince Fong",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "21": {
+     "name": "Jim Costa",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "22": {
+     "name": "David G. Valadao",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "23": {
+     "name": "Jay Obernolte",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "24": {
+     "name": "Salud O. Carbajal",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "25": {
+     "name": "Raul Ruiz",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "26": {
+     "name": "Julia Brownley",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "27": {
+     "name": "George Whitesides",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "28": {
+     "name": "Judy Chu",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "29": {
+     "name": "Luz M. Rivas",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "30": {
+     "name": "Laura Friedman",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "31": {
+     "name": "Gilbert Ray Cisneros, Jr.",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "32": {
+     "name": "Brad Sherman",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "33": {
+     "name": "Pete Aguilar",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "34": {
+     "name": "Jimmy Gomez",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "35": {
+     "name": "Norma J. Torres",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "36": {
+     "name": "Ted Lieu",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "37": {
+     "name": "Sydney Kamlager-Dove",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "38": {
+     "name": "Linda T. Sánchez",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "39": {
+     "name": "Mark Takano",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "40": {
+     "name": "Young Kim",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "41": {
+     "name": "Ken Calvert",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "42": {
+     "name": "Robert Garcia",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "43": {
+     "name": "Maxine Waters",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "44": {
+     "name": "Nanette Diaz Barragán",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "45": {
+     "name": "Derek Tran",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "46": {
+     "name": "J. Luis Correa",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "47": {
+     "name": "Dave Min",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "48": {
+     "name": "Darrell Issa",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "49": {
+     "name": "Mike Levin",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "50": {
+     "name": "Scott H. Peters",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "51": {
+     "name": "Sara Jacobs",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "52": {
+     "name": "Juan Vargas",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Gavin Newsom",
+    "source": "https://www.nga.org/governors/california/",
+    "notes": "EXPECTED CHANGE: governor's race on Nov 3, 2026 ballot and this governor is term-limited or not on the ballot (NGA elections map). A new governor takes office in the coming weeks/months; re-check nga.org."
+   },
+   "capital": {
+    "name": "Sacramento",
+    "source": "https://www.assembly.ca.gov/resources/visit-state-capitol"
+   }
+  },
+  "Colorado": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Michael F. Bennet",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    },
+    {
+     "name": "John W. Hickenlooper",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml",
+     "notes": "Senate seat was on the Nov 3, 2026 ballot; this term ends Jan 3, 2027. Re-check senate.gov after Jan 3, 2027."
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Diana DeGette",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Joe Neguse",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "3": {
+     "name": "Jeff Hurd",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "4": {
+     "name": "Lauren Boebert",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "5": {
+     "name": "Jeff Crank",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "6": {
+     "name": "Jason Crow",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "7": {
+     "name": "Brittany Pettersen",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "8": {
+     "name": "Gabe Evans",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Jared Polis",
+    "source": "https://www.nga.org/governors/colorado/",
+    "notes": "EXPECTED CHANGE: governor's race on Nov 3, 2026 ballot and this governor is term-limited or not on the ballot (NGA elections map). A new governor takes office in the coming weeks/months; re-check nga.org."
+   },
+   "capital": {
+    "name": "Denver",
+    "source": "https://capitol.colorado.gov/history-capitol"
+   }
+  },
+  "Connecticut": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Richard Blumenthal",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    },
+    {
+     "name": "Christopher Murphy",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "John B. Larson",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Joe Courtney",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "3": {
+     "name": "Rosa L. DeLauro",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "4": {
+     "name": "James A. Himes",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "5": {
+     "name": "Jahana Hayes",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Ned Lamont",
+    "source": "https://www.nga.org/governors/connecticut/",
+    "notes": "Governor's race on Nov 3, 2026 ballot; incumbent sought reelection (NGA elections map). Re-check nga.org after results are certified."
+   },
+   "capital": {
+    "name": "Hartford",
+    "source": "https://portal.ct.gov/about/general-description-and-facts"
+   }
+  },
+  "Delaware": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Lisa Blunt Rochester",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    },
+    {
+     "name": "Christopher A. Coons",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml",
+     "notes": "Senate seat was on the Nov 3, 2026 ballot; this term ends Jan 3, 2027. Re-check senate.gov after Jan 3, 2027."
+    }
+   ],
+   "representatives": {
+    "At-large": {
+     "name": "Sarah McBride",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Matt Meyer",
+    "source": "https://www.nga.org/governors/delaware/"
+   },
+   "capital": {
+    "name": "Dover",
+    "source": "https://delaware.gov/topics/facts/gov.shtml"
+   }
+  },
+  "Florida": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Ashley Moody",
+     "source": "https://www.senate.gov/senators/AppointedSenators.htm",
+     "notes": "Appointed Jan 21, 2025 (senate.gov Appointed Senators). Special election for this seat was expected Nov 3, 2026; an elected winner can be sworn in as soon as results are certified (possibly before Jan 2027). Re-check senate.gov."
+    },
+    {
+     "name": "Rick Scott",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Jimmy Patronis",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Neal P. Dunn",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "3": {
+     "name": "Kat Cammack",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "4": {
+     "name": "Aaron Bean",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "5": {
+     "name": "John H. Rutherford",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "6": {
+     "name": "Randy Fine",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "7": {
+     "name": "Cory Mills",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "8": {
+     "name": "Mike Haridopolos",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "9": {
+     "name": "Darren Soto",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "10": {
+     "name": "Maxwell Frost",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "11": {
+     "name": "Daniel Webster",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "12": {
+     "name": "Gus M. Bilirakis",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "13": {
+     "name": "Anna Paulina Luna",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "14": {
+     "name": "Kathy Castor",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "15": {
+     "name": "Laurel M. Lee",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "16": {
+     "name": "Vern Buchanan",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "17": {
+     "name": "W. Gregory Steube",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "18": {
+     "name": "Scott Franklin",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "19": {
+     "name": "Byron Donalds",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "20": {
+     "name": "VACANT",
+     "source": "https://clerk.house.gov/Members/ViewVacancies",
+     "notes": "VACANT since Apr 21, 2026 (resignation of Sheila Cherfilus-McCormick). Clerk lists special election date as TBD. All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "21": {
+     "name": "Brian J. Mast",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "22": {
+     "name": "Lois Frankel",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "23": {
+     "name": "Jared Moskowitz",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "24": {
+     "name": "Frederica S. Wilson",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "25": {
+     "name": "Debbie Wasserman Schultz",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "26": {
+     "name": "Mario Diaz-Balart",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "27": {
+     "name": "Maria Elvira Salazar",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "28": {
+     "name": "Carlos A. Gimenez",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Ron DeSantis",
+    "source": "https://www.nga.org/governors/florida/",
+    "notes": "EXPECTED CHANGE: governor's race on Nov 3, 2026 ballot and this governor is term-limited or not on the ballot (NGA elections map). A new governor takes office in the coming weeks/months; re-check nga.org."
+   },
+   "capital": {
+    "name": "Tallahassee",
+    "source": "https://dos.fl.gov/florida-facts/kids/state-capitol/"
+   }
+  },
+  "Georgia": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Jon Ossoff",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml",
+     "notes": "Senate seat was on the Nov 3, 2026 ballot; this term ends Jan 3, 2027. Re-check senate.gov after Jan 3, 2027."
+    },
+    {
+     "name": "Raphael G. Warnock",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Earl L. \"Buddy\" Carter",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Sanford D. Bishop, Jr.",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "3": {
+     "name": "Brian Jack",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "4": {
+     "name": "Henry C. \"Hank\" Johnson, Jr.",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "5": {
+     "name": "Nikema Williams",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "6": {
+     "name": "Lucy McBath",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "7": {
+     "name": "Richard McCormick",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "8": {
+     "name": "Austin Scott",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "9": {
+     "name": "Andrew S. Clyde",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "10": {
+     "name": "Mike Collins",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "11": {
+     "name": "Barry Loudermilk",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "12": {
+     "name": "Rick W. Allen",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "13": {
+     "name": "Everton Blair Jr.",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "RECENT CHANGE: sworn in Sep 1, 2026 after special election (Aug 25, 2026), replacing David Scott (died Apr 22, 2026). All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "14": {
+     "name": "Clay Fuller",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "Sworn in Apr 14, 2026 (special election), replacing Marjorie Taylor Greene (resigned Jan 5, 2026). All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Brian Kemp",
+    "source": "https://www.nga.org/governors/georgia/",
+    "notes": "EXPECTED CHANGE: governor's race on Nov 3, 2026 ballot and this governor is term-limited or not on the ballot (NGA elections map). A new governor takes office in the coming weeks/months; re-check nga.org."
+   },
+   "capital": {
+    "name": "Atlanta",
+    "source": "https://gov.georgia.gov/contact-us/capitol-information-directions",
+    "notes": "Confirmed via State Capitol address."
+   }
+  },
+  "Hawaii": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Mazie K. Hirono",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    },
+    {
+     "name": "Brian Schatz",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Ed Case",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Jill N. Tokuda",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Josh Green",
+    "source": "https://www.nga.org/governors/hawaii/",
+    "notes": "Governor's race on Nov 3, 2026 ballot; incumbent sought reelection (NGA elections map). Re-check nga.org after results are certified."
+   },
+   "capital": {
+    "name": "Honolulu",
+    "source": "https://lrb.hawaii.gov/par/at-the-capitol/",
+    "notes": "Confirmed via State Capitol address."
+   }
+  },
+  "Idaho": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Mike Crapo",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    },
+    {
+     "name": "James E. Risch",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml",
+     "notes": "Senate seat was on the Nov 3, 2026 ballot; this term ends Jan 3, 2027. Re-check senate.gov after Jan 3, 2027."
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Russ Fulcher",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Michael K. Simpson",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Brad Little",
+    "source": "https://www.nga.org/governors/idaho/",
+    "notes": "Governor's race on Nov 3, 2026 ballot; incumbent sought reelection (NGA elections map). Re-check nga.org after results are certified."
+   },
+   "capital": {
+    "name": "Boise",
+    "source": "https://idaho.gov/about-idaho/facts-symbols/"
+   }
+  },
+  "Illinois": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Tammy Duckworth",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    },
+    {
+     "name": "Richard J. Durbin",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml",
+     "notes": "Senate seat was on the Nov 3, 2026 ballot; this term ends Jan 3, 2027. Re-check senate.gov after Jan 3, 2027."
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Jonathan L. Jackson",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Robin L. Kelly",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "3": {
+     "name": "Delia C. Ramirez",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "4": {
+     "name": "Jesús G. \"Chuy\" García",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "5": {
+     "name": "Mike Quigley",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "6": {
+     "name": "Sean Casten",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "7": {
+     "name": "Danny K. Davis",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "8": {
+     "name": "Raja Krishnamoorthi",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "9": {
+     "name": "Janice D. Schakowsky",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "10": {
+     "name": "Bradley Scott Schneider",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "11": {
+     "name": "Bill Foster",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "12": {
+     "name": "Mike Bost",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "13": {
+     "name": "Nikki Budzinski",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "14": {
+     "name": "Lauren Underwood",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "15": {
+     "name": "Mary E. Miller",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "16": {
+     "name": "Darin LaHood",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "17": {
+     "name": "Eric Sorensen",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "JB Pritzker",
+    "source": "https://www.nga.org/governors/illinois/",
+    "notes": "Governor's race on Nov 3, 2026 ballot; incumbent sought reelection (NGA elections map). Re-check nga.org after results are certified."
+   },
+   "capital": {
+    "name": "Springfield",
+    "source": "https://oac.ilga.gov/Capitol/Capitol.html"
+   }
+  },
+  "Indiana": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Jim Banks",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    },
+    {
+     "name": "Todd Young",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Frank J. Mrvan",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Rudy Yakym III",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "3": {
+     "name": "Marlin A. Stutzman",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "4": {
+     "name": "James R. Baird",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "5": {
+     "name": "Victoria Spartz",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "6": {
+     "name": "Jefferson Shreve",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "7": {
+     "name": "André Carson",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "8": {
+     "name": "Mark B. Messmer",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "9": {
+     "name": "Erin Houchin",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Mike Braun",
+    "source": "https://www.nga.org/governors/indiana/"
+   },
+   "capital": {
+    "name": "Indianapolis",
+    "source": "https://faqs.in.gov/hc/en-us/articles/115005235288-What-are-the-hours-of-operation-and-address-of-the-Statehouse",
+    "notes": "Confirmed via Statehouse location."
+   }
+  },
+  "Iowa": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Joni Ernst",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml",
+     "notes": "Senate seat was on the Nov 3, 2026 ballot; this term ends Jan 3, 2027. Re-check senate.gov after Jan 3, 2027."
+    },
+    {
+     "name": "Chuck Grassley",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Mariannette Miller-Meeks",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Ashley Hinson",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "3": {
+     "name": "Zachary Nunn",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "4": {
+     "name": "Randy Feenstra",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Kim Reynolds",
+    "source": "https://www.nga.org/governors/iowa/",
+    "notes": "EXPECTED CHANGE: governor's race on Nov 3, 2026 ballot and this governor is term-limited or not on the ballot (NGA elections map). A new governor takes office in the coming weeks/months; re-check nga.org."
+   },
+   "capital": {
+    "name": "Des Moines",
+    "source": "https://governor.iowa.gov/locations/iowa-state-capitol",
+    "notes": "Confirmed via State Capitol address."
+   }
+  },
+  "Kansas": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Roger Marshall",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml",
+     "notes": "Senate seat was on the Nov 3, 2026 ballot; this term ends Jan 3, 2027. Re-check senate.gov after Jan 3, 2027."
+    },
+    {
+     "name": "Jerry Moran",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Tracey Mann",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Derek Schmidt",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "3": {
+     "name": "Sharice Davids",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "4": {
+     "name": "Ron Estes",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Laura Kelly",
+    "source": "https://www.nga.org/governors/kansas/",
+    "notes": "EXPECTED CHANGE: governor's race on Nov 3, 2026 ballot and this governor is term-limited or not on the ballot (NGA elections map). A new governor takes office in the coming weeks/months; re-check nga.org."
+   },
+   "capital": {
+    "name": "Topeka",
+    "source": "https://www.governor.ks.gov/contact/contact",
+    "notes": "Confirmed via Statehouse address."
+   }
+  },
+  "Kentucky": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Mitch McConnell",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml",
+     "notes": "Senate seat was on the Nov 3, 2026 ballot; this term ends Jan 3, 2027. Re-check senate.gov after Jan 3, 2027."
+    },
+    {
+     "name": "Rand Paul",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "James Comer",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Brett Guthrie",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "3": {
+     "name": "Morgan McGarvey",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "4": {
+     "name": "Thomas Massie",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "5": {
+     "name": "Harold Rogers",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "6": {
+     "name": "Andy Barr",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Andy Beshear",
+    "source": "https://www.nga.org/governors/kentucky/"
+   },
+   "capital": {
+    "name": "Frankfort",
+    "source": "https://history.ky.gov/markers/frankfort-chosen-as-capital"
+   }
+  },
+  "Louisiana": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Bill Cassidy",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml",
+     "notes": "Senate seat was on the Nov 3, 2026 ballot; this term ends Jan 3, 2027. Re-check senate.gov after Jan 3, 2027."
+    },
+    {
+     "name": "John Kennedy",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Steve Scalise",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Troy A. Carter",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "3": {
+     "name": "Clay Higgins",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "4": {
+     "name": "Mike Johnson",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "Also Speaker of the House. All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "5": {
+     "name": "Julia Letlow",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "6": {
+     "name": "Cleo Fields",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Jeff Landry",
+    "source": "https://www.nga.org/governors/louisiana/"
+   },
+   "capital": {
+    "name": "Baton Rouge",
+    "source": "https://house.louisiana.gov/kids/kids/"
+   }
+  },
+  "Maine": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Susan M. Collins",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml",
+     "notes": "Senate seat was on the Nov 3, 2026 ballot; this term ends Jan 3, 2027. Re-check senate.gov after Jan 3, 2027."
+    },
+    {
+     "name": "Angus S. King, Jr.",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Chellie Pingree",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Jared F. Golden",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Janet Mills",
+    "source": "https://www.nga.org/governors/maine/",
+    "notes": "EXPECTED CHANGE: governor's race on Nov 3, 2026 ballot and this governor is term-limited or not on the ballot (NGA elections map). A new governor takes office in the coming weeks/months; re-check nga.org."
+   },
+   "capital": {
+    "name": "Augusta",
+    "source": "https://www.maine.gov/portal/about_me/facts.html"
+   }
+  },
+  "Maryland": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Angela D. Alsobrooks",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    },
+    {
+     "name": "Chris Van Hollen",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Andy Harris",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Johnny Olszewski, Jr.",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "3": {
+     "name": "Sarah Elfreth",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "4": {
+     "name": "Glenn Ivey",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "5": {
+     "name": "Steny H. Hoyer",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "6": {
+     "name": "April McClain Delaney",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "7": {
+     "name": "Kweisi Mfume",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "8": {
+     "name": "Jamie Raskin",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Wes Moore",
+    "source": "https://www.nga.org/governors/maryland/",
+    "notes": "Governor's race on Nov 3, 2026 ballot; incumbent sought reelection (NGA elections map). Re-check nga.org after results are certified."
+   },
+   "capital": {
+    "name": "Annapolis",
+    "source": "https://msa.maryland.gov/msa/mdmanual/01glance/html/capital.html"
+   }
+  },
+  "Massachusetts": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Edward J. Markey",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml",
+     "notes": "Senate seat was on the Nov 3, 2026 ballot; this term ends Jan 3, 2027. Re-check senate.gov after Jan 3, 2027."
+    },
+    {
+     "name": "Elizabeth Warren",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Richard E. Neal",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "James P. McGovern",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "3": {
+     "name": "Lori Trahan",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "4": {
+     "name": "Jake Auchincloss",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "5": {
+     "name": "Katherine M. Clark",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "6": {
+     "name": "Seth Moulton",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "7": {
+     "name": "Ayanna Pressley",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "8": {
+     "name": "Stephen F. Lynch",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "9": {
+     "name": "William R. Keating",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Maura Healey",
+    "source": "https://www.nga.org/governors/massachusetts/",
+    "notes": "Governor's race on Nov 3, 2026 ballot; incumbent sought reelection (NGA elections map). Re-check nga.org after results are certified."
+   },
+   "capital": {
+    "name": "Boston",
+    "source": "https://www.sec.state.ma.us/divisions/cis/download/Mass_Facts.pdf"
+   }
+  },
+  "Michigan": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Gary C. Peters",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml",
+     "notes": "Senate seat was on the Nov 3, 2026 ballot; this term ends Jan 3, 2027. Re-check senate.gov after Jan 3, 2027."
+    },
+    {
+     "name": "Elissa Slotkin",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Jack Bergman",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "John R. Moolenaar",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "3": {
+     "name": "Hillary J. Scholten",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "4": {
+     "name": "Bill Huizenga",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "5": {
+     "name": "Tim Walberg",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "6": {
+     "name": "Debbie Dingell",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "7": {
+     "name": "Tom Barrett",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "8": {
+     "name": "Kristen McDonald Rivet",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "9": {
+     "name": "Lisa C. McClain",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "10": {
+     "name": "John James",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "11": {
+     "name": "Haley M. Stevens",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "12": {
+     "name": "Rashida Tlaib",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "13": {
+     "name": "Shri Thanedar",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Gretchen Whitmer",
+    "source": "https://www.nga.org/governors/michigan/",
+    "notes": "EXPECTED CHANGE: governor's race on Nov 3, 2026 ballot and this governor is term-limited or not on the ballot (NGA elections map). A new governor takes office in the coming weeks/months; re-check nga.org."
+   },
+   "capital": {
+    "name": "Lansing",
+    "source": "https://www.michigan.gov/som/about-michigan/state-facts-and-symbols"
+   }
+  },
+  "Minnesota": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Amy Klobuchar",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    },
+    {
+     "name": "Tina Smith",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml",
+     "notes": "Senate seat was on the Nov 3, 2026 ballot; this term ends Jan 3, 2027. Re-check senate.gov after Jan 3, 2027."
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Brad Finstad",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Angie Craig",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "3": {
+     "name": "Kelly Morrison",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "4": {
+     "name": "Betty McCollum",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "5": {
+     "name": "Ilhan Omar",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "6": {
+     "name": "Tom Emmer",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "7": {
+     "name": "Michelle Fischbach",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "8": {
+     "name": "Pete Stauber",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Tim Walz",
+    "source": "https://www.nga.org/governors/minnesota/",
+    "notes": "EXPECTED CHANGE: governor's race on Nov 3, 2026 ballot and this governor is term-limited or not on the ballot (NGA elections map). A new governor takes office in the coming weeks/months; re-check nga.org."
+   },
+   "capital": {
+    "name": "Saint Paul",
+    "source": "https://www.lrl.mn.gov/mngov/capitols",
+    "notes": "Also written St. Paul."
+   }
+  },
+  "Mississippi": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Cindy Hyde-Smith",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml",
+     "notes": "Senate seat was on the Nov 3, 2026 ballot; this term ends Jan 3, 2027. Re-check senate.gov after Jan 3, 2027."
+    },
+    {
+     "name": "Roger F. Wicker",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Trent Kelly",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Bennie G. Thompson",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "3": {
+     "name": "Michael Guest",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "4": {
+     "name": "Mike Ezell",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Tate Reeves",
+    "source": "https://www.nga.org/governors/mississippi/"
+   },
+   "capital": {
+    "name": "Jackson",
+    "source": "https://www.legislature.ms.gov/about-the-capitol/",
+    "notes": "Confirmed via State Capitol location."
+   }
+  },
+  "Missouri": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Josh Hawley",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    },
+    {
+     "name": "Eric Schmitt",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Wesley Bell",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Ann Wagner",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "3": {
+     "name": "Robert F. Onder, Jr.",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "4": {
+     "name": "Mark Alford",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "5": {
+     "name": "Emanuel Cleaver",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "6": {
+     "name": "Sam Graves",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "7": {
+     "name": "Eric Burlison",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "8": {
+     "name": "Jason Smith",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Mike Kehoe",
+    "source": "https://www.nga.org/governors/missouri/"
+   },
+   "capital": {
+    "name": "Jefferson City",
+    "source": "https://capitol.mo.gov/about-the-capitol/",
+    "notes": "Confirmed via State Capitol location."
+   }
+  },
+  "Montana": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Steve Daines",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml",
+     "notes": "Senate seat was on the Nov 3, 2026 ballot; this term ends Jan 3, 2027. Re-check senate.gov after Jan 3, 2027."
+    },
+    {
+     "name": "Tim Sheehy",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Ryan K. Zinke",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Troy Downing",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Greg Gianforte",
+    "source": "https://www.nga.org/governors/montana/"
+   },
+   "capital": {
+    "name": "Helena",
+    "source": "https://mhs.mt.gov/education/capitol/Capitol-History"
+   }
+  },
+  "Nebraska": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Deb Fischer",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    },
+    {
+     "name": "Pete Ricketts",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml",
+     "notes": "Senate seat was on the Nov 3, 2026 ballot; this term ends Jan 3, 2027. Re-check senate.gov after Jan 3, 2027."
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Mike Flood",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Don Bacon",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "3": {
+     "name": "Adrian Smith",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Jim Pillen",
+    "source": "https://www.nga.org/governors/nebraska/",
+    "notes": "Governor's race on Nov 3, 2026 ballot; incumbent sought reelection (NGA elections map). Re-check nga.org after results are certified."
+   },
+   "capital": {
+    "name": "Lincoln",
+    "source": "https://capitol.nebraska.gov/building/history/location/"
+   }
+  },
+  "Nevada": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Catherine Cortez Masto",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    },
+    {
+     "name": "Jacky Rosen",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Dina Titus",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Mark E. Amodei",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "3": {
+     "name": "Susie Lee",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "4": {
+     "name": "Steven Horsford",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Joe Lombardo",
+    "source": "https://www.nga.org/governors/nevada/",
+    "notes": "Governor's race on Nov 3, 2026 ballot; incumbent sought reelection (NGA elections map). Re-check nga.org after results are certified."
+   },
+   "capital": {
+    "name": "Carson City",
+    "source": "https://shpo.nv.gov/nevadas-historical-markers/historical-markers/carson-city"
+   }
+  },
+  "New Hampshire": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Margaret Wood Hassan",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    },
+    {
+     "name": "Jeanne Shaheen",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml",
+     "notes": "Senate seat was on the Nov 3, 2026 ballot; this term ends Jan 3, 2027. Re-check senate.gov after Jan 3, 2027."
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Chris Pappas",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Maggie Goodlander",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Kelly Ayotte",
+    "source": "https://www.nga.org/governors/new-hampshire/",
+    "notes": "Governor's race on Nov 3, 2026 ballot; incumbent sought reelection (NGA elections map). Re-check nga.org after results are certified."
+   },
+   "capital": {
+    "name": "Concord",
+    "source": "https://www.nh.gov/almanac/fast-facts"
+   }
+  },
+  "New Jersey": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Cory A. Booker",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml",
+     "notes": "Senate seat was on the Nov 3, 2026 ballot; this term ends Jan 3, 2027. Re-check senate.gov after Jan 3, 2027."
+    },
+    {
+     "name": "Andy Kim",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Donald Norcross",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Jefferson Van Drew",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "3": {
+     "name": "Herbert C. Conaway, Jr.",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "4": {
+     "name": "Christopher H. Smith",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "5": {
+     "name": "Josh Gottheimer",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "6": {
+     "name": "Frank Pallone, Jr.",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "7": {
+     "name": "Thomas H. Kean, Jr.",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "8": {
+     "name": "Robert Menendez",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "9": {
+     "name": "Nellie Pou",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "10": {
+     "name": "LaMonica McIver",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "11": {
+     "name": "Analilia Mejia",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "Sworn in Apr 20, 2026 (special election), replacing Mikie Sherrill (resigned Nov 20, 2025). All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "12": {
+     "name": "Bonnie Watson Coleman",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Mikie Sherrill",
+    "source": "https://www.nga.org/governors/new-jersey/",
+    "notes": "Took office Jan 20, 2026 (NGA)."
+   },
+   "capital": {
+    "name": "Trenton",
+    "source": "https://www.nj.gov/nj/gov/njgov/statehouse.shtml",
+    "notes": "Confirmed via State House location."
+   }
+  },
+  "New Mexico": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Martin Heinrich",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    },
+    {
+     "name": "Ben Ray Luján",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml",
+     "notes": "Senate seat was on the Nov 3, 2026 ballot; this term ends Jan 3, 2027. Re-check senate.gov after Jan 3, 2027."
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Melanie A. Stansbury",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Gabe Vasquez",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "3": {
+     "name": "Teresa Leger Fernandez",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Michelle Lujan Grisham",
+    "source": "https://www.nga.org/governors/new-mexico/",
+    "notes": "EXPECTED CHANGE: governor's race on Nov 3, 2026 ballot and this governor is term-limited or not on the ballot (NGA elections map). A new governor takes office in the coming weeks/months; re-check nga.org."
+   },
+   "capital": {
+    "name": "Santa Fe",
+    "source": "https://www.nmlegis.gov/visitors",
+    "notes": "Confirmed via State Capitol location."
+   }
+  },
+  "New York": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Kirsten E. Gillibrand",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    },
+    {
+     "name": "Charles E. Schumer",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Nick LaLota",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Andrew R. Garbarino",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "3": {
+     "name": "Thomas R. Suozzi",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "4": {
+     "name": "Laura Gillen",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "5": {
+     "name": "Gregory W. Meeks",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "6": {
+     "name": "Grace Meng",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "7": {
+     "name": "Nydia M. Velázquez",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "8": {
+     "name": "Hakeem S. Jeffries",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "9": {
+     "name": "Yvette D. Clarke",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "10": {
+     "name": "Daniel S. Goldman",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "11": {
+     "name": "Nicole Malliotakis",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "12": {
+     "name": "Jerrold Nadler",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "13": {
+     "name": "Adriano Espaillat",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "14": {
+     "name": "Alexandria Ocasio-Cortez",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "15": {
+     "name": "Ritchie Torres",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "16": {
+     "name": "George Latimer",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "17": {
+     "name": "Michael Lawler",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "18": {
+     "name": "Patrick Ryan",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "19": {
+     "name": "Josh Riley",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "20": {
+     "name": "Paul Tonko",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "21": {
+     "name": "Elise M. Stefanik",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "22": {
+     "name": "John W. Mannion",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "23": {
+     "name": "Nicholas A. Langworthy",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "24": {
+     "name": "Claudia Tenney",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "25": {
+     "name": "Joseph D. Morelle",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "26": {
+     "name": "Timothy M. Kennedy",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Kathy Hochul",
+    "source": "https://www.nga.org/governors/new-york/",
+    "notes": "Governor's race on Nov 3, 2026 ballot; incumbent sought reelection (NGA elections map). Re-check nga.org after results are certified."
+   },
+   "capital": {
+    "name": "Albany",
+    "source": "https://ogs.ny.gov/location/new-york-state-capitol",
+    "notes": "Confirmed via State Capitol address."
+   }
+  },
+  "North Carolina": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Ted Budd",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    },
+    {
+     "name": "Thom Tillis",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml",
+     "notes": "Senate seat was on the Nov 3, 2026 ballot; this term ends Jan 3, 2027. Re-check senate.gov after Jan 3, 2027."
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Donald G. Davis",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Deborah K. Ross",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "3": {
+     "name": "Gregory F. Murphy",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "4": {
+     "name": "Valerie P. Foushee",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "5": {
+     "name": "Virginia Foxx",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "6": {
+     "name": "Addison P. McDowell",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "7": {
+     "name": "David Rouzer",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "8": {
+     "name": "Mark Harris",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "9": {
+     "name": "Richard Hudson",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "10": {
+     "name": "Pat Harrigan",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "11": {
+     "name": "Chuck Edwards",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "12": {
+     "name": "Alma S. Adams",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "13": {
+     "name": "Brad Knott",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "14": {
+     "name": "Tim Moore",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Josh Stein",
+    "source": "https://www.nga.org/governors/north-carolina/"
+   },
+   "capital": {
+    "name": "Raleigh",
+    "source": "https://historicsites.nc.gov/all-sites/north-carolina-state-capitol",
+    "notes": "Confirmed via State Capitol address."
+   }
+  },
+  "North Dakota": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Kevin Cramer",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    },
+    {
+     "name": "John Hoeven",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    }
+   ],
+   "representatives": {
+    "At-large": {
+     "name": "Julie Fedorchak",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Kelly Armstrong",
+    "source": "https://www.nga.org/governors/north-dakota/"
+   },
+   "capital": {
+    "name": "Bismarck",
+    "source": "https://www.nd.gov/government/fun-facts"
+   }
+  },
+  "Ohio": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Jon Husted",
+     "source": "https://www.senate.gov/senators/AppointedSenators.htm",
+     "notes": "Appointed Jan 21, 2025 (senate.gov Appointed Senators). Special election for this seat was expected Nov 3, 2026; an elected winner can be sworn in as soon as results are certified (possibly before Jan 2027). Re-check senate.gov."
+    },
+    {
+     "name": "Bernie Moreno",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Greg Landsman",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "David J. Taylor",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "3": {
+     "name": "Joyce Beatty",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "4": {
+     "name": "Jim Jordan",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "5": {
+     "name": "Robert E. Latta",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "6": {
+     "name": "Michael A. Rulli",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "7": {
+     "name": "Max L. Miller",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "8": {
+     "name": "Warren Davidson",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "9": {
+     "name": "Marcy Kaptur",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "10": {
+     "name": "Michael R. Turner",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "11": {
+     "name": "Shontel M. Brown",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "12": {
+     "name": "Troy Balderson",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "13": {
+     "name": "Emilia Strong Sykes",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "14": {
+     "name": "David P. Joyce",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "15": {
+     "name": "Mike Carey",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Mike DeWine",
+    "source": "https://www.nga.org/governors/ohio/",
+    "notes": "EXPECTED CHANGE: governor's race on Nov 3, 2026 ballot and this governor is term-limited or not on the ballot (NGA elections map). A new governor takes office in the coming weeks/months; re-check nga.org."
+   },
+   "capital": {
+    "name": "Columbus",
+    "source": "https://www.ohiostatehouse.org/about/general-information/contact-information",
+    "notes": "Confirmed via Statehouse address."
+   }
+  },
+  "Oklahoma": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Alan Armstrong",
+     "source": "https://www.senate.gov/senators/AppointedSenators.htm",
+     "notes": "Appointed Mar 24, 2026 (senate.gov Appointed Senators). Class II seat was on the Nov 3, 2026 ballot; term ends Jan 3, 2027 (earlier if a special-election winner is certified first). Re-check senate.gov."
+    },
+    {
+     "name": "James Lankford",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Kevin Hern",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Josh Brecheen",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "3": {
+     "name": "Frank D. Lucas",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "4": {
+     "name": "Tom Cole",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "5": {
+     "name": "Stephanie I. Bice",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Kevin Stitt",
+    "source": "https://www.nga.org/governors/oklahoma/",
+    "notes": "EXPECTED CHANGE: governor's race on Nov 3, 2026 ballot and this governor is term-limited or not on the ballot (NGA elections map). A new governor takes office in the coming weeks/months; re-check nga.org."
+   },
+   "capital": {
+    "name": "Oklahoma City",
+    "source": "https://oklahoma.gov/governor/about/oklahoma-state-capitol.html",
+    "notes": "Confirmed via State Capitol address."
+   }
+  },
+  "Oregon": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Jeff Merkley",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml",
+     "notes": "Senate seat was on the Nov 3, 2026 ballot; this term ends Jan 3, 2027. Re-check senate.gov after Jan 3, 2027."
+    },
+    {
+     "name": "Ron Wyden",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Suzanne Bonamici",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Cliff Bentz",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "3": {
+     "name": "Maxine Dexter",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "4": {
+     "name": "Val T. Hoyle",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "5": {
+     "name": "Janelle S. Bynum",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "6": {
+     "name": "Andrea Salinas",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Tina Kotek",
+    "source": "https://www.nga.org/governors/oregon/",
+    "notes": "Governor's race on Nov 3, 2026 ballot; incumbent sought reelection (NGA elections map). Re-check nga.org after results are certified."
+   },
+   "capital": {
+    "name": "Salem",
+    "source": "https://sos.oregon.gov/blue-book/government/pages/capital.aspx"
+   }
+  },
+  "Pennsylvania": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "John Fetterman",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    },
+    {
+     "name": "David McCormick",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Brian K. Fitzpatrick",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Brendan F. Boyle",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "3": {
+     "name": "Dwight Evans",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "4": {
+     "name": "Madeleine Dean",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "5": {
+     "name": "Mary Gay Scanlon",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "6": {
+     "name": "Chrissy Houlahan",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "7": {
+     "name": "Ryan Mackenzie",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "8": {
+     "name": "Robert P. Bresnahan, Jr.",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "9": {
+     "name": "Daniel Meuser",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "10": {
+     "name": "Scott Perry",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "11": {
+     "name": "Lloyd Smucker",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "12": {
+     "name": "Summer L. Lee",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "13": {
+     "name": "John Joyce",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "14": {
+     "name": "Guy Reschenthaler",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "15": {
+     "name": "Glenn Thompson",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "16": {
+     "name": "Mike Kelly",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "17": {
+     "name": "Christopher R. Deluzio",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Josh Shapiro",
+    "source": "https://www.nga.org/governors/pennsylvania/",
+    "notes": "Governor's race on Nov 3, 2026 ballot; incumbent sought reelection (NGA elections map). Re-check nga.org after results are certified."
+   },
+   "capital": {
+    "name": "Harrisburg",
+    "source": "https://www.pa.gov/agencies/dgs/the-capitol-complex",
+    "notes": "Confirmed via Capitol Complex location."
+   }
+  },
+  "Rhode Island": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Jack Reed",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml",
+     "notes": "Senate seat was on the Nov 3, 2026 ballot; this term ends Jan 3, 2027. Re-check senate.gov after Jan 3, 2027."
+    },
+    {
+     "name": "Sheldon Whitehouse",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Gabe Amo",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Seth Magaziner",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Dan McKee",
+    "source": "https://www.nga.org/governors/rhode-island/",
+    "notes": "EXPECTED CHANGE: governor's race on Nov 3, 2026 ballot and this governor is term-limited or not on the ballot (NGA elections map). A new governor takes office in the coming weeks/months; re-check nga.org."
+   },
+   "capital": {
+    "name": "Providence",
+    "source": "https://www.sos.ri.gov/divisions/civics-and-education/ri-state-house",
+    "notes": "Confirmed via State House address."
+   }
+  },
+  "South Carolina": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Darline Graham",
+     "source": "https://www.senate.gov/senators/AppointedSenators.htm",
+     "notes": "RECENT CHANGE: Darline Graham appointed Jul 13, 2026, sworn in Jul 14, 2026 (senate.gov Appointed Senators). This is NOT Lindsey Graham. Seat was on the Nov 3, 2026 ballot; term ends Jan 3, 2027 (earlier if a special-election winner is certified first)."
+    },
+    {
+     "name": "Tim Scott",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Nancy Mace",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Joe Wilson",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "3": {
+     "name": "Sheri Biggs",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "4": {
+     "name": "William R. Timmons IV",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "5": {
+     "name": "Ralph Norman",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "6": {
+     "name": "James E. Clyburn",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "7": {
+     "name": "Russell Fry",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Henry McMaster",
+    "source": "https://www.nga.org/governors/south-carolina/",
+    "notes": "EXPECTED CHANGE: governor's race on Nov 3, 2026 ballot and this governor is term-limited or not on the ballot (NGA elections map). A new governor takes office in the coming weeks/months; re-check nga.org."
+   },
+   "capital": {
+    "name": "Columbia",
+    "source": "https://www.scstatehouse.gov/visit.php",
+    "notes": "Confirmed via State House address."
+   }
+  },
+  "South Dakota": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Mike Rounds",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml",
+     "notes": "Senate seat was on the Nov 3, 2026 ballot; this term ends Jan 3, 2027. Re-check senate.gov after Jan 3, 2027."
+    },
+    {
+     "name": "John Thune",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    }
+   ],
+   "representatives": {
+    "At-large": {
+     "name": "Dusty Johnson",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Larry Rhoden",
+    "source": "https://www.nga.org/governors/south-dakota/",
+    "notes": "Governor's race on Nov 3, 2026 ballot; incumbent sought reelection (NGA elections map). Re-check nga.org after results are certified."
+   },
+   "capital": {
+    "name": "Pierre",
+    "source": "https://sdpb.sd.gov/capitolidea/Facts.aspx"
+   }
+  },
+  "Tennessee": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Marsha Blackburn",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    },
+    {
+     "name": "Bill Hagerty",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml",
+     "notes": "Senate seat was on the Nov 3, 2026 ballot; this term ends Jan 3, 2027. Re-check senate.gov after Jan 3, 2027."
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Diana Harshbarger",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Tim Burchett",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "3": {
+     "name": "Charles J. \"Chuck\" Fleischmann",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "4": {
+     "name": "Scott DesJarlais",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "5": {
+     "name": "Andrew Ogles",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "6": {
+     "name": "John W. Rose",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "7": {
+     "name": "Matt Van Epps",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "8": {
+     "name": "David Kustoff",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "9": {
+     "name": "Steve Cohen",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Bill Lee",
+    "source": "https://www.nga.org/governors/tennessee/",
+    "notes": "EXPECTED CHANGE: governor's race on Nov 3, 2026 ballot and this governor is term-limited or not on the ballot (NGA elections map). A new governor takes office in the coming weeks/months; re-check nga.org."
+   },
+   "capital": {
+    "name": "Nashville",
+    "source": "https://sos.tn.gov/civics/guides/state-capitol"
+   }
+  },
+  "Texas": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "John Cornyn",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml",
+     "notes": "Senate seat was on the Nov 3, 2026 ballot; this term ends Jan 3, 2027. Re-check senate.gov after Jan 3, 2027."
+    },
+    {
+     "name": "Ted Cruz",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Nathaniel Moran",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Dan Crenshaw",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "3": {
+     "name": "Keith Self",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "4": {
+     "name": "Pat Fallon",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "5": {
+     "name": "Lance Gooden",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "6": {
+     "name": "Jake Ellzey",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "7": {
+     "name": "Lizzie Fletcher",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "8": {
+     "name": "Morgan Luttrell",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "9": {
+     "name": "Al Green",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "10": {
+     "name": "Michael T. McCaul",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "11": {
+     "name": "August Pfluger",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "12": {
+     "name": "Craig A. Goldman",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "13": {
+     "name": "Ronny Jackson",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "14": {
+     "name": "Randy K. Weber, Sr.",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "15": {
+     "name": "Monica De La Cruz",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "16": {
+     "name": "Veronica Escobar",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "17": {
+     "name": "Pete Sessions",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "18": {
+     "name": "Christian D. Menefee",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "Sworn in Feb 2, 2026 (special election), replacing Sylvester Turner (died Mar 5, 2025). All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "19": {
+     "name": "Jodey C. Arrington",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "20": {
+     "name": "Joaquin Castro",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "21": {
+     "name": "Chip Roy",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "22": {
+     "name": "Troy E. Nehls",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "23": {
+     "name": "VACANT",
+     "source": "https://clerk.house.gov/Members/ViewVacancies",
+     "notes": "VACANT since Apr 14, 2026 (resignation of Tony Gonzales). Clerk lists special election date as TBD. All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "24": {
+     "name": "Beth Van Duyne",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "25": {
+     "name": "Roger Williams",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "26": {
+     "name": "Brandon Gill",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "27": {
+     "name": "Michael Cloud",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "28": {
+     "name": "Henry Cuellar",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "29": {
+     "name": "Sylvia R. Garcia",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "30": {
+     "name": "Jasmine Crockett",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "31": {
+     "name": "John R. Carter",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "32": {
+     "name": "Julie Johnson",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "33": {
+     "name": "Marc A. Veasey",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "34": {
+     "name": "Vicente Gonzalez",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "35": {
+     "name": "Greg Casar",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "36": {
+     "name": "Brian Babin",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "37": {
+     "name": "Lloyd Doggett",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "38": {
+     "name": "Wesley Hunt",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Greg Abbott",
+    "source": "https://www.nga.org/governors/texas/",
+    "notes": "Governor's race on Nov 3, 2026 ballot; incumbent sought reelection (NGA elections map). Re-check nga.org after results are certified."
+   },
+   "capital": {
+    "name": "Austin",
+    "source": "https://tspb.texas.gov/prop/tc/tc-history/history/index.html"
+   }
+  },
+  "Utah": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "John R. Curtis",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    },
+    {
+     "name": "Mike Lee",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Blake D. Moore",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Celeste Maloy",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "3": {
+     "name": "Mike Kennedy",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "4": {
+     "name": "Burgess Owens",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Spencer Cox",
+    "source": "https://www.nga.org/governors/utah/"
+   },
+   "capital": {
+    "name": "Salt Lake City",
+    "source": "https://www.utah.gov/about/quick-facts.html"
+   }
+  },
+  "Vermont": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Bernard Sanders",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    },
+    {
+     "name": "Peter Welch",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    }
+   ],
+   "representatives": {
+    "At-large": {
+     "name": "Becca Balint",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Phil Scott",
+    "source": "https://www.nga.org/governors/vermont/",
+    "notes": "Governor's race on Nov 3, 2026 ballot; incumbent sought reelection (NGA elections map). Re-check nga.org after results are certified."
+   },
+   "capital": {
+    "name": "Montpelier",
+    "source": "https://statehouse.vermont.gov/"
+   }
+  },
+  "Virginia": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Tim Kaine",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    },
+    {
+     "name": "Mark R. Warner",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml",
+     "notes": "Senate seat was on the Nov 3, 2026 ballot; this term ends Jan 3, 2027. Re-check senate.gov after Jan 3, 2027."
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Robert J. Wittman",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Jennifer A. Kiggans",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "3": {
+     "name": "Robert C. \"Bobby\" Scott",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "4": {
+     "name": "Jennifer L. McClellan",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "5": {
+     "name": "John J. McGuire III",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "6": {
+     "name": "Ben Cline",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "7": {
+     "name": "Eugene Simon Vindman",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "8": {
+     "name": "Donald S. Beyer, Jr.",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "9": {
+     "name": "H. Morgan Griffith",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "10": {
+     "name": "Suhas Subramanyam",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "11": {
+     "name": "James R. Walkinshaw",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Abigail Spanberger",
+    "source": "https://www.nga.org/governors/virginia/",
+    "notes": "Took office Jan 17, 2026 (NGA)."
+   },
+   "capital": {
+    "name": "Richmond",
+    "source": "https://www.commonwealth.virginia.gov/about-virginia/statistics-emblems-and-symbols/"
+   }
+  },
+  "Washington": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Maria Cantwell",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    },
+    {
+     "name": "Patty Murray",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Suzan K. DelBene",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Rick Larsen",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "3": {
+     "name": "Marie Gluesenkamp Perez",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "4": {
+     "name": "Dan Newhouse",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "5": {
+     "name": "Michael Baumgartner",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "6": {
+     "name": "Emily Randall",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "7": {
+     "name": "Pramila Jayapal",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "8": {
+     "name": "Kim Schrier",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "9": {
+     "name": "Adam Smith",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "10": {
+     "name": "Marilyn Strickland",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Bob Ferguson",
+    "source": "https://www.nga.org/governors/washington/"
+   },
+   "capital": {
+    "name": "Olympia",
+    "source": "https://leg.wa.gov/learn-and-participate/educational-resources/state-symbols/capitol-building/"
+   }
+  },
+  "West Virginia": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Shelley Moore Capito",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml",
+     "notes": "Senate seat was on the Nov 3, 2026 ballot; this term ends Jan 3, 2027. Re-check senate.gov after Jan 3, 2027."
+    },
+    {
+     "name": "James C. Justice",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Carol D. Miller",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Riley M. Moore",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Patrick Morrisey",
+    "source": "https://www.nga.org/governors/west-virginia/"
+   },
+   "capital": {
+    "name": "Charleston",
+    "source": "https://www.wvlegislature.gov/educational/citizens/guide.cfm",
+    "notes": "Confirmed via State Capitol address."
+   }
+  },
+  "Wisconsin": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "Tammy Baldwin",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    },
+    {
+     "name": "Ron Johnson",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    }
+   ],
+   "representatives": {
+    "1": {
+     "name": "Bryan Steil",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "2": {
+     "name": "Mark Pocan",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "3": {
+     "name": "Derrick Van Orden",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "4": {
+     "name": "Gwen Moore",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "5": {
+     "name": "Scott Fitzgerald",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "6": {
+     "name": "Glenn Grothman",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "7": {
+     "name": "Thomas P. Tiffany",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    },
+    "8": {
+     "name": "Tony Wied",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Tony Evers",
+    "source": "https://www.nga.org/governors/wisconsin/",
+    "notes": "EXPECTED CHANGE: governor's race on Nov 3, 2026 ballot and this governor is term-limited or not on the ballot (NGA elections map). A new governor takes office in the coming weeks/months; re-check nga.org."
+   },
+   "capital": {
+    "name": "Madison",
+    "source": "https://legis.wisconsin.gov/about/visit",
+    "notes": "Confirmed via State Capitol address."
+   }
+  },
+  "Wyoming": {
+   "type": "state",
+   "senators": [
+    {
+     "name": "John Barrasso",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    },
+    {
+     "name": "Cynthia M. Lummis",
+     "source": "https://www.senate.gov/general/contact_information/senators_cfm.xml",
+     "notes": "Senate seat was on the Nov 3, 2026 ballot; this term ends Jan 3, 2027. Re-check senate.gov after Jan 3, 2027."
+    }
+   ],
+   "representatives": {
+    "At-large": {
+     "name": "Harriet M. Hageman",
+     "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+     "notes": "All House seats were on the Nov 3, 2026 ballot; current term ends Jan 3, 2027. Re-check clerk.house.gov after Jan 3, 2027."
+    }
+   },
+   "governor": {
+    "name": "Mark Gordon",
+    "source": "https://www.nga.org/governors/wyoming/",
+    "notes": "EXPECTED CHANGE: governor's race on Nov 3, 2026 ballot and this governor is term-limited or not on the ballot (NGA elections map). A new governor takes office in the coming weeks/months; re-check nga.org."
+   },
+   "capital": {
+    "name": "Cheyenne",
+    "source": "https://sos.wyo.gov/Services/StateInfo_Symbols.aspx"
+   }
+  },
+  "District of Columbia": {
+   "type": "territory",
+   "senators": [],
+   "representatives": {},
+   "delegate": {
+    "name": "Eleanor Holmes Norton",
+    "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+    "notes": "Non-voting member of the House. Civics test: territory residents may give this name, or say the territory has no (voting) Representative (USCIS). Delegate seat was on the Nov 3, 2026 ballot; term ends Jan 3, 2027.",
+    "title": "Delegate"
+   },
+   "mayor": {
+    "name": "Muriel Bowser",
+    "source": "https://mayor.dc.gov/",
+    "notes": "D.C. has a Mayor, not a Governor. Civics test: D.C. residents should answer that D.C. does not have a Governor (USCIS). mayor.dc.gov showed no election result or transition date on 2026-11-05; a D.C. mayoral election was expected in Nov 2026 (not confirmed on an official site) - re-check mayor.dc.gov."
+   },
+   "capital": {
+    "name": "UNCONFIRMED",
+    "source": "",
+    "notes": "No official 'capital' for D.C.: D.C. is not a state and is itself the national capital. No official .gov source found that answers this for the civics test; the 2008/2025 USCIS question bank wording should be checked directly before Vía answers."
+   },
+   "noSenators": true,
+   "noSenatorsNote": "Civics test: D.C./territory residents should answer that D.C. (or their territory) has no U.S. Senators (USCIS)."
+  },
+  "Puerto Rico": {
+   "type": "territory",
+   "senators": [],
+   "representatives": {},
+   "delegate": {
+    "name": "Pablo José Hernández",
+    "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+    "notes": "Non-voting member of the House. Civics test: territory residents may give this name, or say the territory has no (voting) Representative (USCIS). Resident Commissioner serves a 4-year term.",
+    "title": "Resident Commissioner"
+   },
+   "governor": {
+    "name": "Jenniffer González-Colón",
+    "source": "https://www.nga.org/governors/puerto-rico/"
+   },
+   "capital": {
+    "name": "San Juan",
+    "source": "https://docs.pr.gov/files/OECH/Lugares%20Historicos/Propiedades%20en%20el%20Registro%20Nacional/San%20Juan/Zona%20Historica%20de%20San%20Juan.pdf",
+    "notes": "Source is a National Register nomination PDF on pr.gov ('San Juan Municipality, the capital of Puerto Rico')."
+   },
+   "noSenators": true,
+   "noSenatorsNote": "Civics test: D.C./territory residents should answer that D.C. (or their territory) has no U.S. Senators (USCIS)."
+  },
+  "Guam": {
+   "type": "territory",
+   "senators": [],
+   "representatives": {},
+   "delegate": {
+    "name": "James C. Moylan",
+    "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+    "notes": "Non-voting member of the House. Civics test: territory residents may give this name, or say the territory has no (voting) Representative (USCIS). Delegate seat was on the Nov 3, 2026 ballot; term ends Jan 3, 2027.",
+    "title": "Delegate"
+   },
+   "governor": {
+    "name": "Lou Leon Guerrero",
+    "source": "https://www.nga.org/governors/guam/",
+    "notes": "EXPECTED CHANGE: governor's race on Nov 3, 2026 ballot and this governor is term-limited or not on the ballot (NGA elections map). Re-check nga.org."
+   },
+   "capital": {
+    "name": "Hagåtña",
+    "source": "https://mcog.guam.gov/villages-list",
+    "notes": "Also spelled Hagatna (formerly Agana)."
+   },
+   "noSenators": true,
+   "noSenatorsNote": "Civics test: D.C./territory residents should answer that D.C. (or their territory) has no U.S. Senators (USCIS)."
+  },
+  "U.S. Virgin Islands": {
+   "type": "territory",
+   "senators": [],
+   "representatives": {},
+   "delegate": {
+    "name": "Stacey E. Plaskett",
+    "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+    "notes": "Non-voting member of the House. Civics test: territory residents may give this name, or say the territory has no (voting) Representative (USCIS). Delegate seat was on the Nov 3, 2026 ballot; term ends Jan 3, 2027.",
+    "title": "Delegate"
+   },
+   "governor": {
+    "name": "Albert Bryan",
+    "source": "https://www.nga.org/governors/virgin-islands/",
+    "notes": "EXPECTED CHANGE: governor's race on Nov 3, 2026 ballot and this governor is term-limited or not on the ballot (NGA elections map). Re-check nga.org."
+   },
+   "capital": {
+    "name": "Charlotte Amalie",
+    "source": "https://dot.vi.gov/our-islands/general-information/",
+    "notes": "On St. Thomas. Source is the USVI Dept. of Tourism."
+   },
+   "noSenators": true,
+   "noSenatorsNote": "Civics test: D.C./territory residents should answer that D.C. (or their territory) has no U.S. Senators (USCIS)."
+  },
+  "American Samoa": {
+   "type": "territory",
+   "senators": [],
+   "representatives": {},
+   "delegate": {
+    "name": "Aumua Amata Coleman Radewagen",
+    "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+    "notes": "Non-voting member of the House. Civics test: territory residents may give this name, or say the territory has no (voting) Representative (USCIS). Delegate seat was on the Nov 3, 2026 ballot; term ends Jan 3, 2027.",
+    "title": "Delegate"
+   },
+   "governor": {
+    "name": "Pula’ali’i Nikolao Pula",
+    "source": "https://www.nga.org/governors/american-samoa/",
+    "notes": "Took office Jan 3, 2025 (NGA)."
+   },
+   "capital": {
+    "name": "Pago Pago",
+    "source": "https://www2.census.gov/geo/pdfs/reference/GARM/Ch7GARM.pdf",
+    "notes": "No American Samoa government site names a capital. U.S. Census Bureau: 'the historic capital of Pago Pago, the seat of government at Fagatogo, and the office of the Governor at Utulei.' Accept Pago Pago or Fagatogo."
+   },
+   "noSenators": true,
+   "noSenatorsNote": "Civics test: D.C./territory residents should answer that D.C. (or their territory) has no U.S. Senators (USCIS)."
+  },
+  "Northern Mariana Islands": {
+   "type": "territory",
+   "senators": [],
+   "representatives": {},
+   "delegate": {
+    "name": "Kimberlyn King-Hinds",
+    "source": "https://clerk.house.gov/xml/lists/MemberData.xml",
+    "notes": "Non-voting member of the House. Civics test: territory residents may give this name, or say the territory has no (voting) Representative (USCIS). Delegate seat was on the Nov 3, 2026 ballot; term ends Jan 3, 2027.",
+    "title": "Delegate"
+   },
+   "governor": {
+    "name": "David M. Apatang",
+    "source": "https://www.nga.org/governors/northern-mariana-islands/",
+    "notes": "Took office Jul 24, 2025 (NGA). EXPECTED CHANGE: governor's race on Nov 3, 2026 ballot and this governor is term-limited or not on the ballot (NGA elections map). Re-check nga.org."
+   },
+   "capital": {
+    "name": "Saipan",
+    "source": "https://dcca.gov.mp/about-us/",
+    "notes": "Saipan is the capital island; executive offices are on Capitol Hill. Census Bureau: no locality on Saipan is recognized specifically as the capital."
+   },
+   "noSenators": true,
+   "noSenatorsNote": "Civics test: D.C./territory residents should answer that D.C. (or their territory) has no U.S. Senators (USCIS)."
+  }
+ }
+}

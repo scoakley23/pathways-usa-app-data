@@ -82,15 +82,15 @@ export function pickNextToLearn(questions, progressRows, n = 2) {
 }
 
 // Teach-then-practice lesson: per question, explain → bridge → speak.
-// `representativeData` (the learner's saved Find My Representative result)
-// fills in "your state's" answers on the bridge step.
-export function buildLearnLesson(questions, language = 'en', lookup = getExplanation, { representativeData = null } = {}) {
+// `location` (the learner's saved "Who Represents Me?" state and district)
+// fills in "your state's" answers on the bridge step, from the officeholders table.
+export function buildLearnLesson(questions, language = 'en', lookup = getExplanation, { location = null } = {}) {
   const steps = [];
   for (const q of questions) {
     const explanation = lookup(q.question, language);
     const { text, note } = explainText(explanation, language);
     steps.push({ type: 'explain', text, note, link: explanation.link || null, questionId: q.id });
-    steps.push({ type: 'show-english', question: q, keyWords: explanation.keyWords, now: currentAnswerFor(q, { representativeData }), questionId: q.id });
+    steps.push({ type: 'show-english', question: q, keyWords: explanation.keyWords, now: currentAnswerFor(q, { location }), questionId: q.id });
     steps.push({ type: 'practice-speaking', question: q, questionId: q.id });
   }
   return { id: 'learn-civics', title: 'Learn civics', steps, posters: true };

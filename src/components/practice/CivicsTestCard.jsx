@@ -7,10 +7,11 @@ import { stopReading } from '@/components/persona/useAutoRead';
 import { toast } from "sonner";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { base44 } from '@/api/base44Client';
-import { checkCivicsAnswer } from '@/components/civics/checkCivicsAnswer';
+import { checkCivicsAnswer, officeholderCheck } from '@/components/civics/checkCivicsAnswer';
+import OfficeholderNote from '@/components/civics/OfficeholderNote';
+import useLearnerLocation from '@/components/civics/useLearnerLocation';
 import { matchOfficialAnswer, splitOfficialAnswers } from '@/lib/practiceChecks';
-
-import { getPersonalizedAnswer, currentAnswerFor } from '@/lib/currentAnswers';
+import { officeholderAnswerFor, officeholderAnswerLine } from '@/lib/officeholderQuestions';
 import { LANGUAGES } from '@/hooks/useLessonTranslation';
 
 // `testMode` (Interview Day): like the real test, one answer per question, no
@@ -21,7 +22,10 @@ import { LANGUAGES } from '@/hooks/useLessonTranslation';
 // and shows official answers only; "Explain it simply" opens a ruled sheet.
 // On the poster: Listen and Translate as white outline pills, one big
 // microphone (or "Type it instead"), and Check once there is an answer.
-export default function CivicsTestCard({ question, onComplete, onNext, representativeData, testMode = false, index = 0, total = 0, results = [] }) {
+// Current officeholder and capital questions are graded on the device from
+// the officeholders table (never the AI); a result that can't be graded
+// (is_correct null) moves on with onNext({ uncounted: true }) and no onComplete.
+export default function CivicsTestCard({ question, onComplete, onNext, testMode = false, index = 0, total = 0, results = [] }) {
   const [explainOpen, setExplainOpen] = useState(false);
   const [isRevealed, setIsRevealed] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -37,6 +41,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
   const recognitionRef = useRef(null);
   // Refs don't trigger re-renders, so track recognizer readiness in state for the mic button
   const [srReady, setSrReady] = useState(false);
+  const { location } = useLearnerLocation();
 
   const SUPPORTED_LANGUAGES = LANGUAGES.filter(l => l.value !== 'en');
 
@@ -91,10 +96,9 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
     }
   };
 
-  const isChanging = (question.answer || '').startsWith('Answers change');
-  const isLocation = (question.answer || '').startsWith('Answers vary');
-  const personalizedAnswer = isLocation ? getPersonalizedAnswer(question.question, representativeData) : null;
-  const current = isChanging ? currentAnswerFor(question) : null;
+  // Officeholder / capital questions: the answer comes from the table only.
+  const officeholder = officeholderAnswerFor(question, location);
+  const spokenAnswer = officeholder ? officeholderAnswerLine(officeholder) : question.answer;
 
   // Speech recognition setup
   useEffect(() => {
@@ -125,15 +129,21 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
     if (isListening && recognitionRef.current) {
       try { recognitionRef.current.stop(); } catch (e) {}
     }
+    // Officeholder questions: graded from the table on the device, never the AI.
+    const local = officeholderCheck(question, userAnswer, location);
+    if (local) {
+      setVerificationResult(local);
+      return;
+    }
     // Answers that clearly match an accepted answer are checked on the
     // device; only the rest go to the AI (which judges meaning).
-    if (!isChanging && (!isLocation || personalizedAnswer) && matchOfficialAnswer(userAnswer, personalizedAnswer || question.answer).isCorrect) {
+    if (matchOfficialAnswer(userAnswer, question.answer).isCorrect) {
       setVerificationResult({ is_correct: true, feedback: '' });
       return;
     }
     setVerifying(true);
     try {
-      const result = await checkCivicsAnswer(question, userAnswer, { personalizedAnswer });
+      const result = await checkCivicsAnswer(question, userAnswer, { location });
       setVerificationResult(result);
     } catch (e) {
       console.error('Failed to verify answer:', e);
@@ -145,6 +155,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
   };
 
   const handleResult = (isCorrect) => {
+    if (isCorrect === null) { onNext({ uncounted: true }); return; }
     onComplete(isCorrect);
     onNext();
   };
@@ -157,15 +168,9 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
   };
 
   // The official answer line on the poster (never AI-written).
-  const answerLine = personalizedAnswer
-    ? `${personalizedAnswer} (your answer)`
-    : isChanging && current?.kind === 'current'
-      ? `${current.text} (checked ${current.checkedOn}, uscis.gov)`
-      : isChanging
-        ? 'Answers change. Check the current answer on uscis.gov.'
-        : isLocation
-          ? 'Answers vary by where you live. Use Find My Representative on the Learn page.'
-          : splitOfficialAnswers(question.answer).join(' · ') || question.answer;
+  const answerLine = officeholder
+    ? officeholderAnswerLine(officeholder)
+    : splitOfficialAnswers(question.answer).join(' · ') || question.answer;
   const done = !!verificationResult || isRevealed;
   const translatedQuestion = translation ? translation.split('Answer:')[0].replace('Question:', '').trim() : '';
   const translatedAnswer = translation.includes('Answer:') ? translation.split('Answer:')[1].trim() : '';
@@ -195,7 +200,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
             <div className="flex flex-wrap items-center gap-2">
               <button
                 type="button"
-                onClick={() => speak(done ? (personalizedAnswer || question.answer) : question.question)}
+                onClick={() => speak(done ? spokenAnswer : question.question)}
                 aria-label={done ? 'Listen to the answer' : 'Listen to the question'}
                 className={`${tool} ${isPlaying ? 'bg-white/15' : ''}`}
               >
@@ -307,11 +312,18 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
             {/* Feedback stays on the poster */}
             {verificationResult && (
               <div className="space-y-3" aria-live="polite">
-                <p className="text-2xl font-bold">{verificationResult.is_correct ? 'Right.' : 'Not quite.'}</p>
+                <p className="text-2xl font-bold">
+                  {verificationResult.is_correct === null ? 'We can’t check this one yet.' : verificationResult.is_correct ? 'Right.' : 'Not quite.'}
+                </p>
                 {verificationResult.feedback && <p className="text-lg leading-relaxed">{verificationResult.feedback}</p>}
                 {userAnswer && <p className="text-base">You said: “{userAnswer}”</p>}
+                <OfficeholderNote answer={verificationResult.officeholder} onPoster />
                 <div className="flex flex-wrap gap-2">
-                  <button type="button" onClick={() => handleResult(!!verificationResult.is_correct)} className={posterSolid}>
+                  <button
+                    type="button"
+                    onClick={() => handleResult(verificationResult.is_correct === null ? null : !!verificationResult.is_correct)}
+                    className={posterSolid}
+                  >
                     {verificationResult.is_correct ? 'Next question' : 'Continue'} <ChevronRight className="w-5 h-5" aria-hidden="true" />
                   </button>
                   {!testMode && <ExplainSimplyButton onPoster aria-expanded={explainOpen} onClick={() => setExplainOpen((v) => !v)} />}
@@ -321,6 +333,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
             {isRevealed && !verificationResult && (
               <div className="space-y-3">
                 <p className="text-lg font-semibold">How did you do?</p>
+                {officeholder && <OfficeholderNote answer={officeholder} graded={false} onPoster />}
                 <div className="flex flex-wrap gap-2">
                   <button type="button" onClick={() => handleResult(true)} className={posterSolid}>I knew it</button>
                   <button type="button" onClick={() => handleResult(false)} className={posterOutline}>I missed it</button>
@@ -331,7 +344,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, represent
           </div>
         </Poster>
         {done && explainOpen && !testMode && (
-          <ExplainSheet className="mt-3" question={question.question} answer={personalizedAnswer || question.answer} aiFallback />
+          <ExplainSheet className="mt-3" question={question.question} answer={spokenAnswer} aiFallback={!officeholder} />
         )}
       </div>
 

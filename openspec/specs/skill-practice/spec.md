@@ -39,11 +39,11 @@ A civics answer SHALL first be matched on the device against the official accept
 - **THEN** the official answer is revealed with "Hard / Missed" and "Easy / Got it" buttons
 
 ### Requirement: Civics feedback shows the right answer source
-When a civics answer is wrong, the feedback SHALL show the official accepted answers, or for changing answers the confirmed current official (or "check uscis.gov"), or for varying answers the learner's own lookup result (or a prompt to use Find My Representative).
+When a civics answer is wrong, the feedback SHALL show the official accepted answers, or for current officeholder and capital questions the names from the officeholders table with the date they were checked (for "your state's" questions, with the learner's saved "Who Represents Me?" place, or a link to it when there is none).
 
 #### Scenario: Wrong answer on a changing question
-- **WHEN** a learner misses "Who is the Speaker of the House now?" and a confirmed name exists
-- **THEN** the feedback shows the confirmed name and the date it was checked
+- **WHEN** a learner misses "Who is the Speaker of the House now?"
+- **THEN** the feedback shows the name from the officeholders table and "Checked on official government websites on" the date
 
 ### Requirement: Speech recognition and fallbacks
 Spoken answers SHALL use the device's U.S. English speech recognition. No audio SHALL be recorded or uploaded. Without speech recognition, the civics card SHALL offer typing, reading SHALL say the browser is not supported and offer Skip, and the interview SHALL say speech is not supported.
