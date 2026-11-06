@@ -63,7 +63,6 @@ export default function Practice() {
   const [isLoading, setIsLoading] = useState(false);
   const [sessionComplete, setSessionComplete] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
-  const [representativeData, setRepresentativeData] = useState(null);
   const hasMounted = React.useRef(false);
   const [results, setResults] = useState([]); // stars: one outcome per card
   // Points add up across a run (the user record is only read on load), and
@@ -88,18 +87,6 @@ export default function Practice() {
     }
   }, [urlMode]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const loadRepresentativeData = async (email) => {
-    try {
-      const normalizedEmail = email.toLowerCase().trim();
-      const profiles = await base44.entities.PublicProfile.filter({ user_email: normalizedEmail }, '-created_date', 1);
-      if (profiles.length > 0 && profiles[0].representative_data) {
-        setRepresentativeData(profiles[0].representative_data);
-      }
-    } catch (e) {
-      console.error("Error loading representative data", e);
-    }
-  };
-
   const loadUser = async () => {
       try {
         const user = await base44.auth.me();
@@ -108,7 +95,6 @@ export default function Practice() {
           const normalizedUser = { ...user, email: normalizedEmail };
           setCurrentUser(normalizedUser);
           pointsRef.current = user.points || 0;
-          loadRepresentativeData(normalizedEmail);
         }
       } catch (e) {
         console.error("Error loading user data:", e);
@@ -585,7 +571,6 @@ export default function Practice() {
                 onComplete={handleComplete}
                 onNext={handleNext}
                 results={results}
-                representativeData={representativeData}
             />
          ) : mode === 'vocabulary' ? (
             vocabSubMode === 'flashcards' ? (

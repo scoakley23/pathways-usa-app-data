@@ -5,6 +5,7 @@ import { toast } from 'sonner';
 import { base44 } from '@/api/base44Client';
 import TopicArt, { TOPIC_ART } from '@/components/art/TopicArt';
 import RepresentativeFinder from '@/components/civics/RepresentativeFinder';
+import useLearnerLocation from '@/components/civics/useLearnerLocation';
 import TutorLesson from '@/components/persona/TutorLesson';
 import TutorMessage from '@/components/persona/TutorMessage';
 import useTutorProfile from '@/components/persona/useTutorProfile';
@@ -57,7 +58,7 @@ export default function LearnCivics() {
   const [language] = useAppLanguage();
   const [user, setUser] = useState(undefined);
   const [picked, setPicked] = useState(null);
-  const [representativeData, setRepresentativeData] = useState(null);
+  const { location: learnerLocation } = useLearnerLocation();
   const [stage, setStage] = useState('intro'); // intro | lesson | done
   const [results, setResults] = useState([]);
   const [saving, setSaving] = useState(false);
@@ -71,13 +72,10 @@ export default function LearnCivics() {
     if (!user) return;
     setPicked(null);
     try {
-      const [questions, progress, profiles] = await Promise.all([
+      const [questions, progress] = await Promise.all([
         base44.entities.CivicsQuestion.filter({ version: '2025' }, null, 500),
         base44.entities.UserProgress.filter({ user_email: user.email, content_type: 'civics_question' }, null, 1000),
-        // The learner's own officials ("your state's ..." questions), if they used Find My Representative.
-        base44.entities.PublicProfile.filter({ user_email: user.email.toLowerCase().trim() }, '-created_date', 1).catch(() => []),
       ]);
-      setRepresentativeData(profiles[0]?.representative_data || null);
       setPicked(pickNextToLearn(questions, progress, count));
     } catch (e) {
       toast.error("Couldn't load your lesson. Please check your connection.");
@@ -101,20 +99,23 @@ export default function LearnCivics() {
     navigate({ search: location.search }, { replace: true });
   }, [findRep, stage, picked, navigate, location.search]);
 
-  const lesson = useMemo(() => (picked ? buildLearnLesson(picked, language, undefined, { representativeData }) : null), [picked, language, representativeData]);
+  const lesson = useMemo(() => (picked ? buildLearnLesson(picked, language, undefined, { location: learnerLocation }) : null), [picked, language, learnerLocation]);
 
   const finish = async ({ states }) => {
     // Each question's practice step: correct only if answered correctly.
     const outcome = picked.map((q) => {
       const i = lesson.steps.findIndex((s) => s.type === 'practice-speaking' && s.questionId === q.id);
-      return { question: q, correct: !!states[i]?.outcome?.correct };
+      const c = states[i]?.outcome?.correct;
+      // null = an officeholder answer that couldn't be graded: no progress change
+      return { question: q, correct: !!c, ungraded: c === null };
     });
     setResults(outcome);
     setStage('done');
     window.scrollTo({ top: 0 });
     setSaving(true);
     try {
-      for (const { question, correct } of outcome) {
+      for (const { question, correct, ungraded } of outcome) {
+        if (ungraded) continue;
         const existing = await base44.entities.UserProgress.filter({ user_email: user.email, content_id: question.id }, null, 1);
         const data = { user_email: user.email, content_id: question.id, content_type: 'civics_question', ...learnedProgress(existing[0], correct) };
         if (existing.length > 0) await base44.entities.UserProgress.update(existing[0].id, data);
@@ -212,7 +213,7 @@ export default function LearnCivics() {
 
       {/* Some answers depend on where the learner lives; lessons use this result. */}
       <div id="find-representative" className="scroll-mt-6">
-        <RepresentativeFinder userEmail={user.email} onDataLoaded={setRepresentativeData} />
+        <RepresentativeFinder />
       </div>
     </div>
   );

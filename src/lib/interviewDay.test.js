@@ -12,6 +12,10 @@ describe('civicsStatus', () => {
     expect(s).toMatchObject({ correct: 12, wrong: 3, passed: true, done: true });
   });
 
+  it('counts an ungraded answer (null) as neither right nor wrong', () => {
+    expect(civicsStatus([true, null, false], '2025')).toMatchObject({ correct: 1, wrong: 1, done: false });
+  });
+
   it('2025: stops at 9 wrong', () => {
     expect(civicsStatus(times(8, false), '2025').done).toBe(false);
     expect(civicsStatus([...times(11, true), ...times(9, false)], '2025')).toMatchObject({ passed: false, done: true });

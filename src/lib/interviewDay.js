@@ -24,12 +24,14 @@ export const REHEARSAL_PARTS = [
 
 export const civicsRules = (version) => CIVICS_TEST_RULES[version] || CIVICS_TEST_RULES['2025'];
 
-// `outcomes` = one boolean per civics question asked, in order.
+// `outcomes` = one boolean per civics question asked, in order (null = an
+// officeholder question that couldn't be graded: neither right nor wrong).
 // `available` = how many questions were loaded (may be fewer than the max).
 export function civicsStatus(outcomes, version, available = Infinity) {
   const { maxQuestions, passAt, failAt } = civicsRules(version);
-  const correct = outcomes.filter(Boolean).length;
-  const wrong = outcomes.length - correct;
+  // null = not graded (counted neither right nor wrong)
+  const correct = outcomes.filter((o) => o === true).length;
+  const wrong = outcomes.filter((o) => o === false).length;
   const passed = correct >= passAt;
   const done = passed || wrong >= failAt || outcomes.length >= Math.min(maxQuestions, available);
   return { correct, wrong, passed, done };

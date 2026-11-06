@@ -14,6 +14,7 @@ import { getSavedLanguage, RTL_LANGUAGES } from '@/hooks/useAppLanguage';
 import TutorAvatar from '@/components/persona/TutorAvatar';
 import { ListenButton } from '@/components/persona/TutorMessage';
 import useTutorProfile from '@/components/persona/useTutorProfile';
+import { getLearnerLocation } from '@/components/civics/useLearnerLocation';
 import useTutorLines from '@/components/persona/useTutorLines';
 import useTranslatedLines from '@/components/persona/useTranslatedLines';
 import { languageNameFor } from '@/components/persona/languageName';
@@ -185,8 +186,13 @@ export default function StudyBuddy({ aboveTabBar = false }) {
     setIsLoading(true);
     let answer = null;
     try {
+      // Officeholder names come only from the official list in the prompt
+      // (src/data/officeholders.json), never from a web search, so internet
+      // context stays off here. Only the saved state and district are
+      // added, never an address or account details.
+      const location = await getLearnerLocation();
       const res = await base44.integrations.Core.InvokeLLM({
-        prompt: buildAskPrompt(profile, languageNameFor(askedIn), question),
+        prompt: buildAskPrompt(profile, languageNameFor(askedIn), question, { location }),
         response_json_schema: ASK_RESPONSE_SCHEMA,
       });
       const result = interpretAskResponse(res, askedIn);

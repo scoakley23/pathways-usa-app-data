@@ -17,7 +17,7 @@ import RehearsalResults from './RehearsalResults';
 // Runs the six parts in order. Everything lives in this component's memory:
 // no Base44 writes and no browser storage. Leaving or refreshing loses it.
 // Only reads: the question and sentence lists, and the learner's saved
-// Find My Representative names (for "Answers vary" civics questions).
+// "Who Represents Me?" place (for "your state's" civics questions, read by CivicsTestCard).
 export default function RehearsalRunner({ version, userEmail, onStop }) {
   const [part, setPart] = useState(0);
   const [content, setContent] = useState(null);
@@ -30,14 +30,12 @@ export default function RehearsalRunner({ version, userEmail, onStop }) {
       base44.entities.ReadingSentence.list(),
       base44.entities.Sentence.list(),
       base44.entities.CivicsQuestion.filter({ version }, null, 500),
-      base44.entities.PublicProfile.filter({ user_email: userEmail }, '-created_date', 1).catch(() => []),
-    ]).then(([reading, writing, civics, profiles]) => {
+    ]).then(([reading, writing, civics]) => {
       if (!alive) return;
       setContent({
         reading: pickRandom(reading, SENTENCE_TRIES),
         writing: pickRandom(writing, SENTENCE_TRIES),
         civics: pickRandom(civics, maxQuestions),
-        representativeData: profiles[0]?.representative_data || null,
       });
     }).catch(() => {
       if (!alive) return;
@@ -112,7 +110,7 @@ export default function RehearsalRunner({ version, userEmail, onStop }) {
           }}
           onDone={(ok) => finishPart('civics', ok)}
           render={(item, record, next, i) => (
-            <CivicsTestCard testMode index={i} question={item} representativeData={content.representativeData} onComplete={record} onNext={next} />
+            <CivicsTestCard testMode index={i} question={item} onComplete={record} onNext={next} />
           )}
         />
       ) : (
@@ -135,14 +133,16 @@ function QuestionPart({ skill, intro, items, statusOf, counter, onDone, render }
   // Cards may call onComplete and onNext in the same tick, so keep a ref.
   const outcomesRef = useRef([]);
 
+  // ok === null: a civics answer that can't be graded (an officeholder
+  // question without the learner's place): counted neither right nor wrong.
   const record = (ok) => {
     if (outcomesRef.current.length > index) return; // one result per item
-    outcomesRef.current = [...outcomesRef.current, !!ok];
+    outcomesRef.current = [...outcomesRef.current, ok === null ? null : !!ok];
     setOutcomes(outcomesRef.current);
   };
 
-  const next = () => {
-    if (outcomesRef.current.length <= index) record(false);
+  const next = (opts) => {
+    if (outcomesRef.current.length <= index) record(opts?.uncounted ? null : false);
     const s = statusOf(outcomesRef.current);
     if (s.done) onDone(s.passed);
     else { setIndex(index + 1); window.scrollTo({ top: 0 }); }

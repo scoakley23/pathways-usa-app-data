@@ -1,33 +1,25 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Check, Keyboard, Loader2, Mic, MicOff, RotateCcw } from 'lucide-react';
 import { ExplainSimplyButton, Poster, posterOutline as outlineWhite, posterSolid as solidWhite, posterTone } from '@/components/pathways/ui';
-import { checkCivicsAnswer, isChangingAnswer, isLocationAnswer } from '@/components/civics/checkCivicsAnswer';
+import { checkCivicsAnswer, officeholderCheck } from '@/components/civics/checkCivicsAnswer';
+import OfficeholderNote from '@/components/civics/OfficeholderNote';
+import useLearnerLocation from '@/components/civics/useLearnerLocation';
 import { stopReading } from '@/components/persona/useAutoRead';
 import { matchOfficialAnswer, splitOfficialAnswers } from '@/lib/practiceChecks';
-import { currentAnswerFor } from '@/lib/currentAnswers';
+import { officeholderAnswerFor, officeholderAnswerLine } from '@/lib/officeholderQuestions';
 import { explainText, getExplanation } from '@/lib/explanations';
 import { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
 
 // Removes the "(2025 test)"-style note some question texts carry.
 export const cleanQuestionText = (text) => (text || '').replace(/\s*\([^)]*(?:2008|2025)[^)]*\)\s*$/i, '').trim();
 
-// The official answer as shown on a card: the accepted answers, or the
-// admin-confirmed current name for "Answers change" questions.
-export function officialAnswerText(question) {
-  const now = currentAnswerFor(question);
-  if (now?.kind === 'current') return now.text;
-  if (isChangingAnswer(question)) return 'Answers change. Check the current answer on uscis.gov.';
-  if (isLocationAnswer(question)) return 'Answers vary by where you live. Use Find My Representative on the Learn page.';
+// The official answer as shown on a card: the accepted answers, or, for
+// current officeholder and capital questions, the names from the officeholders
+// table (with the learner's saved "Who Represents Me?" place).
+export function officialAnswerText(question, location = null) {
+  const officeholder = officeholderAnswerFor(question, location);
+  if (officeholder) return officeholderAnswerLine(officeholder);
   return splitOfficialAnswers(question.answer).join(' · ') || question.answer;
-}
-
-// What a typed answer is checked against on the device (null = can't check
-// on the device, so the learner checks themselves).
-function typedTarget(question) {
-  const now = currentAnswerFor(question);
-  if (now?.kind === 'current') return now.text;
-  if (isChangingAnswer(question) || isLocationAnswer(question)) return null;
-  return question.answer;
 }
 
 const SR = typeof window !== 'undefined' ? window.SpeechRecognition || window.webkitSpeechRecognition : null;
@@ -35,7 +27,9 @@ const SR = typeof window !== 'undefined' ? window.SpeechRecognition || window.we
 // "Go over them": one official question per full-bleed poster, alternating
 // red and blue. Spoken answers are checked by checkCivicsAnswer() (AI, the
 // official answer is never rewritten); typed answers on the device with
-// matchOfficialAnswer(). Feedback shows official answers only. "Explain it
+// matchOfficialAnswer(). Officeholder and capital questions are graded from
+// the officeholders table only (never the AI); one that can't be graded is
+// left out of the score (onFinish's total counts graded cards only). Feedback shows official answers only. "Explain it
 // simply" shows the reviewed explanation (content/explanations), nothing
 // AI-written. What the learner says or types stays in memory.
 // onFinish({ correct, total }) runs after the last card.
@@ -49,7 +43,9 @@ export default function PosterRun({ questions, language = 'en', tutorName = 'Ví
   const [explainOpen, setExplainOpen] = useState(false);
   const [correct, setCorrect] = useState(0);
   const [outcomes, setOutcomes] = useState([]); // stars: 'right' | 'missed'
+  const [ungraded, setUngraded] = useState(0);
   const recRef = useRef(null);
+  const { location } = useLearnerLocation();
 
   useEffect(() => {
     if (!SR) { setMode('type'); return undefined; }
@@ -82,14 +78,18 @@ export default function PosterRun({ questions, language = 'en', tutorName = 'Ví
   const check = async () => {
     if (!answer.trim()) return;
     stopMic();
+    const local = officeholderCheck(q, answer, location);
+    if (local) {
+      setResult({ isCorrect: local.is_correct, officeholder: local.officeholder });
+      return;
+    }
     if (mode === 'type') {
-      const target = typedTarget(q);
-      setResult(target ? { isCorrect: matchOfficialAnswer(answer, target).isCorrect } : { selfCheck: true });
+      setResult({ isCorrect: matchOfficialAnswer(answer, q.answer).isCorrect });
       return;
     }
     setChecking(true);
     try {
-      const r = await checkCivicsAnswer(q, answer);
+      const r = await checkCivicsAnswer(q, answer, { location });
       setResult({ isCorrect: !!r?.is_correct });
     } catch (e) {
       setResult({ selfCheck: true });
@@ -98,16 +98,20 @@ export default function PosterRun({ questions, language = 'en', tutorName = 'Ví
     }
   };
 
+  // gotIt === null: can't be graded, so neither right nor wrong (no star color).
   const next = (gotIt) => {
     const nextCorrect = correct + (gotIt ? 1 : 0);
+    const nextUngraded = ungraded + (gotIt === null ? 1 : 0);
     setCorrect(nextCorrect);
-    setOutcomes((prev) => { const n = [...prev]; n[index] = gotIt ? 'right' : 'missed'; return n; });
+    setUngraded(nextUngraded);
+    if (gotIt !== null) setOutcomes((prev) => { const n = [...prev]; n[index] = gotIt ? 'right' : 'missed'; return n; });
     setAnswer('');
     setResult(null);
     setExplainOpen(false);
     if (index + 1 < total) setIndex(index + 1);
-    else onFinish?.({ correct: nextCorrect, total });
+    else onFinish?.({ correct: nextCorrect, total: total - nextUngraded });
   };
+  const officeholder = officeholderAnswerFor(q, location);
 
   const explanation = explainText(getExplanation(q.question, language), language);
 
@@ -118,7 +122,7 @@ export default function PosterRun({ questions, language = 'en', tutorName = 'Ví
         className="-mx-4 sm:mx-0 sm:rounded-[14px] min-h-[420px]"
         label={`${label} · Card ${index + 1} of ${total}`}
         question={cleanQuestionText(q.question)}
-        answer={result ? `Answer: ${officialAnswerText(q)}` : null}
+        answer={result ? `Answer: ${officialAnswerText(q, location)}` : null}
         progress={{ index, total, results: outcomes }}
       >
         {!result ? (
@@ -171,9 +175,14 @@ export default function PosterRun({ questions, language = 'en', tutorName = 'Ví
             {result.selfCheck ? (
               <p className="text-lg font-semibold">Did you know it?</p>
             ) : (
-              <p className="text-2xl font-bold">{result.isCorrect ? 'Right.' : 'Not yet. Here is the answer.'}</p>
+              <p className="text-2xl font-bold">
+                {result.isCorrect === null ? 'We can’t check this one yet.' : result.isCorrect ? 'Right.' : 'Not yet. Here is the answer.'}
+              </p>
             )}
             {answer && <p className="text-base">You said: “{answer}”</p>}
+            {result.officeholder
+              ? <OfficeholderNote answer={result.officeholder} onPoster />
+              : officeholder && <OfficeholderNote answer={officeholder} graded={false} onPoster />}
             <div className="flex flex-wrap gap-2">
               {result.selfCheck ? (
                 <>

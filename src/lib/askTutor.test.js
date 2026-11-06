@@ -1,4 +1,6 @@
 import { describe, it, expect } from 'vitest';
+import studyBuddySource from '../components/ai/StudyBuddy.jsx?raw';
+import { OFFICEHOLDERS, VIA_OFFICEHOLDER_RULES } from './officeholders';
 import {
   looksPersonalLegal,
   redactIdentifiers,
@@ -115,5 +117,28 @@ describe('historyAnswerText', () => {
 describe('fixed lines', () => {
   it('has a hand-written Spanish line for every English line', () => {
     expect(Object.keys(ASK_LINES_ES).sort()).toEqual(Object.keys(ASK_LINES).sort());
+  });
+});
+
+describe('Vía and current officeholders', () => {
+  const N = OFFICEHOLDERS.national;
+  const P = OFFICEHOLDERS.places;
+  it('adds the rules and the official list to every question', () => {
+    const prompt = buildAskPrompt({ name: 'Vía' }, 'English', 'Who is the President?');
+    expect(prompt).toContain(VIA_OFFICEHOLDER_RULES);
+    expect(prompt).toContain(N.president.name);
+    expect(prompt).not.toContain('LEARNER LOCATION (from Who Represents Me?)');
+  });
+  it("adds the learner's saved place only when there is one", () => {
+    const prompt = buildAskPrompt({ name: 'Vía' }, 'English', 'Who is my senator?', { location: { state: 'Texas', district: '2' } });
+    expect(prompt).toContain('LEARNER LOCATION (from Who Represents Me?)');
+    expect(prompt).toContain(P.Texas.senators[0].name);
+    expect(prompt).toContain(P.Texas.representatives['2'].name);
+  });
+  it('adds a state named in the question', () => {
+    expect(buildAskPrompt({ name: 'Vía' }, 'English', 'Who is the governor of Ohio?')).toContain(P.Ohio.governor.name);
+  });
+  it('Ask Vía never turns on web search', () => {
+    expect(studyBuddySource).not.toMatch(/add_context_from_internet/);
   });
 });

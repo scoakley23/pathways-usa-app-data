@@ -7,10 +7,13 @@ import TopicArt, { TOPIC_ART } from '@/components/art/TopicArt';
 import TutorLesson from '@/components/persona/TutorLesson';
 import TutorMessage from '@/components/persona/TutorMessage';
 import useTutorProfile from '@/components/persona/useTutorProfile';
+import OfficeholderNote from '@/components/civics/OfficeholderNote';
+import useLearnerLocation from '@/components/civics/useLearnerLocation';
 import { languageNameFor } from '@/components/persona/languageName';
 import { Eyebrow, PrimaryButton, RaisedCard, Tag } from '@/components/pathways/ui';
 import useAppLanguage from '@/hooks/useAppLanguage';
 import { splitOfficialAnswers } from '@/lib/practiceChecks';
+import { officeholderAnswerFor } from '@/lib/officeholderQuestions';
 import { dueForReview, nextReviewDate, nextSchedule } from '@/lib/spacedReview';
 import { awardBadges } from '@/lib/awardBadges';
 
@@ -56,6 +59,7 @@ function SignInMessage() {
 // Practice. Saves only scores and the schedule; answers stay in memory.
 export default function ReviewCivics() {
   const { profile, loaded } = useTutorProfile();
+  const { location: learnerLocation } = useLearnerLocation();
   const [language] = useAppLanguage();
   const [user, setUser] = useState(undefined);
   const [due, setDue] = useState(null); // [{ row, question }]
@@ -98,15 +102,17 @@ export default function ReviewCivics() {
   const finish = async ({ states }) => {
     const now = new Date();
     const outcome = due.map(({ row, question }, i) => {
-      const correct = !!states[i]?.outcome?.correct;
-      return { row, question, correct, heard: states[i]?.heard || null, next: nextSchedule(row, correct, correct ? 100 : 0, now) };
+      const c = states[i]?.outcome?.correct;
+      const correct = !!c;
+      // null = an officeholder answer that couldn't be graded: schedule unchanged
+      return { row, question, correct, ungraded: c === null, heard: states[i]?.heard || null, next: c === null ? null : nextSchedule(row, correct, correct ? 100 : 0, now) };
     });
     setResults(outcome);
     setStage('done');
     window.scrollTo({ top: 0 });
     setSaving(true);
     try {
-      for (const { row, next } of outcome) await base44.entities.UserProgress.update(row.id, next);
+      for (const { row, next } of outcome) if (next) await base44.entities.UserProgress.update(row.id, next);
       awardBadges();
     } catch (e) {
       toast.error("Couldn't save your progress. Please check your connection.");
@@ -134,6 +140,7 @@ export default function ReviewCivics() {
 
   const art = TOPIC_ART[due[0]?.question.category] || 'compass';
   const right = results.filter((r) => r.correct).length;
+  const graded = results.filter((r) => !r.ungraded).length;
 
   return (
     <div className="max-w-xl mx-auto space-y-5 text-pw-navy">
@@ -171,24 +178,32 @@ export default function ReviewCivics() {
 
       {stage === 'done' && (
         <>
-          <TutorMessage profile={profile} language={language} {...say(LINES.done(right, results.length), language)} expression={right > 0 ? 'proud' : 'default'} />
+          <TutorMessage profile={profile} language={language} {...say(LINES.done(right, graded), language)} expression={right > 0 ? 'proud' : 'default'} />
           <ul className="space-y-3">
-            {results.map(({ question, correct, heard, next }) => (
+            {results.map(({ question, correct, ungraded, heard, next }) => {
+              const officeholder = officeholderAnswerFor(question, learnerLocation);
+              return (
               <li key={question.id}>
                 <RaisedCard>
+                  {ungraded ? (
+                    <Tag tone="navy">Not counted</Tag>
+                  ) : (
                   <Tag tone={correct ? 'green' : 'red'}>
                     {correct ? <><Check className="w-4 h-4" aria-hidden="true" /> Correct</> : <><RotateCcw className="w-4 h-4" aria-hidden="true" /> Practice again</>}
                   </Tag>
+                  )}
                   <p className="text-lg font-extrabold leading-snug mt-3">{question.question}</p>
                   {heard && <p className="mt-2 text-pw-muted">You said: <span className="italic">“{heard}”</span></p>}
                   <Eyebrow className="mt-4 mb-2">Accepted answers</Eyebrow>
                   <ul className="space-y-1">
-                    {splitOfficialAnswers(question.answer).map((a) => <li key={a} className="font-bold">{a}</li>)}
+                    {(officeholder ? officeholder.accepted : splitOfficialAnswers(question.answer)).map((a) => <li key={a} className="font-bold">{a}</li>)}
                   </ul>
-                  <p className="text-sm text-pw-muted mt-3">{whenLabel(next.interval)}</p>
+                  <OfficeholderNote answer={officeholder} graded={false} className="mt-2" />
+                  {next && <p className="text-sm text-pw-muted mt-3">{whenLabel(next.interval)}</p>}
                 </RaisedCard>
               </li>
-            ))}
+              );
+            })}
           </ul>
           <Link to="/" aria-disabled={saving} className={`${linkClass} bg-pw-navy text-white hover:bg-pw-navy-deep ${saving ? 'pointer-events-none opacity-60' : ''}`}>
             {saving ? <Loader2 className="w-5 h-5 animate-spin" aria-label="Saving" /> : 'Back to Today'}

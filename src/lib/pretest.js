@@ -116,7 +116,9 @@ export function scorePretest(lesson, states = {}, skipped = new Set()) {
       levels[part] = null;
       continue;
     }
-    const outcomes = idx.map((i) => states[i]?.outcome || { correct: false, score: 0 });
+    const outcomes = idx.map((i) => states[i]?.outcome || { correct: false, score: 0 })
+      // correct === null: an officeholder answer that couldn't be graded (no saved place): not counted
+      .filter((o) => o.correct !== null);
     levels[part] = levelFor(part, outcomes);
   }
   return levels;
