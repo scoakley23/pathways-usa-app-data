@@ -14,7 +14,7 @@ import VirtualInterviewer, { AVATAR_URL } from './VirtualInterviewer';
 import PreInterviewQuestion from '@/components/pilot/PreInterviewQuestion';
 import { loadMyCheckIns } from '@/components/pilot/checkInData';
 import { loadPreInterviewSkip } from '@/lib/pilot';
-import { shouldAskPreInterview } from '../../../base44/shared/pilotCheckIns.js';
+import { shouldAskPreInterview } from '@/lib/pilotCheckIns';
 
 // Long text is now spoken in chunks, so the fallback timeout must cover all of them.
 const speechTimeoutMs = (text) => {

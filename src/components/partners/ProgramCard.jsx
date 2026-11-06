@@ -4,9 +4,8 @@ import { toast } from 'sonner';
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card';
 import { Switch } from '@/components/ui/switch';
 import { PrimaryButton } from '@/components/pathways/ui';
-import { listPartners, loadMembership, joinProgram, leaveProgram } from '@/lib/partners';
+import { listPartners, loadMembership, joinProgram, leaveProgram, MAX_NAME_LENGTH } from '@/lib/partners';
 import { clearPendingProgram } from '@/lib/programLink';
-import { MAX_NAME_LENGTH } from '../../../base44/shared/partners.js';
 
 const LABEL = 'text-lg font-bold text-pw-navy block';
 const FIELD = 'w-full min-h-11 rounded-xl border-2 border-pw-line bg-white px-3 text-base text-pw-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy';

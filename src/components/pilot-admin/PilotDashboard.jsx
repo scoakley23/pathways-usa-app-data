@@ -9,7 +9,7 @@ import { LANGUAGES } from '@/hooks/useLessonTranslation';
 import { US_STATES, PROGRAM_BASELINE } from '@/config/pilot';
 import {
   pilotMetrics, formatCount, formatShare, toCsv, ACTIVATION_DAYS,
-} from '../../../base44/shared/pilotReport.js';
+} from '@/lib/pilotReport';
 import WeeklyChart from './WeeklyChart';
 
 // /admin/pilot: the pilot dashboard. Admins only; everyone else sees "Page

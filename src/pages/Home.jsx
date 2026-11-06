@@ -12,7 +12,7 @@ import HelpUsImprove from '@/components/pilot/HelpUsImprove';
 import CheckInCard from '@/components/pilot/CheckInCard';
 import CheckInForm from '@/components/pilot/CheckInForm';
 import { loadMyCheckIns } from '@/components/pilot/checkInData';
-import { openCheckIn } from '../../base44/shared/pilotCheckIns.js';
+import { openCheckIn } from '@/lib/pilotCheckIns';
 import { shouldShowPilotIntro, isCheckInSnoozed, snoozeCheckIn } from '@/lib/pilot';
 import { loadPlanSettings } from '@/lib/planSettings';
 import useTutorProfile from '@/components/persona/useTutorProfile';

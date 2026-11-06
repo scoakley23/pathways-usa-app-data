@@ -1,7 +1,7 @@
 import React from 'react';
 import { RaisedCard, SkillDot, SKILL_LABEL } from '@/components/pathways/ui';
 import { LEVELS as LEVEL_TEXT } from '@/lib/pretest';
-import { SKILLS, LEVELS } from '../../../base44/shared/partners.js';
+import { SKILLS, LEVELS } from '@/lib/partners';
 
 // /Partner: a program's totals over its confirmed learners (exact numbers),
 // and the learners who chose to share their own progress.

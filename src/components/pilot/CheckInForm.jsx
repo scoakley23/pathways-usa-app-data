@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Check, Loader2 } from 'lucide-react';
 import { RaisedCard, PrimaryButton, QuietButton, Eyebrow } from '@/components/pathways/ui';
-import { checkInQuestions, buildCheckIn, choicesFor } from '../../../base44/shared/pilotCheckIns.js';
+import { checkInQuestions, buildCheckIn, choicesFor } from '@/lib/pilotCheckIns';
 import usePilotText from './pilotStrings';
 import { saveCheckIn } from './checkInData';
 import { ChoiceQuestion, ReadinessQuestion } from './PilotFields';

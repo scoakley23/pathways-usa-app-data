@@ -5,7 +5,7 @@ import { base44 } from '@/api/base44Client';
 import { Switch } from '@/components/ui/switch';
 import { RaisedCard, PrimaryButton, SecondaryButton, QuietButton, Tag } from '@/components/pathways/ui';
 import { shareLink } from '@/lib/programLink';
-import { normalizeCode, normalizeEmail } from '../../../base44/shared/partners.js';
+import { normalizeCode, normalizeEmail } from '@/lib/partners';
 
 // Admin → Partners: the programs learners can pick in Getting started and
 // Profile. Staff emails can open /Partner for their program. Turn a program

@@ -16,7 +16,7 @@ import { PrimaryButton, QuietButton, SegmentedProgress } from '@/components/path
 import { Checkbox } from '@/components/ui/checkbox';
 import { listPartners, joinProgram } from '@/lib/partners';
 import { loadPendingProgram, clearPendingProgram } from '@/lib/programLink';
-import { MAX_NAME_LENGTH } from '../../../base44/shared/partners.js';
+import { MAX_NAME_LENGTH } from '@/lib/partners';
 
 // English source text. Spanish is written by hand; other languages are
 // translated once by AI and cached on the device (bump the cache key when

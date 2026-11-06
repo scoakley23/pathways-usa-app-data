@@ -1,4 +1,4 @@
-import { normalizeCode } from '../../base44/shared/partners.js';
+import { normalizeCode } from './partnerFields';
 
 // A partner's share link: /?program=CODE. The code waits on this device
 // (through the sign-in) so the program question can start with it picked.

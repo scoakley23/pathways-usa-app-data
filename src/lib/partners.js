@@ -5,6 +5,9 @@ import { base44 } from '@/api/base44Client';
 // writes ProgramMembership itself, except that a learner may delete their own
 // (leaving the program). The share link lives in src/lib/programLink.js.
 
+// Program fields (pure, no SDK) live in src/lib/partnerFields.js.
+export { MAX_NAME_LENGTH, SKILLS, LEVELS, normalizeEmail, normalizeCode } from './partnerFields';
+
 async function invoke(payload) {
   try {
     const res = await base44.functions.invoke('partner', payload);
