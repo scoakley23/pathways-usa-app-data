@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { ExternalLink, AlertTriangle, Scale, Lock, Loader2 } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import { ExternalLink, AlertTriangle, Scale, Lock, Loader2, ArrowUpRight } from 'lucide-react';
 import PageHeader from '@/components/PageHeader';
 import { RaisedCard } from '@/components/pathways/ui';
 import useAppLanguage, { isRTL } from '@/hooks/useAppLanguage';
 import useLawyerChecklistTranslation from '@/hooks/useLawyerChecklistTranslation';
 import { LAWYER_CHECKLIST_ITEMS, LEGAL_HELP_LINKS } from '@/components/lawyer/lawyerChecklist';
+import { N400_SECTIONS } from '@/components/n400/n400Content';
 import ResourceFinder from '@/components/resources/ResourceFinder';
 
 // Resource Hub (/resources, and /lawyer-first for older links). Two parts:
@@ -28,6 +29,12 @@ export default function LawyerPage({ cachedUser }) {
   const rtl = isRTL(language);
   const { translation, isTranslating } = useLawyerChecklistTranslation(language);
   const hasTranslation = language && language !== 'en' && translation?.length > 0;
+  // The guide section each item points at, in the learner's language when we
+  // have a translation of it.
+  const guideTitleFor = (item, i) =>
+    (hasTranslation && translation[i]?.section) ||
+    N400_SECTIONS.find((s) => s.id === item.guideSectionId)?.title ||
+    'the N-400 guide';
 
   return (
     <div className="space-y-6" dir={rtl ? 'rtl' : 'ltr'}>
@@ -82,10 +89,23 @@ export default function LawyerPage({ cachedUser }) {
                 <p className="text-base text-pw-muted leading-relaxed">
                   {hasTranslation && translation[i] ? translation[i].explanation : item.explanation}
                 </p>
+                {item.guideSectionId && (
+                  <Link
+                    to={`/n400-guide?section=${item.guideSectionId}`}
+                    className="inline-flex items-center gap-1.5 min-h-11 text-sm font-bold text-pw-navy underline underline-offset-4 decoration-pw-navy/40 hover:decoration-pw-navy rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
+                  >
+                    <span>{guideTitleFor(item, i)} — read it in the N-400 guide</span>
+                    <ArrowUpRight className="w-4 h-4 shrink-0 rtl:-scale-x-100" aria-hidden="true" />
+                  </Link>
+                )}
               </div>
             </li>
           ))}
         </ul>
+        <p className="text-base text-pw-muted leading-relaxed px-1">
+          Each item links to the part of our N-400 guide that explains those questions. The guide tells you what
+          the form asks — it does not tell you how to answer.
+        </p>
         {hasTranslation && (
           <p className="text-sm italic text-pw-muted">
             Machine translation. If anything is unclear, ask a person you trust or a lawyer.

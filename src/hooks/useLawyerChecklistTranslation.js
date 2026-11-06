@@ -2,8 +2,12 @@ import { useEffect, useState } from 'react';
 import { base44 } from '@/api/base44Client';
 import { LANGUAGES } from './useLessonTranslation';
 import { LAWYER_CHECKLIST_ITEMS } from '@/components/lawyer/lawyerChecklist';
+import { N400_SECTIONS } from '@/components/n400/n400Content';
 
-const CACHE_PREFIX = 'pathways_lawyer_tr_';
+// v2 adds the N-400 guide section title to each item, so older caches are skipped.
+const CACHE_PREFIX = 'pathways_lawyer_tr_v2_';
+
+const sectionTitle = (id) => N400_SECTIONS.find((s) => s.id === id)?.title || '';
 
 // Translates the static "Talk to a lawyer first" checklist into the learner's
 // chosen language. One call for the whole list, cached per language. Only
@@ -38,7 +42,7 @@ export default function useLawyerChecklistTranslation(language) {
         const result = await base44.integrations.Core.InvokeLLM({
           prompt: `You are a professional translator for US citizenship education materials. Translate the following JSON into ${langName}. Translate every value exactly as written — do not add advice, interpretation, or any content that is not in the original. Keep the same order and structure.
 ${'\n'}JSON:
-${JSON.stringify({ items: LAWYER_CHECKLIST_ITEMS.map((i) => ({ text: i.text, explanation: i.explanation })) }, null, 2)}`,
+${JSON.stringify({ items: LAWYER_CHECKLIST_ITEMS.map((i) => ({ text: i.text, explanation: i.explanation, section: sectionTitle(i.guideSectionId) })) }, null, 2)}`,
           response_json_schema: {
             type: 'object',
             properties: {
@@ -46,8 +50,12 @@ ${JSON.stringify({ items: LAWYER_CHECKLIST_ITEMS.map((i) => ({ text: i.text, exp
                 type: 'array',
                 items: {
                   type: 'object',
-                  properties: { text: { type: 'string' }, explanation: { type: 'string' } },
-                  required: ['text', 'explanation'],
+                  properties: {
+                    text: { type: 'string' },
+                    explanation: { type: 'string' },
+                    section: { type: 'string' },
+                  },
+                  required: ['text', 'explanation', 'section'],
                 },
               },
             },
