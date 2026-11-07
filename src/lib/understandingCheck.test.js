@@ -3,7 +3,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 const invoke = vi.fn(async () => ({ is_acceptable: true }));
 vi.mock('@/api/base44Client', () => ({ base44: { integrations: { Core: { InvokeLLM: (...a) => invoke(...a) } } } }));
 
-const { evaluateUnderstanding, isUnderstandingSection } = await import('@/components/practice/evaluateInterviewAnswer');
+const { evaluateInterviewAnswer, evaluateUnderstanding, isUnderstandingSection } = await import('@/components/practice/evaluateInterviewAnswer');
 
 beforeEach(() => invoke.mockClear());
 
@@ -32,5 +32,19 @@ describe('understanding check for questions about the learner\'s application', (
     expect(prompt).not.toContain('555-123-4567');
     expect(prompt).not.toContain('test@example.com');
     expect(prompt).toContain('[removed]');
+  });
+});
+
+describe('mock interview answer scoring', () => {
+  it('removes identifiers before sending (test data only)', async () => {
+    await evaluateInterviewAnswer(
+      { question: 'How did you get here today?', expected_response: 'I took the bus.', response_type: 'short' },
+      'I took the bus, my A-number is A-123-456-789, SSN 123-45-6789, email test@example.com',
+    );
+    const { prompt } = invoke.mock.calls[0][0];
+    expect(prompt).not.toContain('123-456-789');
+    expect(prompt).not.toContain('123-45-6789');
+    expect(prompt).not.toContain('test@example.com');
+    expect(prompt).toContain('I took the bus, my A-number is [removed]');
   });
 });
