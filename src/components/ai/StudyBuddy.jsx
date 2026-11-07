@@ -30,6 +30,7 @@ import {
   looksPersonalLegal,
   redactIdentifiers,
 } from '@/lib/askTutor';
+import { loadCivicsBank } from '@/lib/civicsBank';
 import TalkToPerson from './TalkToPerson';
 
 // "Ask Vía" (or the learner's chosen tutor name): the AI tutor chat, using the
@@ -191,8 +192,10 @@ export default function StudyBuddy({ aboveTabBar = false }) {
       // context stays off here. Only the saved state and district are
       // added, never an address or account details.
       const location = await getLearnerLocation();
+      // The official 2025 civics list, loaded once and reused.
+      const civics = await loadCivicsBank();
       const res = await base44.integrations.Core.InvokeLLM({
-        prompt: buildAskPrompt(profile, languageNameFor(askedIn), question, { location }),
+        prompt: buildAskPrompt(profile, languageNameFor(askedIn), question, { location, civics }),
         response_json_schema: ASK_RESPONSE_SCHEMA,
       });
       const result = interpretAskResponse(res, askedIn);
