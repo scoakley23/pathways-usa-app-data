@@ -3,14 +3,16 @@ import { redactIdentifiers } from '@/lib/askTutor';
 
 // AI evaluation of one spoken interview answer (shared by the mock interview
 // and the pretest). `extra` adds scoring instructions.
-// The response text is used only for this call and is never saved.
+// The response text is used only for this call and is never saved. Emails,
+// phone numbers, A-numbers and Social Security numbers are removed first.
 export function evaluateInterviewAnswer(q, response, extra = '') {
+  const said = redactIdentifiers(response);
   return base44.integrations.Core.InvokeLLM({
     prompt: `You are an experienced USCIS citizenship interview officer and ESL instructor evaluating a naturalization candidate.
 
 INTERVIEW QUESTION: "${q.question}"
 EXAMPLE RESPONSE: "${q.expected_response}"
-CANDIDATE'S SPOKEN RESPONSE: "${response}"
+CANDIDATE'S SPOKEN RESPONSE: "${said}"
 RESPONSE TYPE: ${q.response_type}
 ${extra}
 Evaluate on 4 dimensions. Be honest but encouraging.

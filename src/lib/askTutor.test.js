@@ -61,6 +61,34 @@ describe('redactIdentifiers', () => {
     expect(redactIdentifiers('What happened in 1776-1787?')).toBe('What happened in 1776-1787?');
     expect(redactIdentifiers('There are 100 senators')).toBe('There are 100 senators');
   });
+  it.each([
+    ['A123456789', '[removed]'],
+    ['A-123-456-789', '[removed]'],
+    ['a 123 456 789', '[removed]'],
+    ['my number is A1234567 ok', 'my number is [removed] ok'],
+    ['number A-12345678.', 'number [removed].'],
+    ['A-number 12345678', 'A-number [removed]'],
+    ['A number: 123456789', 'A number: [removed]'],
+    ['my alien number is 1234567', 'my alien number is [removed]'],
+    ['USCIS number 123-456-789', 'USCIS number [removed]'],
+    ['mi número A es 123456789', 'mi número A es [removed]'],
+    ['SSN 123-45-6789', 'SSN [removed]'],
+    ['ssn 123 45 6789 thanks', 'ssn [removed] thanks'],
+  ])('removes A-numbers and Social Security numbers: %s', (input, expected) => {
+    expect(redactIdentifiers(input)).toBe(expected);
+  });
+  it.each([
+    'I studied 50 questions',
+    'question #128',
+    'What is question 30?',
+    'I was born in 1985',
+    'zip 02138',
+    'I am 67 years old',
+    'Is it a 65/20 question?',
+    'I read a 1000 word story',
+  ])('leaves ordinary numbers alone: %s', (q) => {
+    expect(redactIdentifiers(q)).toBe(q);
+  });
 });
 
 describe('buildAskPrompt', () => {
