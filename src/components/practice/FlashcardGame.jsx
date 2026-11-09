@@ -22,7 +22,7 @@ export default function FlashcardGame({ words, index = 0, total, results = [], o
       <Poster
         tone={posterTone(index)}
         className="-mx-4 sm:mx-0 sm:rounded-[14px] min-h-[420px]"
-        label={`Flashcards · Card ${index + 1} of ${count}`}
+        label={`Flashcards · ${index + 1} of ${count}`}
         progress={{ index, total: count, results }}
       >
         <motion.div

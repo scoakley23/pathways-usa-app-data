@@ -12,7 +12,7 @@ import MatchingGame from '@/components/practice/MatchingGame';
 import ReadingPracticeCard from '@/components/practice/ReadingPracticeCard';
 import InterviewPractice from '@/components/practice/InterviewPractice';
 import PageHeader from '@/components/PageHeader';
-import { PillButton, Poster, PosterStars, SKILL_COLOR, SKILL_ON, posterSolid, posterOutline } from '@/components/pathways/ui';
+import { PillButton, Poster, SKILL_COLOR, SKILL_ON, posterSolid, posterOutline } from '@/components/pathways/ui';
 import { cardOutcome, countOutcomes } from '@/lib/practiceResults';
 import { awardBadges } from '@/lib/awardBadges';
 import { toast } from "sonner";
@@ -534,8 +534,6 @@ export default function Practice() {
           answer={counts.close ? `${counts.close} almost. One more look and you have them.` : 'Nice work.'}
         >
           <div className="space-y-5">
-            <PosterStars index={total} total={total} results={results} />
-            <p className="text-base">{counts.right} right · {counts.close} almost · {counts.missed} missed</p>
             <div className="flex flex-wrap gap-2">
               <button type="button" onClick={() => startSession(mode, vocabSubMode)} className={posterSolid}>Practice again</button>
               <button type="button" onClick={exitRun} className={posterOutline}>Back to Practice</button>

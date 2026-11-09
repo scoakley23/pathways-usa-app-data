@@ -94,7 +94,7 @@ export default function DictationCard({ sentence, onComplete, onNext, testMode =
   };
 
   const words = stage === 'result' && feedback === 'incorrect' ? checkDictation(sentence.text, userInput).words : null;
-  const label = `${testMode ? 'Writing test' : 'Listen and write'} · ${total ? `Card ${index + 1} of ${total}` : 'Write what you hear'}`;
+  const label = `${testMode ? 'Writing test' : 'Listen and write'} · ${total ? `${index + 1} of ${total}` : 'Write what you hear'}`;
 
   return (
     <div className="w-full max-w-2xl mx-auto space-y-4 text-pw-navy">

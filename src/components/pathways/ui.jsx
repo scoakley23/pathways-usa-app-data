@@ -1,6 +1,5 @@
 import React from 'react';
 import { posterTone, POSTER_SCHEME } from '@/lib/posterTone';
-import { outcomesLabel } from '@/lib/practiceResults';
 
 export { posterTone, POSTER_SCHEME };
 
@@ -220,33 +219,29 @@ export const posterLink = 'min-h-11 inline-flex items-center gap-2 text-base fon
 // The one big white action button on a poster (microphone, play).
 export const posterBigButton = 'relative w-[104px] h-[104px] rounded-full bg-white text-pw-navy grid place-items-center shadow-lift disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60';
 
-// One star per card on a poster run. Upcoming cards are white stars, the
-// current one is an outline, and a finished card takes its result color:
-// green (right), yellow (almost) or red (missed). `results[k]` is 'right' |
-// 'close' | 'missed' (lib/practiceResults); a passed card with no result
-// stays white. Never torches or the Statue of Liberty. Hidden for long runs.
-// The stars sit on an Ink-deep strip: the result colors are too close to the
-// red and blue posters on their own (all ≥ 4.8:1 on the strip).
-const STAR = 'M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z';
-const STAR_FILL = { right: 'fill-pw-go', close: 'fill-pw-almost', missed: 'fill-pw-miss' };
-export function PosterStars({ index = 0, total = 0, results = [], className = '' }) {
+// Quiet progress on a poster run: one thin white segment per card, filled
+// up to the current card. No stars, colors or text (the label carries
+// "2 of 6"); results show only on the end-of-run summary. Hidden for long runs.
+export function PosterProgress({ index = 0, total = 0, className = '' }) {
   if (!total || total > 24) return null;
   return (
-    <div className={`inline-flex flex-wrap items-center gap-0.5 rounded-[10px] bg-pw-navy-deep px-2 py-1.5 ${className}`} role="img" aria-label={outcomesLabel(index, total, results)}>
-      {Array.from({ length: total }, (_, k) => {
-        const current = k === index;
-        const fill = results[k] ? STAR_FILL[results[k]] : current ? 'fill-transparent' : 'fill-white';
-        return (
-          <svg key={k} viewBox="0 0 24 24" className={current ? 'w-[22px] h-[22px]' : 'w-[17px] h-[17px]'} aria-hidden="true">
-            <path d={STAR} className={`${fill} stroke-white`} strokeWidth={current ? 2.2 : 1.4} strokeLinejoin="round" />
-          </svg>
-        );
-      })}
+    <div
+      className={`flex gap-1 ${className}`}
+      role="progressbar"
+      aria-valuemin={1}
+      aria-valuemax={total}
+      aria-valuenow={Math.min(index + 1, total)}
+      aria-label={`Card ${Math.min(index + 1, total)} of ${total}`}
+    >
+      {Array.from({ length: total }, (_, k) => (
+        <span key={k} aria-hidden="true" className={`h-1 flex-1 rounded-full ${k <= index ? 'bg-white' : 'bg-white/30'}`} />
+      ))}
     </div>
   );
 }
-// Older name.
-export const PosterSquares = PosterStars;
+// Older names.
+export const PosterStars = PosterProgress;
+export const PosterSquares = PosterProgress;
 
 // Ruled paper: the learner's own page (white, pale blue rules, a pale
 // margin line). For the Listen-and-write surface, "Explain it simply", notes
@@ -262,14 +257,14 @@ export function RuledPaper({ as: Tag = 'div', className = '', children, ...props
 
 // Full-bleed test/practice poster: white text on Red ink (≈ 5.6:1) or Civics
 // blue (≈ 8.5:1). Use posterTone(index) to alternate. `answer` shows in
-// Instrument Serif italic; `progress` ({ index, total }) adds the squares;
+// Instrument Serif italic; `progress` ({ index, total }) adds a thin progress line;
 // `children` holds the controls.
 export function Poster({ tone = 'red', label, question, answer, progress, questionAs: Q = 'h2', className = '', children, ...props }) {
   return (
     <section className={`relative ${POSTER_BG[tone] || POSTER_BG.red} text-white px-5 py-8 sm:px-8 sm:py-10 ${className}`} {...props}>
       <PathwaysMark size={36} tone="white" className="absolute right-5 top-6 sm:right-8 sm:top-8" />
       {label && <p className="pr-12 text-sm font-semibold uppercase tracking-[0.14em]">{label}</p>}
-      {progress && <div className="mt-3 pr-12"><PosterStars {...progress} /></div>}
+      {progress && <div className="mt-3 pr-12"><PosterProgress index={progress.index} total={progress.total} /></div>}
       {question && <Q className="mt-4 text-[2rem] leading-tight font-bold sm:text-5xl">{question}</Q>}
       {answer && <p className="mt-5 font-display italic text-2xl leading-snug sm:text-3xl">{answer}</p>}
       {children && <div className="mt-6">{children}</div>}
