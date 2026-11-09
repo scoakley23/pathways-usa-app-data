@@ -42,7 +42,7 @@ export default function PosterRun({ questions, language = 'en', tutorName = 'Ví
   const [result, setResult] = useState(null); // { isCorrect } | { selfCheck: true }
   const [explainOpen, setExplainOpen] = useState(false);
   const [correct, setCorrect] = useState(0);
-  const [outcomes, setOutcomes] = useState([]); // stars: 'right' | 'missed'
+  const [outcomes, setOutcomes] = useState([]); // 'right' | 'missed'
   const [ungraded, setUngraded] = useState(0);
   const recRef = useRef(null);
   const { location } = useLearnerLocation();
@@ -98,7 +98,7 @@ export default function PosterRun({ questions, language = 'en', tutorName = 'Ví
     }
   };
 
-  // gotIt === null: can't be graded, so neither right nor wrong (no star color).
+  // gotIt === null: can't be graded, so neither right nor wrong .
   const next = (gotIt) => {
     const nextCorrect = correct + (gotIt ? 1 : 0);
     const nextUngraded = ungraded + (gotIt === null ? 1 : 0);
@@ -120,7 +120,7 @@ export default function PosterRun({ questions, language = 'en', tutorName = 'Ví
       <Poster
         tone={tone}
         className="-mx-4 sm:mx-0 sm:rounded-[14px] min-h-[420px]"
-        label={`${label} · Card ${index + 1} of ${total}`}
+        label={`${label} · ${index + 1} of ${total}`}
         question={cleanQuestionText(q.question)}
         answer={result ? `Answer: ${officialAnswerText(q, location)}` : null}
         progress={{ index, total, results: outcomes }}

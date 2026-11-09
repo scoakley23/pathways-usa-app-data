@@ -224,7 +224,7 @@ In one or two short, encouraging sentences at an A2 English level, give one prac
     );
   }
 
-  const label = `${testMode ? 'Reading test' : 'Read aloud'} · ${total ? `Card ${index + 1} of ${total}` : 'Read this sentence'}`;
+  const label = `${testMode ? 'Reading test' : 'Read aloud'} · ${total ? `${index + 1} of ${total}` : 'Read this sentence'}`;
   const passed = analysis && analysis.overall_score >= 70;
 
   return (

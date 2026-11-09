@@ -18,7 +18,7 @@ import { LANGUAGES } from '@/hooks/useLessonTranslation';
 // translation, no self-check or reveal, no AI explanation, and "I don't know"
 // instead of Skip. Grading is unchanged. Without it nothing changes.
 // Shown as a red/blue poster (Phase 5): `index`/`total` give the card's place
-// in the run (color, "CARD 2 OF 6", stars). Feedback stays on the poster
+// in the run (color, "2 OF 6", progress line). Feedback stays on the poster
 // and shows official answers only; "Explain it simply" opens a ruled sheet.
 // On the poster: Listen and Translate as white outline pills, one big
 // microphone (or "Type it instead"), and Check once there is an answer.
@@ -174,7 +174,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, testMode 
   const done = !!verificationResult || isRevealed;
   const translatedQuestion = translation ? translation.split('Answer:')[0].replace('Question:', '').trim() : '';
   const translatedAnswer = translation.includes('Answer:') ? translation.split('Answer:')[1].trim() : '';
-  const label = `${testMode ? 'Civics test' : `Civics ${question.version || ''}`.trim()} · ${total ? `Card ${index + 1} of ${total}` : 'Practice'}`;
+  const label = `${testMode ? 'Civics test' : `Civics ${question.version || ''}`.trim()} · ${total ? `${index + 1} of ${total}` : 'Practice'}`;
   const tool = posterTool;
   const textLink = posterLink;
   const stopListening = () => { if (isListening && recognitionRef.current) { try { recognitionRef.current.stop(); } catch (e) { /* already stopped */ } } };

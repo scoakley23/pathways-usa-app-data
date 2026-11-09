@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { cardOutcome } from '@/lib/practiceResults';
 import { Eyebrow, Poster, PrimaryButton, RaisedCard, RuledPaper, SecondaryButton, Tag, posterBigButton, posterLink, posterSolid, posterTone, posterTool } from '@/components/pathways/ui';
 import { Link } from 'react-router-dom';
 import { Mic, MicOff, Volume2, ArrowRight, Check, Loader2, ChevronDown, ChevronUp, FileText, Bot, BarChart3 } from 'lucide-react';
@@ -495,8 +494,7 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
       <Poster
         tone={posterTone(currentIndex)}
         className="-mx-4 sm:mx-0 sm:rounded-[14px]"
-        label={`Interview · Card ${currentIndex + 1} of ${questions.length} · ${sectionLabel}`}
-        progress={{ index: currentIndex, total: questions.length, results: sessionResults.map((r) => cardOutcome(r.is_acceptable, r.overall_score)) }}
+        label={`Interview · ${sectionLabel}`}
         question={current.question}
       >
         <div className="space-y-4">

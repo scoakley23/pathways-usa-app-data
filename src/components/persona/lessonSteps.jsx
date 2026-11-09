@@ -263,7 +263,7 @@ export function SpeakingStep({ step, ctx, state, setState }) {
         <Poster
           tone={posterTone(Math.max(0, ctx.posterIndex))}
           className={`-mx-4 sm:mx-0 sm:rounded-[14px] ${ctx.sizeClass}`}
-          label={`Practice · Card ${ctx.posterIndex + 1} of ${ctx.posterTotal}`}
+          label={`Practice · ${ctx.posterIndex + 1} of ${ctx.posterTotal}`}
           question={question.question}
           questionAs="p"
         >
