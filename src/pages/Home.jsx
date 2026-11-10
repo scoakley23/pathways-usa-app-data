@@ -19,7 +19,7 @@ import useRoadmapProgress from '@/components/home/useRoadmapProgress';
 import useAppLanguage, { isRTL } from '@/hooks/useAppLanguage';
 import useHomeTranslation from '@/hooks/useHomeTranslation';
 import { ArrowRight } from 'lucide-react';
-import { SKILL_BG, SkillTag } from '@/components/pathways/ui';
+import { CreamSheet, SKILL_BG, SkillTag } from '@/components/pathways/ui';
 
 // "Practice one skill": each card opens that skill's practice directly.
 const SKILL_CARDS = [
@@ -115,11 +115,15 @@ export default function Home({ cachedUser }) {
     );
   }
 
-  const hero = !isAuthenticated ? <StartHereCard t={t} /> : <RoadmapHero roadmap={roadmap} t={t} />;
+  // Signed-out visitors (The Road): the splash on navy (StartHereCard), the
+  // overview (road, promises, skills, the N-400 guide) on the cream sheet.
+  const hero = !isAuthenticated ? <StartHereCard t={t} /> : <div className={padded}><RoadmapHero roadmap={roadmap} t={t} /></div>;
 
   return (
-    <div className="flex flex-col gap-6 pb-8" dir={rtl ? 'rtl' : 'ltr'}>
+    <div dir={rtl ? 'rtl' : 'ltr'}>
       {hero}
+      <CreamSheet>
+      <div className="mx-auto max-w-5xl flex flex-col gap-6 pb-8">
       <RoadmapPath roadmap={roadmap} t={t} language={language} />
 
       {/* Official USCIS answers; learn in your language, test in English */}
@@ -171,6 +175,8 @@ export default function Home({ cachedUser }) {
         </Link>
       </section>
 
+      </div>
+      </CreamSheet>
     </div>
   );
 }

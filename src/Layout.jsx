@@ -26,6 +26,10 @@ import { Toaster } from "sonner";
 // message aloud on these screens (onboarding, quick check, lessons).
 const FOCUS_ROUTES = ['/quick-check', '/tutor-demo', '/learn', '/review', '/n400-coach'];
 
+// Pages drawn as split screens (a navy top and a cream sheet, full width):
+// they bring their own padding. Home (/) is one too: Today, or the splash.
+const SPLIT_ROUTES = ['/study', '/n400-guide', '/resources', '/lawyer-first', '/progress', '/profile', '/studyhistory', '/dashboard', '/interview-day', '/partner', '/admin', '/admin/pilot'];
+
 // The account whose profile was checked in this app load (one lookup, not one
 // per page), and whether it works for a partner program (asked the first
 // time the profile menu opens).
@@ -122,8 +126,8 @@ export default function Layout({ children }) {
   // padding: Today for signed-in learners, Study (practice runs too; the
   // runs not redesigned yet pad themselves in RunShell), the N-400 guide and
   // the Resource Hub.
-  const splitPage = (location.pathname === '/' && isAuthenticated)
-    || ['/study', '/n400-guide', '/resources', '/lawyer-first'].includes(location.pathname.toLowerCase());
+  const splitPage = location.pathname === '/'
+    || SPLIT_ROUTES.includes(location.pathname.toLowerCase());
   // Screens without the tab bar (lesson screens) list the places in the
   // profile menu too.
   const menuPlaces = showTabs ? [] : PLACES.filter((place) => !place.tutor);

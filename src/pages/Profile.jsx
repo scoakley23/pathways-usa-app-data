@@ -16,8 +16,8 @@ import YourTutorCard from '@/components/persona/YourTutorCard';
 import PilotSettingsCard from '@/components/pilot/PilotSettingsCard';
 import ProgramCard from '@/components/partners/ProgramCard';
 import { StudyTogetherCard } from '@/components/home/StudyTogether';
-import PageHeader from '@/components/PageHeader';
-import { RaisedCard } from '@/components/pathways/ui';
+import PageTop from '@/components/pathways/PageTop';
+import { CreamSheet, RaisedCard } from '@/components/pathways/ui';
 
 export default function Profile() {
   const [user, setUser] = useState(null);
@@ -100,8 +100,8 @@ export default function Profile() {
 
   if (!user) {
     return (
-      <div className="text-center py-20">
-        <h2 className="text-[28px] font-display font-normal text-pw-navy">Please sign in to view your profile</h2>
+      <div className="text-center py-20 px-4">
+        <h2 className="text-[28px] font-display text-ink">Please sign in to view your profile</h2>
       </div>
     );
   }
@@ -113,8 +113,11 @@ export default function Profile() {
   const iconSquare = 'w-10 h-10 rounded-2xl grid place-items-center shrink-0';
 
   return (
-    <div className="max-w-5xl mx-auto space-y-6 pb-12 text-pw-navy">
-      <PageHeader title="Profile" guide="Change my name and how I talk to you. You can also make the text bigger." />
+    <div>
+      <PageTop back title="Profile" guide="Change my name and how I talk to you. You can also make the text bigger." />
+      <CreamSheet>
+      <div className="max-w-5xl mx-auto space-y-6 pb-12 text-ink">
+
       <div className="flex flex-col md:flex-row gap-6 items-start">
         
         {/* Left Column: Profile Card */}
@@ -254,6 +257,8 @@ export default function Profile() {
 
         </div>
       </div>
+      </div>
+      </CreamSheet>
     </div>
   );
 }

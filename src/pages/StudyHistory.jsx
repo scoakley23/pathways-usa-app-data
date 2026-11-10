@@ -4,8 +4,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { MessageCircle, Calendar, Volume2 } from 'lucide-react';
-import PageHeader from '@/components/PageHeader';
-import { RaisedCard } from '@/components/pathways/ui';
+import PageTop from '@/components/pathways/PageTop';
+import { RaisedCard, CreamSheet } from '@/components/pathways/ui';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { speakText } from "@/components/utils/textToSpeech";
@@ -34,13 +34,16 @@ export default function StudyHistory() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6 text-pw-navy">
-      <PageHeader
+    <div>
+      <PageTop
+        back
         title="Study Question History"
         subtitle="Review your past questions and answers"
-        art="speech"
         guide="These are the questions you asked me before, with my answers."
       />
+      <CreamSheet>
+      <div className="max-w-4xl mx-auto space-y-6 pb-8 text-ink">
+
 
       {loading ? (
         <div className="text-center py-10 text-base text-pw-muted">Loading history...</div>
@@ -91,6 +94,8 @@ export default function StudyHistory() {
           ))}
         </div>
       )}
+      </div>
+      </CreamSheet>
     </div>
   );
 }

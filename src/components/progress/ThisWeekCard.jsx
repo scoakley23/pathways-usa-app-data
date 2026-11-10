@@ -4,11 +4,12 @@ import useTodayText from '@/components/persona/useTodayText';
 import { Card } from '@/components/pathways/ui';
 import { dayIndex } from '@/lib/studyPlan';
 import { loadPlanSettings } from '@/lib/planSettings';
-import { practiceDaysThisWeek, weekSquares, weeksToInterview } from '@/lib/todayView';
+import { practiceDaysThisWeek, weekCircles, weeksToInterview } from '@/lib/todayView';
 
-// "This week" (moved here from Today): the days practiced this week as seven
-// squares, how many 2025 civics questions are ready, and "about N weeks" to
-// the interview month (only when one is set on this device). Reads saved
+// On Progress (The Road): two number cards (2025 civics questions ready,
+// days practiced this week), the week strip (seven circles: navy =
+// practiced, star red = today, dashed = future) and "about N weeks" to the
+// interview month (only when one is set on this device). Reads saved
 // progress dates only; nothing new is stored.
 export default function ThisWeekCard({ language = 'en' }) {
   const today = useMemo(() => new Date(), []);
@@ -51,8 +52,7 @@ export default function ThisWeekCard({ language = 'en' }) {
 
   const practiced = practiceDaysThisWeek(data.dates, today);
   const daysCount = practiced.size;
-  const daysKey = daysCount === 0 ? 'days_week_none' : daysCount === 1 ? 'days_week_one' : 'days_week';
-  const squares = weekSquares([...practiced], dayIndex(today), today.getDay());
+  const circles = weekCircles([...practiced], dayIndex(today), today.getDay());
   const weeks = weeksToInterview(loadPlanSettings(), today);
   const weeksKey = weeks === 0 ? 'weeks_left_none' : weeks === 1 ? 'weeks_left_one' : 'weeks_left';
 
@@ -61,23 +61,44 @@ export default function ThisWeekCard({ language = 'en' }) {
     const d = new Date(2024, 0, 1 + k); // Jan 1 2024 was a Monday
     try { return d.toLocaleDateString(locale, { weekday: 'narrow' }); } catch (e) { return ''; }
   });
+  const number = 'font-display text-[34px] leading-none';
 
   return (
-    <Card padding="p-5" className="space-y-3 text-ink">
-      <h2 className="text-label uppercase text-ink-label">{t('this_week')}</h2>
-      <div className="grid grid-cols-7 gap-1.5" aria-hidden="true">
-        {squares.map((sq, k) => (
-          <div key={k} className="flex flex-col items-center gap-1">
-            <span className={`block w-full aspect-square max-h-9 rounded-md ${sq.filled ? 'bg-navy' : sq.today ? 'bg-white border-2 border-navy' : 'bg-sand'}`} />
-            <span className="text-[13px] text-ink-2">{weekdayInitials[k]}</span>
-          </div>
-        ))}
+    <div className="space-y-4 text-ink">
+      {/* Two numbers: civics questions ready, days practiced this week */}
+      <div className="grid grid-cols-2 gap-3">
+        <Card padding="p-4">
+          <p className="text-label uppercase text-ink-label">Civics ready</p>
+          <p className="mt-2"><span className={number}>{data.ready}</span><span className="text-lg text-ink-2">/{data.civicsTotal || 128}</span></p>
+          <p className="mt-1 text-sm text-ink-2">2025 civics questions</p>
+        </Card>
+        <Card padding="p-4">
+          <p className="text-label uppercase text-ink-label">{t('this_week')}</p>
+          <p className="mt-2"><span className={number}>{daysCount}</span><span className="text-lg text-ink-2">/7</span></p>
+          <p className="mt-1 text-sm text-ink-2">Days practiced</p>
+        </Card>
       </div>
-      <p className="text-base font-semibold">{t(daysKey, { n: daysCount })}</p>
-      {data.civicsTotal > 0 && (
-        <p className="border-t border-card-line pt-3 font-display text-[22px] leading-snug">{t('ready', { n: data.ready, t: data.civicsTotal })}</p>
-      )}
-      {weeks !== null && <p className="text-[15px] text-ink-2">{t(weeksKey, { n: weeks })}</p>}
-    </Card>
+
+      {/* The week strip: navy = practiced, star red = today, dashed = future */}
+      <Card padding="p-4">
+        <ol className="grid grid-cols-7 gap-1.5" aria-label={t(daysCount === 0 ? 'days_week_none' : daysCount === 1 ? 'days_week_one' : 'days_week', { n: daysCount })}>
+          {circles.map((c, k) => (
+            <li key={k} className="flex flex-col items-center gap-1.5">
+              <span
+                aria-hidden="true"
+                className={`block w-8 h-8 rounded-full ${
+                  c.state === 'today' ? 'bg-star'
+                    : c.state === 'practiced' ? 'bg-navy'
+                      : c.state === 'future' ? 'border-2 border-dashed border-ink-2'
+                        : 'border-2 border-card-line'
+                }`}
+              />
+              <span className={`text-[13px] ${c.state === 'today' ? 'font-semibold text-ink' : 'text-ink-2'}`} aria-hidden="true">{weekdayInitials[k]}</span>
+            </li>
+          ))}
+        </ol>
+        {weeks !== null && <p className="mt-3 text-[15px] text-ink-2">{t(weeksKey, { n: weeks })}</p>}
+      </Card>
+    </div>
   );
 }
