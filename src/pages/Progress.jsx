@@ -10,11 +10,14 @@ import BadgesDisplay from '@/components/gamification/BadgesDisplay';
 import PracticeCalendar from '@/components/progress/PracticeCalendar';
 import ProgressChart from '@/components/progress/ProgressChart';
 import TestDateTracker from '@/components/progress/TestDateTracker';
+import ThisWeekCard from '@/components/progress/ThisWeekCard';
 import QuickCheckCard from '@/components/persona/QuickCheckCard';
 import useAppLanguage from '@/hooks/useAppLanguage';
 import { Progress as ProgressBar } from "@/components/ui/progress";
-import PageHeader from '@/components/PageHeader';
-import { RaisedCard } from '@/components/pathways/ui';
+import PageTop from '@/components/pathways/PageTop';
+import { CreamSheet, RaisedCard } from '@/components/pathways/ui';
+import YourRoad from '@/components/progress/YourRoad';
+import useRoadmapProgress from '@/components/home/useRoadmapProgress';
 
 export default function Progress() {
   const [history, setHistory] = useState([]);
@@ -22,6 +25,7 @@ export default function Progress() {
   const [stats, setStats] = useState({ total: 0, mastered: 0 });
   const [userData, setUserData] = useState(null);
   const [language] = useAppLanguage();
+  const roadmap = useRoadmapProgress(userData);
 
   useEffect(() => {
     fetchProgress();
@@ -79,15 +83,23 @@ export default function Progress() {
   const tileLink = 'block rounded-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2';
 
   return (
-    <div className="space-y-6 text-pw-navy">
-      <PageHeader
-        title="Your Progress"
-        subtitle="How far you've come on your path."
-        art="road"
+    <div>
+      {/* NAVY TOP: your road, the five stops with one line each */}
+      <PageTop
+        back
+        title="Your road"
         guide="Here you can see what you've practiced and how your skills are growing. It helps us choose what to practice next."
       >
-        <TestDateTracker />
-      </PageHeader>
+        <div className="max-w-xl pt-2">
+          <YourRoad roadmap={roadmap} />
+        </div>
+      </PageTop>
+
+      <CreamSheet>
+      <div className="mx-auto max-w-5xl space-y-6 pb-8 text-ink">
+      <ThisWeekCard language={language} />
+
+      <TestDateTracker />
 
       <QuickCheckCard variant="progress" language={language} />
 
@@ -99,7 +111,7 @@ export default function Progress() {
               <div className="w-12 h-12 rounded-2xl bg-pw-blue-soft text-pw-blue-ink grid place-items-center">
                 <Clock className="w-6 h-6" aria-hidden="true" />
               </div>
-              <ArrowRight className="w-5 h-5 text-pw-muted" aria-hidden="true" />
+              <ArrowRight className="w-5 h-5 text-pw-muted rtl:rotate-180" aria-hidden="true" />
             </div>
             <p className="mt-4 font-display font-normal text-[44px] leading-none">{stats.total}</p>
             <p className="mt-2 text-sm font-bold text-pw-muted">Total Practiced</p>
@@ -112,7 +124,7 @@ export default function Progress() {
               <div className="w-12 h-12 rounded-2xl bg-pw-green-soft text-pw-green-ink grid place-items-center">
                 <Award className="w-6 h-6" aria-hidden="true" />
               </div>
-              <ArrowRight className="w-5 h-5 text-pw-muted" aria-hidden="true" />
+              <ArrowRight className="w-5 h-5 text-pw-muted rtl:rotate-180" aria-hidden="true" />
             </div>
             <p className="mt-4 font-display font-normal text-[44px] leading-none">{stats.mastered}</p>
             <p className="mt-2 text-sm font-bold text-pw-muted">Items Mastered</p>
@@ -197,6 +209,8 @@ export default function Progress() {
           </Card>
         </div>
       </div>
+      </div>
+      </CreamSheet>
     </div>
   );
 }

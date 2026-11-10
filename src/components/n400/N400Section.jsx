@@ -16,7 +16,7 @@ export default function N400Section({ section, isAdmin, language, completed, onC
       {isAdmin && section.status === 'draft' && <Tag tone="red">Draft</Tag>}
 
       {visibleCards.length === 0 ? (
-        <p className="text-base flex items-center gap-2 rounded-[10px] bg-white px-4 py-3">
+        <p className="text-base flex items-center gap-2 rounded-card bg-white border border-card-line px-4 py-3">
           <Hourglass className="w-4 h-4 shrink-0" aria-hidden="true" /> Coming soon — this section is still being prepared.
         </p>
       ) : (
@@ -25,7 +25,7 @@ export default function N400Section({ section, isAdmin, language, completed, onC
             <N400QuestionCard key={q.id} sectionId={section.id} question={q} isAdmin={isAdmin} language={language} />
           ))}
           {completed ? (
-            <p className="w-full min-h-[52px] rounded-xl bg-white text-pw-writing font-semibold text-base inline-flex items-center justify-center gap-2 px-4" role="status">
+            <p className="w-full min-h-[52px] rounded-full bg-white border border-card-line text-correct font-semibold text-base inline-flex items-center justify-center gap-2 px-4" role="status">
               <CheckCircle2 className="w-5 h-5" aria-hidden="true" /> You read this section
             </p>
           ) : (

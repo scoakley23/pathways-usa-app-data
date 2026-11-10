@@ -1,7 +1,7 @@
 // Fixed text for the plan and Today card: English + hand-written Spanish.
 // Other languages are AI-translated once and cached (useTranslatedLines);
 // bump TODAY_CACHE_KEY when the English changes.
-export const TODAY_CACHE_KEY = 'today_v4';
+export const TODAY_CACHE_KEY = 'today_v5';
 
 export const TODAY_EN = {
   title: 'Today',
@@ -72,6 +72,20 @@ export const TODAY_EN = {
   quick_check_kicker: 'Your first step',
   task_quick_check: 'A quick check of the four parts',
   quick_check_sub: 'You can skip any part',
+  // The Road (navy top, road, cream sheet)
+  stop_of: 'Stop {n} of 5 · {name}',
+  start_here: 'Start here',
+  welcome: 'Welcome.',
+  you_are_here: "You're here",
+  stop_done: 'done',
+  road_label: 'Your road',
+  next_of: 'Next · {skill}',
+  quick_check_name: 'Quick check',
+  start_min: 'Start · {m} min',
+  start_quick_check: 'Start: quick check',
+  interview_ask: 'When is your interview?',
+  interview_month: 'Interview: {month}',
+  change: 'Change',
 };
 
 export const TODAY_ES = {
@@ -142,6 +156,19 @@ export const TODAY_ES = {
   quick_check_kicker: 'Su primer paso',
   task_quick_check: 'Una prueba rápida de las cuatro partes',
   quick_check_sub: 'Puede saltar cualquier parte',
+  stop_of: 'Parada {n} de 5 · {name}',
+  start_here: 'Empiece aquí',
+  welcome: 'Bienvenido o bienvenida.',
+  you_are_here: 'Usted está aquí',
+  stop_done: 'hecha',
+  road_label: 'Su camino',
+  next_of: 'Siguiente · {skill}',
+  quick_check_name: 'Prueba rápida',
+  start_min: 'Empezar · {m} min',
+  start_quick_check: 'Empezar: prueba rápida',
+  interview_ask: '¿Cuándo es su entrevista?',
+  interview_month: 'Entrevista: {month}',
+  change: 'Cambiar',
 };
 
 // t(key, vars) for the learner's language, English fallback.

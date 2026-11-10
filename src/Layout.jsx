@@ -26,6 +26,10 @@ import { Toaster } from "sonner";
 // message aloud on these screens (onboarding, quick check, lessons).
 const FOCUS_ROUTES = ['/quick-check', '/tutor-demo', '/learn', '/review', '/n400-coach'];
 
+// Pages drawn as split screens (a navy top and a cream sheet, full width):
+// they bring their own padding. Home (/) is one too: Today, or the splash.
+const SPLIT_ROUTES = ['/study', '/n400-guide', '/resources', '/lawyer-first', '/progress', '/profile', '/studyhistory', '/dashboard', '/interview-day', '/partner', '/admin', '/admin/pilot'];
+
 // The account whose profile was checked in this app load (one lookup, not one
 // per page), and whether it works for a partner program (asked the first
 // time the profile menu opens).
@@ -118,6 +122,12 @@ export default function Layout({ children }) {
   const readAloud = FOCUS_ROUTES.includes(location.pathname);
   const focusMode = readAloud || practiceRun;
   const showTabs = !focusMode;
+  // Split screens (a navy top and a cream sheet, full width) bring their own
+  // padding: Today for signed-in learners, Study (practice runs too; the
+  // runs not redesigned yet pad themselves in RunShell), the N-400 guide and
+  // the Resource Hub.
+  const splitPage = location.pathname === '/'
+    || SPLIT_ROUTES.includes(location.pathname.toLowerCase());
   // Screens without the tab bar (lesson screens) list the places in the
   // profile menu too.
   const menuPlaces = showTabs ? [] : PLACES.filter((place) => !place.tutor);
@@ -127,7 +137,7 @@ export default function Layout({ children }) {
     <div className="min-h-screen bg-pw-page font-sans text-pw-navy">
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-2xl focus:bg-pw-navy focus:text-white focus:font-bold focus:px-4 focus:py-3"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:start-3 focus:z-[60] focus:rounded-2xl focus:bg-pw-navy focus:text-white focus:font-bold focus:px-4 focus:py-3"
       >
         Skip to main content
       </a>
@@ -247,7 +257,7 @@ export default function Layout({ children }) {
         </div>
       </nav>}
 
-      <main id="main" tabIndex={-1} className={`container mx-auto px-4 pt-6 max-w-5xl focus:outline-none ${showTabs ? 'pb-32 lg:pb-24' : 'pb-24'}`}>
+      <main id="main" tabIndex={-1} className={`focus:outline-none ${splitPage ? '' : 'container mx-auto px-4 pt-6 max-w-5xl'} ${showTabs ? 'pb-32 lg:pb-24' : 'pb-24'}`}>
         <AutoReadContext.Provider value={readAloud}>
         {React.Children.map(children, child => {
             if (React.isValidElement(child)) {

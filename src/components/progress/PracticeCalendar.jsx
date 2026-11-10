@@ -63,7 +63,7 @@ export default function PracticeCalendar({ history }) {
             </h4>
 
             {selectedDayData.length > 0 ? (
-                <div className="space-y-3 max-h-[300px] overflow-y-auto pr-1">
+                <div className="space-y-3 max-h-[300px] overflow-y-auto pe-1">
                     {selectedDayData.map((item, idx) => (
                         <div key={idx} className="flex items-start gap-3 p-4 rounded-2xl bg-white border border-pw-line">
                             {item.status === 'mastered' ? (

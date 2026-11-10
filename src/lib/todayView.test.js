@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { firstName, splitTasks, stageKey, timeOfDay, weekSquares, weeksToInterview } from './todayView';
+import { firstName, splitTasks, stageKey, timeOfDay, weekSquares, weeksToInterview, roadStates, practiceDaysThisWeek, weekCircles, stopStatus } from './todayView';
 import { dayIndex } from './studyPlan';
 
 const tasks = [{ id: 'a' }, { id: 'b' }, { id: 'c' }];
@@ -63,5 +63,63 @@ describe('weekSquares', () => {
     const squares = weekSquares([t, t - 3, t - 10], t, thu.getDay());
     expect(squares.map((s) => s.filled)).toEqual([true, false, false, true, false, false, false]);
     expect(squares.findIndex((s) => s.today)).toBe(3);
+  });
+});
+
+describe('roadStates', () => {
+  const ids = [1, 2, 3, 4, 5];
+
+  it('marks done stops, the current stop and later ones', () => {
+    expect(roadStates(ids, { 1: true, 2: false }, 2)).toEqual(['done', 'current', 'later', 'later', 'later']);
+  });
+
+  it('keeps a done stop after the current one as done', () => {
+    expect(roadStates(ids, { 1: false, 2: true }, 1)).toEqual(['current', 'done', 'later', 'later', 'later']);
+  });
+
+  it('puts a first-day learner on stop 1 with nothing done', () => {
+    expect(roadStates(ids, { 1: true }, 2, true)).toEqual(['current', 'later', 'later', 'later', 'later']);
+  });
+});
+
+describe('practiceDaysThisWeek', () => {
+  // Wednesday, 12 Nov 2025, noon.
+  const wed = new Date(2025, 10, 12, 12);
+  const none = () => [];
+
+  it('counts saved activity from Monday through today only', () => {
+    const days = practiceDaysThisWeek(
+      [new Date(2025, 10, 10, 9), new Date(2025, 10, 10, 18), new Date(2025, 10, 12, 8), new Date(2025, 10, 9, 9), null],
+      wed,
+      none,
+    );
+    expect(days.size).toBe(2);
+    expect(days.has(dayIndex(new Date(2025, 10, 10)))).toBe(true);
+  });
+
+  it('adds days with checkmarks on this device', () => {
+    const doneOn = (d) => (d.getDate() === 11 ? ['reading'] : []);
+    expect(practiceDaysThisWeek([], wed, doneOn).size).toBe(1);
+  });
+});
+
+describe('weekCircles', () => {
+  it('marks practiced, missed, today and future days', () => {
+    // Wednesday (weekday 3) is day 102; Monday is 100.
+    const c = weekCircles([100], 102, 3);
+    expect(c.map((x) => x.state)).toEqual(['practiced', 'missed', 'today', 'future', 'future', 'future', 'future']);
+    expect(weekCircles([102], 102, 3)[2]).toEqual({ state: 'today', practiced: true });
+  });
+});
+
+describe('stopStatus', () => {
+  const counts = { masteredSentences: 12, lessonsDone: 3, lessonsTotal: 24, passedInterviews: 0 };
+  it('describes each stop from the existing counts', () => {
+    expect(stopStatus(1, counts, false)).toBe('12 of 20 sentences mastered');
+    expect(stopStatus(2, counts, false)).toBe('3 of 12 lessons finished with 70% or more');
+    expect(stopStatus(3, counts, false)).toBe('Pass one mock interview');
+    expect(stopStatus(3, counts, true)).toMatch(/passed a mock interview/);
+    expect(stopStatus(4, counts, false)).toMatch(/nothing is saved/);
+    expect(stopStatus(1, null, false)).toBe('');
   });
 });

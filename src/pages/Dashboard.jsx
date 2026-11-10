@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
 import { Card, CardContent } from '@/components/ui/card';
 import { Loader2, CheckCircle, Clock, Circle, BookOpen } from 'lucide-react';
-import PageHeader from '@/components/PageHeader';
+import PageTop from '@/components/pathways/PageTop';
+import { CreamSheet } from '@/components/pathways/ui';
 import LessonStatusCard from '@/components/dashboard/LessonStatusCard';
 
 const TOPIC_ORDER = [
@@ -72,12 +73,15 @@ export default function Dashboard({ cachedUser }) {
   const iconSquare = 'w-10 h-10 rounded-2xl grid place-items-center';
 
   return (
-    <div className="space-y-6 text-pw-navy">
-      <PageHeader
+    <div>
+      <PageTop
+        back
         title="Lesson Progress"
         subtitle="Your completion status across all citizenship topics"
-        art="book"
       />
+      <CreamSheet>
+      <div className="max-w-5xl mx-auto space-y-6 pb-8 text-ink">
+
 
       {/* Status summary cards */}
       <div className="grid grid-cols-3 gap-3">
@@ -132,6 +136,8 @@ export default function Dashboard({ cachedUser }) {
           </CardContent>
         </Card>
       )}
+      </div>
+      </CreamSheet>
     </div>
   );
 }

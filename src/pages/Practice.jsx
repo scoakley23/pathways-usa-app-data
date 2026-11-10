@@ -1,26 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Loader2, Sparkles, Layers, Mic, SlidersHorizontal, X } from 'lucide-react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { ArrowRight, BookOpen, Check, Landmark, Loader2, Sparkles, Layers, Mic, MessagesSquare, PenLine, SlidersHorizontal, X } from 'lucide-react';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import DictationCard from '@/components/game/DictationCard';
 import CivicsTestCard from '@/components/practice/CivicsTestCard';
+import RoundComplete from '@/components/practice/RoundComplete';
+import { firstName } from '@/lib/todayView';
 import FlashcardGame from '@/components/practice/FlashcardGame';
 import MatchingGame from '@/components/practice/MatchingGame';
 import ReadingPracticeCard from '@/components/practice/ReadingPracticeCard';
 import InterviewPractice from '@/components/practice/InterviewPractice';
-import PageHeader from '@/components/PageHeader';
-import { PillButton, Poster, SKILL_COLOR, SKILL_ON, posterSolid, posterOutline } from '@/components/pathways/ui';
-import { cardOutcome, countOutcomes } from '@/lib/practiceResults';
+import StudyTop from '@/components/study/StudyTop';
+import { Button as PwButton, Card, Chip, CreamSheet, Eyebrow, NavyTop } from '@/components/pathways/ui';
+import { LEVELS } from '@/lib/pretest';
+import { PRACTICE_PARTS, partStatus, suggestPart } from '@/lib/studyView';
+import { cardOutcome, countOutcomes, countedOutcomes, missedItems, roundRule, roundTitle } from '@/lib/practiceResults';
 import { awardBadges } from '@/lib/awardBadges';
 import { toast } from "sonner";
 import VoiceSettings from '@/components/utils/VoiceSettings';
 
-// Practice hub: the four parts of the interview as tiles, in the order
-// Reading · Writing · Civics · Speaking, each in its skill color with a
-// white Start. Tapping one starts right away; a run is full screen
+// Practice hub (the Practice tab of Study): on navy, "Suggested for you"
+// (the part with the lowest quick-check level) with a star-red Start; on the
+// cream sheet, the four parts as rows in the order Reading · Writing · Civics
+// · Speaking with their status (quick-check level; "Ready" when strong).
+// Tapping one starts right away; a run is full screen
 // (?mode=… hides the app header and tab bar, see Layout).
 const RUN_MODES = ['reading', 'dictation', 'civics', 'interview', 'vocabulary'];
 const RUN_LABEL = {
@@ -31,27 +37,13 @@ const RUN_LABEL = {
   interview: 'Speaking · The officer’s questions',
 };
 
-function PartTile({ n, skill, label, title, status, onStart }) {
-  return (
-    <button
-      type="button"
-      onClick={onStart}
-      className={`group text-left rounded-[18px] p-5 min-h-[176px] flex flex-col justify-between gap-4 transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2 ${SKILL_COLOR[skill]} ${SKILL_ON[skill]}`}
-    >
-      <span className="flex items-start justify-between gap-3">
-        <span className="text-[13px] font-semibold uppercase tracking-[0.16em]">Part {n} · {label}</span>
-        <span className="font-display text-[56px] leading-[0.7]" aria-hidden="true">{n}</span>
-      </span>
-      <span className="text-[30px] font-bold leading-[1.08] tracking-[-0.01em]">{title}</span>
-      <span className="flex items-center justify-between gap-3">
-        <span className="font-medium text-[19px] leading-snug">{status}</span>
-        <span className="shrink-0 min-h-11 rounded-full bg-white text-pw-navy px-5 text-base font-semibold inline-flex items-center gap-1.5 group-hover:bg-pw-soft">
-          Start <ArrowRight className="w-4 h-4 rtl:rotate-180" aria-hidden="true" />
-        </span>
-      </span>
-    </button>
-  );
-}
+// The four parts as rows: name, one line, icon, and the run each starts.
+const PART_ROWS = {
+  reading: { label: 'Reading', line: 'Read a sentence aloud', icon: BookOpen, run: 'reading' },
+  writing: { label: 'Writing', line: 'Listen and write', icon: PenLine, run: 'dictation' },
+  civics: { label: 'Civics', line: 'Answer out loud or type', icon: Landmark, run: 'civics' },
+  speaking: { label: 'Speaking', line: 'Mock interview', icon: MessagesSquare, run: 'interview' },
+};
 
 export default function Practice() {
   const [mode, setMode] = useState('menu'); // menu, dictation, vocabulary, civics
@@ -71,6 +63,7 @@ export default function Practice() {
   const savesRef = React.useRef(Promise.resolve());
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
   const urlMode = searchParams.get('mode');
   // Practice lives in the Study page's Practice tab (/study?tab=practice);
   // a run adds ?mode=… there. Keep the tab when a run starts or ends.
@@ -182,21 +175,24 @@ export default function Practice() {
   }, [sessionComplete]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Interview Practice Mode
+  // The mock interview (The Road): full width, its own top bar; it ends on
+  // the Round complete report (the run stays open until the learner closes
+  // it, so the report can be read).
   if (mode === 'interview') {
     return (
-      <RunShell label={RUN_LABEL.interview} onClose={exitRun}>
-        <InterviewPractice
-          onComplete={(passed) => {
-            if (passed) {
-              toast.success('Great job! You\'re ready for the interview!');
-            } else {
-              toast.info('Keep practicing - you\'re getting better!');
-            }
-            exitRun();
-          }}
-          onNext={() => {}}
-        />
-      </RunShell>
+      <InterviewPractice
+        onComplete={(passed) => {
+          if (passed) {
+            toast.success('Great job! You\'re ready for the interview!');
+          } else {
+            toast.info('Keep practicing - you\'re getting better!');
+          }
+        }}
+        onNext={() => {}}
+        onClose={exitRun}
+        onBack={() => navigate('/')}
+        learnerName={firstName(currentUser)}
+      />
     );
   }
 
@@ -426,50 +422,100 @@ export default function Practice() {
   };
 
   if (mode === 'menu') {
-    const label = 'text-sm font-semibold text-pw-navy';
+    const label = 'text-sm font-semibold text-ink';
+    const levels = currentUser?.skill_levels || null;
+    const startPart = (part) => {
+      const run = PART_ROWS[part].run;
+      if (run === 'interview') { setSearchParams(practiceParams('interview')); setMode('interview'); }
+      else startSession(run);
+    };
+    const suggested = suggestPart(levels);
+    const testButton = (
+      <Chip onNavy onClick={() => setSettingsOpen(true)} aria-label={`Practice settings: ${civicsVersion} test`}>
+        <SlidersHorizontal className="w-4 h-4" aria-hidden="true" /> {civicsVersion} test
+      </Chip>
+    );
     return (
-      <div className="max-w-5xl mx-auto space-y-6 pb-12">
-        <PageHeader
-          tag="The four parts of the interview"
-          title="Practice"
-          guide="Pick a part and we start right away. Ten cards, about five minutes."
-        >
-          <PillButton onClick={() => setSettingsOpen(true)} className="bg-white border border-pw-line">
-            <SlidersHorizontal className="w-4 h-4" aria-hidden="true" /> {civicsVersion} test
-          </PillButton>
-        </PageHeader>
+      <div>
+        <NavyTop className="pb-14">
+          <StudyTop tab="practice" action={testButton}>
+            <div className="pt-2 space-y-3">
+              <p className="text-label uppercase text-on-navy-label">Suggested for you</p>
+              <p className="font-display text-[22px] leading-tight">
+                {PART_ROWS[suggested].label} · {PART_ROWS[suggested].line}
+              </p>
+              <PwButton variant="main" onNavy className="w-full sm:w-auto" onClick={() => startPart(suggested)}>
+                Start <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" />
+              </PwButton>
+            </div>
+          </StudyTop>
+        </NavyTop>
 
-        <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
-          <PartTile n={1} skill="reading" label="Reading" title="Read a sentence aloud" status="We check each word" onStart={() => startSession('reading')} />
-          <PartTile n={2} skill="writing" label="Writing" title="Listen and write" status="On ruled paper" onStart={() => startSession('dictation')} />
-          <PartTile n={3} skill="civics" label="Civics" title="Civics questions" status={`The ${civicsVersion} test`} onStart={() => startSession('civics')} />
-          <PartTile n={4} skill="speaking" label="Speaking" title="The officer’s questions" status="Say what each one asks" onStart={() => { setSearchParams(practiceParams('interview')); setMode('interview'); }} />
-        </div>
+        <CreamSheet>
+          <div className="mx-auto max-w-5xl space-y-6 pb-8">
+            <p className="text-base text-ink-2">Pick a part and we start right away. Ten cards, about five minutes.</p>
 
-        {/* Vocabulary games (part of Writing) */}
-        <section aria-labelledby="vocab" className="space-y-2">
-          <h2 id="vocab" className="text-[13px] font-semibold uppercase tracking-[0.14em] text-pw-muted">Writing · Vocabulary games</h2>
-          <div className="flex flex-wrap gap-2">
-            <PillButton onClick={() => startSession('vocabulary', 'dictation')} className="bg-white border border-pw-line"><Mic className="w-4 h-4" aria-hidden="true" /> Word dictation</PillButton>
-            <PillButton onClick={() => startSession('vocabulary', 'flashcards')} className="bg-white border border-pw-line"><Sparkles className="w-4 h-4" aria-hidden="true" /> Flashcards</PillButton>
-            <PillButton onClick={() => startSession('vocabulary', 'matching')} className="bg-white border border-pw-line"><Layers className="w-4 h-4" aria-hidden="true" /> Matching</PillButton>
+            {/* The four parts */}
+            <Card padding="p-0">
+              <ul className="divide-y divide-card-line">
+                {PRACTICE_PARTS.map((part) => {
+                  const row = PART_ROWS[part];
+                  const Icon = row.icon;
+                  const status = partStatus(levels?.[part]);
+                  return (
+                    <li key={part}>
+                      <button
+                        type="button"
+                        onClick={() => startPart(part)}
+                        className="w-full flex items-center gap-4 px-4 py-4 min-h-[76px] text-start hover:bg-cream focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-navy first:rounded-t-card last:rounded-b-card"
+                      >
+                        <span className="w-12 h-12 shrink-0 rounded-full bg-navy text-white grid place-items-center">
+                          <Icon className="w-6 h-6" strokeWidth={2} aria-hidden="true" />
+                        </span>
+                        <span className="min-w-0 flex-1">
+                          <span className="block text-[17px] font-semibold text-ink">{row.label}</span>
+                          <span className="block text-base text-ink-2">{row.line}</span>
+                        </span>
+                        <span className="shrink-0 text-end text-sm">
+                          {status === 'ready' ? (
+                            <span className="inline-flex items-center gap-1 font-semibold text-correct">
+                              <Check className="w-4 h-4" strokeWidth={3} aria-hidden="true" /> Ready
+                            </span>
+                          ) : (
+                            <span className="text-ink-2">{status === 'not_checked' ? 'Not checked yet' : LEVELS[status].label}</span>
+                          )}
+                        </span>
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+            </Card>
+
+            {/* Vocabulary games (part of Writing) */}
+            <section aria-labelledby="vocab" className="space-y-2">
+              <h2 id="vocab" className="text-label uppercase text-ink-label">Writing · Vocabulary games</h2>
+              <div className="flex flex-wrap gap-2">
+                <Chip onClick={() => startSession('vocabulary', 'dictation')}><Mic className="w-4 h-4" aria-hidden="true" /> Word dictation</Chip>
+                <Chip onClick={() => startSession('vocabulary', 'flashcards')}><Sparkles className="w-4 h-4" aria-hidden="true" /> Flashcards</Chip>
+                <Chip onClick={() => startSession('vocabulary', 'matching')}><Layers className="w-4 h-4" aria-hidden="true" /> Matching</Chip>
+              </div>
+            </section>
+
+            {/* Mixed practice: the full run-through on Interview Day */}
+            <Card padding="p-5" className="space-y-2">
+              <Eyebrow>Mixed practice</Eyebrow>
+              <h2 className="font-display text-[22px] leading-tight text-ink">Interview Day</h2>
+              <p className="text-base text-ink-2 max-w-2xl">The whole interview, in order: the oath, the officer’s questions, reading, writing and civics. Nothing is saved.</p>
+              <Link
+                to="/interview-day"
+                className="mt-2 inline-flex min-h-tap items-center gap-2 rounded-full border-2 border-navy px-5 text-base font-semibold text-ink hover:bg-sand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2"
+              >
+                Start the run-through <ArrowRight className="w-4 h-4 rtl:rotate-180" aria-hidden="true" />
+              </Link>
+            </Card>
           </div>
-        </section>
-
-        {/* Mixed practice: the full run-through on Interview Day */}
-        <div>
-          <span className="ml-4 inline-block rounded-t-lg bg-pw-navy px-3 py-1 text-sm font-semibold text-white">Mixed practice</span>
-          <div className="rounded-card bg-white border border-pw-line shadow-raised p-5 space-y-2">
-            <h2 className="font-display text-[30px] leading-tight">Interview Day</h2>
-            <p className="text-base text-pw-muted max-w-2xl">The whole interview, in order: the oath, the officer’s questions, reading, writing and civics. Nothing is saved.</p>
-            <Link
-              to="/interview-day"
-              className="mt-2 inline-flex min-h-12 items-center gap-2 rounded-full border-2 border-pw-navy px-5 text-base font-semibold text-pw-navy hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2"
-            >
-              Start the run-through <ArrowRight className="w-4 h-4 rtl:rotate-180" aria-hidden="true" />
-            </Link>
-          </div>
-        </div>
+        </CreamSheet>
 
         {/* Settings: civics test version, difficulty, voice */}
         <Sheet open={settingsOpen} onOpenChange={setSettingsOpen}>
@@ -523,28 +569,93 @@ export default function Practice() {
     );
   }
 
-  if (sessionComplete) {
-    const counts = countOutcomes(results);
-    // Matching plays up to six pairs, not every card in the run.
-    const total = mode === 'vocabulary' && vocabSubMode === 'matching' ? results.length : content.length;
+  // A civics round (The Road): the question screen and "Round complete" are
+  // full width (navy top, cream sheet) with their own close button.
+  // "Review" starts a round with only the questions that were missed (same
+  // grading and saving).
+  const startReview = (items) => {
+    setResults([]);
+    setContent(items);
+    setCurrentIndex(0);
+    setSessionComplete(false);
+  };
+  // Every run ends on "Round complete": civics, reading, writing and the
+  // vocabulary games (word dictation, flashcards, matching).
+  const roundKind = mode === 'civics' ? 'civics'
+    : mode === 'reading' ? 'reading'
+      : mode === 'dictation' ? 'writing'
+        : mode === 'vocabulary' ? (vocabSubMode === 'flashcards' ? 'flashcards' : vocabSubMode === 'matching' ? 'matching' : 'words')
+          : null;
+  if (roundKind === 'matching' && sessionComplete) {
+    // Matching saves nothing; every pair ends matched.
     return (
-      <RunShell label={RUN_LABEL[mode]} onClose={exitRun}>
-        <Poster
-          tone="blue"
-          className="-mx-4 sm:mx-0 sm:rounded-card"
-          label="Practice · Done"
-          question={`${counts.right} of ${total} right`}
-          answer={counts.close ? `${counts.close} almost. One more look and you have them.` : 'Nice work.'}
-        >
-          <div className="space-y-5">
-            <div className="flex flex-wrap gap-2">
-              <button type="button" onClick={() => startSession(mode, vocabSubMode)} className={posterSolid}>Practice again</button>
-              <button type="button" onClick={exitRun} className={posterOutline}>Back to Practice</button>
-            </div>
-          </div>
-        </Poster>
-      </RunShell>
+      <RoundComplete
+        outcomes={results}
+        title={`All ${results.length} pairs matched. Nice work${firstName(currentUser) ? `, ${firstName(currentUser)}` : ''}.`}
+        onClose={exitRun}
+        onAgain={() => startSession(mode, vocabSubMode)}
+        onBack={() => navigate('/')}
+      />
     );
+  }
+  if (roundKind && sessionComplete) {
+    const missed = missedItems(content, results);
+    const right = countOutcomes(results).right;
+    const noun = roundKind === 'civics' ? 'question' : (roundKind === 'words' || roundKind === 'flashcards') ? 'word' : 'sentence';
+    const plural = (n) => `${n} ${noun}${n === 1 ? '' : 's'}`;
+    return (
+      <RoundComplete
+        outcomes={countedOutcomes(content, results)}
+        title={roundTitle(right, firstName(currentUser))}
+        rule={(roundKind === 'words' || roundKind === 'flashcards') ? null : roundRule(roundKind, civicsVersion)}
+        review={{
+          heading: `${plural(missed.length)} to review`,
+          lines: missed.map((item) => item.question || item.text || item.word),
+          button: `Review the ${plural(missed.length)}`,
+        }}
+        onClose={exitRun}
+        onReview={() => startReview(missed)}
+        onAgain={() => startSession(mode, vocabSubMode)}
+        onBack={() => navigate('/')}
+      />
+    );
+  }
+  // The cards themselves (The Road): full width, each with its own top bar.
+  if (roundKind && !isLoading && content.length > 0) {
+    const cardProps = {
+      index: currentIndex,
+      total: content.length,
+      onComplete: handleComplete,
+      onNext: handleNext,
+      onClose: exitRun,
+    };
+    if (roundKind === 'civics') return <CivicsTestCard {...cardProps} question={content[currentIndex]} />;
+    if (roundKind === 'reading') return <ReadingPracticeCard {...cardProps} sentence={content[currentIndex]} />;
+    if (roundKind === 'flashcards') {
+      return (
+        <FlashcardGame
+          words={content}
+          index={currentIndex}
+          total={content.length}
+          onClose={exitRun}
+          onComplete={(isSuccess) => { handleComplete(isSuccess); handleNext(); }}
+        />
+      );
+    }
+    if (roundKind === 'matching') {
+      return (
+        <MatchingGame
+          words={content}
+          onClose={exitRun}
+          onComplete={(pairs) => {
+            // Every pair ends matched; nothing is saved for this game.
+            setResults(Array(pairs).fill('right'));
+            setSessionComplete(true);
+          }}
+        />
+      );
+    }
+    return <DictationCard {...cardProps} sentence={content[currentIndex]} />;
   }
 
   return (
@@ -554,68 +665,6 @@ export default function Practice() {
         <div className="flex justify-center py-20">
             <Loader2 className="w-10 h-10 animate-spin text-pw-navy" />
         </div>
-      ) : content.length > 0 ? (
-         mode === 'reading' ? (
-            <ReadingPracticeCard 
-                index={currentIndex}
-                total={content.length}
-                sentence={content[currentIndex]}
-                onComplete={handleComplete}
-                onNext={handleNext}
-                results={results}
-            />
-         ) : mode === 'civics' ? (
-            <CivicsTestCard 
-                index={currentIndex}
-                total={content.length}
-                question={content[currentIndex]}
-                onComplete={handleComplete}
-                onNext={handleNext}
-                results={results}
-            />
-         ) : mode === 'vocabulary' ? (
-            vocabSubMode === 'flashcards' ? (
-              <FlashcardGame 
-                words={content} 
-                index={currentIndex}
-                total={content.length}
-                results={results}
-                onComplete={(isSuccess) => {
-                  handleComplete(isSuccess);
-                  handleNext();
-                }}
-              />
-            ) : vocabSubMode === 'matching' ? (
-              <MatchingGame 
-                words={content}
-                onComplete={(pairs) => {
-                  // Every pair ends matched; nothing is saved for this game.
-                  setResults(Array(pairs).fill('right'));
-                  setSessionComplete(true);
-                }}
-              />
-            ) : (
-              // Default to Dictation for vocabulary
-              <DictationCard 
-                  index={currentIndex}
-                  total={content.length}
-                  sentence={content[currentIndex]}
-                  onComplete={handleComplete}
-                  onNext={handleNext}
-                  results={results}
-              />
-            )
-         ) : (
-            // Dictation (Sentences)
-            <DictationCard 
-                index={currentIndex}
-                total={content.length}
-                sentence={content[currentIndex]}
-                onComplete={handleComplete}
-                onNext={handleNext}
-                results={results}
-            />
-         )
       ) : (
          <div className="text-center py-20">
             <p className="text-lg text-pw-muted">No content found for this mode.</p>
@@ -628,9 +677,11 @@ export default function Practice() {
 
 // A practice run, full screen: a close button and what is being practiced,
 // then the cards (each poster carries its own stars).
+// The other runs (reading, writing, vocabulary, interview) keep the padded
+// layout until their redesign; Layout gives /study the full width.
 function RunShell({ label, onClose, children }) {
   return (
-    <div className="max-w-2xl mx-auto space-y-4 pb-8">
+    <div className="container max-w-2xl mx-auto px-4 pt-6 space-y-4 pb-8">
       <div className="flex items-center gap-3 -mt-2">
         <button
           type="button"

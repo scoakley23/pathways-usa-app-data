@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { cardOutcome, countOutcomes, outcomesLabel, wordScore } from './practiceResults';
+import { cardOutcome, countOutcomes, outcomesLabel, wordScore, passRule, missedItems, roadFraction, countedOutcomes, roundTitle, roundRule } from './practiceResults';
 
 describe('cardOutcome', () => {
   it('is right when the card was passed, whatever the score', () => {
@@ -37,5 +37,49 @@ describe('countOutcomes / outcomesLabel', () => {
     const results = ['right', undefined, 'close', 'missed', 'right'];
     expect(countOutcomes(results)).toEqual({ right: 2, close: 1, missed: 1 });
     expect(outcomesLabel(5, 10, results)).toBe('Card 6 of 10. 2 right, 1 almost, 1 missed.');
+  });
+});
+
+describe('passRule', () => {
+  it('gives the real test rule for each civics version', () => {
+    expect(passRule('2025')).toEqual({ need: 12, of: 20 });
+    expect(passRule(2008)).toEqual({ need: 6, of: 10 });
+    expect(passRule(undefined)).toEqual({ need: 12, of: 20 });
+  });
+});
+
+describe('missedItems', () => {
+  it('keeps counted cards that were not right, in order', () => {
+    const items = ['a', 'b', 'c', 'd', 'e'];
+    expect(missedItems(items, ['right', 'missed', undefined, 'close', 'right'])).toEqual(['b', 'd']);
+    expect(missedItems(items, [])).toEqual([]);
+  });
+});
+
+describe('roadFraction', () => {
+  it('moves one step when the current question is answered', () => {
+    expect(roadFraction(0, 10)).toBe(0);
+    expect(roadFraction(3, 10)).toBe(0.3);
+    expect(roadFraction(3, 10, true)).toBe(0.4);
+    expect(roadFraction(9, 10, true)).toBe(1);
+    expect(roadFraction(2, 0)).toBe(0);
+  });
+});
+
+describe('round lines', () => {
+  it('lists counted outcomes only', () => {
+    expect(countedOutcomes(['a', 'b', 'c'], ['right', undefined, 'missed'])).toEqual(['right', 'missed']);
+  });
+
+  it('builds the title with or without a first name', () => {
+    expect(roundTitle(8, 'Ana')).toBe('8 right. Nice work, Ana.');
+    expect(roundTitle(0)).toBe('0 right. Nice work.');
+  });
+
+  it('gives the real test rule per kind', () => {
+    expect(roundRule('reading')).toMatch(/read 1 of up to 3/);
+    expect(roundRule('writing')).toMatch(/write 1 of up to 3/);
+    expect(roundRule('civics', '2025')).toBe('On the real test you need 12 right out of up to 20.');
+    expect(roundRule('civics', '2008')).toBe('On the real test you need 6 right out of up to 10.');
   });
 });

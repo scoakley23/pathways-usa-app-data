@@ -8,6 +8,7 @@ const DEFAULT_STATE = {
   done: {},
   isNew: true,
   doneCount: 0,
+  counts: null, // { masteredSentences, lessonsDone, lessonsTotal, passedInterviews }
 };
 
 const EMPTY_STATE = { ...DEFAULT_STATE, loading: false };
@@ -81,7 +82,9 @@ export default function useRoadmapProgress(user) {
       const isNew = totalProgress === 0 && lessonsDone === 0 && passedInterviews === 0;
       const doneCount = ROADMAP_STOPS.filter((s) => done[s.id]).length;
 
-      return { loading: false, currentStop, done, isNew, doneCount };
+      // The counts behind each stop, for the status lines on Progress.
+      const counts = { masteredSentences, lessonsDone, lessonsTotal, passedInterviews };
+      return { loading: false, currentStop, done, isNew, doneCount, counts };
     };
 
     let p = inflightLoads.get(email);

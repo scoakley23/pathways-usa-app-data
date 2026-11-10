@@ -1,6 +1,8 @@
 import { useLocation } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
 import { useQuery } from '@tanstack/react-query';
+import { House } from 'lucide-react';
+import { Button, CreamSheet, NavyTop } from '@/components/pathways/ui';
 
 
 export default function PageNotFound({}) {
@@ -19,57 +21,34 @@ export default function PageNotFound({}) {
         }
     });
     
+    // The Road: a navy top says where you are (404, Page Not Found); the
+    // cream sheet holds the message and the way home.
     return (
-        <div className="min-h-screen flex items-center justify-center p-6 bg-pw-page text-pw-navy">
-            <div className="max-w-md w-full">
-                <div className="text-center space-y-6">
-                    {/* 404 Error Code */}
-                    <div className="space-y-2">
-                        <h1 className="text-7xl font-extrabold text-pw-line">404</h1>
-                        <div className="h-1 w-16 rounded-full bg-pw-navy mx-auto"></div>
-                    </div>
-                    
-                    {/* Main Message */}
-                    <div className="space-y-3">
-                        <h2 className="text-4xl font-display font-normal">
-                            Page Not Found
-                        </h2>
-                        <p className="text-lg text-pw-muted leading-relaxed">
-                            The page <span className="font-bold text-pw-navy">"{pageName}"</span> could not be found in this application.
-                        </p>
-                    </div>
-                    
-                    {/* Admin Note */}
+        <div className="min-h-screen bg-cream text-ink">
+            <NavyTop className="pb-14 pt-12">
+                <div className="mx-auto max-w-md space-y-2">
+                    <p className="text-label uppercase text-on-navy-label">404</p>
+                    <h1 className="font-display text-[34px] leading-[1.1]">Page Not Found</h1>
+                </div>
+            </NavyTop>
+            <CreamSheet>
+                <div className="mx-auto max-w-md space-y-6 pb-8">
+                    <p className="text-lg text-ink-2 leading-relaxed">
+                        The page <span className="font-semibold text-ink">&quot;{pageName}&quot;</span> could not be found in this application.
+                    </p>
                     {isFetched && authData.isAuthenticated && authData.user?.role === 'admin' && (
-                        <div className="mt-8 p-4 bg-white rounded-2xl border border-pw-line">
-                            <div className="flex items-start space-x-3">
-                                <div className="flex-shrink-0 w-5 h-5 rounded-full bg-pw-navy-soft flex items-center justify-center mt-0.5">
-                                    <div className="w-2 h-2 rounded-full bg-pw-navy"></div>
-                                </div>
-                                <div className="text-left space-y-1">
-                                    <p className="text-base font-bold">Admin Note</p>
-                                    <p className="text-base text-pw-muted leading-relaxed">
-                                        This could mean that the AI hasn't implemented this page yet. Ask it to implement it in the chat.
-                                    </p>
-                                </div>
-                            </div>
+                        <div className="p-4 bg-white rounded-card border border-card-line space-y-1">
+                            <p className="text-base font-semibold">Admin Note</p>
+                            <p className="text-base text-ink-2 leading-relaxed">
+                                This could mean that the AI hasn&apos;t implemented this page yet. Ask it to implement it in the chat.
+                            </p>
                         </div>
                     )}
-                    
-                    {/* Action Button */}
-                    <div className="pt-6">
-                        <button 
-                            onClick={() => window.location.href = '/'} 
-                            className="inline-flex items-center min-h-[52px] px-6 text-lg font-bold text-white bg-pw-navy rounded-2xl hover:bg-pw-navy-deep transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-pw-navy"
-                        >
-                            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                            </svg>
-                            Go Home
-                        </button>
-                    </div>
+                    <Button variant="next" className="min-h-[52px]" onClick={() => { window.location.href = '/'; }}>
+                        <House className="w-5 h-5" aria-hidden="true" /> Go Home
+                    </Button>
                 </div>
-            </div>
+            </CreamSheet>
         </div>
-    )
+    );
 }

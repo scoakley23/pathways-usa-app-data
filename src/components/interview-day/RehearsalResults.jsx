@@ -28,7 +28,7 @@ export default function RehearsalResults({ rows, onAgain }) {
                 to={r.practicePath}
                 className="min-h-[44px] rounded-2xl bg-pw-soft hover:bg-pw-soft-hover px-4 text-base font-bold inline-flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2"
               >
-                Practice more <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                Practice more <ArrowRight className="w-4 h-4 rtl:rotate-180" aria-hidden="true" />
               </Link>
             )}
           </li>

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Loader2 } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
-import PageHeader from '@/components/PageHeader';
-import { PrimaryButton, RaisedCard } from '@/components/pathways/ui';
+import PageTop from '@/components/pathways/PageTop';
+import { PrimaryButton, RaisedCard, CreamSheet } from '@/components/pathways/ui';
 import InterviewDayGuide from '@/components/interview-day/InterviewDayGuide';
 import RehearsalStart from '@/components/interview-day/RehearsalStart';
 import RehearsalRunner from '@/components/interview-day/RehearsalRunner';
@@ -36,7 +36,7 @@ export default function InterviewDay() {
 
   if (running && user) {
     return (
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-2xl mx-auto px-4 pt-6 pb-8">
         <RehearsalRunner
           version={version}
           userEmail={user.email.toLowerCase().trim()}
@@ -47,15 +47,17 @@ export default function InterviewDay() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto space-y-6">
-      <PageHeader
+    <div>
+      <PageTop
+        back
+        tag="Practice"
         title="Interview Day"
         subtitle="What to expect, and a full practice rehearsal."
-        tag="Practice"
-        tagTone="navy"
-        art="road"
         guide="Here you can practice the whole interview, start to finish. It's practice only, and nothing you say is saved."
       />
+      <CreamSheet>
+      <div className="max-w-2xl mx-auto space-y-6 pb-8">
+
 
       <InterviewDayGuide />
 
@@ -74,6 +76,8 @@ export default function InterviewDay() {
           <PrimaryButton className="w-full" onClick={() => base44.auth.redirectToLogin(window.location.href)}>Sign in</PrimaryButton>
         </RaisedCard>
       )}
+      </div>
+      </CreamSheet>
     </div>
   );
 }

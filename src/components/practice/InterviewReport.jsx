@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Eyebrow, RaisedCard, SecondaryButton } from '@/components/pathways/ui';
-import { RotateCcw, CheckCircle, XCircle, ChevronDown, ChevronUp, Trophy, Target, BookOpen, MessageSquare } from 'lucide-react';
-import { COLORS } from '@/lib/theme';
+import { Eyebrow, RaisedCard } from '@/components/pathways/ui';
+import RoundComplete from './RoundComplete';
+import { CheckCircle, XCircle, ChevronDown, ChevronUp, BookOpen, MessageSquare } from 'lucide-react';
 
-export default function InterviewReport({ results, questions, onRestart }) {
+export default function InterviewReport({ results, onRestart, onClose, onBack, name = '' }) {
   const [expandedIdx, setExpandedIdx] = useState(null);
 
   const passed = results.filter(r => r.is_acceptable).length;
@@ -15,7 +15,6 @@ export default function InterviewReport({ results, questions, onRestart }) {
   const avgFluency = Math.round(results.reduce((s, r) => s + (r.fluency_score || 0), 0) / total);
   const avgOverall = Math.round(results.reduce((s, r) => s + (r.overall_score || 0), 0) / total);
 
-  const isReady = passRate >= 70;
 
   const scoreColor = (s) => s >= 80 ? 'text-pw-green-ink' : s >= 60 ? 'text-pw-blue-ink' : 'text-pw-red-ink';
   const barColor = (s) => s >= 80 ? 'bg-pw-green-ink' : s >= 60 ? 'bg-pw-blue-ink' : 'bg-pw-red-ink';
@@ -27,56 +26,20 @@ export default function InterviewReport({ results, questions, onRestart }) {
     oath_requirements: 'Oath Requirements'
   };
 
+  // The end of a mock interview (The Road): the Round complete screen, with
+  // one star per question (acceptable or not), "n of m passed", the overall
+  // score, then the existing report (score breakdown, question by question).
+  // Only the scores the app already has; saving happens in InterviewPractice.
   return (
-    <div className="w-full max-w-3xl mx-auto space-y-4 text-pw-navy">
-      {/* Header */}
-      <div className={`rounded-card p-6 text-center space-y-5 ${isReady ? 'bg-pw-green-soft' : 'bg-pw-blue-soft'}`}>
-        <div className={`w-16 h-16 rounded-2xl bg-white flex items-center justify-center mx-auto shadow-raised ${isReady ? 'text-pw-green-ink' : 'text-pw-blue-ink'}`}>
-          {isReady ? <Trophy className="w-8 h-8" aria-hidden="true" /> : <Target className="w-8 h-8" aria-hidden="true" />}
-        </div>
-
-        <div>
-          <h2 className="text-[32px] font-display font-normal leading-tight mb-2">
-            {isReady ? 'Interview Complete!' : 'Keep Practicing!'}
-          </h2>
-          <p className="text-base text-pw-muted leading-relaxed">
-            {isReady
-              ? 'You\'re performing well. Keep reviewing to stay sharp!'
-              : 'Review the feedback below and practice your weaker areas.'}
-          </p>
-        </div>
-
-        {/* Overall Score */}
-        <div className="flex justify-center">
-          <div className="relative w-32 h-32">
-            <svg className="w-32 h-32 -rotate-90" viewBox="0 0 120 120" aria-hidden="true">
-              <circle cx="60" cy="60" r="50" fill="none" stroke={COLORS.onNavy} strokeWidth="10" />
-              <circle cx="60" cy="60" r="50" fill="none"
-                className={isReady ? 'stroke-pw-green-ink' : 'stroke-pw-navy'}
-                strokeWidth="10"
-                strokeDasharray={`${2 * Math.PI * 50}`}
-                strokeDashoffset={`${2 * Math.PI * 50 * (1 - avgOverall / 100)}`}
-                strokeLinecap="round"
-              />
-            </svg>
-            <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <span className="text-3xl font-extrabold">{avgOverall}</span>
-              <span className="text-sm text-pw-muted">Overall</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Pass Rate */}
-        <div className="bg-white rounded-2xl p-4 max-w-xs mx-auto text-left">
-          <p className="text-base font-bold mb-2">{passed} of {total} questions passed</p>
-          <div className="h-2.5 rounded-full bg-pw-soft overflow-hidden">
-            <div className={`h-full rounded-full ${isReady ? 'bg-pw-green-ink' : 'bg-pw-navy'}`} style={{ width: `${passRate}%` }} />
-          </div>
-          <p className={`text-sm font-bold mt-2 ${isReady ? 'text-pw-green-ink' : 'text-pw-muted'}`}>{passRate}% pass rate</p>
-        </div>
-      </div>
-
-      {/* Score Breakdown */}
+    <RoundComplete
+      outcomes={results.map((r) => (r.is_acceptable ? 'right' : 'missed'))}
+      title={`${passed} of ${total} passed. Nice work${name ? `, ${name}` : ''}.`}
+      rule={`Overall score ${avgOverall} of 100 · ${passRate}% passed.`}
+      onClose={onClose}
+      onAgain={onRestart}
+      onBack={onBack}
+    >
+      <div className="space-y-4 text-ink">
       <RaisedCard>
         <h3 className="font-extrabold text-xl flex items-center gap-2 mb-4">
           <BookOpen className="w-5 h-5" aria-hidden="true" /> Score Breakdown
@@ -142,7 +105,7 @@ export default function InterviewReport({ results, questions, onRestart }) {
                   {r.response !== '(skipped)' && (
                     <div className="bg-white rounded-2xl p-4">
                       <Eyebrow className="mb-1">Your Response</Eyebrow>
-                      <p className="italic text-pw-muted">"{r.response}"</p>
+                      <p className=" text-pw-muted">"{r.response}"</p>
                     </div>
                   )}
 
@@ -178,12 +141,7 @@ export default function InterviewReport({ results, questions, onRestart }) {
         </div>
       </RaisedCard>
 
-      {/* Restart */}
-      <div className="pb-4">
-        <SecondaryButton onClick={onRestart} className="w-full min-h-[52px]">
-          <RotateCcw className="w-5 h-5" aria-hidden="true" /> Practice Again
-        </SecondaryButton>
       </div>
-    </div>
+    </RoundComplete>
   );
 }

@@ -87,10 +87,10 @@ export default function InterviewDayGuide() {
         </p>
         <div className="grid gap-2 sm:grid-cols-2">
           <Link to="/lawyer-first" className={`${linkClass} bg-white hover:bg-white/80`}>
-            Talk to a lawyer first <ArrowRight className="w-5 h-5 shrink-0" aria-hidden="true" />
+            Talk to a lawyer first <ArrowRight className="w-5 h-5 shrink-0 rtl:rotate-180" aria-hidden="true" />
           </Link>
           <Link to="/resources" className={`${linkClass} bg-white hover:bg-white/80`}>
-            Find help near you <ArrowRight className="w-5 h-5 shrink-0" aria-hidden="true" />
+            Find help near you <ArrowRight className="w-5 h-5 shrink-0 rtl:rotate-180" aria-hidden="true" />
           </Link>
         </div>
       </div>

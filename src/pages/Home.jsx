@@ -7,7 +7,6 @@ import StartHereCard from '@/components/home/StartHereCard';
 import TodayCard from '@/components/persona/TodayCard';
 import RoadmapPath from '@/components/home/RoadmapPath';
 import HomePromises from '@/components/home/HomePromises';
-import StudyTogether from '@/components/home/StudyTogether';
 import HelpUsImprove from '@/components/pilot/HelpUsImprove';
 import CheckInCard from '@/components/pilot/CheckInCard';
 import CheckInForm from '@/components/pilot/CheckInForm';
@@ -15,13 +14,12 @@ import { loadMyCheckIns } from '@/components/pilot/checkInData';
 import { openCheckIn } from '@/lib/pilotCheckIns';
 import { shouldShowPilotIntro, isCheckInSnoozed, snoozeCheckIn } from '@/lib/pilot';
 import { loadPlanSettings } from '@/lib/planSettings';
-import useTutorProfile from '@/components/persona/useTutorProfile';
 import { useAuth } from '@/lib/AuthContext';
 import useRoadmapProgress from '@/components/home/useRoadmapProgress';
 import useAppLanguage, { isRTL } from '@/hooks/useAppLanguage';
 import useHomeTranslation from '@/hooks/useHomeTranslation';
 import { ArrowRight } from 'lucide-react';
-import { SKILL_BG, SkillTag } from '@/components/pathways/ui';
+import { CreamSheet, SKILL_BG, SkillTag } from '@/components/pathways/ui';
 
 // "Practice one skill": each card opens that skill's practice directly.
 const SKILL_CARDS = [
@@ -37,15 +35,15 @@ let pilotAnswered = false;
 // Same for a check-in answered, put off or stopped.
 let checkInsHandled = false;
 
-// Home. Learners see Today and nothing else but "How we study together" (the
-// three promises): the rest of the app is one tap away in the tab bar.
+// Home. Learners see Today (a navy top with the road, a cream sheet with what
+// to do; full width, see SPLIT_ROUTES in Layout.jsx) and nothing else: the
+// rest of the app is one tap away in the tab bar.
 // Signed-out visitors see the splash and the overview (road, promises, the
 // four skills, the N-400 guide). The language menu is in the header.
 export default function Home({ cachedUser }) {
   const roadmap = useRoadmapProgress(cachedUser);
-  const [language, setLanguage] = useAppLanguage();
-  const { t, translating } = useHomeTranslation(language);
-  const { profile } = useTutorProfile();
+  const [language] = useAppLanguage();
+  const { t } = useHomeTranslation(language);
   const rtl = isRTL(language);
   // (Auth is known before pages render, so signed-in users never see the splash.)
   const { isAuthenticated } = useAuth();
@@ -77,6 +75,10 @@ export default function Home({ cachedUser }) {
     base44.auth.updateMe({ checkins_stopped: true }).catch(() => {});
   };
 
+  // Signed in, Home has the full width (Layout leaves out its padding), so
+  // screens other than Today bring their own.
+  const padded = 'container mx-auto px-4 pt-6 pb-8 max-w-5xl';
+
   // Signed in but the account is still loading: wait rather than flash the overview.
   if (isAuthenticated && !cachedUser) {
     return <div className="min-h-[60vh]" aria-busy="true" />;
@@ -84,7 +86,7 @@ export default function Home({ cachedUser }) {
 
   if (askPilot) {
     return (
-      <div className="pb-8" dir={rtl ? 'rtl' : 'ltr'}>
+      <div className={padded} dir={rtl ? 'rtl' : 'ltr'}>
         <HelpUsImprove user={cachedUser} language={language} onDone={() => { pilotAnswered = true; setPilotDone(true); }} />
       </div>
     );
@@ -92,7 +94,7 @@ export default function Home({ cachedUser }) {
 
   if (learner && checkIn && checkInView === 'form') {
     return (
-      <div className="pb-8" dir={rtl ? 'rtl' : 'ltr'}>
+      <div className={padded} dir={rtl ? 'rtl' : 'ltr'}>
         <CheckInForm kind={checkIn.kind} rows={checkIn.rows} user={cachedUser} language={language} onDone={closeCheckIn} onNotNow={notNow} />
       </div>
     );
@@ -100,21 +102,28 @@ export default function Home({ cachedUser }) {
 
   if (learner) {
     return (
-      <div className="flex flex-col gap-10 pb-8" dir={rtl ? 'rtl' : 'ltr'}>
-        {checkIn && checkInView === 'card' && (
-          <CheckInCard language={language} onOpen={() => setCheckInView('form')} onNotNow={notNow} onNever={never} />
-        )}
-        <TodayCard language={language} />
-        <StudyTogether t={t} tutorName={profile.name} language={language} onLanguageChange={setLanguage} translating={translating} />
+      <div dir={rtl ? 'rtl' : 'ltr'}>
+        <TodayCard
+          language={language}
+          roadmap={roadmap}
+          stopName={(id) => t(`stop${id}_name`)}
+          sheetTop={checkIn && checkInView === 'card' && (
+            <CheckInCard language={language} onOpen={() => setCheckInView('form')} onNotNow={notNow} onNever={never} />
+          )}
+        />
       </div>
     );
   }
 
-  const hero = !isAuthenticated ? <StartHereCard t={t} /> : <RoadmapHero roadmap={roadmap} t={t} />;
+  // Signed-out visitors (The Road): the splash on navy (StartHereCard), the
+  // overview (road, promises, skills, the N-400 guide) on the cream sheet.
+  const hero = !isAuthenticated ? <StartHereCard t={t} /> : <div className={padded}><RoadmapHero roadmap={roadmap} t={t} /></div>;
 
   return (
-    <div className="flex flex-col gap-6 pb-8" dir={rtl ? 'rtl' : 'ltr'}>
+    <div dir={rtl ? 'rtl' : 'ltr'}>
       {hero}
+      <CreamSheet>
+      <div className="mx-auto max-w-5xl flex flex-col gap-6 pb-8">
       <RoadmapPath roadmap={roadmap} t={t} language={language} />
 
       {/* Official USCIS answers; learn in your language, test in English */}
@@ -139,7 +148,7 @@ export default function Home({ cachedUser }) {
             <div className="p-4 sm:p-5 space-y-1 sm:space-y-2 min-w-0">
               <SkillTag skill={f.skill} />
               <h3 className="text-xl font-extrabold text-pw-navy flex items-center justify-between gap-2">
-                {t(f.title)} <ArrowRight className="w-5 h-5 text-pw-muted group-hover:text-pw-navy shrink-0" aria-hidden="true" />
+                {t(f.title)} <ArrowRight className="w-5 h-5 text-pw-muted group-hover:text-pw-navy shrink-0 rtl:rotate-180" aria-hidden="true" />
               </h3>
               <p className="text-base text-pw-muted">{t(f.desc)}</p>
             </div>
@@ -162,10 +171,12 @@ export default function Home({ cachedUser }) {
             <h3 className="text-xl font-extrabold text-pw-navy">{t('n400_title')}</h3>
             <p className="text-base text-pw-muted">{t('n400_desc')}</p>
           </div>
-          <ArrowRight className="w-5 h-5 text-pw-muted group-hover:text-pw-navy shrink-0 self-center mr-4" aria-hidden="true" />
+          <ArrowRight className="w-5 h-5 text-pw-muted group-hover:text-pw-navy shrink-0 self-center me-4 rtl:rotate-180" aria-hidden="true" />
         </Link>
       </section>
 
+      </div>
+      </CreamSheet>
     </div>
   );
 }

@@ -193,7 +193,7 @@ export default function ReviewCivics() {
                   </Tag>
                   )}
                   <p className="text-lg font-extrabold leading-snug mt-3">{question.question}</p>
-                  {heard && <p className="mt-2 text-pw-muted">You said: <span className="italic">“{heard}”</span></p>}
+                  {heard && <p className="mt-2 text-pw-muted">You said: <span className="font-medium">“{heard}”</span></p>}
                   <Eyebrow className="mt-4 mb-2">Accepted answers</Eyebrow>
                   <ul className="space-y-1">
                     {(officeholder ? officeholder.accepted : splitOfficialAnswers(question.answer)).map((a) => <li key={a} className="font-bold">{a}</li>)}

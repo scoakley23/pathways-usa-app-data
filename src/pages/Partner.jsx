@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Check, Loader2, X } from 'lucide-react';
 import { toast } from 'sonner';
-import PageHeader from '@/components/PageHeader';
-import { RaisedCard, PrimaryButton, SecondaryButton, QuietButton, PillButton } from '@/components/pathways/ui';
+import PageTop from '@/components/pathways/PageTop';
+import { RaisedCard, PrimaryButton, SecondaryButton, QuietButton, PillButton, CreamSheet } from '@/components/pathways/ui';
 import { staffPrograms, programMembers, setMemberStatus, programSummaryFor } from '@/lib/partners';
 import { ProgramTotals, SharedLearners } from '@/components/partners/ProgramSummary';
 
@@ -89,11 +89,15 @@ export default function Partner() {
 
   if (programs.length === 0) {
     return (
-      <div className="max-w-2xl mx-auto space-y-6 pb-12 text-pw-navy">
-        <PageHeader tag="Partner programs" title="For partner programs" />
+      <div>
+        <PageTop tag="Partner programs" title="For partner programs" />
+        <CreamSheet>
+        <div className="max-w-2xl mx-auto space-y-6 pb-12 text-ink">
         <RaisedCard>
           <p className="text-base">This page is for the staff of programs that work with Pathways. If you work with one and can't see your learners, write to the Pathways team.</p>
         </RaisedCard>
+        </div>
+        </CreamSheet>
       </div>
     );
   }
@@ -102,12 +106,15 @@ export default function Partner() {
   const byStatus = (status) => (members || []).filter((m) => m.status === status);
 
   return (
-    <div className="max-w-3xl mx-auto space-y-6 pb-12 text-pw-navy">
-      <PageHeader
+    <div>
+      <PageTop
         tag="Partner"
         title={program.name}
         subtitle="How your learners are doing, and who said they study with you."
       />
+      <CreamSheet>
+      <div className="max-w-3xl mx-auto space-y-6 pb-12 text-ink">
+
 
       {programs.length > 1 && (
         <div className="flex flex-wrap gap-2" role="group" aria-label="Program">
@@ -151,6 +158,8 @@ export default function Partner() {
       <p className="text-base text-pw-muted">
         You see the name each learner gave you, or their email. Totals count confirmed learners only. Pathways never shows programs a learner's answers, their chats with the AI tutor, their check-in answers, or anything about their case.
       </p>
+      </div>
+      </CreamSheet>
     </div>
   );
 }

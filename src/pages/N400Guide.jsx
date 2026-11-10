@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
-import PageHeader from '@/components/PageHeader';
+import PageTop from '@/components/pathways/PageTop';
+import { Button, CreamSheet, NavyTop } from '@/components/pathways/ui';
+import { cardCount, nextSection } from '@/lib/n400View';
 import N400Section from '@/components/n400/N400Section';
-import N400Folder from '@/components/n400/N400Folder';
+import { tabFor } from '@/components/n400/N400Folder';
 import N400Cover from '@/components/n400/N400Cover';
-import N400SectionList from '@/components/n400/N400SectionList';
 import { N400_SECTIONS } from '@/components/n400/n400Content';
 import N400BlankForm from '@/components/n400/N400BlankForm';
 import ReadyToFile from '@/components/n400/ReadyToFile';
@@ -15,9 +16,10 @@ import useTutorProfile from '@/components/persona/useTutorProfile';
 
 // N-400 Question Guide: explains what questions on the naturalization
 // application mean. No learner answers are collected here — only whole-section
-// completion is saved. Three steps, so it is never a wall of text at first:
-// the folder cover → the section list (?folder=open) → one section with the
-// form's words (?section=…). Ruled paper behind, the learner's own page.
+// completion is saved. The Road: the guide's home (navy top with "Continue:
+// {section}", the sections as a road on the cream sheet; the old
+// ?folder=open lands here too) → one section (?section=…) with its own navy
+// top and section chips. "See the form" (?view=form) shows the blank form.
 export default function N400Guide({ cachedUser }) {
   const [language] = useAppLanguage();
   const { profile } = useTutorProfile();
@@ -29,10 +31,9 @@ export default function N400Guide({ cachedUser }) {
   const setView = (next) => setSearchParams(next === 'guide' ? {} : { view: next }, { replace: true });
   const sectionId = searchParams.get('section');
   const activeSection = N400_SECTIONS.find((s) => s.id === sectionId) || N400_SECTIONS[0];
-  const step = sectionId ? 'section' : searchParams.get('folder') ? 'list' : 'cover';
+  const step = sectionId ? 'section' : 'home';
   // Moving in (cover → list → section) adds a history step so Back moves out;
   // switching tabs inside a section does not.
-  const openFolder = () => setSearchParams({ folder: 'open' });
   const pickSection = (id) => setSearchParams({ section: id });
   const openSection = (id) => setSearchParams({ section: id }, { replace: true });
   const completedIds = progress.filter((p) => p.completed).map((p) => p.section_id);
@@ -42,6 +43,13 @@ export default function N400Guide({ cachedUser }) {
   useEffect(() => {
     if (!searchParams.get('ready')) window.scrollTo({ top: 0 });
   }, [step, sectionId]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // The open section's chip scrolls into view in the chip row.
+  useEffect(() => {
+    if (step !== 'section') return;
+    const chip = document.querySelector('[data-section-chip][aria-current="true"]');
+    try { chip?.scrollIntoView({ block: 'nearest', inline: 'center' }); } catch (e) { /* older browsers */ }
+  }, [step, sectionId]);
 
   // ?ready=1 (end of the N-400 coach) jumps to "Ready to file?".
   useEffect(() => {
@@ -86,65 +94,117 @@ export default function N400Guide({ cachedUser }) {
     }
   };
 
-  const toggle = (active) =>
-    `min-h-10 rounded-full px-4 text-[15px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy ${
-      active ? 'bg-white text-pw-navy shadow-raised' : 'text-pw-muted hover:text-pw-navy'
-    }`;
-  const backLink = 'inline-flex items-center gap-1.5 min-h-11 rounded-full border border-pw-line bg-white px-4 text-[15px] font-semibold text-pw-navy hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy';
+  const { section: nextUp, started } = nextSection(N400_SECTIONS, completedIds);
+  const cards = cardCount(N400_SECTIONS, isAdmin);
+
+  // The Guide | See the form switch, on navy (white pill for the open view).
+  const viewSwitch = (
+    <div role="group" aria-label="View" className="inline-flex rounded-full bg-navy-2 p-1">
+      {[['guide', 'Guide'], ['form', 'See the form']].map(([id, label]) => (
+        <button
+          key={id}
+          type="button"
+          aria-pressed={view === id}
+          onClick={() => setView(id)}
+          className={`min-h-tap rounded-full px-4 text-[15px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${view === id ? 'bg-white text-navy' : 'text-on-navy-2 hover:text-white'}`}
+        >
+          {label}
+        </button>
+      ))}
+    </div>
+  );
+
+  // A section: its own navy top (back to the guide, where it is on the form,
+  // the title, and one chip per section to switch).
+  if (view === 'guide' && step === 'section') {
+    return (
+      <div>
+        <NavyTop className="pb-12">
+          <div className="mx-auto max-w-3xl space-y-3">
+            <button
+              type="button"
+              onClick={() => setSearchParams({})}
+              className="-ms-2 inline-flex items-center gap-1.5 min-h-11 rounded-full px-2 text-base font-semibold text-on-navy-2 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            >
+              <ArrowLeft className="w-4 h-4 rtl:rotate-180" aria-hidden="true" /> N-400 Question Guide
+            </button>
+            <p className="text-label uppercase text-on-navy-label">
+              {activeSection.partLabel} · {completedIds.length} of {N400_SECTIONS.length} sections read
+            </p>
+            <h1 className="font-display text-[28px] sm:text-[34px] leading-[1.1]">{activeSection.title}</h1>
+            <nav aria-label="Sections" className="-mx-4 px-4 overflow-x-auto">
+              <ul className="flex gap-2 w-max pb-1">
+                {N400_SECTIONS.map((s) => {
+                  const active = s.id === activeSection.id;
+                  const read = completedIds.includes(s.id);
+                  return (
+                    <li key={s.id}>
+                      <button
+                        type="button"
+                        onClick={() => openSection(s.id)}
+                        data-section-chip
+                        aria-current={active ? 'true' : undefined}
+                        className={`min-h-tap whitespace-nowrap rounded-full px-4 inline-flex items-center gap-1.5 text-[15px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${active ? 'bg-white text-navy' : 'bg-navy-2 text-white hover:bg-navy-line'}`}
+                      >
+                        {read && <Check className="w-4 h-4" strokeWidth={3} aria-hidden="true" />}
+                        {tabFor(s).label}
+                        {read && <span className="sr-only">, read</span>}
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+            </nav>
+          </div>
+        </NavyTop>
+        <CreamSheet>
+          <div className="mx-auto max-w-3xl pb-8">
+            <N400Section
+              key={activeSection.id}
+              section={activeSection}
+              isAdmin={isAdmin}
+              language={language}
+              completed={completedIds.includes(activeSection.id)}
+              onComplete={markComplete}
+            />
+          </div>
+        </CreamSheet>
+      </div>
+    );
+  }
 
   return (
-    <div className="space-y-6">
-      <PageHeader
-        tag={`Form N-400 · ${completedIds.length} of ${N400_SECTIONS.length} sections read`}
-        title="The N-400, in plain words"
-        guide={view === 'form'
+    <div>
+      <PageTop
+        tag={`${cards} cards · ${N400_SECTIONS.length} sections`}
+        title="N-400 Question Guide"
+        subtitle={view === 'form'
           ? 'This is what the paper form looks like. It stays blank: we never fill it in or keep answers.'
-          : 'I explain what each question means. How it applies to you is a question for a lawyer.'}
+          : 'Learn what each question on the form means and how the officer may say it. This is not legal advice.'}
       >
-        <div role="group" aria-label="View" className="inline-flex rounded-full bg-pw-soft p-1">
-          <button type="button" aria-pressed={view === 'guide'} onClick={() => setView('guide')} className={toggle(view === 'guide')}>Guide</button>
-          <button type="button" aria-pressed={view === 'form'} onClick={() => setView('form')} className={toggle(view === 'form')}>See the form</button>
+        <div className="space-y-4">
+          {view === 'guide' && nextUp && (
+            <Button variant="main" onNavy className="w-full sm:w-auto" onClick={() => pickSection(nextUp.id)}>
+              {started ? 'Continue' : 'Start'}: {nextUp.title} <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" />
+            </Button>
+          )}
+          <div>{viewSwitch}</div>
         </div>
-      </PageHeader>
+      </PageTop>
 
-      {view === 'form' ? (
-        <N400BlankForm sections={N400_SECTIONS} isAdmin={isAdmin} onOpenSection={pickSection} />
-      ) : (
-        <div className="pw-ruled relative -mx-4 px-4 ps-12 py-6 sm:mx-0 sm:rounded-[20px] sm:ps-14">
-          <span aria-hidden="true" className="absolute inset-y-0 start-7 sm:start-9 w-0.5 bg-pw-margin" />
-          {step === 'cover' && (
-            <N400Cover sections={N400_SECTIONS} completedIds={completedIds} onOpen={openFolder} tutorName={profile.name} />
-          )}
-          {step === 'list' && (
-            <div className="space-y-4">
-              <button type="button" onClick={() => setSearchParams({})} className={backLink}>
-                <ArrowLeft className="w-4 h-4 rtl:rotate-180" aria-hidden="true" /> Folder cover
-              </button>
-              <h2 className="font-display text-[34px] leading-tight">Pick a section</h2>
-              <N400SectionList sections={N400_SECTIONS} completedIds={completedIds} countFor={visibleCount} onSelect={pickSection} />
-              <p className="text-center text-[15px]">We never save your answers to the N-400.</p>
-            </div>
-          )}
-          {step === 'section' && (
-            <div className="space-y-4">
-              <button type="button" onClick={openFolder} className={backLink}>
-                <ArrowLeft className="w-4 h-4 rtl:rotate-180" aria-hidden="true" /> All sections
-              </button>
-              <N400Folder sections={N400_SECTIONS} activeId={activeSection.id} completedIds={completedIds} onSelect={openSection}>
-                <N400Section
-                  key={activeSection.id}
-                  section={activeSection}
-                  isAdmin={isAdmin}
-                  language={language}
-                  completed={completedIds.includes(activeSection.id)}
-                  onComplete={markComplete}
-                />
-              </N400Folder>
-            </div>
+      <CreamSheet>
+        <div className="mx-auto max-w-3xl space-y-6 pb-8">
+          {view === 'form' ? (
+            <N400BlankForm sections={N400_SECTIONS} isAdmin={isAdmin} onOpenSection={pickSection} />
+          ) : (
+            <>
+              <N400Cover sections={N400_SECTIONS} completedIds={completedIds} countFor={visibleCount} onSelect={pickSection} tutorName={profile.name} />
+              <ReadyToFile />
+              <p className="text-center text-sm text-ink-2">Pathways is not part of USCIS or the government.</p>
+            </>
           )}
         </div>
-      )}
-      {view === 'guide' && step !== 'section' && <ReadyToFile />}
+      </CreamSheet>
     </div>
   );
 }

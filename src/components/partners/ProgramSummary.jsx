@@ -38,14 +38,14 @@ export function ProgramTotals({ totals }) {
           <table className="w-full text-base">
             <thead>
               <tr className="text-left text-sm text-pw-muted">
-                <th scope="col" className="py-2 pr-3 font-semibold">Part</th>
+                <th scope="col" className="py-2 pe-3 font-semibold">Part</th>
                 {LEVELS.map((l) => <th key={l} scope="col" className="py-2 px-2 font-semibold text-right">{LEVEL_TEXT[l].label}</th>)}
               </tr>
             </thead>
             <tbody>
               {SKILLS.map((s) => (
                 <tr key={s} className="border-t border-pw-line">
-                  <th scope="row" className="py-2 pr-3 text-left font-semibold"><span className="inline-flex items-center gap-2"><SkillDot skill={s} /> {SKILL_LABEL[s]}</span></th>
+                  <th scope="row" className="py-2 pe-3 text-left font-semibold"><span className="inline-flex items-center gap-2"><SkillDot skill={s} /> {SKILL_LABEL[s]}</span></th>
                   {LEVELS.map((l) => <td key={l} className="py-2 px-2 text-right font-display text-xl">{totals.levels[s][l]}</td>)}
                 </tr>
               ))}
