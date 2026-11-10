@@ -73,7 +73,8 @@ describe('round lines', () => {
 
   it('builds the title with or without a first name', () => {
     expect(roundTitle(8, 'Ana')).toBe('8 right. Nice work, Ana.');
-    expect(roundTitle(0)).toBe('0 right. Nice work.');
+    expect(roundTitle(0)).toBe('0 right. Keep going.');
+    expect(roundTitle(0, 'Ana')).toBe('0 right. Keep going, Ana.');
   });
 
   it('gives the real test rule per kind', () => {
