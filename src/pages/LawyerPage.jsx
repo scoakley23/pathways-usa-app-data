@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ExternalLink, AlertTriangle, Scale, Lock, Loader2, ArrowUpRight } from 'lucide-react';
-import PageHeader from '@/components/PageHeader';
-import { RaisedCard } from '@/components/pathways/ui';
+import PageTop from '@/components/pathways/PageTop';
+import { CreamSheet, RaisedCard } from '@/components/pathways/ui';
 import useAppLanguage, { isRTL } from '@/hooks/useAppLanguage';
 import useLawyerChecklistTranslation from '@/hooks/useLawyerChecklistTranslation';
 import { LAWYER_CHECKLIST_ITEMS, LEGAL_HELP_LINKS } from '@/components/lawyer/lawyerChecklist';
@@ -37,24 +37,24 @@ export default function LawyerPage({ cachedUser }) {
     'the N-400 guide';
 
   return (
-    <div className="space-y-6" dir={rtl ? 'rtl' : 'ltr'}>
-      <PageHeader
+    <div dir={rtl ? 'rtl' : 'ltr'}>
+      <PageTop
+        back
+        tag="Help near you"
         title="Resource Hub"
         subtitle="Help near you, and when to talk to a lawyer first."
-        tag="Help near you"
-        tagTone="blue"
-        art="compass"
         guide="I'm a study tutor, not a lawyer. Here you can find free legal help, classes, and offices near you, and see when to talk to a lawyer before you file."
       />
-
+      <CreamSheet>
+      <div className="mx-auto max-w-5xl space-y-6 pb-8">
       <ResourceFinder />
 
-      <RaisedCard id="lawyer-first" className="space-y-3 md:p-6 scroll-mt-24">
+      <RaisedCard id="lawyer-first" className="space-y-3 md:p-6 scroll-mt-24 border-2 border-not-correct">
         <div className="flex items-center gap-3">
-          <div className="w-11 h-11 rounded-2xl grid place-items-center bg-pw-red-soft text-pw-red-ink shrink-0">
-            <Scale className="w-5 h-5" />
+          <div className="w-11 h-11 rounded-full grid place-items-center bg-not-correct-soft text-not-correct shrink-0">
+            <Scale className="w-5 h-5" aria-hidden="true" />
           </div>
-          <h2 className="text-[28px] leading-snug font-display font-normal text-pw-navy">Talk to a lawyer first</h2>
+          <h2 className="text-[22px] leading-snug font-display text-ink">Talk to a lawyer first</h2>
         </div>
         <p className="text-base text-pw-navy leading-relaxed">
           Most people can apply on their own. But if <strong>ANY</strong> of these are true for you, talk to a
@@ -66,7 +66,7 @@ export default function LawyerPage({ cachedUser }) {
 
       <RaisedCard padding="p-4 sm:p-6" className="space-y-4">
         <div className="flex flex-wrap items-center justify-between gap-2 px-1">
-          <h2 className="text-[28px] leading-snug font-display font-normal text-pw-navy">If any of these is true for you</h2>
+          <h2 className="text-[22px] leading-snug font-display text-ink">If any of these is true for you</h2>
           {isTranslating && (
             <p className="flex items-center gap-2 text-sm text-pw-muted">
               <Loader2 className="w-4 h-4 animate-spin" /> Translating…
@@ -119,8 +119,8 @@ export default function LawyerPage({ cachedUser }) {
         )}
       </RaisedCard>
 
-      <section className="rounded-card bg-pw-navy text-white p-5 md:p-6 space-y-4 shadow-lift">
-        <h2 className="text-[28px] leading-snug font-display font-normal">Find free or low-cost legal help</h2>
+      <section className="rounded-card bg-white border border-card-line text-ink p-5 md:p-6 space-y-4">
+        <h2 className="text-[22px] leading-snug font-display">Find free or low-cost legal help</h2>
         <ul className="space-y-3">
           {LEGAL_HELP_LINKS.map((link) => (
             <li key={link.url}>
@@ -128,7 +128,7 @@ export default function LawyerPage({ cachedUser }) {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-start gap-3 rounded-2xl bg-white text-pw-navy p-4 min-h-[44px] hover:bg-pw-soft transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2 focus-visible:ring-offset-pw-navy"
+                className="group flex items-start gap-3 rounded-2xl bg-sand text-ink p-4 min-h-[44px] hover:bg-sand-hover transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2"
               >
                 <span className="min-w-0 flex-1 space-y-1">
                   <span className="block text-base font-bold group-hover:underline">{link.label}</span>
@@ -144,7 +144,7 @@ export default function LawyerPage({ cachedUser }) {
       <div className="rounded-card bg-pw-red-soft p-5 md:p-6 space-y-3">
         <div className="flex items-center gap-3">
           <AlertTriangle className="w-6 h-6 text-pw-red-ink shrink-0" aria-hidden="true" />
-          <h2 className="text-[28px] leading-snug font-display font-normal text-pw-red-ink">Who can legally help you</h2>
+          <h2 className="text-[22px] leading-snug font-display text-not-correct-text">Who can legally help you</h2>
         </div>
         <p className="text-base text-pw-navy leading-relaxed">
           Only lawyers and DOJ-accredited representatives can give immigration legal advice. Notarios and
@@ -156,6 +156,8 @@ export default function LawyerPage({ cachedUser }) {
         This page helps you find help and explains when to get legal help. It is not legal advice about your
         situation. Nothing you read or search here, including your location, is saved or shared.
       </p>
+      </div>
+      </CreamSheet>
     </div>
   );
 }

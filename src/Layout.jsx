@@ -119,10 +119,11 @@ export default function Layout({ children }) {
   const focusMode = readAloud || practiceRun;
   const showTabs = !focusMode;
   // Split screens (a navy top and a cream sheet, full width) bring their own
-  // padding: Today for signed-in learners, and Study (practice runs too; the
-  // runs not redesigned yet pad themselves in RunShell).
+  // padding: Today for signed-in learners, Study (practice runs too; the
+  // runs not redesigned yet pad themselves in RunShell), the N-400 guide and
+  // the Resource Hub.
   const splitPage = (location.pathname === '/' && isAuthenticated)
-    || location.pathname.toLowerCase() === '/study';
+    || ['/study', '/n400-guide', '/resources', '/lawyer-first'].includes(location.pathname.toLowerCase());
   // Screens without the tab bar (lesson screens) list the places in the
   // profile menu too.
   const menuPlaces = showTabs ? [] : PLACES.filter((place) => !place.tutor);

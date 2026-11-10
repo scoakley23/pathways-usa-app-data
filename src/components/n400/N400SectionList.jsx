@@ -1,39 +1,62 @@
 import React from 'react';
-import { Check } from 'lucide-react';
-import { tabFor, SECTION_SOLID } from './N400Folder';
+import { Check, ChevronRight, Star } from 'lucide-react';
+import { sectionStates } from '@/lib/n400View';
 
-// Inside the folder: one row per section (title, where it is on the form)
-// with a colored block showing how many questions it has, and a check once
-// read. Picking a row opens that section with the full wording.
+// The guide's sections as a vertical road (The Road), like the Lessons tab:
+// read = sky circle with a check, the next one to read = star-red circle with
+// a star, later = hollow; a 4px line joins them (sky below read sections).
+// Each row shows the title, where it is on the form and how many items it
+// has; picking one opens that section.
 export default function N400SectionList({ sections, completedIds = [], countFor, onSelect }) {
+  const states = sectionStates(sections, completedIds);
   return (
-    <div className="text-pw-navy">
-      <span className="block w-32 h-5 rounded-t-[10px] bg-pw-manila" aria-hidden="true" />
-      <ul className="rounded-card rounded-tl-none bg-pw-manila p-2.5 sm:p-4 shadow-[0_10px_24px_rgba(20,38,74,0.14)] space-y-2">
-        {sections.map((s) => {
-          const tone = tabFor(s).tone;
-          const done = completedIds.includes(s.id);
-          const n = countFor(s);
-          return (
-            <li key={s.id}>
+    <ol className="text-ink">
+      {sections.map((s, i) => {
+        const state = states[i];
+        const n = countFor(s);
+        const last = i === sections.length - 1;
+        return (
+          <li key={s.id} className="relative flex gap-4">
+            {!last && (
+              <span
+                aria-hidden="true"
+                className={`absolute start-[20px] top-[38px] bottom-0 w-1 -translate-x-1/2 rtl:translate-x-1/2 rounded-full ${state === 'done' ? 'bg-sky' : 'bg-card-line'}`}
+              />
+            )}
+            <span className="relative z-10 w-10 h-[76px] shrink-0 grid place-items-center">
+              {state === 'done' && (
+                <span className="w-8 h-8 rounded-full bg-sky grid place-items-center">
+                  <Check className="w-4 h-4 text-navy" strokeWidth={3} aria-hidden="true" />
+                </span>
+              )}
+              {state === 'current' && (
+                <span className="w-10 h-10 rounded-full bg-star ring-[5px] ring-star/25 grid place-items-center">
+                  <Star className="w-4 h-4 text-white fill-white" aria-hidden="true" />
+                </span>
+              )}
+              {state === 'later' && <span className="w-6 h-6 rounded-full border-2 border-ink-2 bg-cream" />}
+            </span>
+            <div className="min-w-0 flex-1 pb-2">
               <button
                 type="button"
                 onClick={() => onSelect(s.id)}
-                className="w-full min-h-[72px] flex items-stretch overflow-hidden rounded-[10px] bg-white text-left shadow-[0_2px_4px_rgba(20,38,74,0.08)] hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2 focus-visible:ring-offset-pw-manila"
+                className={`w-full min-h-[76px] flex items-center gap-3 rounded-card px-4 py-3 text-start border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy
+                  ${state === 'current' ? 'bg-white border-card-line' : 'border-transparent hover:bg-white hover:border-card-line'}`}
               >
-                <span className="flex-1 min-w-0 px-3 sm:px-4 py-3 flex flex-col justify-center gap-0.5">
-                  <span className="text-[17px] font-bold leading-snug">{s.title}</span>
-                  <span className="text-sm text-pw-muted">{s.partLabel}</span>
+                <span className="min-w-0 flex-1">
+                  {state === 'current' && <span className="block text-label uppercase text-ink-label">You&apos;re here</span>}
+                  <span className="block text-[17px] font-semibold leading-snug">{s.title}</span>
+                  <span className="block text-sm text-ink-2">
+                    {s.partLabel} · {n} {n === 1 ? 'item' : 'items'}
+                    {state === 'done' && <span className="sr-only">, read</span>}
+                  </span>
                 </span>
-                <span className={`w-[84px] sm:w-[112px] shrink-0 flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1.5 text-center text-[15px] font-bold ${SECTION_SOLID[tone]}`}>
-                  {n} {n === 1 ? 'item' : 'items'}
-                  {done && <><Check className="w-4 h-4" strokeWidth={3} aria-hidden="true" /><span className="sr-only">, read</span></>}
-                </span>
+                <ChevronRight className="w-5 h-5 shrink-0 text-ink-2 rtl:rotate-180" aria-hidden="true" />
               </button>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+            </div>
+          </li>
+        );
+      })}
+    </ol>
   );
 }
