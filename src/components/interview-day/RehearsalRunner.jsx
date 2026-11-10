@@ -110,7 +110,7 @@ export default function RehearsalRunner({ version, userEmail, onStop }) {
           }}
           onDone={(ok) => finishPart('civics', ok)}
           render={(item, record, next, i) => (
-            <CivicsTestCard testMode index={i} question={item} onComplete={record} onNext={next} />
+            <CivicsTestCard testMode embedded index={i} question={item} onComplete={record} onNext={next} />
           )}
         />
       ) : (

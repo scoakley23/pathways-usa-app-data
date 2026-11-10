@@ -119,10 +119,10 @@ export default function Layout({ children }) {
   const focusMode = readAloud || practiceRun;
   const showTabs = !focusMode;
   // Split screens (a navy top and a cream sheet, full width) bring their own
-  // padding: Today for signed-in learners, and Study (except a practice run,
-  // which keeps the padded layout).
+  // padding: Today for signed-in learners, and Study (practice runs too; the
+  // runs not redesigned yet pad themselves in RunShell).
   const splitPage = (location.pathname === '/' && isAuthenticated)
-    || (location.pathname.toLowerCase() === '/study' && !practiceRun);
+    || location.pathname.toLowerCase() === '/study';
   // Screens without the tab bar (lesson screens) list the places in the
   // profile menu too.
   const menuPlaces = showTabs ? [] : PLACES.filter((place) => !place.tutor);
