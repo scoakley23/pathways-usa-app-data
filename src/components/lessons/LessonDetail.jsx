@@ -18,7 +18,7 @@ import { Eyebrow, ExplainSimplyButton, IndexCard, PrimaryButton, QuietButton, Se
 import { questionsForLesson } from '@/lib/lessonQuestions';
 import { STEP_LABELS, deckSteps, splitIdeas } from '@/lib/lessonDeck';
 
-const MARKDOWN = 'max-w-none text-lg leading-relaxed text-pw-navy [&_h1]:font-display [&_h2]:font-display [&_h3]:font-display [&_h1]:text-3xl [&_h2]:text-[28px] [&_h3]:text-2xl [&_h1]:font-normal [&_h2]:font-normal [&_h3]:font-normal [&_h1]:mb-2 [&_h2]:mb-2 [&_h3]:mb-2 [&>*:first-child]:mt-0 [&_p]:my-3 [&_ul]:list-disc [&_ol]:list-decimal [&_ul]:pl-6 [&_ol]:pl-6 [&_ul]:my-3 [&_ol]:my-3 [&_li]:my-1 [&_strong]:font-bold [&_a]:underline';
+const MARKDOWN = 'max-w-none text-lg leading-relaxed text-pw-navy [&_h1]:font-display [&_h2]:font-display [&_h3]:font-display [&_h1]:text-3xl [&_h2]:text-[28px] [&_h3]:text-2xl [&_h1]:font-normal [&_h2]:font-normal [&_h3]:font-normal [&_h1]:mb-2 [&_h2]:mb-2 [&_h3]:mb-2 [&>*:first-child]:mt-0 [&_p]:my-3 [&_ul]:list-disc [&_ol]:list-decimal [&_ul]:ps-6 [&_ol]:ps-6 [&_ul]:my-3 [&_ol]:my-3 [&_li]:my-1 [&_strong]:font-bold [&_a]:underline';
 
 const extractYouTubeId = (url) => {
   if (!url) return null;
@@ -227,7 +227,7 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
       {/* Header */}
       <header className="space-y-4">
         <QuietButton onClick={onBack} className="-ml-3">
-          <ArrowLeft className="w-5 h-5" aria-hidden="true" /> All lessons
+          <ArrowLeft className="w-5 h-5 rtl:rotate-180" aria-hidden="true" /> All lessons
         </QuietButton>
         <div>
           {displayLesson.topic && <Eyebrow>{displayLesson.topic}</Eyebrow>}
@@ -334,12 +334,12 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
           {step !== 'review' && (
             <div className="flex items-center justify-between gap-3">
               {stepIndex > 0 ? (
-                <SecondaryButton onClick={() => go(stepIndex - 1)}><ChevronLeft className="w-5 h-5" aria-hidden="true" /> Back</SecondaryButton>
+                <SecondaryButton onClick={() => go(stepIndex - 1)}><ChevronLeft className="w-5 h-5 rtl:rotate-180" aria-hidden="true" /> Back</SecondaryButton>
               ) : <span />}
               {isLast ? (
-                <PrimaryButton onClick={() => setFinished(true)}>Finish <ArrowRight className="w-5 h-5" aria-hidden="true" /></PrimaryButton>
+                <PrimaryButton onClick={() => setFinished(true)}>Finish <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" /></PrimaryButton>
               ) : (
-                <PrimaryButton onClick={() => go(stepIndex + 1)}>{STEP_LABELS[steps[stepIndex + 1]]} <ArrowRight className="w-5 h-5" aria-hidden="true" /></PrimaryButton>
+                <PrimaryButton onClick={() => go(stepIndex + 1)}>{STEP_LABELS[steps[stepIndex + 1]]} <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" /></PrimaryButton>
               )}
             </div>
           )}
@@ -373,7 +373,7 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
                 <PrimaryButton onClick={markComplete}>Mark lesson complete</PrimaryButton>
               )}
               {nextLesson && (
-                <PrimaryButton onClick={() => goToLesson(nextLesson)}>Next lesson <ArrowRight className="w-5 h-5" aria-hidden="true" /></PrimaryButton>
+                <PrimaryButton onClick={() => goToLesson(nextLesson)}>Next lesson <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" /></PrimaryButton>
               )}
             </div>
           </IndexCard>
@@ -390,7 +390,7 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
               onClick={() => goToLesson(prevLesson)}
               className="min-h-[56px] rounded-card border border-pw-line bg-white p-3 flex items-center gap-2 text-left hover:border-pw-navy transition-colors min-w-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
             >
-              <ChevronLeft className="w-5 h-5 shrink-0" aria-hidden="true" />
+              <ChevronLeft className="w-5 h-5 shrink-0 rtl:rotate-180" aria-hidden="true" />
               <span className="min-w-0">
                 <span className="block text-sm text-pw-muted">Previous</span>
                 <span className="block text-base font-semibold truncate">{prevLesson.title}</span>
@@ -407,7 +407,7 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
                 <span className="block text-sm text-pw-muted">Next</span>
                 <span className="block text-base font-semibold truncate">{nextLesson.title}</span>
               </span>
-              <ChevronRight className="w-5 h-5 shrink-0" aria-hidden="true" />
+              <ChevronRight className="w-5 h-5 shrink-0 rtl:rotate-180" aria-hidden="true" />
             </button>
           ) : <span />}
         </nav>

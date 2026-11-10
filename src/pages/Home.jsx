@@ -148,7 +148,7 @@ export default function Home({ cachedUser }) {
             <div className="p-4 sm:p-5 space-y-1 sm:space-y-2 min-w-0">
               <SkillTag skill={f.skill} />
               <h3 className="text-xl font-extrabold text-pw-navy flex items-center justify-between gap-2">
-                {t(f.title)} <ArrowRight className="w-5 h-5 text-pw-muted group-hover:text-pw-navy shrink-0" aria-hidden="true" />
+                {t(f.title)} <ArrowRight className="w-5 h-5 text-pw-muted group-hover:text-pw-navy shrink-0 rtl:rotate-180" aria-hidden="true" />
               </h3>
               <p className="text-base text-pw-muted">{t(f.desc)}</p>
             </div>
@@ -171,7 +171,7 @@ export default function Home({ cachedUser }) {
             <h3 className="text-xl font-extrabold text-pw-navy">{t('n400_title')}</h3>
             <p className="text-base text-pw-muted">{t('n400_desc')}</p>
           </div>
-          <ArrowRight className="w-5 h-5 text-pw-muted group-hover:text-pw-navy shrink-0 self-center mr-4" aria-hidden="true" />
+          <ArrowRight className="w-5 h-5 text-pw-muted group-hover:text-pw-navy shrink-0 self-center me-4 rtl:rotate-180" aria-hidden="true" />
         </Link>
       </section>
 

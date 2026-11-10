@@ -49,7 +49,7 @@ export default function BadgesDisplay({ earnedBadges = [] }) {
                     }`}
                 >
                   {!isEarned && (
-                    <div className="absolute top-3 right-3 z-10">
+                    <div className="absolute top-3 end-3 z-10">
                       <Lock className="w-4 h-4 text-pw-muted" aria-label="Locked" />
                     </div>
                   )}

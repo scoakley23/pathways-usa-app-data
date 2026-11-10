@@ -138,7 +138,7 @@ export default function OAuthConsent() {
     return (
       <AuthLayout icon={LockKeyhole} title="Authorize access">
         <div className="flex items-center justify-center py-6 text-muted-foreground">
-          <Loader2 className="w-5 h-5 mr-2 animate-spin" aria-hidden="true" />
+          <Loader2 className="w-5 h-5 me-2 animate-spin" aria-hidden="true" />
           Loading…
         </div>
       </AuthLayout>
@@ -230,7 +230,7 @@ export default function OAuthConsent() {
           disabled={submitting}
           onClick={() => respond("approve")}
         >
-          {submitting ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}
+          {submitting ? <Loader2 className="w-4 h-4 me-2 animate-spin" /> : null}
           Approve
         </Button>
       </div>

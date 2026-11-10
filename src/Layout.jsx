@@ -137,7 +137,7 @@ export default function Layout({ children }) {
     <div className="min-h-screen bg-pw-page font-sans text-pw-navy">
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-2xl focus:bg-pw-navy focus:text-white focus:font-bold focus:px-4 focus:py-3"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:start-3 focus:z-[60] focus:rounded-2xl focus:bg-pw-navy focus:text-white focus:font-bold focus:px-4 focus:py-3"
       >
         Skip to main content
       </a>

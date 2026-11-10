@@ -21,9 +21,9 @@ export default function LanguageSelector({ language, onLanguageChange, translati
         aria-label={compact ? `Language: ${label}` : 'Lesson language'}
       >
         {translating ? (
-          <Loader2 className={`w-4 h-4 animate-spin mr-2 ${onNavy ? 'text-white' : 'text-pw-navy'}`} />
+          <Loader2 className={`w-4 h-4 animate-spin me-2 ${onNavy ? 'text-white' : 'text-pw-navy'}`} />
         ) : (
-          <Globe className={`w-4 h-4 ${compact ? (onNavy ? 'text-white' : 'text-pw-navy') : 'mr-2 text-pw-muted'}`} aria-hidden="true" />
+          <Globe className={`w-4 h-4 ${compact ? (onNavy ? 'text-white' : 'text-pw-navy') : 'me-2 text-pw-muted'}`} aria-hidden="true" />
         )}
         {compact ? <span className="uppercase">{language.split('-')[0]}</span> : <SelectValue />}
       </SelectTrigger>

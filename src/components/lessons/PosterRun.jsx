@@ -191,7 +191,7 @@ export default function PosterRun({ questions, language = 'en', tutorName = 'Ví
                 </>
               ) : (
                 <button type="button" onClick={() => next(result.isCorrect)} className={solidWhite}>
-                  {index + 1 < total ? 'Next card' : 'Finish'} <ArrowRight className="w-5 h-5" aria-hidden="true" />
+                  {index + 1 < total ? 'Next card' : 'Finish'} <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" />
                 </button>
               )}
               <ExplainSimplyButton onPoster aria-expanded={explainOpen} onClick={() => setExplainOpen((v) => !v)} />

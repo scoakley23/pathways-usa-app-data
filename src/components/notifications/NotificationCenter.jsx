@@ -103,7 +103,7 @@ export default function NotificationCenter({ userEmail, open = false, onOpenChan
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetContent className="w-[92vw] max-w-[380px] sm:w-[380px] flex flex-col bg-pw-page border-pw-line">
-        <SheetHeader className="flex flex-row items-center justify-between gap-2 space-y-0 mb-4 pr-8">
+        <SheetHeader className="flex flex-row items-center justify-between gap-2 space-y-0 mb-4 pe-8">
           <SheetTitle className="text-xl font-extrabold text-pw-navy">Notifications</SheetTitle>
           {unreadCount > 0 && (
               <Button variant="ghost" size="sm" onClick={markAllRead}>
@@ -115,7 +115,7 @@ export default function NotificationCenter({ userEmail, open = false, onOpenChan
         {permission !== 'granted' && (
             <div className="bg-pw-blue-soft p-3 rounded-2xl mb-4 flex items-center justify-between gap-2">
                 <div className="flex items-center text-sm font-semibold text-pw-blue-ink">
-                    <AlertCircle className="w-4 h-4 mr-2 shrink-0" aria-hidden="true" />
+                    <AlertCircle className="w-4 h-4 me-2 shrink-0" aria-hidden="true" />
                     <span>Enable push notifications?</span>
                 </div>
                 <Button size="sm" variant="outline" className="shrink-0" onClick={requestPushPermission}>

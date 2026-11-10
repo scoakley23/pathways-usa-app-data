@@ -142,7 +142,7 @@ export default function TalkToPerson({ open, onOpenChange, userEmail, language =
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent aria-describedby={undefined} className="w-[calc(100vw-2rem)] max-w-md max-h-[90vh] overflow-y-auto overflow-x-hidden p-5 gap-3 grid-cols-[minmax(0,1fr)]">
-        <DialogHeader className="text-left pr-10">
+        <DialogHeader className="text-left pe-10">
           <DialogTitle dir={dir} className="text-xl font-extrabold text-pw-navy">{t('title')}</DialogTitle>
         </DialogHeader>
         {body}
