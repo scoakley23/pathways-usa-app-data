@@ -1,17 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { base44 } from '@/api/base44Client';
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetDescription, SheetTitle } from "@/components/ui/sheet";
-import { Send, User, Loader2, Globe, History, Users, Scale } from 'lucide-react';
+import { Send, Loader2, Globe, History, Users, Scale, Mic, MicOff, ChevronDown } from 'lucide-react';
 import { toast } from "sonner";
-import { cn } from "@/lib/utils";
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { LANGUAGES } from '@/hooks/useLessonTranslation';
 import { getSavedLanguage, RTL_LANGUAGES } from '@/hooks/useAppLanguage';
-import TutorAvatar from '@/components/persona/TutorAvatar';
+import { Chip, ViaMark } from '@/components/pathways/ui';
+import { stopReading } from '@/components/persona/useAutoRead';
 import { ListenButton } from '@/components/persona/TutorMessage';
 import useTutorProfile from '@/components/persona/useTutorProfile';
 import { getLearnerLocation } from '@/components/civics/useLearnerLocation';
@@ -48,17 +46,25 @@ const PRIVACY_NOTE = {
 };
 const PRIVACY_NOTE_CACHE_KEY = 'pathways_sb_privacy_v3_';
 
-function usePrivacyNote(language) {
-  const [note, setNote] = useState(PRIVACY_NOTE[language] || PRIVACY_NOTE.en);
+// The short line at the top of the conversation (The Road); "Read more"
+// shows the full note above. Same translation and cache as the full note.
+const PRIVACY_SHORT = {
+  en: "Private: your tutor can't see this chat. Don't share your immigration status, A-number, case details, or address.",
+  es: 'Privado: su tutor no puede ver esta conversación. No comparta su estatus migratorio, número A, detalles de su caso ni su dirección.',
+};
+const PRIVACY_SHORT_CACHE_KEY = 'pathways_sb_privacy_short_v1_';
+
+function usePrivacyNote(language, texts = PRIVACY_NOTE, cacheKey = PRIVACY_NOTE_CACHE_KEY) {
+  const [note, setNote] = useState(texts[language] || texts.en);
 
   useEffect(() => {
-    if (PRIVACY_NOTE[language]) {
-      setNote(PRIVACY_NOTE[language]);
+    if (texts[language]) {
+      setNote(texts[language]);
       return;
     }
-    setNote(PRIVACY_NOTE.en);
+    setNote(texts.en);
     try {
-      const cached = localStorage.getItem(PRIVACY_NOTE_CACHE_KEY + language);
+      const cached = localStorage.getItem(cacheKey + language);
       if (cached) {
         setNote(cached);
         return;
@@ -70,12 +76,12 @@ function usePrivacyNote(language) {
     let cancelled = false;
     const langName = LANGUAGES.find((l) => l.value === language)?.label || language;
     base44.integrations.Core.InvokeLLM({
-      prompt: `Translate this privacy note for an app that helps immigrants study for the U.S. citizenship test into ${langName}. Keep "A-number" understandable (you may add the local term). Return only the translated text.\n\n${PRIVACY_NOTE.en}`,
+      prompt: `Translate this privacy note for an app that helps immigrants study for the U.S. citizenship test into ${langName}. Keep "A-number" understandable (you may add the local term). Return only the translated text.\n\n${texts.en}`,
     }).then((res) => {
       if (cancelled || typeof res !== 'string' || !res.trim()) return;
       setNote(res.trim());
       try {
-        localStorage.setItem(PRIVACY_NOTE_CACHE_KEY + language, res.trim());
+        localStorage.setItem(cacheKey + language, res.trim());
       } catch (e) {
         // ignore
       }
@@ -90,24 +96,32 @@ function usePrivacyNote(language) {
   return note;
 }
 
-// One assistant bubble: learner-language text, English under it, Listen
-// buttons, and an optional action (the lawyer link on a decline) right after
-// the first paragraph so it is visible without scrolling.
-function TutorBubble({ profile, language, mine, en, action, expression }) {
-  const showMine = !!mine && language !== 'en';
-  const dir = RTL_LANGUAGES.includes(language) ? 'rtl' : 'ltr';
+// One assistant bubble (The Road): white with a thin border, on the left.
+// It shows the chat language first; "In English" switches this bubble to the
+// English version and back ("In Spanish"). Listen reads what is shown. An
+// optional action (the lawyer link on a decline) sits under the text.
+function TutorBubble({ profile, language, mine, en, action }) {
+  const [english, setEnglish] = useState(false);
+  const hasMine = !!mine && language !== 'en';
+  const both = hasMine && !!en;
+  const showEn = !hasMine || (both && english);
+  const text = showEn ? (en || mine) : mine;
+  const textLang = showEn && en ? 'en' : language;
+  const dir = !showEn && RTL_LANGUAGES.includes(language) ? 'rtl' : 'ltr';
+  const otherName = english ? languageNameFor(language) : 'English';
   return (
-    <div className="pr-6">
-      <div className="min-w-0 px-4 py-3 rounded-card rounded-tl-md bg-white border border-pw-line text-pw-navy font-medium text-xl leading-snug">
-        {showMine && <p dir={dir} className="whitespace-pre-line">{mine}</p>}
-        {showMine && action && <div className="font-sans not-italic text-base">{action}</div>}
-        {en && <p className={cn('whitespace-pre-line', showMine && 'text-pw-muted text-lg mt-2')}>{en}</p>}
-        {!en && !showMine && mine && <p dir={dir} className="whitespace-pre-line">{mine}</p>}
-        {!showMine && action && <div className="font-sans not-italic text-base">{action}</div>}
-        <div className="flex flex-wrap gap-2 mt-2 font-sans not-italic">
-          {showMine && <ListenButton text={mine} language={language} tutorName={profile.name} className="px-3" />}
-          {en && <ListenButton text={en} language="en" label={showMine ? 'English' : 'Listen'} tutorName={profile.name} className="px-3" />}
-        </div>
+    <div className="pe-8">
+      <div className="min-w-0 px-4 py-3 rounded-card rounded-ss-md bg-white border border-card-line text-ink text-lg leading-snug">
+        <p dir={dir} lang={textLang} className="whitespace-pre-line">{text}</p>
+        {action && <div className="text-base">{action}</div>}
+      </div>
+      <div className="flex flex-wrap gap-2 mt-2">
+        <ListenButton text={text} language={textLang} tutorName={profile.name} className="px-3 min-h-11 text-sm" />
+        {both && (
+          <Chip onClick={() => setEnglish((v) => !v)} aria-pressed={english} className="px-3 text-sm">
+            <Globe className="w-4 h-4" aria-hidden="true" /> In {otherName}
+          </Chip>
+        )}
       </div>
     </div>
   );
@@ -134,10 +148,16 @@ export default function StudyBuddy() {
   const [user, setUser] = useState(null);
   const scrollRef = useRef(null);
   const privacyNote = usePrivacyNote(appLanguage);
+  const privacyShort = usePrivacyNote(appLanguage, PRIVACY_SHORT, PRIVACY_SHORT_CACHE_KEY);
+  const [privacyMore, setPrivacyMore] = useState(false);
+  // The microphone fills the text box (browser speech recognition, nothing
+  // recorded); the learner reads it and sends it like typed text.
+  const [listening, setListening] = useState(false);
+  const recognitionRef = useRef(null);
+  const canDictate = typeof window !== 'undefined' && !!(window.SpeechRecognition || window.webkitSpeechRecognition);
   const { profile } = useTutorProfile();
   const tutorLine = useTutorLines(profile, language);
   const askLine = useTranslatedLines(ASK_LINES, language, { cacheKey: ASK_LINES_CACHE_KEY, handWritten: { es: ASK_LINES_ES } });
-  const title = `Ask ${profile.name}`;
 
   useEffect(() => {
     const init = async () => {
@@ -236,6 +256,30 @@ export default function StudyBuddy() {
     return () => window.removeEventListener(OPEN_TUTOR_EVENT, open);
   }, []);
 
+  const stopDictation = () => {
+    try { recognitionRef.current?.stop(); } catch (e) { /* already stopped */ }
+  };
+  const startDictation = () => {
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR) return;
+    stopReading();
+    const rec = new SR();
+    rec.lang = language === 'en' ? 'en-US' : language;
+    rec.continuous = false;
+    rec.interimResults = true;
+    rec.onstart = () => setListening(true);
+    rec.onresult = (e) => {
+      const text = Array.from(e.results).map((r) => r[0].transcript).join('');
+      setInput(text.slice(0, MAX_QUESTION_LENGTH));
+    };
+    rec.onerror = () => setListening(false);
+    rec.onend = () => setListening(false);
+    recognitionRef.current = rec;
+    try { rec.start(); } catch (e) { setListening(false); }
+  };
+  // Stop listening when the chat closes.
+  useEffect(() => { if (!isOpen) stopDictation(); }, [isOpen]);
+
   if (!user) return null;
 
   const renderAssistant = (msg, i) => {
@@ -247,7 +291,6 @@ export default function StudyBuddy() {
           key={i}
           profile={profile}
           language={language}
-          expression="greeting"
           en={`${intro.en} ${ASK_LINES.invite}`}
           mine={intro.mine && invite ? `${intro.mine} ${invite}` : null}
         />
@@ -277,95 +320,129 @@ export default function StudyBuddy() {
     return <TutorBubble key={i} profile={profile} language={msg.language} en={msg.en} mine={msg.mine} />;
   };
 
+  const sendable = !!input.trim() && !isLoading;
+
   return (
     <>
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
-        <SheetContent side="right" className="w-full sm:max-w-[420px] p-0 gap-0 flex flex-col bg-pw-page text-pw-navy">
-          <div className="bg-white border-b border-pw-line p-3 pr-16 flex flex-col gap-2 shrink-0">
+        <SheetContent
+          side="right"
+          className="w-full sm:max-w-[420px] p-0 gap-0 flex flex-col bg-navy text-ink [&>button.absolute]:text-white [&>button.absolute]:hover:bg-navy-2 [&>button.absolute]:focus-visible:ring-white"
+        >
+          {/* NAVY TOP: who this is */}
+          <div className="bg-navy text-white px-4 pt-4 pb-9 pe-16 shrink-0 space-y-3">
             <div className="flex items-center gap-3 min-w-0">
-              <TutorAvatar name={profile.name} size={44} />
+              <span className="w-12 h-12 shrink-0 rounded-full bg-cream grid place-items-center">
+                <ViaMark size={40} label={`${profile.name} · AI tutor`} />
+              </span>
               <div className="min-w-0 flex-1">
-                <SheetTitle className="font-display text-[26px] leading-tight font-normal truncate">{title}</SheetTitle>
-                <SheetDescription className="text-sm font-semibold uppercase tracking-[0.14em] text-pw-muted truncate">{profile.name} · AI tutor</SheetDescription>
+                <SheetTitle className="font-display text-[24px] leading-tight text-white truncate">{profile.name}</SheetTitle>
+                <SheetDescription className="text-base text-on-navy-2 truncate">Your AI study partner</SheetDescription>
               </div>
-              <Link to={createPageUrl('StudyHistory')} onClick={() => setIsOpen(false)}>
-                <Button variant="ghost" size="icon" className="text-pw-muted hover:text-pw-navy" title="View History" aria-label="View History">
-                  <History className="w-5 h-5" />
-                </Button>
+            </div>
+            <div className="flex items-center gap-2">
+              <Select value={language} onValueChange={setLanguage}>
+                <SelectTrigger
+                  className="w-auto min-h-11 h-11 rounded-full bg-navy-2 border-navy-line text-white text-sm font-semibold gap-1.5 px-3 focus:ring-white focus:ring-offset-navy [&>svg]:text-white [&>svg]:opacity-100"
+                  aria-label="Chat language"
+                >
+                  <Globe className="w-4 h-4 shrink-0" aria-hidden="true" />
+                  <SelectValue placeholder="Language" />
+                </SelectTrigger>
+                <SelectContent>
+                  {LANGUAGES.map(lang => (
+                    <SelectItem key={lang.value} value={lang.value}>{lang.label}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <Link
+                to={createPageUrl('StudyHistory')}
+                onClick={() => setIsOpen(false)}
+                className="min-h-11 rounded-full bg-navy-2 px-4 inline-flex items-center gap-1.5 text-sm font-semibold text-white hover:bg-navy-line focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              >
+                <History className="w-4 h-4" aria-hidden="true" /> History
               </Link>
             </div>
-            <div className="flex items-center gap-2 w-full">
-                <Globe className="w-4 h-4 text-pw-muted shrink-0" aria-hidden="true" />
-                <Select value={language} onValueChange={setLanguage}>
-                    <SelectTrigger className="min-h-11 h-11 bg-pw-soft border-transparent text-pw-navy text-sm font-semibold" aria-label="Language">
-                        <SelectValue placeholder="Language" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        {LANGUAGES.map(lang => (
-                            <SelectItem key={lang.value} value={lang.value}>{lang.label}</SelectItem>
-                        ))}
-                    </SelectContent>
-                </Select>
-            </div>
           </div>
 
-          <div className="flex-1 min-h-0 overflow-hidden">
-             <div className="relative h-full overflow-y-auto p-3 space-y-4" ref={scrollRef} aria-live="polite">
-                {messages.map((msg, i) => (
-                  msg.role === 'assistant' ? renderAssistant(msg, i) : (
-                    <div key={i} className="flex gap-2 max-w-[85%] ml-auto flex-row-reverse">
-                      <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 bg-pw-soft text-pw-navy" aria-hidden="true">
-                        <User className="w-5 h-5" />
-                      </div>
-                      <div className="p-3 rounded-2xl rounded-tr-md text-base leading-snug bg-pw-navy text-white whitespace-pre-line break-words min-w-0">
-                        {msg.content}
-                      </div>
-                    </div>
-                  )
-                ))}
-                {isLoading && (
-                  <div className="flex">
-                    <div className="bg-white border border-pw-line p-3 rounded-2xl rounded-tl-md" role="status" aria-label="Thinking">
-                      <Loader2 className="w-4 h-4 animate-spin text-pw-muted" />
+          {/* CREAM SHEET: the conversation */}
+          <div className="relative -mt-7 flex-1 min-h-0 flex flex-col rounded-t-sheet bg-cream">
+            <div className="relative flex-1 min-h-0 overflow-y-auto px-4 pt-4 pb-3 space-y-4" ref={scrollRef} aria-live="polite">
+              <div className="text-center">
+                <p dir={RTL_LANGUAGES.includes(appLanguage) ? 'rtl' : 'ltr'} className="text-[13px] leading-snug text-ink-2">
+                  {privacyShort}
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setPrivacyMore((v) => !v)}
+                  aria-expanded={privacyMore}
+                  className="inline-flex items-center gap-0.5 min-h-11 px-2 text-[13px] font-semibold text-ink underline underline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy rounded"
+                >
+                  {privacyMore ? 'Show less' : 'Read more'}
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform ${privacyMore ? 'rotate-180' : ''}`} aria-hidden="true" />
+                </button>
+                {privacyMore && (
+                  <p dir={RTL_LANGUAGES.includes(appLanguage) ? 'rtl' : 'ltr'} className="mt-1 text-sm leading-snug text-ink-2 text-start rounded-card bg-sand p-3">
+                    {privacyNote}
+                  </p>
+                )}
+              </div>
+              {messages.map((msg, i) => (
+                msg.role === 'assistant' ? renderAssistant(msg, i) : (
+                  <div key={i} className="flex justify-end ps-10">
+                    <div className="px-4 py-3 rounded-card rounded-se-md text-lg leading-snug bg-navy text-white whitespace-pre-line break-words min-w-0">
+                      {msg.content}
                     </div>
                   </div>
-                )}
-             </div>
-          </div>
+                )
+              ))}
+              {isLoading && (
+                <div className="flex">
+                  <div className="bg-white border border-card-line px-4 py-3 rounded-card rounded-ss-md" role="status" aria-label="Thinking">
+                    <Loader2 className="w-5 h-5 animate-spin text-ink-2" />
+                  </div>
+                </div>
+              )}
+            </div>
 
-          <div className="p-3 bg-white border-t border-pw-line shrink-0 flex flex-col gap-2 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
-            <p
-              dir={RTL_LANGUAGES.includes(appLanguage) ? 'rtl' : 'ltr'}
-              className="w-full text-base leading-snug text-pw-muted"
-            >
-              {privacyNote}
-            </p>
-            <form onSubmit={handleSend} className="flex w-full gap-2">
-              <Input 
-                placeholder="Ask a question..." 
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                maxLength={MAX_QUESTION_LENGTH}
-                className="flex-1 min-w-0"
-                aria-label="Ask a question..."
-              />
-              <Button type="submit" size="icon" disabled={isLoading || !input.trim()} aria-label="Send" className="shrink-0">
-                <Send className="w-4 h-4" />
-              </Button>
-            </form>
-            <button
-              type="button"
-              onClick={() => setTalkOpen(true)}
-              className="w-full min-h-[44px] rounded-2xl text-pw-navy hover:bg-pw-soft text-base font-bold inline-flex items-center justify-center gap-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
-            >
-              <Users className="w-5 h-5" aria-hidden="true" /> Talk to a person
-            </button>
+            {/* The text box, the one star-red button (mic, or Send once there is text), Talk to a person */}
+            <div className="px-4 pt-2 shrink-0 flex flex-col gap-1 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+              <form onSubmit={handleSend} className="flex w-full items-center gap-2">
+                <input
+                  placeholder={listening ? 'Listening…' : 'Ask a question...'}
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  maxLength={MAX_QUESTION_LENGTH}
+                  className="flex-1 min-w-0 h-[54px] rounded-full border border-card-line bg-white px-5 text-base text-ink placeholder:text-ink-2 focus:outline-none focus:ring-2 focus:ring-navy"
+                  aria-label="Ask a question"
+                />
+                {listening ? (
+                  <button type="button" onClick={stopDictation} aria-label="Stop listening" className="w-[54px] h-[54px] shrink-0 rounded-full bg-star text-white grid place-items-center hover:bg-star-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2">
+                    <MicOff className="w-6 h-6" aria-hidden="true" />
+                  </button>
+                ) : input.trim() || !canDictate ? (
+                  <button type="submit" disabled={!sendable} aria-label="Send" className="w-[54px] h-[54px] shrink-0 rounded-full bg-star text-white grid place-items-center hover:bg-star-deep disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2">
+                    <Send className="w-5 h-5 rtl:-scale-x-100" aria-hidden="true" />
+                  </button>
+                ) : (
+                  <button type="button" onClick={startDictation} disabled={isLoading} aria-label="Say your question" className="w-[54px] h-[54px] shrink-0 rounded-full bg-star text-white grid place-items-center hover:bg-star-deep disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2">
+                    <Mic className="w-6 h-6" aria-hidden="true" />
+                  </button>
+                )}
+              </form>
+              <button
+                type="button"
+                onClick={() => setTalkOpen(true)}
+                className="self-center min-h-11 px-3 rounded-full text-ink text-base font-semibold inline-flex items-center gap-2 underline underline-offset-4 decoration-ink/40 hover:decoration-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
+              >
+                <Users className="w-5 h-5" aria-hidden="true" /> Talk to a person
+              </button>
+            </div>
           </div>
         </SheetContent>
       </Sheet>
 
       <TalkToPerson open={talkOpen} onOpenChange={setTalkOpen} userEmail={user.email} language={appLanguage} />
-
     </>
   );
 }
