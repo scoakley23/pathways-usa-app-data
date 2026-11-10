@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { cardOutcome, countOutcomes, outcomesLabel, wordScore, passRule, missedItems, roadFraction } from './practiceResults';
+import { cardOutcome, countOutcomes, outcomesLabel, wordScore, passRule, missedItems, roadFraction, countedOutcomes, roundTitle, roundRule } from './practiceResults';
 
 describe('cardOutcome', () => {
   it('is right when the card was passed, whatever the score', () => {
@@ -63,5 +63,23 @@ describe('roadFraction', () => {
     expect(roadFraction(3, 10, true)).toBe(0.4);
     expect(roadFraction(9, 10, true)).toBe(1);
     expect(roadFraction(2, 0)).toBe(0);
+  });
+});
+
+describe('round lines', () => {
+  it('lists counted outcomes only', () => {
+    expect(countedOutcomes(['a', 'b', 'c'], ['right', undefined, 'missed'])).toEqual(['right', 'missed']);
+  });
+
+  it('builds the title with or without a first name', () => {
+    expect(roundTitle(8, 'Ana')).toBe('8 right. Nice work, Ana.');
+    expect(roundTitle(0)).toBe('0 right. Nice work.');
+  });
+
+  it('gives the real test rule per kind', () => {
+    expect(roundRule('reading')).toMatch(/read 1 of up to 3/);
+    expect(roundRule('writing')).toMatch(/write 1 of up to 3/);
+    expect(roundRule('civics', '2025')).toBe('On the real test you need 12 right out of up to 20.');
+    expect(roundRule('civics', '2008')).toBe('On the real test you need 6 right out of up to 10.');
   });
 });

@@ -17,6 +17,7 @@ export default function AnswerFeedback({
   title,
   sub,
   youSaid,
+  youSaidLabel = 'You said',
   reason,
   accepted = [],
   acceptedLabel = 'The officer accepts',
@@ -49,7 +50,7 @@ export default function AnswerFeedback({
 
       {youSaid && (
         <div>
-          <p className="text-label uppercase text-ink-label">You said</p>
+          <p className="text-label uppercase text-ink-label">{youSaidLabel}</p>
           <p
             className={`mt-1 text-lg leading-snug ${notCorrect ? 'line-through decoration-not-correct decoration-2' : ''}`}
           >
