@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { PrimaryButton, SecondaryButton, RaisedCard } from '@/components/pathways/ui';
 import {
   RESOURCE_CATEGORIES, COST_LABELS, DIRECTORY_LINKS, PIN_COLORS, nearestResources, formatDistance, fullAddress, categoryById,
-  normalizeZip, zipToLatLng, loadZipTable, savedResources,
+  normalizeZip, zipToLatLng, loadZipTable, savedResources, mappedResources, US_VIEW,
 } from '@/lib/resourceHub';
 import { ServiceTags, PlaceActions, PlaceSummary } from '@/components/resources/PlaceSummary';
 import useSavedPlaces from '@/components/resources/useSavedPlaces';
@@ -16,11 +16,14 @@ const ResourceMap = lazy(() => import('@/components/resources/ResourceMap'));
 const RADIUS_OPTIONS = [10, 25, 50, 100];
 const LIST_STEP = 30; // list cards shown at a time; the map shows every place
 const MAP_LIMIT = 2000;
+const OVERVIEW_ORIGIN = { ...US_VIEW, label: 'the U.S.', overview: true };
 
 // "Help near you": the learner shares their location (browser permission) or
 // types a ZIP code. Either way the location stays in this component's memory
 // only: it is not saved, not put in the URL, and not sent to the AI or to
-// Base44. Places are filtered and sorted by distance on the device.
+// Base44. Places are filtered and sorted by distance on the device. Before
+// that, the map opens on the whole country with every place on it (no
+// location used), so learners see what this is without typing anything.
 export default function ResourceFinder() {
   const [origin, setOrigin] = useState(null); // { lat, lng, label }
   const [zipInput, setZipInput] = useState('');
@@ -39,8 +42,12 @@ export default function ResourceFinder() {
     staleTime: 30 * 60 * 1000,
   });
 
+  const overview = !origin; // no location yet: the whole country
+  const mapOrigin = origin || OVERVIEW_ORIGIN;
   const results = useMemo(
-    () => nearestResources(resources, origin, { categories, radiusMiles: radius, limit: MAP_LIMIT }),
+    () => (origin
+      ? nearestResources(resources, origin, { categories, radiusMiles: radius, limit: MAP_LIMIT })
+      : mappedResources(resources, { categories })),
     [resources, origin, categories, radius],
   );
   const selected = results.find((r) => r.id === selectedId) || null;
@@ -198,13 +205,20 @@ export default function ResourceFinder() {
 
       {saved.length > 0 && <SavedPlaces places={saved} />}
 
-      {origin && !isLoading && !isError && (
+      {!isLoading && !isError && (
         <div className="space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-2">
-            <p className="text-base text-pw-navy" aria-live="polite">
-              <strong>{results.length}</strong> {results.length === 1 ? 'place' : 'places'} within {radius} miles of {origin.label}
-            </p>
-            {(results.length > 0 || origin.fromMap) && (
+            {overview ? (
+              <p className="text-base text-pw-navy" aria-live="polite">
+                <strong>{results.length}</strong> {results.length === 1 ? 'place' : 'places'} on the map. Tap a dot to see
+                a place, or use your location or ZIP code to see the closest ones first.
+              </p>
+            ) : (
+              <p className="text-base text-pw-navy" aria-live="polite">
+                <strong>{results.length}</strong> {results.length === 1 ? 'place' : 'places'} within {radius} miles of {origin.label}
+              </p>
+            )}
+            {(results.length > 0 || overview || origin.fromMap) && (
               <SecondaryButton onClick={() => setShowMap((v) => !v)} aria-pressed={showMap}>
                 {showMap ? <List className="w-5 h-5" aria-hidden="true" /> : <MapIcon className="w-5 h-5" aria-hidden="true" />}
                 {showMap ? 'Hide map' : 'Show map'}
@@ -212,7 +226,7 @@ export default function ResourceFinder() {
             )}
           </div>
 
-          {showMap && (results.length > 0 || origin.fromMap) && (
+          {showMap && (results.length > 0 || overview || origin.fromMap) && (
             <>
               <div
                 className={fullscreen
@@ -224,7 +238,7 @@ export default function ResourceFinder() {
               >
                 {fullscreen && (
                   <div className="flex items-center justify-between gap-3 px-4 py-2 border-b border-pw-line bg-white">
-                    <p className="text-base font-bold text-pw-navy truncate">{results.length} places · {origin.label}</p>
+                    <p className="text-base font-bold text-pw-navy truncate">{results.length} places · {mapOrigin.label}</p>
                     <SecondaryButton onClick={() => setFullscreen(false)} aria-label="Close full-screen map">
                       <X className="w-5 h-5" aria-hidden="true" /> Close
                     </SecondaryButton>
@@ -233,7 +247,7 @@ export default function ResourceFinder() {
                 <div className="relative flex-1 h-full min-h-0 isolate">
                   <Suspense fallback={<div className="h-full grid place-items-center text-pw-muted"><Loader2 className="w-6 h-6 animate-spin" /></div>}>
                     <ResourceMap
-                      origin={origin}
+                      origin={mapOrigin}
                       places={results}
                       selectedId={selectedId}
                       onSelect={setSelectedId}
@@ -280,7 +294,7 @@ export default function ResourceFinder() {
             </>
           )}
 
-          {results.length === 0 ? (
+          {overview ? null : results.length === 0 ? (
             <RaisedCard className="space-y-2">
               <p className="text-base font-bold text-pw-navy">No places found here yet.</p>
               <p className="text-base text-pw-muted">
