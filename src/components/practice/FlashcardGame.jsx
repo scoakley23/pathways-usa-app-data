@@ -21,7 +21,7 @@ export default function FlashcardGame({ words, index = 0, total, results = [], o
     <div className="w-full max-w-2xl mx-auto text-pw-navy">
       <Poster
         tone={posterTone(index)}
-        className="-mx-4 sm:mx-0 sm:rounded-[14px] min-h-[420px]"
+        className="-mx-4 sm:mx-0 sm:rounded-card min-h-[420px]"
         label={`Flashcards · ${index + 1} of ${count}`}
         progress={{ index, total: count, results }}
       >
@@ -37,7 +37,7 @@ export default function FlashcardGame({ words, index = 0, total, results = [], o
           <h2 className="font-display text-5xl leading-tight break-words sm:text-6xl">{currentWord.word}</h2>
           {isFlipped && (
             <>
-              <p className="font-display italic text-2xl leading-snug sm:text-3xl">{currentWord.definition}</p>
+              <p className="font-medium text-2xl leading-snug sm:text-3xl">{currentWord.definition}</p>
               {currentWord.category && (
                 <span className="inline-block rounded-full bg-white/15 px-3 py-1.5 text-base font-semibold">{currentWord.category}</span>
               )}

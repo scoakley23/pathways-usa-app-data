@@ -70,7 +70,7 @@ export default function TutorSetup({ initialProfile, onSave, onSkip, saveLabel =
   return (
     <div className="space-y-6 text-base text-pw-navy">
       {/* Preview */}
-      <div className="rounded-[14px] bg-pw-blue-soft p-4">
+      <div className="rounded-card bg-pw-blue-soft p-4">
         <div className="space-y-2">
           {mineLines && (
             <div className="rounded-2xl rounded-tl-sm bg-white border border-pw-line p-3">
@@ -83,7 +83,7 @@ export default function TutorSetup({ initialProfile, onSave, onSkip, saveLabel =
             <p>{englishLines.join(' ')}</p>
             <ListenButton text={sayInEnglish} language="en" label={mineLines ? 'Listen in English' : 'Listen'} />
           </div>
-          <p className="font-display italic text-lg text-pw-muted">— {profile.name}</p>
+          <p className="font-medium text-lg text-pw-muted">— {profile.name}</p>
         </div>
       </div>
 

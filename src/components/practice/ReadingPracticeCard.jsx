@@ -231,7 +231,7 @@ In one or two short, encouraging sentences at an A2 English level, give one prac
     <div className="w-full max-w-2xl mx-auto space-y-4 text-pw-navy">
       <Poster
         tone={posterTone(index)}
-        className="-mx-4 sm:mx-0 sm:rounded-[14px]"
+        className="-mx-4 sm:mx-0 sm:rounded-card"
         label={label}
         progress={total ? { index, total, results } : null}
         question={wordResults ? null : sentence.text}
@@ -282,7 +282,7 @@ In one or two short, encouraging sentences at an A2 English level, give one prac
               <p className="text-lg font-semibold">Tap and read the sentence aloud</p>
             ) : null}
             {!analysis && status !== 'manual' && spokenText && (
-              <p className="font-display italic text-2xl leading-snug">“{spokenText}”</p>
+              <p className="font-medium text-2xl leading-snug">“{spokenText}”</p>
             )}
             {analysis && analysis.overall_score < 70 && !isListening && !isAnalyzing && !tried && (
               <p className="text-lg font-semibold">Tap the microphone to try again</p>
@@ -296,7 +296,7 @@ In one or two short, encouraging sentences at an A2 English level, give one prac
               <p className="text-lg">{analysis.general_feedback}</p>
               <p className="text-base">Words read correctly: <span className="font-bold">{analysis.matched_count} of {analysis.total_words}</span></p>
               {analysis.transcription && analysis.transcription !== '(no speech detected)' && (
-                <p className="text-base">You said: <span className="font-display italic text-xl">“{analysis.transcription}”</span></p>
+                <p className="text-base">You said: <span className="font-medium text-xl">“{analysis.transcription}”</span></p>
               )}
               {analysis.phoneme_feedback && (
                 <p className="border-s-2 border-white/70 ps-4 text-base leading-relaxed"><span className="font-semibold">Tip:</span> {analysis.phoneme_feedback}</p>
@@ -306,7 +306,7 @@ In one or two short, encouraging sentences at an A2 English level, give one prac
 
           {!isListening && !isAnalyzing && status === 'manual' && (
             <div className="space-y-3">
-              <p className="font-display italic text-2xl leading-snug">Listen, then read it once more.</p>
+              <p className="font-medium text-2xl leading-snug">Listen, then read it once more.</p>
               <button type="button" onClick={() => speakText(sentence.text, 'en')} className={posterOutline}>
                 <Volume2 className="w-5 h-5" aria-hidden="true" /> Play again
               </button>

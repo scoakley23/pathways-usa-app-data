@@ -5,128 +5,129 @@ module.exports = {
     theme: {
     	extend: {
     		fontFamily: {
-    			// Pathways brand type (docs/redesign/brand-spec.md)
-    			sans: ['"Instrument Sans"', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
-    			heading: ['"Instrument Sans"', 'system-ui', 'sans-serif'],
-    			body: ['"Instrument Sans"', 'system-ui', 'sans-serif'],
-    			display: ['"Instrument Serif"', 'Georgia', 'serif'],
-    			hand: ['Caveat', 'cursive'],
-    			form: ['"Courier Prime"', '"Courier New"', 'Courier', 'monospace'],
-    			},
+    			// "The Road" type (docs/redesign/road-style-guide.md): Inter for all UI
+    			// and body text; Bricolage Grotesque 800 for headings and big numbers
+    			// (`font-display`; weight and tracking set in index.css).
+    			sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+    			heading: ['"Bricolage Grotesque"', 'Inter', 'system-ui', 'sans-serif'],
+    			body: ['Inter', 'system-ui', 'sans-serif'],
+    			display: ['"Bricolage Grotesque"', 'Inter', 'system-ui', 'sans-serif'],
+    		},
+    		fontWeight: {
+    			// Inter is loaded at 400/500/600: bold maps to 600 so the browser
+    			// never fakes a heavier weight. Headings use Bricolage 800.
+    			bold: '600',
+    			extrabold: '600',
+    			black: '800',
+    		},
+    		fontSize: {
+    			label: ['12px', { lineHeight: '16px', letterSpacing: '0.12em', fontWeight: '600' }],
+    		},
     		borderRadius: {
     			lg: 'var(--radius)',
     			md: 'calc(var(--radius) - 2px)',
-    			sm: 'calc(var(--radius) - 4px)'
+    			sm: 'calc(var(--radius) - 4px)',
+    			card: '22px', // cards
+    			sheet: '28px', // cream sheet top corners
+    		},
+    		minHeight: {
+    			tap: '44px', // every tap target
+    			main: '56px', // the one star-red main action
     		},
     		boxShadow: {
-    			// Two soft navy shadows only (style A); standard sizes map onto them.
+    			// No drop shadows on cards. Floating layers (menus, dialogs, sheets)
+    			// keep one soft shadow so they read as above the page.
     			sm: 'none',
     			DEFAULT: 'none',
-    			md: '0 8px 24px rgba(20, 38, 74, 0.08)',
-    			lg: '0 8px 24px rgba(20, 38, 74, 0.08)',
-    			xl: '0 12px 32px rgba(20, 38, 74, 0.14)',
-    			'2xl': '0 12px 32px rgba(20, 38, 74, 0.14)',
-    			raised: '0 8px 24px rgba(20, 38, 74, 0.08)',
-    			lift: '0 12px 32px rgba(20, 38, 74, 0.14)'
+    			md: 'none',
+    			lg: 'none',
+    			raised: 'none',
+    			lift: 'none',
+    			xl: '0 12px 32px rgba(14, 27, 51, 0.16)',
+    			'2xl': '0 12px 32px rgba(14, 27, 51, 0.16)',
+    			float: '0 12px 32px rgba(14, 27, 51, 0.16)',
     		},
     		colors: {
-    			// Pathways brand tokens (docs/redesign/brand-spec.md, see CLAUDE.md)
+    			// "The Road" palette (docs/redesign/road-style-guide.md). The hex
+    			// values are mirrored in src/lib/theme.js for SVG and charts.
+    			navy: {
+    				DEFAULT: '#0E1B33', // top areas ("the what"), main dark buttons
+    				2: '#1A2B4D', // chips/pills on navy
+    				line: '#2E4470', // borders on navy
+    				deep: '#08111F', // hover on navy buttons
+    			},
+    			road: '#22355C', // unfilled road on navy
+    			cream: '#F5F3EE', // page and sheet background ("the do")
+    			'card-line': '#E2DED4', // border of white cards on cream
+    			sand: {
+    				DEFAULT: '#E9E5DB', // "officer accepts" boxes, secondary chips on cream
+    				hover: '#DDD8CB',
+    			},
+    			ink: {
+    				DEFAULT: '#12203A', // main text on cream ("text")
+    				2: '#4E5A72', // secondary text on cream ("text-2")
+    				label: '#5A6680', // labels on cream
+    			},
+    			'on-navy': {
+    				DEFAULT: '#FFFFFF',
+    				2: '#C9D5EE', // secondary text on navy
+    				label: '#9DB1D9', // labels on navy
+    			},
+    			star: {
+    				DEFAULT: '#D63A30', // "you're here" and the ONE main action; never errors, never small text on cream
+    				deep: '#B52F27', // hover
+    			},
+    			sky: '#7FA3E8', // completed stops, filled road (never with white text)
+    			correct: {
+    				DEFAULT: '#1E7A4F', // always with a check icon and the word "Correct"
+    				soft: '#E2F0E8',
+    			},
+    			'not-correct': {
+    				DEFAULT: '#A8460E', // always with an X icon and "Not correct"
+    				text: '#943D0C', // "Not correct" heading
+    				soft: '#F6E6DC',
+    			},
+    			// Older names, pointed at the new palette so every page follows it.
+    			// Skill colors are gone: dark ones are navy, light ones are sand.
+    			// Prefer the names above in new code.
     			pw: {
-    				navy: '#14264A', // Ink
-    				'navy-deep': '#0F1B36', // Ink deep
-    				ink: '#14264A',
-    				'ink-deep': '#0F1B36',
-    				red: '#D9483F', // Signal red: the dot and small decor only, never text
-    				page: '#F3F5F9', // Mist
-    				line: '#DEE4EE',
-    				muted: '#3D4F73',
-    				linen: '#ECEAE4',
-    				slate: '#D5DDEA',
-    				manila: '#EFDFB8', // N-400 only
-    				sky: '#A9CBEC', // light blue: Writing practice and an N-400 tab; ink text only (white fails)
-    				plum: '#5E4A8C', // an N-400 section tab; white text ≈ 7.4:1
-    				// Practice-run stars only (decor, never text): right / almost / missed
-    				go: '#3DBE6B',
-    				almost: '#F4C542',
-    				miss: '#E8574E',
-    				rule: '#C9D6EA', // ruled-paper lines
-    				margin: '#E9B4AE', // ruled-paper margin line
-    				civics: '#1F4C8F',
-    				reading: '#1E6B66',
-    				writing: '#2E7D4F',
-    				speaking: '#B53A32',
-    				soft: '#EEF2F8',
-    				'soft-hover': '#E2E8F2',
-    				'red-soft': '#FDECEA',
-    				'red-ink': '#B53A32',
-    				'red-deep': '#962E28',
-    				'blue-soft': '#E6EEF9',
-    				'blue-ink': '#1F4C8F',
-    				'teal-soft': '#E3F2F1',
-    				'teal-ink': '#1E6B66',
-    				'green-soft': '#E3F4EA',
-    				'green-ink': '#2E7D4F',
-    				highlight: '#FFF4D6'
+    				navy: '#0E1B33',
+    				'navy-deep': '#08111F',
+    				ink: '#12203A',
+    				'ink-deep': '#08111F',
+    				red: '#D63A30', // star
+    				page: '#F5F3EE', // cream
+    				line: '#E2DED4',
+    				muted: '#4E5A72', // ink-2
+    				linen: '#E9E5DB',
+    				slate: '#E9E5DB',
+    				manila: '#E9E5DB',
+    				sky: '#E9E5DB',
+    				plum: '#0E1B33',
+    				go: '#1E7A4F',
+    				almost: '#C9A227',
+    				miss: '#A8460E',
+    				rule: '#DCE3EE', // ruled-paper lines
+    				margin: '#E9C9BD', // ruled-paper margin line
+    				civics: '#0E1B33',
+    				reading: '#0E1B33',
+    				writing: '#0E1B33',
+    				speaking: '#0E1B33',
+    				soft: '#E9E5DB', // sand
+    				'soft-hover': '#DDD8CB',
+    				'red-soft': '#F6E6DC', // not-correct soft
+    				'red-ink': '#A8460E', // errors, warnings, missed: not-correct
+    				'red-deep': '#8A390B',
+    				'blue-soft': '#E9E5DB',
+    				'blue-ink': '#0E1B33',
+    				'teal-soft': '#E9E5DB',
+    				'teal-ink': '#0E1B33',
+    				'green-soft': '#E2F0E8',
+    				'green-ink': '#1E7A4F',
+    				highlight: '#F3E7C4'
     			},
     			background: 'hsl(var(--background))',
     			foreground: 'hsl(var(--foreground))',
-    			slate: {
-    				50: '#F3F5F9',
-    				100: '#E9EDF4',
-    				200: '#DEE4EE',
-    				300: '#C7D2E6',
-    				400: '#7E90B5',
-    				500: '#4A5A78',
-    				600: '#3D4F73',
-    				700: '#2C3F63',
-    				800: '#14213D',
-    				900: '#14264A',
-    				950: '#0F1B36'
-    			},
-    			indigo: {
-    				50: '#EDF1F9',
-    				100: '#DEE7F5',
-    				200: '#B9C7E2',
-    				300: '#A9C4EE',
-    				400: '#6E88BF',
-    				500: '#3A568C',
-    				600: '#1F3A6B',
-    				700: '#1B3263',
-    				800: '#14264A',
-    				900: '#0E1830',
-    				950: '#0A1122'
-    			},
-    			blue: {
-    				50: '#EDF1F9',
-    				100: '#DEE7F5',
-    				200: '#B9C7E2',
-    				300: '#A9C4EE',
-    				400: '#6E88BF',
-    				500: '#3A568C',
-    				600: '#1F3A6B',
-    				700: '#1B3263',
-    				800: '#14264A',
-    				900: '#0E1830',
-    				950: '#0A1122'
-    			},
-    			'hero-label': '#9FB6E3',
-    			'hero-muted': '#C3D0EA',
-    			'road-dim': '#5F7FB8',
-    			'here-label': '#FFB3AC',
-    			'road-outline': '#8FA8D6',
-    			red: {
-    				50: '#FBEAE9',
-    				100: '#F6D5D2',
-    				200: '#EFB3AE',
-    				300: '#E88B83',
-    				400: '#E06A60',
-    				500: '#D9483F',
-    				600: '#C23B33',
-    				700: '#A9332C',
-    				800: '#8C2B25',
-    				900: '#75251F',
-    				950: '#4A1713'
-    			},
     			card: {
     				DEFAULT: 'hsl(var(--card))',
     				foreground: 'hsl(var(--card-foreground))'

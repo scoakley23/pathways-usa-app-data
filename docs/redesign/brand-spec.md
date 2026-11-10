@@ -1,4 +1,4 @@
-<!-- Source of truth for the Pathways brand (from the redesign canvas, Oct 2026). Reference SVGs are in docs/redesign/assets/. -->
+<!-- REPLACED (Nov 2026) by docs/redesign/road-style-guide.md ("The Road"). Kept for history only; do not follow it. Was: source of truth for the Pathways brand (from the redesign canvas, Oct 2026). -->
 
 # Pathways brand spec
 

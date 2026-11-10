@@ -1,4 +1,5 @@
 import React from 'react';
+import { COLORS } from '@/lib/theme';
 
 // Simple navy line drawings with one red accent, one per topic. Calm and
 // adult: no characters or mascots. Used on lesson and page headers.
@@ -115,10 +116,10 @@ export default function TopicArt({ name, className = 'w-full h-24', accent = fal
   const cx = ACCENT_LEFT.has(name) ? 28 : 172;
   return (
     <svg viewBox="0 0 200 90" className={className} aria-hidden="true">
-      <g fill="none" stroke="#14264A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <g fill="none" stroke={COLORS.navy} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
         {art}
       </g>
-      {accent && <circle cx={cx} cy="20" r="9" fill="#D9483F" opacity="0.85" />}
+      {accent && <circle cx={cx} cy="20" r="9" fill={COLORS.star} opacity="0.85" />}
     </svg>
   );
 }

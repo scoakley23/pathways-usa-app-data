@@ -1,11 +1,12 @@
 import React from 'react';
+import { COLORS } from '@/lib/theme';
 
 export default function ProgressRing({
   progress,
   size = 130,
   stroke = 12,
-  trackColor = '#DEE4EE',
-  progressColor = '#14264A',
+  trackColor = COLORS.cardLine,
+  progressColor = COLORS.navy,
   label,
   labelColor = 'text-pw-navy',
 }) {

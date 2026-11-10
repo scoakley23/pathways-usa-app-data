@@ -119,7 +119,7 @@ export default function LawyerPage({ cachedUser }) {
         )}
       </RaisedCard>
 
-      <section className="rounded-[14px] bg-pw-navy text-white p-5 md:p-6 space-y-4 shadow-lift">
+      <section className="rounded-card bg-pw-navy text-white p-5 md:p-6 space-y-4 shadow-lift">
         <h2 className="text-[28px] leading-snug font-display font-normal">Find free or low-cost legal help</h2>
         <ul className="space-y-3">
           {LEGAL_HELP_LINKS.map((link) => (
@@ -141,7 +141,7 @@ export default function LawyerPage({ cachedUser }) {
         </ul>
       </section>
 
-      <div className="rounded-[14px] bg-pw-red-soft p-5 md:p-6 space-y-3">
+      <div className="rounded-card bg-pw-red-soft p-5 md:p-6 space-y-3">
         <div className="flex items-center gap-3">
           <AlertTriangle className="w-6 h-6 text-pw-red-ink shrink-0" aria-hidden="true" />
           <h2 className="text-[28px] leading-snug font-display font-normal text-pw-red-ink">Who can legally help you</h2>

@@ -97,7 +97,7 @@ export default function LessonNotesTab({ lesson, userEmail, tutorName = 'Vía' }
         rows={7}
         className="block w-full resize-y bg-transparent text-[19px] leading-[36px] text-pw-navy placeholder:text-pw-muted focus:outline-none"
       />
-      <p className="mt-1 -rotate-1 font-hand font-semibold text-[23px] leading-tight text-pw-civics">Your own words help you remember. — {tutorName}</p>
+      <p className="mt-1 text-lg font-medium leading-snug text-ink-2">Your own words help you remember. — {tutorName}</p>
       <div className="mt-3 flex items-center justify-between gap-3">
         <span className="text-[15px] text-pw-muted">Only you see these.</span>
         <PillButton onClick={() => saveNote()} disabled={isSaving}>

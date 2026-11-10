@@ -100,7 +100,7 @@ export default function DictationCard({ sentence, onComplete, onNext, testMode =
     <div className="w-full max-w-2xl mx-auto space-y-4 text-pw-navy">
       <Poster
         tone={posterTone(index)}
-        className="-mx-4 sm:mx-0 sm:rounded-[14px]"
+        className="-mx-4 sm:mx-0 sm:rounded-card"
         label={label}
         progress={total ? { index, total, results } : null}
         question={stage === 'result' ? null : (testMode ? 'Listen, then type what you hear.' : 'Listen, then write what you hear.')}

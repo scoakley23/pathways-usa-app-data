@@ -106,7 +106,7 @@ export default function RepresentativeFinder() {
     <section className="py-6 text-pw-navy">
       <RaisedCard className="max-w-3xl mx-auto">
         <div className="flex items-start gap-4 mb-4">
-          <div className="w-12 h-12 shrink-0 bg-pw-red-soft text-pw-red-ink rounded-2xl grid place-items-center">
+          <div className="w-12 h-12 shrink-0 bg-sand text-ink rounded-2xl grid place-items-center">
             <MapPin className="w-6 h-6" aria-hidden="true" />
           </div>
           <h2 className="text-[28px] font-display font-normal leading-tight pt-1.5">Who Represents Me?</h2>
@@ -224,7 +224,7 @@ function OfficialsResult({ officials: o }) {
 
         <RaisedCard className="space-y-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 shrink-0 bg-pw-red-soft text-pw-red-ink rounded-xl grid place-items-center">
+            <div className="w-10 h-10 shrink-0 bg-sand text-ink rounded-xl grid place-items-center">
               <Users className="w-5 h-5" aria-hidden="true" />
             </div>
             <Eyebrow>US Senators</Eyebrow>

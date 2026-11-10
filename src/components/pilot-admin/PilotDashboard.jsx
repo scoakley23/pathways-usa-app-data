@@ -148,7 +148,7 @@ export default function PilotDashboard() {
       </RaisedCard>
 
       {partner && (
-        <p role="status" className="rounded-[14px] bg-pw-soft px-4 py-3 text-base">
+        <p role="status" className="rounded-card bg-pw-soft px-4 py-3 text-base">
           Partner view: exact numbers, no CSV download. Report counts ("11 of 30"), not only percentages.
         </p>
       )}

@@ -189,7 +189,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, testMode 
       <div>
         <Poster
           tone={posterTone(index)}
-          className="-mx-4 sm:mx-0 sm:rounded-[14px]"
+          className="-mx-4 sm:mx-0 sm:rounded-card"
           label={label}
           progress={total ? { index, total, results } : null}
           question={question.question}
@@ -262,7 +262,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, testMode 
                       {isListening ? 'Listening… tap to stop' : 'Tap and say your answer'}
                     </p>
                     <div aria-live="polite" className="w-full text-center">
-                      {userAnswer && <p className="mt-3 font-display italic text-2xl leading-snug">“{userAnswer}”</p>}
+                      {userAnswer && <p className="mt-3 font-medium text-2xl leading-snug">“{userAnswer}”</p>}
                     </div>
                     <button type="button" onClick={() => speakNext('type')} className={`${textLink} mt-2`}>
                       <Keyboard className="w-5 h-5" aria-hidden="true" /> Type it instead

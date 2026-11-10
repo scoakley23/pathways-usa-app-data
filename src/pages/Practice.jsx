@@ -44,7 +44,7 @@ function PartTile({ n, skill, label, title, status, onStart }) {
       </span>
       <span className="text-[30px] font-bold leading-[1.08] tracking-[-0.01em]">{title}</span>
       <span className="flex items-center justify-between gap-3">
-        <span className="font-display italic text-[19px] leading-snug">{status}</span>
+        <span className="font-medium text-[19px] leading-snug">{status}</span>
         <span className="shrink-0 min-h-11 rounded-full bg-white text-pw-navy px-5 text-base font-semibold inline-flex items-center gap-1.5 group-hover:bg-pw-soft">
           Start <ArrowRight className="w-4 h-4 rtl:rotate-180" aria-hidden="true" />
         </span>
@@ -456,7 +456,7 @@ export default function Practice() {
         {/* Mixed practice: the full run-through on Interview Day */}
         <div>
           <span className="ml-4 inline-block rounded-t-lg bg-pw-navy px-3 py-1 text-sm font-semibold text-white">Mixed practice</span>
-          <div className="rounded-[14px] bg-white border border-pw-line shadow-raised p-5 space-y-2">
+          <div className="rounded-card bg-white border border-pw-line shadow-raised p-5 space-y-2">
             <h2 className="font-display text-[30px] leading-tight">Interview Day</h2>
             <p className="text-base text-pw-muted max-w-2xl">The whole interview, in order: the oath, the officer’s questions, reading, writing and civics. Nothing is saved.</p>
             <Link
@@ -528,7 +528,7 @@ export default function Practice() {
       <RunShell label={RUN_LABEL[mode]} onClose={exitRun}>
         <Poster
           tone="blue"
-          className="-mx-4 sm:mx-0 sm:rounded-[14px]"
+          className="-mx-4 sm:mx-0 sm:rounded-card"
           label="Practice · Done"
           question={`${counts.right} of ${total} right`}
           answer={counts.close ? `${counts.close} almost. One more look and you have them.` : 'Nice work.'}

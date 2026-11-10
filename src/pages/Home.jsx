@@ -131,7 +131,7 @@ export default function Home({ cachedUser }) {
           <Link
             key={f.title}
             to={f.to}
-            className="group flex sm:flex-col items-stretch rounded-[14px] bg-white border border-pw-line shadow-raised overflow-hidden hover:-translate-y-0.5 hover:shadow-lift transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2"
+            className="group flex sm:flex-col items-stretch rounded-card bg-white border border-pw-line shadow-raised overflow-hidden hover:-translate-y-0.5 hover:shadow-lift transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2"
           >
             <div className={`w-24 sm:w-auto shrink-0 ${SKILL_BG[f.skill]} px-2 sm:px-4 pt-3 pb-2 grid place-items-center`}>
               <TopicArt name={f.art} className="w-full h-14 sm:h-16" accent={false} />
@@ -152,7 +152,7 @@ export default function Home({ cachedUser }) {
       <section>
         <Link
           to="/n400-guide"
-          className="group flex items-stretch rounded-[14px] bg-white border border-pw-line shadow-raised overflow-hidden hover:-translate-y-0.5 hover:shadow-lift transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2"
+          className="group flex items-stretch rounded-card bg-white border border-pw-line shadow-raised overflow-hidden hover:-translate-y-0.5 hover:shadow-lift transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2"
         >
           <div className={`w-24 sm:w-40 shrink-0 ${SKILL_BG.n400} px-2 grid place-items-center`}>
             <TopicArt name="scroll" className="w-full h-14" accent={false} />

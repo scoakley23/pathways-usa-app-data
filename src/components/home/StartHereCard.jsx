@@ -20,7 +20,7 @@ export default function StartHereCard({ t }) {
       </div>
 
       <IndexCard className="max-w-xl mx-auto">
-        <p className="font-display italic text-2xl leading-snug">{t('splash_hello')}</p>
+        <p className="font-medium text-2xl leading-snug">{t('splash_hello')}</p>
         <p className="mt-3 text-sm font-semibold uppercase tracking-[0.14em] text-pw-muted">{t('splash_via_label')}</p>
       </IndexCard>
 

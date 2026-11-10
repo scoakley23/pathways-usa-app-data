@@ -190,7 +190,7 @@ export default function Profile() {
               <Card>
                 <CardHeader className="p-5 sm:p-6">
                   <CardTitle className="flex items-center gap-3">
-                    <span className={`${iconSquare} bg-pw-red-soft text-pw-red-ink`}>
+                    <span className={`${iconSquare} bg-sand text-ink`}>
                       <Trophy className="w-5 h-5" aria-hidden="true" />
                     </span>
                     Your Badge Collection
