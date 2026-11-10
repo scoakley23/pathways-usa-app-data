@@ -18,6 +18,11 @@ import ReviewCivics from './pages/ReviewCivics';
 import N400Coach from './pages/N400Coach';
 import InterviewDay from './pages/InterviewDay';
 import PilotDashboard from './components/pilot-admin/PilotDashboard';
+import Study from './pages/Study';
+import StudyRedirect from './components/study/StudyRedirect';
+
+// Lessons and Practice are tabs of Study now; their old addresses redirect.
+const STUDY_REDIRECTS = { Lessons: 'lessons', Practice: 'practice' };
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -62,13 +67,18 @@ const AuthenticatedApp = () => {
         <Route
           key={path}
           path={`/${path}`}
-          element={
+          element={STUDY_REDIRECTS[path] ? <StudyRedirect tab={STUDY_REDIRECTS[path]} /> : (
             <LayoutWrapper currentPageName={path}>
               <Page />
             </LayoutWrapper>
-          }
+          )}
         />
       ))}
+      <Route path="study" element={
+        <LayoutWrapper currentPageName="Study">
+          <Study />
+        </LayoutWrapper>
+      } />
       <Route path="n400-guide" element={
         <LayoutWrapper currentPageName="N400Guide">
           <N400Guide />

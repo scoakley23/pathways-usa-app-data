@@ -1,16 +1,14 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { createPageUrl } from '@/utils';
-import { BookOpen, Mic, CheckCircle, LogOut, Menu, Settings, User, House, FileText, MapPin, CalendarCheck, Users } from 'lucide-react';
-import { Button } from "@/components/ui/button";
+import { CheckCircle, LogOut, Settings, User, MapPin, CalendarCheck, Users, Bell, GraduationCap, SlidersHorizontal, Trash2, LogIn } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import NotificationCenter from '@/components/notifications/NotificationCenter';
 import StudyBuddy, { openTutorChat } from '@/components/ai/StudyBuddy';
-import TabBar from '@/components/pathways/TabBar';
+import TabBar, { PLACES, isPlaceActive } from '@/components/pathways/TabBar';
+import { RoadIcon } from '@/components/pathways/icons';
 import { PathwaysLockup } from '@/components/pathways/ui';
 import LanguageSelector from '@/components/lessons/LanguageSelector';
-import TutorAvatar from '@/components/persona/TutorAvatar';
 import useTutorProfile from '@/components/persona/useTutorProfile';
 import useAppLanguage from '@/hooks/useAppLanguage';
 import { clearTutorPhoto } from '@/lib/tutorPhoto';
@@ -30,7 +28,7 @@ const FOCUS_ROUTES = ['/quick-check', '/tutor-demo', '/learn', '/review', '/n400
 
 // The account whose profile was checked in this app load (one lookup, not one
 // per page), and whether it works for a partner program (asked the first
-// time Menu opens).
+// time the profile menu opens).
 let profileChecked = null;
 let staffChecked = null;
 
@@ -39,6 +37,8 @@ export default function Layout({ children }) {
   const [user, setUser] = React.useState(null);
   const [isOpen, setIsOpen] = React.useState(false);
   const [partnerStaff, setPartnerStaff] = React.useState(false);
+  const [notificationsOpen, setNotificationsOpen] = React.useState(false);
+  const [unread, setUnread] = React.useState(0);
   const navigate = useNavigate();
   const { isAuthenticated, isLoadingAuth } = useAuth();
   const [language, setLanguage] = useAppLanguage();
@@ -55,7 +55,7 @@ export default function Layout({ children }) {
   // it waits on this device through the sign-in.
   React.useEffect(() => { rememberProgramFromUrl(location.search); }, [location.search]);
 
-  // Partner program staff get "Partner" in Menu.
+  // Partner program staff get "Partner" in the profile menu.
   React.useEffect(() => {
     if (!isOpen || !user?.email) return;
     if (staffChecked?.email === user.email) { setPartnerStaff(staffChecked.staff); return; }
@@ -84,50 +84,43 @@ export default function Layout({ children }) {
     }).catch(() => {});
   }, [location.search, navigate]);
 
-  const getNavItems = React.useMemo(() => {
+  // The profile menu: everything that is not one of the four places. Items
+  // with a hash open that card on Profile.
+  const menuItems = React.useMemo(() => {
     const items = [
-      { label: 'Today', path: '/', icon: House },
+      { label: 'Profile', path: '/Profile', icon: User },
+      { label: 'Progress', path: '/Progress', icon: CheckCircle },
+      { label: 'Interview Day', path: '/interview-day', icon: CalendarCheck },
+      { label: 'Resources', path: '/resources', icon: MapPin },
     ];
-
-    items.push({ label: 'Lessons', path: '/Lessons', icon: BookOpen });
-    items.push({ label: 'Practice', path: '/Practice', icon: Mic });
-    items.push({ label: 'Interview Day', path: '/interview-day', icon: CalendarCheck });
-    items.push({ label: 'N-400', path: '/n400-guide', icon: FileText });
-    items.push({ label: 'Progress', path: '/Progress', icon: CheckCircle });
-    items.push({ label: 'Resources', path: '/resources', icon: MapPin });
-    if (partnerStaff) items.push({ label: 'Partner', path: '/Partner', icon: Users });
-    items.push({ label: 'Profile', path: '/Profile', icon: User });
-
-    if (user?.role === 'admin') {
-      items.push({ label: 'Admin', path: '/Admin', icon: Settings });
+    if (user) {
+      items.push({ label: 'Notifications', action: 'notifications', icon: Bell });
+      items.push({ label: 'My program', path: '/Profile#program', icon: GraduationCap });
+      items.push({ label: 'Settings', path: '/Profile#settings', icon: SlidersHorizontal });
+      items.push({ label: 'Delete my data', path: '/Profile#delete-data', icon: Trash2 });
     }
-
+    if (partnerStaff) items.push({ label: 'Partner', path: '/Partner', icon: Users });
+    if (user?.role === 'admin') items.push({ label: 'Admin', path: '/Admin', icon: Settings });
     return items;
   }, [user, partnerStaff]);
 
-  const navItems = getNavItems;
-  // The four places sit in the header on desktop and in the tab bar on
-  // phones; Menu holds the rest.
-  const PRIMARY = ['/', '/Lessons', '/Practice', '/n400-guide'];
-  const primaryItems = navItems.filter((item) => PRIMARY.includes(item.path));
-  const isCurrent = (path) => location.pathname.toLowerCase() === path.toLowerCase();
+  const isCurrent = (path) => !path.includes('#') && location.pathname.toLowerCase() === path.toLowerCase();
+  const initial = (user?.full_name || user?.email || '').trim().charAt(0).toUpperCase();
 
   const handleLogout = async () => {
     await base44.auth.logout();
     window.location.href = '/';
   };
 
-  // A practice run (/Practice?mode=…) is full screen: no header, tab bar,
+  // A practice run (/study?tab=practice&mode=…) is full screen: no header, tab bar,
   // chat button or footer; the run has its own close button.
-  const practiceRun = location.pathname.toLowerCase() === '/practice' && new URLSearchParams(location.search).has('mode');
+  const practiceRun = ['/practice', '/study'].includes(location.pathname.toLowerCase()) && new URLSearchParams(location.search).has('mode');
   const readAloud = FOCUS_ROUTES.includes(location.pathname);
   const focusMode = readAloud || practiceRun;
   const showTabs = !focusMode;
-  // Phones without the tab bar (lesson screens) find the four places
-  // in Menu too; with the tab bar, Menu lists only the rest.
-  const menuItems = navItems
-    .map((item) => ({ ...item, primary: PRIMARY.includes(item.path) }))
-    .filter((item) => !item.primary || !showTabs);
+  // Screens without the tab bar (lesson screens) list the places in the
+  // profile menu too.
+  const menuPlaces = showTabs ? [] : PLACES.filter((place) => !place.tutor);
   const askTutor = () => (user ? openTutorChat() : base44.auth.redirectToLogin());
 
   return (
@@ -138,81 +131,118 @@ export default function Layout({ children }) {
       >
         Skip to main content
       </a>
-      {/* Header: the same few places on every screen size. Phones get the
-          tab bar for Today · Lessons · tutor · Practice · N-400; desktop
-          shows those four here plus "Ask {tutor}". Everything else is in Menu. */}
-      {!practiceRun && <nav aria-label="Site" className="sticky top-0 z-50 w-full bg-pw-page/95 backdrop-blur border-b border-pw-line lg:bg-white/95">
+      {/* Header on navy: the Pathways mark, then (desktop) the four places as
+          pills, then language and the profile button. Phones get the four
+          places in the tab bar; everything else is in the profile menu. */}
+      {!practiceRun && <nav aria-label="Site" className="sticky top-0 z-50 w-full bg-navy text-white">
         <div className="container mx-auto px-4 h-16 lg:h-[72px] max-w-5xl flex items-center justify-between gap-3">
           {splash ? <span /> : (
-            <Link to="/" aria-label="Pathways, home" className="shrink-0 flex items-center min-h-11 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy">
-              <PathwaysLockup size={30} />
+            <Link to="/" aria-label="Pathways, home" className="shrink-0 flex items-center min-h-11 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+              <PathwaysLockup size={30} tone="navy" />
             </Link>
           )}
 
           {/* Desktop: the four places */}
           <div className="hidden lg:flex items-center gap-1">
-            {primaryItems.map((item) => (
-              <Link
-                key={item.path}
-                to={createPageUrl(item.path.replace('/', ''))}
-                aria-current={isCurrent(item.path) ? 'page' : undefined}
-                className={`text-base font-semibold whitespace-nowrap transition-colors flex items-center px-4 min-h-11 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2
-                  ${isCurrent(item.path) ? 'bg-pw-navy text-white' : 'text-pw-muted hover:text-pw-navy hover:bg-pw-soft'}`}
-              >
-                {item.label}
-              </Link>
-            ))}
+            {PLACES.map((place) => {
+              const active = isPlaceActive(place, location.pathname);
+              const Icon = place.icon;
+              const look = `text-base font-semibold whitespace-nowrap transition-colors inline-flex items-center gap-2 px-4 min-h-11 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-navy
+                ${active ? 'bg-white text-navy' : 'text-on-navy-2 hover:text-white hover:bg-navy-2'}`;
+              if (place.tutor) {
+                return focusMode ? null : (
+                  <button key={place.id} type="button" onClick={askTutor} className={look} aria-label={`${tutor.name}, AI tutor`}>
+                    <Icon className="w-5 h-5" /> {tutor.name}
+                  </button>
+                );
+              }
+              return (
+                <Link key={place.id} to={place.path} aria-current={active ? 'page' : undefined} className={look}>
+                  {place.id === 'today' && <RoadIcon className="w-5 h-5" />}
+                  {place.label}
+                </Link>
+              );
+            })}
           </div>
 
           <div className="flex items-center gap-2">
-            <LanguageSelector compact language={language} onLanguageChange={setLanguage} className="border-pw-line" />
-            {user && <NotificationCenter userEmail={user.email} />}
-            {!focusMode && (
-              <button
-                type="button"
-                onClick={askTutor}
-                className="hidden lg:inline-flex items-center gap-2 min-h-11 rounded-full bg-pw-navy text-white pl-1.5 pr-4 text-base font-semibold hover:bg-pw-navy-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2"
-              >
-                <TutorAvatar name={tutor.name} size={34} decorative className="ring-2 ring-white rounded-full" />
-                Ask {tutor.name}
-              </button>
-            )}
+            <LanguageSelector compact onNavy language={language} onLanguageChange={setLanguage} />
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
-                <Button variant="outline" className="min-h-11 gap-2 px-3 font-semibold rounded-full" aria-label="Menu">
-                  <Menu className="w-5 h-5" aria-hidden="true" /> <span className="hidden sm:inline">Menu</span>
-                </Button>
+                <button
+                  type="button"
+                  aria-label={user ? `Your menu${unread > 0 ? `, ${unread} unread notifications` : ''}` : 'Menu'}
+                  className="relative w-11 h-11 shrink-0 rounded-full bg-cream text-navy grid place-items-center text-lg font-semibold hover:bg-sand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-navy"
+                >
+                  {initial || <User className="w-5 h-5" aria-hidden="true" />}
+                  {unread > 0 && <span className="absolute top-0 end-0 w-3 h-3 rounded-full bg-sky ring-2 ring-navy" aria-hidden="true" />}
+                </button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-pw-page">
+              <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-cream overflow-y-auto">
+                <SheetTitle className="sr-only">Menu</SheetTitle>
+                <SheetDescription className="sr-only">Your pages, settings and sign out</SheetDescription>
                 <div className="flex flex-col gap-1 mt-8">
-                  {menuItems.map((item) => (
+                  {menuPlaces.map((place) => (
                     <Link
-                      key={item.path}
-                      to={createPageUrl(item.path.replace('/', ''))}
+                      key={place.id}
+                      to={place.path}
+                      onClick={() => setIsOpen(false)}
+                      aria-current={isPlaceActive(place, location.pathname) ? 'page' : undefined}
+                      className={`text-lg font-semibold transition-colors flex w-full items-center gap-3 px-4 min-h-[52px] rounded-2xl text-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy lg:hidden text-ink-2 hover:bg-white hover:text-ink`}
+                    >
+                      <place.icon className="w-5 h-5" />
+                      {place.label}
+                    </Link>
+                  ))}
+                  {menuPlaces.length > 0 && <div className="border-t border-card-line my-2 lg:hidden" />}
+                  {menuItems.map((item) => item.action === 'notifications' ? (
+                    <button
+                      key={item.label}
+                      type="button"
+                      onClick={() => { setIsOpen(false); setNotificationsOpen(true); }}
+                      className={`text-lg font-semibold transition-colors flex w-full items-center gap-3 px-4 min-h-[52px] rounded-2xl text-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy text-ink-2 hover:bg-white hover:text-ink`}
+                    >
+                      <item.icon className="w-5 h-5" aria-hidden="true" />
+                      <span className="flex-1">{item.label}</span>
+                      {unread > 0 && <span className="min-w-7 h-7 px-2 rounded-full bg-navy text-white text-sm font-semibold grid place-items-center">{unread}<span className="sr-only"> unread</span></span>}
+                    </button>
+                  ) : (
+                    <Link
+                      key={item.label}
+                      to={item.path}
                       onClick={() => setIsOpen(false)}
                       aria-current={isCurrent(item.path) ? 'page' : undefined}
-                      className={`text-lg font-semibold transition-colors flex items-center gap-3 px-4 min-h-[52px] rounded-2xl ${item.primary ? 'lg:hidden' : ''}
-                        ${isCurrent(item.path) ? 'bg-white text-pw-navy shadow-raised' : 'text-pw-muted hover:bg-white hover:text-pw-navy'}`}
+                      className={`text-lg font-semibold transition-colors flex w-full items-center gap-3 px-4 min-h-[52px] rounded-2xl text-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy
+                        ${isCurrent(item.path) ? 'bg-white text-ink' : 'text-ink-2 hover:bg-white hover:text-ink'}`}
                     >
                       <item.icon className="w-5 h-5" aria-hidden="true" />
                       {item.label}
                     </Link>
                   ))}
-                  <div className="border-t border-pw-line my-2 pt-4">
+                  <div className="border-t border-card-line my-2 pt-2">
                     {user ? (
-                      <Button variant="ghost" className="w-full justify-start text-ink hover:bg-sand" onClick={handleLogout}>
-                        <LogOut className="w-5 h-5 mr-3" aria-hidden="true" />
-                        Sign Out
-                      </Button>
+                      <button type="button" onClick={handleLogout} className={`text-lg font-semibold transition-colors flex w-full items-center gap-3 px-4 min-h-[52px] rounded-2xl text-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy text-ink hover:bg-white`}>
+                        <LogOut className="w-5 h-5" aria-hidden="true" />
+                        Sign out
+                      </button>
                     ) : (
-                      <Button className="w-full" onClick={() => base44.auth.redirectToLogin()}>
-                        Sign In
-                      </Button>
+                      <button type="button" onClick={() => base44.auth.redirectToLogin()} className={`text-lg font-semibold transition-colors flex w-full items-center gap-3 px-4 min-h-[52px] rounded-2xl text-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy bg-navy text-white hover:bg-navy-deep justify-center`}>
+                        <LogIn className="w-5 h-5" aria-hidden="true" />
+                        Sign in
+                      </button>
                     )}
                   </div>
                 </div>
               </SheetContent>
             </Sheet>
+            {user && (
+              <NotificationCenter
+                userEmail={user.email}
+                open={notificationsOpen}
+                onOpenChange={setNotificationsOpen}
+                onUnreadChange={setUnread}
+              />
+            )}
           </div>
         </div>
       </nav>}
@@ -234,7 +264,7 @@ export default function Layout({ children }) {
         </p>
       </footer>}
 
-      {!focusMode && <StudyBuddy aboveTabBar={showTabs} />}
+      {!focusMode && <StudyBuddy />}
       {showTabs && <TabBar pathname={location.pathname} onAskTutor={askTutor} />}
       {/* Interview Day writes nothing, so the daily reminder waits for another page. */}
       {location.pathname !== '/interview-day' && <DailyPracticeReminder />}
