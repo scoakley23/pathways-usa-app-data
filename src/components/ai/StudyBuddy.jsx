@@ -117,11 +117,11 @@ function TutorBubble({ profile, language, mine, en, action, expression }) {
 export const OPEN_TUTOR_EVENT = 'pathways-open-tutor';
 export const openTutorChat = () => window.dispatchEvent(new Event(OPEN_TUTOR_EVENT));
 
-// `aboveTabBar`: on phones the tab bar opens the chat, so the floating button
-// is hidden there. The chat is a sheet (Phase 7): full screen on phones, a
-// side drawer on desktop, with Vía's mark in its header (the one mark on
-// screen while it is open).
-export default function StudyBuddy({ aboveTabBar = false }) {
+// The chat has no button of its own: the Vía tab (phones) and the Vía pill in
+// the header (desktop) open it with openTutorChat(). It is a sheet: full
+// screen on phones (with its own close button), a side drawer on desktop,
+// with Vía's mark in its header.
+export default function StudyBuddy() {
   const [isOpen, setIsOpen] = useState(false);
   const [talkOpen, setTalkOpen] = useState(false);
   const appLanguage = getSavedLanguage();
@@ -278,7 +278,7 @@ export default function StudyBuddy({ aboveTabBar = false }) {
   };
 
   return (
-    <div className={cn('fixed z-50 flex flex-col items-end pointer-events-none', aboveTabBar ? 'right-4 bottom-[calc(5.5rem+env(safe-area-inset-bottom))] lg:right-6 lg:bottom-6' : 'right-6 bottom-6')}>
+    <>
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetContent side="right" className="w-full sm:max-w-[420px] p-0 gap-0 flex flex-col bg-pw-page text-pw-navy">
           <div className="bg-white border-b border-pw-line p-3 pr-16 flex flex-col gap-2 shrink-0">
@@ -366,24 +366,6 @@ export default function StudyBuddy({ aboveTabBar = false }) {
 
       <TalkToPerson open={talkOpen} onOpenChange={setTalkOpen} userEmail={user.email} language={appLanguage} />
 
-      {/* The tutor's V mark, one tap away on phones without the tab bar. */}
-      <button
-        type="button"
-        onClick={() => setIsOpen(!isOpen)}
-        aria-label={title}
-        aria-expanded={isOpen}
-        className={cn(
-          "h-14 rounded-full bg-pw-navy hover:bg-pw-navy-deep text-white shadow-lift pointer-events-auto transition-all duration-300 inline-flex items-center gap-2 pl-1.5 pr-5 font-bold text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2",
-          isOpen ? "opacity-0 scale-0" : "opacity-100 scale-100",
-          // Desktop opens the chat from the header; phones from the tab bar
-          // (or this button where there is no tab bar).
-          aboveTabBar ? "hidden" : "lg:hidden"
-        )}
-      >
-        <TutorAvatar name={profile.name} size={44} decorative className="ring-2 ring-white rounded-full" />
-        <span className="max-w-[10rem] truncate">{title}</span>
-      </button>
-
-    </div>
+    </>
   );
 }

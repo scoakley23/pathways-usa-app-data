@@ -187,18 +187,20 @@ export function CreamSheet({ as: Tag = 'section', flush = false, className = '',
 // one dot. Geometry from docs/redesign/assets/pathways-mark*.svg.
 const MARK_ROADS = 'M18 108C30 86 44 72 62 64M102 90C90 86 76 76 62 64M62 64C74 56 79 44 73 32';
 
-// tone: ink (navy roads, red dot) | white (for red or blue posters: all white).
+// tone: ink (navy roads, star dot) | navy (on navy: white roads, star dot) |
+// white (all white, for posters).
 // At 24px and below it uses the heavier small geometry. Decorative unless
 // `label` is given.
 export function PathwaysMark({ size = 40, tone = 'ink', label, className = '' }) {
   const small = size <= 24;
   const white = tone === 'white';
+  const onNavy = tone === 'navy';
   const stroke = small ? 14 : white ? 12 : 10;
   const r = small ? 13 : white ? 12 : 10;
   const a11y = label ? { role: 'img', 'aria-label': label } : { 'aria-hidden': true, focusable: 'false' };
   return (
     <svg viewBox="0 0 120 120" width={size} height={size} className={`shrink-0 ${className}`} {...a11y}>
-      <path d={MARK_ROADS} fill="none" stroke={white ? COLORS.onNavy : COLORS.navy} strokeWidth={stroke} strokeLinecap="round" />
+      <path d={MARK_ROADS} fill="none" stroke={white || onNavy ? COLORS.onNavy : COLORS.navy} strokeWidth={stroke} strokeLinecap="round" />
       <circle cx="70" cy="20" r={r} fill={white ? COLORS.onNavy : COLORS.star} />
     </svg>
   );
@@ -210,8 +212,9 @@ export function PathwaysMark({ size = 40, tone = 'ink', label, className = '' })
 export function PathwaysLockup({ layout = 'horizontal', size, tone = 'ink', descriptor, className = '' }) {
   const stacked = layout === 'stacked';
   const markSize = size ?? (stacked ? 72 : 32);
-  const text = tone === 'white' ? 'text-white' : 'text-navy';
-  const sub = tone === 'white' ? 'text-on-navy-2' : 'text-ink-2';
+  const light = tone === 'white' || tone === 'navy';
+  const text = light ? 'text-white' : 'text-navy';
+  const sub = light ? 'text-on-navy-2' : 'text-ink-2';
   return (
     <div className={`${stacked ? 'flex flex-col items-center text-center gap-2' : 'flex items-center gap-2.5'} ${className}`}>
       <PathwaysMark size={markSize} tone={tone} />

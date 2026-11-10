@@ -7,17 +7,21 @@ import {
   SheetContent,
   SheetHeader,
   SheetTitle,
-  SheetTrigger,
 } from "@/components/ui/sheet";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { toast } from "sonner";
 import { formatDistanceToNow } from 'date-fns';
 import { Link } from 'react-router-dom';
 
-export default function NotificationCenter({ userEmail }) {
+// The notifications panel. It has no button of its own: the profile menu opens
+// it (`open` / `onOpenChange`), and the header shows a dot from
+// `onUnreadChange(count)`. It stays mounted so it keeps checking for new ones.
+export default function NotificationCenter({ userEmail, open = false, onOpenChange, onUnreadChange }) {
   const [notifications, setNotifications] = useState([]);
   const [unreadCount, setUnreadCount] = useState(0);
-  const [isOpen, setIsOpen] = useState(false);
+  const isOpen = open;
+  const setIsOpen = (value) => onOpenChange?.(value);
+  useEffect(() => { onUnreadChange?.(unreadCount); }, [unreadCount]); // eslint-disable-line react-hooks/exhaustive-deps
   const [permission, setPermission] = useState(
     typeof Notification !== 'undefined' ? Notification.permission : 'denied'
   );
@@ -98,14 +102,6 @@ export default function NotificationCenter({ userEmail }) {
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
-      <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="relative" aria-label="Notifications">
-          <Bell className="w-5 h-5 text-pw-navy" />
-          {unreadCount > 0 && (
-            <span className="absolute top-2 right-2 w-2.5 h-2.5 bg-navy rounded-full ring-2 ring-white" />
-          )}
-        </Button>
-      </SheetTrigger>
       <SheetContent className="w-[92vw] max-w-[380px] sm:w-[380px] flex flex-col bg-pw-page border-pw-line">
         <SheetHeader className="flex flex-row items-center justify-between gap-2 space-y-0 mb-4 pr-8">
           <SheetTitle className="text-xl font-extrabold text-pw-navy">Notifications</SheetTitle>

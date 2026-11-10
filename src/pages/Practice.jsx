@@ -72,13 +72,16 @@ export default function Practice() {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const urlMode = searchParams.get('mode');
+  // Practice lives in the Study page's Practice tab (/study?tab=practice);
+  // a run adds ?mode=… there. Keep the tab when a run starts or ends.
+  const practiceParams = (runMode) => (runMode ? { tab: 'practice', mode: runMode } : { tab: 'practice' });
 
   // A run lives in the URL (?mode=…) so it is full screen and the browser's
   // Back closes it. Leaving the run clears the param.
   const exitRun = () => {
     setMode('menu');
     setResults([]);
-    setSearchParams({}, { replace: false });
+    setSearchParams(practiceParams(), { replace: false });
   };
   useEffect(() => {
     if (!urlMode && mode !== 'menu') {
@@ -128,7 +131,7 @@ export default function Practice() {
       startSession(urlMode);
     } else if (!RUN_MODES.includes(urlMode) || urlMode === 'vocabulary') {
       // Not something a link can start (or a reload mid-vocabulary): back to the hub.
-      setSearchParams({}, { replace: true });
+      setSearchParams(practiceParams(), { replace: true });
     }
   }, [currentUser]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -284,7 +287,7 @@ export default function Practice() {
 
   const startSession = async (selectedMode, subMode = null) => {
     startedFromUrl.current = true;
-    if (urlMode !== selectedMode) setSearchParams({ mode: selectedMode });
+    if (urlMode !== selectedMode) setSearchParams(practiceParams(selectedMode));
     setResults([]);
     setIsLoading(true);
     setMode(selectedMode);
@@ -440,7 +443,7 @@ export default function Practice() {
           <PartTile n={1} skill="reading" label="Reading" title="Read a sentence aloud" status="We check each word" onStart={() => startSession('reading')} />
           <PartTile n={2} skill="writing" label="Writing" title="Listen and write" status="On ruled paper" onStart={() => startSession('dictation')} />
           <PartTile n={3} skill="civics" label="Civics" title="Civics questions" status={`The ${civicsVersion} test`} onStart={() => startSession('civics')} />
-          <PartTile n={4} skill="speaking" label="Speaking" title="The officer’s questions" status="Say what each one asks" onStart={() => { setSearchParams({ mode: 'interview' }); setMode('interview'); }} />
+          <PartTile n={4} skill="speaking" label="Speaking" title="The officer’s questions" status="Say what each one asks" onStart={() => { setSearchParams(practiceParams('interview')); setMode('interview'); }} />
         </div>
 
         {/* Vocabulary games (part of Writing) */}
