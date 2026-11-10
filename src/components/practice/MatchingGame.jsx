@@ -91,7 +91,7 @@ export default function MatchingGame({ words, onComplete }) {
         {missed && <span className="ms-2 font-semibold text-pw-red-ink">Not a pair. Try again.</span>}
       </p>
 
-      <div className="mt-4 -mx-4 bg-pw-slate px-3 py-4 sm:mx-0 sm:rounded-[14px] sm:p-5">
+      <div className="mt-4 -mx-4 bg-pw-slate px-3 py-4 sm:mx-0 sm:rounded-card sm:p-5">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
           {items.map((item) => {
             const isSelected = selectedIds.includes(item.id);
@@ -111,7 +111,7 @@ export default function MatchingGame({ words, onComplete }) {
                 disabled={isMatched}
                 aria-pressed={isSelected}
                 aria-label={isMatched ? `${item.content} (matched)` : item.content}
-                className={`relative min-h-[128px] overflow-hidden rounded-[14px] border bg-white p-3 text-center flex items-center justify-center transition-[box-shadow,border-color,background-color] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2 focus-visible:ring-offset-pw-slate
+                className={`relative min-h-[128px] overflow-hidden rounded-card border bg-white p-3 text-center flex items-center justify-center transition-[box-shadow,border-color,background-color] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2 focus-visible:ring-offset-pw-slate
                   ${isMatched
                     ? 'border-pw-line bg-pw-page pt-9 shadow-none cursor-default'
                     : isError

@@ -5,26 +5,26 @@ import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-2xl text-base font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-base font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
         default:
-          "bg-pw-navy text-white hover:bg-pw-navy-deep",
+          "bg-navy text-white hover:bg-navy-deep",
         destructive:
-          "bg-pw-red-ink text-white hover:bg-pw-red-deep",
+          "bg-not-correct text-white hover:bg-pw-red-deep",
         outline:
-          "border-2 border-pw-line bg-white text-pw-navy hover:border-pw-navy",
+          "border-2 border-navy bg-transparent text-ink hover:bg-sand",
         secondary:
-          "bg-pw-soft text-pw-navy hover:bg-pw-soft-hover",
-        ghost: "text-pw-navy hover:bg-pw-soft",
-        link: "text-pw-navy underline underline-offset-4 decoration-pw-navy/40 hover:decoration-pw-navy",
+          "bg-sand text-ink hover:bg-sand-hover",
+        ghost: "text-ink hover:bg-sand",
+        link: "text-ink underline underline-offset-4 decoration-ink/40 hover:decoration-ink",
       },
       size: {
         default: "min-h-11 px-5 py-2",
         sm: "min-h-11 px-4 text-sm",
         lg: "min-h-[52px] px-8 text-lg",
-        icon: "h-11 w-11 rounded-xl",
+        icon: "h-11 w-11 rounded-full",
       },
     },
     defaultVariants: {

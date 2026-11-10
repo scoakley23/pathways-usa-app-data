@@ -15,7 +15,7 @@ export default function N400Cover({ sections, completedIds = [], onOpen, tutorNa
         <svg viewBox="0 0 24 60" className="absolute right-7 top-1 w-[18px] h-[46px]" aria-hidden="true">
           <path d="M8 54V12a4 4 0 0 1 8 0v36a6 6 0 0 1-12 0V16" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" className="text-pw-muted" />
         </svg>
-        <div className="rounded-[14px] rounded-tl-none bg-pw-manila px-4 pt-5 pb-5 sm:px-6 shadow-[0_10px_24px_rgba(20,38,74,0.16)] space-y-4">
+        <div className="rounded-card rounded-tl-none bg-pw-manila px-4 pt-5 pb-5 sm:px-6 shadow-[0_10px_24px_rgba(20,38,74,0.16)] space-y-4">
           <p className="rotate-[0.6deg] bg-white px-4 py-4 text-lg leading-relaxed shadow-[0_2px_6px_rgba(20,38,74,0.10)]">
             Your interview officer will go over your N-400 with you. Here you learn what each question means, in plain words.
           </p>
@@ -35,7 +35,7 @@ export default function N400Cover({ sections, completedIds = [], onOpen, tutorNa
 
       <Link
         to="/lawyer-first"
-        className="ms-auto block w-fit -rotate-2 font-hand text-[25px] font-bold leading-tight text-pw-red-ink underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy rounded"
+        className="ms-auto block w-fit text-lg font-semibold leading-snug text-ink underline underline-offset-4 hover:decoration-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy rounded"
       >
         how it applies to you → a lawyer <span className="sr-only">(Talk to a lawyer first){tutorName ? `, from ${tutorName}` : ''}</span>
       </Link>

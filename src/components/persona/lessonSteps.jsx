@@ -89,7 +89,7 @@ function QuestionCard({ ctx, eyebrow = 'The officer asks', text, children }) {
 export function PartIntroStep({ step, ctx }) {
   return (
     <div className="space-y-4">
-      <div className="rounded-[14px] bg-pw-blue-soft px-4 pt-4 pb-4">
+      <div className="rounded-card bg-pw-blue-soft px-4 pt-4 pb-4">
         <TopicArt name={step.art} />
         <p className="text-[1.375em] font-extrabold mt-2 text-pw-navy">{step.title.mine || step.title.en}</p>
         {step.title.mine && <p className="text-pw-muted">{step.title.en}</p>}
@@ -262,7 +262,7 @@ export function SpeakingStep({ step, ctx, state, setState }) {
       {ctx.posters ? (
         <Poster
           tone={posterTone(Math.max(0, ctx.posterIndex))}
-          className={`-mx-4 sm:mx-0 sm:rounded-[14px] ${ctx.sizeClass}`}
+          className={`-mx-4 sm:mx-0 sm:rounded-card ${ctx.sizeClass}`}
           label={`Practice · ${ctx.posterIndex + 1} of ${ctx.posterTotal}`}
           question={question.question}
           questionAs="p"

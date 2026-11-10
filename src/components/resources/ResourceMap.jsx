@@ -12,6 +12,7 @@ import 'leaflet/dist/leaflet.css';
 import 'leaflet.markercluster/dist/MarkerCluster.css';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { PIN_COLORS } from '@/lib/resourceHub';
+import { COLORS } from '@/lib/theme';
 
 // Map for the Resource Hub. Loaded lazily (React.lazy) so the map libraries
 // are only downloaded on this page. The map picture comes from OpenFreeMap
@@ -76,7 +77,7 @@ function BaseLayer() {
 const pinIcon = (category, selected) => {
   const size = selected ? 26 : 18;
   const color = PIN_COLORS[category] || PIN_COLORS.other;
-  const ring = selected ? 'box-shadow:0 0 0 4px #14264A,0 4px 10px rgba(20,38,74,.45)' : 'box-shadow:0 2px 6px rgba(20,38,74,.35)';
+  const ring = selected ? `box-shadow:0 0 0 4px ${COLORS.navy},0 4px 10px rgba(14,27,51,.45)` : 'box-shadow:0 2px 6px rgba(14,27,51,.35)';
   return L.divIcon({
     className: '',
     html: `<span style="display:block;width:${size}px;height:${size}px;border-radius:9999px;background:${color};border:3px solid #fff;${ring}"></span>`,
@@ -90,7 +91,7 @@ const clusterIcon = (cluster) => {
   const size = n < 10 ? 36 : n < 100 ? 42 : 50;
   return L.divIcon({
     className: '',
-    html: `<span style="display:grid;place-items:center;width:${size}px;height:${size}px;border-radius:9999px;background:#14264A;color:#fff;font:700 15px 'Instrument Sans',system-ui,sans-serif;border:3px solid #fff;box-shadow:0 2px 8px rgba(20,38,74,.4)">${n}</span>`,
+    html: `<span style="display:grid;place-items:center;width:${size}px;height:${size}px;border-radius:9999px;background:${COLORS.navy};color:#fff;font:600 15px 'Inter',system-ui,sans-serif;border:3px solid #fff;box-shadow:0 2px 8px rgba(20,38,74,.4)">${n}</span>`,
     iconSize: [size, size],
     iconAnchor: [size / 2, size / 2],
   });
@@ -98,7 +99,7 @@ const clusterIcon = (cluster) => {
 
 const youAreHere = L.divIcon({
   className: '',
-  html: '<span style="display:block;width:18px;height:18px;border-radius:9999px;background:#fff;border:5px solid #1F4C8F;box-shadow:0 0 0 6px rgba(31,76,143,.2)"></span>',
+  html: `<span style="display:block;width:18px;height:18px;border-radius:9999px;background:#fff;border:5px solid ${COLORS.navy};box-shadow:0 0 0 6px rgba(14,27,51,.2)"></span>`,
   iconSize: [18, 18],
   iconAnchor: [9, 9],
 });

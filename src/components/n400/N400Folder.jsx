@@ -2,9 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import { Check } from 'lucide-react';
 import { Folder, FolderTab } from '@/components/pathways/ui';
 
-// Short tab labels and colors for the N-400 sections (Part 8, then the Part 9
-// groups), in form order: seven different colors so each section is easy to
-// find again (folder tabs, the section list, the chips on the cover).
+// Short tab labels for the N-400 sections (Part 8, then the Part 9 groups), in
+// form order. Sections no longer have their own colors: every tone is navy
+// (the `tone` names stay so callers keep working).
 const TABS = {
   'time-outside-us': { label: 'Part 8', tone: 'civics' },
   'citizenship-voting-taxes': { label: 'Citizenship, voting, and taxes', tone: 'reading' },
@@ -15,29 +15,30 @@ const TABS = {
   'oath-questions': { label: 'Oath questions', tone: 'navy' },
 };
 
-// Solid section color with its text color (all ≥ 4.5:1; Sky takes ink).
+// Solid section fill with its text color.
+const SOLID = 'bg-navy text-white';
 export const SECTION_SOLID = {
-  civics: 'bg-pw-civics text-white',
-  reading: 'bg-pw-reading text-white',
-  writing: 'bg-pw-writing text-white',
-  speaking: 'bg-pw-red-ink text-white',
-  plum: 'bg-pw-plum text-white',
-  sky: 'bg-pw-sky text-pw-navy',
-  navy: 'bg-pw-navy text-white',
+  civics: SOLID,
+  reading: SOLID,
+  writing: SOLID,
+  speaking: SOLID,
+  plum: SOLID,
+  sky: SOLID,
+  navy: SOLID,
 };
 export const SECTION_BORDER = {
-  civics: 'border-pw-civics',
-  reading: 'border-pw-reading',
-  writing: 'border-pw-writing',
-  speaking: 'border-pw-red-ink',
-  plum: 'border-pw-plum',
-  sky: 'border-pw-sky',
-  navy: 'border-pw-navy',
+  civics: 'border-navy',
+  reading: 'border-navy',
+  writing: 'border-navy',
+  speaking: 'border-navy',
+  plum: 'border-navy',
+  sky: 'border-navy',
+  navy: 'border-navy',
 };
 
 export const tabFor = (section) => TABS[section.id] || { label: section.title, tone: 'navy' };
 
-// The manila N-400 folder (Phase 6): one colored tab per section, the open
+// The N-400 folder: one tab per section, the open
 // section's title and part, and "n of 7 sections read" (N400SectionProgress,
 // section completion only). `onSelect(id)` opens a section.
 export default function N400Folder({ sections, activeId, completedIds = [], onSelect, children }) {

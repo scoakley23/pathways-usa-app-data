@@ -3,12 +3,13 @@ import { base44 } from '@/api/base44Client';
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { TrendingUp, Loader2 } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
+import { COLORS } from '@/lib/theme';
 
 // Chart colors match the pw tokens (recharts needs raw values).
-const NAVY = '#14264A';
-const RED = '#B53A32'; // Red ink (Signal red is for the dot only)
-const LINE = '#DEE4EE';
-const MUTED = '#3D4F73'; // pw-muted
+const NAVY = COLORS.navy;
+const RED = COLORS.notCorrect; // low scores (star red is never used for results)
+const LINE = COLORS.cardLine;
+const MUTED = COLORS.ink2;
 
 export default function ProgressChart({ userEmail }) {
   const [chartData, setChartData] = useState([]);

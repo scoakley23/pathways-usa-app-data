@@ -98,7 +98,7 @@ function TutorBubble({ profile, language, mine, en, action, expression }) {
   const dir = RTL_LANGUAGES.includes(language) ? 'rtl' : 'ltr';
   return (
     <div className="pr-6">
-      <div className="min-w-0 px-4 py-3 rounded-[14px] rounded-tl-md bg-white border border-pw-line text-pw-navy font-display italic text-xl leading-snug">
+      <div className="min-w-0 px-4 py-3 rounded-card rounded-tl-md bg-white border border-pw-line text-pw-navy font-medium text-xl leading-snug">
         {showMine && <p dir={dir} className="whitespace-pre-line">{mine}</p>}
         {showMine && action && <div className="font-sans not-italic text-base">{action}</div>}
         {en && <p className={cn('whitespace-pre-line', showMine && 'text-pw-muted text-lg mt-2')}>{en}</p>}

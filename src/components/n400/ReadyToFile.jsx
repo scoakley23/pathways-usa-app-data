@@ -14,7 +14,7 @@ export default function ReadyToFile() {
   return (
     <section id="ready-to-file" aria-labelledby="ready-title" className="scroll-mt-24 text-pw-navy">
       <span className="ml-4 inline-block rounded-t-lg bg-pw-navy px-3 py-1 text-sm font-semibold text-white">When you’re ready</span>
-      <div className="rounded-[14px] bg-white border border-pw-line shadow-raised p-5 sm:p-6 space-y-3">
+      <div className="rounded-card bg-white border border-pw-line shadow-raised p-5 sm:p-6 space-y-3">
         <h2 id="ready-title" className="font-display text-[30px] leading-tight">{t('ready_title')}</h2>
         <p className="text-base text-pw-muted max-w-xl">{t('ready_body')}</p>
         <p className="text-base">

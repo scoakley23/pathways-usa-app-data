@@ -191,7 +191,7 @@ export default function GettingStarted({ language, onLanguageChange, onDone }) {
         <button
           type="button"
           onClick={() => go('language')}
-          className="w-full min-h-[88px] rounded-[14px] bg-pw-navy text-white shadow-lift hover:bg-pw-navy-deep px-4 py-3 flex flex-col items-center justify-center gap-1 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-pw-navy/40"
+          className="w-full min-h-[88px] rounded-card bg-pw-navy text-white shadow-lift hover:bg-pw-navy-deep px-4 py-3 flex flex-col items-center justify-center gap-1 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-pw-navy/40"
         >
           <span className="text-2xl font-extrabold flex items-center gap-2"><Volume2 className="w-7 h-7" aria-hidden="true" /> Start</span>
           <span className="text-base font-semibold text-white/80" aria-hidden="true">{START_WORDS.slice(1).join(' · ')}</span>

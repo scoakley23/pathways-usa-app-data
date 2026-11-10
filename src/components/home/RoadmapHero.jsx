@@ -16,7 +16,7 @@ export default function RoadmapHero({ roadmap, t }) {
   const action = `${isNew ? t('hero_start') : t('hero_continue')}: ${t(`stop${currentStop.id}_name`)}`;
 
   return (
-    <section className="rounded-[14px] bg-pw-blue-soft px-5 pt-5 pb-6 text-pw-navy">
+    <section className="rounded-card bg-pw-blue-soft px-5 pt-5 pb-6 text-pw-navy">
       <div className="max-w-2xl mx-auto space-y-4">
         <TopicArt name="capitol" className="w-full h-24" />
         <div className="min-h-[36px]">{label && <Tag tone="red">{label}</Tag>}</div>

@@ -3,6 +3,7 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Calendar } from "@/components/ui/calendar";
 import { Calendar as CalendarIcon, CheckCircle } from 'lucide-react';
 import { format } from 'date-fns';
+import { COLORS } from '@/lib/theme';
 
 export default function PracticeCalendar({ history }) {
   const [date, setDate] = React.useState(new Date());
@@ -21,7 +22,7 @@ export default function PracticeCalendar({ history }) {
 
   const modifiersStyles = {
     practiced: {
-      backgroundColor: '#14264A', // pw-navy
+      backgroundColor: COLORS.navy,
       color: 'white',
       fontWeight: 'bold',
       borderRadius: '100%'

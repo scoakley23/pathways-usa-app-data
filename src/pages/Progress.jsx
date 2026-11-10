@@ -76,7 +76,7 @@ export default function Progress() {
   // Calculate Preparedness Score (Simple metric: Mastered / 100 * 100, cap at 100)
   const preparedness = Math.min(Math.round((stats.mastered / 100) * 100), 100);
 
-  const tileLink = 'block rounded-[14px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2';
+  const tileLink = 'block rounded-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2';
 
   return (
     <div className="space-y-6 text-pw-navy">
@@ -146,7 +146,7 @@ export default function Progress() {
           <Card>
             <CardHeader className="p-5 sm:p-6">
               <CardTitle className="flex items-center gap-3">
-                <span className="w-10 h-10 rounded-2xl bg-pw-red-soft text-pw-red-ink grid place-items-center shrink-0">
+                <span className="w-10 h-10 rounded-2xl bg-sand text-ink grid place-items-center shrink-0">
                   <Award className="w-5 h-5" aria-hidden="true" />
                 </span>
                 Achievements

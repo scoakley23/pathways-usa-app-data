@@ -102,7 +102,7 @@ export default function NotificationCenter({ userEmail }) {
         <Button variant="ghost" size="icon" className="relative" aria-label="Notifications">
           <Bell className="w-5 h-5 text-pw-navy" />
           {unreadCount > 0 && (
-            <span className="absolute top-2 right-2 w-2.5 h-2.5 bg-pw-red-ink rounded-full ring-2 ring-white" />
+            <span className="absolute top-2 right-2 w-2.5 h-2.5 bg-navy rounded-full ring-2 ring-white" />
           )}
         </Button>
       </SheetTrigger>

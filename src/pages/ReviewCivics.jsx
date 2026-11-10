@@ -45,7 +45,7 @@ const whenLabel = (days) => (days <= 0 ? 'Again soon' : days === 1 ? 'Next check
 function SignInMessage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-[50vh] text-center space-y-4 px-4">
-      <div className="w-20 h-20 rounded-[14px] bg-pw-blue-soft flex items-center justify-center" aria-hidden="true">
+      <div className="w-20 h-20 rounded-card bg-pw-blue-soft flex items-center justify-center" aria-hidden="true">
         <CalendarCheck className="w-10 h-10 text-pw-blue-ink" />
       </div>
       <h2 className="text-[28px] font-display font-normal text-pw-navy">Sign in to review civics</h2>
@@ -144,7 +144,7 @@ export default function ReviewCivics() {
 
   return (
     <div className="max-w-xl mx-auto space-y-5 text-pw-navy">
-      <div className="rounded-[14px] bg-pw-blue-soft px-4 pt-4 pb-5">
+      <div className="rounded-card bg-pw-blue-soft px-4 pt-4 pb-5">
         <TopicArt name={art} />
         <Tag tone="teal" className="mt-2">
           {stage === 'done' ? 'Your results' : due.length ? `${due.length} to review` : 'All caught up'}

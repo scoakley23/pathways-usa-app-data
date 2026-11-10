@@ -20,7 +20,7 @@ import { BADGES } from '@/lib/badges';
 // Names, descriptions and rules live in src/lib/badges.js; this adds the look.
 const BADGE_LOOK = {
   first_step: { icon: Star, color: "text-pw-blue-ink bg-pw-blue-soft border-pw-blue-soft" },
-  ten_right: { icon: CheckCircle2, color: "text-pw-red-ink bg-pw-red-soft border-pw-red-soft" },
+  ten_right: { icon: CheckCircle2, color: "text-ink bg-sand border-sand" },
   fifty_right: { icon: ListChecks, color: "text-pw-navy bg-pw-soft border-pw-soft" },
   scholar: { icon: BookOpen, color: "text-pw-blue-ink bg-pw-blue-soft border-pw-blue-soft" },
   full_marks: { icon: Target, color: "text-pw-green-ink bg-pw-green-soft border-pw-green-soft" },
@@ -63,7 +63,7 @@ export default function BadgesDisplay({ earnedBadges = [] }) {
               <TooltipContent>
                 <p className="font-bold text-pw-navy">{badge.name}</p>
                 <p className="text-sm text-pw-muted">{badge.description}</p>
-                {!isEarned && <p className="text-sm text-pw-red-ink mt-1 font-bold">Locked</p>}
+                {!isEarned && <p className="text-sm text-ink-2 mt-1 font-bold">Locked</p>}
               </TooltipContent>
             </Tooltip>
           );

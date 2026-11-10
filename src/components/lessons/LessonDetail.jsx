@@ -257,7 +257,7 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
           {/* Watch */}
           {step === 'watch' && (
             videoId ? (
-              <div className="w-full rounded-[14px] overflow-hidden shadow-raised bg-black">
+              <div className="w-full rounded-card overflow-hidden shadow-raised bg-black">
                 <div className="relative" style={{ paddingBottom: '56.25%' }}>
                   <iframe
                     className="absolute inset-0 w-full h-full"
@@ -307,7 +307,7 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
           {step === 'questions' && (
             <div className="space-y-4">
               <div>
-                <p className="font-display italic text-2xl leading-snug">These are the exact questions the officer may ask.</p>
+                <p className="font-medium text-2xl leading-snug">These are the exact questions the officer may ask.</p>
                 <p className="mt-1 text-base text-pw-muted">{questions.length} {questions.length === 1 ? 'question' : 'questions'} from the {version} civics test, in English, with the official answers.</p>
               </div>
               <ol className="space-y-4">
@@ -315,7 +315,7 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
                   <li key={q.id}>
                     <IndexCard tab={`Question ${i + 1}`} tabSkill="civics">
                       <p className="text-xl font-semibold leading-snug">{cleanQuestionText(q.question)}</p>
-                      <p className="mt-3 font-display italic text-xl leading-snug">Answer: {officialAnswerText(q, location)}</p>
+                      <p className="mt-3 font-medium text-xl leading-snug">Answer: {officialAnswerText(q, location)}</p>
                       <OfficeholderNote answer={officeholderAnswerFor(q, location)} graded={false} className="mt-2" />
                       <ListenButton text={cleanQuestionText(q.question)} language="en" className="mt-3" />
                     </IndexCard>
@@ -388,7 +388,7 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
             <button
               type="button"
               onClick={() => goToLesson(prevLesson)}
-              className="min-h-[56px] rounded-[14px] border border-pw-line bg-white p-3 flex items-center gap-2 text-left hover:border-pw-navy transition-colors min-w-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
+              className="min-h-[56px] rounded-card border border-pw-line bg-white p-3 flex items-center gap-2 text-left hover:border-pw-navy transition-colors min-w-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
             >
               <ChevronLeft className="w-5 h-5 shrink-0" aria-hidden="true" />
               <span className="min-w-0">
@@ -401,7 +401,7 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
             <button
               type="button"
               onClick={() => goToLesson(nextLesson)}
-              className="min-h-[56px] rounded-[14px] border border-pw-line bg-white p-3 flex items-center justify-end gap-2 text-right hover:border-pw-navy transition-colors min-w-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
+              className="min-h-[56px] rounded-card border border-pw-line bg-white p-3 flex items-center justify-end gap-2 text-right hover:border-pw-navy transition-colors min-w-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
             >
               <span className="min-w-0">
                 <span className="block text-sm text-pw-muted">Next</span>

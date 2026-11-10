@@ -107,7 +107,7 @@ export default function QuickCheck() {
 
   return (
     <div className="max-w-xl mx-auto space-y-5 text-pw-navy">
-      <div className="rounded-[14px] bg-pw-blue-soft px-4 pt-4 pb-5">
+      <div className="rounded-card bg-pw-blue-soft px-4 pt-4 pb-5">
         <TopicArt name="compass" />
         <Tag tone="teal" className="mt-2">{stage === 'results' ? 'Your results' : 'About 10 minutes'}</Tag>
         <h1 className="font-display text-[36px] leading-tight mt-3">Quick check</h1>

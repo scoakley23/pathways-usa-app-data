@@ -217,7 +217,7 @@ export default function ResourceFinder() {
               <div
                 className={fullscreen
                   ? 'fixed inset-0 !mt-0 z-[70] bg-white flex flex-col'
-                  : 'relative h-[380px] sm:h-[440px] rounded-[14px] overflow-hidden border border-pw-line shadow-raised bg-pw-soft isolate'}
+                  : 'relative h-[380px] sm:h-[440px] rounded-card overflow-hidden border border-pw-line shadow-raised bg-pw-soft isolate'}
                 role={fullscreen ? 'dialog' : undefined}
                 aria-modal={fullscreen ? 'true' : undefined}
                 aria-label={fullscreen ? 'Map of places near you' : undefined}
@@ -328,7 +328,7 @@ export default function ResourceFinder() {
         </ul>
       </RaisedCard>
 
-      <div className="rounded-[14px] bg-pw-red-soft p-4 sm:p-5 flex items-start gap-3">
+      <div className="rounded-card bg-pw-red-soft p-4 sm:p-5 flex items-start gap-3">
         <AlertTriangle className="w-5 h-5 text-pw-red-ink shrink-0 mt-0.5" aria-hidden="true" />
         <p className="text-base text-pw-navy leading-relaxed">
           Pathways USA does not run or endorse these places. Hours and services change, so call before you go. For
