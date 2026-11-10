@@ -17,7 +17,7 @@ import StudyTop from '@/components/study/StudyTop';
 import { Button as PwButton, Card, Chip, CreamSheet, Eyebrow, NavyTop, Poster, posterSolid, posterOutline } from '@/components/pathways/ui';
 import { LEVELS } from '@/lib/pretest';
 import { PRACTICE_PARTS, partStatus, suggestPart } from '@/lib/studyView';
-import { cardOutcome, countOutcomes } from '@/lib/practiceResults';
+import { cardOutcome, countOutcomes, countedOutcomes, missedItems, roundRule, roundTitle } from '@/lib/practiceResults';
 import { awardBadges } from '@/lib/awardBadges';
 import { toast } from "sonner";
 import VoiceSettings from '@/components/utils/VoiceSettings';
@@ -175,21 +175,24 @@ export default function Practice() {
   }, [sessionComplete]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Interview Practice Mode
+  // The mock interview (The Road): full width, its own top bar; it ends on
+  // the Round complete report (the run stays open until the learner closes
+  // it, so the report can be read).
   if (mode === 'interview') {
     return (
-      <RunShell label={RUN_LABEL.interview} onClose={exitRun}>
-        <InterviewPractice
-          onComplete={(passed) => {
-            if (passed) {
-              toast.success('Great job! You\'re ready for the interview!');
-            } else {
-              toast.info('Keep practicing - you\'re getting better!');
-            }
-            exitRun();
-          }}
-          onNext={() => {}}
-        />
-      </RunShell>
+      <InterviewPractice
+        onComplete={(passed) => {
+          if (passed) {
+            toast.success('Great job! You\'re ready for the interview!');
+          } else {
+            toast.info('Keep practicing - you\'re getting better!');
+          }
+        }}
+        onNext={() => {}}
+        onClose={exitRun}
+        onBack={() => navigate('/')}
+        learnerName={firstName(currentUser)}
+      />
     );
   }
 
@@ -576,31 +579,47 @@ export default function Practice() {
     setCurrentIndex(0);
     setSessionComplete(false);
   };
-  if (mode === 'civics' && sessionComplete) {
+  // Rounds that end on "Round complete": civics, reading, writing and the
+  // vocabulary word dictation. (Flashcards and matching keep their summary.)
+  const roundKind = mode === 'civics' ? 'civics'
+    : mode === 'reading' ? 'reading'
+      : mode === 'dictation' ? 'writing'
+        : mode === 'vocabulary' && vocabSubMode === 'dictation' ? 'words'
+          : null;
+  if (roundKind && sessionComplete) {
+    const missed = missedItems(content, results);
+    const right = countOutcomes(results).right;
+    const noun = roundKind === 'civics' ? 'question' : roundKind === 'words' ? 'word' : 'sentence';
+    const plural = (n) => `${n} ${noun}${n === 1 ? '' : 's'}`;
     return (
       <RoundComplete
-        items={content}
-        results={results}
-        version={civicsVersion}
-        name={firstName(currentUser)}
+        outcomes={countedOutcomes(content, results)}
+        title={roundTitle(right, firstName(currentUser))}
+        rule={roundKind === 'words' ? null : roundRule(roundKind, civicsVersion)}
+        review={{
+          heading: `${plural(missed.length)} to review`,
+          lines: missed.map((item) => item.question || item.text || item.word),
+          button: `Review the ${plural(missed.length)}`,
+        }}
         onClose={exitRun}
-        onReview={startReview}
-        onAgain={() => startSession('civics')}
+        onReview={() => startReview(missed)}
+        onAgain={() => startSession(mode, vocabSubMode)}
         onBack={() => navigate('/')}
       />
     );
   }
-  if (mode === 'civics' && !isLoading && content.length > 0) {
-    return (
-      <CivicsTestCard
-        index={currentIndex}
-        total={content.length}
-        question={content[currentIndex]}
-        onComplete={handleComplete}
-        onNext={handleNext}
-        onClose={exitRun}
-      />
-    );
+  // The cards themselves (The Road): full width, each with its own top bar.
+  if (roundKind && !isLoading && content.length > 0) {
+    const cardProps = {
+      index: currentIndex,
+      total: content.length,
+      onComplete: handleComplete,
+      onNext: handleNext,
+      onClose: exitRun,
+    };
+    if (roundKind === 'civics') return <CivicsTestCard {...cardProps} question={content[currentIndex]} />;
+    if (roundKind === 'reading') return <ReadingPracticeCard {...cardProps} sentence={content[currentIndex]} />;
+    return <DictationCard {...cardProps} sentence={content[currentIndex]} />;
   }
 
   if (sessionComplete) {
@@ -634,59 +653,26 @@ export default function Practice() {
         <div className="flex justify-center py-20">
             <Loader2 className="w-10 h-10 animate-spin text-pw-navy" />
         </div>
-      ) : content.length > 0 ? (
-         mode === 'reading' ? (
-            <ReadingPracticeCard 
-                index={currentIndex}
-                total={content.length}
-                sentence={content[currentIndex]}
-                onComplete={handleComplete}
-                onNext={handleNext}
-                results={results}
-            />
-         ) : mode === 'vocabulary' ? (
-            vocabSubMode === 'flashcards' ? (
-              <FlashcardGame 
-                words={content} 
-                index={currentIndex}
-                total={content.length}
-                results={results}
-                onComplete={(isSuccess) => {
-                  handleComplete(isSuccess);
-                  handleNext();
-                }}
-              />
-            ) : vocabSubMode === 'matching' ? (
-              <MatchingGame 
-                words={content}
-                onComplete={(pairs) => {
-                  // Every pair ends matched; nothing is saved for this game.
-                  setResults(Array(pairs).fill('right'));
-                  setSessionComplete(true);
-                }}
-              />
-            ) : (
-              // Default to Dictation for vocabulary
-              <DictationCard 
-                  index={currentIndex}
-                  total={content.length}
-                  sentence={content[currentIndex]}
-                  onComplete={handleComplete}
-                  onNext={handleNext}
-                  results={results}
-              />
-            )
-         ) : (
-            // Dictation (Sentences)
-            <DictationCard 
-                index={currentIndex}
-                total={content.length}
-                sentence={content[currentIndex]}
-                onComplete={handleComplete}
-                onNext={handleNext}
-                results={results}
-            />
-         )
+      ) : content.length > 0 && vocabSubMode === 'flashcards' ? (
+        <FlashcardGame
+          words={content}
+          index={currentIndex}
+          total={content.length}
+          results={results}
+          onComplete={(isSuccess) => {
+            handleComplete(isSuccess);
+            handleNext();
+          }}
+        />
+      ) : content.length > 0 && vocabSubMode === 'matching' ? (
+        <MatchingGame
+          words={content}
+          onComplete={(pairs) => {
+            // Every pair ends matched; nothing is saved for this game.
+            setResults(Array(pairs).fill('right'));
+            setSessionComplete(true);
+          }}
+        />
       ) : (
          <div className="text-center py-20">
             <p className="text-lg text-pw-muted">No content found for this mode.</p>

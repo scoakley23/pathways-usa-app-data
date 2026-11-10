@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Eyebrow, Poster, PrimaryButton, RaisedCard, RuledPaper, SecondaryButton, Tag, posterBigButton, posterLink, posterSolid, posterTone, posterTool } from '@/components/pathways/ui';
+import { Button, Card, Chip, CreamSheet, Eyebrow, NavyTop, PrimaryButton, RaisedCard, RuledPaper, SecondaryButton, Tag } from '@/components/pathways/ui';
+import AnswerFeedback from './AnswerFeedback';
+import RunTopBar from './RunTopBar';
 import { Link } from 'react-router-dom';
-import { Mic, MicOff, Volume2, ArrowRight, Check, Loader2, ChevronDown, ChevronUp, FileText, Bot, BarChart3 } from 'lucide-react';
+import { Mic, MicOff, Volume2, ArrowRight, Check, Loader2, ChevronDown, ChevronUp, FileText, Bot, BarChart3, Scale, X } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { speakText, stopSpeaking, getRandomVoice } from "@/components/utils/textToSpeech";
 import { toast } from "sonner";
@@ -26,7 +28,12 @@ const speechTimeoutMs = (text) => {
 // Questions about the learner's own history (isUnderstandingSection) are never
 // answered: the learner says what the question is asking, and only that
 // understanding is checked (evaluateUnderstanding).
-export default function InterviewPractice({ onComplete, onNext, rehearsal = null }) {
+// The Road: the officer's question on navy (with the run's top bar when
+// `onClose` is given), the answer controls and the result (AnswerFeedback)
+// on the cream sheet, the conversation under them; the end is the Round
+// complete screen (InterviewReport). In Interview Day (rehearsal) it sits
+// framed inside that page. `learnerName` = first name for "Nice work, Ana."
+export default function InterviewPractice({ onComplete, onNext, rehearsal = null, onClose = null, onBack = null, learnerName = '' }) {
   const [questions, setQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isListening, setIsListening] = useState(false);
@@ -394,16 +401,35 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
 
   const formatTime = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
 
-  if (isLoadingQuestions) return (
-    <RaisedCard padding="p-10" className="text-center text-pw-navy">
-      <Loader2 className="w-10 h-10 animate-spin mx-auto mb-4 text-pw-navy" aria-hidden="true" />
-      <p className="font-semibold text-pw-muted">Loading interview questions...</p>
+  // Screens before and after the questions keep a padded page with a close
+  // button (in Practice); Interview Day brings its own page.
+  const embedded = !!rehearsal;
+  const padded = (children) => (embedded ? children : (
+    <div className="container max-w-3xl mx-auto px-4 pt-6 pb-8 space-y-4">
+      {onClose && (
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close practice"
+          className="w-11 h-11 rounded-full bg-white border border-card-line grid place-items-center text-ink hover:bg-sand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
+        >
+          <X className="w-5 h-5" aria-hidden="true" />
+        </button>
+      )}
+      {children}
+    </div>
+  ));
+
+  if (isLoadingQuestions) return padded(
+    <RaisedCard padding="p-10" className="text-center text-ink">
+      <Loader2 className="w-10 h-10 animate-spin mx-auto mb-4 text-navy" aria-hidden="true" />
+      <p className="font-semibold text-ink-2">Loading interview questions...</p>
     </RaisedCard>
   );
 
-  if (questions.length === 0) return (
-    <RaisedCard padding="p-10" className="text-center text-pw-navy">
-      <p className="text-pw-muted mb-4">No interview questions found.</p>
+  if (questions.length === 0) return padded(
+    <RaisedCard padding="p-10" className="text-center text-ink">
+      <p className="text-ink-2 mb-4">No interview questions found.</p>
       <SecondaryButton onClick={() => window.location.reload()}>Reload</SecondaryButton>
     </RaisedCard>
   );
@@ -411,18 +437,20 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
   if (showReport) return (
     <InterviewReport
       results={sessionResults}
-      questions={questions}
+      name={learnerName}
       onRestart={handleRestart}
+      onClose={onClose}
+      onBack={onBack || onClose}
     />
   );
 
   if (!sessionStarted && rehearsal) return (
-    <RaisedCard padding="p-10" className="text-center text-pw-navy">
-      <Loader2 className="w-10 h-10 animate-spin mx-auto text-pw-navy" aria-label="Starting" />
+    <RaisedCard padding="p-10" className="text-center text-ink">
+      <Loader2 className="w-10 h-10 animate-spin mx-auto text-navy" aria-label="Starting" />
     </RaisedCard>
   );
 
-  if (!sessionStarted && askingReady) return (
+  if (!sessionStarted && askingReady) return padded(
     <div className="w-full max-w-3xl mx-auto">
       <PreInterviewQuestion
         email={pilot.email}
@@ -431,7 +459,7 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
     </div>
   );
 
-  if (!sessionStarted) return (
+  if (!sessionStarted) return padded(
     <div className="w-full max-w-3xl mx-auto space-y-4">
       <InterviewIntro
         questions={questions}
@@ -444,7 +472,7 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
   );
 
   const current = questions[currentIndex];
-  const progress = ((currentIndex + 1) / questions.length) * 100;
+  const understanding = isUnderstandingSection(current);
   const sectionLabel = {
     small_talk: 'Small Talk',
     personal_info: 'Personal Info',
@@ -454,154 +482,104 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
 
   const statusText = {
     speaking: 'Officer Martinez is speaking...',
-    listening: isUnderstandingSection(current) ? 'Your turn — tap the microphone and say what it is asking' : 'Your turn — tap the microphone to answer',
+    listening: understanding ? 'Your turn — tap Say it and say what it is asking' : 'Your turn — tap Say it to answer',
     thinking: 'Officer Martinez is evaluating your response...',
     idle: feedback ? 'Review your feedback below' : 'Ready when you are',
   }[interviewerState];
 
+  const nextLabel = currentIndex < questions.length - 1
+    ? <>Next question <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" /></>
+    : rehearsal
+      ? <>Continue <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" /></>
+      : <><FileText className="w-5 h-5" aria-hidden="true" /> See the full report</>;
+
   return (
-    <div className="w-full max-w-3xl mx-auto space-y-4 text-pw-navy">
-      {/* Progress: the poster's stars show it; this bar only for runs too long for stars */}
-      {questions.length > 24 && <div>
-        <div className="flex justify-between items-center gap-3 mb-2 text-sm font-semibold text-pw-muted">
-          <span>Question {currentIndex + 1} of {questions.length}</span>
-          <span>{sessionResults.filter(r => r.is_acceptable).length} passed so far</span>
-        </div>
-        <div
-          className="flex gap-1"
-          role="progressbar"
-          aria-valuemin={0}
-          aria-valuemax={100}
-          aria-valuenow={Math.round(progress)}
-          aria-label={`Question ${currentIndex + 1} of ${questions.length}`}
-        >
-          {questions.map((_, i) => (
-            <div key={i} className={`h-2 flex-1 rounded-full transition-colors ${
-              i < sessionResults.length
-                ? (sessionResults[i]?.is_acceptable ? 'bg-pw-green-ink' : 'bg-pw-red-ink')
-                : i === currentIndex ? 'bg-pw-navy' : 'bg-pw-line'
-            }`} />
-          ))}
-        </div>
-      </div>}
-
-      {/* Virtual Interviewer */}
-      <RaisedCard padding="p-4">
-        <VirtualInterviewer state={interviewerState} />
-      </RaisedCard>
-
-      {/* The question on a poster, with the microphone (Phase 5) */}
-      <Poster
-        tone={posterTone(currentIndex)}
-        className="-mx-4 sm:mx-0 sm:rounded-card"
-        label={`Interview · ${sectionLabel}`}
-        question={current.question}
-      >
-        <div className="space-y-4">
-          <button type="button" onClick={speakQuestion} disabled={interviewerState === 'speaking'} className={`${posterTool} disabled:opacity-60`}>
+    <div className={embedded ? 'w-full max-w-3xl mx-auto' : ''}>
+      {/* NAVY TOP: the officer's question */}
+      <NavyTop className={`pb-12 ${embedded ? 'rounded-card' : ''}`}>
+        <div className="mx-auto max-w-2xl space-y-4">
+          {onClose && <RunTopBar onClose={onClose} index={currentIndex} total={questions.length} answered={!!feedback} />}
+          <p className="text-label uppercase text-on-navy-label">Interview · {sectionLabel}</p>
+          <h2 className={`font-display leading-[1.08] ${feedback ? 'text-[30px]' : 'text-[38px] sm:text-[40px]'}`}>{current.question}</h2>
+          <Chip onNavy onClick={speakQuestion} disabled={interviewerState === 'speaking'} className="disabled:opacity-60">
             <Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" /> Repeat question
-          </button>
+          </Chip>
+        </div>
+      </NavyTop>
 
+      {/* CREAM SHEET: answer, the result, the conversation */}
+      <CreamSheet className={embedded ? 'rounded-b-card' : 'min-h-[50vh]'}>
+        <div className="mx-auto max-w-2xl space-y-5 pb-6 text-ink">
           {/* Questions about the learner's history: understanding only */}
-          {isUnderstandingSection(current) && (
-            <div className="border-s-2 border-white/70 ps-4 space-y-1">
-              <p className="text-base font-semibold">Don't answer this question. Say in English what the officer is asking.</p>
-              <p className="text-base">We explain what questions mean. How they apply to you is for a lawyer. <Link to="/lawyer-first" className="font-semibold underline underline-offset-4">Talk to a lawyer first</Link></p>
-            </div>
+          {understanding && (
+            <Card padding="p-4" className="space-y-1.5">
+              <p className="text-base font-semibold">Don&apos;t answer this question. Say in English what the officer is asking.</p>
+              <p className="text-base text-ink-2">We explain what questions mean. How they apply to you is for a lawyer.</p>
+              <Link to="/lawyer-first" className="inline-flex min-h-tap items-center gap-2 font-semibold text-ink underline underline-offset-4">
+                <Scale className="w-5 h-5" aria-hidden="true" /> Talk to a lawyer first
+              </Link>
+            </Card>
           )}
 
           {!feedback && (
             <>
-              <div className="flex flex-col items-center pt-2">
-                <div className="relative">
-                  <span className={`absolute inset-0 rounded-full bg-white/20 transition-transform ${isListening ? 'scale-[1.35] animate-pulse' : 'scale-[1.2]'}`} aria-hidden="true" />
-                  <button
-                    type="button"
-                    onClick={toggleListening}
-                    disabled={isAnalyzing}
-                    aria-label={isListening ? 'Stop recording' : 'Record your answer'}
-                    className={posterBigButton}
-                  >
-                    {isListening ? <MicOff className="w-10 h-10" aria-hidden="true" /> : <Mic className="w-10 h-10" aria-hidden="true" />}
-                  </button>
+              <p className="text-base font-semibold" aria-live="polite">{statusText}</p>
+              {(isListening || userResponse) && (
+                <div className="rounded-card bg-white border border-card-line p-4">
+                  <p className="text-label uppercase text-ink-label">{isListening ? `Recording… ${formatTime(recordingTime)}` : 'You said'}</p>
+                  <p className="mt-1 text-xl leading-snug min-h-[1.5em]">{userResponse ? `“${userResponse}”` : ''}</p>
                 </div>
-                <p className="mt-5 text-lg font-semibold text-center" aria-live="polite">{statusText}</p>
-              </div>
-              <div className="flex flex-wrap items-center gap-3">
-                {userResponse && !isListening && (
-                  <button type="button" onClick={analyzeResponse} disabled={isAnalyzing} className={posterSolid}>
-                    {isAnalyzing ? <Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" /> : <Check className="w-5 h-5" aria-hidden="true" />}
-                    {isAnalyzing ? 'Checking…' : 'Check my answer'}
-                  </button>
-                )}
-                <button type="button" onClick={handleSkip} className={posterLink}>Skip this question</button>
-              </div>
+              )}
+              {isListening ? (
+                <Button variant="main" className="w-full min-h-[60px]" onClick={toggleListening}>
+                  <MicOff className="w-6 h-6" aria-hidden="true" /> Stop
+                </Button>
+              ) : userResponse ? (
+                <Button variant="main" className="w-full min-h-[60px]" onClick={analyzeResponse} disabled={isAnalyzing}>
+                  {isAnalyzing ? <Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" /> : <Check className="w-5 h-5" aria-hidden="true" />}
+                  {isAnalyzing ? 'Checking…' : 'Check my answer'}
+                </Button>
+              ) : (
+                <Button variant="main" className="w-full min-h-[60px]" onClick={toggleListening} disabled={isAnalyzing}>
+                  <Mic className="w-6 h-6" aria-hidden="true" /> Say it
+                </Button>
+              )}
+              {userResponse && !isListening && (
+                <Button variant="second" onClick={toggleListening} disabled={isAnalyzing}>
+                  <Mic className="w-5 h-5" aria-hidden="true" /> Say it again
+                </Button>
+              )}
+              <Button variant="link" className="px-0" onClick={handleSkip}>Skip this question</Button>
             </>
           )}
 
-          {/* The verdict stays on the poster, with the way forward */}
           {feedback && (
-            <div className="space-y-3" aria-live="polite">
-              <p className="text-2xl font-bold">
-                {isUnderstandingSection(current)
-                  ? (feedback.is_acceptable ? 'You understood the question.' : 'Not quite yet.')
-                  : (feedback.is_acceptable ? 'Good answer.' : 'Not quite yet.')}
-                {' '}<span className="font-display font-normal text-3xl">{feedback.overall_score}/100</span>
-              </p>
-              <p className="text-base">
-                {isUnderstandingSection(current)
-                  ? (feedback.is_acceptable ? 'You know what the officer is asking.' : 'Read what it is asking below.')
-                  : (feedback.is_acceptable ? 'This would pass in a real interview.' : 'Look at the feedback below, then go on.')}
-              </p>
-              <button type="button" onClick={() => handleNext()} className={posterSolid}>
-                {currentIndex < questions.length - 1 ? (
-                  <>Next question <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" /></>
-                ) : rehearsal ? (
-                  <>Continue <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" /></>
-                ) : (
-                  <><FileText className="w-5 h-5" aria-hidden="true" /> See the full report</>
-                )}
-              </button>
-            </div>
+            <AnswerFeedback
+              status={feedback.is_acceptable ? 'correct' : 'not-correct'}
+              sub={understanding
+                ? (feedback.is_acceptable ? `You understood the question. ${feedback.overall_score}/100` : `Not yet, but you’re close. ${feedback.overall_score}/100`)
+                : (feedback.is_acceptable ? `This would pass in a real interview. ${feedback.overall_score}/100` : `Not yet, but you’re close. ${feedback.overall_score}/100`)}
+              youSaid={userResponse}
+            >
+              <FeedbackPanel feedback={feedback} understanding={understanding} />
+              <Button variant="next" className="w-full min-h-[52px]" onClick={() => handleNext()}>{nextLabel}</Button>
+            </AnswerFeedback>
           )}
-        </div>
-      </Poster>
 
-      {/* Conversation Transcript */}
-      <div
-        ref={transcriptRef}
-        className="rounded-card bg-pw-soft p-3 space-y-3 max-h-[360px] overflow-y-auto"
-      >
-        {conversation.map((msg) => (
-          <MessageBubble key={msg.id} role={msg.role} text={msg.text} />
-        ))}
-        {showTyping && <TypingIndicator />}
-
-        {/* Live recording bubble */}
-        {isListening && (
-          <div className="flex justify-end">
-            <div className="bg-sand rounded-2xl rounded-tr-md px-4 py-3 max-w-[85%]">
-              <div className="flex items-center gap-1 h-8" aria-hidden="true">
-                {[...Array(12)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="w-1.5 bg-navy rounded-full transition-all duration-75"
-                    style={{ height: `${Math.max(6, Math.random() * audioLevel * 0.5 + audioLevel * 0.5)}px`, opacity: 0.6 + Math.random() * 0.4 }}
-                  />
-                ))}
-              </div>
-              {userResponse && <p className="text-base text-pw-navy italic mt-1">"{userResponse}"</p>}
-              <p className="text-sm text-ink font-semibold mt-1">Recording... {formatTime(recordingTime)}</p>
+          {/* The conversation with the officer */}
+          <section aria-label="The conversation" className="space-y-3">
+            <Card padding="p-4">
+              <VirtualInterviewer state={interviewerState} />
+            </Card>
+            <div ref={transcriptRef} className="rounded-card bg-sand p-3 space-y-3 max-h-[360px] overflow-y-auto">
+              {conversation.map((msg) => (
+                <MessageBubble key={msg.id} role={msg.role} text={msg.text} />
+              ))}
+              {(showTyping || isAnalyzing) && <TypingIndicator />}
             </div>
-          </div>
-        )}
-
-        {/* Thinking bubble */}
-        {isAnalyzing && <TypingIndicator />}
-      </div>
-
-      {/* Feedback */}
-      {feedback && <FeedbackPanel feedback={feedback} understanding={isUnderstandingSection(current)} />}
+          </section>
+        </div>
+      </CreamSheet>
     </div>
   );
 }

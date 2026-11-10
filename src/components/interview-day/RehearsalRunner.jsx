@@ -84,7 +84,7 @@ export default function RehearsalRunner({ version, userEmail, onStop }) {
           statusOf={(outcomes) => sentenceStatus(outcomes, content.reading.length)}
           counter={(i) => `Sentence ${i + 1} of up to ${SENTENCE_TRIES}`}
           onDone={(ok) => finishPart('reading', ok)}
-          render={(item, record, next, i) => <ReadingPracticeCard testMode index={i} sentence={item} onComplete={record} onNext={next} />}
+          render={(item, record, next, i) => <ReadingPracticeCard testMode embedded index={i} sentence={item} onComplete={record} onNext={next} />}
         />
       ) : current.id === 'writing' ? (
         <QuestionPart
@@ -95,7 +95,7 @@ export default function RehearsalRunner({ version, userEmail, onStop }) {
           statusOf={(outcomes) => sentenceStatus(outcomes, content.writing.length)}
           counter={(i) => `Sentence ${i + 1} of up to ${SENTENCE_TRIES}`}
           onDone={(ok) => finishPart('writing', ok)}
-          render={(item, record, next, i) => <DictationCard testMode index={i} sentence={item} onComplete={record} onNext={next} />}
+          render={(item, record, next, i) => <DictationCard testMode embedded index={i} sentence={item} onComplete={record} onNext={next} />}
         />
       ) : current.id === 'civics' ? (
         <QuestionPart

@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Mic, MicOff, Volume2, Check, ArrowRight, AlertCircle, Loader2, RotateCcw } from 'lucide-react';
-import { Poster, PrimaryButton, QuietButton, RaisedCard, posterBigButton, posterOutline, posterSolid, posterTone, posterTool } from '@/components/pathways/ui';
+import { Button, Chip, CreamSheet, NavyTop } from '@/components/pathways/ui';
+import AnswerFeedback from '@/components/practice/AnswerFeedback';
+import RunTopBar from '@/components/practice/RunTopBar';
+import WordByWord from '@/components/practice/WordByWord';
 import { stopReading } from '@/components/persona/useAutoRead';
 import { base44 } from '@/api/base44Client';
 import { speakText } from "@/components/utils/textToSpeech";
@@ -9,10 +12,14 @@ import { wordDiff } from "@/components/utils/wordDiff";
 // `testMode` (Interview Day): like the real test, one try per sentence and no
 // "Show Answer". A try with no speech heard doesn't count; the learner can
 // try again. Without it nothing changes.
-// Shown as a red/blue poster (Phase 5): `index`/`total` give the card's place
-// in the run. The word-by-word check (wordDiff) and the score stay as they
-// were, shown on the poster.
-export default function ReadingPracticeCard({ sentence, onComplete, onNext, testMode = false, index = 0, total = 0, results = [] }) {
+// The Road: the sentence on navy ("Hear it"), "Say it" on the cream sheet,
+// then Correct / Not correct (AnswerFeedback; the existing 70% word score)
+// with the sentence word by word (WordByWord). Scoring is unchanged: the
+// browser transcript and word matching (wordDiff), an optional AI tip. Every
+// try is saved as before; "Next sentence" after a miss saves nothing more.
+// `onClose` adds the run's top bar; `embedded` = inside another page's
+// padding (Interview Day).
+export default function ReadingPracticeCard({ sentence, onComplete, onNext, testMode = false, index = 0, total = 0, onClose = null, embedded = false }) {
   const [isListening, setIsListening] = useState(false);
   const [spokenText, setSpokenText] = useState('');
   const [status, setStatus] = useState('idle'); // idle, listening, processing, success, retry, manual, unsupported
@@ -213,129 +220,112 @@ In one or two short, encouraging sentences at an A2 English level, give one prac
   // Test mode: a try where speech was heard is final.
   const tried = testMode && !!analysis && analysis.transcription !== '(no speech detected)';
 
-  if (status === 'unsupported') {
-    return (
-      <RaisedCard className="text-center text-pw-navy">
-        <AlertCircle className="w-12 h-12 text-pw-red-ink mx-auto mb-4" aria-hidden="true" />
-        <h3 className="text-xl font-extrabold">Browser Not Supported</h3>
-        <p className="text-pw-muted mt-1">Your browser doesn't support speech recognition. Please use Chrome, Edge, or Safari.</p>
-        <PrimaryButton onClick={() => { if (testMode) onComplete(false, 0); onNext(); }} className="mt-5 w-full">Skip</PrimaryButton>
-      </RaisedCard>
-    );
-  }
-
-  const label = `${testMode ? 'Reading test' : 'Read aloud'} · ${total ? `${index + 1} of ${total}` : 'Read this sentence'}`;
   const passed = analysis && analysis.overall_score >= 70;
+  const heard = analysis && analysis.transcription !== '(no speech detected)';
+  const label = testMode ? 'Reading test' : 'Reading · Read it aloud';
 
   return (
-    <div className="w-full max-w-2xl mx-auto space-y-4 text-pw-navy">
-      <Poster
-        tone={posterTone(index)}
-        className="-mx-4 sm:mx-0 sm:rounded-card"
-        label={label}
-        progress={total ? { index, total, results } : null}
-        question={wordResults ? null : sentence.text}
-      >
-        <div className="space-y-4">
-          {/* Word-by-word result: words read right are white, missed words struck through */}
-          {wordResults && (
-            <p className="flex flex-wrap gap-1.5 -mt-2">
-              {wordResults.map((w, i) => (
-                <span key={i} className={`rounded-lg px-2 py-0.5 text-[1.75rem] sm:text-4xl font-bold leading-snug ${
-                  w.status === 'correct' ? 'bg-white text-pw-navy' : 'border-2 border-white line-through'
-                }`}>
-                  {w.word}
-                  {w.status !== 'correct' && <span className="sr-only"> (missed)</span>}
-                </span>
-              ))}
-            </p>
-          )}
-          <button type="button" onClick={() => speakText(sentence.text, 'en')} className={posterTool}>
-            <Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" /> Listen
-          </button>
+    <div className={embedded ? 'w-full max-w-2xl mx-auto' : ''}>
+      {/* NAVY TOP: the sentence */}
+      <NavyTop className={`pb-12 ${embedded ? 'rounded-card' : ''}`}>
+        <div className="mx-auto max-w-2xl space-y-4">
+          {onClose && <RunTopBar onClose={onClose} index={index} total={total} answered={!!analysis && (passed || tried)} />}
+          <p className="text-label uppercase text-on-navy-label">{label}</p>
+          <h2 className="font-display text-[38px] sm:text-[40px] leading-[1.1]">{sentence.text}</h2>
+          <Chip onNavy onClick={() => speakText(sentence.text, 'en')}>
+            <Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" /> Hear it
+          </Chip>
+        </div>
+      </NavyTop>
 
-          {/* Microphone */}
-          {(!analysis || (analysis.overall_score < 70 && !tried)) && status !== 'manual' && (
-            <div className="flex flex-col items-center pt-2">
-              <div className="relative">
-                <span className={`absolute inset-0 rounded-full bg-white/20 transition-transform ${isListening ? 'scale-[1.35] animate-pulse' : 'scale-[1.2]'}`} aria-hidden="true" />
-                <button
-                  type="button"
-                  onClick={toggleListening}
-                  disabled={isAnalyzing}
-                  aria-label={isListening ? 'Stop listening' : analysis ? 'Try again' : 'Tap and read the sentence aloud'}
-                  className={posterBigButton}
-                >
-                  {isListening ? <MicOff className="w-10 h-10" aria-hidden="true" /> : analysis ? <RotateCcw className="w-10 h-10" aria-hidden="true" /> : <Mic className="w-10 h-10" aria-hidden="true" />}
-                </button>
+      {/* CREAM SHEET: say it, then the result */}
+      <CreamSheet className={embedded ? 'rounded-b-card' : 'min-h-[50vh]'}>
+        <div className="mx-auto max-w-2xl space-y-5 pb-6">
+          {status === 'unsupported' ? (
+            <div className="space-y-3">
+              <p className="flex items-center gap-2 text-lg font-semibold"><AlertCircle className="w-5 h-5 text-not-correct" aria-hidden="true" /> Your browser can&apos;t listen</p>
+              <p className="text-base text-ink-2">Your browser doesn&apos;t support speech recognition. Please use Chrome, Edge, or Safari.</p>
+              <Button variant="next" className="w-full" onClick={() => { if (testMode) onComplete(false, 0); onNext(); }}>Skip</Button>
+            </div>
+          ) : status === 'manual' ? (
+            <div className="space-y-3" aria-live="polite">
+              <p className="text-xl font-semibold">Listen, then read it once more.</p>
+              <Button variant="second" onClick={() => speakText(sentence.text, 'en')}>
+                <Volume2 className="w-5 h-5" aria-hidden="true" /> Play again
+              </Button>
+              <p className="text-lg font-semibold">Were you able to read it correctly?</p>
+              <div className="grid grid-cols-2 gap-3">
+                <Button variant="next" className="min-h-[52px]" onClick={() => onComplete(true)}><Check className="w-5 h-5" aria-hidden="true" /> Yes, I got it</Button>
+                <Button variant="second" className="min-h-[52px]" onClick={() => setStatus('retry')}>No, try again</Button>
               </div>
             </div>
-          )}
-
-          {/* Status line */}
-          <div className="flex flex-col items-center text-center gap-2" aria-live="polite">
-            {isListening ? (
-              <p className="text-lg font-semibold">Listening… tap to stop</p>
-            ) : isAnalyzing ? (
-              <p className="flex items-center gap-2 text-lg font-semibold"><Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" /> Checking your reading…</p>
-            ) : !analysis && status !== 'manual' ? (
-              <p className="text-lg font-semibold">Tap and read the sentence aloud</p>
-            ) : null}
-            {!analysis && status !== 'manual' && spokenText && (
-              <p className="font-medium text-2xl leading-snug">“{spokenText}”</p>
-            )}
-            {analysis && analysis.overall_score < 70 && !isListening && !isAnalyzing && !tried && (
-              <p className="text-lg font-semibold">Tap the microphone to try again</p>
-            )}
-          </div>
-
-          {/* Feedback on the poster */}
-          {!isListening && !isAnalyzing && status !== 'manual' && analysis && (
-            <div className="space-y-2">
-              <p className="text-2xl font-bold">{passed ? 'Right.' : 'Not yet.'} <span className="font-display font-normal text-3xl">{analysis.overall_score}%</span></p>
-              <p className="text-lg">{analysis.general_feedback}</p>
-              <p className="text-base">Words read correctly: <span className="font-bold">{analysis.matched_count} of {analysis.total_words}</span></p>
-              {analysis.transcription && analysis.transcription !== '(no speech detected)' && (
-                <p className="text-base">You said: <span className="font-medium text-xl">“{analysis.transcription}”</span></p>
+          ) : (!analysis || isListening || isAnalyzing) ? (
+            <>
+              <p className="text-base font-semibold">Read the sentence out loud, in English</p>
+              {(isListening || spokenText) && (
+                <div aria-live="polite" className="rounded-card bg-white border border-card-line p-4">
+                  <p className="text-label uppercase text-ink-label">{isListening ? 'Listening… tap Stop when you finish' : 'You said'}</p>
+                  <p className="mt-1 text-xl leading-snug min-h-[1.5em]">{spokenText ? `“${spokenText}”` : ''}</p>
+                </div>
+              )}
+              {isAnalyzing ? (
+                <p className="flex items-center gap-2 text-lg font-semibold" aria-live="polite"><Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" /> Checking your reading…</p>
+              ) : (
+                <Button variant="main" className="w-full min-h-[60px]" onClick={toggleListening}>
+                  {isListening ? <><MicOff className="w-6 h-6" aria-hidden="true" /> Stop</> : <><Mic className="w-6 h-6" aria-hidden="true" /> Say it</>}
+                </Button>
+              )}
+            </>
+          ) : (
+            <AnswerFeedback
+              status={passed ? 'correct' : 'not-correct'}
+              sub={passed
+                ? `${analysis.overall_score}% · ${analysis.matched_count} of ${analysis.total_words} words read right.`
+                : heard
+                  ? `Not yet, but you’re close. ${analysis.overall_score}% · ${analysis.matched_count} of ${analysis.total_words} words.`
+                  : 'We didn’t hear you. Check your microphone and try again.'}
+              youSaid={heard ? analysis.transcription : ''}
+            >
+              {wordResults && heard && (
+                <div className="rounded-card bg-white border border-card-line p-4">
+                  <p className="text-label uppercase text-ink-label mb-1">The sentence, word by word</p>
+                  <WordByWord words={wordResults} />
+                </div>
               )}
               {analysis.phoneme_feedback && (
-                <p className="border-s-2 border-white/70 ps-4 text-base leading-relaxed"><span className="font-semibold">Tip:</span> {analysis.phoneme_feedback}</p>
+                <p className="text-base leading-relaxed text-ink-2"><span className="font-semibold text-ink">Tip:</span> {analysis.phoneme_feedback}</p>
               )}
-            </div>
+              {passed || tried ? (
+                <Button variant="next" className="w-full min-h-[52px]" onClick={onNext}>
+                  Next sentence <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" />
+                </Button>
+              ) : (
+                <div className="grid grid-cols-2 gap-3">
+                  <Button variant="next" className="min-h-[52px]" onClick={toggleListening}>
+                    <RotateCcw className="w-5 h-5" aria-hidden="true" /> Try again
+                  </Button>
+                  {testMode ? (
+                    <Button variant="second" className="min-h-[52px]" onClick={() => { onComplete(false, 0); onNext(); }}>Skip</Button>
+                  ) : (
+                    <Button variant="second" className="min-h-[52px]" onClick={onNext}>Next sentence</Button>
+                  )}
+                </div>
+              )}
+            </AnswerFeedback>
           )}
 
-          {!isListening && !isAnalyzing && status === 'manual' && (
-            <div className="space-y-3">
-              <p className="font-medium text-2xl leading-snug">Listen, then read it once more.</p>
-              <button type="button" onClick={() => speakText(sentence.text, 'en')} className={posterOutline}>
-                <Volume2 className="w-5 h-5" aria-hidden="true" /> Play again
-              </button>
-              <p className="text-lg font-semibold">Were you able to read it correctly?</p>
-              <div className="flex flex-wrap gap-2">
-                <button type="button" onClick={() => onComplete(true)} className={posterSolid}><Check className="w-5 h-5" aria-hidden="true" /> Yes, I got it</button>
-                <button type="button" onClick={() => setStatus('retry')} className={posterOutline}>No, try again</button>
-              </div>
-            </div>
+          {!testMode && status !== 'success' && status !== 'manual' && status !== 'unsupported' && !isListening && !isAnalyzing && !passed && (
+            <Button variant="link" className="px-0" onClick={handleShowAnswer}>
+              Can&apos;t get it right? Hear it and check yourself
+            </Button>
           )}
-
-          {analysis && (passed || tried) && status !== 'manual' && !isListening && !isAnalyzing && (
-            <button type="button" onClick={onNext} className={posterSolid}>
-              Next sentence <ArrowRight className="w-5 h-5" aria-hidden="true" />
-            </button>
+          {testMode && !tried && !analysis && !isListening && !isAnalyzing && status !== 'unsupported' && (
+            <Button variant="link" className="px-0" onClick={() => { onComplete(false, 0); onNext(); }}>
+              Skip this sentence
+            </Button>
           )}
         </div>
-      </Poster>
-
-      {status !== 'success' && status !== 'manual' && !isListening && !isAnalyzing && !testMode && (
-        <QuietButton onClick={handleShowAnswer} className="w-full text-pw-muted">
-          Can't get it right? Hear it and check yourself
-        </QuietButton>
-      )}
-      {testMode && !tried && !isListening && !isAnalyzing && (
-        <QuietButton onClick={() => { onComplete(false, 0); onNext(); }} className="w-full text-pw-muted">
-          Skip this sentence
-        </QuietButton>
-      )}
+      </CreamSheet>
     </div>
   );
 }
