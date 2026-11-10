@@ -14,7 +14,7 @@ import MatchingGame from '@/components/practice/MatchingGame';
 import ReadingPracticeCard from '@/components/practice/ReadingPracticeCard';
 import InterviewPractice from '@/components/practice/InterviewPractice';
 import StudyTop from '@/components/study/StudyTop';
-import { Button as PwButton, Card, Chip, CreamSheet, Eyebrow, NavyTop, Poster, posterSolid, posterOutline } from '@/components/pathways/ui';
+import { Button as PwButton, Card, Chip, CreamSheet, Eyebrow, NavyTop } from '@/components/pathways/ui';
 import { LEVELS } from '@/lib/pretest';
 import { PRACTICE_PARTS, partStatus, suggestPart } from '@/lib/studyView';
 import { cardOutcome, countOutcomes, countedOutcomes, missedItems, roundRule, roundTitle } from '@/lib/practiceResults';
@@ -579,23 +579,35 @@ export default function Practice() {
     setCurrentIndex(0);
     setSessionComplete(false);
   };
-  // Rounds that end on "Round complete": civics, reading, writing and the
-  // vocabulary word dictation. (Flashcards and matching keep their summary.)
+  // Every run ends on "Round complete": civics, reading, writing and the
+  // vocabulary games (word dictation, flashcards, matching).
   const roundKind = mode === 'civics' ? 'civics'
     : mode === 'reading' ? 'reading'
       : mode === 'dictation' ? 'writing'
-        : mode === 'vocabulary' && vocabSubMode === 'dictation' ? 'words'
+        : mode === 'vocabulary' ? (vocabSubMode === 'flashcards' ? 'flashcards' : vocabSubMode === 'matching' ? 'matching' : 'words')
           : null;
+  if (roundKind === 'matching' && sessionComplete) {
+    // Matching saves nothing; every pair ends matched.
+    return (
+      <RoundComplete
+        outcomes={results}
+        title={`All ${results.length} pairs matched. Nice work${firstName(currentUser) ? `, ${firstName(currentUser)}` : ''}.`}
+        onClose={exitRun}
+        onAgain={() => startSession(mode, vocabSubMode)}
+        onBack={() => navigate('/')}
+      />
+    );
+  }
   if (roundKind && sessionComplete) {
     const missed = missedItems(content, results);
     const right = countOutcomes(results).right;
-    const noun = roundKind === 'civics' ? 'question' : roundKind === 'words' ? 'word' : 'sentence';
+    const noun = roundKind === 'civics' ? 'question' : (roundKind === 'words' || roundKind === 'flashcards') ? 'word' : 'sentence';
     const plural = (n) => `${n} ${noun}${n === 1 ? '' : 's'}`;
     return (
       <RoundComplete
         outcomes={countedOutcomes(content, results)}
         title={roundTitle(right, firstName(currentUser))}
-        rule={roundKind === 'words' ? null : roundRule(roundKind, civicsVersion)}
+        rule={(roundKind === 'words' || roundKind === 'flashcards') ? null : roundRule(roundKind, civicsVersion)}
         review={{
           heading: `${plural(missed.length)} to review`,
           lines: missed.map((item) => item.question || item.text || item.word),
@@ -619,31 +631,31 @@ export default function Practice() {
     };
     if (roundKind === 'civics') return <CivicsTestCard {...cardProps} question={content[currentIndex]} />;
     if (roundKind === 'reading') return <ReadingPracticeCard {...cardProps} sentence={content[currentIndex]} />;
+    if (roundKind === 'flashcards') {
+      return (
+        <FlashcardGame
+          words={content}
+          index={currentIndex}
+          total={content.length}
+          onClose={exitRun}
+          onComplete={(isSuccess) => { handleComplete(isSuccess); handleNext(); }}
+        />
+      );
+    }
+    if (roundKind === 'matching') {
+      return (
+        <MatchingGame
+          words={content}
+          onClose={exitRun}
+          onComplete={(pairs) => {
+            // Every pair ends matched; nothing is saved for this game.
+            setResults(Array(pairs).fill('right'));
+            setSessionComplete(true);
+          }}
+        />
+      );
+    }
     return <DictationCard {...cardProps} sentence={content[currentIndex]} />;
-  }
-
-  if (sessionComplete) {
-    const counts = countOutcomes(results);
-    // Matching plays up to six pairs, not every card in the run.
-    const total = mode === 'vocabulary' && vocabSubMode === 'matching' ? results.length : content.length;
-    return (
-      <RunShell label={RUN_LABEL[mode]} onClose={exitRun}>
-        <Poster
-          tone="blue"
-          className="-mx-4 sm:mx-0 sm:rounded-card"
-          label="Practice · Done"
-          question={`${counts.right} of ${total} right`}
-          answer={counts.close ? `${counts.close} almost. One more look and you have them.` : 'Nice work.'}
-        >
-          <div className="space-y-5">
-            <div className="flex flex-wrap gap-2">
-              <button type="button" onClick={() => startSession(mode, vocabSubMode)} className={posterSolid}>Practice again</button>
-              <button type="button" onClick={exitRun} className={posterOutline}>Back to Practice</button>
-            </div>
-          </div>
-        </Poster>
-      </RunShell>
-    );
   }
 
   return (
@@ -653,26 +665,6 @@ export default function Practice() {
         <div className="flex justify-center py-20">
             <Loader2 className="w-10 h-10 animate-spin text-pw-navy" />
         </div>
-      ) : content.length > 0 && vocabSubMode === 'flashcards' ? (
-        <FlashcardGame
-          words={content}
-          index={currentIndex}
-          total={content.length}
-          results={results}
-          onComplete={(isSuccess) => {
-            handleComplete(isSuccess);
-            handleNext();
-          }}
-        />
-      ) : content.length > 0 && vocabSubMode === 'matching' ? (
-        <MatchingGame
-          words={content}
-          onComplete={(pairs) => {
-            // Every pair ends matched; nothing is saved for this game.
-            setResults(Array(pairs).fill('right'));
-            setSessionComplete(true);
-          }}
-        />
       ) : (
          <div className="text-center py-20">
             <p className="text-lg text-pw-muted">No content found for this mode.</p>

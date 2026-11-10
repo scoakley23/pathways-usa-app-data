@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { firstName, splitTasks, stageKey, timeOfDay, weekSquares, weeksToInterview, roadStates, practiceDaysThisWeek } from './todayView';
+import { firstName, splitTasks, stageKey, timeOfDay, weekSquares, weeksToInterview, roadStates, practiceDaysThisWeek, weekCircles, stopStatus } from './todayView';
 import { dayIndex } from './studyPlan';
 
 const tasks = [{ id: 'a' }, { id: 'b' }, { id: 'c' }];
@@ -100,5 +100,26 @@ describe('practiceDaysThisWeek', () => {
   it('adds days with checkmarks on this device', () => {
     const doneOn = (d) => (d.getDate() === 11 ? ['reading'] : []);
     expect(practiceDaysThisWeek([], wed, doneOn).size).toBe(1);
+  });
+});
+
+describe('weekCircles', () => {
+  it('marks practiced, missed, today and future days', () => {
+    // Wednesday (weekday 3) is day 102; Monday is 100.
+    const c = weekCircles([100], 102, 3);
+    expect(c.map((x) => x.state)).toEqual(['practiced', 'missed', 'today', 'future', 'future', 'future', 'future']);
+    expect(weekCircles([102], 102, 3)[2]).toEqual({ state: 'today', practiced: true });
+  });
+});
+
+describe('stopStatus', () => {
+  const counts = { masteredSentences: 12, lessonsDone: 3, lessonsTotal: 24, passedInterviews: 0 };
+  it('describes each stop from the existing counts', () => {
+    expect(stopStatus(1, counts, false)).toBe('12 of 20 sentences mastered');
+    expect(stopStatus(2, counts, false)).toBe('3 of 12 lessons finished with 70% or more');
+    expect(stopStatus(3, counts, false)).toBe('Pass one mock interview');
+    expect(stopStatus(3, counts, true)).toMatch(/passed a mock interview/);
+    expect(stopStatus(4, counts, false)).toMatch(/nothing is saved/);
+    expect(stopStatus(1, null, false)).toBe('');
   });
 });

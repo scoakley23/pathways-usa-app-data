@@ -1,20 +1,24 @@
 import React from 'react';
+import { AlertTriangle } from 'lucide-react';
+import { CreamSheet, NavyTop } from '@/components/pathways/ui';
 
+// Shown when the signed-in account isn't registered for the app (The Road:
+// the title on navy, what to do on the cream sheet).
 const UserNotRegisteredError = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-pw-page p-4 text-pw-navy">
-      <div className="max-w-md w-full p-8 bg-white rounded-card shadow-raised border border-pw-line">
-        <div className="text-center">
-          <div className="inline-flex items-center justify-center w-16 h-16 mb-6 rounded-full bg-pw-red-soft">
-            <svg className="w-8 h-8 text-pw-red-ink" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-            </svg>
-          </div>
-          <h1 className="font-display text-4xl mb-4">Access Restricted</h1>
-          <p className="text-lg text-pw-muted mb-8">
+    <div className="min-h-screen bg-cream text-ink">
+      <NavyTop className="pb-14 pt-12">
+        <div className="mx-auto max-w-md space-y-2">
+          <AlertTriangle className="w-8 h-8 text-on-navy-2" aria-hidden="true" />
+          <h1 className="font-display text-[34px] leading-[1.1]">Access Restricted</h1>
+        </div>
+      </NavyTop>
+      <CreamSheet>
+        <div className="mx-auto max-w-md space-y-6 pb-8">
+          <p className="text-lg text-ink-2">
             You are not registered to use this application. Please contact the app administrator to request access.
           </p>
-          <div className="p-4 bg-pw-soft rounded-2xl text-base text-pw-muted text-left">
+          <div className="p-4 bg-white border border-card-line rounded-card text-base text-ink-2">
             <p>If you believe this is an error, you can:</p>
             <ul className="list-disc list-inside mt-2 space-y-1">
               <li>Verify you are logged in with the correct account</li>
@@ -23,7 +27,7 @@ const UserNotRegisteredError = () => {
             </ul>
           </div>
         </div>
-      </div>
+      </CreamSheet>
     </div>
   );
 };

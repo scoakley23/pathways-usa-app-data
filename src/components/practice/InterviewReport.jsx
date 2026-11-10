@@ -105,7 +105,7 @@ export default function InterviewReport({ results, onRestart, onClose, onBack, n
                   {r.response !== '(skipped)' && (
                     <div className="bg-white rounded-2xl p-4">
                       <Eyebrow className="mb-1">Your Response</Eyebrow>
-                      <p className="italic text-pw-muted">"{r.response}"</p>
+                      <p className=" text-pw-muted">"{r.response}"</p>
                     </div>
                   )}
 

@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Download, Loader2, RefreshCw } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
-import PageHeader from '@/components/PageHeader';
+import PageTop from '@/components/pathways/PageTop';
 import PageNotFound from '@/lib/PageNotFound';
-import { RaisedCard, SecondaryButton, Eyebrow } from '@/components/pathways/ui';
+import { RaisedCard, SecondaryButton, Eyebrow, CreamSheet } from '@/components/pathways/ui';
 import { Switch } from '@/components/ui/switch';
 import { LANGUAGES } from '@/hooks/useLessonTranslation';
 import { US_STATES, PROGRAM_BASELINE } from '@/config/pilot';
@@ -115,8 +115,11 @@ export default function PilotDashboard() {
   };
 
   return (
-    <div className="space-y-6 pb-12 text-pw-navy">
-      <PageHeader tag="Admin" title="Pilot dashboard" subtitle="One row per learner, by a random pilot ID. No emails or names are on this page or in the CSV." />
+    <div>
+      <PageTop tag="Admin" title="Pilot dashboard" subtitle="One row per learner, by a random pilot ID. No emails or names are on this page or in the CSV." />
+      <CreamSheet>
+      <div className="max-w-5xl mx-auto space-y-6 pb-12 text-ink">
+
 
       <RaisedCard className="flex flex-col sm:flex-row sm:flex-wrap sm:items-end gap-4">
         <div className="space-y-1">
@@ -252,6 +255,8 @@ export default function PilotDashboard() {
           </section>
         </>
       )}
+      </div>
+      </CreamSheet>
     </div>
   );
 }

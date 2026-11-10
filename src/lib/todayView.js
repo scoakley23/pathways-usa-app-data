@@ -76,3 +76,29 @@ export function practiceDaysThisWeek(dates = [], today = new Date(), doneOn = lo
   }
   return days;
 }
+
+// The week strip on Progress: seven circles, Monday first, each 'practiced',
+// 'today', 'future' or 'missed' (a past day with no practice). Today is
+// 'today' whether or not it was practiced yet (`todayPracticed` says).
+export function weekCircles(dayIndexes, todayIndex, todayWeekday) {
+  return weekSquares(dayIndexes, todayIndex, todayWeekday).map((sq, k, all) => {
+    const todayAt = all.findIndex((x) => x.today);
+    if (sq.today) return { state: 'today', practiced: sq.filled };
+    if (k > todayAt) return { state: 'future', practiced: false };
+    return { state: sq.filled ? 'practiced' : 'missed', practiced: sq.filled };
+  });
+}
+
+// One line of status per road stop on Progress, from useRoadmapProgress's
+// counts (existing data only). `done` = the stop's done flag.
+export function stopStatus(id, counts, done) {
+  if (!counts) return '';
+  if (id === 1) return done ? 'Done · 20 or more sentences mastered' : `${Math.min(counts.masteredSentences, 20)} of 20 sentences mastered`;
+  if (id === 2) {
+    const need = Math.ceil(counts.lessonsTotal / 2);
+    return done ? `Done · ${counts.lessonsDone} of ${counts.lessonsTotal} lessons finished` : `${counts.lessonsDone} of ${need} lessons finished with 70% or more`;
+  }
+  if (id === 3) return done ? 'Done · you passed a mock interview' : 'Pass one mock interview';
+  if (id === 4) return 'Practice the whole interview (nothing is saved)';
+  return 'The finish line';
+}

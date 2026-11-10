@@ -83,7 +83,7 @@ export default function FlashcardView({ flashcards }) {
               {currentCard.example && (
                 <div className="mt-4 pt-4 border-t border-pw-line">
                   <span className="text-xs font-bold uppercase tracking-widest text-pw-blue-ink">Example</span>
-                  <p className="text-base text-pw-muted mt-2 italic">{currentCard.example}</p>
+                  <p className="text-base text-pw-muted mt-2">{currentCard.example}</p>
                 </div>
               )}
             </div>

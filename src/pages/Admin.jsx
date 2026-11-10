@@ -9,7 +9,8 @@ import ResourcesTab from '@/components/admin/ResourcesTab';
 import PartnersTab from '@/components/admin/PartnersTab';
 import ExplanationTools from '@/components/admin/ExplanationTools';
 import PilotAdminTool from '@/components/admin/PilotAdminTool';
-import PageHeader from '@/components/PageHeader';
+import PageTop from '@/components/pathways/PageTop';
+import { CreamSheet } from '@/components/pathways/ui';
 import { Link } from 'react-router-dom';
 
 export default function Admin() {
@@ -40,7 +41,7 @@ export default function Admin() {
 
   if (!currentUser || currentUser.role !== 'admin') {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[50vh] text-center space-y-4">
+      <div className="flex flex-col items-center justify-center min-h-[50vh] text-center space-y-4 px-4">
         <div className="w-20 h-20 rounded-card bg-pw-red-soft flex items-center justify-center" aria-hidden="true">
           <AlertCircle className="w-10 h-10 text-pw-red-ink" />
         </div>
@@ -51,17 +52,19 @@ export default function Admin() {
   }
 
   return (
-    <div className="space-y-6">
-      <PageHeader
+    <div>
+      <PageTop
         title="Admin Dashboard"
         subtitle="Manage all practice content — sentences, civics questions, vocabulary words — Resource Hub places and partner programs."
       >
         <div className="flex flex-wrap gap-2">
-          <Link to="/tutor-demo" className="inline-flex items-center justify-center min-h-[44px] rounded-2xl border-2 border-pw-navy bg-white px-4 text-base font-bold text-pw-navy hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2">
+          <Link to="/tutor-demo" className="inline-flex items-center justify-center min-h-[44px] rounded-full border-2 border-navy-line px-5 text-base font-semibold text-white hover:bg-navy-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
             Tutor demo
           </Link>
         </div>
-      </PageHeader>
+      </PageTop>
+      <CreamSheet>
+      <div className="max-w-5xl mx-auto space-y-6 pb-8">
 
       <Tabs defaultValue="sentences">
         <TabsList className="grid w-full grid-cols-5 max-w-2xl">
@@ -101,6 +104,8 @@ export default function Admin() {
       <ExplanationTools />
 
       <PilotAdminTool currentUser={currentUser} />
+      </div>
+      </CreamSheet>
     </div>
   );
 }

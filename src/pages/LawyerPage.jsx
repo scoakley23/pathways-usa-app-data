@@ -107,7 +107,7 @@ export default function LawyerPage({ cachedUser }) {
           the form asks — it does not tell you how to answer.
         </p>
         {hasTranslation && (
-          <p className="text-sm italic text-pw-muted">
+          <p className="text-sm text-pw-muted">
             Machine translation. If anything is unclear, ask a person you trust or a lawyer.
           </p>
         )}

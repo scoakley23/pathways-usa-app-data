@@ -63,7 +63,7 @@ function MicButton({ speech, busy, idleLabel = 'Tap and answer in English', onPo
       <p className="mt-4 text-base font-semibold text-center" aria-live="polite">
         {busy ? 'Checking…' : speech.listening ? 'Listening… tap to stop' : idleLabel}
       </p>
-      {speech.transcript && <p className={`mt-2 italic text-center ${onPoster ? '' : 'text-pw-muted'}`}>“{speech.transcript}”</p>}
+      {speech.transcript && <p className={`mt-2 text-center ${onPoster ? '' : 'text-pw-muted'}`}>“{speech.transcript}”</p>}
       {busy && <Loader2 className="w-5 h-5 animate-spin mt-2" />}
     </div>
   );
@@ -282,7 +282,7 @@ export function SpeakingStep({ step, ctx, state, setState }) {
               <button type="submit" className="min-h-[48px] rounded-full bg-white text-pw-navy px-5 font-semibold hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent">Check</button>
             </form>
           ))}
-          {state.heard && <p className="mt-4">You said: <span className="italic">“{state.heard}”</span></p>}
+          {state.heard && <p className="mt-4">You said: <span className="font-medium">“{state.heard}”</span></p>}
         </Poster>
       ) : (
         <QuestionCard ctx={ctx} text={question.question}>
@@ -300,7 +300,7 @@ export function SpeakingStep({ step, ctx, state, setState }) {
               <PrimaryButton type="submit">Check</PrimaryButton>
             </form>
           ))}
-          {state.heard && <p className="mt-4 text-pw-muted">You said: <span className="italic">“{state.heard}”</span></p>}
+          {state.heard && <p className="mt-4 text-pw-muted">You said: <span className="font-medium">“{state.heard}”</span></p>}
         </QuestionCard>
       )}
 
@@ -479,7 +479,7 @@ export function InterviewStep({ step, ctx, state, setState }) {
         {!state.answered && (speech.supported ? <MicButton speech={speech} busy={checking} /> : (
           <p className="mt-4 text-pw-muted">Speaking needs a browser with speech recognition, like Chrome or Safari. You can skip this part.</p>
         ))}
-        {state.heard && <p className="mt-4 text-pw-muted">You said: <span className="italic">“{state.heard}”</span></p>}
+        {state.heard && <p className="mt-4 text-pw-muted">You said: <span className="font-medium">“{state.heard}”</span></p>}
       </QuestionCard>
       {failed && <TutorMessage profile={ctx.profile} language={ctx.language} {...ctx.ui('checkFailed')} />}
       {state.answered && (isCheck(step) ? <CheckNext ctx={ctx} /> : (

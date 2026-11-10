@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Eyebrow } from '@/components/pathways/ui';
+import { X } from 'lucide-react';
+import { CreamSheet, NavyTop } from '@/components/pathways/ui';
+import RunTopBar from './RunTopBar';
 
-// Match each word to its definition: white index cards on the Slate desk.
-// A matched pair gets a navy MATCHED stamp; when all pairs are matched the
-// run ends on the summary poster (`onComplete(pairs)`, nothing is saved).
-export default function MatchingGame({ words, onComplete }) {
+// Match each word to its definition (The Road): the task and "n of m
+// matched" on navy (with the run's close button when `onClose` is given),
+// white cards on the cream sheet. A matched pair gets a navy MATCHED stamp;
+// when all pairs are matched the run ends on Round complete
+// (`onComplete(pairs)`, nothing is saved).
+export default function MatchingGame({ words, onComplete, onClose = null }) {
   const [items, setItems] = useState([]);
   const [selectedIds, setSelectedIds] = useState([]);
   const [matchedIds, setMatchedIds] = useState([]);
@@ -80,18 +84,23 @@ export default function MatchingGame({ words, onComplete }) {
     && items.find(i => i.id === selectedIds[0])?.pairId !== items.find(i => i.id === selectedIds[1])?.pairId;
 
   return (
-    <div className="max-w-4xl mx-auto text-pw-navy">
-      <div className="px-1">
-        <Eyebrow>Matching · Words and meanings</Eyebrow>
-        <h2 className="mt-1 font-display text-3xl leading-tight">Match each word to what it means.</h2>
-      </div>
-      <p className="mt-2 px-1 text-base text-pw-muted" aria-live="polite">
-        <span className="font-display text-2xl text-pw-navy">{matchedPairs}</span> of{' '}
-        <span className="font-display text-2xl text-pw-navy">{pairs}</span> matched
-        {missed && <span className="ms-2 font-semibold text-pw-red-ink">Not a pair. Try again.</span>}
-      </p>
-
-      <div className="mt-4 -mx-4 bg-pw-slate px-3 py-4 sm:mx-0 sm:rounded-card sm:p-5">
+    <div>
+      <NavyTop className="pb-12">
+        <div className="mx-auto max-w-4xl space-y-3">
+          {onClose && <RunTopBar onClose={onClose} />}
+          <p className="text-label uppercase text-on-navy-label">Matching · Words and meanings</p>
+          <h2 className="font-display text-[30px] sm:text-[34px] leading-[1.1]">Match each word to what it means.</h2>
+          <p className="text-base text-on-navy-2" aria-live="polite">
+            <span className="font-display text-2xl text-white">{matchedPairs}</span> of{' '}
+            <span className="font-display text-2xl text-white">{pairs}</span> matched
+          </p>
+        </div>
+      </NavyTop>
+      <CreamSheet className="min-h-[50vh]">
+      <div className="mx-auto max-w-4xl pb-6 text-ink">
+        <p className="min-h-[28px] text-base font-semibold text-not-correct" aria-live="polite">
+          {missed && <><X className="inline w-4 h-4 -mt-0.5 me-1" strokeWidth={3} aria-hidden="true" />Not a pair. Try again.</>}
+        </p>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
           {items.map((item) => {
             const isSelected = selectedIds.includes(item.id);
@@ -111,7 +120,7 @@ export default function MatchingGame({ words, onComplete }) {
                 disabled={isMatched}
                 aria-pressed={isSelected}
                 aria-label={isMatched ? `${item.content} (matched)` : item.content}
-                className={`relative min-h-[128px] overflow-hidden rounded-card border bg-white p-3 text-center flex items-center justify-center transition-[box-shadow,border-color,background-color] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2 focus-visible:ring-offset-pw-slate
+                className={`relative min-h-[128px] overflow-hidden rounded-card border bg-white p-3 text-center flex items-center justify-center transition-[box-shadow,border-color,background-color] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2 focus-visible:ring-offset-cream
                   ${isMatched
                     ? 'border-pw-line bg-pw-page pt-9 shadow-none cursor-default'
                     : isError
@@ -133,6 +142,7 @@ export default function MatchingGame({ words, onComplete }) {
           })}
         </div>
       </div>
+      </CreamSheet>
     </div>
   );
 }
