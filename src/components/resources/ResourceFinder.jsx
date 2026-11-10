@@ -130,6 +130,104 @@ export default function ResourceFinder() {
           </div>
           <h2 className="text-[28px] leading-snug font-display font-normal text-pw-navy">Find help near you</h2>
         </div>
+
+        {isLoading && (
+          <p className="flex items-center gap-2 text-base text-pw-muted"><Loader2 className="w-5 h-5 animate-spin" /> Loading places…</p>
+        )}
+        {isError && (
+          <p className="text-base text-pw-red-ink font-semibold" role="alert">We couldn&apos;t load the list of places. Please try again later.</p>
+        )}
+        {!isLoading && !isError && (
+          <div className="space-y-4">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              {overview ? (
+                <p className="text-base text-pw-navy" aria-live="polite">
+                  <strong>{results.length}</strong> {results.length === 1 ? 'place' : 'places'} on the map. Tap a dot to see
+                  a place, or use your location or ZIP code to see the closest ones first.
+                </p>
+              ) : (
+                <p className="text-base text-pw-navy" aria-live="polite">
+                  <strong>{results.length}</strong> {results.length === 1 ? 'place' : 'places'} within {radius} miles of {origin.label}
+                </p>
+              )}
+              {(results.length > 0 || overview || origin.fromMap) && (
+                <SecondaryButton onClick={() => setShowMap((v) => !v)} aria-pressed={showMap}>
+                  {showMap ? <List className="w-5 h-5" aria-hidden="true" /> : <MapIcon className="w-5 h-5" aria-hidden="true" />}
+                  {showMap ? 'Hide map' : 'Show map'}
+                </SecondaryButton>
+              )}
+            </div>
+
+            {showMap && (results.length > 0 || overview || origin.fromMap) && (
+              <>
+                <div
+                  className={fullscreen
+                    ? 'fixed inset-0 !mt-0 z-[70] bg-white flex flex-col'
+                    : 'relative h-[380px] sm:h-[440px] rounded-card overflow-hidden border border-pw-line shadow-raised bg-pw-soft isolate'}
+                  role={fullscreen ? 'dialog' : undefined}
+                  aria-modal={fullscreen ? 'true' : undefined}
+                  aria-label={fullscreen ? 'Map of places near you' : undefined}
+                >
+                  {fullscreen && (
+                    <div className="flex items-center justify-between gap-3 px-4 py-2 border-b border-pw-line bg-white">
+                      <p className="text-base font-bold text-pw-navy truncate">{results.length} places · {mapOrigin.label}</p>
+                      <SecondaryButton onClick={() => setFullscreen(false)} aria-label="Close full-screen map">
+                        <X className="w-5 h-5" aria-hidden="true" /> Close
+                      </SecondaryButton>
+                    </div>
+                  )}
+                  <div className="relative flex-1 h-full min-h-0 isolate">
+                    <Suspense fallback={<div className="h-full grid place-items-center text-pw-muted"><Loader2 className="w-6 h-6 animate-spin" /></div>}>
+                      <ResourceMap
+                        origin={mapOrigin}
+                        places={results}
+                        selectedId={selectedId}
+                        onSelect={setSelectedId}
+                        onSearchArea={searchArea}
+                        fullscreen={fullscreen}
+                      />
+                    </Suspense>
+                    {!fullscreen && (
+                      <button
+                        type="button"
+                        onClick={() => setFullscreen(true)}
+                        aria-label="Open the map full screen"
+                        className="absolute bottom-3 end-3 z-[1000] w-11 h-11 rounded-xl bg-white border border-pw-line shadow-raised grid place-items-center text-pw-navy hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
+                      >
+                        <Maximize2 className="w-5 h-5" aria-hidden="true" />
+                      </button>
+                    )}
+                    {selected && (
+                      <div className={`absolute inset-x-2 z-[1000] ${fullscreen ? (sheetOpen ? 'hidden' : 'bottom-16') : 'bottom-2'}`}>
+                        <div className="relative rounded-2xl bg-white border border-pw-line shadow-lift p-3 pe-12 max-h-[70%] overflow-y-auto">
+                          <button
+                            type="button"
+                            onClick={() => setSelectedId(null)}
+                            aria-label="Close summary"
+                            className="absolute top-1 end-1 w-11 h-11 grid place-items-center rounded-xl text-pw-muted hover:bg-pw-soft"
+                          >
+                            <X className="w-5 h-5" aria-hidden="true" />
+                          </button>
+                          <PlaceSummary r={selected} />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  {fullscreen && (
+                    <ListSheet
+                      places={results}
+                      open={sheetOpen}
+                      onToggle={setSheetOpen}
+                      onPick={(id) => { setSelectedId(id); setSheetOpen(false); }}
+                    />
+                  )}
+                </div>
+                <MapLegend places={results} />
+              </>
+            )}
+          </div>
+        )}
+
         <p className="text-base text-pw-navy leading-relaxed">
           Free legal help, English and citizenship classes, and USCIS offices. Your location is used only on this
           screen to sort places by distance. It is not saved or shared.
@@ -196,105 +294,12 @@ export default function ResourceFinder() {
         </div>
       </RaisedCard>
 
-      {isLoading && (
-        <p className="flex items-center gap-2 text-base text-pw-muted"><Loader2 className="w-5 h-5 animate-spin" /> Loading places…</p>
-      )}
-      {isError && (
-        <p className="text-base text-pw-red-ink font-semibold" role="alert">We couldn&apos;t load the list of places. Please try again later.</p>
-      )}
 
       {saved.length > 0 && <SavedPlaces places={saved} />}
 
-      {!isLoading && !isError && (
+      {!overview && !isLoading && !isError && (
         <div className="space-y-4">
-          <div className="flex flex-wrap items-center justify-between gap-2">
-            {overview ? (
-              <p className="text-base text-pw-navy" aria-live="polite">
-                <strong>{results.length}</strong> {results.length === 1 ? 'place' : 'places'} on the map. Tap a dot to see
-                a place, or use your location or ZIP code to see the closest ones first.
-              </p>
-            ) : (
-              <p className="text-base text-pw-navy" aria-live="polite">
-                <strong>{results.length}</strong> {results.length === 1 ? 'place' : 'places'} within {radius} miles of {origin.label}
-              </p>
-            )}
-            {(results.length > 0 || overview || origin.fromMap) && (
-              <SecondaryButton onClick={() => setShowMap((v) => !v)} aria-pressed={showMap}>
-                {showMap ? <List className="w-5 h-5" aria-hidden="true" /> : <MapIcon className="w-5 h-5" aria-hidden="true" />}
-                {showMap ? 'Hide map' : 'Show map'}
-              </SecondaryButton>
-            )}
-          </div>
-
-          {showMap && (results.length > 0 || overview || origin.fromMap) && (
-            <>
-              <div
-                className={fullscreen
-                  ? 'fixed inset-0 !mt-0 z-[70] bg-white flex flex-col'
-                  : 'relative h-[380px] sm:h-[440px] rounded-card overflow-hidden border border-pw-line shadow-raised bg-pw-soft isolate'}
-                role={fullscreen ? 'dialog' : undefined}
-                aria-modal={fullscreen ? 'true' : undefined}
-                aria-label={fullscreen ? 'Map of places near you' : undefined}
-              >
-                {fullscreen && (
-                  <div className="flex items-center justify-between gap-3 px-4 py-2 border-b border-pw-line bg-white">
-                    <p className="text-base font-bold text-pw-navy truncate">{results.length} places · {mapOrigin.label}</p>
-                    <SecondaryButton onClick={() => setFullscreen(false)} aria-label="Close full-screen map">
-                      <X className="w-5 h-5" aria-hidden="true" /> Close
-                    </SecondaryButton>
-                  </div>
-                )}
-                <div className="relative flex-1 h-full min-h-0 isolate">
-                  <Suspense fallback={<div className="h-full grid place-items-center text-pw-muted"><Loader2 className="w-6 h-6 animate-spin" /></div>}>
-                    <ResourceMap
-                      origin={mapOrigin}
-                      places={results}
-                      selectedId={selectedId}
-                      onSelect={setSelectedId}
-                      onSearchArea={searchArea}
-                      fullscreen={fullscreen}
-                    />
-                  </Suspense>
-                  {!fullscreen && (
-                    <button
-                      type="button"
-                      onClick={() => setFullscreen(true)}
-                      aria-label="Open the map full screen"
-                      className="absolute bottom-3 end-3 z-[1000] w-11 h-11 rounded-xl bg-white border border-pw-line shadow-raised grid place-items-center text-pw-navy hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
-                    >
-                      <Maximize2 className="w-5 h-5" aria-hidden="true" />
-                    </button>
-                  )}
-                  {selected && (
-                    <div className={`absolute inset-x-2 z-[1000] ${fullscreen ? (sheetOpen ? 'hidden' : 'bottom-16') : 'bottom-2'}`}>
-                      <div className="relative rounded-2xl bg-white border border-pw-line shadow-lift p-3 pe-12 max-h-[70%] overflow-y-auto">
-                        <button
-                          type="button"
-                          onClick={() => setSelectedId(null)}
-                          aria-label="Close summary"
-                          className="absolute top-1 end-1 w-11 h-11 grid place-items-center rounded-xl text-pw-muted hover:bg-pw-soft"
-                        >
-                          <X className="w-5 h-5" aria-hidden="true" />
-                        </button>
-                        <PlaceSummary r={selected} />
-                      </div>
-                    </div>
-                  )}
-                </div>
-                {fullscreen && (
-                  <ListSheet
-                    places={results}
-                    open={sheetOpen}
-                    onToggle={setSheetOpen}
-                    onPick={(id) => { setSelectedId(id); setSheetOpen(false); }}
-                  />
-                )}
-              </div>
-              <MapLegend places={results} />
-            </>
-          )}
-
-          {overview ? null : results.length === 0 ? (
+          {results.length === 0 ? (
             <RaisedCard className="space-y-2">
               <p className="text-base font-bold text-pw-navy">No places found here yet.</p>
               <p className="text-base text-pw-muted">
