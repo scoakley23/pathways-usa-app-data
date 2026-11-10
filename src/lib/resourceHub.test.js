@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import {
   normalizeZip, zipToLatLng, distanceMiles, formatDistance, nearestResources,
   directionsUrl, safeWebsite, telHref, parseCsv, cleanResourceRow, resourceKey, isValidLatLng, isPoBoxOnly,
-  placeServices, safeLogoUrl, planImport, savedResources,
+  placeServices, safeLogoUrl, planImport, savedResources, mappedResources,
 } from './resourceHub';
 
 // Fake test places only.
@@ -214,5 +214,21 @@ describe('savedResources', () => {
     const list = savedResources(places, new Set(['a', 'b']), BOSTON);
     expect(list.map((r) => r.id)).toEqual(['b', 'a']);
     expect(list[0].distance).toBeLessThan(10);
+  });
+});
+
+describe('mappedResources', () => {
+  it('lists every active place with a pin, by name, without distances', () => {
+    const list = [
+      place({ name: 'Zeta', latitude: 40.75, longitude: -73.99 }),
+      place({ name: 'Alpha', latitude: 34.05, longitude: -118.24 }),
+      place({ name: 'Hidden', latitude: 41, longitude: -87, is_active: false }),
+      place({ name: 'No pin', latitude: null, longitude: null }),
+      place({ name: 'Class', category: 'esl', latitude: 42.36, longitude: -71.06 }),
+    ];
+    const out = mappedResources(list, { categories: ['legal'] });
+    expect(out.map((r) => r.name)).toEqual(['Alpha', 'Zeta']);
+    expect(out[0].distance).toBeUndefined();
+    expect(mappedResources(list).map((r) => r.name)).toEqual(['Alpha', 'Class', 'Zeta']);
   });
 });

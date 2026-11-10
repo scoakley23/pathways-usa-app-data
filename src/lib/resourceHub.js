@@ -147,6 +147,19 @@ export function nearestResources(resources, origin, { categories = CATEGORY_IDS,
     .slice(0, limit);
 }
 
+// Every place on the map, for the first view before the learner gives a
+// location: no distances, sorted by name. Uses no location at all.
+// The lower 48 states; the map fits this box on its first view.
+export const US_VIEW = { lat: 39.5, lng: -98.35, bounds: [[24.5, -125], [49.5, -66.9]] };
+
+export function mappedResources(resources, { categories = CATEGORY_IDS } = {}) {
+  const wanted = new Set(categories);
+  return (resources || [])
+    .filter((r) => r && r.is_active !== false && placeServices(r).some((s) => wanted.has(s)) && isValidLatLng(r.latitude, r.longitude))
+    .map((r) => ({ ...r, distance: undefined }))
+    .sort((a, b) => String(a.name).localeCompare(String(b.name)));
+}
+
 // The learner's saved places that are still shown on the hub. With a search
 // origin they get a distance and come nearest first; without one, by name.
 export function savedResources(resources, savedIds, origin) {
