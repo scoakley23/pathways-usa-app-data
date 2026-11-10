@@ -9,7 +9,7 @@ export default function N400SectionList({ sections, completedIds = [], countFor,
   return (
     <div className="text-pw-navy">
       <span className="block w-32 h-5 rounded-t-[10px] bg-pw-manila" aria-hidden="true" />
-      <ul className="rounded-[14px] rounded-tl-none bg-pw-manila p-2.5 sm:p-4 shadow-[0_10px_24px_rgba(20,38,74,0.14)] space-y-2">
+      <ul className="rounded-card rounded-tl-none bg-pw-manila p-2.5 sm:p-4 shadow-[0_10px_24px_rgba(20,38,74,0.14)] space-y-2">
         {sections.map((s) => {
           const tone = tabFor(s).tone;
           const done = completedIds.includes(s.id);

@@ -493,7 +493,7 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
       {/* The question on a poster, with the microphone (Phase 5) */}
       <Poster
         tone={posterTone(currentIndex)}
-        className="-mx-4 sm:mx-0 sm:rounded-[14px]"
+        className="-mx-4 sm:mx-0 sm:rounded-card"
         label={`Interview · ${sectionLabel}`}
         question={current.question}
       >
@@ -570,7 +570,7 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
       {/* Conversation Transcript */}
       <div
         ref={transcriptRef}
-        className="rounded-[14px] bg-pw-soft p-3 space-y-3 max-h-[360px] overflow-y-auto"
+        className="rounded-card bg-pw-soft p-3 space-y-3 max-h-[360px] overflow-y-auto"
       >
         {conversation.map((msg) => (
           <MessageBubble key={msg.id} role={msg.role} text={msg.text} />
@@ -580,18 +580,18 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
         {/* Live recording bubble */}
         {isListening && (
           <div className="flex justify-end">
-            <div className="bg-pw-red-soft rounded-2xl rounded-tr-md px-4 py-3 max-w-[85%]">
+            <div className="bg-sand rounded-2xl rounded-tr-md px-4 py-3 max-w-[85%]">
               <div className="flex items-center gap-1 h-8" aria-hidden="true">
                 {[...Array(12)].map((_, i) => (
                   <div
                     key={i}
-                    className="w-1.5 bg-pw-red-ink rounded-full transition-all duration-75"
+                    className="w-1.5 bg-navy rounded-full transition-all duration-75"
                     style={{ height: `${Math.max(6, Math.random() * audioLevel * 0.5 + audioLevel * 0.5)}px`, opacity: 0.6 + Math.random() * 0.4 }}
                   />
                 ))}
               </div>
               {userResponse && <p className="text-base text-pw-navy italic mt-1">"{userResponse}"</p>}
-              <p className="text-sm text-pw-red-ink font-semibold mt-1">Recording... {formatTime(recordingTime)}</p>
+              <p className="text-sm text-ink font-semibold mt-1">Recording... {formatTime(recordingTime)}</p>
             </div>
           </div>
         )}
@@ -682,7 +682,7 @@ function FeedbackPanel({ feedback, understanding = false }) {
       {feedback.corrected_version && (
         <RuledPaper>
           <p className="text-[13px] font-semibold uppercase tracking-[0.14em] leading-[36px] text-pw-muted">{understanding ? 'What the question is asking' : 'A better way to say it'}</p>
-          <p className="font-display italic text-[22px] leading-[36px]">“{feedback.corrected_version}”</p>
+          <p className="font-medium text-[22px] leading-[36px]">“{feedback.corrected_version}”</p>
         </RuledPaper>
       )}
 

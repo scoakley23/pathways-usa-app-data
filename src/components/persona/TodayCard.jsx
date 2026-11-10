@@ -23,10 +23,6 @@ const SECTION_IDS = N400_SECTIONS.map((s) => s.id);
 const SECTION_TITLE = Object.fromEntries(N400_SECTIONS.map((s) => [s.id, s.title]));
 const DISMISS_KEY = 'pathways_checkins_dismissed'; // { date, ids }
 
-// Vía's notes are handwritten (Caveat) when the text is in Latin script;
-// other scripts keep Instrument Sans so they stay readable.
-const handwritten = (text) => /^[\p{Script=Latin}\p{P}\p{N}\p{Zs}\p{S}]*$/u.test(text || '');
-
 // The four parts in Practice order, and how many of three steps each
 // quick-check level fills.
 const FOUR_PARTS = ['reading', 'writing', 'civics', 'speaking'];
@@ -266,8 +262,8 @@ export default function TodayCard({ language = 'en' }) {
         </p>
         <h1 id="today-title" className="font-display text-[44px] leading-[1.02] sm:text-[60px]">{hello}</h1>
         <div className="max-w-2xl">
-          {lineMine && <p dir={dir} className="font-display italic text-[23px] sm:text-[26px] leading-snug">{lineMine}</p>}
-          <p className={`font-display italic leading-snug ${lineMine ? 'mt-1 text-lg text-pw-muted' : 'text-[23px] sm:text-[26px]'}`}>
+          {lineMine && <p dir={dir} className="font-medium text-[23px] sm:text-[26px] leading-snug">{lineMine}</p>}
+          <p className={`font-medium leading-snug ${lineMine ? 'mt-1 text-lg text-pw-muted' : 'text-[23px] sm:text-[26px]'}`}>
             {lineEn} <span className="whitespace-nowrap text-pw-muted">— {profile.name}</span>
           </p>
         </div>
@@ -290,7 +286,7 @@ export default function TodayCard({ language = 'en' }) {
                     {firstDay ? t('quick_check_kicker') : `${skillName(top)} · ${t('task_of', { n: tasks.indexOf(top) + 1, t: n })}`}
                   </p>
                   <h2 className="mt-3 text-[34px] sm:text-[42px] font-bold leading-[1.05] tracking-[-0.01em]">{taskLabel(top)}</h2>
-                  <p className="mt-2 font-display italic text-[21px]">
+                  <p className="mt-2 font-medium text-[21px]">
                     {firstDay && `${t('quick_check_sub')} · `}<span className="whitespace-nowrap">{t('minutes', { m: top.minutes })}</span>
                   </p>
                   <div className="mt-auto pt-5 flex items-center justify-between gap-3">
@@ -317,10 +313,10 @@ export default function TodayCard({ language = 'en' }) {
                 aria-label={profile.name}
                 className="ms-auto max-w-[300px] -rotate-[1.5deg] rounded-[4px] bg-white px-4 pt-3 pb-3 shadow-[0_6px_14px_rgba(20,38,74,0.14)] space-y-2"
               >
-                <p dir={dir} className={`text-pw-navy ${handwritten(noteText(note)) ? 'font-hand font-semibold text-[23px] leading-tight' : 'text-base leading-relaxed'}`}>
+                <p dir={dir} className="text-pw-navy text-lg font-medium leading-snug">
                   {noteText(note)}
                 </p>
-                <p className="font-hand font-semibold text-[21px] leading-none text-pw-muted">— {profile.name}</p>
+                <p className="text-base font-medium text-pw-muted">— {profile.name}</p>
                 <div className="flex flex-wrap justify-end gap-2 pt-1">
                   {note.kind === 'plan' && (
                     <button type="button" onClick={() => setSettingDate((v) => !v)} aria-expanded={settingDate} className={`${noteBtn} bg-pw-soft text-pw-navy hover:bg-pw-soft-hover`}>
@@ -380,7 +376,7 @@ export default function TodayCard({ language = 'en' }) {
 
           {/* The four parts (quick check levels, in words too), the week's
               rhythm and readiness; no countdown */}
-          <div className="rounded-[14px] bg-white border border-pw-line p-4 sm:p-5 space-y-3">
+          <div className="rounded-card bg-white border border-pw-line p-4 sm:p-5 space-y-3">
             <h2 className="text-[13px] font-semibold uppercase tracking-[0.14em] text-pw-muted">{t('four_parts')}</h2>
             <ul className="space-y-2.5">
               {FOUR_PARTS.map((part) => {

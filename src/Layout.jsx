@@ -200,7 +200,7 @@ export default function Layout({ children }) {
                   ))}
                   <div className="border-t border-pw-line my-2 pt-4">
                     {user ? (
-                      <Button variant="ghost" className="w-full justify-start text-pw-red-ink hover:bg-pw-red-soft" onClick={handleLogout}>
+                      <Button variant="ghost" className="w-full justify-start text-ink hover:bg-sand" onClick={handleLogout}>
                         <LogOut className="w-5 h-5 mr-3" aria-hidden="true" />
                         Sign Out
                       </Button>

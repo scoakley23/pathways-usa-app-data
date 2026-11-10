@@ -38,7 +38,7 @@ export default function N400BlankForm({ sections, isAdmin = false, onOpenSection
       </div>
 
       {/* One blank page of the form */}
-      <section aria-label={`Blank form: ${section.title}`} className="rounded-[4px] bg-white border border-pw-rule p-4 sm:p-6 shadow-[0_6px_18px_rgba(20,38,74,0.12)] font-form space-y-4">
+      <section aria-label={`Blank form: ${section.title}`} className="rounded-[4px] bg-white border p-4 sm:p-6 border-card-line space-y-4">
         <div className="flex flex-wrap items-baseline justify-between gap-2 border-b-2 border-pw-navy pb-2">
           <h2 className="text-base sm:text-lg font-bold">{section.partLabel} · {section.title}</h2>
           <span className="text-sm text-pw-muted">BLANK · NOTHING IS SAVED</span>

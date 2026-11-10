@@ -5,6 +5,7 @@ import { Check, Notebook, BookOpen, Mic, CalendarCheck, Star } from 'lucide-reac
 import { ROADMAP_STOPS } from './roadmapStops';
 import { isRTL } from '@/hooks/useAppLanguage';
 import useTutorProfile from '@/components/persona/useTutorProfile';
+import { COLORS } from '@/lib/theme';
 
 const STOP_ICONS = { 1: Notebook, 2: BookOpen, 3: Mic, 4: CalendarCheck };
 
@@ -64,7 +65,7 @@ export default function RoadmapPath({ roadmap, t, language }) {
         </div>
 
         <div
-          className="relative rounded-[14px] bg-white border border-pw-line shadow-raised overflow-hidden"
+          className="relative rounded-card bg-white border border-pw-line shadow-raised overflow-hidden"
           style={{ height: PANEL_HEIGHT }}
         >
           {/* Winding road */}
@@ -78,7 +79,7 @@ export default function RoadmapPath({ roadmap, t, language }) {
             <path
               d={dottedPath}
               fill="none"
-              stroke="#9AA8C2"
+              stroke={COLORS.sky}
               strokeWidth={6}
               strokeLinecap="round"
               strokeDasharray="0.5 12"
@@ -87,7 +88,7 @@ export default function RoadmapPath({ roadmap, t, language }) {
             <path
               d={solidPath}
               fill="none"
-              stroke="#14264A"
+              stroke={COLORS.navy}
               strokeWidth={6}
               strokeLinecap="round"
               vectorEffect="non-scaling-stroke"
@@ -120,7 +121,7 @@ export default function RoadmapPath({ roadmap, t, language }) {
                 <Link
                   to={stopUrl(stop)}
                   aria-label={ariaLabel}
-                  className="flex flex-col items-center gap-1 rounded-[14px] p-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
+                  className="flex flex-col items-center gap-1 rounded-card p-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
                 >
                   <Star className="w-12 h-12 text-pw-navy fill-pw-navy" strokeWidth={1.5} />
                   <span className="text-sm font-extrabold uppercase tracking-wide text-pw-navy">
@@ -171,7 +172,7 @@ export default function RoadmapPath({ roadmap, t, language }) {
             const text = (
               <div className={onLeft ? 'text-left' : 'text-right'}>
                 {isCurrent && (
-                  <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-pw-red-ink">
+                  <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-ink">
                     {t('you_are_here')}
                   </p>
                 )}

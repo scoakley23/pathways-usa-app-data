@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Eyebrow, RaisedCard, SecondaryButton } from '@/components/pathways/ui';
 import { RotateCcw, CheckCircle, XCircle, ChevronDown, ChevronUp, Trophy, Target, BookOpen, MessageSquare } from 'lucide-react';
+import { COLORS } from '@/lib/theme';
 
 export default function InterviewReport({ results, questions, onRestart }) {
   const [expandedIdx, setExpandedIdx] = useState(null);
@@ -29,7 +30,7 @@ export default function InterviewReport({ results, questions, onRestart }) {
   return (
     <div className="w-full max-w-3xl mx-auto space-y-4 text-pw-navy">
       {/* Header */}
-      <div className={`rounded-[14px] p-6 text-center space-y-5 ${isReady ? 'bg-pw-green-soft' : 'bg-pw-blue-soft'}`}>
+      <div className={`rounded-card p-6 text-center space-y-5 ${isReady ? 'bg-pw-green-soft' : 'bg-pw-blue-soft'}`}>
         <div className={`w-16 h-16 rounded-2xl bg-white flex items-center justify-center mx-auto shadow-raised ${isReady ? 'text-pw-green-ink' : 'text-pw-blue-ink'}`}>
           {isReady ? <Trophy className="w-8 h-8" aria-hidden="true" /> : <Target className="w-8 h-8" aria-hidden="true" />}
         </div>
@@ -49,7 +50,7 @@ export default function InterviewReport({ results, questions, onRestart }) {
         <div className="flex justify-center">
           <div className="relative w-32 h-32">
             <svg className="w-32 h-32 -rotate-90" viewBox="0 0 120 120" aria-hidden="true">
-              <circle cx="60" cy="60" r="50" fill="none" stroke="#FFFFFF" strokeWidth="10" />
+              <circle cx="60" cy="60" r="50" fill="none" stroke={COLORS.onNavy} strokeWidth="10" />
               <circle cx="60" cy="60" r="50" fill="none"
                 className={isReady ? 'stroke-pw-green-ink' : 'stroke-pw-navy'}
                 strokeWidth="10"

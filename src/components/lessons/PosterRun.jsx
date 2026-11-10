@@ -119,7 +119,7 @@ export default function PosterRun({ questions, language = 'en', tutorName = 'Ví
     <div className="space-y-0">
       <Poster
         tone={tone}
-        className="-mx-4 sm:mx-0 sm:rounded-[14px] min-h-[420px]"
+        className="-mx-4 sm:mx-0 sm:rounded-card min-h-[420px]"
         label={`${label} · ${index + 1} of ${total}`}
         question={cleanQuestionText(q.question)}
         answer={result ? `Answer: ${officialAnswerText(q, location)}` : null}
@@ -202,11 +202,11 @@ export default function PosterRun({ questions, language = 'en', tutorName = 'Ví
 
       {/* "Explain it simply": a white sheet under the poster */}
       {result && explainOpen && (
-        <div className="-mx-4 sm:mx-0 sm:mt-2 sm:rounded-[14px] bg-white border border-pw-line p-5 text-pw-navy space-y-2">
+        <div className="-mx-4 sm:mx-0 sm:mt-2 sm:rounded-card bg-white border border-pw-line p-5 text-pw-navy space-y-2">
           {explanation.text.mine && <p dir={dir} className="text-lg leading-relaxed whitespace-pre-line">{explanation.text.mine}</p>}
           {explanation.text.en && <p className={`leading-relaxed whitespace-pre-line ${explanation.text.mine ? 'text-pw-muted' : 'text-lg'}`}>{explanation.text.en}</p>}
           {explanation.note && <p className="text-sm text-pw-muted">{explanation.note.mine || explanation.note.en}</p>}
-          <p className="font-display italic text-lg text-pw-muted">— {tutorName}</p>
+          <p className="font-medium text-lg text-pw-muted">— {tutorName}</p>
         </div>
       )}
     </div>

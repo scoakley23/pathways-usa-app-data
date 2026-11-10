@@ -80,7 +80,7 @@ export default function InterviewDayGuide() {
         </ul>
       </RaisedCard>
 
-      <div className="rounded-[14px] bg-pw-red-soft p-5 space-y-3">
+      <div className="rounded-card bg-pw-red-soft p-5 space-y-3">
         <p className="text-lg font-extrabold">Questions about your own case?</p>
         <p className="text-base leading-relaxed">
           This page is for practice only. It can&apos;t tell you how to answer about your own life or whether you can apply.

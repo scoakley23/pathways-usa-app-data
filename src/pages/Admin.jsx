@@ -41,7 +41,7 @@ export default function Admin() {
   if (!currentUser || currentUser.role !== 'admin') {
     return (
       <div className="flex flex-col items-center justify-center min-h-[50vh] text-center space-y-4">
-        <div className="w-20 h-20 rounded-[14px] bg-pw-red-soft flex items-center justify-center" aria-hidden="true">
+        <div className="w-20 h-20 rounded-card bg-pw-red-soft flex items-center justify-center" aria-hidden="true">
           <AlertCircle className="w-10 h-10 text-pw-red-ink" />
         </div>
         <h2 className="text-[28px] font-display font-normal text-pw-navy">Access Denied</h2>

@@ -1,59 +1,63 @@
 import React from 'react';
 import { posterTone, POSTER_SCHEME } from '@/lib/posterTone';
+import { COLORS } from '@/lib/theme';
 
 export { posterTone, POSTER_SCHEME };
 
-// Pathways brand kit building blocks (docs/redesign/brand-spec.md). Use these
-// instead of one-off hex colors so the whole app stays consistent
-// (tokens: tailwind `pw.*`).
+// Pathways "The Road" building blocks (docs/redesign/road-style-guide.md).
+// Use these and the Tailwind tokens (navy, cream, sand, star, ink, correct,
+// not-correct, ...) instead of one-off hex colors.
 
+// Tags and chips are labels, so every tone is the same quiet sand chip; only
+// results get their own color (always with an icon and words).
+const NEUTRAL_TAG = 'bg-sand text-ink';
 const TAG_TONES = {
-  red: 'bg-pw-red-soft text-pw-red-ink',
-  blue: 'bg-pw-blue-soft text-pw-civics',
-  teal: 'bg-pw-teal-soft text-pw-reading',
-  green: 'bg-pw-green-soft text-pw-writing',
-  navy: 'bg-pw-soft text-pw-navy',
-  sky: 'bg-pw-sky/40 text-pw-navy',
-  manila: 'bg-pw-manila/70 text-pw-navy',
+  red: NEUTRAL_TAG,
+  blue: NEUTRAL_TAG,
+  teal: NEUTRAL_TAG,
+  green: NEUTRAL_TAG,
+  navy: NEUTRAL_TAG,
+  sky: NEUTRAL_TAG,
+  manila: NEUTRAL_TAG,
+  correct: 'bg-correct-soft text-correct',
+  notCorrect: 'bg-not-correct-soft text-not-correct',
 };
 const DOT = {
-  red: 'bg-pw-red-ink', blue: 'bg-pw-civics', teal: 'bg-pw-reading', green: 'bg-pw-writing', navy: 'bg-pw-navy',
-  sky: 'bg-pw-sky ring-1 ring-pw-navy/40', manila: 'bg-pw-manila ring-1 ring-pw-navy/40',
+  red: 'bg-navy', blue: 'bg-navy', teal: 'bg-navy', green: 'bg-navy', navy: 'bg-navy', sky: 'bg-navy', manila: 'bg-navy',
+  correct: 'bg-correct', notCorrect: 'bg-not-correct',
 };
 
-// One color per interview skill, the same everywhere (Practice tiles, Today,
-// tabs, tags): Reading = blue, Writing = Sky, Civics = Red ink, Speaking =
-// Ink, N-400 = Manila. (The `pw-civics` token is the blue; its name predates
-// this scheme.) Sky and Manila are light: they always take ink text.
+// Skills no longer have their own colors: every skill is navy (solid) or
+// sand (light). The maps stay so older callers keep working.
 export const SKILL_TONE = {
-  civics: 'red',
-  reading: 'blue',
-  writing: 'sky',
+  civics: 'navy',
+  reading: 'navy',
+  writing: 'navy',
   speaking: 'navy',
-  n400: 'manila',
+  n400: 'navy',
 };
 export const SKILL_BG = {
-  civics: 'bg-pw-red-soft',
-  reading: 'bg-pw-blue-soft',
-  writing: 'bg-pw-sky/30',
-  speaking: 'bg-pw-soft',
-  n400: 'bg-pw-manila/50',
+  civics: 'bg-sand',
+  reading: 'bg-sand',
+  writing: 'bg-sand',
+  speaking: 'bg-sand',
+  n400: 'bg-sand',
 };
-// Solid skill color, for tabs, strips and tiles.
+// Solid fill, for tabs, strips and tiles.
 export const SKILL_COLOR = {
-  civics: 'bg-pw-red-ink',
-  reading: 'bg-pw-civics',
-  writing: 'bg-pw-sky',
-  speaking: 'bg-pw-navy',
-  n400: 'bg-pw-manila',
+  civics: 'bg-navy',
+  reading: 'bg-navy',
+  writing: 'bg-navy',
+  speaking: 'bg-navy',
+  n400: 'bg-navy',
 };
-// Text on the solid skill color (all ≥ 4.5:1).
+// Text on the solid fill.
 export const SKILL_ON = {
   civics: 'text-white',
   reading: 'text-white',
-  writing: 'text-pw-navy',
+  writing: 'text-white',
   speaking: 'text-white',
-  n400: 'text-pw-navy',
+  n400: 'text-white',
 };
 export const SKILL_LABEL = {
   civics: 'Civics',
@@ -65,7 +69,7 @@ export const SKILL_LABEL = {
 
 // Small colored dot for a skill, for lists where a full tag is too loud.
 export function SkillDot({ skill, className = '' }) {
-  return <span className={`inline-block w-2.5 h-2.5 rounded-full shrink-0 ${DOT[SKILL_TONE[skill]]} ${className}`} aria-hidden="true" />;
+  return <span className={`inline-block w-2.5 h-2.5 rounded-full shrink-0 ${DOT[SKILL_TONE[skill]] || DOT.navy} ${className}`} aria-hidden="true" />;
 }
 
 export function SkillTag({ skill, className = '' }) {
@@ -74,8 +78,8 @@ export function SkillTag({ skill, className = '' }) {
 
 export function Tag({ tone = 'navy', children, className = '' }) {
   return (
-    <span className={`inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-semibold ${TAG_TONES[tone]} ${className}`}>
-      <span className={`w-2 h-2 rounded-full ${DOT[tone]}`} aria-hidden="true" />
+    <span className={`inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-semibold ${TAG_TONES[tone] || NEUTRAL_TAG} ${className}`}>
+      <span className={`w-2 h-2 rounded-full ${DOT[tone] || DOT.navy}`} aria-hidden="true" />
       {children}
     </span>
   );
@@ -89,42 +93,92 @@ export function SegmentedProgress({ current, total, label }) {
       {total <= 12 ? (
         <div className="flex gap-1.5">
           {Array.from({ length: total }, (_, k) => (
-            <div key={k} className={`h-1.5 flex-1 rounded-full transition-colors ${k < current ? 'bg-pw-navy' : k === current ? 'bg-pw-muted' : 'bg-pw-line'}`} />
+            <div key={k} className={`h-1.5 flex-1 rounded-full transition-colors ${k < current ? 'bg-navy' : k === current ? 'bg-ink-2' : 'bg-card-line'}`} />
           ))}
         </div>
       ) : (
-        <div className="h-1.5 rounded-full bg-pw-line overflow-hidden">
-          <div className="h-full rounded-full bg-pw-navy transition-all" style={{ width: `${pct}%` }} />
+        <div className="h-1.5 rounded-full bg-card-line overflow-hidden">
+          <div className="h-full rounded-full bg-navy transition-all" style={{ width: `${pct}%` }} />
         </div>
       )}
     </div>
   );
 }
 
-const BTN = 'min-h-[44px] rounded-xl font-semibold inline-flex items-center justify-center gap-2 transition-colors disabled:opacity-40 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2';
+// Buttons are pills, at least 44px tall. `main` is the star-red action:
+// ONE per screen, 56-60px. `next` moves on (navy on cream; `onNavy` makes it
+// white on navy). `second` is the outlined second choice. `link` is a text link.
+const BTN = 'min-h-tap rounded-full font-semibold inline-flex items-center justify-center gap-2 text-center transition-colors disabled:opacity-40 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2';
+const BUTTON_VARIANTS = {
+  main: 'min-h-main bg-star text-white hover:bg-star-deep px-6 text-lg focus-visible:ring-navy',
+  next: 'bg-navy text-white hover:bg-navy-deep px-5 text-base focus-visible:ring-navy',
+  second: 'bg-transparent text-ink border-2 border-navy hover:bg-sand px-5 text-base focus-visible:ring-navy',
+  link: 'text-ink underline underline-offset-4 decoration-ink/40 hover:decoration-ink px-2 text-base focus-visible:ring-navy',
+};
+const BUTTON_ON_NAVY = {
+  main: 'min-h-main bg-star text-white hover:bg-star-deep px-6 text-lg focus-visible:ring-white focus-visible:ring-offset-navy',
+  next: 'bg-white text-navy hover:bg-cream px-5 text-base focus-visible:ring-white focus-visible:ring-offset-navy',
+  second: 'bg-transparent text-white border-2 border-navy-line hover:bg-navy-2 px-5 text-base focus-visible:ring-white focus-visible:ring-offset-navy',
+  link: 'text-white underline underline-offset-4 decoration-white/50 hover:decoration-white px-2 text-base focus-visible:ring-white focus-visible:ring-offset-navy',
+};
 
-export function PrimaryButton({ className = '', large = false, ...props }) {
-  return <button type="button" className={`${BTN} bg-pw-navy text-white hover:bg-pw-navy-deep px-5 ${large ? 'min-h-[52px] text-lg' : 'text-base'} ${className}`} {...props} />;
+export function Button({ variant = 'next', onNavy = false, className = '', ...props }) {
+  const look = (onNavy ? BUTTON_ON_NAVY : BUTTON_VARIANTS)[variant] || BUTTON_VARIANTS.next;
+  return <button type="button" className={`${BTN} ${look} ${className}`} {...props} />;
 }
 
-export function SecondaryButton({ className = '', ...props }) {
-  return <button type="button" className={`${BTN} bg-white text-pw-navy border-2 border-pw-navy hover:bg-pw-soft px-4 text-base ${className}`} {...props} />;
+// Older names, kept so every caller follows the new look.
+export function PrimaryButton({ className = '', large = false, ...props }) {
+  return <Button variant="next" className={`${large ? 'min-h-[52px] text-lg' : ''} ${className}`} {...props} />;
+}
+
+export function SecondaryButton(props) {
+  return <Button variant="second" {...props} />;
 }
 
 export function QuietButton({ className = '', ...props }) {
-  return <button type="button" className={`${BTN} text-pw-navy hover:bg-pw-soft px-3 text-base ${className}`} {...props} />;
+  return <button type="button" className={`${BTN} text-ink hover:bg-sand px-3 text-base focus-visible:ring-navy ${className}`} {...props} />;
+}
+
+// A chip: sand on cream, navy-2 on navy. As a button when it has onClick.
+export function Chip({ onNavy = false, className = '', children, ...props }) {
+  const look = onNavy ? 'bg-navy-2 text-white hover:bg-navy-line' : 'bg-sand text-ink hover:bg-sand-hover';
+  if (!props.onClick) {
+    return <span className={`inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-semibold ${look} ${className}`} {...props}>{children}</span>;
+  }
+  return <button type="button" className={`${BTN} px-4 text-base ${look} ${onNavy ? 'focus-visible:ring-white focus-visible:ring-offset-navy' : 'focus-visible:ring-navy'} ${className}`} {...props}>{children}</button>;
 }
 
 export function PillButton({ className = '', ...props }) {
-  return <button type="button" className={`${BTN} rounded-full bg-pw-soft text-pw-navy hover:bg-pw-soft-hover px-4 text-base ${className}`} {...props} />;
+  return <button type="button" className={`${BTN} bg-sand text-ink hover:bg-sand-hover px-4 text-base focus-visible:ring-navy ${className}`} {...props} />;
 }
 
-export function RaisedCard({ className = '', padding = 'p-5', children, ...props }) {
-  return <div className={`rounded-[14px] bg-white border border-pw-line shadow-raised ${padding} ${className}`} {...props}>{children}</div>;
+// White card on cream: 22px corners, a thin line, no shadow.
+export function Card({ className = '', padding = 'p-5', children, ...props }) {
+  return <div className={`rounded-card bg-white border border-card-line ${padding} ${className}`} {...props}>{children}</div>;
 }
+export const RaisedCard = Card;
 
 export function Eyebrow({ className = '', children }) {
-  return <p className={`text-xs font-semibold uppercase tracking-[0.14em] text-pw-muted ${className}`}>{children}</p>;
+  return <p className={`text-label uppercase text-ink-label ${className}`}>{children}</p>;
+}
+
+// --- The split screen ----------------------------------------------------
+// Every main screen is split: a navy top says WHAT this is (title, question,
+// where you are); a cream sheet with 28px top corners below holds what you DO.
+
+export function NavyTop({ as: Tag = 'section', className = '', children, ...props }) {
+  return <Tag className={`bg-navy text-white px-4 pt-6 pb-10 sm:px-8 ${className}`} {...props}>{children}</Tag>;
+}
+
+// The cream sheet. It overlaps the navy top by its corner radius so the
+// corners show; `flush` turns that off.
+export function CreamSheet({ as: Tag = 'section', flush = false, className = '', children, ...props }) {
+  return (
+    <Tag className={`relative bg-cream text-ink rounded-t-sheet px-4 pt-6 pb-8 sm:px-8 ${flush ? '' : '-mt-7'} ${className}`} {...props}>
+      {children}
+    </Tag>
+  );
 }
 
 // --- Logo and Vía --------------------------------------------------------
@@ -144,20 +198,20 @@ export function PathwaysMark({ size = 40, tone = 'ink', label, className = '' })
   const a11y = label ? { role: 'img', 'aria-label': label } : { 'aria-hidden': true, focusable: 'false' };
   return (
     <svg viewBox="0 0 120 120" width={size} height={size} className={`shrink-0 ${className}`} {...a11y}>
-      <path d={MARK_ROADS} fill="none" stroke={white ? '#FFFFFF' : '#14264A'} strokeWidth={stroke} strokeLinecap="round" />
-      <circle cx="70" cy="20" r={r} fill={white ? '#FFFFFF' : '#D9483F'} />
+      <path d={MARK_ROADS} fill="none" stroke={white ? COLORS.onNavy : COLORS.navy} strokeWidth={stroke} strokeLinecap="round" />
+      <circle cx="70" cy="20" r={r} fill={white ? COLORS.onNavy : COLORS.star} />
     </svg>
   );
 }
 
-// Symbol + "Pathways" wordmark in Instrument Serif. layout: horizontal
+// Symbol + "Pathways" wordmark in Bricolage Grotesque 800. layout: horizontal
 // (symbol left of word) | stacked (symbol over word). Optional descriptor
 // line, e.g. "Free U.S. citizenship test practice".
 export function PathwaysLockup({ layout = 'horizontal', size, tone = 'ink', descriptor, className = '' }) {
   const stacked = layout === 'stacked';
   const markSize = size ?? (stacked ? 72 : 32);
-  const text = tone === 'white' ? 'text-white' : 'text-pw-navy';
-  const sub = tone === 'white' ? 'text-white' : 'text-pw-muted';
+  const text = tone === 'white' ? 'text-white' : 'text-navy';
+  const sub = tone === 'white' ? 'text-on-navy-2' : 'text-ink-2';
   return (
     <div className={`${stacked ? 'flex flex-col items-center text-center gap-2' : 'flex items-center gap-2.5'} ${className}`}>
       <PathwaysMark size={markSize} tone={tone} />
@@ -178,46 +232,47 @@ export function ViaMark({ size = 48, label, className = '' }) {
   const a11y = label ? { role: 'img', 'aria-label': label } : { 'aria-hidden': true, focusable: 'false' };
   return (
     <svg viewBox="0 0 48 48" width={size} height={size} className={`shrink-0 ${className}`} {...a11y}>
-      <circle cx="24" cy="24" r="24" fill="#14264A" />
-      <path d="M13 13c5 7 8.5 14 11 22" fill="none" stroke="#FFFFFF" strokeWidth="4" strokeLinecap="round" />
-      <path d="M35 13c-5 7-8.5 14-11 22" fill="none" stroke="#FFFFFF" strokeWidth="4" strokeLinecap="round" />
-      <circle cx="24" cy="36.5" r="4" fill="#D9483F" />
+      <circle cx="24" cy="24" r="24" fill={COLORS.navy} />
+      <path d="M13 13c5 7 8.5 14 11 22" fill="none" stroke={COLORS.onNavy} strokeWidth="4" strokeLinecap="round" />
+      <path d="M35 13c-5 7-8.5 14-11 22" fill="none" stroke={COLORS.onNavy} strokeWidth="4" strokeLinecap="round" />
+      <circle cx="24" cy="36.5" r="4" fill={COLORS.star} />
     </svg>
   );
 }
 
 // --- Cards, posters, folder ----------------------------------------------
 
-// White index card. `tab`: a colored label above the card (`tabSkill` picks
-// the subject color). `rule`: a thin red top rule.
+// White index card. `tab`: a navy label above the card (`tabSkill` is kept
+// for older callers). `rule`: a thin navy top rule.
 export function IndexCard({ tab, tabSkill = 'n400', rule = false, padding = 'p-5', className = '', children, ...props }) {
   return (
     <div className={className} {...props}>
       {tab && (
-        <span className={`ml-4 inline-block rounded-t-lg px-3 py-1 text-sm font-semibold ${SKILL_COLOR[tabSkill] || SKILL_COLOR.n400} ${SKILL_ON[tabSkill] || SKILL_ON.n400}`}>
+        <span className={`ms-4 inline-block rounded-t-lg px-3 py-1 text-sm font-semibold ${SKILL_COLOR[tabSkill] || SKILL_COLOR.n400} ${SKILL_ON[tabSkill] || SKILL_ON.n400}`}>
           {tab}
         </span>
       )}
-      <div className={`relative overflow-hidden rounded-[14px] bg-white border border-pw-line shadow-raised ${padding}`}>
-        {rule && <span className="absolute inset-x-0 top-0 h-1 bg-pw-red" aria-hidden="true" />}
+      <div className={`relative overflow-hidden rounded-card bg-white border border-card-line ${padding}`}>
+        {rule && <span className="absolute inset-x-0 top-0 h-1 bg-navy" aria-hidden="true" />}
         {children}
       </div>
     </div>
   );
 }
 
-const POSTER_BG = { red: 'bg-pw-red-ink', blue: 'bg-pw-civics' };
+// Posters are navy whatever their tone (no alternating colors any more).
+const POSTER_BG = { red: 'bg-navy', blue: 'bg-navy' };
 
-// Buttons on a red or blue poster: solid white, or a white outline.
+// Buttons on a navy poster: solid white, or an outline.
 const POSTER_BTN = 'min-h-[48px] rounded-full px-5 inline-flex items-center justify-center gap-2 text-base font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent disabled:opacity-50 disabled:cursor-not-allowed';
-export const posterSolid = `${POSTER_BTN} bg-white text-pw-navy hover:bg-pw-soft`;
-export const posterOutline = `${POSTER_BTN} border-2 border-white text-white hover:bg-white/10`;
+export const posterSolid = `${POSTER_BTN} bg-white text-navy hover:bg-cream`;
+export const posterOutline = `${POSTER_BTN} border-2 border-navy-line text-white hover:bg-navy-2`;
 // Small tools on a poster (Listen, Translate) and quiet text links
 // ("Type it instead"), shared by every practice card.
-export const posterTool = 'min-h-11 rounded-full border-2 border-white px-4 inline-flex items-center gap-2 text-base font-semibold text-white hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white';
+export const posterTool = 'min-h-11 rounded-full bg-navy-2 px-4 inline-flex items-center gap-2 text-base font-semibold text-white hover:bg-navy-line focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white';
 export const posterLink = 'min-h-11 inline-flex items-center gap-2 text-base font-semibold text-white underline underline-offset-4 decoration-white/60 hover:decoration-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded';
 // The one big white action button on a poster (microphone, play).
-export const posterBigButton = 'relative w-[104px] h-[104px] rounded-full bg-white text-pw-navy grid place-items-center shadow-lift disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60';
+export const posterBigButton = 'relative w-[104px] h-[104px] rounded-full bg-white text-navy grid place-items-center disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60';
 
 // Quiet progress on a poster run: one thin white segment per card, filled
 // up to the current card. No stars, colors or text (the label carries
@@ -234,7 +289,7 @@ export function PosterProgress({ index = 0, total = 0, className = '' }) {
       aria-label={`Card ${Math.min(index + 1, total)} of ${total}`}
     >
       {Array.from({ length: total }, (_, k) => (
-        <span key={k} aria-hidden="true" className={`h-1 flex-1 rounded-full ${k <= index ? 'bg-white' : 'bg-white/30'}`} />
+        <span key={k} aria-hidden="true" className={`h-1 flex-1 rounded-full ${k <= index ? 'bg-sky' : 'bg-road'}`} />
       ))}
     </div>
   );
@@ -248,78 +303,71 @@ export const PosterSquares = PosterProgress;
 // and the N-400 screens. Line height matches the rules (`leading-[36px]`).
 export function RuledPaper({ as: Tag = 'div', className = '', children, ...props }) {
   return (
-    <Tag className={`pw-ruled relative rounded-[6px] bg-white ps-12 pe-5 pt-3 pb-5 text-pw-navy shadow-[0_6px_18px_rgba(20,38,74,0.12)] ${className}`} {...props}>
+    <Tag className={`pw-ruled relative rounded-[6px] bg-white border border-card-line ps-12 pe-5 pt-3 pb-5 text-ink ${className}`} {...props}>
       <span aria-hidden="true" className="absolute inset-y-0 start-8 w-0.5 bg-pw-margin" />
       {children}
     </Tag>
   );
 }
 
-// Full-bleed test/practice poster: white text on Red ink (≈ 5.6:1) or Civics
-// blue (≈ 8.5:1). Use posterTone(index) to alternate. `answer` shows in
-// Instrument Serif italic; `progress` ({ index, total }) adds a thin progress line;
+// Full-bleed test/practice poster: white text on navy. `tone` is kept for
+// older callers (posterTone) but every poster is navy. `answer` shows in
+// Bricolage; `progress` ({ index, total }) adds a thin progress line;
 // `children` holds the controls.
 export function Poster({ tone = 'red', label, question, answer, progress, questionAs: Q = 'h2', className = '', children, ...props }) {
   return (
     <section className={`relative ${POSTER_BG[tone] || POSTER_BG.red} text-white px-5 py-8 sm:px-8 sm:py-10 ${className}`} {...props}>
-      <PathwaysMark size={36} tone="white" className="absolute right-5 top-6 sm:right-8 sm:top-8" />
-      {label && <p className="pr-12 text-sm font-semibold uppercase tracking-[0.14em]">{label}</p>}
-      {progress && <div className="mt-3 pr-12"><PosterProgress index={progress.index} total={progress.total} /></div>}
-      {question && <Q className="mt-4 text-[2rem] leading-tight font-bold sm:text-5xl">{question}</Q>}
-      {answer && <p className="mt-5 font-display italic text-2xl leading-snug sm:text-3xl">{answer}</p>}
+      <PathwaysMark size={36} tone="white" className="absolute end-5 top-6 sm:end-8 sm:top-8" />
+      {label && <p className="pe-12 text-label uppercase text-on-navy-label">{label}</p>}
+      {progress && <div className="mt-3 pe-12"><PosterProgress index={progress.index} total={progress.total} /></div>}
+      {question && <Q className="mt-4 font-display text-[38px] leading-[1.1] sm:text-[40px]">{question}</Q>}
+      {answer && <p className="mt-5 font-display text-2xl leading-snug sm:text-3xl">{answer}</p>}
       {children && <div className="mt-6">{children}</div>}
     </section>
   );
 }
 
-const FOLDER_TAB_TONE = {
-  navy: 'border-pw-navy',
-  civics: 'border-pw-civics',
-  reading: 'border-pw-reading',
-  writing: 'border-pw-writing',
-  speaking: 'border-pw-speaking',
-  plum: 'border-pw-plum',
-  sky: 'border-pw-sky',
-};
-
-// Manila folder (N-400 only). `tabs`: a row of FolderTab buttons on top.
+// N-400 folder: a sand panel with navy section tabs (no manila or section
+// colors any more). `tabs`: a row of FolderTab buttons on top.
 export function Folder({ tabs, className = '', children, ...props }) {
   return (
     <div className={className} {...props}>
       {tabs && <div className="flex items-end gap-1.5 overflow-x-auto px-2">{tabs}</div>}
-      <div className="rounded-[14px] bg-pw-manila p-3 text-pw-navy shadow-raised sm:p-6">{children}</div>
+      <div className="rounded-card bg-sand p-3 text-ink sm:p-6">{children}</div>
     </div>
   );
 }
 
-// A colored section tab on the folder. The active tab joins the folder.
+// A section tab on the folder. `tone` is kept for older callers. The active
+// tab joins the folder.
+// eslint-disable-next-line no-unused-vars
 export function FolderTab({ tone = 'navy', active = false, className = '', ...props }) {
   return (
     <button
       type="button"
       aria-current={active ? 'true' : undefined}
-      className={`min-h-[44px] shrink-0 whitespace-nowrap rounded-t-lg border-t-4 px-3 text-base font-semibold text-pw-navy transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy ${FOLDER_TAB_TONE[tone] || FOLDER_TAB_TONE.navy} ${active ? 'bg-pw-manila' : 'bg-pw-linen hover:bg-pw-manila'} ${className}`}
+      className={`min-h-tap shrink-0 whitespace-nowrap rounded-t-lg border-t-4 border-navy px-3 text-base font-semibold text-ink transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy ${active ? 'bg-sand' : 'bg-cream hover:bg-sand'} ${className}`}
       {...props}
     />
   );
 }
 
-// N-400 wording, word for word, in Courier Prime.
+// N-400 wording, word for word (Inter, on a white card).
 export function FormQuote({ item, label = 'ON THE FORM · WORD FOR WORD', className = '', children }) {
   return (
-    <figure className={`rounded-[10px] border border-pw-line bg-white p-4 ${className}`}>
-      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-pw-muted">{label}</p>
-      <blockquote className="mt-2 font-form text-base sm:text-lg leading-relaxed text-pw-navy">{children}</blockquote>
-      {item != null && <figcaption className="mt-2 text-base text-pw-muted">— Form N-400, item {item}</figcaption>}
+    <figure className={`rounded-card border border-card-line bg-white p-4 ${className}`}>
+      <p className="text-label uppercase text-ink-label">{label}</p>
+      <blockquote className="mt-2 text-base sm:text-lg font-medium leading-relaxed text-ink">{children}</blockquote>
+      {item != null && <figcaption className="mt-2 text-base text-ink-2">— Form N-400, item {item}</figcaption>}
     </figure>
   );
 }
 
 // The standard way to ask for a simpler explanation. `onPoster` for use on a
-// red or blue poster (white outline).
+// navy poster.
 export function ExplainSimplyButton({ onPoster = false, className = '', children = 'Explain it simply', ...props }) {
   const look = onPoster
-    ? 'border-2 border-white text-white hover:bg-white/10 focus-visible:ring-white focus-visible:ring-offset-0'
-    : 'bg-pw-soft text-pw-navy hover:bg-pw-soft-hover';
+    ? 'bg-navy-2 text-white hover:bg-navy-line focus-visible:ring-white focus-visible:ring-offset-0'
+    : 'bg-sand text-ink hover:bg-sand-hover focus-visible:ring-navy';
   return <button type="button" className={`${BTN} rounded-full px-4 text-base ${look} ${className}`} {...props}>{children}</button>;
 }

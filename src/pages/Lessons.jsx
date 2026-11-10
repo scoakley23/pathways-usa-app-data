@@ -64,7 +64,7 @@ export default function Lessons() {
     { name: 'Principles of American Democracy', color: 'bg-pw-civics', border: 'border-pw-civics' },
     { name: 'System of Government', color: 'bg-pw-navy', border: 'border-pw-navy' },
     { name: 'Rights and Responsibilities', color: 'bg-pw-reading', border: 'border-pw-reading' },
-    { name: 'U.S. History', color: 'bg-pw-red-ink', border: 'border-pw-red-ink' },
+    { name: 'U.S. History', color: 'bg-navy', border: 'border-navy' },
     { name: 'Geography and Symbols', color: 'bg-pw-writing', border: 'border-pw-writing' },
   ];
 
@@ -121,7 +121,7 @@ export default function Lessons() {
         >
           <span className="text-[13px] font-semibold uppercase tracking-[0.16em]">{NEXT_LABEL[next.reason]} · {next.lesson.topic}</span>
           <span className="text-[32px] sm:text-[40px] font-bold leading-[1.05] tracking-[-0.01em]">{next.lesson.title}</span>
-          {next.lesson.description && <span className="font-display italic text-[20px] leading-snug">{next.lesson.description}</span>}
+          {next.lesson.description && <span className="font-medium text-[20px] leading-snug">{next.lesson.description}</span>}
           <span className="mt-auto pt-2 self-start min-h-[52px] rounded-full bg-white text-pw-navy px-7 text-lg font-semibold inline-flex items-center gap-2">
             {next.reason === 'start' ? 'Start' : 'Continue'} <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" />
           </span>

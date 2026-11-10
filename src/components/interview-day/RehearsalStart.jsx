@@ -13,7 +13,7 @@ export default function RehearsalStart({ version, onSelectVersion, onStart, star
     <section aria-labelledby="rehearsal-title" className="space-y-4 text-pw-navy">
       <h2 id="rehearsal-title" className="text-[28px] leading-snug font-display font-normal">Full rehearsal</h2>
 
-      <div className="rounded-[14px] bg-pw-blue-soft p-5 flex items-start gap-3">
+      <div className="rounded-card bg-pw-blue-soft p-5 flex items-start gap-3">
         <Info className="w-6 h-6 text-pw-blue-ink shrink-0 mt-0.5" aria-hidden="true" />
         <p className="text-base font-bold leading-relaxed">
           This is practice. Pathways is not part of USCIS. Your answers are not saved.

@@ -32,7 +32,7 @@ export default function N400QuestionCard({ sectionId, question, isAdmin, languag
   ];
 
   return (
-    <article className="rounded-[14px] border border-pw-line bg-white p-4 sm:p-5 space-y-4 text-pw-navy shadow-raised">
+    <article className="rounded-card border border-pw-line bg-white p-4 sm:p-5 space-y-4 text-pw-navy shadow-raised">
       <div className="flex flex-wrap items-center gap-2">
         <Eyebrow>Item {question.label}</Eyebrow>
         {isAdmin && question.status === 'draft' && <Tag tone="red">Draft — pending review</Tag>}
@@ -78,7 +78,7 @@ export default function N400QuestionCard({ sectionId, question, isAdmin, languag
               <ul className="space-y-2">
                 {question.officerPhrasings.map((p, i) => (
                   <li key={i} className="flex items-center gap-3">
-                    <p className="flex-1 font-display italic text-xl leading-snug">“{p}”</p>
+                    <p className="flex-1 font-medium text-xl leading-snug">“{p}”</p>
                     <button
                       type="button"
                       aria-label="Listen to this phrasing"
