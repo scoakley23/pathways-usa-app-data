@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -19,6 +20,7 @@ import { RaisedCard } from '@/components/pathways/ui';
 
 export default function Profile() {
   const [user, setUser] = useState(null);
+  const { hash } = useLocation();
   const [publicProfile, setPublicProfile] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
@@ -27,6 +29,14 @@ export default function Profile() {
   useEffect(() => {
     fetchData();
   }, []);
+
+  // The profile menu links to a card here (#program, #settings,
+  // #delete-data): scroll to it once the page has loaded.
+  useEffect(() => {
+    if (isLoading || !hash) return;
+    const el = document.getElementById(decodeURIComponent(hash.slice(1)));
+    if (el) el.scrollIntoView({ block: 'start' });
+  }, [hash, isLoading]);
 
   const fetchData = async () => {
     try {
@@ -202,11 +212,11 @@ export default function Profile() {
                 </CardContent>
               </Card>
           </div>
-          <div className="w-full">
+          <div id="settings" className="w-full scroll-mt-24">
             <YourTutorCard />
           </div>
 
-          <div className="w-full empty:hidden">
+          <div id="program" className="w-full empty:hidden scroll-mt-24">
             <ProgramCard user={user} />
           </div>
 
@@ -232,7 +242,7 @@ export default function Profile() {
           </div>
 
           {user?.email && (
-            <div className="w-full">
+            <div id="delete-data" className="w-full scroll-mt-24">
               <DeleteMyData userEmail={user.email} />
             </div>
           )}
