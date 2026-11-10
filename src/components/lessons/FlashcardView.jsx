@@ -97,7 +97,7 @@ export default function FlashcardView({ flashcards }) {
           variant="outline"
           disabled={flashcards.length <= 1}
         >
-          <ChevronLeft className="w-4 h-4 mr-2" />
+          <ChevronLeft className="w-4 h-4 me-2 rtl:rotate-180" />
           Previous
         </Button>
 
@@ -110,7 +110,7 @@ export default function FlashcardView({ flashcards }) {
           size="sm"
           className="col-span-2 order-last"
         >
-          <RotateCcw className="w-4 h-4 mr-2" />
+          <RotateCcw className="w-4 h-4 me-2" />
           Restart
         </Button>
 
@@ -120,7 +120,7 @@ export default function FlashcardView({ flashcards }) {
           disabled={flashcards.length <= 1}
         >
           Next
-          <ChevronRight className="w-4 h-4 ml-2" />
+          <ChevronRight className="w-4 h-4 ms-2 rtl:rotate-180" />
         </Button>
       </div>
     </div>

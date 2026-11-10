@@ -52,9 +52,11 @@ export function countedOutcomes(items = [], results = []) {
   return items.map((_, i) => results[i]).filter((r) => r !== undefined);
 }
 
-// "8 right. Nice work, Ana." (or "Nice work." without a first name).
+// "8 right. Nice work, Ana." (or "Nice work." without a first name); with
+// nothing right yet, "0 right. Keep going, Ana."
 export function roundTitle(right, name = '') {
-  return `${right} right. Nice work${name ? `, ${name}` : ''}.`;
+  const words = right > 0 ? 'Nice work' : 'Keep going';
+  return `${right} right. ${words}${name ? `, ${name}` : ''}.`;
 }
 
 // The real test's rule for a round, shown on "Round complete". Reading and

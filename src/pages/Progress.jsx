@@ -111,7 +111,7 @@ export default function Progress() {
               <div className="w-12 h-12 rounded-2xl bg-pw-blue-soft text-pw-blue-ink grid place-items-center">
                 <Clock className="w-6 h-6" aria-hidden="true" />
               </div>
-              <ArrowRight className="w-5 h-5 text-pw-muted" aria-hidden="true" />
+              <ArrowRight className="w-5 h-5 text-pw-muted rtl:rotate-180" aria-hidden="true" />
             </div>
             <p className="mt-4 font-display font-normal text-[44px] leading-none">{stats.total}</p>
             <p className="mt-2 text-sm font-bold text-pw-muted">Total Practiced</p>
@@ -124,7 +124,7 @@ export default function Progress() {
               <div className="w-12 h-12 rounded-2xl bg-pw-green-soft text-pw-green-ink grid place-items-center">
                 <Award className="w-6 h-6" aria-hidden="true" />
               </div>
-              <ArrowRight className="w-5 h-5 text-pw-muted" aria-hidden="true" />
+              <ArrowRight className="w-5 h-5 text-pw-muted rtl:rotate-180" aria-hidden="true" />
             </div>
             <p className="mt-4 font-display font-normal text-[44px] leading-none">{stats.mastered}</p>
             <p className="mt-2 text-sm font-bold text-pw-muted">Items Mastered</p>

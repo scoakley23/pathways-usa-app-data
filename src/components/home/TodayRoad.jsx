@@ -44,7 +44,7 @@ export default function TodayRoad({ stops, ariaLabel }) {
   });
 
   return (
-    <nav aria-label={ariaLabel} dir="ltr" className="relative w-full" style={{ aspectRatio: `${W} / ${H}` }}>
+    <nav aria-label={ariaLabel} dir="ltr" className="relative w-full mt-6 mb-10" style={{ aspectRatio: `${W} / ${H}` }}>
       <svg viewBox={`0 0 ${W} ${H}`} className="absolute inset-0 w-full h-full overflow-visible" aria-hidden="true" focusable="false">
         {segments.map((s, i) => (
           <path key={`r${i}`} d={s.d} fill="none" stroke={COLORS.road} strokeWidth="16" strokeLinecap="round" />

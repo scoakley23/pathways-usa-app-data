@@ -41,7 +41,7 @@ export default function PracticeCalendar({ history }) {
           Practice Calendar
         </CardTitle>
       </CardHeader>
-      <CardContent className="p-5 pt-0 sm:p-6 sm:pt-0 flex flex-col md:flex-row gap-6">
+      <CardContent className="p-2 pt-0 sm:p-6 sm:pt-0 flex flex-col md:flex-row gap-6">
         <div className="flex-shrink-0 mx-auto md:mx-0">
            <div className="flex items-center gap-2 mb-2 justify-center md:justify-start">
              <div className="w-3 h-3 rounded-full bg-pw-navy" aria-hidden="true" />
@@ -53,17 +53,17 @@ export default function PracticeCalendar({ history }) {
             onSelect={setDate}
             modifiers={modifiers}
             modifiersStyles={modifiersStyles}
-            className="rounded-2xl border border-pw-line bg-white p-2 sm:p-3"
+            className="bg-white p-0 sm:p-3 sm:rounded-2xl sm:border sm:border-pw-line"
           />
         </div>
 
-        <div className="flex-1 min-w-0 space-y-3">
+        <div className="flex-1 min-w-0 space-y-3 px-3 pb-3 sm:px-0 sm:pb-0">
             <h4 className="text-lg font-extrabold text-pw-navy">
                 Activity for {date ? format(date, 'MMMM do, yyyy') : 'Selected Date'}
             </h4>
 
             {selectedDayData.length > 0 ? (
-                <div className="space-y-3 max-h-[300px] overflow-y-auto pr-1">
+                <div className="space-y-3 max-h-[300px] overflow-y-auto pe-1">
                     {selectedDayData.map((item, idx) => (
                         <div key={idx} className="flex items-start gap-3 p-4 rounded-2xl bg-white border border-pw-line">
                             {item.status === 'mastered' ? (

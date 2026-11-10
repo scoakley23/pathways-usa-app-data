@@ -766,7 +766,7 @@ function InterviewIntro({ questions, onStart, varyOfficer, onToggleVary }) {
         className="flex items-center gap-3 bg-white rounded-2xl px-4 py-3 min-h-[56px] border border-pw-line w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
       >
         <span className={`w-11 h-6 rounded-full relative transition-colors shrink-0 ${varyOfficer ? 'bg-pw-navy' : 'bg-pw-line'}`}>
-          <span className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform ${varyOfficer ? 'translate-x-5' : ''}`} />
+          <span className={`absolute top-0.5 start-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform ${varyOfficer ? 'translate-x-5 rtl:-translate-x-5' : ''}`} />
         </span>
         <span className="text-base font-semibold">Different officer voice each interview</span>
       </button>

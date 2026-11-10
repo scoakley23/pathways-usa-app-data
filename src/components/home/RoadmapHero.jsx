@@ -30,7 +30,7 @@ export default function RoadmapHero({ roadmap, t }) {
           to={createPageUrl(currentStop.path) + (currentStop.query ? `?${currentStop.query}` : '')}
           className="w-full min-h-[56px] rounded-2xl bg-pw-navy text-white font-bold text-lg flex items-center justify-center gap-2 px-4 text-center shadow-lift hover:bg-pw-navy-deep transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2"
         >
-          {action} <ArrowRight className="w-5 h-5 shrink-0" />
+          {action} <ArrowRight className="w-5 h-5 shrink-0 rtl:rotate-180" />
         </Link>
         <p className="text-base text-pw-muted">
           {t('hero_flex')}

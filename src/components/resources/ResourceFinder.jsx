@@ -246,19 +246,19 @@ export default function ResourceFinder() {
                       type="button"
                       onClick={() => setFullscreen(true)}
                       aria-label="Open the map full screen"
-                      className="absolute bottom-3 right-3 z-[1000] w-11 h-11 rounded-xl bg-white border border-pw-line shadow-raised grid place-items-center text-pw-navy hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
+                      className="absolute bottom-3 end-3 z-[1000] w-11 h-11 rounded-xl bg-white border border-pw-line shadow-raised grid place-items-center text-pw-navy hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
                     >
                       <Maximize2 className="w-5 h-5" aria-hidden="true" />
                     </button>
                   )}
                   {selected && (
                     <div className={`absolute inset-x-2 z-[1000] ${fullscreen ? (sheetOpen ? 'hidden' : 'bottom-16') : 'bottom-2'}`}>
-                      <div className="relative rounded-2xl bg-white border border-pw-line shadow-lift p-3 pr-12 max-h-[70%] overflow-y-auto">
+                      <div className="relative rounded-2xl bg-white border border-pw-line shadow-lift p-3 pe-12 max-h-[70%] overflow-y-auto">
                         <button
                           type="button"
                           onClick={() => setSelectedId(null)}
                           aria-label="Close summary"
-                          className="absolute top-1 right-1 w-11 h-11 grid place-items-center rounded-xl text-pw-muted hover:bg-pw-soft"
+                          className="absolute top-1 end-1 w-11 h-11 grid place-items-center rounded-xl text-pw-muted hover:bg-pw-soft"
                         >
                           <X className="w-5 h-5" aria-hidden="true" />
                         </button>
