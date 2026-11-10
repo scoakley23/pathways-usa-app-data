@@ -9,34 +9,32 @@ import useTutorProfile from './useTutorProfile';
 import useTodayText from './useTodayText';
 import useTextSize from './useTextSize';
 import { partName } from './SkillLevels';
-import { IndexCard, RaisedCard, SecondaryButton, SKILL_COLOR, SKILL_ON } from '@/components/pathways/ui';
+import TodayRoad from '@/components/home/TodayRoad';
+import { ROADMAP_STOPS } from '@/components/home/roadmapStops';
+import { Button, Card, CreamSheet, Eyebrow, NavyTop } from '@/components/pathways/ui';
 import { LEVELS } from '@/lib/pretest';
 import { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
 import { N400_SECTIONS } from '@/components/n400/n400Content';
-import { tasksForDay, extraTasks, totalMinutes, dayIndex } from '@/lib/studyPlan';
+import { tasksForDay, extraTasks, totalMinutes } from '@/lib/studyPlan';
 import { loadPlanSettings, loadDone, saveDone, touchVisit, ymd } from '@/lib/planSettings';
 import { recentResults, adjustedLevels, lowSkills, checkIns } from '@/lib/checkIns';
-import { loadStage } from '@/lib/onboarding';
-import { firstName, splitTasks, stageKey, timeOfDay, weekSquares, weeksToInterview } from '@/lib/todayView';
+import { firstName, roadStates, splitTasks, timeOfDay } from '@/lib/todayView';
 
 const SECTION_IDS = N400_SECTIONS.map((s) => s.id);
 const SECTION_TITLE = Object.fromEntries(N400_SECTIONS.map((s) => [s.id, s.title]));
 const DISMISS_KEY = 'pathways_checkins_dismissed'; // { date, ids }
 
-// The four parts in Practice order, and how many of three steps each
-// quick-check level fills.
+// The four parts in Practice order, and how much of the bar each quick-check
+// level fills.
 const FOUR_PARTS = ['reading', 'writing', 'civics', 'speaking'];
 const LEVEL_STEPS = { start_here: 1, getting_there: 2, strong: 3 };
 
-// Which interview skill a task practices (for its color). The quick check
-// covers all four parts and takes Red ink, like the first poster on board 1.
-const taskSkill = (kind) => (kind === 'quick-check' || kind.startsWith('civics') ? 'civics' : kind);
+// Which part a task practices (for its "Next · …" label).
+const taskSkill = (kind) => (kind.startsWith('civics') ? 'civics' : kind);
 
 // A learner's first day (no quick check results and no plan yet): the quick
-// check is the one task on the desk, with Reading and Writing peeking out
-// underneath for what comes after.
+// check is the one task.
 const QUICK_CHECK_TASK = { id: 'quick-check', kind: 'quick-check', href: '/quick-check', minutes: 10 };
-const FIRST_DAY_PEEK = ['reading', 'writing'];
 
 function loadDismissed(today) {
   try {
@@ -48,32 +46,14 @@ function saveDismissed(today, ids) {
   try { localStorage.setItem(DISMISS_KEY, JSON.stringify({ date: ymd(today), ids })); } catch (e) { /* ignore */ }
 }
 
-// Days practiced this week (Monday–Sunday, as whole-day numbers) from saved
-// progress and the checkmarks on this device.
-function practiceDaysThisWeek(dates, today) {
-  const t = dayIndex(today);
-  const monday = t - ((today.getDay() + 6) % 7);
-  const days = new Set();
-  for (const d of dates) {
-    if (!d) continue;
-    const i = dayIndex(new Date(d));
-    if (i >= monday && i <= t) days.add(i);
-  }
-  for (let i = monday; i <= t; i++) {
-    const date = new Date(today);
-    date.setDate(date.getDate() - (t - i));
-    if (loadDone(date).length) days.add(i);
-  }
-  return days;
-}
-
-// The "Today" card (Prompt 6) with check-ins (Prompt 8), laid out as X2
-// (Phase 3): greeting, Vía's line signed in text, a stack of index cards on
-// Slate (top = the next task), "Also today", and the week's rhythm. Learners
-// without a plan or quick check results get the same layout: their tutor
-// introduces themself in the line, and the quick check is the one task. The
-// greeting is the Home page's h1.
-export default function TodayCard({ language = 'en' }) {
+// Today (The Road): a navy top that says where the learner is (the stop, the
+// greeting, Vía's line, the road) and a cream sheet with what to do: the next
+// task of today's plan, the rest of today's tasks, one check-in from Vía, the
+// interview month (device only) and the four parts. The greeting is the Home
+// page's h1. `roadmap` is useRoadmapProgress(); `stopName(id)` the stop's
+// name in the learner's language; `sheetTop` goes first on the sheet (the
+// pilot check-in card).
+export default function TodayCard({ language = 'en', roadmap, stopName, sheetTop = null }) {
   const today = useMemo(() => new Date(), []);
   const { profile, loaded: profileLoaded, saveProfile } = useTutorProfile();
   const { t, en, mine } = useTodayText(language);
@@ -84,7 +64,6 @@ export default function TodayCard({ language = 'en' }) {
   const [dismissed, setDismissed] = useState(() => loadDismissed(today));
   const [extra, setExtra] = useState(false);
   const [settingDate, setSettingDate] = useState(false);
-  const [stage] = useState(() => loadStage());
   const { className: sizeClass } = useTextSize();
 
   useEffect(() => {
@@ -93,30 +72,18 @@ export default function TodayCard({ language = 'en' }) {
       try {
         const user = await base44.auth.me();
         const email = user.email.toLowerCase().trim();
-        const [progress, sessions, lessons, n400, civics2025] = await Promise.all([
+        const [progress, sessions, n400] = await Promise.all([
           base44.entities.UserProgress.filter({ user_email: email }, '-last_practiced', 500).catch(() => []),
           base44.entities.InterviewSession.filter({ user_email: email }, '-created_date', 50).catch(() => []),
-          base44.entities.LessonProgress.filter({ user_email: email }, null, 200).catch(() => []),
           base44.entities.N400SectionProgress.filter({ user_email: email }, null, 50).catch(() => []),
-          base44.entities.CivicsQuestion.filter({ version: '2025' }, null, 300).catch(() => []),
         ]);
         if (!active) return;
-        const civicsIds = new Set(civics2025.map((q) => q.id));
-        const ready = progress.filter((p) => p.content_type === 'civics_question' && p.status === 'mastered' && civicsIds.has(p.content_id)).length;
         setData({
           name: firstName(user),
           levels: user.skill_levels || null,
           progress,
           sessions,
           completedSections: n400.filter((s) => s.completed).map((s) => s.section_id),
-          activityDates: [
-            ...progress.map((p) => p.last_practiced),
-            ...sessions.map((s) => s.created_date),
-            ...lessons.map((l) => l.last_attempt_date),
-            ...n400.map((s) => s.completed_date),
-          ],
-          ready,
-          civicsTotal: civics2025.length,
         });
       } catch (e) {
         if (active) setData({ signedOut: true });
@@ -145,7 +112,11 @@ export default function TodayCard({ language = 'en' }) {
   }, [data, plan, levels, low, missedDays, extra, today]);
 
   if (!data || !profileLoaded) {
-    return <RaisedCard className="grid place-items-center min-h-[120px]"><Loader2 className="w-6 h-6 animate-spin text-pw-navy" /></RaisedCard>;
+    return (
+      <NavyTop className="min-h-[320px] grid place-items-center">
+        <Loader2 className="w-6 h-6 animate-spin text-white" aria-label="Loading" />
+      </NavyTop>
+    );
   }
   if (data.signedOut) return null;
   const firstDay = !data.levels && !plan;
@@ -165,15 +136,25 @@ export default function TodayCard({ language = 'en' }) {
   const n = tasks.length;
   const m = totalMinutes(tasks);
   const tod = timeOfDay(today);
-  const hello = data.name ? t(`hello_${tod}`, { name: data.name }) : t(`hello_${tod}_plain`);
+  const hello = data.name ? t(`hello_${tod}`, { name: data.name }) : t('welcome');
   const lineKey = firstDay ? 'first_line' : allDone ? 'done' : `${profile.tone}_tasks`;
   const lineMine = mine(lineKey, { n, m, name: profile.name });
   const lineEn = en(lineKey, { n, m, name: profile.name });
   const dir = RTL_LANGUAGES.includes(language) ? 'rtl' : 'ltr';
-  const stageLabel = stageKey(stage) && t(stageKey(stage));
 
-  // One check-in at a time, most important first, so the card stays calm.
-  const notes = checkIns({
+  // The road: the app's roadmap rule (useRoadmapProgress), stop 1 on day one.
+  const ids = ROADMAP_STOPS.map((s) => s.id);
+  const states = roadStates(ids, roadmap?.done || {}, roadmap?.currentStop?.id, firstDay);
+  const currentIndex = Math.max(0, states.indexOf('current'));
+  const stops = ROADMAP_STOPS.map((stop, i) => {
+    const name = stopName(stop.id);
+    const extraWord = states[i] === 'done' ? `, ${t('stop_done')}` : states[i] === 'current' ? `, ${t('you_are_here')}` : '';
+    return { id: stop.id, href: stop.href, name, state: states[i], label: `${t('stop_of', { n: stop.id, name })}${extraWord}` };
+  });
+  const kicker = firstDay ? t('start_here') : t('stop_of', { n: currentIndex + 1, name: stops[currentIndex].name });
+
+  // One check-in at a time, most important first.
+  const note = checkIns({
     missedDays,
     levels,
     checkedAt: data.levels?.checked_at,
@@ -183,26 +164,14 @@ export default function TodayCard({ language = 'en' }) {
     language,
     today,
     dismissed,
-  }).slice(0, 1);
-
-  const practiced = practiceDaysThisWeek(data.activityDates, today);
-  const daysCount = practiced.size;
-  const daysKey = daysCount === 0 ? 'days_week_none' : daysCount === 1 ? 'days_week_one' : 'days_week';
-  const squares = weekSquares([...practiced], dayIndex(today), today.getDay());
-  const weeks = weeksToInterview(plan, today);
-  const weeksKey = weeks === 0 ? 'weeks_left_none' : weeks === 1 ? 'weeks_left_one' : 'weeks_left';
-
-  const { top, rest } = splitTasks(tasks, done);
-  const next = firstDay
-    ? FIRST_DAY_PEEK.map((kind) => ({ id: kind, kind }))
-    : rest.filter((task) => !done.includes(task.id)).slice(0, 2);
-  const skillName = (task) => (taskSkill(task.kind) === 'n400' ? 'N-400' : partName(taskSkill(task.kind), language));
-  const taskLabel = (task) => {
-    if (task.kind === 'quick-check') return t('task_quick_check');
-    if (task.kind === 'n400') return t('task_n400', { section: SECTION_TITLE[task.section] || '' });
-    return t(`task_${task.kind.replace('-', '_')}`);
+  })[0];
+  const noteText = (x) => {
+    if (x.kind === 'welcome-back') return t('welcome_back');
+    if (x.kind === 'low-skill') return t('low_skill', { skills: x.skills.map((s) => partName(s, language)).join(', ') });
+    if (x.kind === 'recheck') return t('recheck', { skill: partName(x.skill, language) });
+    if (x.kind === 'english-mix') return t('mix');
+    return '';
   };
-
   const moreEnglish = async (next, id) => {
     try {
       await saveProfile({ ...profile, english_mix: next });
@@ -211,210 +180,183 @@ export default function TodayCard({ language = 'en' }) {
     dismiss(id);
   };
 
-  // The checkmark sits on a skill-colored surface: its ring follows the text
-  // color (white or ink), and a done task gets a filled circle.
-  const doneButton = (task, className = '') => {
+  const { top, rest } = splitTasks(tasks, done);
+  const skillName = (task) => {
+    if (task.kind === 'quick-check') return t('quick_check_name');
+    return taskSkill(task.kind) === 'n400' ? 'N-400' : partName(taskSkill(task.kind), language);
+  };
+  const taskLabel = (task) => {
+    if (task.kind === 'quick-check') return t('task_quick_check');
+    if (task.kind === 'n400') return t('task_n400', { section: SECTION_TITLE[task.section] || '' });
+    return t(`task_${task.kind.replace('-', '_')}`);
+  };
+
+  const doneButton = (task) => {
     const isDone = done.includes(task.id);
-    const onDark = SKILL_ON[taskSkill(task.kind)] === 'text-white';
     return (
       <button
         type="button"
         onClick={() => toggle(task.id)}
         aria-pressed={isDone}
-        aria-label={isDone ? t('mark_not_done') : t('mark_done')}
-        className={`min-w-[44px] min-h-[44px] shrink-0 grid place-items-center rounded-xl hover:bg-black/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current ${className}`}
+        aria-label={`${isDone ? t('mark_not_done') : t('mark_done')}: ${taskLabel(task)}`}
+        className="w-11 h-11 shrink-0 grid place-items-center rounded-full hover:bg-sand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
       >
-        <span className={`w-7 h-7 rounded-full border-2 border-current grid place-items-center ${isDone ? 'bg-current' : ''}`}>
-          {isDone && <Check className={`w-4 h-4 ${onDark ? 'text-pw-navy' : 'text-white'}`} strokeWidth={3} aria-hidden="true" />}
+        <span className={`w-7 h-7 rounded-full border-2 grid place-items-center ${isDone ? 'bg-navy border-navy' : 'border-ink-2'}`}>
+          {isDone && <Check className="w-4 h-4 text-white" strokeWidth={3} aria-hidden="true" />}
         </span>
       </button>
     );
   };
 
-  // Mon..Sun initials in the learner's language, for the week squares.
   const locale = language === 'en' ? 'en-US' : language;
-  const weekdayInitials = Array.from({ length: 7 }, (_, k) => {
-    const d = new Date(2024, 0, 1 + k); // Jan 1 2024 was a Monday
-    try { return d.toLocaleDateString(locale, { weekday: 'narrow' }); } catch (e) { return ''; }
-  });
-  let weekday = '';
-  try { weekday = today.toLocaleDateString(locale, { weekday: 'long' }); } catch (e) { /* ignore */ }
-
-  // One note on the desk at a time, in Vía's handwriting: the date question
-  // first (until the learner answers it), otherwise today's check-in.
-  const note = !plan ? { id: 'plan', kind: 'plan' } : notes[0];
-  const noteText = (n) => {
-    if (n.kind === 'plan') return t('plan_ask_again');
-    if (n.kind === 'welcome-back') return t('welcome_back');
-    if (n.kind === 'low-skill') return t('low_skill', { skills: n.skills.map((s) => partName(s, language)).join(', ') });
-    if (n.kind === 'recheck') return t('recheck', { skill: partName(n.skill, language) });
-    if (n.kind === 'english-mix') return t('mix');
-    return '';
-  };
-  const noteBtn = 'min-h-11 rounded-full px-4 text-[15px] font-semibold inline-flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy';
+  let interviewMonth = '';
+  if (plan?.mode === 'date' && plan.target) {
+    try { interviewMonth = plan.target.toLocaleDateString(locale, { month: 'long', year: 'numeric' }); } catch (e) { interviewMonth = ''; }
+  }
 
   return (
-    <section aria-labelledby="today-title" className="space-y-6 text-pw-navy">
-      {/* Day and stage, greeting, and Vía's line signed in text (her mark is in the tab bar) */}
-      <div className={`space-y-2 ${sizeClass}`}>
-        <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-pw-muted">
-          {[weekday, stageLabel].filter(Boolean).join(' · ')}
-        </p>
-        <h1 id="today-title" className="font-display text-[44px] leading-[1.02] sm:text-[60px]">{hello}</h1>
-        <div className="max-w-2xl">
-          {lineMine && <p dir={dir} className="font-medium text-[23px] sm:text-[26px] leading-snug">{lineMine}</p>}
-          <p className={`font-medium leading-snug ${lineMine ? 'mt-1 text-lg text-pw-muted' : 'text-[23px] sm:text-[26px]'}`}>
-            {lineEn} <span className="whitespace-nowrap text-pw-muted">— {profile.name}</span>
-          </p>
+    <>
+      {/* NAVY TOP: where you are */}
+      <NavyTop className="pb-14">
+        <div className="mx-auto max-w-5xl lg:grid lg:grid-cols-2 lg:items-center lg:gap-10">
+          <div className={`space-y-3 ${sizeClass}`}>
+            <p className="text-label uppercase text-on-navy-label">{kicker}</p>
+            <h1 id="today-title" className="font-display text-[30px] sm:text-[34px] leading-[1.1]">{hello}</h1>
+            <div className="max-w-2xl space-y-1">
+              {lineMine && <p dir={dir} className="text-lg font-medium leading-snug">{lineMine}</p>}
+              <p className={`leading-snug ${lineMine ? 'text-base text-on-navy-2' : 'text-lg font-medium'}`}>{lineEn}</p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {lineMine && <ListenButton onNavy text={lineMine} language={language} tutorName={profile.name} />}
+              <ListenButton onNavy text={lineEn} language="en" label={lineMine ? 'English' : 'Listen'} tutorName={profile.name} />
+            </div>
+          </div>
+          <div className="mt-6 lg:mt-0 mx-auto w-full max-w-md lg:max-w-none">
+            <TodayRoad stops={stops} ariaLabel={t('road_label')} />
+          </div>
         </div>
-        <div className="flex flex-wrap gap-2 pt-1">
-          {lineMine && <ListenButton text={lineMine} language={language} tutorName={profile.name} />}
-          <ListenButton text={lineEn} language="en" label={lineMine ? 'English' : 'Listen'} tutorName={profile.name} />
-        </div>
-      </div>
+      </NavyTop>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
-        {/* The desk: today's next task on top of the stack, the others peeking out */}
-        <div className="lg:col-span-7 space-y-4">
-          <div className="rounded-[22px] bg-pw-slate px-4 pt-6 pb-5 sm:px-7 sm:pt-8 sm:pb-7 space-y-4">
-            <div className="relative pb-4">
-              {next[0] && <div aria-hidden="true" className={`absolute left-2 right-2 bottom-2 h-12 rounded-[16px] ${SKILL_COLOR[taskSkill(next[0].kind)]}`} />}
-              {next[1] && <div aria-hidden="true" className={`absolute left-4 right-4 bottom-0 h-12 rounded-[16px] ${SKILL_COLOR[taskSkill(next[1].kind)]}`} />}
+      {/* CREAM SHEET: what to do */}
+      <CreamSheet className="min-h-[50vh]">
+        <div className="mx-auto max-w-5xl space-y-4 lg:grid lg:grid-cols-2 lg:gap-6 lg:space-y-0 lg:items-start">
+          <div className="space-y-4">
+            {sheetTop}
+
+            {/* Next: the first task of today's plan not done yet */}
+            <Card padding="p-5">
               {top ? (
-                <div className={`relative flex min-h-[250px] flex-col rounded-[18px] p-5 sm:p-7 shadow-[0_12px_26px_rgba(20,38,74,0.22)] ${SKILL_COLOR[taskSkill(top.kind)]} ${SKILL_ON[taskSkill(top.kind)]}`}>
-                  <p className="text-[13px] font-semibold uppercase tracking-[0.16em]">
-                    {firstDay ? t('quick_check_kicker') : `${skillName(top)} · ${t('task_of', { n: tasks.indexOf(top) + 1, t: n })}`}
-                  </p>
-                  <h2 className="mt-3 text-[34px] sm:text-[42px] font-bold leading-[1.05] tracking-[-0.01em]">{taskLabel(top)}</h2>
-                  <p className="mt-2 font-medium text-[21px]">
-                    {firstDay && `${t('quick_check_sub')} · `}<span className="whitespace-nowrap">{t('minutes', { m: top.minutes })}</span>
-                  </p>
-                  <div className="mt-auto pt-5 flex items-center justify-between gap-3">
-                    <Link
-                      to={top.href}
-                      className={`min-h-[52px] rounded-full font-semibold text-lg inline-flex items-center gap-2 px-7 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current focus-visible:ring-offset-2 focus-visible:ring-offset-transparent ${SKILL_ON[taskSkill(top.kind)] === 'text-white' ? 'bg-white text-pw-navy hover:bg-pw-soft' : 'bg-pw-navy text-white hover:bg-pw-navy-deep'}`}
-                    >
-                      {t('start')} <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" />
-                    </Link>
+                <>
+                  <div className="flex items-start gap-3">
+                    <div className="min-w-0 flex-1">
+                      <Eyebrow>{t('next_of', { skill: skillName(top) })}</Eyebrow>
+                      <h2 className="mt-2 font-display text-[22px] leading-tight text-ink">{taskLabel(top)}</h2>
+                    </div>
                     {!firstDay && doneButton(top)}
                   </div>
-                </div>
+                  <Link
+                    to={top.href}
+                    className="mt-4 w-full min-h-[52px] rounded-full bg-navy text-white hover:bg-navy-deep text-lg font-semibold inline-flex items-center justify-center gap-2 px-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2"
+                  >
+                    {firstDay ? t('start_quick_check') : t('start_min', { m: top.minutes })}
+                    <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" />
+                  </Link>
+                  {firstDay && <p className="mt-2 text-base text-ink-2 text-center">{t('quick_check_sub')} · {t('minutes', { m: top.minutes })}</p>}
+                </>
               ) : (
-                <IndexCard className="relative" padding="p-5 sm:p-7">
-                  <h2 className="font-display text-[34px] leading-tight">{t('all_done_title')}</h2>
-                  <p className="mt-1 text-base text-pw-muted">{t('done')}</p>
-                  {!extra && <SecondaryButton className="mt-4 w-full" onClick={() => setExtra(true)}>{t('keep_going')}</SecondaryButton>}
-                </IndexCard>
+                <>
+                  <h2 className="font-display text-[22px] leading-tight text-ink">{t('all_done_title')}</h2>
+                  <p className="mt-1 text-base text-ink-2">{t('done')}</p>
+                  {!extra && <Button variant="second" className="mt-4 w-full" onClick={() => setExtra(true)}>{t('keep_going')}</Button>}
+                </>
               )}
-            </div>
+            </Card>
 
+            {/* Also today: the rest of today's plan */}
+            {rest.length > 0 && (
+              <Card padding="p-0">
+                <h2 className="px-5 pt-4 text-label uppercase text-ink-label">{t('also_today')}</h2>
+                <ul className="divide-y divide-card-line">
+                  {rest.map((task) => {
+                    const isDone = done.includes(task.id);
+                    return (
+                      <li key={task.id} className="flex items-center gap-2 ps-5 pe-2">
+                        <Link to={task.href} className="flex-1 min-w-0 py-3 min-h-[56px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-navy rounded">
+                          <span className={`block text-base font-semibold ${isDone ? 'text-ink-2' : 'text-ink'}`}>{taskLabel(task)}</span>
+                          <span className="block text-sm text-ink-2">
+                            {skillName(task)} · {t('minutes', { m: task.minutes })}{isDone ? ` · ${t(task.kind === 'n400' ? 'stamp_filed' : 'stamp_done')}` : ''}
+                          </span>
+                        </Link>
+                        {doneButton(task)}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </Card>
+            )}
+
+            {/* One check-in from Vía (welcome back, a part to practice more, a re-check, more English) */}
             {note && (
-              <aside
-                aria-label={profile.name}
-                className="ms-auto max-w-[300px] -rotate-[1.5deg] rounded-[4px] bg-white px-4 pt-3 pb-3 shadow-[0_6px_14px_rgba(20,38,74,0.14)] space-y-2"
-              >
-                <p dir={dir} className="text-pw-navy text-lg font-medium leading-snug">
-                  {noteText(note)}
-                </p>
-                <p className="text-base font-medium text-pw-muted">— {profile.name}</p>
-                <div className="flex flex-wrap justify-end gap-2 pt-1">
-                  {note.kind === 'plan' && (
-                    <button type="button" onClick={() => setSettingDate((v) => !v)} aria-expanded={settingDate} className={`${noteBtn} bg-pw-soft text-pw-navy hover:bg-pw-soft-hover`}>
-                      {t('pick_month')}
-                    </button>
-                  )}
+              <Card padding="p-5" aria-label={profile.name}>
+                <p dir={dir} className="text-lg font-medium leading-snug text-ink">{noteText(note)}</p>
+                <div className="mt-3 flex flex-wrap gap-2">
                   {note.kind === 'recheck' && (
-                    <Link to={`/quick-check?part=${note.skill}`} className={`${noteBtn} bg-pw-navy text-white hover:bg-pw-navy-deep`}>{t('recheck_btn')}</Link>
+                    <Link to={`/quick-check?part=${note.skill}`} className="min-h-tap rounded-full bg-navy text-white hover:bg-navy-deep px-5 inline-flex items-center text-base font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2">
+                      {t('recheck_btn')}
+                    </Link>
                   )}
                   {note.kind === 'english-mix' && (
-                    <button type="button" onClick={() => moreEnglish(note.next, note.id)} className={`${noteBtn} bg-pw-navy text-white hover:bg-pw-navy-deep`}>{t('mix_btn')}</button>
+                    <Button variant="next" onClick={() => moreEnglish(note.next, note.id)}>{t('mix_btn')}</Button>
                   )}
-                  {note.kind !== 'plan' && (
-                    <button type="button" onClick={() => dismiss(note.id)} className={`${noteBtn} text-pw-navy hover:bg-pw-soft`}>{t('not_now')}</button>
-                  )}
+                  <Button variant="link" onClick={() => dismiss(note.id)}>{t('not_now')}</Button>
                 </div>
-              </aside>
+              </Card>
             )}
           </div>
 
-          {!plan && settingDate && (
-            <PlanSetup profile={profile} language={language} again bare onDone={setPlan} />
-          )}
-        </div>
+          <div className="space-y-4">
+            {/* The interview month: on this device only */}
+            <Card padding="p-5">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <p className="text-base font-semibold text-ink">
+                  {interviewMonth ? t('interview_month', { month: interviewMonth }) : t('interview_ask')}
+                </p>
+                <Button variant="second" onClick={() => setSettingDate((v) => !v)} aria-expanded={settingDate}>
+                  {interviewMonth ? t('change') : t('pick_month')}
+                </Button>
+              </div>
+              {settingDate && (
+                <div className="mt-4">
+                  <PlanSetup profile={profile} language={language} again bare onDone={(next) => { setPlan(next); setSettingDate(false); }} />
+                </div>
+              )}
+            </Card>
 
-        <div className="lg:col-span-5 space-y-6">
-          {/* Also today: the other tasks, finished ones stamped */}
-          {rest.length > 0 && (
-            <div className="space-y-3">
-              <h2 className="font-display text-[28px] sm:text-[30px] leading-tight">{t('also_today')}</h2>
-              <ul className="grid grid-cols-2 lg:grid-cols-1 gap-3">
-                {rest.map((task) => {
-                  const isDone = done.includes(task.id);
+            {/* The four parts: quick check levels, as a thin bar and in words */}
+            <Card padding="p-5">
+              <h2 className="text-label uppercase text-ink-label">{t('four_parts')}</h2>
+              <ul className="mt-3 space-y-3">
+                {FOUR_PARTS.map((part) => {
+                  const level = levels[part];
+                  const steps = LEVEL_STEPS[level] || 0;
+                  const word = level ? (language === 'es' ? LEVELS[level].es : LEVELS[level].label) : t('not_checked');
                   return (
-                    <li key={task.id} className={`relative flex rounded-[16px] overflow-hidden ${SKILL_COLOR[taskSkill(task.kind)]} ${SKILL_ON[taskSkill(task.kind)]}`}>
-                      <Link
-                        to={task.href}
-                        className="flex-1 min-w-0 flex flex-col justify-between gap-3 ps-3.5 pe-1 pt-3.5 pb-4 min-h-[140px] lg:min-h-[96px] hover:bg-black/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-current"
-                      >
-                        <span className="block text-[13px] font-semibold uppercase tracking-[0.12em]">
-                          {skillName(task)} · {t('minutes', { m: task.minutes })}
-                        </span>
-                        <span className="block text-[19px] font-bold leading-tight">{taskLabel(task)}</span>
-                      </Link>
-                      {doneButton(task, 'mt-1.5 me-1')}
-                      {isDone && (
-                        <span className="pointer-events-none absolute end-3 bottom-3 -rotate-[8deg] rounded-md border-2 border-current px-2 py-0.5 text-sm font-bold uppercase tracking-[0.12em]">
-                          {t(task.kind === 'n400' ? 'stamp_filed' : 'stamp_done')}
-                        </span>
-                      )}
+                    <li key={part}>
+                      <div className="flex items-baseline justify-between gap-3">
+                        <span className="text-base font-semibold text-ink">{partName(part, language)}</span>
+                        <span className="text-sm text-ink-2">{word}</span>
+                      </div>
+                      <div className="mt-1.5 h-1.5 rounded-full bg-sand overflow-hidden" aria-hidden="true">
+                        <div className="h-full rounded-full bg-navy" style={{ width: `${(steps / 3) * 100}%` }} />
+                      </div>
                     </li>
                   );
                 })}
               </ul>
-            </div>
-          )}
-
-          {/* The four parts (quick check levels, in words too), the week's
-              rhythm and readiness; no countdown */}
-          <div className="rounded-card bg-white border border-pw-line p-4 sm:p-5 space-y-3">
-            <h2 className="text-[13px] font-semibold uppercase tracking-[0.14em] text-pw-muted">{t('four_parts')}</h2>
-            <ul className="space-y-2.5">
-              {FOUR_PARTS.map((part) => {
-                const level = levels[part];
-                const steps = LEVEL_STEPS[level] || 0;
-                const word = level ? (language === 'es' ? LEVELS[level].es : LEVELS[level].label) : t('not_checked');
-                return (
-                  <li key={part} className="grid grid-cols-[88px_minmax(0,1fr)] items-center gap-3">
-                    <span className="text-base font-semibold">{partName(part, language)}</span>
-                    <span className="flex items-center gap-3">
-                      <span className="grid flex-1 grid-cols-3 gap-1" aria-hidden="true">
-                        {[1, 2, 3].map((k) => (
-                          <span key={k} className={`h-3 rounded ${k <= steps ? SKILL_COLOR[part] : 'bg-pw-soft'}`} />
-                        ))}
-                      </span>
-                      <span className="w-[104px] shrink-0 text-[15px] text-pw-muted">{word}</span>
-                    </span>
-                  </li>
-                );
-              })}
-            </ul>
-            <h2 className="border-t border-pw-line pt-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-pw-muted">{t('this_week')}</h2>
-            <div className="grid grid-cols-7 gap-1.5" aria-hidden="true">
-              {squares.map((sq, k) => (
-                <div key={k} className="flex flex-col items-center gap-1">
-                  <span className={`block w-full aspect-square max-h-9 rounded-md ${sq.filled ? 'bg-pw-navy' : sq.today ? 'bg-white border-2 border-pw-navy' : 'bg-pw-soft'}`} />
-                  <span className="text-[13px] text-pw-muted">{weekdayInitials[k]}</span>
-                </div>
-              ))}
-            </div>
-            <p className="text-base font-semibold">{t(daysKey, { n: daysCount })}</p>
-            {data.civicsTotal > 0 && (
-              <p className="border-t border-pw-line pt-3 font-display text-[22px] leading-snug">{t('ready', { n: data.ready, t: data.civicsTotal })}</p>
-            )}
-            {weeks !== null && <p className="text-[15px] text-pw-muted">{t(weeksKey, { n: weeks })}</p>}
+            </Card>
           </div>
         </div>
-      </div>
-    </section>
+      </CreamSheet>
+    </>
   );
 }

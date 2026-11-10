@@ -5,14 +5,22 @@ import useAutoRead, { currentSpeakingId, readAloud, stopReading, useSpeakingId }
 import { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
 import { speakText } from '@/components/utils/textToSpeech';
 import { spokenTutorName } from '@/lib/tutorPersona';
-import { PillButton } from '@/components/pathways/ui';
+import { PillButton, Chip } from '@/components/pathways/ui';
 
-export function ListenButton({ text, language, label = 'Listen', tutorName, className = '' }) {
+// `onNavy`: for a navy top (a navy-2 chip instead of the sand pill).
+export function ListenButton({ text, language, label = 'Listen', tutorName, onNavy = false, className = '' }) {
   const say = () => {
     stopReading();
     const spoken = tutorName ? text.split(tutorName).join(spokenTutorName(tutorName, language)) : text;
     speakText(spoken, language);
   };
+  if (onNavy) {
+    return (
+      <Chip onNavy onClick={say} className={className}>
+        <Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" /> {label}
+      </Chip>
+    );
+  }
   return (
     <PillButton onClick={say} className={className}>
       <Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" /> {label}

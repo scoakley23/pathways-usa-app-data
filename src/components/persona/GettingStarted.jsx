@@ -17,6 +17,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { listPartners, joinProgram } from '@/lib/partners';
 import { loadPendingProgram, clearPendingProgram } from '@/lib/programLink';
 import { MAX_NAME_LENGTH } from '@/lib/partners';
+import { StudyTogetherCard } from '@/components/home/StudyTogether';
 
 // English source text. Spanish is written by hand; other languages are
 // translated once by AI and cached on the device (bump the cache key when
@@ -197,6 +198,10 @@ export default function GettingStarted({ language, onLanguageChange, onDone }) {
           <span className="text-base font-semibold text-white/80" aria-hidden="true">{START_WORDS.slice(1).join(' · ')}</span>
         </button>
         <QuietButton className="w-full" onClick={finish}>Skip setup</QuietButton>
+        {/* How we study together (moved here from Today): the three promises. */}
+        <div className="pt-2 text-start">
+          <StudyTogetherCard />
+        </div>
       </div>
     );
   }

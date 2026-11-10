@@ -10,6 +10,7 @@ import BadgesDisplay from '@/components/gamification/BadgesDisplay';
 import PracticeCalendar from '@/components/progress/PracticeCalendar';
 import ProgressChart from '@/components/progress/ProgressChart';
 import TestDateTracker from '@/components/progress/TestDateTracker';
+import ThisWeekCard from '@/components/progress/ThisWeekCard';
 import QuickCheckCard from '@/components/persona/QuickCheckCard';
 import useAppLanguage from '@/hooks/useAppLanguage';
 import { Progress as ProgressBar } from "@/components/ui/progress";
@@ -90,6 +91,8 @@ export default function Progress() {
       </PageHeader>
 
       <QuickCheckCard variant="progress" language={language} />
+
+      <ThisWeekCard language={language} />
 
       {/* Stats Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
