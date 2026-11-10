@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
 import { Button } from "@/components/ui/button";
 import { ArrowRight, BookOpen, Check, Landmark, Loader2, Sparkles, Layers, Mic, MessagesSquare, PenLine, SlidersHorizontal, X } from 'lucide-react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import DictationCard from '@/components/game/DictationCard';
 import CivicsTestCard from '@/components/practice/CivicsTestCard';
+import RoundComplete from '@/components/practice/RoundComplete';
+import { firstName } from '@/lib/todayView';
 import FlashcardGame from '@/components/practice/FlashcardGame';
 import MatchingGame from '@/components/practice/MatchingGame';
 import ReadingPracticeCard from '@/components/practice/ReadingPracticeCard';
@@ -61,6 +63,7 @@ export default function Practice() {
   const savesRef = React.useRef(Promise.resolve());
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
   const urlMode = searchParams.get('mode');
   // Practice lives in the Study page's Practice tab (/study?tab=practice);
   // a run adds ?mode=… there. Keep the tab when a run starts or ends.
@@ -563,6 +566,43 @@ export default function Practice() {
     );
   }
 
+  // A civics round (The Road): the question screen and "Round complete" are
+  // full width (navy top, cream sheet) with their own close button.
+  // "Review" starts a round with only the questions that were missed (same
+  // grading and saving).
+  const startReview = (items) => {
+    setResults([]);
+    setContent(items);
+    setCurrentIndex(0);
+    setSessionComplete(false);
+  };
+  if (mode === 'civics' && sessionComplete) {
+    return (
+      <RoundComplete
+        items={content}
+        results={results}
+        version={civicsVersion}
+        name={firstName(currentUser)}
+        onClose={exitRun}
+        onReview={startReview}
+        onAgain={() => startSession('civics')}
+        onBack={() => navigate('/')}
+      />
+    );
+  }
+  if (mode === 'civics' && !isLoading && content.length > 0) {
+    return (
+      <CivicsTestCard
+        index={currentIndex}
+        total={content.length}
+        question={content[currentIndex]}
+        onComplete={handleComplete}
+        onNext={handleNext}
+        onClose={exitRun}
+      />
+    );
+  }
+
   if (sessionComplete) {
     const counts = countOutcomes(results);
     // Matching plays up to six pairs, not every card in the run.
@@ -600,15 +640,6 @@ export default function Practice() {
                 index={currentIndex}
                 total={content.length}
                 sentence={content[currentIndex]}
-                onComplete={handleComplete}
-                onNext={handleNext}
-                results={results}
-            />
-         ) : mode === 'civics' ? (
-            <CivicsTestCard 
-                index={currentIndex}
-                total={content.length}
-                question={content[currentIndex]}
                 onComplete={handleComplete}
                 onNext={handleNext}
                 results={results}
@@ -668,9 +699,11 @@ export default function Practice() {
 
 // A practice run, full screen: a close button and what is being practiced,
 // then the cards (each poster carries its own stars).
+// The other runs (reading, writing, vocabulary, interview) keep the padded
+// layout until their redesign; Layout gives /study the full width.
 function RunShell({ label, onClose, children }) {
   return (
-    <div className="max-w-2xl mx-auto space-y-4 pb-8">
+    <div className="container max-w-2xl mx-auto px-4 pt-6 space-y-4 pb-8">
       <div className="flex items-center gap-3 -mt-2">
         <button
           type="button"
