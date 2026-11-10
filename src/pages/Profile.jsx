@@ -15,6 +15,7 @@ import DeleteMyData from '@/components/profile/DeleteMyData';
 import YourTutorCard from '@/components/persona/YourTutorCard';
 import PilotSettingsCard from '@/components/pilot/PilotSettingsCard';
 import ProgramCard from '@/components/partners/ProgramCard';
+import { StudyTogetherCard } from '@/components/home/StudyTogether';
 import PageHeader from '@/components/PageHeader';
 import { RaisedCard } from '@/components/pathways/ui';
 
@@ -212,6 +213,10 @@ export default function Profile() {
                 </CardContent>
               </Card>
           </div>
+          <div className="w-full">
+            <StudyTogetherCard />
+          </div>
+
           <div id="settings" className="w-full scroll-mt-24">
             <YourTutorCard />
           </div>

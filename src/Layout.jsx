@@ -118,6 +118,9 @@ export default function Layout({ children }) {
   const readAloud = FOCUS_ROUTES.includes(location.pathname);
   const focusMode = readAloud || practiceRun;
   const showTabs = !focusMode;
+  // Split screens (a navy top and a cream sheet, full width) bring their own
+  // padding: Today, for signed-in learners.
+  const splitPage = location.pathname === '/' && isAuthenticated;
   // Screens without the tab bar (lesson screens) list the places in the
   // profile menu too.
   const menuPlaces = showTabs ? [] : PLACES.filter((place) => !place.tutor);
@@ -247,7 +250,7 @@ export default function Layout({ children }) {
         </div>
       </nav>}
 
-      <main id="main" tabIndex={-1} className={`container mx-auto px-4 pt-6 max-w-5xl focus:outline-none ${showTabs ? 'pb-32 lg:pb-24' : 'pb-24'}`}>
+      <main id="main" tabIndex={-1} className={`focus:outline-none ${splitPage ? '' : 'container mx-auto px-4 pt-6 max-w-5xl'} ${showTabs ? 'pb-32 lg:pb-24' : 'pb-24'}`}>
         <AutoReadContext.Provider value={readAloud}>
         {React.Children.map(children, child => {
             if (React.isValidElement(child)) {
