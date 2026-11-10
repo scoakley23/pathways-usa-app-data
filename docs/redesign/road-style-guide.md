@@ -68,3 +68,7 @@ Simple outline icons, 2px stroke. No emoji. No gradients except the progress fil
 - Do not add data fields. Any progress shown must come from data the app already saves.
 - Keep every safety and privacy message (not affiliated with USCIS, not legal advice, Vía privacy reminder, "Talk to a lawyer first").
 - Text must still fit when translated (longer languages) and must work right-to-left (Arabic, Farsi, Urdu): logical start/end spacing, no fixed-width text boxes.
+
+## Decisions
+
+- **Practice results (Prompt 5 and 6):** the graders have three outcomes (right · almost · missed, `cardOutcome()` in `src/lib/practiceResults.js`). The screens show only two: right = **Correct**; almost and missed = **Not correct** (burnt orange, X icon), with "Not yet, but you're close." under it. Grading itself does not change.
