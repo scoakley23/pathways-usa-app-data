@@ -175,12 +175,29 @@ fields on `UserProgress`), and `writeLevel` / `writeLevel1Passes` /
 `lessonsPerDay` on the profile. If Step 1 runs first, leave room for these
 rather than porting `UserProgress`'s spaced-review fields as they are.
 
-**Content has to be exported from Base44.** The question banks, sentences,
-vocabulary, lessons, flashcards, interview questions and places live in the
-Base44 database, not the repo. Only `content/civics/questions-2025.json` and
-`content/resources/*` are in the repo. Before cancelling Base44, export every
-content entity, including the **2008 civics questions**, as a Step 1 seed.
-There are no learner records to move (per the plan).
+**Content export (done Nov 13, `standalone-content-import`).** The content
+entities were exported from Base44 and converted to JSON in
+`content/base44-export/` (see its README), which Step 1 uses as the seed.
+Counts: `CivicsQuestion` 228 (100 for 2008, 128 for 2025),
+`InterviewQuestion` 24, `ReadingSentence` 76, `Sentence` 49,
+`VocabularyWord` 79, `Lesson` 25, `LessonQuiz` 178, `LessonFlashcard` 115,
+`CommunityResource` 5,588, `Partner` 0. Found along the way:
+
+- `Lesson.key_points[]` can carry an `image_url` (shown by `LessonDetail.jsx`),
+  but no lesson has one; `Lesson.video_url` is YouTube. No content file is
+  stored on Base44, so nothing breaks when it's cancelled.
+- 34 `LessonQuiz` and 20 `LessonFlashcard` rows point at 5 deleted lessons
+  (kept apart, for review). `LessonQuiz` has 178 real questions but no screen
+  uses it.
+- The exported 2025 questions are identical to
+  `content/civics/questions-2025.json`.
+
+**Learner data does exist in Base44** (Nov 13 counts): 174 `PublicProfile`,
+66 `Notification`, 34 `UserProgress`, 13 `ActivityDay`, 12 `AIStudyLog`,
+5 `LessonProgress`, 2 `LessonNotes`, 0 for the other learner tables. These
+may be test or early accounts. None of it is moved (by decision); those
+people start fresh after cutover, and the records must be deleted from Base44
+when it's cancelled. Put both in `CUTOVER.md`.
 
 ---
 
