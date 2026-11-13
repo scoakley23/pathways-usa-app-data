@@ -1,0 +1,667 @@
+[
+  {
+    "id": "69b703185c5f2c47940a8dc0",
+    "term": "Nation of Immigrants",
+    "definition": "Description of the U.S. as a country built by people who came from all over the world",
+    "lesson_id": "699db0a1297afea4b73d1049",
+    "example": "From the Pilgrims to today, waves of immigrants have shaped American culture and identity"
+  },
+  {
+    "id": "69b703185c5f2c47940a8dbf",
+    "term": "Thanksgiving",
+    "definition": "National holiday celebrated on the fourth Thursday of November, giving thanks for blessings",
+    "lesson_id": "699db0a1297afea4b73d1049",
+    "example": "Thanksgiving has been a national holiday since President Lincoln proclaimed it in 1863"
+  },
+  {
+    "id": "69b703185c5f2c47940a8dbe",
+    "term": "American Dream",
+    "definition": "The belief that through hard work, anyone can achieve success and prosperity in the U.S.",
+    "lesson_id": "699db0a1297afea4b73d1049",
+    "example": "Many immigrants come to America in pursuit of the American Dream"
+  },
+  {
+    "id": "69b703185c5f2c47940a8dbd",
+    "term": "E Pluribus Unum",
+    "definition": "Latin for 'Out of many, one' — the original U.S. motto representing unity from diversity",
+    "lesson_id": "699db0a1297afea4b73d1049",
+    "example": "E Pluribus Unum appears on the Great Seal and on U.S. coins"
+  },
+  {
+    "id": "69b703185c5f2c47940a8dbc",
+    "term": "Lincoln Memorial",
+    "definition": "Monument in Washington D.C. honoring President Abraham Lincoln",
+    "lesson_id": "699db0a1297afea4b73d1048",
+    "example": "Martin Luther King Jr. gave his 'I Have a Dream' speech at the Lincoln Memorial in 1963"
+  },
+  {
+    "id": "69b703185c5f2c47940a8dbb",
+    "term": "Washington Monument",
+    "definition": "Tall obelisk in Washington D.C. honoring the first President, George Washington",
+    "lesson_id": "699db0a1297afea4b73d1048",
+    "example": "At 555 feet tall, the Washington Monument was the world's tallest structure when completed"
+  },
+  {
+    "id": "69b703185c5f2c47940a8dba",
+    "term": "White House",
+    "definition": "The official residence and primary workplace of the President of the United States",
+    "lesson_id": "699db0a1297afea4b73d1048",
+    "example": "Every U.S. President since John Adams has lived in the White House"
+  },
+  {
+    "id": "69b703185c5f2c47940a8db9",
+    "term": "Washington D.C.",
+    "definition": "The capital of the United States, home to all three branches of the federal government",
+    "lesson_id": "699db0a1297afea4b73d1048",
+    "example": "The White House, Capitol Building, and Supreme Court are all in Washington D.C."
+  },
+  {
+    "id": "69b703185c5f2c47940a8db8",
+    "term": "Appalachian Mountains",
+    "definition": "Mountain range running along the eastern United States",
+    "lesson_id": "699db0a1297afea4b73d1047",
+    "example": "The Appalachian Trail stretches from Georgia to Maine through the Appalachian Mountains"
+  },
+  {
+    "id": "69b703185c5f2c47940a8db7",
+    "term": "Great Lakes",
+    "definition": "The world's largest freshwater lake system, located along the U.S.-Canada border",
+    "lesson_id": "699db0a1297afea4b73d1047",
+    "example": "The five Great Lakes are Superior, Michigan, Huron, Erie, and Ontario"
+  },
+  {
+    "id": "69b703185c5f2c47940a8db6",
+    "term": "Yellowstone",
+    "definition": "The first U.S. national park, established in 1872, known for geysers and wildlife",
+    "lesson_id": "699db0a1297afea4b73d1047",
+    "example": "Old Faithful in Yellowstone is a famous geyser that erupts regularly"
+  },
+  {
+    "id": "69b703185c5f2c47940a8db5",
+    "term": "Grand Canyon",
+    "definition": "A massive canyon in Arizona carved by the Colorado River, a famous national park",
+    "lesson_id": "699db0a1297afea4b73d1047",
+    "example": "The Grand Canyon is over a mile deep and was formed over millions of years"
+  },
+  {
+    "id": "69b703185c5f2c47940a8db4",
+    "term": "Rocky Mountains",
+    "definition": "Major mountain range running through the western United States",
+    "lesson_id": "699db0a1297afea4b73d1046",
+    "example": "The Rocky Mountains include peaks in Colorado, Montana, and Wyoming"
+  },
+  {
+    "id": "69b703185c5f2c47940a8db3",
+    "term": "Mississippi River",
+    "definition": "One of the two longest rivers in the U.S., running through the center of the country",
+    "lesson_id": "699db0a1297afea4b73d1046",
+    "example": "The Mississippi River flows from Minnesota to the Gulf of Mexico"
+  },
+  {
+    "id": "69b703185c5f2c47940a8db2",
+    "term": "Pacific Ocean",
+    "definition": "The ocean bordering the West Coast of the United States",
+    "lesson_id": "699db0a1297afea4b73d1046",
+    "example": "Los Angeles, Seattle, and San Francisco are on the Pacific Coast"
+  },
+  {
+    "id": "69b703185c5f2c47940a8db1",
+    "term": "Atlantic Ocean",
+    "definition": "The ocean bordering the East Coast of the United States",
+    "lesson_id": "699db0a1297afea4b73d1046",
+    "example": "New York, Miami, and Boston are on the Atlantic Coast"
+  },
+  {
+    "id": "69b703185c5f2c47940a8db0",
+    "term": "50 States",
+    "definition": "The United States is made up of 50 states, each with its own government",
+    "lesson_id": "699db0a1297afea4b73d1046",
+    "example": "Alaska and Hawaii were the last states added, both in 1959"
+  },
+  {
+    "id": "69b703185c5f2c47940a8daf",
+    "term": "American Flag",
+    "definition": "National flag with 13 stripes (original colonies) and 50 stars (one per state)",
+    "lesson_id": "699db0a1297afea4b73d1045",
+    "example": "The 50 stars represent the 50 states; a new star was added when Hawaii joined in 1960"
+  },
+  {
+    "id": "69b703185c5f2c47940a8dae",
+    "term": "Liberty Bell",
+    "definition": "Historic bell in Philadelphia that symbolizes American independence and freedom",
+    "lesson_id": "699db0a1297afea4b73d1045",
+    "example": "The Liberty Bell is displayed at Independence Hall in Philadelphia"
+  },
+  {
+    "id": "69b703185c5f2c47940a8dad",
+    "term": "Statue of Liberty",
+    "definition": "Monument in New York Harbor symbolizing freedom and opportunity, gifted by France in 1886",
+    "lesson_id": "699db0a1297afea4b73d1045",
+    "example": "The Statue of Liberty welcomed millions of immigrants arriving by ship"
+  },
+  {
+    "id": "69b703185c5f2c47940a8dac",
+    "term": "Bald Eagle",
+    "definition": "National bird of the United States, symbolizing strength, courage, and independence",
+    "lesson_id": "699db0a1297afea4b73d1045",
+    "example": "The Bald Eagle appears on the Great Seal and is protected by federal law"
+  },
+  {
+    "id": "69b703185c5f2c47940a8dab",
+    "term": "Great Seal",
+    "definition": "Official symbol of the United States, featuring a bald eagle with an olive branch and arrows",
+    "lesson_id": "699db0a1297afea4b73d1044",
+    "example": "The Great Seal appears on the back of the one-dollar bill"
+  },
+  {
+    "id": "69b703185c5f2c47940a8daa",
+    "term": "Flag Etiquette",
+    "definition": "Rules for proper handling and display of the American flag",
+    "lesson_id": "699db0a1297afea4b73d1044",
+    "example": "The flag should never touch the ground and is flown at half-staff to honor those who have died"
+  },
+  {
+    "id": "69b703185c5f2c47940a8da9",
+    "term": "National Anthem",
+    "definition": "'The Star-Spangled Banner,' written in 1814, the official song of the United States",
+    "lesson_id": "699db0a1297afea4b73d1044",
+    "example": "The National Anthem is played before major sporting events and national ceremonies"
+  },
+  {
+    "id": "69b703185c5f2c47940a8da8",
+    "term": "Pledge of Allegiance",
+    "definition": "Oath of loyalty to the United States and its flag, often recited in schools",
+    "lesson_id": "699db0a1297afea4b73d1044",
+    "example": "The Pledge of Allegiance ends with 'with liberty and justice for all'"
+  },
+  {
+    "id": "69b703185c5f2c47940a8da7",
+    "term": "Pearl Harbor",
+    "definition": "Japanese attack on the U.S. naval base in Hawaii on December 7, 1941, causing the U.S. to enter WWII",
+    "lesson_id": "699db0a1297afea4b73d1043",
+    "example": "President Roosevelt called December 7, 1941 'a date which will live in infamy'"
+  },
+  {
+    "id": "69b703185c5f2c47940a8da6",
+    "term": "Cold War",
+    "definition": "Period of political tension between the U.S. and Soviet Union from the 1940s to 1991",
+    "lesson_id": "699db0a1297afea4b73d1043",
+    "example": "The space race between the U.S. and USSR was part of the Cold War"
+  },
+  {
+    "id": "69b703185c5f2c47940a8da5",
+    "term": "World War II",
+    "definition": "Global war from 1939–1945; the U.S. entered after the attack on Pearl Harbor in 1941",
+    "lesson_id": "699db0a1297afea4b73d1043",
+    "example": "D-Day in 1944 was the Allied invasion of Normandy, France that turned the tide of WWII"
+  },
+  {
+    "id": "69b703185c5f2c47940a8da4",
+    "term": "World War I",
+    "definition": "Global war from 1914–1918; the U.S. entered in 1917 to help the Allies",
+    "lesson_id": "699db0a1297afea4b73d1043",
+    "example": "Woodrow Wilson led the U.S. into WWI and proposed the League of Nations"
+  },
+  {
+    "id": "69b703185c5f2c47940a8da3",
+    "term": "Segregation",
+    "definition": "Forced separation of people by race in public places, schools, and transportation",
+    "lesson_id": "699db0a1297afea4b73d1042",
+    "example": "Before the Civil Rights Act, many Southern states had segregated schools and lunch counters"
+  },
+  {
+    "id": "69b703185c5f2c47940a8da2",
+    "term": "Civil Rights Act of 1964",
+    "definition": "Law banning discrimination based on race, color, religion, sex, or national origin",
+    "lesson_id": "699db0a1297afea4b73d1042",
+    "example": "The Civil Rights Act made it illegal to refuse service to someone based on their race"
+  },
+  {
+    "id": "69b703185c5f2c47940a8da1",
+    "term": "Martin Luther King Jr.",
+    "definition": "Civil Rights leader known for nonviolent protest and his 'I Have a Dream' speech",
+    "lesson_id": "699db0a1297afea4b73d1042",
+    "example": "MLK led the 1963 March on Washington where he gave his famous speech"
+  },
+  {
+    "id": "69b703185c5f2c47940a8da0",
+    "term": "Civil Rights Movement",
+    "definition": "Social movement in the 1950s–1960s to end racial segregation and discrimination",
+    "lesson_id": "699db0a1297afea4b73d1042",
+    "example": "Rosa Parks and Martin Luther King Jr. were leaders of the Civil Rights Movement"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d9f",
+    "term": "13th Amendment",
+    "definition": "Abolished slavery throughout the United States, ratified in 1865",
+    "lesson_id": "699db0a1297afea4b73d1041",
+    "example": "The 13th Amendment permanently ended slavery after the Civil War"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d9e",
+    "term": "Emancipation Proclamation",
+    "definition": "1863 order by Lincoln declaring enslaved people in Confederate states to be free",
+    "lesson_id": "699db0a1297afea4b73d1041",
+    "example": "The Emancipation Proclamation was a turning point that made the Civil War about ending slavery"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d9d",
+    "term": "Abraham Lincoln",
+    "definition": "16th President who led the Union through the Civil War and issued the Emancipation Proclamation",
+    "lesson_id": "699db0a1297afea4b73d1041",
+    "example": "Lincoln's Gettysburg Address described government 'of the people, by the people, for the people'"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d9c",
+    "term": "Civil War",
+    "definition": "War fought from 1861–1865 between the Union (North) and the Confederacy (South) over slavery",
+    "lesson_id": "699db0a1297afea4b73d1041",
+    "example": "Over 600,000 soldiers died in the Civil War, making it the deadliest American conflict"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d9b",
+    "term": "Tribal Sovereignty",
+    "definition": "The right of Native American tribes to govern themselves as independent nations",
+    "lesson_id": "699db0a1297afea4b73d1040",
+    "example": "Federally recognized tribes can establish their own laws and governments"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d9a",
+    "term": "Reservations",
+    "definition": "Areas of land set aside by the U.S. government for Native American tribes",
+    "lesson_id": "699db0a1297afea4b73d1040",
+    "example": "Today, federally recognized tribes have sovereignty over their reservation lands"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d99",
+    "term": "Indian Removal Act",
+    "definition": "1830 law that forced Native Americans to relocate west of the Mississippi River",
+    "lesson_id": "699db0a1297afea4b73d1040",
+    "example": "President Andrew Jackson signed the Indian Removal Act in 1830"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d98",
+    "term": "Trail of Tears",
+    "definition": "Forced migration of Native Americans westward in the 1830s resulting in thousands of deaths",
+    "lesson_id": "699db0a1297afea4b73d1040",
+    "example": "The Cherokee Nation was forced to walk over 1,000 miles, and many died"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d97",
+    "term": "8th Amendment",
+    "definition": "Prohibits cruel and unusual punishment and excessive bail",
+    "lesson_id": "699db0a1297afea4b73d103f",
+    "example": "Torturing a prisoner would violate the 8th Amendment"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d96",
+    "term": "Right to Counsel",
+    "definition": "The right to have an attorney, even if you cannot afford one",
+    "lesson_id": "699db0a1297afea4b73d103f",
+    "example": "If you cannot afford a lawyer, the government must provide one for free"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d95",
+    "term": "Double Jeopardy",
+    "definition": "Protection against being tried twice for the same crime, guaranteed by the 5th Amendment",
+    "lesson_id": "699db0a1297afea4b73d103f",
+    "example": "If found not guilty, you cannot be tried again for the same crime"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d94",
+    "term": "Innocent Until Proven Guilty",
+    "definition": "The presumption that accused persons are innocent until the government proves guilt",
+    "lesson_id": "699db0a1297afea4b73d103f",
+    "example": "In the U.S., the prosecution must prove guilt beyond a reasonable doubt"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d93",
+    "term": "Civil Rights",
+    "definition": "Rights that protect individuals from discrimination and guarantee equal treatment",
+    "lesson_id": "699db0a1297afea4b73d103e",
+    "example": "The Civil Rights Act of 1964 banned discrimination based on race, color, or religion"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d92",
+    "term": "Common Good",
+    "definition": "The shared benefit and welfare of the entire community",
+    "lesson_id": "699db0a1297afea4b73d103e",
+    "example": "Public schools and fire departments exist for the common good"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d91",
+    "term": "Social Contract",
+    "definition": "The idea that citizens give up some freedoms in exchange for government protection of rights",
+    "lesson_id": "699db0a1297afea4b73d103e",
+    "example": "We obey traffic laws (a limit on freedom) in exchange for safer roads for everyone"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d90",
+    "term": "Jury Duty",
+    "definition": "The obligation of citizens to serve on a jury when called upon by a court",
+    "lesson_id": "699db0a1297afea4b73d103d",
+    "example": "Jury duty ensures that accused persons are judged by a group of their peers"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d8f",
+    "term": "Income Tax",
+    "definition": "Tax paid to the federal and state government on earnings from work",
+    "lesson_id": "699db0a1297afea4b73d103d",
+    "example": "Americans file income tax returns each year, usually by April 15"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d8e",
+    "term": "Selective Service",
+    "definition": "System requiring men 18–25 to register in case a military draft is needed",
+    "lesson_id": "699db0a1297afea4b73d103d",
+    "example": "Male citizens and residents must register with Selective Service at age 18"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d8d",
+    "term": "Permanent Resident",
+    "definition": "A non-citizen who has legal permission to live and work permanently in the U.S.",
+    "lesson_id": "699db0a1297afea4b73d103c",
+    "example": "A green card holder is a permanent resident who can apply for citizenship after 5 years"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d8c",
+    "term": "Civic Duty",
+    "definition": "Obligations of citizens to their country, such as voting, jury service, and paying taxes",
+    "lesson_id": "699db0a1297afea4b73d103c",
+    "example": "Serving on a jury is a civic duty that helps ensure fair trials"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d8b",
+    "term": "Naturalization",
+    "definition": "The legal process by which an immigrant becomes a U.S. citizen",
+    "lesson_id": "699db0a1297afea4b73d103c",
+    "example": "After five years as a permanent resident, most immigrants can apply for naturalization"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d8a",
+    "term": "Citizen",
+    "definition": "A person who is a legal member of a country and has full rights and responsibilities",
+    "lesson_id": "699db0a1297afea4b73d103c",
+    "example": "U.S. citizens can vote, run for office, and hold a U.S. passport"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d89",
+    "term": "Equal Protection",
+    "definition": "The 14th Amendment guarantee that laws apply equally to all people",
+    "lesson_id": "699db0a1297afea4b73d103b",
+    "example": "Schools cannot be segregated because equal protection requires equal treatment"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d88",
+    "term": "Due Process",
+    "definition": "The right to fair legal procedures before the government can take away life, liberty, or property",
+    "lesson_id": "699db0a1297afea4b73d103b",
+    "example": "You have the right to a lawyer and a fair trial under due process"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d87",
+    "term": "Freedom of Religion",
+    "definition": "The right to practice any religion, or no religion, without government interference",
+    "lesson_id": "699db0a1297afea4b73d103b",
+    "example": "Americans can worship as Muslims, Christians, Jews, Hindus, or not at all"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d86",
+    "term": "Freedom of Speech",
+    "definition": "The right to express opinions without government censorship or retaliation",
+    "lesson_id": "699db0a1297afea4b73d103b",
+    "example": "You can criticize government policies without fear of arrest due to freedom of speech"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d85",
+    "term": "Senate Confirmation",
+    "definition": "The Senate must approve presidential appointments to courts and Cabinet positions",
+    "lesson_id": "699db0a1297afea4b73d1039",
+    "example": "Supreme Court nominees must be confirmed by a Senate vote"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d84",
+    "term": "Impeachment",
+    "definition": "The process where Congress formally charges a president or official with wrongdoing",
+    "lesson_id": "699db0a1297afea4b73d1039",
+    "example": "The House impeaches and the Senate holds the trial to decide removal"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d83",
+    "term": "Checks and Balances",
+    "definition": "System where each branch of government can limit the power of the other branches",
+    "lesson_id": "699db0a1297afea4b73d1039",
+    "example": "The President vetoes laws, Congress overrides vetoes, and courts strike down unconstitutional acts"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d82",
+    "term": "Lifetime Appointment",
+    "definition": "Federal judges serve until they die, retire, or are removed, ensuring independence",
+    "lesson_id": "699db0a1297afea4b73d1038",
+    "example": "Supreme Court justices have lifetime appointments so they can rule without political pressure"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d81",
+    "term": "Chief Justice",
+    "definition": "The head of the Supreme Court and the federal judiciary",
+    "lesson_id": "699db0a1297afea4b73d1038",
+    "example": "John Marshall was one of the most influential Chief Justices in U.S. history"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d80",
+    "term": "Judicial Review",
+    "definition": "The Supreme Court's power to declare laws unconstitutional",
+    "lesson_id": "699db0a1297afea4b73d1038",
+    "example": "In Marbury v. Madison, the Supreme Court established the power of judicial review"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d7f",
+    "term": "Supreme Court",
+    "definition": "The highest court in the U.S., with nine justices and final authority on constitutional questions",
+    "lesson_id": "699db0a1297afea4b73d1038",
+    "example": "The Supreme Court's rulings set legal precedents for all lower courts"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d7e",
+    "term": "22nd Amendment",
+    "definition": "Limits the President to a maximum of two terms in office",
+    "lesson_id": "699db0a1297afea4b73d1037",
+    "example": "FDR served four terms, which led to the 22nd Amendment limiting future presidents to two"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d7d",
+    "term": "Presidential Veto",
+    "definition": "The President's power to reject legislation passed by Congress",
+    "lesson_id": "699db0a1297afea4b73d1037",
+    "example": "A President can veto a bill they disagree with, sending it back to Congress"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d7c",
+    "term": "Cabinet",
+    "definition": "Group of department heads who advise the President and manage executive departments",
+    "lesson_id": "699db0a1297afea4b73d1037",
+    "example": "The Secretary of State and Secretary of Defense are Cabinet members"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d7b",
+    "term": "President",
+    "definition": "Head of the Executive Branch, elected to four-year terms, limited to two terms",
+    "lesson_id": "699db0a1297afea4b73d1037",
+    "example": "The President signs bills into law and is commander-in-chief of the military"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d7a",
+    "term": "Capitol Building",
+    "definition": "The building in Washington, D.C. where Congress meets",
+    "lesson_id": "699db0a1297afea4b73d1036",
+    "example": "Both the Senate and House of Representatives meet in the Capitol Building"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d79",
+    "term": "Veto Override",
+    "definition": "Congress can reverse a presidential veto with a two-thirds vote in both chambers",
+    "lesson_id": "699db0a1297afea4b73d1036",
+    "example": "If the President vetoes a bill, Congress can still pass it with enough votes"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d78",
+    "term": "House of Representatives",
+    "definition": "Lower chamber of Congress with 435 members based on state population, serving 2-year terms",
+    "lesson_id": "699db0a1297afea4b73d1036",
+    "example": "California has many more House members than Wyoming because it has more people"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d77",
+    "term": "Senate",
+    "definition": "Upper chamber of Congress with 100 members, two from each state, serving 6-year terms",
+    "lesson_id": "699db0a1297afea4b73d1036",
+    "example": "There are always exactly 100 senators, regardless of state population"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d76",
+    "term": "Rule of Law",
+    "definition": "The principle that everyone, including government officials, must follow the law",
+    "lesson_id": "699db0a1297afea4b73d1035",
+    "example": "Even the President must obey the law — no one is above it"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d75",
+    "term": "Separation of Powers",
+    "definition": "Division of government into three branches: legislative, executive, and judicial",
+    "lesson_id": "699db0a1297afea4b73d1035",
+    "example": "Congress makes laws, the President enforces them, and courts interpret them"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d74",
+    "term": "Federalism",
+    "definition": "Division of power between the national government and state governments",
+    "lesson_id": "699db0a1297afea4b73d1035",
+    "example": "Education is mainly controlled by states, while national defense is federal"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d73",
+    "term": "Democratic Republic",
+    "definition": "A system where citizens elect representatives to govern on their behalf",
+    "lesson_id": "699db0a1297afea4b73d1035",
+    "example": "The U.S. is a democratic republic — citizens vote for senators and representatives"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d72",
+    "term": "26th Amendment",
+    "definition": "Lowered the voting age from 21 to 18, ratified in 1971",
+    "lesson_id": "699db0a1297afea4b73d1034",
+    "example": "Young people who served in Vietnam pushed for the 26th Amendment"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d71",
+    "term": "Voting Rights Act",
+    "definition": "1965 federal law that eliminated literacy tests and other barriers to voting",
+    "lesson_id": "699db0a1297afea4b73d1034",
+    "example": "The Voting Rights Act was passed during the Civil Rights Movement to protect African American voters"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d70",
+    "term": "19th Amendment",
+    "definition": "Granted women the right to vote, ratified in 1920",
+    "lesson_id": "699db0a1297afea4b73d1034",
+    "example": "Susan B. Anthony was a key leader in the fight that led to the 19th Amendment"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d6f",
+    "term": "15th Amendment",
+    "definition": "Prohibited voting discrimination based on race, ratified in 1870",
+    "lesson_id": "699db0a1297afea4b73d1034",
+    "example": "The 15th Amendment gave African American men the right to vote after the Civil War"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d6e",
+    "term": "Fourth Amendment",
+    "definition": "Protects against unreasonable searches and seizures by the government",
+    "lesson_id": "699db0a1297afea4b73d1033",
+    "example": "Police generally need a warrant to search your home under the Fourth Amendment"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d6d",
+    "term": "Second Amendment",
+    "definition": "Protects the right of the people to keep and bear arms",
+    "lesson_id": "699db0a1297afea4b73d1033",
+    "example": "The Second Amendment has been the subject of many Supreme Court decisions"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d6c",
+    "term": "Civil Liberties",
+    "definition": "Freedoms guaranteed by law that protect individuals from government overreach",
+    "lesson_id": "699db0a1297afea4b73d1033",
+    "example": "Free speech and the right to a fair trial are civil liberties protected by the Constitution"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d6b",
+    "term": "First Amendment",
+    "definition": "Protects freedom of speech, religion, press, assembly, and petition",
+    "lesson_id": "699db0a1297afea4b73d1033",
+    "example": "The First Amendment allows people to criticize the government without being arrested"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d6a",
+    "term": "Revolutionary War",
+    "definition": "War fought from 1775–1783 in which the American colonies won independence from Britain",
+    "lesson_id": "699db0a1297afea4b73d1032",
+    "example": "George Washington commanded the Continental Army during the Revolutionary War"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d69",
+    "term": "Independence Day",
+    "definition": "National holiday on July 4th celebrating the signing of the Declaration of Independence",
+    "lesson_id": "699db0a1297afea4b73d1032",
+    "example": "Americans celebrate Independence Day with fireworks and parades"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d68",
+    "term": "Thomas Jefferson",
+    "definition": "Founding Father and primary author of the Declaration of Independence",
+    "lesson_id": "699db0a1297afea4b73d1032",
+    "example": "Jefferson declared 'all men are created equal' in the Declaration"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d67",
+    "term": "Declaration of Independence",
+    "definition": "Document adopted on July 4, 1776 declaring the colonies' independence from Britain",
+    "lesson_id": "699db0a1297afea4b73d1032",
+    "example": "Thomas Jefferson wrote most of the Declaration of Independence"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d66",
+    "term": "Articles of Confederation",
+    "definition": "The first governing document of the U.S., replaced by the Constitution because it was too weak",
+    "lesson_id": "699db0a1297afea4b73d1031",
+    "example": "Under the Articles, Congress had no power to levy taxes or enforce laws"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d65",
+    "term": "Ratification",
+    "definition": "The process of formal state approval required for the Constitution to take effect",
+    "lesson_id": "699db0a1297afea4b73d1031",
+    "example": "The Constitution was ratified by nine states in 1788 before it could go into effect"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d64",
+    "term": "Bill of Rights",
+    "definition": "The first ten amendments to the Constitution, protecting fundamental individual freedoms",
+    "lesson_id": "699db0a1297afea4b73d1031",
+    "example": "The Bill of Rights guarantees freedom of speech, religion, and the right to a fair trial"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d63",
+    "term": "James Madison",
+    "definition": "Called the 'Father of the Constitution' for his central role in drafting it",
+    "lesson_id": "699db0a1297afea4b73d1031",
+    "example": "Madison came prepared with the Virginia Plan, which formed the basis of the Constitution"
+  },
+  {
+    "id": "69b703185c5f2c47940a8d62",
+    "term": "Constitutional Convention",
+    "definition": "Meeting of 55 delegates in Philadelphia in 1787 to draft the U.S. Constitution",
+    "lesson_id": "699db0a1297afea4b73d1031",
+    "example": "James Madison and Benjamin Franklin were key delegates at the Constitutional Convention"
+  }
+]

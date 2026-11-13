@@ -1,0 +1,87 @@
+{
+  "source": "Base44 data export (CSV), converted by scripts/content/import-base44-csv.mjs",
+  "dropped_columns": [
+    "created_by",
+    "created_by_id",
+    "created_date",
+    "updated_date",
+    "is_sample"
+  ],
+  "entities": {
+    "CivicsQuestion": {
+      "csv": "CivicsQuestion_export.csv",
+      "csv_rows": 228,
+      "csv_sha256": "3a761731a49e78603d646d427149980c52e84e43ec460fd026a07a1b9f2ea9ae",
+      "outputs": {
+        "civics-questions-2008.json": 100,
+        "civics-questions-2025.json": 128
+      }
+    },
+    "InterviewQuestion": {
+      "csv": "InterviewQuestion_export.csv",
+      "csv_rows": 24,
+      "csv_sha256": "073000df47cb78724397516f554b7f9be1a20e06a9176da9e7a2517cab23322a",
+      "outputs": {
+        "interview-questions.json": 24
+      }
+    },
+    "ReadingSentence": {
+      "csv": "ReadingSentence_export.csv",
+      "csv_rows": 76,
+      "csv_sha256": "bc2fe7d7047fc8b8f44ac064eb65aae54633202d38954d0eb4764ba26db2c73e",
+      "outputs": {
+        "reading-sentences.json": 76
+      }
+    },
+    "Sentence": {
+      "csv": "Sentence_export.csv",
+      "csv_rows": 49,
+      "csv_sha256": "17ad22d286a4aadebd2c5969b40d97d42aec63bb616ef6022edf436bf47a3d44",
+      "outputs": {
+        "writing-sentences.json": 49
+      }
+    },
+    "VocabularyWord": {
+      "csv": "VocabularyWord_export.csv",
+      "csv_rows": 79,
+      "csv_sha256": "fc1421aaae220f4471e4812cf153d9443bed8a24d60e1a4fadda345cd6e81a82",
+      "outputs": {
+        "vocabulary-words.json": 79
+      }
+    },
+    "Lesson": {
+      "csv": "Lesson_export.csv",
+      "csv_rows": 25,
+      "csv_sha256": "a93e6b622f2ede8122141f80cdd0f77243ab2f565fbd5664703381e190717f32",
+      "outputs": {
+        "lessons.json": 25
+      }
+    },
+    "LessonQuiz": {
+      "csv": "LessonQuiz_export.csv",
+      "csv_rows": 178,
+      "csv_sha256": "399215cce179e0faeae9f20106036c39a092d88a46679104a695f337b4b70f05",
+      "outputs": {
+        "lesson-quizzes.json": 144,
+        "lesson-quizzes-orphaned.json": 34
+      }
+    },
+    "LessonFlashcard": {
+      "csv": "LessonFlashcard_export.csv",
+      "csv_rows": 115,
+      "csv_sha256": "be9d37aaafe1fcb574e56834ca67417df445233b3e9397baa2ea897f3df7120e",
+      "outputs": {
+        "lesson-flashcards.json": 95,
+        "lesson-flashcards-orphaned.json": 20
+      }
+    },
+    "CommunityResource": {
+      "csv": "CommunityResource_export.csv",
+      "csv_rows": 5588,
+      "csv_sha256": "80b85baf95c50d3207a39f9ef9b9c74f8817468dcbfe2e040c5f98d045540062",
+      "outputs": {
+        "community-resources.json": 5588
+      }
+    }
+  }
+}
