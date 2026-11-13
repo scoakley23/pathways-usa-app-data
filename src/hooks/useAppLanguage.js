@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
+import { loadScriptFont } from '@/design/scriptFonts';
 
 export const RTL_LANGUAGES = ['ar', 'fa', 'ur', 'he', 'prs', 'ps'];
 
@@ -24,6 +25,8 @@ const LANGUAGE_EVENT = 'pathways-language';
 // Shared language preference for the app (stored in pathways_language).
 export default function useAppLanguage() {
   const [language, setLanguage] = useState(getSavedLanguage);
+  // The Noto font for this language's script, loaded only when needed.
+  useEffect(() => { loadScriptFont(language); }, [language]);
   useEffect(() => {
     const follow = (e) => setLanguage(e.detail);
     window.addEventListener(LANGUAGE_EVENT, follow);

@@ -440,7 +440,7 @@ export default function Practice() {
         <NavyTop className="pb-14">
           <StudyTop tab="practice" action={testButton}>
             <div className="pt-2 space-y-3">
-              <p className="text-label uppercase text-on-navy-label">Suggested for you</p>
+              <p className="text-label uppercase text-on-navy">Suggested for you</p>
               <p className="font-display text-[22px] leading-tight">
                 {PART_ROWS[suggested].label} · {PART_ROWS[suggested].line}
               </p>

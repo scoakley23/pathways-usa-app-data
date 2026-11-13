@@ -38,7 +38,7 @@ export default function RoadProgress({ index = 0, total = 0, answered = false, c
       </svg>
       <span
         aria-hidden="true"
-        className="absolute w-[22px] h-[22px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-star grid place-items-center transition-[left,top] duration-300"
+        className="absolute w-[22px] h-[22px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-red grid place-items-center transition-[left,top] duration-300"
         style={{ left: `${(x / W) * 100}%`, top: `calc(0.25rem + ${(yAt(x) / H) * 1.5}rem)` }}
       >
         <Star className="w-3 h-3 text-white fill-white" />

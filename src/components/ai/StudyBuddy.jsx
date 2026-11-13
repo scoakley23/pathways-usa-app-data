@@ -337,7 +337,7 @@ export default function StudyBuddy() {
               </span>
               <div className="min-w-0 flex-1">
                 <SheetTitle className="font-display text-[24px] leading-tight text-white truncate">{profile.name}</SheetTitle>
-                <SheetDescription className="text-base text-on-navy-2 truncate">Your AI study partner</SheetDescription>
+                <SheetDescription className="text-base text-on-navy truncate">Your AI study partner</SheetDescription>
               </div>
             </div>
             <div className="flex items-center gap-2">
@@ -417,15 +417,15 @@ export default function StudyBuddy() {
                   aria-label="Ask a question"
                 />
                 {listening ? (
-                  <button type="button" onClick={stopDictation} aria-label="Stop listening" className="w-[54px] h-[54px] shrink-0 rounded-full bg-star text-white grid place-items-center hover:bg-star-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2">
+                  <button type="button" onClick={stopDictation} aria-label="Stop listening" className="w-[54px] h-[54px] shrink-0 rounded-full bg-denim text-white grid place-items-center hover:bg-denim-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2">
                     <MicOff className="w-6 h-6" aria-hidden="true" />
                   </button>
                 ) : input.trim() || !canDictate ? (
-                  <button type="submit" disabled={!sendable} aria-label="Send" className="w-[54px] h-[54px] shrink-0 rounded-full bg-star text-white grid place-items-center hover:bg-star-deep disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2">
+                  <button type="submit" disabled={!sendable} aria-label="Send" className="w-[54px] h-[54px] shrink-0 rounded-full bg-denim text-white grid place-items-center hover:bg-denim-deep disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2">
                     <Send className="w-5 h-5 rtl:-scale-x-100" aria-hidden="true" />
                   </button>
                 ) : (
-                  <button type="button" onClick={startDictation} disabled={isLoading} aria-label="Say your question" className="w-[54px] h-[54px] shrink-0 rounded-full bg-star text-white grid place-items-center hover:bg-star-deep disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2">
+                  <button type="button" onClick={startDictation} disabled={isLoading} aria-label="Say your question" className="w-[54px] h-[54px] shrink-0 rounded-full bg-denim text-white grid place-items-center hover:bg-denim-deep disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2">
                     <Mic className="w-6 h-6" aria-hidden="true" />
                   </button>
                 )}

@@ -30,15 +30,15 @@ export default function RoundComplete({ outcomes = [], title, rule, review = nul
           <ul className="flex flex-wrap gap-1.5" aria-label={`${right} of ${outcomes.length} right`}>
             {outcomes.map((r, i) => (
               <li key={i}>
-                <Star className={`w-7 h-7 ${r === 'right' ? 'text-star fill-star' : 'text-sky'}`} strokeWidth={2} aria-hidden="true" />
+                <Star className={`w-7 h-7 ${r === 'right' ? 'text-gold fill-gold' : 'text-mid'}`} strokeWidth={2} aria-hidden="true" />
               </li>
             ))}
           </ul>
         )}
         <div className="space-y-2" aria-live="polite">
-          <p className="text-label uppercase text-on-navy-label">Round complete</p>
+          <p className="text-label uppercase text-on-navy">Round complete</p>
           <h2 className="font-display text-[30px] sm:text-[34px] leading-[1.1]">{title}</h2>
-          {rule && <p className="text-lg text-on-navy-2">{rule}</p>}
+          {rule && <p className="text-lg text-on-navy">{rule}</p>}
         </div>
 
         {review && review.lines.length > 0 && (

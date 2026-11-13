@@ -38,11 +38,11 @@ export default function N400QuestionCard({ sectionId, question, isAdmin, languag
       {/* NAVY: the form's question, word for word */}
       <div className="bg-navy text-white p-4 sm:p-5 space-y-3">
         <div className="flex flex-wrap items-center gap-2">
-          <p className="text-label uppercase text-on-navy-label">Item {question.label} · On the form · word for word</p>
+          <p className="text-label uppercase text-on-navy">Item {question.label} · On the form · word for word</p>
           {isAdmin && question.status === 'draft' && <Tag tone="red">Draft — pending review</Tag>}
         </div>
         <blockquote className="text-xl sm:text-[22px] font-medium leading-snug">{question.official}</blockquote>
-        <p className="text-base text-on-navy-2">— Form N-400, item {question.label}</p>
+        <p className="text-base text-on-navy">— Form N-400, item {question.label}</p>
         <div className="flex flex-wrap gap-2">
           <Chip onNavy onClick={() => speak(question.official)} aria-label="Listen to the question">
             {isPlaying ? <Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" /> : <Volume2 className="w-5 h-5" aria-hidden="true" />}

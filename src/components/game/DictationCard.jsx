@@ -102,7 +102,7 @@ export default function DictationCard({ sentence, onComplete, onNext, testMode =
       <NavyTop className={`pb-12 ${embedded ? 'rounded-card' : ''}`}>
         <div className="mx-auto max-w-2xl space-y-4">
           {onClose && <RunTopBar onClose={onClose} index={index} total={total} answered={done} />}
-          <p className="text-label uppercase text-on-navy-label">{label}</p>
+          <p className="text-label uppercase text-on-navy">{label}</p>
           <h2 className="font-display text-[38px] sm:text-[40px] leading-[1.1]">
             {testMode ? 'Listen, then type what you hear.' : 'Listen, then write what you hear.'}
           </h2>

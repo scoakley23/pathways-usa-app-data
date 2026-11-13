@@ -211,7 +211,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, testMode 
       <NavyTop className={`pb-12 ${embedded ? 'rounded-card' : ''}`}>
         <div className="mx-auto max-w-2xl space-y-4">
           {onClose && <RunTopBar onClose={onClose} index={index} total={total} answered={done} />}
-          <p className="text-label uppercase text-on-navy-label">{label}</p>
+          <p className="text-label uppercase text-on-navy">{label}</p>
           <h2 className={`font-display leading-[1.08] transition-[font-size] ${done ? 'text-[30px]' : 'text-[38px] sm:text-[40px]'}`}>
             {question.question}
           </h2>
@@ -227,9 +227,9 @@ export default function CivicsTestCard({ question, onComplete, onNext, testMode 
           </div>
           {showTranslation && myLanguage && (
             isTranslating ? (
-              <p className="flex items-center gap-2 text-base text-on-navy-2"><Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> Translating…</p>
+              <p className="flex items-center gap-2 text-base text-on-navy"><Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> Translating…</p>
             ) : translatedQuestion && (
-              <p lang={myLanguage.value} dir="auto" className="border-s-2 border-navy-line ps-4 text-lg text-on-navy-2">{translatedQuestion}</p>
+              <p lang={myLanguage.value} dir="auto" className="border-s-2 border-navy-line ps-4 text-lg text-on-navy">{translatedQuestion}</p>
             )
           )}
         </div>

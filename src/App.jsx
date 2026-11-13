@@ -12,6 +12,7 @@ import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import N400Guide from './pages/N400Guide';
 import LawyerPage from './pages/LawyerPage';
 import TutorDemo from './pages/TutorDemo';
+import DesignPreview from './pages/DesignPreview';
 import QuickCheck from './pages/QuickCheck';
 import LearnCivics from './pages/LearnCivics';
 import ReviewCivics from './pages/ReviewCivics';
@@ -124,6 +125,8 @@ const AuthenticatedApp = () => {
           <TutorDemo />
         </LayoutWrapper>
       } />
+      {/* Admins only (and local dev): the Pathways + Amio base pieces with fake data. */}
+      <Route path="design-preview" element={<DesignPreview />} />
       {/* Admins only: the page itself shows "Page Not Found" to anyone else. */}
       <Route path="admin/pilot" element={
         <LayoutWrapper currentPageName="Admin">

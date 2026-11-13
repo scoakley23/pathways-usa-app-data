@@ -105,25 +105,32 @@ export function SegmentedProgress({ current, total, label }) {
   );
 }
 
-// Buttons are pills, at least 44px tall. `main` is the star-red action:
-// ONE per screen, 56-60px. `next` moves on (navy on cream; `onNavy` makes it
-// white on navy). `second` is the outlined second choice. `link` is a text link.
-const BTN = 'min-h-tap rounded-full font-semibold inline-flex items-center justify-center gap-2 text-center transition-colors disabled:opacity-40 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2';
+// Buttons (docs/redesign/amio-style-guide.md): 16px corners, Lexend 700, at
+// least 44px tall. `main` is the ONE main action on a screen: denim, 56px,
+// with a 5px navy "lip" that presses down when tapped. `second` is white with
+// a line border. `link` (also `text-link`) is a text link. `next` stays navy
+// for screens not yet redone (`onNavy` makes it white on navy).
+const BTN_BASE = 'min-h-tap font-bold inline-flex items-center justify-center gap-2 text-center transition disabled:opacity-40 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2';
+const BTN = `${BTN_BASE} rounded-button`;
+const MAIN = 'min-h-main mb-[5px] bg-denim text-white hover:bg-denim-deep shadow-lip active:translate-y-1 active:shadow-lip-pressed motion-reduce:active:translate-y-0 disabled:active:translate-y-0 px-6 text-lg';
+const LINK_LOOK = 'underline underline-offset-4 px-2 text-base';
 const BUTTON_VARIANTS = {
-  main: 'min-h-main bg-star text-white hover:bg-star-deep px-6 text-lg focus-visible:ring-navy',
+  main: `${MAIN} focus-visible:ring-navy`,
   next: 'bg-navy text-white hover:bg-navy-deep px-5 text-base focus-visible:ring-navy',
-  second: 'bg-transparent text-ink border-2 border-navy hover:bg-sand px-5 text-base focus-visible:ring-navy',
-  link: 'text-ink underline underline-offset-4 decoration-ink/40 hover:decoration-ink px-2 text-base focus-visible:ring-navy',
+  second: 'bg-white text-navy border border-line hover:bg-tint px-5 text-base focus-visible:ring-navy',
+  link: `text-denim decoration-denim/40 hover:decoration-denim ${LINK_LOOK} focus-visible:ring-navy`,
 };
 const BUTTON_ON_NAVY = {
-  main: 'min-h-main bg-star text-white hover:bg-star-deep px-6 text-lg focus-visible:ring-white focus-visible:ring-offset-navy',
-  next: 'bg-white text-navy hover:bg-cream px-5 text-base focus-visible:ring-white focus-visible:ring-offset-navy',
-  second: 'bg-transparent text-white border-2 border-navy-line hover:bg-navy-2 px-5 text-base focus-visible:ring-white focus-visible:ring-offset-navy',
-  link: 'text-white underline underline-offset-4 decoration-white/50 hover:decoration-white px-2 text-base focus-visible:ring-white focus-visible:ring-offset-navy',
+  main: `${MAIN} focus-visible:ring-white focus-visible:ring-offset-navy`,
+  next: 'bg-white text-navy hover:bg-page px-5 text-base focus-visible:ring-white focus-visible:ring-offset-navy',
+  second: 'bg-transparent text-white border border-chip-navy hover:bg-chip-navy px-5 text-base focus-visible:ring-white focus-visible:ring-offset-navy',
+  link: `text-white decoration-white/50 hover:decoration-white ${LINK_LOOK} focus-visible:ring-white focus-visible:ring-offset-navy`,
 };
+const VARIANT_NAMES = { 'text-link': 'link' };
 
 export function Button({ variant = 'next', onNavy = false, className = '', ...props }) {
-  const look = (onNavy ? BUTTON_ON_NAVY : BUTTON_VARIANTS)[variant] || BUTTON_VARIANTS.next;
+  const name = VARIANT_NAMES[variant] || variant;
+  const look = (onNavy ? BUTTON_ON_NAVY : BUTTON_VARIANTS)[name] || BUTTON_VARIANTS.next;
   return <button type="button" className={`${BTN} ${look} ${className}`} {...props} />;
 }
 
@@ -137,25 +144,26 @@ export function SecondaryButton(props) {
 }
 
 export function QuietButton({ className = '', ...props }) {
-  return <button type="button" className={`${BTN} text-ink hover:bg-sand px-3 text-base focus-visible:ring-navy ${className}`} {...props} />;
+  return <button type="button" className={`${BTN} text-navy hover:bg-tint px-3 text-base focus-visible:ring-navy ${className}`} {...props} />;
 }
 
-// A chip: sand on cream, navy-2 on navy. As a button when it has onClick.
+// A chip: white with a line border, fully rounded; chip-navy on the navy
+// banner. A button (at least 44px) when it has onClick.
 export function Chip({ onNavy = false, className = '', children, ...props }) {
-  const look = onNavy ? 'bg-navy-2 text-white hover:bg-navy-line' : 'bg-sand text-ink hover:bg-sand-hover';
+  const look = onNavy ? 'bg-chip-navy text-white hover:bg-navy-deep' : 'bg-white text-navy border border-line hover:bg-tint';
   if (!props.onClick) {
     return <span className={`inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-semibold ${look} ${className}`} {...props}>{children}</span>;
   }
-  return <button type="button" className={`${BTN} px-4 text-base ${look} ${onNavy ? 'focus-visible:ring-white focus-visible:ring-offset-navy' : 'focus-visible:ring-navy'} ${className}`} {...props}>{children}</button>;
+  return <button type="button" className={`min-h-tap rounded-full font-semibold inline-flex items-center justify-center gap-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 px-4 text-base ${look} ${onNavy ? 'focus-visible:ring-white focus-visible:ring-offset-navy' : 'focus-visible:ring-navy'} ${className}`} {...props}>{children}</button>;
 }
 
 export function PillButton({ className = '', ...props }) {
-  return <button type="button" className={`${BTN} bg-sand text-ink hover:bg-sand-hover px-4 text-base focus-visible:ring-navy ${className}`} {...props} />;
+  return <button type="button" className={`${BTN_BASE} rounded-full bg-tint text-navy hover:bg-line px-4 text-base focus-visible:ring-navy ${className}`} {...props} />;
 }
 
-// White card on cream: 22px corners, a thin line, no shadow.
+// White card: 20px corners, a thin line border, no shadow.
 export function Card({ className = '', padding = 'p-5', children, ...props }) {
-  return <div className={`rounded-card bg-white border border-card-line ${padding} ${className}`} {...props}>{children}</div>;
+  return <div className={`rounded-card bg-white border border-line ${padding} ${className}`} {...props}>{children}</div>;
 }
 export const RaisedCard = Card;
 
@@ -206,7 +214,7 @@ export function PathwaysMark({ size = 40, tone = 'ink', label, className = '' })
   );
 }
 
-// Symbol + "Pathways" wordmark in Bricolage Grotesque 800. layout: horizontal
+// Symbol + "Pathways" wordmark in Lexend 700. layout: horizontal
 // (symbol left of word) | stacked (symbol over word). Optional descriptor
 // line, e.g. "Free U.S. citizenship test practice".
 export function PathwaysLockup({ layout = 'horizontal', size, tone = 'ink', descriptor, className = '' }) {
@@ -214,7 +222,7 @@ export function PathwaysLockup({ layout = 'horizontal', size, tone = 'ink', desc
   const markSize = size ?? (stacked ? 72 : 32);
   const light = tone === 'white' || tone === 'navy';
   const text = light ? 'text-white' : 'text-navy';
-  const sub = light ? 'text-on-navy-2' : 'text-ink-2';
+  const sub = light ? 'text-on-navy' : 'text-ink-2';
   return (
     <div className={`${stacked ? 'flex flex-col items-center text-center gap-2' : 'flex items-center gap-2.5'} ${className}`}>
       <PathwaysMark size={markSize} tone={tone} />
@@ -255,7 +263,7 @@ export function IndexCard({ tab, tabSkill = 'n400', rule = false, padding = 'p-5
           {tab}
         </span>
       )}
-      <div className={`relative overflow-hidden rounded-card bg-white border border-card-line ${padding}`}>
+      <div className={`relative overflow-hidden rounded-card bg-white border border-line ${padding}`}>
         {rule && <span className="absolute inset-x-0 top-0 h-1 bg-navy" aria-hidden="true" />}
         {children}
       </div>
@@ -292,7 +300,7 @@ export function PosterProgress({ index = 0, total = 0, className = '' }) {
       aria-label={`Card ${Math.min(index + 1, total)} of ${total}`}
     >
       {Array.from({ length: total }, (_, k) => (
-        <span key={k} aria-hidden="true" className={`h-1 flex-1 rounded-full ${k <= index ? 'bg-sky' : 'bg-road'}`} />
+        <span key={k} aria-hidden="true" className={`h-1 flex-1 rounded-full ${k <= index ? 'bg-gold' : 'bg-road'}`} />
       ))}
     </div>
   );
@@ -315,13 +323,13 @@ export function RuledPaper({ as: Tag = 'div', className = '', children, ...props
 
 // Full-bleed test/practice poster: white text on navy. `tone` is kept for
 // older callers (posterTone) but every poster is navy. `answer` shows in
-// Bricolage; `progress` ({ index, total }) adds a thin progress line;
+// Lexend 700; `progress` ({ index, total }) adds a thin progress line;
 // `children` holds the controls.
 export function Poster({ tone = 'red', label, question, answer, progress, questionAs: Q = 'h2', className = '', children, ...props }) {
   return (
     <section className={`relative ${POSTER_BG[tone] || POSTER_BG.red} text-white px-5 py-8 sm:px-8 sm:py-10 ${className}`} {...props}>
       <PathwaysMark size={36} tone="white" className="absolute end-5 top-6 sm:end-8 sm:top-8" />
-      {label && <p className="pe-12 text-label uppercase text-on-navy-label">{label}</p>}
+      {label && <p className="pe-12 text-label uppercase text-on-navy">{label}</p>}
       {progress && <div className="mt-3 pe-12"><PosterProgress index={progress.index} total={progress.total} /></div>}
       {question && <Q className="mt-4 font-display text-[38px] leading-[1.1] sm:text-[40px]">{question}</Q>}
       {answer && <p className="mt-5 font-display text-2xl leading-snug sm:text-3xl">{answer}</p>}
@@ -355,7 +363,7 @@ export function FolderTab({ tone = 'navy', active = false, className = '', ...pr
   );
 }
 
-// N-400 wording, word for word (Inter, on a white card).
+// N-400 wording, word for word (Lexend, on a white card).
 export function FormQuote({ item, label = 'ON THE FORM · WORD FOR WORD', className = '', children }) {
   return (
     <figure className={`rounded-card border border-card-line bg-white p-4 ${className}`}>

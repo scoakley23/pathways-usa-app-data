@@ -4,7 +4,7 @@ import { ArrowLeft } from 'lucide-react';
 import TutorLine from '@/components/persona/TutorLine';
 
 // The one page header (brand kit, "X2 everywhere"): a quiet back link, a
-// small caps label (`tag`), the Bricolage title, an optional
+// small caps label (`tag`), the Lexend 700 title, an optional
 // subtitle, and `guide`: one line from the learner's tutor, signed in text. No banner and no drawing, so the page's own content
 // starts right away. `children` (actions) sit under the title on phones and
 // on the right on wider screens. `tagTone` and `art` are accepted for older
