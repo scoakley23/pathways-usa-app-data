@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
-import { base44 } from '@/api/base44Client';
 import { toast } from 'sonner';
 import { LANGUAGES } from './useLessonTranslation';
 import { HOME_STRINGS } from '@/components/home/homeStrings';
+import { getCachedTranslation, translateStrings } from '@/lib/translateStrings';
 
 const CACHE_PREFIX = 'pathways_home_tr_v10_'; // bump when HOME_STRINGS changes
 
 // Translates the home screen's static strings via AI, cached per language in
-// localStorage so each language is translated only once.
+// localStorage so each language is translated only once. Screens using this
+// at the same time share one request (src/lib/translateStrings.js).
 export default function useHomeTranslation(language) {
   const [translations, setTranslations] = useState(null);
   const [translating, setTranslating] = useState(false);
@@ -19,68 +20,43 @@ export default function useHomeTranslation(language) {
       return;
     }
 
-    let cached = null;
-    try {
-      const raw = localStorage.getItem(CACHE_PREFIX + language);
-      if (raw) cached = JSON.parse(raw);
-    } catch (e) {
-      cached = null;
-    }
-    if (cached && typeof cached === 'object') {
+    const storageKey = CACHE_PREFIX + language;
+    const cached = getCachedTranslation(storageKey);
+    if (cached) {
       setTranslations(cached);
       setTranslating(false);
       return;
     }
 
     let cancelled = false;
-
-    const translate = async () => {
-      setTranslating(true);
-      try {
-        const langName = LANGUAGES.find((l) => l.value === language)?.label || language;
-        const keys = Object.keys(HOME_STRINGS);
-        const properties = {};
-        keys.forEach((k) => {
-          properties[k] = { type: 'string' };
-        });
-
-        const result = await base44.integrations.Core.InvokeLLM({
-          prompt: `You are a professional translator for US citizenship test preparation materials. Translate every value in the JSON object below into ${langName}. Keep the keys exactly as they are. Keep placeholders like {n} exactly as written. Keep proper nouns (USCIS, USCIS.gov, Pathways) unchanged. Translate naturally — this is educational content for immigrants preparing for naturalization.
+    setTranslations(null);
+    setTranslating(true);
+    const langName = LANGUAGES.find((l) => l.value === language)?.label || language;
+    translateStrings({
+      storageKey,
+      strings: HOME_STRINGS,
+      buildPrompt: (part) => `You are a professional translator for US citizenship test preparation materials. Translate every value in the JSON object below into ${langName}. Keep the keys exactly as they are. Keep placeholders like {n} exactly as written. Keep proper nouns (USCIS, USCIS.gov, Pathways) unchanged. Translate naturally — this is educational content for immigrants preparing for naturalization.
 
 Return a JSON object with the same keys and the translated values.
 
 JSON to translate:
-${JSON.stringify(HOME_STRINGS, null, 2)}`,
-          response_json_schema: {
-            type: 'object',
-            properties,
-            required: keys,
-          },
-        });
-
-        if (!cancelled && result && typeof result === 'object') {
-          const clean = {};
-          keys.forEach((k) => {
-            if (typeof result[k] === 'string' && result[k].trim()) clean[k] = result[k];
-          });
-          if (Object.keys(clean).length) {
-            setTranslations(clean);
-            try {
-              localStorage.setItem(CACHE_PREFIX + language, JSON.stringify(clean));
-            } catch (e) {
-              // ignore
-            }
-          }
-        }
-      } catch (err) {
+${JSON.stringify(part, null, 2)}`,
+      onPartial: (sofar) => {
+        if (!cancelled) setTranslations(sofar);
+      },
+    })
+      .then((done) => {
+        if (!cancelled) setTranslations(done);
+      })
+      .catch((err) => {
         console.error('Home translation failed:', err);
-        if (!cancelled) toast.error('Translation failed. Showing English text.');
-      } finally {
+        // One toast however many screens asked.
+        if (!cancelled) toast.error('Translation failed. Showing English text.', { id: 'home-translation-failed' });
+      })
+      .finally(() => {
         if (!cancelled) setTranslating(false);
-      }
-    };
+      });
 
-    translate();
     return () => {
       cancelled = true;
     };

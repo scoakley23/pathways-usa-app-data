@@ -163,7 +163,7 @@ function Pins({ places, selectedId, onSelect, programmatic }) {
 function OriginMarker({ origin }) {
   const map = useMap();
   useEffect(() => {
-    if (origin.fromMap) return undefined;
+    if (origin.fromMap || origin.overview) return undefined;
     const m = L.marker([origin.lat, origin.lng], { icon: youAreHere, interactive: false, keyboard: false }).addTo(map);
     return () => { map.removeLayer(m); };
   }, [map, origin]);
@@ -184,9 +184,21 @@ function ViewControl({ origin, places, onSearchArea, programmatic }) {
     }
   }, [moved]);
 
+  // First view, before any location: the whole country. Changing the
+  // categories keeps whatever view the learner has panned to.
   useEffect(() => {
+    if (!origin.overview) return undefined;
     setMoved(false);
-    if (origin.fromMap) return; // keep the view the learner chose
+    programmatic.current = true;
+    map.fitBounds(origin.bounds, { padding: [8, 8] });
+    const t = setTimeout(() => { programmatic.current = false; }, 600);
+    return () => clearTimeout(t);
+  }, [map, origin, programmatic]);
+
+  useEffect(() => {
+    if (origin.overview) return undefined;
+    setMoved(false);
+    if (origin.fromMap) return undefined; // keep the view the learner chose
     programmatic.current = true;
     const near = places.slice(0, 15).map((p) => [p.latitude, p.longitude]);
     if (!near.length) map.setView([origin.lat, origin.lng], 12);
@@ -233,7 +245,7 @@ export default function ResourceMap({ origin, places, selectedId, onSelect, onSe
   return (
     <MapContainer
       center={[origin.lat, origin.lng]}
-      zoom={11}
+      zoom={origin.overview ? 3 : 11}
       minZoom={3}
       maxZoom={18}
       scrollWheelZoom={fullscreen}

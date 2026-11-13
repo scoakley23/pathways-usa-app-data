@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { CheckCircle, LogOut, Settings, User, MapPin, CalendarCheck, Users, Bell, GraduationCap, SlidersHorizontal, Trash2, LogIn } from 'lucide-react';
+import { CheckCircle, LogOut, Settings, User, MapPin, CalendarCheck, Users, Bell, LogIn } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import NotificationCenter from '@/components/notifications/NotificationCenter';
@@ -88,8 +88,8 @@ export default function Layout({ children }) {
     }).catch(() => {});
   }, [location.search, navigate]);
 
-  // The profile menu: everything that is not one of the four places. Items
-  // with a hash open that card on Profile.
+  // The profile menu: everything that is not one of the four places. Program,
+  // settings and Delete my data live on Profile itself, not as menu items.
   const menuItems = React.useMemo(() => {
     const items = [
       { label: 'Profile', path: '/Profile', icon: User },
@@ -99,9 +99,6 @@ export default function Layout({ children }) {
     ];
     if (user) {
       items.push({ label: 'Notifications', action: 'notifications', icon: Bell });
-      items.push({ label: 'My program', path: '/Profile#program', icon: GraduationCap });
-      items.push({ label: 'Settings', path: '/Profile#settings', icon: SlidersHorizontal });
-      items.push({ label: 'Delete my data', path: '/Profile#delete-data', icon: Trash2 });
     }
     if (partnerStaff) items.push({ label: 'Partner', path: '/Partner', icon: Users });
     if (user?.role === 'admin') items.push({ label: 'Admin', path: '/Admin', icon: Settings });
