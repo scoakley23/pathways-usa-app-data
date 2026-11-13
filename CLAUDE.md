@@ -59,7 +59,8 @@ The bullets below describe the components and screens as they are today, so prom
 ### How to work
 - Change only what a prompt asks. Before building, list every file and component you'll change or add and any new data, and wait for an OK.
 - Test with fake information only.
-- Redesign work: branch from `standalone`, open the pull request into `standalone`, and don't merge it. Never merge into `main` (that updates the live Base44 app).
+- Standalone work branches from `standalone` and merges into `standalone`. Never open a pull request into `main` unless I say it's cutover day.
+- Redesign work follows the same rule: branch from `standalone`, open the pull request into `standalone`, and don't merge it yourself. Merging into `main` updates the live Base44 app. About once a week, merge `main` into `standalone` and list any conflicts.
 - If a screen needs data we don't have and the prompt didn't ask to add it, leave it out and say so.
 
 ## Stack
