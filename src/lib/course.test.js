@@ -71,18 +71,36 @@ describe('the course files (content/course/)', () => {
     expect(problems.some((p) => /must be a statement/.test(p))).toBe(true);
   });
 
-  it('has 7 units, and the sample section is Unit 2 · Section 2 "Congress" with 7 stops, all drafts', () => {
+  it('has 7 units; Unit 2 has all 5 sections drafted (Prompt 12), every lesson a draft', () => {
     expect(UNITS).toHaveLength(7);
-    const congress = UNITS[1].sections.find((s) => s.title === 'Congress');
-    expect(congress.stops.map((s) => s.type)).toEqual(['lesson', 'lesson', 'lesson', 'lesson', 'readwrite', 'lesson', 'speakit']);
-    expect(congress.lessons.every((l) => l.status === 'draft')).toBe(true);
-    expect(sectionQuestionIds(congress)).toHaveLength(10);
-    expect(Object.keys(SECTION_FILES)).toEqual(['u2-s2-congress.json']);
+    const unit2 = UNITS[1];
+    expect(unit2.sections.map((s) => s.title)).toEqual(['The three branches', 'Congress', 'The President', 'The courts', 'States and local government']);
+    for (const s of unit2.sections) {
+      expect(s.stops.length, s.id).toBeGreaterThan(2);
+      expect(s.stops.at(-1).type === 'speakit' || s.stops.at(-1).type === 'practiceInterview', s.id).toBe(true);
+      expect(s.lessons.every((l) => l.status === 'draft'), s.id).toBe(true);
+    }
+    const congress = unit2.sections.find((s) => s.title === 'Congress');
+    // The Prompt 4 sample keeps its first 7 stops in order; Prompt 12 adds lessons before Speak it!.
+    expect(congress.stops.slice(0, 6).map((s) => s.type)).toEqual(['lesson', 'lesson', 'lesson', 'lesson', 'readwrite', 'lesson']);
+    expect(unit2.sections.at(-1).stops.at(-1).type).toBe('practiceInterview');
+    expect(Object.keys(SECTION_FILES).sort()).toEqual(['u2-s1-branches.json', 'u2-s2-congress.json', 'u2-s3-president.json', 'u2-s4-courts.json', 'u2-s5-states.json']);
     expect(STOP_TYPES).toEqual(['lesson', 'readwrite', 'speakit', 'n400', 'review', 'practiceInterview']);
   });
 
+  it('every official question in a unit\'s categories is in at least one of its lessons, and each only once', () => {
+    for (const unit of UNITS.filter((u) => u.categories?.length)) {
+      const used = unit.sections.flatMap((s) => sectionQuestionIds(s));
+      expect(new Set(used).size, `${unit.id}: a question used twice`).toBe(used.length);
+      const wanted = exported2025.filter((q) => unit.categories.includes(q.category)).map((q) => q.id);
+      expect(wanted.filter((id) => !used.includes(id)), `${unit.id}: questions not placed`).toEqual([]);
+      expect(used.filter((id) => !wanted.includes(id)), `${unit.id}: questions from another category`).toEqual([]);
+    }
+    expect(UNITS[1].categories).toEqual(['System of Government']);
+  });
+
   it('every question a lesson uses is an official 2025 question, word for word', () => {
-    for (const id of sectionQuestionIds(UNITS[1].sections[1])) {
+    for (const id of UNITS.flatMap((u) => u.sections.flatMap((s) => sectionQuestionIds(s)))) {
       expect(official.has(QUESTIONS[id]?.question), id).toBe(true);
     }
   });
