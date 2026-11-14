@@ -1,6 +1,6 @@
 import React from 'react';
 import { Info } from 'lucide-react';
-import { PrimaryButton, RaisedCard } from '@/components/pathways/ui';
+import { Button, RaisedCard } from '@/components/pathways/ui';
 
 const VERSIONS = [
   { id: '2025', label: '2025 test' },
@@ -11,7 +11,7 @@ const VERSIONS = [
 export default function RehearsalStart({ version, onSelectVersion, onStart, starting }) {
   return (
     <section aria-labelledby="rehearsal-title" className="space-y-4 text-pw-navy">
-      <h2 id="rehearsal-title" className="text-[28px] leading-snug font-display font-normal">Full rehearsal</h2>
+      <h2 id="rehearsal-title" className="text-title font-bold">Practice the whole day</h2>
 
       <div className="rounded-card bg-pw-blue-soft p-5 flex items-start gap-3">
         <Info className="w-6 h-6 text-pw-blue-ink shrink-0 mt-0.5" aria-hidden="true" />
@@ -46,9 +46,9 @@ export default function RehearsalStart({ version, onSelectVersion, onStart, star
       </RaisedCard>
 
       <p className="text-base text-pw-muted">About 30 minutes. You can stop any time.</p>
-      <PrimaryButton large className="w-full" onClick={onStart} disabled={starting}>
-        Start full rehearsal
-      </PrimaryButton>
+      <Button variant="main" className="w-full" onClick={onStart} disabled={starting}>
+        Practice the whole day
+      </Button>
     </section>
   );
 }

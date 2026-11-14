@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Loader2 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { ArrowLeft, Loader2 } from 'lucide-react';
 import { auth } from '@/api/auth';
-import PageTop from '@/components/pathways/PageTop';
-import { PrimaryButton, RaisedCard, CreamSheet } from '@/components/pathways/ui';
+import NavyBanner from '@/components/pathways/NavyBanner';
+import { Button, Card } from '@/components/pathways/ui';
 import InterviewDayGuide from '@/components/interview-day/InterviewDayGuide';
 import RehearsalStart from '@/components/interview-day/RehearsalStart';
 import RehearsalRunner from '@/components/interview-day/RehearsalRunner';
@@ -19,13 +20,14 @@ function defaultVersion() {
   }
 }
 
-// Interview Day (/interview-day): what to expect, then a full practice
-// rehearsal. The rehearsal saves nothing: no Base44 records and no browser
+// Interview Day (/interview-day, frame R30DayGuide): what happens on the
+// day, then "Practice the whole day" (the full rehearsal). The rehearsal saves nothing: no Base44 records and no browser
 // storage. Its answers, scores, and choices live only in page memory.
 export default function InterviewDay() {
   const [user, setUser] = useState(undefined);
   const [version, setVersion] = useState(defaultVersion);
   const [running, setRunning] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     auth.me().then(setUser).catch(() => setUser(null));
@@ -48,18 +50,18 @@ export default function InterviewDay() {
 
   return (
     <div>
-      <PageTop
-        back
-        tag="Practice"
-        title="Interview Day"
-        subtitle="What to expect, and a full practice rehearsal."
-        guide="Here you can practice the whole interview, start to finish. It's practice only, and nothing you say is saved."
+      <NavyBanner
+        title="What happens on the day"
+        subtitle="So nothing surprises you"
+        left={(
+          <button type="button" onClick={() => (window.history.length > 1 ? navigate(-1) : navigate('/interview'))} aria-label="Back" className="w-11 h-11 grid place-items-center rounded-full text-white hover:bg-chip-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+            <ArrowLeft className="w-6 h-6 rtl:rotate-180" aria-hidden="true" />
+          </button>
+        )}
       />
-      <CreamSheet>
-      <div className="max-w-2xl mx-auto space-y-6 pb-8">
+      <div className="max-w-lg mx-auto px-4 py-5 space-y-6 pb-8">
 
-
-      <InterviewDayGuide />
+      <InterviewDayGuide version={version} />
 
       {user === undefined ? (
         <Loader2 className="w-6 h-6 animate-spin mx-auto text-pw-navy" aria-label="Loading" />
@@ -70,14 +72,13 @@ export default function InterviewDay() {
           onStart={start}
         />
       ) : (
-        <RaisedCard className="space-y-3 text-pw-navy">
-          <h2 className="text-[28px] leading-snug font-display font-normal">Full rehearsal</h2>
+        <Card className="space-y-3 text-navy">
+          <h2 className="text-title font-bold">Practice the whole day</h2>
           <p className="text-base">Sign in to practice the whole interview, start to finish.</p>
-          <PrimaryButton className="w-full" onClick={() => auth.goToSignIn()}>Sign in</PrimaryButton>
-        </RaisedCard>
+          <Button variant="main" className="w-full" onClick={() => auth.goToSignIn()}>Sign in</Button>
+        </Card>
       )}
       </div>
-      </CreamSheet>
     </div>
   );
 }
