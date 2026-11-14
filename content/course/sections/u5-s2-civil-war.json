@@ -1,0 +1,204 @@
+{
+  "id": "u5-s2",
+  "unitId": "u5",
+  "number": 2,
+  "title": "Slavery and the Civil War",
+  "note": "Drafted for Prompt 12 (Unit 5). Every lesson is a draft until a person reviews it (content/course/README.md).",
+  "stops": [
+    {
+      "id": "u5-s2-l1",
+      "type": "lesson",
+      "title": "Slavery",
+      "lessonId": "u5-s2-l1"
+    },
+    {
+      "id": "u5-s2-l2",
+      "type": "lesson",
+      "title": "The Civil War",
+      "lessonId": "u5-s2-l2"
+    },
+    {
+      "id": "u5-s2-l3",
+      "type": "lesson",
+      "title": "Lincoln and the Emancipation Proclamation",
+      "lessonId": "u5-s2-l3"
+    },
+    {
+      "id": "u5-s2-rw",
+      "type": "readwrite",
+      "title": "Read and write",
+      "fromLessons": [
+        "u5-s2-l1",
+        "u5-s2-l2",
+        "u5-s2-l3"
+      ]
+    },
+    {
+      "id": "u5-s2-speak",
+      "type": "speakit",
+      "title": "Speak it!"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "u5-s2-l1",
+      "title": "Slavery",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de61",
+        "6ad16ecf6a9c603911f9de76"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "What group of people was taken and sold as slaves?",
+          "facts": [
+            "For more than two hundred years, people from Africa were taken from their homes and sold as slaves in America.",
+            "Enslaved people were forced to work without pay and had no freedom.",
+            "The Civil War ended slavery in the United States."
+          ],
+          "newWords": [
+            {
+              "word": "slavery",
+              "meaning": "when people are owned by others and forced to work"
+            },
+            {
+              "word": "enslaved",
+              "meaning": "made a slave against their will"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de61"
+        },
+        "readIt": {
+          "sentence": "Who was Abraham Lincoln?",
+          "words": [
+            "Who",
+            "was",
+            "Abraham",
+            "Lincoln"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Lincoln was President during the Civil War.",
+          "distractorWords": [
+            "Washington",
+            "Mexico",
+            "October"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de76"
+        }
+      }
+    },
+    {
+      "id": "u5-s2-l2",
+      "title": "The Civil War",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de72",
+        "6ad16ecf6a9c603911f9de73"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "Name the U.S. war between the North and the South.",
+          "facts": [
+            "The Civil War was the war between the North and the South. It lasted from 1861 to 1865.",
+            "Important events include the Battle of Fort Sumter, the Battle of Gettysburg and the surrender at Appomattox.",
+            "After the war, Americans began a day to honor soldiers who died. Today it is called Memorial Day."
+          ],
+          "newWords": [
+            {
+              "word": "civil war",
+              "meaning": "a war between people of the same country"
+            },
+            {
+              "word": "the Union",
+              "meaning": "the United States, during the Civil War"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de72"
+        },
+        "readIt": {
+          "sentence": "When is Memorial Day?",
+          "words": [
+            "When",
+            "is",
+            "Memorial",
+            "Day"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Memorial Day is in May.",
+          "distractorWords": [
+            "Labor Day",
+            "September",
+            "Alaska"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de73"
+        }
+      }
+    },
+    {
+      "id": "u5-s2-l3",
+      "title": "Lincoln and the Emancipation Proclamation",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de75",
+        "6ad16ecf6a9c603911f9de74"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "What did the Emancipation Proclamation do?",
+          "facts": [
+            "Abraham Lincoln was the 16th President. He led the United States during the Civil War and saved the Union.",
+            "In 1863, his Emancipation Proclamation freed the slaves in the Confederate states.",
+            "Lincoln also gave the Gettysburg Address. His birthday is in February, near Presidents' Day."
+          ],
+          "newWords": [
+            {
+              "word": "emancipation",
+              "meaning": "being made free"
+            },
+            {
+              "word": "proclamation",
+              "meaning": "an official public announcement"
+            },
+            {
+              "word": "Confederacy",
+              "meaning": "the Southern states that left the Union"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de75"
+        },
+        "readIt": {
+          "sentence": "When is Presidents’ Day?",
+          "words": [
+            "When",
+            "is",
+            "Presidents’",
+            "Day"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Presidents’ Day is in February.",
+          "distractorWords": [
+            "Flag Day",
+            "July",
+            "Canada"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de74"
+        }
+      }
+    }
+  ]
+}
