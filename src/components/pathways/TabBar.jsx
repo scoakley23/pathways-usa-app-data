@@ -2,16 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { BookOpen, FileText } from 'lucide-react';
 import useTutorProfile from '@/components/persona/useTutorProfile';
-import { RoadIcon, ViaIcon } from '@/components/pathways/icons';
+import { RoadIcon, AmioIcon } from '@/components/pathways/icons';
 import { isStudyPath } from '@/lib/studyRoutes';
 
 // The four places, in order. Today = what to do now, Study = Lessons and
-// Practice, Vía = ask the tutor (opens the chat), N-400 = the form questions.
+// Practice, Amio = ask the tutor (opens the chat), N-400 = the form questions.
 // The desktop header shows the same four as pills (Layout.jsx).
 export const PLACES = [
   { id: 'today', label: 'Today', path: '/', icon: RoadIcon },
   { id: 'study', label: 'Study', path: '/study', icon: BookOpen },
-  { id: 'via', label: 'Vía', icon: ViaIcon, tutor: true },
+  { id: 'via', label: 'Amio', icon: AmioIcon, tutor: true },
   { id: 'n400', label: 'N-400', path: '/n400-guide', icon: FileText },
 ];
 
@@ -27,8 +27,8 @@ function TabInner({ place, active, label }) {
   const Icon = place.icon;
   return (
     <>
-      {/* The active tab: a 3px star-red line on top. */}
-      <span className={`absolute top-0 inset-x-3 h-[3px] rounded-b-full ${active ? 'bg-star' : 'bg-transparent'}`} aria-hidden="true" />
+      {/* The active tab: a 3px denim line on top. */}
+      <span className={`absolute top-0 inset-x-3 h-[3px] rounded-b-full ${active ? 'bg-denim' : 'bg-transparent'}`} aria-hidden="true" />
       <Icon className="w-6 h-6" strokeWidth={2} />
       <span className="leading-none truncate max-w-full">{label}</span>
     </>

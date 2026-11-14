@@ -27,7 +27,7 @@ export default function PageNotFound({}) {
         <div className="min-h-screen bg-cream text-ink">
             <NavyTop className="pb-14 pt-12">
                 <div className="mx-auto max-w-md space-y-2">
-                    <p className="text-label uppercase text-on-navy-label">404</p>
+                    <p className="text-label uppercase text-on-navy">404</p>
                     <h1 className="font-display text-[34px] leading-[1.1]">Page Not Found</h1>
                 </div>
             </NavyTop>

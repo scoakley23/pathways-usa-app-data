@@ -23,17 +23,17 @@ export default function PageTop({ tag, title, subtitle, guide, back = false, cla
           <button
             type="button"
             onClick={goBack}
-            className="-ms-2 inline-flex items-center gap-1.5 min-h-11 rounded-full px-2 text-base font-semibold text-on-navy-2 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="-ms-2 inline-flex items-center gap-1.5 min-h-11 rounded-full px-2 text-base font-semibold text-on-navy hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
           >
             <ArrowLeft className="w-4 h-4 rtl:rotate-180" aria-hidden="true" /> Back
           </button>
         )}
-        {tag && <p className="text-label uppercase text-on-navy-label">{tag}</p>}
+        {tag && <p className="text-label uppercase text-on-navy">{tag}</p>}
         <h1 className="font-display text-[28px] sm:text-[34px] leading-[1.1]">{title}</h1>
-        {subtitle && <p className="text-lg text-on-navy-2 max-w-2xl">{subtitle}</p>}
+        {subtitle && <p className="text-lg text-on-navy max-w-2xl">{subtitle}</p>}
         {guide && (
           <p className="text-lg font-medium leading-snug max-w-2xl">
-            {guide} <span className="whitespace-nowrap text-on-navy-2">— {profile.name}</span>
+            {guide} <span className="whitespace-nowrap text-on-navy">— {profile.name}</span>
           </p>
         )}
         {children && <div className="pt-1">{children}</div>}

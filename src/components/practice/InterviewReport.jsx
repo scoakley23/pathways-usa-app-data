@@ -33,7 +33,7 @@ export default function InterviewReport({ results, onRestart, onClose, onBack, n
   return (
     <RoundComplete
       outcomes={results.map((r) => (r.is_acceptable ? 'right' : 'missed'))}
-      title={`${passed} of ${total} passed. Nice work${name ? `, ${name}` : ''}.`}
+      title={`${passed} of ${total} passed. ${passed > 0 ? 'Nice work' : 'Keep going'}${name ? `, ${name}` : ''}.`}
       rule={`Overall score ${avgOverall} of 100 · ${passRate}% passed.`}
       onClose={onClose}
       onAgain={onRestart}

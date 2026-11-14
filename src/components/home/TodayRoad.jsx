@@ -44,7 +44,7 @@ export default function TodayRoad({ stops, ariaLabel }) {
   });
 
   return (
-    <nav aria-label={ariaLabel} dir="ltr" className="relative w-full" style={{ aspectRatio: `${W} / ${H}` }}>
+    <nav aria-label={ariaLabel} dir="ltr" className="relative w-full mt-6 mb-10" style={{ aspectRatio: `${W} / ${H}` }}>
       <svg viewBox={`0 0 ${W} ${H}`} className="absolute inset-0 w-full h-full overflow-visible" aria-hidden="true" focusable="false">
         {segments.map((s, i) => (
           <path key={`r${i}`} d={s.d} fill="none" stroke={COLORS.road} strokeWidth="16" strokeLinecap="round" />
@@ -72,23 +72,23 @@ export default function TodayRoad({ stops, ariaLabel }) {
                 style={{ left: pct(p.x, W), top: pct(p.y, H) }}
               >
                 {stop.state === 'done' && (
-                  <span className="w-7 h-7 rounded-full bg-sky grid place-items-center">
-                    <Check className="w-4 h-4 text-navy" strokeWidth={3} aria-hidden="true" />
+                  <span className="w-7 h-7 rounded-full bg-denim grid place-items-center">
+                    <Check className="w-4 h-4 text-white" strokeWidth={3} aria-hidden="true" />
                   </span>
                 )}
                 {current && (
-                  <span className="w-9 h-9 rounded-full bg-star ring-[6px] ring-star/30 grid place-items-center">
+                  <span className="w-9 h-9 rounded-full bg-red ring-[6px] ring-red/30 grid place-items-center">
                     <Star className="w-4 h-4 text-white fill-white" aria-hidden="true" />
                   </span>
                 )}
                 {stop.state === 'later' && (
-                  <span className="w-6 h-6 rounded-full bg-navy border-2 border-on-navy-2" />
+                  <span className="w-6 h-6 rounded-full bg-navy border-2 border-on-navy" />
                 )}
               </Link>
               <span
                 aria-hidden="true"
                 dir="auto"
-                className={`absolute w-[76px] -translate-x-1/2 text-center text-[12px] leading-tight ${below ? '' : '-translate-y-full'} ${current ? 'font-semibold text-white' : 'text-on-navy-2'}`}
+                className={`absolute w-[76px] -translate-x-1/2 text-center text-[12px] leading-tight ${below ? '' : '-translate-y-full'} ${current ? 'font-semibold text-white' : 'text-on-navy'}`}
                 style={{ left: pct(p.x, W), top: pct(below ? p.y + 24 : p.y - 24, H) }}
               >
                 {stop.name}

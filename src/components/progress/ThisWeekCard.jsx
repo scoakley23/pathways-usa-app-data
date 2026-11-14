@@ -87,7 +87,7 @@ export default function ThisWeekCard({ language = 'en' }) {
               <span
                 aria-hidden="true"
                 className={`block w-8 h-8 rounded-full ${
-                  c.state === 'today' ? 'bg-star'
+                  c.state === 'today' ? 'bg-red'
                     : c.state === 'practiced' ? 'bg-navy'
                       : c.state === 'future' ? 'border-2 border-dashed border-ink-2'
                         : 'border-2 border-card-line'

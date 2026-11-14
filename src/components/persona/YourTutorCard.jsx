@@ -7,7 +7,7 @@ import TextSizePicker from './TextSizePicker';
 import { Switch } from '@/components/ui/switch';
 import { useAutoReadSetting } from './useAutoRead';
 
-// "Your tutor" card on the Profile page.
+// "Your tutor" card on the Profile page (how Amio talks, read aloud, text size).
 export default function YourTutorCard() {
   const { profile, loaded, saveProfile } = useTutorProfile();
   const [saving, setSaving] = useState(false);
@@ -16,8 +16,8 @@ export default function YourTutorCard() {
   const handleSave = async (next) => {
     setSaving(true);
     try {
-      const saved = await saveProfile(next);
-      toast.success(`Saved. Your tutor is ${saved.name}.`);
+      await saveProfile(next);
+      toast.success('Saved.');
     } catch (e) {
       toast.error("Couldn't save your tutor. Please try again.");
     } finally {
@@ -29,7 +29,7 @@ export default function YourTutorCard() {
     <Card>
       <CardHeader className="p-5 sm:p-6">
         <CardTitle className="text-xl">Your tutor</CardTitle>
-        <CardDescription>Choose your tutor's name and way of talking.</CardDescription>
+        <CardDescription>Choose how Amio talks to you.</CardDescription>
       </CardHeader>
       <CardContent className="p-5 pt-0 sm:p-6 sm:pt-0">
         {loaded && <TutorSetup key="loaded" initialProfile={profile} onSave={handleSave} saving={saving} />}

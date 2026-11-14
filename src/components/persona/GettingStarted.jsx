@@ -4,13 +4,11 @@ import TutorAvatar from './TutorAvatar';
 import TutorMessage from './TutorMessage';
 import TextSizePicker from './TextSizePicker';
 import PlanSetup from './PlanSetup';
-import { NameSuggestions } from './TutorChoices';
 import useTutorProfile from './useTutorProfile';
 import useTranslatedLines from './useTranslatedLines';
 import { useAutoReadSetting } from './useAutoRead';
 import { LANGUAGES } from '@/hooks/useLessonTranslation';
 import { getAvailableVoices, speakText } from '@/components/utils/textToSpeech';
-import { MAX_TUTOR_NAME_LENGTH } from '@/lib/tutorPersona';
 import { markOnboarded, nextStep, onboardingSteps, saveFiledAnswer, saveStage, loadStage } from '@/lib/onboarding';
 import { PrimaryButton, QuietButton, SegmentedProgress } from '@/components/pathways/ui';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -26,10 +24,6 @@ const LINES = {
   title: 'Getting started',
   language_ask: "Hi, I'm {name}, your tutor. Which language should I use to explain things? We will practice English together.",
   no_voice: "This phone has no voice for your language, so I will speak in English. Your language will still be on the screen.",
-  name_ask: 'What would you like to call me? Pick a name or write your own. You can change it later in Profile.',
-  name_label: 'Tutor name',
-  name_ideas: 'Name ideas',
-  name_via: '“Vía” means “way” or “path” in Spanish.',
   stage_ask: 'Where are you in the citizenship process? Your answer stays on this phone. It helps me plan your practice.',
   stage_preparing: 'Getting ready to apply',
   stage_applied: 'I sent my N-400',
@@ -58,10 +52,6 @@ const LINES_ES = {
   title: 'Primeros pasos',
   language_ask: 'Hola, soy {name}. Le voy a enseñar. ¿En qué idioma le explico las cosas? Vamos a practicar inglés.',
   no_voice: 'Este teléfono no tiene voz para su idioma, así que hablaré en inglés. Su idioma seguirá en la pantalla.',
-  name_ask: '¿Cómo quiere llamarme? Elija un nombre o escriba el suyo. Puede cambiarlo después en Perfil.',
-  name_label: 'Nombre del tutor',
-  name_ideas: 'Ideas de nombres',
-  name_via: '“Vía” quiere decir “camino”.',
   stage_ask: '¿En qué parte del proceso de ciudadanía está? Su respuesta se queda en este teléfono. Me ayuda a planear su práctica.',
   stage_preparing: 'Preparándome para aplicar',
   stage_applied: 'Ya envié mi N-400',
@@ -86,7 +76,7 @@ const LINES_ES = {
   continue: 'Continuar',
   skip: 'Saltar',
 };
-const CACHE_KEY = 'onboarding_v3';
+const CACHE_KEY = 'onboarding_v4';
 const USCIS_TEST = 'https://www.uscis.gov/citizenship/2025-test';
 
 // "Start" in several languages, for the very first screen (before the
@@ -112,18 +102,17 @@ function ChoiceButton({ selected, onClick, children, className = '' }) {
   );
 }
 
-// The questions before the first quick check: language, tutor name,
+// The questions before the first quick check: language,
 // where they are in the process (and which civics test / interview month
 // when that applies), which partner program they study with (when there
 // are any), then sound and text size. Every step can be skipped.
 export default function GettingStarted({ language, onLanguageChange, onDone }) {
-  const { profile, saveProfile } = useTutorProfile();
+  const { profile } = useTutorProfile();
   const tr = useTranslatedLines(LINES, language, { cacheKey: CACHE_KEY, handWritten: { es: LINES_ES } });
   const [step, setStep] = useState('start');
   const [stage, setStage] = useState(loadStage);
   const [noVoice, setNoVoice] = useState(false);
   const [readOn, setReadOn] = useAutoReadSetting();
-  const [nameDraft, setNameDraft] = useState(null); // null until the learner edits it
   const [partners, setPartners] = useState([]);
   const [program, setProgram] = useState(null); // the picked partner
   const [learnerName, setLearnerName] = useState('');
@@ -182,7 +171,7 @@ export default function GettingStarted({ language, onLanguageChange, onDone }) {
     return (
       <div className="space-y-6 text-pw-navy text-center pt-4">
         <div className="mx-auto w-fit">
-          <TutorAvatar name={profile.name} size={144} />
+          <TutorAvatar mood="wave" size={144} />
         </div>
         <div className="space-y-2">
           <h1 className="font-display text-[40px] leading-tight">Welcome</h1>
@@ -230,35 +219,6 @@ export default function GettingStarted({ language, onLanguageChange, onDone }) {
           <div className="sticky bottom-0 -mx-4 px-4 pt-4 pb-4 bg-gradient-to-t from-pw-page via-pw-page to-transparent">
             <PrimaryButton large className="w-full" onClick={() => go()}>{label('continue')}</PrimaryButton>
           </div>
-        </>
-      )}
-
-      {step === 'name' && (
-        <>
-          <TutorMessage profile={profile} language={language} {...say('name_ask')} readDelay={readDelay} />
-          <div className="space-y-2">
-            <label htmlFor="onboarding-tutor-name" className="block text-lg font-bold">{label('name_label')}</label>
-            <input
-              id="onboarding-tutor-name"
-              value={nameDraft ?? profile.name}
-              maxLength={MAX_TUTOR_NAME_LENGTH}
-              autoComplete="off"
-              onChange={(e) => setNameDraft(e.target.value)}
-              className="w-full min-h-[56px] rounded-2xl border-2 border-pw-line bg-white px-4 text-lg font-bold text-pw-navy focus:outline-none focus:border-pw-navy focus:ring-2 focus:ring-pw-navy/20"
-            />
-            <p className="text-base text-pw-muted">{label('name_via')}</p>
-          </div>
-          <NameSuggestions value={nameDraft ?? profile.name} onPick={setNameDraft} label={label('name_ideas')} />
-          <PrimaryButton
-            large
-            className="w-full"
-            onClick={() => {
-              if (nameDraft !== null && nameDraft.trim() !== profile.name) saveProfile({ ...profile, name: nameDraft }).catch(() => {});
-              go();
-            }}
-          >
-            {label('continue')}
-          </PrimaryButton>
         </>
       )}
 

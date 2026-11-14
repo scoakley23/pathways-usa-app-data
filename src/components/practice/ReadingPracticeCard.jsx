@@ -230,7 +230,7 @@ In one or two short, encouraging sentences at an A2 English level, give one prac
       <NavyTop className={`pb-12 ${embedded ? 'rounded-card' : ''}`}>
         <div className="mx-auto max-w-2xl space-y-4">
           {onClose && <RunTopBar onClose={onClose} index={index} total={total} answered={!!analysis && (passed || tried)} />}
-          <p className="text-label uppercase text-on-navy-label">{label}</p>
+          <p className="text-label uppercase text-on-navy">{label}</p>
           <h2 className="font-display text-[38px] sm:text-[40px] leading-[1.1]">{sentence.text}</h2>
           <Chip onNavy onClick={() => speakText(sentence.text, 'en')}>
             <Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" /> Hear it

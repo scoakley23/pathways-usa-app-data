@@ -1,0 +1,2339 @@
+[
+  {
+    "id": "69b6fcb296689c2188dfd2dd",
+    "options": [
+      "Freedom, equality, and opportunity for all",
+      "Obedience to a single leader",
+      "Loyalty to one religion",
+      "Wealth above all else"
+    ],
+    "correct_answer": "Freedom, equality, and opportunity for all",
+    "question": "What is a core American value?",
+    "explanation": "Core American values include freedom, equality, democracy, and opportunity for all people.",
+    "lesson_id": "699db0a1297afea4b73d1049"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2dc",
+    "options": [
+      "Independence Day and Thanksgiving",
+      "Christmas and Easter",
+      "New Year and Halloween",
+      "Memorial Day and Columbus Day"
+    ],
+    "correct_answer": "Independence Day and Thanksgiving",
+    "question": "What are two national holidays in the United States?",
+    "explanation": "Independence Day (July 4) and Thanksgiving are two major national holidays.",
+    "lesson_id": "699db0a1297afea4b73d1049"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2db",
+    "options": [
+      "A national holiday celebrating gratitude, with roots in early settler traditions",
+      "A religious holiday only",
+      "A military celebration",
+      "A political event"
+    ],
+    "correct_answer": "A national holiday celebrating gratitude, with roots in early settler traditions",
+    "question": "What is Thanksgiving?",
+    "explanation": "Thanksgiving is a national holiday celebrated on the fourth Thursday of November.",
+    "lesson_id": "699db0a1297afea4b73d1049"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2da",
+    "options": [
+      "Most Americans or their ancestors came from other countries",
+      "Only immigrants can be citizens",
+      "Immigration is illegal",
+      "America was founded by Europeans only"
+    ],
+    "correct_answer": "Most Americans or their ancestors came from other countries",
+    "question": "America is often called a 'nation of immigrants.' What does this mean?",
+    "explanation": "The United States is built by immigrants from all over the world throughout its history.",
+    "lesson_id": "699db0a1297afea4b73d1049"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2d9",
+    "options": [
+      "The belief that through hard work anyone can succeed and prosper",
+      "A government program",
+      "A national holiday",
+      "A military tradition"
+    ],
+    "correct_answer": "The belief that through hard work anyone can succeed and prosper",
+    "question": "What is the American dream?",
+    "explanation": "The American Dream is the ideal that hard work and determination can lead to success regardless of background.",
+    "lesson_id": "699db0a1297afea4b73d1049"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2d8",
+    "options": [
+      "E Pluribus Unum",
+      "Liberty and Justice",
+      "One Nation United",
+      "Freedom Forever"
+    ],
+    "correct_answer": "E Pluribus Unum",
+    "question": "The Nation's motto is 'In God We Trust.' What was the first motto?",
+    "explanation": "'E Pluribus Unum' (Out of many, one) was the original motto representing unity from diversity.",
+    "lesson_id": "699db0a1297afea4b73d1049"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2d7",
+    "options": [
+      "Lincoln Memorial",
+      "Washington Monument",
+      "Vietnam Veterans Memorial",
+      "Jefferson Memorial"
+    ],
+    "correct_answer": "Lincoln Memorial",
+    "question": "What memorial is in Washington D.C. honoring Abraham Lincoln?",
+    "explanation": "The Lincoln Memorial in Washington, D.C. honors President Abraham Lincoln.",
+    "lesson_id": "699db0a1297afea4b73d1048"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2d6",
+    "options": [
+      "Washington Monument",
+      "Lincoln Memorial",
+      "Jefferson Memorial",
+      "Mount Rushmore"
+    ],
+    "correct_answer": "Washington Monument",
+    "question": "What monument honors the first President of the United States?",
+    "explanation": "The Washington Monument in D.C. honors George Washington, the first President.",
+    "lesson_id": "699db0a1297afea4b73d1048"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2d5",
+    "options": [
+      "Philadelphia",
+      "Washington D.C.",
+      "New York",
+      "Boston"
+    ],
+    "correct_answer": "Philadelphia",
+    "question": "Where was the Constitutional Convention held?",
+    "explanation": "The Constitutional Convention was held in Philadelphia, Pennsylvania in 1787.",
+    "lesson_id": "699db0a1297afea4b73d1048"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2d4",
+    "options": [
+      "The White House",
+      "The Capitol Building",
+      "The Supreme Court",
+      "Camp David"
+    ],
+    "correct_answer": "The White House",
+    "question": "Where does the President live and work?",
+    "explanation": "The White House is the official residence and office of the President.",
+    "lesson_id": "699db0a1297afea4b73d1048"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2d3",
+    "options": [
+      "The Capitol Building",
+      "The White House",
+      "The Supreme Court Building",
+      "The Pentagon"
+    ],
+    "correct_answer": "The Capitol Building",
+    "question": "Where does Congress meet?",
+    "explanation": "Congress meets in the U.S. Capitol Building in Washington, D.C.",
+    "lesson_id": "699db0a1297afea4b73d1048"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2d2",
+    "options": [
+      "Washington, D.C.",
+      "New York City",
+      "Philadelphia",
+      "Boston"
+    ],
+    "correct_answer": "Washington, D.C.",
+    "question": "What is the capital of the United States?",
+    "explanation": "Washington, D.C. is the capital of the United States.",
+    "lesson_id": "699db0a1297afea4b73d1048"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2d1",
+    "options": [
+      "To protect America's natural heritage for future generations",
+      "For military training",
+      "To generate tourism revenue",
+      "For agricultural use"
+    ],
+    "correct_answer": "To protect America's natural heritage for future generations",
+    "question": "Why were national parks created?",
+    "explanation": "National parks were created to preserve natural and cultural landscapes for all Americans.",
+    "lesson_id": "699db0a1297afea4b73d1047"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2d0",
+    "options": [
+      "The world's largest freshwater lake system",
+      "Large ocean bays",
+      "Rivers in the Midwest",
+      "Artificial reservoirs"
+    ],
+    "correct_answer": "The world's largest freshwater lake system",
+    "question": "What are the Great Lakes?",
+    "explanation": "The Great Lakes (Superior, Michigan, Huron, Erie, Ontario) form the world's largest freshwater lake system.",
+    "lesson_id": "699db0a1297afea4b73d1047"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2cf",
+    "options": [
+      "A powerful waterfall on the U.S.-Canada border",
+      "A river in New York",
+      "A mountain in New England",
+      "A lake in the Midwest"
+    ],
+    "correct_answer": "A powerful waterfall on the U.S.-Canada border",
+    "question": "What is Niagara Falls?",
+    "explanation": "Niagara Falls is a famous waterfall on the border of New York and Canada.",
+    "lesson_id": "699db0a1297afea4b73d1047"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2ce",
+    "options": [
+      "Yellowstone",
+      "Yosemite",
+      "Grand Canyon",
+      "Gettysburg"
+    ],
+    "correct_answer": "Yellowstone",
+    "question": "What was the first national park established in the U.S.?",
+    "explanation": "Yellowstone, established in 1872, was the first national park in the United States.",
+    "lesson_id": "699db0a1297afea4b73d1047"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2cd",
+    "options": [
+      "Arizona",
+      "Utah",
+      "Nevada",
+      "Colorado"
+    ],
+    "correct_answer": "Arizona",
+    "question": "Where is the Grand Canyon?",
+    "explanation": "The Grand Canyon is located in Arizona, carved by the Colorado River.",
+    "lesson_id": "699db0a1297afea4b73d1047"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2cc",
+    "options": [
+      "Rocky Mountains",
+      "Appalachian Mountains",
+      "Alps",
+      "Andes"
+    ],
+    "correct_answer": "Rocky Mountains",
+    "question": "Name one mountain range in the western United States.",
+    "explanation": "The Rocky Mountains run through the western United States.",
+    "lesson_id": "699db0a1297afea4b73d1046"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2cb",
+    "options": [
+      "Alaska",
+      "Texas",
+      "California",
+      "Montana"
+    ],
+    "correct_answer": "Alaska",
+    "question": "Which is the largest state by area?",
+    "explanation": "Alaska is by far the largest state by land area.",
+    "lesson_id": "699db0a1297afea4b73d1046"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2ca",
+    "options": [
+      "Mississippi River",
+      "Amazon River",
+      "Nile River",
+      "Thames River"
+    ],
+    "correct_answer": "Mississippi River",
+    "question": "Name one of the two longest rivers in the United States.",
+    "explanation": "The Mississippi and Missouri Rivers are the two longest rivers in the United States.",
+    "lesson_id": "699db0a1297afea4b73d1046"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2c9",
+    "options": [
+      "Pacific Ocean",
+      "Atlantic Ocean",
+      "Indian Ocean",
+      "Gulf of Mexico"
+    ],
+    "correct_answer": "Pacific Ocean",
+    "question": "What ocean is on the West Coast of the United States?",
+    "explanation": "The Pacific Ocean borders the West Coast of the United States.",
+    "lesson_id": "699db0a1297afea4b73d1046"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2c8",
+    "options": [
+      "Atlantic Ocean",
+      "Pacific Ocean",
+      "Indian Ocean",
+      "Arctic Ocean"
+    ],
+    "correct_answer": "Atlantic Ocean",
+    "question": "What ocean is on the East Coast of the United States?",
+    "explanation": "The Atlantic Ocean borders the East Coast of the United States.",
+    "lesson_id": "699db0a1297afea4b73d1046"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2c7",
+    "options": [
+      "50",
+      "48",
+      "52",
+      "45"
+    ],
+    "correct_answer": "50",
+    "question": "How many states does the United States have?",
+    "explanation": "The United States has 50 states.",
+    "lesson_id": "699db0a1297afea4b73d1046"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2c6",
+    "options": [
+      "Diseases, land loss, and forced relocation",
+      "Economic prosperity",
+      "Political representation",
+      "Religious freedom"
+    ],
+    "correct_answer": "Diseases, land loss, and forced relocation",
+    "question": "What major impact did Europeans have on Native Americans?",
+    "explanation": "European colonization caused massive population loss from disease and displacement of Native Americans.",
+    "lesson_id": "699db0a1297afea4b73d1040"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2c5",
+    "options": [
+      "Cherokee",
+      "Roman",
+      "Aztec",
+      "Inuit (Canada only)"
+    ],
+    "correct_answer": "Cherokee",
+    "question": "Name one American Indian tribe.",
+    "explanation": "The Cherokee are one of the 574 federally recognized tribes in the United States.",
+    "lesson_id": "699db0a1297afea4b73d1040"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2c4",
+    "options": [
+      "574",
+      "50",
+      "200",
+      "100"
+    ],
+    "correct_answer": "574",
+    "question": "How many federally recognized American Indian tribes are there today?",
+    "explanation": "There are 574 federally recognized tribes in the United States today.",
+    "lesson_id": "699db0a1297afea4b73d1040"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2c3",
+    "options": [
+      "Forced migration of Native Americans resulting in thousands of deaths",
+      "A Native American trade route",
+      "A military road built by settlers",
+      "A river in the Southeast"
+    ],
+    "correct_answer": "Forced migration of Native Americans resulting in thousands of deaths",
+    "question": "What was the Trail of Tears?",
+    "explanation": "The Trail of Tears was the forced relocation of Native Americans in the 1830s where thousands died.",
+    "lesson_id": "699db0a1297afea4b73d1040"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2c2",
+    "options": [
+      "A law forcing Native Americans to move west",
+      "A law protecting Native American rights",
+      "A treaty with Native tribes",
+      "A law allowing Native Americans to vote"
+    ],
+    "correct_answer": "A law forcing Native Americans to move west",
+    "question": "What was the Indian Removal Act?",
+    "explanation": "The Indian Removal Act of 1830 forced thousands of Native Americans from their homes westward.",
+    "lesson_id": "699db0a1297afea4b73d1040"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2c1",
+    "options": [
+      "American Indians / Native Americans",
+      "Spanish settlers",
+      "African explorers",
+      "Asian immigrants"
+    ],
+    "correct_answer": "American Indians / Native Americans",
+    "question": "Who lived in America before Europeans arrived?",
+    "explanation": "Native Americans (American Indians) lived in North America for thousands of years before European arrival.",
+    "lesson_id": "699db0a1297afea4b73d1040"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2c0",
+    "options": [
+      "Cruel and unusual punishment",
+      "Unreasonable searches",
+      "Double jeopardy",
+      "Self-incrimination"
+    ],
+    "correct_answer": "Cruel and unusual punishment",
+    "question": "What does the 8th Amendment protect against?",
+    "explanation": "The 8th Amendment prohibits cruel and unusual punishment and excessive bail.",
+    "lesson_id": "699db0a1297afea4b73d103f"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2bf",
+    "options": [
+      "The right to have your case heard without unnecessary delay",
+      "The right to skip trial",
+      "The right to choose your judge",
+      "The right to a quick verdict"
+    ],
+    "correct_answer": "The right to have your case heard without unnecessary delay",
+    "question": "What is the right to a speedy trial?",
+    "explanation": "The 6th Amendment guarantees the right to a speedy and public trial.",
+    "lesson_id": "699db0a1297afea4b73d103f"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2be",
+    "options": [
+      "The government must prove guilt; the accused doesn't have to prove innocence",
+      "Everyone is considered guilty at arrest",
+      "Judges decide guilt before trial",
+      "Police determine guilt"
+    ],
+    "correct_answer": "The government must prove guilt; the accused doesn't have to prove innocence",
+    "question": "What does 'innocent until proven guilty' mean?",
+    "explanation": "The presumption of innocence is a cornerstone of American justice.",
+    "lesson_id": "699db0a1297afea4b73d103f"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2bd",
+    "options": [
+      "Being tried twice for the same crime (double jeopardy)",
+      "Unfair searches",
+      "Excessive bail",
+      "Cruel punishment"
+    ],
+    "correct_answer": "Being tried twice for the same crime (double jeopardy)",
+    "question": "The 5th Amendment protects against what?",
+    "explanation": "The 5th Amendment protects against double jeopardy — being tried twice for the same offense.",
+    "lesson_id": "699db0a1297afea4b73d103f"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2bc",
+    "options": [
+      "The right to fair treatment in the legal system",
+      "The process of paying taxes",
+      "How laws are written",
+      "How elections work"
+    ],
+    "correct_answer": "The right to fair treatment in the legal system",
+    "question": "What is due process?",
+    "explanation": "Due process guarantees fair treatment and legal procedures before the government can deprive a person of life, liberty, or property.",
+    "lesson_id": "699db0a1297afea4b73d103f"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2bb",
+    "options": [
+      "Citizens accept responsibilities in exchange for rights and protection",
+      "A business agreement",
+      "A military treaty",
+      "A tax agreement"
+    ],
+    "correct_answer": "Citizens accept responsibilities in exchange for rights and protection",
+    "question": "What does the social contract mean?",
+    "explanation": "The social contract is the idea that citizens give up some freedoms for government protection of their rights.",
+    "lesson_id": "699db0a1297afea4b73d103e"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2ba",
+    "options": [
+      "To protect everyone's safety",
+      "To generate fines for government",
+      "Because of tradition",
+      "To punish drivers"
+    ],
+    "correct_answer": "To protect everyone's safety",
+    "question": "Why do traffic laws restrict individual freedom?",
+    "explanation": "Traffic laws balance individual freedom with community safety needs.",
+    "lesson_id": "699db0a1297afea4b73d103e"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2b9",
+    "options": [
+      "The welfare and benefit of the whole community",
+      "A government agency",
+      "A law protecting businesses",
+      "Individual wealth accumulation"
+    ],
+    "correct_answer": "The welfare and benefit of the whole community",
+    "question": "What is the 'common good'?",
+    "explanation": "The common good refers to shared benefits and welfare of society as a whole.",
+    "lesson_id": "699db0a1297afea4b73d103e"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2b8",
+    "options": [
+      "Yes, when speech causes harm to others",
+      "No, free speech is always absolute",
+      "Yes, the government can ban any speech",
+      "No limitations exist at all"
+    ],
+    "correct_answer": "Yes, when speech causes harm to others",
+    "question": "Can the government limit your right to free speech?",
+    "explanation": "Rights can be limited when they cause harm — no constitutional right is absolute.",
+    "lesson_id": "699db0a1297afea4b73d103e"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2b7",
+    "options": [
+      "Protects speech, religion, press, assembly, and petition",
+      "Protects the right to bear arms",
+      "Abolishes slavery",
+      "Establishes voting rights"
+    ],
+    "correct_answer": "Protects speech, religion, press, assembly, and petition",
+    "question": "Which best describes the First Amendment?",
+    "explanation": "The First Amendment protects five fundamental freedoms.",
+    "lesson_id": "699db0a1297afea4b73d103e"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2b6",
+    "options": [
+      "Judicial branch (Supreme Court)",
+      "Executive branch (President)",
+      "Legislative branch (Congress)",
+      "State governments"
+    ],
+    "correct_answer": "Judicial branch (Supreme Court)",
+    "question": "Which branch can declare a law unconstitutional?",
+    "explanation": "The Supreme Court can declare laws unconstitutional through judicial review.",
+    "lesson_id": "699db0a1297afea4b73d1039"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2b5",
+    "options": [
+      "The Senate",
+      "The House of Representatives",
+      "The Cabinet",
+      "The Chief Justice"
+    ],
+    "correct_answer": "The Senate",
+    "question": "Who confirms the President's appointments to the Supreme Court?",
+    "explanation": "The Senate must confirm all presidential appointments to the Supreme Court.",
+    "lesson_id": "699db0a1297afea4b73d1039"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2b4",
+    "options": [
+      "Impeachment by Congress",
+      "Supreme Court ruling",
+      "State governors vote",
+      "Public referendum"
+    ],
+    "correct_answer": "Impeachment by Congress",
+    "question": "What process can remove the President from office?",
+    "explanation": "Congress can impeach (charge) and remove the President through the impeachment process.",
+    "lesson_id": "699db0a1297afea4b73d1039"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2b3",
+    "options": [
+      "Two-thirds of both chambers",
+      "A simple majority",
+      "Three-quarters of Congress",
+      "Unanimous vote"
+    ],
+    "correct_answer": "Two-thirds of both chambers",
+    "question": "Congress can override a presidential veto. How many votes are needed?",
+    "explanation": "A two-thirds vote in both the House and Senate can override a presidential veto.",
+    "lesson_id": "699db0a1297afea4b73d1039"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2b2",
+    "options": [
+      "The President can veto a law passed by Congress",
+      "States can override federal law",
+      "Judges can fire the President",
+      "Citizens vote on every law"
+    ],
+    "correct_answer": "The President can veto a law passed by Congress",
+    "question": "What is one example of checks and balances?",
+    "explanation": "The presidential veto is a key check the executive branch has over the legislative branch.",
+    "lesson_id": "699db0a1297afea4b73d1039"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2b1",
+    "options": [
+      "By voting and civic engagement",
+      "By following orders",
+      "Only through protests",
+      "Through the military"
+    ],
+    "correct_answer": "By voting and civic engagement",
+    "question": "How do citizens participate in democracy?",
+    "explanation": "Citizens participate through voting, jury service, and civic involvement.",
+    "lesson_id": "699db0a1297afea4b73d1035"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2b0",
+    "options": [
+      "Capitalist economy",
+      "Socialist economy",
+      "Communist economy",
+      "Mixed monarchy economy"
+    ],
+    "correct_answer": "Capitalist economy",
+    "question": "What is the economic system of the United States?",
+    "explanation": "The U.S. has a capitalist (market) economy based on private enterprise.",
+    "lesson_id": "699db0a1297afea4b73d1035"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2af",
+    "options": [
+      "To limit power and prevent any one branch from becoming too powerful",
+      "To make more government jobs",
+      "Because of tradition",
+      "To represent different states"
+    ],
+    "correct_answer": "To limit power and prevent any one branch from becoming too powerful",
+    "question": "Why are there three branches of government?",
+    "explanation": "The three branches provide separation of powers and checks and balances.",
+    "lesson_id": "699db0a1297afea4b73d1035"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2ae",
+    "options": [
+      "Everyone must follow the law",
+      "Only citizens follow laws",
+      "Leaders are above the law",
+      "Laws change every year"
+    ],
+    "correct_answer": "Everyone must follow the law",
+    "question": "What is the rule of law?",
+    "explanation": "The rule of law means everyone — including government officials — must follow the law.",
+    "lesson_id": "699db0a1297afea4b73d1035"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2ad",
+    "options": [
+      "Division of power between national and state governments",
+      "A strong central government only",
+      "States have no power",
+      "The President controls all power"
+    ],
+    "correct_answer": "Division of power between national and state governments",
+    "question": "What does federalism mean?",
+    "explanation": "Federalism divides power between the federal and state governments.",
+    "lesson_id": "699db0a1297afea4b73d1035"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2ac",
+    "options": [
+      "Constitutional republic",
+      "Monarchy",
+      "Dictatorship",
+      "Oligarchy"
+    ],
+    "correct_answer": "Constitutional republic",
+    "question": "What is the form of government of the United States?",
+    "explanation": "The United States is a constitutional republic — a representative democracy.",
+    "lesson_id": "699db0a1297afea4b73d1035"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2ab",
+    "options": [
+      "The Constitution",
+      "The Declaration of Independence",
+      "Federal law",
+      "Presidential orders"
+    ],
+    "correct_answer": "The Constitution",
+    "question": "What is the supreme law of the land?",
+    "explanation": "The Constitution is the supreme law of the land and all other laws must follow it.",
+    "lesson_id": "699db0a1297afea4b73d1031",
+    "merged_from": [
+      "699df5ca59472e0d072b45e5"
+    ]
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2aa",
+    "options": [
+      "27 times",
+      "10 times",
+      "15 times",
+      "50 times"
+    ],
+    "correct_answer": "27 times",
+    "question": "How many times has the Constitution been amended?",
+    "explanation": "The Constitution has been amended 27 times since 1789.",
+    "lesson_id": "699db0a1297afea4b73d1031"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2a9",
+    "options": [
+      "1791",
+      "1787",
+      "1776",
+      "1800"
+    ],
+    "correct_answer": "1791",
+    "question": "When was the Bill of Rights added to the Constitution?",
+    "explanation": "The Bill of Rights (first 10 amendments) was added in 1791.",
+    "lesson_id": "699db0a1297afea4b73d1031"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2a8",
+    "options": [
+      "Articles of Confederation",
+      "Declaration of Independence",
+      "Magna Carta",
+      "Bill of Rights"
+    ],
+    "correct_answer": "Articles of Confederation",
+    "question": "What document did the Constitution replace?",
+    "explanation": "The Constitution replaced the Articles of Confederation, which had proven too weak.",
+    "lesson_id": "699db0a1297afea4b73d1031"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2a7",
+    "options": [
+      "1787",
+      "1776",
+      "1791",
+      "1789"
+    ],
+    "correct_answer": "1787",
+    "question": "What year was the U.S. Constitution written?",
+    "explanation": "The Constitution was written at the Constitutional Convention in 1787.",
+    "lesson_id": "699db0a1297afea4b73d1031"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2a6",
+    "options": [
+      "James Madison",
+      "George Washington",
+      "Benjamin Franklin",
+      "Thomas Jefferson"
+    ],
+    "correct_answer": "James Madison",
+    "question": "Who is called the 'Father of the Constitution'?",
+    "explanation": "James Madison is called the 'Father of the Constitution' for his central role in drafting it.",
+    "lesson_id": "699db0a1297afea4b73d1031"
+  },
+  {
+    "id": "69b6fcb296689c2188dfd2a5",
+    "options": [
+      "Philadelphia",
+      "New York",
+      "Boston",
+      "Washington D.C."
+    ],
+    "correct_answer": "Philadelphia",
+    "question": "Where was the Constitutional Convention held?",
+    "explanation": "The Constitutional Convention was held in Philadelphia in 1787.",
+    "lesson_id": "699db0a1297afea4b73d1031"
+  },
+  {
+    "id": "699df63c3dc39248899f6c82",
+    "options": [
+      "July 4th - Declaration adopted 1776",
+      "Birthday of US",
+      "National holiday",
+      "All of the above"
+    ],
+    "correct_answer": "All of the above",
+    "question": "What is Independence Day?",
+    "explanation": "July 4 celebrates America's independence declaration.",
+    "lesson_id": "699db0a1297afea4b73d1045"
+  },
+  {
+    "id": "699df63c3dc39248899f6c81",
+    "options": [
+      "One for each state",
+      "Original states",
+      "Tradition",
+      "Aesthetic design"
+    ],
+    "correct_answer": "One for each state",
+    "question": "Why flag has 50 stars?",
+    "explanation": "50 stars represent the 50 states.",
+    "lesson_id": "699db0a1297afea4b73d1045"
+  },
+  {
+    "id": "699df63c3dc39248899f6c80",
+    "options": [
+      "Represents original 13 colonies",
+      "One for each state",
+      "Tradition",
+      "Aesthetic choice"
+    ],
+    "correct_answer": "Represents original 13 colonies",
+    "question": "Why flag has 13 stripes?",
+    "explanation": "13 stripes represent the original 13 states.",
+    "lesson_id": "699db0a1297afea4b73d1045"
+  },
+  {
+    "id": "699df63c3dc39248899f6c7f",
+    "options": [
+      "New York Harbor",
+      "Boston Harbor",
+      "San Francisco Bay",
+      "Washington, D.C."
+    ],
+    "correct_answer": "New York Harbor",
+    "question": "Where is Statue of Liberty?",
+    "explanation": "Statue of Liberty stands in New York Harbor.",
+    "lesson_id": "699db0a1297afea4b73d1045"
+  },
+  {
+    "id": "699df63c3dc39248899f6c7e",
+    "options": [
+      "Washington, D.C.",
+      "New York",
+      "Philadelphia",
+      "Boston"
+    ],
+    "correct_answer": "Washington, D.C.",
+    "question": "What is capital of US?",
+    "explanation": "Washington, D.C. is the nation's capital.",
+    "lesson_id": "699db0a1297afea4b73d1045"
+  },
+  {
+    "id": "699df63c3dc39248899f6c7d",
+    "options": [
+      "Franklin D. Roosevelt",
+      "Herbert Hoover",
+      "Theodore Roosevelt",
+      "Both Hoover and FDR"
+    ],
+    "correct_answer": "Both Hoover and FDR",
+    "question": "President during Great Depression?",
+    "explanation": "Hoover was president when it started; FDR during most.",
+    "lesson_id": "699db0a1297afea4b73d1044"
+  },
+  {
+    "id": "699df63c3dc39248899f6c7c",
+    "options": [
+      "1929",
+      "1920",
+      "1930",
+      "1939"
+    ],
+    "correct_answer": "1929",
+    "question": "When did Depression start?",
+    "explanation": "Stock market crash on October 1929 started it.",
+    "lesson_id": "699db0a1297afea4b73d1044"
+  },
+  {
+    "id": "699df63c3dc39248899f6c7b",
+    "options": [
+      "Severe economic crisis",
+      "Widespread poverty",
+      "No jobs",
+      "All of the above"
+    ],
+    "correct_answer": "All of the above",
+    "question": "What was Great Depression?",
+    "explanation": "The Great Depression (1929-1939) devastated economy.",
+    "lesson_id": "699db0a1297afea4b73d1044"
+  },
+  {
+    "id": "699df63c3dc39248899f6c7a",
+    "options": [
+      "World War I",
+      "World War II",
+      "Korean War",
+      "All of the above"
+    ],
+    "correct_answer": "All of the above",
+    "question": "Name a 1900s war.",
+    "explanation": "US fought multiple wars in the 1900s.",
+    "lesson_id": "699db0a1297afea4b73d1044"
+  },
+  {
+    "id": "699df63c3dc39248899f6c79",
+    "options": [
+      "Cherokee",
+      "Sioux",
+      "Apache",
+      "Any recognized tribe"
+    ],
+    "correct_answer": "Any recognized tribe",
+    "question": "Name one American Indian tribe.",
+    "explanation": "574 federally recognized tribes exist today.",
+    "lesson_id": "699db0a1297afea4b73d1043"
+  },
+  {
+    "id": "699df63c3dc39248899f6c78",
+    "options": [
+      "Telegraph",
+      "Light bulb",
+      "Telephone",
+      "All of the above"
+    ],
+    "correct_answer": "All of the above",
+    "question": "Name an American innovation.",
+    "explanation": "Americans invented many important technologies.",
+    "lesson_id": "699db0a1297afea4b73d1043"
+  },
+  {
+    "id": "699df63c3dc39248899f6c77",
+    "options": [
+      "Mexican-American War",
+      "Civil War",
+      "Seminole War",
+      "All of the above"
+    ],
+    "correct_answer": "All of the above",
+    "question": "What war in the 1800s?",
+    "explanation": "Multiple wars occurred in the 1800s.",
+    "lesson_id": "699db0a1297afea4b73d1043"
+  },
+  {
+    "id": "699df63c3dc39248899f6c76",
+    "options": [
+      "Louisiana Territory",
+      "Florida",
+      "Texas",
+      "California"
+    ],
+    "correct_answer": "Louisiana Territory",
+    "question": "What territory was purchased from France?",
+    "explanation": "1803 Louisiana Purchase doubled US territory.",
+    "lesson_id": "699db0a1297afea4b73d1043"
+  },
+  {
+    "id": "699df63c3dc39248899f6c75",
+    "options": [
+      "Civil War",
+      "Revolution",
+      "War of 1812",
+      "Mexican-American War"
+    ],
+    "correct_answer": "Civil War",
+    "question": "What U.S. war ended slavery?",
+    "explanation": "The Civil War resulted in abolishing slavery.",
+    "lesson_id": "699db0a1297afea4b73d1042"
+  },
+  {
+    "id": "699df63c3dc39248899f6c74",
+    "options": [
+      "Freed enslaved people",
+      "Declared slaves free",
+      "Ended slavery in some areas",
+      "All of the above"
+    ],
+    "correct_answer": "All of the above",
+    "question": "What did Emancipation do?",
+    "explanation": "Proclamation declared enslaved people free.",
+    "lesson_id": "699db0a1297afea4b73d1042"
+  },
+  {
+    "id": "699df63c3dc39248899f6c73",
+    "options": [
+      "Battle of Gettysburg",
+      "Sherman's March",
+      "Fort Sumter attack",
+      "All of the above"
+    ],
+    "correct_answer": "All of the above",
+    "question": "Name important Civil War event.",
+    "explanation": "Multiple major battles and events marked the Civil War.",
+    "lesson_id": "699db0a1297afea4b73d1042"
+  },
+  {
+    "id": "699df63c3dc39248899f6c72",
+    "options": [
+      "War between North and South",
+      "Between states",
+      "Over slavery",
+      "All of the above"
+    ],
+    "correct_answer": "All of the above",
+    "question": "What was the Civil War?",
+    "explanation": "The Civil War (1861-1865) was between North and South.",
+    "lesson_id": "699db0a1297afea4b73d1042"
+  },
+  {
+    "id": "699df63c3dc39248899f6c71",
+    "options": [
+      "Civil War",
+      "Mexican-American War",
+      "War of 1812",
+      "All of the above"
+    ],
+    "correct_answer": "All of the above",
+    "question": "Name a war in the 1800s.",
+    "explanation": "Several major wars occurred in the 1800s.",
+    "lesson_id": "699db0a1297afea4b73d1042"
+  },
+  {
+    "id": "699df63c3dc39248899f6c70",
+    "options": [
+      "Virginia, Massachusetts, Pennsylvania, New York, Maryland",
+      "All thirteen states",
+      "Any five of original thirteen",
+      "New England states"
+    ],
+    "correct_answer": "Any five of original thirteen",
+    "question": "Name five original states.",
+    "explanation": "There were 13 original states—name any five.",
+    "lesson_id": "699db0a1297afea4b73d1041"
+  },
+  {
+    "id": "699df63c3dc39248899f6c6f",
+    "options": [
+      "Boston Tea Party",
+      "Battle of Bunker Hill",
+      "Surrender at Yorktown",
+      "All of the above"
+    ],
+    "correct_answer": "All of the above",
+    "question": "Name important Revolution event.",
+    "explanation": "Multiple major events marked the Revolutionary War.",
+    "lesson_id": "699db0a1297afea4b73d1041"
+  },
+  {
+    "id": "699df63c3dc39248899f6c6e",
+    "options": [
+      "July 4, 1776",
+      "July 4, 1777",
+      "1775",
+      "1778"
+    ],
+    "correct_answer": "July 4, 1776",
+    "question": "When was Declaration adopted?",
+    "explanation": "Declared independence July 4, 1776—American Independence Day.",
+    "lesson_id": "699db0a1297afea4b73d1041"
+  },
+  {
+    "id": "699df63c3dc39248899f6c6d",
+    "options": [
+      "Thomas Jefferson",
+      "George Washington",
+      "John Adams",
+      "Benjamin Franklin"
+    ],
+    "correct_answer": "Thomas Jefferson",
+    "question": "Who wrote the Declaration?",
+    "explanation": "Thomas Jefferson was the primary author.",
+    "lesson_id": "699db0a1297afea4b73d1041"
+  },
+  {
+    "id": "699df63c3dc39248899f6c6c",
+    "options": [
+      "British oppression and taxation",
+      "Demand for representation",
+      "Liberty and freedom",
+      "All of the above"
+    ],
+    "correct_answer": "All of the above",
+    "question": "Why declare independence?",
+    "explanation": "Multiple grievances led to the Declaration of Independence.",
+    "lesson_id": "699db0a1297afea4b73d1041"
+  },
+  {
+    "id": "699df63c3dc39248899f6c6b",
+    "options": [
+      "American Revolution",
+      "Civil War",
+      "War of 1812",
+      "Revolutionary War"
+    ],
+    "correct_answer": "American Revolution",
+    "question": "What war for independence?",
+    "explanation": "The American Revolution (1775-1783) won independence.",
+    "lesson_id": "699db0a1297afea4b73d1041"
+  },
+  {
+    "id": "699df63c3dc39248899f6c6a",
+    "options": [
+      "Africans",
+      "Native Americans",
+      "Indentured servants",
+      "All of the above"
+    ],
+    "correct_answer": "Africans",
+    "question": "What group was taken and sold as slaves?",
+    "explanation": "Millions of Africans were enslaved and brought to America.",
+    "lesson_id": "699db0a1297afea4b73d1041"
+  },
+  {
+    "id": "699df63c3dc39248899f6c69",
+    "options": [
+      "To maintain military readiness",
+      "Constitutional requirement for men 18-25",
+      "Legal obligation",
+      "All of the above"
+    ],
+    "correct_answer": "All of the above",
+    "question": "Why register for Selective Service?",
+    "explanation": "Registration ensures military preparedness if needed.",
+    "lesson_id": "699db0a1297afea4b73d103d"
+  },
+  {
+    "id": "699df63c3dc39248899f6c68",
+    "options": [
+      "Fund government services",
+      "Support infrastructure",
+      "Defense and education",
+      "All of the above"
+    ],
+    "correct_answer": "All of the above",
+    "question": "Why is it important to pay federal taxes?",
+    "explanation": "Taxes fund essential government services and programs.",
+    "lesson_id": "699db0a1297afea4b73d103d"
+  },
+  {
+    "id": "699df63c3dc39248899f6c67",
+    "options": [
+      "Support Constitution and obey laws",
+      "Serve military and pay taxes",
+      "Work in government",
+      "Speak English only"
+    ],
+    "correct_answer": "Support Constitution and obey laws",
+    "question": "Name two promises in the Oath of Allegiance.",
+    "explanation": "New citizens pledge to support and obey the law.",
+    "lesson_id": "699db0a1297afea4b73d103c"
+  },
+  {
+    "id": "699df63c3dc39248899f6c66",
+    "options": [
+      "Born in US or naturalization",
+      "Immigration",
+      "Marriage",
+      "Residency"
+    ],
+    "correct_answer": "Born in US or naturalization",
+    "question": "How can people become citizens?",
+    "explanation": "Citizenship through birth or naturalization process.",
+    "lesson_id": "699db0a1297afea4b73d103c"
+  },
+  {
+    "id": "699df63c3dc39248899f6c65",
+    "options": [
+      "Reserves powers to states and people",
+      "Protects voting rights",
+      "Abolishes slavery",
+      "Grants citizenship"
+    ],
+    "correct_answer": "Reserves powers to states and people",
+    "question": "What is the purpose of the 10th Amendment?",
+    "explanation": "10th Amendment reserves non-delegated powers to states and people.",
+    "lesson_id": "699db0a1297afea4b73d103a"
+  },
+  {
+    "id": "699df63c3dc39248899f6c64",
+    "options": [
+      "Regulate schools",
+      "Declare war",
+      "Make treaties",
+      "Tax income"
+    ],
+    "correct_answer": "Regulate schools",
+    "question": "Name one power for states only.",
+    "explanation": "States regulate education systems.",
+    "lesson_id": "699db0a1297afea4b73d103a"
+  },
+  {
+    "id": "699df63c3dc39248899f6c63",
+    "options": [
+      "Declare war",
+      "Build schools",
+      "Make regulations",
+      "Register voters"
+    ],
+    "correct_answer": "Declare war",
+    "question": "Name one power for federal government only.",
+    "explanation": "Federal government has exclusive power to declare war.",
+    "lesson_id": "699db0a1297afea4b73d103a"
+  },
+  {
+    "id": "699df63c3dc39248899f6c62",
+    "options": [
+      "To limit power and prevent tyranny",
+      "To create more jobs",
+      "To honor tradition",
+      "To confuse citizens"
+    ],
+    "correct_answer": "To limit power and prevent tyranny",
+    "question": "There are three branches of government. Why?",
+    "explanation": "Separation of powers protects freedom and democracy.",
+    "lesson_id": "699db0a1297afea4b73d1039"
+  },
+  {
+    "id": "699df63c3dc39248899f6c61",
+    "options": [
+      "Ensures independence from politics",
+      "Allows long-term decisions",
+      "Prevents influence",
+      "All of the above"
+    ],
+    "correct_answer": "All of the above",
+    "question": "Why serve for life?",
+    "explanation": "Lifetime tenure protects judicial independence.",
+    "lesson_id": "699db0a1297afea4b73d1038"
+  },
+  {
+    "id": "699df63c3dc39248899f6c60",
+    "options": [
+      "For life",
+      "Six years",
+      "Ten years",
+      "Four years"
+    ],
+    "correct_answer": "For life",
+    "question": "How long do Supreme Court justices serve?",
+    "explanation": "Justices serve lifetime appointments for independence.",
+    "lesson_id": "699db0a1297afea4b73d1038"
+  },
+  {
+    "id": "699df63c3dc39248899f6c5f",
+    "options": [
+      "Five",
+      "Seven",
+      "Nine",
+      "All"
+    ],
+    "correct_answer": "Five",
+    "question": "How many justices needed to decide a case?",
+    "explanation": "A majority of five justices is needed to decide cases.",
+    "lesson_id": "699db0a1297afea4b73d1038"
+  },
+  {
+    "id": "699df63c3dc39248899f6c5e",
+    "options": [
+      "Nine",
+      "Seven",
+      "Eleven",
+      "Five"
+    ],
+    "correct_answer": "Nine",
+    "question": "How many seats on the Supreme Court?",
+    "explanation": "The Supreme Court has nine justices.",
+    "lesson_id": "699db0a1297afea4b73d1038"
+  },
+  {
+    "id": "699df63c3dc39248899f6c5d",
+    "options": [
+      "Supreme Court",
+      "Appeals court",
+      "District court",
+      "State court"
+    ],
+    "correct_answer": "Supreme Court",
+    "question": "What is the highest court?",
+    "explanation": "The Supreme Court is the highest in the nation.",
+    "lesson_id": "699db0a1297afea4b73d1038"
+  },
+  {
+    "id": "699df63c3dc39248899f6c5c",
+    "options": [
+      "Interprets laws",
+      "Reviews cases",
+      "Protects rights",
+      "All of the above"
+    ],
+    "correct_answer": "All of the above",
+    "question": "What does the judicial branch do?",
+    "explanation": "The courts interpret laws and protect constitutional rights.",
+    "lesson_id": "699db0a1297afea4b73d1038"
+  },
+  {
+    "id": "699df63c3dc39248899f6c5b",
+    "options": [
+      "Supreme Court",
+      "Federal courts",
+      "District courts",
+      "All of the above"
+    ],
+    "correct_answer": "All of the above",
+    "question": "What is one part of the judicial branch?",
+    "explanation": "The judicial branch has multiple levels of courts.",
+    "lesson_id": "699db0a1297afea4b73d1038"
+  },
+  {
+    "id": "699df63c3dc39248899f6c5a",
+    "options": [
+      "It elects the President",
+      "It makes laws",
+      "It interprets laws",
+      "It commands military"
+    ],
+    "correct_answer": "It elects the President",
+    "question": "Why is the Electoral College important?",
+    "explanation": "The Electoral College is the mechanism for electing the President.",
+    "lesson_id": "699db0a1297afea4b73d1037"
+  },
+  {
+    "id": "699df63c3dc39248899f6c59",
+    "options": [
+      "Secretary of State and Treasury",
+      "Chief Justice and Speaker",
+      "Governor and Mayor",
+      "General and Admiral"
+    ],
+    "correct_answer": "Secretary of State and Treasury",
+    "question": "What are two Cabinet-level positions?",
+    "explanation": "State and Treasury are major Cabinet departments.",
+    "lesson_id": "699db0a1297afea4b73d1037"
+  },
+  {
+    "id": "699df63c3dc39248899f6c58",
+    "options": [
+      "Advises the President",
+      "Makes laws",
+      "Interprets laws",
+      "Votes on bills"
+    ],
+    "correct_answer": "Advises the President",
+    "question": "What does the President's Cabinet do?",
+    "explanation": "Cabinet members advise the President on policy.",
+    "lesson_id": "699db0a1297afea4b73d1037"
+  },
+  {
+    "id": "699df63c3dc39248899f6c57",
+    "options": [
+      "Cabinet",
+      "Executive Office",
+      "OMB",
+      "All of the above"
+    ],
+    "correct_answer": "All of the above",
+    "question": "The executive branch has many parts. Name one.",
+    "explanation": "The executive branch has many departments and agencies.",
+    "lesson_id": "699db0a1297afea4b73d1037"
+  },
+  {
+    "id": "699df63c3dc39248899f6c56",
+    "options": [
+      "The President",
+      "Congress",
+      "The Senate",
+      "The people"
+    ],
+    "correct_answer": "The President",
+    "question": "Who appoints federal judges?",
+    "explanation": "The President appoints federal judges subject to Senate confirmation.",
+    "lesson_id": "699db0a1297afea4b73d1037"
+  },
+  {
+    "id": "699df63c3dc39248899f6c55",
+    "options": [
+      "The President",
+      "Congress",
+      "The Senate",
+      "The Supreme Court"
+    ],
+    "correct_answer": "The President",
+    "question": "Who vetoes bills?",
+    "explanation": "The President can veto legislation.",
+    "lesson_id": "699db0a1297afea4b73d1037"
+  },
+  {
+    "id": "699df63c3dc39248899f6c54",
+    "options": [
+      "The President",
+      "Congress",
+      "The Supreme Court",
+      "The Senate"
+    ],
+    "correct_answer": "The President",
+    "question": "Who signs bills to become laws?",
+    "explanation": "The President must sign bills for them to become law.",
+    "lesson_id": "699db0a1297afea4b73d1037"
+  },
+  {
+    "id": "699df63c3dc39248899f6c53",
+    "options": [
+      "The President",
+      "The Secretary of Defense",
+      "Congress",
+      "The military leader"
+    ],
+    "correct_answer": "The President",
+    "question": "Who is Commander in Chief of the military?",
+    "explanation": "The President is the supreme military commander.",
+    "lesson_id": "699db0a1297afea4b73d1037"
+  },
+  {
+    "id": "699df63c3dc39248899f6c52",
+    "options": [
+      "Command the military",
+      "Veto legislation",
+      "Appoint judges",
+      "All of the above"
+    ],
+    "correct_answer": "All of the above",
+    "question": "Name one power of the President.",
+    "explanation": "The President has many important powers.",
+    "lesson_id": "699db0a1297afea4b73d1037"
+  },
+  {
+    "id": "699df63c3dc39248899f6c51",
+    "options": [
+      "The Vice President",
+      "Speaker of House",
+      "President Pro Tempore",
+      "Chief Justice"
+    ],
+    "correct_answer": "The Vice President",
+    "question": "If the President dies, who becomes President?",
+    "explanation": "The Vice President succeeds the President.",
+    "lesson_id": "699db0a1297afea4b73d1037"
+  },
+  {
+    "id": "699df63c3dc39248899f6c50",
+    "options": [
+      "To prevent excessive power",
+      "To allow new leaders",
+      "Constitutional requirement",
+      "All of the above"
+    ],
+    "correct_answer": "All of the above",
+    "question": "A President can serve only two terms. Why?",
+    "explanation": "The 22nd Amendment limits presidents to two terms.",
+    "lesson_id": "699db0a1297afea4b73d1037"
+  },
+  {
+    "id": "699df63c3dc39248899f6c4f",
+    "options": [
+      "Four years",
+      "Six years",
+      "Eight years",
+      "Lifetime"
+    ],
+    "correct_answer": "Four years",
+    "question": "How many years is a President's term?",
+    "explanation": "Presidential terms last four years.",
+    "lesson_id": "699db0a1297afea4b73d1037"
+  },
+  {
+    "id": "699df63c3dc39248899f6c4e",
+    "options": [
+      "Executive",
+      "Legislative",
+      "Judicial",
+      "All three"
+    ],
+    "correct_answer": "Executive",
+    "question": "The President is in charge of which branch?",
+    "explanation": "The President leads the executive branch.",
+    "lesson_id": "699db0a1297afea4b73d1037"
+  },
+  {
+    "id": "699df63c3dc39248899f6c4d",
+    "options": [
+      "To ensure equal representation",
+      "To balance smaller and larger states",
+      "Constitutional requirement",
+      "All of the above"
+    ],
+    "correct_answer": "All of the above",
+    "question": "Why does each state have two senators?",
+    "explanation": "Equal representation was a compromise at the Constitutional Convention.",
+    "lesson_id": "699db0a1297afea4b73d1036"
+  },
+  {
+    "id": "699df63c3dc39248899f6c4c",
+    "options": [
+      "Two",
+      "One",
+      "Three",
+      "Varies by size"
+    ],
+    "correct_answer": "Two",
+    "question": "How many senators does each state have?",
+    "explanation": "Every state has exactly two senators.",
+    "lesson_id": "699db0a1297afea4b73d1036"
+  },
+  {
+    "id": "699df63c3dc39248899f6c4b",
+    "options": [
+      "They should be more responsive to voters",
+      "They represent smaller districts",
+      "To prevent too much power",
+      "To test new ideas"
+    ],
+    "correct_answer": "They should be more responsive to voters",
+    "question": "Why do House representatives serve shorter terms than senators?",
+    "explanation": "Shorter terms make House members more responsive to constituents.",
+    "lesson_id": "699db0a1297afea4b73d1036"
+  },
+  {
+    "id": "699df63c3dc39248899f6c4a",
+    "options": [
+      "Two years",
+      "Four years",
+      "Six years",
+      "One year"
+    ],
+    "correct_answer": "Two years",
+    "question": "How long is a term for a House member?",
+    "explanation": "House members serve two-year terms.",
+    "lesson_id": "699db0a1297afea4b73d1036"
+  },
+  {
+    "id": "699df63c3dc39248899f6c49",
+    "options": [
+      "435",
+      "100",
+      "50",
+      "535"
+    ],
+    "correct_answer": "435",
+    "question": "How many voting members are in the House of Representatives?",
+    "explanation": "The House has 435 voting members.",
+    "lesson_id": "699db0a1297afea4b73d1036"
+  },
+  {
+    "id": "699df63c3dc39248899f6c48",
+    "options": [
+      "Six years",
+      "Four years",
+      "Two years",
+      "Ten years"
+    ],
+    "correct_answer": "Six years",
+    "question": "How long is a term for a U.S. senator?",
+    "explanation": "U.S. senators serve six-year terms.",
+    "lesson_id": "699db0a1297afea4b73d1036"
+  },
+  {
+    "id": "699df63c3dc39248899f6c47",
+    "options": [
+      "100",
+      "50",
+      "200",
+      "435"
+    ],
+    "correct_answer": "100",
+    "question": "How many U.S. senators are there?",
+    "explanation": "There are 100 U.S. senators—two from each state.",
+    "lesson_id": "699db0a1297afea4b73d1036"
+  },
+  {
+    "id": "699df63c3dc39248899f6c46",
+    "options": [
+      "Make federal laws",
+      "Declare war",
+      "Approve budgets",
+      "All of the above"
+    ],
+    "correct_answer": "All of the above",
+    "question": "Name one power of U.S. Congress.",
+    "explanation": "Congress has many important powers.",
+    "lesson_id": "699db0a1297afea4b73d1036"
+  },
+  {
+    "id": "699df63c3dc39248899f6c45",
+    "options": [
+      "Senate and House of Representatives",
+      "House and Senate",
+      "Upper and Lower houses",
+      "All of the above"
+    ],
+    "correct_answer": "All of the above",
+    "question": "What are the two parts of U.S. Congress?",
+    "explanation": "Congress has two chambers with different names.",
+    "lesson_id": "699db0a1297afea4b73d1036"
+  },
+  {
+    "id": "699df63c3dc39248899f6c44",
+    "options": [
+      "Congress",
+      "President",
+      "Supreme Court",
+      "Cabinet"
+    ],
+    "correct_answer": "Congress",
+    "question": "What part of the federal government writes laws?",
+    "explanation": "Congress, the legislative branch, has the power to write laws.",
+    "lesson_id": "699db0a1297afea4b73d1036"
+  },
+  {
+    "id": "699df63c3dc39248899f6c43",
+    "options": [
+      "Regulate schools",
+      "Declare war",
+      "Make treaties",
+      "Regulate interstate commerce"
+    ],
+    "correct_answer": "Regulate schools",
+    "question": "Name one power that is only for the states.",
+    "explanation": "States have the power to regulate their own school systems.",
+    "lesson_id": "699db0a1297afea4b73d1034"
+  },
+  {
+    "id": "699df63c3dc39248899f6c42",
+    "options": [
+      "Declare war",
+      "Create schools",
+      "Build roads",
+      "Register voters"
+    ],
+    "correct_answer": "Declare war",
+    "question": "Name one power that is only for the federal government.",
+    "explanation": "Only the federal government can declare war.",
+    "lesson_id": "699db0a1297afea4b73d1034"
+  },
+  {
+    "id": "699df63c3dc39248899f6c41",
+    "options": [
+      "Legislative, Executive, Judicial",
+      "Senate, House, Courts",
+      "President, Congress, Cabinet",
+      "Federal, State, Local"
+    ],
+    "correct_answer": "Legislative, Executive, Judicial",
+    "question": "Name the three branches of government.",
+    "explanation": "The three branches are legislative, executive, and judicial.",
+    "lesson_id": "699db0a1297afea4b73d1034"
+  },
+  {
+    "id": "699df63c3dc39248899f6c40",
+    "options": [
+      "To limit government power",
+      "To create more jobs",
+      "To honor tradition",
+      "To confuse citizens"
+    ],
+    "correct_answer": "To limit government power",
+    "question": "There are three branches of government. Why?",
+    "explanation": "Separation of powers prevents any branch from becoming too powerful.",
+    "lesson_id": "699db0a1297afea4b73d1034"
+  },
+  {
+    "id": "699df63c3dc39248899f6c3f",
+    "options": [
+      "Everyone must follow the law",
+      "President makes rules",
+      "Rules don't matter",
+      "Wealthy people are exempt"
+    ],
+    "correct_answer": "Everyone must follow the law",
+    "question": "What is the rule of law?",
+    "explanation": "The rule of law means everyone is subject to the law.",
+    "lesson_id": "699db0a1297afea4b73d1034"
+  },
+  {
+    "id": "699df63c3dc39248899f6c3e",
+    "options": [
+      "Capitalist",
+      "Socialist",
+      "Communist",
+      "Feudal"
+    ],
+    "correct_answer": "Capitalist",
+    "question": "What is the economic system of the United States?",
+    "explanation": "The US has a capitalist economic system based on private enterprise.",
+    "lesson_id": "699db0a1297afea4b73d1034"
+  },
+  {
+    "id": "699df63c3dc39248899f6c3d",
+    "options": [
+      "Republic",
+      "Monarchy",
+      "Dictatorship",
+      "Oligarchy"
+    ],
+    "correct_answer": "Republic",
+    "question": "What is the form of government of the United States?",
+    "explanation": "The United States is a republic where power rests with citizens.",
+    "lesson_id": "699db0a1297afea4b73d1034"
+  },
+  {
+    "id": "699df63c3dc39248899f6c3c",
+    "options": [
+      "1920 after 19th Amendment",
+      "1870",
+      "1900",
+      "1950"
+    ],
+    "correct_answer": "1920 after 19th Amendment",
+    "question": "When did all women get the right to vote?",
+    "explanation": "The 19th Amendment granted women voting rights in 1920.",
+    "lesson_id": "699db0a1297afea4b73d1033"
+  },
+  {
+    "id": "699df63c3dc39248899f6c3b",
+    "options": [
+      "1870 after 15th Amendment",
+      "1776",
+      "1788",
+      "1800"
+    ],
+    "correct_answer": "1870 after 15th Amendment",
+    "question": "When did all men get the right to vote?",
+    "explanation": "The 15th Amendment granted voting rights to men of all races.",
+    "lesson_id": "699db0a1297afea4b73d1033"
+  },
+  {
+    "id": "699df63c3dc39248899f6c3a",
+    "options": [
+      "Join the military",
+      "Vote",
+      "Volunteer",
+      "All of the above"
+    ],
+    "correct_answer": "All of the above",
+    "question": "What is one way Americans can serve their country?",
+    "explanation": "There are many ways to serve the country.",
+    "lesson_id": "699db0a1297afea4b73d1033"
+  },
+  {
+    "id": "699df63c3dc39248899f6c39",
+    "options": [
+      "Voting and jury duty",
+      "Volunteering and protest",
+      "Voting and volunteering",
+      "All of the above"
+    ],
+    "correct_answer": "All of the above",
+    "question": "What are two examples of civic participation?",
+    "explanation": "All these are ways citizens participate in democracy.",
+    "lesson_id": "699db0a1297afea4b73d1033"
+  },
+  {
+    "id": "699df63c3dc39248899f6c38",
+    "options": [
+      "U.S. citizens 18 and older",
+      "Only property owners",
+      "Only college graduates",
+      "Anyone"
+    ],
+    "correct_answer": "U.S. citizens 18 and older",
+    "question": "Who can vote in federal elections?",
+    "explanation": "U.S. citizens age 18+ are eligible to vote in federal elections.",
+    "lesson_id": "699db0a1297afea4b73d1033"
+  },
+  {
+    "id": "699df63c3dc39248899f6c37",
+    "options": [
+      "15th - race",
+      "19th - gender",
+      "26th - age 18",
+      "All of the above"
+    ],
+    "correct_answer": "All of the above",
+    "question": "There are four amendments about who can vote. Describe one.",
+    "explanation": "Multiple amendments expanded voting rights.",
+    "lesson_id": "699db0a1297afea4b73d1033"
+  },
+  {
+    "id": "699df63c3dc39248899f6c36",
+    "options": [
+      "Out of many, one",
+      "In God we trust",
+      "Land of the free",
+      "United we stand"
+    ],
+    "correct_answer": "Out of many, one",
+    "question": "The Nation's first motto was 'E Pluribus Unum.' What does that mean?",
+    "explanation": "'E Pluribus Unum' means 'Out of many, one' and represents unity.",
+    "lesson_id": "699db0a1297afea4b73d103b"
+  },
+  {
+    "id": "699df63c3dc39248899f6c35",
+    "options": [
+      "The Star-Spangled Banner",
+      "God Bless America",
+      "America the Beautiful",
+      "The Battle Hymn"
+    ],
+    "correct_answer": "The Star-Spangled Banner",
+    "question": "What is the name of the national anthem?",
+    "explanation": "The Star-Spangled Banner is the official national anthem.",
+    "lesson_id": "699db0a1297afea4b73d103b"
+  },
+  {
+    "id": "699df63c3dc39248899f6c34",
+    "options": [
+      "The flag and the United States",
+      "The president",
+      "Our state",
+      "Our hometown"
+    ],
+    "correct_answer": "The flag and the United States",
+    "question": "What do we show loyalty to when we say the Pledge of Allegiance?",
+    "explanation": "The Pledge of Allegiance shows loyalty to the flag and country.",
+    "lesson_id": "699db0a1297afea4b73d103b"
+  },
+  {
+    "id": "699df63c3dc39248899f6c33",
+    "options": [
+      "Freedom of speech, religion, and assembly",
+      "Life, liberty, pursuit of happiness",
+      "Voting, free press, fair trial",
+      "All of the above"
+    ],
+    "correct_answer": "All of the above",
+    "question": "What are three rights of everyone living in the United States?",
+    "explanation": "The Constitution and laws protect multiple fundamental rights.",
+    "lesson_id": "699db0a1297afea4b73d103b"
+  },
+  {
+    "id": "699df63c3dc39248899f6c32",
+    "options": [
+      "After the 19th Amendment (1920)",
+      "After the 15th Amendment",
+      "After independence",
+      "2000"
+    ],
+    "correct_answer": "After the 19th Amendment (1920)",
+    "question": "When did all women get the right to vote?",
+    "explanation": "The 19th Amendment granted women the right to vote in 1920.",
+    "lesson_id": "699db0a1297afea4b73d1032"
+  },
+  {
+    "id": "699df63c3dc39248899f6c31",
+    "options": [
+      "After the 15th Amendment (1870)",
+      "After independence",
+      "After the Civil War",
+      "1776"
+    ],
+    "correct_answer": "After the 15th Amendment (1870)",
+    "question": "When did all men get the right to vote?",
+    "explanation": "The 15th Amendment granted voting rights to all men regardless of race.",
+    "lesson_id": "699db0a1297afea4b73d1032"
+  },
+  {
+    "id": "699df63c3dc39248899f6c30",
+    "options": [
+      "14th Amendment",
+      "13th Amendment",
+      "15th Amendment",
+      "19th Amendment"
+    ],
+    "correct_answer": "14th Amendment",
+    "question": "What amendment says all persons are U.S. citizens?",
+    "explanation": "The 14th Amendment grants citizenship to all persons born in the US.",
+    "lesson_id": "699db0a1297afea4b73d1032"
+  },
+  {
+    "id": "699df63c3dc39248899f6c2f",
+    "options": [
+      "15th Amendment - race",
+      "19th Amendment - women",
+      "26th Amendment - age 18",
+      "All of the above"
+    ],
+    "correct_answer": "All of the above",
+    "question": "There are four amendments about who can vote. Describe one.",
+    "explanation": "Multiple amendments protect voting rights for different groups.",
+    "lesson_id": "699db0a1297afea4b73d1032"
+  },
+  {
+    "id": "699df63c3dc39248899f6c2e",
+    "options": [
+      "Powers reserved to the states",
+      "Protects voting rights",
+      "Establishes the Senate",
+      "Creates the Supreme Court"
+    ],
+    "correct_answer": "Powers reserved to the states",
+    "question": "What is the purpose of the 10th Amendment?",
+    "explanation": "The 10th Amendment reserves powers to the states and the people.",
+    "lesson_id": "699db0a1297afea4b73d1032"
+  },
+  {
+    "id": "699df63c3dc39248899f6c2d",
+    "options": [
+      "Individual freedoms and rights",
+      "Government power",
+      "State authority",
+      "Military strength"
+    ],
+    "correct_answer": "Individual freedoms and rights",
+    "question": "What does the Bill of Rights protect?",
+    "explanation": "The Bill of Rights protects fundamental individual freedoms.",
+    "lesson_id": "699db0a1297afea4b73d1032"
+  },
+  {
+    "id": "699df63c3dc39248899f6c2c",
+    "options": [
+      "By amendment process",
+      "By presidential decree",
+      "By state vote",
+      "By Supreme Court decision"
+    ],
+    "correct_answer": "By amendment process",
+    "question": "How are changes made to the U.S. Constitution?",
+    "explanation": "Changes to the Constitution are made through the formal amendment process.",
+    "lesson_id": "699db0a1297afea4b73d1032"
+  },
+  {
+    "id": "699df5ca59472e0d072b45f5",
+    "options": [
+      "First Secretary of the Treasury",
+      "Wrote Federalist Papers",
+      "Helped shape the federal government",
+      "All of the above"
+    ],
+    "correct_answer": "All of the above",
+    "question": "Alexander Hamilton is famous for many things. Name one.",
+    "explanation": "Alexander Hamilton played many important roles in the early federal government.",
+    "lesson_id": "699db0a1297afea4b73d1031",
+    "original_lesson_id": "699db0a1297afea4b73d102f"
+  },
+  {
+    "id": "699df5ca59472e0d072b45f4",
+    "options": [
+      "Father of the Constitution",
+      "President of the United States",
+      "Wrote Bill of Rights",
+      "All of the above"
+    ],
+    "correct_answer": "All of the above",
+    "question": "James Madison is famous for many things. Name one.",
+    "explanation": "James Madison had many important roles in American government.",
+    "lesson_id": "699db0a1297afea4b73d1031",
+    "original_lesson_id": "699db0a1297afea4b73d102f"
+  },
+  {
+    "id": "699df5ca59472e0d072b45f3",
+    "options": [
+      "Wrote the Declaration of Independence",
+      "President of the United States",
+      "Louisiana Purchase",
+      "All of the above"
+    ],
+    "correct_answer": "All of the above",
+    "question": "Thomas Jefferson is famous for many things. Name one.",
+    "explanation": "Thomas Jefferson had many important contributions to American history.",
+    "lesson_id": "699db0a1297afea4b73d1031",
+    "original_lesson_id": "699db0a1297afea4b73d102f"
+  },
+  {
+    "id": "699df5ca59472e0d072b45f2",
+    "options": [
+      "Led the Continental Army",
+      "First President",
+      "Military commander",
+      "All of the above"
+    ],
+    "correct_answer": "All of the above",
+    "question": "George Washington is famous for many things. Name one.",
+    "explanation": "George Washington had many important leadership roles.",
+    "lesson_id": "699db0a1297afea4b73d1031",
+    "original_lesson_id": "699db0a1297afea4b73d102f"
+  },
+  {
+    "id": "699df5ca59472e0d072b45f1",
+    "options": [
+      "Helped write the Declaration of Independence",
+      "Inventor and diplomat",
+      "Signed the Constitution",
+      "All of the above"
+    ],
+    "correct_answer": "All of the above",
+    "question": "Benjamin Franklin is famous for many things. Name one.",
+    "explanation": "Benjamin Franklin had many important roles in early American history.",
+    "lesson_id": "699db0a1297afea4b73d1031",
+    "original_lesson_id": "699db0a1297afea4b73d102f"
+  },
+  {
+    "id": "699df5ca59472e0d072b45f0",
+    "options": [
+      "They explained and defended the Constitution",
+      "They opposed the Constitution",
+      "They created the Bill of Rights",
+      "They started the Revolution"
+    ],
+    "correct_answer": "They explained and defended the Constitution",
+    "question": "Why were the Federalist Papers important?",
+    "explanation": "The Federalist Papers explained why the Constitution was a good government structure.",
+    "lesson_id": "699db0a1297afea4b73d1031",
+    "original_lesson_id": "699db0a1297afea4b73d102f"
+  },
+  {
+    "id": "699df5ca59472e0d072b45ef",
+    "options": [
+      "James Madison",
+      "Alexander Hamilton",
+      "John Jay",
+      "All of the above"
+    ],
+    "correct_answer": "All of the above",
+    "question": "The Federalist Papers supported the passage of the U.S. Constitution. Name one of the writers.",
+    "explanation": "James Madison, Alexander Hamilton, and John Jay all wrote the Federalist Papers.",
+    "lesson_id": "699db0a1297afea4b73d1031",
+    "original_lesson_id": "699db0a1297afea4b73d102f"
+  },
+  {
+    "id": "699df5ca59472e0d072b45ee",
+    "options": [
+      "U.S. Constitution",
+      "Declaration of Independence",
+      "Bill of Rights",
+      "Federalist Papers"
+    ],
+    "correct_answer": "U.S. Constitution",
+    "question": "What founding document was written in 1787?",
+    "explanation": "The U.S. Constitution was drafted and signed in 1787.",
+    "lesson_id": "699db0a1297afea4b73d1031",
+    "original_lesson_id": "699db0a1297afea4b73d102f"
+  },
+  {
+    "id": "699df5ca59472e0d072b45ed",
+    "options": [
+      "Magna Carta",
+      "Declaration of Independence",
+      "State Constitutions",
+      "All of the above"
+    ],
+    "correct_answer": "All of the above",
+    "question": "Many documents influenced the U.S. Constitution. Name one.",
+    "explanation": "Many historical documents influenced the creation of the U.S. Constitution.",
+    "lesson_id": "699db0a1297afea4b73d1031",
+    "original_lesson_id": "699db0a1297afea4b73d102f"
+  },
+  {
+    "id": "699df5ca59472e0d072b45ec",
+    "options": [
+      "Declaration of Independence",
+      "Constitution",
+      "Bill of Rights",
+      "Federalist Papers"
+    ],
+    "correct_answer": "Declaration of Independence",
+    "question": "The words 'Life, Liberty, and the pursuit of Happiness' are in what founding document?",
+    "explanation": "These famous words appear in the Declaration of Independence.",
+    "lesson_id": "699db0a1297afea4b73d1041",
+    "original_lesson_id": "699db0a1297afea4b73d102f"
+  },
+  {
+    "id": "699df5ca59472e0d072b45eb",
+    "options": [
+      "Liberty and equality",
+      "Freedom and justice",
+      "Life and pursuit of happiness",
+      "All of the above"
+    ],
+    "correct_answer": "All of the above",
+    "question": "Name two important ideas from the Declaration of Independence and the U.S. Constitution.",
+    "explanation": "All of these are important ideas found in these founding documents.",
+    "lesson_id": "699db0a1297afea4b73d1031",
+    "original_lesson_id": "699db0a1297afea4b73d102f"
+  },
+  {
+    "id": "699df5ca59472e0d072b45ea",
+    "options": [
+      "Declaration of Independence",
+      "The Constitution",
+      "Magna Carta",
+      "Bill of Rights"
+    ],
+    "correct_answer": "Declaration of Independence",
+    "question": "What founding document said the American colonies were free from Britain?",
+    "explanation": "The Declaration of Independence, signed in 1776, declared the colonies free from Britain.",
+    "lesson_id": "699db0a1297afea4b73d1041",
+    "original_lesson_id": "699db0a1297afea4b73d102f"
+  },
+  {
+    "id": "699df5ca59472e0d072b45e9",
+    "options": [
+      "It declared America's independence from Britain",
+      "It created the Constitution",
+      "It abolished slavery",
+      "It established Congress"
+    ],
+    "correct_answer": "It declared America's independence from Britain",
+    "question": "Why is the Declaration of Independence important?",
+    "explanation": "The Declaration of Independence announced that the American colonies were free from British rule.",
+    "lesson_id": "699db0a1297afea4b73d1041",
+    "original_lesson_id": "699db0a1297afea4b73d102f"
+  },
+  {
+    "id": "699df5ca59472e0d072b45e8",
+    "options": [
+      "27",
+      "10",
+      "13",
+      "50"
+    ],
+    "correct_answer": "27",
+    "question": "How many amendments does the U.S. Constitution have?",
+    "explanation": "The U.S. Constitution has 27 amendments that have been added since its creation.",
+    "lesson_id": "699db0a1297afea4b73d1032",
+    "original_lesson_id": "699db0a1297afea4b73d102f"
+  },
+  {
+    "id": "699df5ca59472e0d072b45e7",
+    "options": [
+      "The government is for all citizens",
+      "Only wealthy people matter",
+      "States are more important",
+      "The president rules"
+    ],
+    "correct_answer": "The government is for all citizens",
+    "question": "What does 'We the People' mean?",
+    "explanation": "'We the People' means the government represents and serves all citizens.",
+    "lesson_id": "699db0a1297afea4b73d1031",
+    "original_lesson_id": "699db0a1297afea4b73d102f"
+  },
+  {
+    "id": "699df5ca59472e0d072b45e6",
+    "options": [
+      "Sets up the federal government",
+      "Protects basic rights",
+      "Creates states",
+      "Defines the military"
+    ],
+    "correct_answer": "Sets up the federal government",
+    "question": "Name one thing the U.S. Constitution does.",
+    "explanation": "The Constitution establishes the structure and powers of the federal government.",
+    "lesson_id": "699db0a1297afea4b73d1031",
+    "original_lesson_id": "699db0a1297afea4b73d102f"
+  },
+  {
+    "id": "699db0b8297afea4b73d1074",
+    "options": [
+      "Weakness",
+      "Strength, courage, and independence",
+      "Peace only",
+      "Trade"
+    ],
+    "correct_answer": "Strength, courage, and independence",
+    "question": "What does the Bald Eagle symbolize?",
+    "explanation": "The Bald Eagle is our national bird and symbolizes strength, courage, and independence.",
+    "lesson_id": "699db0a1297afea4b73d1045",
+    "original_lesson_id": "699d497a14ed981acbcb1b44"
+  },
+  {
+    "id": "699db0b8297afea4b73d1073",
+    "options": [
+      "1776",
+      "1876",
+      "1886",
+      "1900"
+    ],
+    "correct_answer": "1886",
+    "question": "When was the Statue of Liberty gifted to the United States?",
+    "explanation": "The Statue of Liberty was a gift from France to the United States in 1886.",
+    "lesson_id": "699db0a1297afea4b73d1045",
+    "original_lesson_id": "699d497a14ed981acbcb1b44"
+  },
+  {
+    "id": "699db0b8297afea4b73d1072",
+    "options": [
+      "The 13 original colonies",
+      "The 13 amendments",
+      "The 13 founding fathers",
+      "The 13 states"
+    ],
+    "correct_answer": "The 13 original colonies",
+    "question": "What do the 13 stripes on the American flag represent?",
+    "explanation": "The 13 stripes represent the 13 original British colonies that declared independence.",
+    "lesson_id": "699db0a1297afea4b73d1045",
+    "original_lesson_id": "699d497a14ed981acbcb1b44"
+  },
+  {
+    "id": "699db0b8297afea4b73d1071",
+    "options": [
+      "13",
+      "33",
+      "48",
+      "50"
+    ],
+    "correct_answer": "50",
+    "question": "How many stars are on the American flag?",
+    "explanation": "The 50 stars represent the 50 states of the United States.",
+    "lesson_id": "699db0a1297afea4b73d1045",
+    "original_lesson_id": "699d497a14ed981acbcb1b44"
+  },
+  {
+    "id": "699db0b8297afea4b73d1070",
+    "options": [
+      "Review of court decisions by the Senate",
+      "Power of courts to declare laws unconstitutional",
+      "Review of judges by the President",
+      "Judicial meetings"
+    ],
+    "correct_answer": "Power of courts to declare laws unconstitutional",
+    "question": "What is judicial review?",
+    "explanation": "Judicial review is the Supreme Court's power to determine if laws are constitutional.",
+    "lesson_id": "699db0a1297afea4b73d1038",
+    "original_lesson_id": "699d4940f1c9715faa91c6b3"
+  },
+  {
+    "id": "699db0b8297afea4b73d106f",
+    "options": [
+      "7",
+      "8",
+      "9",
+      "11"
+    ],
+    "correct_answer": "9",
+    "question": "How many justices serve on the Supreme Court?",
+    "explanation": "The Supreme Court has nine justices, including the Chief Justice.",
+    "lesson_id": "699db0a1297afea4b73d1038",
+    "original_lesson_id": "699d4940f1c9715faa91c6b3"
+  },
+  {
+    "id": "699db0b8297afea4b73d106e",
+    "options": [
+      "1 term",
+      "2 terms",
+      "3 terms",
+      "Unlimited terms"
+    ],
+    "correct_answer": "2 terms",
+    "question": "What is the maximum number of terms a President can serve?",
+    "explanation": "The 22nd Amendment limits Presidents to two four-year terms, or a maximum of 8 years.",
+    "lesson_id": "699db0a1297afea4b73d1037",
+    "original_lesson_id": "699d4940f1c9715faa91c6b3"
+  },
+  {
+    "id": "699db0b8297afea4b73d106d",
+    "options": [
+      "100",
+      "280",
+      "435",
+      "500"
+    ],
+    "correct_answer": "435",
+    "question": "How many members does the House of Representatives have?",
+    "explanation": "The House has 435 members, with representation based on state population.",
+    "lesson_id": "699db0a1297afea4b73d1036",
+    "original_lesson_id": "699d4940f1c9715faa91c6b3"
+  },
+  {
+    "id": "699db0b8297afea4b73d106c",
+    "options": [
+      "50",
+      "100",
+      "435",
+      "535"
+    ],
+    "correct_answer": "100",
+    "question": "How many members does the U.S. Senate have?",
+    "explanation": "The Senate has 100 members, with each state having exactly 2 senators regardless of population.",
+    "lesson_id": "699db0a1297afea4b73d1036",
+    "original_lesson_id": "699d4940f1c9715faa91c6b3"
+  },
+  {
+    "id": "699db0b8297afea4b73d106b",
+    "options": [
+      "Benjamin Franklin",
+      "Thomas Jefferson",
+      "George Washington",
+      "John Adams"
+    ],
+    "correct_answer": "George Washington",
+    "question": "Who was the commanding general of the Continental Army?",
+    "explanation": "George Washington commanded the Continental Army and later became the first President of the United States.",
+    "lesson_id": "699db0a1297afea4b73d1041",
+    "original_lesson_id": "699d497a14ed981acbcb1b43"
+  },
+  {
+    "id": "699db0b8297afea4b73d106a",
+    "options": [
+      "1770-1783 (13 years)",
+      "1775-1783 (8 years)",
+      "1776-1789 (13 years)",
+      "1777-1785 (8 years)"
+    ],
+    "correct_answer": "1775-1783 (8 years)",
+    "question": "How long did the Revolutionary War last?",
+    "explanation": "The Revolutionary War lasted from 1775 to 1783, with major fighting ending at Yorktown in 1781.",
+    "lesson_id": "699db0a1297afea4b73d1041",
+    "original_lesson_id": "699d497a14ed981acbcb1b43"
+  },
+  {
+    "id": "699db0b8297afea4b73d1069",
+    "options": [
+      "A celebration of American independence",
+      "A protest against British taxes",
+      "A British military event",
+      "A Native American gathering"
+    ],
+    "correct_answer": "A protest against British taxes",
+    "question": "What was the Boston Tea Party?",
+    "explanation": "The Boston Tea Party was a 1773 protest where colonists dumped British tea into Boston Harbor to protest unfair taxes.",
+    "lesson_id": "699db0a1297afea4b73d1041",
+    "original_lesson_id": "699d497a14ed981acbcb1b43"
+  },
+  {
+    "id": "699db0b8297afea4b73d1068",
+    "options": [
+      "June 4, 1776",
+      "July 4, 1776",
+      "August 4, 1776",
+      "July 4, 1775"
+    ],
+    "correct_answer": "July 4, 1776",
+    "question": "When was the Declaration of Independence adopted?",
+    "explanation": "The Declaration of Independence was adopted on July 4, 1776, which we celebrate as Independence Day.",
+    "lesson_id": "699db0a1297afea4b73d1041",
+    "original_lesson_id": "699d497a14ed981acbcb1b43"
+  },
+  {
+    "id": "699db0b8297afea4b73d1067",
+    "options": [
+      "Military",
+      "Legislative, Executive, and Judicial",
+      "Corporate",
+      "Educational"
+    ],
+    "correct_answer": "Legislative, Executive, and Judicial",
+    "question": "Which branch of government is established by the Constitution?",
+    "explanation": "The Constitution establishes three branches of government to divide power and create checks and balances.",
+    "lesson_id": "699db0a1297afea4b73d1031",
+    "original_lesson_id": "699d4940f1c9715faa91c6b2"
+  },
+  {
+    "id": "699db0b8297afea4b73d1066",
+    "options": [
+      "1776",
+      "1787",
+      "1791",
+      "1805"
+    ],
+    "correct_answer": "1791",
+    "question": "When did the Bill of Rights become part of the Constitution?",
+    "explanation": "The Bill of Rights, the first ten amendments, was added to the Constitution in 1791.",
+    "lesson_id": "699db0a1297afea4b73d1032",
+    "original_lesson_id": "699d4940f1c9715faa91c6b2"
+  },
+  {
+    "id": "699db0b8297afea4b73d1065",
+    "options": [
+      "Benjamin Franklin",
+      "James Madison",
+      "George Washington",
+      "Thomas Jefferson"
+    ],
+    "correct_answer": "James Madison",
+    "question": "Who is known as the 'Father of the Constitution'?",
+    "explanation": "James Madison is called the 'Father of the Constitution' for his central role in designing the government structure.",
+    "lesson_id": "699db0a1297afea4b73d1031",
+    "original_lesson_id": "699d4940f1c9715faa91c6b2"
+  },
+  {
+    "id": "699db0b8297afea4b73d1064",
+    "options": [
+      "1776",
+      "1787",
+      "1791",
+      "1800"
+    ],
+    "correct_answer": "1787",
+    "question": "What year was the Constitutional Convention held?",
+    "explanation": "The Constitutional Convention was held in Philadelphia in 1787 to draft the U.S. Constitution.",
+    "lesson_id": "699db0a1297afea4b73d1031",
+    "original_lesson_id": "699d4940f1c9715faa91c6b2"
+  }
+]

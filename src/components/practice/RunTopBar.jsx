@@ -18,7 +18,7 @@ export default function RunTopBar({ onClose, index = 0, total = 0, answered = fa
       {total > 0 && (
         <>
           <RoadProgress index={index} total={total} answered={answered} className="flex-1" />
-          <span className="shrink-0 text-base font-semibold tabular-nums text-on-navy-2" aria-hidden="true">
+          <span className="shrink-0 text-base font-semibold tabular-nums text-on-navy" aria-hidden="true">
             {Math.min(index + 1, total)}/{total}
           </span>
         </>

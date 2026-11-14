@@ -47,8 +47,8 @@ function saveDismissed(today, ids) {
 }
 
 // Today (The Road): a navy top that says where the learner is (the stop, the
-// greeting, Vía's line, the road) and a cream sheet with what to do: the next
-// task of today's plan, the rest of today's tasks, one check-in from Vía, the
+// greeting, Amio's line, the road) and a cream sheet with what to do: the next
+// task of today's plan, the rest of today's tasks, one check-in from Amio, the
 // interview month (device only) and the four parts. The greeting is the Home
 // page's h1. `roadmap` is useRoadmapProgress(); `stopName(id)` the stop's
 // name in the learner's language; `sheetTop` goes first on the sheet (the
@@ -220,11 +220,11 @@ export default function TodayCard({ language = 'en', roadmap, stopName, sheetTop
       <NavyTop className="pb-14">
         <div className="mx-auto max-w-5xl lg:grid lg:grid-cols-2 lg:items-center lg:gap-10">
           <div className={`space-y-3 ${sizeClass}`}>
-            <p className="text-label uppercase text-on-navy-label">{kicker}</p>
+            <p className="text-label uppercase text-on-navy">{kicker}</p>
             <h1 id="today-title" className="font-display text-[30px] sm:text-[34px] leading-[1.1]">{hello}</h1>
             <div className="max-w-2xl space-y-1">
               {lineMine && <p dir={dir} className="text-lg font-medium leading-snug">{lineMine}</p>}
-              <p className={`leading-snug ${lineMine ? 'text-base text-on-navy-2' : 'text-lg font-medium'}`}>{lineEn}</p>
+              <p className={`leading-snug ${lineMine ? 'text-base text-on-navy' : 'text-lg font-medium'}`}>{lineEn}</p>
             </div>
             <div className="flex flex-wrap gap-2">
               {lineMine && <ListenButton onNavy text={lineMine} language={language} tutorName={profile.name} />}
@@ -295,7 +295,7 @@ export default function TodayCard({ language = 'en', roadmap, stopName, sheetTop
               </Card>
             )}
 
-            {/* One check-in from Vía (welcome back, a part to practice more, a re-check, more English) */}
+            {/* One check-in from Amio (welcome back, a part to practice more, a re-check, more English) */}
             {note && (
               <Card padding="p-5" aria-label={profile.name}>
                 <p dir={dir} className="text-lg font-medium leading-snug text-ink">{noteText(note)}</p>

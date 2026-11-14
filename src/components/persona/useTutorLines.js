@@ -7,7 +7,7 @@ const LINES = fixedTutorLines();
 // line('wellDone') -> { en, mine } (mine is null for English or while translating).
 export default function useTutorLines(profile, language) {
   const translate = useTranslatedLines(LINES, language, {
-    cacheKey: 'tutor_lines_v1',
+    cacheKey: 'tutor_lines_v2',
     handWritten: { es: FIXED_LINES_ES },
   });
   return (key) => {

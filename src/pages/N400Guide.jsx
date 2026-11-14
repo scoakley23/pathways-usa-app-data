@@ -106,7 +106,7 @@ export default function N400Guide({ cachedUser }) {
           type="button"
           aria-pressed={view === id}
           onClick={() => setView(id)}
-          className={`min-h-tap rounded-full px-4 text-[15px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${view === id ? 'bg-white text-navy' : 'text-on-navy-2 hover:text-white'}`}
+          className={`min-h-tap rounded-full px-4 text-[15px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${view === id ? 'bg-white text-navy' : 'text-on-navy hover:text-white'}`}
         >
           {label}
         </button>
@@ -124,11 +124,11 @@ export default function N400Guide({ cachedUser }) {
             <button
               type="button"
               onClick={() => setSearchParams({})}
-              className="-ms-2 inline-flex items-center gap-1.5 min-h-11 rounded-full px-2 text-base font-semibold text-on-navy-2 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              className="-ms-2 inline-flex items-center gap-1.5 min-h-11 rounded-full px-2 text-base font-semibold text-on-navy hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
             >
               <ArrowLeft className="w-4 h-4 rtl:rotate-180" aria-hidden="true" /> N-400 Question Guide
             </button>
-            <p className="text-label uppercase text-on-navy-label">
+            <p className="text-label uppercase text-on-navy">
               {activeSection.partLabel} · {completedIds.length} of {N400_SECTIONS.length} sections read
             </p>
             <h1 className="font-display text-[28px] sm:text-[34px] leading-[1.1]">{activeSection.title}</h1>
