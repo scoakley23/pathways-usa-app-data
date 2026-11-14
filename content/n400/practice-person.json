@@ -1,0 +1,165 @@
+{
+  "note": "The N-400 practice person (CLAUDE.md, Legal and content; a trial). A made-up person whose answers learners can hear and say out loud, to practice how an answer sounds. Never the learner's own answers. Every answer is content: reviewed like other N-400 wording (including by the expert reviewer), never written by AI live. Learners see only entries with status \"reviewed\" (src/lib/practicePerson.js). Every card also keeps \"If yes might be true for you, talk to a lawyer before you file.\"",
+  "person": {
+    "name": "Maria",
+    "status": "draft"
+  },
+  "answers": {
+    "p8-1": {
+      "answer": "I took two trips. In 2024 I visited my family in Mexico for three weeks. In 2022 I went to Canada for one week.",
+      "status": "draft"
+    },
+    "p9-1": {
+      "answer": "No, I have never claimed to be a U.S. citizen.",
+      "status": "draft"
+    },
+    "p9-2": {
+      "answer": "No, I have never registered to vote or voted in the United States.",
+      "status": "draft"
+    },
+    "p9-3": {
+      "answer": "No, I do not owe any taxes.",
+      "status": "draft"
+    },
+    "p9-4": {
+      "answer": "No, I have always filed my tax returns as a resident.",
+      "status": "draft"
+    },
+    "p9-5": {
+      "answer": "No, I have never been part of any of these parties or groups.",
+      "status": "draft"
+    },
+    "p9-6": {
+      "answer": "No, I have never been part of or helped any of these groups.",
+      "status": "draft"
+    },
+    "p9-7": {
+      "answer": "No, I have never done or helped with any of these things.",
+      "status": "draft"
+    },
+    "p9-8": {
+      "answer": "No, I have never been part of a military, police or armed group.",
+      "status": "draft"
+    },
+    "p9-9": {
+      "answer": "No, I have never worked or served in a place where people were detained.",
+      "status": "draft"
+    },
+    "p9-10": {
+      "answer": "No, I have never been part of or helped a group like that.",
+      "status": "draft"
+    },
+    "p9-11": {
+      "answer": "No, I have never sold, given or moved weapons.",
+      "status": "draft"
+    },
+    "p9-12": {
+      "answer": "No, I have never had weapons or military training.",
+      "status": "draft"
+    },
+    "p9-13": {
+      "answer": "No, never.",
+      "status": "draft"
+    },
+    "p9-14": {
+      "answer": "No, never.",
+      "status": "draft"
+    },
+    "p9-15": {
+      "answer": "No, I have never committed a crime, and I have never been arrested.",
+      "status": "draft"
+    },
+    "p9-16": {
+      "answer": "This does not apply to me. I have never had a sentence, probation or parole.",
+      "status": "draft"
+    },
+    "p9-17": {
+      "answer": "No, I have never done any of these things.",
+      "status": "draft"
+    },
+    "p9-18": {
+      "answer": "No, I have never given false information to U.S. Government officials.",
+      "status": "draft"
+    },
+    "p9-19": {
+      "answer": "No, I have never lied to U.S. Government officials.",
+      "status": "draft"
+    },
+    "p9-20": {
+      "answer": "No, I have never been in removal or deportation proceedings.",
+      "status": "draft"
+    },
+    "p9-21": {
+      "answer": "No, I have never been removed or deported.",
+      "status": "draft"
+    },
+    "p9-22a": {
+      "answer": "No. I am not a male.",
+      "status": "draft"
+    },
+    "p9-22b": {
+      "answer": "This does not apply to me.",
+      "status": "draft"
+    },
+    "p9-23": {
+      "answer": "No, I have never left the United States to avoid the draft.",
+      "status": "draft"
+    },
+    "p9-24": {
+      "answer": "No, I have never applied for an exemption from military service.",
+      "status": "draft"
+    },
+    "p9-25": {
+      "answer": "No, I have never served in the U.S. armed forces.",
+      "status": "draft"
+    },
+    "p9-26": {
+      "answer": "No, I am not a member of the U.S. armed forces.",
+      "status": "draft"
+    },
+    "p9-27": {
+      "answer": "No, I have never served in the U.S. armed forces.",
+      "status": "draft"
+    },
+    "p9-28": {
+      "answer": "No, I have never served in the U.S. armed forces.",
+      "status": "draft"
+    },
+    "p9-29": {
+      "answer": "No, I have never served in the U.S. armed forces.",
+      "status": "draft"
+    },
+    "p9-30": {
+      "answer": "No, I have never had a title of nobility.",
+      "status": "draft"
+    },
+    "p9-31": {
+      "answer": "Yes, I support the Constitution and the government of the United States.",
+      "status": "draft"
+    },
+    "p9-32": {
+      "answer": "Yes, I understand the Oath of Allegiance.",
+      "status": "draft"
+    },
+    "p9-33": {
+      "answer": "No. I am able to take the Oath of Allegiance.",
+      "status": "draft"
+    },
+    "p9-34": {
+      "answer": "Yes, I am willing to take the full Oath of Allegiance.",
+      "status": "draft"
+    },
+    "p9-35": {
+      "answer": "Yes, I am willing.",
+      "status": "draft"
+    },
+    "p9-36": {
+      "answer": "Yes, I am willing.",
+      "status": "draft"
+    },
+    "p9-37": {
+      "answer": "Yes, I am willing.",
+      "status": "draft"
+    }
+  }
+}

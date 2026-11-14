@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
-import { Button, Card, Chip, CreamSheet, Eyebrow, NavyTop, PrimaryButton, RaisedCard, RuledPaper, SecondaryButton, Tag } from '@/components/pathways/ui';
+import { Button, Card, Eyebrow, PrimaryButton, RaisedCard, RuledPaper, SecondaryButton, Tag } from '@/components/pathways/ui';
 import AnswerFeedback from './AnswerFeedback';
-import RunTopBar from './RunTopBar';
 import { Link } from 'react-router-dom';
-import { Mic, MicOff, Volume2, ArrowRight, Check, Loader2, ChevronDown, ChevronUp, FileText, Bot, BarChart3, Scale, X } from 'lucide-react';
+import { Mic, Volume2, ArrowRight, Check, Loader2, ChevronDown, ChevronUp, FileText, Bot, BarChart3, Scale, X, PhoneOff } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { auth } from '@/api/auth';
 import { speakText, stopSpeaking, getRandomVoice } from "@/components/utils/textToSpeech";
@@ -12,7 +10,9 @@ import { toast } from "sonner";
 import InterviewReport from './InterviewReport';
 import { evaluateInterviewAnswer, evaluateUnderstanding, isUnderstandingSection } from './evaluateInterviewAnswer';
 import InterviewHistory from './InterviewHistory';
-import VirtualInterviewer, { AVATAR_URL } from './VirtualInterviewer';
+import Officer from '@/components/interview/Officer';
+import MicButton from '@/components/pathways/MicButton';
+import { INTERVIEW_PARTS } from '@/lib/interviewReadiness';
 import PreInterviewQuestion from '@/components/pilot/PreInterviewQuestion';
 import { loadMyCheckIns } from '@/components/pilot/checkInData';
 import { loadPreInterviewSkip } from '@/lib/pilot';
@@ -29,10 +29,10 @@ const speechTimeoutMs = (text) => {
 // Questions about the learner's own history (isUnderstandingSection) are never
 // answered: the learner says what the question is asking, and only that
 // understanding is checked (evaluateUnderstanding).
-// The Road: the officer's question on navy (with the run's top bar when
-// `onClose` is given), the answer controls and the result (AnswerFeedback)
-// on the cream sheet, the conversation under them; the end is the Round
-// complete screen (InterviewReport). In Interview Day (rehearsal) it sits
+// The practice call (frame R30Call): the AI officer drawing (never a photo),
+// the question with live captions, "Repeat, please", the big mic, "Type
+// instead" and End call; the result (AnswerFeedback) under the question; the
+// end is the practice interview report (InterviewReport). In Interview Day (rehearsal) it sits
 // framed inside that page. `learnerName` = first name for "Nice work, Ana."
 export default function InterviewPractice({ onComplete, onNext, rehearsal = null, onClose = null, onBack = null, learnerName = '' }) {
   const [questions, setQuestions] = useState([]);
@@ -53,6 +53,16 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
   const [conversation, setConversation] = useState([]);
   const [showTyping, setShowTyping] = useState(false);
   const [varyOfficer, setVaryOfficer] = useState(false);
+  // Typing instead of speaking (rule 1: a small "Type instead" link), and the
+  // call's clock. Both in memory only.
+  const [typing, setTyping] = useState(false);
+  const [typed, setTyped] = useState('');
+  const [elapsed, setElapsed] = useState(0);
+  useEffect(() => {
+    if (!sessionStarted || showReport) { if (!sessionStarted) setElapsed(0); return undefined; }
+    const timer = setInterval(() => setElapsed((s) => s + 1), 1000);
+    return () => clearInterval(timer);
+  }, [sessionStarted, showReport]);
   // Pilot: "How ready do you feel?" once before a Mock Interview when the
   // learner's interview is scheduled. Never in Interview Day (rehearsal).
   const [pilot, setPilot] = useState(null); // { email, rows }
@@ -281,7 +291,7 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
     if (rehearsal && !isLoadingQuestions && questions.length > 0 && !sessionStarted) {
       beginSession("Thank you. Please have a seat. Let's talk for a few minutes, and then I'll go over your application.");
     }
-  }, [isLoadingQuestions]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [isLoadingQuestions]);  
 
   const speakQuestion = () => {
     const q = questions[currentIndex];
@@ -474,18 +484,14 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
 
   const current = questions[currentIndex];
   const understanding = isUnderstandingSection(current);
-  const sectionLabel = {
-    small_talk: 'Small Talk',
-    personal_info: 'Personal Info',
-    morals_ethics: 'Morals & Ethics',
-    oath_requirements: 'Oath Requirements',
-  }[current.section] || current.section;
+  const partIndex = INTERVIEW_PARTS.findIndex((p) => p.id === current.section);
+  const partLabel = INTERVIEW_PARTS[partIndex]?.label || current.section;
 
   const statusText = {
-    speaking: 'Officer Martinez is speaking...',
-    listening: understanding ? 'Your turn — tap Say it and say what it is asking' : 'Your turn — tap Say it to answer',
-    thinking: 'Officer Martinez is evaluating your response...',
-    idle: feedback ? 'Review your feedback below' : 'Ready when you are',
+    speaking: 'The officer is speaking…',
+    listening: understanding ? 'Your turn: say in English what the officer is asking.' : 'Your turn: answer out loud, in English.',
+    thinking: 'Checking your answer…',
+    idle: feedback ? 'Here is how you did.' : 'Ready when you are.',
   }[interviewerState];
 
   const nextLabel = currentIndex < questions.length - 1
@@ -494,138 +500,151 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
       ? <>Continue <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" /></>
       : <><FileText className="w-5 h-5" aria-hidden="true" /> See the full report</>;
 
+  // The practice call (frame R30Call): the part and a timer, one dash per
+  // question, the AI officer in a light room, the question with live
+  // captions of what the learner says (kept in memory only), then "Repeat,
+  // please", the big mic and End call. How it works and what it saves are
+  // unchanged.
   return (
-    <div className={embedded ? 'w-full max-w-3xl mx-auto' : ''}>
-      {/* NAVY TOP: the officer's question */}
-      <NavyTop className={`pb-12 ${embedded ? 'rounded-card' : ''}`}>
-        <div className="mx-auto max-w-2xl space-y-4">
-          {onClose && <RunTopBar onClose={onClose} index={currentIndex} total={questions.length} answered={!!feedback} />}
-          <p className="text-label uppercase text-on-navy">Interview · {sectionLabel}</p>
-          <h2 className={`font-display leading-[1.08] ${feedback ? 'text-[30px]' : 'text-[38px] sm:text-[40px]'}`}>{current.question}</h2>
-          <Chip onNavy onClick={speakQuestion} disabled={interviewerState === 'speaking'} className="disabled:opacity-60">
-            <Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" /> Repeat question
-          </Chip>
-        </div>
-      </NavyTop>
-
-      {/* CREAM SHEET: answer, the result, the conversation */}
-      <CreamSheet className={embedded ? 'rounded-b-card' : 'min-h-[50vh]'}>
-        <div className="mx-auto max-w-2xl space-y-5 pb-6 text-ink">
-          {/* Questions about the learner's history: understanding only */}
-          {understanding && (
-            <Card padding="p-4" className="space-y-1.5">
-              <p className="text-base font-semibold">Don&apos;t answer this question. Say in English what the officer is asking.</p>
-              <p className="text-base text-ink-2">We explain what questions mean. How they apply to you is for a lawyer.</p>
-              <Link to="/lawyer-first" className="inline-flex min-h-tap items-center gap-2 font-semibold text-ink underline underline-offset-4">
-                <Scale className="w-5 h-5" aria-hidden="true" /> Talk to a lawyer first
-              </Link>
-            </Card>
+    <div className={`text-navy ${embedded ? 'w-full max-w-3xl mx-auto' : 'min-h-screen bg-page'}`}>
+      <div className={`mx-auto max-w-lg space-y-4 ${embedded ? '' : 'px-4 pt-5 pb-10'}`}>
+        <div className="flex items-center gap-3">
+          {onClose && (
+            <button
+              type="button"
+              onClick={onClose}
+              aria-label="Close practice"
+              className="w-11 h-11 -ms-2 shrink-0 rounded-full grid place-items-center text-navy hover:bg-tint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim"
+            >
+              <X className="w-6 h-6" aria-hidden="true" />
+            </button>
           )}
+          <p className="flex-1 min-w-0 text-base font-semibold text-muted">
+            Practice interview · Part {partIndex + 1}: {partLabel}
+          </p>
+          <span className="text-base font-semibold text-muted tabular-nums" aria-label={`Time: ${formatTime(elapsed)}`}>{formatTime(elapsed)}</span>
+        </div>
+        <div className="flex gap-1.5" role="img" aria-label={`Question ${currentIndex + 1} of ${questions.length}`}>
+          {questions.map((q, i) => (
+            <span key={i} className={`h-2 flex-1 rounded-full ${i < currentIndex || (i === currentIndex && feedback) ? 'bg-gold' : i === currentIndex ? 'bg-denim' : 'bg-mid'}`} />
+          ))}
+        </div>
 
-          {!feedback && (
-            <>
-              <p className="text-base font-semibold" aria-live="polite">{statusText}</p>
-              {(isListening || userResponse) && (
-                <div className="rounded-card bg-white border border-card-line p-4">
-                  <p className="text-label uppercase text-ink-label">{isListening ? `Recording… ${formatTime(recordingTime)}` : 'You said'}</p>
-                  <p className="mt-1 text-xl leading-snug min-h-[1.5em]">{userResponse ? `“${userResponse}”` : ''}</p>
-                </div>
-              )}
-              {isListening ? (
-                <Button variant="main" className="w-full min-h-[60px]" onClick={toggleListening}>
-                  <MicOff className="w-6 h-6" aria-hidden="true" /> Stop
-                </Button>
-              ) : userResponse ? (
-                <Button variant="main" className="w-full min-h-[60px]" onClick={analyzeResponse} disabled={isAnalyzing}>
+        {/* The officer, in a light room */}
+        <div className="rounded-card bg-tint px-4 py-6 flex flex-col items-center text-center gap-3">
+          <div className={`rounded-full ${interviewerState === 'speaking' ? 'ring-4 ring-denim/40' : ''}`}>
+            <Officer size={feedback ? 96 : 144} />
+          </div>
+          <p className="text-small font-semibold text-muted">AI practice officer · not a real person</p>
+          <p className="text-base font-semibold text-navy" aria-live="polite">{statusText}</p>
+        </div>
+
+        {/* Questions about the learner's history: understanding only */}
+        {understanding && (
+          <Card padding="p-4" className="space-y-1.5">
+            <p className="text-base font-semibold">Don&apos;t answer this question. Say in English what the officer is asking.</p>
+            <p className="text-base text-muted">We explain what questions mean. How they apply to you is for a lawyer.</p>
+            <Link to="/lawyer-first" className="inline-flex min-h-tap items-center gap-2 font-semibold text-navy underline underline-offset-4">
+              <Scale className="w-5 h-5" aria-hidden="true" /> Talk to a lawyer first
+            </Link>
+          </Card>
+        )}
+
+        {/* The question, with live captions */}
+        <Card>
+          <p className="text-small font-semibold text-muted">Question {currentIndex + 1} of {questions.length}</p>
+          <h2 className={`mt-1 font-bold leading-snug ${feedback ? 'text-[22px]' : 'text-question'}`}>{current.question}</h2>
+          {(isListening || userResponse) && (
+            <p className="mt-2 text-base font-semibold text-denim break-words" aria-live="polite">
+              {isListening && !userResponse ? `Listening… ${formatTime(recordingTime)}` : `You: “${userResponse}”`}
+            </p>
+          )}
+        </Card>
+
+        {!feedback && (
+          <>
+            {userResponse && !isListening ? (
+              <div className="space-y-2">
+                <Button variant="main" className="w-full" onClick={analyzeResponse} disabled={isAnalyzing}>
                   {isAnalyzing ? <Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" /> : <Check className="w-5 h-5" aria-hidden="true" />}
                   {isAnalyzing ? 'Checking…' : 'Check my answer'}
                 </Button>
-              ) : (
-                <Button variant="main" className="w-full min-h-[60px]" onClick={toggleListening} disabled={isAnalyzing}>
-                  <Mic className="w-6 h-6" aria-hidden="true" /> Say it
-                </Button>
-              )}
-              {userResponse && !isListening && (
-                <Button variant="second" onClick={toggleListening} disabled={isAnalyzing}>
+                <Button variant="second" className="w-full" onClick={() => { setTyping(false); toggleListening(); }} disabled={isAnalyzing}>
                   <Mic className="w-5 h-5" aria-hidden="true" /> Say it again
                 </Button>
-              )}
-              <Button variant="link" className="px-0" onClick={handleSkip}>Skip this question</Button>
-            </>
-          )}
+              </div>
+            ) : (
+              <div className="flex items-center justify-between gap-3">
+                <button
+                  type="button"
+                  onClick={speakQuestion}
+                  disabled={interviewerState === 'speaking'}
+                  className="min-h-tap rounded-full border border-line bg-white px-4 text-base font-semibold text-navy hover:border-denim disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim"
+                >
+                  “Repeat, please”
+                </button>
+                <MicButton
+                  listening={isListening}
+                  onStart={() => { setTyping(false); toggleListening(); }}
+                  onStop={toggleListening}
+                  label="Answer out loud"
+                  disabled={isAnalyzing}
+                />
+                {!embedded && onClose ? (
+                  <button
+                    type="button"
+                    onClick={onClose}
+                    aria-label="End the practice interview"
+                    className="w-14 h-14 shrink-0 rounded-full bg-red-text text-white grid place-items-center hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-text"
+                  >
+                    <PhoneOff className="w-6 h-6" aria-hidden="true" />
+                  </button>
+                ) : <span className="w-14 shrink-0" aria-hidden="true" />}
+              </div>
+            )}
 
-          {feedback && (
-            <AnswerFeedback
-              status={feedback.is_acceptable ? 'correct' : 'not-correct'}
-              sub={understanding
-                ? (feedback.is_acceptable ? `You understood the question. ${feedback.overall_score}/100` : `Not yet, but you’re close. ${feedback.overall_score}/100`)
-                : (feedback.is_acceptable ? `This would pass in a real interview. ${feedback.overall_score}/100` : `Not yet, but you’re close. ${feedback.overall_score}/100`)}
-              youSaid={userResponse}
-            >
-              <FeedbackPanel feedback={feedback} understanding={understanding} />
-              <Button variant="next" className="w-full min-h-[52px]" onClick={() => handleNext()}>{nextLabel}</Button>
-            </AnswerFeedback>
-          )}
-
-          {/* The conversation with the officer */}
-          <section aria-label="The conversation" className="space-y-3">
-            <Card padding="p-4">
-              <VirtualInterviewer state={interviewerState} />
-            </Card>
-            <div ref={transcriptRef} className="rounded-card bg-sand p-3 space-y-3 max-h-[360px] overflow-y-auto">
-              {conversation.map((msg) => (
-                <MessageBubble key={msg.id} role={msg.role} text={msg.text} />
-              ))}
-              {(showTyping || isAnalyzing) && <TypingIndicator />}
+            {typing ? (
+              <form
+                onSubmit={(e) => { e.preventDefault(); if (typed.trim()) { responseRef.current = typed.trim(); setUserResponse(typed.trim()); setTyped(''); setTyping(false); } }}
+                className="space-y-2"
+              >
+                <label htmlFor="interview-type" className="block text-small font-semibold">Type your answer in English</label>
+                <div className="flex items-center gap-2">
+                  <input
+                    id="interview-type"
+                    value={typed}
+                    onChange={(e) => setTyped(e.target.value)}
+                    autoFocus
+                    className="flex-1 min-w-0 h-[52px] rounded-button border border-line bg-white px-4 text-base text-navy focus:outline-none focus:ring-2 focus:ring-denim"
+                  />
+                  <Button variant="second" type="submit" disabled={!typed.trim()} className="shrink-0 min-h-[52px] px-5">Done</Button>
+                </div>
+              </form>
+            ) : !isListening && !userResponse && (
+              <div className="text-center">
+                <button type="button" onClick={() => setTyping(true)} className="min-h-tap px-3 text-small font-semibold text-denim underline underline-offset-4 decoration-denim/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy rounded">
+                  Type instead
+                </button>
+              </div>
+            )}
+            <div className="text-center">
+              <Button variant="link" onClick={handleSkip}>Skip this question</Button>
             </div>
-          </section>
-        </div>
-      </CreamSheet>
-    </div>
-  );
-}
+          </>
+        )}
 
-function OfficerAvatar() {
-  return (
-    <img src={AVATAR_URL} className="w-11 h-11 rounded-full object-cover shrink-0 border-2 border-white bg-pw-blue-soft shadow-raised" alt="" />
-  );
-}
-
-// Officer lines look like the tutor's messages; the learner's answers sit on the right in navy.
-function MessageBubble({ role, text }) {
-  const isInterviewer = role === 'interviewer';
-  if (isInterviewer) {
-    return (
-      <div className="flex items-start gap-3">
-        <OfficerAvatar />
-        <div className="min-w-0 flex-1 rounded-2xl rounded-tl-md bg-white border border-pw-line shadow-raised p-4">
-          <p className="text-base leading-relaxed text-pw-navy">{text}</p>
-        </div>
-      </div>
-    );
-  }
-  return (
-    <div className="flex justify-end">
-      <div className="max-w-[85%] rounded-2xl rounded-tr-md bg-pw-navy text-white px-4 py-3 text-base leading-relaxed">
-        {text}
-      </div>
-    </div>
-  );
-}
-
-function TypingIndicator() {
-  return (
-    <div className="flex items-start gap-3">
-      <OfficerAvatar />
-      <div className="rounded-2xl rounded-tl-md bg-white border border-pw-line shadow-raised px-4 py-4 flex gap-1.5">
-        {[0, 1, 2].map(i => (
-          <motion.div
-            key={i}
-            className="w-2 h-2 bg-pw-muted rounded-full"
-            animate={{ y: [0, -4, 0] }}
-            transition={{ duration: 0.6, repeat: Infinity, delay: i * 0.15 }}
-          />
-        ))}
+        {feedback && (
+          <AnswerFeedback
+            status={feedback.is_acceptable ? 'correct' : 'not-correct'}
+            sub={understanding
+              ? (feedback.is_acceptable ? `You understood the question. ${feedback.overall_score}/100` : `Not yet, but you’re close. ${feedback.overall_score}/100`)
+              : (feedback.is_acceptable ? `This would pass in a real interview. ${feedback.overall_score}/100` : `Not yet, but you’re close. ${feedback.overall_score}/100`)}
+            youSaid={userResponse}
+          >
+            <FeedbackPanel feedback={feedback} understanding={understanding} />
+            <Button variant="main" className="w-full" onClick={() => handleNext()}>{nextLabel}</Button>
+          </AnswerFeedback>
+        )}
       </div>
     </div>
   );
@@ -702,29 +721,18 @@ function InterviewIntro({ questions, onStart, varyOfficer, onToggleVary }) {
   return (
     <div className="w-full max-w-2xl mx-auto space-y-4 text-pw-navy">
       <RaisedCard>
-        {/* Avatar preview */}
+        {/* The AI officer: a drawing, never a photo */}
         <div className="flex items-center gap-4">
-          <div className="relative w-20 h-20 shrink-0">
-            <motion.div
-              className="absolute -inset-1.5 rounded-full ring-4 ring-pw-blue-soft"
-              animate={{ scale: [1, 1.05, 1], opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-            />
-            <img
-              src={AVATAR_URL}
-              alt="Officer Martinez"
-              className="w-20 h-20 rounded-full object-cover border-4 border-white bg-pw-blue-soft shadow-raised relative z-10"
-            />
-          </div>
+          <div className="rounded-full bg-tint p-1"><Officer size={80} /></div>
           <div className="min-w-0">
-            <p className="font-extrabold text-lg">Officer Martinez</p>
-            <p className="text-sm text-pw-muted">Your practice USCIS Interviewer</p>
+            <p className="font-bold text-lg">AI practice officer</p>
+            <p className="text-sm text-pw-muted">AI, not a real person</p>
           </div>
         </div>
 
         <h2 className="text-[32px] font-display font-normal leading-tight mt-5 mb-2">Mock Interview</h2>
         <p className="text-base text-pw-muted leading-relaxed">
-          Have a conversation with Officer Martinez. She'll ask you real interview questions and evaluate your responses.
+          The AI officer asks you real interview questions out loud and checks your answers. Amio waits at the door.
         </p>
 
         <div className="grid grid-cols-2 gap-2 mt-5">
