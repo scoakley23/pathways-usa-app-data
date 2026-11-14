@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
+import { progress as progressApi } from '@/api/progress';
 import { auth } from '@/api/auth';
 
 /**
@@ -21,9 +22,7 @@ export default function DailyPracticeReminder() {
         if (localStorage.getItem(reminderKey)) return;
 
         // Check UserProgress for any activity today
-        const progress = await base44.entities.UserProgress.filter({
-          user_email: normalizedEmail,
-        });
+        const progress = await progressApi.list();
 
         const hasPracticedToday = progress.some(
           (p) => p.last_practiced && p.last_practiced.startsWith(today)

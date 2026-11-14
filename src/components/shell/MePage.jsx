@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ChevronRight, Loader2, LogIn, LogOut } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
+import { progress as progressApi } from '@/api/progress';
 import { content } from '@/api/content';
 import { profile as profileApi } from '@/api/profile';
 import { auth } from '@/api/auth';
@@ -87,7 +88,7 @@ export default function MePage() {
       const email = u.email.toLowerCase().trim();
       const [publicProfile, progress, sessions, lessons, n400, civics2025] = await Promise.all([
         profileApi.getPublic().catch(() => null),
-        base44.entities.UserProgress.filter({ user_email: email }, '-last_practiced', 500).catch(() => []),
+        progressApi.list({ sort: '-last_practiced', limit: 500 }).catch(() => []),
         base44.entities.InterviewSession.filter({ user_email: email }, '-created_date', 50).catch(() => []),
         base44.entities.LessonProgress.filter({ user_email: email }, null, 200).catch(() => []),
         base44.entities.N400SectionProgress.filter({ user_email: email }, null, 50).catch(() => []),

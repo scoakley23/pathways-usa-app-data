@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Check, Loader2, RotateCcw, CalendarCheck } from 'lucide-react';
 import { toast } from 'sonner';
-import { base44 } from '@/api/base44Client';
+import { progress as progressApi } from '@/api/progress';
 import { content } from '@/api/content';
 import { auth } from '@/api/auth';
 import TopicArt, { TOPIC_ART } from '@/components/art/TopicArt';
@@ -79,7 +79,7 @@ export default function ReviewCivics() {
     setDue(null);
     try {
       const [rows, questions] = await Promise.all([
-        base44.entities.UserProgress.filter({ user_email: user.email, content_type: 'civics_question' }, null, 1000),
+        progressApi.list({ contentType: 'civics_question', limit: 1000 }),
         content.civicsQuestions({ limit: 1000 }),
       ]);
       const byId = new Map(questions.filter((q) => q.answer).map((q) => [q.id, q]));
@@ -114,7 +114,7 @@ export default function ReviewCivics() {
     window.scrollTo({ top: 0 });
     setSaving(true);
     try {
-      for (const { row, next } of outcome) if (next) await base44.entities.UserProgress.update(row.id, next);
+      for (const { row, next } of outcome) if (next) await progressApi.update(row.id, next);
       awardBadges();
     } catch (e) {
       toast.error("Couldn't save your progress. Please check your connection.");

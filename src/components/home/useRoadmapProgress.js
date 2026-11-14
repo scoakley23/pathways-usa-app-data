@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
+import { progress as progressApi } from '@/api/progress';
 import { content } from '@/api/content';
 import { ROADMAP_STOPS } from './roadmapStops';
 
@@ -56,12 +57,8 @@ export default function useRoadmapProgress(user) {
     const load = async () => {
       const [totalProgress, masteredSentences, lessonsTotal, lessonsDone, passedInterviews] =
         await Promise.all([
-          base44.entities.UserProgress.count({ user_email: email }),
-          base44.entities.UserProgress.count({
-            user_email: email,
-            content_type: 'sentence',
-            status: 'mastered',
-          }),
+          progressApi.count(),
+          progressApi.count({ contentType: 'sentence', status: 'mastered' }),
           getLessonTotal(),
           base44.entities.LessonProgress.count({
             user_email: email,
