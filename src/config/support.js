@@ -13,7 +13,7 @@ export const SUPPORT_MAX_LENGTH = 1000;
 // stored in the app. They are sent by email to SUPPORT_EMAIL (with the
 // learner's account email so the team can reply) and live in that mailbox
 // under the team's own email retention.
-// - Ask Vía questions and answers: Base44 `AIStudyLog`, shown only to the
+// - Ask Amio questions and answers: Base44 `AIStudyLog`, shown only to the
 //   learner in Study History, kept until Delete My Data. Questions the tutor
 //   declines (about the learner's own case or eligibility) are not saved.
 

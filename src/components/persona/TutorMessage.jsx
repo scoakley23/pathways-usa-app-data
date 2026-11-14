@@ -28,11 +28,11 @@ export function ListenButton({ text, language, label = 'Listen', tutorName, onNa
   );
 }
 
-// The tutor's speech bubble, signed "— {name}" (Vía's mark shows once per
-// screen, not on every message). `mine` is the text in the learner's
+// The tutor's speech bubble, signed "— Amio" (Amio is not drawn on
+// every message). `mine` is the text in the learner's
 // language; `en` is the English version, shown under it in the same bubble.
 // Every message has a Listen button (and "English" when both are shown).
-// `expression` is no longer shown (the tutor is always the V mark).
+// `expression` is no longer shown.
 // On auto-read screens (see useAutoRead) the message reads itself aloud when
 // it appears, with a Stop button while it speaks. `readAlso` ({ mine, en }) is
 // read after the message but not shown (e.g. the answer choices).

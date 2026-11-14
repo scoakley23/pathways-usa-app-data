@@ -11,8 +11,8 @@ import {
   fixedTutorLines,
   FIXED_LINES_ES,
   CUSTOM_AVATAR,
-  MAX_TUTOR_NAME_LENGTH,
-  SUGGESTED_TUTOR_NAMES,
+  TUTOR_NAME,
+  tutorProfileToSave,
 } from './tutorPersona';
 
 describe('normalizeTutorProfile', () => {
@@ -21,14 +21,12 @@ describe('normalizeTutorProfile', () => {
     expect(normalizeTutorProfile(null)).toEqual(DEFAULT_TUTOR_PROFILE);
   });
 
-  it('falls back to Vía for a blank name', () => {
-    expect(normalizeTutorProfile({ name: '   ' }).name).toBe('Vía');
-    expect(normalizeTutorProfile({ name: '' }).name).toBe('Vía');
-  });
-
-  it('trims and limits the name to 20 characters', () => {
-    expect(normalizeTutorProfile({ name: '  Ana  ' }).name).toBe('Ana');
-    expect(normalizeTutorProfile({ name: 'x'.repeat(40) }).name).toHaveLength(20);
+  it('the tutor is always Amio: any saved name is ignored', () => {
+    expect(TUTOR_NAME).toBe('Amio');
+    for (const name of ['Vía', 'vía', 'Ana', '', '   ', 'x'.repeat(40), undefined, 42]) {
+      expect(normalizeTutorProfile({ name }).name).toBe('Amio');
+    }
+    expect(normalizeTutorProfile(undefined).name).toBe('Amio');
   });
 
   it('replaces unknown avatar, tone, and mix with defaults', () => {
@@ -39,18 +37,17 @@ describe('normalizeTutorProfile', () => {
   });
 });
 
-describe('custom tutor picture and suggested names', () => {
-  it('keeps the custom (device photo) avatar', () => {
+describe('old saved tutor profiles', () => {
+  it('keeps the custom (device photo) avatar value', () => {
     expect(normalizeTutorProfile({ avatar: CUSTOM_AVATAR }).avatar).toBe(CUSTOM_AVATAR);
   });
 
-  it('suggests short, unique names that fit the limit, starting with Vía', () => {
-    expect(SUGGESTED_TUTOR_NAMES[0]).toBe('Vía');
-    expect(new Set(SUGGESTED_TUTOR_NAMES.map((n) => n.toLowerCase())).size).toBe(SUGGESTED_TUTOR_NAMES.length);
-    for (const n of SUGGESTED_TUTOR_NAMES) {
-      expect(n.length).toBeLessThanOrEqual(MAX_TUTOR_NAME_LENGTH);
-      expect(normalizeTutorProfile({ name: n }).name).toBe(n);
-    }
+  it('saving changes only the tone and English mix, and never saves a new name', () => {
+    expect(tutorProfileToSave({ name: 'Amio', tone: 'coach', english_mix: 'half' }, null))
+      .toEqual({ tone: 'coach', english_mix: 'half' });
+    expect(tutorProfileToSave({ name: 'Amio', tone: 'direct', english_mix: 'bad' }, { name: 'Vía', avatar: 'a1', tone: 'warm', english_mix: 'half' }))
+      .toEqual({ name: 'Vía', avatar: 'a1', tone: 'direct', english_mix: 'mostly_mine' });
+    expect(tutorProfileToSave({ name: 'Somebody' }, { name: 'Ana' }).name).toBe('Ana');
   });
 });
 
@@ -80,9 +77,13 @@ describe('buildTutorInstructions', () => {
     expect(text).toMatch(/under 120 words/);
   });
 
-  it('uses the tutor name, with Vía for a blank name', () => {
-    expect(buildTutorInstructions({ name: 'Ana' })).toContain('You are Ana,');
-    expect(buildTutorInstructions({ name: ' ' })).toContain('You are Vía,');
+  it('is always Amio, whatever name was saved (only the name changed)', () => {
+    const first = 'You are Amio, a tutor in Pathways USA, a free app that helps adults prepare for the U.S. citizenship test (civics, reading, writing, and speaking English).';
+    for (const name of ['Ana', ' ', 'Vía', undefined]) {
+      const text = buildTutorInstructions({ name }, 'Spanish');
+      expect(text.split('\n')[0]).toBe(first);
+      expect(text).not.toMatch(/Ana|Vía/);
+    }
   });
 
   it('includes the English mix only for non-English learners', () => {
@@ -92,14 +93,9 @@ describe('buildTutorInstructions', () => {
 });
 
 describe('spokenTutorName', () => {
-  it('says Vía as Vee-ah in English only', () => {
-    expect(spokenTutorName('Vía', 'en')).toBe('Vee-ah');
-    expect(spokenTutorName('vía', 'en-US')).toBe('Vee-ah');
-    expect(spokenTutorName('Vía', 'es')).toBe('Vía');
-  });
-
-  it('reads other names as typed', () => {
-    expect(spokenTutorName('Ana', 'en')).toBe('Ana');
+  it('reads Amio as written', () => {
+    expect(spokenTutorName('Amio', 'en')).toBe('Amio');
+    expect(spokenTutorName('Amio', 'es')).toBe('Amio');
   });
 });
 

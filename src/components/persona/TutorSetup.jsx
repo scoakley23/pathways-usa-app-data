@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Loader2, Volume2 } from 'lucide-react';
-import { NameSuggestions } from './TutorChoices';
 import { PrimaryButton, QuietButton } from '@/components/pathways/ui';
 import useTranslatedLines from './useTranslatedLines';
 import useAppLanguage, { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
@@ -8,11 +7,9 @@ import { speakText } from '@/components/utils/textToSpeech';
 import {
   ENGLISH_MIX,
   FIXED_LINES_ES,
-  MAX_TUTOR_NAME_LENGTH,
   TUTOR_TONES,
   fixedTutorLines,
   normalizeTutorProfile,
-  spokenTutorName,
 } from '@/lib/tutorPersona';
 
 const LINES = fixedTutorLines();
@@ -44,19 +41,18 @@ function ListenButton({ text, language, label }) {
   );
 }
 
-// "Your tutor" screen: name, tone, English mix, and a preview line.
-// Used in onboarding and in Profile.
+// "Your tutor" screen: tone, English mix, and a preview line. The tutor is
+// always Amio, so there is no name to pick. Used in Profile.
 export default function TutorSetup({ initialProfile, onSave, onSkip, saveLabel = 'Save', saving = false }) {
   const [draft, setDraft] = useState(() => normalizeTutorProfile(initialProfile));
-  const [nameInput, setNameInput] = useState(draft.name);
   const [language] = useAppLanguage();
   const translate = useTranslatedLines(LINES, language, {
-    cacheKey: 'tutor_lines_v1',
+    cacheKey: 'tutor_lines_v2',
     handWritten: { es: FIXED_LINES_ES },
   });
 
   const set = (field, value) => setDraft((d) => ({ ...d, [field]: value }));
-  const profile = normalizeTutorProfile({ ...draft, name: nameInput });
+  const profile = normalizeTutorProfile(draft);
   const fill = (text) => text.replace('{name}', profile.name);
 
   const englishLines = [fill(LINES.intro), LINES[`${profile.tone}_greeting`]];
@@ -65,7 +61,7 @@ export default function TutorSetup({ initialProfile, onSave, onSkip, saveLabel =
   const showMine = language !== 'en' && mineIntro && mineGreeting;
   const mineLines = showMine ? [fill(mineIntro), mineGreeting] : null;
 
-  const sayInEnglish = englishLines.join(' ').replace(profile.name, spokenTutorName(profile.name, 'en'));
+  const sayInEnglish = englishLines.join(' ');
 
   return (
     <div className="space-y-6 text-base text-pw-navy">
@@ -85,20 +81,6 @@ export default function TutorSetup({ initialProfile, onSave, onSkip, saveLabel =
           </div>
           <p className="font-medium text-lg text-pw-muted">— {profile.name}</p>
         </div>
-      </div>
-
-      {/* Name */}
-      <div className="space-y-2">
-        <label htmlFor="tutor-name" className="block font-bold">Name</label>
-        <input
-          id="tutor-name"
-          value={nameInput}
-          maxLength={MAX_TUTOR_NAME_LENGTH}
-          onChange={(e) => setNameInput(e.target.value)}
-          className="w-full min-h-[48px] rounded-2xl border-2 border-pw-line bg-white px-4 text-base text-pw-navy focus:outline-none focus:border-pw-navy focus:ring-2 focus:ring-pw-navy/20"
-        />
-        <p className="text-sm text-pw-muted">“Vía” means “way” or “path.” You can give your tutor any name.</p>
-        <NameSuggestions value={nameInput} onPick={setNameInput} />
       </div>
 
       {/* Tone */}

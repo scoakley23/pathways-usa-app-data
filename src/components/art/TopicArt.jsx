@@ -107,7 +107,7 @@ export const TOPIC_ART = {
   'Geography and Symbols': 'map',
 };
 
-// The red accent (off by default: a screen keeps only the logo's and Vía's
+// The red accent (off by default: a screen keeps only the logo's and Amio's
 // dots) sits top-right, except where it would cover the drawing.
 const ACCENT_LEFT = new Set(['scroll', 'pencil']);
 

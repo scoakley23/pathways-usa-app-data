@@ -10,6 +10,8 @@ import { SuccessBanner, NotYetBanner } from '@/components/pathways/ResultBanner'
 import MicButton from '@/components/pathways/MicButton';
 import StarsPill from '@/components/pathways/StarsPill';
 import BottomTabs from '@/components/pathways/BottomTabs';
+import { Amio, AmioSays, AMIO_MOODS } from '@/components/pathways/Amio';
+import { AmioIcon } from '@/components/pathways/icons';
 import { COLORS, HOVER } from '@/design/tokens';
 
 // /design-preview: the Pathways + Amio base pieces (Prompt 1) with fake data,
@@ -55,6 +57,37 @@ export default function DesignPreview() {
       />
 
       <div className="max-w-lg mx-auto px-4 py-6 space-y-8">
+        <Section title="Amio · 7 moods">
+          <div className="grid grid-cols-4 gap-3">
+            {AMIO_MOODS.map((mood) => (
+              <div key={mood} className="flex flex-col items-center gap-1">
+                <Amio mood={mood} size={72} title={`Amio, ${mood}`} />
+                <span className="text-small font-semibold">{mood}</span>
+              </div>
+            ))}
+          </div>
+          <div className="rounded-card bg-navy p-4 grid grid-cols-4 gap-3">
+            {AMIO_MOODS.map((mood) => (
+              <div key={mood} className="flex flex-col items-center gap-1">
+                <Amio mood={mood} size={56} onNavy />
+                <span className="text-small font-semibold text-on-navy">{mood}</span>
+              </div>
+            ))}
+          </div>
+          <div className="flex items-end gap-4">
+            {[24, 40, 96, 144].map((size) => <Amio key={size} size={size} />)}
+          </div>
+          <div className="flex items-center gap-3 text-muted">
+            <AmioIcon /> <span className="text-small">Tab icon (outline)</span>
+          </div>
+        </Section>
+
+        <Section title="Amio says (one short line)">
+          <AmioSays mood="curious">What does the Constitution do?</AmioSays>
+          <AmioSays mood="kind">Not yet. Let's look again.</AmioSays>
+          <AmioSays mood="cheer" size={80}>You finished the lesson!</AmioSays>
+        </Section>
+
         <Section title="Step bar">
           <div className="flex flex-wrap gap-2">
             {[1, 2, 3, 4, 5].map((n) => (

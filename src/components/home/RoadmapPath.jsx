@@ -130,8 +130,8 @@ export default function RoadmapPath({ roadmap, t, language }) {
                 </Link>
               );
             } else if (isCurrent) {
-              // The learner's current stop: a larger navy marker. (Vía's mark
-              // shows once per screen, in the tab bar, not on the path.)
+              // The learner's current stop: a larger navy marker. (Amio is
+              // not drawn on the path.)
               const Icon = STOP_ICONS[stop.id];
               marker = (
                 <Link

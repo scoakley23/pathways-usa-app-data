@@ -6,8 +6,8 @@ import { PillButton, RuledPaper } from '@/components/pathways/ui';
 
 // The learner's notes for a lesson, on ruled paper (their own page). Saved
 // to LessonNotes, which only the learner can read; never sent to the AI.
-// Vía's line here is a fixed tip, not a reply to what they wrote.
-export default function LessonNotesTab({ lesson, userEmail, tutorName = 'Vía' }) {
+// Amio's line here is a fixed tip, not a reply to what they wrote.
+export default function LessonNotesTab({ lesson, userEmail, tutorName = 'Amio' }) {
   const [content, setContent] = useState('');
   const [noteId, setNoteId] = useState(null);
   const [isSaving, setIsSaving] = useState(false);

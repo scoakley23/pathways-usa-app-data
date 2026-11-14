@@ -95,7 +95,8 @@ describe('buildAskPrompt', () => {
   const profile = { name: 'Ana', tone: 'coach' };
   it('uses the persona instructions and includes the question', () => {
     const p = buildAskPrompt(profile, 'Spanish', 'What is the Bill of Rights?');
-    expect(p).toContain('You are Ana');
+    expect(p).toContain('You are Amio,'); // the tutor is always Amio
+    expect(p).not.toContain('Ana');
     expect(p).toContain('Coach');
     expect(p).toContain('What is the Bill of Rights?');
     expect(p).toContain('is_personal_legal');
