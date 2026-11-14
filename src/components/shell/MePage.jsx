@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { ChevronRight, Loader2, LogIn, LogOut } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { content } from '@/api/content';
+import { profile as profileApi } from '@/api/profile';
 import { auth } from '@/api/auth';
 import NavyBanner from '@/components/pathways/NavyBanner';
 import { Button, Card, Eyebrow } from '@/components/pathways/ui';
@@ -84,8 +85,8 @@ export default function MePage() {
       if (!active) return;
       setUser(u);
       const email = u.email.toLowerCase().trim();
-      const [profiles, progress, sessions, lessons, n400, civics2025] = await Promise.all([
-        base44.entities.PublicProfile.filter({ user_email: email }).catch(() => []),
+      const [publicProfile, progress, sessions, lessons, n400, civics2025] = await Promise.all([
+        profileApi.getPublic().catch(() => null),
         base44.entities.UserProgress.filter({ user_email: email }, '-last_practiced', 500).catch(() => []),
         base44.entities.InterviewSession.filter({ user_email: email }, '-created_date', 50).catch(() => []),
         base44.entities.LessonProgress.filter({ user_email: email }, null, 200).catch(() => []),
@@ -93,7 +94,7 @@ export default function MePage() {
         content.civicsQuestions({ version: '2025', limit: 300 }).catch(() => []),
       ]);
       if (!active) return;
-      setName(profiles[0]?.display_name || u.full_name || '');
+      setName(publicProfile?.display_name || u.full_name || '');
       const civicsIds = new Set(civics2025.map((q) => q.id));
       const dates = [
         ...progress.map((p) => p.last_practiced),

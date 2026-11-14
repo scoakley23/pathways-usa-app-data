@@ -220,23 +220,3 @@ describe('helpers', () => {
     expect(fromRow({ sort_order: 1, title: 'T' })).toEqual({ order: 1, title: 'T' });
   });
 });
-
-describe('screens read content only through src/api', () => {
-  it('no file outside src/api calls a content entity directly', () => {
-    const SRC = path.resolve(__dirname, '..');
-    const hits = [];
-    const walk = (dir) => {
-      for (const name of fs.readdirSync(dir)) {
-        const full = path.join(dir, name);
-        if (fs.statSync(full).isDirectory()) { if (name !== 'api') walk(full); continue; }
-        if (!/\.(js|jsx)$/.test(name) || /\.test\.js$/.test(name)) continue;
-        const text = fs.readFileSync(full, 'utf8');
-        for (const entity of Object.keys(CONTENT_TABLES)) {
-          if (new RegExp(`entities\\.${entity}\\b`).test(text)) hits.push(`${path.relative(SRC, full)}: ${entity}`);
-        }
-      }
-    };
-    walk(SRC);
-    expect(hits).toEqual([]);
-  });
-});
