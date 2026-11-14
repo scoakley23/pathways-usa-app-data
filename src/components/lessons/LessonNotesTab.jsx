@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { base44 } from '@/api/base44Client';
+import { lessonNotes as lessonNotesApi } from '@/api/lessons';
 import { Save, Loader2, CheckCircle } from 'lucide-react';
 import { toast } from "sonner";
 import { PillButton, RuledPaper } from '@/components/pathways/ui';
@@ -19,10 +19,7 @@ export default function LessonNotesTab({ lesson, userEmail, tutorName = 'Amio' }
     if (!userEmail || !lesson?.id) return;
     const load = async () => {
       try {
-        const existing = await base44.entities.LessonNotes.filter(
-          { user_email: userEmail.toLowerCase().trim(), lesson_id: lesson.id },
-          null, 1
-        );
+        const existing = await lessonNotesApi.list({ lessonId: lesson.id, limit: 1 });
         if (existing.length > 0) {
           setContent(existing[0].content || '');
           setNoteId(existing[0].id);
@@ -59,9 +56,9 @@ export default function LessonNotesTab({ lesson, userEmail, tutorName = 'Amio' }
       };
 
       if (noteId) {
-        await base44.entities.LessonNotes.update(noteId, { content: trimmed });
+        await lessonNotesApi.save({ id: noteId }, { content: trimmed });
       } else {
-        const created = await base44.entities.LessonNotes.create(payload);
+        const created = await lessonNotesApi.save(null, payload);
         setNoteId(created.id);
       }
       setLastSaved(new Date());
