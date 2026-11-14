@@ -40,3 +40,17 @@ describe('moved data goes through src/api only', () => {
     });
   }
 });
+
+describe('Step 3 is done: screens never touch the database directly', () => {
+  const files = sourceFiles(SRC).map((f) => [path.relative(SRC, f), fs.readFileSync(f, 'utf8')]);
+
+  it('no Base44 data calls outside src/api', () => {
+    const hits = files.filter(([, text]) => /base44\s*\.\s*entities|\bentities\s*\[/.test(text)).map(([rel]) => rel);
+    expect(hits).toEqual([]);
+  });
+
+  it('Supabase is used only inside src/api', () => {
+    const hits = files.filter(([, text]) => /@supabase\/supabase-js|api\/supabaseClient|\.rpc\s*\(/.test(text)).map(([rel]) => rel);
+    expect(hits).toEqual([]);
+  });
+});
