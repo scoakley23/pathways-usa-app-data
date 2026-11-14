@@ -62,8 +62,7 @@
       "csv_rows": 178,
       "csv_sha256": "399215cce179e0faeae9f20106036c39a092d88a46679104a695f337b4b70f05",
       "outputs": {
-        "lesson-quizzes.json": 144,
-        "lesson-quizzes-orphaned.json": 34
+        "lesson-quizzes.json": 178
       }
     },
     "LessonFlashcard": {
@@ -71,8 +70,7 @@
       "csv_rows": 115,
       "csv_sha256": "be9d37aaafe1fcb574e56834ca67417df445233b3e9397baa2ea897f3df7120e",
       "outputs": {
-        "lesson-flashcards.json": 95,
-        "lesson-flashcards-orphaned.json": 20
+        "lesson-flashcards.json": 115
       }
     },
     "CommunityResource": {

@@ -54,14 +54,21 @@ describe('Base44 content export', () => {
     }
   });
 
-  it('keeps rows whose lesson was deleted in Base44 apart, for review', () => {
-    // 34 quizzes and 20 flashcards point at 5 lessons that no longer exist.
-    const lessons = new Set(read('lessons.json').map((l) => l.id));
-    const quizzes = read('lesson-quizzes-orphaned.json');
-    const cards = read('lesson-flashcards-orphaned.json');
-    expect(quizzes).toHaveLength(34);
-    expect(cards).toHaveLength(20);
-    for (const r of [...quizzes, ...cards]) expect(lessons.has(r.lesson_id)).toBe(false);
+  it('gives every quiz and flashcard whose lesson was deleted the lesson chosen for it', () => {
+    // 34 quizzes and 20 flashcards pointed at 5 lessons deleted in Base44;
+    // lesson-reassignments.json gives each one an existing lesson by subject.
+    const moves = read('lesson-reassignments.json');
+    expect(moves.LessonQuiz).toHaveLength(34);
+    expect(moves.LessonFlashcard).toHaveLength(20);
+    for (const [entity, file] of [['LessonQuiz', 'lesson-quizzes.json'], ['LessonFlashcard', 'lesson-flashcards.json']]) {
+      const rows = new Map(read(file).map((r) => [r.id, r]));
+      const moved = [...rows.values()].filter((r) => r.original_lesson_id);
+      expect(moved.map((r) => r.id).sort(), entity).toEqual(moves[entity].map((m) => m.id).sort());
+      for (const m of moves[entity]) {
+        expect(rows.get(m.id), m.id).toMatchObject({ lesson_id: m.lesson_id, original_lesson_id: m.deleted_lesson_id });
+      }
+    }
+    expect(fs.readdirSync(DIR).filter((f) => f.includes('orphan'))).toEqual([]);
   });
 
   it('keeps every id, once', () => {

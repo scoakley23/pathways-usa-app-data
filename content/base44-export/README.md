@@ -13,10 +13,9 @@ the Supabase tables from these files). **Content only: no learner data.**
 | `writing-sentences.json` | `Sentence` | 49 |
 | `vocabulary-words.json` | `VocabularyWord` | 79 |
 | `lessons.json` | `Lesson` | 25 |
-| `lesson-quizzes.json` | `LessonQuiz` (lesson still exists) | 144 |
-| `lesson-quizzes-orphaned.json` | `LessonQuiz` (lesson deleted) | 34 |
-| `lesson-flashcards.json` | `LessonFlashcard` (lesson still exists) | 95 |
-| `lesson-flashcards-orphaned.json` | `LessonFlashcard` (lesson deleted) | 20 |
+| `lesson-quizzes.json` | `LessonQuiz` | 178 |
+| `lesson-flashcards.json` | `LessonFlashcard` | 115 |
+| `lesson-reassignments.json` | the lesson given to each quiz and flashcard whose lesson was deleted in Base44 | 54 |
 | `community-resources.json` | `CommunityResource` | 5,588 |
 | `manifest.json` | each CSV's row count and SHA-256, and the dropped columns | |
 
@@ -49,12 +48,18 @@ node scripts/content/import-base44-csv.mjs <folder with the *_export.csv files>
   (all 128 questions, answers and categories, character for character). See
   `docs/content-import/civics-2025-differences.md`
   (`scripts/content/compare-civics-2025.mjs` re-runs it).
-- **Quizzes and flashcards whose lesson was deleted:** 34 `LessonQuiz` and 20
-  `LessonFlashcard` rows point at 5 lesson ids that no longer exist in Base44.
-  They're kept apart in the `-orphaned` files, not dropped. 15 of the 20
-  flashcards repeat a card that already sits under a real lesson (same term);
-  the quizzes are mostly unique (17 are "… is famous for many things. Name
-  one."). Deciding what to do with them is open.
+- **Quizzes and flashcards whose lesson was deleted:** 34 `LessonQuiz` and
+  20 `LessonFlashcard` rows pointed at 5 lessons that no longer exist in
+  Base44. Each was given the existing lesson that matches its subject
+  (`lesson-reassignments.json`, applied by the import, which stops if a row
+  ever has no lesson); the old id is kept as `original_lesson_id`. **Repeats
+  to review:** 13 of those flashcards share a term with a card already in
+  their lesson, with a different definition (American Flag, Liberty Bell,
+  Statue of Liberty, Bald Eagle; Judicial Review, Supreme Court; Presidential
+  Veto; House of Representatives, Senate; Ratification, Bill of Rights, James
+  Madison, Constitutional Convention), and the quiz "What is the supreme law
+  of the land?" is now in "The U.S. Constitution and the Founding Fathers"
+  twice. All are kept for now.
 - **`LessonQuiz` isn't used by any screen today** (the lesson deck passes an
   empty quiz list).
 - **No file is stored on Base44.** No link in any field points at Base44's
