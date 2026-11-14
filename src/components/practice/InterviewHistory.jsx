@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
+import { auth } from '@/api/auth';
 import { RaisedCard, Tag } from '@/components/pathways/ui';
 import { History } from 'lucide-react';
 import { format } from 'date-fns';
@@ -10,7 +11,7 @@ export default function InterviewHistory() {
   useEffect(() => {
     (async () => {
       try {
-        const user = await base44.auth.me();
+        const user = await auth.me();
         const res = await base44.entities.InterviewSession.filter(
           { user_email: user.email.toLowerCase().trim() },
           { sort: '-created_date', limit: 10 }

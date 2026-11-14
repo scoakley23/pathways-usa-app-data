@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, ChevronDown, ChevronRight, Globe, History, Loader2, Scale, Users, Volume2 } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
+import { auth } from '@/api/auth';
 import { createPageUrl } from '@/utils';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { LANGUAGES } from '@/hooks/useLessonTranslation';
@@ -186,7 +187,7 @@ export default function StudyBuddy() {
 
   useEffect(() => {
     let active = true;
-    base44.auth.me()
+    auth.me()
       .then(async (u) => {
         if (!active) return;
         setUser(u);
@@ -313,7 +314,7 @@ export default function StudyBuddy() {
         <NavyBanner title={t('title')} subtitle={t('subtitle')} />
         <div className="max-w-lg mx-auto px-4 py-8 text-center space-y-4">
           <AmioSays mood="wave">Sign in to ask me questions.</AmioSays>
-          <Button variant="main" className="w-full" onClick={() => base44.auth.redirectToLogin()}>Sign in</Button>
+          <Button variant="main" className="w-full" onClick={() => auth.goToSignIn()}>Sign in</Button>
         </div>
       </div>
     );

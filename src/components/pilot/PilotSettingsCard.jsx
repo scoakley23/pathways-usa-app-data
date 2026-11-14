@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Loader2, Save, ClipboardList } from 'lucide-react';
 import { toast } from 'sonner';
-import { base44 } from '@/api/base44Client';
+import { auth } from '@/api/auth';
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card';
 import { Switch } from '@/components/ui/switch';
 import { PrimaryButton } from '@/components/pathways/ui';
@@ -23,7 +23,7 @@ export default function PilotSettingsCard({ user }) {
   const toggleReminders = async (on) => {
     setReminders(on);
     try {
-      await base44.auth.updateMe(reminderSettings(on, language));
+      await auth.updateMe(reminderSettings(on, language));
     } catch (e) {
       setReminders(!on);
       toast.error(t('error'));
@@ -33,7 +33,7 @@ export default function PilotSettingsCard({ user }) {
   const toggleCheckIns = async (on) => {
     setCheckIns(on);
     try {
-      await base44.auth.updateMe({ checkins_stopped: !on });
+      await auth.updateMe({ checkins_stopped: !on });
     } catch (e) {
       setCheckIns(!on);
       toast.error(t('error'));
@@ -44,7 +44,7 @@ export default function PilotSettingsCard({ user }) {
     e.preventDefault();
     setSaving(true);
     try {
-      await base44.auth.updateMe(buildProfileAnswers({ state }));
+      await auth.updateMe(buildProfileAnswers({ state }));
       toast.success(t('saved'));
     } catch (err) {
       toast.error(t('error'));

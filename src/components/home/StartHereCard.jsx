@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
-import { base44 } from '@/api/base44Client';
+import { auth } from '@/api/auth';
 import { Button, NavyTop, PathwaysLockup } from '@/components/pathways/ui';
 
 // The splash for signed-out visitors, on navy (The Road): the stacked logo,
@@ -9,7 +9,7 @@ import { Button, NavyTop, PathwaysLockup } from '@/components/pathways/ui';
 // the quick check (new students pick the student role first, which also
 // leads there).
 export default function StartHereCard({ t }) {
-  const start = () => base44.auth.redirectToLogin(`${window.location.origin}/quick-check`);
+  const start = () => auth.goToSignIn('/quick-check');
 
   return (
     <NavyTop as="section" aria-labelledby="start-here-title" className="pt-8 pb-14">

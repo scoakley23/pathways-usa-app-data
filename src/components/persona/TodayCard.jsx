@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Check, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { base44 } from '@/api/base44Client';
+import { auth } from '@/api/auth';
 import { ListenButton } from './TutorMessage';
 import PlanSetup from './PlanSetup';
 import useTutorProfile from './useTutorProfile';
@@ -70,7 +71,7 @@ export default function TodayCard({ language = 'en', roadmap, stopName, sheetTop
     let active = true;
     (async () => {
       try {
-        const user = await base44.auth.me();
+        const user = await auth.me();
         const email = user.email.toLowerCase().trim();
         const [progress, sessions, n400] = await Promise.all([
           base44.entities.UserProgress.filter({ user_email: email }, '-last_practiced', 500).catch(() => []),

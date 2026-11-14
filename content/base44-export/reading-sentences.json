@@ -1,0 +1,382 @@
+[
+  {
+    "id": "699d0787c7eb09e2396b1c24",
+    "difficulty": "easy",
+    "text": "When is Independence Day?"
+  },
+  {
+    "id": "699d0787c7eb09e2396b1c23",
+    "difficulty": "easy",
+    "text": "Who can vote?"
+  },
+  {
+    "id": "699d0787c7eb09e2396b1c22",
+    "difficulty": "medium",
+    "text": "What does Congress do?"
+  },
+  {
+    "id": "699d0787c7eb09e2396b1c21",
+    "difficulty": "easy",
+    "text": "When is Labor Day?"
+  },
+  {
+    "id": "699d0787c7eb09e2396b1c20",
+    "difficulty": "easy",
+    "text": "Who lives in the White House?"
+  },
+  {
+    "id": "699d0787c7eb09e2396b1c1f",
+    "difficulty": "easy",
+    "text": "Where is the White House?"
+  },
+  {
+    "id": "699d0787c7eb09e2396b1c1e",
+    "difficulty": "easy",
+    "text": "Where does the president live?"
+  },
+  {
+    "id": "699d0787c7eb09e2396b1c1d",
+    "difficulty": "easy",
+    "text": "When do we vote for president?"
+  },
+  {
+    "id": "699d0787c7eb09e2396b1c1c",
+    "difficulty": "easy",
+    "text": "Where does Congress meet?"
+  },
+  {
+    "id": "699d0787c7eb09e2396b1c1b",
+    "difficulty": "medium",
+    "text": "How many senators do we have?"
+  },
+  {
+    "id": "699d0787c7eb09e2396b1c1a",
+    "difficulty": "medium",
+    "text": "Who elects Congress?"
+  },
+  {
+    "id": "699d0787c7eb09e2396b1c19",
+    "difficulty": "medium",
+    "text": "Name one right in the Bill of Rights."
+  },
+  {
+    "id": "699d0787c7eb09e2396b1c18",
+    "difficulty": "easy",
+    "text": "When is Memorial Day?"
+  },
+  {
+    "id": "699d0787c7eb09e2396b1c17",
+    "difficulty": "easy",
+    "text": "When is Presidents' Day?"
+  },
+  {
+    "id": "699d0787c7eb09e2396b1c16",
+    "difficulty": "easy",
+    "text": "Who was Abraham Lincoln?"
+  },
+  {
+    "id": "699d0787c7eb09e2396b1c15",
+    "difficulty": "easy",
+    "text": "Who was George Washington?"
+  },
+  {
+    "id": "699d0787c7eb09e2396b1c14",
+    "difficulty": "medium",
+    "text": "Who was the second president?"
+  },
+  {
+    "id": "699d0787c7eb09e2396b1c13",
+    "difficulty": "easy",
+    "text": "What president is on the dollar bill?"
+  },
+  {
+    "id": "699d0787c7eb09e2396b1c12",
+    "difficulty": "easy",
+    "text": "Who was the first president?"
+  },
+  {
+    "id": "699d0787c7eb09e2396b1c11",
+    "difficulty": "easy",
+    "text": "Who is the father of our country?"
+  },
+  {
+    "id": "699d0787c7eb09e2396b1c10",
+    "difficulty": "medium",
+    "text": "What was the first U.S. state?"
+  },
+  {
+    "id": "699d0787c7eb09e2396b1c0f",
+    "difficulty": "easy",
+    "text": "When is Thanksgiving?"
+  },
+  {
+    "id": "699d0787c7eb09e2396b1c0e",
+    "difficulty": "easy",
+    "text": "When is Columbus Day?"
+  },
+  {
+    "id": "699d0787c7eb09e2396b1c0d",
+    "difficulty": "medium",
+    "text": "Why do people come to America?"
+  },
+  {
+    "id": "699d0787c7eb09e2396b1c0c",
+    "difficulty": "medium",
+    "text": "Why do people want to be citizens?"
+  },
+  {
+    "id": "699d0787c7eb09e2396b1c0b",
+    "difficulty": "easy",
+    "text": "Who lived here first?"
+  },
+  {
+    "id": "699d0787c7eb09e2396b1c0a",
+    "difficulty": "easy",
+    "text": "What country is south of the United States?"
+  },
+  {
+    "id": "699d0787c7eb09e2396b1c09",
+    "difficulty": "easy",
+    "text": "What is the largest state?"
+  },
+  {
+    "id": "699d0787c7eb09e2396b1c08",
+    "difficulty": "easy",
+    "text": "What country is north of the United States?"
+  },
+  {
+    "id": "699d0787c7eb09e2396b1c07",
+    "difficulty": "easy",
+    "text": "What state has the most people?"
+  },
+  {
+    "id": "699d0787c7eb09e2396b1c06",
+    "difficulty": "medium",
+    "text": "What was the first U.S. capital?"
+  },
+  {
+    "id": "699d0787c7eb09e2396b1c05",
+    "difficulty": "easy",
+    "text": "When is Flag Day?"
+  },
+  {
+    "id": "699d0787c7eb09e2396b1c04",
+    "difficulty": "easy",
+    "text": "What is on the American flag?"
+  },
+  {
+    "id": "699d0787c7eb09e2396b1c03",
+    "difficulty": "easy",
+    "text": "What are the colors of the flag?"
+  },
+  {
+    "id": "699d0787c7eb09e2396b1c02",
+    "difficulty": "easy",
+    "text": "What is the capital of the United States?"
+  },
+  {
+    "id": "699d0787c7eb09e2396b1c01",
+    "difficulty": "easy",
+    "text": "How many states are in the United States?"
+  },
+  {
+    "id": "69324676ec473ed25af20ce8",
+    "difficulty": "hard",
+    "text": "What was the first capital of the United States?"
+  },
+  {
+    "id": "69324676db9caf690ab8ba9f",
+    "difficulty": "easy",
+    "text": "When is Independence Day?"
+  },
+  {
+    "id": "69324676afa633cce702fec4",
+    "difficulty": "medium",
+    "text": "What is the largest city in America?"
+  },
+  {
+    "id": "693246769b5d543963716a6b",
+    "difficulty": "easy",
+    "text": "When is Independence Day?"
+  },
+  {
+    "id": "693246769703a4ae320ea80c",
+    "difficulty": "hard",
+    "text": "What was the first capital of the United States?"
+  },
+  {
+    "id": "693246766d0092a59bd5fd08",
+    "difficulty": "hard",
+    "text": "What is the Bill of Rights?"
+  },
+  {
+    "id": "6932467619e74ea3446309be",
+    "difficulty": "medium",
+    "text": "What is the largest city in America?"
+  },
+  {
+    "id": "6932467603040110035b6192",
+    "difficulty": "medium",
+    "text": "Who is the Father of Our Country?"
+  },
+  {
+    "id": "69324675e1fdd35553bd446c",
+    "difficulty": "medium",
+    "text": "Who is the Father of Our Country?"
+  },
+  {
+    "id": "69324675da480cbf43215472",
+    "difficulty": "easy",
+    "text": "When is Presidents' Day?"
+  },
+  {
+    "id": "69324675d925af8dde05a254",
+    "difficulty": "easy",
+    "text": "When is Labor Day?"
+  },
+  {
+    "id": "69324675be69b5368b49b6f1",
+    "difficulty": "easy",
+    "text": "When is Labor Day?"
+  },
+  {
+    "id": "69324675bcdb49166200bb8a",
+    "difficulty": "easy",
+    "text": "When is Presidents' Day?"
+  },
+  {
+    "id": "693246759ee6953dce4b2822",
+    "difficulty": "hard",
+    "text": "How many Senators do we have?"
+  },
+  {
+    "id": "6932467595a68de386b96623",
+    "difficulty": "medium",
+    "text": "Why do people come to America?"
+  },
+  {
+    "id": "693246757e1f52f892a1ccef",
+    "difficulty": "easy",
+    "text": "Who was the first President?"
+  },
+  {
+    "id": "693246757df308eb87f04c71",
+    "difficulty": "medium",
+    "text": "Why do people come to America?"
+  },
+  {
+    "id": "6932467562957d450ec45437",
+    "difficulty": "hard",
+    "text": "What is the Bill of Rights?"
+  },
+  {
+    "id": "693246754a3e0cceb320ebc9",
+    "difficulty": "medium",
+    "text": "Where does Congress meet?"
+  },
+  {
+    "id": "6932467545531f27b9bce96d",
+    "difficulty": "easy",
+    "text": "What are the colors of the American flag?"
+  },
+  {
+    "id": "6932467541a3e5140b724992",
+    "difficulty": "easy",
+    "text": "What are the colors of the American flag?"
+  },
+  {
+    "id": "6932467503685814c8b20067",
+    "difficulty": "hard",
+    "text": "How many Senators do we have?"
+  },
+  {
+    "id": "69324674fa605f9bb6e7fe1d",
+    "difficulty": "easy",
+    "text": "When is Columbus Day?"
+  },
+  {
+    "id": "69324674ed695e1dd25a3b01",
+    "difficulty": "medium",
+    "text": "Where does Congress meet?"
+  },
+  {
+    "id": "69324674ce369e0183815283",
+    "difficulty": "medium",
+    "text": "What do we pay to the government?"
+  },
+  {
+    "id": "69324674be69b5368b49b6f0",
+    "difficulty": "easy",
+    "text": "Who was the first President?"
+  },
+  {
+    "id": "693246749ee6953dce4b2820",
+    "difficulty": "easy",
+    "text": "Who lives in the White House?"
+  },
+  {
+    "id": "69324674894cd4d707bae1b8",
+    "difficulty": "hard",
+    "text": "Who elects Congress?"
+  },
+  {
+    "id": "693246745724725924c3dd14",
+    "difficulty": "medium",
+    "text": "What do we pay to the government?"
+  },
+  {
+    "id": "6932467448c069b1e21963e1",
+    "difficulty": "medium",
+    "text": "When is Flag Day?"
+  },
+  {
+    "id": "6932467426d3a0874fd0a2db",
+    "difficulty": "easy",
+    "text": "When is Columbus Day?"
+  },
+  {
+    "id": "6932467425b161d1cea50c3a",
+    "difficulty": "medium",
+    "text": "Lincoln was the President during the Civil War."
+  },
+  {
+    "id": "6932467424830fdaf40fefa0",
+    "difficulty": "medium",
+    "text": "Lincoln was the President during the Civil War."
+  },
+  {
+    "id": "693246740df3c25d7168b9ad",
+    "difficulty": "easy",
+    "text": "Who lives in the White House?"
+  },
+  {
+    "id": "69324673f7f17ade598094d2",
+    "difficulty": "easy",
+    "text": "What is the capital of the United States?"
+  },
+  {
+    "id": "69324673c447643b13704253",
+    "difficulty": "easy",
+    "text": "Who was George Washington?"
+  },
+  {
+    "id": "69324673c159916d0a85bd02",
+    "difficulty": "easy",
+    "text": "Who was George Washington?"
+  },
+  {
+    "id": "69324673894cd4d707bae1b7",
+    "difficulty": "hard",
+    "text": "Who elects Congress?"
+  },
+  {
+    "id": "693246734f8f03ec16a8ecd4",
+    "difficulty": "easy",
+    "text": "What is the capital of the United States?"
+  },
+  {
+    "id": "693246732c4264669c67d6da",
+    "difficulty": "medium",
+    "text": "When is Flag Day?"
+  }
+]

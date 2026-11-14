@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
+import { auth } from '@/api/auth';
 import NotificationCenter, { OPEN_NOTIFICATIONS_EVENT } from '@/components/notifications/NotificationCenter';
 import BottomTabs, { TABS } from '@/components/pathways/BottomTabs';
 import { PathwaysLockup } from '@/components/pathways/ui';
@@ -11,7 +12,6 @@ import { clearTutorPhoto } from '@/lib/tutorPhoto';
 import { tabFor } from '@/lib/shellRoutes';
 import { rememberProgramFromUrl } from '@/lib/programLink';
 import { recordActivityDay } from '@/lib/activityDay';
-import { ensurePublicProfile } from '@/lib/profileService';
 import { useAuth } from '@/lib/AuthContext';
 import { AutoReadContext } from '@/components/persona/useAutoRead';
 import DailyPracticeReminder from '@/components/notifications/DailyPracticeReminder';
@@ -67,18 +67,17 @@ export default function Layout({ children }) {
   // their app language code.
   React.useEffect(() => {
     if (!user?.email) return;
-    recordActivityDay(user, { entities: base44.entities, auth: base44.auth, language }).catch(() => {});
+    recordActivityDay(user, { entities: base44.entities, auth, language }).catch(() => {});
   }, [user, language]);
 
   // Everyone who signs in is a learner. The first sign-in makes their
   // profile and goes straight to "Getting started" and the quick check.
   React.useEffect(() => {
-    base44.auth.me().then(async (currentUser) => {
+    auth.me().then(async (currentUser) => {
       setUser(currentUser);
       if (profileChecked === currentUser.email) return;
       profileChecked = currentUser.email;
-      const name = currentUser.full_name || currentUser.email.split('@')[0];
-      const { created } = await ensurePublicProfile(currentUser.email, {}, { display_name: name });
+      const { created } = await auth.ensureProfile(currentUser);
       if (created) navigate('/quick-check');
     }).catch(() => {});
   }, [location.search, navigate]);

@@ -1,4 +1,7 @@
 import { base44 } from '@/api/base44Client';
+import { AUTH_PROVIDER } from '@/api/auth';
+import { supabasePrograms } from '@/api/programs';
+import { getSupabase } from '@/api/supabaseClient';
 
 // Partner programs (base44/functions/partner). Learners say which program
 // they study with; the program's staff confirm it on /Partner. The app never
@@ -20,11 +23,23 @@ async function invoke(payload) {
   }
 }
 
+// With Supabase sign-in on (src/api/auth.js), picking and joining a program
+// and "is this email on a staff list?" use Supabase's functions; the rest
+// moves in Step 3.
+const onSupabase = AUTH_PROVIDER === 'supabase';
+const sb = onSupabase ? supabasePrograms(getSupabase) : null;
+const friendly = (promise) => promise.catch((err) => {
+  const error = new Error(err?.code === 'P0002' ? 'We could not find that program.' : 'Something went wrong. Please try again.');
+  error.status = err?.status;
+  throw error;
+});
+
 // [{ code, name, shareLearners }]
-export const listPartners = () => invoke({ action: 'list' }).then((r) => r.partners || []);
-export const joinProgram = (code, { name, share } = {}) =>
-  invoke({ action: 'join', code, name, share }).then((r) => r.membership);
-export const staffPrograms = () => invoke({ action: 'staff' }).then((r) => r.partners || []);
+export const listPartners = () => (onSupabase ? friendly(sb.list()) : invoke({ action: 'list' }).then((r) => r.partners || []));
+export const joinProgram = (code, { name, share } = {}) => (onSupabase
+  ? friendly(sb.join(code, { name, share }))
+  : invoke({ action: 'join', code, name, share }).then((r) => r.membership));
+export const staffPrograms = () => (onSupabase ? friendly(sb.staff()) : invoke({ action: 'staff' }).then((r) => r.partners || []));
 export const programMembers = (code) => invoke({ action: 'members', code }).then((r) => r.members || []);
 // { totals, learners } over the program's confirmed learners (staff only).
 export const programSummaryFor = (code) => invoke({ action: 'summary', code });

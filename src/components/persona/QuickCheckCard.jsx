@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { base44 } from '@/api/base44Client';
+import { auth } from '@/api/auth';
 import SkillLevels from './SkillLevels';
 import { RaisedCard, Tag } from '@/components/pathways/ui';
 
@@ -14,7 +14,7 @@ export default function QuickCheckCard({ variant = 'home', t = (k, en) => en, la
   const [levels, setLevels] = useState(undefined);
 
   useEffect(() => {
-    base44.auth.me().then((u) => setLevels(u?.skill_levels || null)).catch(() => setLevels(null));
+    auth.me().then((u) => setLevels(u?.skill_levels || null)).catch(() => setLevels(null));
   }, []);
 
   if (levels === undefined) return null;

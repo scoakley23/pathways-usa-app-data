@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { X } from 'lucide-react';
-import { base44 } from '@/api/base44Client';
+import { auth } from '@/api/auth';
 import PageNotFound from '@/lib/PageNotFound';
 import { Button, Card, Chip, Eyebrow } from '@/components/pathways/ui';
 import NavyBanner from '@/components/pathways/NavyBanner';
@@ -36,7 +36,7 @@ export default function DesignPreview() {
 
   useEffect(() => {
     if (import.meta.env.DEV) { setUser({ role: 'admin' }); return; }
-    base44.auth.me().then(setUser).catch(() => setUser(null));
+    auth.me().then(setUser).catch(() => setUser(null));
   }, []);
 
   if (user === undefined) return null;

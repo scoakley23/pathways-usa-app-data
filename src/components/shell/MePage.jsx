@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ChevronRight, Loader2, LogIn, LogOut } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
+import { auth } from '@/api/auth';
 import NavyBanner from '@/components/pathways/NavyBanner';
 import { Button, Card, Eyebrow } from '@/components/pathways/ui';
 import ProgramCard from '@/components/partners/ProgramCard';
@@ -78,7 +79,7 @@ export default function MePage() {
     let active = true;
     (async () => {
       let u;
-      try { u = await base44.auth.me(); } catch (e) { if (active) setUser(null); return; }
+      try { u = await auth.me(); } catch (e) { if (active) setUser(null); return; }
       if (!active) return;
       setUser(u);
       const email = u.email.toLowerCase().trim();
@@ -131,7 +132,7 @@ export default function MePage() {
         <div className="max-w-lg mx-auto px-4 py-6 space-y-4">
           <Card>
             <p className="text-base text-navy">{t('sign_in_body')}</p>
-            <Button variant="main" className="w-full mt-4" onClick={() => base44.auth.redirectToLogin()}>
+            <Button variant="main" className="w-full mt-4" onClick={() => auth.goToSignIn()}>
               <LogIn className="w-5 h-5" aria-hidden="true" /> {t('sign_in')}
             </Button>
           </Card>
@@ -190,7 +191,7 @@ export default function MePage() {
         <Button
           variant="second"
           className="w-full"
-          onClick={async () => { await base44.auth.logout(); window.location.href = '/'; }}
+          onClick={async () => { await auth.signOut(); window.location.href = '/'; }}
         >
           <LogOut className="w-5 h-5" aria-hidden="true" /> {t('sign_out')}
         </Button>

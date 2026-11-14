@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { base44 } from '@/api/base44Client';
+import { auth } from '@/api/auth';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/pathways/ui";
 import {
@@ -47,11 +48,11 @@ export default function DeleteMyData({ userEmail }) {
       // The sign-in account itself can't be deleted from the app, so reset
       // the learner fields stored on it.
       setProgress('Resetting your account details...');
-      await base44.auth.updateMe(ACCOUNT_RESET);
+      await auth.updateMe(ACCOUNT_RESET);
       clearDeviceData();
       setProgress('Done. Signing you out...');
       toast.success("Your data has been deleted. You are being signed out.");
-      setTimeout(async () => { await base44.auth.logout(); }, 1500);
+      setTimeout(async () => { await auth.signOut(); window.location.href = '/'; }, 1500);
     } catch (err) {
       console.error("Error deleting user data", err);
       toast.error("Something went wrong while deleting your data. Please try again.");

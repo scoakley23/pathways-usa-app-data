@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { base44 } from '@/api/base44Client';
+import { auth } from '@/api/auth';
 import NavyBanner from '@/components/pathways/NavyBanner';
 import { Button, Card, Eyebrow } from '@/components/pathways/ui';
 import LanguageSelector from '@/components/lessons/LanguageSelector';
@@ -68,7 +69,7 @@ export default function SettingsPage() {
 
   useEffect(() => {
     let active = true;
-    base44.auth.me()
+    auth.me()
       .then(async (u) => {
         if (!active) return;
         setUser(u);
@@ -115,7 +116,7 @@ export default function SettingsPage() {
         });
         setPublicProfile(created);
       }
-      await base44.auth.updateMe({ full_name: displayName });
+      await auth.updateMe({ full_name: displayName });
       toast.success('Saved.');
     } catch (error) {
       toast.error("Couldn't save. Please try again.");

@@ -6,6 +6,7 @@ import RunTopBar from './RunTopBar';
 import { Link } from 'react-router-dom';
 import { Mic, MicOff, Volume2, ArrowRight, Check, Loader2, ChevronDown, ChevronUp, FileText, Bot, BarChart3, Scale, X } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
+import { auth } from '@/api/auth';
 import { speakText, stopSpeaking, getRandomVoice } from "@/components/utils/textToSpeech";
 import { toast } from "sonner";
 import InterviewReport from './InterviewReport';
@@ -258,7 +259,7 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
   useEffect(() => {
     if (rehearsal) return;
     let active = true;
-    base44.auth.me()
+    auth.me()
       .then(async (u) => {
         const rows = await loadMyCheckIns(u.email);
         if (active) setPilot({ email: u.email, rows });
@@ -325,7 +326,7 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
 
   const saveSession = async (results) => {
     try {
-      const user = await base44.auth.me();
+      const user = await auth.me();
       const scored = results.filter(r => typeof r.overall_score === 'number');
       const overall = scored.length ? Math.round(scored.reduce((s, r) => s + r.overall_score, 0) / scored.length) : 0;
       const passedCount = results.filter(r => r.is_acceptable).length;

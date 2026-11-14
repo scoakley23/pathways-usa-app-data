@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
+import { auth } from '@/api/auth';
 
 /**
  * Checks on app load whether the current student has practiced today.
@@ -9,7 +10,7 @@ export default function DailyPracticeReminder() {
   useEffect(() => {
     const checkAndRemind = async () => {
       try {
-        const user = await base44.auth.me().catch(() => null);
+        const user = await auth.me().catch(() => null);
         if (!user) return;
 
         const normalizedEmail = user.email.toLowerCase().trim();
