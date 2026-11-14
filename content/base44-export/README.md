@@ -13,9 +13,9 @@ the Supabase tables from these files). **Content only: no learner data.**
 | `writing-sentences.json` | `Sentence` | 49 |
 | `vocabulary-words.json` | `VocabularyWord` | 79 |
 | `lessons.json` | `Lesson` | 25 |
-| `lesson-quizzes.json` | `LessonQuiz` | 178 |
-| `lesson-flashcards.json` | `LessonFlashcard` | 115 |
-| `lesson-reassignments.json` | the lesson given to each quiz and flashcard whose lesson was deleted in Base44 | 54 |
+| `lesson-quizzes.json` | `LessonQuiz` (178, one repeat merged) | 177 |
+| `lesson-flashcards.json` | `LessonFlashcard` (115, 13 repeats merged) | 102 |
+| `lesson-reassignments.json` | the lesson given to each quiz and flashcard whose lesson was deleted in Base44, and the merges of the repeats | 54 moves, 14 merges |
 | `community-resources.json` | `CommunityResource` | 5,588 |
 | `manifest.json` | each CSV's row count and SHA-256, and the dropped columns | |
 
@@ -53,13 +53,14 @@ node scripts/content/import-base44-csv.mjs <folder with the *_export.csv files>
   Base44. Each was given the existing lesson that matches its subject
   (`lesson-reassignments.json`, applied by the import, which stops if a row
   ever has no lesson); the old id is kept as `original_lesson_id`. **Repeats
-  to review:** 13 of those flashcards share a term with a card already in
-  their lesson, with a different definition (American Flag, Liberty Bell,
-  Statue of Liberty, Bald Eagle; Judicial Review, Supreme Court; Presidential
-  Veto; House of Representatives, Senate; Ratification, Bill of Rights, James
-  Madison, Constitutional Convention), and the quiz "What is the supreme law
-  of the land?" is now in "The U.S. Constitution and the Founding Fathers"
-  twice. All are kept for now.
+  merged:** 13 of those flashcards repeated a term already in their lesson
+  and one quiz question appeared twice. Each pair is now one card
+  (`merges` in `lesson-reassignments.json`): the existing card stays, since
+  its definition already covered the moved one; where the moved card added a
+  fact, it was added to the kept card (Judicial Review: segregation laws;
+  Presidential Veto: the two-thirds override; Ratification: in effect in
+  1789; the quiz's fuller explanation). Kept rows list the merged id in
+  `merged_from`.
 - **`LessonQuiz` isn't used by any screen today** (the lesson deck passes an
   empty quiz list).
 - **No file is stored on Base44.** No link in any field points at Base44's

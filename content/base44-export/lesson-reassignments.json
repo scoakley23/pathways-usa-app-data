@@ -1,5 +1,5 @@
 {
-  "note": "Quizzes and flashcards whose lesson was deleted in Base44, each given the existing lesson that matches its subject (decided Nov 14, 2026). The import (scripts/content/import-base44-csv.mjs) applies this and keeps the old id as original_lesson_id.",
+  "note": "Quizzes and flashcards whose lesson was deleted in Base44, each given the existing lesson that matches its subject (decided Nov 14, 2026). The import (scripts/content/import-base44-csv.mjs) applies this and keeps the old id as original_lesson_id. Where a moved row repeated a card or question already in its new lesson, the two are merged into the existing row (\"merges\"): the moved row is left out and any text it adds is set on the kept row.",
   "LessonQuiz": [
     {
       "id": "699df5ca59472e0d072b45f5",
@@ -381,5 +381,107 @@
       "lesson_id": "699db0a1297afea4b73d1031",
       "lesson_title": "The U.S. Constitution and the Founding Fathers"
     }
-  ]
+  ],
+  "merges": {
+    "LessonFlashcard": [
+      {
+        "id": "699db0b8297afea4b73d1060",
+        "into": "69b703185c5f2c47940a8daf",
+        "term": "American Flag",
+        "why": "The original card already says everything the moved card says."
+      },
+      {
+        "id": "699db0b8297afea4b73d1063",
+        "into": "69b703185c5f2c47940a8dae",
+        "term": "Liberty Bell",
+        "why": "The original card already says everything the moved card says."
+      },
+      {
+        "id": "699db0b8297afea4b73d1062",
+        "into": "69b703185c5f2c47940a8dad",
+        "term": "Statue of Liberty",
+        "why": "The original card already says everything the moved card says."
+      },
+      {
+        "id": "699db0b8297afea4b73d1061",
+        "into": "69b703185c5f2c47940a8dac",
+        "term": "Bald Eagle",
+        "why": "The original card already says everything the moved card says."
+      },
+      {
+        "id": "699db0b8297afea4b73d105f",
+        "into": "69b703185c5f2c47940a8d80",
+        "term": "Judicial Review",
+        "set": {
+          "example": "In Marbury v. Madison, the Supreme Court established the power of judicial review. The Supreme Court used judicial review to overturn segregation laws."
+        },
+        "why": "The moved card's example adds a fact; the original definition already covers the moved one."
+      },
+      {
+        "id": "699db0b8297afea4b73d105e",
+        "into": "69b703185c5f2c47940a8d7f",
+        "term": "Supreme Court",
+        "why": "The original card already says everything the moved card says."
+      },
+      {
+        "id": "699db0b8297afea4b73d105c",
+        "into": "69b703185c5f2c47940a8d7d",
+        "term": "Presidential Veto",
+        "set": {
+          "example": "A President can veto a bill they disagree with, sending it back to Congress. Congress can override a presidential veto with a two-thirds majority vote."
+        },
+        "why": "The moved card's example adds a fact; the original definition already covers the moved one."
+      },
+      {
+        "id": "699db0b8297afea4b73d105a",
+        "into": "69b703185c5f2c47940a8d78",
+        "term": "House of Representatives",
+        "why": "The original card already says everything the moved card says."
+      },
+      {
+        "id": "699db0b8297afea4b73d1059",
+        "into": "69b703185c5f2c47940a8d77",
+        "term": "Senate",
+        "why": "The original card already says everything the moved card says."
+      },
+      {
+        "id": "699db0b8297afea4b73d1052",
+        "into": "69b703185c5f2c47940a8d65",
+        "term": "Ratification",
+        "set": {
+          "example": "The Constitution was ratified by nine states in 1788 and went into effect in 1789."
+        },
+        "why": "The moved card's example adds a fact; the original definition already covers the moved one."
+      },
+      {
+        "id": "699db0b8297afea4b73d1053",
+        "into": "69b703185c5f2c47940a8d64",
+        "term": "Bill of Rights",
+        "why": "The original card already says everything the moved card says."
+      },
+      {
+        "id": "699db0b8297afea4b73d1051",
+        "into": "69b703185c5f2c47940a8d63",
+        "term": "James Madison",
+        "why": "The original card already says everything the moved card says."
+      },
+      {
+        "id": "699db0b8297afea4b73d1050",
+        "into": "69b703185c5f2c47940a8d62",
+        "term": "Constitutional Convention",
+        "why": "The original card already says everything the moved card says."
+      }
+    ],
+    "LessonQuiz": [
+      {
+        "id": "699df5ca59472e0d072b45e5",
+        "into": "69b6fcb296689c2188dfd2ab",
+        "question": "What is the supreme law of the land?",
+        "set": {
+          "explanation": "The Constitution is the supreme law of the land and all other laws must follow it."
+        },
+        "why": "Same question and answer; the moved explanation is the fuller one."
+      }
+    ]
+  }
 }

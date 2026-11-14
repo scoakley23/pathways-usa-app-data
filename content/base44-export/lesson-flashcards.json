@@ -123,28 +123,40 @@
     "term": "American Flag",
     "definition": "National flag with 13 stripes (original colonies) and 50 stars (one per state)",
     "lesson_id": "699db0a1297afea4b73d1045",
-    "example": "The 50 stars represent the 50 states; a new star was added when Hawaii joined in 1960"
+    "example": "The 50 stars represent the 50 states; a new star was added when Hawaii joined in 1960",
+    "merged_from": [
+      "699db0b8297afea4b73d1060"
+    ]
   },
   {
     "id": "69b703185c5f2c47940a8dae",
     "term": "Liberty Bell",
     "definition": "Historic bell in Philadelphia that symbolizes American independence and freedom",
     "lesson_id": "699db0a1297afea4b73d1045",
-    "example": "The Liberty Bell is displayed at Independence Hall in Philadelphia"
+    "example": "The Liberty Bell is displayed at Independence Hall in Philadelphia",
+    "merged_from": [
+      "699db0b8297afea4b73d1063"
+    ]
   },
   {
     "id": "69b703185c5f2c47940a8dad",
     "term": "Statue of Liberty",
     "definition": "Monument in New York Harbor symbolizing freedom and opportunity, gifted by France in 1886",
     "lesson_id": "699db0a1297afea4b73d1045",
-    "example": "The Statue of Liberty welcomed millions of immigrants arriving by ship"
+    "example": "The Statue of Liberty welcomed millions of immigrants arriving by ship",
+    "merged_from": [
+      "699db0b8297afea4b73d1062"
+    ]
   },
   {
     "id": "69b703185c5f2c47940a8dac",
     "term": "Bald Eagle",
     "definition": "National bird of the United States, symbolizing strength, courage, and independence",
     "lesson_id": "699db0a1297afea4b73d1045",
-    "example": "The Bald Eagle appears on the Great Seal and is protected by federal law"
+    "example": "The Bald Eagle appears on the Great Seal and is protected by federal law",
+    "merged_from": [
+      "699db0b8297afea4b73d1061"
+    ]
   },
   {
     "id": "69b703185c5f2c47940a8dab",
@@ -452,14 +464,20 @@
     "term": "Judicial Review",
     "definition": "The Supreme Court's power to declare laws unconstitutional",
     "lesson_id": "699db0a1297afea4b73d1038",
-    "example": "In Marbury v. Madison, the Supreme Court established the power of judicial review"
+    "example": "In Marbury v. Madison, the Supreme Court established the power of judicial review. The Supreme Court used judicial review to overturn segregation laws.",
+    "merged_from": [
+      "699db0b8297afea4b73d105f"
+    ]
   },
   {
     "id": "69b703185c5f2c47940a8d7f",
     "term": "Supreme Court",
     "definition": "The highest court in the U.S., with nine justices and final authority on constitutional questions",
     "lesson_id": "699db0a1297afea4b73d1038",
-    "example": "The Supreme Court's rulings set legal precedents for all lower courts"
+    "example": "The Supreme Court's rulings set legal precedents for all lower courts",
+    "merged_from": [
+      "699db0b8297afea4b73d105e"
+    ]
   },
   {
     "id": "69b703185c5f2c47940a8d7e",
@@ -473,7 +491,10 @@
     "term": "Presidential Veto",
     "definition": "The President's power to reject legislation passed by Congress",
     "lesson_id": "699db0a1297afea4b73d1037",
-    "example": "A President can veto a bill they disagree with, sending it back to Congress"
+    "example": "A President can veto a bill they disagree with, sending it back to Congress. Congress can override a presidential veto with a two-thirds majority vote.",
+    "merged_from": [
+      "699db0b8297afea4b73d105c"
+    ]
   },
   {
     "id": "69b703185c5f2c47940a8d7c",
@@ -508,14 +529,20 @@
     "term": "House of Representatives",
     "definition": "Lower chamber of Congress with 435 members based on state population, serving 2-year terms",
     "lesson_id": "699db0a1297afea4b73d1036",
-    "example": "California has many more House members than Wyoming because it has more people"
+    "example": "California has many more House members than Wyoming because it has more people",
+    "merged_from": [
+      "699db0b8297afea4b73d105a"
+    ]
   },
   {
     "id": "69b703185c5f2c47940a8d77",
     "term": "Senate",
     "definition": "Upper chamber of Congress with 100 members, two from each state, serving 6-year terms",
     "lesson_id": "699db0a1297afea4b73d1036",
-    "example": "There are always exactly 100 senators, regardless of state population"
+    "example": "There are always exactly 100 senators, regardless of state population",
+    "merged_from": [
+      "699db0b8297afea4b73d1059"
+    ]
   },
   {
     "id": "69b703185c5f2c47940a8d76",
@@ -641,76 +668,40 @@
     "term": "Ratification",
     "definition": "The process of formal state approval required for the Constitution to take effect",
     "lesson_id": "699db0a1297afea4b73d1031",
-    "example": "The Constitution was ratified by nine states in 1788 before it could go into effect"
+    "example": "The Constitution was ratified by nine states in 1788 and went into effect in 1789.",
+    "merged_from": [
+      "699db0b8297afea4b73d1052"
+    ]
   },
   {
     "id": "69b703185c5f2c47940a8d64",
     "term": "Bill of Rights",
     "definition": "The first ten amendments to the Constitution, protecting fundamental individual freedoms",
     "lesson_id": "699db0a1297afea4b73d1031",
-    "example": "The Bill of Rights guarantees freedom of speech, religion, and the right to a fair trial"
+    "example": "The Bill of Rights guarantees freedom of speech, religion, and the right to a fair trial",
+    "merged_from": [
+      "699db0b8297afea4b73d1053"
+    ]
   },
   {
     "id": "69b703185c5f2c47940a8d63",
     "term": "James Madison",
     "definition": "Called the 'Father of the Constitution' for his central role in drafting it",
     "lesson_id": "699db0a1297afea4b73d1031",
-    "example": "Madison came prepared with the Virginia Plan, which formed the basis of the Constitution"
+    "example": "Madison came prepared with the Virginia Plan, which formed the basis of the Constitution",
+    "merged_from": [
+      "699db0b8297afea4b73d1051"
+    ]
   },
   {
     "id": "69b703185c5f2c47940a8d62",
     "term": "Constitutional Convention",
     "definition": "Meeting of 55 delegates in Philadelphia in 1787 to draft the U.S. Constitution",
     "lesson_id": "699db0a1297afea4b73d1031",
-    "example": "James Madison and Benjamin Franklin were key delegates at the Constitutional Convention"
-  },
-  {
-    "id": "699db0b8297afea4b73d1063",
-    "term": "Liberty Bell",
-    "definition": "Historic bell in Philadelphia symbolizing American independence",
-    "lesson_id": "699db0a1297afea4b73d1045",
-    "example": "The Liberty Bell is displayed at Independence Hall in Philadelphia",
-    "original_lesson_id": "699d497a14ed981acbcb1b44"
-  },
-  {
-    "id": "699db0b8297afea4b73d1062",
-    "term": "Statue of Liberty",
-    "definition": "Monument in New York Harbor symbolizing freedom and opportunity",
-    "lesson_id": "699db0a1297afea4b73d1045",
-    "example": "The Statue of Liberty was a gift from France to the United States",
-    "original_lesson_id": "699d497a14ed981acbcb1b44"
-  },
-  {
-    "id": "699db0b8297afea4b73d1061",
-    "term": "Bald Eagle",
-    "definition": "National bird symbolizing strength, courage, and independence",
-    "lesson_id": "699db0a1297afea4b73d1045",
-    "example": "The Bald Eagle appears on the Great Seal of the United States",
-    "original_lesson_id": "699d497a14ed981acbcb1b44"
-  },
-  {
-    "id": "699db0b8297afea4b73d1060",
-    "term": "American Flag",
-    "definition": "National flag with 13 stripes and 50 stars",
-    "lesson_id": "699db0a1297afea4b73d1045",
-    "example": "The 13 stripes represent the original colonies and stars represent current states",
-    "original_lesson_id": "699d497a14ed981acbcb1b44"
-  },
-  {
-    "id": "699db0b8297afea4b73d105f",
-    "term": "Judicial Review",
-    "definition": "Power of courts to declare laws unconstitutional",
-    "lesson_id": "699db0a1297afea4b73d1038",
-    "example": "The Supreme Court used judicial review to overturn segregation laws",
-    "original_lesson_id": "699d4940f1c9715faa91c6b3"
-  },
-  {
-    "id": "699db0b8297afea4b73d105e",
-    "term": "Supreme Court",
-    "definition": "Highest court with nine justices who interpret the Constitution",
-    "lesson_id": "699db0a1297afea4b73d1038",
-    "example": "Supreme Court decisions set legal precedents for the entire nation",
-    "original_lesson_id": "699d4940f1c9715faa91c6b3"
+    "example": "James Madison and Benjamin Franklin were key delegates at the Constitutional Convention",
+    "merged_from": [
+      "699db0b8297afea4b73d1050"
+    ]
   },
   {
     "id": "699db0b8297afea4b73d105d",
@@ -721,35 +712,11 @@
     "original_lesson_id": "699d4940f1c9715faa91c6b3"
   },
   {
-    "id": "699db0b8297afea4b73d105c",
-    "term": "Presidential Veto",
-    "definition": "President's power to reject legislation passed by Congress",
-    "lesson_id": "699db0a1297afea4b73d1037",
-    "example": "Congress can override a presidential veto with a two-thirds majority vote",
-    "original_lesson_id": "699d4940f1c9715faa91c6b3"
-  },
-  {
     "id": "699db0b8297afea4b73d105b",
     "term": "Executive Branch",
     "definition": "Led by President, enforces laws and manages government",
     "lesson_id": "699db0a1297afea4b73d1037",
     "example": "The President commands the military and appoints cabinet members",
-    "original_lesson_id": "699d4940f1c9715faa91c6b3"
-  },
-  {
-    "id": "699db0b8297afea4b73d105a",
-    "term": "House of Representatives",
-    "definition": "Lower chamber with 435 members based on state population",
-    "lesson_id": "699db0a1297afea4b73d1036",
-    "example": "Larger states like California have more Representatives than smaller states",
-    "original_lesson_id": "699d4940f1c9715faa91c6b3"
-  },
-  {
-    "id": "699db0b8297afea4b73d1059",
-    "term": "Senate",
-    "definition": "Upper chamber of Congress with 100 members (2 from each state)",
-    "lesson_id": "699db0a1297afea4b73d1036",
-    "example": "Each state has two Senators serving six-year terms",
     "original_lesson_id": "699d4940f1c9715faa91c6b3"
   },
   {
@@ -791,37 +758,5 @@
     "lesson_id": "699db0a1297afea4b73d1041",
     "example": "Thomas Jefferson wrote the Declaration stating that all men are created equal",
     "original_lesson_id": "699d497a14ed981acbcb1b43"
-  },
-  {
-    "id": "699db0b8297afea4b73d1053",
-    "term": "Bill of Rights",
-    "definition": "First ten amendments protecting fundamental individual freedoms",
-    "lesson_id": "699db0a1297afea4b73d1031",
-    "example": "The Bill of Rights includes freedoms of speech, religion, and the right to a fair trial",
-    "original_lesson_id": "699d4940f1c9715faa91c6b2"
-  },
-  {
-    "id": "699db0b8297afea4b73d1052",
-    "term": "Ratification",
-    "definition": "Process of state approval required for the Constitution to become law",
-    "lesson_id": "699db0a1297afea4b73d1031",
-    "example": "The Constitution was ratified by the states in 1788 and went into effect in 1789",
-    "original_lesson_id": "699d4940f1c9715faa91c6b2"
-  },
-  {
-    "id": "699db0b8297afea4b73d1051",
-    "term": "James Madison",
-    "definition": "Called the 'Father of the Constitution' for his central role in shaping it",
-    "lesson_id": "699db0a1297afea4b73d1031",
-    "example": "James Madison came prepared with detailed plans that became the basis for the Constitution",
-    "original_lesson_id": "699d4940f1c9715faa91c6b2"
-  },
-  {
-    "id": "699db0b8297afea4b73d1050",
-    "term": "Constitutional Convention",
-    "definition": "Meeting of delegates in Philadelphia in 1787 to draft the U.S. Constitution",
-    "lesson_id": "699db0a1297afea4b73d1031",
-    "example": "The Constitutional Convention brought together leaders like James Madison and Benjamin Franklin",
-    "original_lesson_id": "699d4940f1c9715faa91c6b2"
   }
 ]

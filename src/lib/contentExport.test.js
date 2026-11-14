@@ -25,7 +25,7 @@ describe('Base44 content export', () => {
         expect(rows.length, file).toBe(count);
         total += rows.length;
       }
-      expect(total, entity).toBe(info.csv_rows);
+      expect(total, entity).toBe(info.csv_rows - (info.merged_into_existing || 0));
     }
   });
 
@@ -62,13 +62,38 @@ describe('Base44 content export', () => {
     expect(moves.LessonFlashcard).toHaveLength(20);
     for (const [entity, file] of [['LessonQuiz', 'lesson-quizzes.json'], ['LessonFlashcard', 'lesson-flashcards.json']]) {
       const rows = new Map(read(file).map((r) => [r.id, r]));
+      const merged = new Set(moves.merges[entity].map((m) => m.id));
       const moved = [...rows.values()].filter((r) => r.original_lesson_id);
-      expect(moved.map((r) => r.id).sort(), entity).toEqual(moves[entity].map((m) => m.id).sort());
+      expect(moved.map((r) => r.id).sort(), entity).toEqual(moves[entity].map((m) => m.id).filter((id) => !merged.has(id)).sort());
       for (const m of moves[entity]) {
+        if (merged.has(m.id)) continue;
         expect(rows.get(m.id), m.id).toMatchObject({ lesson_id: m.lesson_id, original_lesson_id: m.deleted_lesson_id });
       }
     }
     expect(fs.readdirSync(DIR).filter((f) => f.includes('orphan'))).toEqual([]);
+  });
+
+  it('merges a moved card that repeated one in its lesson into that card', () => {
+    const { merges } = read('lesson-reassignments.json');
+    expect(merges.LessonFlashcard).toHaveLength(13);
+    expect(merges.LessonQuiz).toHaveLength(1);
+    for (const [entity, file, key] of [['LessonFlashcard', 'lesson-flashcards.json', 'term'], ['LessonQuiz', 'lesson-quizzes.json', 'question']]) {
+      const rows = read(file);
+      const byId = new Map(rows.map((r) => [r.id, r]));
+      for (const m of merges[entity]) {
+        expect(byId.has(m.id), `${m.id} left out`).toBe(false);
+        const kept = byId.get(m.into);
+        expect(kept.merged_from).toContain(m.id);
+        for (const [field, value] of Object.entries(m.set || {})) expect(kept[field]).toBe(value);
+      }
+      // No lesson has the same card or question twice.
+      const seen = new Set();
+      for (const r of rows) {
+        const k = `${r.lesson_id}|${r[key].trim().toLowerCase()}`;
+        expect(seen.has(k), `${entity} repeated: ${r[key]}`).toBe(false);
+        seen.add(k);
+      }
+    }
   });
 
   it('keeps every id, once', () => {

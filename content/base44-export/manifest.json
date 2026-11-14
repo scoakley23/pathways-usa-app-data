@@ -62,16 +62,18 @@
       "csv_rows": 178,
       "csv_sha256": "399215cce179e0faeae9f20106036c39a092d88a46679104a695f337b4b70f05",
       "outputs": {
-        "lesson-quizzes.json": 178
-      }
+        "lesson-quizzes.json": 177
+      },
+      "merged_into_existing": 1
     },
     "LessonFlashcard": {
       "csv": "LessonFlashcard_export.csv",
       "csv_rows": 115,
       "csv_sha256": "be9d37aaafe1fcb574e56834ca67417df445233b3e9397baa2ea897f3df7120e",
       "outputs": {
-        "lesson-flashcards.json": 115
-      }
+        "lesson-flashcards.json": 102
+      },
+      "merged_into_existing": 13
     },
     "CommunityResource": {
       "csv": "CommunityResource_export.csv",

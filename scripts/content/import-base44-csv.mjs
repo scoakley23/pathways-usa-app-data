@@ -133,6 +133,7 @@ function main(dir) {
     const rows = convertRows(entity, parseCsv(bytes.toString('utf8')));
     converted[entity] = rows;
     const outputs = {};
+    let merged = 0;
     const write = (name, part) => {
       fs.writeFileSync(path.join(OUT, name), `${JSON.stringify(part, null, 2)}\n`);
       outputs[name] = part.length;
@@ -141,14 +142,29 @@ function main(dir) {
       const ids = new Set((converted[spec.linkTo] || []).map((r) => r.id));
       if (!ids.size) throw new Error(`${entity}: convert ${spec.linkTo} first`);
       const moves = new Map((REASSIGNMENTS[entity] || []).map((m) => [m.id, m]));
-      write(spec.file, rows.map((r) => {
+      const placed = rows.map((r) => {
         if (ids.has(r.lesson_id)) return r;
         const move = moves.get(r.id);
         if (!move || move.deleted_lesson_id !== r.lesson_id || !ids.has(move.lesson_id)) {
           throw new Error(`${entity} ${r.id}: lesson ${r.lesson_id} doesn't exist and lesson-reassignments.json gives it no lesson`);
         }
         return { ...r, lesson_id: move.lesson_id, original_lesson_id: r.lesson_id };
-      }));
+      });
+      // A moved row that repeats one already in its new lesson is merged into
+      // that row: the moved row is left out, any text it adds is set on the kept one.
+      const merges = REASSIGNMENTS.merges?.[entity] || [];
+      const byId = new Map(placed.map((r) => [r.id, r]));
+      for (const m of merges) {
+        const from = byId.get(m.id);
+        const into = byId.get(m.into);
+        if (!from || !into || from.lesson_id !== into.lesson_id || !from.original_lesson_id) {
+          throw new Error(`${entity}: can't merge ${m.id} into ${m.into}`);
+        }
+        Object.assign(into, m.set || {}, { merged_from: [...(into.merged_from || []), m.id] });
+      }
+      const gone = new Set(merges.map((m) => m.id));
+      write(spec.file, placed.filter((r) => !gone.has(r.id)));
+      merged = gone.size;
     } else if (spec.split) {
       for (const [value, name] of Object.entries(spec.files)) write(name, rows.filter((r) => String(r[spec.split]) === value));
       const placed = Object.values(outputs).reduce((a, b) => a + b, 0);
@@ -161,8 +177,9 @@ function main(dir) {
       csv_rows: rows.length,
       csv_sha256: crypto.createHash('sha256').update(bytes).digest('hex'),
       outputs,
+      ...(merged ? { merged_into_existing: merged } : {}),
     };
-    console.log(`${entity}: ${rows.length} rows -> ${Object.entries(outputs).map(([f, n]) => `${f} (${n})`).join(', ')}`);
+    console.log(`${entity}: ${rows.length} rows -> ${Object.entries(outputs).map(([f, n]) => `${f} (${n})`).join(', ')}${merged ? ` (${merged} merged into an existing row)` : ''}`);
   }
   fs.writeFileSync(path.join(OUT, 'manifest.json'), `${JSON.stringify(manifest, null, 2)}\n`);
 }
