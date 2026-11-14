@@ -1,0 +1,325 @@
+{
+  "id": "u2-s4",
+  "unitId": "u2",
+  "number": 4,
+  "title": "The courts",
+  "note": "Drafted for Prompt 12 (Unit 2). Every lesson is a draft until a person reviews it (content/course/README.md).",
+  "stops": [
+    {
+      "id": "u2-s4-l1",
+      "type": "lesson",
+      "title": "The highest court",
+      "lessonId": "u2-s4-l1"
+    },
+    {
+      "id": "u2-s4-l2",
+      "type": "lesson",
+      "title": "What courts do",
+      "lessonId": "u2-s4-l2"
+    },
+    {
+      "id": "u2-s4-l3",
+      "type": "lesson",
+      "title": "The Supreme Court",
+      "lessonId": "u2-s4-l3"
+    },
+    {
+      "id": "u2-s4-l4",
+      "type": "lesson",
+      "title": "Justices serve for life",
+      "lessonId": "u2-s4-l4"
+    },
+    {
+      "id": "u2-s4-l5",
+      "type": "lesson",
+      "title": "The Chief Justice",
+      "lessonId": "u2-s4-l5"
+    },
+    {
+      "id": "u2-s4-rw",
+      "type": "readwrite",
+      "title": "Read and write",
+      "fromLessons": [
+        "u2-s4-l1",
+        "u2-s4-l2",
+        "u2-s4-l3",
+        "u2-s4-l4",
+        "u2-s4-l5"
+      ]
+    },
+    {
+      "id": "u2-s4-speak",
+      "type": "speakit",
+      "title": "Speak it!"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "u2-s4-l1",
+      "title": "The highest court",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de4a",
+        "6ad16ecf6a9c603911f9de48"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "What is the highest court in the United States?",
+          "facts": [
+            "The Supreme Court is the highest court in the United States.",
+            "The Supreme Court and the other federal courts are the judicial branch."
+          ],
+          "newWords": [
+            {
+              "word": "court",
+              "meaning": "a place where judges decide questions about the law"
+            },
+            {
+              "word": "Supreme Court",
+              "meaning": "the highest court in the United States"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de4a"
+        },
+        "readIt": {
+          "sentence": "What is the capital of the United States?",
+          "words": [
+            "What",
+            "is",
+            "the",
+            "capital",
+            "of",
+            "the",
+            "United",
+            "States"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Washington, D.C. is the capital of the United States.",
+          "distractorWords": [
+            "New York City",
+            "Canada",
+            "blue"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de48"
+        }
+      }
+    },
+    {
+      "id": "u2-s4-l2",
+      "title": "What courts do",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de49",
+        "6ad16ecf6a9c603911f9de43"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "What does the judicial branch do?",
+          "facts": [
+            "Courts review and explain laws.",
+            "They decide disagreements about the law, and if a law goes against the Constitution.",
+            "The President appoints federal judges."
+          ],
+          "newWords": [
+            {
+              "word": "review",
+              "meaning": "to look at something carefully"
+            },
+            {
+              "word": "appoint",
+              "meaning": "to choose someone for a job"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de49"
+        },
+        "readIt": {
+          "sentence": "What is one right in the Bill of Rights?",
+          "words": [
+            "What",
+            "is",
+            "one",
+            "right",
+            "in",
+            "the",
+            "Bill",
+            "of",
+            "Rights"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Freedom of speech is one right.",
+          "distractorWords": [
+            "taxes",
+            "Mexico",
+            "white"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de43"
+        }
+      }
+    },
+    {
+      "id": "u2-s4-l3",
+      "title": "The Supreme Court",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de4b",
+        "6ad16ecf6a9c603911f9de4c"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "How many seats are on the Supreme Court?",
+          "facts": [
+            "The Supreme Court has nine seats.",
+            "Usually five justices are needed to decide a case."
+          ],
+          "newWords": [
+            {
+              "word": "justice",
+              "meaning": "a judge on the Supreme Court"
+            },
+            {
+              "word": "seat",
+              "meaning": "a place for one member"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de4b"
+        },
+        "readIt": {
+          "sentence": "How many Senators does Congress have?",
+          "words": [
+            "How",
+            "many",
+            "Senators",
+            "does",
+            "Congress",
+            "have"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Congress has 100 Senators.",
+          "distractorWords": [
+            "fifty",
+            "Canada",
+            "red"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de4c"
+        }
+      }
+    },
+    {
+      "id": "u2-s4-l4",
+      "title": "Justices serve for life",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de4d",
+        "6ad16ecf6a9c603911f9de4e"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "How long do Supreme Court justices serve?",
+          "facts": [
+            "Supreme Court justices serve for life, until they retire.",
+            "Serving for life helps them stay independent of politics."
+          ],
+          "newWords": [
+            {
+              "word": "for life",
+              "meaning": "until they die or retire"
+            },
+            {
+              "word": "independent",
+              "meaning": "free to decide without pressure"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de4d"
+        },
+        "readIt": {
+          "sentence": "Why do people come to America?",
+          "words": [
+            "Why",
+            "do",
+            "people",
+            "come",
+            "to",
+            "America"
+          ]
+        },
+        "writeIt": {
+          "sentence": "People come to be free.",
+          "distractorWords": [
+            "taxes",
+            "Alaska",
+            "blue"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de4e"
+        }
+      }
+    },
+    {
+      "id": "u2-s4-l5",
+      "title": "The Chief Justice",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de4f"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "Who is the Chief Justice of the United States now?",
+          "facts": [
+            "The Chief Justice leads the Supreme Court.",
+            "These names change after elections, so Pathways looks them up on an official list.",
+            "Check the names again before your interview."
+          ],
+          "newWords": [
+            {
+              "word": "Chief Justice",
+              "meaning": "the leader of the Supreme Court"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de4f"
+        },
+        "readIt": {
+          "sentence": "Who has the right to vote?",
+          "words": [
+            "Who",
+            "has",
+            "the",
+            "right",
+            "to",
+            "vote"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Citizens have the right to vote.",
+          "distractorWords": [
+            "President",
+            "Canada",
+            "white"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de4f"
+        }
+      }
+    }
+  ]
+}
