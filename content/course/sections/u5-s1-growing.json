@@ -1,0 +1,83 @@
+{
+  "id": "u5-s1",
+  "unitId": "u5",
+  "number": 1,
+  "title": "A growing country",
+  "note": "Drafted for Prompt 12 (Unit 5). Every lesson is a draft until a person reviews it (content/course/README.md).",
+  "stops": [
+    {
+      "id": "u5-s1-l1",
+      "type": "lesson",
+      "title": "A growing country",
+      "lessonId": "u5-s1-l1"
+    },
+    {
+      "id": "u5-s1-rw",
+      "type": "readwrite",
+      "title": "Read and write",
+      "fromLessons": [
+        "u5-s1-l1"
+      ]
+    },
+    {
+      "id": "u5-s1-speak",
+      "type": "speakit",
+      "title": "Speak it!"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "u5-s1-l1",
+      "title": "A growing country",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de70",
+        "6ad16ecf6a9c603911f9de71"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "What territory did the United States buy from France in 1803?",
+          "facts": [
+            "In 1803, the United States bought the Louisiana Territory from France. It doubled the size of the country.",
+            "The United States fought several wars in the 1800s: the War of 1812, the Mexican-American War, the Civil War and the Spanish-American War.",
+            "The country kept growing. In 1867, it bought Alaska, which is now the largest state."
+          ],
+          "newWords": [
+            {
+              "word": "territory",
+              "meaning": "land that belongs to a country but is not a state"
+            },
+            {
+              "word": "double",
+              "meaning": "to become two times as big"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de70"
+        },
+        "readIt": {
+          "sentence": "What is the largest state?",
+          "words": [
+            "What",
+            "is",
+            "the",
+            "largest",
+            "state"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Alaska is the largest state.",
+          "distractorWords": [
+            "Delaware",
+            "Canada",
+            "June"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de71"
+        }
+      }
+    }
+  ]
+}

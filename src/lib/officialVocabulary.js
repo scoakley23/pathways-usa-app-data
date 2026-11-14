@@ -37,7 +37,10 @@ export function sentenceWords(sentence, allowed = new Set()) {
     .replace(APOSTROPHES, "'")
     .split(/\s+/)
     .map((raw) => {
-      const w = raw.toLowerCase().replace(/^["'(]+/, '').replace(/[,?!;:"')]+$/, '');
+      // Keep a final apostrophe if the list has the word with it ("Presidents’ Day").
+      const kept = raw.toLowerCase().replace(/^["'(]+/, '').replace(/[,?!;:")]+$/, '');
+      if (allowed.has(kept)) return kept;
+      const w = kept.replace(/'+$/, '');
       if (allowed.has(w)) return w;
       return w.replace(/\.+$/, '');
     })
