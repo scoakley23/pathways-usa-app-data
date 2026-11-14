@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { base44 } from '@/api/base44Client';
+import { interviewSessions as interviewSessionsApi } from '@/api/interview';
 import { auth } from '@/api/auth';
 import { RaisedCard, Tag } from '@/components/pathways/ui';
 import { History } from 'lucide-react';
@@ -12,10 +12,7 @@ export default function InterviewHistory() {
     (async () => {
       try {
         const user = await auth.me();
-        const res = await base44.entities.InterviewSession.filter(
-          { user_email: user.email.toLowerCase().trim() },
-          { sort: '-created_date', limit: 10 }
-        );
+        const res = await interviewSessionsApi.list({ sort: '-created_date', limit: 10 });
         setSessions(Array.isArray(res) ? res : res.items || []);
       } catch (e) {
         console.error('Failed to load interview history', e);

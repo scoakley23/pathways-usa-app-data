@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
-import { base44 } from '@/api/base44Client';
+import { interviewSessions as interviewSessionsApi, n400Progress as n400ProgressApi } from '@/api/interview';
 import { progress as progressApi } from '@/api/progress';
 import { auth } from '@/api/auth';
 import { ListenButton } from './TutorMessage';
@@ -73,11 +73,10 @@ export default function TodayCard({ language = 'en', roadmap, stopName, sheetTop
     (async () => {
       try {
         const user = await auth.me();
-        const email = user.email.toLowerCase().trim();
         const [progress, sessions, n400] = await Promise.all([
           progressApi.list({ sort: '-last_practiced', limit: 500 }).catch(() => []),
-          base44.entities.InterviewSession.filter({ user_email: email }, '-created_date', 50).catch(() => []),
-          base44.entities.N400SectionProgress.filter({ user_email: email }, null, 50).catch(() => []),
+          interviewSessionsApi.list({ sort: '-created_date', limit: 50 }).catch(() => []),
+          n400ProgressApi.list().catch(() => []),
         ]);
         if (!active) return;
         setData({
