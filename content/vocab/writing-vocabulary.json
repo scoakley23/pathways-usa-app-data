@@ -1,0 +1,122 @@
+{
+  "title": "Writing Vocabulary for the Naturalization Test",
+  "source": "content/vocab/source/writing-vocabulary.pdf (USCIS, rev. 08/08)",
+  "note": "Copied from the PDF by scripts/vocab/extract_vocabulary.py. Do not edit by hand.",
+  "categories": [
+    {
+      "category": "PEOPLE",
+      "entries": [
+        "Adams",
+        "Lincoln",
+        "Washington"
+      ]
+    },
+    {
+      "category": "CIVICS",
+      "entries": [
+        "American Indians",
+        "capital",
+        "citizens",
+        "Civil War",
+        "Congress",
+        "Father of Our Country",
+        "flag",
+        "free",
+        "freedom of speech",
+        "President",
+        "right",
+        "Senators",
+        "state/states",
+        "White House"
+      ]
+    },
+    {
+      "category": "PLACES",
+      "entries": [
+        "Alaska",
+        "California",
+        "Canada",
+        "Delaware",
+        "Mexico",
+        "New York City",
+        "United States",
+        "Washington",
+        "Washington, D.C."
+      ]
+    },
+    {
+      "category": "MONTHS",
+      "entries": [
+        "February",
+        "May",
+        "June",
+        "July",
+        "September",
+        "October",
+        "November"
+      ]
+    },
+    {
+      "category": "HOLIDAYS",
+      "entries": [
+        "Presidents’ Day",
+        "Memorial Day",
+        "Flag Day",
+        "Independence Day",
+        "Labor Day",
+        "Columbus Day",
+        "Thanksgiving"
+      ]
+    },
+    {
+      "category": "VERBS",
+      "entries": [
+        "can",
+        "come",
+        "elect",
+        "have/has",
+        "is/was/be",
+        "lives/lived",
+        "meets",
+        "pay",
+        "vote",
+        "want"
+      ]
+    },
+    {
+      "category": "OTHER (FUNCTION)",
+      "entries": [
+        "and",
+        "during",
+        "for",
+        "here",
+        "in",
+        "of",
+        "on",
+        "the",
+        "to",
+        "we"
+      ]
+    },
+    {
+      "category": "OTHER (CONTENT)",
+      "entries": [
+        "blue",
+        "dollar bill",
+        "fifty/50",
+        "first",
+        "largest",
+        "most",
+        "north",
+        "one",
+        "one hundred/100",
+        "people",
+        "red",
+        "second",
+        "south",
+        "taxes",
+        "white"
+      ]
+    }
+  ]
+}

@@ -34,9 +34,23 @@ export function isoWeek(date) {
   return `${d.getUTCFullYear()}-W${String(week).padStart(2, '0')}`;
 }
 
+// The course counts (Prompt 4): lessons completed, stars, checkpoints passed,
+// from the learner's own lesson_progress and checkpoint_results rows. Counts
+// only; which lessons or questions never leave this function. Stars are
+// summed from lesson_progress, never stored twice.
+export function courseCounts({ lessonProgress = [], checkpointResults = [] } = {}) {
+  return {
+    lessons_completed: lessonProgress.filter((l) => l?.completed || l?.completed_at).length,
+    stars: lessonProgress.reduce((t, l) => t + (Number(l?.stars) || 0), 0),
+    checkpoints_passed: checkpointResults.filter((c) => c?.passed_at).length,
+  };
+}
+
 // One learner → one summary. No email, name or account id.
 // `programCode` is the partner program the learner picked (ProgramMembership).
-export function learnerSummary({ user = {}, checkIns = [], activityDates = [], sessions = [], civicsMastered = 0, programCode = '', now = new Date() }) {
+// `lessonProgress` / `checkpointResults` are the course rows (Supabase; until
+// the export reads Supabase in Standalone Step 5 they are empty and count 0).
+export function learnerSummary({ user = {}, checkIns = [], activityDates = [], sessions = [], civicsMastered = 0, lessonProgress = [], checkpointResults = [], programCode = '', now = new Date() }) {
   const signup = toDate(user.created_date);
   const rows = byCreated(checkIns).sort((a, b) => CHECK_IN_ORDER.indexOf(a.kind) - CHECK_IN_ORDER.indexOf(b.kind));
   const signupRow = rows.find((r) => r.kind === 'signup') || {};
@@ -98,6 +112,7 @@ export function learnerSummary({ user = {}, checkIns = [], activityDates = [], s
     first_mock_score: firstMock ? Math.round(firstMock.overall_score) : null,
     latest_mock_score: latestMock ? Math.round(latestMock.overall_score) : null,
     civics_mastered: civicsMastered,
+    ...courseCounts({ lessonProgress, checkpointResults }),
     first_yes: firstYes,
     passed_first_try: firstYes.passed_tests.startsWith('month_') && !retest,
     needed_retest: retest,
@@ -187,6 +202,7 @@ export const CSV_COLUMNS = [
   'pilot_id', 'program_code', 'state', 'app_language', 'signup_week', 'stage_at_signup',
   'confidence_at_signup', 'latest_confidence', 'active_days', 'weeks_active',
   'mock_interviews_completed', 'first_mock_score', 'latest_mock_score', 'civics_questions_mastered',
+  'lessons_completed', 'stars', 'checkpoints_passed',
   ...MILESTONES.map((m) => `${m}_first_yes`),
   'would_have_without_pathways',
 ];
