@@ -1,0 +1,12 @@
+# Supabase CLI settings (Standalone Step 1). Used by `supabase link`,
+# `supabase db push` (applies supabase/migrations to your project) and the
+# local stack (`supabase start` / `supabase db reset`, which also loads
+# seed.sql: fake test accounts, never pushed to the real project).
+project_id = "pathways-usa"
+
+[db]
+major_version = 15
+
+[db.seed]
+enabled = true
+sql_paths = ["./seed.sql"]
