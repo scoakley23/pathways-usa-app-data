@@ -117,6 +117,21 @@ Supabase can't limit codes per address per hour; the closest is one code per
 address per 60 seconds plus the project-wide 30 per hour. If abuse shows up,
 add a CAPTCHA (Cloudflare Turnstile, Authentication → Attack Protection).
 
+## Edge Functions (server code, from Step 3)
+
+| Function | What it does |
+|---|---|
+| `functions/pilot-report/` | The admin pilot dashboard (`/admin/pilot`): admins only (anyone else gets 404); reads the pilot learners' rows with the service role and returns one summary per learner keyed by `pilot_id`, never an email, name or login id. The math is `functions/_shared/pilotReport.js`, an exact copy of `base44/shared/pilotReport.js` (a test checks they match; change both together) |
+
+Deploy (on your computer, after `supabase link`; again whenever a function's folder changes):
+
+```bash
+supabase functions deploy pilot-report
+```
+
+Supabase gives every Edge Function its URL, anon key and service-role key
+itself; nothing to paste. The service-role key stays on Supabase's servers.
+
 ## Names that changed from Base44 (for Step 3)
 
 | Base44 | Supabase |
