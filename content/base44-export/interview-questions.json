@@ -1,0 +1,218 @@
+[
+  {
+    "id": "699c8510f61294419ee931b2",
+    "response_type": "yes_no",
+    "section": "oath_requirements",
+    "question": "If the law requires it, are you willing to perform work of national importance under civilian direction?",
+    "expected_response": "Yes, I am willing to perform work of national importance.",
+    "tips": "",
+    "order": 6
+  },
+  {
+    "id": "699c8510f61294419ee931b1",
+    "response_type": "yes_no",
+    "section": "oath_requirements",
+    "question": "If the law requires it, are you willing to perform noncombatant services in the U.S. Armed Forces?",
+    "expected_response": "Yes, I am willing to perform noncombatant services.",
+    "tips": "",
+    "order": 5
+  },
+  {
+    "id": "699c8510f61294419ee931b0",
+    "response_type": "yes_no",
+    "section": "oath_requirements",
+    "question": "If the law requires it, are you willing to bear arms on behalf of the United States?",
+    "expected_response": "Yes, I am willing.",
+    "tips": "You can say no for religious reasons",
+    "order": 4
+  },
+  {
+    "id": "699c8510f61294419ee931af",
+    "response_type": "yes_no",
+    "section": "oath_requirements",
+    "question": "Are you willing to take the full Oath of Allegiance to the United States?",
+    "expected_response": "Yes, I am willing to take the full Oath.",
+    "tips": "",
+    "order": 3
+  },
+  {
+    "id": "699c8510f61294419ee931ae",
+    "response_type": "yes_no",
+    "section": "oath_requirements",
+    "question": "Do you understand the full Oath of Allegiance?",
+    "expected_response": "Yes, I understand the Oath.",
+    "tips": "",
+    "order": 2
+  },
+  {
+    "id": "699c8510f61294419ee931ad",
+    "response_type": "yes_no",
+    "section": "oath_requirements",
+    "question": "Do you support the Constitution and form of government of the United States?",
+    "expected_response": "Yes, I support the Constitution.",
+    "tips": "",
+    "order": 1
+  },
+  {
+    "id": "699c8510f61294419ee931ac",
+    "response_type": "yes_no",
+    "section": "morals_ethics",
+    "question": "Have you ever been in jail or prison?",
+    "expected_response": "No, I have never been in jail.",
+    "tips": "",
+    "order": 6
+  },
+  {
+    "id": "699c8510f61294419ee931ab",
+    "response_type": "yes_no",
+    "section": "morals_ethics",
+    "question": "Have you ever been arrested?",
+    "expected_response": "No, I have not been arrested.",
+    "tips": "",
+    "order": 5
+  },
+  {
+    "id": "699c8510f61294419ee931aa",
+    "response_type": "yes_no",
+    "section": "morals_ethics",
+    "question": "Have you ever been a member of the Communist Party?",
+    "expected_response": "No, I am not a Communist.",
+    "tips": "",
+    "order": 4
+  },
+  {
+    "id": "699c8510f61294419ee931a9",
+    "response_type": "yes_no",
+    "section": "morals_ethics",
+    "question": "Have you ever failed to file a tax return?",
+    "expected_response": "No, I always pay my taxes.",
+    "tips": "",
+    "order": 3
+  },
+  {
+    "id": "699c8510f61294419ee931a8",
+    "response_type": "yes_no",
+    "section": "morals_ethics",
+    "question": "Have you ever voted in the United States?",
+    "expected_response": "No, I have not voted in the U.S.",
+    "tips": "",
+    "order": 2
+  },
+  {
+    "id": "699c8510f61294419ee931a7",
+    "response_type": "yes_no",
+    "section": "morals_ethics",
+    "question": "Have you ever claimed to be a U.S. Citizen?",
+    "expected_response": "No, I have never claimed to be a U.S. Citizen.",
+    "tips": "",
+    "order": 1
+  },
+  {
+    "id": "699c8510f61294419ee931a6",
+    "response_type": "specific_answer",
+    "section": "personal_info",
+    "question": "How long have you lived at your current address?",
+    "expected_response": "[Number] years",
+    "tips": "",
+    "order": 6
+  },
+  {
+    "id": "699c8510f61294419ee931a5",
+    "response_type": "open_ended",
+    "section": "personal_info",
+    "question": "Do you work? Where?",
+    "expected_response": "Yes, I work at [Company name] or No, I don't work.",
+    "tips": "",
+    "order": 5
+  },
+  {
+    "id": "699c8510f61294419ee931a4",
+    "response_type": "specific_answer",
+    "section": "personal_info",
+    "question": "When did you become a permanent resident?",
+    "expected_response": "[Month and Year]",
+    "tips": "",
+    "order": 4
+  },
+  {
+    "id": "699c8510f61294419ee931a3",
+    "response_type": "specific_answer",
+    "section": "personal_info",
+    "question": "Where were you born?",
+    "expected_response": "[Country name]",
+    "tips": "",
+    "order": 3
+  },
+  {
+    "id": "699c8510f61294419ee931a2",
+    "response_type": "specific_answer",
+    "section": "personal_info",
+    "question": "When is your birthday?",
+    "expected_response": "[Month, Day, Year]",
+    "tips": "",
+    "order": 2
+  },
+  {
+    "id": "699c8510f61294419ee931a1",
+    "response_type": "specific_answer",
+    "section": "personal_info",
+    "question": "What is your name?",
+    "expected_response": "My name is [First and Last Name].",
+    "tips": "",
+    "order": 1
+  },
+  {
+    "id": "699c8510f61294419ee931a0",
+    "response_type": "open_ended",
+    "section": "small_talk",
+    "question": "Why do you want to become an American Citizen?",
+    "expected_response": "I want to be free and have rights.",
+    "tips": "Give any reasonable personal reason",
+    "order": 6
+  },
+  {
+    "id": "699c8510f61294419ee9319f",
+    "response_type": "specific_answer",
+    "section": "small_talk",
+    "question": "Do you understand why you are here today?",
+    "expected_response": "Yes, to become an American Citizen.",
+    "tips": "",
+    "order": 5
+  },
+  {
+    "id": "699c8510f61294419ee9319e",
+    "response_type": "specific_answer",
+    "section": "small_talk",
+    "question": "Do you know what an oath is?",
+    "expected_response": "Yes, it is a promise to tell the truth.",
+    "tips": "",
+    "order": 4
+  },
+  {
+    "id": "699c8510f61294419ee9319d",
+    "response_type": "open_ended",
+    "section": "small_talk",
+    "question": "Did you have problems getting here?",
+    "expected_response": "No, I didn't have any problems.",
+    "tips": "",
+    "order": 3
+  },
+  {
+    "id": "699c8510f61294419ee9319c",
+    "response_type": "open_ended",
+    "section": "small_talk",
+    "question": "How is the weather outside?",
+    "expected_response": "It's nice outside.",
+    "tips": "Describe the weather in simple terms",
+    "order": 2
+  },
+  {
+    "id": "699c8510f61294419ee9319b",
+    "response_type": "open_ended",
+    "section": "small_talk",
+    "question": "Hello. How are you feeling today?",
+    "expected_response": "I'm feeling good, thank you.",
+    "tips": "Any polite, positive response is fine",
+    "order": 1
+  }
+]

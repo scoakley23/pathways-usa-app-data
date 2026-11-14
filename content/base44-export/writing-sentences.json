@@ -1,0 +1,296 @@
+[
+  {
+    "id": "699d0787c7eb09e2396b1c00",
+    "category": "Holidays",
+    "difficulty": "easy",
+    "text": "Independence Day is in July."
+  },
+  {
+    "id": "699d0787c7eb09e2396b1bff",
+    "category": "Civics",
+    "difficulty": "easy",
+    "text": "They want to vote."
+  },
+  {
+    "id": "699d0787c7eb09e2396b1bfe",
+    "category": "Civics",
+    "difficulty": "easy",
+    "text": "Citizens can vote."
+  },
+  {
+    "id": "699d0787c7eb09e2396b1bfd",
+    "category": "Government",
+    "difficulty": "easy",
+    "text": "Congress makes laws."
+  },
+  {
+    "id": "699d0787c7eb09e2396b1bfc",
+    "category": "Civics",
+    "difficulty": "easy",
+    "text": "We have to pay taxes."
+  },
+  {
+    "id": "699d0787c7eb09e2396b1bfb",
+    "category": "Holidays",
+    "difficulty": "easy",
+    "text": "Labor Day is in September."
+  },
+  {
+    "id": "699d0787c7eb09e2396b1bfa",
+    "category": "Geography",
+    "difficulty": "easy",
+    "text": "The White House is in Washington, D.C."
+  },
+  {
+    "id": "699d0787c7eb09e2396b1bf9",
+    "category": "Government",
+    "difficulty": "easy",
+    "text": "The president lives in the White House."
+  },
+  {
+    "id": "699d0787c7eb09e2396b1bf8",
+    "category": "Government",
+    "difficulty": "easy",
+    "text": "We vote for president in November."
+  },
+  {
+    "id": "699d0787c7eb09e2396b1bf7",
+    "category": "Government",
+    "difficulty": "easy",
+    "text": "Congress meets in Washington, D.C."
+  },
+  {
+    "id": "699d0787c7eb09e2396b1bf6",
+    "category": "Government",
+    "difficulty": "medium",
+    "text": "We have 100 senators."
+  },
+  {
+    "id": "699d0787c7eb09e2396b1bf5",
+    "category": "Government",
+    "difficulty": "easy",
+    "text": "The people elect Congress."
+  },
+  {
+    "id": "699d0787c7eb09e2396b1bf4",
+    "category": "Civics",
+    "difficulty": "easy",
+    "text": "Freedom of speech is a right."
+  },
+  {
+    "id": "699d0787c7eb09e2396b1bf3",
+    "category": "Holidays",
+    "difficulty": "easy",
+    "text": "Memorial Day is in May."
+  },
+  {
+    "id": "699d0787c7eb09e2396b1bf2",
+    "category": "Holidays",
+    "difficulty": "easy",
+    "text": "Presidents' Day is in February."
+  },
+  {
+    "id": "699d0787c7eb09e2396b1bf1",
+    "category": "History",
+    "difficulty": "medium",
+    "text": "Lincoln was the president during the Civil War."
+  },
+  {
+    "id": "699d0787c7eb09e2396b1bf0",
+    "category": "History",
+    "difficulty": "easy",
+    "text": "George Washington was the first president."
+  },
+  {
+    "id": "699d0787c7eb09e2396b1bef",
+    "category": "History",
+    "difficulty": "medium",
+    "text": "Adams was the second president."
+  },
+  {
+    "id": "699d0787c7eb09e2396b1bee",
+    "category": "History",
+    "difficulty": "easy",
+    "text": "Washington is on the dollar bill."
+  },
+  {
+    "id": "699d0787c7eb09e2396b1bed",
+    "category": "History",
+    "difficulty": "easy",
+    "text": "Washington was the first president."
+  },
+  {
+    "id": "699d0787c7eb09e2396b1bec",
+    "category": "History",
+    "difficulty": "medium",
+    "text": "Delaware was the first state."
+  },
+  {
+    "id": "699d0787c7eb09e2396b1beb",
+    "category": "Holidays",
+    "difficulty": "easy",
+    "text": "Thanksgiving is in November."
+  },
+  {
+    "id": "699d0787c7eb09e2396b1bea",
+    "category": "Holidays",
+    "difficulty": "easy",
+    "text": "Columbus Day is in October."
+  },
+  {
+    "id": "699d0787c7eb09e2396b1be9",
+    "category": "History",
+    "difficulty": "easy",
+    "text": "People came here to be free."
+  },
+  {
+    "id": "699d0787c7eb09e2396b1be8",
+    "category": "Civics",
+    "difficulty": "easy",
+    "text": "They want to live in a free country."
+  },
+  {
+    "id": "699d0787c7eb09e2396b1be7",
+    "category": "History",
+    "difficulty": "easy",
+    "text": "American Indians lived here first."
+  },
+  {
+    "id": "699d0787c7eb09e2396b1be6",
+    "category": "Geography",
+    "difficulty": "easy",
+    "text": "Mexico is south of the United States."
+  },
+  {
+    "id": "699d0787c7eb09e2396b1be5",
+    "category": "Geography",
+    "difficulty": "easy",
+    "text": "Alaska is the largest state."
+  },
+  {
+    "id": "699d0787c7eb09e2396b1be4",
+    "category": "Geography",
+    "difficulty": "easy",
+    "text": "Canada is north of the United States."
+  },
+  {
+    "id": "699d0787c7eb09e2396b1be3",
+    "category": "Geography",
+    "difficulty": "easy",
+    "text": "California has the most people."
+  },
+  {
+    "id": "699d0787c7eb09e2396b1be2",
+    "category": "History",
+    "difficulty": "medium",
+    "text": "New York City was the first capital."
+  },
+  {
+    "id": "699d0787c7eb09e2396b1be1",
+    "category": "Holidays",
+    "difficulty": "easy",
+    "text": "Flag Day is in June."
+  },
+  {
+    "id": "699d0787c7eb09e2396b1be0",
+    "category": "Civics",
+    "difficulty": "easy",
+    "text": "The flag has red and white stripes."
+  },
+  {
+    "id": "699d0787c7eb09e2396b1bdf",
+    "category": "Civics",
+    "difficulty": "easy",
+    "text": "The flag is red, white, and blue."
+  },
+  {
+    "id": "699d0787c7eb09e2396b1bde",
+    "category": "Geography",
+    "difficulty": "easy",
+    "text": "Washington, D.C. is the capital."
+  },
+  {
+    "id": "699d0787c7eb09e2396b1bdd",
+    "category": "Geography",
+    "difficulty": "easy",
+    "text": "The United States has 50 states."
+  },
+  {
+    "id": "6931bde333aede0cb78af97b",
+    "category": "Civics",
+    "difficulty": "easy",
+    "text": "The people elect Congress."
+  },
+  {
+    "id": "6931bde333aede0cb78af97a",
+    "category": "Government",
+    "difficulty": "hard",
+    "text": "The President lives in the White House."
+  },
+  {
+    "id": "6931bde333aede0cb78af979",
+    "category": "Geography",
+    "difficulty": "medium",
+    "text": "New York City was the first capital."
+  },
+  {
+    "id": "6931bde333aede0cb78af978",
+    "category": "Civics",
+    "difficulty": "medium",
+    "text": "We pay taxes to the government."
+  },
+  {
+    "id": "6931bde333aede0cb78af977",
+    "category": "Holidays",
+    "difficulty": "easy",
+    "text": "Independence Day is in July."
+  },
+  {
+    "id": "6931bde333aede0cb78af976",
+    "category": "Government",
+    "difficulty": "hard",
+    "text": "Congress makes the laws."
+  },
+  {
+    "id": "6931bde333aede0cb78af975",
+    "category": "History",
+    "difficulty": "medium",
+    "text": "Lincoln was President during the Civil War."
+  },
+  {
+    "id": "6931bde333aede0cb78af974",
+    "category": "Geography",
+    "difficulty": "medium",
+    "text": "California has the most people."
+  },
+  {
+    "id": "6931bde333aede0cb78af973",
+    "category": "Civics",
+    "difficulty": "easy",
+    "text": "The flag is red, white, and blue."
+  },
+  {
+    "id": "6931bde333aede0cb78af972",
+    "category": "Holidays",
+    "difficulty": "easy",
+    "text": "Thanksgiving is in November."
+  },
+  {
+    "id": "6931bde333aede0cb78af971",
+    "category": "History",
+    "difficulty": "medium",
+    "text": "Washington was the first President."
+  },
+  {
+    "id": "6931bde333aede0cb78af970",
+    "category": "Government",
+    "difficulty": "easy",
+    "text": "Citizens vote for the President."
+  },
+  {
+    "id": "6931bde333aede0cb78af96f",
+    "category": "Civics",
+    "difficulty": "easy",
+    "text": "The White House is in Washington, D.C."
+  }
+]

@@ -1,0 +1,487 @@
+{
+  "note": "Quizzes and flashcards whose lesson was deleted in Base44, each given the existing lesson that matches its subject (decided Nov 14, 2026). The import (scripts/content/import-base44-csv.mjs) applies this and keeps the old id as original_lesson_id. Where a moved row repeated a card or question already in its new lesson, the two are merged into the existing row (\"merges\"): the moved row is left out and any text it adds is set on the kept row.",
+  "LessonQuiz": [
+    {
+      "id": "699df5ca59472e0d072b45f5",
+      "question": "Alexander Hamilton is famous for many things. Name one.",
+      "deleted_lesson_id": "699db0a1297afea4b73d102f",
+      "lesson_id": "699db0a1297afea4b73d1031",
+      "lesson_title": "The U.S. Constitution and the Founding Fathers"
+    },
+    {
+      "id": "699df5ca59472e0d072b45f4",
+      "question": "James Madison is famous for many things. Name one.",
+      "deleted_lesson_id": "699db0a1297afea4b73d102f",
+      "lesson_id": "699db0a1297afea4b73d1031",
+      "lesson_title": "The U.S. Constitution and the Founding Fathers"
+    },
+    {
+      "id": "699df5ca59472e0d072b45f3",
+      "question": "Thomas Jefferson is famous for many things. Name one.",
+      "deleted_lesson_id": "699db0a1297afea4b73d102f",
+      "lesson_id": "699db0a1297afea4b73d1031",
+      "lesson_title": "The U.S. Constitution and the Founding Fathers"
+    },
+    {
+      "id": "699df5ca59472e0d072b45f2",
+      "question": "George Washington is famous for many things. Name one.",
+      "deleted_lesson_id": "699db0a1297afea4b73d102f",
+      "lesson_id": "699db0a1297afea4b73d1031",
+      "lesson_title": "The U.S. Constitution and the Founding Fathers"
+    },
+    {
+      "id": "699df5ca59472e0d072b45f1",
+      "question": "Benjamin Franklin is famous for many things. Name one.",
+      "deleted_lesson_id": "699db0a1297afea4b73d102f",
+      "lesson_id": "699db0a1297afea4b73d1031",
+      "lesson_title": "The U.S. Constitution and the Founding Fathers"
+    },
+    {
+      "id": "699df5ca59472e0d072b45f0",
+      "question": "Why were the Federalist Papers important?",
+      "deleted_lesson_id": "699db0a1297afea4b73d102f",
+      "lesson_id": "699db0a1297afea4b73d1031",
+      "lesson_title": "The U.S. Constitution and the Founding Fathers"
+    },
+    {
+      "id": "699df5ca59472e0d072b45ef",
+      "question": "The Federalist Papers supported the passage of the U.S. Constitution. Name one of the writers.",
+      "deleted_lesson_id": "699db0a1297afea4b73d102f",
+      "lesson_id": "699db0a1297afea4b73d1031",
+      "lesson_title": "The U.S. Constitution and the Founding Fathers"
+    },
+    {
+      "id": "699df5ca59472e0d072b45ee",
+      "question": "What founding document was written in 1787?",
+      "deleted_lesson_id": "699db0a1297afea4b73d102f",
+      "lesson_id": "699db0a1297afea4b73d1031",
+      "lesson_title": "The U.S. Constitution and the Founding Fathers"
+    },
+    {
+      "id": "699df5ca59472e0d072b45ed",
+      "question": "Many documents influenced the U.S. Constitution. Name one.",
+      "deleted_lesson_id": "699db0a1297afea4b73d102f",
+      "lesson_id": "699db0a1297afea4b73d1031",
+      "lesson_title": "The U.S. Constitution and the Founding Fathers"
+    },
+    {
+      "id": "699df5ca59472e0d072b45ec",
+      "question": "The words 'Life, Liberty, and the pursuit of Happiness' are in what founding document?",
+      "deleted_lesson_id": "699db0a1297afea4b73d102f",
+      "lesson_id": "699db0a1297afea4b73d1041",
+      "lesson_title": "American Independence and the Revolutionary War"
+    },
+    {
+      "id": "699df5ca59472e0d072b45eb",
+      "question": "Name two important ideas from the Declaration of Independence and the U.S. Constitution.",
+      "deleted_lesson_id": "699db0a1297afea4b73d102f",
+      "lesson_id": "699db0a1297afea4b73d1031",
+      "lesson_title": "The U.S. Constitution and the Founding Fathers"
+    },
+    {
+      "id": "699df5ca59472e0d072b45ea",
+      "question": "What founding document said the American colonies were free from Britain?",
+      "deleted_lesson_id": "699db0a1297afea4b73d102f",
+      "lesson_id": "699db0a1297afea4b73d1041",
+      "lesson_title": "American Independence and the Revolutionary War"
+    },
+    {
+      "id": "699df5ca59472e0d072b45e9",
+      "question": "Why is the Declaration of Independence important?",
+      "deleted_lesson_id": "699db0a1297afea4b73d102f",
+      "lesson_id": "699db0a1297afea4b73d1041",
+      "lesson_title": "American Independence and the Revolutionary War"
+    },
+    {
+      "id": "699df5ca59472e0d072b45e8",
+      "question": "How many amendments does the U.S. Constitution have?",
+      "deleted_lesson_id": "699db0a1297afea4b73d102f",
+      "lesson_id": "699db0a1297afea4b73d1032",
+      "lesson_title": "Amendments and Constitutional Changes"
+    },
+    {
+      "id": "699df5ca59472e0d072b45e7",
+      "question": "What does 'We the People' mean?",
+      "deleted_lesson_id": "699db0a1297afea4b73d102f",
+      "lesson_id": "699db0a1297afea4b73d1031",
+      "lesson_title": "The U.S. Constitution and the Founding Fathers"
+    },
+    {
+      "id": "699df5ca59472e0d072b45e6",
+      "question": "Name one thing the U.S. Constitution does.",
+      "deleted_lesson_id": "699db0a1297afea4b73d102f",
+      "lesson_id": "699db0a1297afea4b73d1031",
+      "lesson_title": "The U.S. Constitution and the Founding Fathers"
+    },
+    {
+      "id": "699df5ca59472e0d072b45e5",
+      "question": "What is the supreme law of the land?",
+      "deleted_lesson_id": "699db0a1297afea4b73d102f",
+      "lesson_id": "699db0a1297afea4b73d1031",
+      "lesson_title": "The U.S. Constitution and the Founding Fathers"
+    },
+    {
+      "id": "699db0b8297afea4b73d1074",
+      "question": "What does the Bald Eagle symbolize?",
+      "deleted_lesson_id": "699d497a14ed981acbcb1b44",
+      "lesson_id": "699db0a1297afea4b73d1045",
+      "lesson_title": "American Symbols of Freedom and Democracy"
+    },
+    {
+      "id": "699db0b8297afea4b73d1073",
+      "question": "When was the Statue of Liberty gifted to the United States?",
+      "deleted_lesson_id": "699d497a14ed981acbcb1b44",
+      "lesson_id": "699db0a1297afea4b73d1045",
+      "lesson_title": "American Symbols of Freedom and Democracy"
+    },
+    {
+      "id": "699db0b8297afea4b73d1072",
+      "question": "What do the 13 stripes on the American flag represent?",
+      "deleted_lesson_id": "699d497a14ed981acbcb1b44",
+      "lesson_id": "699db0a1297afea4b73d1045",
+      "lesson_title": "American Symbols of Freedom and Democracy"
+    },
+    {
+      "id": "699db0b8297afea4b73d1071",
+      "question": "How many stars are on the American flag?",
+      "deleted_lesson_id": "699d497a14ed981acbcb1b44",
+      "lesson_id": "699db0a1297afea4b73d1045",
+      "lesson_title": "American Symbols of Freedom and Democracy"
+    },
+    {
+      "id": "699db0b8297afea4b73d1070",
+      "question": "What is judicial review?",
+      "deleted_lesson_id": "699d4940f1c9715faa91c6b3",
+      "lesson_id": "699db0a1297afea4b73d1038",
+      "lesson_title": "The Judicial Branch and Supreme Court"
+    },
+    {
+      "id": "699db0b8297afea4b73d106f",
+      "question": "How many justices serve on the Supreme Court?",
+      "deleted_lesson_id": "699d4940f1c9715faa91c6b3",
+      "lesson_id": "699db0a1297afea4b73d1038",
+      "lesson_title": "The Judicial Branch and Supreme Court"
+    },
+    {
+      "id": "699db0b8297afea4b73d106e",
+      "question": "What is the maximum number of terms a President can serve?",
+      "deleted_lesson_id": "699d4940f1c9715faa91c6b3",
+      "lesson_id": "699db0a1297afea4b73d1037",
+      "lesson_title": "The Executive Branch and the Presidency"
+    },
+    {
+      "id": "699db0b8297afea4b73d106d",
+      "question": "How many members does the House of Representatives have?",
+      "deleted_lesson_id": "699d4940f1c9715faa91c6b3",
+      "lesson_id": "699db0a1297afea4b73d1036",
+      "lesson_title": "Congress and the Legislative Branch"
+    },
+    {
+      "id": "699db0b8297afea4b73d106c",
+      "question": "How many members does the U.S. Senate have?",
+      "deleted_lesson_id": "699d4940f1c9715faa91c6b3",
+      "lesson_id": "699db0a1297afea4b73d1036",
+      "lesson_title": "Congress and the Legislative Branch"
+    },
+    {
+      "id": "699db0b8297afea4b73d106b",
+      "question": "Who was the commanding general of the Continental Army?",
+      "deleted_lesson_id": "699d497a14ed981acbcb1b43",
+      "lesson_id": "699db0a1297afea4b73d1041",
+      "lesson_title": "American Independence and the Revolutionary War"
+    },
+    {
+      "id": "699db0b8297afea4b73d106a",
+      "question": "How long did the Revolutionary War last?",
+      "deleted_lesson_id": "699d497a14ed981acbcb1b43",
+      "lesson_id": "699db0a1297afea4b73d1041",
+      "lesson_title": "American Independence and the Revolutionary War"
+    },
+    {
+      "id": "699db0b8297afea4b73d1069",
+      "question": "What was the Boston Tea Party?",
+      "deleted_lesson_id": "699d497a14ed981acbcb1b43",
+      "lesson_id": "699db0a1297afea4b73d1041",
+      "lesson_title": "American Independence and the Revolutionary War"
+    },
+    {
+      "id": "699db0b8297afea4b73d1068",
+      "question": "When was the Declaration of Independence adopted?",
+      "deleted_lesson_id": "699d497a14ed981acbcb1b43",
+      "lesson_id": "699db0a1297afea4b73d1041",
+      "lesson_title": "American Independence and the Revolutionary War"
+    },
+    {
+      "id": "699db0b8297afea4b73d1067",
+      "question": "Which branch of government is established by the Constitution?",
+      "deleted_lesson_id": "699d4940f1c9715faa91c6b2",
+      "lesson_id": "699db0a1297afea4b73d1031",
+      "lesson_title": "The U.S. Constitution and the Founding Fathers"
+    },
+    {
+      "id": "699db0b8297afea4b73d1066",
+      "question": "When did the Bill of Rights become part of the Constitution?",
+      "deleted_lesson_id": "699d4940f1c9715faa91c6b2",
+      "lesson_id": "699db0a1297afea4b73d1032",
+      "lesson_title": "Amendments and Constitutional Changes"
+    },
+    {
+      "id": "699db0b8297afea4b73d1065",
+      "question": "Who is known as the 'Father of the Constitution'?",
+      "deleted_lesson_id": "699d4940f1c9715faa91c6b2",
+      "lesson_id": "699db0a1297afea4b73d1031",
+      "lesson_title": "The U.S. Constitution and the Founding Fathers"
+    },
+    {
+      "id": "699db0b8297afea4b73d1064",
+      "question": "What year was the Constitutional Convention held?",
+      "deleted_lesson_id": "699d4940f1c9715faa91c6b2",
+      "lesson_id": "699db0a1297afea4b73d1031",
+      "lesson_title": "The U.S. Constitution and the Founding Fathers"
+    }
+  ],
+  "LessonFlashcard": [
+    {
+      "id": "699db0b8297afea4b73d1063",
+      "term": "Liberty Bell",
+      "deleted_lesson_id": "699d497a14ed981acbcb1b44",
+      "lesson_id": "699db0a1297afea4b73d1045",
+      "lesson_title": "American Symbols of Freedom and Democracy"
+    },
+    {
+      "id": "699db0b8297afea4b73d1062",
+      "term": "Statue of Liberty",
+      "deleted_lesson_id": "699d497a14ed981acbcb1b44",
+      "lesson_id": "699db0a1297afea4b73d1045",
+      "lesson_title": "American Symbols of Freedom and Democracy"
+    },
+    {
+      "id": "699db0b8297afea4b73d1061",
+      "term": "Bald Eagle",
+      "deleted_lesson_id": "699d497a14ed981acbcb1b44",
+      "lesson_id": "699db0a1297afea4b73d1045",
+      "lesson_title": "American Symbols of Freedom and Democracy"
+    },
+    {
+      "id": "699db0b8297afea4b73d1060",
+      "term": "American Flag",
+      "deleted_lesson_id": "699d497a14ed981acbcb1b44",
+      "lesson_id": "699db0a1297afea4b73d1045",
+      "lesson_title": "American Symbols of Freedom and Democracy"
+    },
+    {
+      "id": "699db0b8297afea4b73d105f",
+      "term": "Judicial Review",
+      "deleted_lesson_id": "699d4940f1c9715faa91c6b3",
+      "lesson_id": "699db0a1297afea4b73d1038",
+      "lesson_title": "The Judicial Branch and Supreme Court"
+    },
+    {
+      "id": "699db0b8297afea4b73d105e",
+      "term": "Supreme Court",
+      "deleted_lesson_id": "699d4940f1c9715faa91c6b3",
+      "lesson_id": "699db0a1297afea4b73d1038",
+      "lesson_title": "The Judicial Branch and Supreme Court"
+    },
+    {
+      "id": "699db0b8297afea4b73d105d",
+      "term": "Judicial Branch",
+      "deleted_lesson_id": "699d4940f1c9715faa91c6b3",
+      "lesson_id": "699db0a1297afea4b73d1038",
+      "lesson_title": "The Judicial Branch and Supreme Court"
+    },
+    {
+      "id": "699db0b8297afea4b73d105c",
+      "term": "Presidential Veto",
+      "deleted_lesson_id": "699d4940f1c9715faa91c6b3",
+      "lesson_id": "699db0a1297afea4b73d1037",
+      "lesson_title": "The Executive Branch and the Presidency"
+    },
+    {
+      "id": "699db0b8297afea4b73d105b",
+      "term": "Executive Branch",
+      "deleted_lesson_id": "699d4940f1c9715faa91c6b3",
+      "lesson_id": "699db0a1297afea4b73d1037",
+      "lesson_title": "The Executive Branch and the Presidency"
+    },
+    {
+      "id": "699db0b8297afea4b73d105a",
+      "term": "House of Representatives",
+      "deleted_lesson_id": "699d4940f1c9715faa91c6b3",
+      "lesson_id": "699db0a1297afea4b73d1036",
+      "lesson_title": "Congress and the Legislative Branch"
+    },
+    {
+      "id": "699db0b8297afea4b73d1059",
+      "term": "Senate",
+      "deleted_lesson_id": "699d4940f1c9715faa91c6b3",
+      "lesson_id": "699db0a1297afea4b73d1036",
+      "lesson_title": "Congress and the Legislative Branch"
+    },
+    {
+      "id": "699db0b8297afea4b73d1058",
+      "term": "Legislative Branch",
+      "deleted_lesson_id": "699d4940f1c9715faa91c6b3",
+      "lesson_id": "699db0a1297afea4b73d1036",
+      "lesson_title": "Congress and the Legislative Branch"
+    },
+    {
+      "id": "699db0b8297afea4b73d1057",
+      "term": "George Washington",
+      "deleted_lesson_id": "699d497a14ed981acbcb1b43",
+      "lesson_id": "699db0a1297afea4b73d1041",
+      "lesson_title": "American Independence and the Revolutionary War"
+    },
+    {
+      "id": "699db0b8297afea4b73d1056",
+      "term": "Boston Tea Party",
+      "deleted_lesson_id": "699d497a14ed981acbcb1b43",
+      "lesson_id": "699db0a1297afea4b73d1041",
+      "lesson_title": "American Independence and the Revolutionary War"
+    },
+    {
+      "id": "699db0b8297afea4b73d1055",
+      "term": "Revolutionary War",
+      "deleted_lesson_id": "699d497a14ed981acbcb1b43",
+      "lesson_id": "699db0a1297afea4b73d1041",
+      "lesson_title": "American Independence and the Revolutionary War"
+    },
+    {
+      "id": "699db0b8297afea4b73d1054",
+      "term": "Declaration of Independence",
+      "deleted_lesson_id": "699d497a14ed981acbcb1b43",
+      "lesson_id": "699db0a1297afea4b73d1041",
+      "lesson_title": "American Independence and the Revolutionary War"
+    },
+    {
+      "id": "699db0b8297afea4b73d1053",
+      "term": "Bill of Rights",
+      "deleted_lesson_id": "699d4940f1c9715faa91c6b2",
+      "lesson_id": "699db0a1297afea4b73d1031",
+      "lesson_title": "The U.S. Constitution and the Founding Fathers"
+    },
+    {
+      "id": "699db0b8297afea4b73d1052",
+      "term": "Ratification",
+      "deleted_lesson_id": "699d4940f1c9715faa91c6b2",
+      "lesson_id": "699db0a1297afea4b73d1031",
+      "lesson_title": "The U.S. Constitution and the Founding Fathers"
+    },
+    {
+      "id": "699db0b8297afea4b73d1051",
+      "term": "James Madison",
+      "deleted_lesson_id": "699d4940f1c9715faa91c6b2",
+      "lesson_id": "699db0a1297afea4b73d1031",
+      "lesson_title": "The U.S. Constitution and the Founding Fathers"
+    },
+    {
+      "id": "699db0b8297afea4b73d1050",
+      "term": "Constitutional Convention",
+      "deleted_lesson_id": "699d4940f1c9715faa91c6b2",
+      "lesson_id": "699db0a1297afea4b73d1031",
+      "lesson_title": "The U.S. Constitution and the Founding Fathers"
+    }
+  ],
+  "merges": {
+    "LessonFlashcard": [
+      {
+        "id": "699db0b8297afea4b73d1060",
+        "into": "69b703185c5f2c47940a8daf",
+        "term": "American Flag",
+        "why": "The original card already says everything the moved card says."
+      },
+      {
+        "id": "699db0b8297afea4b73d1063",
+        "into": "69b703185c5f2c47940a8dae",
+        "term": "Liberty Bell",
+        "why": "The original card already says everything the moved card says."
+      },
+      {
+        "id": "699db0b8297afea4b73d1062",
+        "into": "69b703185c5f2c47940a8dad",
+        "term": "Statue of Liberty",
+        "why": "The original card already says everything the moved card says."
+      },
+      {
+        "id": "699db0b8297afea4b73d1061",
+        "into": "69b703185c5f2c47940a8dac",
+        "term": "Bald Eagle",
+        "why": "The original card already says everything the moved card says."
+      },
+      {
+        "id": "699db0b8297afea4b73d105f",
+        "into": "69b703185c5f2c47940a8d80",
+        "term": "Judicial Review",
+        "set": {
+          "example": "In Marbury v. Madison, the Supreme Court established the power of judicial review. The Supreme Court used judicial review to overturn segregation laws."
+        },
+        "why": "The moved card's example adds a fact; the original definition already covers the moved one."
+      },
+      {
+        "id": "699db0b8297afea4b73d105e",
+        "into": "69b703185c5f2c47940a8d7f",
+        "term": "Supreme Court",
+        "why": "The original card already says everything the moved card says."
+      },
+      {
+        "id": "699db0b8297afea4b73d105c",
+        "into": "69b703185c5f2c47940a8d7d",
+        "term": "Presidential Veto",
+        "set": {
+          "example": "A President can veto a bill they disagree with, sending it back to Congress. Congress can override a presidential veto with a two-thirds majority vote."
+        },
+        "why": "The moved card's example adds a fact; the original definition already covers the moved one."
+      },
+      {
+        "id": "699db0b8297afea4b73d105a",
+        "into": "69b703185c5f2c47940a8d78",
+        "term": "House of Representatives",
+        "why": "The original card already says everything the moved card says."
+      },
+      {
+        "id": "699db0b8297afea4b73d1059",
+        "into": "69b703185c5f2c47940a8d77",
+        "term": "Senate",
+        "why": "The original card already says everything the moved card says."
+      },
+      {
+        "id": "699db0b8297afea4b73d1052",
+        "into": "69b703185c5f2c47940a8d65",
+        "term": "Ratification",
+        "set": {
+          "example": "The Constitution was ratified by nine states in 1788 and went into effect in 1789."
+        },
+        "why": "The moved card's example adds a fact; the original definition already covers the moved one."
+      },
+      {
+        "id": "699db0b8297afea4b73d1053",
+        "into": "69b703185c5f2c47940a8d64",
+        "term": "Bill of Rights",
+        "why": "The original card already says everything the moved card says."
+      },
+      {
+        "id": "699db0b8297afea4b73d1051",
+        "into": "69b703185c5f2c47940a8d63",
+        "term": "James Madison",
+        "why": "The original card already says everything the moved card says."
+      },
+      {
+        "id": "699db0b8297afea4b73d1050",
+        "into": "69b703185c5f2c47940a8d62",
+        "term": "Constitutional Convention",
+        "why": "The original card already says everything the moved card says."
+      }
+    ],
+    "LessonQuiz": [
+      {
+        "id": "699df5ca59472e0d072b45e5",
+        "into": "69b6fcb296689c2188dfd2ab",
+        "question": "What is the supreme law of the land?",
+        "set": {
+          "explanation": "The Constitution is the supreme law of the land and all other laws must follow it."
+        },
+        "why": "Same question and answer; the moved explanation is the fuller one."
+      }
+    ]
+  }
+}
