@@ -42,7 +42,7 @@ function ListenButton({ text, language, label }) {
 }
 
 // "Your tutor" screen: tone, English mix, and a preview line. The tutor is
-// always Amio, so there is no name to pick. Used in Profile.
+// always Amio, so there is no name to pick. Used in Settings.
 export default function TutorSetup({ initialProfile, onSave, onSkip, saveLabel = 'Save', saving = false }) {
   const [draft, setDraft] = useState(() => normalizeTutorProfile(initialProfile));
   const [language] = useAppLanguage();

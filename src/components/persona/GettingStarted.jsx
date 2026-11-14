@@ -39,7 +39,7 @@ const LINES = {
   program_name_label: 'Your name (optional)',
   program_name_help: "So {program} knows it's you. If you leave it blank, they see your email.",
   program_share: 'Share my progress with {program}',
-  program_share_help: 'They would see your quick check levels, the lessons you finished and the N-400 sections you read. You can change this in Profile.',
+  program_share_help: 'They would see your quick check levels, the lessons you finished and the N-400 sections you read. You can change this on Me.',
   program_error: 'Something went wrong. Please try again.',
   settings_ask: 'Last step. I will read everything out loud for you. You can turn this off, and make the text bigger.',
   read_on: 'Read out loud for me',
@@ -67,7 +67,7 @@ const LINES_ES = {
   program_name_label: 'Su nombre (opcional)',
   program_name_help: 'Para que {program} sepa que es usted. Si lo deja en blanco, verán su correo electrónico.',
   program_share: 'Compartir mi progreso con {program}',
-  program_share_help: 'Verían sus niveles de la evaluación rápida, las lecciones que terminó y las secciones del N-400 que leyó. Puede cambiarlo en Perfil.',
+  program_share_help: 'Verían sus niveles de la evaluación rápida, las lecciones que terminó y las secciones del N-400 que leyó. Puede cambiarlo después en «Yo».',
   program_error: 'Algo salió mal. Por favor, intente otra vez.',
   settings_ask: 'Último paso. Le leeré todo en voz alta. Puede apagarlo y hacer el texto más grande.',
   read_on: 'Léame en voz alta',
@@ -76,7 +76,7 @@ const LINES_ES = {
   continue: 'Continuar',
   skip: 'Saltar',
 };
-const CACHE_KEY = 'onboarding_v4';
+const CACHE_KEY = 'onboarding_v5';
 const USCIS_TEST = 'https://www.uscis.gov/citizenship/2025-test';
 
 // "Start" in several languages, for the very first screen (before the
