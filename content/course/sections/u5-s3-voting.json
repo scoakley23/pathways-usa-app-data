@@ -1,0 +1,154 @@
+{
+  "id": "u5-s3",
+  "unitId": "u5",
+  "number": 3,
+  "title": "Who can vote, who is a citizen",
+  "note": "Drafted for Prompt 12 (Unit 5). Every lesson is a draft until a person reviews it (content/course/README.md).",
+  "stops": [
+    {
+      "id": "u5-s3-l1",
+      "type": "lesson",
+      "title": "Citizenship and the vote",
+      "lessonId": "u5-s3-l1"
+    },
+    {
+      "id": "u5-s3-l2",
+      "type": "lesson",
+      "title": "Women's rights",
+      "lessonId": "u5-s3-l2"
+    },
+    {
+      "id": "u5-s3-rw",
+      "type": "readwrite",
+      "title": "Read and write",
+      "fromLessons": [
+        "u5-s3-l1",
+        "u5-s3-l2"
+      ]
+    },
+    {
+      "id": "u5-s3-speak",
+      "type": "speakit",
+      "title": "Speak it!"
+    },
+    {
+      "id": "u5-practice-interview",
+      "type": "practiceInterview",
+      "title": "Unit practice interview"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "u5-s3-l1",
+      "title": "Citizenship and the vote",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de77",
+        "6ad16ecf6a9c603911f9de78"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "What amendment says all persons born or naturalized in the United States, and subject to the jurisdiction thereof, are U.S. citizens?",
+          "facts": [
+            "After the Civil War, the 14th Amendment said that all persons born or naturalized in the United States are citizens.",
+            "In 1870, the 15th Amendment said a man could not be kept from voting because of his race.",
+            "But for almost one hundred years after that, many Black Americans were still kept from voting by unfair rules and violence. The civil rights movement fought to change this."
+          ],
+          "newWords": [
+            {
+              "word": "amendment",
+              "meaning": "a change or addition to the Constitution"
+            },
+            {
+              "word": "race",
+              "meaning": "a group of people, often by skin color or where their families come from"
+            },
+            {
+              "word": "civil rights",
+              "meaning": "the rights every citizen should have"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de77"
+        },
+        "readIt": {
+          "sentence": "Who has the right to vote?",
+          "words": [
+            "Who",
+            "has",
+            "the",
+            "right",
+            "to",
+            "vote"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Citizens have the right to vote.",
+          "distractorWords": [
+            "President",
+            "Delaware",
+            "red"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de78"
+        }
+      }
+    },
+    {
+      "id": "u5-s3-l2",
+      "title": "Women's rights",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de79",
+        "6ad16ecf6a9c603911f9de7c"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "Name one leader of the women’s rights movement in the 1800s.",
+          "facts": [
+            "In the 1800s, women could not vote in most of the country.",
+            "Leaders like Susan B. Anthony, Elizabeth Cady Stanton, Sojourner Truth and Harriet Tubman fought for women's rights.",
+            "In 1920, after World War I, the 19th Amendment gave women the right to vote."
+          ],
+          "newWords": [
+            {
+              "word": "women's rights",
+              "meaning": "equal rights for women"
+            },
+            {
+              "word": "movement",
+              "meaning": "a group of people working together for a change"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de79"
+        },
+        "readIt": {
+          "sentence": "When do we vote for President?",
+          "words": [
+            "When",
+            "do",
+            "we",
+            "vote",
+            "for",
+            "President"
+          ]
+        },
+        "writeIt": {
+          "sentence": "We vote for President in November.",
+          "distractorWords": [
+            "Congress",
+            "Mexico",
+            "blue"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de7c"
+        }
+      }
+    }
+  ]
+}
