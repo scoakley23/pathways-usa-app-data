@@ -5,17 +5,17 @@ import {
 
 describe('onboardingSteps', () => {
   it('skips the test and interview questions for people who have not applied', () => {
-    expect(onboardingSteps({ stage: 'preparing' })).toEqual(['start', 'language', 'name', 'stage', 'settings']);
-    expect(onboardingSteps({ stage: 'learning' })).toEqual(['start', 'language', 'name', 'stage', 'settings']);
-    expect(onboardingSteps({})).toEqual(['start', 'language', 'name', 'stage', 'settings']);
+    expect(onboardingSteps({ stage: 'preparing' })).toEqual(['start', 'language', 'stage', 'settings']);
+    expect(onboardingSteps({ stage: 'learning' })).toEqual(['start', 'language', 'stage', 'settings']);
+    expect(onboardingSteps({})).toEqual(['start', 'language', 'stage', 'settings']);
   });
   it('asks which test after applying, and the month once an interview is scheduled', () => {
-    expect(onboardingSteps({ stage: 'applied' })).toEqual(['start', 'language', 'name', 'stage', 'filed', 'settings']);
-    expect(onboardingSteps({ stage: 'interview' })).toEqual(['start', 'language', 'name', 'stage', 'filed', 'interview', 'settings']);
+    expect(onboardingSteps({ stage: 'applied' })).toEqual(['start', 'language', 'stage', 'filed', 'settings']);
+    expect(onboardingSteps({ stage: 'interview' })).toEqual(['start', 'language', 'stage', 'filed', 'interview', 'settings']);
   });
   it('asks about a program only when there are partner programs', () => {
-    expect(onboardingSteps({ stage: 'preparing', hasPrograms: true })).toEqual(['start', 'language', 'name', 'stage', 'program', 'settings']);
-    expect(onboardingSteps({ stage: 'interview', hasPrograms: true })).toEqual(['start', 'language', 'name', 'stage', 'filed', 'interview', 'program', 'settings']);
+    expect(onboardingSteps({ stage: 'preparing', hasPrograms: true })).toEqual(['start', 'language', 'stage', 'program', 'settings']);
+    expect(onboardingSteps({ stage: 'interview', hasPrograms: true })).toEqual(['start', 'language', 'stage', 'filed', 'interview', 'program', 'settings']);
     expect(nextStep('filed', { stage: 'applied', hasPrograms: true })).toBe('program');
   });
   it('moves to the next step and ends after settings', () => {

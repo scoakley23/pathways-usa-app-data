@@ -10,7 +10,7 @@ const PROCESSING_TIMES = 'https://egov.uscis.gov/processing-times/';
 // "When is your interview, or when do you hope to be ready?" The answer is
 // saved only on this device. Never asks which office or anything about the
 // learner's case. `bare`: just the choices, for when the question was
-// already asked (Vía's note on Today's desk).
+// already asked (Amio's note on Today's desk).
 export default function PlanSetup({ profile, language, again = false, bare = false, onDone }) {
   const { t, en, mine } = useTodayText(language);
   const [picking, setPicking] = useState(false);

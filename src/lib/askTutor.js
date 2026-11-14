@@ -1,4 +1,4 @@
-// "Ask Vía": the AI tutor chat (formerly Study Buddy). Pure helpers so the
+// "Ask Amio": the AI tutor chat (formerly Study Buddy). Pure helpers so the
 // safety rules can be tested without a browser.
 import { buildTutorInstructions, normalizeTutorProfile } from './tutorPersona';
 import { VIA_OFFICEHOLDER_RULES, buildViaOfficeholderContext } from './officeholders';

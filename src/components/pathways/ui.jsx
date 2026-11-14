@@ -189,7 +189,7 @@ export function CreamSheet({ as: Tag = 'section', flush = false, className = '',
   );
 }
 
-// --- Logo and Vía --------------------------------------------------------
+// --- Logo --------------------------------------------------------------
 
 // "Merging roads": a long road and a shorter side road merge and bend toward
 // one dot. Geometry from docs/redesign/assets/pathways-mark*.svg.
@@ -233,21 +233,6 @@ export function PathwaysLockup({ layout = 'horizontal', size, tone = 'ink', desc
         {descriptor && <span className={`mt-1 block text-base ${sub}`}>{descriptor}</span>}
       </div>
     </div>
-  );
-}
-
-// Vía's V mark: two paths meeting at a red dot, pointing down. Vía is always
-// this mark, never a face or photo. Decorative unless `label` is given
-// (e.g. "Vía · AI tutor").
-export function ViaMark({ size = 48, label, className = '' }) {
-  const a11y = label ? { role: 'img', 'aria-label': label } : { 'aria-hidden': true, focusable: 'false' };
-  return (
-    <svg viewBox="0 0 48 48" width={size} height={size} className={`shrink-0 ${className}`} {...a11y}>
-      <circle cx="24" cy="24" r="24" fill={COLORS.navy} />
-      <path d="M13 13c5 7 8.5 14 11 22" fill="none" stroke={COLORS.onNavy} strokeWidth="4" strokeLinecap="round" />
-      <path d="M35 13c-5 7-8.5 14-11 22" fill="none" stroke={COLORS.onNavy} strokeWidth="4" strokeLinecap="round" />
-      <circle cx="24" cy="36.5" r="4" fill={COLORS.star} />
-    </svg>
   );
 }
 

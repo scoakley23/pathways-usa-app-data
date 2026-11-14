@@ -33,7 +33,7 @@ const SR = typeof window !== 'undefined' ? window.SpeechRecognition || window.we
 // simply" shows the reviewed explanation (content/explanations), nothing
 // AI-written. What the learner says or types stays in memory.
 // onFinish({ correct, total }) runs after the last card.
-export default function PosterRun({ questions, language = 'en', tutorName = 'Vía', label = 'Go over them', onFinish }) {
+export default function PosterRun({ questions, language = 'en', tutorName = 'Amio', label = 'Go over them', onFinish }) {
   const [index, setIndex] = useState(0);
   const [mode, setMode] = useState('speak');
   const [answer, setAnswer] = useState('');

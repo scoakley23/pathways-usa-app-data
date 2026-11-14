@@ -1,11 +1,11 @@
 import React from 'react';
-import { ViaMark } from '@/components/pathways/ui';
+import { Amio } from '@/components/pathways/Amio';
+import { TUTOR_NAME } from '@/lib/tutorPersona';
 
-// The AI tutor is always Vía's V mark (docs/redesign/brand-spec.md), whatever
-// name the learner gives it; old picture choices (`avatar`) are ignored. Show
-// it once per screen (the tab bar, or the desktop Ask button); elsewhere the
-// tutor signs in text ("— Vía"). `decorative` hides it from screen readers
-// when the name is already next to it. `expression` is no longer used.
-export default function TutorAvatar({ name = 'Vía', size = 56, className = '', decorative = false }) {
-  return <ViaMark size={size} className={className} label={decorative ? undefined : `${name} · AI tutor`} />;
+// The AI tutor is always Amio (docs/redesign/amio-style-guide.md); old
+// picture choices (`avatar`) and old saved names are ignored. Elsewhere the
+// tutor signs in text ("— Amio"). `decorative` hides it from screen readers
+// when the name is already next to it. `mood`: one of Amio's moods.
+export default function TutorAvatar({ mood = 'happy', size = 56, onNavy = false, className = '', decorative = false }) {
+  return <Amio mood={mood} size={size} onNavy={onNavy} className={className} title={decorative ? undefined : `${TUTOR_NAME} · AI tutor`} />;
 }

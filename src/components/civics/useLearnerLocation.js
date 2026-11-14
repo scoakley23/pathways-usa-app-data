@@ -4,7 +4,7 @@ import { auth } from '@/api/auth';
 import { locationFields, locationFromProfile, profileLocationPatch } from '@/lib/learnerLocation';
 
 // The learner's saved "Who Represents Me?" place ({ state, district } or
-// null), shared by civics practice, lessons, Interview Day and Vía. Loaded once
+// null), shared by civics practice, lessons, Interview Day and Amio. Loaded once
 // from the learner's own PublicProfile; an old profile that still holds
 // AI-found names is cleaned up here (see profileLocationPatch()).
 const EVENT = 'pathways-learner-location';
@@ -38,7 +38,7 @@ function loadShared() {
   return shared;
 }
 
-/** Reads the saved place without React (e.g. right before a Vía request). */
+/** Reads the saved place without React (e.g. right before an Amio request). */
 export async function getLearnerLocation() {
   return (await loadShared()).location;
 }

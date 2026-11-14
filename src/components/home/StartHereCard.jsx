@@ -4,7 +4,7 @@ import { auth } from '@/api/auth';
 import { Button, NavyTop, PathwaysLockup } from '@/components/pathways/ui';
 
 // The splash for signed-out visitors, on navy (The Road): the stacked logo,
-// what Pathways is, Vía's hello (signed in text; her mark is in the tab bar),
+// what Pathways is, Amio's hello (signed in text),
 // and one clear place to begin (the star-red Start here). "Start here" signs them in and goes to Getting started and
 // the quick check (new students pick the student role first, which also
 // leads there).
@@ -22,7 +22,7 @@ export default function StartHereCard({ t }) {
 
         <div className="rounded-card bg-navy-2 border border-navy-line p-5">
           <p className="font-medium text-xl leading-snug">{t('splash_hello')}</p>
-          <p className="mt-3 text-label uppercase text-on-navy">{t('splash_via_label')}</p>
+          <p className="mt-3 text-label uppercase text-on-navy">{t('splash_amio_label')}</p>
         </div>
 
         <div className="space-y-3">

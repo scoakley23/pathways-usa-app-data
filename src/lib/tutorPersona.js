@@ -1,15 +1,15 @@
 // The AI tutor's identity: one config the rest of the app reads.
 
-export const DEFAULT_TUTOR_NAME = 'Vía';
-export const MAX_TUTOR_NAME_LENGTH = 20;
+// The tutor is always Amio (docs/redesign/amio-style-guide.md). Learners no
+// longer name the tutor: an old saved name in User.tutor_profile.name
+// (including the old default name) is ignored, never shown and never sent to the AI.
+export const TUTOR_NAME = 'Amio';
+export const DEFAULT_TUTOR_NAME = TUTOR_NAME; // older name for the same thing
 
-// Old tutor picture ids. The tutor is now always Vía's V mark, so these are
-// only kept so saved profiles still normalize; they are not shown.
+// Old tutor picture ids. The tutor is now always Amio, so these are only
+// kept so saved profiles still normalize; they are not shown.
 export const TUTOR_AVATARS = ['a1', 'a2', 'a3', 'a4', 'a5', 'a6'];
 export const CUSTOM_AVATAR = 'custom';
-
-// Names learners can pick with one tap (they can also type any name).
-export const SUGGESTED_TUTOR_NAMES = ['Vía', 'Tala', 'Noor', 'Mira', 'Senda', 'Lumi', 'Libby', 'Ana', 'Sol', 'Luz'];
 
 export const TUTOR_TONES = {
   warm: {
@@ -76,12 +76,12 @@ export const DEFAULT_TUTOR_PROFILE = {
   english_mix: 'mostly_mine',
 };
 
-// Fills in defaults and drops anything invalid, so callers can trust the shape.
+// Fills in defaults and drops anything invalid, so callers can trust the
+// shape. `name` is always Amio, whatever was saved.
 export function normalizeTutorProfile(profile) {
   const p = profile && typeof profile === 'object' ? profile : {};
-  const name = typeof p.name === 'string' ? p.name.trim().slice(0, MAX_TUTOR_NAME_LENGTH) : '';
   return {
-    name: name || DEFAULT_TUTOR_NAME,
+    name: TUTOR_NAME,
     avatar: TUTOR_AVATARS.includes(p.avatar) || p.avatar === CUSTOM_AVATAR ? p.avatar : DEFAULT_TUTOR_PROFILE.avatar,
     tone: TUTOR_TONES[p.tone] ? p.tone : DEFAULT_TUTOR_PROFILE.tone,
     english_mix: ENGLISH_MIX[p.english_mix] ? p.english_mix : DEFAULT_TUTOR_PROFILE.english_mix,
@@ -93,11 +93,22 @@ export function tutorMessage(profile, key) {
   return TUTOR_TONES[tone].messages[key];
 }
 
-// English voices say "Vía" as "VIE-uh"; spell it the way it should sound.
-export function spokenTutorName(name, language = 'en') {
-  const isEnglish = !language || language.toLowerCase().startsWith('en');
-  if (isEnglish && name.trim().toLowerCase() === DEFAULT_TUTOR_NAME.toLowerCase()) return 'Vee-ah';
+// How read-aloud says the tutor's name. "Amio" needs no respelling; kept as
+// one place to fix it if a voice ever says it wrong.
+export function spokenTutorName(name) {
   return name;
+}
+
+// What to save to User.tutor_profile when the learner changes the tutor's
+// tone or English mix: those two only, plus whatever name was already saved
+// (kept as it was, unused), so saving changes nothing else.
+export function tutorProfileToSave(next, saved) {
+  const clean = normalizeTutorProfile(next);
+  const out = { tone: clean.tone, english_mix: clean.english_mix };
+  const old = saved && typeof saved === 'object' ? saved : {};
+  if (typeof old.name === 'string') out.name = old.name;
+  if (old.avatar !== undefined) out.avatar = old.avatar;
+  return out;
 }
 
 // Rules that apply no matter the tone. Kept separate so tests can check them.
