@@ -84,7 +84,7 @@ describe('the course files (content/course/)', () => {
     // The Prompt 4 sample keeps its first 7 stops in order; Prompt 12 adds lessons before Speak it!.
     expect(congress.stops.slice(0, 6).map((s) => s.type)).toEqual(['lesson', 'lesson', 'lesson', 'lesson', 'readwrite', 'lesson']);
     expect(unit2.sections.at(-1).stops.at(-1).type).toBe('practiceInterview');
-    expect(Object.keys(SECTION_FILES).sort()).toEqual(['u1-s1-declaration.json', 'u1-s2-constitution.json', 'u1-s3-rights.json', 'u2-s1-branches.json', 'u2-s2-congress.json', 'u2-s3-president.json', 'u2-s4-courts.json', 'u2-s5-states.json', 'u3-s1-voting.json', 'u3-s2-serving.json', 'u3-s3-citizen.json']);
+    expect(Object.keys(SECTION_FILES).sort()).toEqual(['u1-s1-declaration.json', 'u1-s2-constitution.json', 'u1-s3-rights.json', 'u2-s1-branches.json', 'u2-s2-congress.json', 'u2-s3-president.json', 'u2-s4-courts.json', 'u2-s5-states.json', 'u3-s1-voting.json', 'u3-s2-serving.json', 'u3-s3-citizen.json', 'u4-s1-colonies.json', 'u4-s2-independence.json', 'u4-s3-nation.json']);
     expect(STOP_TYPES).toEqual(['lesson', 'readwrite', 'speakit', 'n400', 'review', 'practiceInterview']);
   });
 
@@ -109,16 +109,47 @@ describe('the course files (content/course/)', () => {
   });
 
   it('every official question in a unit\'s categories is in at least one of its lessons, and each only once', () => {
-    for (const unit of UNITS.filter((u) => u.categories?.length)) {
-      const used = unit.sections.flatMap((s) => sectionQuestionIds(s));
-      expect(new Set(used).size, `${unit.id}: a question used twice`).toBe(used.length);
-      const wanted = exported2025.filter((q) => unit.categories.includes(q.category)).map((q) => q.id);
-      expect(wanted.filter((id) => !used.includes(id)), `${unit.id}: questions not placed`).toEqual([]);
-      expect(used.filter((id) => !wanted.includes(id)), `${unit.id}: questions from another category`).toEqual([]);
+    // A category in one unit: all its questions are that unit's. A category
+    // split across units (U.S. History, Units 4-6): each unit lists its exact
+    // questions in `questionIds`, and the lists must cover the category once.
+    const categories = [...new Set(UNITS.flatMap((u) => u.categories || []))];
+    for (const category of categories) {
+      const units = UNITS.filter((u) => u.categories?.includes(category));
+      const all = exported2025.filter((q) => q.category === category).map((q) => q.id);
+      if (units.length > 1) {
+        const listed = units.flatMap((u) => u.questionIds || []);
+        expect(new Set(listed).size, `${category}: a question in two units`).toBe(listed.length);
+        expect([...listed].sort(), `${category}: the units' questionIds must cover it exactly`).toEqual([...all].sort());
+      }
+      for (const unit of units) {
+        if (!unit.sections.some((s) => s.file)) continue; // not drafted yet
+        const used = unit.sections.flatMap((s) => sectionQuestionIds(s));
+        expect(new Set(used).size, `${unit.id}: a question used twice`).toBe(used.length);
+        const wanted = units.length > 1 ? unit.questionIds : all;
+        expect(wanted.filter((id) => !used.includes(id)), `${unit.id}: questions not placed`).toEqual([]);
+        expect(used.filter((id) => !wanted.includes(id)), `${unit.id}: questions from another unit`).toEqual([]);
+      }
     }
-    expect(UNITS[0].categories).toEqual(['Principles of American Democracy']);
-    expect(UNITS[1].categories).toEqual(['System of Government']);
-    expect(UNITS[2].categories).toEqual(['Rights and Responsibilities']);
+    expect(UNITS.slice(0, 6).map((u) => u.categories)).toEqual([['Principles of American Democracy'], ['System of Government'], ['Rights and Responsibilities'], ['U.S. History'], ['U.S. History'], ['U.S. History']]);
+    expect(UNITS.slice(3, 6).map((u) => u.questionIds.length)).toEqual([17, 12, 17]);
+  });
+
+  it('the history split puts slavery with its ending, and women\'s right to vote with the 1800s leaders (Unit 5)', () => {
+    const text = (id) => exported2025.find((q) => q.id === id).question;
+    const unit5 = UNITS[4].questionIds.map(text);
+    expect(unit5).toContain('What group of people was taken and sold as slaves?');
+    expect(unit5).toContain('What U.S. war ended slavery?');
+    expect(unit5).toContain('When did all women get the right to vote?');
+    expect(UNITS[3].questionIds.map(text)).not.toContain('What territory did the United States buy from France in 1803?');
+  });
+
+  it('Unit 4 has 3 sections, 9 draft lessons, ending on a practice interview', () => {
+    const unit4 = UNITS[3];
+    expect(unit4.sections.map((s) => s.title)).toEqual(['The first Americans and the colonies', 'Independence', 'A new nation']);
+    const lessons = unit4.sections.flatMap((s) => s.lessons);
+    expect(lessons).toHaveLength(9);
+    expect(lessons.every((l) => l.status === 'draft')).toBe(true);
+    expect(unit4.sections.at(-1).stops.at(-1).type).toBe('practiceInterview');
   });
 
   it('every question a lesson uses is an official 2025 question, word for word', () => {
