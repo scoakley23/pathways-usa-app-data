@@ -1,0 +1,25 @@
+/* Pathways design tokens (chosen look: Round 28 option 5, Denim + red Amio, Lexend) */
+:root {
+  --navy: #1E2B45;        /* headers, main text */
+  --denim: #3B5B92;       /* primary buttons, links, lesson stops */
+  --red: #F0503C;         /* Amio, current stop ring. Not for text on white */
+  --red-text: #C8352B;    /* red when it must be text */
+  --gold: #FFC23D;        /* stars, Speak it! stops, streak */
+  --page: #F5F7FA;        /* app background */
+  --card: #FFFFFF;
+  --tint: #E7ECF4;        /* selected rows, chips, icon tiles */
+  --mid: #C7D1E2;         /* locked stops */
+  --line: #DCE2EC;        /* borders */
+  --chip-navy: #33415E;   /* chips and empty progress on navy */
+  --muted: #4E5A70;       /* secondary text on light */
+  --on-navy: #C9D1DF;     /* secondary text on navy */
+  --correct: #1F7A4D; --correct-bg: #E3F3EA; --correct-title: #165C3A;
+  --not-yet: #A8460E; --not-yet-bg: #FFF4EC;
+  --sky: #EAF1FA; --grass: #DCEBDD; --tree: #7FA88A;   /* journey scenery */
+  /* stop colors on the path */
+  --stop-lesson: var(--denim); --stop-read-write: #5B7FB8; --stop-speak: var(--gold);
+  --stop-n400: #6B5FA8; --stop-chest: #FFF3CC; --stop-interview: var(--navy);
+  --radius-card: 20px; --radius-button: 16px;
+  --button-height: 56px;  /* buttons have a 5px darker "lip": box-shadow 0 5px 0 */
+  --font: 'Lexend', 'Noto Sans', 'Noto Sans Arabic', 'Noto Sans SC', 'Noto Sans Devanagari', sans-serif;
+}
