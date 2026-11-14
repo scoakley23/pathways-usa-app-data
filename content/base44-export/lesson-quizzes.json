@@ -659,8 +659,11 @@
     ],
     "correct_answer": "The Constitution",
     "question": "What is the supreme law of the land?",
-    "explanation": "The U.S. Constitution is the supreme law of the land.",
-    "lesson_id": "699db0a1297afea4b73d1031"
+    "explanation": "The Constitution is the supreme law of the land and all other laws must follow it.",
+    "lesson_id": "699db0a1297afea4b73d1031",
+    "merged_from": [
+      "699df5ca59472e0d072b45e5"
+    ]
   },
   {
     "id": "69b6fcb296689c2188dfd2aa",
@@ -2092,20 +2095,6 @@
     "correct_answer": "Sets up the federal government",
     "question": "Name one thing the U.S. Constitution does.",
     "explanation": "The Constitution establishes the structure and powers of the federal government.",
-    "lesson_id": "699db0a1297afea4b73d1031",
-    "original_lesson_id": "699db0a1297afea4b73d102f"
-  },
-  {
-    "id": "699df5ca59472e0d072b45e5",
-    "options": [
-      "The Constitution",
-      "The Bill of Rights",
-      "Federal Laws",
-      "State Laws"
-    ],
-    "correct_answer": "The Constitution",
-    "question": "What is the supreme law of the land?",
-    "explanation": "The Constitution is the supreme law of the land and all other laws must follow it.",
     "lesson_id": "699db0a1297afea4b73d1031",
     "original_lesson_id": "699db0a1297afea4b73d102f"
   },
