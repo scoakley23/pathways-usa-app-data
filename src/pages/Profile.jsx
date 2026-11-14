@@ -31,8 +31,8 @@ export default function Profile() {
     fetchData();
   }, []);
 
-  // The profile menu links to a card here (#program, #settings,
-  // #delete-data): scroll to it once the page has loaded.
+  // A link with a hash (#program, #settings, #delete-data) opens that card:
+  // scroll to it once the page has loaded.
   useEffect(() => {
     if (isLoading || !hash) return;
     const el = document.getElementById(decodeURIComponent(hash.slice(1)));
