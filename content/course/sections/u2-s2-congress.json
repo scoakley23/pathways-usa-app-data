@@ -1,0 +1,331 @@
+{
+  "id": "u2-s2",
+  "unitId": "u2",
+  "number": 2,
+  "title": "Congress",
+  "note": "Sample section (Prompt 4, frame R32Path). Every lesson is a draft until a person reviews it (content/course/README.md). Read it / Write it sentences use only the official USCIS word lists (content/vocab/).",
+  "stops": [
+    {
+      "id": "u2-s2-l1",
+      "type": "lesson",
+      "title": "What Congress does",
+      "lessonId": "u2-s2-l1"
+    },
+    {
+      "id": "u2-s2-l2",
+      "type": "lesson",
+      "title": "Two parts of Congress",
+      "lessonId": "u2-s2-l2"
+    },
+    {
+      "id": "u2-s2-l3",
+      "type": "lesson",
+      "title": "How many senators?",
+      "lessonId": "u2-s2-l3"
+    },
+    {
+      "id": "u2-s2-l4",
+      "type": "lesson",
+      "title": "Senators’ terms",
+      "lessonId": "u2-s2-l4"
+    },
+    {
+      "id": "u2-s2-rw",
+      "type": "readwrite",
+      "title": "Read and write",
+      "fromLessons": [
+        "u2-s2-l1",
+        "u2-s2-l2",
+        "u2-s2-l3",
+        "u2-s2-l4"
+      ]
+    },
+    {
+      "id": "u2-s2-l5",
+      "type": "lesson",
+      "title": "Your senators",
+      "lessonId": "u2-s2-l5"
+    },
+    {
+      "id": "u2-s2-speak",
+      "type": "speakit",
+      "title": "Speak it!"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "u2-s2-l1",
+      "title": "What Congress does",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de28",
+        "6ad16ecf6a9c603911f9de2a"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "What part of the federal government writes laws?",
+          "facts": [
+            "Congress is the legislative branch of the federal government.",
+            "Congress writes the laws for the whole country.",
+            "Congress can declare war and makes the federal budget."
+          ],
+          "newWords": [
+            {
+              "word": "Congress",
+              "meaning": "the group of people who write the country's laws"
+            },
+            {
+              "word": "legislative branch",
+              "meaning": "the part of the government that makes laws"
+            },
+            {
+              "word": "budget",
+              "meaning": "a plan for how to spend money"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de28"
+        },
+        "readIt": {
+          "sentence": "What does Congress do?",
+          "words": [
+            "What",
+            "does",
+            "Congress",
+            "do"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Congress meets in Washington, D.C.",
+          "distractorWords": [
+            "President",
+            "Mexico",
+            "taxes"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de2a"
+        }
+      }
+    },
+    {
+      "id": "u2-s2-l2",
+      "title": "Two parts of Congress",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de29",
+        "6ad16ecf6a9c603911f9de2e"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "What are the two parts of the U.S. Congress?",
+          "facts": [
+            "Congress has two parts: the Senate and the House of Representatives.",
+            "The House of Representatives has 435 voting members.",
+            "Both parts meet in the U.S. Capitol in Washington, D.C."
+          ],
+          "newWords": [
+            {
+              "word": "Senate",
+              "meaning": "one part of Congress, with 100 senators"
+            },
+            {
+              "word": "House of Representatives",
+              "meaning": "the other part of Congress, with 435 voting members"
+            },
+            {
+              "word": "voting member",
+              "meaning": "a member who can vote on new laws"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de29"
+        },
+        "readIt": {
+          "sentence": "Who elects Congress?",
+          "words": [
+            "Who",
+            "elects",
+            "Congress"
+          ]
+        },
+        "writeIt": {
+          "sentence": "The people elect Congress.",
+          "distractorWords": [
+            "President",
+            "flag",
+            "free"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de2e"
+        }
+      }
+    },
+    {
+      "id": "u2-s2-l3",
+      "title": "How many senators?",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de2b",
+        "6ad16ecf6a9c603911f9de31"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "How many U.S. senators are there?",
+          "facts": [
+            "There are 100 U.S. senators.",
+            "Each state has two senators.",
+            "Big states and small states have the same number of senators."
+          ],
+          "newWords": [
+            {
+              "word": "senator",
+              "meaning": "a member of the Senate"
+            },
+            {
+              "word": "state",
+              "meaning": "one of the 50 parts of the United States"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de2b"
+        },
+        "readIt": {
+          "sentence": "How many Senators does a state have?",
+          "words": [
+            "How",
+            "many",
+            "Senators",
+            "does",
+            "a",
+            "state",
+            "have"
+          ]
+        },
+        "writeIt": {
+          "sentence": "The United States has 100 Senators.",
+          "distractorWords": [
+            "fifty",
+            "Canada",
+            "red"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de31"
+        }
+      }
+    },
+    {
+      "id": "u2-s2-l4",
+      "title": "Senators’ terms",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de2c",
+        "6ad16ecf6a9c603911f9de2f"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "How long is a term for a U.S. senator?",
+          "facts": [
+            "A U.S. senator's term is six years.",
+            "A member of the House of Representatives has a two-year term.",
+            "Voters can elect them again when the term ends."
+          ],
+          "newWords": [
+            {
+              "word": "term",
+              "meaning": "the number of years a person serves in a job"
+            },
+            {
+              "word": "elect",
+              "meaning": "to choose someone by voting"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de2c"
+        },
+        "readIt": {
+          "sentence": "Who elects the Senators of a state?",
+          "words": [
+            "Who",
+            "elects",
+            "the",
+            "Senators",
+            "of",
+            "a",
+            "state"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Citizens elect the Senators of the state.",
+          "distractorWords": [
+            "President",
+            "taxes",
+            "July"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de2f"
+        }
+      }
+    },
+    {
+      "id": "u2-s2-l5",
+      "title": "Your senators",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de2d",
+        "6ad16ecf6a9c603911f9de33"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "Who is one of your state’s U.S. senators now?",
+          "facts": [
+            "Every state has two U.S. senators, and every congressional district has one representative.",
+            "These names change after elections, so Pathways looks them up from an official list.",
+            "Check the names again before your interview."
+          ],
+          "newWords": [
+            {
+              "word": "district",
+              "meaning": "one area of a state that elects one representative"
+            },
+            {
+              "word": "representative",
+              "meaning": "a member of the House of Representatives"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de2d"
+        },
+        "readIt": {
+          "sentence": "Who are the Senators here?",
+          "words": [
+            "Who",
+            "are",
+            "the",
+            "Senators",
+            "here"
+          ]
+        },
+        "writeIt": {
+          "sentence": "We elect the Senators of our state.",
+          "distractorWords": [
+            "President",
+            "Alaska",
+            "blue"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de33"
+        }
+      }
+    }
+  ]
+}

@@ -117,7 +117,7 @@ describe('learner tables', () => {
 
   it("admins and partner staff can't read learner rows either", async () => {
     for (const person of [admin, staff]) {
-      for (const table of ['lesson_notes', 'ai_study_logs', 'outcome_checkins', 'lesson_progress', 'n400_section_progress']) {
+      for (const table of ['lesson_notes', 'ai_study_logs', 'outcome_checkins', 'lesson_progress', 'checkpoint_results', 'review_items', 'n400_section_progress']) {
         expect(await as(db, person, (q) => q(`select * from public.${table}`)), `${person.email} ${table}`).toEqual([]);
       }
     }
@@ -126,6 +126,30 @@ describe('learner tables', () => {
   it('only accepts course values in range', async () => {
     await expect(as(db, ana, (q) => insert(q, 'lesson_progress', { lesson_id: 'l9', stars: 4 }))).rejects.toThrow(/check/);
     await expect(as(db, ana, (q) => insert(q, 'review_items', { question_id: 'q9', box: 6 }))).rejects.toThrow(/check/);
+    await expect(as(db, ana, (q) => insert(q, 'lesson_progress', { lesson_id: 'l8', steps_done: 6 }))).rejects.toThrow(/check/);
+  });
+
+  it('has one review schedule: the old spaced-review fields are gone from user_progress', async () => {
+    const { rows } = await db.query(`select column_name from information_schema.columns
+      where table_schema = 'public' and table_name = 'user_progress'`);
+    const cols = rows.map((r) => r.column_name);
+    expect(cols).not.toContain('ease_factor');
+    expect(cols).not.toContain('interval');
+    expect(cols).toEqual(expect.arrayContaining(['status', 'last_result', 'best_score']));
+  });
+});
+
+describe('Write it levels (Prompt 4)', () => {
+  const level = async (person) => (await as(db, person, (q) => q('select write_level, write_level1_passes from public.profiles where user_id = auth.uid()')))[0];
+  it('two passes at level 1 move the learner to level 2, and the count stays 0-2', async () => {
+    const dee = await addUser(db, 'dee@example.test');
+    expect(await level(dee)).toEqual({ write_level: 1, write_level1_passes: 0 });
+    await as(db, dee, (q) => q('update public.profiles set write_level1_passes = 1 where user_id = auth.uid()'));
+    expect(await level(dee)).toEqual({ write_level: 1, write_level1_passes: 1 });
+    await as(db, dee, (q) => q('update public.profiles set write_level1_passes = 2 where user_id = auth.uid()'));
+    expect(await level(dee)).toEqual({ write_level: 2, write_level1_passes: 2 });
+    await expect(as(db, dee, (q) => q('update public.profiles set write_level1_passes = 3 where user_id = auth.uid()'))).rejects.toThrow(/check/);
+    await expect(as(db, dee, (q) => q('update public.profiles set lessons_per_day = 4 where user_id = auth.uid()'))).rejects.toThrow(/check/);
   });
 });
 

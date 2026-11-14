@@ -129,6 +129,25 @@ describe('CSV', () => {
     expect(CSV_COLUMNS.join(',')).not.toMatch(/email|name|date/);
   });
 
+  it('has the course counts (lessons completed, stars, checkpoints passed) as counts only', () => {
+    const s = summary({
+      lessonProgress: [
+        { lesson_id: 'u2-s2-l1', completed: true, stars: 3 },
+        { lesson_id: 'u2-s2-l2', completed: false, steps_done: 2, stars: 1 },
+      ],
+      checkpointResults: [{ section_id: 'u2-s2', correct: 9, total: 10, passed_at: '2026-11-10' }, { section_id: 'u2-s1', correct: 3, total: 7, passed_at: null }],
+    });
+    expect(s).toMatchObject({ lessons_completed: 1, stars: 4, checkpoints_passed: 1 });
+    expect(JSON.stringify(s)).not.toMatch(/u2-s2|u2-s1/);
+    const [head, row] = toCsv([s]).trim().split('\n');
+    const cols = head.split(',');
+    const cells = row.split(',');
+    expect(cells[cols.indexOf('lessons_completed')]).toBe('1');
+    expect(cells[cols.indexOf('stars')]).toBe('4');
+    expect(cells[cols.indexOf('checkpoints_passed')]).toBe('1');
+    expect(summary()).toMatchObject({ lessons_completed: 0, stars: 0, checkpoints_passed: 0 });
+  });
+
   it('quotes commas and quotes', () => {
     const csv = toCsv([{ ...summary(), program_code: 'A,"B"' }]);
     expect(csv).toContain('"A,""B"""');
