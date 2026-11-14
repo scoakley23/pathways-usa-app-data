@@ -1,0 +1,153 @@
+{
+  "id": "u3-s1",
+  "unitId": "u3",
+  "number": 1,
+  "title": "Rights and voting",
+  "note": "Drafted for Prompt 12 (Unit 3). Every lesson is a draft until a person reviews it (content/course/README.md).",
+  "stops": [
+    {
+      "id": "u3-s1-l1",
+      "type": "lesson",
+      "title": "Rights of everyone",
+      "lessonId": "u3-s1-l1"
+    },
+    {
+      "id": "u3-s1-l2",
+      "type": "lesson",
+      "title": "Who can vote",
+      "lessonId": "u3-s1-l2"
+    },
+    {
+      "id": "u3-s1-rw",
+      "type": "readwrite",
+      "title": "Read and write",
+      "fromLessons": [
+        "u3-s1-l1",
+        "u3-s1-l2"
+      ]
+    },
+    {
+      "id": "u3-s1-speak",
+      "type": "speakit",
+      "title": "Speak it!"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "u3-s1-l1",
+      "title": "Rights of everyone",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de57"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "What are three rights of everyone living in the United States?",
+          "facts": [
+            "Everyone living in the United States has some basic rights, not only citizens.",
+            "They include freedom of speech, freedom of religion, freedom of assembly and the freedom to petition the government.",
+            "Freedom of expression and the right to bear arms are also rights of everyone."
+          ],
+          "newWords": [
+            {
+              "word": "assembly",
+              "meaning": "meeting together in a group"
+            },
+            {
+              "word": "petition",
+              "meaning": "to ask the government for something in writing"
+            },
+            {
+              "word": "expression",
+              "meaning": "showing what you think or feel"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de57"
+        },
+        "readIt": {
+          "sentence": "What do people have the right to do?",
+          "words": [
+            "What",
+            "do",
+            "people",
+            "have",
+            "the",
+            "right",
+            "to",
+            "do"
+          ]
+        },
+        "writeIt": {
+          "sentence": "People have freedom of speech.",
+          "distractorWords": [
+            "taxes",
+            "Canada",
+            "June"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de57"
+        }
+      }
+    },
+    {
+      "id": "u3-s1-l2",
+      "title": "Who can vote",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de56",
+        "6ad16ecf6a9c603911f9de55"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "Who can vote in federal elections, run for federal office, and serve on a jury in the United States?",
+          "facts": [
+            "Only U.S. citizens can vote in federal elections, run for federal office and serve on a jury.",
+            "Four amendments to the Constitution are about who can vote.",
+            "They say that a male citizen of any race can vote, that women can vote, that no one has to pay a tax to vote, and that citizens 18 and older can vote."
+          ],
+          "newWords": [
+            {
+              "word": "federal",
+              "meaning": "about the whole country, not one state"
+            },
+            {
+              "word": "jury",
+              "meaning": "a group of citizens who decide a case in court"
+            },
+            {
+              "word": "poll tax",
+              "meaning": "money people once had to pay to vote"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de56"
+        },
+        "readIt": {
+          "sentence": "Who can vote for President?",
+          "words": [
+            "Who",
+            "can",
+            "vote",
+            "for",
+            "President"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Citizens can vote for the President.",
+          "distractorWords": [
+            "Senators",
+            "Alaska",
+            "blue"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de55"
+        }
+      }
+    }
+  ]
+}
