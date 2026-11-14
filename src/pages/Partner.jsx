@@ -73,7 +73,7 @@ export default function Partner() {
   const onSet = async (member, status) => {
     setBusyId(member.id);
     try {
-      const updated = await setMemberStatus(member.id, status);
+      const updated = await setMemberStatus(code, member, status);
       setMembers((list) => list.map((m) => (m.id === member.id ? { ...m, ...updated, since: m.since } : m)));
       programSummaryFor(code).then(setSummary).catch(() => {});
     } catch (e) {

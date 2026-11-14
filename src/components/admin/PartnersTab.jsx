@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Copy, Loader2, Pencil, Plus, Save } from 'lucide-react';
 import { toast } from 'sonner';
-import { base44 } from '@/api/base44Client';
+import { partnersApi } from '@/api/partners';
 import { Switch } from '@/components/ui/switch';
 import { RaisedCard, PrimaryButton, SecondaryButton, QuietButton, Tag } from '@/components/pathways/ui';
 import { shareLink } from '@/lib/programLink';
@@ -23,7 +23,7 @@ export default function PartnersTab() {
   const [form, setForm] = useState(BLANK);
   const [saving, setSaving] = useState(false);
 
-  const load = () => base44.entities.Partner.list('name', 500).then(setPartners).catch(() => setPartners([]));
+  const load = () => partnersApi.admin.list().then(setPartners).catch(() => setPartners([]));
   useEffect(() => { load(); }, []);
 
   const startEdit = (p) => {
@@ -45,8 +45,8 @@ export default function PartnersTab() {
     const data = { name: form.name.trim(), code, staff_emails: parseEmails(form.staff), share_learners: form.share_learners, active: form.active };
     setSaving(true);
     try {
-      if (editing === 'new') await base44.entities.Partner.create(data);
-      else await base44.entities.Partner.update(editing, data);
+      if (editing === 'new') await partnersApi.admin.create(data);
+      else await partnersApi.admin.update(editing, data);
       setEditing(null);
       await load();
       toast.success('Saved.');
