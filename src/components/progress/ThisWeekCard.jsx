@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { base44 } from '@/api/base44Client';
+import { interviewSessions as interviewSessionsApi, n400Progress as n400ProgressApi } from '@/api/interview';
 import { lessonProgress as lessonProgressApi } from '@/api/lessons';
 import { progress as progressApi } from '@/api/progress';
 import { content } from '@/api/content';
@@ -25,12 +25,11 @@ export default function ThisWeekCard({ language = 'en' }) {
     (async () => {
       try {
         const user = await auth.me();
-        const email = user.email.toLowerCase().trim();
         const [progress, sessions, lessons, n400, civics2025] = await Promise.all([
           progressApi.list({ sort: '-last_practiced', limit: 500 }).catch(() => []),
-          base44.entities.InterviewSession.filter({ user_email: email }, '-created_date', 50).catch(() => []),
+          interviewSessionsApi.list({ sort: '-created_date', limit: 50 }).catch(() => []),
           lessonProgressApi.list({ limit: 200 }).catch(() => []),
-          base44.entities.N400SectionProgress.filter({ user_email: email }, null, 50).catch(() => []),
+          n400ProgressApi.list().catch(() => []),
           content.civicsQuestions({ version: '2025', limit: 300 }).catch(() => []),
         ]);
         if (!active) return;

@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
-import { base44 } from '@/api/base44Client';
+import { n400Progress as n400ProgressApi } from '@/api/interview';
 import { auth } from '@/api/auth';
 import TutorLesson from '@/components/persona/TutorLesson';
 import TutorMessage from '@/components/persona/TutorMessage';
@@ -35,7 +35,7 @@ export default function N400Coach() {
     auth.me()
       .then(async (u) => {
         setUser(u);
-        const rows = await base44.entities.N400SectionProgress.filter({ user_email: u.email }).catch(() => []);
+        const rows = await n400ProgressApi.list().catch(() => []);
         setProgress(rows);
       })
       .catch(() => setUser(null));
@@ -54,18 +54,11 @@ export default function N400Coach() {
     const existing = progress.find((p) => p.section_id === section.id);
     const now = new Date().toISOString();
     try {
+      const saved = await n400ProgressApi.markRead(existing, { sectionId: section.id, title: section.title, date: now });
       if (existing) {
-        await base44.entities.N400SectionProgress.update(existing.id, { completed: true, completed_date: now });
         setProgress((prev) => prev.map((p) => (p.section_id === section.id ? { ...p, completed: true } : p)));
       } else {
-        const created = await base44.entities.N400SectionProgress.create({
-          user_email: user.email,
-          section_id: section.id,
-          section_title: section.title,
-          completed: true,
-          completed_date: now,
-        });
-        setProgress((prev) => [...prev, created]);
+        setProgress((prev) => [...prev, saved]);
       }
     } catch (e) {
       toast.error("Couldn't save that this section is done. Please try again.");

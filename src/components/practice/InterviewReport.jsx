@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Check, CheckCircle, ChevronDown, ChevronUp, XCircle } from 'lucide-react';
-import { base44 } from '@/api/base44Client';
+import { interviewSessions as interviewSessionsApi } from '@/api/interview';
 import { progress as progressApi } from '@/api/progress';
 import { content } from '@/api/content';
 import { auth } from '@/api/auth';
@@ -52,10 +52,9 @@ export default function InterviewReport({ results, onRestart, onClose, onBack })
     (async () => {
       try {
         const user = await auth.me();
-        const email = user.email.toLowerCase().trim();
         const [progress, sessions, civics2025] = await Promise.all([
           progressApi.list({ contentType: 'civics_question', sort: '-last_practiced', limit: 500 }).catch(() => []),
-          base44.entities.InterviewSession.filter({ user_email: email }, '-created_date', 50).catch(() => []),
+          interviewSessionsApi.list({ sort: '-created_date', limit: 50 }).catch(() => []),
           content.civicsQuestions({ version: '2025', limit: 300 }).catch(() => []),
         ]);
         if (!active) return;

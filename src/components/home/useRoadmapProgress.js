@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { base44 } from '@/api/base44Client';
+import { interviewSessions as interviewSessionsApi } from '@/api/interview';
 import { lessonProgress as lessonProgressApi } from '@/api/lessons';
 import { progress as progressApi } from '@/api/progress';
 import { content } from '@/api/content';
@@ -62,7 +62,7 @@ export default function useRoadmapProgress(user) {
           progressApi.count({ contentType: 'sentence', status: 'mastered' }),
           getLessonTotal(),
           lessonProgressApi.countPassed(),
-          base44.entities.InterviewSession.count({ user_email: email, passed: true }),
+          interviewSessionsApi.countPassed(),
         ]);
 
       const done = {

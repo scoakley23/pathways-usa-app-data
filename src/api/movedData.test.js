@@ -10,6 +10,7 @@ export const MOVED = {
   'PR 2, profile and activity (src/api/profile.js)': ['PublicProfile', 'ActivityDay'],
   'PR 3, practice progress (src/api/progress.js)': ['UserProgress'],
   'PR 4, lessons (src/api/lessons.js)': ['LessonProgress', 'LessonNotes'],
+  'PR 5, interview and N-400 (src/api/interview.js)': ['InterviewSession', 'N400SectionProgress'],
 };
 
 const SRC = path.resolve(__dirname, '..');
