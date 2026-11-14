@@ -51,7 +51,7 @@ describe('progress on Supabase', () => {
     const { sb, api } = setup();
     const saved = await api.save(null, {
       user_email: 'ana@example.test', content_id: 'w9', content_type: 'vocabulary', status: 'practicing',
-      last_practiced: '2026-11-14T09:00:00Z', ease_factor: 2.5, interval: 1, consecutive_correct: 1,
+      last_practiced: '2026-11-14T09:00:00Z', consecutive_correct: 1,
       last_result: 'correct', best_score: 100, last_score: 100, total_attempts: 1, not_a_column: 'x',
     });
     const row = sb.tables.user_progress.find((r) => r.content_id === 'w9');
@@ -71,11 +71,11 @@ describe('progress on Supabase', () => {
     expect(sb.tables.user_progress.find((r) => r.id === 'r3').status).toBe('mastered');
   });
 
-  it('update() changes the next review date', async () => {
+  it('update() changes only real columns', async () => {
     const { sb, api } = setup();
-    await api.update('r2', { interval: 6, last_practiced: '2026-11-14T00:00:00Z', ignored: 1 });
-    expect(sb.tables.user_progress.find((r) => r.id === 'r2')).toMatchObject({ interval: 6, last_practiced: '2026-11-14T00:00:00Z' });
-    expect(sb.calls.at(-1).payload).toEqual({ interval: 6, last_practiced: '2026-11-14T00:00:00Z' });
+    await api.update('r2', { status: 'mastered', last_practiced: '2026-11-14T00:00:00Z', interval: 6, ignored: 1 });
+    expect(sb.tables.user_progress.find((r) => r.id === 'r2')).toMatchObject({ status: 'mastered', last_practiced: '2026-11-14T00:00:00Z' });
+    expect(sb.calls.at(-1).payload).toEqual({ status: 'mastered', last_practiced: '2026-11-14T00:00:00Z' });
   });
 
   it('a save the learner may not make fails plainly (not someone else\'s row)', async () => {
@@ -83,12 +83,28 @@ describe('progress on Supabase', () => {
     await expect(api.update('r3', { status: 'practicing' })).rejects.toBeTruthy();
   });
 
-  it('the columns match the Step 1 table', async () => {
+  it('the columns match the table after every migration (Prompt 4 dropped the old review fields)', async () => {
     const fs = await import('node:fs');
     const path = await import('node:path');
-    const schema = fs.readFileSync(path.resolve(__dirname, '../../supabase/migrations/20261114000001_schema.sql'), 'utf8');
-    const table = schema.slice(schema.indexOf('create table public.user_progress'), schema.indexOf('unique (user_id, content_type, content_id)'));
-    for (const col of PROGRESS_COLUMNS) expect(table).toMatch(new RegExp(`\\n\\s+"?${col}"?\\s`));
+    const dir = path.resolve(__dirname, '../../supabase/migrations');
+    const sql = fs.readdirSync(dir).sort().map((f) => fs.readFileSync(path.join(dir, f), 'utf8')).join('\n');
+    const start = sql.indexOf('create table public.user_progress');
+    const table = sql.slice(start, sql.indexOf('\n);', start));
+    const dropped = [...sql.matchAll(/alter table public\.user_progress drop column (?:if exists )?"?([a-z_]+)"?/g)].map((m) => m[1]);
+    expect(dropped).toEqual(expect.arrayContaining(['ease_factor', 'interval']));
+    for (const col of PROGRESS_COLUMNS) {
+      expect(table, col).toMatch(new RegExp(`\\n\\s+"?${col}"?\\s`));
+      expect(dropped, col).not.toContain(col);
+    }
+  });
+
+  it('never sends the dropped review fields to Supabase', async () => {
+    const { sb, api } = setup();
+    await api.save(null, { content_id: 'q7', content_type: 'civics_question', status: 'practicing', ease_factor: 2.5, interval: 1, consecutive_correct: 1 });
+    const row = sb.tables.user_progress.find((r) => r.content_id === 'q7');
+    expect(row).not.toHaveProperty('ease_factor');
+    expect(row).not.toHaveProperty('interval');
+    expect(row.consecutive_correct).toBe(1);
   });
 });
 

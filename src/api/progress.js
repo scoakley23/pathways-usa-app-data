@@ -14,8 +14,11 @@ import { getSupabase } from '@/api/supabaseClient';
 import { auth as appAuth } from '@/api/auth';
 
 // The Supabase columns a screen may write (user_id and id are set here).
+// Base44's old review fields (ease_factor, interval) are not among them:
+// Prompt 4 removed them from user_progress, and on Supabase the one review
+// schedule is review_items (src/api/review.js). Base44 still gets them.
 export const PROGRESS_COLUMNS = [
-  'content_id', 'content_type', 'status', 'last_practiced', 'ease_factor', 'interval',
+  'content_id', 'content_type', 'status', 'last_practiced',
   'consecutive_correct', 'last_result', 'best_score', 'last_score', 'total_attempts',
 ];
 
