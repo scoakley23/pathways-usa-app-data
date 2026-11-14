@@ -10,3 +10,39 @@ major_version = 15
 [db.seed]
 enabled = true
 sql_paths = ["./seed.sql"]
+
+# Sign-in (Standalone Step 2): a 6-digit code by email, never a magic link.
+# These are for the local stack. Your hosted project is set in the Supabase
+# dashboard to the same values (see supabase/README.md, "Sign-in").
+[auth]
+enabled = true
+site_url = "http://localhost:5173"
+additional_redirect_urls = ["https://next.pathwaysusa.org"]
+jwt_expiry = 3600
+enable_refresh_token_rotation = true
+enable_signup = true
+
+[auth.rate_limit]
+# Code emails per hour for the whole project.
+email_sent = 30
+# Sign-in requests and code checks per 5 minutes per IP address.
+sign_in_sign_ups = 30
+token_verifications = 30
+
+[auth.email]
+enable_signup = true
+otp_length = 6
+# Seconds a code works (10 minutes). Matches CODE_MINUTES in src/api/supabaseAuth.js.
+otp_expiry = 600
+# Minimum gap between two codes to the same email. Matches RESEND_SECONDS.
+max_frequency = "60s"
+
+# Returning learners get the "Magic Link" email, new ones "Confirm signup":
+# both show only the code.
+[auth.email.template.magic_link]
+subject = "Your Pathways code: {{ .Token }}"
+content_path = "./supabase/templates/sign-in-code.html"
+
+[auth.email.template.confirmation]
+subject = "Your Pathways code: {{ .Token }}"
+content_path = "./supabase/templates/sign-in-code.html"

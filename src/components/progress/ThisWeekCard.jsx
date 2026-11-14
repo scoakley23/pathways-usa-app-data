@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { base44 } from '@/api/base44Client';
+import { auth } from '@/api/auth';
 import useTodayText from '@/components/persona/useTodayText';
 import { Card } from '@/components/pathways/ui';
 import { dayIndex } from '@/lib/studyPlan';
@@ -20,7 +21,7 @@ export default function ThisWeekCard({ language = 'en' }) {
     let active = true;
     (async () => {
       try {
-        const user = await base44.auth.me();
+        const user = await auth.me();
         const email = user.email.toLowerCase().trim();
         const [progress, sessions, lessons, n400, civics2025] = await Promise.all([
           base44.entities.UserProgress.filter({ user_email: email }, '-last_practiced', 500).catch(() => []),

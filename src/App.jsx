@@ -2,13 +2,13 @@ import './App.css'
 import { Toaster } from "@/components/ui/toaster"
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClientInstance } from '@/lib/query-client'
-import VisualEditAgent from '@/lib/VisualEditAgent'
-import NavigationTracker from '@/lib/NavigationTracker'
 import { pagesConfig } from './pages.config'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
+import SignInScreen from '@/components/auth/SignInScreen';
+import SessionNotice from '@/components/auth/SessionNotice';
 import N400Guide from './pages/N400Guide';
 import LawyerPage from './pages/LawyerPage';
 import TutorDemo from './pages/TutorDemo';
@@ -21,6 +21,10 @@ import InterviewDay from './pages/InterviewDay';
 import PilotDashboard from './components/pilot-admin/PilotDashboard';
 import Study from './pages/Study';
 import StudyRedirect from './components/study/StudyRedirect';
+import MePage from './components/shell/MePage';
+import SettingsPage from './components/shell/SettingsPage';
+import InterviewPage from './components/shell/InterviewPage';
+import AskAmio from './components/ai/StudyBuddy';
 
 // Lessons and Practice are tabs of Study now; their old addresses redirect.
 const STUDY_REDIRECTS = { Lessons: 'lessons', Practice: 'practice' };
@@ -34,10 +38,10 @@ const LayoutWrapper = ({ children, currentPageName }) => Layout ?
   : <>{children}</>;
 
 const AuthenticatedApp = () => {
-  const { isLoadingAuth, isLoadingPublicSettings, authError, isAuthenticated, navigateToLogin } = useAuth();
+  const { isLoadingAuth, authError, navigateToLogin } = useAuth();
 
   // Show loading spinner while checking app public settings or auth
-  if (isLoadingPublicSettings || isLoadingAuth) {
+  if (isLoadingAuth) {
     return (
       <div className="fixed inset-0 flex items-center justify-center">
         <div className="w-8 h-8 border-4 border-pw-line border-t-pw-navy rounded-full animate-spin"></div>
@@ -45,7 +49,8 @@ const AuthenticatedApp = () => {
     );
   }
 
-  // Handle authentication errors
+  // Base44's login states (only while the sign-in switch in src/api/auth.js
+  // is off; Supabase has no "not registered" state).
   if (authError) {
     if (authError.type === 'user_not_registered') {
       return <UserNotRegisteredError />;
@@ -59,6 +64,8 @@ const AuthenticatedApp = () => {
   // Render the main app
   return (
     <Routes>
+      {/* Sign in with a 6-digit email code (Supabase), or Base44's own page. */}
+      <Route path="sign-in" element={<SignInScreen />} />
       <Route path="/" element={
         <LayoutWrapper currentPageName={mainPageKey}>
           <MainPage />
@@ -75,6 +82,28 @@ const AuthenticatedApp = () => {
           )}
         />
       ))}
+      {/* The app shell (Prompt 3): the Interview and Me tabs, Settings, and
+          Ask Amio (under Me). The old /Profile redirects to Me. */}
+      <Route path="interview" element={
+        <LayoutWrapper currentPageName="Interview">
+          <InterviewPage />
+        </LayoutWrapper>
+      } />
+      <Route path="me" element={
+        <LayoutWrapper currentPageName="Me">
+          <MePage />
+        </LayoutWrapper>
+      } />
+      <Route path="settings" element={
+        <LayoutWrapper currentPageName="Settings">
+          <SettingsPage />
+        </LayoutWrapper>
+      } />
+      <Route path="ask" element={
+        <LayoutWrapper currentPageName="AskAmio">
+          <AskAmio />
+        </LayoutWrapper>
+      } />
       <Route path="study" element={
         <LayoutWrapper currentPageName="Study">
           <Study />
@@ -145,11 +174,10 @@ function App() {
     <AuthProvider>
       <QueryClientProvider client={queryClientInstance}>
         <Router>
-          <NavigationTracker />
           <AuthenticatedApp />
+          <SessionNotice />
         </Router>
         <Toaster />
-        <VisualEditAgent />
       </QueryClientProvider>
     </AuthProvider>
   )

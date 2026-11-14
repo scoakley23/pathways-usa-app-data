@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
+import { auth } from '@/api/auth';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -7,7 +8,6 @@ import { MessageCircle, Calendar, Volume2 } from 'lucide-react';
 import PageTop from '@/components/pathways/PageTop';
 import { RaisedCard, CreamSheet } from '@/components/pathways/ui';
 import { Link } from 'react-router-dom';
-import { createPageUrl } from '@/utils';
 import { speakText } from "@/components/utils/textToSpeech";
 
 export default function StudyHistory() {
@@ -17,7 +17,7 @@ export default function StudyHistory() {
   useEffect(() => {
     const fetchLogs = async () => {
       try {
-        const user = await base44.auth.me();
+        const user = await auth.me();
         const history = await base44.entities.AIStudyLog.filter({ user_email: user.email }, '-created_at');
         setLogs(history);
       } catch (e) {
@@ -55,9 +55,9 @@ export default function StudyHistory() {
               </span>
            </div>
            <h3 className="text-xl font-extrabold">No questions yet</h3>
-           <p className="text-base text-pw-muted mt-1 mb-5">Use Ask Amio (the chat button) to ask questions while you practice!</p>
-           <Link to={createPageUrl('Practice')} className="inline-block w-full sm:w-auto">
-             <Button className="w-full sm:w-auto">Go to Practice</Button>
+           <p className="text-base text-pw-muted mt-1 mb-5">Ask Amio about your lessons or the interview. Your questions show up here.</p>
+           <Link to="/ask" className="inline-block w-full sm:w-auto">
+             <Button className="w-full sm:w-auto">Ask Amio</Button>
            </Link>
         </RaisedCard>
       ) : (

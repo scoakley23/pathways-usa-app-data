@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { base44 } from '@/api/base44Client';
+import { auth } from '@/api/auth';
 import { DEFAULT_TUTOR_PROFILE, normalizeTutorProfile, tutorProfileToSave } from '@/lib/tutorPersona';
 
 // Loads and saves the learner's tutor profile (User.tutor_profile).
@@ -11,7 +11,7 @@ let shared = null; // Promise<{ profile, hasProfile, saved }>
 
 function loadShared() {
   if (!shared) {
-    shared = base44.auth.me()
+    shared = auth.me()
       .then((user) => ({ profile: normalizeTutorProfile(user?.tutor_profile), hasProfile: !!user?.tutor_profile, saved: user?.tutor_profile || null }))
       .catch(() => {
         shared = null; // signed out or offline: try again next time
@@ -47,7 +47,7 @@ export default function useTutorProfile() {
   const saveProfile = useCallback(async (next) => {
     const { saved } = await loadShared();
     const toSave = tutorProfileToSave(next, saved);
-    await base44.auth.updateMe({ tutor_profile: toSave });
+    await auth.updateMe({ tutor_profile: toSave });
     const clean = normalizeTutorProfile(toSave);
     shared = Promise.resolve({ profile: clean, hasProfile: true, saved: toSave });
     setProfile(clean);

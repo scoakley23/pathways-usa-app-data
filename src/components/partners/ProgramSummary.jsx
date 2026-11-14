@@ -63,7 +63,7 @@ export function SharedLearners({ learners }) {
       <h2 id="partner-shared" className="font-display text-[28px] leading-tight">
         Learners who share their progress <span className="text-pw-muted">{learners.length}</span>
       </h2>
-      <p className="text-base text-pw-muted">Each learner chooses this on their Profile and can turn it off.</p>
+      <p className="text-base text-pw-muted">Each learner chooses this on their Me page and can turn it off.</p>
       <RaisedCard padding="px-5 py-2">
         {learners.length === 0
           ? <p className="py-3 text-base text-pw-muted">No one shares their progress yet.</p>

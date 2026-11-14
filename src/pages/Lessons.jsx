@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
+import { auth } from '@/api/auth';
 import { ArrowRight, BookOpen, Check, ChevronDown, Star, Video } from 'lucide-react';
 import LessonDetail from '@/components/lessons/LessonDetail.jsx';
 import StudyTop from '@/components/study/StudyTop';
@@ -47,7 +48,7 @@ export default function Lessons() {
       setLoading(true);
       let currentUser = null;
       try {
-        currentUser = await base44.auth.me();
+        currentUser = await auth.me();
         setUser(currentUser);
       } catch (e) {
         // Not logged in — lessons still load

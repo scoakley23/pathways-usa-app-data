@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { BookOpen, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { base44 } from '@/api/base44Client';
+import { auth } from '@/api/auth';
 import TopicArt, { TOPIC_ART } from '@/components/art/TopicArt';
 import RepresentativeFinder from '@/components/civics/RepresentativeFinder';
 import useLearnerLocation from '@/components/civics/useLearnerLocation';
@@ -65,7 +66,7 @@ export default function LearnCivics() {
   const [runId, setRunId] = useState(0);
 
   useEffect(() => {
-    base44.auth.me().then(setUser).catch(() => setUser(null));
+    auth.me().then(setUser).catch(() => setUser(null));
   }, []);
 
   const load = useCallback(async () => {

@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { base44 } from '@/api/base44Client';
+import { auth } from '@/api/auth';
 import TutorLesson from '@/components/persona/TutorLesson';
 import TutorMessage from '@/components/persona/TutorMessage';
 import useTutorProfile from '@/components/persona/useTutorProfile';
@@ -31,7 +32,7 @@ export default function N400Coach() {
   const requested = useMemo(() => new URLSearchParams(window.location.search).get('section'), []);
 
   useEffect(() => {
-    base44.auth.me()
+    auth.me()
       .then(async (u) => {
         setUser(u);
         const rows = await base44.entities.N400SectionProgress.filter({ user_email: u.email }).catch(() => []);

@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { base44 } from '@/api/base44Client';
+import { auth } from '@/api/auth';
 import { Button } from "@/components/ui/button";
-import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card";
+import { Card } from "@/components/pathways/ui";
 import {
   AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogTitle,
   AlertDialogDescription, AlertDialogFooter, AlertDialogCancel, AlertDialogAction
 } from "@/components/ui/alert-dialog";
-import { Trash2, Loader2, AlertTriangle } from 'lucide-react';
+import { Trash2, Loader2 } from 'lucide-react';
 import { toast } from "sonner";
 import { deleteSteps, FUNCTION_STEPS, ACCOUNT_RESET } from '@/lib/deleteMyData';
 
@@ -47,11 +48,11 @@ export default function DeleteMyData({ userEmail }) {
       // The sign-in account itself can't be deleted from the app, so reset
       // the learner fields stored on it.
       setProgress('Resetting your account details...');
-      await base44.auth.updateMe(ACCOUNT_RESET);
+      await auth.updateMe(ACCOUNT_RESET);
       clearDeviceData();
       setProgress('Done. Signing you out...');
       toast.success("Your data has been deleted. You are being signed out.");
-      setTimeout(async () => { await base44.auth.logout(); }, 1500);
+      setTimeout(async () => { await auth.signOut(); window.location.href = '/'; }, 1500);
     } catch (err) {
       console.error("Error deleting user data", err);
       toast.error("Something went wrong while deleting your data. Please try again.");
@@ -61,22 +62,23 @@ export default function DeleteMyData({ userEmail }) {
   };
 
   return (
-    <Card className="border-2 border-pw-red-ink/40 bg-pw-red-soft/40">
-      <CardHeader className="p-5 sm:p-6">
-        <CardTitle className="flex items-center gap-3 text-xl text-pw-red-ink">
-          <span className="w-10 h-10 rounded-2xl bg-pw-red-soft text-pw-red-ink grid place-items-center shrink-0">
-            <AlertTriangle className="w-5 h-5" aria-hidden="true" />
-          </span>
-          Delete My Data
-        </CardTitle>
-        <CardDescription className="text-pw-navy">
+    <Card className="space-y-3">
+      {/* Settings (frame R30Settings): the short line first, the full list
+          on request. What it does is unchanged. */}
+      <div>
+        <h2 className="text-lg font-bold text-red-text">Delete all my data</h2>
+        <p className="text-base text-muted">Erases everything, on our side and on this phone.</p>
+      </div>
+      <details className="group text-small text-muted">
+        <summary className="min-h-tap flex items-center cursor-pointer font-semibold text-navy underline underline-offset-4 decoration-navy/40">What gets erased</summary>
+        <p className="mt-1 leading-relaxed">
           Permanently erase everything tied to your email: your chat messages (including the copies in the other person's history),
-          AI study buddy history, lesson notes, progress & quiz scores, mock interview scores, N-400 guide section completion, assignments,
-          tutor connections, notifications, saved places, your answers to the "Help us improve Pathways" and check-in questions, the days you used the app, the record of reminder emails sent to you, and your profile. Your points, badges, display name, tutor settings, quick check levels, state, program code, app language and reminder settings are reset, and the app's data on
+          your questions to Amio, lesson notes, progress & quiz scores, mock interview scores, N-400 guide section completion, assignments,
+          program connections, notifications, saved places, your answers to the "Help us improve Pathways" and check-in questions, the days you used the app, the record of reminder emails sent to you, and your profile. Your points, badges, display name, tutor settings, quick check levels, state, program code, app language and reminder settings are reset, and the app's data on
           this device (your target date, language, and settings) is cleared. This cannot be undone.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="p-5 pt-0 sm:p-6 sm:pt-0">
+        </p>
+      </details>
+      <div>
         {deleting ? (
           <p role="status" className="text-base font-bold text-pw-red-ink flex items-center gap-2">
             <Loader2 className="w-4 h-4 animate-spin shrink-0" aria-hidden="true" /> {progress}
@@ -84,7 +86,7 @@ export default function DeleteMyData({ userEmail }) {
         ) : (
           <AlertDialog>
             <AlertDialogTrigger asChild>
-              <Button variant="destructive" className="w-full sm:w-auto">
+              <Button variant="destructive" className="w-full min-h-tap">
                 <Trash2 className="w-4 h-4" aria-hidden="true" /> Delete all my data
               </Button>
             </AlertDialogTrigger>
@@ -108,7 +110,7 @@ export default function DeleteMyData({ userEmail }) {
             </AlertDialogContent>
           </AlertDialog>
         )}
-      </CardContent>
+      </div>
     </Card>
   );
 }

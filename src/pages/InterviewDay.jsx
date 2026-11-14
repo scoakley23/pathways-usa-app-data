@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Loader2 } from 'lucide-react';
-import { base44 } from '@/api/base44Client';
+import { auth } from '@/api/auth';
 import PageTop from '@/components/pathways/PageTop';
 import { PrimaryButton, RaisedCard, CreamSheet } from '@/components/pathways/ui';
 import InterviewDayGuide from '@/components/interview-day/InterviewDayGuide';
@@ -28,7 +28,7 @@ export default function InterviewDay() {
   const [running, setRunning] = useState(false);
 
   useEffect(() => {
-    base44.auth.me().then(setUser).catch(() => setUser(null));
+    auth.me().then(setUser).catch(() => setUser(null));
   }, []);
 
   const start = () => { setRunning(true); window.scrollTo({ top: 0 }); };
@@ -73,7 +73,7 @@ export default function InterviewDay() {
         <RaisedCard className="space-y-3 text-pw-navy">
           <h2 className="text-[28px] leading-snug font-display font-normal">Full rehearsal</h2>
           <p className="text-base">Sign in to practice the whole interview, start to finish.</p>
-          <PrimaryButton className="w-full" onClick={() => base44.auth.redirectToLogin(window.location.href)}>Sign in</PrimaryButton>
+          <PrimaryButton className="w-full" onClick={() => auth.goToSignIn()}>Sign in</PrimaryButton>
         </RaisedCard>
       )}
       </div>

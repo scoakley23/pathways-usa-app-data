@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Check, Loader2, RotateCcw, CalendarCheck } from 'lucide-react';
 import { toast } from 'sonner';
 import { base44 } from '@/api/base44Client';
+import { auth } from '@/api/auth';
 import TopicArt, { TOPIC_ART } from '@/components/art/TopicArt';
 import TutorLesson from '@/components/persona/TutorLesson';
 import TutorMessage from '@/components/persona/TutorMessage';
@@ -69,7 +70,7 @@ export default function ReviewCivics() {
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
-    base44.auth.me().then(setUser).catch(() => setUser(null));
+    auth.me().then(setUser).catch(() => setUser(null));
   }, []);
 
   const load = useCallback(async () => {
