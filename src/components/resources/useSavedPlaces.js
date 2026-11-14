@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { base44 } from '@/api/base44Client';
+import { savedPlaces } from '@/api/savedPlaces';
 import { useAuth } from '@/lib/AuthContext';
 
 // The signed-in learner's saved places (owner-only SavedPlace records). Only
@@ -14,7 +14,7 @@ export default function useSavedPlaces() {
 
   const { data: records = [], isLoading } = useQuery({
     queryKey,
-    queryFn: () => base44.entities.SavedPlace.filter({ user_email: email }, '-created_date', 1000),
+    queryFn: () => savedPlaces.list(),
     enabled: !!email,
     staleTime: 5 * 60 * 1000,
   });
@@ -24,9 +24,9 @@ export default function useSavedPlaces() {
     mutationFn: async (resourceId) => {
       const existing = records.filter((r) => r.resource_id === resourceId);
       if (existing.length) {
-        await Promise.all(existing.map((r) => base44.entities.SavedPlace.delete(r.id)));
+        await savedPlaces.remove(resourceId, existing);
       } else {
-        await base44.entities.SavedPlace.create({ user_email: email, resource_id: resourceId });
+        await savedPlaces.add(resourceId);
       }
     },
     // Show the change right away; the refetch confirms it.

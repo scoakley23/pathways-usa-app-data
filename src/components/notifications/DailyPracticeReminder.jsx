@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { base44 } from '@/api/base44Client';
+import { notifications as notificationsApi } from '@/api/notifications';
 import { lessonProgress as lessonProgressApi } from '@/api/lessons';
 import { progress as progressApi } from '@/api/progress';
 import { auth } from '@/api/auth';
@@ -45,8 +45,7 @@ export default function DailyPracticeReminder() {
         }
 
         // Student hasn't practiced today — create reminder
-        await base44.entities.Notification.create({
-          user_email: normalizedEmail,
+        await notificationsApi.create({
           type: 'system',
           title: 'Your practice for today',
           message:
