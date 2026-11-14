@@ -1,0 +1,111 @@
+{
+  "title": "Reading Vocabulary for the Naturalization Test",
+  "source": "content/vocab/source/reading-vocabulary.pdf (USCIS, rev. 08/08)",
+  "note": "Copied from the PDF by scripts/vocab/extract_vocabulary.py. Do not edit by hand.",
+  "categories": [
+    {
+      "category": "PEOPLE",
+      "entries": [
+        "Abraham Lincoln",
+        "George Washington"
+      ]
+    },
+    {
+      "category": "CIVICS",
+      "entries": [
+        "American flag",
+        "Bill of Rights",
+        "capital",
+        "citizen",
+        "city",
+        "Congress",
+        "country",
+        "Father of Our Country",
+        "government",
+        "President",
+        "right",
+        "Senators",
+        "state/states",
+        "White House"
+      ]
+    },
+    {
+      "category": "PLACES",
+      "entries": [
+        "America",
+        "United States",
+        "U.S."
+      ]
+    },
+    {
+      "category": "HOLIDAYS",
+      "entries": [
+        "Presidents’ Day",
+        "Memorial Day",
+        "Flag Day",
+        "Independence Day",
+        "Labor Day",
+        "Columbus Day",
+        "Thanksgiving"
+      ]
+    },
+    {
+      "category": "QUESTION WORDS",
+      "entries": [
+        "How",
+        "What",
+        "When",
+        "Where",
+        "Who",
+        "Why"
+      ]
+    },
+    {
+      "category": "VERBS",
+      "entries": [
+        "can",
+        "come",
+        "do/does",
+        "elects",
+        "have/has",
+        "is/are/was/be",
+        "lives/lived",
+        "meet",
+        "name",
+        "pay",
+        "vote",
+        "want"
+      ]
+    },
+    {
+      "category": "OTHER (FUNCTION)",
+      "entries": [
+        "a",
+        "for",
+        "here",
+        "in",
+        "of",
+        "on",
+        "the",
+        "to",
+        "we"
+      ]
+    },
+    {
+      "category": "OTHER (CONTENT)",
+      "entries": [
+        "colors",
+        "dollar bill",
+        "first",
+        "largest",
+        "many",
+        "most",
+        "north",
+        "one",
+        "people",
+        "second",
+        "south"
+      ]
+    }
+  ]
+}
