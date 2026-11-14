@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
+import { content } from '@/api/content';
 import { auth } from '@/api/auth';
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -47,9 +48,9 @@ export default function Progress() {
       
       // Fetch Content for mapping names
       const [sentences, vocab, questions] = await Promise.all([
-        base44.entities.Sentence.list(),
-        base44.entities.VocabularyWord.list(),
-        base44.entities.CivicsQuestion.list()
+        content.writingSentences(),
+        content.vocabularyWords(),
+        content.civicsQuestions()
       ]);
 
       const contentMap = {

@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { BookOpen, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { base44 } from '@/api/base44Client';
+import { content } from '@/api/content';
 import { auth } from '@/api/auth';
 import TopicArt, { TOPIC_ART } from '@/components/art/TopicArt';
 import RepresentativeFinder from '@/components/civics/RepresentativeFinder';
@@ -74,7 +75,7 @@ export default function LearnCivics() {
     setPicked(null);
     try {
       const [questions, progress] = await Promise.all([
-        base44.entities.CivicsQuestion.filter({ version: '2025' }, null, 500),
+        content.civicsQuestions({ version: '2025', limit: 500 }),
         base44.entities.UserProgress.filter({ user_email: user.email, content_type: 'civics_question' }, null, 1000),
       ]);
       setPicked(pickNextToLearn(questions, progress, count));

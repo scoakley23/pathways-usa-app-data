@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AlertCircle, Loader2 } from 'lucide-react';
-import { base44 } from '@/api/base44Client';
+import { content } from '@/api/content';
 import { auth } from '@/api/auth';
 import { createPageUrl } from '@/utils';
 import PageHeader from '@/components/PageHeader';
@@ -28,7 +28,7 @@ export default function TutorDemo() {
 
   useEffect(() => {
     if (user?.role !== 'admin') return;
-    base44.entities.CivicsQuestion.filter({ version: '2025' }, null, 200)
+    content.civicsQuestions({ version: '2025', limit: 200 })
       .then(setQuestions)
       .catch(() => setQuestions([]));
   }, [user]);

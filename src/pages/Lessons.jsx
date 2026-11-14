@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
+import { content } from '@/api/content';
 import { auth } from '@/api/auth';
 import { ArrowRight, BookOpen, Check, ChevronDown, Star, Video } from 'lucide-react';
 import LessonDetail from '@/components/lessons/LessonDetail.jsx';
@@ -55,7 +56,7 @@ export default function Lessons() {
       }
       
       const [lessonPage, userProgress] = await Promise.all([
-        base44.entities.Lesson.filter({}, { sort: 'order', limit: 100 }),
+        content.lessons({ sort: 'order', limit: 100 }),
         currentUser?.email 
           ? base44.entities.LessonProgress.filter({ user_email: currentUser.email }, null, 1000)
           : Promise.resolve([])

@@ -6,6 +6,7 @@ import RunTopBar from './RunTopBar';
 import { Link } from 'react-router-dom';
 import { Mic, MicOff, Volume2, ArrowRight, Check, Loader2, ChevronDown, ChevronUp, FileText, Bot, BarChart3, Scale, X } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
+import { content } from '@/api/content';
 import { auth } from '@/api/auth';
 import { speakText, stopSpeaking, getRandomVoice } from "@/components/utils/textToSpeech";
 import { toast } from "sonner";
@@ -93,7 +94,7 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
   const loadQuestions = async () => {
     try {
       setIsLoadingQuestions(true);
-      const all = await base44.entities.InterviewQuestion.list('-order', 100);
+      const all = await content.interviewQuestions({ sort: '-order', limit: 100 });
       const smallTalk = all.filter(q => q.section === 'small_talk').slice(0, 2);
       const personalInfo = all.filter(q => q.section === 'personal_info').slice(0, 3);
       const morals = all.filter(q => q.section === 'morals_ethics').slice(0, 4);
