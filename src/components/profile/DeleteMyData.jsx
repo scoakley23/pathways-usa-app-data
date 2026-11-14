@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { base44 } from '@/api/base44Client';
 import { auth } from '@/api/auth';
+import { account } from '@/api/account';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/pathways/ui";
 import {
@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Trash2, Loader2 } from 'lucide-react';
 import { toast } from "sonner";
-import { deleteSteps, FUNCTION_STEPS, ACCOUNT_RESET } from '@/lib/deleteMyData';
 
 // Everything the app keeps in this browser: language, target date, voice
 // settings, cached translations, civics version, reminders, role cache.
@@ -34,25 +33,17 @@ export default function DeleteMyData({ userEmail }) {
 
   const handleDelete = async () => {
     setDeleting(true);
-    const steps = deleteSteps(userEmail);
-
     try {
-      for (let i = 0; i < steps.length; i++) {
-        setProgress(`Removing ${steps[i][0]} (${i + 1}/${steps.length})...`);
-        await base44.entities[steps[i][1]].deleteMany(steps[i][2]);
-      }
-      for (const [label, fn, body] of FUNCTION_STEPS) {
-        setProgress(`Removing ${label}...`);
-        await base44.functions.invoke(fn, body);
-      }
-      // The sign-in account itself can't be deleted from the app, so reset
-      // the learner fields stored on it.
-      setProgress('Resetting your account details...');
-      await auth.updateMe(ACCOUNT_RESET);
+      // src/api/account.js: Base44 deletes each kind of record and resets the
+      // account; Supabase deletes the sign-in and everything with it.
+      const { deletedLogin } = await account.deleteAllMyData({ onProgress: setProgress });
       clearDeviceData();
       setProgress('Done. Signing you out...');
       toast.success("Your data has been deleted. You are being signed out.");
-      setTimeout(async () => { await auth.signOut(); window.location.href = '/'; }, 1500);
+      setTimeout(async () => {
+        if (!deletedLogin) await auth.signOut();
+        window.location.href = '/';
+      }, 1500);
     } catch (err) {
       console.error("Error deleting user data", err);
       toast.error("Something went wrong while deleting your data. Please try again.");
@@ -71,12 +62,22 @@ export default function DeleteMyData({ userEmail }) {
       </div>
       <details className="group text-small text-muted">
         <summary className="min-h-tap flex items-center cursor-pointer font-semibold text-navy underline underline-offset-4 decoration-navy/40">What gets erased</summary>
-        <p className="mt-1 leading-relaxed">
+        {account.deletesLogin ? (
+          <p className="mt-1 leading-relaxed">
+            Permanently erase your sign-in and everything tied to it: your questions to Amio, lesson notes, progress and quiz scores,
+            mock interview scores, N-400 guide section completion, your program connection, notifications, saved places, your answers to the
+            "Help us improve Pathways" and check-in questions, the days you used the app, the record of reminder emails sent to you, and your
+            profile (name, badges, tutor settings, quick check levels, state, app language and reminder settings). The app's data on this
+            device (your target date, language, and settings) is cleared too. To use Pathways again you would start fresh. This cannot be undone.
+          </p>
+        ) : (
+          <p className="mt-1 leading-relaxed">
           Permanently erase everything tied to your email: your chat messages (including the copies in the other person's history),
           your questions to Amio, lesson notes, progress & quiz scores, mock interview scores, N-400 guide section completion, assignments,
           program connections, notifications, saved places, your answers to the "Help us improve Pathways" and check-in questions, the days you used the app, the record of reminder emails sent to you, and your profile. Your points, badges, display name, tutor settings, quick check levels, state, program code, app language and reminder settings are reset, and the app's data on
           this device (your target date, language, and settings) is cleared. This cannot be undone.
         </p>
+        )}
       </details>
       <div>
         {deleting ? (

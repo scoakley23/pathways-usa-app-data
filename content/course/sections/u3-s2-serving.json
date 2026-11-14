@@ -1,0 +1,155 @@
+{
+  "id": "u3-s2",
+  "unitId": "u3",
+  "number": 2,
+  "title": "Serving your country",
+  "note": "Drafted for Prompt 12 (Unit 3). Every lesson is a draft until a person reviews it (content/course/README.md).",
+  "stops": [
+    {
+      "id": "u3-s2-l1",
+      "type": "lesson",
+      "title": "Taking part",
+      "lessonId": "u3-s2-l1"
+    },
+    {
+      "id": "u3-s2-l2",
+      "type": "lesson",
+      "title": "Taxes and Selective Service",
+      "lessonId": "u3-s2-l2"
+    },
+    {
+      "id": "u3-s2-rw",
+      "type": "readwrite",
+      "title": "Read and write",
+      "fromLessons": [
+        "u3-s2-l1",
+        "u3-s2-l2"
+      ]
+    },
+    {
+      "id": "u3-s2-speak",
+      "type": "speakit",
+      "title": "Speak it!"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "u3-s2-l1",
+      "title": "Taking part",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de5c",
+        "6ad16ecf6a9c603911f9de5b"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "What is one way Americans can serve their country?",
+          "facts": [
+            "Americans can serve their country in many ways: vote, pay taxes, obey the law, serve in the military, run for office or work for the government.",
+            "Civic participation means taking part in your community and government.",
+            "Voting, joining a community group, helping with a campaign and contacting elected officials are all civic participation."
+          ],
+          "newWords": [
+            {
+              "word": "serve",
+              "meaning": "to do work that helps others"
+            },
+            {
+              "word": "civic participation",
+              "meaning": "taking part in your community and government"
+            },
+            {
+              "word": "campaign",
+              "meaning": "the work to help someone win an election"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de5c"
+        },
+        "readIt": {
+          "sentence": "What can people do for the country?",
+          "words": [
+            "What",
+            "can",
+            "people",
+            "do",
+            "for",
+            "the",
+            "country"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Citizens vote and pay taxes.",
+          "distractorWords": [
+            "Mexico",
+            "September",
+            "red"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de5b"
+        }
+      }
+    },
+    {
+      "id": "u3-s2-l2",
+      "title": "Taxes and Selective Service",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de5d",
+        "6ad16ecf6a9c603911f9de5e"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "Why is it important to pay federal taxes?",
+          "facts": [
+            "Paying federal taxes is required by law. All people pay to fund the federal government.",
+            "The Constitution's 16th Amendment lets Congress collect a federal income tax.",
+            "Men age 18 through 25 register for the Selective Service. It is required by law, and it makes a draft fair if one is ever needed."
+          ],
+          "newWords": [
+            {
+              "word": "fund",
+              "meaning": "to pay for"
+            },
+            {
+              "word": "register",
+              "meaning": "to put your name on an official list"
+            },
+            {
+              "word": "draft",
+              "meaning": "when the government calls people to serve in the military"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de5d"
+        },
+        "readIt": {
+          "sentence": "Why do we pay for the government?",
+          "words": [
+            "Why",
+            "do",
+            "we",
+            "pay",
+            "for",
+            "the",
+            "government"
+          ]
+        },
+        "writeIt": {
+          "sentence": "People pay taxes.",
+          "distractorWords": [
+            "free",
+            "Delaware",
+            "white"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de5e"
+        }
+      }
+    }
+  ]
+}

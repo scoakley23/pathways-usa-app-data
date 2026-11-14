@@ -1,0 +1,203 @@
+{
+  "id": "u4-s2",
+  "unitId": "u4",
+  "number": 2,
+  "title": "Independence",
+  "note": "Drafted for Prompt 12 (Unit 4). Every lesson is a draft until a person reviews it (content/course/README.md).",
+  "stops": [
+    {
+      "id": "u4-s2-l1",
+      "type": "lesson",
+      "title": "Why independence",
+      "lessonId": "u4-s2-l1"
+    },
+    {
+      "id": "u4-s2-l2",
+      "type": "lesson",
+      "title": "Thomas Jefferson",
+      "lessonId": "u4-s2-l2"
+    },
+    {
+      "id": "u4-s2-l3",
+      "type": "lesson",
+      "title": "The Revolution",
+      "lessonId": "u4-s2-l3"
+    },
+    {
+      "id": "u4-s2-rw",
+      "type": "readwrite",
+      "title": "Read and write",
+      "fromLessons": [
+        "u4-s2-l1",
+        "u4-s2-l2",
+        "u4-s2-l3"
+      ]
+    },
+    {
+      "id": "u4-s2-speak",
+      "type": "speakit",
+      "title": "Speak it!"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "u4-s2-l1",
+      "title": "Why independence",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de63",
+        "6ad16ecf6a9c603911f9de65"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "Name one reason why the Americans declared independence from Britain.",
+          "facts": [
+            "Britain made the colonists pay high taxes, but they had no vote in Britain's government. This was called taxation without representation.",
+            "British soldiers stayed in Americans' houses, and the colonists did not have self-government.",
+            "The Declaration of Independence was adopted on July 4, 1776."
+          ],
+          "newWords": [
+            {
+              "word": "taxation without representation",
+              "meaning": "paying taxes with no vote on them"
+            },
+            {
+              "word": "adopt",
+              "meaning": "to accept and approve something"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de63"
+        },
+        "readIt": {
+          "sentence": "When is Independence Day?",
+          "words": [
+            "When",
+            "is",
+            "Independence",
+            "Day"
+          ]
+        },
+        "writeIt": {
+          "sentence": "We have Independence Day in July.",
+          "distractorWords": [
+            "Labor Day",
+            "September",
+            "Canada"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de65"
+        }
+      }
+    },
+    {
+      "id": "u4-s2-l2",
+      "title": "Thomas Jefferson",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de64",
+        "6ad16ecf6a9c603911f9de6d"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "Who wrote the Declaration of Independence?",
+          "facts": [
+            "Thomas Jefferson wrote the Declaration of Independence.",
+            "He was the third President of the United States.",
+            "As President, he doubled the size of the United States with the Louisiana Purchase."
+          ],
+          "newWords": [
+            {
+              "word": "founder",
+              "meaning": "one of the people who started the country"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de64"
+        },
+        "readIt": {
+          "sentence": "Who lived in the White House?",
+          "words": [
+            "Who",
+            "lived",
+            "in",
+            "the",
+            "White",
+            "House"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Adams lived in the White House.",
+          "distractorWords": [
+            "Lincoln",
+            "California",
+            "blue"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de6d"
+        }
+      }
+    },
+    {
+      "id": "u4-s2-l3",
+      "title": "The Revolution",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de62",
+        "6ad16ecf6a9c603911f9de66"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "What war did the Americans fight to win independence from Britain?",
+          "facts": [
+            "The Americans fought the American Revolution, also called the Revolutionary War, to win independence from Britain.",
+            "George Washington led the Continental Army.",
+            "Important events include the Battle of Bunker Hill, Washington crossing the Delaware, Valley Forge and the British surrender at Yorktown."
+          ],
+          "newWords": [
+            {
+              "word": "revolution",
+              "meaning": "a fight to change who governs a country"
+            },
+            {
+              "word": "battle",
+              "meaning": "a fight between armies"
+            },
+            {
+              "word": "surrender",
+              "meaning": "to stop fighting and accept that you lost"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de62"
+        },
+        "readIt": {
+          "sentence": "Who was the first President?",
+          "words": [
+            "Who",
+            "was",
+            "the",
+            "first",
+            "President"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Washington was the first President.",
+          "distractorWords": [
+            "Adams",
+            "Alaska",
+            "May"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de66"
+        }
+      }
+    }
+  ]
+}

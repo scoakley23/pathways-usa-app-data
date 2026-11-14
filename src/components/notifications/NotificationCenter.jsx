@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { base44 } from '@/api/base44Client';
+import { notifications as notificationsApi } from '@/api/notifications';
 import { Bell, Check, Trash2, AlertCircle } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import {
@@ -40,9 +40,7 @@ export default function NotificationCenter({ userEmail, open = false, onOpenChan
 
   const fetchNotifications = async () => {
     try {
-      const data = await base44.entities.Notification.filter(
-        { user_email: userEmail }, '-created_date', 20
-      );
+      const data = await notificationsApi.list({ limit: 20 });
       
       setNotifications(data);
       
@@ -64,7 +62,7 @@ export default function NotificationCenter({ userEmail, open = false, onOpenChan
 
   const markAsRead = async (id) => {
     try {
-      await base44.entities.Notification.update(id, { read: true });
+      await notificationsApi.markRead(id);
       setNotifications(prev => prev.map(n => n.id === id ? { ...n, read: true } : n));
       setUnreadCount(prev => Math.max(0, prev - 1));
     } catch (error) {
@@ -75,7 +73,7 @@ export default function NotificationCenter({ userEmail, open = false, onOpenChan
   const markAllRead = async () => {
       try {
           const unreadIds = notifications.filter(n => !n.read).map(n => n.id);
-          await Promise.all(unreadIds.map(id => base44.entities.Notification.update(id, { read: true })));
+          await Promise.all(unreadIds.map(id => notificationsApi.markRead(id)));
           setNotifications(prev => prev.map(n => ({ ...n, read: true })));
           setUnreadCount(0);
           toast.success("All marked as read");
@@ -87,7 +85,7 @@ export default function NotificationCenter({ userEmail, open = false, onOpenChan
   const deleteNotification = async (id, e) => {
     e.stopPropagation();
     try {
-      await base44.entities.Notification.delete(id);
+      await notificationsApi.remove(id);
       setNotifications(prev => prev.filter(n => n.id !== id));
     } catch (error) {
         console.error("Error deleting notification", error);

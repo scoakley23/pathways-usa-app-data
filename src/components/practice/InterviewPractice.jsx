@@ -3,7 +3,7 @@ import { Button, Card, Eyebrow, PrimaryButton, RaisedCard, RuledPaper, Secondary
 import AnswerFeedback from './AnswerFeedback';
 import { Link } from 'react-router-dom';
 import { Mic, Volume2, ArrowRight, Check, Loader2, ChevronDown, ChevronUp, FileText, Bot, BarChart3, Scale, X, PhoneOff } from 'lucide-react';
-import { base44 } from '@/api/base44Client';
+import { interviewSessions as interviewSessionsApi } from '@/api/interview';
 import { content } from '@/api/content';
 import { auth } from '@/api/auth';
 import { speakText, stopSpeaking, getRandomVoice } from "@/components/utils/textToSpeech";
@@ -337,12 +337,10 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
 
   const saveSession = async (results) => {
     try {
-      const user = await auth.me();
       const scored = results.filter(r => typeof r.overall_score === 'number');
       const overall = scored.length ? Math.round(scored.reduce((s, r) => s + r.overall_score, 0) / scored.length) : 0;
       const passedCount = results.filter(r => r.is_acceptable).length;
-      await base44.entities.InterviewSession.create({
-        user_email: user.email.toLowerCase().trim(),
+      await interviewSessionsApi.create({
         overall_score: overall,
         passed: passedCount >= questions.length * 0.7,
         question_count: questions.length,

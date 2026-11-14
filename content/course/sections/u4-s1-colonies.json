@@ -1,0 +1,149 @@
+{
+  "id": "u4-s1",
+  "unitId": "u4",
+  "number": 1,
+  "title": "The first Americans and the colonies",
+  "note": "Drafted for Prompt 12 (Unit 4). Every lesson is a draft until a person reviews it (content/course/README.md).",
+  "stops": [
+    {
+      "id": "u4-s1-l1",
+      "type": "lesson",
+      "title": "The first Americans",
+      "lessonId": "u4-s1-l1"
+    },
+    {
+      "id": "u4-s1-l2",
+      "type": "lesson",
+      "title": "The colonies",
+      "lessonId": "u4-s1-l2"
+    },
+    {
+      "id": "u4-s1-rw",
+      "type": "readwrite",
+      "title": "Read and write",
+      "fromLessons": [
+        "u4-s1-l1",
+        "u4-s1-l2"
+      ]
+    },
+    {
+      "id": "u4-s1-speak",
+      "type": "speakit",
+      "title": "Speak it!"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "u4-s1-l1",
+      "title": "The first Americans",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de60",
+        "6ad16ecf6a9c603911f9de8b"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "Who lived in America before the Europeans arrived?",
+          "facts": [
+            "American Indians, also called Native Americans, lived in America long before the Europeans arrived.",
+            "There are many American Indian tribes, like the Cherokee, Navajo, Sioux, Apache and Hopi.",
+            "Many tribes still live in the United States today."
+          ],
+          "newWords": [
+            {
+              "word": "tribe",
+              "meaning": "a group of people who share a history and a way of life"
+            },
+            {
+              "word": "European",
+              "meaning": "a person from Europe"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de60"
+        },
+        "readIt": {
+          "sentence": "Who lived here first?",
+          "words": [
+            "Who",
+            "lived",
+            "here",
+            "first"
+          ]
+        },
+        "writeIt": {
+          "sentence": "American Indians lived here first.",
+          "distractorWords": [
+            "Canada",
+            "Congress",
+            "October"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de8b"
+        }
+      }
+    },
+    {
+      "id": "u4-s1-l2",
+      "title": "The colonies",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de5f",
+        "6ad16ecf6a9c603911f9de67"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "The colonists came to America for many reasons. Name one.",
+          "facts": [
+            "People came from Europe to live in the American colonies.",
+            "They came for many reasons: freedom, religious freedom, economic opportunity, or to escape persecution.",
+            "There were 13 colonies. They became the 13 original states, like Virginia, New York, Massachusetts, Pennsylvania and Georgia."
+          ],
+          "newWords": [
+            {
+              "word": "colonist",
+              "meaning": "a person who lives in a colony"
+            },
+            {
+              "word": "opportunity",
+              "meaning": "a chance to do something good"
+            },
+            {
+              "word": "persecution",
+              "meaning": "cruel treatment, often for your religion or ideas"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de5f"
+        },
+        "readIt": {
+          "sentence": "Why do people want to come to America?",
+          "words": [
+            "Why",
+            "do",
+            "people",
+            "want",
+            "to",
+            "come",
+            "to",
+            "America"
+          ]
+        },
+        "writeIt": {
+          "sentence": "People come to the United States to be free.",
+          "distractorWords": [
+            "taxes",
+            "Mexico",
+            "June"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de67"
+        }
+      }
+    }
+  ]
+}

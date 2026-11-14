@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Download, Loader2, RefreshCw } from 'lucide-react';
-import { base44 } from '@/api/base44Client';
+import { pilotApi } from '@/api/pilot';
 import { auth } from '@/api/auth';
 import PageTop from '@/components/pathways/PageTop';
 import PageNotFound from '@/lib/PageNotFound';
@@ -74,9 +74,9 @@ export default function PilotDashboard() {
     setLoading(true);
     setError(null);
     try {
-      const res = await base44.functions.invoke('pilot-report', {});
-      setSummaries(res.data.summaries || []);
-      setGeneratedAt(res.data.generated_at);
+      const res = await pilotApi.report();
+      setSummaries(res?.summaries || []);
+      setGeneratedAt(res?.generated_at);
     } catch (err) {
       setError(err?.response?.data?.error || 'Could not load the pilot data.');
     } finally {

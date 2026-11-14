@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
-import { base44 } from '@/api/base44Client';
 import { auth } from '@/api/auth';
 import NavyBanner from '@/components/pathways/NavyBanner';
 import { Button, Card, Eyebrow } from '@/components/pathways/ui';
@@ -19,7 +18,7 @@ import { StudyTogetherCard } from '@/components/home/StudyTogether';
 import WhatWeSave, { WHAT_WE_SAVE_LINES } from '@/components/shell/WhatWeSave';
 import { Switch } from '@/components/ui/switch';
 import useAppLanguage, { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
-import { ensurePublicProfile } from '@/lib/profileService';
+import { profile as profileApi } from '@/api/profile';
 
 // Settings and privacy (frame R30Settings), under Me: everything that was a
 // setting on the old Profile page, then "What we save" and "Delete all my
@@ -73,10 +72,10 @@ export default function SettingsPage() {
       .then(async (u) => {
         if (!active) return;
         setUser(u);
-        const profiles = await base44.entities.PublicProfile.filter({ user_email: u.email.toLowerCase().trim() }).catch(() => []);
+        const found = await profileApi.getPublic().catch(() => null);
         if (!active) return;
-        setPublicProfile(profiles[0] || null);
-        setDisplayName(profiles[0]?.display_name || u.full_name || '');
+        setPublicProfile(found);
+        setDisplayName(found?.display_name || u.full_name || '');
       })
       .catch(() => { if (active) setUser(null); });
     return () => { active = false; };
@@ -107,10 +106,9 @@ export default function SettingsPage() {
     setSavingName(true);
     try {
       if (publicProfile) {
-        await base44.entities.PublicProfile.update(publicProfile.id, { display_name: displayName });
+        await profileApi.updatePublic(publicProfile.id, { display_name: displayName });
       } else {
-        const { profile: created } = await ensurePublicProfile(user.email, {
-          display_name: displayName,
+        const { profile: created } = await profileApi.savePublic({ display_name: displayName }, {
           points: user.points || 0,
           badges_count: (user.badges || []).length,
         });

@@ -1,0 +1,429 @@
+{
+  "id": "u2-s3",
+  "unitId": "u2",
+  "number": 3,
+  "title": "The President",
+  "note": "Drafted for Prompt 12 (Unit 2). Every lesson is a draft until a person reviews it (content/course/README.md).",
+  "stops": [
+    {
+      "id": "u2-s3-l1",
+      "type": "lesson",
+      "title": "Four-year terms",
+      "lessonId": "u2-s3-l1"
+    },
+    {
+      "id": "u2-s3-l2",
+      "type": "lesson",
+      "title": "What the President does",
+      "lessonId": "u2-s3-l2"
+    },
+    {
+      "id": "u2-s3-l3",
+      "type": "lesson",
+      "title": "Electing the President",
+      "lessonId": "u2-s3-l3"
+    },
+    {
+      "id": "u2-s3-l4",
+      "type": "lesson",
+      "title": "If the President can't serve",
+      "lessonId": "u2-s3-l4"
+    },
+    {
+      "id": "u2-s3-l5",
+      "type": "lesson",
+      "title": "The executive branch",
+      "lessonId": "u2-s3-l5"
+    },
+    {
+      "id": "u2-s3-l6",
+      "type": "lesson",
+      "title": "The Cabinet",
+      "lessonId": "u2-s3-l6"
+    },
+    {
+      "id": "u2-s3-l7",
+      "type": "lesson",
+      "title": "Today’s leaders",
+      "lessonId": "u2-s3-l7"
+    },
+    {
+      "id": "u2-s3-rw",
+      "type": "readwrite",
+      "title": "Read and write",
+      "fromLessons": [
+        "u2-s3-l1",
+        "u2-s3-l2",
+        "u2-s3-l3",
+        "u2-s3-l4",
+        "u2-s3-l5",
+        "u2-s3-l6",
+        "u2-s3-l7"
+      ]
+    },
+    {
+      "id": "u2-s3-speak",
+      "type": "speakit",
+      "title": "Speak it!"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "u2-s3-l1",
+      "title": "Four-year terms",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de3a",
+        "6ad16ecf6a9c603911f9de3b"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "The President of the United States is elected for how many years?",
+          "facts": [
+            "Americans elect a President every four years.",
+            "A President can serve only two terms. This rule is in the 22nd Amendment.",
+            "The rule keeps a president from becoming too powerful."
+          ],
+          "newWords": [
+            {
+              "word": "term",
+              "meaning": "the number of years a person serves in a job"
+            },
+            {
+              "word": "amendment",
+              "meaning": "a change or addition to the Constitution"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de3a"
+        },
+        "readIt": {
+          "sentence": "When do we vote for President?",
+          "words": [
+            "When",
+            "do",
+            "we",
+            "vote",
+            "for",
+            "President"
+          ]
+        },
+        "writeIt": {
+          "sentence": "We vote for President in November.",
+          "distractorWords": [
+            "Congress",
+            "June",
+            "red"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de3b"
+        }
+      }
+    },
+    {
+      "id": "u2-s3-l2",
+      "title": "What the President does",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de3f",
+        "6ad16ecf6a9c603911f9de40"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "Name one power of the president.",
+          "facts": [
+            "The President signs bills into law and can veto bills.",
+            "The President is the Commander in Chief of the military.",
+            "The President also appoints federal judges."
+          ],
+          "newWords": [
+            {
+              "word": "power",
+              "meaning": "a right to do something"
+            },
+            {
+              "word": "Commander in Chief",
+              "meaning": "the leader of all the armed forces"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de3f"
+        },
+        "readIt": {
+          "sentence": "Who lives in the White House?",
+          "words": [
+            "Who",
+            "lives",
+            "in",
+            "the",
+            "White",
+            "House"
+          ]
+        },
+        "writeIt": {
+          "sentence": "The President lives in the White House.",
+          "distractorWords": [
+            "Senators",
+            "Alaska",
+            "blue"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de40"
+        }
+      }
+    },
+    {
+      "id": "u2-s3-l3",
+      "title": "Electing the President",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de47"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "Why is the Electoral College important?",
+          "facts": [
+            "The Electoral College decides who is elected President.",
+            "Each state has electors. The electors vote for President after the people vote.",
+            "It is a compromise between a vote of the people and a choice by Congress."
+          ],
+          "newWords": [
+            {
+              "word": "elector",
+              "meaning": "a person chosen to vote for President for a state"
+            },
+            {
+              "word": "compromise",
+              "meaning": "an agreement where each side gets part of what it wants"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de47"
+        },
+        "readIt": {
+          "sentence": "Who elects the President?",
+          "words": [
+            "Who",
+            "elects",
+            "the",
+            "President"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Citizens vote for President.",
+          "distractorWords": [
+            "Congress",
+            "Mexico",
+            "white"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de47"
+        }
+      }
+    },
+    {
+      "id": "u2-s3-l4",
+      "title": "If the President can't serve",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de3e"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "If the president can no longer serve, who becomes president?",
+          "facts": [
+            "If the President dies or can no longer do the job, the Vice President becomes President."
+          ],
+          "newWords": [
+            {
+              "word": "Vice President",
+              "meaning": "the person who becomes President if the President can no longer serve"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de3e"
+        },
+        "readIt": {
+          "sentence": "Who was the first President?",
+          "words": [
+            "Who",
+            "was",
+            "the",
+            "first",
+            "President"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Washington was the first President.",
+          "distractorWords": [
+            "Adams",
+            "second",
+            "red"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de3e"
+        }
+      }
+    },
+    {
+      "id": "u2-s3-l5",
+      "title": "The executive branch",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de44",
+        "6ad16ecf6a9c603911f9de45"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "The executive branch has many parts. Name one.",
+          "facts": [
+            "The executive branch includes the President, the Cabinet and federal departments and agencies.",
+            "The Cabinet is a group of leaders who advise the President."
+          ],
+          "newWords": [
+            {
+              "word": "Cabinet",
+              "meaning": "the group of top leaders who advise the President"
+            },
+            {
+              "word": "advise",
+              "meaning": "to give ideas and help"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de44"
+        },
+        "readIt": {
+          "sentence": "Who was the second President?",
+          "words": [
+            "Who",
+            "was",
+            "the",
+            "second",
+            "President"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Adams was the second President.",
+          "distractorWords": [
+            "Lincoln",
+            "first",
+            "blue"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de45"
+        }
+      }
+    },
+    {
+      "id": "u2-s3-l6",
+      "title": "The Cabinet",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de46"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "What are two Cabinet-level positions?",
+          "facts": [
+            "Each Cabinet member leads one part of the executive branch.",
+            "Two Cabinet-level positions are the Secretary of State and the Attorney General."
+          ],
+          "newWords": [
+            {
+              "word": "Secretary",
+              "meaning": "the leader of one federal department"
+            },
+            {
+              "word": "Attorney General",
+              "meaning": "the top lawyer of the federal government"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de46"
+        },
+        "readIt": {
+          "sentence": "Who is the Father of Our Country?",
+          "words": [
+            "Who",
+            "is",
+            "the",
+            "Father",
+            "of",
+            "Our",
+            "Country"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Washington is the Father of Our Country.",
+          "distractorWords": [
+            "Adams",
+            "Canada",
+            "white"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de46"
+        }
+      }
+    },
+    {
+      "id": "u2-s3-l7",
+      "title": "Today’s leaders",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de3c",
+        "6ad16ecf6a9c603911f9de3d"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "What is the name of the President of the United States now?",
+          "facts": [
+            "These names change after elections, so Pathways looks them up on an official list.",
+            "Check the names again before your interview."
+          ],
+          "newWords": [
+            {
+              "word": "now",
+              "meaning": "at this time"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de3c"
+        },
+        "readIt": {
+          "sentence": "Who is the President?",
+          "words": [
+            "Who",
+            "is",
+            "the",
+            "President"
+          ]
+        },
+        "writeIt": {
+          "sentence": "We elect the President.",
+          "distractorWords": [
+            "Congress",
+            "Delaware",
+            "red"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de3d"
+        }
+      }
+    }
+  ]
+}

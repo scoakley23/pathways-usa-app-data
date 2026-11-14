@@ -1,16 +1,14 @@
-import { base44 } from '@/api/base44Client';
-import { auth } from '@/api/auth';
+import { pilotApi } from '@/api/pilot';
 
-// The only app code that reads or writes OutcomeCheckIn (besides "Delete all
-// my data"). Owner-only records: a learner reads and adds their own.
-const clean = (email) => (email || '').toLowerCase().trim();
+// The only app code that reads or writes check-in answers (besides "Delete
+// all my data"). Owner-only records: a learner reads and adds their own.
+// The data calls live in src/api/pilot.js (Base44 or Supabase). `email` is
+// kept for the callers; the signed-in learner is always the one used.
 
-export async function loadMyCheckIns(email) {
-  const me = clean(email || (await auth.me())?.email);
-  if (!me) return [];
-  return base44.entities.OutcomeCheckIn.filter({ user_email: me }, '-created_date', 50);
+export async function loadMyCheckIns() {
+  return pilotApi.myCheckIns();
 }
 
-export async function saveCheckIn(email, checkIn) {
-  return base44.entities.OutcomeCheckIn.create({ user_email: clean(email), ...checkIn });
+export async function saveCheckIn(_email, checkIn) {
+  return pilotApi.saveCheckIn(checkIn);
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
-import { base44 } from '@/api/base44Client';
+import { n400Progress as n400ProgressApi } from '@/api/interview';
 import NavyBanner from '@/components/pathways/NavyBanner';
 import { Button } from '@/components/pathways/ui';
 import { cardCount, nextSection } from '@/lib/n400View';
@@ -65,7 +65,7 @@ export default function N400Guide({ cachedUser }) {
   useEffect(() => {
     if (!cachedUser?.email) return;
     let cancelled = false;
-    base44.entities.N400SectionProgress.filter({ user_email: cachedUser.email })
+    n400ProgressApi.list()
       .then((records) => {
         if (!cancelled) setProgress(records);
       })
@@ -79,21 +79,11 @@ export default function N400Guide({ cachedUser }) {
     const section = N400_SECTIONS.find((s) => s.id === sectionId);
     const existing = progress.find((p) => p.section_id === sectionId);
     const now = new Date().toISOString();
+    const saved = await n400ProgressApi.markRead(existing, { sectionId, title: section.title, date: now });
     if (existing) {
-      await base44.entities.N400SectionProgress.update(existing.id, {
-        completed: true,
-        completed_date: now,
-      });
       setProgress((prev) => prev.map((p) => (p.section_id === sectionId ? { ...p, completed: true } : p)));
     } else {
-      const created = await base44.entities.N400SectionProgress.create({
-        user_email: cachedUser.email,
-        section_id: sectionId,
-        section_title: section.title,
-        completed: true,
-        completed_date: now,
-      });
-      setProgress((prev) => [...prev, created]);
+      setProgress((prev) => [...prev, saved]);
     }
   };
 

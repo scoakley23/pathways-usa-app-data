@@ -3,7 +3,7 @@
   "unitId": "u2",
   "number": 2,
   "title": "Congress",
-  "note": "Sample section (Prompt 4, frame R32Path). Every lesson is a draft until a person reviews it (content/course/README.md). Read it / Write it sentences use only the official USCIS word lists (content/vocab/).",
+  "note": "Sample section (Prompt 4, frame R32Path), extended in Prompt 12 with the rest of Unit 2's Congress questions. Every lesson is a draft until a person reviews it (content/course/README.md). Read it / Write it sentences use only the official USCIS word lists (content/vocab/).",
   "stops": [
     {
       "id": "u2-s2-l1",
@@ -45,6 +45,48 @@
       "type": "lesson",
       "title": "Your senators",
       "lessonId": "u2-s2-l5"
+    },
+    {
+      "id": "u2-s2-l6",
+      "type": "lesson",
+      "title": "Who senators represent",
+      "lessonId": "u2-s2-l6"
+    },
+    {
+      "id": "u2-s2-l7",
+      "type": "lesson",
+      "title": "Who representatives represent",
+      "lessonId": "u2-s2-l7"
+    },
+    {
+      "id": "u2-s2-l8",
+      "type": "lesson",
+      "title": "Why the numbers differ",
+      "lessonId": "u2-s2-l8"
+    },
+    {
+      "id": "u2-s2-l9",
+      "type": "lesson",
+      "title": "Shorter terms",
+      "lessonId": "u2-s2-l9"
+    },
+    {
+      "id": "u2-s2-l10",
+      "type": "lesson",
+      "title": "The Speaker",
+      "lessonId": "u2-s2-l10"
+    },
+    {
+      "id": "u2-s2-rw2",
+      "type": "readwrite",
+      "title": "Read and write",
+      "fromLessons": [
+        "u2-s2-l6",
+        "u2-s2-l7",
+        "u2-s2-l8",
+        "u2-s2-l9",
+        "u2-s2-l10"
+      ]
     },
     {
       "id": "u2-s2-speak",
@@ -324,6 +366,265 @@
         },
         "officer": {
           "questionId": "6ad16ecf6a9c603911f9de33"
+        }
+      }
+    },
+    {
+      "id": "u2-s2-l6",
+      "title": "Who senators represent",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de35",
+        "6ad16ecf6a9c603911f9de36"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "Who does a U.S. senator represent?",
+          "facts": [
+            "A U.S. senator speaks for all the people of their state.",
+            "Citizens of the state vote to choose their senators."
+          ],
+          "newWords": [
+            {
+              "word": "represent",
+              "meaning": "to speak and act for a group of people"
+            },
+            {
+              "word": "citizen",
+              "meaning": "a person who is a member of a country"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de35"
+        },
+        "readIt": {
+          "sentence": "Who elects Senators?",
+          "words": [
+            "Who",
+            "elects",
+            "Senators"
+          ]
+        },
+        "writeIt": {
+          "sentence": "The people of the state elect the Senators.",
+          "distractorWords": [
+            "President",
+            "Canada",
+            "white"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de36"
+        }
+      }
+    },
+    {
+      "id": "u2-s2-l7",
+      "title": "Who representatives represent",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de37",
+        "6ad16ecf6a9c603911f9de38"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "Who does a member of the House of Representatives represent?",
+          "facts": [
+            "Each state is cut into areas called congressional districts.",
+            "A member of the House of Representatives speaks for the people in one district.",
+            "Citizens in the district vote to choose their representative."
+          ],
+          "newWords": [
+            {
+              "word": "district",
+              "meaning": "one area of a state that elects one representative"
+            },
+            {
+              "word": "representative",
+              "meaning": "a member of the House of Representatives"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de37"
+        },
+        "readIt": {
+          "sentence": "Who can vote here?",
+          "words": [
+            "Who",
+            "can",
+            "vote",
+            "here"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Citizens can vote.",
+          "distractorWords": [
+            "Congress",
+            "Alaska",
+            "red"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de38"
+        }
+      }
+    },
+    {
+      "id": "u2-s2-l8",
+      "title": "Why the numbers differ",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de39",
+        "6ad16ecf6a9c603911f9de32"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "Some states have more representatives than other states. Why?",
+          "facts": [
+            "States with more people have more representatives in the House.",
+            "Every state has two senators, big or small. This gives small states an equal voice.",
+            "This plan is called the Great Compromise."
+          ],
+          "newWords": [
+            {
+              "word": "population",
+              "meaning": "how many people live in a place"
+            },
+            {
+              "word": "equal",
+              "meaning": "the same for everyone"
+            },
+            {
+              "word": "compromise",
+              "meaning": "an agreement where each side gets part of what it wants"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de39"
+        },
+        "readIt": {
+          "sentence": "What state has the most people?",
+          "words": [
+            "What",
+            "state",
+            "has",
+            "the",
+            "most",
+            "people"
+          ]
+        },
+        "writeIt": {
+          "sentence": "California has the most people.",
+          "distractorWords": [
+            "Delaware",
+            "fifty",
+            "blue"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de32"
+        }
+      }
+    },
+    {
+      "id": "u2-s2-l9",
+      "title": "Shorter terms",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de30"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "Why do U.S. representatives serve shorter terms than U.S. senators?",
+          "facts": [
+            "Representatives serve two-year terms. Senators serve six-year terms.",
+            "Short terms mean representatives face voters often, so they follow what the public thinks."
+          ],
+          "newWords": [
+            {
+              "word": "public opinion",
+              "meaning": "what most people think about something"
+            },
+            {
+              "word": "term",
+              "meaning": "the number of years a person serves in a job"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de30"
+        },
+        "readIt": {
+          "sentence": "When do people vote for Congress?",
+          "words": [
+            "When",
+            "do",
+            "people",
+            "vote",
+            "for",
+            "Congress"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Citizens vote for Congress.",
+          "distractorWords": [
+            "President",
+            "Canada",
+            "July"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de30"
+        }
+      }
+    },
+    {
+      "id": "u2-s2-l10",
+      "title": "The Speaker",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de34"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "What is the name of the Speaker of the House of Representatives now?",
+          "facts": [
+            "The Speaker leads the House of Representatives.",
+            "These names change after elections, so Pathways looks them up on an official list.",
+            "Check the names again before your interview."
+          ],
+          "newWords": [
+            {
+              "word": "Speaker",
+              "meaning": "the leader of the House of Representatives"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de34"
+        },
+        "readIt": {
+          "sentence": "Who is in Congress?",
+          "words": [
+            "Who",
+            "is",
+            "in",
+            "Congress"
+          ]
+        },
+        "writeIt": {
+          "sentence": "We elect Congress.",
+          "distractorWords": [
+            "President",
+            "Mexico",
+            "white"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de34"
         }
       }
     }

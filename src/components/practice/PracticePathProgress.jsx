@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { base44 } from '@/api/base44Client';
+import { progress as progressApi } from '@/api/progress';
 import { BookA, PenLine, GraduationCap, Check } from 'lucide-react';
 
 const STEPS = [
@@ -34,9 +34,7 @@ export default function PracticePathProgress({ userEmail }) {
     }
     const fetchProgress = async () => {
       try {
-        const records = await base44.entities.UserProgress.filter({
-          user_email: userEmail,
-        });
+        const records = await progressApi.list();
         const counts = {};
         records.forEach((p) => {
           if (!counts[p.content_type])

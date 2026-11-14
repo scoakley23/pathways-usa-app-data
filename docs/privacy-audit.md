@@ -147,3 +147,7 @@ Pathways now focuses on learners studying with Vía. Nobody was using the human-
 ## Sign-in with Supabase (Standalone Step 2, Nov 14, 2026)
 
 Behind the `VITE_AUTH_PROVIDER` switch (off until Step 3). The learner's email goes to Supabase Auth (the login) and Resend (which delivers the 6-digit code email). The email shows only the code and never mentions citizenship, immigration or USCIS. The sign-in screen's words are translated without the email (it is filled in on the device). Only the time a code was sent is kept, in the tab's session storage, to tell an expired code from a wrong one. Base44's page-view tracking (`NavigationTracker`) was removed.
+
+## Delete all my data on Supabase (Standalone Step 3, Nov 2026)
+
+Behind the same switch as sign-in. On Supabase, "Delete all my data" calls `delete_my_account()`: it deletes the sign-in itself, and every learner table goes with it (each cascades from the login, including the pilot reminder records; `src/lib/supabaseRules.test.js` checks every table with a `user_id`). Nothing is left to "reset", unlike Base44, where the sign-in account can't be deleted from the app. The device's browser storage is cleared as before.

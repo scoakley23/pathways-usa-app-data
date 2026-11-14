@@ -39,6 +39,9 @@ describe('the official word lists (content/vocab/)', () => {
     expect(wordsNotOnList('Congress meets in Washington, D.C.', WRITING_WORDS)).toEqual([]);
     expect(wordsNotOnList('Who is your senator?', READING_WORDS)).toEqual(['your', 'senator']);
     expect(wordsNotOnList('Who elects Congress?', WRITING_WORDS)).toEqual(['who', 'elects']); // "elect" only, on the writing list
+    expect(wordsNotOnList('When is Presidents’ Day?', READING_WORDS)).toEqual([]); // listed with its apostrophe
+    expect(wordsNotOnList("Presidents' Day is in February.", WRITING_WORDS)).toEqual([]);
+    expect(wordsNotOnList("The 'Senators' meet.", READING_WORDS)).toEqual([]); // quote marks around a word still come off
   });
 });
 
@@ -71,18 +74,99 @@ describe('the course files (content/course/)', () => {
     expect(problems.some((p) => /must be a statement/.test(p))).toBe(true);
   });
 
-  it('has 7 units, and the sample section is Unit 2 · Section 2 "Congress" with 7 stops, all drafts', () => {
+  it('has 7 units; Unit 2 has all 5 sections drafted (Prompt 12), every lesson a draft', () => {
     expect(UNITS).toHaveLength(7);
-    const congress = UNITS[1].sections.find((s) => s.title === 'Congress');
-    expect(congress.stops.map((s) => s.type)).toEqual(['lesson', 'lesson', 'lesson', 'lesson', 'readwrite', 'lesson', 'speakit']);
-    expect(congress.lessons.every((l) => l.status === 'draft')).toBe(true);
-    expect(sectionQuestionIds(congress)).toHaveLength(10);
-    expect(Object.keys(SECTION_FILES)).toEqual(['u2-s2-congress.json']);
+    const unit2 = UNITS[1];
+    expect(unit2.sections.map((s) => s.title)).toEqual(['The three branches', 'Congress', 'The President', 'The courts', 'States and local government']);
+    for (const s of unit2.sections) {
+      expect(s.stops.length, s.id).toBeGreaterThan(2);
+      expect(s.stops.at(-1).type === 'speakit' || s.stops.at(-1).type === 'practiceInterview', s.id).toBe(true);
+      expect(s.lessons.every((l) => l.status === 'draft'), s.id).toBe(true);
+    }
+    const congress = unit2.sections.find((s) => s.title === 'Congress');
+    // The Prompt 4 sample keeps its first 7 stops in order; Prompt 12 adds lessons before Speak it!.
+    expect(congress.stops.slice(0, 6).map((s) => s.type)).toEqual(['lesson', 'lesson', 'lesson', 'lesson', 'readwrite', 'lesson']);
+    expect(unit2.sections.at(-1).stops.at(-1).type).toBe('practiceInterview');
+    expect(Object.keys(SECTION_FILES).sort()).toEqual(['u1-s1-declaration.json', 'u1-s2-constitution.json', 'u1-s3-rights.json', 'u2-s1-branches.json', 'u2-s2-congress.json', 'u2-s3-president.json', 'u2-s4-courts.json', 'u2-s5-states.json', 'u3-s1-voting.json', 'u3-s2-serving.json', 'u3-s3-citizen.json', 'u4-s1-colonies.json', 'u4-s2-independence.json', 'u4-s3-nation.json', 'u5-s1-growing.json', 'u5-s2-civil-war.json', 'u5-s3-voting.json']);
     expect(STOP_TYPES).toEqual(['lesson', 'readwrite', 'speakit', 'n400', 'review', 'practiceInterview']);
   });
 
+  it('Unit 1 has 3 sections, the Declaration first, 9 draft lessons, ending on a practice interview', () => {
+    const unit1 = UNITS[0];
+    expect(unit1.sections.map((s) => s.title)).toEqual(['The Declaration of Independence', 'The Constitution', 'Rights and the rule of law']);
+    const lessons = unit1.sections.flatMap((s) => s.lessons);
+    expect(lessons).toHaveLength(9);
+    expect(lessons.every((l) => l.status === 'draft')).toBe(true);
+    for (const s of unit1.sections) expect(s.stops.at(-1).type === 'speakit' || s.stops.at(-1).type === 'practiceInterview', s.id).toBe(true);
+    expect(unit1.sections.at(-1).stops.at(-1).type).toBe('practiceInterview');
+  });
+
+  it('Unit 3 has 3 sections, 6 draft lessons, ending on a practice interview; the flag waits for Unit 7', () => {
+    const unit3 = UNITS[2];
+    expect(unit3.sections.map((s) => s.title)).toEqual(['Rights and voting', 'Serving your country', 'Becoming a citizen']);
+    const lessons = unit3.sections.flatMap((s) => s.lessons);
+    expect(lessons).toHaveLength(6);
+    expect(lessons.every((l) => l.status === 'draft')).toBe(true);
+    expect(unit3.sections.at(-1).stops.at(-1).type).toBe('practiceInterview');
+    for (const l of lessons) expect(`${l.steps.readIt.sentence} ${l.steps.writeIt.sentence}`, l.id).not.toMatch(/flag/i);
+  });
+
+  it('every official question in a unit\'s categories is in at least one of its lessons, and each only once', () => {
+    // A category in one unit: all its questions are that unit's. A category
+    // split across units (U.S. History, Units 4-6): each unit lists its exact
+    // questions in `questionIds`, and the lists must cover the category once.
+    const categories = [...new Set(UNITS.flatMap((u) => u.categories || []))];
+    for (const category of categories) {
+      const units = UNITS.filter((u) => u.categories?.includes(category));
+      const all = exported2025.filter((q) => q.category === category).map((q) => q.id);
+      if (units.length > 1) {
+        const listed = units.flatMap((u) => u.questionIds || []);
+        expect(new Set(listed).size, `${category}: a question in two units`).toBe(listed.length);
+        expect([...listed].sort(), `${category}: the units' questionIds must cover it exactly`).toEqual([...all].sort());
+      }
+      for (const unit of units) {
+        if (!unit.sections.some((s) => s.file)) continue; // not drafted yet
+        const used = unit.sections.flatMap((s) => sectionQuestionIds(s));
+        expect(new Set(used).size, `${unit.id}: a question used twice`).toBe(used.length);
+        const wanted = units.length > 1 ? unit.questionIds : all;
+        expect(wanted.filter((id) => !used.includes(id)), `${unit.id}: questions not placed`).toEqual([]);
+        expect(used.filter((id) => !wanted.includes(id)), `${unit.id}: questions from another unit`).toEqual([]);
+      }
+    }
+    expect(UNITS.slice(0, 6).map((u) => u.categories)).toEqual([['Principles of American Democracy'], ['System of Government'], ['Rights and Responsibilities'], ['U.S. History'], ['U.S. History'], ['U.S. History']]);
+    expect(UNITS.slice(3, 6).map((u) => u.questionIds.length)).toEqual([17, 12, 17]);
+  });
+
+  it('the history split puts slavery with its ending, and women\'s right to vote with the 1800s leaders (Unit 5)', () => {
+    const text = (id) => exported2025.find((q) => q.id === id).question;
+    const unit5 = UNITS[4].questionIds.map(text);
+    expect(unit5).toContain('What group of people was taken and sold as slaves?');
+    expect(unit5).toContain('What U.S. war ended slavery?');
+    expect(unit5).toContain('When did all women get the right to vote?');
+    expect(UNITS[3].questionIds.map(text)).not.toContain('What territory did the United States buy from France in 1803?');
+  });
+
+  it('Unit 5 has 3 sections, 6 draft lessons, ending on a practice interview; it says many Black Americans were still kept from voting after 1870', () => {
+    const unit5 = UNITS[4];
+    expect(unit5.sections.map((s) => s.title)).toEqual(['A growing country', 'Slavery and the Civil War', 'Who can vote, who is a citizen']);
+    const lessons = unit5.sections.flatMap((s) => s.lessons);
+    expect(lessons).toHaveLength(6);
+    expect(lessons.every((l) => l.status === 'draft')).toBe(true);
+    expect(unit5.sections.at(-1).stops.at(-1).type).toBe('practiceInterview');
+    expect(findLesson('u5-s3-l1').lesson.steps.listen.facts.join(' ')).toMatch(/many Black Americans were still kept from voting/);
+  });
+
+  it('Unit 4 has 3 sections, 9 draft lessons, ending on a practice interview', () => {
+    const unit4 = UNITS[3];
+    expect(unit4.sections.map((s) => s.title)).toEqual(['The first Americans and the colonies', 'Independence', 'A new nation']);
+    const lessons = unit4.sections.flatMap((s) => s.lessons);
+    expect(lessons).toHaveLength(9);
+    expect(lessons.every((l) => l.status === 'draft')).toBe(true);
+    expect(unit4.sections.at(-1).stops.at(-1).type).toBe('practiceInterview');
+  });
+
   it('every question a lesson uses is an official 2025 question, word for word', () => {
-    for (const id of sectionQuestionIds(UNITS[1].sections[1])) {
+    for (const id of UNITS.flatMap((u) => u.sections.flatMap((s) => sectionQuestionIds(s)))) {
       expect(official.has(QUESTIONS[id]?.question), id).toBe(true);
     }
   });

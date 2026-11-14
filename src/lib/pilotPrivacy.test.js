@@ -83,8 +83,12 @@ describe('pilot privacy', () => {
   });
 
   it('only these files read or write check-ins and activity days', () => {
-    expect(usersOf(/entities\s*\.\s*OutcomeCheckIn|['"]OutcomeCheckIn['"]/)).toEqual(['../components/pilot/checkInData.js', './deleteMyData.js'].sort());
+    // Check-ins are read and written only through src/api/pilot.js (Base44 or Supabase).
+    expect(usersOf(/entities\s*\.\s*OutcomeCheckIn|['"]OutcomeCheckIn['"]/)).toEqual(['../api/pilot.js', './deleteMyData.js'].sort());
+    expect(usersOf(/outcome_checkins/)).toEqual(['../api/pilot.js']);
     expect(usersOf(/CheckInReminder/)).toEqual([]);
-    expect(usersOf(/entities\s*\.\s*ActivityDay|['"]ActivityDay['"]/)).toEqual(['./activityDay.js', './deleteMyData.js'].sort());
+    // Activity days are written only through src/api/profile.js (Base44 or Supabase).
+    expect(usersOf(/entities\s*\.\s*ActivityDay|['"]ActivityDay['"]/)).toEqual(['../api/profile.js', './deleteMyData.js'].sort());
+    expect(usersOf(/activity_days/)).toEqual(['../api/profile.js']);
   });
 });

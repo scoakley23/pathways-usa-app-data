@@ -1,4 +1,4 @@
-import { base44 } from '@/api/base44Client';
+import { progress as progressApi } from '@/api/progress';
 import { auth } from '@/api/auth';
 import { toast } from 'sonner';
 import { badgeName, mergeBadges, newBadges } from './badges';
@@ -12,7 +12,7 @@ export async function awardBadges({ run = null } = {}) {
     const user = await auth.me();
     if (!user?.email) return [];
     const email = user.email.toLowerCase().trim();
-    const progressRows = await base44.entities.UserProgress.filter({ user_email: email }, null, 1000);
+    const progressRows = await progressApi.list({ limit: 1000 });
     const owned = user.badges || [];
     const added = newBadges({ owned, progressRows, points: user.points || 0, run });
     if (!added.length) return [];

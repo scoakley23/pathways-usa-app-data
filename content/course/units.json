@@ -1,13 +1,35 @@
 {
-  "note": "The course outline (Prompt 4). Unit titles and descriptions from frame R31Map; Unit 2's sections from frame R33UnitGuide. A section with a `file` has its stops and lessons in content/course/sections/. Sections of the other units are outlined before their Prompt 12 run. Course content is 2025-only for now.",
+  "note": "The course outline (Prompt 4). Unit titles and descriptions from frame R31Map; Unit 2's sections from frame R33UnitGuide; Unit 1's sections from the Prompt 12 outline (the Declaration first); Units 3-5's from their Prompt 12 outlines. U.S. History is split across Units 4-6: each lists its exact questions in `questionIds` (ids from content/base44-export/civics-questions-2025.json). A section with a `file` has its stops and lessons in content/course/sections/. Sections of the other units are outlined before their Prompt 12 run. Course content is 2025-only for now.",
   "units": [
     {
       "id": "u1",
       "number": 1,
       "title": "Principles of democracy",
-      "description": "Constitution · Bill of Rights · rule of law",
+      "description": "Declaration · Constitution · rule of law",
       "icon": "constitution",
-      "sections": []
+      "sections": [
+        {
+          "id": "u1-s1",
+          "number": 1,
+          "title": "The Declaration of Independence",
+          "file": "u1-s1-declaration.json"
+        },
+        {
+          "id": "u1-s2",
+          "number": 2,
+          "title": "The Constitution",
+          "file": "u1-s2-constitution.json"
+        },
+        {
+          "id": "u1-s3",
+          "number": 3,
+          "title": "Rights and the rule of law",
+          "file": "u1-s3-rights.json"
+        }
+      ],
+      "categories": [
+        "Principles of American Democracy"
+      ]
     },
     {
       "id": "u2",
@@ -16,11 +38,39 @@
       "description": "Branches · Congress · President · courts",
       "icon": "capitol",
       "sections": [
-        { "id": "u2-s1", "number": 1, "title": "The three branches" },
-        { "id": "u2-s2", "number": 2, "title": "Congress", "file": "u2-s2-congress.json" },
-        { "id": "u2-s3", "number": 3, "title": "The President" },
-        { "id": "u2-s4", "number": 4, "title": "The courts" },
-        { "id": "u2-s5", "number": 5, "title": "States and local government" }
+        {
+          "id": "u2-s1",
+          "number": 1,
+          "title": "The three branches",
+          "file": "u2-s1-branches.json"
+        },
+        {
+          "id": "u2-s2",
+          "number": 2,
+          "title": "Congress",
+          "file": "u2-s2-congress.json"
+        },
+        {
+          "id": "u2-s3",
+          "number": 3,
+          "title": "The President",
+          "file": "u2-s3-president.json"
+        },
+        {
+          "id": "u2-s4",
+          "number": 4,
+          "title": "The courts",
+          "file": "u2-s4-courts.json"
+        },
+        {
+          "id": "u2-s5",
+          "number": 5,
+          "title": "States and local government",
+          "file": "u2-s5-states.json"
+        }
+      ],
+      "categories": [
+        "System of Government"
       ]
     },
     {
@@ -29,7 +79,29 @@
       "title": "Rights and responsibilities",
       "description": "Voting · freedoms · your promises",
       "icon": "ballot",
-      "sections": []
+      "sections": [
+        {
+          "id": "u3-s1",
+          "number": 1,
+          "title": "Rights and voting",
+          "file": "u3-s1-voting.json"
+        },
+        {
+          "id": "u3-s2",
+          "number": 2,
+          "title": "Serving your country",
+          "file": "u3-s2-serving.json"
+        },
+        {
+          "id": "u3-s3",
+          "number": 3,
+          "title": "Becoming a citizen",
+          "file": "u3-s3-citizen.json"
+        }
+      ],
+      "categories": [
+        "Rights and Responsibilities"
+      ]
     },
     {
       "id": "u4",
@@ -37,7 +109,48 @@
       "title": "Colonies to a nation",
       "description": "First Americans · independence · founders",
       "icon": "colonies",
-      "sections": []
+      "sections": [
+        {
+          "id": "u4-s1",
+          "number": 1,
+          "title": "The first Americans and the colonies",
+          "file": "u4-s1-colonies.json"
+        },
+        {
+          "id": "u4-s2",
+          "number": 2,
+          "title": "Independence",
+          "file": "u4-s2-independence.json"
+        },
+        {
+          "id": "u4-s3",
+          "number": 3,
+          "title": "A new nation",
+          "file": "u4-s3-nation.json"
+        }
+      ],
+      "categories": [
+        "U.S. History"
+      ],
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de60",
+        "6ad16ecf6a9c603911f9de8b",
+        "6ad16ecf6a9c603911f9de5f",
+        "6ad16ecf6a9c603911f9de67",
+        "6ad16ecf6a9c603911f9de63",
+        "6ad16ecf6a9c603911f9de65",
+        "6ad16ecf6a9c603911f9de64",
+        "6ad16ecf6a9c603911f9de6d",
+        "6ad16ecf6a9c603911f9de62",
+        "6ad16ecf6a9c603911f9de66",
+        "6ad16ecf6a9c603911f9de68",
+        "6ad16ecf6a9c603911f9de6e",
+        "6ad16ecf6a9c603911f9de69",
+        "6ad16ecf6a9c603911f9de6a",
+        "6ad16ecf6a9c603911f9de6c",
+        "6ad16ecf6a9c603911f9de6b",
+        "6ad16ecf6a9c603911f9de6f"
+      ]
     },
     {
       "id": "u5",
@@ -45,7 +158,43 @@
       "title": "The 1800s",
       "description": "Louisiana Purchase · Civil War · Lincoln",
       "icon": "union",
-      "sections": []
+      "sections": [
+        {
+          "id": "u5-s1",
+          "number": 1,
+          "title": "A growing country",
+          "file": "u5-s1-growing.json"
+        },
+        {
+          "id": "u5-s2",
+          "number": 2,
+          "title": "Slavery and the Civil War",
+          "file": "u5-s2-civil-war.json"
+        },
+        {
+          "id": "u5-s3",
+          "number": 3,
+          "title": "Who can vote, who is a citizen",
+          "file": "u5-s3-voting.json"
+        }
+      ],
+      "categories": [
+        "U.S. History"
+      ],
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de70",
+        "6ad16ecf6a9c603911f9de71",
+        "6ad16ecf6a9c603911f9de61",
+        "6ad16ecf6a9c603911f9de76",
+        "6ad16ecf6a9c603911f9de72",
+        "6ad16ecf6a9c603911f9de73",
+        "6ad16ecf6a9c603911f9de75",
+        "6ad16ecf6a9c603911f9de74",
+        "6ad16ecf6a9c603911f9de78",
+        "6ad16ecf6a9c603911f9de77",
+        "6ad16ecf6a9c603911f9de79",
+        "6ad16ecf6a9c603911f9de7c"
+      ]
     },
     {
       "id": "u6",
@@ -53,7 +202,29 @@
       "title": "Modern America",
       "description": "World wars · civil rights · Sept. 11",
       "icon": "modern",
-      "sections": []
+      "sections": [],
+      "categories": [
+        "U.S. History"
+      ],
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de7a",
+        "6ad16ecf6a9c603911f9de7b",
+        "6ad16ecf6a9c603911f9de7d",
+        "6ad16ecf6a9c603911f9de7e",
+        "6ad16ecf6a9c603911f9de7f",
+        "6ad16ecf6a9c603911f9de80",
+        "6ad16ecf6a9c603911f9de81",
+        "6ad16ecf6a9c603911f9de82",
+        "6ad16ecf6a9c603911f9de83",
+        "6ad16ecf6a9c603911f9de84",
+        "6ad16ecf6a9c603911f9de85",
+        "6ad16ecf6a9c603911f9de86",
+        "6ad16ecf6a9c603911f9de87",
+        "6ad16ecf6a9c603911f9de88",
+        "6ad16ecf6a9c603911f9de89",
+        "6ad16ecf6a9c603911f9de8a",
+        "6ad16ecf6a9c603911f9de8c"
+      ]
     },
     {
       "id": "u7",

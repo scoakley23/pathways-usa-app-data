@@ -1,0 +1,269 @@
+{
+  "id": "u1-s2",
+  "unitId": "u1",
+  "number": 2,
+  "title": "The Constitution",
+  "note": "Drafted for Prompt 12 (Unit 1). Every lesson is a draft until a person reviews it (content/course/README.md).",
+  "stops": [
+    {
+      "id": "u1-s2-l1",
+      "type": "lesson",
+      "title": "The supreme law",
+      "lessonId": "u1-s2-l1"
+    },
+    {
+      "id": "u1-s2-l2",
+      "type": "lesson",
+      "title": "We the People",
+      "lessonId": "u1-s2-l2"
+    },
+    {
+      "id": "u1-s2-l3",
+      "type": "lesson",
+      "title": "Changing the Constitution",
+      "lessonId": "u1-s2-l3"
+    },
+    {
+      "id": "u1-s2-l4",
+      "type": "lesson",
+      "title": "Where the ideas came from",
+      "lessonId": "u1-s2-l4"
+    },
+    {
+      "id": "u1-s2-rw",
+      "type": "readwrite",
+      "title": "Read and write",
+      "fromLessons": [
+        "u1-s2-l1",
+        "u1-s2-l2",
+        "u1-s2-l3",
+        "u1-s2-l4"
+      ]
+    },
+    {
+      "id": "u1-s2-speak",
+      "type": "speakit",
+      "title": "Speak it!"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "u1-s2-l1",
+      "title": "The supreme law",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de18",
+        "6ad16ecf6a9c603911f9de19"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "What is the supreme law of the land?",
+          "facts": [
+            "The U.S. Constitution is the supreme law of the land. No other law can go against it.",
+            "It forms the government and says what each part of the government can do.",
+            "It also protects the rights of the people."
+          ],
+          "newWords": [
+            {
+              "word": "constitution",
+              "meaning": "the plan and highest law of a government"
+            },
+            {
+              "word": "supreme",
+              "meaning": "the highest"
+            },
+            {
+              "word": "protect",
+              "meaning": "to keep safe"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de18"
+        },
+        "readIt": {
+          "sentence": "Where does Congress meet?",
+          "words": [
+            "Where",
+            "does",
+            "Congress",
+            "meet"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Congress meets in Washington, D.C.",
+          "distractorWords": [
+            "White House",
+            "Alaska",
+            "June"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de19"
+        }
+      }
+    },
+    {
+      "id": "u1-s2-l2",
+      "title": "We the People",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de1a"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "The U.S. Constitution starts with the words “We the People.” What does “We the People” mean?",
+          "facts": [
+            "The Constitution starts with the words “We the People.”",
+            "It means the people govern themselves. This is called self-government.",
+            "The government gets its power from the people. This is called the consent of the governed."
+          ],
+          "newWords": [
+            {
+              "word": "self-government",
+              "meaning": "when the people rule themselves"
+            },
+            {
+              "word": "consent",
+              "meaning": "saying yes; agreeing"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de1a"
+        },
+        "readIt": {
+          "sentence": "Who elects the President?",
+          "words": [
+            "Who",
+            "elects",
+            "the",
+            "President"
+          ]
+        },
+        "writeIt": {
+          "sentence": "The people elect the President.",
+          "distractorWords": [
+            "Senators",
+            "Canada",
+            "blue"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de1a"
+        }
+      }
+    },
+    {
+      "id": "u1-s2-l3",
+      "title": "Changing the Constitution",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de1b",
+        "6ad16ecf6a9c603911f9de1d"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "How are changes made to the U.S. Constitution?",
+          "facts": [
+            "A change to the Constitution is called an amendment.",
+            "The Constitution has 27 amendments.",
+            "Changing the Constitution is hard on purpose. Most of Congress and most of the states must agree."
+          ],
+          "newWords": [
+            {
+              "word": "amendment",
+              "meaning": "a change or addition to the Constitution"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de1b"
+        },
+        "readIt": {
+          "sentence": "How many states does the United States have?",
+          "words": [
+            "How",
+            "many",
+            "states",
+            "does",
+            "the",
+            "United",
+            "States",
+            "have"
+          ]
+        },
+        "writeIt": {
+          "sentence": "The United States has fifty states.",
+          "distractorWords": [
+            "one hundred",
+            "Delaware",
+            "October"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de1d"
+        }
+      }
+    },
+    {
+      "id": "u1-s2-l4",
+      "title": "Where the ideas came from",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de24",
+        "6ad16ecf6a9c603911f9de20"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "Many documents influenced the U.S. Constitution. Name one.",
+          "facts": [
+            "The people who wrote the Constitution learned from older documents, like the Declaration of Independence, the Articles of Confederation and the Federalist Papers.",
+            "George Washington led the meeting that wrote the Constitution in 1787.",
+            "The Declaration and the Constitution share big ideas: equality, liberty, natural rights, limited government and self-government."
+          ],
+          "newWords": [
+            {
+              "word": "influence",
+              "meaning": "to help shape how something turns out"
+            },
+            {
+              "word": "equality",
+              "meaning": "being treated the same as everyone else"
+            },
+            {
+              "word": "limited government",
+              "meaning": "a government whose power has limits"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de24"
+        },
+        "readIt": {
+          "sentence": "Who is the Father of Our Country?",
+          "words": [
+            "Who",
+            "is",
+            "the",
+            "Father",
+            "of",
+            "Our",
+            "Country"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Washington is the Father of Our Country.",
+          "distractorWords": [
+            "Lincoln",
+            "Adams",
+            "California"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de20"
+        }
+      }
+    }
+  ]
+}

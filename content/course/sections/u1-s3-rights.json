@@ -1,0 +1,220 @@
+{
+  "id": "u1-s3",
+  "unitId": "u1",
+  "number": 3,
+  "title": "Rights and the rule of law",
+  "note": "Drafted for Prompt 12 (Unit 1). Every lesson is a draft until a person reviews it (content/course/README.md).",
+  "stops": [
+    {
+      "id": "u1-s3-l1",
+      "type": "lesson",
+      "title": "The Bill of Rights",
+      "lessonId": "u1-s3-l1"
+    },
+    {
+      "id": "u1-s3-l2",
+      "type": "lesson",
+      "title": "No one is above the law",
+      "lessonId": "u1-s3-l2"
+    },
+    {
+      "id": "u1-s3-l3",
+      "type": "lesson",
+      "title": "How our country works",
+      "lessonId": "u1-s3-l3"
+    },
+    {
+      "id": "u1-s3-rw",
+      "type": "readwrite",
+      "title": "Read and write",
+      "fromLessons": [
+        "u1-s3-l1",
+        "u1-s3-l2",
+        "u1-s3-l3"
+      ]
+    },
+    {
+      "id": "u1-s3-speak",
+      "type": "speakit",
+      "title": "Speak it!"
+    },
+    {
+      "id": "u1-practice-interview",
+      "type": "practiceInterview",
+      "title": "Unit practice interview"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "u1-s3-l1",
+      "title": "The Bill of Rights",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de1c"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "What does the Bill of Rights protect?",
+          "facts": [
+            "The Bill of Rights is the first ten amendments to the Constitution.",
+            "It protects the basic rights of Americans and of people living in the United States.",
+            "Freedom of speech and freedom of religion are two of these rights."
+          ],
+          "newWords": [
+            {
+              "word": "Bill of Rights",
+              "meaning": "the first ten amendments to the Constitution"
+            },
+            {
+              "word": "freedom of speech",
+              "meaning": "the right to say what you think"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de1c"
+        },
+        "readIt": {
+          "sentence": "What is one right in the Bill of Rights?",
+          "words": [
+            "What",
+            "is",
+            "one",
+            "right",
+            "in",
+            "the",
+            "Bill",
+            "of",
+            "Rights"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Freedom of speech is one right.",
+          "distractorWords": [
+            "taxes",
+            "flag",
+            "May"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de1c"
+        }
+      }
+    },
+    {
+      "id": "u1-s3-l2",
+      "title": "No one is above the law",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de23",
+        "6ad16ecf6a9c603911f9de25"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "What is the rule of law?",
+          "facts": [
+            "The rule of law means everyone must follow the law. Leaders and the government must obey the law too.",
+            "No one is above the law.",
+            "The government has three branches so one part does not become too powerful. Each branch can check the others. This is called checks and balances."
+          ],
+          "newWords": [
+            {
+              "word": "rule of law",
+              "meaning": "everyone must follow the law"
+            },
+            {
+              "word": "checks and balances",
+              "meaning": "each branch can limit the power of the others"
+            },
+            {
+              "word": "separation of powers",
+              "meaning": "the power of government is split into parts"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de23"
+        },
+        "readIt": {
+          "sentence": "Why do we vote?",
+          "words": [
+            "Why",
+            "do",
+            "we",
+            "vote"
+          ]
+        },
+        "writeIt": {
+          "sentence": "We elect the President and Congress.",
+          "distractorWords": [
+            "Canada",
+            "Thanksgiving",
+            "red"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de25"
+        }
+      }
+    },
+    {
+      "id": "u1-s3-l3",
+      "title": "How our country works",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de17",
+        "6ad16ecf6a9c603911f9de22"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "What is the form of government of the United States?",
+          "facts": [
+            "The United States is a republic. The people elect leaders to make laws for them. This is also called a representative democracy.",
+            "The economic system of the United States is capitalism, also called a free market economy.",
+            "In a free market, people and businesses can own things and decide what to make, buy and sell."
+          ],
+          "newWords": [
+            {
+              "word": "republic",
+              "meaning": "a country where the people elect their leaders"
+            },
+            {
+              "word": "democracy",
+              "meaning": "government by the people"
+            },
+            {
+              "word": "capitalism",
+              "meaning": "an economy where people and businesses own and run things"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de17"
+        },
+        "readIt": {
+          "sentence": "Who can vote in the United States?",
+          "words": [
+            "Who",
+            "can",
+            "vote",
+            "in",
+            "the",
+            "United",
+            "States"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Citizens have the right to vote.",
+          "distractorWords": [
+            "President",
+            "Mexico",
+            "white"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de22"
+        }
+      }
+    }
+  ]
+}

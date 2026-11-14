@@ -12,7 +12,7 @@ vi.mock('@/api/base44Client', () => ({
 }));
 vi.mock('@/lib/app-params', () => ({ appParams: {} }));
 vi.mock('@base44/sdk/dist/utils/axios-client', () => ({ createAxiosClient: () => ({ get: async () => ({}) }) }));
-vi.mock('@/lib/profileService', () => ({ ensurePublicProfile: vi.fn(async () => ({ created: true })) }));
+vi.mock('@/api/base44Profile', () => ({ ensurePublicProfile: vi.fn(async () => ({ created: true })) }));
 
 const LEARNER = 'learner@example.test';
 const T0 = Date.parse('2026-11-14T12:00:00Z');

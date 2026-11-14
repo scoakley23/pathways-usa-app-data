@@ -117,6 +117,64 @@ Supabase can't limit codes per address per hour; the closest is one code per
 address per 60 seconds plus the project-wide 30 per hour. If abuse shows up,
 add a CAPTCHA (Cloudflare Turnstile, Authentication → Attack Protection).
 
+## Edge Functions (server code, from Step 3)
+
+| Function | What it does |
+|---|---|
+| `functions/pilot-report/` | The admin pilot dashboard (`/admin/pilot`): admins only (anyone else gets 404); reads the pilot learners' rows with the service role and returns one summary per learner keyed by `pilot_id`, never an email, name or login id. The math is `functions/_shared/pilotReport.js`, an exact copy of `base44/shared/pilotReport.js` (a test checks they match; change both together) |
+
+Deploy (on your computer, after `supabase link`; again whenever a function's folder changes):
+
+```bash
+supabase functions deploy pilot-report
+```
+
+Supabase gives every Edge Function its URL, anon key and service-role key
+itself; nothing to paste. The service-role key stays on Supabase's servers.
+
+## Turning the switch on (after Step 3)
+
+Step 3 moved every screen's data into `src/api/`, behind the same switch as
+sign-in (`VITE_AUTH_PROVIDER=supabase`). `src/api/movedData.test.js` checks
+that no screen reads or writes data any other way.
+
+### 1. Before you try it
+
+- [ ] Every Step 3 pull request is merged into `standalone`.
+- [ ] `supabase db push` has applied every migration (run it again after new ones).
+- [ ] The pilot dashboard's server function is deployed: `supabase functions deploy pilot-report`.
+- [ ] You are an admin (SQL above), signed out and in again.
+- [ ] Your computer's `.env` has `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` and `VITE_AUTH_PROVIDER=supabase`.
+
+### 2. Try each area on your computer (`npm run dev`)
+
+Use your own email, and a second **fake** email you control for the delete test.
+
+| Area | Do this | See this (Supabase → Table Editor) |
+|---|---|---|
+| Sign-in | Sign in with the 6-digit code | a row in `profiles` |
+| Content | Practice (civics, reading, writing), Course, a lesson, the Resource Hub map | questions, sentences, lessons and places show |
+| Profile | Change your name in Settings; "Who Represents Me?" | `profiles.display_name`, `representative_state` / `_district` |
+| Activity | Open the app | today's row in `activity_days` |
+| Practice | One civics round | rows in `user_progress`; Me and Progress count them |
+| Lessons | Finish a lesson's "Go over them"; write a note | `lesson_progress`, `lesson_notes` |
+| Interview | Finish a practice interview; "I read this section" in the N-400 guide | `interview_sessions` (scores only), `n400_section_progress` (id + date) |
+| Ask Amio | Ask a question; open Study history | `ai_study_logs` |
+| Saved places | Save a place | `saved_places` |
+| Partner programs | Admin → Partners: a fake program with your email as staff; pick it in Me with the fake account; confirm it on `/Partner` | `partners`, `program_memberships` |
+| Pilot | Answer "Help us improve"; open `/admin/pilot` as admin | `outcome_checkins`; the dashboard lists the fake learner |
+| Delete my data | With the **fake** account: Settings → Delete all my data | the fake login is gone from Authentication → Users, and its rows from every table |
+
+### 3. Still on Base44 after Step 3
+
+These keep working only while the switch is **off**, until their step moves them:
+
+- **AI** (Ask Amio's answers, grading, scoring, translations, "Who Represents Me?" lookup): Step 4. Base44 may refuse AI calls without a Base44 login, so test these with the switch on before relying on them.
+- **Emails** (Talk to a person, pilot reminder emails in Admin → Pilot): Step 5.
+- **The review schedule**: the screens still use the old one on `user_progress`; `review_items` (Prompt 4) replaces it in its own PR.
+
+So turn the switch on in Cloudflare Pages only after Steps 4 and 5.
+
 ## Names that changed from Base44 (for Step 3)
 
 | Base44 | Supabase |

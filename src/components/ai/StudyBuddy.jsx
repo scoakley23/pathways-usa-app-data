@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, ChevronDown, ChevronRight, Globe, History, Loader2, Scale, Users, Volume2 } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
+import { askHistory } from '@/api/askHistory';
+import { lessonProgress as lessonProgressApi } from '@/api/lessons';
 import { content } from '@/api/content';
 import { auth } from '@/api/auth';
 import { createPageUrl } from '@/utils';
@@ -196,7 +198,7 @@ export default function StudyBuddy() {
         // lesson progress (owner-only) and the lessons' reviewed key points.
         const email = u.email.toLowerCase().trim();
         const [progress, lessons] = await Promise.all([
-          base44.entities.LessonProgress.filter({ user_email: email }, '-last_attempt_date', 20).catch(() => []),
+          lessonProgressApi.list({ sort: '-last_attempt_date', limit: 20 }).catch(() => []),
           content.lessons({ limit: 300 }).catch(() => []),
         ]);
         if (active) setFromLessons(lessonSuggestions(progress, lessons));
@@ -254,13 +256,7 @@ export default function StudyBuddy() {
     // Save answered questions to History (learner-only).
     if (answer && user) {
       try {
-        await base44.entities.AIStudyLog.create({
-          user_email: user.email,
-          question,
-          answer: historyAnswerText(answer),
-          language: askedIn,
-          created_at: new Date().toISOString(),
-        });
+        await askHistory.add({ question, answer: historyAnswerText(answer), language: askedIn });
       } catch (error) {
         console.error('Could not save to History:', error);
       }

@@ -1,0 +1,263 @@
+{
+  "id": "u4-s3",
+  "unitId": "u4",
+  "number": 3,
+  "title": "A new nation",
+  "note": "Drafted for Prompt 12 (Unit 4). Every lesson is a draft until a person reviews it (content/course/README.md).",
+  "stops": [
+    {
+      "id": "u4-s3-l1",
+      "type": "lesson",
+      "title": "The Constitution of 1787",
+      "lessonId": "u4-s3-l1"
+    },
+    {
+      "id": "u4-s3-l2",
+      "type": "lesson",
+      "title": "The Federalist Papers",
+      "lessonId": "u4-s3-l2"
+    },
+    {
+      "id": "u4-s3-l3",
+      "type": "lesson",
+      "title": "Washington and Franklin",
+      "lessonId": "u4-s3-l3"
+    },
+    {
+      "id": "u4-s3-l4",
+      "type": "lesson",
+      "title": "Alexander Hamilton",
+      "lessonId": "u4-s3-l4"
+    },
+    {
+      "id": "u4-s3-rw",
+      "type": "readwrite",
+      "title": "Read and write",
+      "fromLessons": [
+        "u4-s3-l1",
+        "u4-s3-l2",
+        "u4-s3-l3",
+        "u4-s3-l4"
+      ]
+    },
+    {
+      "id": "u4-s3-speak",
+      "type": "speakit",
+      "title": "Speak it!"
+    },
+    {
+      "id": "u4-practice-interview",
+      "type": "practiceInterview",
+      "title": "Unit practice interview"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "u4-s3-l1",
+      "title": "The Constitution of 1787",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de68",
+        "6ad16ecf6a9c603911f9de6e"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "What founding document was written in 1787?",
+          "facts": [
+            "The U.S. Constitution was written in 1787.",
+            "James Madison is called the Father of the Constitution.",
+            "He was also the fourth President, and President during the War of 1812."
+          ],
+          "newWords": [
+            {
+              "word": "founding document",
+              "meaning": "an important paper written when the country began"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de68"
+        },
+        "readIt": {
+          "sentence": "Who elects Congress?",
+          "words": [
+            "Who",
+            "elects",
+            "Congress"
+          ]
+        },
+        "writeIt": {
+          "sentence": "The people elect Congress.",
+          "distractorWords": [
+            "President",
+            "Delaware",
+            "white"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de6e"
+        }
+      }
+    },
+    {
+      "id": "u4-s3-l2",
+      "title": "The Federalist Papers",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de69",
+        "6ad16ecf6a9c603911f9de6a"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "The Federalist Papers supported the passage of the U.S. Constitution. Name one of the writers.",
+          "facts": [
+            "The Federalist Papers were essays written to support passing the Constitution.",
+            "They helped people understand the Constitution.",
+            "James Madison, Alexander Hamilton and John Jay wrote them, under the name Publius."
+          ],
+          "newWords": [
+            {
+              "word": "essay",
+              "meaning": "a short piece of writing about one idea"
+            },
+            {
+              "word": "support",
+              "meaning": "to be for something and help it"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de69"
+        },
+        "readIt": {
+          "sentence": "Why do people vote?",
+          "words": [
+            "Why",
+            "do",
+            "people",
+            "vote"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Citizens vote for Congress.",
+          "distractorWords": [
+            "Canada",
+            "Thanksgiving",
+            "red"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de6a"
+        }
+      }
+    },
+    {
+      "id": "u4-s3-l3",
+      "title": "Washington and Franklin",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de6c",
+        "6ad16ecf6a9c603911f9de6b"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "George Washington is famous for many things. Name one.",
+          "facts": [
+            "George Washington is called the Father of Our Country. He was the first President and led the Continental Army.",
+            "Benjamin Franklin helped write the Declaration of Independence. He was an inventor and a U.S. diplomat.",
+            "Franklin also started the first free public libraries and was the first Postmaster General."
+          ],
+          "newWords": [
+            {
+              "word": "inventor",
+              "meaning": "a person who makes something new"
+            },
+            {
+              "word": "diplomat",
+              "meaning": "a person who works with other countries for their country"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de6c"
+        },
+        "readIt": {
+          "sentence": "Who is the Father of Our Country?",
+          "words": [
+            "Who",
+            "is",
+            "the",
+            "Father",
+            "of",
+            "Our",
+            "Country"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Washington is the Father of Our Country.",
+          "distractorWords": [
+            "Lincoln",
+            "Congress",
+            "November"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de6b"
+        }
+      }
+    },
+    {
+      "id": "u4-s3-l4",
+      "title": "Alexander Hamilton",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de6f"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "Alexander Hamilton is famous for many things. Name one.",
+          "facts": [
+            "Alexander Hamilton was the first Secretary of the Treasury.",
+            "He helped start the First Bank of the United States and was one of the writers of the Federalist Papers.",
+            "He was an aide to General George Washington. Washington is on the one-dollar bill, and Hamilton is on the ten-dollar bill."
+          ],
+          "newWords": [
+            {
+              "word": "treasury",
+              "meaning": "the part of government that takes care of money"
+            },
+            {
+              "word": "aide",
+              "meaning": "a person who helps a leader"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de6f"
+        },
+        "readIt": {
+          "sentence": "Who is on the dollar bill?",
+          "words": [
+            "Who",
+            "is",
+            "on",
+            "the",
+            "dollar",
+            "bill"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Washington is on the dollar bill.",
+          "distractorWords": [
+            "Adams",
+            "flag",
+            "July"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de6f"
+        }
+      }
+    }
+  ]
+}
