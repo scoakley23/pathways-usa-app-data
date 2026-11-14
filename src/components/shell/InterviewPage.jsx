@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Check } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
+import { progress as progressApi } from '@/api/progress';
 import { content } from '@/api/content';
 import { auth } from '@/api/auth';
 import NavyBanner from '@/components/pathways/NavyBanner';
@@ -87,7 +88,7 @@ export default function InterviewPage() {
       if (!user) { if (active) setData({ levels: null, sessions: [], civicsMastered: 0, civicsTotal: 128 }); return; }
       const email = user.email.toLowerCase().trim();
       const [progress, sessions, civics2025] = await Promise.all([
-        base44.entities.UserProgress.filter({ user_email: email, content_type: 'civics_question' }, '-last_practiced', 500).catch(() => []),
+        progressApi.list({ contentType: 'civics_question', sort: '-last_practiced', limit: 500 }).catch(() => []),
         base44.entities.InterviewSession.filter({ user_email: email }, '-created_date', 50).catch(() => []),
         content.civicsQuestions({ version: '2025', limit: 300 }).catch(() => []),
       ]);

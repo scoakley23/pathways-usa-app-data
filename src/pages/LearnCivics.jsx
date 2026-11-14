@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { BookOpen, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
-import { base44 } from '@/api/base44Client';
+import { progress as progressApi } from '@/api/progress';
 import { content } from '@/api/content';
 import { auth } from '@/api/auth';
 import TopicArt, { TOPIC_ART } from '@/components/art/TopicArt';
@@ -76,7 +76,7 @@ export default function LearnCivics() {
     try {
       const [questions, progress] = await Promise.all([
         content.civicsQuestions({ version: '2025', limit: 500 }),
-        base44.entities.UserProgress.filter({ user_email: user.email, content_type: 'civics_question' }, null, 1000),
+        progressApi.list({ contentType: 'civics_question', limit: 1000 }),
       ]);
       setPicked(pickNextToLearn(questions, progress, count));
     } catch (e) {
@@ -118,10 +118,9 @@ export default function LearnCivics() {
     try {
       for (const { question, correct, ungraded } of outcome) {
         if (ungraded) continue;
-        const existing = await base44.entities.UserProgress.filter({ user_email: user.email, content_id: question.id }, null, 1);
-        const data = { user_email: user.email, content_id: question.id, content_type: 'civics_question', ...learnedProgress(existing[0], correct) };
-        if (existing.length > 0) await base44.entities.UserProgress.update(existing[0].id, data);
-        else await base44.entities.UserProgress.create(data);
+        const existing = await progressApi.get(question.id);
+        const data = { user_email: user.email, content_id: question.id, content_type: 'civics_question', ...learnedProgress(existing || undefined, correct) };
+        await progressApi.save(existing, data);
       }
       awardBadges();
     } catch (e) {

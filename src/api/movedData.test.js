@@ -8,6 +8,7 @@ import path from 'node:path';
 export const MOVED = {
   'PR 1, content (src/api/content.js)': ['CivicsQuestion', 'InterviewQuestion', 'ReadingSentence', 'Sentence', 'VocabularyWord', 'Lesson', 'LessonFlashcard', 'CommunityResource'],
   'PR 2, profile and activity (src/api/profile.js)': ['PublicProfile', 'ActivityDay'],
+  'PR 3, practice progress (src/api/progress.js)': ['UserProgress'],
 };
 
 const SRC = path.resolve(__dirname, '..');
