@@ -55,14 +55,15 @@ export default function Lessons() {
         // Not logged in — lessons still load
       }
       
-      const [lessonPage, userProgress] = await Promise.all([
+      const [lessonList, userProgress] = await Promise.all([
         content.lessons({ sort: 'order', limit: 100 }),
         currentUser?.email 
           ? base44.entities.LessonProgress.filter({ user_email: currentUser.email }, null, 1000)
           : Promise.resolve([])
       ]);
       
-      setLessons(lessonPage.items);
+      // content.lessons() returns a plain list (src/api/content.js).
+      setLessons(Array.isArray(lessonList) ? lessonList : []);
       setProgress(userProgress);
     } catch (error) {
       console.error('Failed to load:', error);
