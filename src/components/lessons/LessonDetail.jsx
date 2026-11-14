@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
+import { auth } from '@/api/auth';
 import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, Loader2, RotateCcw } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { toast } from "sonner";
@@ -91,7 +92,7 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
       // Signed-out learners can still practice; they just don't save progress.
       let currentUser = null;
       try {
-        currentUser = await base44.auth.me();
+        currentUser = await auth.me();
       } catch (e) { /* signed out */ }
       setUser(currentUser);
 
@@ -182,7 +183,7 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
   const markComplete = async () => {
     if (!user?.email) {
       toast.info('Sign in to save your progress.', {
-        action: { label: 'Sign in', onClick: () => base44.auth.redirectToLogin(window.location.href) },
+        action: { label: 'Sign in', onClick: () => auth.goToSignIn() },
       });
       return;
     }

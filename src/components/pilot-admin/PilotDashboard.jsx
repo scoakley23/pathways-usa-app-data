@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Download, Loader2, RefreshCw } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
+import { auth } from '@/api/auth';
 import PageTop from '@/components/pathways/PageTop';
 import PageNotFound from '@/lib/PageNotFound';
 import { RaisedCard, SecondaryButton, Eyebrow, CreamSheet } from '@/components/pathways/ui';
@@ -66,7 +67,7 @@ export default function PilotDashboard() {
   const [partner, setPartner] = useState(false);
 
   useEffect(() => {
-    base44.auth.me().then(setMe).catch(() => setMe(null));
+    auth.me().then(setMe).catch(() => setMe(null));
   }, []);
 
   const load = async () => {

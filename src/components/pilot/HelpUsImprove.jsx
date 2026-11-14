@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Loader2 } from 'lucide-react';
-import { base44 } from '@/api/base44Client';
+import { auth } from '@/api/auth';
 import { RaisedCard, PrimaryButton, QuietButton, Eyebrow } from '@/components/pathways/ui';
 import { Checkbox } from '@/components/ui/checkbox';
 import { buildSignupAnswers, stageFromOnboarding } from '@/lib/pilot';
@@ -31,7 +31,7 @@ export default function HelpUsImprove({ user, language = 'en', onDone }) {
       if (answers?.checkIn) {
         await saveCheckIn(user.email, answers.checkIn);
       }
-      await base44.auth.updateMe(answers ? answers.profile : { pilot_intro_seen: true });
+      await auth.updateMe(answers ? answers.profile : { pilot_intro_seen: true });
       onDone?.();
     } catch (e) {
       setError(true);

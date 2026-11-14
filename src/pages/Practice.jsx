@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
+import { auth } from '@/api/auth';
 import { Button } from "@/components/ui/button";
 import { ArrowRight, BookOpen, Check, Landmark, Loader2, Sparkles, Layers, Mic, MessagesSquare, PenLine, SlidersHorizontal, X } from 'lucide-react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
@@ -85,7 +86,7 @@ export default function Practice() {
 
   const loadUser = async () => {
       try {
-        const user = await base44.auth.me();
+        const user = await auth.me();
         if (user) {
           const normalizedEmail = user.email.toLowerCase().trim();
           const normalizedUser = { ...user, email: normalizedEmail };
@@ -405,7 +406,7 @@ export default function Practice() {
           // Gamification
           if (isSuccess) {
              pointsRef.current += 10;
-             await base44.auth.updateMe({ points: pointsRef.current });
+             await auth.updateMe({ points: pointsRef.current });
           }
        } catch (e) {
          console.error("Save progress failed", e);

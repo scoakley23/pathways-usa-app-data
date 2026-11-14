@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { base44 } from '@/api/base44Client';
+import { auth } from '@/api/auth';
 import { createPageUrl } from '@/utils';
 import TopicArt from '@/components/art/TopicArt';
 import TutorLesson from '@/components/persona/TutorLesson';
@@ -60,7 +61,7 @@ export default function QuickCheck() {
     ])
       .then(([civics, reading, writing, speaking]) => setSources({ civics, reading, writing, speaking }))
       .catch(() => setSources({ civics: [], reading: [], writing: [], speaking: [] }));
-    base44.auth.me().then((u) => setPrevious(u?.skill_levels || null)).catch(() => {});
+    auth.me().then((u) => setPrevious(u?.skill_levels || null)).catch(() => {});
   }, []);
 
   const lesson = useMemo(() => (sources ? buildPretestLesson(sources, language, undefined, parts) : null), [sources, language, parts]);
@@ -74,7 +75,7 @@ export default function QuickCheck() {
     window.scrollTo({ top: 0 });
     setSaving(true);
     try {
-      await base44.auth.updateMe({ skill_levels: toSavedLevels(result) });
+      await auth.updateMe({ skill_levels: toSavedLevels(result) });
     } catch (e) {
       toast.error("Couldn't save your results. Please check your connection.");
     } finally {

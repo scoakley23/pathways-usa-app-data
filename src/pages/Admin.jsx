@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { base44 } from '@/api/base44Client';
+import { auth } from '@/api/auth';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AlertCircle, FileText, HelpCircle, BookOpen, MapPin, Users } from 'lucide-react';
 import SentencesTab from '@/components/admin/SentencesTab';
@@ -20,7 +20,7 @@ export default function Admin() {
   useEffect(() => {
     const checkUser = async () => {
       try {
-        const user = await base44.auth.me();
+        const user = await auth.me();
         setCurrentUser(user);
       } catch (error) {
         // Not logged in

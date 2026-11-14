@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
+import { auth } from '@/api/auth';
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Clock, Award, Target, ArrowRight } from 'lucide-react';
@@ -33,7 +34,7 @@ export default function Progress() {
 
   const fetchProgress = async () => {
     try {
-      const user = await base44.auth.me().catch(() => null);
+      const user = await auth.me().catch(() => null);
       if (!user) {
         setIsLoading(false);
         return;

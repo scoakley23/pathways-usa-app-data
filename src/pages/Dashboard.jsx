@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
+import { auth } from '@/api/auth';
 import { Card, CardContent } from '@/components/ui/card';
 import { Loader2, CheckCircle, Clock, Circle, BookOpen } from 'lucide-react';
 import PageTop from '@/components/pathways/PageTop';
@@ -22,7 +23,7 @@ export default function Dashboard({ cachedUser }) {
   useEffect(() => {
     const init = async () => {
       try {
-        const currentUser = cachedUser || (await base44.auth.me().catch(() => null));
+        const currentUser = cachedUser || (await auth.me().catch(() => null));
         if (!currentUser) {
           setLoading(false);
           return;

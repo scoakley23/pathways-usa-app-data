@@ -3,6 +3,7 @@ import { Loader2, Mail, BarChart3 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
 import { base44 } from '@/api/base44Client';
+import { auth } from '@/api/auth';
 import { Eyebrow, RaisedCard, SecondaryButton } from '@/components/pathways/ui';
 
 // Admin-only pilot tools.
@@ -38,7 +39,7 @@ export default function PilotAdminTool({ currentUser }) {
   const saveMonths = async (value) => {
     setMonths(value);
     try {
-      await base44.auth.updateMe({ pilot_test_months_ago: value === '' ? null : Number(value) });
+      await auth.updateMe({ pilot_test_months_ago: value === '' ? null : Number(value) });
       toast.success(value === '' ? 'Using your real sign-up date.' : `Pretending you signed up ${value} months ago. Reload Today to see it.`);
     } catch (err) {
       toast.error('Could not save.');
