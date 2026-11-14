@@ -8,7 +8,7 @@ import { shareLink } from '@/lib/programLink';
 import { normalizeCode, normalizeEmail } from '@/lib/partners';
 
 // Admin → Partners: the programs learners can pick in Getting started and
-// Profile. Staff emails can open /Partner for their program. Turn a program
+// Me. Staff emails can open /Partner for their program. Turn a program
 // off instead of deleting it.
 
 const LABEL = 'text-base font-bold text-pw-navy block';
@@ -66,7 +66,7 @@ export default function PartnersTab() {
   return (
     <div className="space-y-4 text-pw-navy">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <p className="text-base text-pw-muted max-w-2xl">Learners pick these programs in Getting started and Profile. Staff confirm their learners at /Partner.</p>
+        <p className="text-base text-pw-muted max-w-2xl">Learners pick these programs in Getting started and on Me. Staff confirm their learners at /Partner.</p>
         {editing === null && <PrimaryButton onClick={() => startEdit(null)}><Plus className="w-4 h-4" aria-hidden="true" /> Add a program</PrimaryButton>}
       </div>
 

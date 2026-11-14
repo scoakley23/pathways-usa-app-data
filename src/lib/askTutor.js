@@ -21,6 +21,72 @@ export const ASK_LINES_ES = {
 };
 export const ASK_LINES_CACHE_KEY = 'ask_tutor_lines_v1';
 
+// The Ask Amio screen (frame R30AskAmio). Suggested questions are tapped,
+// not typed (src/lib/askSuggestions.js). Same translation rules as above.
+export const ASK_SCREEN_LINES = {
+  title: 'Ask Amio',
+  subtitle: 'Questions about your lessons',
+  prompt: 'What do you want to understand better?',
+  from_lessons: 'From your lessons',
+  to_start: 'To get started',
+  about_interview: 'About the interview',
+  own_case: 'Questions about your own case go to a free legal helper, not Amio.',
+  ask_out_loud: 'Ask out loud, in your language',
+  listening: 'Listening… tap to stop',
+  type_instead: 'Type instead',
+  type_label: 'Type your question',
+  send: 'Ask',
+  you_asked: 'You asked',
+  ask_another: 'Ask another question',
+  said_in_your_language: 'Said in your language',
+  hear_it: 'Hear it',
+  in_english: 'In English',
+  in_my_language: 'In my language',
+  thinking: 'Amio is thinking',
+  no_answer: "Sorry, I couldn't answer that right now. Please try again.",
+  history: 'History',
+  chat_language: 'Amio explains in',
+  talk_to_person: 'Talk to a person',
+  q_branches: 'What are the three branches of government?',
+  q_constitution: 'What does the Constitution do?',
+  q_rights: 'What is the Bill of Rights?',
+  q_how_long: 'How long is the interview?',
+  q_dont_understand: "What if I don't understand the officer?",
+  q_what_happens: 'What happens at the interview?',
+};
+export const ASK_SCREEN_LINES_ES = {
+  title: 'Pregúntele a Amio',
+  subtitle: 'Preguntas sobre sus lecciones',
+  prompt: '¿Qué quiere entender mejor?',
+  from_lessons: 'De sus lecciones',
+  to_start: 'Para empezar',
+  about_interview: 'Sobre la entrevista',
+  own_case: 'Las preguntas sobre su propio caso son para un ayudante legal gratuito, no para Amio.',
+  ask_out_loud: 'Pregunte en voz alta, en su idioma',
+  listening: 'Escuchando… toque para parar',
+  type_instead: 'Escribir',
+  type_label: 'Escriba su pregunta',
+  send: 'Preguntar',
+  you_asked: 'Usted preguntó',
+  ask_another: 'Hacer otra pregunta',
+  said_in_your_language: 'Dicho en su idioma',
+  hear_it: 'Escuchar',
+  in_english: 'En inglés',
+  in_my_language: 'En mi idioma',
+  thinking: 'Amio está pensando',
+  no_answer: 'Lo siento, no pude contestar ahora. Por favor, intente otra vez.',
+  history: 'Historial',
+  chat_language: 'Amio explica en',
+  talk_to_person: 'Hablar con una persona',
+  q_branches: '¿Cuáles son las tres ramas del gobierno?',
+  q_constitution: '¿Qué hace la Constitución?',
+  q_rights: '¿Qué es la Carta de Derechos?',
+  q_how_long: '¿Cuánto dura la entrevista?',
+  q_dont_understand: '¿Qué pasa si no entiendo al oficial?',
+  q_what_happens: '¿Qué pasa en la entrevista?',
+};
+export const ASK_SCREEN_CACHE_KEY = 'ask_screen_v1';
+
 // Safety net that runs before any AI call. If a question clearly asks about
 // the learner's own case or eligibility, we decline without sending it.
 // It is deliberately narrow (the AI flag catches the rest), so normal study

@@ -8,7 +8,7 @@ import { LANGUAGES } from '@/hooks/useLessonTranslation';
 // "How we study together": the three promises, as one numbered card. Answers
 // come from the USCIS lists; learn in your language, answer in English (with
 // the language menu, unless `showLanguage` is off); and what we never keep.
-// Shown on the Getting started welcome and on Profile (StudyTogetherCard).
+// Shown on the Getting started welcome and on Settings (StudyTogetherCard).
 const ROWS = [
   { n: 1, tone: 'bg-navy text-white', title: 'study_answers_title', body: 'study_answers_body' },
   { n: 2, tone: 'bg-navy text-white', title: 'study_language_title', body: 'study_language_body', language: true },

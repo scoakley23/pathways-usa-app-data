@@ -14,8 +14,8 @@ export function RoadIcon({ className = 'w-6 h-6', strokeWidth = 2 }) {
   );
 }
 
-// Amio as an outline (body, hair and eyes), for the tab bar and the desktop
-// pill. Same shapes as Amio.jsx; the stroke stays 2px at any size.
+// Amio as an outline (body, hair and eyes), for places that need a small
+// Amio icon. Same shapes as Amio.jsx; the stroke stays 2px at any size.
 export function AmioIcon({ className = 'w-6 h-6', strokeWidth = 2 }) {
   return (
     <svg viewBox="4 4 72 72" fill="none" stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true" focusable="false">

@@ -13,9 +13,13 @@ import { toast } from "sonner";
 import { formatDistanceToNow } from 'date-fns';
 import { Link } from 'react-router-dom';
 
-// The notifications panel. It has no button of its own: the profile menu opens
-// it (`open` / `onOpenChange`), and the header shows a dot from
-// `onUnreadChange(count)`. It stays mounted so it keeps checking for new ones.
+// The notifications panel. It has no button of its own: the Notifications
+// row on Me opens it (openNotifications(), through Layout's `open` /
+// `onOpenChange`), and the Me tab shows a dot from `onUnreadChange(count)`.
+// It stays mounted so it keeps checking for new ones.
+export const OPEN_NOTIFICATIONS_EVENT = 'pathways-open-notifications';
+export const openNotifications = () => window.dispatchEvent(new Event(OPEN_NOTIFICATIONS_EVENT));
+
 export default function NotificationCenter({ userEmail, open = false, onOpenChange, onUnreadChange }) {
   const [notifications, setNotifications] = useState([]);
   const [unreadCount, setUnreadCount] = useState(0);
