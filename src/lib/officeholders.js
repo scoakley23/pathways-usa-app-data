@@ -404,9 +404,9 @@ export function gradeOfficeholderAnswer({ kind, answer, state, district }) {
 }
 
 // ---------------------------------------------------------------------------
-// Vía (Study Buddy)
+// Amio (Study Buddy)
 
-/** Add this to Vía's system instructions. */
+/** Add this to Amio's system instructions. */
 export const VIA_OFFICEHOLDER_RULES = `
 CURRENT OFFICEHOLDERS (strict rules):
 - To name anyone who holds an office now (President, Vice President, Speaker of the House, Chief Justice,
@@ -471,7 +471,7 @@ export function placesMentioned(message, max = 3) {
 }
 
 /**
- * Text block to add to each Vía request. Includes national officeholders, the learner's own state and
+ * Text block to add to each Amio request. Includes national officeholders, the learner's own state and
  * district (if they used "Who Represents Me?"), and any states named in the message.
  * Sends names only: no learner name, email or account data.
  */

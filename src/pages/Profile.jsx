@@ -114,7 +114,7 @@ export default function Profile() {
 
   return (
     <div>
-      <PageTop back title="Profile" guide="Change my name and how I talk to you. You can also make the text bigger." />
+      <PageTop back title="Profile" guide="Change how I talk to you. You can also make the text bigger." />
       <CreamSheet>
       <div className="max-w-5xl mx-auto space-y-6 pb-12 text-ink">
 

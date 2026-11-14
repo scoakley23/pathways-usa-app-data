@@ -8,7 +8,8 @@ import { createPageUrl } from '@/utils';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { LANGUAGES } from '@/hooks/useLessonTranslation';
 import { getSavedLanguage, RTL_LANGUAGES } from '@/hooks/useAppLanguage';
-import { Chip, ViaMark } from '@/components/pathways/ui';
+import { Chip } from '@/components/pathways/ui';
+import { Amio } from '@/components/pathways/Amio';
 import { stopReading } from '@/components/persona/useAutoRead';
 import { ListenButton } from '@/components/persona/TutorMessage';
 import useTutorProfile from '@/components/persona/useTutorProfile';
@@ -31,7 +32,7 @@ import {
 import { loadCivicsBank } from '@/lib/civicsBank';
 import TalkToPerson from './TalkToPerson';
 
-// "Ask Vía" (or the learner's chosen tutor name): the AI tutor chat, using the
+// "Ask Amio": the AI tutor chat, using the
 // tutor persona from the learner's tutor profile. Questions about the
 // learner's own case or eligibility get a fixed, kind decline and a link to
 // "Talk to a lawyer first" — caught by a local keyword check (no AI call) or
@@ -41,10 +42,10 @@ import TalkToPerson from './TalkToPerson';
 // hand; other languages are translated once by AI and cached on the device.
 // Bump the cache key whenever the English text changes.
 const PRIVACY_NOTE = {
-  en: "Your chats with Vía are private. Your tutor can't see them. Don't share your immigration status, A-number, case details, or address. Your questions are saved to your account so you can see them in History.",
-  es: 'Sus conversaciones con Vía son privadas. Su tutor no puede verlas. No comparta su estatus migratorio, número A, detalles de su caso ni su dirección. Sus preguntas se guardan en su cuenta para que pueda verlas en el Historial.',
+  en: "Your chats with Amio are private. Your tutor can't see them. Don't share your immigration status, A-number, case details, or address. Your questions are saved to your account so you can see them in History.",
+  es: 'Sus conversaciones con Amio son privadas. Su tutor no puede verlas. No comparta su estatus migratorio, número A, detalles de su caso ni su dirección. Sus preguntas se guardan en su cuenta para que pueda verlas en el Historial.',
 };
-const PRIVACY_NOTE_CACHE_KEY = 'pathways_sb_privacy_v3_';
+const PRIVACY_NOTE_CACHE_KEY = 'pathways_sb_privacy_v4_';
 
 // The short line at the top of the conversation (The Road); "Read more"
 // shows the full note above. Same translation and cache as the full note.
@@ -52,7 +53,7 @@ const PRIVACY_SHORT = {
   en: "Private: your tutor can't see this chat. Don't share your immigration status, A-number, case details, or address.",
   es: 'Privado: su tutor no puede ver esta conversación. No comparta su estatus migratorio, número A, detalles de su caso ni su dirección.',
 };
-const PRIVACY_SHORT_CACHE_KEY = 'pathways_sb_privacy_short_v1_';
+const PRIVACY_SHORT_CACHE_KEY = 'pathways_sb_privacy_short_v2_';
 
 function usePrivacyNote(language, texts = PRIVACY_NOTE, cacheKey = PRIVACY_NOTE_CACHE_KEY) {
   const [note, setNote] = useState(texts[language] || texts.en);
@@ -131,10 +132,10 @@ function TutorBubble({ profile, language, mine, en, action }) {
 export const OPEN_TUTOR_EVENT = 'pathways-open-tutor';
 export const openTutorChat = () => window.dispatchEvent(new Event(OPEN_TUTOR_EVENT));
 
-// The chat has no button of its own: the Vía tab (phones) and the Vía pill in
+// The chat has no button of its own: the Amio tab (phones) and the Amio pill in
 // the header (desktop) open it with openTutorChat(). It is a sheet: full
 // screen on phones (with its own close button), a side drawer on desktop,
-// with Vía's mark in its header.
+// with Amio in its header.
 export default function StudyBuddy() {
   const [isOpen, setIsOpen] = useState(false);
   const [talkOpen, setTalkOpen] = useState(false);
@@ -332,9 +333,7 @@ export default function StudyBuddy() {
           {/* NAVY TOP: who this is */}
           <div className="bg-navy text-white px-4 pt-4 pb-9 pe-16 shrink-0 space-y-3">
             <div className="flex items-center gap-3 min-w-0">
-              <span className="w-12 h-12 shrink-0 rounded-full bg-cream grid place-items-center">
-                <ViaMark size={40} label={`${profile.name} · AI tutor`} />
-              </span>
+              <Amio mood="wave" size={56} onNavy title={`${profile.name} · AI tutor`} />
               <div className="min-w-0 flex-1">
                 <SheetTitle className="font-display text-[24px] leading-tight text-white truncate">{profile.name}</SheetTitle>
                 <SheetDescription className="text-base text-on-navy truncate">Your AI study partner</SheetDescription>

@@ -5,11 +5,11 @@ import useAppLanguage, { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
 import { explainText, getExplanation } from '@/lib/explanations';
 import { RuledPaper } from '@/components/pathways/ui';
 
-// "Explain it simply": a sheet of ruled paper under a poster with Vía's
+// "Explain it simply": a sheet of ruled paper under a poster with Amio's
 // explanation from the existing sources only. First the human-reviewed
 // explanation (content/explanations); when there is none and the card already
 // offered the on-demand AI explanation (`aiFallback`), that same button is
-// shown. Vía's words are signed in text.
+// shown. Amio's words are signed in text.
 export default function ExplainSheet({ question, answer, aiFallback = false, className = '' }) {
   const [language] = useAppLanguage();
   const { profile } = useTutorProfile();

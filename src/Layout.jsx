@@ -51,7 +51,7 @@ export default function Layout({ children }) {
   // leaves its small one out there.
   const splash = location.pathname === '/' && !isLoadingAuth && !isAuthenticated;
 
-  // Vía is always the V mark now: delete any old tutor photo left on this
+  // The tutor is always Amio now: delete any old tutor photo left on this
   // device (once per app load; cheap and harmless when there is none).
   React.useEffect(() => { clearTutorPhoto(); }, []);
 

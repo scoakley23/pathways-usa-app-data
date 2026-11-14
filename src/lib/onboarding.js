@@ -1,7 +1,6 @@
 // "Getting started": the questions before the first quick check. Answers
-// stay on this device (like the target date). Only the tutor name is
-// saved to the account (User.tutor_profile, as before), and the partner
-// program, if the learner picks one, so the program can confirm it
+// stay on this device (like the target date). Only the partner program is
+// saved to the account, if the learner picks one, so the program can confirm it
 // (src/lib/partners.js). We never ask for dates, case numbers, or anything
 // else about the learner's case.
 
@@ -42,7 +41,7 @@ export function saveFiledAnswer(answer) {
 // interview is scheduled; the program question only when there are partner
 // programs to pick from.
 export function onboardingSteps({ stage, hasPrograms = false } = {}) {
-  const steps = ['start', 'language', 'name', 'stage'];
+  const steps = ['start', 'language', 'stage'];
   if (stage === 'applied' || stage === 'interview') steps.push('filed');
   if (stage === 'interview') steps.push('interview');
   if (hasPrograms) steps.push('program');

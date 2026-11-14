@@ -14,13 +14,15 @@ export function RoadIcon({ className = 'w-6 h-6', strokeWidth = 2 }) {
   );
 }
 
-// Vía: the V mark as an outline (two paths meeting at a dot).
-export function ViaIcon({ className = 'w-6 h-6', strokeWidth = 2 }) {
+// Amio as an outline (body, hair and eyes), for the tab bar and the desktop
+// pill. Same shapes as Amio.jsx; the stroke stays 2px at any size.
+export function AmioIcon({ className = 'w-6 h-6', strokeWidth = 2 }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true" focusable="false">
-      <path d="M5 4c2.5 4 4.5 8.5 7 14" />
-      <path d="M19 4c-2.5 4-4.5 8.5-7 14" />
-      <circle cx="12" cy="20.5" r="1.25" fill="currentColor" />
+    <svg viewBox="4 4 72 72" fill="none" stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true" focusable="false">
+      <path vectorEffect="non-scaling-stroke" d="M29 9c4-5 7 2 11-1.5s7 2.5 11-1" />
+      <path vectorEffect="non-scaling-stroke" d="M40 16c17 0 28 10 28 24s-11 24-28 24c-3.5 0-6.8-.5-9.8-1.4L18 70l3.2-11.5C15.5 54 12 47.5 12 40c0-14 11-24 28-24z" />
+      <circle cx="31" cy="38" r="4.5" fill="currentColor" stroke="none" />
+      <circle cx="49" cy="38" r="4.5" fill="currentColor" stroke="none" />
     </svg>
   );
 }

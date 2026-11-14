@@ -1,4 +1,4 @@
-// The official 2025 civics questions and accepted answers for Ask Vía, so it
+// The official 2025 civics questions and accepted answers for Ask Amio, so it
 // answers civics questions from the official list instead of from memory.
 //
 // Data: content/civics/questions-2025.json (exported from the Base44
@@ -6,7 +6,7 @@
 // content/civics/numbers-2025.json (each question's official number and
 // whether it is a 65/20 question, copied from the USCIS 2025 list). Until
 // numbers-2025.json covers every question, the block lists the questions
-// without numbers or stars, and Vía is not asked to give numbers, so it never
+// without numbers or stars, and Amio is not asked to give numbers, so it never
 // makes one up.
 
 export const CIVICS_BANK_HEADER =
@@ -57,7 +57,7 @@ export function civicsTaskLines(numbered) {
   return numbered ? CIVICS_TASK_LINES : [CIVICS_TASK_LINES[0], UNNUMBERED_ANSWER_LINE, CIVICS_TASK_LINES[2]];
 }
 
-// Loaded once per page (on the first Ask Vía message) and reused; kept out
+// Loaded once per page (on the first Ask Amio message) and reused; kept out
 // of the main bundle. Resolves to { block, numbered }.
 let loading = null;
 export function loadCivicsBank() {

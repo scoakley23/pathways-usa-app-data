@@ -47,8 +47,8 @@ function saveDismissed(today, ids) {
 }
 
 // Today (The Road): a navy top that says where the learner is (the stop, the
-// greeting, Vía's line, the road) and a cream sheet with what to do: the next
-// task of today's plan, the rest of today's tasks, one check-in from Vía, the
+// greeting, Amio's line, the road) and a cream sheet with what to do: the next
+// task of today's plan, the rest of today's tasks, one check-in from Amio, the
 // interview month (device only) and the four parts. The greeting is the Home
 // page's h1. `roadmap` is useRoadmapProgress(); `stopName(id)` the stop's
 // name in the learner's language; `sheetTop` goes first on the sheet (the
@@ -295,7 +295,7 @@ export default function TodayCard({ language = 'en', roadmap, stopName, sheetTop
               </Card>
             )}
 
-            {/* One check-in from Vía (welcome back, a part to practice more, a re-check, more English) */}
+            {/* One check-in from Amio (welcome back, a part to practice more, a re-check, more English) */}
             {note && (
               <Card padding="p-5" aria-label={profile.name}>
                 <p dir={dir} className="text-lg font-medium leading-snug text-ink">{noteText(note)}</p>
