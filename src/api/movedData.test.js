@@ -11,6 +11,7 @@ export const MOVED = {
   'PR 3, practice progress (src/api/progress.js)': ['UserProgress'],
   'PR 4, lessons (src/api/lessons.js)': ['LessonProgress', 'LessonNotes'],
   'PR 5, interview and N-400 (src/api/interview.js)': ['InterviewSession', 'N400SectionProgress'],
+  'PR 6, Ask Amio history, notifications, saved places (src/api/askHistory.js, notifications.js, savedPlaces.js)': ['AIStudyLog', 'Notification', 'SavedPlace'],
 };
 
 const SRC = path.resolve(__dirname, '..');

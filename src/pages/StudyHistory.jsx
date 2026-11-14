@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { base44 } from '@/api/base44Client';
-import { auth } from '@/api/auth';
+import { askHistory } from '@/api/askHistory';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -17,8 +16,7 @@ export default function StudyHistory() {
   useEffect(() => {
     const fetchLogs = async () => {
       try {
-        const user = await auth.me();
-        const history = await base44.entities.AIStudyLog.filter({ user_email: user.email }, '-created_at');
+        const history = await askHistory.list();
         setLogs(history);
       } catch (e) {
         console.error(e);

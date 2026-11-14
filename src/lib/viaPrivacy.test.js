@@ -7,9 +7,10 @@ import aiStudyLogEntity from '../../base44/entities/AIStudyLog.jsonc?raw';
 const appFiles = import.meta.glob(['../**/*.{js,jsx}', '!../**/*.test.js'], { query: '?raw', import: 'default', eager: true });
 const functionFiles = import.meta.glob('../../base44/{functions,shared}/**/*.{js,ts}', { query: '?raw', import: 'default', eager: true });
 
-// The only app files allowed to touch AIStudyLog: saving (Ask Vía), the
-// learner's own History, and "Delete my data".
-const ALLOWED = ['../components/ai/StudyBuddy.jsx', '../pages/StudyHistory.jsx', './deleteMyData.js'];
+// The only app files allowed to touch AIStudyLog: src/api/askHistory.js (Ask
+// Amio saves through it, the learner's own History reads it; Base44 or
+// Supabase) and "Delete my data".
+const ALLOWED = ['../api/askHistory.js', './deleteMyData.js'];
 
 describe('Ask Vía privacy', () => {
   it('Ask Vía never emails or notifies anyone', () => {
@@ -29,6 +30,11 @@ describe('Ask Vía privacy', () => {
       .filter(([, src]) => /entities\s*\.\s*AIStudyLog|['"]AIStudyLog['"]/.test(src))
       .map(([file]) => file);
     expect(users.sort()).toEqual([...ALLOWED].sort());
+  });
+
+  it('on Supabase too, only src/api/askHistory.js touches the history table', () => {
+    const users = Object.entries(appFiles).filter(([, src]) => /ai_study_logs/.test(src)).map(([file]) => file);
+    expect(users).toEqual(['../api/askHistory.js']);
   });
 
   it('no backend function reads AIStudyLog', () => {
