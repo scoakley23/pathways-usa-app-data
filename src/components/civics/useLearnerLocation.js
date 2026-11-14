@@ -1,28 +1,24 @@
 import { useCallback, useEffect, useState } from 'react';
-import { base44 } from '@/api/base44Client';
-import { auth } from '@/api/auth';
+import { profile as profileApi } from '@/api/profile';
 import { locationFields, locationFromProfile, profileLocationPatch } from '@/lib/learnerLocation';
 
 // The learner's saved "Who Represents Me?" place ({ state, district } or
 // null), shared by civics practice, lessons, Interview Day and Amio. Loaded once
-// from the learner's own PublicProfile; an old profile that still holds
+// from the learner's own profile (src/api/profile.js); an old profile that still holds
 // AI-found names is cleaned up here (see profileLocationPatch()).
 const EVENT = 'pathways-learner-location';
 let shared = null; // Promise<{ profileId, location }>
 
 function loadShared() {
   if (!shared) {
-    shared = auth.me()
-      .then(async (user) => {
-        if (!user?.email) return { profileId: null, location: null };
-        const email = user.email.toLowerCase().trim();
-        const profiles = await base44.entities.PublicProfile.filter({ user_email: email }, '-created_date', 1);
-        let profile = profiles[0];
+    shared = profileApi.getPublic()
+      .then(async (found) => {
+        let profile = found;
         if (!profile) return { profileId: null, location: null };
         const patch = profileLocationPatch(profile);
         if (patch) {
           try {
-            await base44.entities.PublicProfile.update(profile.id, patch);
+            await profileApi.updatePublic(profile.id, patch);
             profile = { ...profile, ...patch };
           } catch (e) {
             // try again next time; old names are never used either way
@@ -47,7 +43,7 @@ export async function getLearnerLocation() {
 export async function saveLearnerLocation(location) {
   const { profileId } = await loadShared();
   if (!profileId) throw new Error('No profile to save to');
-  await base44.entities.PublicProfile.update(profileId, locationFields(location));
+  await profileApi.updatePublic(profileId, locationFields(location));
   shared = Promise.resolve({ profileId, location });
   window.dispatchEvent(new Event(EVENT));
 }
