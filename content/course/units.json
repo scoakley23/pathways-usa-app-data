@@ -1,5 +1,5 @@
 {
-  "note": "The course outline (Prompt 4). Unit titles and descriptions from frame R31Map; Unit 2's sections from frame R33UnitGuide; Unit 1's sections from the Prompt 12 outline (the Declaration first). A section with a `file` has its stops and lessons in content/course/sections/. Sections of the other units are outlined before their Prompt 12 run. Course content is 2025-only for now.",
+  "note": "The course outline (Prompt 4). Unit titles and descriptions from frame R31Map; Unit 2's sections from frame R33UnitGuide; Unit 1's sections from the Prompt 12 outline (the Declaration first); Unit 3's from its Prompt 12 outline. A section with a `file` has its stops and lessons in content/course/sections/. Sections of the other units are outlined before their Prompt 12 run. Course content is 2025-only for now.",
   "units": [
     {
       "id": "u1",
@@ -79,7 +79,29 @@
       "title": "Rights and responsibilities",
       "description": "Voting · freedoms · your promises",
       "icon": "ballot",
-      "sections": []
+      "sections": [
+        {
+          "id": "u3-s1",
+          "number": 1,
+          "title": "Rights and voting",
+          "file": "u3-s1-voting.json"
+        },
+        {
+          "id": "u3-s2",
+          "number": 2,
+          "title": "Serving your country",
+          "file": "u3-s2-serving.json"
+        },
+        {
+          "id": "u3-s3",
+          "number": 3,
+          "title": "Becoming a citizen",
+          "file": "u3-s3-citizen.json"
+        }
+      ],
+      "categories": [
+        "Rights and Responsibilities"
+      ]
     },
     {
       "id": "u4",

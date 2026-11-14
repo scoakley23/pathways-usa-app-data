@@ -84,7 +84,7 @@ describe('the course files (content/course/)', () => {
     // The Prompt 4 sample keeps its first 7 stops in order; Prompt 12 adds lessons before Speak it!.
     expect(congress.stops.slice(0, 6).map((s) => s.type)).toEqual(['lesson', 'lesson', 'lesson', 'lesson', 'readwrite', 'lesson']);
     expect(unit2.sections.at(-1).stops.at(-1).type).toBe('practiceInterview');
-    expect(Object.keys(SECTION_FILES).sort()).toEqual(['u1-s1-declaration.json', 'u1-s2-constitution.json', 'u1-s3-rights.json', 'u2-s1-branches.json', 'u2-s2-congress.json', 'u2-s3-president.json', 'u2-s4-courts.json', 'u2-s5-states.json']);
+    expect(Object.keys(SECTION_FILES).sort()).toEqual(['u1-s1-declaration.json', 'u1-s2-constitution.json', 'u1-s3-rights.json', 'u2-s1-branches.json', 'u2-s2-congress.json', 'u2-s3-president.json', 'u2-s4-courts.json', 'u2-s5-states.json', 'u3-s1-voting.json', 'u3-s2-serving.json', 'u3-s3-citizen.json']);
     expect(STOP_TYPES).toEqual(['lesson', 'readwrite', 'speakit', 'n400', 'review', 'practiceInterview']);
   });
 
@@ -98,6 +98,16 @@ describe('the course files (content/course/)', () => {
     expect(unit1.sections.at(-1).stops.at(-1).type).toBe('practiceInterview');
   });
 
+  it('Unit 3 has 3 sections, 6 draft lessons, ending on a practice interview; the flag waits for Unit 7', () => {
+    const unit3 = UNITS[2];
+    expect(unit3.sections.map((s) => s.title)).toEqual(['Rights and voting', 'Serving your country', 'Becoming a citizen']);
+    const lessons = unit3.sections.flatMap((s) => s.lessons);
+    expect(lessons).toHaveLength(6);
+    expect(lessons.every((l) => l.status === 'draft')).toBe(true);
+    expect(unit3.sections.at(-1).stops.at(-1).type).toBe('practiceInterview');
+    for (const l of lessons) expect(`${l.steps.readIt.sentence} ${l.steps.writeIt.sentence}`, l.id).not.toMatch(/flag/i);
+  });
+
   it('every official question in a unit\'s categories is in at least one of its lessons, and each only once', () => {
     for (const unit of UNITS.filter((u) => u.categories?.length)) {
       const used = unit.sections.flatMap((s) => sectionQuestionIds(s));
@@ -108,6 +118,7 @@ describe('the course files (content/course/)', () => {
     }
     expect(UNITS[0].categories).toEqual(['Principles of American Democracy']);
     expect(UNITS[1].categories).toEqual(['System of Government']);
+    expect(UNITS[2].categories).toEqual(['Rights and Responsibilities']);
   });
 
   it('every question a lesson uses is an official 2025 question, word for word', () => {

@@ -1,0 +1,150 @@
+{
+  "id": "u3-s3",
+  "unitId": "u3",
+  "number": 3,
+  "title": "Becoming a citizen",
+  "note": "Drafted for Prompt 12 (Unit 3). Every lesson is a draft until a person reviews it (content/course/README.md).",
+  "stops": [
+    {
+      "id": "u3-s3-l1",
+      "type": "lesson",
+      "title": "Becoming a citizen",
+      "lessonId": "u3-s3-l1"
+    },
+    {
+      "id": "u3-s3-l2",
+      "type": "lesson",
+      "title": "Your promises",
+      "lessonId": "u3-s3-l2"
+    },
+    {
+      "id": "u3-s3-rw",
+      "type": "readwrite",
+      "title": "Read and write",
+      "fromLessons": [
+        "u3-s3-l1",
+        "u3-s3-l2"
+      ]
+    },
+    {
+      "id": "u3-s3-speak",
+      "type": "speakit",
+      "title": "Speak it!"
+    },
+    {
+      "id": "u3-practice-interview",
+      "type": "practiceInterview",
+      "title": "Unit practice interview"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "u3-s3-l1",
+      "title": "Becoming a citizen",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de5a"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "How can people become United States citizens?",
+          "facts": [
+            "There are three ways to become a U.S. citizen.",
+            "Being born in the United States, under the conditions in the 14th Amendment. Naturalizing: applying, passing the interview and test, and taking the Oath. Deriving citizenship, under conditions set by Congress, for example from a parent.",
+            "Which way fits a person depends on their own story. For questions about your own case, talk to a lawyer first."
+          ],
+          "newWords": [
+            {
+              "word": "naturalize",
+              "meaning": "to become a citizen after applying"
+            },
+            {
+              "word": "derive",
+              "meaning": "to get something from someone else, like a parent"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de5a"
+        },
+        "readIt": {
+          "sentence": "Who can be a citizen?",
+          "words": [
+            "Who",
+            "can",
+            "be",
+            "a",
+            "citizen"
+          ]
+        },
+        "writeIt": {
+          "sentence": "People come here to be citizens.",
+          "distractorWords": [
+            "Congress",
+            "Canada",
+            "May"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de5a"
+        }
+      }
+    },
+    {
+      "id": "u3-s3-l2",
+      "title": "Your promises",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de59",
+        "6ad16ecf6a9c603911f9de58"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "Name two promises that new citizens make in the Oath of Allegiance.",
+          "facts": [
+            "New citizens take the Oath of Allegiance at the end of naturalization.",
+            "They promise to give up loyalty to other countries, defend the Constitution and obey the laws of the United States. They also promise to serve in the military or help the nation if needed.",
+            "When we say the Pledge of Allegiance, we show loyalty to the United States and the flag."
+          ],
+          "newWords": [
+            {
+              "word": "oath",
+              "meaning": "a serious promise"
+            },
+            {
+              "word": "allegiance",
+              "meaning": "loyalty to a country"
+            },
+            {
+              "word": "loyalty",
+              "meaning": "staying true to someone or something"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de59"
+        },
+        "readIt": {
+          "sentence": "When do we vote?",
+          "words": [
+            "When",
+            "do",
+            "we",
+            "vote"
+          ]
+        },
+        "writeIt": {
+          "sentence": "We vote in November.",
+          "distractorWords": [
+            "President",
+            "California",
+            "February"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de58"
+        }
+      }
+    }
+  ]
+}
