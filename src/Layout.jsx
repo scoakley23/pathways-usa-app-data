@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { base44 } from '@/api/base44Client';
 import { auth } from '@/api/auth';
+import { profile } from '@/api/profile';
 import NotificationCenter, { OPEN_NOTIFICATIONS_EVENT } from '@/components/notifications/NotificationCenter';
 import BottomTabs, { TABS } from '@/components/pathways/BottomTabs';
 import { PathwaysLockup } from '@/components/pathways/ui';
@@ -67,7 +67,7 @@ export default function Layout({ children }) {
   // their app language code.
   React.useEffect(() => {
     if (!user?.email) return;
-    recordActivityDay(user, { entities: base44.entities, auth, language }).catch(() => {});
+    recordActivityDay(user, { markDay: profile.markActiveDay, auth, language }).catch(() => {});
   }, [user, language]);
 
   // Everyone who signs in is a learner. The first sign-in makes their

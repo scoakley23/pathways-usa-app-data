@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
+import { lessonProgress as lessonProgressApi } from '@/api/lessons';
+import { progress as progressApi } from '@/api/progress';
 import { auth } from '@/api/auth';
 
 /**
@@ -21,9 +23,7 @@ export default function DailyPracticeReminder() {
         if (localStorage.getItem(reminderKey)) return;
 
         // Check UserProgress for any activity today
-        const progress = await base44.entities.UserProgress.filter({
-          user_email: normalizedEmail,
-        });
+        const progress = await progressApi.list();
 
         const hasPracticedToday = progress.some(
           (p) => p.last_practiced && p.last_practiced.startsWith(today)
@@ -31,9 +31,7 @@ export default function DailyPracticeReminder() {
 
         // If no UserProgress today, check LessonProgress quiz attempts
         if (!hasPracticedToday) {
-          const lessonProgress = await base44.entities.LessonProgress.filter({
-            user_email: normalizedEmail,
-          });
+          const lessonProgress = await lessonProgressApi.list();
           const hasLessonToday = lessonProgress.some(
             (p) => p.last_attempt_date && p.last_attempt_date.startsWith(today)
           );

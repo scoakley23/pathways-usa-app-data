@@ -4,7 +4,7 @@
 import { base44 } from '@/api/base44Client';
 import { appParams } from '@/lib/app-params';
 import { createAxiosClient } from '@base44/sdk/dist/utils/axios-client';
-import { ensurePublicProfile } from '@/lib/profileService';
+import { ensurePublicProfile } from '@/api/base44Profile';
 
 const notSupported = async () => ({ ok: false, error: 'unknown' });
 

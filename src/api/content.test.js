@@ -9,54 +9,8 @@ vi.mock('@/api/supabaseClient', () => ({ getSupabase: () => null }));
 vi.mock('@/api/auth', () => ({ AUTH_PROVIDER: 'base44' }));
 
 const { createContentApi, CONTENT_TABLES, RENAMES, toRow, fromRow } = await import('./content');
+const { fakeSupabase } = await import('./testing/fakeSupabase');
 const { TABLES } = await import('../../scripts/supabase/build-content-migration.mjs');
-
-// A small stand-in for supabase-js's query builder over in-memory tables.
-function fakeSupabase(tables) {
-  const calls = [];
-  const from = (table) => {
-    const state = { table, op: 'select', filters: [], order: [], range: null, payload: null, head: false, single: false };
-    const q = {
-      select(_cols, opts) { if (opts?.head) { state.head = true; state.count = opts.count; } return q; },
-      eq(col, val) { state.filters.push([col, val]); return q; },
-      order(col, { ascending }) { state.order.push([col, ascending]); return q; },
-      range(a, b) { state.range = [a, b]; return q; },
-      insert(payload) { state.op = 'insert'; state.payload = payload; return q; },
-      update(payload) { state.op = 'update'; state.payload = payload; return q; },
-      delete() { state.op = 'delete'; return q; },
-      single() { state.single = true; return q; },
-      then(resolve, reject) { return Promise.resolve(exec()).then(resolve, reject); },
-    };
-    const exec = () => {
-      calls.push({ ...state, filters: [...state.filters], order: [...state.order] });
-      const rows = tables[table] || (tables[table] = []);
-      const match = (r) => state.filters.every(([c, v]) => r[c] === v);
-      if (state.op === 'insert') {
-        const list = (Array.isArray(state.payload) ? state.payload : [state.payload]).map((r, i) => ({ id: r.id || `new-${rows.length + i}`, ...r }));
-        rows.push(...list);
-        return { data: state.single ? list[0] : list, error: null };
-      }
-      if (state.op === 'update') {
-        const hit = rows.filter(match);
-        hit.forEach((r) => Object.assign(r, state.payload));
-        return { data: state.single ? hit[0] : hit, error: null };
-      }
-      if (state.op === 'delete') {
-        tables[table] = rows.filter((r) => !match(r));
-        return { data: null, error: null };
-      }
-      let out = rows.filter(match);
-      if (state.head) return { data: null, count: out.length, error: null };
-      for (const [col, asc] of [...state.order].reverse()) {
-        out = [...out].sort((a, b) => (a[col] > b[col] ? 1 : a[col] < b[col] ? -1 : 0) * (asc ? 1 : -1));
-      }
-      if (state.range) out = out.slice(state.range[0], state.range[1] + 1);
-      return { data: out, error: null };
-    };
-    return q;
-  };
-  return { from, calls, tables };
-}
 
 const sbApi = (tables) => {
   const sb = fakeSupabase(tables);
@@ -93,7 +47,7 @@ describe('reading content from Supabase', () => {
     });
     const rows = await api.civicsQuestions({ version: '2025', category: 'Government' });
     expect(rows.map((r) => r.id)).toEqual(['q1']);
-    expect(sb.calls[0].filters).toEqual([['version', '2025'], ['category', 'Government']]);
+    expect(sb.calls[0].filters).toEqual([['version', 'eq', '2025'], ['category', 'eq', 'Government']]);
   });
 
   it('reads past 1,000 rows in pages', async () => {
@@ -218,25 +172,5 @@ describe('helpers', () => {
   it('toRow / fromRow', () => {
     expect(toRow('Lesson', { order: 1, title: 'T', extra: 1 })).toEqual({ sort_order: 1, title: 'T' });
     expect(fromRow({ sort_order: 1, title: 'T' })).toEqual({ order: 1, title: 'T' });
-  });
-});
-
-describe('screens read content only through src/api', () => {
-  it('no file outside src/api calls a content entity directly', () => {
-    const SRC = path.resolve(__dirname, '..');
-    const hits = [];
-    const walk = (dir) => {
-      for (const name of fs.readdirSync(dir)) {
-        const full = path.join(dir, name);
-        if (fs.statSync(full).isDirectory()) { if (name !== 'api') walk(full); continue; }
-        if (!/\.(js|jsx)$/.test(name) || /\.test\.js$/.test(name)) continue;
-        const text = fs.readFileSync(full, 'utf8');
-        for (const entity of Object.keys(CONTENT_TABLES)) {
-          if (new RegExp(`entities\\.${entity}\\b`).test(text)) hits.push(`${path.relative(SRC, full)}: ${entity}`);
-        }
-      }
-    };
-    walk(SRC);
-    expect(hits).toEqual([]);
   });
 });

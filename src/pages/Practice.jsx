@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { base44 } from '@/api/base44Client';
+import { progress as progressApi } from '@/api/progress';
 import { content as contentApi } from '@/api/content';
 import { auth } from '@/api/auth';
 import { Button } from "@/components/ui/button";
@@ -202,9 +202,7 @@ export default function Practice() {
     if (!currentUser) return items.sort(() => 0.5 - Math.random()).slice(0, 10);
     
     try {
-      const progress = await base44.entities.UserProgress.filter({
-        user_email: currentUser.email, content_type: type
-      });
+      const progress = await progressApi.list({ contentType: type });
       
       const progressMap = new Map(progress.map(p => [p.content_id, p]));
       
@@ -345,11 +343,9 @@ export default function Practice() {
     if (currentUser) {
        try {
           // 1. Fetch existing progress to implement SRS math
-          const existing = await base44.entities.UserProgress.filter(
-              { user_email: currentUser.email, content_id: currentItem.id }, null, 1
-          );
+          const found = await progressApi.get(currentItem.id);
           
-          const prevProgress = existing[0] || { 
+          const prevProgress = found || { 
               ease_factor: 2.5, 
               interval: 0, 
               consecutive_correct: 0 
@@ -398,11 +394,7 @@ export default function Practice() {
           };
 
           // Update or Create
-          if (existing.length > 0) {
-              await base44.entities.UserProgress.update(existing[0].id, progressData);
-          } else {
-              await base44.entities.UserProgress.create(progressData);
-          }
+          await progressApi.save(found, progressData);
 
           // Gamification
           if (isSuccess) {

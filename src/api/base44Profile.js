@@ -1,5 +1,8 @@
 import { base44 } from '@/api/base44Client';
 
+// Base44 half of the profile (switch off). Moved from src/lib/profileService.js
+// in Step 3; deleted with Base44 in Step 6. Screens use src/api/profile.js.
+
 // Normalize emails for all PublicProfile lookups and writes
 export const normalizeEmail = (email) => (email || '').toLowerCase().trim();
 

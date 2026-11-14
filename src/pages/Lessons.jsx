@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { base44 } from '@/api/base44Client';
+import { lessonProgress as lessonProgressApi } from '@/api/lessons';
 import { content } from '@/api/content';
 import { auth } from '@/api/auth';
 import { ArrowRight, BookOpen, Check, ChevronDown, Star, Video } from 'lucide-react';
@@ -55,14 +55,15 @@ export default function Lessons() {
         // Not logged in — lessons still load
       }
       
-      const [lessonPage, userProgress] = await Promise.all([
+      const [lessonList, userProgress] = await Promise.all([
         content.lessons({ sort: 'order', limit: 100 }),
         currentUser?.email 
-          ? base44.entities.LessonProgress.filter({ user_email: currentUser.email }, null, 1000)
+          ? lessonProgressApi.list({ limit: 1000 })
           : Promise.resolve([])
       ]);
       
-      setLessons(lessonPage.items);
+      // content.lessons() returns a plain list (src/api/content.js).
+      setLessons(Array.isArray(lessonList) ? lessonList : []);
       setProgress(userProgress);
     } catch (error) {
       console.error('Failed to load:', error);
@@ -73,9 +74,7 @@ export default function Lessons() {
 
   const refreshProgress = async () => {
     if (!user?.email) return;
-    const userProgress = await base44.entities.LessonProgress.filter(
-      { user_email: user.email }, null, 1000
-    );
+    const userProgress = await lessonProgressApi.list({ limit: 1000 });
     setProgress(userProgress);
   };
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { base44 } from '@/api/base44Client';
+import { progress as progressApi } from '@/api/progress';
 import { content } from '@/api/content';
 import { auth } from '@/api/auth';
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
@@ -43,8 +43,8 @@ export default function Progress() {
       setUserData(user);
 
       // Fetch Progress
-      const progressData = await base44.entities.UserProgress.list();
-      const userProgress = progressData.filter(p => p.user_email === user.email);
+      // The learner's own rows only (src/api/progress.js).
+      const userProgress = await progressApi.list();
       
       // Fetch Content for mapping names
       const [sentences, vocab, questions] = await Promise.all([

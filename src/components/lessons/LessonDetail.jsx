@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { base44 } from '@/api/base44Client';
+import { lessonProgress as lessonProgressApi } from '@/api/lessons';
 import { content } from '@/api/content';
 import { auth } from '@/api/auth';
 import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, Loader2, RotateCcw } from 'lucide-react';
@@ -101,9 +101,7 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
         content.lessonFlashcards(lesson.id, { limit: 200 }),
         content.civicsQuestions({ version: '2025', category: lesson.topic, limit: 100 }),
         content.civicsQuestions({ version: '2008', category: lesson.topic, limit: 100 }),
-        currentUser?.email ? base44.entities.LessonProgress.filter(
-          { user_email: currentUser.email, lesson_id: lesson.id }, null, 1
-        ) : Promise.resolve([])
+        currentUser?.email ? lessonProgressApi.list({ lessonId: lesson.id, limit: 1 }) : Promise.resolve([])
       ]);
 
       setFlashcards(lessonFlashcards);
@@ -116,7 +114,7 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
       } else if (currentUser?.email) {
         // Mark as "in progress" the moment they open the lesson
         try {
-          const newProgress = await base44.entities.LessonProgress.create({
+          const newProgress = await lessonProgressApi.save(null, {
             user_email: currentUser.email,
             lesson_id: lesson.id,
             topic: lesson.topic,
@@ -142,7 +140,7 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
 
   const saveProgress = async (fields) => {
     if (!user?.email) return false;
-    const existing = await base44.entities.LessonProgress.filter({ user_email: user.email, lesson_id: lesson.id }, null, 1);
+    const existing = await lessonProgressApi.get(lesson.id);
     const data = {
       user_email: user.email,
       lesson_id: lesson.id,
@@ -155,8 +153,7 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
       last_attempt_date: new Date().toISOString(),
       ...fields,
     };
-    if (existing.length > 0) await base44.entities.LessonProgress.update(existing[0].id, data);
-    else await base44.entities.LessonProgress.create(data);
+    await lessonProgressApi.save(existing, data);
     setLessonProgress((prev) => ({ ...prev, ...data }));
     return true;
   };
