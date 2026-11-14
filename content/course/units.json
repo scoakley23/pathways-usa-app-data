@@ -1,13 +1,35 @@
 {
-  "note": "The course outline (Prompt 4). Unit titles and descriptions from frame R31Map; Unit 2's sections from frame R33UnitGuide. A section with a `file` has its stops and lessons in content/course/sections/. Sections of the other units are outlined before their Prompt 12 run. Course content is 2025-only for now.",
+  "note": "The course outline (Prompt 4). Unit titles and descriptions from frame R31Map; Unit 2's sections from frame R33UnitGuide; Unit 1's sections from the Prompt 12 outline (the Declaration first). A section with a `file` has its stops and lessons in content/course/sections/. Sections of the other units are outlined before their Prompt 12 run. Course content is 2025-only for now.",
   "units": [
     {
       "id": "u1",
       "number": 1,
       "title": "Principles of democracy",
-      "description": "Constitution · Bill of Rights · rule of law",
+      "description": "Declaration · Constitution · rule of law",
       "icon": "constitution",
-      "sections": []
+      "sections": [
+        {
+          "id": "u1-s1",
+          "number": 1,
+          "title": "The Declaration of Independence",
+          "file": "u1-s1-declaration.json"
+        },
+        {
+          "id": "u1-s2",
+          "number": 2,
+          "title": "The Constitution",
+          "file": "u1-s2-constitution.json"
+        },
+        {
+          "id": "u1-s3",
+          "number": 3,
+          "title": "Rights and the rule of law",
+          "file": "u1-s3-rights.json"
+        }
+      ],
+      "categories": [
+        "Principles of American Democracy"
+      ]
     },
     {
       "id": "u2",

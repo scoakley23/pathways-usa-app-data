@@ -84,8 +84,18 @@ describe('the course files (content/course/)', () => {
     // The Prompt 4 sample keeps its first 7 stops in order; Prompt 12 adds lessons before Speak it!.
     expect(congress.stops.slice(0, 6).map((s) => s.type)).toEqual(['lesson', 'lesson', 'lesson', 'lesson', 'readwrite', 'lesson']);
     expect(unit2.sections.at(-1).stops.at(-1).type).toBe('practiceInterview');
-    expect(Object.keys(SECTION_FILES).sort()).toEqual(['u2-s1-branches.json', 'u2-s2-congress.json', 'u2-s3-president.json', 'u2-s4-courts.json', 'u2-s5-states.json']);
+    expect(Object.keys(SECTION_FILES).sort()).toEqual(['u1-s1-declaration.json', 'u1-s2-constitution.json', 'u1-s3-rights.json', 'u2-s1-branches.json', 'u2-s2-congress.json', 'u2-s3-president.json', 'u2-s4-courts.json', 'u2-s5-states.json']);
     expect(STOP_TYPES).toEqual(['lesson', 'readwrite', 'speakit', 'n400', 'review', 'practiceInterview']);
+  });
+
+  it('Unit 1 has 3 sections, the Declaration first, 9 draft lessons, ending on a practice interview', () => {
+    const unit1 = UNITS[0];
+    expect(unit1.sections.map((s) => s.title)).toEqual(['The Declaration of Independence', 'The Constitution', 'Rights and the rule of law']);
+    const lessons = unit1.sections.flatMap((s) => s.lessons);
+    expect(lessons).toHaveLength(9);
+    expect(lessons.every((l) => l.status === 'draft')).toBe(true);
+    for (const s of unit1.sections) expect(s.stops.at(-1).type === 'speakit' || s.stops.at(-1).type === 'practiceInterview', s.id).toBe(true);
+    expect(unit1.sections.at(-1).stops.at(-1).type).toBe('practiceInterview');
   });
 
   it('every official question in a unit\'s categories is in at least one of its lessons, and each only once', () => {
@@ -96,6 +106,7 @@ describe('the course files (content/course/)', () => {
       expect(wanted.filter((id) => !used.includes(id)), `${unit.id}: questions not placed`).toEqual([]);
       expect(used.filter((id) => !wanted.includes(id)), `${unit.id}: questions from another category`).toEqual([]);
     }
+    expect(UNITS[0].categories).toEqual(['Principles of American Democracy']);
     expect(UNITS[1].categories).toEqual(['System of Government']);
   });
 

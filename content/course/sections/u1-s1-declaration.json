@@ -1,0 +1,148 @@
+{
+  "id": "u1-s1",
+  "unitId": "u1",
+  "number": 1,
+  "title": "The Declaration of Independence",
+  "note": "Drafted for Prompt 12 (Unit 1). Every lesson is a draft until a person reviews it (content/course/README.md).",
+  "stops": [
+    {
+      "id": "u1-s1-l1",
+      "type": "lesson",
+      "title": "Free from Britain",
+      "lessonId": "u1-s1-l1"
+    },
+    {
+      "id": "u1-s1-l2",
+      "type": "lesson",
+      "title": "Life, Liberty and Happiness",
+      "lessonId": "u1-s1-l2"
+    },
+    {
+      "id": "u1-s1-rw",
+      "type": "readwrite",
+      "title": "Read and write",
+      "fromLessons": [
+        "u1-s1-l1",
+        "u1-s1-l2"
+      ]
+    },
+    {
+      "id": "u1-s1-speak",
+      "type": "speakit",
+      "title": "Speak it!"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "u1-s1-l1",
+      "title": "Free from Britain",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de1f",
+        "6ad16ecf6a9c603911f9de1e"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "What founding document said the American colonies were free from Britain?",
+          "facts": [
+            "Long ago, the American colonies were ruled by Britain.",
+            "On July 4, 1776, the Declaration of Independence said the colonies were free from Britain. We remember this day on Independence Day.",
+            "It also says all people are created equal and have rights that no one can take away."
+          ],
+          "newWords": [
+            {
+              "word": "colony",
+              "meaning": "a place ruled by a country far away"
+            },
+            {
+              "word": "declaration",
+              "meaning": "an important statement made in public"
+            },
+            {
+              "word": "independence",
+              "meaning": "being free from another country's control"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de1f"
+        },
+        "readIt": {
+          "sentence": "When is Independence Day?",
+          "words": [
+            "When",
+            "is",
+            "Independence",
+            "Day"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Independence Day is in July.",
+          "distractorWords": [
+            "Labor Day",
+            "September",
+            "Canada"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de1e"
+        }
+      }
+    },
+    {
+      "id": "u1-s1-l2",
+      "title": "Life, Liberty and Happiness",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de21"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "The words “Life, Liberty, and the pursuit of Happiness” are in what founding document?",
+          "facts": [
+            "“Life, Liberty, and the pursuit of Happiness” are words from the Declaration of Independence.",
+            "Liberty means freedom.",
+            "The pursuit of Happiness means the freedom to try to make a good life."
+          ],
+          "newWords": [
+            {
+              "word": "liberty",
+              "meaning": "freedom"
+            },
+            {
+              "word": "pursuit",
+              "meaning": "trying to reach something"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de21"
+        },
+        "readIt": {
+          "sentence": "Why do people come to the United States?",
+          "words": [
+            "Why",
+            "do",
+            "people",
+            "come",
+            "to",
+            "the",
+            "United",
+            "States"
+          ]
+        },
+        "writeIt": {
+          "sentence": "People want to be free.",
+          "distractorWords": [
+            "taxes",
+            "Mexico",
+            "November"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de21"
+        }
+      }
+    }
+  ]
+}
