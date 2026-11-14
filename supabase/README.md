@@ -71,7 +71,7 @@ Base44's sign-in unless `VITE_AUTH_PROVIDER=supabase` is set.
 
 | Where | Setting |
 |---|---|
-| Authentication → Sign In / Providers → Email | Email provider **on**. "Email OTP Length" **6**. "Email OTP Expiration" **600** seconds (10 minutes) |
+| Authentication → Sign In / Providers → Email | Email provider **on**. "Email OTP Length" **6** (new projects start at **8**, which the app won't accept: change it). "Email OTP Expiration" **600** seconds (10 minutes) |
 | Authentication → Rate Limits | "Rate limit for sending emails" **30** per hour. Leave "sign-ups and sign-ins" and "token verifications" at their defaults (30 per 5 minutes per IP address) |
 | Authentication → Emails → SMTP Settings | Already Resend (`Pathways <hello@pathwaysusa.org>`). The "minimum interval per user" is **60** seconds |
 | Authentication → URL Configuration | Already set: `https://next.pathwaysusa.org` and `http://localhost:5173` |
