@@ -21,6 +21,10 @@ import InterviewDay from './pages/InterviewDay';
 import PilotDashboard from './components/pilot-admin/PilotDashboard';
 import Study from './pages/Study';
 import StudyRedirect from './components/study/StudyRedirect';
+import MePage from './components/shell/MePage';
+import SettingsPage from './components/shell/SettingsPage';
+import InterviewPage from './components/shell/InterviewPage';
+import AskAmio from './components/ai/StudyBuddy';
 
 // Lessons and Practice are tabs of Study now; their old addresses redirect.
 const STUDY_REDIRECTS = { Lessons: 'lessons', Practice: 'practice' };
@@ -75,6 +79,28 @@ const AuthenticatedApp = () => {
           )}
         />
       ))}
+      {/* The app shell (Prompt 3): the Interview and Me tabs, Settings, and
+          Ask Amio (under Me). The old /Profile redirects to Me. */}
+      <Route path="interview" element={
+        <LayoutWrapper currentPageName="Interview">
+          <InterviewPage />
+        </LayoutWrapper>
+      } />
+      <Route path="me" element={
+        <LayoutWrapper currentPageName="Me">
+          <MePage />
+        </LayoutWrapper>
+      } />
+      <Route path="settings" element={
+        <LayoutWrapper currentPageName="Settings">
+          <SettingsPage />
+        </LayoutWrapper>
+      } />
+      <Route path="ask" element={
+        <LayoutWrapper currentPageName="AskAmio">
+          <AskAmio />
+        </LayoutWrapper>
+      } />
       <Route path="study" element={
         <LayoutWrapper currentPageName="Study">
           <Study />

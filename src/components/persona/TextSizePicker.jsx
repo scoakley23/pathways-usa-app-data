@@ -3,7 +3,7 @@ import useTextSize from './useTextSize';
 import { TEXT_SIZES } from '@/lib/textSize';
 
 // Normal / Large / Extra large, each shown at its own size. Saved on this
-// device. Offered when learners first meet their tutor and in Profile.
+// device. Offered when learners first meet their tutor and in Settings.
 export default function TextSizePicker({ className = '' }) {
   const textSize = useTextSize();
   return (
