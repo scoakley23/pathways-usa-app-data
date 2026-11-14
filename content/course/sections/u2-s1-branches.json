@@ -1,0 +1,154 @@
+{
+  "id": "u2-s1",
+  "unitId": "u2",
+  "number": 1,
+  "title": "The three branches",
+  "note": "Drafted for Prompt 12 (Unit 2). Every lesson is a draft until a person reviews it (content/course/README.md).",
+  "stops": [
+    {
+      "id": "u2-s1-l1",
+      "type": "lesson",
+      "title": "Three branches",
+      "lessonId": "u2-s1-l1"
+    },
+    {
+      "id": "u2-s1-l2",
+      "type": "lesson",
+      "title": "Signing and vetoing",
+      "lessonId": "u2-s1-l2"
+    },
+    {
+      "id": "u2-s1-rw",
+      "type": "readwrite",
+      "title": "Read and write",
+      "fromLessons": [
+        "u2-s1-l1",
+        "u2-s1-l2"
+      ]
+    },
+    {
+      "id": "u2-s1-speak",
+      "type": "speakit",
+      "title": "Speak it!"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "u2-s1-l1",
+      "title": "Three branches",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de26",
+        "6ad16ecf6a9c603911f9de27"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "Name the three branches of government.",
+          "facts": [
+            "The federal government has three branches: legislative, executive and judicial.",
+            "Congress is the legislative branch. The President leads the executive branch. The courts are the judicial branch.",
+            "Each branch has its own job, so no one branch has all the power."
+          ],
+          "newWords": [
+            {
+              "word": "branch",
+              "meaning": "one part of the government"
+            },
+            {
+              "word": "executive",
+              "meaning": "the branch that carries out the laws"
+            },
+            {
+              "word": "judicial",
+              "meaning": "the branch with the courts"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de26"
+        },
+        "readIt": {
+          "sentence": "Who is the President of the United States?",
+          "words": [
+            "Who",
+            "is",
+            "the",
+            "President",
+            "of",
+            "the",
+            "United",
+            "States"
+          ]
+        },
+        "writeIt": {
+          "sentence": "The President is in the White House.",
+          "distractorWords": [
+            "Congress",
+            "Canada",
+            "red"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de27"
+        }
+      }
+    },
+    {
+      "id": "u2-s1-l2",
+      "title": "Signing and vetoing",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de41",
+        "6ad16ecf6a9c603911f9de42"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "Who signs bills to become laws?",
+          "facts": [
+            "A bill is an idea for a new law. Congress writes and passes bills.",
+            "The President signs a bill to make it a law.",
+            "The President can also veto a bill. Veto means saying no to it."
+          ],
+          "newWords": [
+            {
+              "word": "bill",
+              "meaning": "an idea for a new law, written by Congress"
+            },
+            {
+              "word": "sign",
+              "meaning": "to write your name to say yes"
+            },
+            {
+              "word": "veto",
+              "meaning": "when the President says no to a bill"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de41"
+        },
+        "readIt": {
+          "sentence": "What does the President do?",
+          "words": [
+            "What",
+            "does",
+            "the",
+            "President",
+            "do"
+          ]
+        },
+        "writeIt": {
+          "sentence": "The President lives in Washington, D.C.",
+          "distractorWords": [
+            "Senators",
+            "Mexico",
+            "blue"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de42"
+        }
+      }
+    }
+  ]
+}

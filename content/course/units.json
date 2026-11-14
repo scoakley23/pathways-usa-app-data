@@ -16,11 +16,39 @@
       "description": "Branches · Congress · President · courts",
       "icon": "capitol",
       "sections": [
-        { "id": "u2-s1", "number": 1, "title": "The three branches" },
-        { "id": "u2-s2", "number": 2, "title": "Congress", "file": "u2-s2-congress.json" },
-        { "id": "u2-s3", "number": 3, "title": "The President" },
-        { "id": "u2-s4", "number": 4, "title": "The courts" },
-        { "id": "u2-s5", "number": 5, "title": "States and local government" }
+        {
+          "id": "u2-s1",
+          "number": 1,
+          "title": "The three branches",
+          "file": "u2-s1-branches.json"
+        },
+        {
+          "id": "u2-s2",
+          "number": 2,
+          "title": "Congress",
+          "file": "u2-s2-congress.json"
+        },
+        {
+          "id": "u2-s3",
+          "number": 3,
+          "title": "The President",
+          "file": "u2-s3-president.json"
+        },
+        {
+          "id": "u2-s4",
+          "number": 4,
+          "title": "The courts",
+          "file": "u2-s4-courts.json"
+        },
+        {
+          "id": "u2-s5",
+          "number": 5,
+          "title": "States and local government",
+          "file": "u2-s5-states.json"
+        }
+      ],
+      "categories": [
+        "System of Government"
       ]
     },
     {
