@@ -1,0 +1,209 @@
+{
+  "id": "u2-s5",
+  "unitId": "u2",
+  "number": 5,
+  "title": "States and local government",
+  "note": "Drafted for Prompt 12 (Unit 2). Every lesson is a draft until a person reviews it (content/course/README.md).",
+  "stops": [
+    {
+      "id": "u2-s5-l1",
+      "type": "lesson",
+      "title": "Federal and state powers",
+      "lessonId": "u2-s5-l1"
+    },
+    {
+      "id": "u2-s5-l2",
+      "type": "lesson",
+      "title": "The 10th Amendment",
+      "lessonId": "u2-s5-l2"
+    },
+    {
+      "id": "u2-s5-l3",
+      "type": "lesson",
+      "title": "Your state",
+      "lessonId": "u2-s5-l3"
+    },
+    {
+      "id": "u2-s5-rw",
+      "type": "readwrite",
+      "title": "Read and write",
+      "fromLessons": [
+        "u2-s5-l1",
+        "u2-s5-l2",
+        "u2-s5-l3"
+      ]
+    },
+    {
+      "id": "u2-s5-speak",
+      "type": "speakit",
+      "title": "Speak it!"
+    },
+    {
+      "id": "u2-practice-interview",
+      "type": "practiceInterview",
+      "title": "Unit practice interview"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "u2-s5-l1",
+      "title": "Federal and state powers",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de50",
+        "6ad16ecf6a9c603911f9de51"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "Name one power that is only for the federal government.",
+          "facts": [
+            "Some powers are only for the federal government, like printing money and declaring war.",
+            "Some powers are only for the states, like schools, police and driver’s licenses."
+          ],
+          "newWords": [
+            {
+              "word": "federal",
+              "meaning": "for the whole country"
+            },
+            {
+              "word": "power",
+              "meaning": "a right to do something"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de50"
+        },
+        "readIt": {
+          "sentence": "What is the largest state?",
+          "words": [
+            "What",
+            "is",
+            "the",
+            "largest",
+            "state"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Alaska is the largest state.",
+          "distractorWords": [
+            "California",
+            "fifty",
+            "red"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de51"
+        }
+      }
+    },
+    {
+      "id": "u2-s5-l2",
+      "title": "The 10th Amendment",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de52"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "What is the purpose of the 10th Amendment?",
+          "facts": [
+            "The 10th Amendment says powers not given to the federal government belong to the states or to the people."
+          ],
+          "newWords": [
+            {
+              "word": "amendment",
+              "meaning": "a change or addition to the Constitution"
+            },
+            {
+              "word": "purpose",
+              "meaning": "the reason for something"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de52"
+        },
+        "readIt": {
+          "sentence": "How many states are in the United States?",
+          "words": [
+            "How",
+            "many",
+            "states",
+            "are",
+            "in",
+            "the",
+            "United",
+            "States"
+          ]
+        },
+        "writeIt": {
+          "sentence": "The United States has 50 states.",
+          "distractorWords": [
+            "one hundred",
+            "Canada",
+            "blue"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de52"
+        }
+      }
+    },
+    {
+      "id": "u2-s5-l3",
+      "title": "Your state",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de54",
+        "6ad16ecf6a9c603911f9de53"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "What is the capital of your state?",
+          "facts": [
+            "Every state has a capital city and a governor.",
+            "The governor leads the state government.",
+            "Pathways looks up your state’s capital and governor on an official list, using the state you chose in “Who Represents Me?”."
+          ],
+          "newWords": [
+            {
+              "word": "capital",
+              "meaning": "the city where a government meets"
+            },
+            {
+              "word": "governor",
+              "meaning": "the leader of a state"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de54"
+        },
+        "readIt": {
+          "sentence": "What is the capital of the state?",
+          "words": [
+            "What",
+            "is",
+            "the",
+            "capital",
+            "of",
+            "the",
+            "state"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Delaware was the first state.",
+          "distractorWords": [
+            "Alaska",
+            "second",
+            "white"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de53"
+        }
+      }
+    }
+  ]
+}
