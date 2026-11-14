@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Check, Loader2, RotateCcw, CalendarCheck } from 'lucide-react';
 import { toast } from 'sonner';
 import { base44 } from '@/api/base44Client';
+import { content } from '@/api/content';
 import { auth } from '@/api/auth';
 import TopicArt, { TOPIC_ART } from '@/components/art/TopicArt';
 import TutorLesson from '@/components/persona/TutorLesson';
@@ -79,7 +80,7 @@ export default function ReviewCivics() {
     try {
       const [rows, questions] = await Promise.all([
         base44.entities.UserProgress.filter({ user_email: user.email, content_type: 'civics_question' }, null, 1000),
-        base44.entities.CivicsQuestion.list(null, 1000),
+        content.civicsQuestions({ limit: 1000 }),
       ]);
       const byId = new Map(questions.filter((q) => q.answer).map((q) => [q.id, q]));
       const known = rows.filter((r) => byId.has(r.content_id));

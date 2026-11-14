@@ -7,12 +7,14 @@ import { Input } from "@/components/ui/input";
 import { Plus, MoreHorizontal, Pencil, Trash2, Search, Loader2, Upload, Eye, EyeOff } from 'lucide-react';
 import { toast } from 'sonner';
 import { useQueryClient } from '@tanstack/react-query';
-import { base44 } from '@/api/base44Client';
+import { content } from '@/api/content';
 import ResourceDialog from '@/components/admin/ResourceDialog';
 import { listAllResources } from '@/components/resources/listAllResources';
 import { useContentManager } from '@/hooks/useContentManager';
 import { categoryById, parseCsv, planImport, loadZipTable, placeServices } from '@/lib/resourceHub';
 
+// Places are written through src/api/content.js (Base44 or Supabase).
+const places = content.contentAdmin('CommunityResource');
 const CREATE_BATCH = 50;
 
 // Places an import hid until a person checks them ("... - check").
@@ -66,7 +68,7 @@ export default function ResourcesTab() {
   // A place waiting for a check that should stay hidden.
   const keepHidden = async (r) => {
     try {
-      await base44.entities.CommunityResource.update(r.id, { is_active: false, relevance_note: 'Checked: not relevant' });
+      await places.update(r.id, { is_active: false, relevance_note: 'Checked: not relevant' });
       refresh();
     } catch {
       toast.error('Could not update the place');
@@ -79,7 +81,7 @@ export default function ResourcesTab() {
     const changes = { is_active: showing };
     if (showing && needsCheck(r)) changes.relevance_note = 'Checked: shown';
     try {
-      await base44.entities.CommunityResource.update(r.id, changes);
+      await places.update(r.id, changes);
       refresh();
     } catch {
       toast.error('Could not update the place');
@@ -113,13 +115,13 @@ export default function ResourcesTab() {
       setImporting({ done, total: work });
       for (let i = 0; i < plan.creates.length; i += CREATE_BATCH) {
         const batch = plan.creates.slice(i, i + CREATE_BATCH);
-        await withRetry(() => base44.entities.CommunityResource.bulkCreate(batch));
+        await withRetry(() => places.bulkCreate(batch));
         done += batch.length;
         setImporting({ done, total: work });
       }
       for (let i = 0; i < plan.updates.length; i += UPDATE_BATCH) {
         const batch = plan.updates.slice(i, i + UPDATE_BATCH);
-        await withRetry(() => base44.entities.CommunityResource.bulkUpdate(batch));
+        await withRetry(() => places.bulkUpdate(batch));
         done += batch.length;
         setImporting({ done, total: work });
       }

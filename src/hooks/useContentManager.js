@@ -1,5 +1,5 @@
-import { useState, useCallback } from 'react';
-import { base44 } from '@/api/base44Client';
+import React, { useState, useCallback } from 'react';
+import { content } from '@/api/content';
 import { toast } from 'sonner';
 
 /**
@@ -7,6 +7,7 @@ import { toast } from 'sonner';
  * `listFn` (optional) replaces the default list() call, e.g. to read past 5,000 records.
  */
 export function useContentManager(entityName, itemName, listFn) {
+  const store = React.useMemo(() => content.contentAdmin(entityName), [entityName]);
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -14,7 +15,7 @@ export function useContentManager(entityName, itemName, listFn) {
   const fetchItems = useCallback(async () => {
     setIsLoading(true);
     try {
-      const data = listFn ? await listFn() : await base44.entities[entityName].list();
+      const data = listFn ? await listFn() : await store.list();
       setItems(data);
     } catch (error) {
       console.error(`Failed to fetch ${itemName}s:`, error);
@@ -22,12 +23,12 @@ export function useContentManager(entityName, itemName, listFn) {
     } finally {
       setIsLoading(false);
     }
-  }, [entityName, itemName, listFn]);
+  }, [store, itemName, listFn]);
 
   const createItem = async (formData) => {
     setIsSubmitting(true);
     try {
-      await base44.entities[entityName].create(formData);
+      await store.create(formData);
       toast.success(`${itemName} added successfully`);
       fetchItems();
       return true;
@@ -43,7 +44,7 @@ export function useContentManager(entityName, itemName, listFn) {
   const updateItem = async (id, formData) => {
     setIsSubmitting(true);
     try {
-      await base44.entities[entityName].update(id, formData);
+      await store.update(id, formData);
       toast.success(`${itemName} updated successfully`);
       fetchItems();
       return true;
@@ -59,7 +60,7 @@ export function useContentManager(entityName, itemName, listFn) {
   const deleteItem = async (id) => {
     if (!window.confirm(`Are you sure you want to delete this ${itemName}?`)) return;
     try {
-      await base44.entities[entityName].delete(id);
+      await store.remove(id);
       toast.success(`${itemName} deleted`);
       setItems((prev) => prev.filter((s) => s.id !== id));
     } catch (error) {

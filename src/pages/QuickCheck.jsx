@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
-import { base44 } from '@/api/base44Client';
+import { content } from '@/api/content';
 import { auth } from '@/api/auth';
 import { createPageUrl } from '@/utils';
 import TopicArt from '@/components/art/TopicArt';
@@ -54,10 +54,10 @@ export default function QuickCheck() {
 
   useEffect(() => {
     Promise.all([
-      base44.entities.CivicsQuestion.filter({ version: '2025' }, null, 300),
-      base44.entities.ReadingSentence.list(null, 100),
-      base44.entities.Sentence.list(null, 100),
-      base44.entities.InterviewQuestion.filter({ section: 'small_talk' }, null, 50),
+      content.civicsQuestions({ version: '2025', limit: 300 }),
+      content.readingSentences({ limit: 100 }),
+      content.writingSentences({ limit: 100 }),
+      content.interviewQuestions({ section: 'small_talk', limit: 50 }),
     ])
       .then(([civics, reading, writing, speaking]) => setSources({ civics, reading, writing, speaking }))
       .catch(() => setSources({ civics: [], reading: [], writing: [], speaking: [] }));

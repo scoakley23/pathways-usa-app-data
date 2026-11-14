@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { Download, Loader2, Square, Wand2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { base44 } from '@/api/base44Client';
+import { content } from '@/api/content';
 import { Eyebrow, PrimaryButton, RaisedCard, SecondaryButton, QuietButton } from '@/components/pathways/ui';
 import { EXPLANATIONS } from '@/lib/explanations';
 import { splitOfficialAnswers } from '@/lib/practiceChecks';
@@ -44,7 +45,7 @@ export function downloadJson(filename, value) {
 }
 
 const load2025 = async () => {
-  const records = await base44.entities.CivicsQuestion.filter({ version: '2025' }, null, 500);
+  const records = await content.civicsQuestions({ version: '2025', limit: 500 });
   return records.filter((q) => q.question && q.answer).sort((a, b) => byText(a.question, b.question));
 };
 

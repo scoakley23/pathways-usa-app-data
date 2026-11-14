@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Check, CheckCircle, ChevronDown, ChevronUp, XCircle } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
+import { content } from '@/api/content';
 import { auth } from '@/api/auth';
 import NavyBanner from '@/components/pathways/NavyBanner';
 import { Button, Card, Eyebrow } from '@/components/pathways/ui';
@@ -54,7 +55,7 @@ export default function InterviewReport({ results, onRestart, onClose, onBack })
         const [progress, sessions, civics2025] = await Promise.all([
           base44.entities.UserProgress.filter({ user_email: email, content_type: 'civics_question' }, '-last_practiced', 500).catch(() => []),
           base44.entities.InterviewSession.filter({ user_email: email }, '-created_date', 50).catch(() => []),
-          base44.entities.CivicsQuestion.filter({ version: '2025' }, null, 300).catch(() => []),
+          content.civicsQuestions({ version: '2025', limit: 300 }).catch(() => []),
         ]);
         if (!active) return;
         const ids = new Set(civics2025.map((q) => q.id));

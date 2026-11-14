@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
+import { content } from '@/api/content';
 import { auth } from '@/api/auth';
 import { Card, CardContent } from '@/components/ui/card';
 import { Loader2, CheckCircle, Clock, Circle, BookOpen } from 'lucide-react';
@@ -29,7 +30,7 @@ export default function Dashboard({ cachedUser }) {
           return;
         }
         const [allLessons, progressList] = await Promise.all([
-          base44.entities.Lesson.list(),
+          content.lessons(),
           base44.entities.LessonProgress.filter({ user_email: currentUser.email }),
         ]);
         setLessons(allLessons.sort((a, b) => (a.order || 0) - (b.order || 0)));
