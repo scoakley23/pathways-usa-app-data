@@ -88,9 +88,9 @@ export default function MatchingGame({ words, onComplete, onClose = null }) {
       <NavyTop className="pb-12">
         <div className="mx-auto max-w-4xl space-y-3">
           {onClose && <RunTopBar onClose={onClose} />}
-          <p className="text-label uppercase text-on-navy-label">Matching · Words and meanings</p>
+          <p className="text-label uppercase text-on-navy">Matching · Words and meanings</p>
           <h2 className="font-display text-[30px] sm:text-[34px] leading-[1.1]">Match each word to what it means.</h2>
-          <p className="text-base text-on-navy-2" aria-live="polite">
+          <p className="text-base text-on-navy" aria-live="polite">
             <span className="font-display text-2xl text-white">{matchedPairs}</span> of{' '}
             <span className="font-display text-2xl text-white">{pairs}</span> matched
           </p>

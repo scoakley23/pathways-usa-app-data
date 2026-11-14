@@ -152,7 +152,7 @@ export default function ProgressChart({ userEmail }) {
               />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: '#fff',
+                  backgroundColor: COLORS.white,
                   border: `1px solid ${LINE}`,
                   borderRadius: '16px',
                   fontSize: '14px',
@@ -169,7 +169,7 @@ export default function ProgressChart({ userEmail }) {
                 name="Avg Quiz Score"
                 stroke={NAVY}
                 strokeWidth={2.5}
-                dot={{ r: 4, fill: NAVY, strokeWidth: 2, stroke: '#fff' }}
+                dot={{ r: 4, fill: NAVY, strokeWidth: 2, stroke: COLORS.white }}
                 activeDot={{ r: 6 }}
               />
               <Line
@@ -180,7 +180,7 @@ export default function ProgressChart({ userEmail }) {
                 stroke={RED}
                 strokeWidth={2.5}
                 strokeDasharray="6 4"
-                dot={{ r: 4, fill: RED, strokeWidth: 2, stroke: '#fff' }}
+                dot={{ r: 4, fill: RED, strokeWidth: 2, stroke: COLORS.white }}
                 activeDot={{ r: 6 }}
               />
             </LineChart>

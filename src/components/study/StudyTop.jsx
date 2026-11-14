@@ -27,7 +27,7 @@ export default function StudyTop({ tab, action = null, children }) {
                 to={`/study?tab=${t.id}`}
                 aria-current={active ? 'page' : undefined}
                 className={`min-h-tap inline-flex items-center rounded-full px-5 text-base font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white
-                  ${active ? 'bg-white text-navy' : 'text-on-navy-2 hover:text-white'}`}
+                  ${active ? 'bg-white text-navy' : 'text-on-navy hover:text-white'}`}
               >
                 {t.label}
               </Link>

@@ -27,8 +27,8 @@ function TabInner({ place, active, label }) {
   const Icon = place.icon;
   return (
     <>
-      {/* The active tab: a 3px star-red line on top. */}
-      <span className={`absolute top-0 inset-x-3 h-[3px] rounded-b-full ${active ? 'bg-star' : 'bg-transparent'}`} aria-hidden="true" />
+      {/* The active tab: a 3px denim line on top. */}
+      <span className={`absolute top-0 inset-x-3 h-[3px] rounded-b-full ${active ? 'bg-denim' : 'bg-transparent'}`} aria-hidden="true" />
       <Icon className="w-6 h-6" strokeWidth={2} />
       <span className="leading-none truncate max-w-full">{label}</span>
     </>

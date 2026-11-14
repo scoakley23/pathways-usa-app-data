@@ -155,7 +155,7 @@ export default function Layout({ children }) {
               const active = isPlaceActive(place, location.pathname);
               const Icon = place.icon;
               const look = `text-base font-semibold whitespace-nowrap transition-colors inline-flex items-center gap-2 px-4 min-h-11 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-navy
-                ${active ? 'bg-white text-navy' : 'text-on-navy-2 hover:text-white hover:bg-navy-2'}`;
+                ${active ? 'bg-white text-navy' : 'text-on-navy hover:text-white hover:bg-navy-2'}`;
               if (place.tutor) {
                 return focusMode ? null : (
                   <button key={place.id} type="button" onClick={askTutor} className={look} aria-label={`${tutor.name}, AI tutor`}>
@@ -182,7 +182,7 @@ export default function Layout({ children }) {
                   className="relative w-11 h-11 shrink-0 rounded-full bg-cream text-navy grid place-items-center text-lg font-semibold hover:bg-sand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-navy"
                 >
                   {initial || <User className="w-5 h-5" aria-hidden="true" />}
-                  {unread > 0 && <span className="absolute top-0 end-0 w-3 h-3 rounded-full bg-sky ring-2 ring-navy" aria-hidden="true" />}
+                  {unread > 0 && <span className="absolute top-0 end-0 w-3 h-3 rounded-full bg-denim ring-2 ring-navy" aria-hidden="true" />}
                 </button>
               </SheetTrigger>
               <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-cream overflow-y-auto">

@@ -80,7 +80,7 @@ const pinIcon = (category, selected) => {
   const ring = selected ? `box-shadow:0 0 0 4px ${COLORS.navy},0 4px 10px rgba(14,27,51,.45)` : 'box-shadow:0 2px 6px rgba(14,27,51,.35)';
   return L.divIcon({
     className: '',
-    html: `<span style="display:block;width:${size}px;height:${size}px;border-radius:9999px;background:${color};border:3px solid #fff;${ring}"></span>`,
+    html: `<span style="display:block;width:${size}px;height:${size}px;border-radius:9999px;background:${color};border:3px solid ${COLORS.white};${ring}"></span>`,
     iconSize: [size, size],
     iconAnchor: [size / 2, size / 2],
   });
@@ -91,7 +91,7 @@ const clusterIcon = (cluster) => {
   const size = n < 10 ? 36 : n < 100 ? 42 : 50;
   return L.divIcon({
     className: '',
-    html: `<span style="display:grid;place-items:center;width:${size}px;height:${size}px;border-radius:9999px;background:${COLORS.navy};color:#fff;font:600 15px 'Inter',system-ui,sans-serif;border:3px solid #fff;box-shadow:0 2px 8px rgba(20,38,74,.4)">${n}</span>`,
+    html: `<span style="display:grid;place-items:center;width:${size}px;height:${size}px;border-radius:9999px;background:${COLORS.navy};color:${COLORS.white};font:600 15px Lexend,system-ui,sans-serif;border:3px solid ${COLORS.white};box-shadow:0 2px 8px rgba(20,38,74,.4)">${n}</span>`,
     iconSize: [size, size],
     iconAnchor: [size / 2, size / 2],
   });
@@ -99,7 +99,7 @@ const clusterIcon = (cluster) => {
 
 const youAreHere = L.divIcon({
   className: '',
-  html: `<span style="display:block;width:18px;height:18px;border-radius:9999px;background:#fff;border:5px solid ${COLORS.navy};box-shadow:0 0 0 6px rgba(14,27,51,.2)"></span>`,
+  html: `<span style="display:block;width:18px;height:18px;border-radius:9999px;background:${COLORS.white};border:5px solid ${COLORS.navy};box-shadow:0 0 0 6px rgba(14,27,51,.2)"></span>`,
   iconSize: [18, 18],
   iconAnchor: [9, 9],
 });

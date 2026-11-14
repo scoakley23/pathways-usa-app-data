@@ -23,7 +23,7 @@ export default function FlashcardGame({ words, index = 0, total, onComplete, onC
       <NavyTop className="pb-12">
         <div className="mx-auto max-w-2xl space-y-4">
           {onClose && <RunTopBar onClose={onClose} index={index} total={count} answered={isFlipped} />}
-          <p className="text-label uppercase text-on-navy-label">Writing · Flashcards</p>
+          <p className="text-label uppercase text-on-navy">Writing · Flashcards</p>
           <h2 className="font-display text-[40px] sm:text-[48px] leading-[1.05] break-words">{currentWord.word}</h2>
           <Chip onNavy onClick={() => speakText(currentWord.word)}>
             <Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" /> Hear it

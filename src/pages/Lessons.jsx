@@ -152,17 +152,17 @@ export default function Lessons() {
                   {!last && (
                     <span
                       aria-hidden="true"
-                      className={`absolute start-[20px] top-[22px] bottom-0 w-1 -translate-x-1/2 rtl:translate-x-1/2 rounded-full ${row.state === 'done' ? 'bg-sky' : 'bg-card-line'}`}
+                      className={`absolute start-[20px] top-[22px] bottom-0 w-1 -translate-x-1/2 rtl:translate-x-1/2 rounded-full ${row.state === 'done' ? 'bg-denim' : 'bg-card-line'}`}
                     />
                   )}
                   <span className="relative z-10 w-10 h-11 shrink-0 grid place-items-center">
                     {row.state === 'done' && (
-                      <span className="w-8 h-8 rounded-full bg-sky grid place-items-center">
-                        <Check className="w-4 h-4 text-navy" strokeWidth={3} aria-hidden="true" />
+                      <span className="w-8 h-8 rounded-full bg-denim grid place-items-center">
+                        <Check className="w-4 h-4 text-white" strokeWidth={3} aria-hidden="true" />
                       </span>
                     )}
                     {row.state === 'current' && (
-                      <span className="w-10 h-10 rounded-full bg-star ring-[5px] ring-star/25 grid place-items-center">
+                      <span className="w-10 h-10 rounded-full bg-red ring-[5px] ring-red/25 grid place-items-center">
                         <Star className="w-4 h-4 text-white fill-white" aria-hidden="true" />
                       </span>
                     )}
@@ -220,8 +220,8 @@ export default function Lessons() {
                                 onClick={() => setSelectedLesson(lesson)}
                                 className="w-full flex items-center gap-3 px-4 py-3 min-h-[60px] text-start hover:bg-cream focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-navy"
                               >
-                                <span className={`w-6 h-6 shrink-0 rounded-full grid place-items-center ${isCompleted ? 'bg-sky' : 'border-2 border-card-line'}`} aria-hidden="true">
-                                  {isCompleted && <Check className="w-3.5 h-3.5 text-navy" strokeWidth={3} />}
+                                <span className={`w-6 h-6 shrink-0 rounded-full grid place-items-center ${isCompleted ? 'bg-denim' : 'border-2 border-card-line'}`} aria-hidden="true">
+                                  {isCompleted && <Check className="w-3.5 h-3.5 text-white" strokeWidth={3} />}
                                 </span>
                                 <span className="min-w-0 flex-1">
                                   <span className="block text-base font-semibold leading-snug">{lesson.title}</span>

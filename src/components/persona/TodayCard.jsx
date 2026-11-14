@@ -220,11 +220,11 @@ export default function TodayCard({ language = 'en', roadmap, stopName, sheetTop
       <NavyTop className="pb-14">
         <div className="mx-auto max-w-5xl lg:grid lg:grid-cols-2 lg:items-center lg:gap-10">
           <div className={`space-y-3 ${sizeClass}`}>
-            <p className="text-label uppercase text-on-navy-label">{kicker}</p>
+            <p className="text-label uppercase text-on-navy">{kicker}</p>
             <h1 id="today-title" className="font-display text-[30px] sm:text-[34px] leading-[1.1]">{hello}</h1>
             <div className="max-w-2xl space-y-1">
               {lineMine && <p dir={dir} className="text-lg font-medium leading-snug">{lineMine}</p>}
-              <p className={`leading-snug ${lineMine ? 'text-base text-on-navy-2' : 'text-lg font-medium'}`}>{lineEn}</p>
+              <p className={`leading-snug ${lineMine ? 'text-base text-on-navy' : 'text-lg font-medium'}`}>{lineEn}</p>
             </div>
             <div className="flex flex-wrap gap-2">
               {lineMine && <ListenButton onNavy text={lineMine} language={language} tutorName={profile.name} />}

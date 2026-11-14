@@ -24,3 +24,48 @@ export function ViaIcon({ className = 'w-6 h-6', strokeWidth = 2 }) {
     </svg>
   );
 }
+
+// The four bottom tabs (Pathways + Amio, frame R33Today). Decorative: the
+// tab's text label names the place.
+function TabSvg({ className, strokeWidth, children }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true" focusable="false">
+      {children}
+    </svg>
+  );
+}
+
+// Today: a house.
+export function TodayIcon({ className = 'w-6 h-6', strokeWidth = 2 }) {
+  return <TabSvg className={className} strokeWidth={strokeWidth}><path d="M4 10.5L12 4l8 6.5V20H4z" /></TabSvg>;
+}
+
+// Course: the course building.
+export function CourseIcon({ className = 'w-6 h-6', strokeWidth = 2 }) {
+  return (
+    <TabSvg className={className} strokeWidth={strokeWidth}>
+      <path d="M4 20V9l4-3 4 3 4-3 4 3v11" />
+      <path d="M9 20v-5h6v5" />
+    </TabSvg>
+  );
+}
+
+// Interview: a screen on a stand.
+export function InterviewIcon({ className = 'w-6 h-6', strokeWidth = 2 }) {
+  return (
+    <TabSvg className={className} strokeWidth={strokeWidth}>
+      <rect x="4" y="5" width="16" height="12" rx="3" />
+      <path d="M9 21h6M12 17v4" />
+    </TabSvg>
+  );
+}
+
+// Me: a person.
+export function MeIcon({ className = 'w-6 h-6', strokeWidth = 2 }) {
+  return (
+    <TabSvg className={className} strokeWidth={strokeWidth}>
+      <circle cx="12" cy="8.5" r="3.5" />
+      <path d="M5 20c1-4 4-6 7-6s6 2 7 6" />
+    </TabSvg>
+  );
+}

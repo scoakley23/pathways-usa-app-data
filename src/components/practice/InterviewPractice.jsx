@@ -499,7 +499,7 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
       <NavyTop className={`pb-12 ${embedded ? 'rounded-card' : ''}`}>
         <div className="mx-auto max-w-2xl space-y-4">
           {onClose && <RunTopBar onClose={onClose} index={currentIndex} total={questions.length} answered={!!feedback} />}
-          <p className="text-label uppercase text-on-navy-label">Interview · {sectionLabel}</p>
+          <p className="text-label uppercase text-on-navy">Interview · {sectionLabel}</p>
           <h2 className={`font-display leading-[1.08] ${feedback ? 'text-[30px]' : 'text-[38px] sm:text-[40px]'}`}>{current.question}</h2>
           <Chip onNavy onClick={speakQuestion} disabled={interviewerState === 'speaking'} className="disabled:opacity-60">
             <Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" /> Repeat question

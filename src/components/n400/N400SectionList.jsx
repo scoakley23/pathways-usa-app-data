@@ -20,17 +20,17 @@ export default function N400SectionList({ sections, completedIds = [], countFor,
             {!last && (
               <span
                 aria-hidden="true"
-                className={`absolute start-[20px] top-[38px] bottom-0 w-1 -translate-x-1/2 rtl:translate-x-1/2 rounded-full ${state === 'done' ? 'bg-sky' : 'bg-card-line'}`}
+                className={`absolute start-[20px] top-[38px] bottom-0 w-1 -translate-x-1/2 rtl:translate-x-1/2 rounded-full ${state === 'done' ? 'bg-denim' : 'bg-card-line'}`}
               />
             )}
             <span className="relative z-10 w-10 h-[76px] shrink-0 grid place-items-center">
               {state === 'done' && (
-                <span className="w-8 h-8 rounded-full bg-sky grid place-items-center">
-                  <Check className="w-4 h-4 text-navy" strokeWidth={3} aria-hidden="true" />
+                <span className="w-8 h-8 rounded-full bg-denim grid place-items-center">
+                  <Check className="w-4 h-4 text-white" strokeWidth={3} aria-hidden="true" />
                 </span>
               )}
               {state === 'current' && (
-                <span className="w-10 h-10 rounded-full bg-star ring-[5px] ring-star/25 grid place-items-center">
+                <span className="w-10 h-10 rounded-full bg-red ring-[5px] ring-red/25 grid place-items-center">
                   <Star className="w-4 h-4 text-white fill-white" aria-hidden="true" />
                 </span>
               )}
