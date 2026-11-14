@@ -9,6 +9,7 @@ data yet**: screens still talk to Base44 until Standalone Step 3. Sign-in
 | `migrations/20261114000001_schema.sql` | Every table and its data rules (row-level security) |
 | `migrations/20261114000002_functions.sql` | Partner program actions and "Delete all my data" |
 | `migrations/20261114000003_content.sql` | The real content (questions, sentences, words, lessons, flashcards, 5,588 places), **generated** from `content/base44-export/` by `scripts/supabase/build-content-migration.mjs` |
+| `migrations/20261115000001_course_data.sql` | Prompt 4: two passes at Write it level 1 move the learner to level 2 (`write_level1_passes` 0-2, a trigger sets `write_level`), and the old spaced-review fields (`ease_factor`, `interval`) leave `user_progress`: `review_items` is the one review schedule |
 | `seed.sql` | **Fake** accounts and progress for a local Supabase only (`@example.test`); never pushed |
 | `tests/` | The stand-in for Supabase's auth used by `src/lib/supabaseRules.test.js` (PGlite, runs in `npm test`) |
 | `config.toml` | Supabase CLI settings, including sign-in for the local stack |
