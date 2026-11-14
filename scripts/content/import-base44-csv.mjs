@@ -31,12 +31,17 @@ export const ENTITIES = {
   Sentence: { file: 'writing-sentences.json' },
   VocabularyWord: { file: 'vocabulary-words.json' },
   Lesson: { file: 'lessons.json' },
-  // Rows whose lesson_id points at no lesson (deleted in Base44) go to a
-  // separate -orphaned file, kept for review rather than dropped.
-  LessonQuiz: { file: 'lesson-quizzes.json', orphans: 'lesson-quizzes-orphaned.json', linkTo: 'Lesson' },
-  LessonFlashcard: { file: 'lesson-flashcards.json', orphans: 'lesson-flashcards-orphaned.json', linkTo: 'Lesson' },
+  // Rows whose lesson was deleted in Base44 get the lesson named for them in
+  // content/base44-export/lesson-reassignments.json (their old id is kept as
+  // original_lesson_id). A row with a missing lesson and no assignment stops
+  // the run, so no quiz or flashcard is ever left without a lesson.
+  LessonQuiz: { file: 'lesson-quizzes.json', linkTo: 'Lesson' },
+  LessonFlashcard: { file: 'lesson-flashcards.json', linkTo: 'Lesson' },
   CommunityResource: { file: 'community-resources.json' },
 };
+
+const REASSIGNMENTS_FILE = path.join(OUT, 'lesson-reassignments.json');
+const REASSIGNMENTS = fs.existsSync(REASSIGNMENTS_FILE) ? JSON.parse(fs.readFileSync(REASSIGNMENTS_FILE, 'utf8')) : {};
 
 // Base44's own columns, dropped from every row (created_by is an email).
 export const DROPPED = ['created_by', 'created_by_id', 'created_date', 'updated_date', 'is_sample'];
@@ -135,8 +140,15 @@ function main(dir) {
     if (spec.linkTo) {
       const ids = new Set((converted[spec.linkTo] || []).map((r) => r.id));
       if (!ids.size) throw new Error(`${entity}: convert ${spec.linkTo} first`);
-      write(spec.file, rows.filter((r) => ids.has(r.lesson_id)));
-      write(spec.orphans, rows.filter((r) => !ids.has(r.lesson_id)));
+      const moves = new Map((REASSIGNMENTS[entity] || []).map((m) => [m.id, m]));
+      write(spec.file, rows.map((r) => {
+        if (ids.has(r.lesson_id)) return r;
+        const move = moves.get(r.id);
+        if (!move || move.deleted_lesson_id !== r.lesson_id || !ids.has(move.lesson_id)) {
+          throw new Error(`${entity} ${r.id}: lesson ${r.lesson_id} doesn't exist and lesson-reassignments.json gives it no lesson`);
+        }
+        return { ...r, lesson_id: move.lesson_id, original_lesson_id: r.lesson_id };
+      }));
     } else if (spec.split) {
       for (const [value, name] of Object.entries(spec.files)) write(name, rows.filter((r) => String(r[spec.split]) === value));
       const placed = Object.values(outputs).reduce((a, b) => a + b, 0);
