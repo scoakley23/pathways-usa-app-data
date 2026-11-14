@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { base44 } from '@/api/base44Client';
+import { auth } from '@/api/auth';
 import { Link } from 'react-router-dom';
 import TopicArt from '@/components/art/TopicArt';
 import RoadmapHero from '@/components/home/RoadmapHero';
@@ -72,7 +72,7 @@ export default function Home({ cachedUser }) {
   const notNow = () => { snoozeCheckIn(); closeCheckIn(); };
   const never = () => {
     closeCheckIn();
-    base44.auth.updateMe({ checkins_stopped: true }).catch(() => {});
+    auth.updateMe({ checkins_stopped: true }).catch(() => {});
   };
 
   // Signed in, Home has the full width (Layout leaves out its padding), so

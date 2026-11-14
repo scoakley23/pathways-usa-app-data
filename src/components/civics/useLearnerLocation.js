@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { base44 } from '@/api/base44Client';
+import { auth } from '@/api/auth';
 import { locationFields, locationFromProfile, profileLocationPatch } from '@/lib/learnerLocation';
 
 // The learner's saved "Who Represents Me?" place ({ state, district } or
@@ -11,7 +12,7 @@ let shared = null; // Promise<{ profileId, location }>
 
 function loadShared() {
   if (!shared) {
-    shared = base44.auth.me()
+    shared = auth.me()
       .then(async (user) => {
         if (!user?.email) return { profileId: null, location: null };
         const email = user.email.toLowerCase().trim();

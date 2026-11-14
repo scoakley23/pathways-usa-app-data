@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AlertCircle, Loader2 } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
+import { auth } from '@/api/auth';
 import { createPageUrl } from '@/utils';
 import PageHeader from '@/components/PageHeader';
 import TutorLesson from '@/components/persona/TutorLesson';
@@ -22,7 +23,7 @@ export default function TutorDemo() {
   const [language] = useAppLanguage();
 
   useEffect(() => {
-    base44.auth.me().then(setUser).catch(() => setUser(null));
+    auth.me().then(setUser).catch(() => setUser(null));
   }, []);
 
   useEffect(() => {

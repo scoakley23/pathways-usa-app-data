@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
+import { auth } from '@/api/auth';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -41,7 +42,7 @@ export default function Profile() {
 
   const fetchData = async () => {
     try {
-      const userData = await base44.auth.me();
+      const userData = await auth.me();
       setUser(userData);
 
       // Fetch Public Profile for display name
@@ -79,7 +80,7 @@ export default function Profile() {
       }
       
       // Optionally update User entity full_name if needed, but display_name is primarily for public view
-      await base44.auth.updateMe({ full_name: displayName });
+      await auth.updateMe({ full_name: displayName });
 
       toast.success("Profile updated successfully");
     } catch (error) {

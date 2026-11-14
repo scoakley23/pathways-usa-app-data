@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { base44 } from '@/api/base44Client';
+import { auth } from '@/api/auth';
 import { Sheet, SheetContent, SheetDescription, SheetTitle } from "@/components/ui/sheet";
 import { Send, Loader2, Globe, History, Users, Scale, Mic, MicOff, ChevronDown } from 'lucide-react';
 import { toast } from "sonner";
@@ -163,7 +164,7 @@ export default function StudyBuddy() {
   useEffect(() => {
     const init = async () => {
       try {
-        const currentUser = await base44.auth.me();
+        const currentUser = await auth.me();
         setUser(currentUser);
       } catch (e) {
         // Not logged in or other error

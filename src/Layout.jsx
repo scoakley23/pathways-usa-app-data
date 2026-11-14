@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { CheckCircle, LogOut, Settings, User, MapPin, CalendarCheck, Users, Bell, LogIn } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
+import { auth } from '@/api/auth';
 import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import NotificationCenter from '@/components/notifications/NotificationCenter';
 import StudyBuddy, { openTutorChat } from '@/components/ai/StudyBuddy';
@@ -15,7 +16,6 @@ import { clearTutorPhoto } from '@/lib/tutorPhoto';
 import { staffPrograms } from '@/lib/partners';
 import { rememberProgramFromUrl } from '@/lib/programLink';
 import { recordActivityDay } from '@/lib/activityDay';
-import { ensurePublicProfile } from '@/lib/profileService';
 import { useAuth } from '@/lib/AuthContext';
 import { AutoReadContext } from '@/components/persona/useAutoRead';
 import DailyPracticeReminder from '@/components/notifications/DailyPracticeReminder';
@@ -72,18 +72,17 @@ export default function Layout({ children }) {
   // their app language code.
   React.useEffect(() => {
     if (!user?.email) return;
-    recordActivityDay(user, { entities: base44.entities, auth: base44.auth, language }).catch(() => {});
+    recordActivityDay(user, { entities: base44.entities, auth, language }).catch(() => {});
   }, [user, language]);
 
   // Everyone who signs in is a learner. The first sign-in makes their
   // profile and goes straight to "Getting started" and the quick check.
   React.useEffect(() => {
-    base44.auth.me().then(async (currentUser) => {
+    auth.me().then(async (currentUser) => {
       setUser(currentUser);
       if (profileChecked === currentUser.email) return;
       profileChecked = currentUser.email;
-      const name = currentUser.full_name || currentUser.email.split('@')[0];
-      const { created } = await ensurePublicProfile(currentUser.email, {}, { display_name: name });
+      const { created } = await auth.ensureProfile(currentUser);
       if (created) navigate('/quick-check');
     }).catch(() => {});
   }, [location.search, navigate]);
@@ -109,7 +108,7 @@ export default function Layout({ children }) {
   const initial = (user?.full_name || user?.email || '').trim().charAt(0).toUpperCase();
 
   const handleLogout = async () => {
-    await base44.auth.logout();
+    await auth.signOut();
     window.location.href = '/';
   };
 
@@ -128,7 +127,7 @@ export default function Layout({ children }) {
   // Screens without the tab bar (lesson screens) list the places in the
   // profile menu too.
   const menuPlaces = showTabs ? [] : PLACES.filter((place) => !place.tutor);
-  const askTutor = () => (user ? openTutorChat() : base44.auth.redirectToLogin());
+  const askTutor = () => (user ? openTutorChat() : auth.goToSignIn());
 
   return (
     <div className="min-h-screen bg-pw-page font-sans text-pw-navy">
@@ -233,7 +232,7 @@ export default function Layout({ children }) {
                         Sign out
                       </button>
                     ) : (
-                      <button type="button" onClick={() => base44.auth.redirectToLogin()} className={`text-lg font-semibold transition-colors flex w-full items-center gap-3 px-4 min-h-[52px] rounded-2xl text-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy bg-navy text-white hover:bg-navy-deep justify-center`}>
+                      <button type="button" onClick={() => auth.goToSignIn()} className={`text-lg font-semibold transition-colors flex w-full items-center gap-3 px-4 min-h-[52px] rounded-2xl text-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy bg-navy text-white hover:bg-navy-deep justify-center`}>
                         <LogIn className="w-5 h-5" aria-hidden="true" />
                         Sign in
                       </button>

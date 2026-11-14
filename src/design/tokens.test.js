@@ -119,10 +119,9 @@ describe('script fonts', () => {
 });
 
 describe('no one-off colors', () => {
-  // Hex colors live only in src/design/tokens.js. VisualEditAgent.jsx is
-  // Base44's editor overlay and goes away at cutover;
+  // Hex colors live only in src/design/tokens.js.
   // ui/chart.jsx matches recharts' own default colors in CSS selectors.
-  const ALLOWED = ['design/tokens.js', 'lib/VisualEditAgent.jsx', 'components/ui/chart.jsx'];
+  const ALLOWED = ['design/tokens.js', 'components/ui/chart.jsx'];
   const SRC = path.resolve(__dirname, '..');
 
   function files(dir) {
