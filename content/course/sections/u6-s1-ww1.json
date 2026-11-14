@@ -1,0 +1,145 @@
+{
+  "id": "u6-s1",
+  "unitId": "u6",
+  "number": 1,
+  "title": "World War I and the Great Depression",
+  "note": "Drafted for Prompt 12 (Unit 6). Every lesson is a draft until a person reviews it (content/course/README.md).",
+  "stops": [
+    {
+      "id": "u6-s1-l1",
+      "type": "lesson",
+      "title": "Wars of the 1900s",
+      "lessonId": "u6-s1-l1"
+    },
+    {
+      "id": "u6-s1-l2",
+      "type": "lesson",
+      "title": "The Great Depression",
+      "lessonId": "u6-s1-l2"
+    },
+    {
+      "id": "u6-s1-rw",
+      "type": "readwrite",
+      "title": "Read and write",
+      "fromLessons": [
+        "u6-s1-l1",
+        "u6-s1-l2"
+      ]
+    },
+    {
+      "id": "u6-s1-speak",
+      "type": "speakit",
+      "title": "Speak it!"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "u6-s1-l1",
+      "title": "Wars of the 1900s",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de7a",
+        "6ad16ecf6a9c603911f9de7b"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "Name one war fought by the United States in the 1900s.",
+          "facts": [
+            "The United States fought several wars in the 1900s: World War I, World War II, the Korean War, the Vietnam War and the Persian Gulf War.",
+            "The United States entered World War I in 1917 because Germany attacked U.S. ships. It joined the Allied Powers: England, France, Italy and Russia.",
+            "Under the Constitution, Congress has the power to declare war."
+          ],
+          "newWords": [
+            {
+              "word": "declare war",
+              "meaning": "to say officially that a country is at war"
+            },
+            {
+              "word": "Allied Powers",
+              "meaning": "the countries on the U.S. side in a world war"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de7a"
+        },
+        "readIt": {
+          "sentence": "Who is in Congress?",
+          "words": [
+            "Who",
+            "is",
+            "in",
+            "Congress"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Congress meets in Washington, D.C.",
+          "distractorWords": [
+            "White House",
+            "Canada",
+            "red"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de7b"
+        }
+      }
+    },
+    {
+      "id": "u6-s1-l2",
+      "title": "The Great Depression",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de7d",
+        "6ad16ecf6a9c603911f9de7e"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "What was the Great Depression?",
+          "facts": [
+            "The Great Depression was the longest economic recession in modern history.",
+            "It started with the stock market crash of 1929, called the Great Crash.",
+            "Many banks closed and millions of workers lost their jobs."
+          ],
+          "newWords": [
+            {
+              "word": "depression",
+              "meaning": "a long time when the economy is very weak"
+            },
+            {
+              "word": "recession",
+              "meaning": "a time when the economy gets smaller and people lose jobs"
+            },
+            {
+              "word": "stock market",
+              "meaning": "where people buy and sell parts of companies"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de7d"
+        },
+        "readIt": {
+          "sentence": "When is Labor Day?",
+          "words": [
+            "When",
+            "is",
+            "Labor",
+            "Day"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Labor Day is in September.",
+          "distractorWords": [
+            "Flag Day",
+            "June",
+            "Alaska"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de7e"
+        }
+      }
+    }
+  ]
+}

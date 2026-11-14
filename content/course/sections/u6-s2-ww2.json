@@ -1,0 +1,142 @@
+{
+  "id": "u6-s2",
+  "unitId": "u6",
+  "number": 2,
+  "title": "World War II",
+  "note": "Drafted for Prompt 12 (Unit 6). Every lesson is a draft until a person reviews it (content/course/README.md).",
+  "stops": [
+    {
+      "id": "u6-s2-l1",
+      "type": "lesson",
+      "title": "Roosevelt and World War II",
+      "lessonId": "u6-s2-l1"
+    },
+    {
+      "id": "u6-s2-l2",
+      "type": "lesson",
+      "title": "Dwight Eisenhower",
+      "lessonId": "u6-s2-l2"
+    },
+    {
+      "id": "u6-s2-rw",
+      "type": "readwrite",
+      "title": "Read and write",
+      "fromLessons": [
+        "u6-s2-l1",
+        "u6-s2-l2"
+      ]
+    },
+    {
+      "id": "u6-s2-speak",
+      "type": "speakit",
+      "title": "Speak it!"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "u6-s2-l1",
+      "title": "Roosevelt and World War II",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de7f",
+        "6ad16ecf6a9c603911f9de80"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "Who was president during the Great Depression and World War II?",
+          "facts": [
+            "Franklin Roosevelt was President during the Great Depression and World War II.",
+            "The United States entered World War II after Japan attacked Pearl Harbor, in Hawaii, in 1941.",
+            "The United States joined the Allied Powers against the Axis Powers: Germany, Italy and Japan."
+          ],
+          "newWords": [
+            {
+              "word": "attack",
+              "meaning": "to start fighting against someone"
+            },
+            {
+              "word": "Axis Powers",
+              "meaning": "Germany, Italy and Japan in World War II"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de7f"
+        },
+        "readIt": {
+          "sentence": "Who lived in the White House?",
+          "words": [
+            "Who",
+            "lived",
+            "in",
+            "the",
+            "White",
+            "House"
+          ]
+        },
+        "writeIt": {
+          "sentence": "The President lives in the White House.",
+          "distractorWords": [
+            "Congress",
+            "Mexico",
+            "May"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de80"
+        }
+      }
+    },
+    {
+      "id": "u6-s2-l2",
+      "title": "Dwight Eisenhower",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de81"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "Dwight Eisenhower is famous for many things. Name one.",
+          "facts": [
+            "Dwight Eisenhower was a general during World War II.",
+            "He became the 34th President and was President at the end of the Korean War.",
+            "He signed the law that built the Interstate highways across the country."
+          ],
+          "newWords": [
+            {
+              "word": "general",
+              "meaning": "a top leader in the army"
+            },
+            {
+              "word": "highway",
+              "meaning": "a big, fast road between cities"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de81"
+        },
+        "readIt": {
+          "sentence": "Who elects the President?",
+          "words": [
+            "Who",
+            "elects",
+            "the",
+            "President"
+          ]
+        },
+        "writeIt": {
+          "sentence": "We elect the President.",
+          "distractorWords": [
+            "Senators",
+            "Canada",
+            "blue"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de81"
+        }
+      }
+    }
+  ]
+}

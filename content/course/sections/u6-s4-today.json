@@ -1,0 +1,274 @@
+{
+  "id": "u6-s4",
+  "unitId": "u6",
+  "number": 4,
+  "title": "Civil rights and a new century",
+  "note": "Drafted for Prompt 12 (Unit 6). Every lesson is a draft until a person reviews it (content/course/README.md).",
+  "stops": [
+    {
+      "id": "u6-s4-l1",
+      "type": "lesson",
+      "title": "Civil rights",
+      "lessonId": "u6-s4-l1"
+    },
+    {
+      "id": "u6-s4-l2",
+      "type": "lesson",
+      "title": "September 11",
+      "lessonId": "u6-s4-l2"
+    },
+    {
+      "id": "u6-s4-l3",
+      "type": "lesson",
+      "title": "Wars in the Middle East",
+      "lessonId": "u6-s4-l3"
+    },
+    {
+      "id": "u6-s4-l4",
+      "type": "lesson",
+      "title": "American innovation",
+      "lessonId": "u6-s4-l4"
+    },
+    {
+      "id": "u6-s4-rw",
+      "type": "readwrite",
+      "title": "Read and write",
+      "fromLessons": [
+        "u6-s4-l1",
+        "u6-s4-l2",
+        "u6-s4-l3",
+        "u6-s4-l4"
+      ]
+    },
+    {
+      "id": "u6-s4-speak",
+      "type": "speakit",
+      "title": "Speak it!"
+    },
+    {
+      "id": "u6-practice-interview",
+      "type": "practiceInterview",
+      "title": "Unit practice interview"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "u6-s4-l1",
+      "title": "Civil rights",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de86",
+        "6ad16ecf6a9c603911f9de87"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "What did the civil rights movement do?",
+          "facts": [
+            "The civil rights movement fought to end racial discrimination.",
+            "Martin Luther King, Jr. was a leader of the movement. He worked for equality for all Americans.",
+            "He hoped people would “not be judged by the color of their skin, but by the content of their character.”"
+          ],
+          "newWords": [
+            {
+              "word": "discrimination",
+              "meaning": "treating people unfairly because of who they are"
+            },
+            {
+              "word": "equality",
+              "meaning": "being treated the same as everyone else"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de86"
+        },
+        "readIt": {
+          "sentence": "Who has the right to vote?",
+          "words": [
+            "Who",
+            "has",
+            "the",
+            "right",
+            "to",
+            "vote"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Citizens have the right to vote.",
+          "distractorWords": [
+            "Canada",
+            "Thanksgiving",
+            "red"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de87"
+        }
+      }
+    },
+    {
+      "id": "u6-s4-l2",
+      "title": "September 11",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de89"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "What major event happened on September 11, 2001 in the United States?",
+          "facts": [
+            "On September 11, 2001, terrorists attacked the United States.",
+            "They took over planes. Two crashed into the World Trade Center in New York City, one into the Pentagon in Virginia, and one in a field in Pennsylvania.",
+            "Almost 3,000 people died."
+          ],
+          "newWords": [
+            {
+              "word": "terrorist",
+              "meaning": "a person who uses violence to make people afraid"
+            },
+            {
+              "word": "attack",
+              "meaning": "to start fighting against someone"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de89"
+        },
+        "readIt": {
+          "sentence": "What is the largest city in the United States?",
+          "words": [
+            "What",
+            "is",
+            "the",
+            "largest",
+            "city",
+            "in",
+            "the",
+            "United",
+            "States"
+          ]
+        },
+        "writeIt": {
+          "sentence": "New York City has the most people.",
+          "distractorWords": [
+            "Washington, D.C.",
+            "Alaska",
+            "June"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de89"
+        }
+      }
+    },
+    {
+      "id": "u6-s4-l3",
+      "title": "Wars in the Middle East",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de88",
+        "6ad16ecf6a9c603911f9de8a"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "Why did the United States enter the Persian Gulf War?",
+          "facts": [
+            "In 1991, the United States entered the Persian Gulf War to force the Iraqi military out of Kuwait.",
+            "After the September 11 attacks, the United States fought the War on Terror.",
+            "This included the war in Afghanistan and the war in Iraq."
+          ],
+          "newWords": [
+            {
+              "word": "military",
+              "meaning": "a country's army and other armed forces"
+            },
+            {
+              "word": "conflict",
+              "meaning": "a fight or war"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de88"
+        },
+        "readIt": {
+          "sentence": "What does the President do?",
+          "words": [
+            "What",
+            "does",
+            "the",
+            "President",
+            "do"
+          ]
+        },
+        "writeIt": {
+          "sentence": "The President lives in Washington, D.C.",
+          "distractorWords": [
+            "Congress",
+            "Canada",
+            "February"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de8a"
+        }
+      }
+    },
+    {
+      "id": "u6-s4-l4",
+      "title": "American innovation",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de8c"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "Name one example of an American innovation.",
+          "facts": [
+            "An innovation is a new idea or invention.",
+            "American innovations include the light bulb, the automobile, the airplane, skyscrapers and the assembly line.",
+            "In 1969, Americans were the first people to land on the moon."
+          ],
+          "newWords": [
+            {
+              "word": "innovation",
+              "meaning": "a new idea or invention"
+            },
+            {
+              "word": "invention",
+              "meaning": "something made for the first time"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de8c"
+        },
+        "readIt": {
+          "sentence": "Why do people come to the United States?",
+          "words": [
+            "Why",
+            "do",
+            "people",
+            "come",
+            "to",
+            "the",
+            "United",
+            "States"
+          ]
+        },
+        "writeIt": {
+          "sentence": "People come to the United States to be free.",
+          "distractorWords": [
+            "taxes",
+            "Mexico",
+            "July"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de8c"
+        }
+      }
+    }
+  ]
+}
