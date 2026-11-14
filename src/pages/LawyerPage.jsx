@@ -1,29 +1,29 @@
-import React, { useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { ExternalLink, AlertTriangle, Scale, Lock, Loader2, ArrowUpRight } from 'lucide-react';
-import PageTop from '@/components/pathways/PageTop';
-import { CreamSheet, RaisedCard } from '@/components/pathways/ui';
+import React from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { ArrowLeft, ArrowRight, ExternalLink, AlertTriangle, Scale, Lock, Loader2, ArrowUpRight, Phone } from 'lucide-react';
+import NavyBanner from '@/components/pathways/NavyBanner';
+import { Button, Card, RaisedCard } from '@/components/pathways/ui';
+import { AmioSays } from '@/components/pathways/Amio';
 import useAppLanguage, { isRTL } from '@/hooks/useAppLanguage';
 import useLawyerChecklistTranslation from '@/hooks/useLawyerChecklistTranslation';
 import { LAWYER_CHECKLIST_ITEMS, LEGAL_HELP_LINKS } from '@/components/lawyer/lawyerChecklist';
 import { N400_SECTIONS } from '@/components/n400/n400Content';
 import ResourceFinder from '@/components/resources/ResourceFinder';
 
-// Resource Hub (/resources, and /lawyer-first for older links). Two parts:
-// 1. "Find help near you" — a map and list of legal help, classes, and USCIS
-//    offices (ResourceFinder). The learner's location is used on the device
-//    only and is never saved or sent anywhere.
-// 2. "Talk to a lawyer first" — a plain, read-only list of situations where
-//    the learner should get legal help before filing. No checkboxes, no
-//    inputs, and nothing in it is tracked or saved.
+// Two screens under Me, one file:
+// - /resources, "Free help near you" (frame R30Help): the curated directory
+//   of legal help, classes, libraries and USCIS offices (ResourceFinder: the
+//   map stays where it was), "Always call before you go", and a card to "Talk
+//   to a lawyer first". The learner's location is used on the device only and
+//   is never saved or sent anywhere.
+// - /lawyer-first, "Talk to a lawyer first" (frame R30Lawyer): the same
+//   read-only list of situations as before (wording unchanged), Amio's one
+//   line, free legal help links, who can legally help, and "Find free legal
+//   help near me". No checkboxes, no inputs; nothing is tracked or saved.
 export default function LawyerPage({ cachedUser }) {
   const location = useLocation();
-  useEffect(() => {
-    // Links that say "Talk to a lawyer first" land on that section.
-    if (location.pathname === '/lawyer-first') {
-      document.getElementById('lawyer-first')?.scrollIntoView({ block: 'start' });
-    }
-  }, [location.pathname]);
+  const navigate = useNavigate();
+  const lawyerScreen = location.pathname.toLowerCase() === '/lawyer-first';
   const isAdmin = cachedUser?.role === 'admin';
   const [language] = useAppLanguage();
   const rtl = isRTL(language);
@@ -36,27 +36,62 @@ export default function LawyerPage({ cachedUser }) {
     N400_SECTIONS.find((s) => s.id === item.guideSectionId)?.title ||
     'the N-400 guide';
 
+  const back = (
+    <button
+      type="button"
+      onClick={() => (window.history.length > 1 ? navigate(-1) : navigate('/me'))}
+      aria-label="Back"
+      className="w-11 h-11 grid place-items-center rounded-full text-white hover:bg-chip-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+    >
+      <ArrowLeft className="w-6 h-6 rtl:rotate-180" aria-hidden="true" />
+    </button>
+  );
+
+  if (!lawyerScreen) {
+    return (
+      <div dir={rtl ? 'rtl' : 'ltr'}>
+        <NavyBanner title="Free help near you" subtitle="Legal help, classes and libraries" left={back} />
+        <div className="mx-auto max-w-5xl px-4 py-5 space-y-5 pb-8">
+          <ResourceFinder />
+          <Card padding="p-4" className="flex items-center gap-3 bg-tint border-tint">
+            <Phone className="w-5 h-5 shrink-0 text-navy" aria-hidden="true" />
+            <p className="text-base font-semibold text-navy">Always call before you go.</p>
+          </Card>
+          <Link
+            to="/lawyer-first"
+            className="block rounded-card bg-white border-2 border-not-yet p-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-not-yet focus-visible:ring-offset-2"
+          >
+            <span className="flex items-start gap-3">
+              <Scale className="w-6 h-6 shrink-0 text-not-yet" aria-hidden="true" />
+              <span className="min-w-0 flex-1">
+                <span className="block text-lg font-bold text-navy">Talk to a lawyer first</span>
+                <span className="mt-1 block text-base text-muted">Before you file, see when to get legal help.</span>
+              </span>
+              <ArrowRight className="w-5 h-5 shrink-0 mt-1 text-muted rtl:rotate-180" aria-hidden="true" />
+            </span>
+          </Link>
+          <p className="text-base leading-relaxed text-muted">
+            This page helps you find help. It is not legal advice about your situation. Nothing you read or search
+            here, including your location, is saved or shared.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div dir={rtl ? 'rtl' : 'ltr'}>
-      <PageTop
-        back
-        tag="Help near you"
-        title="Resource Hub"
-        subtitle="Help near you, and when to talk to a lawyer first."
-        guide="I'm a study tutor, not a lawyer. Here you can find free legal help, classes, and offices near you, and see when to talk to a lawyer before you file."
-      />
-      <CreamSheet>
-      <div className="mx-auto max-w-5xl space-y-6 pb-8">
-      <ResourceFinder />
+      <NavyBanner title="Talk to a lawyer first" subtitle="Before you file, if any of these might be true" left={back} />
+      <div className="mx-auto max-w-lg px-4 py-5 space-y-5 pb-8">
 
-      <RaisedCard id="lawyer-first" className="space-y-3 md:p-6 scroll-mt-24 border-2 border-not-correct">
+      <RaisedCard id="lawyer-first" className="space-y-3 scroll-mt-24 border-2 border-not-yet">
         <div className="flex items-center gap-3">
-          <div className="w-11 h-11 rounded-full grid place-items-center bg-not-correct-soft text-not-correct shrink-0">
+          <div className="w-11 h-11 rounded-full grid place-items-center bg-not-yet-bg text-not-yet shrink-0">
             <Scale className="w-5 h-5" aria-hidden="true" />
           </div>
-          <h2 className="text-[22px] leading-snug font-display text-ink">Talk to a lawyer first</h2>
+          <h2 className="text-lg font-bold text-navy">Talk to a lawyer first</h2>
         </div>
-        <p className="text-base text-pw-navy leading-relaxed">
+        <p className="text-base text-navy leading-relaxed">
           Most people can apply on their own. But if <strong>ANY</strong> of these are true for you, talk to a
           lawyer or accredited representative <strong>BEFORE</strong> you file. Filing with one of these issues
           can cause serious problems, including more than a denied application. You do not need to tell this
@@ -66,7 +101,7 @@ export default function LawyerPage({ cachedUser }) {
 
       <RaisedCard padding="p-4 sm:p-6" className="space-y-4">
         <div className="flex flex-wrap items-center justify-between gap-2 px-1">
-          <h2 className="text-[22px] leading-snug font-display text-ink">If any of these is true for you</h2>
+          <h2 className="text-lg font-bold text-navy">If any of these is true for you</h2>
           {isTranslating && (
             <p className="flex items-center gap-2 text-sm text-pw-muted">
               <Loader2 className="w-4 h-4 animate-spin" /> Translating…
@@ -120,7 +155,7 @@ export default function LawyerPage({ cachedUser }) {
       </RaisedCard>
 
       <section className="rounded-card bg-white border border-card-line text-ink p-5 md:p-6 space-y-4">
-        <h2 className="text-[22px] leading-snug font-display">Find free or low-cost legal help</h2>
+        <h2 className="text-lg font-bold">Find free or low-cost legal help</h2>
         <ul className="space-y-3">
           {LEGAL_HELP_LINKS.map((link) => (
             <li key={link.url}>
@@ -141,10 +176,10 @@ export default function LawyerPage({ cachedUser }) {
         </ul>
       </section>
 
-      <div className="rounded-card bg-pw-red-soft p-5 md:p-6 space-y-3">
+      <div className="rounded-card bg-not-yet-bg border-2 border-not-yet p-5 space-y-3">
         <div className="flex items-center gap-3">
-          <AlertTriangle className="w-6 h-6 text-pw-red-ink shrink-0" aria-hidden="true" />
-          <h2 className="text-[22px] leading-snug font-display text-not-correct-text">Who can legally help you</h2>
+          <AlertTriangle className="w-6 h-6 text-not-yet shrink-0" aria-hidden="true" />
+          <h2 className="text-lg font-bold text-not-yet">Who can legally help you</h2>
         </div>
         <p className="text-base text-pw-navy leading-relaxed">
           Only lawyers and DOJ-accredited representatives can give immigration legal advice. Notarios and
@@ -152,12 +187,18 @@ export default function LawyerPage({ cachedUser }) {
         </p>
       </div>
 
-      <p className="text-base leading-relaxed text-pw-muted">
-        This page helps you find help and explains when to get legal help. It is not legal advice about your
-        situation. Nothing you read or search here, including your location, is saved or shared.
+
+      <AmioSays mood="kind">I can&apos;t give legal advice. A free legal helper can look at your situation.</AmioSays>
+
+      <p className="text-base leading-relaxed text-muted">
+        Nothing you see or tap here is saved. Pathways is not a law office. This page explains when to get legal
+        help; it is not legal advice about your situation.
       </p>
+
+      <Button variant="main" className="w-full" onClick={() => navigate('/resources')}>
+        Find free legal help near me
+      </Button>
       </div>
-      </CreamSheet>
     </div>
   );
 }

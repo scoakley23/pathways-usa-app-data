@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Mic, MicOff, Volume2 } from 'lucide-react';
-import { Eyebrow, PillButton, PrimaryButton, RaisedCard } from '@/components/pathways/ui';
-import VirtualInterviewer from '@/components/practice/VirtualInterviewer';
+import { PillButton, PrimaryButton, RaisedCard } from '@/components/pathways/ui';
+import Officer from '@/components/interview/Officer';
 import { speakText, stopSpeaking } from '@/components/utils/textToSpeech';
 import { heardOathYes } from '@/lib/interviewDay';
 
@@ -49,10 +49,10 @@ export default function OathStep({ onDone }) {
 
   return (
     <div className="space-y-4 text-pw-navy">
-      <RaisedCard padding="p-4">
-        <Eyebrow className="mb-3">Your practice USCIS Interviewer</Eyebrow>
-        <VirtualInterviewer state={officer} />
-      </RaisedCard>
+      <div className="rounded-card bg-tint px-4 py-5 flex flex-col items-center text-center gap-2">
+        <div className={`rounded-full ${officer === 'speaking' ? 'ring-4 ring-denim/40' : ''}`}><Officer size={112} /></div>
+        <p className="text-small font-semibold text-muted">AI practice officer · not a real person</p>
+      </div>
 
       <RaisedCard className="space-y-4">
         <p className="text-lg font-bold leading-relaxed">{OATH_LINE}</p>
