@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { base44 } from '@/api/base44Client';
+import { lessonProgress as lessonProgressApi, lessonNotes as lessonNotesApi } from '@/api/lessons';
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { TrendingUp, Loader2 } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
@@ -22,8 +22,8 @@ export default function ProgressChart({ userEmail }) {
   const loadChartData = async () => {
     try {
       const [lessonProgress, lessonNotes] = await Promise.all([
-        base44.entities.LessonProgress.filter({ user_email: userEmail }, 'last_attempt_date', 200),
-        base44.entities.LessonNotes.filter({ user_email: userEmail.toLowerCase().trim() }, null, 200)
+        lessonProgressApi.list({ sort: 'last_attempt_date', limit: 200 }),
+        lessonNotesApi.list({ limit: 200 })
       ]);
 
       // Build a map of dates to aggregate data

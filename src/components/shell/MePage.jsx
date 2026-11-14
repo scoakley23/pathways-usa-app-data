@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ChevronRight, Loader2, LogIn, LogOut } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
+import { lessonProgress as lessonProgressApi } from '@/api/lessons';
 import { progress as progressApi } from '@/api/progress';
 import { content } from '@/api/content';
 import { profile as profileApi } from '@/api/profile';
@@ -90,7 +91,7 @@ export default function MePage() {
         profileApi.getPublic().catch(() => null),
         progressApi.list({ sort: '-last_practiced', limit: 500 }).catch(() => []),
         base44.entities.InterviewSession.filter({ user_email: email }, '-created_date', 50).catch(() => []),
-        base44.entities.LessonProgress.filter({ user_email: email }, null, 200).catch(() => []),
+        lessonProgressApi.list({ limit: 200 }).catch(() => []),
         base44.entities.N400SectionProgress.filter({ user_email: email }, null, 50).catch(() => []),
         content.civicsQuestions({ version: '2025', limit: 300 }).catch(() => []),
       ]);

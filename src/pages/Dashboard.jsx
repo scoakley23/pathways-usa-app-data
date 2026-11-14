@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { base44 } from '@/api/base44Client';
+import { lessonProgress as lessonProgressApi } from '@/api/lessons';
 import { content } from '@/api/content';
 import { auth } from '@/api/auth';
 import { Card, CardContent } from '@/components/ui/card';
@@ -31,7 +31,7 @@ export default function Dashboard({ cachedUser }) {
         }
         const [allLessons, progressList] = await Promise.all([
           content.lessons(),
-          base44.entities.LessonProgress.filter({ user_email: currentUser.email }),
+          lessonProgressApi.list(),
         ]);
         setLessons(allLessons.sort((a, b) => (a.order || 0) - (b.order || 0)));
         setLessonProgress(progressList);
