@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ChevronRight, Loader2, LogIn, LogOut } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
+import { content } from '@/api/content';
 import { auth } from '@/api/auth';
 import NavyBanner from '@/components/pathways/NavyBanner';
 import { Button, Card, Eyebrow } from '@/components/pathways/ui';
@@ -89,7 +90,7 @@ export default function MePage() {
         base44.entities.InterviewSession.filter({ user_email: email }, '-created_date', 50).catch(() => []),
         base44.entities.LessonProgress.filter({ user_email: email }, null, 200).catch(() => []),
         base44.entities.N400SectionProgress.filter({ user_email: email }, null, 50).catch(() => []),
-        base44.entities.CivicsQuestion.filter({ version: '2025' }, null, 300).catch(() => []),
+        content.civicsQuestions({ version: '2025', limit: 300 }).catch(() => []),
       ]);
       if (!active) return;
       setName(profiles[0]?.display_name || u.full_name || '');
