@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
-import { base44 } from '@/api/base44Client';
+import { content as contentApi } from '@/api/content';
 import { Eyebrow, PrimaryButton, QuietButton, RaisedCard, SegmentedProgress, SkillTag } from '@/components/pathways/ui';
 import InterviewPractice from '@/components/practice/InterviewPractice';
 import ReadingPracticeCard from '@/components/practice/ReadingPracticeCard';
@@ -27,9 +27,9 @@ export default function RehearsalRunner({ version, userEmail, onStop }) {
     let alive = true;
     const { maxQuestions } = civicsRules(version);
     Promise.all([
-      base44.entities.ReadingSentence.list(),
-      base44.entities.Sentence.list(),
-      base44.entities.CivicsQuestion.filter({ version }, null, 500),
+      contentApi.readingSentences(),
+      contentApi.writingSentences(),
+      contentApi.civicsQuestions({ version, limit: 500 }),
     ]).then(([reading, writing, civics]) => {
       if (!alive) return;
       setContent({

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
+import { content as contentApi } from '@/api/content';
 import { auth } from '@/api/auth';
 import { Button } from "@/components/ui/button";
 import { ArrowRight, BookOpen, Check, Landmark, Loader2, Sparkles, Layers, Mic, MessagesSquare, PenLine, SlidersHorizontal, X } from 'lucide-react';
@@ -133,8 +134,7 @@ export default function Practice() {
   useEffect(() => {
     const seedData = async () => {
       try {
-      const existing = await base44.entities.ReadingSentence.list();
-      if (existing.length === 0) {
+      {
          const sentences = [
             { text: "Who was George Washington?", difficulty: "easy" },
             { text: "What is the capital of the United States?", difficulty: "easy" },
@@ -157,7 +157,8 @@ export default function Practice() {
             { text: "When is Independence Day?", difficulty: "easy" },
             { text: "What was the first capital of the United States?", difficulty: "hard" }
          ];
-         await base44.entities.ReadingSentence.bulkCreate(sentences);
+         // Base44 only; on Supabase the content is already loaded.
+         await contentApi.seedReadingSentencesIfEmpty(sentences);
       }
       } catch (err) {
         console.error("Seeding skipped:", err);
@@ -295,18 +296,18 @@ export default function Practice() {
     try {
       let data = [];
       if (selectedMode === 'reading') {
-         data = await base44.entities.ReadingSentence.list();
+         data = await contentApi.readingSentences();
          // Reading doesn't use strict SRS yet, simple shuffle
          data = data.sort(() => 0.5 - Math.random()).slice(0, 10);
       } else if (selectedMode === 'dictation') {
-        const allSentences = await base44.entities.Sentence.list();
+        const allSentences = await contentApi.writingSentences();
         data = await getSRSContent(allSentences, 'sentence');
       } else if (selectedMode === 'vocabulary') {
-        const allVocab = await base44.entities.VocabularyWord.list();
+        const allVocab = await contentApi.vocabularyWords();
         const transformed = allVocab.map(v => ({ ...v, text: v.word, type: 'vocabulary' }));
         data = await getSRSContent(transformed, 'vocabulary');
       } else if (selectedMode === 'civics') {
-        let allQuestions = await base44.entities.CivicsQuestion.list();
+        let allQuestions = await contentApi.civicsQuestions();
         allQuestions = allQuestions.filter(q => q.version === civicsVersion);
         
         // Adaptive Difficulty Handling

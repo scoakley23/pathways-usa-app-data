@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
+import { content } from '@/api/content';
 import { auth } from '@/api/auth';
 import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, Loader2, RotateCcw } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
@@ -97,9 +98,9 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
       setUser(currentUser);
 
       const [lessonFlashcards, civics2025, civics2008, progressList] = await Promise.all([
-        base44.entities.LessonFlashcard.filter({ lesson_id: lesson.id }, null, 200),
-        base44.entities.CivicsQuestion.filter({ version: '2025', category: lesson.topic }, null, 100),
-        base44.entities.CivicsQuestion.filter({ version: '2008', category: lesson.topic }, null, 100),
+        content.lessonFlashcards(lesson.id, { limit: 200 }),
+        content.civicsQuestions({ version: '2025', category: lesson.topic, limit: 100 }),
+        content.civicsQuestions({ version: '2008', category: lesson.topic, limit: 100 }),
         currentUser?.email ? base44.entities.LessonProgress.filter(
           { user_email: currentUser.email, lesson_id: lesson.id }, null, 1
         ) : Promise.resolve([])

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
+import { content } from '@/api/content';
 import { ROADMAP_STOPS } from './roadmapStops';
 
 const DEFAULT_STATE = {
@@ -17,7 +18,7 @@ const EMPTY_STATE = { ...DEFAULT_STATE, loading: false };
 let lessonTotalPromise = null;
 function getLessonTotal() {
   if (!lessonTotalPromise) {
-    lessonTotalPromise = base44.entities.Lesson.count().catch((err) => {
+    lessonTotalPromise = content.lessonCount().catch((err) => {
       lessonTotalPromise = null; // retry next time instead of caching a failure
       throw err;
     });

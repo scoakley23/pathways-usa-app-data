@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
-import PageTop from '@/components/pathways/PageTop';
-import { Button, CreamSheet, NavyTop } from '@/components/pathways/ui';
+import NavyBanner from '@/components/pathways/NavyBanner';
+import { Button } from '@/components/pathways/ui';
 import { cardCount, nextSection } from '@/lib/n400View';
-import N400Section from '@/components/n400/N400Section';
+import N400Section, { visibleCards } from '@/components/n400/N400Section';
 import { tabFor } from '@/components/n400/N400Folder';
 import N400Cover from '@/components/n400/N400Cover';
 import { N400_SECTIONS } from '@/components/n400/n400Content';
@@ -16,10 +16,11 @@ import useTutorProfile from '@/components/persona/useTutorProfile';
 
 // N-400 Question Guide: explains what questions on the naturalization
 // application mean. No learner answers are collected here — only whole-section
-// completion is saved. The Road: the guide's home (navy top with "Continue:
-// {section}", the sections as a road on the cream sheet; the old
-// ?folder=open lands here too) → one section (?section=…) with its own navy
-// top and section chips. "See the form" (?view=form) shows the blank form.
+// completion is saved. The guide's home (frame R30N400: "Your N-400,
+// explained", "Continue: {section}", the warning and the sections; the old
+// ?folder=open lands here too) → one section (?section=…&card=n), one card per
+// screen (frame R30N400Card) with the section chips under its navy banner.
+// "See the form" (?view=form) shows the blank form.
 export default function N400Guide({ cachedUser }) {
   const [language] = useAppLanguage();
   const { profile } = useTutorProfile();
@@ -36,13 +37,15 @@ export default function N400Guide({ cachedUser }) {
   // switching tabs inside a section does not.
   const pickSection = (id) => setSearchParams({ section: id });
   const openSection = (id) => setSearchParams({ section: id }, { replace: true });
+  const cardIndex = Math.max(0, (parseInt(searchParams.get('card'), 10) || 1) - 1);
+  const goToCard = (i) => setSearchParams({ section: activeSection.id, card: String(i + 1) });
   const completedIds = progress.filter((p) => p.completed).map((p) => p.section_id);
   const visibleCount = (s) => (isAdmin ? s.questions : s.questions.filter((q) => q.status === 'approved')).length;
 
   // Each step (cover, list, a section) starts at the top of the page.
   useEffect(() => {
     if (!searchParams.get('ready')) window.scrollTo({ top: 0 });
-  }, [step, sectionId]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [step, sectionId, cardIndex]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // The open section's chip scrolls into view in the chip row.
   useEffect(() => {
@@ -99,7 +102,7 @@ export default function N400Guide({ cachedUser }) {
 
   // The Guide | See the form switch, on navy (white pill for the open view).
   const viewSwitch = (
-    <div role="group" aria-label="View" className="inline-flex rounded-full bg-navy-2 p-1">
+    <div role="group" aria-label="View" className="inline-flex rounded-full bg-chip-navy p-1">
       {[['guide', 'Guide'], ['form', 'See the form']].map(([id, label]) => (
         <button
           key={id}
@@ -119,19 +122,20 @@ export default function N400Guide({ cachedUser }) {
   if (view === 'guide' && step === 'section') {
     return (
       <div>
-        <NavyTop className="pb-12">
-          <div className="mx-auto max-w-3xl space-y-3">
+        <NavyBanner
+          title={`Section ${N400_SECTIONS.indexOf(activeSection) + 1} · Card ${Math.min(cardIndex + 1, Math.max(1, visibleCards(activeSection, isAdmin).length))} of ${visibleCards(activeSection, isAdmin).length}`}
+          subtitle={`${activeSection.title} · ${activeSection.partLabel}`}
+          left={(
             <button
               type="button"
               onClick={() => setSearchParams({})}
-              className="-ms-2 inline-flex items-center gap-1.5 min-h-11 rounded-full px-2 text-base font-semibold text-on-navy hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              aria-label="Back to the N-400 guide"
+              className="w-11 h-11 grid place-items-center rounded-full text-white hover:bg-chip-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
             >
-              <ArrowLeft className="w-4 h-4 rtl:rotate-180" aria-hidden="true" /> N-400 Question Guide
+              <ArrowLeft className="w-6 h-6 rtl:rotate-180" aria-hidden="true" />
             </button>
-            <p className="text-label uppercase text-on-navy">
-              {activeSection.partLabel} · {completedIds.length} of {N400_SECTIONS.length} sections read
-            </p>
-            <h1 className="font-display text-[28px] sm:text-[34px] leading-[1.1]">{activeSection.title}</h1>
+          )}
+          extra={(
             <nav aria-label="Sections" className="-mx-4 px-4 overflow-x-auto">
               <ul className="flex gap-2 w-max pb-1">
                 {N400_SECTIONS.map((s) => {
@@ -144,7 +148,7 @@ export default function N400Guide({ cachedUser }) {
                         onClick={() => openSection(s.id)}
                         data-section-chip
                         aria-current={active ? 'true' : undefined}
-                        className={`min-h-tap whitespace-nowrap rounded-full px-4 inline-flex items-center gap-1.5 text-[15px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${active ? 'bg-white text-navy' : 'bg-navy-2 text-white hover:bg-navy-line'}`}
+                        className={`min-h-tap whitespace-nowrap rounded-full px-4 inline-flex items-center gap-1.5 text-[15px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${active ? 'bg-white text-navy' : 'bg-chip-navy text-white hover:bg-navy-deep'}`}
                       >
                         {read && <Check className="w-4 h-4" strokeWidth={3} aria-hidden="true" />}
                         {tabFor(s).label}
@@ -155,56 +159,50 @@ export default function N400Guide({ cachedUser }) {
                 })}
               </ul>
             </nav>
-          </div>
-        </NavyTop>
-        <CreamSheet>
-          <div className="mx-auto max-w-3xl pb-8">
-            <N400Section
-              key={activeSection.id}
-              section={activeSection}
-              isAdmin={isAdmin}
-              language={language}
-              completed={completedIds.includes(activeSection.id)}
-              onComplete={markComplete}
-            />
-          </div>
-        </CreamSheet>
+          )}
+        />
+        <div className="mx-auto max-w-lg px-4 py-5 pb-8">
+          <N400Section
+            key={activeSection.id}
+            section={activeSection}
+            isAdmin={isAdmin}
+            language={language}
+            completed={completedIds.includes(activeSection.id)}
+            onComplete={markComplete}
+            cardIndex={cardIndex}
+            onCard={goToCard}
+          />
+        </div>
       </div>
     );
   }
 
   return (
     <div>
-      <PageTop
-        tag={`${cards} cards · ${N400_SECTIONS.length} sections`}
-        title="N-400 Question Guide"
+      <NavyBanner
+        title="Your N-400, explained"
         subtitle={view === 'form'
           ? 'This is what the paper form looks like. It stays blank: we never fill it in or keep answers.'
-          : 'Learn what each question on the form means and how the officer may say it. This is not legal advice.'}
-      >
-        <div className="space-y-4">
+          : `Learn what each question means. ${cards} cards · ${N400_SECTIONS.length} sections. This is not legal advice.`}
+        extra={<div>{viewSwitch}</div>}
+      />
+
+      <div className="mx-auto max-w-lg px-4 py-5 space-y-6 pb-8">
           {view === 'guide' && nextUp && (
-            <Button variant="main" onNavy className="w-full sm:w-auto" onClick={() => pickSection(nextUp.id)}>
+            <Button variant="main" className="w-full" onClick={() => pickSection(nextUp.id)}>
               {started ? 'Continue' : 'Start'}: {nextUp.title} <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" />
             </Button>
           )}
-          <div>{viewSwitch}</div>
-        </div>
-      </PageTop>
-
-      <CreamSheet>
-        <div className="mx-auto max-w-3xl space-y-6 pb-8">
           {view === 'form' ? (
             <N400BlankForm sections={N400_SECTIONS} isAdmin={isAdmin} onOpenSection={pickSection} />
           ) : (
             <>
               <N400Cover sections={N400_SECTIONS} completedIds={completedIds} countFor={visibleCount} onSelect={pickSection} tutorName={profile.name} />
               <ReadyToFile />
-              <p className="text-center text-sm text-ink-2">Pathways is not part of USCIS or the government.</p>
+              <p className="text-center text-sm text-muted">Pathways is not part of USCIS or the government.</p>
             </>
           )}
-        </div>
-      </CreamSheet>
+      </div>
     </div>
   );
 }

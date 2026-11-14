@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, ChevronDown, ChevronRight, Globe, History, Loader2, Scale, Users, Volume2 } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
+import { content } from '@/api/content';
 import { auth } from '@/api/auth';
 import { createPageUrl } from '@/utils';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -196,7 +197,7 @@ export default function StudyBuddy() {
         const email = u.email.toLowerCase().trim();
         const [progress, lessons] = await Promise.all([
           base44.entities.LessonProgress.filter({ user_email: email }, '-last_attempt_date', 20).catch(() => []),
-          base44.entities.Lesson.list(null, 300).catch(() => []),
+          content.lessons({ limit: 300 }).catch(() => []),
         ]);
         if (active) setFromLessons(lessonSuggestions(progress, lessons));
       })

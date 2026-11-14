@@ -1,0 +1,67 @@
+{
+  "note": "The course outline (Prompt 4). Unit titles and descriptions from frame R31Map; Unit 2's sections from frame R33UnitGuide. A section with a `file` has its stops and lessons in content/course/sections/. Sections of the other units are outlined before their Prompt 12 run. Course content is 2025-only for now.",
+  "units": [
+    {
+      "id": "u1",
+      "number": 1,
+      "title": "Principles of democracy",
+      "description": "Constitution · Bill of Rights · rule of law",
+      "icon": "constitution",
+      "sections": []
+    },
+    {
+      "id": "u2",
+      "number": 2,
+      "title": "How government works",
+      "description": "Branches · Congress · President · courts",
+      "icon": "capitol",
+      "sections": [
+        { "id": "u2-s1", "number": 1, "title": "The three branches" },
+        { "id": "u2-s2", "number": 2, "title": "Congress", "file": "u2-s2-congress.json" },
+        { "id": "u2-s3", "number": 3, "title": "The President" },
+        { "id": "u2-s4", "number": 4, "title": "The courts" },
+        { "id": "u2-s5", "number": 5, "title": "States and local government" }
+      ]
+    },
+    {
+      "id": "u3",
+      "number": 3,
+      "title": "Rights and responsibilities",
+      "description": "Voting · freedoms · your promises",
+      "icon": "ballot",
+      "sections": []
+    },
+    {
+      "id": "u4",
+      "number": 4,
+      "title": "Colonies to a nation",
+      "description": "First Americans · independence · founders",
+      "icon": "colonies",
+      "sections": []
+    },
+    {
+      "id": "u5",
+      "number": 5,
+      "title": "The 1800s",
+      "description": "Louisiana Purchase · Civil War · Lincoln",
+      "icon": "union",
+      "sections": []
+    },
+    {
+      "id": "u6",
+      "number": 6,
+      "title": "Modern America",
+      "description": "World wars · civil rights · Sept. 11",
+      "icon": "modern",
+      "sections": []
+    },
+    {
+      "id": "u7",
+      "number": 7,
+      "title": "Symbols and holidays",
+      "description": "The flag · anthem · holidays · geography",
+      "icon": "holidays",
+      "sections": []
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { base44 } from '@/api/base44Client';
+import { content } from '@/api/content';
 import { auth } from '@/api/auth';
 import useTodayText from '@/components/persona/useTodayText';
 import { Card } from '@/components/pathways/ui';
@@ -28,7 +29,7 @@ export default function ThisWeekCard({ language = 'en' }) {
           base44.entities.InterviewSession.filter({ user_email: email }, '-created_date', 50).catch(() => []),
           base44.entities.LessonProgress.filter({ user_email: email }, null, 200).catch(() => []),
           base44.entities.N400SectionProgress.filter({ user_email: email }, null, 50).catch(() => []),
-          base44.entities.CivicsQuestion.filter({ version: '2025' }, null, 300).catch(() => []),
+          content.civicsQuestions({ version: '2025', limit: 300 }).catch(() => []),
         ]);
         if (!active) return;
         const civicsIds = new Set(civics2025.map((q) => q.id));
