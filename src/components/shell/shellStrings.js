@@ -47,6 +47,8 @@ export const ME_LINES = {
 // SettingsPage.jsx
 export const SETTINGS_LINES = {
   title: 'Settings and privacy',
+  your_plan: 'Your plan',
+  your_plan_help: 'Your interview month and how many lessons a day.',
   language: 'Language',
   speed: 'Amio’s speaking speed',
   read_aloud: 'Read everything out loud',

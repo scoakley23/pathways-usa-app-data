@@ -23,7 +23,7 @@ describe('course progress', () => {
     });
     const lessonProgress = {
       list: vi.fn(async () => [
-        { lesson_id: 'u2-s2-l1', completed: true, stars: 3, steps_done: 5 },
+        { lesson_id: 'u2-s2-l1', completed: true, stars: 3, steps_done: 5, completed_at: '2026-11-15T10:00:00Z' },
         { lesson_id: 'u2-s2-l2', completed: false, stars: 1, steps_done: 2 },
         { lesson_id: 'old-lesson', completed: true, stars: 0 },
       ]),
@@ -31,8 +31,8 @@ describe('course progress', () => {
     const api = createCourseApi({ provider: 'supabase', supabase: sb, auth, lessonProgress });
     const { lessons, checkpoints } = await api.load(['u2-s2-l1', 'u2-s2-l2']);
     expect(lessons).toEqual({
-      'u2-s2-l1': { completed: true, stars: 3, steps_done: 5 },
-      'u2-s2-l2': { completed: false, stars: 1, steps_done: 2 },
+      'u2-s2-l1': { completed: true, stars: 3, steps_done: 5, completed_at: '2026-11-15T10:00:00Z' },
+      'u2-s2-l2': { completed: false, stars: 1, steps_done: 2, completed_at: null },
     });
     expect([...checkpoints]).toEqual(['u2-s2']);
   });

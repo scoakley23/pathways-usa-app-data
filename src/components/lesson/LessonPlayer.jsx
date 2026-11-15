@@ -136,7 +136,7 @@ export default function LessonPlayer() {
           goal={goal}
           saves={coursePlay.saves}
           t={t}
-          onDoneForToday={() => navigate('/')}
+          onDoneForToday={() => navigate('/done-today')}
           onKeepGoing={nextLessonId ? () => navigate(`/course/lesson/${nextLessonId}`) : null}
         />
       </div>

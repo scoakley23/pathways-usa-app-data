@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import TopicArt from '@/components/art/TopicArt';
 import RoadmapHero from '@/components/home/RoadmapHero';
 import StartHereCard from '@/components/home/StartHereCard';
-import TodayCard from '@/components/persona/TodayCard';
+import TodayPage from '@/components/today/TodayPage';
 import RoadmapPath from '@/components/home/RoadmapPath';
 import HomePromises from '@/components/home/HomePromises';
 import HelpUsImprove from '@/components/pilot/HelpUsImprove';
@@ -103,10 +103,9 @@ export default function Home({ cachedUser }) {
   if (learner) {
     return (
       <div dir={rtl ? 'rtl' : 'ltr'}>
-        <TodayCard
-          language={language}
-          roadmap={roadmap}
-          stopName={(id) => t(`stop${id}_name`)}
+        <TodayPage
+          user={cachedUser}
+          quickCheckFirst={!cachedUser.skill_levels}
           sheetTop={checkIn && checkInView === 'card' && (
             <CheckInCard language={language} onOpen={() => setCheckInView('form')} onNotNow={notNow} onNever={never} />
           )}

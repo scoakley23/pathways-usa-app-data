@@ -22,6 +22,7 @@ import { ME_LINES, SETTINGS_LINES, INTERVIEW_LINES } from '@/components/shell/sh
 import { TALK_LINES } from '@/components/ai/talkStrings';
 import { COURSE_LINES } from '@/components/course/courseStrings';
 import { LESSON_LINES } from '@/components/lesson/lessonStrings';
+import { TODAY_LINES } from '@/components/today/todayLines';
 import { UNITS } from '@/lib/course';
 import coursePictures from '../../content/course/pictures.json';
 import { GETTING_STARTED_LINES } from '@/components/persona/gettingStartedStrings';
@@ -62,6 +63,7 @@ export const STRING_SETS = [
   { id: 'interview-tab', strings: INTERVIEW_LINES, usedIn: [['src/components/shell/InterviewPage.jsx', 'LINES']] },
   { id: 'course', strings: COURSE_LINES, usedIn: [['src/components/course/courseShared.jsx', 'COURSE_LINES']] },
   { id: 'lesson-player', strings: LESSON_LINES, usedIn: [['src/components/lesson/LessonPlayer.jsx', 'LESSON_LINES']] },
+  { id: 'today-plan', strings: TODAY_LINES, usedIn: [['src/components/today/useToday.js', 'TODAY_LINES']] },
   { id: 'talk', strings: TALK_LINES, usedIn: [['src/components/ai/TalkToPerson.jsx', 'LINES']] },
   { id: 'talk-reply', strings: { reply: `We reply within ${REPLY_TIME}.` }, usedIn: [['src/components/ai/TalkToPerson.jsx', 'replyLine']] },
   { id: 'getting-started', strings: GETTING_STARTED_LINES, usedIn: [['src/components/persona/GettingStarted.jsx', 'LINES']] },
