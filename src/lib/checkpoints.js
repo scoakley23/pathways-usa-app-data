@@ -133,3 +133,21 @@ export function n400Href(stop) {
   const card = Number(stop.card) || 1;
   return `/n400-guide?section=${encodeURIComponent(stop.section)}&card=${card}`;
 }
+
+/**
+ * The badge shelf on Me (Prompt 11): every badge the course offers, in course
+ * order (a unit's section badges, then the unit's), each { …badge, earned }.
+ * Shows every earned badge and the next `upcoming` not earned yet.
+ */
+export function badgeShelf(stops = [], units = UNITS, { upcoming = 3 } = {}) {
+  const earned = new Set(courseBadges(stops, units).map((b) => b.id));
+  const all = [];
+  for (const u of units) {
+    for (const s of u.sections) {
+      if ((s.stops || []).some((st) => st.type === 'speakit')) all.push({ id: `section:${s.id}`, kind: 'section', title: s.title, icon: u.icon });
+    }
+    if (u.sections.some((s) => (s.stops || []).length)) all.push({ id: `unit:${u.id}`, kind: 'unit', title: u.title, icon: u.icon, number: u.number });
+  }
+  let left = upcoming;
+  return all.map((b) => ({ ...b, earned: earned.has(b.id) })).filter((b) => b.earned || left-- > 0);
+}

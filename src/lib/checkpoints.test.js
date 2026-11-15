@@ -4,7 +4,7 @@ import { describe, it, expect } from 'vitest';
 import { UNITS, sectionQuestionIds } from './course';
 import { journeyStops, visibleCourse } from './journey';
 import {
-  CHEST_SIZE, checkpointStars, chestKind, chestQuestions, courseBadges, n400Href, passMark,
+  CHEST_SIZE, badgeShelf, checkpointStars, chestKind, chestQuestions, courseBadges, n400Href, passMark,
   readWriteSentences, speakItQuestions, speakItScore, unitComplete, unitFinishedBy, unitStats,
 } from './checkpoints';
 
@@ -126,6 +126,28 @@ describe('stars and badges, calculated', () => {
     const stops = journeyStops(fakeCourse, { progress: lessonsDone, checkpoints: new Set(['ua-s1-rw', 'ua-s1']) });
     expect(courseBadges(stops, fakeCourse).map((b) => b.id)).toEqual(['section:ua-s1', 'unit:ua']);
     expect(courseBadges(journeyStops(fakeCourse), fakeCourse)).toEqual([]);
+  });
+});
+
+describe('the badge shelf on Me', () => {
+  it('shows every earned badge and the next 3 not earned, in course order', () => {
+    const none = badgeShelf(journeyStops(fakeCourse), fakeCourse);
+    expect(none.map((b) => [b.id, b.earned])).toEqual([['section:ua-s1', false], ['unit:ua', false]]);
+    const stops = journeyStops(fakeCourse, { progress: lessonsDone, checkpoints: new Set(['ua-s1-rw', 'ua-s1']) });
+    expect(badgeShelf(stops, fakeCourse).every((b) => b.earned)).toBe(true);
+    const real = badgeShelf(journeyStops(course), course);
+    expect(real).toHaveLength(3);
+    expect(real.every((b) => !b.earned)).toBe(true);
+    expect(real[0].id).toBe(`section:${course[0].sections[0].id}`);
+  });
+});
+
+describe('saved ids', () => {
+  it('Read and write stop ids contain "-rw" and section ids never do (the partner summary relies on it)', () => {
+    for (const u of UNITS) for (const s of u.sections) {
+      expect(s.id.includes('-rw'), s.id).toBe(false);
+      for (const stop of s.stops || []) if (stop.type === 'readwrite') expect(stop.id.includes('-rw'), stop.id).toBe(true);
+    }
   });
 });
 

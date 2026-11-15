@@ -1,0 +1,25 @@
+// "My tutor" on Me (Prompt 11): the partner program the learner studies with.
+// In the translation pack (set "my-tutor").
+export const MY_TUTOR_LINES = {
+  title: 'My tutor',
+  join_help: 'Join with a code from your teacher',
+  add: 'Add',
+  code_label: 'Your program’s code',
+  find: 'Find my program',
+  not_found: 'We couldn’t find that code. Check it with your teacher.',
+  privacy: 'They see your name (or your email) to confirm it’s you, and totals for all their learners. Never your answers or your questions to Amio.',
+  name_label: 'Your name (optional)',
+  name_help: 'So {program} knows it’s you. If you leave it blank, they see your email.',
+  share: 'Share my progress with {program}',
+  share_help: 'They would see your quick check levels, the lessons you finished, your stars, the checkpoints you passed and the N-400 sections you read.',
+  join: 'Join',
+  save: 'Save',
+  change: 'Change',
+  leave: 'Leave this program',
+  cancel: 'Cancel',
+  saved: 'Saved.',
+  error: 'Something went wrong. Please try again.',
+  pending: 'Waiting for {program} to confirm it’s you.',
+  confirmed: '{program} confirmed you.',
+  removed: '{program} didn’t find you on their list. If that’s a mistake, add the code again or talk to them.',
+};

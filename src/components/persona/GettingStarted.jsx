@@ -41,7 +41,7 @@ const LINES_ES = {
   program_name_label: 'Su nombre (opcional)',
   program_name_help: 'Para que {program} sepa que es usted. Si lo deja en blanco, verán su correo electrónico.',
   program_share: 'Compartir mi progreso con {program}',
-  program_share_help: 'Verían sus niveles de la evaluación rápida, las lecciones que terminó y las secciones del N-400 que leyó. Puede cambiarlo después en «Yo».',
+  program_share_help: 'Verían sus niveles de la evaluación rápida, las lecciones que terminó, sus estrellas, los puntos de control que pasó y las secciones del N-400 que leyó. Puede cambiarlo después en «Yo».',
   program_error: 'Algo salió mal. Por favor, intente otra vez.',
   settings_ask: 'Último paso. Le leeré todo en voz alta. Puede apagarlo y hacer el texto más grande.',
   read_on: 'Léame en voz alta',
@@ -50,7 +50,7 @@ const LINES_ES = {
   continue: 'Continuar',
   skip: 'Saltar',
 };
-const CACHE_KEY = 'onboarding_v5';
+const CACHE_KEY = 'onboarding_v6';
 const USCIS_TEST = 'https://www.uscis.gov/citizenship/2025-test';
 
 function ChoiceButton({ selected, onClick, children, className = '' }) {

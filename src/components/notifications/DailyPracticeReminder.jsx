@@ -3,15 +3,18 @@ import { notifications as notificationsApi } from '@/api/notifications';
 import { lessonProgress as lessonProgressApi } from '@/api/lessons';
 import { progress as progressApi } from '@/api/progress';
 import { auth } from '@/api/auth';
+import { dailyReminderOn } from '@/lib/reminderSetting';
 
 /**
  * Checks on app load whether the current student has practiced today.
- * If not, creates a single reminder notification (once per day).
+ * If not, creates a single reminder notification (once per day). Off when
+ * the learner turns the daily reminder off in Settings (Prompt 11).
  */
 export default function DailyPracticeReminder() {
   useEffect(() => {
     const checkAndRemind = async () => {
       try {
+        if (!dailyReminderOn()) return;
         const user = await auth.me().catch(() => null);
         if (!user) return;
 
