@@ -110,8 +110,14 @@ export function SegmentedProgress({ current, total, label }) {
 // with a 5px navy "lip" that presses down when tapped. `second` is white with
 // a line border. `link` (also `text-link`) is a text link. `next` stays navy
 // for screens not yet redone (`onNavy` makes it white on navy).
-const BTN_BASE = 'min-h-tap font-bold inline-flex items-center justify-center gap-2 text-center transition disabled:opacity-40 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2';
+//
+// Height: `min-h-tap` (44px) and `min-h-main` (56px) must never sit on the same
+// button: the built CSS puts `.min-h-tap` last, so it would win and main
+// buttons would be 44px. Main buttons get only `min-h-main`; all others `min-h-tap`.
+const BTN_LOOK = 'font-bold inline-flex items-center justify-center gap-2 text-center transition disabled:opacity-40 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2';
+const BTN_BASE = `min-h-tap ${BTN_LOOK}`;
 const BTN = `${BTN_BASE} rounded-button`;
+const MAIN_BTN = `${BTN_LOOK} rounded-button`;
 const MAIN = 'min-h-main mb-[5px] bg-denim text-white hover:bg-denim-deep shadow-lip active:translate-y-1 active:shadow-lip-pressed motion-reduce:active:translate-y-0 disabled:active:translate-y-0 px-6 text-lg';
 const LINK_LOOK = 'underline underline-offset-4 px-2 text-base';
 const BUTTON_VARIANTS = {
@@ -130,8 +136,11 @@ const VARIANT_NAMES = { 'text-link': 'link' };
 
 export function Button({ variant = 'next', onNavy = false, className = '', ...props }) {
   const name = VARIANT_NAMES[variant] || variant;
-  const look = (onNavy ? BUTTON_ON_NAVY : BUTTON_VARIANTS)[name] || BUTTON_VARIANTS.next;
-  return <button type="button" className={`${BTN} ${look} ${className}`} {...props} />;
+  const looks = onNavy ? BUTTON_ON_NAVY : BUTTON_VARIANTS;
+  const known = Object.prototype.hasOwnProperty.call(looks, name);
+  const look = known ? looks[name] : BUTTON_VARIANTS.next;
+  const base = known && name === 'main' ? MAIN_BTN : BTN;
+  return <button type="button" className={`${base} ${look} ${className}`} {...props} />;
 }
 
 // Older names, kept so every caller follows the new look.
