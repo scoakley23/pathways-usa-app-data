@@ -123,3 +123,20 @@ describe('Base44 (switch off) does what the screens did before', () => {
     expect(e.ActivityDay.create).toHaveBeenCalledTimes(1);
   });
 });
+
+describe('active days for the streak (Prompt 7)', () => {
+  it('Supabase: the learner\'s own days, newest first', async () => {
+    const { fakeSupabase: sharedFake } = await import('./testing/fakeSupabase');
+    const sb = sharedFake({ activity_days: [
+      { user_id: 'u-1', date: '2026-11-13' }, { user_id: 'u-1', date: '2026-11-15' }, { user_id: 'u-2', date: '2026-11-14' },
+    ] });
+    const api = createProfileApi({ provider: 'supabase', auth: fakeAuth(), supabase: sb });
+    expect(await api.activeDays()).toEqual(['2026-11-15', '2026-11-13']);
+  });
+  it('Base44: ActivityDay by the learner\'s email', async () => {
+    const filter = vi.fn(async () => [{ date: '2026-11-15' }, { date: '2026-11-14' }]);
+    const api = createProfileApi({ provider: 'base44', base44: { entities: { ActivityDay: { filter } } }, auth: fakeAuth() });
+    expect(await api.activeDays({ limit: 30 })).toEqual(['2026-11-15', '2026-11-14']);
+    expect(filter).toHaveBeenCalledWith({ user_email: 'learner@example.test' }, '-date', 30);
+  });
+});

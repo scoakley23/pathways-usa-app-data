@@ -15,7 +15,7 @@ import { lessonProgress as appLessonProgress } from '@/api/lessons';
 export function createCourseApi({ provider = DATA_PROVIDER, supabase = getSupabase, auth = appAuth, lessonProgress = appLessonProgress } = {}) {
   const sb = () => (typeof supabase === 'function' ? supabase() : supabase);
   return {
-    /** { lessons: { lessonId: { completed, stars, steps_done } }, checkpoints: Set(sectionId) } */
+    /** { lessons: { lessonId: { completed, stars, steps_done, completed_at } }, checkpoints: Set(sectionId) } */
     async load(lessonIds = []) {
       const empty = { lessons: {}, checkpoints: new Set() };
       if (provider !== 'supabase') return empty;
@@ -29,7 +29,7 @@ export function createCourseApi({ provider = DATA_PROVIDER, supabase = getSupaba
       const lessons = {};
       for (const r of rows) {
         if (!wanted.has(r.lesson_id)) continue;
-        lessons[r.lesson_id] = { completed: !!(r.completed || r.completed_at), stars: r.stars || 0, steps_done: r.steps_done || 0 };
+        lessons[r.lesson_id] = { completed: !!(r.completed || r.completed_at), stars: r.stars || 0, steps_done: r.steps_done || 0, completed_at: r.completed_at || null };
       }
       return { lessons, checkpoints: new Set(results.filter((r) => r.passed_at).map((r) => r.section_id)) };
     },

@@ -29,6 +29,8 @@ import CoursePage from './components/course/CoursePage';
 import UnitGuidePage from './components/course/UnitGuidePage';
 import UnitsMapPage from './components/course/UnitsMapPage';
 import LessonPlayer from './components/lesson/LessonPlayer';
+import PlanPage from './components/today/PlanPage';
+import DoneTodayPage from './components/today/DoneTodayPage';
 
 // Lessons and Practice are tabs of Study now; their old addresses redirect.
 const STUDY_REDIRECTS = { Lessons: 'lessons', Practice: 'practice' };
@@ -128,6 +130,17 @@ const AuthenticatedApp = () => {
       <Route path="course/lesson/:lessonId" element={
         <LayoutWrapper currentPageName="CourseLesson">
           <LessonPlayer />
+        </LayoutWrapper>
+      } />
+      {/* Your plan and Done for today (Prompt 7). */}
+      <Route path="plan" element={
+        <LayoutWrapper currentPageName="Plan">
+          <PlanPage />
+        </LayoutWrapper>
+      } />
+      <Route path="done-today" element={
+        <LayoutWrapper currentPageName="DoneToday">
+          <DoneTodayPage />
         </LayoutWrapper>
       } />
       <Route path="study" element={

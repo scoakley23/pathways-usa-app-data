@@ -24,7 +24,7 @@ const FOCUS_ROUTES = ['/quick-check', '/tutor-demo', '/learn', '/review', '/n400
 
 // Pages drawn as split screens (a navy top and a cream sheet, full width):
 // they bring their own padding. Home (/) is one too: Today, or the splash.
-const SPLIT_ROUTES = ['/me', '/settings', '/ask', '/interview', '/study', '/n400-guide', '/resources', '/lawyer-first', '/progress', '/profile', '/studyhistory', '/dashboard', '/interview-day', '/partner', '/admin', '/admin/pilot'];
+const SPLIT_ROUTES = ['/plan', '/done-today', '/me', '/settings', '/ask', '/interview', '/study', '/n400-guide', '/resources', '/lawyer-first', '/progress', '/profile', '/studyhistory', '/dashboard', '/interview-day', '/partner', '/admin', '/admin/pilot'];
 
 // The four tab names, translated like other screen text (Spanish by hand).
 const TAB_LINES = Object.fromEntries(TABS.map((tab) => [tab.id, tab.label]));

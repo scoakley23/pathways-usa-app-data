@@ -14,6 +14,8 @@ export const TAB_PATHS = {
 // listed lights up no tab.
 const TAB_FOR_PATH = {
   '/': 'today',
+  '/plan': 'today',
+  '/done-today': 'today',
   '/study': 'course',
   '/lessons': 'course',
   '/practice': 'course',

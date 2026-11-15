@@ -47,9 +47,8 @@ export default function DailyPracticeReminder() {
         // Student hasn't practiced today — create reminder
         await notificationsApi.create({
           type: 'system',
-          title: 'Your practice for today',
-          message:
-            'A few short tasks are ready on your Today card whenever you have time.',
+          title: 'Your lesson for today is ready',
+          message: 'Amio has today’s lesson waiting on your Today screen, whenever you have time.',
           link: '/',
           read: false,
         });

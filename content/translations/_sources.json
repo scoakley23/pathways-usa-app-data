@@ -373,6 +373,24 @@
    ]
   },
   {
+   "text": "1 lesson a day",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
+   "text": "1 more lesson to reach Speak it!",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
+   "text": "1 question to keep fresh",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "1 star",
    "from": [
     "lesson-player"
@@ -807,6 +825,12 @@
    "text": "A ship or large boat.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "A short check of reading, writing, civics and speaking, so Amio knows where to start.",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -1518,7 +1542,14 @@
    "text": "Back",
    "from": [
     "course",
-    "sign-in"
+    "sign-in",
+    "today-plan"
+   ]
+  },
+  {
+   "text": "Back to home",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -2806,6 +2837,12 @@
    ]
   },
   {
+   "text": "Done for today!",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "Done for today.",
    "from": [
     "tutor"
@@ -2821,7 +2858,8 @@
    "text": "Draft",
    "from": [
     "course",
-    "lesson-player"
+    "lesson-player",
+    "today-plan"
    ]
   },
   {
@@ -2946,6 +2984,12 @@
    ]
   },
   {
+   "text": "Easy",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "Education is mainly controlled by states, while national defense is federal",
    "from": [
     "key-words"
@@ -3041,6 +3085,12 @@
    "text": "Every answer comes from USCIS",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "Every bit of practice counts.",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -3149,6 +3199,12 @@
    "text": "Fair treatment through established judicial procedures and laws",
    "from": [
     "lessons"
+   ]
+  },
+  {
+   "text": "Fast",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -3753,6 +3809,12 @@
    ]
   },
   {
+   "text": "Goal done! One more if you like.",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "Goal for today: 3 questions. Let's go.",
    "from": [
     "tutor"
@@ -3768,6 +3830,12 @@
    "text": "Good afternoon!",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "Good afternoon, {name}",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -3789,6 +3857,12 @@
    ]
   },
   {
+   "text": "Good evening, {name}",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "Good evening, {name}.",
    "from": [
     "today"
@@ -3804,6 +3878,12 @@
    "text": "Good morning!",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "Good morning, {name}",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -4508,6 +4588,12 @@
    ]
   },
   {
+   "text": "How many lessons a day?",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "How many seats are on the Supreme Court?",
    "from": [
     "civics-questions"
@@ -4589,6 +4675,12 @@
    "text": "I don't know yet",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "I don’t know yet",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -5489,9 +5581,27 @@
    ]
   },
   {
+   "text": "Lesson {n} of today. Almost there!",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
+   "text": "Lesson {n} of today. Keep going!",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "Lessons can be in any of {n} languages. The interview is in English, so we practice your answers in English, one step at a time.",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "Let’s start today’s lesson.",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -5594,7 +5704,8 @@
   {
    "text": "Listen",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "today-plan"
    ]
   },
   {
@@ -5903,6 +6014,12 @@
    "text": "Midwest Region",
    "from": [
     "lessons"
+   ]
+  },
+  {
+   "text": "Missed a day? No problem. I’ll adjust the plan.",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -6339,6 +6456,12 @@
    ]
   },
   {
+   "text": "New lessons open as they are reviewed. Practice or review while you wait.",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "New to Pathways USA? Begin with your tutor. Sign in, answer a few setup questions, then take a short quick check. Your tutor plans your practice from there.",
    "from": [
     "home"
@@ -6497,6 +6620,12 @@
    ]
   },
   {
+   "text": "Nothing due today",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "Notifications",
    "from": [
     "me"
@@ -6567,6 +6696,12 @@
    "text": "Of",
    "from": [
     "words"
+   ]
+  },
+  {
+   "text": "Officer",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -6654,6 +6789,12 @@
    ]
   },
   {
+   "text": "One missed day a week is a rest day. It never breaks your streak.",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "One of the two longest rivers in the U.S., running through the center of the country",
    "from": [
     "key-words"
@@ -6699,6 +6840,12 @@
    "text": "Optional. Programs you study with can't see this. 'Delete all my data' erases it.",
    "from": [
     "pilot"
+   ]
+  },
+  {
+   "text": "Or when you hope to be ready. This stays on your phone.",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -6902,7 +7049,8 @@
   {
    "text": "Practice",
    "from": [
-    "course"
+    "course",
+    "today-plan"
    ]
   },
   {
@@ -7200,6 +7348,12 @@
    ]
   },
   {
+   "text": "Read",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "Read and write",
    "from": [
     "home"
@@ -7290,6 +7444,18 @@
    ]
   },
   {
+   "text": "Ready by {month}.",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
+   "text": "Ready for today’s lesson?",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "Ready in {n} of 4 parts",
    "from": [
     "interview-tab"
@@ -7305,6 +7471,12 @@
    "text": "Ready to file?",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "Recommended",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -7423,6 +7595,12 @@
    ]
   },
   {
+   "text": "Review chest",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "Reviews laws / Explains laws / Resolves disputes (disagreements) about the law / Decides if a law goes against the (U.S.) Constitution",
    "from": [
     "civics-questions"
@@ -7531,6 +7709,12 @@
    "from": [
     "pilot",
     "settings"
+   ]
+  },
+  {
+   "text": "Save my plan",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -7726,6 +7910,12 @@
    "text": "Serving on a jury is a civic duty that helps ensure fair trials",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "Set your daily goal",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -7986,6 +8176,12 @@
    ]
   },
   {
+   "text": "Speak it! is next.",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "Speaking",
    "from": [
     "interview-tab"
@@ -8013,6 +8209,12 @@
    ]
   },
   {
+   "text": "Start here: the quick check",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "Start lesson",
    "from": [
     "lesson-player"
@@ -8022,6 +8224,12 @@
    "text": "Start lesson · +3 stars",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "Start my plan",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -8056,6 +8264,12 @@
    ]
   },
   {
+   "text": "Start · +3 stars",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "Start · {m} min",
    "from": [
     "today"
@@ -8064,7 +8278,8 @@
   {
    "text": "Start: quick check",
    "from": [
-    "today"
+    "today",
+    "today-plan"
    ]
   },
   {
@@ -8114,6 +8329,12 @@
    "from": [
     "key-words",
     "lessons"
+   ]
+  },
+  {
+   "text": "Steady",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -8310,6 +8531,12 @@
    "text": "Taxes",
    "from": [
     "words"
+   ]
+  },
+  {
+   "text": "Teach",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -10188,6 +10415,36 @@
    ]
   },
   {
+   "text": "Today’s goal: 1 lesson",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
+   "text": "Today’s goal: 1 lesson · {done} done",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
+   "text": "Today’s goal: {goal} lessons",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
+   "text": "Today’s goal: {goal} lessons · {done} done",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
+   "text": "Tomorrow",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "Too many tries. Wait a minute, then try again.",
    "from": [
     "sign-in"
@@ -10563,6 +10820,18 @@
    ]
   },
   {
+   "text": "Want more? Review 1 question",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
+   "text": "Want more? Review {n} questions",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "War fought from 1775–1783 in which the American colonies won independence from Britain",
    "from": [
     "key-words"
@@ -10771,7 +11040,8 @@
   {
    "text": "Welcome",
    "from": [
-    "me"
+    "me",
+    "today-plan"
    ]
   },
   {
@@ -11446,7 +11716,8 @@
   {
    "text": "When is your interview?",
    "from": [
-    "today"
+    "today",
+    "today-plan"
    ]
   },
   {
@@ -11976,6 +12247,12 @@
    ]
   },
   {
+   "text": "Write",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "Write it",
    "from": [
     "lesson-player"
@@ -12076,6 +12353,24 @@
    "text": "You did not register for Selective Service when required",
    "from": [
     "lawyer-checklist"
+   ]
+  },
+  {
+   "text": "You finished 1 lesson today.",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
+   "text": "You finished every open lesson",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
+   "text": "You finished {n} lessons today.",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -12207,6 +12502,12 @@
    ]
   },
   {
+   "text": "Your interview month and how many lessons a day.",
+   "from": [
+    "settings"
+   ]
+  },
+  {
    "text": "Your interview month is here",
    "from": [
     "today"
@@ -12270,6 +12571,13 @@
    "text": "Your path",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "Your plan",
+   "from": [
+    "settings",
+    "today-plan"
    ]
   },
   {
@@ -12951,9 +13259,21 @@
    ]
   },
   {
+   "text": "day in a row",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "day trip",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "days in a row",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -13635,6 +13955,12 @@
    ]
   },
   {
+   "text": "stars today",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "stationed",
    "from": [
     "n400"
@@ -14253,6 +14579,12 @@
    ]
   },
   {
+   "text": "{done} of {total} lessons",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "{m} min",
    "from": [
     "today"
@@ -14271,6 +14603,18 @@
    ]
   },
   {
+   "text": "{n} lessons a day",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
+   "text": "{n} more lessons to reach Speak it!",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "{n} of 5 done",
    "from": [
     "home"
@@ -14281,6 +14625,12 @@
    "from": [
     "course",
     "interview-tab"
+   ]
+  },
+  {
+   "text": "{n} questions to keep fresh",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -14305,7 +14655,8 @@
    "text": "{n} stars",
    "from": [
     "course",
-    "lesson-player"
+    "lesson-player",
+    "today-plan"
    ]
   },
   {
@@ -14324,6 +14675,12 @@
    "text": "{n} test questions",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "{section} · lesson {n} of {of}",
+   "from": [
+    "today-plan"
    ]
   },
   {

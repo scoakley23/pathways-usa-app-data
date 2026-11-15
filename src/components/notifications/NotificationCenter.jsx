@@ -104,9 +104,9 @@ export default function NotificationCenter({ userEmail, open = false, onOpenChan
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
-      <SheetContent className="w-[92vw] max-w-[380px] sm:w-[380px] flex flex-col bg-pw-page border-pw-line">
+      <SheetContent className="w-[92vw] max-w-[380px] sm:w-[380px] flex flex-col bg-page border-line">
         <SheetHeader className="flex flex-row items-center justify-between gap-2 space-y-0 mb-4 pe-8">
-          <SheetTitle className="text-xl font-extrabold text-pw-navy">Notifications</SheetTitle>
+          <SheetTitle className="text-title font-bold text-navy">Notifications</SheetTitle>
           {unreadCount > 0 && (
               <Button variant="ghost" size="sm" onClick={markAllRead}>
                   Mark all read
@@ -115,8 +115,8 @@ export default function NotificationCenter({ userEmail, open = false, onOpenChan
         </SheetHeader>
         
         {permission !== 'granted' && (
-            <div className="bg-pw-blue-soft p-3 rounded-2xl mb-4 flex items-center justify-between gap-2">
-                <div className="flex items-center text-sm font-semibold text-pw-blue-ink">
+            <div className="bg-tint p-3 rounded-2xl mb-4 flex items-center justify-between gap-2">
+                <div className="flex items-center text-sm font-semibold text-navy">
                     <AlertCircle className="w-4 h-4 me-2 shrink-0" aria-hidden="true" />
                     <span>Enable push notifications?</span>
                 </div>
@@ -128,7 +128,7 @@ export default function NotificationCenter({ userEmail, open = false, onOpenChan
 
         <ScrollArea className="flex-1 -mx-4 px-4">
             {notifications.length === 0 ? (
-                <div className="flex flex-col items-center justify-center h-40 text-pw-muted">
+                <div className="flex flex-col items-center justify-center h-40 text-muted">
                     <Bell className="w-8 h-8 mb-2 opacity-40" aria-hidden="true" />
                     <p className="text-base">No notifications yet</p>
                 </div>
@@ -137,34 +137,34 @@ export default function NotificationCenter({ userEmail, open = false, onOpenChan
                     {notifications.map(n => (
                         <div 
                             key={n.id} 
-                            className={`relative group p-4 rounded-2xl border transition-colors ${n.read ? 'bg-white border-pw-line' : 'bg-white border-pw-navy/30 shadow-raised'}`}
+                            className={`relative group p-4 rounded-card border transition-colors ${n.read ? 'bg-white border-line' : 'bg-white border-denim'}`}
                         >
                             <div className="flex justify-between items-start gap-2 mb-1">
-                                <h4 className="text-base font-bold text-pw-navy flex items-center gap-2">
-                                    {!n.read && <span className="w-2 h-2 rounded-full bg-pw-navy shrink-0" aria-hidden="true" />}
+                                <h4 className="text-base font-bold text-navy flex items-center gap-2">
+                                    {!n.read && <span className="w-2 h-2 rounded-full bg-denim shrink-0" aria-hidden="true" />}
                                     {n.title}
                                 </h4>
                                 <div className="flex items-center gap-1 -mt-2 -mr-2 md:opacity-0 md:group-hover:opacity-100 focus-within:opacity-100 transition-opacity">
                                     {!n.read && (
-                                        <button onClick={() => markAsRead(n.id)} className="w-11 h-11 flex items-center justify-center hover:bg-pw-soft rounded-xl text-pw-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy" title="Mark read" aria-label="Mark read">
+                                        <button onClick={() => markAsRead(n.id)} className="w-11 h-11 flex items-center justify-center hover:bg-tint rounded-xl text-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim" title="Mark read" aria-label="Mark read">
                                             <Check className="w-4 h-4" />
                                         </button>
                                     )}
-                                    <button onClick={(e) => deleteNotification(n.id, e)} className="w-11 h-11 flex items-center justify-center hover:bg-pw-red-soft rounded-xl text-pw-red-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy" title="Delete" aria-label="Delete">
+                                    <button onClick={(e) => deleteNotification(n.id, e)} className="w-11 h-11 flex items-center justify-center hover:bg-tint rounded-xl text-not-yet focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim" title="Delete" aria-label="Delete">
                                         <Trash2 className="w-4 h-4" />
                                     </button>
                                 </div>
                             </div>
-                            <p className="text-sm text-pw-muted mb-2 line-clamp-2">{n.message}</p>
+                            <p className="text-base text-muted mb-2 line-clamp-2">{n.message}</p>
                             <div className="flex items-center justify-between gap-2">
-                                <span className="text-xs text-pw-muted">
+                                <span className="text-small text-muted">
                                     {n.created_date ? formatDistanceToNow(new Date(n.created_date), { addSuffix: true }) : 'Just now'}
                                 </span>
                                 {n.link && (
                                     <Link 
                                         to={n.link} 
                                         onClick={() => { setIsOpen(false); markAsRead(n.id); }}
-                                        className="inline-flex items-center min-h-[44px] text-sm font-bold text-pw-navy underline underline-offset-4 decoration-pw-navy/40 hover:decoration-pw-navy"
+                                        className="inline-flex items-center min-h-[44px] text-sm font-bold text-navy underline underline-offset-4 decoration-denim/40 hover:decoration-denim"
                                     >
                                         View Details
                                     </Link>
