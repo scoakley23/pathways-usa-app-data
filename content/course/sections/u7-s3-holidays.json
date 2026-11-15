@@ -1,0 +1,144 @@
+{
+  "id": "u7-s3",
+  "unitId": "u7",
+  "number": 3,
+  "title": "Holidays",
+  "note": "Drafted for Prompt 12 (Unit 7). Every lesson is a draft until a person reviews it (content/course/README.md).",
+  "stops": [
+    {
+      "id": "u7-s3-l1",
+      "type": "lesson",
+      "title": "Independence Day and Memorial Day",
+      "lessonId": "u7-s3-l1"
+    },
+    {
+      "id": "u7-s3-l2",
+      "type": "lesson",
+      "title": "Veterans Day and national holidays",
+      "lessonId": "u7-s3-l2"
+    },
+    {
+      "id": "u7-s3-rw",
+      "type": "readwrite",
+      "title": "Read and write",
+      "fromLessons": [
+        "u7-s3-l1",
+        "u7-s3-l2"
+      ]
+    },
+    {
+      "id": "u7-s3-speak",
+      "type": "speakit",
+      "title": "Speak it!"
+    },
+    {
+      "id": "u7-practice-interview",
+      "type": "practiceInterview",
+      "title": "Unit practice interview"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "u7-s3-l1",
+      "title": "Independence Day and Memorial Day",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de93",
+        "6ad16ecf6a9c603911f9de95"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "What is Independence Day?",
+          "facts": [
+            "Independence Day, on July 4, celebrates U.S. independence from Britain. It is the country's birthday.",
+            "Memorial Day, in May, honors soldiers who died in military service."
+          ],
+          "newWords": [
+            {
+              "word": "celebrate",
+              "meaning": "to do something special for a happy day"
+            },
+            {
+              "word": "honor",
+              "meaning": "to show respect for someone"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de93"
+        },
+        "readIt": {
+          "sentence": "When is Independence Day?",
+          "words": [
+            "When",
+            "is",
+            "Independence",
+            "Day"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Independence Day is in July.",
+          "distractorWords": [
+            "Flag Day",
+            "June",
+            "Alaska"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de95"
+        }
+      }
+    },
+    {
+      "id": "u7-s3-l2",
+      "title": "Veterans Day and national holidays",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de96",
+        "6ad16ecf6a9c603911f9de94"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "What is Veterans Day?",
+          "facts": [
+            "Veterans Day, in November, honors people who have served in the U.S. military.",
+            "National holidays include New Year's Day, Martin Luther King, Jr. Day, Presidents Day, Memorial Day, Juneteenth, Independence Day, Labor Day, Columbus Day, Veterans Day, Thanksgiving Day and Christmas Day.",
+            "For the test, you can name any three of them."
+          ],
+          "newWords": [
+            {
+              "word": "veteran",
+              "meaning": "a person who served in the military"
+            },
+            {
+              "word": "national holiday",
+              "meaning": "a day the whole country celebrates"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de96"
+        },
+        "readIt": {
+          "sentence": "When is Thanksgiving?",
+          "words": [
+            "When",
+            "is",
+            "Thanksgiving"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Thanksgiving is in November.",
+          "distractorWords": [
+            "Columbus Day",
+            "October",
+            "Canada"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de94"
+        }
+      }
+    }
+  ]
+}
