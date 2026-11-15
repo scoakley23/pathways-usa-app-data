@@ -36,6 +36,7 @@ import {
   redactIdentifiers,
 } from '@/lib/askTutor';
 import { lessonSuggestions, STARTER_SUGGESTIONS, INTERVIEW_SUGGESTIONS } from '@/lib/askSuggestions';
+import { preparedAnswer } from '@/lib/askAnswers';
 import { loadCivicsBank } from '@/lib/civicsBank';
 import TalkToPerson from './TalkToPerson';
 import { PACK_ONLY, packText } from '@/lib/translationPack';
@@ -210,7 +211,9 @@ export default function StudyBuddy() {
     return () => { active = false; };
   }, []);
 
-  const ask = async (raw) => {
+  // answerId: the suggestion tapped, so its pre-written answer is found in
+  // any language.
+  const ask = async (raw, { answerId = null } = {}) => {
     const typed = String(raw || '').trim().slice(0, MAX_QUESTION_LENGTH);
     if (!typed || asked?.loading) return;
     stopReading();
@@ -230,30 +233,46 @@ export default function StudyBuddy() {
     const askedIn = language;
     setAsked({ question: typed, reply: null, loading: true });
     let answer = null;
+
+    // A suggested question with a reviewed, pre-written answer in this
+    // language (content/ask/answers.json): shown without asking the AI.
     try {
-      // Officeholder names come only from the official list in the prompt
-      // (src/data/officeholders.json), never from a web search, so internet
-      // context stays off here. Only the saved state and district are
-      // added, never an address or account details.
-      const location = await getLearnerLocation();
-      // The official 2025 civics list, loaded once and reused.
-      const civics = await loadCivicsBank();
-      const res = await base44.integrations.Core.InvokeLLM({
-        prompt: buildAskPrompt(profile, languageNameFor(askedIn), question, { location, civics }),
-        response_json_schema: ASK_RESPONSE_SCHEMA,
-      });
-      const result = interpretAskResponse(res, askedIn);
-      if (result.type === 'decline') {
-        setAsked({ question: typed, reply: { kind: 'decline' } });
-      } else if (result.type === 'answer') {
-        answer = result;
-        setAsked({ question: typed, reply: { kind: 'answer', en: result.en, mine: result.mine, language: askedIn } });
-      } else {
-        setAsked({ question: typed, reply: { kind: 'error' } });
+      const translations = Object.fromEntries([...STARTER_SUGGESTIONS, ...INTERVIEW_SUGGESTIONS].map((key) => [key, t(key)]));
+      const prepared = await preparedAnswer({ id: answerId, text: typed, language: askedIn, translations });
+      if (prepared) {
+        answer = { type: 'answer', en: prepared.en, mine: prepared.mine };
+        setAsked({ question: typed, reply: { kind: 'answer', en: prepared.en, mine: prepared.mine, language: askedIn } });
       }
     } catch (error) {
-      console.error('Ask Amio error:', error);
-      setAsked({ question: typed, reply: { kind: 'error' } });
+      answer = null; // fall back to asking the AI
+    }
+
+    if (!answer) {
+      try {
+        // Officeholder names come only from the official list in the prompt
+        // (src/data/officeholders.json), never from a web search, so internet
+        // context stays off here. Only the saved state and district are
+        // added, never an address or account details.
+        const location = await getLearnerLocation();
+        // The official 2025 civics list, loaded once and reused.
+        const civics = await loadCivicsBank();
+        const res = await base44.integrations.Core.InvokeLLM({
+          prompt: buildAskPrompt(profile, languageNameFor(askedIn), question, { location, civics }),
+          response_json_schema: ASK_RESPONSE_SCHEMA,
+        });
+        const result = interpretAskResponse(res, askedIn);
+        if (result.type === 'decline') {
+          setAsked({ question: typed, reply: { kind: 'decline' } });
+        } else if (result.type === 'answer') {
+          answer = result;
+          setAsked({ question: typed, reply: { kind: 'answer', en: result.en, mine: result.mine, language: askedIn } });
+        } else {
+          setAsked({ question: typed, reply: { kind: 'error' } });
+        }
+      } catch (error) {
+        console.error('Ask Amio error:', error);
+        setAsked({ question: typed, reply: { kind: 'error' } });
+      }
     }
 
     // Save answered questions to History (learner-only).
@@ -408,12 +427,12 @@ export default function StudyBuddy() {
               <Eyebrow>{suggestionsFromLessons ? t('from_lessons') : t('to_start')}</Eyebrow>
               {suggestionsFromLessons
                 ? fromLessons.map((q) => <Suggestion key={q} lang="en" onClick={() => ask(q)}>{q}</Suggestion>)
-                : starters.map((key) => <Suggestion key={key} onClick={() => ask(t(key))}>{t(key)}</Suggestion>)}
+                : starters.map((key) => <Suggestion key={key} onClick={() => ask(t(key), { answerId: key })}>{t(key)}</Suggestion>)}
             </section>
 
             <section className="space-y-2">
               <Eyebrow>{t('about_interview')}</Eyebrow>
-              {INTERVIEW_SUGGESTIONS.map((key) => <Suggestion key={key} onClick={() => ask(t(key))}>{t(key)}</Suggestion>)}
+              {INTERVIEW_SUGGESTIONS.map((key) => <Suggestion key={key} onClick={() => ask(t(key), { answerId: key })}>{t(key)}</Suggestion>)}
             </section>
 
             <p className="text-small text-muted">{t('own_case')}</p>
