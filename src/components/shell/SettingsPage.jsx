@@ -19,12 +19,12 @@ import WhatWeSave from '@/components/shell/WhatWeSave';
 import { Switch } from '@/components/ui/switch';
 import useAppLanguage, { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
 import { profile as profileApi } from '@/api/profile';
+import { dailyReminderOn, setDailyReminder } from '@/lib/reminderSetting';
 
 // Settings and privacy (frame R30Settings), under Me: everything that was a
 // setting on the old Profile page, then "What we save" and "Delete all my
-// data". Same settings, same saving as before. Left out: the frame's
-// "Daily reminder · time" row (there is no reminder time; the in-app daily
-// reminder keeps working on its own).
+// data". Same settings, same saving as before. The daily reminder (Prompt 11)
+// is an on/off switch on this device; there is no reminder time.
 import { SETTINGS_LINES as LINES } from './shellStrings';
 
 function Row({ label, htmlFor, children, help }) {
@@ -48,6 +48,7 @@ export default function SettingsPage() {
   const tr = useTranslatedLines(LINES, language, { cacheKey: 'settings_v1' });
   const t = (key) => (language !== 'en' && tr(key)) || LINES[key];
   const [readOn, setReadOn] = useAutoReadSetting();
+  const [reminderOn, setReminderOn] = useState(dailyReminderOn);
   const { profile, loaded, saveProfile } = useTutorProfile();
   const [savingTutor, setSavingTutor] = useState(false);
   const [user, setUser] = useState(undefined);
@@ -138,6 +139,9 @@ export default function SettingsPage() {
           <TextSizePicker className="py-3 border-b border-line" />
           <Row label={t('read_aloud')} htmlFor="read-aloud" help={t('read_aloud_help')}>
             <Switch id="read-aloud" checked={readOn} onCheckedChange={setReadOn} className="shrink-0" />
+          </Row>
+          <Row label={t('reminder')} htmlFor="daily-reminder" help={t('reminder_help')}>
+            <Switch id="daily-reminder" checked={reminderOn} onCheckedChange={(v) => { setDailyReminder(v); setReminderOn(v); }} className="shrink-0" />
           </Row>
         </Card>
 

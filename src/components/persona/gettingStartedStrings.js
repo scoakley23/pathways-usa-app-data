@@ -21,7 +21,7 @@ export const GETTING_STARTED_LINES = {
   program_name_label: 'Your name (optional)',
   program_name_help: "So {program} knows it's you. If you leave it blank, they see your email.",
   program_share: 'Share my progress with {program}',
-  program_share_help: 'They would see your quick check levels, the lessons you finished and the N-400 sections you read. You can change this on Me.',
+  program_share_help: 'They would see your quick check levels, the lessons you finished, your stars, the checkpoints you passed and the N-400 sections you read. You can change this on Me.',
   program_error: 'Something went wrong. Please try again.',
   settings_ask: 'Last step. I will read everything out loud for you. You can turn this off, and make the text bigger.',
   read_on: 'Read out loud for me',

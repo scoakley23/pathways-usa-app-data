@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ChevronRight, Loader2, LogIn, LogOut } from 'lucide-react';
-import { interviewSessions as interviewSessionsApi, n400Progress as n400ProgressApi } from '@/api/interview';
-import { lessonProgress as lessonProgressApi } from '@/api/lessons';
+import { interviewSessions as interviewSessionsApi } from '@/api/interview';
 import { progress as progressApi } from '@/api/progress';
 import { content } from '@/api/content';
 import { profile as profileApi } from '@/api/profile';
@@ -16,16 +15,18 @@ import useAppLanguage, { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
 import { LANGUAGES } from '@/hooks/useLessonTranslation';
 import { openNotifications } from '@/components/notifications/NotificationCenter';
 import { loadPlanSettings } from '@/lib/planSettings';
-import { practiceDaysThisWeek } from '@/lib/todayView';
 import { staffPrograms } from '@/lib/partners';
 import { ME_LINKS, ME_MORE_LINKS } from '@/lib/shellRoutes';
+import { streak } from '@/lib/streak';
+import { badgeShelf } from '@/lib/checkpoints';
+import { useJourney } from '@/components/course/courseShared';
 
-// Me (frame R30Me): who you are, three numbers from what the app already
-// saves, the badge shelf, your program ("My tutor": a partner program), and
-// links to Ask Amio, Free help near you and Settings, then the pages that
-// used to be in the profile menu. No new saved data. Left out until their
-// prompts: stars (Prompt 4) and the streak (Prompt 7); "days practiced this
-// week" stands in for "days in a row".
+// Me (frame R30Me; Prompt 11): who you are, three numbers from what the app
+// already saves (days in a row = the kind streak, civics answers mastered,
+// best practice interview), the course badge shelf, "My tutor" (a partner
+// program, joined with a code), and links to Ask Amio, Free help near you and
+// Settings, then the pages that used to be in the profile menu. No new saved
+// data.
 import { ME_LINES as LINES } from './shellStrings';
 
 const languageLabel = (code) => {
@@ -64,6 +65,7 @@ export default function MePage() {
   const [name, setName] = useState('');
   const [stats, setStats] = useState(null);
   const [staff, setStaff] = useState(false);
+  const journey = useJourney();
 
   useEffect(() => {
     let active = true;
@@ -72,28 +74,21 @@ export default function MePage() {
       try { u = await auth.me(); } catch (e) { if (active) setUser(null); return; }
       if (!active) return;
       setUser(u);
-      const [publicProfile, progress, sessions, lessons, n400, civics2025] = await Promise.all([
+      const [publicProfile, progress, sessions, activeDays, civics2025] = await Promise.all([
         profileApi.getPublic().catch(() => null),
         progressApi.list({ sort: '-last_practiced', limit: 500 }).catch(() => []),
         interviewSessionsApi.list({ sort: '-created_date', limit: 50 }).catch(() => []),
-        lessonProgressApi.list({ limit: 200 }).catch(() => []),
-        n400ProgressApi.list().catch(() => []),
+        profileApi.activeDays().catch(() => []),
         content.civicsQuestions({ version: '2025', limit: 300 }).catch(() => []),
       ]);
       if (!active) return;
       setName(publicProfile?.display_name || u.full_name || '');
       const civicsIds = new Set(civics2025.map((q) => q.id));
-      const dates = [
-        ...progress.map((p) => p.last_practiced),
-        ...sessions.map((s) => s.created_date),
-        ...lessons.map((l) => l.last_attempt_date),
-        ...n400.map((s) => s.completed_date),
-      ];
       const best = sessions
         .filter((s) => Number(s.question_count) > 0)
         .sort((a, b) => (b.passed_count / b.question_count) - (a.passed_count / a.question_count) || b.passed_count - a.passed_count)[0];
       setStats({
-        days: practiceDaysThisWeek(dates, new Date()).size,
+        days: streak(activeDays, new Date()).days,
         ready: progress.filter((p) => p.content_type === 'civics_question' && p.status === 'mastered' && civicsIds.has(p.content_id)).length,
         best: best ? `${best.passed_count || 0}/${best.question_count}` : null,
       });
@@ -150,17 +145,18 @@ export default function MePage() {
 
       <div className="max-w-lg mx-auto px-4 py-5 space-y-4">
         <div className="grid grid-cols-3 gap-2.5">
-          <Stat value={stats ? stats.days : '–'} label={t('days_week')} />
+          <Stat value={stats ? stats.days : '–'} label={stats?.days === 1 ? t('day_in_a_row') : t('days_in_a_row')} />
           <Stat value={stats ? stats.ready : '–'} label={t('civics_ready')} />
           <Stat value={stats?.best || '–'} label={stats && !stats.best ? t('none_yet') : t('best_interview')} />
         </div>
 
         <Card>
           <Eyebrow>{t('badges')}</Eyebrow>
-          <BadgeShelf earned={user.badges || []} className="mt-3" />
+          <p className="mt-1 text-small text-muted">{t('badges_help')}</p>
+          {!journey.loading && <BadgeShelf badges={badgeShelf(journey.stops, journey.course)} t={t} className="mt-3" />}
         </Card>
 
-        <div id="program" className="empty:hidden scroll-mt-20">
+        <div id="program" className="scroll-mt-20">
           <ProgramCard user={user} />
         </div>
 
