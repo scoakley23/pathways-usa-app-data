@@ -55,7 +55,7 @@
     {
       "id": "u6-s4-l1",
       "title": "Civil rights",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de86",
         "6ad16ecf6a9c603911f9de87"
@@ -219,7 +219,7 @@
     {
       "id": "u6-s4-l4",
       "title": "American innovation",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de8c"
       ],
