@@ -1,0 +1,18 @@
+{
+  "president": {
+    "name": "Donald J. Trump",
+    "file": "president.jpg"
+  },
+  "vicePresident": {
+    "name": "JD Vance",
+    "file": "vice-president.jpg"
+  },
+  "speaker": {
+    "name": "Mike Johnson",
+    "file": "speaker.jpg"
+  },
+  "chiefJustice": {
+    "name": "John G. Roberts, Jr.",
+    "file": "chief-justice.jpg"
+  }
+}
