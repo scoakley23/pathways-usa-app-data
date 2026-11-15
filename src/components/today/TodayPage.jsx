@@ -129,7 +129,7 @@ export default function TodayPage({ user, sheetTop, quickCheckFirst = false }) {
         )}
 
         <Link
-          to="/review"
+          to="/review-chest"
           className="flex items-center gap-4 rounded-card bg-white border border-line px-4 py-4 hover:border-denim focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim"
         >
           <span className="grid place-items-center w-14 h-14 shrink-0 rounded-2xl bg-stop-chest border-2 border-stop-chest-border text-navy">

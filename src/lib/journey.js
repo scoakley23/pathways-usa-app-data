@@ -7,14 +7,17 @@
 //   VITE_SHOW_DRAFT_LESSONS=true) also see drafts, marked "Draft".
 // - Stops unlock in order, across the whole course: the first stop that
 //   isn't done is "current"; everything after it is "locked".
-// - Stops whose screens aren't built yet (Read and write, Speak it!, N-400
-//   cards, the review chest, the practice interview: Prompt 8) are "soon"
-//   and don't block what comes after them.
+// - Lessons, Read and write and Speak it! must be done in order (Prompt 8).
+// - The unit practice interview, N-400 cards and review stops are optional:
+//   "open" once everything before them is done, never blocking.
 import { UNITS, sectionQuestionIds, showDraftLessons } from '@/lib/course';
 import { OFFICEHOLDER_QUESTIONS } from '@/lib/officeholderQuestions';
+import { checkpointStars } from '@/lib/checkpoints';
 
-// Stop types that can be played today. Prompt 8 adds the rest.
-export const PLAYABLE_STOPS = ['lesson'];
+// Stops that must be done in order, and stops that are optional (open once
+// reached, never blocking). Anything else is "soon".
+export const PLAYABLE_STOPS = ['lesson', 'readwrite', 'speakit'];
+export const OPTIONAL_STOPS = ['practiceInterview', 'n400', 'review'];
 
 export function canSeeDrafts(user, env) {
   return showDraftLessons(env) || user?.role === 'admin';
@@ -42,12 +45,13 @@ export function visibleCourse(units = UNITS, opts = {}) {
 const isDone = (stop, progress, checkpoints) => {
   if (stop.type === 'lesson') return !!(progress[stop.lessonId]?.completed || progress[stop.lessonId]?.completed_at);
   if (stop.type === 'speakit') return checkpoints.has(stop.sectionKey);
+  if (stop.type === 'readwrite') return checkpoints.has(stop.id); // saved under the stop id
   return false;
 };
 
 /**
  * Every visible stop in course order with its state: done | current |
- * locked | soon. `progress`: { lessonId: { completed, stars, steps_done } };
+ * open | locked | soon. `progress`: { lessonId: { completed, stars, steps_done } };
  * `checkpoints`: section ids with a passed Speak it!.
  */
 export function journeyStops(course, { progress = {}, checkpoints = new Set() } = {}) {
@@ -57,6 +61,7 @@ export function journeyStops(course, { progress = {}, checkpoints = new Set() } 
     const item = { ...stop, unitId: u.id, sectionId: s.id, sectionKey: s.id };
     const done = isDone(item, progress, checkpoints);
     if (done) item.state = 'done';
+    else if (OPTIONAL_STOPS.includes(item.type)) item.state = current ? 'locked' : 'open';
     else if (current) item.state = 'locked';
     else if (!PLAYABLE_STOPS.includes(item.type)) item.state = 'soon';
     else { item.state = 'current'; current = item; }
@@ -68,10 +73,14 @@ export function journeyStops(course, { progress = {}, checkpoints = new Set() } 
   return out;
 }
 
-/** Stars: calculated from saved lesson progress, never stored twice. */
-export function totalStars(progress = {}, units = UNITS) {
+/**
+ * Stars: calculated from saved lesson progress and passed Speak it!
+ * checkpoints (+10 each), never stored twice.
+ */
+export function totalStars(progress = {}, units = UNITS, checkpoints = new Set()) {
   const ids = new Set(units.flatMap((u) => u.sections.flatMap((s) => (s.lessons || []).map((l) => l.id))));
-  return Object.entries(progress).reduce((n, [id, p]) => n + (ids.has(id) ? Number(p?.stars) || 0 : 0), 0);
+  const lessonStars = Object.entries(progress).reduce((n, [id, p]) => n + (ids.has(id) ? Number(p?.stars) || 0 : 0), 0);
+  return lessonStars + checkpointStars(checkpoints, units);
 }
 
 const lessonsOf = (unitOrSection) => (unitOrSection.sections ? unitOrSection.sections.flatMap((s) => s.lessons) : unitOrSection.lessons);
@@ -101,7 +110,7 @@ export function sectionState(section, stops) {
   const mine = stops.filter((s) => s.sectionId === section.id);
   if (!mine.length) return 'empty';
   if (mine.some((s) => s.state === 'current')) return 'current';
-  if (mine.every((s) => s.state === 'done' || s.state === 'soon')) return 'done';
+  if (mine.every((s) => ['done', 'soon', 'open'].includes(s.state))) return 'done';
   return 'locked';
 }
 
@@ -110,7 +119,7 @@ export function unitState(unit, stops, currentId) {
   const mine = stops.filter((s) => s.unitId === unit.id);
   if (!mine.length) return 'empty';
   if (unit.id === currentId && mine.some((s) => s.state === 'current')) return 'current';
-  if (mine.every((s) => s.state === 'done' || s.state === 'soon')) return 'done';
+  if (mine.every((s) => ['done', 'soon', 'open'].includes(s.state))) return 'done';
   return 'locked';
 }
 

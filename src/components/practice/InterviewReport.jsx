@@ -153,9 +153,9 @@ export default function InterviewReport({ results, onRestart, onClose, onBack })
                 </button>
                 {expandedIdx === i && (
                   <div className="bg-tint p-4 space-y-3 text-base">
-                    <p className="text-small text-muted">Content {r.content_score} · Grammar {r.grammar_score} · Fluency {r.fluency_score}</p>
+                    {r.section !== 'civics' && <p className="text-small text-muted">Content {r.content_score} · Grammar {r.grammar_score} · Fluency {r.fluency_score}</p>}
                     {r.response !== '(skipped)' && <p><span className="font-semibold">You said:</span> “{r.response}”</p>}
-                    {r.corrected_version && <p><span className="font-semibold">{r.understanding ? 'What the question is asking:' : 'A better way to say it:'}</span> “{r.corrected_version}”</p>}
+                    {r.corrected_version && <p><span className="font-semibold">{r.section === 'civics' ? 'The officer accepts:' : r.understanding ? 'What the question is asking:' : 'A better way to say it:'}</span> “{r.corrected_version}”</p>}
                     {r.content_feedback && <p>{r.content_feedback}</p>}
                     {r.grammar_feedback && <p>{r.grammar_feedback}</p>}
                     {r.improvement_tips && <p>{r.improvement_tips}</p>}

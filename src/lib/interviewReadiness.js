@@ -10,6 +10,8 @@ export const INTERVIEW_PARTS = [
   { id: 'personal_info', label: 'N-400 questions about you' },
   { id: 'morals_ethics', label: '"Have you ever…" questions' },
   { id: 'oath_requirements', label: 'Swearing in' },
+  // Only in a unit practice interview (Prompt 8): that unit's test questions.
+  { id: 'civics', label: 'Civics questions' },
 ];
 
 // What to practice next, per part. Never how to answer a question about the
@@ -20,6 +22,7 @@ export const WORK_ON_NEXT = {
   personal_info: { tip: 'Practice saying what each N-400 question asks.', link: '/n400-guide', linkLabel: 'Practice in the N-400 guide' },
   morals_ethics: { tip: 'Practice what each question asks, so you understand the officer. If "yes" might be true for you, talk to a lawyer first.', link: '/n400-guide', linkLabel: 'Practice in the N-400 guide' },
   oath_requirements: { tip: 'Practice what the swearing-in questions mean.', link: '/n400-guide', linkLabel: 'Practice in the N-400 guide' },
+  civics: { tip: 'Go over this unit’s lessons again.', link: '/course', linkLabel: 'Open the course' },
 };
 
 const byDate = (rows) => [...rows].sort((a, b) => String(a.created_date || '').localeCompare(String(b.created_date || '')));

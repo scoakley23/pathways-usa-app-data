@@ -14,6 +14,8 @@ import InterviewHistory from './InterviewHistory';
 import Officer from '@/components/interview/Officer';
 import MicButton from '@/components/pathways/MicButton';
 import { INTERVIEW_PARTS } from '@/lib/interviewReadiness';
+import { splitOfficialAnswers } from '@/lib/practiceChecks';
+import { civicsInterviewResult } from './civicsInterviewResult';
 import PreInterviewQuestion from '@/components/pilot/PreInterviewQuestion';
 import { loadMyCheckIns } from '@/components/pilot/checkInData';
 import { loadPreInterviewSkip } from '@/lib/pilot';
@@ -35,7 +37,11 @@ const speechTimeoutMs = (text) => {
 // instead" and End call; the result (AnswerFeedback) under the question; the
 // end is the practice interview report (InterviewReport). In Interview Day (rehearsal) it sits
 // framed inside that page. `learnerName` = first name for "Nice work, Ana."
-export default function InterviewPractice({ onComplete, onNext, rehearsal = null, onClose = null, onBack = null, learnerName = '' }) {
+// `civicsQuestions` ([{ id, question, answer }], Prompt 8): a unit practice
+// interview adds a Civics part with these official questions after the usual
+// ones, graded like lessons (on the device first, then the AI for spoken
+// answers), with official answers only.
+export default function InterviewPractice({ onComplete, onNext, rehearsal = null, onClose = null, onBack = null, learnerName = '', civicsQuestions = null }) {
   const [questions, setQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isListening, setIsListening] = useState(false);
@@ -109,7 +115,10 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
       const personalInfo = all.filter(q => q.section === 'personal_info').slice(0, 3);
       const morals = all.filter(q => q.section === 'morals_ethics').slice(0, 4);
       const oath = all.filter(q => q.section === 'oath_requirements').slice(0, 3);
-      const standard = [...smallTalk, ...personalInfo, ...morals, ...oath];
+      const civics = (civicsQuestions || []).map((q) => ({
+        id: q.id, question: q.question, section: 'civics', civics: q, expected_response: splitOfficialAnswers(q.answer)[0] || '',
+      }));
+      const standard = [...smallTalk, ...personalInfo, ...morals, ...oath, ...civics];
       standardQuestionsRef.current = standard;
       setQuestions(standard);
     } catch (e) {
@@ -316,7 +325,9 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
     const q = questions[currentIndex];
     const understanding = isUnderstandingSection(q);
     try {
-      const result = understanding ? await evaluateUnderstanding(q, response) : await evaluateInterviewAnswer(q, response);
+      const result = q.civics
+        ? await civicsInterviewResult(q.civics, response)
+        : understanding ? await evaluateUnderstanding(q, response) : await evaluateInterviewAnswer(q, response);
       setFeedback(result);
       setInterviewerState('idle');
       setSessionResults(prev => [...prev, {
@@ -660,7 +671,7 @@ function FeedbackPanel({ feedback, understanding = false }) {
 
   return (
     <div className="w-full space-y-3 animate-in fade-in slide-in-from-bottom-2">
-      <div className="grid grid-cols-3 gap-2">
+      {!feedback.civics && <div className="grid grid-cols-3 gap-2">
         {[
           { label: understanding ? 'Understanding' : 'Content', score: feedback.content_score },
           { label: 'Grammar', score: feedback.grammar_score },
@@ -674,11 +685,11 @@ function FeedbackPanel({ feedback, understanding = false }) {
             <p className="text-sm text-pw-muted font-semibold">{label}</p>
           </div>
         ))}
-      </div>
+      </div>}
 
       {feedback.corrected_version && (
         <RuledPaper>
-          <p className="text-[13px] font-semibold uppercase tracking-[0.14em] leading-[36px] text-pw-muted">{understanding ? 'What the question is asking' : 'A better way to say it'}</p>
+          <p className="text-[13px] font-semibold uppercase tracking-[0.14em] leading-[36px] text-pw-muted">{feedback.civics ? 'The officer accepts' : understanding ? 'What the question is asking' : 'A better way to say it'}</p>
           <p className="font-medium text-[22px] leading-[36px]">“{feedback.corrected_version}”</p>
         </RuledPaper>
       )}
