@@ -1,71 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 import { base44 } from '@/api/base44Client';
 import { toast } from 'sonner';
+import { PACK_ONLY, packTree } from '@/lib/translationPack';
 
-export const LANGUAGES = [
-  { value: 'en', label: 'English' },
-  { value: 'es', label: 'Español (Spanish)' },
-  { value: 'zh', label: '中文 (Chinese)' },
-  { value: 'vi', label: 'Tiếng Việt (Vietnamese)' },
-  { value: 'tl', label: 'Tagalog' },
-  { value: 'ko', label: '한국어 (Korean)' },
-  { value: 'ar', label: 'العربية (Arabic)' },
-  { value: 'fr', label: 'Français (French)' },
-  { value: 'ru', label: 'Русский (Russian)' },
-  { value: 'pt', label: 'Português (Portuguese)' },
-  { value: 'ht', label: 'Kreyòl Ayisyen (Haitian Creole)' },
-  { value: 'am', label: 'አማርኛ (Amharic)' },
-  { value: 'bn', label: 'বাংলা (Bengali)' },
-  { value: 'fa', label: 'فارسی (Persian/Farsi)' },
-  { value: 'hi', label: 'हिन्दी (Hindi)' },
-  { value: 'ur', label: 'اردو (Urdu)' },
-  { value: 'pa', label: 'ਪੰਜਾਬੀ (Punjabi)' },
-  { value: 'gu', label: 'ગુજરાતી (Gujarati)' },
-  { value: 'ja', label: '日本語 (Japanese)' },
-  { value: 'th', label: 'ไทย (Thai)' },
-  { value: 'my', label: 'ဗမာ (Burmese)' },
-  { value: 'ne', label: 'नेपाली (Nepali)' },
-  { value: 'km', label: 'ខ្មែរ (Khmer)' },
-  { value: 'so', label: 'Soomaali (Somali)' },
-  { value: 'sw', label: 'Kiswahili (Swahili)' },
-  { value: 'pl', label: 'Polski (Polish)' },
-  { value: 'uk', label: 'Українська (Ukrainian)' },
-  { value: 'de', label: 'Deutsch (German)' },
-  { value: 'it', label: 'Italiano (Italian)' },
-  { value: 'hmn', label: 'Hmoob (Hmong)' },
-  { value: 'yo', label: 'Yorùbá (Yoruba)' },
-  { value: 'te', label: 'తెలుగు (Telugu)' },
-  { value: 'ta', label: 'தமிழ் (Tamil)' },
-  { value: 'ml', label: 'മലയാളം (Malayalam)' },
-  { value: 'kn', label: 'ಕನ್ನಡ (Kannada)' },
-  { value: 'si', label: 'සිංහල (Sinhala)' },
-  { value: 'lo', label: 'ລາວ (Lao)' },
-  { value: 'id', label: 'Bahasa Indonesia (Indonesian)' },
-  { value: 'ceb', label: 'Cebuano' },
-  { value: 'ilo', label: 'Ilocano' },
-  { value: 'ti', label: 'ትግርኛ (Tigrinya)' },
-  { value: 'om', label: 'Afaan Oromoo (Oromo)' },
-  { value: 'ig', label: 'Igbo' },
-  { value: 'ha', label: 'Hausa' },
-  { value: 'wo', label: 'Wolof' },
-  { value: 'ak', label: 'Twi' },
-  { value: 'ff', label: 'Fulah' },
-  { value: 'prs', label: 'دری (Dari)' },
-  { value: 'ps', label: 'پښتو (Pashto)' },
-  { value: 'uz', label: 'Oʻzbekcha (Uzbek)' },
-  { value: 'kk', label: 'Қазақша (Kazakh)' },
-  { value: 'he', label: 'עברית (Hebrew)' },
-  { value: 'az', label: 'Azərbaycanca (Azerbaijani)' },
-  { value: 'el', label: 'Ελληνικά (Greek)' },
-  { value: 'hy', label: 'Հայերեն (Armenian)' },
-  { value: 'ka', label: 'ქართული (Georgian)' },
-  { value: 'ro', label: 'Română (Romanian)' },
-  { value: 'sq', label: 'Shqip (Albanian)' },
-  { value: 'bs', label: 'Bosanski (Bosnian)' },
-  { value: 'nl', label: 'Nederlands (Dutch)' },
-  { value: 'cs', label: 'Čeština (Czech)' },
-  { value: 'hu', label: 'Magyar (Hungarian)' },
-];
+// The app's languages live in src/lib/languages.js (plain data).
+import { LANGUAGES } from '@/lib/languages';
+
+export { LANGUAGES };
 
 export function useLessonTranslation({ lesson, flashcards, quizzes }) {
   const [language, setLanguageState] = useState(() => {
@@ -119,6 +60,25 @@ export function useLessonTranslation({ lesson, flashcards, quizzes }) {
           question: q.question,
           answer: q.answer,
         }));
+
+        // The translation pack first (src/lib/translationPack.js); live AI
+        // only for a lesson the pack doesn't fully cover, and never when
+        // PACK_ONLY (the switch on): what's missing stays English.
+        const packed = await packTree(language, {
+          title: lesson.title || '',
+          description: lesson.description || '',
+          content: lesson.content || '',
+          key_points: (lesson.key_points || []).map((k) => (typeof k === 'string' ? k : { text: k.text || '', definition: k.definition || '', image_url: k.image_url ?? null })),
+          flashcards: flashcardData,
+          quizzes: quizData,
+        }, { skip: ['image_url'] });
+        if (packed.complete || PACK_ONLY) {
+          if (!cancelled) {
+            cacheRef.current[cacheKey] = packed.value;
+            setTranslations(packed.value);
+          }
+          return;
+        }
 
         const prompt = `You are a professional translator for US Citizenship test preparation materials. Translate the following lesson content into ${langName}. Preserve all markdown formatting in the content field. Translate naturally and accurately — this is educational content for immigrants preparing for naturalization.
 

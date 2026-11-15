@@ -82,6 +82,7 @@
           "facts": [
             "Americans elect a President every four years.",
             "A President can serve only two terms. This rule is in the 22nd Amendment.",
+            "The two terms do not have to be back to back. A President can serve one term, lose an election, and win again later. That is still two terms.",
             "The rule keeps a president from becoming too powerful."
           ],
           "newWords": [
@@ -125,7 +126,7 @@
     {
       "id": "u2-s3-l2",
       "title": "What the President does",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de3f",
         "6ad16ecf6a9c603911f9de40"
@@ -188,8 +189,10 @@
           "explanationKey": "Why is the Electoral College important?",
           "facts": [
             "The Electoral College decides who is elected President.",
-            "Each state has electors. The electors vote for President after the people vote.",
-            "It is a compromise between a vote of the people and a choice by Congress."
+            "When you vote for President, you are really choosing your state's electors. Electors are people who vote for President for their state.",
+            "Each state gets as many electors as it has members of Congress: its two senators plus its representatives. Washington, D.C. gets 3. There are 538 electors in all.",
+            "In most states, the candidate who gets the most votes wins all of that state's electors. To become President, a candidate needs 270 electoral votes.",
+            "The Electoral College is a compromise between a vote of the people and a choice by Congress."
           ],
           "newWords": [
             {
@@ -230,7 +233,7 @@
     {
       "id": "u2-s3-l4",
       "title": "If the President can't serve",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de3e"
       ],
@@ -276,7 +279,7 @@
     {
       "id": "u2-s3-l5",
       "title": "The executive branch",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de44",
         "6ad16ecf6a9c603911f9de45"
@@ -328,7 +331,7 @@
     {
       "id": "u2-s3-l6",
       "title": "The Cabinet",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de46"
       ],
@@ -381,7 +384,7 @@
     {
       "id": "u2-s3-l7",
       "title": "Today’s leaders",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de3c",
         "6ad16ecf6a9c603911f9de3d"

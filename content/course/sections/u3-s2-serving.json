@@ -36,7 +36,7 @@
     {
       "id": "u3-s2-l1",
       "title": "Taking part",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de5c",
         "6ad16ecf6a9c603911f9de5b"
@@ -95,7 +95,7 @@
     {
       "id": "u3-s2-l2",
       "title": "Taxes and Selective Service",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de5d",
         "6ad16ecf6a9c603911f9de5e"

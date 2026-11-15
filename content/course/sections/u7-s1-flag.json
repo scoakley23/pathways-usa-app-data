@@ -36,7 +36,7 @@
     {
       "id": "u7-s1-l1",
       "title": "The flag",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de90",
         "6ad16ecf6a9c603911f9de8f"
@@ -102,6 +102,7 @@
           "explanationKey": "The Nation’s first motto was “E Pluribus Unum.” What does that mean?",
           "facts": [
             "The nation's first motto was “E Pluribus Unum.” It means “Out of many, one.”",
+            "Say it like this: ee PLOOR-ih-bus OO-num.",
             "It says that many people and many states become one country.",
             "The national anthem is “The Star-Spangled Banner.” It is a song about the American flag."
           ],

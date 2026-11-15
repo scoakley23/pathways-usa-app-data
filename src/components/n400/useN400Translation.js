@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { base44 } from '@/api/base44Client';
 import { LANGUAGES } from '@/hooks/useLessonTranslation';
+import { PACK_ONLY, hasPack, packTree } from '@/lib/translationPack';
 
 const CACHE_PREFIX = 'pathways_n400_tr_';
 
@@ -19,7 +20,8 @@ export default function useN400Translation(sectionId, question, language) {
     }
     const cacheKey = `${CACHE_PREFIX}${language}_${sectionId}_${question.id}`;
     try {
-      const raw = localStorage.getItem(cacheKey);
+      // An old live-AI copy on this device, only when there's no pack.
+      const raw = hasPack(language) ? null : localStorage.getItem(cacheKey);
       if (raw) {
         setTranslation(JSON.parse(raw));
         return;
@@ -39,6 +41,13 @@ export default function useN400Translation(sectionId, question, language) {
           words: question.words,
           officerPhrasings: question.officerPhrasings,
         };
+        // The translation pack first; live AI only when it doesn't cover the
+        // card, and never when PACK_ONLY (the switch on).
+        const packed = await packTree(language, content);
+        if (packed.complete || PACK_ONLY) {
+          if (!cancelled) setTranslation(packed.complete ? packed.value : null);
+          return;
+        }
         const result = await base44.integrations.Core.InvokeLLM({
           prompt: `You are a professional translator for US citizenship education materials. Translate the following JSON into ${langName}. Translate every value exactly as written — do not add advice, interpretation, or any content that is not in the original. Return the same JSON structure, translated.
 

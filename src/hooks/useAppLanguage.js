@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 import { loadScriptFont } from '@/design/scriptFonts';
+import { loadPack } from '@/lib/translationPack';
 
 export const RTL_LANGUAGES = ['ar', 'fa', 'ur', 'he', 'prs', 'ps'];
 
@@ -27,6 +28,8 @@ export default function useAppLanguage() {
   const [language, setLanguage] = useState(getSavedLanguage);
   // The Noto font for this language's script, loaded only when needed.
   useEffect(() => { loadScriptFont(language); }, [language]);
+  // Start loading the language's translation pack right away.
+  useEffect(() => { loadPack(language).catch(() => {}); }, [language]);
   useEffect(() => {
     const follow = (e) => setLanguage(e.detail);
     window.addEventListener(LANGUAGE_EVENT, follow);

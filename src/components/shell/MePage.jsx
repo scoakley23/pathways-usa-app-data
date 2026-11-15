@@ -26,21 +26,7 @@ import { ME_LINKS, ME_MORE_LINKS } from '@/lib/shellRoutes';
 // used to be in the profile menu. No new saved data. Left out until their
 // prompts: stars (Prompt 4) and the streak (Prompt 7); "days practiced this
 // week" stands in for "days in a row".
-const LINES = {
-  welcome: 'Welcome',
-  studying_in: 'Studying in {language}',
-  interview_month: 'Interview month: {month}',
-  days_week: 'days practiced this week',
-  civics_ready: 'civics answers ready',
-  best_interview: 'best practice interview',
-  none_yet: 'none yet',
-  badges: 'Your badges',
-  more: 'More',
-  sign_out: 'Sign out',
-  sign_in: 'Sign in',
-  sign_in_body: 'Sign in to see your progress, badges and settings.',
-  ...Object.fromEntries([...ME_LINKS, ...ME_MORE_LINKS].map((l) => [`link_${l.id}`, l.label])),
-};
+import { ME_LINES as LINES } from './shellStrings';
 
 const languageLabel = (code) => {
   const label = LANGUAGES.find((l) => l.value === code)?.label || 'English';

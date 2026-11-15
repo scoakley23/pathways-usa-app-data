@@ -98,7 +98,7 @@
     {
       "id": "u2-s2-l1",
       "title": "What Congress does",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de28",
         "6ad16ecf6a9c603911f9de2a"
@@ -154,7 +154,7 @@
     {
       "id": "u2-s2-l2",
       "title": "Two parts of Congress",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de29",
         "6ad16ecf6a9c603911f9de2e"
@@ -209,7 +209,7 @@
     {
       "id": "u2-s2-l3",
       "title": "How many senators?",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de2b",
         "6ad16ecf6a9c603911f9de31"
@@ -264,7 +264,7 @@
     {
       "id": "u2-s2-l4",
       "title": "Senators’ terms",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de2c",
         "6ad16ecf6a9c603911f9de2f"
@@ -319,7 +319,7 @@
     {
       "id": "u2-s2-l5",
       "title": "Your senators",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de2d",
         "6ad16ecf6a9c603911f9de33"
@@ -372,7 +372,7 @@
     {
       "id": "u2-s2-l6",
       "title": "Who senators represent",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de35",
         "6ad16ecf6a9c603911f9de36"
@@ -422,7 +422,7 @@
     {
       "id": "u2-s2-l7",
       "title": "Who representatives represent",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de37",
         "6ad16ecf6a9c603911f9de38"
@@ -474,7 +474,7 @@
     {
       "id": "u2-s2-l8",
       "title": "Why the numbers differ",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de39",
         "6ad16ecf6a9c603911f9de32"
@@ -532,7 +532,7 @@
     {
       "id": "u2-s2-l9",
       "title": "Shorter terms",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de30"
       ],
@@ -584,7 +584,7 @@
     {
       "id": "u2-s2-l10",
       "title": "The Speaker",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de34"
       ],
