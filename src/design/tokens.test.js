@@ -82,9 +82,9 @@ describe('design tokens', () => {
   });
 });
 
-// The app's languages (LANGUAGES in useLessonTranslation.js), read as text:
-// importing that file would load the Base44 client.
-const LANGUAGES = [...fs.readFileSync(path.resolve(__dirname, '../hooks/useLessonTranslation.js'), 'utf8')
+// The app's languages (LANGUAGES in src/lib/languages.js), read as text:
+// (kept as text so the test needs no imports).
+const LANGUAGES = [...fs.readFileSync(path.resolve(__dirname, '../lib/languages.js'), 'utf8')
   .slice(0, 4000).matchAll(/value: ?'([a-z-]+)'/g)].map((m) => ({ value: m[1] }));
 
 describe('script fonts', () => {

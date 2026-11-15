@@ -52,7 +52,9 @@
         "listen": {
           "explanationKey": "Name one reason why the Americans declared independence from Britain.",
           "facts": [
-            "Britain made the colonists pay high taxes, but they had no vote in Britain's government. This was called taxation without representation.",
+            "In the 1760s, Britain had spent a lot of money on wars and wanted the colonists to help pay.",
+            "Britain added new taxes, like the Stamp Act on paper and a tax on tea. The colonists had no one to speak for them in Britain's government. They said: “No taxation without representation.”",
+            "In 1773, colonists in Boston threw British tea into the harbor to protest. This was the Boston Tea Party.",
             "British soldiers stayed in Americans' houses, and the colonists did not have self-government.",
             "The Declaration of Independence was adopted on July 4, 1776."
           ],
@@ -64,6 +66,10 @@
             {
               "word": "adopt",
               "meaning": "to accept and approve something"
+            },
+            {
+              "word": "protest",
+              "meaning": "to show in public that you disagree"
             }
           ]
         },
@@ -95,7 +101,7 @@
     {
       "id": "u4-s2-l2",
       "title": "Thomas Jefferson",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de64",
         "6ad16ecf6a9c603911f9de6d"
@@ -155,6 +161,7 @@
           "explanationKey": "What war did the Americans fight to win independence from Britain?",
           "facts": [
             "The Americans fought the American Revolution, also called the Revolutionary War, to win independence from Britain.",
+            "They fought because Britain would not let them govern themselves.",
             "George Washington led the Continental Army.",
             "Important events include the Battle of Bunker Hill, Washington crossing the Delaware, Valley Forge and the British surrender at Yorktown."
           ],

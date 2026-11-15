@@ -5,7 +5,7 @@ import AnswerFeedback from '@/components/practice/AnswerFeedback';
 import RunTopBar from '@/components/practice/RunTopBar';
 import WordByWord from '@/components/practice/WordByWord';
 import { stopReading } from '@/components/persona/useAutoRead';
-import { base44 } from '@/api/base44Client';
+import { readingTip } from '@/lib/readingTips';
 import { speakText } from "@/components/utils/textToSpeech";
 import { wordDiff } from "@/components/utils/wordDiff";
 
@@ -15,7 +15,8 @@ import { wordDiff } from "@/components/utils/wordDiff";
 // The Road: the sentence on navy ("Hear it"), "Say it" on the cream sheet,
 // then Correct / Not correct (AnswerFeedback; the existing 70% word score)
 // with the sentence word by word (WordByWord). Scoring is unchanged: the
-// browser transcript and word matching (wordDiff), an optional AI tip. Every
+// browser transcript and word matching (wordDiff), and a tip chosen on the
+// device (readingTip(); nothing is sent to an AI). Every
 // try is saved as before; "Next sentence" after a miss saves nothing more.
 // `onClose` adds the run's top bar; `embedded` = inside another page's
 // padding (Interview Day).
@@ -127,20 +128,9 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext, test
     setWordResults(null);
   };
 
-  const generateFallbackFeedback = (diff) => {
-    const missing = diff.words.filter(w => w.status === 'missing').map(w => w.word);
-    if (missing.length === 0) {
-      return "All words detected! Focus on speaking with natural rhythm and clear pronunciation.";
-    }
-    if (missing.length === diff.totalWords) {
-      return "None of the words matched. Try reading the sentence slowly, one word at a time.";
-    }
-    return `You missed: "${missing.join('", "')}". Read more slowly and enunciate each word clearly.`;
-  };
-
   // Scores come only from the browser's live transcript and word matching.
-  // No audio is recorded or uploaded; only the target sentence and the
-  // transcript text go to the AI, for a short tip.
+  // No audio is recorded or uploaded, and nothing is sent to an AI: the tip
+  // is chosen on the device.
   const analyzeReading = async () => {
     // ── 1. Word-level diff using the real-time speech recognition transcript ──
     // This is deterministic and CANNOT be tricked by the LLM — it's ground truth.
@@ -168,37 +158,15 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext, test
     // ── 3. Score = word accuracy ──
     const overall = wordAccuracy;
 
-    // ── 4. Optional AI tip from text only (never changes the score) ──
-    setIsAnalyzing(true);
-    let tip = null;
-    if (diff.matchedCount < diff.totalWords) {
-      try {
-        const res = await base44.integrations.Core.InvokeLLM({
-          prompt: `An English learner preparing for the USCIS reading test read this sentence aloud.
-
-TARGET SENTENCE: "${sentence.text}"
-WHAT SPEECH RECOGNITION HEARD: "${transcript}"
-
-In one or two short, encouraging sentences at an A2 English level, give one practical tip for the words they missed or said differently. Do not give a score.`,
-          response_json_schema: {
-            type: "object",
-            properties: { tip: { type: "string" } },
-            required: ["tip"]
-          }
-        });
-        tip = res?.tip || null;
-      } catch (error) {
-        console.error("AI tip failed, using word-match feedback", error);
-      }
-    }
-    setIsAnalyzing(false);
+    // ── 4. A tip chosen on the device (never changes the score) ──
+    const tip = readingTip(diff);
 
     const result = {
       transcription: transcript,
       overall_score: overall,
       matched_count: diff.matchedCount,
       total_words: diff.totalWords,
-      phoneme_feedback: tip || generateFallbackFeedback(diff),
+      phoneme_feedback: tip,
       general_feedback: overall >= 70
         ? 'Great job! Your reading is clear and accurate.'
         : wordAccuracy < 50

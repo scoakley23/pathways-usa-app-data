@@ -1,0 +1,319 @@
+{
+  "note": "Pictures for course lessons (src/lib/lessonPictures.js). Photos and maps are public domain only, with their source; drawings are the app's own (src/components/course/drawings.jsx). Officeholder names always come from src/data/officeholders.json.",
+  "photos": {
+    "anthony.jpg": {
+      "credit": "Photo: about 1855 · Library of Congress",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:Susan_B_Anthony_c1855.png",
+      "commons": "Susan B Anthony c1855.png",
+      "author": "Engraved by G.E. Perine &amp; Co., NY"
+    },
+    "bill-of-rights.jpg": {
+      "credit": "The Bill of Rights · National Archives",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:Bill_of_Rights_-_DPLA_-_a65f6d0b6210c18d17c596908ebcf270_(page_1).jpg",
+      "commons": "Bill of Rights Pg1of1 AC.jpg",
+      "author": "National Archives and Records Administration. Office of the Federal Register. 4/1/1985"
+    },
+    "chief-justice.jpg": {
+      "credit": "Photo: Steve Petteway · Supreme Court of the United States",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:Official_roberts_CJ.jpg",
+      "commons": "Official roberts CJ.jpg",
+      "author": "Steve Petteway"
+    },
+    "colonies-1775.jpg": {
+      "credit": "Map: based on the U.S. National Atlas",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:Map_of_territorial_growth_1775.svg",
+      "commons": "Map of territorial growth 1775.svg",
+      "author": "Cg-realms"
+    },
+    "columbus.jpg": {
+      "credit": "Painting: Sebastiano del Piombo, 1519 · The Metropolitan Museum of Art",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:Portrait_of_a_Man,_Said_to_be_Christopher_Columbus.jpg",
+      "commons": "Portrait of a Man, Said to be Christopher Columbus.jpg",
+      "author": "Sebastiano del Piombo"
+    },
+    "eisenhower.jpg": {
+      "credit": "Official White House portrait, 1959",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:Dwight_D._Eisenhower,_official_photo_portrait,_May_29,_1959.jpg",
+      "commons": "Dwight D. Eisenhower, official photo portrait, May 29, 1959.jpg",
+      "author": "White House"
+    },
+    "first-flight.jpg": {
+      "credit": "Photo: John T. Daniels, 1903 · Library of Congress",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:First_flight2.jpg",
+      "commons": "First flight2.jpg",
+      "author": "John T. Daniels"
+    },
+    "jefferson.jpg": {
+      "credit": "Painting: Rembrandt Peale, 1800 · White House Historical Association",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:Official_Presidential_portrait_of_Thomas_Jefferson_(by_Rembrandt_Peale,_1800).jpg",
+      "commons": "Official Presidential portrait of Thomas Jefferson (by Rembrandt Peale, 1800).jpg",
+      "author": "Rembrandt Peale"
+    },
+    "king.jpg": {
+      "credit": "Photo: Dick DeMarsico, 1964 · Library of Congress",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:Martin_Luther_King_Jr_NYWTS.jpg",
+      "commons": "Martin Luther King Jr NYWTS.jpg",
+      "author": "Dick DeMarsico"
+    },
+    "middle-east.jpg": {
+      "credit": "Map: U.S. Central Intelligence Agency, 2003",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:Middle_east_graphic_2003.jpg",
+      "commons": "Middle east graphic 2003.jpg",
+      "author": ""
+    },
+    "migrant-mother.jpg": {
+      "credit": "Photo: Dorothea Lange, 1936 · Library of Congress",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:Lange-MigrantMother02.jpg",
+      "commons": "Lange-MigrantMother02.jpg",
+      "author": "Dorothea Lange"
+    },
+    "moon-landing.jpg": {
+      "credit": "Photo: Neil Armstrong, 1969 · NASA",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:Aldrin_Apollo_11_original.jpg",
+      "commons": "Aldrin Apollo 11 original.jpg",
+      "author": "Neil Armstrong"
+    },
+    "president.jpg": {
+      "credit": "Official White House portrait, 2025",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:Official_Presidential_Portrait_of_President_Donald_J._Trump_(2025)_(3x4_close_cropped).jpg",
+      "commons": "Official Presidential Portrait of President Donald J. Trump (2025) (3x4 close cropped).jpg",
+      "author": "Daniel Torok"
+    },
+    "roosevelt.jpg": {
+      "credit": "Photo: Elias Goldensky, 1933 · Library of Congress",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:FDR_in_1933.jpg",
+      "commons": "FDR in 1933.jpg",
+      "author": "Elias Goldensky"
+    },
+    "speaker.jpg": {
+      "credit": "Official portrait · U.S. House of Representatives",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:Speaker_Mike_Johnson_Official_Portrait.jpg",
+      "commons": "Speaker Mike Johnson Official Portrait.jpg",
+      "author": "United States Congress"
+    },
+    "territorial-expansion.jpg": {
+      "credit": "Map: William R. Shepherd, Historical Atlas, 1923",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:Territorial_Expansion_of_the_United_States_since_1803.jpg",
+      "commons": "Territorial Expansion of the United States since 1803.jpg",
+      "author": "William Robert Shepherd"
+    },
+    "tubman.jpg": {
+      "credit": "Photo: H. Seymour Squyer, about 1885 · National Portrait Gallery",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:Harriet_Tubman_by_Squyer,_NPG,_c1885.jpg",
+      "commons": "Harriet Tubman by Squyer, NPG, c1885.jpg",
+      "author": "Horatio Seymour Squyer, 1848 - 18 Dec 1905"
+    },
+    "vice-president.jpg": {
+      "credit": "Official White House portrait, 2026",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:March_2026_Official_Vice_Presidential_Portrait_of_JD_Vance_(3x4_cropped).jpg",
+      "commons": "March 2026 Official Vice Presidential Portrait of JD Vance (3x4 cropped).jpg",
+      "author": "Emily J. Higgins"
+    }
+  },
+  "lessons": {
+    "u1-s3-l1": [
+      {
+        "kind": "photo",
+        "file": "bill-of-rights.jpg",
+        "alt": "The handwritten Bill of Rights on old paper",
+        "caption": "The Bill of Rights, kept today at the National Archives in Washington, D.C."
+      }
+    ],
+    "u2-s1-l1": [
+      {
+        "kind": "drawing",
+        "drawing": "threeBranches",
+        "caption": "The three branches. Each one has its own job, so no one branch has all the power."
+      }
+    ],
+    "u2-s2-l2": [
+      {
+        "kind": "drawing",
+        "drawing": "congressNumbers",
+        "caption": "Congress has two parts: the Senate (100 senators) and the House of Representatives (435 voting members)."
+      }
+    ],
+    "u2-s2-l3": [
+      {
+        "kind": "drawing",
+        "drawing": "congressNumbers",
+        "caption": "Every state has 2 senators, so there are 100 in all."
+      }
+    ],
+    "u2-s2-l4": [
+      {
+        "kind": "drawing",
+        "drawing": "termLengths",
+        "caption": "How long each one serves: representatives 2 years, the President 4 years, senators 6 years."
+      }
+    ],
+    "u2-s2-l6": [
+      {
+        "kind": "drawing",
+        "drawing": "congressNumbers",
+        "caption": "Senators speak for their whole state: 2 from every state."
+      }
+    ],
+    "u2-s2-l7": [
+      {
+        "kind": "drawing",
+        "drawing": "congressNumbers",
+        "caption": "Representatives speak for one district. States with more people have more of them."
+      }
+    ],
+    "u2-s2-l10": [
+      {
+        "kind": "officeholder",
+        "office": "speaker"
+      }
+    ],
+    "u2-s3-l3": [
+      {
+        "kind": "drawing",
+        "drawing": "electoralCollege",
+        "caption": "There are 538 electors. To become President, a candidate needs 270 of their votes."
+      }
+    ],
+    "u2-s3-l7": [
+      {
+        "kind": "officeholder",
+        "office": "president"
+      },
+      {
+        "kind": "officeholder",
+        "office": "vicePresident"
+      }
+    ],
+    "u2-s4-l3": [
+      {
+        "kind": "drawing",
+        "drawing": "supremeCourt",
+        "caption": "The Supreme Court has nine justices."
+      }
+    ],
+    "u2-s4-l5": [
+      {
+        "kind": "officeholder",
+        "office": "chiefJustice"
+      }
+    ],
+    "u4-s1-l1": [
+      {
+        "kind": "photo",
+        "file": "columbus.jpg",
+        "alt": "A painting of a man in dark clothes, said to be Christopher Columbus",
+        "caption": "Christopher Columbus reached the Americas in 1492. This painting is said to show him."
+      }
+    ],
+    "u4-s1-l2": [
+      {
+        "kind": "photo",
+        "file": "colonies-1775.jpg",
+        "alt": "A map of eastern North America with the 13 colonies along the Atlantic coast",
+        "caption": "The 13 colonies were along the Atlantic coast."
+      }
+    ],
+    "u4-s2-l2": [
+      {
+        "kind": "photo",
+        "file": "jefferson.jpg",
+        "alt": "A painting of Thomas Jefferson",
+        "caption": "Thomas Jefferson in 1800, the year before he became President."
+      }
+    ],
+    "u5-s1-l1": [
+      {
+        "kind": "photo",
+        "file": "territorial-expansion.jpg",
+        "alt": "A historical map of the United States showing the land it added over time, including the Louisiana Purchase",
+        "caption": "How the United States grew. The Louisiana Purchase of 1803 is the large area in the middle."
+      }
+    ],
+    "u5-s3-l2": [
+      {
+        "kind": "photo",
+        "file": "anthony.jpg",
+        "alt": "An old photo of Susan B. Anthony",
+        "caption": "Susan B. Anthony led the fight for women’s right to vote."
+      },
+      {
+        "kind": "photo",
+        "file": "tubman.jpg",
+        "alt": "An old photo of Harriet Tubman",
+        "caption": "Harriet Tubman escaped slavery and helped many others escape to freedom."
+      }
+    ],
+    "u6-s1-l2": [
+      {
+        "kind": "photo",
+        "file": "migrant-mother.jpg",
+        "alt": "A black-and-white photo of a worried mother with her children",
+        "caption": "A mother and her children in 1936, during the Great Depression. Many families had no work and little food."
+      }
+    ],
+    "u6-s2-l1": [
+      {
+        "kind": "photo",
+        "file": "roosevelt.jpg",
+        "alt": "A photo of Franklin Roosevelt",
+        "caption": "Franklin Roosevelt in 1933, the year he became President."
+      }
+    ],
+    "u6-s2-l2": [
+      {
+        "kind": "photo",
+        "file": "eisenhower.jpg",
+        "alt": "The official portrait of Dwight Eisenhower",
+        "caption": "Dwight Eisenhower, the 34th President."
+      }
+    ],
+    "u6-s4-l1": [
+      {
+        "kind": "photo",
+        "file": "king.jpg",
+        "alt": "A black-and-white photo of Martin Luther King, Jr.",
+        "caption": "Martin Luther King, Jr. in 1964."
+      }
+    ],
+    "u6-s4-l3": [
+      {
+        "kind": "photo",
+        "file": "middle-east.jpg",
+        "alt": "A map of the Middle East showing Iraq, Kuwait and Afghanistan",
+        "caption": "A map of the Middle East. Kuwait is next to Iraq, and Afghanistan is farther east."
+      }
+    ],
+    "u6-s4-l4": [
+      {
+        "kind": "photo",
+        "file": "first-flight.jpg",
+        "alt": "A black-and-white photo of the first airplane flying low over sand",
+        "caption": "The first airplane flight, by the Wright brothers, in 1903."
+      },
+      {
+        "kind": "photo",
+        "file": "moon-landing.jpg",
+        "alt": "An astronaut standing on the moon",
+        "caption": "The first people landed on the moon in 1969."
+      }
+    ]
+  }
+}

@@ -46,6 +46,8 @@
           "explanationKey": "What founding document said the American colonies were free from Britain?",
           "facts": [
             "Long ago, the American colonies were ruled by Britain.",
+            "Over time, the colonists became angry. Britain made them pay high taxes, but they had no vote in Britain's government. British soldiers even stayed in their homes.",
+            "Many colonists had come to America for freedom, including religious freedom. They wanted to govern themselves.",
             "On July 4, 1776, the Declaration of Independence said the colonies were free from Britain. We remember this day on Independence Day.",
             "It also says all people are created equal and have rights that no one can take away."
           ],
@@ -92,7 +94,7 @@
     {
       "id": "u1-s1-l2",
       "title": "Life, Liberty and Happiness",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de21"
       ],

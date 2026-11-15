@@ -41,7 +41,7 @@
     {
       "id": "u3-s3-l1",
       "title": "Becoming a citizen",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de5a"
       ],
@@ -93,7 +93,7 @@
     {
       "id": "u3-s3-l2",
       "title": "Your promises",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de59",
         "6ad16ecf6a9c603911f9de58"

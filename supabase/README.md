@@ -121,12 +121,15 @@ add a CAPTCHA (Cloudflare Turnstile, Authentication → Attack Protection).
 
 | Function | What it does |
 |---|---|
+| `functions/district-lookup/` | "Who Represents Me?" for a ZIP that spans districts: signed-in learners only; sends the street address and ZIP to Geocodio once and returns only `{ state, district }` (logic in `functions/_shared/districtLookup.js`, tested in `src/api/districts.test.js`). Never logs or saves the address. Needs the secret `GEOCODIO_API_KEY` |
 | `functions/pilot-report/` | The admin pilot dashboard (`/admin/pilot`): admins only (anyone else gets 404); reads the pilot learners' rows with the service role and returns one summary per learner keyed by `pilot_id`, never an email, name or login id. The math is `functions/_shared/pilotReport.js`, an exact copy of `base44/shared/pilotReport.js` (a test checks they match; change both together) |
 
 Deploy (on your computer, after `supabase link`; again whenever a function's folder changes):
 
 ```bash
 supabase functions deploy pilot-report
+supabase secrets set GEOCODIO_API_KEY=...   # your key from geocod.io; type it in your terminal, never in a chat
+supabase functions deploy district-lookup
 ```
 
 Supabase gives every Edge Function its URL, anon key and service-role key
@@ -143,6 +146,7 @@ that no screen reads or writes data any other way.
 - [ ] Every Step 3 pull request is merged into `standalone`.
 - [ ] `supabase db push` has applied every migration (run it again after new ones).
 - [ ] The pilot dashboard's server function is deployed: `supabase functions deploy pilot-report`.
+- [ ] The split-ZIP lookup is deployed with its key: `supabase secrets set GEOCODIO_API_KEY=...`, then `supabase functions deploy district-lookup`.
 - [ ] You are an admin (SQL above), signed out and in again.
 - [ ] Your computer's `.env` has `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` and `VITE_AUTH_PROVIDER=supabase`.
 

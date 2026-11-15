@@ -1,4 +1,5 @@
 import { base44 } from '@/api/base44Client';
+import { PACK_ONLY, fromPack, loadPack } from '@/lib/translationPack';
 
 // Shared AI translation of the app's fixed English strings (never learner
 // text, never official civics answers).
@@ -8,6 +9,9 @@ import { base44 } from '@/api/base44Client';
 //   about as fast as a short one, and shows each chunk as it arrives.
 // - Remembers results in memory for this visit and in browser storage
 //   (device only) under the caller's storage key.
+// - With `language`, looks in the translation pack first (src/lib/translationPack.js):
+//   live AI is asked only for strings the pack doesn't have, and never when
+//   PACK_ONLY (the switch on): those stay English.
 
 export const CHUNK_SIZE = 15;
 
@@ -54,7 +58,28 @@ const defaultInvoke = (args) => base44.integrations.Core.InvokeLLM(args);
 // only when nothing came back. `onPartial(sofar)` is called as chunks arrive.
 // Saved to browser storage only when complete, so missing pieces are retried
 // next time.
-export function translateStrings({ storageKey, strings, buildPrompt, onPartial, invoke = defaultInvoke }) {
+export async function translateStrings({ language, storageKey, strings, buildPrompt, onPartial, invoke = defaultInvoke }) {
+  if (language && language !== 'en') {
+    const { found, missing } = fromPack(await loadPack(language), strings);
+    if (!missing.length || PACK_ONLY) {
+      if (onPartial && Object.keys(found).length) onPartial(found);
+      return found;
+    }
+    if (Object.keys(found).length) {
+      // Live AI for the rest only (cached under its own key).
+      if (onPartial) onPartial(found);
+      const rest = Object.fromEntries(missing.map((k) => [k, strings[k]]));
+      const more = await aiTranslate({
+        storageKey: `${storageKey}__rest`, strings: rest, buildPrompt, invoke,
+        onPartial: onPartial ? (sofar) => onPartial({ ...found, ...sofar }) : undefined,
+      }).catch(() => ({}));
+      return { ...found, ...more };
+    }
+  }
+  return aiTranslate({ storageKey, strings, buildPrompt, onPartial, invoke });
+}
+
+function aiTranslate({ storageKey, strings, buildPrompt, onPartial, invoke = defaultInvoke }) {
   const cached = getCachedTranslation(storageKey);
   if (cached) return Promise.resolve(cached);
 

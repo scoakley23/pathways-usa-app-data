@@ -11,10 +11,12 @@ import { base44 } from '@/api/base44Client';
 import { checkCivicsAnswer, officeholderCheck } from '@/components/civics/checkCivicsAnswer';
 import OfficeholderNote from '@/components/civics/OfficeholderNote';
 import useLearnerLocation from '@/components/civics/useLearnerLocation';
-import { matchOfficialAnswer, splitOfficialAnswers } from '@/lib/practiceChecks';
+import { splitOfficialAnswers } from '@/lib/practiceChecks';
+import { matchCivicsAnswer } from '@/lib/answerVariants';
 import { officeholderAnswerFor, officeholderAnswerLine } from '@/lib/officeholderQuestions';
 import { LANGUAGES } from '@/hooks/useLessonTranslation';
 import useAppLanguage from '@/hooks/useAppLanguage';
+import { PACK_ONLY, packText } from '@/lib/translationPack';
 
 // A civics question (The Road): the navy top says WHAT (label, the question,
 // "Hear it" and "In my language"); the cream sheet holds what you DO ("Say
@@ -86,6 +88,17 @@ export default function CivicsTestCard({ question, onComplete, onNext, testMode 
     if (!question || !myLanguage) return;
     setIsTranslating(true);
     try {
+      // The translation pack first; live AI only when it doesn't have this
+      // question, and never when PACK_ONLY (the switch on).
+      const [q, a] = await Promise.all([packText(myLanguage.value, question.question), packText(myLanguage.value, question.answer)]);
+      if (q && a) {
+        setTranslation(`Question: ${q}\nAnswer: ${a}`);
+        return;
+      }
+      if (PACK_ONLY) {
+        setTranslation('Translation unavailable');
+        return;
+      }
       const prompt = `Translate the following Civics Question and Answer into ${myLanguage.label}.
 
       Question: "${question.question}"
@@ -139,7 +152,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, testMode 
     }
     // Answers that clearly match an accepted answer are checked on the
     // device; only the rest go to the AI (which judges meaning).
-    if (matchOfficialAnswer(userAnswer, question.answer).isCorrect) {
+    if (matchCivicsAnswer(userAnswer, question).sure) {
       setVerificationResult({ is_correct: true, feedback: '' });
       return;
     }
