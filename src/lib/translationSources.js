@@ -21,6 +21,9 @@ import { TABS } from '@/components/pathways/BottomTabs';
 import { ME_LINES, SETTINGS_LINES, INTERVIEW_LINES } from '@/components/shell/shellStrings';
 import { TALK_LINES } from '@/components/ai/talkStrings';
 import { COURSE_LINES } from '@/components/course/courseStrings';
+import { LESSON_LINES } from '@/components/lesson/lessonStrings';
+import { UNITS } from '@/lib/course';
+import coursePictures from '../../content/course/pictures.json';
 import { GETTING_STARTED_LINES } from '@/components/persona/gettingStartedStrings';
 import { PRIVACY_NOTE, PRIVACY_SHORT } from '@/components/ai/privacyStrings';
 import { N400_SECTIONS } from '@/components/n400/n400Content';
@@ -58,6 +61,7 @@ export const STRING_SETS = [
   { id: 'settings', strings: SETTINGS_LINES, usedIn: [['src/components/shell/SettingsPage.jsx', 'LINES']] },
   { id: 'interview-tab', strings: INTERVIEW_LINES, usedIn: [['src/components/shell/InterviewPage.jsx', 'LINES']] },
   { id: 'course', strings: COURSE_LINES, usedIn: [['src/components/course/courseShared.jsx', 'COURSE_LINES']] },
+  { id: 'lesson-player', strings: LESSON_LINES, usedIn: [['src/components/lesson/LessonPlayer.jsx', 'LESSON_LINES']] },
   { id: 'talk', strings: TALK_LINES, usedIn: [['src/components/ai/TalkToPerson.jsx', 'LINES']] },
   { id: 'talk-reply', strings: { reply: `We reply within ${REPLY_TIME}.` }, usedIn: [['src/components/ai/TalkToPerson.jsx', 'replyLine']] },
   { id: 'getting-started', strings: GETTING_STARTED_LINES, usedIn: [['src/components/persona/GettingStarted.jsx', 'LINES']] },
@@ -85,6 +89,13 @@ export function contentTexts() {
     ])))],
     ['lawyer-checklist', texts(LAWYER_CHECKLIST_ITEMS.flatMap((i) => [i.text, i.explanation, sectionTitle(i.guideSectionId)]))],
     ['privacy-note', texts([PRIVACY_NOTE.en, PRIVACY_SHORT.en])],
+    // The course (Prompt 6): what the lesson player translates. Official
+    // questions, answers and the Read it / Write it sentences stay English.
+    ['course-lessons', texts(UNITS.flatMap((u) => u.sections.flatMap((sec) => (sec.lessons || []).flatMap((l) => [
+      ...l.steps.listen.facts,
+      ...l.steps.listen.newWords.map((w) => w.meaning),
+    ]))))],
+    ['course-pictures', texts(Object.values(coursePictures.lessons).flat().map((p) => p.caption))],
   ];
 }
 

@@ -121,7 +121,7 @@ function chunkText(text) {
   return chunks;
 }
 
-export async function speakText(text, language = 'en', { onStart, onEnd, voiceName } = {}) {
+export async function speakText(text, language = 'en', { onStart, onEnd, voiceName, rate: rateOverride } = {}) {
   if (!window.speechSynthesis) return;
 
   window.speechSynthesis.cancel();
@@ -159,7 +159,8 @@ export async function speakText(text, language = 'en', { onStart, onEnd, voiceNa
     return;
   }
 
-  const rate = typeof settings.rate === 'number' ? settings.rate : 0.9;
+  // `rate` (e.g. 0.6 for Write it's "Slow") overrides the learner's setting.
+  const rate = typeof rateOverride === 'number' ? rateOverride : typeof settings.rate === 'number' ? settings.rate : 0.9;
 
   const speakChunk = (chunk, isFirst) => {
     if (isStale()) return;
