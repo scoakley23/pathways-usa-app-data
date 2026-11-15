@@ -8,7 +8,7 @@ import { Sheet, SheetContent, SheetDescription, SheetTitle } from '@/components/
 import { questionText } from '@/lib/course';
 import { lessonCounts, usesYourState } from '@/lib/journey';
 import JourneyPath from '@/components/course/JourneyPath';
-import { STOP_LOOK, StopIcon, UnitIcon, stopLabel, useCourseText, useJourney } from '@/components/course/courseShared';
+import { STOP_LOOK, StopIcon, UnitIcon, stopHref, stopLabel, useCourseText, useJourney } from '@/components/course/courseShared';
 
 // The Course tab (/course, frames R32Path and R31Preview): the navy banner
 // ("All units", stars, the unit card that opens the unit guide), the
@@ -78,8 +78,10 @@ function LessonPreview({ stop, unit, lessonNumber, t, onStart }) {
   );
 }
 
-function StopNote({ stop, t, onClose }) {
+function StopNote({ stop, t, onClose, onGo }) {
   const locked = stop.state === 'locked';
+  const href = stopHref(stop);
+  const playable = !locked && stop.state !== 'soon' && href;
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center gap-4">
@@ -89,9 +91,11 @@ function StopNote({ stop, t, onClose }) {
         <SheetTitle className="text-title font-bold text-navy break-words">{stopLabel(stop, t)}</SheetTitle>
       </div>
       <SheetDescription className="text-base text-navy">
-        {locked ? t('locked_body', { title: stop.waitFor ? stopLabel(stop.waitFor, t) : '' }) : t('soon_body')}
+        {locked ? t('locked_body', { title: stop.waitFor ? stopLabel(stop.waitFor, t) : '' }) : playable ? t(`${stop.type}_body`) : t('soon_body')}
       </SheetDescription>
-      <Button variant="second" className="w-full" onClick={onClose}>{t('ok')}</Button>
+      {playable
+        ? <Button variant="main" className="w-full" onClick={() => onGo(href)}>{stop.state === 'done' ? t('stop_again') : t('stop_go')}</Button>
+        : <Button variant="second" className="w-full" onClick={onClose}>{t('ok')}</Button>}
     </div>
   );
 }
@@ -141,7 +145,7 @@ export default function CoursePage() {
         <SheetContent side="bottom" className="rounded-t-[28px] bg-white px-5 pt-6 pb-8 max-h-[85vh] overflow-y-auto" dir={rtl ? 'rtl' : 'ltr'}>
           {open && (isLesson
             ? <LessonPreview stop={open} unit={unit} lessonNumber={lessonNumber(open.lessonId)} t={t} onStart={() => navigate(`/course/lesson/${open.lessonId}`)} />
-            : <StopNote stop={open} t={t} onClose={() => setOpen(null)} />)}
+            : <StopNote stop={open} t={t} onClose={() => setOpen(null)} onGo={(href) => navigate(href)} />)}
         </SheetContent>
       </Sheet>
     </div>

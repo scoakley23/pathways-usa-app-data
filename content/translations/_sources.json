@@ -397,6 +397,12 @@
    ]
   },
   {
+   "text": "+10 stars + badge",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "1 lesson a day",
    "from": [
     "today-plan"
@@ -406,6 +412,12 @@
    "text": "1 more lesson to reach Speak it!",
    "from": [
     "today-plan"
+   ]
+  },
+  {
+   "text": "1 question to bring back",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -837,6 +849,12 @@
    "text": "A political system that does not allow opposing parties or viewpoints.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "A practice interview with this unit’s questions. It doesn’t block the road.",
+   "from": [
+    "course"
    ]
   },
   {
@@ -1347,6 +1365,12 @@
    ]
   },
   {
+   "text": "Answer out loud, in English",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "Answered the officer’s question",
    "from": [
     "lesson-player"
@@ -1585,14 +1609,22 @@
   {
    "text": "Back to home",
    "from": [
+    "checkpoints",
     "today-plan"
    ]
   },
   {
    "text": "Back to the road",
    "from": [
+    "checkpoints",
     "course",
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Badge earned",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -1767,6 +1799,12 @@
    ]
   },
   {
+   "text": "Bring back the questions that are due.",
+   "from": [
+    "course"
+   ]
+  },
+  {
    "text": "Britain added new taxes, like the Stamp Act on paper and a tax on tea. The colonists had no one to speak for them in Britain's government. They said: “No taxation without representation.”",
    "from": [
     "course-lessons"
@@ -1909,6 +1947,7 @@
   {
    "text": "Check",
    "from": [
+    "checkpoints",
     "lesson-player"
    ]
   },
@@ -1939,6 +1978,7 @@
   {
    "text": "Checking…",
    "from": [
+    "checkpoints",
     "lesson-player",
     "sign-in"
    ]
@@ -1948,6 +1988,12 @@
    "from": [
     "key-words",
     "lessons"
+   ]
+  },
+  {
+   "text": "Chest done!",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -2079,6 +2125,7 @@
   {
    "text": "Civics",
    "from": [
+    "checkpoints",
     "interview-tab"
    ]
   },
@@ -2167,6 +2214,7 @@
   {
    "text": "Close",
    "from": [
+    "checkpoints",
     "sign-in"
    ]
   },
@@ -2425,6 +2473,12 @@
     "getting-started",
     "home",
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Continue the journey",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -2758,6 +2812,12 @@
    "text": "Division of power between the national government and state governments",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "Do it again",
+   "from": [
+    "course"
    ]
   },
   {
@@ -3121,6 +3181,12 @@
    "text": "Every answer comes from USCIS",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "Every answer right. You sound ready!",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -5290,9 +5356,27 @@
    ]
   },
   {
+   "text": "I’ll bring back that question in your review chest.",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "I’ll bring back those questions in your review chest.",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "I’ll use the state you picked in Who Represents Me.",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "I’m ready",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -5769,6 +5853,12 @@
    ]
   },
   {
+   "text": "Listen and write · {n} of {total}",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "Listen to official audio and practice typing exactly what you hear.",
    "from": [
     "home"
@@ -5790,6 +5880,12 @@
    "text": "Listened and learned",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Listening… take your time",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -6542,6 +6638,7 @@
   {
    "text": "Next",
    "from": [
+    "checkpoints",
     "lesson-player"
    ]
   },
@@ -6579,6 +6676,12 @@
    "text": "No",
    "from": [
     "pilot"
+   ]
+  },
+  {
+   "text": "No hints in a checkpoint. You can ask the officer to repeat, just like on the real day.",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -6664,7 +6767,14 @@
   {
    "text": "Not yet",
    "from": [
+    "checkpoints",
     "pilot"
+   ]
+  },
+  {
+   "text": "Not yet. Almost there!",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -6689,6 +6799,12 @@
    "text": "Nothing due today",
    "from": [
     "today-plan"
+   ]
+  },
+  {
+   "text": "Nothing due today. Come back tomorrow.",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -6894,6 +7010,12 @@
    "text": "Open",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "Open this card in the N-400 guide.",
+   "from": [
+    "course"
    ]
   },
   {
@@ -7120,6 +7242,12 @@
    ]
   },
   {
+   "text": "Practice again: it’s in your review chest",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "Practice for the civics test. Filed your N-400 on or after October 20, 2025? You'll take the 2025 test. Filed before that date? You'll take the 2008 test.",
    "from": [
     "home"
@@ -7152,6 +7280,7 @@
   {
    "text": "Practice only: nothing is saved yet.",
    "from": [
+    "checkpoints",
     "lesson-player"
    ]
   },
@@ -7377,6 +7506,12 @@
    ]
   },
   {
+   "text": "Question {n} of {total}",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "Questions about how you got your green card",
    "from": [
     "lawyer-checklist"
@@ -7420,9 +7555,22 @@
    ]
   },
   {
+   "text": "Read 3 sentences out loud and write 3, from this section’s lessons.",
+   "from": [
+    "course"
+   ]
+  },
+  {
    "text": "Read and write",
    "from": [
+    "checkpoints",
     "home"
+   ]
+  },
+  {
+   "text": "Read and write done!",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -7447,6 +7595,12 @@
    "text": "Read it out loud",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Read it out loud · {n} of {total}",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -7500,6 +7654,7 @@
   {
    "text": "Ready",
    "from": [
+    "course",
     "interview-tab"
    ]
   },
@@ -7663,7 +7818,14 @@
   {
    "text": "Review chest",
    "from": [
+    "checkpoints",
     "today-plan"
+   ]
+  },
+  {
+   "text": "Review chest · {n} of {total}",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -7682,6 +7844,7 @@
   {
    "text": "Right",
    "from": [
+    "checkpoints",
     "words"
    ]
   },
@@ -7844,6 +8007,12 @@
    ]
   },
   {
+   "text": "Section {n} checkpoint",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "Section {n}: {title}",
    "from": [
     "course"
@@ -7853,6 +8022,12 @@
    "text": "See USCIS processing times (optional)",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "See my journey",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -8236,6 +8411,12 @@
    ]
   },
   {
+   "text": "Speak it!",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "Speak it! checkpoint",
    "from": [
     "course"
@@ -8245,6 +8426,12 @@
    "text": "Speak it! is next.",
    "from": [
     "today-plan"
+   ]
+  },
+  {
+   "text": "Speak it! · Question {n} of {total}",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -8262,6 +8449,7 @@
   {
    "text": "Start",
    "from": [
+    "course",
     "home",
     "today"
    ]
@@ -9741,6 +9929,12 @@
    ]
   },
   {
+   "text": "The officer asks",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "The officer would accept that.",
    "from": [
     "lesson-player"
@@ -9846,6 +10040,12 @@
    "text": "The rule of law means everyone must follow the law. Leaders and the government must obey the law too.",
    "from": [
     "course-lessons"
+   ]
+  },
+  {
+   "text": "The section’s questions, out loud, with no hints. Pass to earn a badge and 10 stars.",
+   "from": [
+    "course"
    ]
   },
   {
@@ -10503,9 +10703,21 @@
    ]
   },
   {
+   "text": "This stop isn’t ready yet.",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "This stop opens in a later update. You can go on to the next stop.",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "This time, no hints and no help. Answer out loud, like the real interview.",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -10802,7 +11014,14 @@
   {
    "text": "Try again",
    "from": [
+    "checkpoints",
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Try the practice interview",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -10839,12 +11058,14 @@
    "text": "Type instead",
    "from": [
     "ask-screen",
+    "checkpoints",
     "lesson-player"
    ]
   },
   {
    "text": "Type your answer in English",
    "from": [
+    "checkpoints",
     "lesson-player"
    ]
   },
@@ -10981,6 +11202,18 @@
    ]
   },
   {
+   "text": "Unit {n} complete",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "Unit {n} practice interview",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "Unit {unit} · Section {section} · Lesson {lesson}",
    "from": [
     "lesson-player"
@@ -10990,6 +11223,18 @@
    "text": "United States",
    "from": [
     "words"
+   ]
+  },
+  {
+   "text": "Unlocked:",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "Unlocked: try it any time",
+   "from": [
+    "course"
    ]
   },
   {
@@ -11257,6 +11502,12 @@
    "text": "We can't give legal advice or answer questions about your own case.",
    "from": [
     "talk"
+   ]
+  },
+  {
+   "text": "We can’t check this one yet",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -12734,6 +12985,12 @@
    ]
   },
   {
+   "text": "You need {need} of {total} to pass. Try it again when you’re ready.",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "You owe child support",
    "from": [
     "lawyer-checklist"
@@ -12998,6 +13255,12 @@
    "text": "You’ll be able to answer:",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "You’ll be asked",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -13925,6 +14188,12 @@
    ]
   },
   {
+   "text": "lessons",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "life / liberty / pursuit of happiness",
    "from": [
     "civics-questions"
@@ -14231,6 +14500,12 @@
    ]
   },
   {
+   "text": "sentences read and written",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "serve on a jury / vote in a federal election",
    "from": [
     "civics-questions"
@@ -14342,6 +14617,12 @@
    "text": "tax return",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "test questions",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -14909,6 +15190,18 @@
    ]
   },
   {
+   "text": "{correct} of {total}",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "{correct} of {total} · +10 stars",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "{done} of {goal} done",
    "from": [
     "lesson-player"
@@ -14930,6 +15223,12 @@
    "text": "{name} is here with you.",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "{need} of {n} to pass",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -14964,6 +15263,12 @@
    ]
   },
   {
+   "text": "{n} questions to bring back",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "{n} questions to keep fresh",
    "from": [
     "today-plan"
@@ -14979,6 +15284,12 @@
    "text": "{n} sections",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "{n} sentences read and written.",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -15014,9 +15325,39 @@
    ]
   },
   {
+   "text": "{read} to read · {write} to write",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "{right} of {total} right. Each one moves to its next review day.",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "{section} · 1 question",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "{section} · lesson {n} of {of}",
    "from": [
     "today-plan"
+   ]
+  },
+  {
+   "text": "{section} · {n} questions",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "{section}, out loud!",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -15026,8 +15367,15 @@
    ]
   },
   {
+   "text": "{unit}: done!",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "“Could you repeat that, please?”",
    "from": [
+    "checkpoints",
     "lesson-player"
    ]
   },

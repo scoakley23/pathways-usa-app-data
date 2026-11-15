@@ -19,9 +19,10 @@ import { TryAgain, acceptedAnswers, gradeCivics } from '@/components/lesson/less
 // `kind`: 'teach' (Amio curious, chips: Hear it again, Hint, In my language)
 // or 'officer' (the drawn AI officer, English only, "Could you repeat that,
 // please?"). onDone(result): 'right' | 'skipped' | 'unchecked';
-// onMiss(questionId) once per wrong answer (for review).
+// onMiss(questionId) once per wrong answer (for review). `showStar` = false
+// hides "+1 star" (the review chest, Prompt 8, gives no stars).
 
-export default function QuestionStep({ kind, question, hint, language, t, savesReview, onDone, onMiss }) {
+export default function QuestionStep({ kind, question, hint, language, t, savesReview, onDone, onMiss, showStar = true }) {
   const { location } = useLearnerLocation();
   const [mode, setMode] = useState('ask'); // ask | checking | right | wrong | unchecked
   const [typing, setTyping] = useState(false);
@@ -160,7 +161,7 @@ export default function QuestionStep({ kind, question, hint, language, t, savesR
       </div>
       {mode === 'right' && (
         <SuccessBanner title={kind === 'teach' ? t('great_teaching') : t('officer_right')} actionLabel={t('next')} onAction={() => onDone('right')} className="sticky bottom-0">
-          <span lang="en" dir="ltr">“{said}”</span> <strong>{t('plus_star')}</strong>
+          <span lang="en" dir="ltr">“{said}”</span>{showStar && <> <strong>{t('plus_star')}</strong></>}
         </SuccessBanner>
       )}
     </div>

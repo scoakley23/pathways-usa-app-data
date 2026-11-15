@@ -31,6 +31,11 @@ import UnitsMapPage from './components/course/UnitsMapPage';
 import LessonPlayer from './components/lesson/LessonPlayer';
 import PlanPage from './components/today/PlanPage';
 import DoneTodayPage from './components/today/DoneTodayPage';
+import SpeakItPage from './components/checkpoint/SpeakItPage';
+import ReadWritePage from './components/checkpoint/ReadWritePage';
+import UnitDonePage from './components/checkpoint/UnitDonePage';
+import UnitInterviewPage from './components/checkpoint/UnitInterviewPage';
+import ReviewChestPage from './components/checkpoint/ReviewChestPage';
 
 // Lessons and Practice are tabs of Study now; their old addresses redirect.
 const STUDY_REDIRECTS = { Lessons: 'lessons', Practice: 'practice' };
@@ -130,6 +135,33 @@ const AuthenticatedApp = () => {
       <Route path="course/lesson/:lessonId" element={
         <LayoutWrapper currentPageName="CourseLesson">
           <LessonPlayer />
+        </LayoutWrapper>
+      } />
+      {/* Checkpoints (Prompt 8): Speak it!, Read and write, Unit complete,
+          the unit practice interview and the review chest. */}
+      <Route path="course/speak/:sectionId" element={
+        <LayoutWrapper currentPageName="SpeakIt">
+          <SpeakItPage />
+        </LayoutWrapper>
+      } />
+      <Route path="course/readwrite/:stopId" element={
+        <LayoutWrapper currentPageName="ReadWrite">
+          <ReadWritePage />
+        </LayoutWrapper>
+      } />
+      <Route path="course/unit/:unitId/done" element={
+        <LayoutWrapper currentPageName="UnitDone">
+          <UnitDonePage />
+        </LayoutWrapper>
+      } />
+      <Route path="course/unit/:unitId/interview" element={
+        <LayoutWrapper currentPageName="UnitInterview">
+          <UnitInterviewPage />
+        </LayoutWrapper>
+      } />
+      <Route path="review-chest" element={
+        <LayoutWrapper currentPageName="ReviewChest">
+          <ReviewChestPage />
         </LayoutWrapper>
       } />
       {/* Your plan and Done for today (Prompt 7). */}

@@ -67,6 +67,7 @@ function stateWords(stop, t) {
   if (stop.state === 'done') return t('done');
   if (stop.state === 'current') return t('you_are_here');
   if (stop.state === 'soon') return t('coming_soon');
+  if (stop.state === 'open') return t('ready_stop');
   return t('locked_title');
 }
 

@@ -20,6 +20,9 @@ import { Toaster } from "sonner";
 // Lesson screens are "focus mode": they have a pinned Continue button, so the
 // tab bar stays off them. The tutor also reads each
 // message aloud on these screens (onboarding, quick check, lessons).
+// Full-screen course screens: lessons, Speak it!, Read and write, Unit
+// complete, the unit practice interview and the review chest.
+const CHECKPOINT_SCREEN = /^\/(course\/(lesson|speak|readwrite)\/|course\/unit\/[^/]+\/(done|interview)\/?$|review-chest\/?$)/i;
 const FOCUS_ROUTES = ['/quick-check', '/tutor-demo', '/learn', '/review', '/n400-coach'];
 
 // Pages drawn as split screens (a navy top and a cream sheet, full width):
@@ -85,8 +88,9 @@ export default function Layout({ children }) {
   // A practice run (/study?tab=practice&mode=…) is full screen: no header,
   // tab bar or footer; the run has its own close button.
   const practiceMode = ['/practice', '/study'].includes(location.pathname.toLowerCase()) && new URLSearchParams(location.search).has('mode');
-  // A course lesson (/course/lesson/:id, Prompt 6) is full screen the same way.
-  const practiceRun = practiceMode || /^\/course\/lesson\//i.test(location.pathname);
+  // A course lesson (/course/lesson/:id, Prompt 6) and the checkpoint screens
+  // (Prompt 8) are full screen the same way.
+  const practiceRun = practiceMode || CHECKPOINT_SCREEN.test(location.pathname);
   const readAloud = FOCUS_ROUTES.includes(location.pathname);
   const focusMode = readAloud || practiceRun;
   const showTabs = !focusMode;
@@ -96,7 +100,8 @@ export default function Layout({ children }) {
   // the Resource Hub.
   const splitPage = location.pathname === '/'
     || SPLIT_ROUTES.includes(location.pathname.toLowerCase())
-    || /^\/course(\/|$)/i.test(location.pathname);
+    || /^\/course(\/|$)/i.test(location.pathname)
+    || location.pathname === '/review-chest';
   const activeTab = tabFor(location.pathname);
 
   return (
