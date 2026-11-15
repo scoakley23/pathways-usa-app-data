@@ -44,11 +44,12 @@ describe('who sees draft lessons', () => {
     expect(admin[1].sections[0].stops.map((s) => s.id)).toEqual(['b1', 'ub-pi']);
   });
 
-  it('every lesson in the real course is a draft today, so learners see none', () => {
-    const course = visibleCourse(UNITS, { showDrafts: false });
-    expect(course.flatMap((u) => u.sections.flatMap((s) => s.lessons))).toEqual([]);
-    const admin = visibleCourse(UNITS, { showDrafts: true });
-    expect(admin.flatMap((u) => u.sections.flatMap((s) => s.lessons)).length).toBeGreaterThan(50);
+  it('in the real course, learners see only reviewed lessons and admins see every lesson', () => {
+    const all = UNITS.flatMap((u) => u.sections.flatMap((s) => s.lessons || []));
+    const learner = visibleCourse(UNITS, { showDrafts: false }).flatMap((u) => u.sections.flatMap((s) => s.lessons));
+    expect(learner.map((l) => l.id)).toEqual(all.filter((l) => l.status === 'reviewed').map((l) => l.id));
+    const admin = visibleCourse(UNITS, { showDrafts: true }).flatMap((u) => u.sections.flatMap((s) => s.lessons));
+    expect(admin).toHaveLength(all.length);
   });
 });
 
