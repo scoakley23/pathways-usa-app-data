@@ -51,16 +51,20 @@ const isDone = (stop, progress, checkpoints) => {
 
 /**
  * Every visible stop in course order with its state: done | current |
- * open | locked | soon. `progress`: { lessonId: { completed, stars, steps_done } };
+ * open | locked | soon. `startUnitId` (Prompt 9, from the quick check): stops
+ * in units before it are "open" (playable, never blocking). `progress`: { lessonId: { completed, stars, steps_done } };
  * `checkpoints`: section ids with a passed Speak it!.
  */
-export function journeyStops(course, { progress = {}, checkpoints = new Set() } = {}) {
+export function journeyStops(course, { progress = {}, checkpoints = new Set(), startUnitId = null } = {}) {
   const out = [];
   let current = null;
+  let beforeStart = !!startUnitId && course.some((u) => u.id === startUnitId);
   for (const u of course) for (const s of u.sections) for (const stop of s.stops) {
+    if (u.id === startUnitId) beforeStart = false;
     const item = { ...stop, unitId: u.id, sectionId: s.id, sectionKey: s.id };
     const done = isDone(item, progress, checkpoints);
     if (done) item.state = 'done';
+    else if (beforeStart && PLAYABLE_STOPS.includes(item.type)) item.state = 'open';
     else if (OPTIONAL_STOPS.includes(item.type)) item.state = current ? 'locked' : 'open';
     else if (current) item.state = 'locked';
     else if (!PLAYABLE_STOPS.includes(item.type)) item.state = 'soon';

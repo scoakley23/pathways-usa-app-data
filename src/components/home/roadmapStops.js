@@ -1,5 +1,5 @@
 // The five stops on the road. `href` is where each opens (Today's road);
-// `path`/`query` are kept for the signed-out overview (RoadmapPath).
+// `path`/`query` were for the old signed-out overview (removed in Prompt 9).
 export const ROADMAP_STOPS = [
   {
     id: 1,

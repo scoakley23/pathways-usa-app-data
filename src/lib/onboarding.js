@@ -36,14 +36,13 @@ export function saveFiledAnswer(answer) {
   return version || null;
 }
 
-// The steps, in order, given the answers so far. The "which test" question
-// only makes sense once they have applied; the interview month only once an
-// interview is scheduled; the program question only when there are partner
-// programs to pick from.
+// The steps, in order, given the answers so far (Prompt 9: Welcome comes
+// before sign-in; the interview month is asked on Your plan after the quick
+// check). The "which test" question only makes sense once they have applied;
+// the program question only when there are partner programs to pick from.
 export function onboardingSteps({ stage, hasPrograms = false } = {}) {
-  const steps = ['start', 'language', 'stage'];
+  const steps = ['language', 'meet', 'stage'];
   if (stage === 'applied' || stage === 'interview') steps.push('filed');
-  if (stage === 'interview') steps.push('interview');
   if (hasPrograms) steps.push('program');
   steps.push('settings');
   return steps;
