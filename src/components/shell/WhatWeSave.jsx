@@ -33,7 +33,7 @@ export default function WhatWeSave({ t = (k) => WHAT_WE_SAVE_LINES[k] }) {
           {t('full_list')}
         </summary>
         <div className="mt-2 space-y-4">
-          <Group title={t('account_title')} items={list('account', 9)} />
+          <Group title={t('account_title')} items={list('account', 10)} />
           <Group title={t('device_title')} items={list('device', 1)} />
           <Group title={t('never_title')} items={list('never', 1)} />
         </div>

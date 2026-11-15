@@ -205,12 +205,19 @@ describe('partner programs', () => {
 
   it('the summary counts confirmed learners exactly, and shares only what the learner chose', async () => {
     await as(db, ana, (q) => q("update public.profiles set skill_levels = '{\"civics\":\"strong\",\"reading\":\"getting_there\"}'"));
+    // Prompt 11: a Speak it! passed twice counts once (+10 stars); a Read and
+    // write stop (stop id with -rw) counts as a checkpoint but adds no stars.
+    for (const row of [
+      { section_id: 'u2-s2', correct: 5, total: 6, passed_at: '2026-11-13T12:00:00Z' },
+      { section_id: 'u2-s2', correct: 6, total: 6, passed_at: '2026-11-14T12:00:00Z' },
+      { section_id: 'u2-s2-rw', correct: 4, total: 6, passed_at: '2026-11-14T12:00:00Z' },
+    ]) await as(db, ana, (q) => insert(q, 'checkpoint_results', row));
     const [{ program_summary: s }] = await as(db, staff, (q) => q("select public.program_summary('FAKE-CLASS', '2026-11-14')"));
     expect(s.totals).toMatchObject({
-      learners: 1, activeWeek: 1, quickCheckDone: 1, lessonsCompleted: 1, stars: 3, n400SectionsRead: 1,
+      learners: 1, activeWeek: 1, quickCheckDone: 1, lessonsCompleted: 1, stars: 13, checkpointsPassed: 2, n400SectionsRead: 1,
     });
     expect(s.totals.levels.civics.strong).toBe(1);
-    expect(s.learners).toEqual([expect.objectContaining({ name: 'Ana', lessonsCompleted: 1, stars: 3, n400SectionsRead: 1 })]);
+    expect(s.learners).toEqual([expect.objectContaining({ name: 'Ana', lessonsCompleted: 1, stars: 13, checkpointsPassed: 2, n400SectionsRead: 1 })]);
     const text = JSON.stringify(s);
     for (const secret of ['Fake note', 'Fake question', 'signup', 'basics', 'pilot']) expect(text).not.toContain(secret);
     await fails(as(db, ana, (q) => q("select public.program_summary('FAKE-CLASS')")));

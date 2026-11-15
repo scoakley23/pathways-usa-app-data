@@ -28,6 +28,9 @@ export function ProgramTotals({ totals }) {
         <Stat value={totals.activeMonth} label="Studied this month" note="In the last 30 days" />
         <Stat value={totals.quickCheckDone} label="Finished the quick check" />
         <Stat value={totals.lessonsCompleted} label="Lessons finished" note={`By ${learnersText(totals.learnersWithLesson)}`} />
+        {/* Course counts (Prompt 11): only where the app saves the course (Supabase). */}
+        {totals.stars != null && <Stat value={totals.stars} label="Stars earned" note="From lessons and Speak it! checkpoints" />}
+        {totals.checkpointsPassed != null && <Stat value={totals.checkpointsPassed} label="Checkpoints passed" note="Speak it! and Read and write" />}
         <Stat value={totals.n400SectionsRead} label="N-400 sections read" note={`By ${learnersText(totals.learnersWithN400)}`} />
       </div>
 
@@ -79,7 +82,14 @@ export function SharedLearners({ learners }) {
                       </li>
                     ))}
                   </ul>
-                  <p className="text-sm text-pw-muted">{l.lessonsCompleted} {l.lessonsCompleted === 1 ? 'lesson' : 'lessons'} finished · {l.n400SectionsRead} N-400 {l.n400SectionsRead === 1 ? 'section' : 'sections'} read</p>
+                  <p className="text-sm text-pw-muted">
+                    {[
+                      `${l.lessonsCompleted} ${l.lessonsCompleted === 1 ? 'lesson' : 'lessons'} finished`,
+                      l.stars != null ? `${l.stars} ${l.stars === 1 ? 'star' : 'stars'}` : null,
+                      l.checkpointsPassed != null ? `${l.checkpointsPassed} ${l.checkpointsPassed === 1 ? 'checkpoint' : 'checkpoints'} passed` : null,
+                      `${l.n400SectionsRead} N-400 ${l.n400SectionsRead === 1 ? 'section' : 'sections'} read`,
+                    ].filter(Boolean).join(' · ')}
+                  </p>
                 </li>
               ))}
             </ul>

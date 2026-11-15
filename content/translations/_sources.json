@@ -810,6 +810,12 @@
    ]
   },
   {
+   "text": "A note in the app when today’s lesson is waiting. No time to set, and no phone notifications. Saved on this phone.",
+   "from": [
+    "settings"
+   ]
+  },
+  {
    "text": "A person allowed to be in the United States for a temporary time, for example with a student visa or a work visa.",
    "from": [
     "n400"
@@ -994,6 +1000,12 @@
    "text": "Adams was the second president.",
    "from": [
     "sentences"
+   ]
+  },
+  {
+   "text": "Add",
+   "from": [
+    "my-tutor"
    ]
   },
   {
@@ -1904,6 +1916,7 @@
   {
    "text": "Cancel",
    "from": [
+    "my-tutor",
     "onboarding"
    ]
   },
@@ -1959,6 +1972,7 @@
   {
    "text": "Change",
    "from": [
+    "my-tutor",
     "today"
    ]
   },
@@ -2594,6 +2608,12 @@
    "text": "D-Day in 1944 was the Allied invasion of Normandy, France that turned the tide of WWII",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "Daily reminder",
+   "from": [
+    "settings"
    ]
   },
   {
@@ -3454,6 +3474,12 @@
    "text": "Filed, waiting for my interview",
    "from": [
     "pilot"
+   ]
+  },
+  {
+   "text": "Find my program",
+   "from": [
+    "my-tutor"
    ]
   },
   {
@@ -5527,6 +5553,18 @@
    ]
   },
   {
+   "text": "Join",
+   "from": [
+    "my-tutor"
+   ]
+  },
+  {
+   "text": "Join with a code from your teacher",
+   "from": [
+    "my-tutor"
+   ]
+  },
+  {
    "text": "Judicial Branch",
    "from": [
     "key-words"
@@ -5760,6 +5798,12 @@
    "text": "Learning and practicing how to do something.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "Leave this program",
+   "from": [
+    "my-tutor"
    ]
   },
   {
@@ -6389,6 +6433,12 @@
    "from": [
     "getting-started",
     "pilot"
+   ]
+  },
+  {
+   "text": "My tutor",
+   "from": [
+    "my-tutor"
    ]
   },
   {
@@ -7090,6 +7140,12 @@
    "text": "One Hundred/100",
    "from": [
     "words"
+   ]
+  },
+  {
+   "text": "One for each section you pass out loud, and one for each unit you finish.",
+   "from": [
+    "me"
    ]
   },
   {
@@ -8090,6 +8146,7 @@
   {
    "text": "Save",
    "from": [
+    "my-tutor",
     "pilot",
     "settings"
    ]
@@ -8104,6 +8161,12 @@
    "text": "Save state",
    "from": [
     "pilot"
+   ]
+  },
+  {
+   "text": "Saved.",
+   "from": [
+    "my-tutor"
    ]
   },
   {
@@ -8713,7 +8776,8 @@
   {
    "text": "Share my progress with {program}",
    "from": [
-    "getting-started"
+    "getting-started",
+    "my-tutor"
    ]
   },
   {
@@ -8863,6 +8927,12 @@
    ]
   },
   {
+   "text": "So {program} knows it’s you. If you leave it blank, they see your email.",
+   "from": [
+    "my-tutor"
+   ]
+  },
+  {
    "text": "Social Contract",
    "from": [
     "key-words",
@@ -8909,6 +8979,7 @@
    "text": "Something went wrong. Please try again.",
    "from": [
     "getting-started",
+    "my-tutor",
     "pilot",
     "sign-in"
    ]
@@ -10871,6 +10942,12 @@
    ]
   },
   {
+   "text": "They see your name (or your email) to confirm it’s you, and totals for all their learners. Never your answers or your questions to Amio.",
+   "from": [
+    "my-tutor"
+   ]
+  },
+  {
    "text": "They took over planes. Two crashed into the World Trade Center in New York City, one into the Pentagon in Virginia, and one in a field in Pennsylvania.",
    "from": [
     "course-lessons"
@@ -10889,7 +10966,13 @@
    ]
   },
   {
-   "text": "They would see your quick check levels, the lessons you finished and the N-400 sections you read. You can change this on Me.",
+   "text": "They would see your quick check levels, the lessons you finished, your stars, the checkpoints you passed and the N-400 sections you read.",
+   "from": [
+    "my-tutor"
+   ]
+  },
+  {
+   "text": "They would see your quick check levels, the lessons you finished, your stars, the checkpoints you passed and the N-400 sections you read. You can change this on Me.",
    "from": [
     "getting-started"
    ]
@@ -11792,7 +11875,8 @@
   {
    "text": "Unit {n}",
    "from": [
-    "course"
+    "course",
+    "me"
    ]
   },
   {
@@ -11977,6 +12061,12 @@
    ]
   },
   {
+   "text": "Waiting for {program} to confirm it’s you.",
+   "from": [
+    "my-tutor"
+   ]
+  },
+  {
    "text": "Walk into your interview ready.",
    "from": [
     "home"
@@ -12126,6 +12216,12 @@
    "text": "We couldn't reach Pathways. Check your internet and try again.",
    "from": [
     "sign-in"
+   ]
+  },
+  {
+   "text": "We couldn’t find that code. Check it with your teacher.",
+   "from": [
+    "my-tutor"
    ]
   },
   {
@@ -13713,6 +13809,12 @@
    ]
   },
   {
+   "text": "Your course: the steps and stars of each lesson, the checkpoints you passed (how many right, never what you said), when each test question comes back in your review chest, how many lessons a day you picked, and your Write it level.",
+   "from": [
+    "settings"
+   ]
+  },
+  {
    "text": "Your date stays on this phone. We don't save it.",
    "from": [
     "today"
@@ -13750,7 +13852,7 @@
    ]
   },
   {
-   "text": "Your interview month, your plan and checkmarks, your language, text size, sound and voice settings, and saved translations.",
+   "text": "Your interview month, your plan and checkmarks, your language, text size, sound and voice settings, the daily reminder switch, and saved translations.",
    "from": [
     "settings"
    ]
@@ -13774,7 +13876,7 @@
    ]
   },
   {
-   "text": "Your lesson progress, badges and practice scores.",
+   "text": "Your lesson progress, stars and practice scores.",
    "from": [
     "settings"
    ]
@@ -13794,7 +13896,8 @@
   {
    "text": "Your name (optional)",
    "from": [
-    "getting-started"
+    "getting-started",
+    "my-tutor"
    ]
   },
   {
@@ -13831,6 +13934,7 @@
   {
    "text": "Your program’s code",
    "from": [
+    "my-tutor",
     "onboarding"
    ]
   },
@@ -14448,7 +14552,7 @@
    ]
   },
   {
-   "text": "civics answers ready",
+   "text": "civics answers mastered",
    "from": [
     "me"
    ]
@@ -14534,6 +14638,7 @@
   {
    "text": "day in a row",
    "from": [
+    "me",
     "today-plan"
    ]
   },
@@ -14546,13 +14651,8 @@
   {
    "text": "days in a row",
    "from": [
+    "me",
     "today-plan"
-   ]
-  },
-  {
-   "text": "days practiced this week",
-   "from": [
-    "me"
    ]
   },
   {
@@ -14631,6 +14731,12 @@
    "text": "each branch can limit the power of the others",
    "from": [
     "course-lessons"
+   ]
+  },
+  {
+   "text": "earned",
+   "from": [
+    "me"
    ]
   },
   {
@@ -14943,6 +15049,12 @@
    "text": "nonresident",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "not earned yet",
+   "from": [
+    "me"
    ]
   },
   {
@@ -15996,6 +16108,18 @@
    "text": "{n} test questions",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "{program} confirmed you.",
+   "from": [
+    "my-tutor"
+   ]
+  },
+  {
+   "text": "{program} didn’t find you on their list. If that’s a mistake, add the code again or talk to them.",
+   "from": [
+    "my-tutor"
    ]
   },
   {
