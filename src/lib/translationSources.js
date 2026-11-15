@@ -37,6 +37,7 @@ import writingSentences from '../../content/base44-export/writing-sentences.json
 import vocabularyWords from '../../content/base44-export/vocabulary-words.json';
 import lessons from '../../content/base44-export/lessons.json';
 import lessonFlashcards from '../../content/base44-export/lesson-flashcards.json';
+import askAnswers from '../../content/ask/answers.json';
 
 const TUTOR_LINES = fixedTutorLines();
 
@@ -91,6 +92,9 @@ export function contentTexts() {
     ])))],
     ['lawyer-checklist', texts(LAWYER_CHECKLIST_ITEMS.flatMap((i) => [i.text, i.explanation, sectionTitle(i.guideSectionId)]))],
     ['privacy-note', texts([PRIVACY_NOTE.en, PRIVACY_SHORT.en])],
+    // Ask Amio's pre-written answers (content/ask/answers.json; drafts too, so
+    // they are ready when reviewed). The lesson questions stay in English.
+    ['ask-answers', texts(askAnswers.answers.map((x) => x.answer))],
     // The course (Prompt 6): what the lesson player translates. Official
     // questions, answers and the Read it / Write it sentences stay English.
     ['course-lessons', texts(UNITS.flatMap((u) => u.sections.flatMap((sec) => (sec.lessons || []).flatMap((l) => [
