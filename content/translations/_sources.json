@@ -1081,6 +1081,12 @@
    ]
   },
   {
+   "text": "Almost there. Say \"{word}\" slowly and clearly.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
    "text": "Also today",
    "from": [
     "today"
@@ -5776,6 +5782,12 @@
    ]
   },
   {
+   "text": "Look at the words we didn't hear: {words}. Say each one slowly, then read the sentence again.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
    "text": "Los Angeles, Seattle, and San Francisco are on the Pacific Coast",
    "from": [
     "key-words"
@@ -7311,6 +7323,12 @@
    ]
   },
   {
+   "text": "Put your tongue between your teeth for \"th\": \"the\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
    "text": "Questions about how you got your green card",
    "from": [
     "lawyer-checklist"
@@ -7387,6 +7405,12 @@
    "text": "Read official sentences aloud and get instant feedback on pronunciation.",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "Read only the words in the sentence, one at a time.",
+   "from": [
+    "reading-tips"
    ]
   },
   {
@@ -7689,7 +7713,8 @@
    "text": "Said in your language",
    "from": [
     "ask-screen",
-    "lesson-player"
+    "lesson-player",
+    "reading-tips"
    ]
   },
   {
@@ -7730,6 +7755,378 @@
    ]
   },
   {
+   "text": "Say \"DOL-er\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"FAH-ther\". Put your tongue between your teeth for \"th\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"JORJ\". It is one syllable.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"KONG-gress\". Put the stress on the first part.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"KUL-erz\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"KUN-tree\". The \"ou\" sounds like \"u\" in \"up\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"LAY-bor\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"LINK-un\". The second \"l\" is quiet.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"MEN-ee\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"PEE-pul\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"SEK-und\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"SIT-ee\". It starts with an \"s\" sound.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"bill\" with a short \"i\", like \"fill\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"can\" with a short \"a\", like \"man\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"day\" like \"say\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"duz\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"flag\" with a short \"a\", like \"bag\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"furst\" and finish the \"st\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"hav\". The \"e\" is quiet.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"haz\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"hoo\". The \"w\" is quiet.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"house\" with the \"ow\" sound, like \"how\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"how\" with the \"ow\" sound, like \"now\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"kum\". The \"o\" sounds like \"u\" in \"up\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"livd\" with a short \"i\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"livz\" with a short \"i\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"meet\" with a long \"ee\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"most\" and finish the \"st\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"name\" like \"same\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"north\". Put your tongue between your teeth for \"th\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"our\" like \"hour\". It is one syllable.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"pay\" like \"day\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"rite\". The \"gh\" is quiet.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"south\". Put your tongue between your teeth for \"th\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"state\" and finish the \"t\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"uv\". It sounds like \"v\" at the end.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"vote\". Touch your top teeth to your lip for \"v\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"wahnt\" and finish the \"t\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"wair\". The \"h\" is quiet.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"wen\". The \"h\" is quiet.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"wite\". The \"h\" is quiet.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"wun\", like \"won\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"wut\". The \"h\" is quiet.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"wy\", like the letter \"Y\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say each letter: \"U. S.\"",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say it in four parts: a-MER-i-ca.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say it in four parts: a-MER-i-can.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say it in four parts: in-de-PEN-dence.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say it in four parts: me-MOR-ee-al.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say it in three parts and end with \"s\": PREZ-i-dents.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say it in three parts: A-bra-ham.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say it in three parts: CAP-i-tal.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say it in three parts: CIT-i-zen. It starts with an \"s\" sound.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say it in three parts: GUV-ern-ment.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say it in three parts: PREZ-i-dent.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say it in three parts: SEN-a-tors.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say it in three parts: WASH-ing-ton.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say it in three parts: co-LUM-bus.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say it in three parts: thanks-GIV-ing. Put your tongue between your teeth for \"th\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say it in three parts: you-NI-ted.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say it in two parts and finish the \"cts\": e-LECTS.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say it in two parts: LARJ-est.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
    "text": "Say it like this",
    "from": [
     "lesson-player"
@@ -7739,6 +8136,18 @@
    "text": "Say it like this: ee PLOOR-ih-bus OO-num.",
    "from": [
     "course-lessons"
+   ]
+  },
+  {
+   "text": "Say the \"ts\" at the end: \"rights\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say the \"ts\" at the end: \"states\".",
+   "from": [
+    "reading-tips"
    ]
   },
   {
@@ -10245,6 +10654,12 @@
    ]
   },
   {
+   "text": "Tip:",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
    "text": "Tip: end a sentence with a period.",
    "from": [
     "lesson-player"
@@ -10936,9 +11351,21 @@
    ]
   },
   {
+   "text": "We couldn't detect any speech. Make sure your microphone is working and speak clearly into it.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
    "text": "We couldn't reach Pathways. Check your internet and try again.",
    "from": [
     "sign-in"
+   ]
+  },
+  {
+   "text": "We didn't hear the words of this sentence. Read it slowly, one word at a time.",
+   "from": [
+    "reading-tips"
    ]
   },
   {
@@ -12419,6 +12846,12 @@
    "text": "You read",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "You read every word. Keep a steady, natural pace.",
+   "from": [
+    "reading-tips"
    ]
   },
   {

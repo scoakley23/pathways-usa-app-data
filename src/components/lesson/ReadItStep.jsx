@@ -5,14 +5,16 @@ import { SuccessBanner } from '@/components/pathways/ResultBanner';
 import { Button } from '@/components/pathways/ui';
 import useSpeechCapture from '@/components/persona/useSpeechCapture';
 import { readingWords } from '@/lib/lessonPlayer';
-import { readingTip } from '@/lib/readingTips';
+import { readingTipParts } from '@/lib/readingTips';
+import useReadingTip from '@/components/practice/useReadingTip';
 import { wordDiff } from '@/components/utils/wordDiff';
 import { TryAgain } from '@/components/lesson/lessonParts';
 
 // Step 3 · Read it (frame R32Read): the learner reads the sentence out loud;
 // words turn green as they are read clearly (the existing word matching on
 // the browser's live transcript; pass at the existing 70%). The tip after a
-// miss is chosen on the device (readingTip). Nothing is recorded or saved.
+// miss is chosen on the device (readingTipParts) and shown in the learner's
+// language from the translation pack (useReadingTip). Nothing is recorded or saved.
 
 export default function ReadItStep({ lesson, t, onDone }) {
   const sentence = lesson.steps.readIt.sentence;
@@ -28,6 +30,8 @@ export default function ReadItStep({ lesson, t, onDone }) {
   };
   const speech = useSpeechCapture(finish);
   const live = readingWords(sentence, mode === 'ask' ? speech.transcript : heard);
+  // The tip after a miss, in the learner's language when the pack has it.
+  const tip = useReadingTip(mode === 'wrong' && heard ? readingTipParts(wordDiff(sentence, heard)) : null);
 
   if (mode === 'wrong') {
     return (
@@ -38,7 +42,7 @@ export default function ReadItStep({ lesson, t, onDone }) {
         saidLabel={t('you_read')}
         said={heard}
         accepted={[sentence]}
-        amioLine={heard ? readingTip(wordDiff(sentence, heard)) : t('amio_kind_read')}
+        amioLine={heard ? (tip.mine || tip.en) : t('amio_kind_read')}
         sayLabel={t('the_sentence')}
         sayText={sentence}
         savesReview={false}
