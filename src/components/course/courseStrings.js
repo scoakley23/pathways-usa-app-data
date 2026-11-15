@@ -35,8 +35,6 @@ export const COURSE_LINES = {
   oath_day: 'Oath Day',
   oath_sub: 'The ceremony · you made it',
   back: 'Back',
-  lesson_soon_title: 'Lessons open in the next update',
-  lesson_soon_body: 'The 5-step lesson player is on its way. Your place on the road is saved.',
   back_to_road: 'Back to the road',
   stars_n: '{n} stars',
   done: 'Done',

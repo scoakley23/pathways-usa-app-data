@@ -84,7 +84,9 @@ export default function Layout({ children }) {
 
   // A practice run (/study?tab=practice&mode=…) is full screen: no header,
   // tab bar or footer; the run has its own close button.
-  const practiceRun = ['/practice', '/study'].includes(location.pathname.toLowerCase()) && new URLSearchParams(location.search).has('mode');
+  const practiceMode = ['/practice', '/study'].includes(location.pathname.toLowerCase()) && new URLSearchParams(location.search).has('mode');
+  // A course lesson (/course/lesson/:id, Prompt 6) is full screen the same way.
+  const practiceRun = practiceMode || /^\/course\/lesson\//i.test(location.pathname);
   const readAloud = FOCUS_ROUTES.includes(location.pathname);
   const focusMode = readAloud || practiceRun;
   const showTabs = !focusMode;

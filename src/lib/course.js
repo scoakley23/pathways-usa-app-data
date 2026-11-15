@@ -29,6 +29,12 @@ export function questionText(id) {
   return QUESTION_TEXT[id] || null;
 }
 
+// The full question { id, question, answer } for grading (official answers).
+const QUESTION_RECORD = Object.fromEntries(exported2025.map((q) => [q.id, { id: q.id, question: q.question, answer: q.answer, category: q.category }]));
+export function questionRecord(id) {
+  return QUESTION_RECORD[id] || null;
+}
+
 export function showDraftLessons(env = import.meta.env) {
   return !!env?.DEV && env?.VITE_SHOW_DRAFT_LESSONS === 'true';
 }

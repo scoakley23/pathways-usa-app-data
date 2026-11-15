@@ -28,7 +28,7 @@ import AskAmio from './components/ai/StudyBuddy';
 import CoursePage from './components/course/CoursePage';
 import UnitGuidePage from './components/course/UnitGuidePage';
 import UnitsMapPage from './components/course/UnitsMapPage';
-import LessonSoonPage from './components/course/LessonSoonPage';
+import LessonPlayer from './components/lesson/LessonPlayer';
 
 // Lessons and Practice are tabs of Study now; their old addresses redirect.
 const STUDY_REDIRECTS = { Lessons: 'lessons', Practice: 'practice' };
@@ -109,7 +109,7 @@ const AuthenticatedApp = () => {
         </LayoutWrapper>
       } />
       {/* The Course tab (Prompt 5): the journey, the unit guide, all units,
-          and Start on a lesson until the lesson player (Prompt 6). */}
+          and the 5-step lesson player (Prompt 6). */}
       <Route path="course" element={
         <LayoutWrapper currentPageName="Course">
           <CoursePage />
@@ -127,7 +127,7 @@ const AuthenticatedApp = () => {
       } />
       <Route path="course/lesson/:lessonId" element={
         <LayoutWrapper currentPageName="CourseLesson">
-          <LessonSoonPage />
+          <LessonPlayer />
         </LayoutWrapper>
       } />
       <Route path="study" element={
