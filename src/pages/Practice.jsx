@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { progress as progressApi } from '@/api/progress';
+import { review } from '@/api/review';
+import { pickForPractice } from '@/lib/practicePicking';
 import { content as contentApi } from '@/api/content';
 import { auth } from '@/api/auth';
 import { Button } from "@/components/ui/button";
@@ -203,6 +205,13 @@ export default function Practice() {
     
     try {
       const progress = await progressApi.list({ contentType: type });
+
+      // Supabase (the switch on): Prompt 4's one review schedule; the old
+      // review fields are gone (src/lib/practicePicking.js).
+      if (review.usesBoxes) {
+        const reviewItems = type === 'civics_question' ? await review.items() : [];
+        return pickForPractice(items, progress, reviewItems, { civics: type === 'civics_question' });
+      }
       
       const progressMap = new Map(progress.map(p => [p.content_id, p]));
       
@@ -395,6 +404,8 @@ export default function Practice() {
 
           // Update or Create
           await progressApi.save(found, progressData);
+          // Supabase: a civics answer also moves the question's review box.
+          if (mode === 'civics') await review.afterPractice(currentItem.id, isSuccess);
 
           // Gamification
           if (isSuccess) {

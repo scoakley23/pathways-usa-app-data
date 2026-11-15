@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Check, Loader2, RotateCcw, CalendarCheck } from 'lucide-react';
 import { toast } from 'sonner';
-import { progress as progressApi } from '@/api/progress';
+import { review } from '@/api/review';
 import { content } from '@/api/content';
 import { auth } from '@/api/auth';
 import TopicArt, { TOPIC_ART } from '@/components/art/TopicArt';
@@ -16,7 +16,6 @@ import { Eyebrow, PrimaryButton, RaisedCard, Tag } from '@/components/pathways/u
 import useAppLanguage from '@/hooks/useAppLanguage';
 import { splitOfficialAnswers } from '@/lib/practiceChecks';
 import { officeholderAnswerFor } from '@/lib/officeholderQuestions';
-import { dueForReview, nextReviewDate, nextSchedule } from '@/lib/spacedReview';
 import { awardBadges } from '@/lib/awardBadges';
 
 const linkClass = 'min-h-[52px] w-full rounded-2xl font-bold text-lg inline-flex items-center justify-center px-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2';
@@ -64,7 +63,7 @@ export default function ReviewCivics() {
   const { location: learnerLocation } = useLearnerLocation();
   const [language] = useAppLanguage();
   const [user, setUser] = useState(undefined);
-  const [due, setDue] = useState(null); // [{ row, question }]
+  const [due, setDue] = useState(null); // [{ entry, question }]
   const [nextDate, setNextDate] = useState(null);
   const [stage, setStage] = useState('intro'); // intro | lesson | done
   const [results, setResults] = useState([]);
@@ -78,14 +77,13 @@ export default function ReviewCivics() {
     if (!user) return;
     setDue(null);
     try {
-      const [rows, questions] = await Promise.all([
-        progressApi.list({ contentType: 'civics_question', limit: 1000 }),
-        content.civicsQuestions({ limit: 1000 }),
-      ]);
+      // src/api/review.js: Base44's old schedule or Supabase's review_items.
+      const questions = await content.civicsQuestions({ limit: 1000 });
       const byId = new Map(questions.filter((q) => q.answer).map((q) => [q.id, q]));
-      const known = rows.filter((r) => byId.has(r.content_id));
-      setDue(dueForReview(known).map((row) => ({ row, question: byId.get(row.content_id) })));
-      setNextDate(nextReviewDate(known));
+      const knownIds = new Set(byId.keys());
+      const [entries, next] = await Promise.all([review.due({ knownIds }), review.nextDue({ knownIds })]);
+      setDue(entries.map((entry) => ({ entry, question: byId.get(entry.questionId) })));
+      setNextDate(next);
     } catch (e) {
       toast.error("Couldn't load your review. Please check your connection.");
       setDue([]);
@@ -103,18 +101,18 @@ export default function ReviewCivics() {
 
   const finish = async ({ states }) => {
     const now = new Date();
-    const outcome = due.map(({ row, question }, i) => {
+    const outcome = due.map(({ entry, question }, i) => {
       const c = states[i]?.outcome?.correct;
       const correct = !!c;
       // null = an officeholder answer that couldn't be graded: schedule unchanged
-      return { row, question, correct, ungraded: c === null, heard: states[i]?.heard || null, next: c === null ? null : nextSchedule(row, correct, correct ? 100 : 0, now) };
+      return { entry, question, correct, ungraded: c === null, heard: states[i]?.heard || null, next: c === null ? null : review.plan(entry, correct, now) };
     });
     setResults(outcome);
     setStage('done');
     window.scrollTo({ top: 0 });
     setSaving(true);
     try {
-      for (const { row, next } of outcome) if (next) await progressApi.update(row.id, next);
+      for (const { entry, next, correct } of outcome) if (next) await review.commit(entry, next, correct, now);
       awardBadges();
     } catch (e) {
       toast.error("Couldn't save your progress. Please check your connection.");
@@ -201,7 +199,7 @@ export default function ReviewCivics() {
                     {(officeholder ? officeholder.accepted : splitOfficialAnswers(question.answer)).map((a) => <li key={a} className="font-bold">{a}</li>)}
                   </ul>
                   <OfficeholderNote answer={officeholder} graded={false} className="mt-2" />
-                  {next && <p className="text-sm text-pw-muted mt-3">{whenLabel(next.interval)}</p>}
+                  {next && <p className="text-sm text-pw-muted mt-3">{whenLabel(next.days)}</p>}
                 </RaisedCard>
               </li>
               );

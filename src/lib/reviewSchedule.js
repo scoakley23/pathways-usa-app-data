@@ -2,8 +2,9 @@
 // missed or practiced civics question sits in a box 1-5. A right answer moves
 // it up one box; a wrong answer sends it back to box 1. The box says how many
 // days until it is due again. No streaks or penalties: just when to see it
-// next. (The old spaced-review fields on Base44 `UserProgress`,
-// src/lib/spacedReview.js, stay until Standalone Step 3 moves the screens.)
+// next. Screens use it through src/api/review.js (with the switch on); with
+// it off they keep the old schedule on Base44 `UserProgress`
+// (src/lib/spacedReview.js) until Step 6.
 
 export const BOX_DAYS = { 1: 1, 2: 3, 3: 7, 4: 14, 5: 30 };
 export const FIRST_BOX = 1;

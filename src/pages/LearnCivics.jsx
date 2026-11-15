@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { BookOpen, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { progress as progressApi } from '@/api/progress';
+import { review } from '@/api/review';
 import { content } from '@/api/content';
 import { auth } from '@/api/auth';
 import TopicArt, { TOPIC_ART } from '@/components/art/TopicArt';
@@ -15,7 +16,6 @@ import { languageNameFor } from '@/components/persona/languageName';
 import { Eyebrow, PrimaryButton, QuietButton, RaisedCard, Tag } from '@/components/pathways/ui';
 import useAppLanguage from '@/hooks/useAppLanguage';
 import { buildLearnLesson, pickNextToLearn } from '@/lib/explanations';
-import { learnedProgress } from '@/lib/spacedReview';
 import { awardBadges } from '@/lib/awardBadges';
 
 const linkClass = 'min-h-[52px] w-full rounded-2xl font-bold text-lg inline-flex items-center justify-center px-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2';
@@ -118,9 +118,9 @@ export default function LearnCivics() {
     try {
       for (const { question, correct, ungraded } of outcome) {
         if (ungraded) continue;
-        const existing = await progressApi.get(question.id);
-        const data = { user_email: user.email, content_id: question.id, content_type: 'civics_question', ...learnedProgress(existing || undefined, correct) };
-        await progressApi.save(existing, data);
+        // src/api/review.js: progress plus the first review date (Base44's
+        // old schedule, or a review_items box on Supabase).
+        await review.afterLearn(question.id, correct, { email: user.email });
       }
       awardBadges();
     } catch (e) {

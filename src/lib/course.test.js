@@ -87,7 +87,7 @@ describe('the course files (content/course/)', () => {
     // The Prompt 4 sample keeps its first 7 stops in order; Prompt 12 adds lessons before Speak it!.
     expect(congress.stops.slice(0, 6).map((s) => s.type)).toEqual(['lesson', 'lesson', 'lesson', 'lesson', 'readwrite', 'lesson']);
     expect(unit2.sections.at(-1).stops.at(-1).type).toBe('practiceInterview');
-    expect(Object.keys(SECTION_FILES).sort()).toEqual(['u1-s1-declaration.json', 'u1-s2-constitution.json', 'u1-s3-rights.json', 'u2-s1-branches.json', 'u2-s2-congress.json', 'u2-s3-president.json', 'u2-s4-courts.json', 'u2-s5-states.json', 'u3-s1-voting.json', 'u3-s2-serving.json', 'u3-s3-citizen.json', 'u4-s1-colonies.json', 'u4-s2-independence.json', 'u4-s3-nation.json', 'u5-s1-growing.json', 'u5-s2-civil-war.json', 'u5-s3-voting.json']);
+    expect(Object.keys(SECTION_FILES).sort()).toEqual(['u1-s1-declaration.json', 'u1-s2-constitution.json', 'u1-s3-rights.json', 'u2-s1-branches.json', 'u2-s2-congress.json', 'u2-s3-president.json', 'u2-s4-courts.json', 'u2-s5-states.json', 'u3-s1-voting.json', 'u3-s2-serving.json', 'u3-s3-citizen.json', 'u4-s1-colonies.json', 'u4-s2-independence.json', 'u4-s3-nation.json', 'u5-s1-growing.json', 'u5-s2-civil-war.json', 'u5-s3-voting.json', 'u6-s1-ww1.json', 'u6-s2-ww2.json', 'u6-s3-cold-war.json', 'u6-s4-today.json', 'u7-s1-flag.json', 'u7-s2-places.json', 'u7-s3-holidays.json']);
     expect(STOP_TYPES).toEqual(['lesson', 'readwrite', 'speakit', 'n400', 'review', 'practiceInterview']);
   });
 
@@ -133,7 +133,7 @@ describe('the course files (content/course/)', () => {
         expect(used.filter((id) => !wanted.includes(id)), `${unit.id}: questions from another unit`).toEqual([]);
       }
     }
-    expect(UNITS.slice(0, 6).map((u) => u.categories)).toEqual([['Principles of American Democracy'], ['System of Government'], ['Rights and Responsibilities'], ['U.S. History'], ['U.S. History'], ['U.S. History']]);
+    expect(UNITS.slice(0, 7).map((u) => u.categories)).toEqual([['Principles of American Democracy'], ['System of Government'], ['Rights and Responsibilities'], ['U.S. History'], ['U.S. History'], ['U.S. History'], ['Geography and Symbols']]);
     expect(UNITS.slice(3, 6).map((u) => u.questionIds.length)).toEqual([17, 12, 17]);
   });
 
@@ -144,6 +144,34 @@ describe('the course files (content/course/)', () => {
     expect(unit5).toContain('What U.S. war ended slavery?');
     expect(unit5).toContain('When did all women get the right to vote?');
     expect(UNITS[3].questionIds.map(text)).not.toContain('What territory did the United States buy from France in 1803?');
+  });
+
+  it('Unit 7 has 3 sections, 5 draft lessons, ending on a practice interview; it uses the saved flag sentences', () => {
+    const unit7 = UNITS[6];
+    expect(unit7.sections.map((s) => s.title)).toEqual(['The flag and the nation\'s symbols', 'Places', 'Holidays']);
+    const lessons = unit7.sections.flatMap((s) => s.lessons);
+    expect(lessons).toHaveLength(5);
+    expect(lessons.every((l) => l.status === 'draft')).toBe(true);
+    expect(unit7.sections.at(-1).stops.at(-1).type).toBe('practiceInterview');
+    expect(findLesson('u7-s1-l1').lesson.steps.writeIt.sentence).toBe('The flag is red, white and blue.');
+  });
+
+  it('the whole course covers all 128 questions of the 2025 test, each in exactly one lesson', () => {
+    const used = UNITS.flatMap((u) => u.sections.flatMap((s) => sectionQuestionIds(s)));
+    expect(new Set(used).size).toBe(used.length);
+    expect(exported2025.filter((q) => !used.includes(q.id)).map((q) => q.question)).toEqual([]);
+    expect(used).toHaveLength(128);
+  });
+
+  it('Unit 6 has 4 sections, 10 draft lessons, ending on a practice interview; every U.S. History question is now placed', () => {
+    const unit6 = UNITS[5];
+    expect(unit6.sections.map((s) => s.title)).toEqual(['World War I and the Great Depression', 'World War II', 'The Cold War', 'Civil rights and a new century']);
+    const lessons = unit6.sections.flatMap((s) => s.lessons);
+    expect(lessons).toHaveLength(10);
+    expect(lessons.every((l) => l.status === 'draft')).toBe(true);
+    expect(unit6.sections.at(-1).stops.at(-1).type).toBe('practiceInterview');
+    const placed = UNITS.slice(3, 6).flatMap((u) => u.sections.flatMap((s) => sectionQuestionIds(s)));
+    expect(placed).toHaveLength(exported2025.filter((q) => q.category === 'U.S. History').length);
   });
 
   it('Unit 5 has 3 sections, 6 draft lessons, ending on a practice interview; it says many Black Americans were still kept from voting after 1870', () => {
