@@ -48,7 +48,7 @@
     {
       "id": "u2-s5-l1",
       "title": "Federal and state powers",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de50",
         "6ad16ecf6a9c603911f9de51"
@@ -100,7 +100,7 @@
     {
       "id": "u2-s5-l2",
       "title": "The 10th Amendment",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de52"
       ],
@@ -153,7 +153,7 @@
     {
       "id": "u2-s5-l3",
       "title": "Your state",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de54",
         "6ad16ecf6a9c603911f9de53"

@@ -44,9 +44,14 @@
         "listen": {
           "explanationKey": "What are three rights of everyone living in the United States?",
           "facts": [
-            "Everyone living in the United States has some basic rights, not only citizens.",
-            "They include freedom of speech, freedom of religion, freedom of assembly and the freedom to petition the government.",
-            "Freedom of expression and the right to bear arms are also rights of everyone."
+            "Some rights belong to everyone living in the United States, not only to citizens. Most of these rights come from the First Amendment.",
+            "Freedom of expression: you can share your ideas in many ways, like writing, art or speaking.",
+            "Freedom of speech: you can say what you think, even if you disagree with the government.",
+            "Freedom of assembly: you can meet together with other people in a peaceful group.",
+            "Freedom to petition the government: you can ask the government to change a law or fix a problem.",
+            "Freedom of religion: you can practice any religion, or no religion at all.",
+            "The right to bear arms: the Second Amendment protects the right to have guns, following the law.",
+            "For the test, you need to name three."
           ],
           "newWords": [
             {
@@ -95,7 +100,7 @@
     {
       "id": "u3-s1-l2",
       "title": "Who can vote",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de56",
         "6ad16ecf6a9c603911f9de55"

@@ -52,8 +52,9 @@
         "listen": {
           "explanationKey": "What group of people was taken and sold as slaves?",
           "facts": [
+            "Slavery means people are owned by other people and forced to work without pay. Enslaved people could be bought and sold, and they had no freedom.",
+            "In America, slavery was based on race. Africans and their children were enslaved because of the color of their skin. This is racial discrimination.",
             "For more than two hundred years, people from Africa were taken from their homes and sold as slaves in America.",
-            "Enslaved people were forced to work without pay and had no freedom.",
             "The Civil War ended slavery in the United States."
           ],
           "newWords": [
@@ -64,6 +65,10 @@
             {
               "word": "enslaved",
               "meaning": "made a slave against their will"
+            },
+            {
+              "word": "discrimination",
+              "meaning": "treating people unfairly because of who they are"
             }
           ]
         },
@@ -105,7 +110,10 @@
           "explanationKey": "Name the U.S. war between the North and the South.",
           "facts": [
             "The Civil War was the war between the North and the South. It lasted from 1861 to 1865.",
-            "Important events include the Battle of Fort Sumter, the Battle of Gettysburg and the surrender at Appomattox.",
+            "Southern states left the United States, mainly to keep slavery. They called themselves the Confederacy. The North fought to keep the country together, called the Union.",
+            "The war began in 1861, when Southern forces attacked Fort Sumter, a U.S. fort in South Carolina.",
+            "In 1863, the Union won the Battle of Gettysburg, in Pennsylvania, one of the biggest battles of the war.",
+            "In 1865, the Southern general Robert E. Lee surrendered at Appomattox, Virginia. This ended the war.",
             "After the war, Americans began a day to honor soldiers who died. Today it is called Memorial Day."
           ],
           "newWords": [
@@ -158,7 +166,8 @@
           "facts": [
             "Abraham Lincoln was the 16th President. He led the United States during the Civil War and saved the Union.",
             "In 1863, his Emancipation Proclamation freed the slaves in the Confederate states.",
-            "Lincoln also gave the Gettysburg Address. His birthday is in February, near Presidents' Day."
+            "Lincoln also gave the Gettysburg Address. His birthday is in February, near Presidents' Day.",
+            "Tip: “Freed the slaves” is a correct answer to both questions in this lesson. It is fine to give the same answer twice."
           ],
           "newWords": [
             {

@@ -55,7 +55,7 @@
     {
       "id": "u6-s4-l1",
       "title": "Civil rights",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de86",
         "6ad16ecf6a9c603911f9de87"
@@ -109,7 +109,7 @@
     {
       "id": "u6-s4-l2",
       "title": "September 11",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de89"
       ],
@@ -174,9 +174,10 @@
         "listen": {
           "explanationKey": "Why did the United States enter the Persian Gulf War?",
           "facts": [
-            "In 1991, the United States entered the Persian Gulf War to force the Iraqi military out of Kuwait.",
-            "After the September 11 attacks, the United States fought the War on Terror.",
-            "This included the war in Afghanistan and the war in Iraq."
+            "In 1990, Iraq invaded its small neighbor, Kuwait. In 1991, the United States led many countries in the Persian Gulf War to force the Iraqi military out of Kuwait.",
+            "On September 11, 2001, terrorists from a group called al-Qaeda attacked the United States. Their leaders were hiding in Afghanistan.",
+            "So the United States began a war in Afghanistan in 2001. This was part of the War on Terror.",
+            "In 2003, the United States also went to war in Iraq."
           ],
           "newWords": [
             {
@@ -218,7 +219,7 @@
     {
       "id": "u6-s4-l4",
       "title": "American innovation",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de8c"
       ],
