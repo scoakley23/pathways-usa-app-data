@@ -1,41 +1,32 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Loader2 } from 'lucide-react';
+import { Loader2, MapPin } from 'lucide-react';
 import { toast } from 'sonner';
 import { content } from '@/api/content';
 import { auth } from '@/api/auth';
 import { createPageUrl } from '@/utils';
-import TopicArt from '@/components/art/TopicArt';
 import TutorLesson from '@/components/persona/TutorLesson';
-import TutorMessage from '@/components/persona/TutorMessage';
-import SkillLevels, { partName } from '@/components/persona/SkillLevels';
+import SkillLevels from '@/components/persona/SkillLevels';
 import useTutorProfile from '@/components/persona/useTutorProfile';
 import { languageNameFor } from '@/components/persona/languageName';
-import { PrimaryButton, QuietButton, Tag } from '@/components/pathways/ui';
+import { AmioSays } from '@/components/pathways/Amio';
+import { Button } from '@/components/pathways/ui';
 import useAppLanguage from '@/hooks/useAppLanguage';
 import { buildPretestLesson, scorePretest, toSavedLevels, mergeLevels, PRETEST_PARTS } from '@/lib/pretest';
-import PlanSetup from '@/components/persona/PlanSetup';
-import { loadPlanSettings } from '@/lib/planSettings';
 import GettingStarted from '@/components/persona/GettingStarted';
+import QuickCheckIntro from '@/components/onboarding/QuickCheckIntro';
+import useOnboardingText from '@/components/onboarding/useOnboardingText';
 import { isOnboarded } from '@/lib/onboarding';
+import { UNITS } from '@/lib/course';
+import { canSeeDrafts, visibleCourse } from '@/lib/journey';
+import { startingPoint } from '@/lib/startingPoint';
 
-const INTRO = {
-  en: "Let's see where you are today. It takes about 10 minutes: civics, reading, writing, and speaking. You can skip any part. I'll use the results to plan your practice.",
-  es: 'Veamos cómo va hoy. Toma unos 10 minutos: educación cívica, lectura, escritura y conversación. Puede saltar cualquier parte. Usaré los resultados para planear su práctica.',
-};
-
-function summary(levels, language) {
-  const startHere = Object.keys(levels).filter((p) => levels[p] === 'start_here');
-  const names = startHere.map((p) => partName(p, language)).join(', ');
-  if (language === 'es') {
-    return startHere.length ? `¡Gracias! Así va hoy. Vamos a practicar más: ${names}.` : '¡Gracias! Tiene una buena base. Vamos a seguir practicando.';
-  }
-  return startHere.length ? `Thank you! Here is where you are today. We'll spend more time on: ${names}.` : 'Thank you! You have a good start. Let’s keep practicing.';
-}
-
-// "Start with a quick check" (Prompt 4). Saves only the four skill levels.
-// The first time on a device, "Getting started" comes first (language,
-// tutor picture, where they are in the process, sound and text size).
+// The quick check (Prompt 9, frame R30QuickCheck). Saves only the four skill
+// levels. The first time on a device, Getting started comes first (language,
+// Meet Amio, the pilot sign-up questions, sound and text size). The results
+// say where the course starts (src/lib/startingPoint.js, from the civics
+// level), then "Make my plan" opens Your plan (Prompt 7), then Today.
+// ?part=<skill> re-checks one skill, keeps the others and goes back home.
 export default function QuickCheck() {
   const navigate = useNavigate();
   const { profile, loaded } = useTutorProfile();
@@ -46,9 +37,11 @@ export default function QuickCheck() {
     const p = new URLSearchParams(window.location.search).get('part');
     return PRETEST_PARTS.includes(p) ? [p] : PRETEST_PARTS;
   });
-  const [stage, setStage] = useState(() => (parts.length === PRETEST_PARTS.length && !isOnboarded() ? 'welcome' : 'intro')); // welcome | intro | lesson | results | plan
+  const fullCheck = parts.length === PRETEST_PARTS.length;
+  const [stage, setStage] = useState(() => (fullCheck && !isOnboarded() ? 'welcome' : 'intro')); // welcome | intro | lesson | results
   const [previous, setPrevious] = useState(null);
-  const hasPlan = !!loadPlanSettings();
+  const [user, setUser] = useState(null);
+  const { t } = useOnboardingText(language);
   const [levels, setLevels] = useState(null);
   const [saving, setSaving] = useState(false);
 
@@ -61,11 +54,14 @@ export default function QuickCheck() {
     ])
       .then(([civics, reading, writing, speaking]) => setSources({ civics, reading, writing, speaking }))
       .catch(() => setSources({ civics: [], reading: [], writing: [], speaking: [] }));
-    auth.me().then((u) => setPrevious(u?.skill_levels || null)).catch(() => {});
+    auth.me().then((u) => { setUser(u || null); setPrevious(u?.skill_levels || null); }).catch(() => {});
   }, []);
 
   const lesson = useMemo(() => (sources ? buildPretestLesson(sources, language, undefined, parts) : null), [sources, language, parts]);
   const goHome = () => navigate(createPageUrl('Home'));
+  // After a full check (or skipping it), Your plan; a re-check of one part goes home.
+  const next = () => (fullCheck ? navigate('/plan') : goHome());
+  const start = useMemo(() => (levels ? startingPoint(visibleCourse(UNITS, { showDrafts: canSeeDrafts(user) }), levels) : null), [levels, user]);
 
   const finish = async ({ states, skipped }) => {
     const scored = scorePretest(lesson, states, skipped);
@@ -85,7 +81,7 @@ export default function QuickCheck() {
 
   if (stage === 'welcome' && loaded) {
     return (
-      <div className="max-w-xl mx-auto">
+      <div>
         <GettingStarted language={language} onLanguageChange={setLanguage} onDone={() => { setStage('intro'); window.scrollTo({ top: 0 }); }} />
       </div>
     );
@@ -95,6 +91,7 @@ export default function QuickCheck() {
 
   if (stage === 'lesson') {
     return (
+      <div className="container mx-auto px-4 pt-6 max-w-5xl">
       <TutorLesson
         lesson={lesson}
         profile={profile}
@@ -103,51 +100,46 @@ export default function QuickCheck() {
         onFinish={finish}
         onExit={() => setStage('intro')}
       />
+      </div>
     );
   }
 
+  if (stage === 'intro') {
+    return (
+      <QuickCheckIntro
+        t={t}
+        parts={parts}
+        ready={lesson.steps.length > 0}
+        onStart={() => { setStage('lesson'); window.scrollTo({ top: 0 }); }}
+        onSkip={next}
+      />
+    );
+  }
+
+  // Results: the four levels and where the course starts.
   return (
-    <div className="max-w-xl mx-auto space-y-5 text-pw-navy">
-      <div className="rounded-card bg-pw-blue-soft px-4 pt-4 pb-5">
-        <TopicArt name="compass" />
-        <Tag tone="teal" className="mt-2">{stage === 'results' ? 'Your results' : 'About 10 minutes'}</Tag>
-        <h1 className="font-display text-[36px] leading-tight mt-3">Quick check</h1>
+    <div className="min-h-screen bg-page flex flex-col">
+      <div className="flex-1 max-w-lg w-full mx-auto px-4 pt-8 pb-4 flex flex-col gap-5 text-navy">
+        <h1 className="text-[26px] font-bold leading-tight">{t('qc_results')}</h1>
+        {levels && <SkillLevels levels={levels} language={language} />}
+        {fullCheck && start && (
+          <section className="rounded-card bg-white border-2 border-denim p-5 flex items-start gap-4">
+            <span className="grid place-items-center w-12 h-12 shrink-0 rounded-full bg-red text-navy"><MapPin className="w-6 h-6" aria-hidden="true" /></span>
+            <div className="min-w-0">
+              <p className="text-small font-semibold uppercase tracking-wide text-muted">{t('qc_start_at')}</p>
+              <p className="text-lg font-bold" dir="auto">{t('qc_start_unit', { n: start.unit.number, section: start.section.title })}</p>
+              <p className="mt-1 text-base text-muted">{t('qc_go_back')}</p>
+            </div>
+          </section>
+        )}
+        <AmioSays mood="proud" size={56}>{t('qc_saved')}</AmioSays>
       </div>
-
-      {stage === 'intro' && (
-        <>
-          <TutorMessage profile={profile} language={language} mine={language === 'es' ? INTRO.es : null} en={INTRO.en} expression="greeting" />
-          {lesson.steps.length === 0 ? (
-            <p className="text-pw-muted">The quick check isn't ready yet. Please try again later.</p>
-          ) : (
-            <PrimaryButton large className="w-full" onClick={() => { setStage('lesson'); window.scrollTo({ top: 0 }); }}>
-              Start the quick check
-            </PrimaryButton>
-          )}
-          <p className="text-sm text-pw-muted">We save only your four levels. Your answers and your voice are not saved.</p>
-          <QuietButton className="w-full" onClick={goHome}>Not now</QuietButton>
-        </>
-      )}
-
-      {stage === 'plan' && (
-        <PlanSetup profile={profile} language={language} onDone={goHome} />
-      )}
-
-      {stage === 'results' && levels && (
-        <>
-          <TutorMessage
-            profile={profile}
-            language={language}
-            mine={language === 'es' ? summary(levels, 'es') : null}
-            en={summary(levels, 'en')}
-          />
-          <SkillLevels levels={levels} language={language} />
-          <PrimaryButton large className="w-full" onClick={hasPlan ? goHome : () => { setStage('plan'); window.scrollTo({ top: 0 }); }} disabled={saving}>
-            {saving ? <Loader2 className="w-5 h-5 animate-spin" /> : hasPlan ? 'Done' : 'Make my plan'}
-          </PrimaryButton>
-          <QuietButton className="w-full" onClick={() => setStage('intro')}>Take it again</QuietButton>
-        </>
-      )}
+      <div className="sticky bottom-0 bg-page px-4 pt-2 pb-6 max-w-lg w-full mx-auto flex flex-col items-center gap-2">
+        <Button variant="main" className="w-full" onClick={next} disabled={saving}>
+          {saving ? <Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" /> : t(fullCheck ? 'qc_make_plan' : 'qc_done')}
+        </Button>
+        <Button variant="link" onClick={() => setStage('intro')}>{t('qc_again')}</Button>
+      </div>
     </div>
   );
 }

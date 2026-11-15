@@ -23,6 +23,7 @@ import { TALK_LINES } from '@/components/ai/talkStrings';
 import { COURSE_LINES } from '@/components/course/courseStrings';
 import { LESSON_LINES } from '@/components/lesson/lessonStrings';
 import { CHECKPOINT_LINES } from '@/components/checkpoint/checkpointStrings';
+import { ONBOARDING_LINES } from '@/components/onboarding/onboardingStrings';
 import { TODAY_LINES } from '@/components/today/todayLines';
 import { UNITS } from '@/lib/course';
 import coursePictures from '../../content/course/pictures.json';
@@ -65,6 +66,7 @@ export const STRING_SETS = [
   { id: 'interview-tab', strings: INTERVIEW_LINES, usedIn: [['src/components/shell/InterviewPage.jsx', 'LINES']] },
   { id: 'course', strings: COURSE_LINES, usedIn: [['src/components/course/courseShared.jsx', 'COURSE_LINES']] },
   { id: 'lesson-player', strings: LESSON_LINES, usedIn: [['src/components/lesson/LessonPlayer.jsx', 'LESSON_LINES'], ['src/components/checkpoint/ReviewChestPage.jsx', 'LESSON_LINES'], ['src/components/checkpoint/ReadWritePage.jsx', 'LESSON_LINES']] },
+  { id: 'onboarding', strings: ONBOARDING_LINES, usedIn: [['src/components/onboarding/useOnboardingText.js', 'ONBOARDING_LINES']] },
   { id: 'checkpoints', strings: CHECKPOINT_LINES, usedIn: [['src/components/checkpoint/checkpointParts.jsx', 'CHECKPOINT_LINES']] },
   { id: 'today-plan', strings: TODAY_LINES, usedIn: [['src/components/today/useToday.js', 'TODAY_LINES']] },
   { id: 'talk', strings: TALK_LINES, usedIn: [['src/components/ai/TalkToPerson.jsx', 'LINES']] },

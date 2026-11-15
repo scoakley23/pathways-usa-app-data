@@ -27,7 +27,7 @@ const FOCUS_ROUTES = ['/quick-check', '/tutor-demo', '/learn', '/review', '/n400
 
 // Pages drawn as split screens (a navy top and a cream sheet, full width):
 // they bring their own padding. Home (/) is one too: Today, or the splash.
-const SPLIT_ROUTES = ['/plan', '/done-today', '/me', '/settings', '/ask', '/interview', '/study', '/n400-guide', '/resources', '/lawyer-first', '/progress', '/profile', '/studyhistory', '/dashboard', '/interview-day', '/partner', '/admin', '/admin/pilot'];
+const SPLIT_ROUTES = ['/quick-check', '/plan', '/done-today', '/me', '/settings', '/ask', '/interview', '/study', '/n400-guide', '/resources', '/lawyer-first', '/progress', '/profile', '/studyhistory', '/dashboard', '/interview-day', '/partner', '/admin', '/admin/pilot'];
 
 // The four tab names, translated like other screen text (Spanish by hand).
 const TAB_LINES = Object.fromEntries(TABS.map((tab) => [tab.id, tab.label]));
@@ -93,7 +93,8 @@ export default function Layout({ children }) {
   const practiceRun = practiceMode || CHECKPOINT_SCREEN.test(location.pathname);
   const readAloud = FOCUS_ROUTES.includes(location.pathname);
   const focusMode = readAloud || practiceRun;
-  const showTabs = !focusMode;
+  // Welcome (signed-out Home, Prompt 9) is one screen with its own two buttons: no tab bar.
+  const showTabs = !focusMode && !splash;
   // Split screens (a navy top and a cream sheet, full width) bring their own
   // padding: Today for signed-in learners, Study (practice runs too; the
   // runs not redesigned yet pad themselves in RunShell), the N-400 guide and

@@ -9,7 +9,8 @@ export const LEVELS = {
 };
 export const READING_PASS = 70; // same bar as reading practice
 
-const COUNTS = { civics: 10, reading: 3, writing: 3, speaking: 2 };
+export const PRETEST_COUNTS = { civics: 10, reading: 3, writing: 3, speaking: 2 };
+const COUNTS = PRETEST_COUNTS;
 
 // Fisher–Yates on a copy. `rand` is injectable for tests.
 export function sample(list, n, rand = Math.random) {

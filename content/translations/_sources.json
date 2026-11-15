@@ -1293,6 +1293,12 @@
    ]
   },
   {
+   "text": "Amio will explain everything in it. You practice in English.",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "Amio · AI tutor",
    "from": [
     "home"
@@ -1368,6 +1374,12 @@
    "text": "Answer out loud, in English",
    "from": [
     "checkpoints"
+   ]
+  },
+  {
+   "text": "Answer {n} easy questions",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -1884,6 +1896,12 @@
    ]
   },
   {
+   "text": "Cancel",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "Canceling — for example, the government trying to cancel a green card.",
    "from": [
     "n400"
@@ -2015,6 +2033,12 @@
    ]
   },
   {
+   "text": "Choose your language",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "Christopher Columbus reached the Americas in 1492. This painting is said to show him.",
    "from": [
     "course-pictures"
@@ -2126,7 +2150,8 @@
    "text": "Civics",
    "from": [
     "checkpoints",
-    "interview-tab"
+    "interview-tab",
+    "onboarding"
    ]
   },
   {
@@ -2228,6 +2253,12 @@
    "text": "Close. One more try — you've got this.",
    "from": [
     "tutor"
+   ]
+  },
+  {
+   "text": "Code",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -2473,6 +2504,18 @@
     "getting-started",
     "home",
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Continue and sign in",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
+   "text": "Continue in {language}",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -2921,6 +2964,7 @@
    "text": "Done",
    "from": [
     "course",
+    "onboarding",
     "pilot",
     "talk",
     "today"
@@ -3673,6 +3717,18 @@
    ]
   },
   {
+   "text": "Free · Not part of the U.S. government",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
+   "text": "Free, and not the government",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "Free. We never record your voice or ask about your case.",
    "from": [
     "home"
@@ -3877,6 +3933,18 @@
    "text": "Germany, Italy and Japan, called the Axis Powers, attacked other countries. The Allied Powers, including England, France and Russia, fought against them.",
    "from": [
     "course-lessons"
+   ]
+  },
+  {
+   "text": "Get ready for your citizenship interview, with a tutor who speaks your language.",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
+   "text": "Get started",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -4515,6 +4583,12 @@
    ]
   },
   {
+   "text": "Hi! I’m Amio. I’ll be your tutor.",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "Hi, I'm Amio, your AI tutor. I'll explain things in plain words.",
    "from": [
     "home"
@@ -4792,9 +4866,21 @@
    ]
   },
   {
+   "text": "I explain in your language",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "I forgot! Can you teach me?",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "I have a code from my tutor",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -5743,6 +5829,12 @@
    ]
   },
   {
+   "text": "Let’s see where you are",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "Let’s start today’s lesson.",
    "from": [
     "today-plan"
@@ -5850,6 +5942,12 @@
    "from": [
     "lesson-player",
     "today-plan"
+   ]
+  },
+  {
+   "text": "Listen and write {n} sentences",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -5995,6 +6093,12 @@
    "text": "Major mountain range running through the western United States",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "Make my plan",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -6564,6 +6668,12 @@
    ]
   },
   {
+   "text": "Never tell me about your case. We practice with made-up people.",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "New Hampshire / Massachusetts / Rhode Island / Connecticut / New York / New Jersey / Pennsylvania / Delaware / Maryland / Virginia / North Carolina / South Carolina / Georgia",
    "from": [
     "civics-questions"
@@ -6682,6 +6792,12 @@
    "text": "No hints in a checkpoint. You can ask the officer to repeat, just like on the real day.",
    "from": [
     "checkpoints"
+   ]
+  },
+  {
+   "text": "No language found. Try another name.",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -7094,6 +7210,12 @@
    "text": "Past the deadline for payment.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "Pathways is not part of USCIS and doesn’t give legal advice.",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -7634,6 +7756,12 @@
    ]
   },
   {
+   "text": "Read {n} short sentences out loud",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "Read “{sentence}”",
    "from": [
     "lesson-player"
@@ -7642,7 +7770,8 @@
   {
    "text": "Reading",
    "from": [
-    "interview-tab"
+    "interview-tab",
+    "onboarding"
    ]
   },
   {
@@ -7983,6 +8112,12 @@
    ]
   },
   {
+   "text": "Search {n}+ languages",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "Second",
    "from": [
     "words"
@@ -8258,9 +8393,16 @@
    ]
   },
   {
+   "text": "Skip any part. No pressure. This just helps me plan your lessons.",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "Skip for now",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "onboarding"
    ]
   },
   {
@@ -8381,6 +8523,12 @@
    ]
   },
   {
+   "text": "Sounds good",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "South",
    "from": [
     "words"
@@ -8437,7 +8585,8 @@
   {
    "text": "Speaking",
    "from": [
-    "interview-tab"
+    "interview-tab",
+    "onboarding"
    ]
   },
   {
@@ -8490,6 +8639,12 @@
    "text": "Start practice interview",
    "from": [
     "interview-tab"
+   ]
+  },
+  {
+   "text": "Start quick check",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -8726,6 +8881,12 @@
    ]
   },
   {
+   "text": "Take it again",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "Taking control of a plane, ship, or vehicle by force.",
    "from": [
     "n400"
@@ -8876,6 +9037,12 @@
    "text": "That concludes today’s practice.",
    "from": [
     "tutor"
+   ]
+  },
+  {
+   "text": "That doesn’t look like a code. Use letters and numbers, like ABC-123.",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -9995,6 +10162,12 @@
    ]
   },
   {
+   "text": "The quick check isn’t ready yet. Please try again later.",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "The right of Native American tribes to govern themselves as independent nations",
    "from": [
     "key-words"
@@ -11025,6 +11198,12 @@
    ]
   },
   {
+   "text": "Try {n} questions from the test",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "Trying to destroy a whole group of people because of their race, religion, or nationality.",
    "from": [
     "n400"
@@ -11211,6 +11390,12 @@
    "text": "Unit {n} practice interview",
    "from": [
     "checkpoints"
+   ]
+  },
+  {
+   "text": "Unit {n} · {section}",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -11574,6 +11759,12 @@
    "text": "We reply within 3-5 business days.",
    "from": [
     "talk-reply"
+   ]
+  },
+  {
+   "text": "We save only your four levels. Your answers and your voice are not saved.",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -12866,7 +13057,8 @@
   {
    "text": "Writing",
    "from": [
-    "interview-tab"
+    "interview-tab",
+    "onboarding"
    ]
   },
   {
@@ -12892,6 +13084,12 @@
    "text": "Yes, more English",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "You answer in English, like at the real interview.",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -12928,6 +13126,12 @@
    "text": "You can still apply if you owe money — but how you filed (or did not file) must be handled the right way first.",
    "from": [
     "lawyer-checklist"
+   ]
+  },
+  {
+   "text": "You can still go back to earlier lessons any time.",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -13070,6 +13274,12 @@
    ]
   },
   {
+   "text": "Your class or program gave you a short code. You’ll pick them after you sign in.",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "Your date stays on this phone. We don't save it.",
    "from": [
     "today"
@@ -13167,6 +13377,12 @@
    ]
   },
   {
+   "text": "Your phone turns speech into text. We never keep audio.",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "Your plan",
    "from": [
     "settings",
@@ -13177,6 +13393,12 @@
    "text": "Your practice: which questions, sentences and lessons you got right, and your scores. Mock interview scores only, never what you said.",
    "from": [
     "settings"
+   ]
+  },
+  {
+   "text": "Your program’s code",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -13204,6 +13426,12 @@
    ]
   },
   {
+   "text": "Your results",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "Your road",
    "from": [
     "today"
@@ -13224,7 +13452,8 @@
   {
    "text": "Your story stays yours",
    "from": [
-    "home"
+    "home",
+    "onboarding"
    ]
   },
   {
@@ -13252,6 +13481,12 @@
    ]
   },
   {
+   "text": "Your voice is never recorded",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "You’ll be able to answer:",
    "from": [
     "course"
@@ -13267,6 +13502,12 @@
    "text": "You’ll see this one again tomorrow.",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "You’ll start at",
+   "from": [
+    "onboarding"
    ]
   },
   {
