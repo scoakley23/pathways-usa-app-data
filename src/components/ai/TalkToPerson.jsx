@@ -12,20 +12,7 @@ import { REPLY_TIME, SUPPORT_EMAIL, SUPPORT_MAX_LENGTH, SUPPORT_SUBJECT, support
 // "Talk to a person": a short email form to the Pathways USA team. Messages
 // are emailed only; nothing is saved in the app database.
 
-const LINES = {
-  title: 'Talk to a person',
-  teamIntro: 'Write to the Pathways USA team. We can help with the app and with studying.',
-  privacy: "Don't share your immigration status, A-number, case details, or address.",
-  noLegal: "We can't give legal advice or answer questions about your own case.",
-  lawyerLink: 'Talk to a lawyer first',
-  replyTo: "We'll reply to your account email.",
-  label: 'Your message',
-  send: 'Send',
-  comingSoon: 'Contact form coming soon.',
-  sent: 'Thank you. Your message was sent.',
-  error: "Sorry, your message couldn't be sent. Please try again later.",
-  done: 'Done',
-};
+import { TALK_LINES as LINES } from './talkStrings';
 const LINES_ES = {
   title: 'Hablar con una persona',
   teamIntro: 'Escriba al equipo de Pathways USA. Le podemos ayudar con la aplicación y con sus estudios.',

@@ -10,6 +10,7 @@ import { base44 } from '@/api/base44Client';
 import { checkDictation } from '@/lib/practiceChecks';
 import { LANGUAGES } from '@/hooks/useLessonTranslation';
 import useAppLanguage from '@/hooks/useAppLanguage';
+import { PACK_ONLY, packText } from '@/lib/translationPack';
 
 // Listen and write (The Road; also the vocabulary Word dictation). On navy:
 // what to do and "Hear it" (and, after the check, "In my language" in the
@@ -51,6 +52,13 @@ export default function DictationCard({ sentence, onComplete, onNext, testMode =
     if (!sentence || !myLanguage) return;
     setIsTranslating(true);
     try {
+      // The translation pack first; live AI only when it doesn't have this
+      // text, and never when PACK_ONLY (the switch on).
+      const packed = await packText(myLanguage.value, sentence.text);
+      if (packed || PACK_ONLY) {
+        setTranslation(packed || 'Translation unavailable');
+        return;
+      }
       const prompt = `Translate the following text (which could be a word or a sentence) into ${myLanguage.label}: "${sentence.text}". Return ONLY the translated text, nothing else.`;
       const res = await base44.integrations.Core.InvokeLLM({ prompt });
       setTranslation(res);

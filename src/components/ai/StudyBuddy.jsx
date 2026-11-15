@@ -38,6 +38,8 @@ import {
 import { lessonSuggestions, STARTER_SUGGESTIONS, INTERVIEW_SUGGESTIONS } from '@/lib/askSuggestions';
 import { loadCivicsBank } from '@/lib/civicsBank';
 import TalkToPerson from './TalkToPerson';
+import { PACK_ONLY, packText } from '@/lib/translationPack';
+import { PRIVACY_NOTE, PRIVACY_SHORT } from './privacyStrings';
 
 // "Ask Amio" (frame R30AskAmio), a screen under Me (/ask). No open chat box
 // (rule 1): the learner taps a suggested question (from their recent
@@ -52,21 +54,14 @@ import TalkToPerson from './TalkToPerson';
 // questions are not saved. Answered ones are saved to AIStudyLog
 // (learner-only), exactly as before.
 
-// Privacy note. English and Spanish are written by hand; other languages are
-// translated once by AI and cached on the device. Bump the cache key
+// Privacy note. English and Spanish are written by hand; other languages come
+// from the translation pack (or, switch off only, are translated once by AI
+// and cached on the device). Bump the cache key
 // whenever the English text changes. ("Your teacher or class" = partner
 // program staff, who never see these chats.)
-const PRIVACY_NOTE = {
-  en: "Your questions to Amio are private. Your teacher or class can't see them. Don't share your immigration status, A-number, case details, or address. Your questions are saved to your account so you can see them in History.",
-  es: 'Sus preguntas a Amio son privadas. Su maestro o su clase no pueden verlas. No comparta su estatus migratorio, número A, detalles de su caso ni su dirección. Sus preguntas se guardan en su cuenta para que pueda verlas en el Historial.',
-};
 const PRIVACY_NOTE_CACHE_KEY = 'pathways_sb_privacy_v5_';
 
 // The short line on the screen; "Read more" shows the full note.
-const PRIVACY_SHORT = {
-  en: "Private: your teacher or class can't see this. Don't share your immigration status, A-number, case details, or address.",
-  es: 'Privado: su maestro o su clase no pueden verlo. No comparta su estatus migratorio, número A, detalles de su caso ni su dirección.',
-};
 const PRIVACY_SHORT_CACHE_KEY = 'pathways_sb_privacy_short_v3_';
 
 function usePrivacyNote(language, texts = PRIVACY_NOTE, cacheKey = PRIVACY_NOTE_CACHE_KEY) {
@@ -78,30 +73,38 @@ function usePrivacyNote(language, texts = PRIVACY_NOTE, cacheKey = PRIVACY_NOTE_
       return;
     }
     setNote(texts.en);
-    try {
-      const cached = localStorage.getItem(cacheKey + language);
-      if (cached) {
-        setNote(cached);
-        return;
-      }
-    } catch (e) {
-      // ignore
-    }
-
     let cancelled = false;
-    const langName = LANGUAGES.find((l) => l.value === language)?.label || language;
-    base44.integrations.Core.InvokeLLM({
-      prompt: `Translate this privacy note for an app that helps immigrants study for the U.S. citizenship test into ${langName}. Keep "A-number" understandable (you may add the local term). Return only the translated text.\n\n${texts.en}`,
-    }).then((res) => {
-      if (cancelled || typeof res !== 'string' || !res.trim()) return;
-      setNote(res.trim());
+
+    // Live AI (switch off only), cached on the device.
+    const translateLive = () => {
       try {
-        localStorage.setItem(cacheKey + language, res.trim());
+        const cached = localStorage.getItem(cacheKey + language);
+        if (cached) { setNote(cached); return; }
       } catch (e) {
         // ignore
       }
-    }).catch(() => {
-      // keep English
+      const langName = LANGUAGES.find((l) => l.value === language)?.label || language;
+      base44.integrations.Core.InvokeLLM({
+        prompt: `Translate this privacy note for an app that helps immigrants study for the U.S. citizenship test into ${langName}. Keep "A-number" understandable (you may add the local term). Return only the translated text.\n\n${texts.en}`,
+      }).then((res) => {
+        if (cancelled || typeof res !== 'string' || !res.trim()) return;
+        setNote(res.trim());
+        try {
+          localStorage.setItem(cacheKey + language, res.trim());
+        } catch (e) {
+          // ignore
+        }
+      }).catch(() => {
+        // keep English
+      });
+    };
+
+    // The translation pack first; live AI only when it doesn't have the note,
+    // and never when PACK_ONLY (the switch on).
+    packText(language, texts.en).then((packed) => {
+      if (cancelled) return;
+      if (packed) setNote(packed);
+      else if (!PACK_ONLY) translateLive();
     });
     return () => {
       cancelled = true;

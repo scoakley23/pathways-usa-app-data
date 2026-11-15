@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { base44 } from '@/api/base44Client';
 import { LANGUAGES } from './useLessonTranslation';
+import { PACK_ONLY, hasPack, packTree } from '@/lib/translationPack';
 import { LAWYER_CHECKLIST_ITEMS } from '@/components/lawyer/lawyerChecklist';
 import { N400_SECTIONS } from '@/components/n400/n400Content';
 
@@ -25,7 +26,8 @@ export default function useLawyerChecklistTranslation(language) {
     }
     const cacheKey = `${CACHE_PREFIX}${language}`;
     try {
-      const raw = localStorage.getItem(cacheKey);
+      // An old live-AI copy on this device, only when there's no pack.
+      const raw = hasPack(language) ? null : localStorage.getItem(cacheKey);
       if (raw) {
         setTranslation(JSON.parse(raw));
         return;
@@ -38,6 +40,14 @@ export default function useLawyerChecklistTranslation(language) {
     const translate = async () => {
       setIsTranslating(true);
       try {
+        const items = LAWYER_CHECKLIST_ITEMS.map((i) => ({ text: i.text, explanation: i.explanation, section: sectionTitle(i.guideSectionId) }));
+        // The translation pack first; live AI only when it doesn't cover the
+        // list, and never when PACK_ONLY (the switch on).
+        const packed = await packTree(language, items);
+        if (packed.complete || PACK_ONLY) {
+          if (!cancelled) setTranslation(packed.complete ? packed.value : null);
+          return;
+        }
         const langName = LANGUAGES.find((l) => l.value === language)?.label || language;
         const result = await base44.integrations.Core.InvokeLLM({
           prompt: `You are a professional translator for US citizenship education materials. Translate the following JSON into ${langName}. Translate every value exactly as written — do not add advice, interpretation, or any content that is not in the original. Keep the same order and structure.
