@@ -5,7 +5,8 @@ import { checkCivicsAnswer, officeholderCheck } from '@/components/civics/checkC
 import OfficeholderNote from '@/components/civics/OfficeholderNote';
 import useLearnerLocation from '@/components/civics/useLearnerLocation';
 import { stopReading } from '@/components/persona/useAutoRead';
-import { matchOfficialAnswer, splitOfficialAnswers } from '@/lib/practiceChecks';
+import { splitOfficialAnswers } from '@/lib/practiceChecks';
+import { matchCivicsAnswer } from '@/lib/answerVariants';
 import { officeholderAnswerFor, officeholderAnswerLine } from '@/lib/officeholderQuestions';
 import { explainText, getExplanation } from '@/lib/explanations';
 import { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
@@ -25,9 +26,9 @@ export function officialAnswerText(question, location = null) {
 const SR = typeof window !== 'undefined' ? window.SpeechRecognition || window.webkitSpeechRecognition : null;
 
 // "Go over them": one official question per full-bleed poster, alternating
-// red and blue. Spoken answers are checked by checkCivicsAnswer() (AI, the
-// official answer is never rewritten); typed answers on the device with
-// matchOfficialAnswer(). Officeholder and capital questions are graded from
+// red and blue. Answers are checked on the device first (matchCivicsAnswer());
+// a spoken answer that doesn't match goes to checkCivicsAnswer() (AI, the
+// official answer is never rewritten); typed answers never leave the device. Officeholder and capital questions are graded from
 // the officeholders table only (never the AI); one that can't be graded is
 // left out of the score (onFinish's total counts graded cards only). Feedback shows official answers only. "Explain it
 // simply" shows the reviewed explanation (content/explanations), nothing
@@ -83,8 +84,11 @@ export default function PosterRun({ questions, language = 'en', tutorName = 'Ami
       setResult({ isCorrect: local.is_correct, officeholder: local.officeholder });
       return;
     }
-    if (mode === 'type') {
-      setResult({ isCorrect: matchOfficialAnswer(answer, q.answer).isCorrect });
+    // Checked on the device first (typed and spoken); only a spoken answer
+    // that doesn't match goes to the AI, which judges the meaning.
+    const onDevice = matchCivicsAnswer(answer, q);
+    if (mode === 'type' || onDevice.sure) {
+      setResult({ isCorrect: onDevice.isCorrect });
       return;
     }
     setChecking(true);

@@ -1,0 +1,218 @@
+{
+  "note": "Other ways to say or spell an official accepted answer, used only to recognize a learner's answer on the device (src/lib/answerVariants.js). Learners never see these: feedback always shows the official answers. Each variant names the official answer it stands for (\"answer\", copied exactly from the question's list). Only \"reviewed\" variants are used; change \"draft\" to \"reviewed\" after checking one. Never add a new answer here, only another way to say one that is already official.",
+  "questions": {
+    "6ad16ecf6a9c603911f9de8f": {
+      "question": "Why does the flag have 13 stripes?",
+      "variants": [
+        {
+          "text": "13 colonies",
+          "answer": "(Because there were) 13 original colonies",
+          "why": "often said without \"original\"",
+          "status": "draft"
+        }
+      ]
+    },
+    "6ad16ecf6a9c603911f9de8d": {
+      "question": "What is the capital of the United States?",
+      "variants": [
+        {
+          "text": "District of Columbia",
+          "answer": "Washington, D.C.",
+          "why": "the full name of D.C.",
+          "status": "draft"
+        }
+      ]
+    },
+    "6ad16ecf6a9c603911f9de7f": {
+      "question": "Who was president during the Great Depression and World War II?",
+      "variants": [
+        {
+          "text": "FDR",
+          "answer": "(Franklin) Roosevelt",
+          "why": "common initials",
+          "status": "draft"
+        },
+        {
+          "text": "Franklin Delano Roosevelt",
+          "answer": "(Franklin) Roosevelt",
+          "why": "full name",
+          "status": "draft"
+        }
+      ]
+    },
+    "6ad16ecf6a9c603911f9de82": {
+      "question": "Who was the United States’ main rival during the Cold War?",
+      "variants": [
+        {
+          "text": "the Soviets",
+          "answer": "Soviet Union",
+          "why": "common short name",
+          "status": "draft"
+        }
+      ]
+    },
+    "6ad16ecf6a9c603911f9de62": {
+      "question": "What war did the Americans fight to win independence from Britain?",
+      "variants": [
+        {
+          "text": "the Revolution",
+          "answer": "American Revolution",
+          "why": "often said without \"American\"",
+          "status": "draft"
+        }
+      ]
+    },
+    "6ad16ecf6a9c603911f9de22": {
+      "question": "What is the economic system of the United States?",
+      "variants": [
+        {
+          "text": "free market",
+          "answer": "Free market economy",
+          "why": "often said without \"economy\"",
+          "status": "draft"
+        },
+        {
+          "text": "capitalist",
+          "answer": "Capitalism",
+          "why": "the same word as an adjective",
+          "status": "draft"
+        }
+      ]
+    },
+    "6ad16ecf6a9c603911f9de23": {
+      "question": "What is the rule of law?",
+      "variants": [
+        {
+          "text": "nobody is above the law",
+          "answer": "No one is above the law.",
+          "why": "same words, \"nobody\" = \"no one\"",
+          "status": "draft"
+        }
+      ]
+    },
+    "6ad16ecf6a9c603911f9de3e": {
+      "question": "If the president can no longer serve, who becomes president?",
+      "variants": [
+        {
+          "text": "the VP",
+          "answer": "The Vice President (of the United States)",
+          "why": "common short name",
+          "status": "draft"
+        }
+      ]
+    },
+    "6ad16ecf6a9c603911f9de94": {
+      "question": "Name three national U.S. holidays.",
+      "variants": [
+        {
+          "text": "MLK Day",
+          "answer": "Martin Luther King, Jr. Day",
+          "why": "common short name",
+          "status": "draft"
+        },
+        {
+          "text": "Fourth of July",
+          "answer": "Independence Day",
+          "why": "the holiday's other name",
+          "status": "draft"
+        },
+        {
+          "text": "July 4th",
+          "answer": "Independence Day",
+          "why": "the holiday's date name",
+          "status": "draft"
+        },
+        {
+          "text": "President's Day",
+          "answer": "Presidents Day (Washington’s Birthday)",
+          "why": "apostrophe spelling",
+          "status": "draft"
+        }
+      ]
+    },
+    "6ad16ecf6a9c603911f9de8c": {
+      "question": "Name one example of an American innovation.",
+      "variants": [
+        {
+          "text": "cars",
+          "answer": "Automobile (cars, internal combustion engine)",
+          "why": "the word in parentheses",
+          "status": "draft"
+        },
+        {
+          "text": "internal combustion engine",
+          "answer": "Automobile (cars, internal combustion engine)",
+          "why": "the words in parentheses",
+          "status": "draft"
+        },
+        {
+          "text": "moon landing",
+          "answer": "Landing on the moon",
+          "why": "same words, other order",
+          "status": "draft"
+        },
+        {
+          "text": "IC",
+          "answer": "Integrated circuit (IC)",
+          "why": "the short name in parentheses",
+          "status": "draft"
+        }
+      ]
+    },
+    "6ad16ecf6a9c603911f9de71": {
+      "question": "Name one war fought by the United States in the 1800s.",
+      "variants": [
+        {
+          "text": "Mexican War",
+          "answer": "Mexican-American War",
+          "why": "the war's other common name",
+          "status": "draft"
+        }
+      ]
+    },
+    "6ad16ecf6a9c603911f9de60": {
+      "question": "Who lived in America before the Europeans arrived?",
+      "variants": [
+        {
+          "text": "Natives",
+          "answer": "Native Americans",
+          "why": "short form",
+          "status": "draft"
+        }
+      ]
+    },
+    "6ad16ecf6a9c603911f9de61": {
+      "question": "What group of people was taken and sold as slaves?",
+      "variants": [
+        {
+          "text": "African people",
+          "answer": "People from Africa",
+          "why": "same words, other order",
+          "status": "draft"
+        }
+      ]
+    },
+    "6ad16ecf6a9c603911f9de8b": {
+      "question": "Name one American Indian tribe in the United States.",
+      "variants": [
+        {
+          "text": "Navaho",
+          "answer": "Navajo",
+          "why": "other spelling",
+          "status": "draft"
+        }
+      ]
+    },
+    "6ad16ecf6a9c603911f9de91": {
+      "question": "What is the name of the national anthem?",
+      "variants": [
+        {
+          "text": "Star Spangle Banner",
+          "answer": "The Star-Spangled Banner",
+          "why": "how speech recognition often writes it",
+          "status": "draft"
+        }
+      ]
+    }
+  }
+}

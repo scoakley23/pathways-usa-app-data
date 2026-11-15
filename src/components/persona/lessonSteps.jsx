@@ -14,7 +14,8 @@ import useLearnerLocation from '@/components/civics/useLearnerLocation';
 import { FIND_REPRESENTATIVE_PATH, MAY_CHANGE_SOON, officeholderAnswerFor } from '@/lib/officeholderQuestions';
 import { evaluateInterviewAnswer, evaluateUnderstanding } from '@/components/practice/evaluateInterviewAnswer';
 import { buildTutorInstructions } from '@/lib/tutorPersona';
-import { checkDictation, matchOfficialAnswer, splitOfficialAnswers } from '@/lib/practiceChecks';
+import { checkDictation, splitOfficialAnswers } from '@/lib/practiceChecks';
+import { matchCivicsAnswer } from '@/lib/answerVariants';
 import { READING_PASS } from '@/lib/pretest';
 import { markKeyWords } from '@/lib/tutorLesson';
 import { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
@@ -226,11 +227,13 @@ export function SpeakingStep({ step, ctx, state, setState }) {
       });
       return;
     }
-    const local = () => matchOfficialAnswer(answer, question.answer).isCorrect;
-    if (wasTyped) {
+    const local = () => matchCivicsAnswer(answer, question).isCorrect;
+    // A spoken answer that clearly matches an accepted answer is checked on
+    // the device too; only the rest go to the AI.
+    if (wasTyped || matchCivicsAnswer(answer, question).sure) {
       // Typed text never goes to the AI here: check on the device.
       const isCorrect = local();
-      setState({ answered: true, outcome: { correct: isCorrect }, result: { isCorrect, tip: isCorrect ? null : ctx.ui('keyWordsTip') } });
+      setState({ answered: true, heard: wasTyped ? undefined : answer, outcome: { correct: isCorrect }, result: { isCorrect, tip: isCorrect ? null : ctx.ui('keyWordsTip') } });
       return;
     }
     setChecking(true);
