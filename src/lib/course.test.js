@@ -74,14 +74,14 @@ describe('the course files (content/course/)', () => {
     expect(problems.some((p) => /must be a statement/.test(p))).toBe(true);
   });
 
-  it('has 7 units; Unit 2 has all 5 sections drafted (Prompt 12), every lesson a draft', () => {
+  it('has 7 units; Unit 2 has all 5 sections drafted (Prompt 12), every lesson draft or reviewed', () => {
     expect(UNITS).toHaveLength(7);
     const unit2 = UNITS[1];
     expect(unit2.sections.map((s) => s.title)).toEqual(['The three branches', 'Congress', 'The President', 'The courts', 'States and local government']);
     for (const s of unit2.sections) {
       expect(s.stops.length, s.id).toBeGreaterThan(2);
       expect(s.stops.at(-1).type === 'speakit' || s.stops.at(-1).type === 'practiceInterview', s.id).toBe(true);
-      expect(s.lessons.every((l) => l.status === 'draft'), s.id).toBe(true);
+      expect(s.lessons.every((l) => ['draft', 'reviewed'].includes(l.status)), s.id).toBe(true);
     }
     const congress = unit2.sections.find((s) => s.title === 'Congress');
     // The Prompt 4 sample keeps its first 7 stops in order; Prompt 12 adds lessons before Speak it!.
@@ -91,22 +91,22 @@ describe('the course files (content/course/)', () => {
     expect(STOP_TYPES).toEqual(['lesson', 'readwrite', 'speakit', 'n400', 'review', 'practiceInterview']);
   });
 
-  it('Unit 1 has 3 sections, the Declaration first, 9 draft lessons, ending on a practice interview', () => {
+  it('Unit 1 has 3 sections, the Declaration first, 9 lessons, ending on a practice interview', () => {
     const unit1 = UNITS[0];
     expect(unit1.sections.map((s) => s.title)).toEqual(['The Declaration of Independence', 'The Constitution', 'Rights and the rule of law']);
     const lessons = unit1.sections.flatMap((s) => s.lessons);
     expect(lessons).toHaveLength(9);
-    expect(lessons.every((l) => l.status === 'draft')).toBe(true);
+    expect(lessons.every((l) => ['draft', 'reviewed'].includes(l.status))).toBe(true);
     for (const s of unit1.sections) expect(s.stops.at(-1).type === 'speakit' || s.stops.at(-1).type === 'practiceInterview', s.id).toBe(true);
     expect(unit1.sections.at(-1).stops.at(-1).type).toBe('practiceInterview');
   });
 
-  it('Unit 3 has 3 sections, 6 draft lessons, ending on a practice interview; the flag waits for Unit 7', () => {
+  it('Unit 3 has 3 sections, 6 lessons, ending on a practice interview; the flag waits for Unit 7', () => {
     const unit3 = UNITS[2];
     expect(unit3.sections.map((s) => s.title)).toEqual(['Rights and voting', 'Serving your country', 'Becoming a citizen']);
     const lessons = unit3.sections.flatMap((s) => s.lessons);
     expect(lessons).toHaveLength(6);
-    expect(lessons.every((l) => l.status === 'draft')).toBe(true);
+    expect(lessons.every((l) => ['draft', 'reviewed'].includes(l.status))).toBe(true);
     expect(unit3.sections.at(-1).stops.at(-1).type).toBe('practiceInterview');
     for (const l of lessons) expect(`${l.steps.readIt.sentence} ${l.steps.writeIt.sentence}`, l.id).not.toMatch(/flag/i);
   });
@@ -146,12 +146,12 @@ describe('the course files (content/course/)', () => {
     expect(UNITS[3].questionIds.map(text)).not.toContain('What territory did the United States buy from France in 1803?');
   });
 
-  it('Unit 7 has 3 sections, 5 draft lessons, ending on a practice interview; it uses the saved flag sentences', () => {
+  it('Unit 7 has 3 sections, 5 lessons, ending on a practice interview; it uses the saved flag sentences', () => {
     const unit7 = UNITS[6];
     expect(unit7.sections.map((s) => s.title)).toEqual(['The flag and the nation\'s symbols', 'Places', 'Holidays']);
     const lessons = unit7.sections.flatMap((s) => s.lessons);
     expect(lessons).toHaveLength(5);
-    expect(lessons.every((l) => l.status === 'draft')).toBe(true);
+    expect(lessons.every((l) => ['draft', 'reviewed'].includes(l.status))).toBe(true);
     expect(unit7.sections.at(-1).stops.at(-1).type).toBe('practiceInterview');
     expect(findLesson('u7-s1-l1').lesson.steps.writeIt.sentence).toBe('The flag is red, white and blue.');
   });
@@ -163,33 +163,33 @@ describe('the course files (content/course/)', () => {
     expect(used).toHaveLength(128);
   });
 
-  it('Unit 6 has 4 sections, 10 draft lessons, ending on a practice interview; every U.S. History question is now placed', () => {
+  it('Unit 6 has 4 sections, 10 lessons, ending on a practice interview; every U.S. History question is now placed', () => {
     const unit6 = UNITS[5];
     expect(unit6.sections.map((s) => s.title)).toEqual(['World War I and the Great Depression', 'World War II', 'The Cold War', 'Civil rights and a new century']);
     const lessons = unit6.sections.flatMap((s) => s.lessons);
     expect(lessons).toHaveLength(10);
-    expect(lessons.every((l) => l.status === 'draft')).toBe(true);
+    expect(lessons.every((l) => ['draft', 'reviewed'].includes(l.status))).toBe(true);
     expect(unit6.sections.at(-1).stops.at(-1).type).toBe('practiceInterview');
     const placed = UNITS.slice(3, 6).flatMap((u) => u.sections.flatMap((s) => sectionQuestionIds(s)));
     expect(placed).toHaveLength(exported2025.filter((q) => q.category === 'U.S. History').length);
   });
 
-  it('Unit 5 has 3 sections, 6 draft lessons, ending on a practice interview; it says many Black Americans were still kept from voting after 1870', () => {
+  it('Unit 5 has 3 sections, 6 lessons, ending on a practice interview; it says many Black Americans were still kept from voting after 1870', () => {
     const unit5 = UNITS[4];
     expect(unit5.sections.map((s) => s.title)).toEqual(['A growing country', 'Slavery and the Civil War', 'Who can vote, who is a citizen']);
     const lessons = unit5.sections.flatMap((s) => s.lessons);
     expect(lessons).toHaveLength(6);
-    expect(lessons.every((l) => l.status === 'draft')).toBe(true);
+    expect(lessons.every((l) => ['draft', 'reviewed'].includes(l.status))).toBe(true);
     expect(unit5.sections.at(-1).stops.at(-1).type).toBe('practiceInterview');
     expect(findLesson('u5-s3-l1').lesson.steps.listen.facts.join(' ')).toMatch(/many Black Americans were still kept from voting/);
   });
 
-  it('Unit 4 has 3 sections, 9 draft lessons, ending on a practice interview', () => {
+  it('Unit 4 has 3 sections, 9 lessons, ending on a practice interview', () => {
     const unit4 = UNITS[3];
     expect(unit4.sections.map((s) => s.title)).toEqual(['The first Americans and the colonies', 'Independence', 'A new nation']);
     const lessons = unit4.sections.flatMap((s) => s.lessons);
     expect(lessons).toHaveLength(9);
-    expect(lessons.every((l) => l.status === 'draft')).toBe(true);
+    expect(lessons.every((l) => ['draft', 'reviewed'].includes(l.status))).toBe(true);
     expect(unit4.sections.at(-1).stops.at(-1).type).toBe('practiceInterview');
   });
 
@@ -211,8 +211,9 @@ describe('learners see only reviewed lessons', () => {
     expect(showDraftLessons({ DEV: true, VITE_SHOW_DRAFT_LESSONS: 'true' })).toBe(true);
     expect(showDraftLessons({ DEV: true })).toBe(false);
   });
-  it('the sample section shows nothing to learners yet', () => {
-    expect(visibleLessons(UNITS[1].sections[1], { showDrafts: false })).toEqual([]);
+  it('learners see exactly the reviewed lessons of a section', () => {
+    const congress = UNITS[1].sections[1];
+    expect(visibleLessons(congress, { showDrafts: false }).map((l) => l.id)).toEqual(congress.lessons.filter((l) => l.status === 'reviewed').map((l) => l.id));
     expect(findLesson('u2-s2-l3').lesson.title).toBe('How many senators?');
   });
 });

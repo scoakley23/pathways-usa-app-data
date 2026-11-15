@@ -39,6 +39,8 @@
           "explanationKey": "What territory did the United States buy from France in 1803?",
           "facts": [
             "In 1803, the United States bought the Louisiana Territory from France. It doubled the size of the country.",
+            "The United States wanted the port of New Orleans, on the Mississippi River, for trade. France needed money for its wars in Europe, so it agreed to sell.",
+            "President Thomas Jefferson paid France $15 million for the land, from the Mississippi River to the Rocky Mountains.",
             "The United States fought several wars in the 1800s: the War of 1812, the Mexican-American War, the Civil War and the Spanish-American War.",
             "The country kept growing. In 1867, it bought Alaska, which is now the largest state."
           ],
@@ -50,6 +52,10 @@
             {
               "word": "double",
               "meaning": "to become two times as big"
+            },
+            {
+              "word": "port",
+              "meaning": "a city where ships load and unload goods"
             }
           ]
         },

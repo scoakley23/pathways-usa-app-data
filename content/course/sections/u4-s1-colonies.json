@@ -45,7 +45,8 @@
         "listen": {
           "explanationKey": "Who lived in America before the Europeans arrived?",
           "facts": [
-            "American Indians, also called Native Americans, lived in America long before the Europeans arrived.",
+            "American Indians, also called Native Americans, lived in America for thousands of years before the Europeans arrived.",
+            "In 1492, Christopher Columbus sailed from Spain and reached the Americas. After that, many more Europeans came.",
             "There are many American Indian tribes, like the Cherokee, Navajo, Sioux, Apache and Hopi.",
             "Many tribes still live in the United States today."
           ],
@@ -97,6 +98,7 @@
         "listen": {
           "explanationKey": "The colonists came to America for many reasons. Name one.",
           "facts": [
+            "A colony is a place ruled by a country far away. The American colonies were groups of towns, farms and cities along the Atlantic coast, ruled by Britain.",
             "People came from Europe to live in the American colonies.",
             "They came for many reasons: freedom, religious freedom, economic opportunity, or to escape persecution.",
             "There were 13 colonies. They became the 13 original states, like Virginia, New York, Massachusetts, Pennsylvania and Georgia."

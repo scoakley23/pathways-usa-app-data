@@ -50,7 +50,7 @@
     {
       "id": "u1-s2-l1",
       "title": "The supreme law",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de18",
         "6ad16ecf6a9c603911f9de19"
@@ -106,7 +106,7 @@
     {
       "id": "u1-s2-l2",
       "title": "We the People",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de1a"
       ],
@@ -157,7 +157,7 @@
     {
       "id": "u1-s2-l3",
       "title": "Changing the Constitution",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de1b",
         "6ad16ecf6a9c603911f9de1d"
@@ -220,7 +220,9 @@
           "facts": [
             "The people who wrote the Constitution learned from older documents, like the Declaration of Independence, the Articles of Confederation and the Federalist Papers.",
             "George Washington led the meeting that wrote the Constitution in 1787.",
-            "The Declaration and the Constitution share big ideas: equality, liberty, natural rights, limited government and self-government."
+            "The Declaration and the Constitution share big ideas: equality, liberty, natural rights, limited government and self-government.",
+            "Tip: for the first question, you only need to name one document. “The Declaration of Independence” is the easiest to remember, because you learn about it in other lessons too.",
+            "Tip: for the second question, two short words are enough, like “liberty” and “equality.”"
           ],
           "newWords": [
             {

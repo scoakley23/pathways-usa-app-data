@@ -41,7 +41,7 @@
     {
       "id": "u5-s3-l1",
       "title": "Citizenship and the vote",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de77",
         "6ad16ecf6a9c603911f9de78"
@@ -109,7 +109,8 @@
           "explanationKey": "Name one leader of the women’s rights movement in the 1800s.",
           "facts": [
             "In the 1800s, women could not vote in most of the country.",
-            "Leaders like Susan B. Anthony, Elizabeth Cady Stanton, Sojourner Truth and Harriet Tubman fought for women's rights.",
+            "Susan B. Anthony and Elizabeth Cady Stanton led the fight for women's right to vote.",
+            "Sojourner Truth and Harriet Tubman were born into slavery and escaped. They spoke out for the rights of women and of Black Americans. Harriet Tubman also helped many enslaved people escape to freedom.",
             "In 1920, after World War I, the 19th Amendment gave women the right to vote."
           ],
           "newWords": [
