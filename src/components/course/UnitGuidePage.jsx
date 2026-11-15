@@ -39,7 +39,7 @@ function SectionRow({ section, number, unit, stops, state, progress, t, startOpe
       {open && mine.length > 0 && (
         <ol id={panel} className="list-none m-0 mx-4 mb-4 pt-3 border-t border-line flex flex-col gap-2">
           {mine.map((s) => {
-            const look = s.state === 'done' ? 'bg-denim text-white' : s.state === 'current' ? 'bg-red text-navy' : s.state === 'soon' ? `${STOP_LOOK[s.type]} opacity-70` : 'bg-tint text-muted';
+            const look = s.state === 'done' ? 'bg-denim text-white' : s.state === 'current' ? 'bg-red text-navy' : s.state === 'open' ? STOP_LOOK[s.type] : s.state === 'soon' ? `${STOP_LOOK[s.type]} opacity-70` : 'bg-tint text-muted';
             return (
               <li key={s.id} className="flex items-center gap-3 min-h-[44px]">
                 <span className={`grid place-items-center w-9 h-9 shrink-0 rounded-full ${look}`}>
@@ -86,13 +86,21 @@ export default function UnitGuidePage() {
             <SectionRow key={s.id} section={s} number={i + 1} unit={unit} stops={journey.stops} state={state} progress={journey.progress} t={t} startOpen={state === 'current'} />
           );
         })}
-        <div className="flex items-center gap-4 rounded-card bg-navy px-4 py-4 text-white">
-          <span className="grid place-items-center w-11 h-11 shrink-0 rounded-2xl bg-chip-navy text-gold"><UserRound className="w-6 h-6" aria-hidden="true" /></span>
-          <span className="min-w-0">
-            <span className="block text-lg font-bold">{t('practice_interview')}</span>
-            <span className="block text-base text-on-navy">{interview?.state === 'done' ? t('done') : t('interview_locked')}</span>
-          </span>
-        </div>
+        {(() => {
+          const ready = interview && (interview.state === 'open' || interview.state === 'done');
+          const inner = (
+            <>
+              <span className="grid place-items-center w-11 h-11 shrink-0 rounded-2xl bg-chip-navy text-gold"><UserRound className="w-6 h-6" aria-hidden="true" /></span>
+              <span className="min-w-0">
+                <span className="block text-lg font-bold">{t('practice_interview')}</span>
+                <span className="block text-base text-on-navy">{ready ? t('interview_open') : t('interview_locked')}</span>
+              </span>
+            </>
+          );
+          return ready
+            ? <Link to={`/course/unit/${unit.id}/interview`} className="flex items-center gap-4 rounded-card bg-navy px-4 py-4 text-white hover:bg-navy-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim">{inner}</Link>
+            : <div className="flex items-center gap-4 rounded-card bg-navy px-4 py-4 text-white">{inner}</div>;
+        })()}
       </div>
     </div>
   );

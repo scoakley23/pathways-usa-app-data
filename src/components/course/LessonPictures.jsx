@@ -18,13 +18,13 @@ function Credit({ p }) {
   );
 }
 
-export function LessonPicture({ p }) {
+export function LessonPicture({ p, caption = p.caption }) {
   if (p.kind === 'drawing') {
     const Drawing = DRAWINGS[p.drawing];
     return (
       <figure className="m-0 rounded-card bg-white border border-line p-4">
         {Drawing && <Drawing />}
-        <figcaption className="mt-3 text-base text-navy">{p.caption}</figcaption>
+        <figcaption className="mt-3 text-base text-navy" dir="auto">{caption}</figcaption>
       </figure>
     );
   }
@@ -44,19 +44,19 @@ export function LessonPicture({ p }) {
     <figure className="m-0 rounded-card bg-white border border-line overflow-hidden">
       <img src={p.src} alt={p.alt} loading="lazy" className="w-full h-auto max-h-80 object-contain bg-tint" />
       <figcaption className="p-4 flex flex-col gap-1">
-        <span className="text-base text-navy">{p.caption}</span>
+        <span className="text-base text-navy" dir="auto">{caption}</span>
         <Credit p={p} />
       </figcaption>
     </figure>
   );
 }
 
-export default function LessonPictures({ lessonId }) {
+export default function LessonPictures({ lessonId, caption }) {
   const list = picturesFor(lessonId);
   if (!list.length) return null;
   return (
     <div className="flex flex-col gap-3">
-      {list.map((p, i) => <LessonPicture key={`${p.kind}-${p.file || p.drawing || p.office}-${i}`} p={p} />)}
+      {list.map((p, i) => <LessonPicture key={`${p.kind}-${p.file || p.drawing || p.office}-${i}`} p={p} caption={caption ? caption(p, i) : p.caption} />)}
     </div>
   );
 }

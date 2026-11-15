@@ -5,7 +5,8 @@ import AnswerFeedback from '@/components/practice/AnswerFeedback';
 import RunTopBar from '@/components/practice/RunTopBar';
 import WordByWord from '@/components/practice/WordByWord';
 import { stopReading } from '@/components/persona/useAutoRead';
-import { readingTip } from '@/lib/readingTips';
+import { readingTipParts, fillTip, READING_CARD_LINES } from '@/lib/readingTips';
+import useReadingTip from '@/components/practice/useReadingTip';
 import { speakText } from "@/components/utils/textToSpeech";
 import { wordDiff } from "@/components/utils/wordDiff";
 
@@ -147,7 +148,8 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext, test
         overall_score: 0,
         matched_count: 0,
         total_words: diff.totalWords,
-        phoneme_feedback: "We couldn't detect any speech. Make sure your microphone is working and speak clearly into it.",
+        phoneme_feedback: fillTip(READING_CARD_LINES.noSpeech),
+        tip_parts: { line: READING_CARD_LINES.noSpeech, values: {} },
         general_feedback: 'No speech detected'
       });
       setStatus('retry');
@@ -159,14 +161,15 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext, test
     const overall = wordAccuracy;
 
     // ── 4. A tip chosen on the device (never changes the score) ──
-    const tip = readingTip(diff);
+    const tipParts = readingTipParts(diff);
 
     const result = {
       transcription: transcript,
       overall_score: overall,
       matched_count: diff.matchedCount,
       total_words: diff.totalWords,
-      phoneme_feedback: tip,
+      phoneme_feedback: fillTip(tipParts.line, tipParts.values),
+      tip_parts: tipParts,
       general_feedback: overall >= 70
         ? 'Great job! Your reading is clear and accurate.'
         : wordAccuracy < 50
@@ -260,9 +263,7 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext, test
                   <WordByWord words={wordResults} />
                 </div>
               )}
-              {analysis.phoneme_feedback && (
-                <p className="text-base leading-relaxed text-ink-2"><span className="font-semibold text-ink">Tip:</span> {analysis.phoneme_feedback}</p>
-              )}
+              {analysis.tip_parts && <ReadingTip parts={analysis.tip_parts} />}
               {passed || tried ? (
                 <Button variant="next" className="w-full min-h-[52px]" onClick={onNext}>
                   Next sentence <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" />
@@ -294,6 +295,27 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext, test
           )}
         </div>
       </CreamSheet>
+    </div>
+  );
+}
+
+// The tip in the learner's language (translation pack only), then in English.
+function ReadingTip({ parts }) {
+  const tip = useReadingTip(parts);
+  const label = useReadingTip({ line: READING_CARD_LINES.tip });
+  const said = useReadingTip({ line: READING_CARD_LINES.saidInYourLanguage });
+  if (!tip.en) return null;
+  return (
+    <div className="space-y-1">
+      <p className="text-base leading-relaxed text-ink-2">
+        <span className="font-semibold text-ink">{label.mine || label.en}</span> {tip.mine || tip.en}
+      </p>
+      {tip.mine && (
+        <>
+          <p className="text-small text-muted">{said.mine || said.en}</p>
+          <p className="text-small text-muted leading-relaxed" lang="en" dir="ltr">{tip.en}</p>
+        </>
+      )}
     </div>
   );
 }

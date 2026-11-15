@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { auth } from '@/api/auth';
@@ -143,6 +143,11 @@ export default function SettingsPage() {
 
         {user && (
           <>
+            <Link to="/plan" className="block rounded-card bg-white border border-line px-5 py-4 hover:border-denim focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim">
+              <span className="block text-lg font-bold text-navy">{t('your_plan')}</span>
+              <span className="block text-base text-muted">{t('your_plan_help')}</span>
+            </Link>
+
             <Card>
               <Eyebrow>{t('how_amio_talks')}</Eyebrow>
               <div className="mt-3">

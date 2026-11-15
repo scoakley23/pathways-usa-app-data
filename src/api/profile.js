@@ -68,6 +68,18 @@ export function createProfileApi({ provider = DATA_PROVIDER, base44: b44 = base4
       await b44.entities.ActivityDay.create({ user_email: email, date });
       return true;
     },
+
+    // The days ('YYYY-MM-DD') the learner opened the app, newest first, for
+    // the streak (Prompt 7). Read only; the learner's own rows.
+    async activeDays({ limit = 400 } = {}) {
+      const user = await auth.me();
+      if (provider === 'supabase') {
+        const rows = await run(sb().from('activity_days').select('date').eq('user_id', user.id).order('date', { ascending: false }).limit(limit));
+        return (rows || []).map((r) => r.date);
+      }
+      const rows = await b44.entities.ActivityDay.filter({ user_email: normalizeEmail(user.email) }, '-date', limit);
+      return rows.map((r) => r.date);
+    },
   };
 }
 

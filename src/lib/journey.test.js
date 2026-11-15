@@ -62,16 +62,25 @@ describe('stops unlock in order', () => {
     expect(stops[2].waitFor.id).toBe('a1');
   });
 
-  it('stops not built yet are "soon" and don\'t block the next lesson', () => {
+  it('Read and write is next after a lesson, and done when saved under its stop id', () => {
     const stops = journeyStops(course, { progress: { a1: { completed: true, stars: 3 } } });
     expect(stops.map((s) => [s.id, s.state])).toEqual([
-      ['a1', 'done'], ['ua-s1-rw', 'soon'], ['a2', 'current'], ['ua-s1-speak', 'locked'], ['b1', 'locked'], ['ub-pi', 'locked'],
+      ['a1', 'done'], ['ua-s1-rw', 'current'], ['a2', 'locked'], ['ua-s1-speak', 'locked'], ['b1', 'locked'], ['ub-pi', 'locked'],
     ]);
     expect(stops[0].stars).toBe(3);
+    const after = journeyStops(course, { progress: { a1: { completed: true } }, checkpoints: new Set(['ua-s1-rw']) });
+    expect(after.find((s) => s.id === 'ua-s1-rw').state).toBe('done');
+    expect(after.find((s) => s.id === 'a2').state).toBe('current');
+  });
+
+  it('the unit practice interview opens once everything before it is done and never blocks', () => {
+    const stops = journeyStops(course, { progress: { a1: { completed: true }, a2: { completed: true }, b1: { completed: true } }, checkpoints: new Set(['ua-s1', 'ua-s1-rw']) });
+    expect(stops.find((s) => s.id === 'ub-pi').state).toBe('open');
+    expect(stops.some((s) => s.state === 'current')).toBe(false);
   });
 
   it('a passed Speak it! counts as done; the next unit continues the road', () => {
-    const stops = journeyStops(course, { progress: { a1: { completed: true }, a2: { completed_at: '2026-11-15' } }, checkpoints: new Set(['ua-s1']) });
+    const stops = journeyStops(course, { progress: { a1: { completed: true }, a2: { completed_at: '2026-11-15' } }, checkpoints: new Set(['ua-s1', 'ua-s1-rw']) });
     expect(stops.find((s) => s.id === 'ua-s1-speak').state).toBe('done');
     expect(stops.find((s) => s.id === 'b1').state).toBe('current');
     expect(currentUnitId(course, stops)).toBe('ub');
@@ -84,6 +93,10 @@ describe('counts and stars', () => {
 
   it('stars add up saved lesson stars for course lessons only', () => {
     expect(totalStars(progress, fakeUnits)).toBe(4);
+  });
+
+  it('a passed Speak it! adds 10 stars; a Read and write stop adds none', () => {
+    expect(totalStars(progress, fakeUnits, new Set(['ua-s1', 'ua-s1-rw']))).toBe(14);
   });
 
   it('"n of m" lessons done, and test questions covered', () => {

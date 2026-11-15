@@ -28,7 +28,14 @@ import AskAmio from './components/ai/StudyBuddy';
 import CoursePage from './components/course/CoursePage';
 import UnitGuidePage from './components/course/UnitGuidePage';
 import UnitsMapPage from './components/course/UnitsMapPage';
-import LessonSoonPage from './components/course/LessonSoonPage';
+import LessonPlayer from './components/lesson/LessonPlayer';
+import PlanPage from './components/today/PlanPage';
+import DoneTodayPage from './components/today/DoneTodayPage';
+import SpeakItPage from './components/checkpoint/SpeakItPage';
+import ReadWritePage from './components/checkpoint/ReadWritePage';
+import UnitDonePage from './components/checkpoint/UnitDonePage';
+import UnitInterviewPage from './components/checkpoint/UnitInterviewPage';
+import ReviewChestPage from './components/checkpoint/ReviewChestPage';
 
 // Lessons and Practice are tabs of Study now; their old addresses redirect.
 const STUDY_REDIRECTS = { Lessons: 'lessons', Practice: 'practice' };
@@ -109,7 +116,7 @@ const AuthenticatedApp = () => {
         </LayoutWrapper>
       } />
       {/* The Course tab (Prompt 5): the journey, the unit guide, all units,
-          and Start on a lesson until the lesson player (Prompt 6). */}
+          and the 5-step lesson player (Prompt 6). */}
       <Route path="course" element={
         <LayoutWrapper currentPageName="Course">
           <CoursePage />
@@ -127,7 +134,45 @@ const AuthenticatedApp = () => {
       } />
       <Route path="course/lesson/:lessonId" element={
         <LayoutWrapper currentPageName="CourseLesson">
-          <LessonSoonPage />
+          <LessonPlayer />
+        </LayoutWrapper>
+      } />
+      {/* Checkpoints (Prompt 8): Speak it!, Read and write, Unit complete,
+          the unit practice interview and the review chest. */}
+      <Route path="course/speak/:sectionId" element={
+        <LayoutWrapper currentPageName="SpeakIt">
+          <SpeakItPage />
+        </LayoutWrapper>
+      } />
+      <Route path="course/readwrite/:stopId" element={
+        <LayoutWrapper currentPageName="ReadWrite">
+          <ReadWritePage />
+        </LayoutWrapper>
+      } />
+      <Route path="course/unit/:unitId/done" element={
+        <LayoutWrapper currentPageName="UnitDone">
+          <UnitDonePage />
+        </LayoutWrapper>
+      } />
+      <Route path="course/unit/:unitId/interview" element={
+        <LayoutWrapper currentPageName="UnitInterview">
+          <UnitInterviewPage />
+        </LayoutWrapper>
+      } />
+      <Route path="review-chest" element={
+        <LayoutWrapper currentPageName="ReviewChest">
+          <ReviewChestPage />
+        </LayoutWrapper>
+      } />
+      {/* Your plan and Done for today (Prompt 7). */}
+      <Route path="plan" element={
+        <LayoutWrapper currentPageName="Plan">
+          <PlanPage />
+        </LayoutWrapper>
+      } />
+      <Route path="done-today" element={
+        <LayoutWrapper currentPageName="DoneToday">
+          <DoneTodayPage />
         </LayoutWrapper>
       } />
       <Route path="study" element={

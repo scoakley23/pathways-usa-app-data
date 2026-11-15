@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import {
   normalizeCode, activePartners, findActivePartner, partnersForStaff, cleanName, planJoin, memberView, canManage, programSummary,
 } from '../../base44/shared/partners.js';
-import { rememberProgramFromUrl, loadPendingProgram, clearPendingProgram, PENDING_PROGRAM_KEY } from './programLink';
+import { rememberProgramCode, rememberProgramFromUrl, loadPendingProgram, clearPendingProgram, PENDING_PROGRAM_KEY } from './programLink';
 import partnerEntity from '../../base44/entities/Partner.jsonc?raw';
 import membershipEntity from '../../base44/entities/ProgramMembership.jsonc?raw';
 import partnerFunction from '../../base44/functions/partner/entry.js?raw';
@@ -164,6 +164,13 @@ describe('share link', () => {
     expect(loadPendingProgram()).toBe('HARVARD-CTP');
     clearPendingProgram();
     expect(loadPendingProgram()).toBe('');
+  });
+
+  it('keeps a code typed on Welcome the same way (Prompt 9)', () => {
+    expect(rememberProgramCode('  harvard ctp ')).toBe('HARVARD-CTP');
+    expect(loadPendingProgram()).toBe('HARVARD-CTP');
+    expect(rememberProgramCode('<b>')).toBeNull();
+    clearPendingProgram();
   });
 
   it('ignores links without a program, and odd values', () => {

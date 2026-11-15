@@ -21,6 +21,12 @@ import { TABS } from '@/components/pathways/BottomTabs';
 import { ME_LINES, SETTINGS_LINES, INTERVIEW_LINES } from '@/components/shell/shellStrings';
 import { TALK_LINES } from '@/components/ai/talkStrings';
 import { COURSE_LINES } from '@/components/course/courseStrings';
+import { LESSON_LINES } from '@/components/lesson/lessonStrings';
+import { CHECKPOINT_LINES } from '@/components/checkpoint/checkpointStrings';
+import { ONBOARDING_LINES } from '@/components/onboarding/onboardingStrings';
+import { TODAY_LINES } from '@/components/today/todayLines';
+import { UNITS } from '@/lib/course';
+import coursePictures from '../../content/course/pictures.json';
 import { GETTING_STARTED_LINES } from '@/components/persona/gettingStartedStrings';
 import { PRIVACY_NOTE, PRIVACY_SHORT } from '@/components/ai/privacyStrings';
 import { N400_SECTIONS } from '@/components/n400/n400Content';
@@ -33,6 +39,8 @@ import writingSentences from '../../content/base44-export/writing-sentences.json
 import vocabularyWords from '../../content/base44-export/vocabulary-words.json';
 import lessons from '../../content/base44-export/lessons.json';
 import lessonFlashcards from '../../content/base44-export/lesson-flashcards.json';
+import askAnswers from '../../content/ask/answers.json';
+import { readingTipSources } from '@/lib/readingTips';
 
 const TUTOR_LINES = fixedTutorLines();
 
@@ -58,6 +66,10 @@ export const STRING_SETS = [
   { id: 'settings', strings: SETTINGS_LINES, usedIn: [['src/components/shell/SettingsPage.jsx', 'LINES']] },
   { id: 'interview-tab', strings: INTERVIEW_LINES, usedIn: [['src/components/shell/InterviewPage.jsx', 'LINES']] },
   { id: 'course', strings: COURSE_LINES, usedIn: [['src/components/course/courseShared.jsx', 'COURSE_LINES']] },
+  { id: 'lesson-player', strings: LESSON_LINES, usedIn: [['src/components/lesson/LessonPlayer.jsx', 'LESSON_LINES'], ['src/components/checkpoint/ReviewChestPage.jsx', 'LESSON_LINES'], ['src/components/checkpoint/ReadWritePage.jsx', 'LESSON_LINES']] },
+  { id: 'onboarding', strings: ONBOARDING_LINES, usedIn: [['src/components/onboarding/useOnboardingText.js', 'ONBOARDING_LINES']] },
+  { id: 'checkpoints', strings: CHECKPOINT_LINES, usedIn: [['src/components/checkpoint/checkpointParts.jsx', 'CHECKPOINT_LINES']] },
+  { id: 'today-plan', strings: TODAY_LINES, usedIn: [['src/components/today/useToday.js', 'TODAY_LINES']] },
   { id: 'talk', strings: TALK_LINES, usedIn: [['src/components/ai/TalkToPerson.jsx', 'LINES']] },
   { id: 'talk-reply', strings: { reply: `We reply within ${REPLY_TIME}.` }, usedIn: [['src/components/ai/TalkToPerson.jsx', 'replyLine']] },
   { id: 'getting-started', strings: GETTING_STARTED_LINES, usedIn: [['src/components/persona/GettingStarted.jsx', 'LINES']] },
@@ -85,6 +97,19 @@ export function contentTexts() {
     ])))],
     ['lawyer-checklist', texts(LAWYER_CHECKLIST_ITEMS.flatMap((i) => [i.text, i.explanation, sectionTitle(i.guideSectionId)]))],
     ['privacy-note', texts([PRIVACY_NOTE.en, PRIVACY_SHORT.en])],
+    // Ask Amio's pre-written answers (content/ask/answers.json; drafts too, so
+    // they are ready when reviewed). The lesson questions stay in English.
+    ['ask-answers', texts(askAnswers.answers.map((x) => x.answer))],
+    // Read it tips (src/lib/readingTips.js): fixed lines keep {word} / {words},
+    // filled with the English words after translating; word tips drafts too.
+    ['reading-tips', texts(readingTipSources())],
+    // The course (Prompt 6): what the lesson player translates. Official
+    // questions, answers and the Read it / Write it sentences stay English.
+    ['course-lessons', texts(UNITS.flatMap((u) => u.sections.flatMap((sec) => (sec.lessons || []).flatMap((l) => [
+      ...l.steps.listen.facts,
+      ...l.steps.listen.newWords.map((w) => w.meaning),
+    ]))))],
+    ['course-pictures', texts(Object.values(coursePictures.lessons).flat().map((p) => p.caption))],
   ];
 }
 

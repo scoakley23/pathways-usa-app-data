@@ -4,6 +4,8 @@ import { auth } from '@/api/auth';
 import { courseProgress } from '@/api/course';
 import { UNITS } from '@/lib/course';
 import { canSeeDrafts, currentUnitId, journeyStops, totalStars, visibleCourse } from '@/lib/journey';
+import { n400Href } from '@/lib/checkpoints';
+import { startingPoint } from '@/lib/startingPoint';
 import useTranslatedLines from '@/components/persona/useTranslatedLines';
 import useAppLanguage, { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
 import { COURSE_LINES } from '@/components/course/courseStrings';
@@ -51,6 +53,16 @@ export const STOP_LOOK = {
   practiceInterview: 'bg-stop-interview text-gold',
 };
 
+// Where a non-lesson stop opens (Prompt 8).
+export function stopHref(stop) {
+  if (stop.type === 'speakit') return `/course/speak/${stop.sectionId}`;
+  if (stop.type === 'readwrite') return `/course/readwrite/${stop.id}`;
+  if (stop.type === 'practiceInterview') return `/course/unit/${stop.unitId}/interview`;
+  if (stop.type === 'n400') return n400Href(stop);
+  if (stop.type === 'review') return '/review-chest';
+  return null;
+}
+
 export function stopLabel(stop, t) {
   if (stop.type === 'speakit') return t('speak_checkpoint');
   if (stop.type === 'practiceInterview') return t('practice_interview');
@@ -79,13 +91,15 @@ export function useJourney() {
   return useMemo(() => {
     const showDrafts = canSeeDrafts(state.user);
     const course = visibleCourse(UNITS, { showDrafts });
-    const stops = journeyStops(course, { progress: state.progress, checkpoints: state.checkpoints });
+    const start = startingPoint(course, state.user?.skill_levels);
+    const stops = journeyStops(course, { progress: state.progress, checkpoints: state.checkpoints, startUnitId: start?.unit.id || null });
     return {
       ...state,
+      start,
       showDrafts,
       course,
       stops,
-      stars: totalStars(state.progress),
+      stars: totalStars(state.progress, UNITS, state.checkpoints),
       currentUnit: currentUnitId(course, stops),
     };
   }, [state]);

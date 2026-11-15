@@ -247,6 +247,30 @@
  ],
  "texts": [
   {
+   "text": "\"Checks and balances\" means each branch of government can limit the other branches. This way, no one part of government becomes too powerful.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "\"Civic responsibility\" means the things citizens do to help their community and their government, like voting, serving on a jury and obeying the law.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "\"Due process\" means the government must follow fair rules before it takes away a person's freedom, money or property. For example, a person has the right to a fair trial.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "\"Manifest Destiny\" was a belief in the 1800s that the United States should grow west to the Pacific Ocean. It also caused great harm to American Indians, who lost their land.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
    "text": "'The Star-Spangled Banner,' written in 1814, the official song of the United States",
    "from": [
     "key-words"
@@ -364,6 +388,48 @@
    "text": "(because of) the state’s population / (because) they have more people / (because) some states have more people",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "+1 star",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "+10 stars + badge",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "1 lesson a day",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
+   "text": "1 more lesson to reach Speak it!",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
+   "text": "1 question to bring back",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "1 question to keep fresh",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
+   "text": "1 star",
+   "from": [
+    "lesson-player"
    ]
   },
   {
@@ -576,15 +642,51 @@
    ]
   },
   {
+   "text": "A President can serve only two terms. This rule is in the 22nd Amendment.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "A President can veto a bill they disagree with, sending it back to Congress. Congress can override a presidential veto with a two-thirds majority vote.",
    "from": [
     "key-words"
    ]
   },
   {
+   "text": "A U.S. senator speaks for all the people of their state.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "A U.S. senator's term is six years.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "A bill is an idea for a new law. Congress writes and passes bills.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "A camp where people are forced to do hard work.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "A change to the Constitution is called an amendment.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "A colony is a place ruled by a country far away. The American colonies were groups of towns, farms and cities along the Atlantic coast, ruled by Britain.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -609,6 +711,18 @@
    "text": "A court-ordered period of supervision instead of, or after, jail time.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "A depression is a long time when businesses close and many people have no work. The Great Depression was the longest economic recession in modern history.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "A governor is the leader of a state government. The governor is like the President, but for one state.",
+   "from": [
+    "ask-answers"
    ]
   },
   {
@@ -660,9 +774,33 @@
    ]
   },
   {
+   "text": "A map of the Middle East. Kuwait is next to Iraq, and Afghanistan is farther east.",
+   "from": [
+    "course-pictures"
+   ]
+  },
+  {
    "text": "A massive canyon in Arizona carved by the Colorado River, a famous national park",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "A member of the House of Representatives has a two-year term.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "A member of the House of Representatives speaks for the people in one district.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "A mother and her children in 1936, during the Great Depression. Many families had no work and little food.",
+   "from": [
+    "course-pictures"
    ]
   },
   {
@@ -714,6 +852,12 @@
    ]
   },
   {
+   "text": "A practice interview with this unit’s questions. It doesn’t block the road.",
+   "from": [
+    "course"
+   ]
+  },
+  {
    "text": "A punishment decided by a court that you do not have to serve, as long as you follow the rules.",
    "from": [
     "n400"
@@ -729,6 +873,12 @@
    "text": "A ship or large boat.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "A short check of reading, writing, civics and speaking, so Amio knows where to start.",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -823,6 +973,12 @@
    ]
   },
   {
+   "text": "Abraham Lincoln was the 16th President. He led the United States during the Civil War and saved the Union.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Active involvement of citizens in the government process through voting and civic engagement",
    "from": [
     "lessons"
@@ -865,6 +1021,12 @@
    ]
   },
   {
+   "text": "After World War II, the United States and the Soviet Union became rivals. This was called the Cold War.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "After five years as a permanent resident, most immigrants can apply for naturalization",
    "from": [
     "key-words"
@@ -877,9 +1039,21 @@
    ]
   },
   {
+   "text": "After the Civil War, the 14th Amendment said that all persons born or naturalized in the United States are citizens.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "After the quick check, your study plan and daily practice appear here.",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "After the war, Americans began a day to honor soldiers who died. Today it is called Memorial Day.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -919,6 +1093,12 @@
    ]
   },
   {
+   "text": "Alexander Hamilton was the first Secretary of the Treasury.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "All American citizens have fundamental rights protected by the Constitution and laws. Freedom of speech allows Americans to express opinions without government interference. Freedom of religion allows everyone to practice their faith or no faith. Freedom of the press ensures that journalists can report information without government censorship.\n\nCitizens also have the right to petition the government and assemble peacefully. The right to a fair trial protects against unjust punishment. Property rights allow citizens to own and use property. The right to vote ensures all eligible citizens can participate in elections. These rights apply equally to all citizens regardless of race, religion, gender, or background.\n\nMany countries do not protect these fundamental rights, making them particularly valuable in America. The Constitution guarantees these rights, but citizens must be vigilant in protecting them. The Supreme Court interprets what these rights mean in modern contexts. Throughout history, Americans have fought to expand these rights to all citizens.",
    "from": [
     "lessons"
@@ -940,6 +1120,18 @@
    "text": "Allowed by the rules.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "Almost 3,000 people died.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Almost there. Say \"{word}\" slowly and clearly.",
+   "from": [
+    "reading-tips"
    ]
   },
   {
@@ -1011,6 +1203,12 @@
    ]
   },
   {
+   "text": "American Indians, also called Native Americans, lived in America for thousands of years before the Europeans arrived.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "American Revolution / The (American) Revolutionary War / War for (American) Independence",
    "from": [
     "civics-questions"
@@ -1035,6 +1233,18 @@
    ]
   },
   {
+   "text": "American innovations include the light bulb, the automobile, the airplane, skyscrapers and the assembly line.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Americans can serve their country in many ways: vote, pay taxes, obey the law, serve in the military, run for office or work for the government.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Americans can worship as Muslims, Christians, Jews, Hindus, or not at all",
    "from": [
     "key-words"
@@ -1047,15 +1257,33 @@
    ]
   },
   {
+   "text": "Americans elect a President every four years.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Americans file income tax returns each year, usually by April 15",
    "from": [
     "key-words"
    ]
   },
   {
+   "text": "Amio asked",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "Amio explains in",
    "from": [
     "ask-screen"
+   ]
+  },
+  {
+   "text": "Amio explains, in your language",
+   "from": [
+    "lesson-player"
    ]
   },
   {
@@ -1068,6 +1296,12 @@
    "text": "Amio reads each message aloud in the quick check and lessons. Saved on this phone.",
    "from": [
     "settings"
+   ]
+  },
+  {
+   "text": "Amio will explain everything in it. You practice in English.",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -1089,9 +1323,21 @@
    ]
   },
   {
+   "text": "An amendment is a change or an addition to the Constitution. The Constitution has 27 amendments. The first ten are the Bill of Rights.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
    "text": "An armed group that fights against a government.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "An innovation is a new idea or invention.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -1122,6 +1368,30 @@
    "text": "Answer",
    "from": [
     "pilot"
+   ]
+  },
+  {
+   "text": "Answer in English",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "Answer out loud, in English",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "Answer {n} easy questions",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
+   "text": "Answered the officer’s question",
+   "from": [
+    "lesson-player"
    ]
   },
   {
@@ -1263,6 +1533,12 @@
    ]
   },
   {
+   "text": "As President, he doubled the size of the United States with the Louisiana Purchase.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Ask",
    "from": [
     "ask-screen"
@@ -1344,13 +1620,29 @@
    "text": "Back",
    "from": [
     "course",
-    "sign-in"
+    "sign-in",
+    "today-plan"
+   ]
+  },
+  {
+   "text": "Back to home",
+   "from": [
+    "checkpoints",
+    "today-plan"
    ]
   },
   {
    "text": "Back to the road",
    "from": [
-    "course"
+    "checkpoints",
+    "course",
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "Badge earned",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -1427,6 +1719,12 @@
    ]
   },
   {
+   "text": "Being born in the United States, under the conditions in the 14th Amendment. Naturalizing: applying, passing the interview and test, and taking the Oath. Deriving citizenship, under conditions set by Congress, for example from a parent.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Being forced to leave the country.",
    "from": [
     "n400"
@@ -1451,9 +1749,21 @@
    ]
   },
   {
+   "text": "Benjamin Franklin helped write the Declaration of Independence. He was an inventor and a U.S. diplomat.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Benjamin Franklin is famous for many things. Name one.",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "Big states and small states have the same number of senators.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -1489,15 +1799,51 @@
    ]
   },
   {
+   "text": "Both countries had nuclear weapons, so people also feared a nuclear war.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Both parts meet in the U.S. Capitol in Washington, D.C.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Both the Senate and House of Representatives meet in the Capitol Building",
    "from": [
     "key-words"
    ]
   },
   {
+   "text": "Bring back the questions that are due.",
+   "from": [
+    "course"
+   ]
+  },
+  {
+   "text": "Britain added new taxes, like the Stamp Act on paper and a tax on tea. The colonists had no one to speak for them in Britain's government. They said: “No taxation without representation.”",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "British soldiers stayed in Americans' houses, and the colonists did not have self-government.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Building where Congress meets to make federal laws",
    "from": [
     "lessons"
+   ]
+  },
+  {
+   "text": "But for almost one hundred years after that, many Black Americans were still kept from voting by unfair rules and violence. The civil rights movement fought to change this.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -1556,6 +1902,12 @@
    ]
   },
   {
+   "text": "Cancel",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "Canceling — for example, the government trying to cancel a green card.",
    "from": [
     "n400"
@@ -1611,9 +1963,28 @@
    ]
   },
   {
+   "text": "Changing the Constitution is hard on purpose. Most of Congress and most of the states must agree.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Check",
+   "from": [
+    "checkpoints",
+    "lesson-player"
+   ]
+  },
+  {
    "text": "Check case status on USCIS.gov",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "Check the names again before your interview.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -1631,6 +2002,8 @@
   {
    "text": "Checking…",
    "from": [
+    "checkpoints",
+    "lesson-player",
     "sign-in"
    ]
   },
@@ -1639,6 +2012,12 @@
    "from": [
     "key-words",
     "lessons"
+   ]
+  },
+  {
+   "text": "Chest done!",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -1657,6 +2036,18 @@
    "text": "Choose a state",
    "from": [
     "pilot"
+   ]
+  },
+  {
+   "text": "Choose your language",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
+   "text": "Christopher Columbus reached the Americas in 1492. This painting is said to show him.",
+   "from": [
+    "course-pictures"
    ]
   },
   {
@@ -1702,9 +2093,21 @@
    ]
   },
   {
+   "text": "Citizens in the district vote to choose their representative.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Citizens in their (congressional) district / Citizens in their district / People from their (congressional) district / People in their district",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "Citizens of the state vote to choose their senators.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -1744,9 +2147,17 @@
    ]
   },
   {
+   "text": "Civic participation means taking part in your community and government.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Civics",
    "from": [
-    "interview-tab"
+    "checkpoints",
+    "interview-tab",
+    "onboarding"
    ]
   },
   {
@@ -1834,13 +2245,26 @@
   {
    "text": "Close",
    "from": [
+    "checkpoints",
     "sign-in"
+   ]
+  },
+  {
+   "text": "Close lesson",
+   "from": [
+    "lesson-player"
    ]
   },
   {
    "text": "Close. One more try — you've got this.",
    "from": [
     "tutor"
+   ]
+  },
+  {
+   "text": "Code",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -1942,6 +2366,12 @@
    ]
   },
   {
+   "text": "Congress can declare war and makes the federal budget.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Congress can pass a law with two-thirds vote despite presidential veto",
    "from": [
     "lessons"
@@ -1954,9 +2384,33 @@
    ]
   },
   {
+   "text": "Congress has two parts: the Senate (100 senators) and the House of Representatives (435 voting members).",
+   "from": [
+    "course-pictures"
+   ]
+  },
+  {
+   "text": "Congress has two parts: the Senate and the House of Representatives.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Congress is the legislative branch of the U.S. government and is divided into two chambers: the Senate and the House of Representatives. The Senate has 100 members—two from each state, regardless of population. Senators serve six-year terms. The House has 435 members, with representation based on state population. House members serve two-year terms.\n\nCongress has the power to make federal laws, approve budgets, declare war, and ratify treaties. Bills must pass both chambers and be signed by the President to become law. Congress can override a presidential veto with a two-thirds vote in both chambers. Members of Congress represent the interests of their constituents and help bring federal resources to their districts.\n\nThe Speaker of the House leads the House, while the Vice President is the President of the Senate. Congressional committees handle specific areas like defense, healthcare, and finance. Congress meets in the Capitol Building in Washington, D.C. Regular elections ensure that representatives remain accountable to the people.",
    "from": [
     "lessons"
+   ]
+  },
+  {
+   "text": "Congress is the legislative branch of the federal government.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Congress is the legislative branch. The President leads the executive branch. The courts are the judicial branch.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -1981,6 +2435,12 @@
    "text": "Congress meets in Washington, D.C.",
    "from": [
     "sentences"
+   ]
+  },
+  {
+   "text": "Congress writes the laws for the whole country.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -2048,7 +2508,32 @@
    "text": "Continue",
    "from": [
     "getting-started",
-    "home"
+    "home",
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "Continue and sign in",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
+   "text": "Continue in {language}",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
+   "text": "Continue the journey",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "Continue: {step}",
+   "from": [
+    "lesson-player"
    ]
   },
   {
@@ -2085,6 +2570,12 @@
    "text": "Courts can declare laws unconstitutional, checking legislative power",
    "from": [
     "lessons"
+   ]
+  },
+  {
+   "text": "Courts review and explain laws.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -2373,6 +2864,12 @@
    ]
   },
   {
+   "text": "Do it again",
+   "from": [
+    "course"
+   ]
+  },
+  {
    "text": "Do you currently owe any Federal, state, or local taxes?",
    "from": [
     "n400"
@@ -2473,9 +2970,22 @@
    "text": "Done",
    "from": [
     "course",
+    "onboarding",
     "pilot",
     "talk",
     "today"
+   ]
+  },
+  {
+   "text": "Done for today",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "Done for today!",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -2493,7 +3003,9 @@
   {
    "text": "Draft",
    "from": [
-    "course"
+    "course",
+    "lesson-player",
+    "today-plan"
    ]
   },
   {
@@ -2546,6 +3058,18 @@
    ]
   },
   {
+   "text": "Dwight Eisenhower was a general during World War II. He led the Allied armies in Europe.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Dwight Eisenhower, the 34th President.",
+   "from": [
+    "course-pictures"
+   ]
+  },
+  {
    "text": "E Pluribus Unum",
    "from": [
     "key-words"
@@ -2564,15 +3088,51 @@
    ]
   },
   {
+   "text": "Each Cabinet member leads one part of the executive branch.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Each branch has its own job, so no one branch has all the power.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Each skill is one part of your interview.",
    "from": [
     "home"
    ]
   },
   {
+   "text": "Each state gets as many electors as it has members of Congress: its two senators plus its representatives. Washington, D.C. gets 3. There are 538 electors in all.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Each state has two senators.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Each state is cut into areas called congressional districts.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Early release from prison with rules you must follow.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "Easy",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -2616,6 +3176,12 @@
    "text": "Encouraged others to do something.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "English only, like the real interview",
+   "from": [
+    "lesson-player"
    ]
   },
   {
@@ -2668,6 +3234,42 @@
    ]
   },
   {
+   "text": "Every answer right. You sound ready!",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "Every bit of practice counts.",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
+   "text": "Every state has 2 senators, so there are 100 in all.",
+   "from": [
+    "course-pictures"
+   ]
+  },
+  {
+   "text": "Every state has a capital city and a governor.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Every state has two U.S. senators, and every congressional district has one representative.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Every state has two senators, big or small. This gives small states an equal voice.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Every step stays open — explore in any order you like.",
    "from": [
     "home"
@@ -2695,6 +3297,12 @@
    "text": "Executive branch",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "Explain it to Amio in English",
+   "from": [
+    "lesson-player"
    ]
   },
   {
@@ -2743,6 +3351,12 @@
    "text": "Fair treatment through established judicial procedures and laws",
    "from": [
     "lessons"
+   ]
+  },
+  {
+   "text": "Fast",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -2843,6 +3457,12 @@
    ]
   },
   {
+   "text": "Finish all 5 steps for 3 stars",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "Finish “{title}” first. Stops open one at a time, in order.",
    "from": [
     "course"
@@ -2919,6 +3539,30 @@
    "text": "For",
    "from": [
     "words"
+   ]
+  },
+  {
+   "text": "For example, Congress writes laws, the President can veto them, and the courts can decide a law goes against the Constitution.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "For more than two hundred years, people from Africa were taken from their homes and sold as slaves in America.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "For the test, you can name any three of them.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "For the test, you need to name three.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -3007,6 +3651,12 @@
    ]
   },
   {
+   "text": "Four amendments to the Constitution are about who can vote.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Four hundred thirty-five (435)",
    "from": [
     "civics-questions"
@@ -3016,6 +3666,24 @@
    "text": "Fourth Amendment",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "Franklin Roosevelt in 1933, the year he became President.",
+   "from": [
+    "course-pictures"
+   ]
+  },
+  {
+   "text": "Franklin Roosevelt was President during the Great Depression and World War II. He was elected four times, more than any other President. After him, the 22nd Amendment limited Presidents to two terms.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Franklin also started the first free public libraries and was the first Postmaster General.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -3052,6 +3720,18 @@
    "text": "Free speech and the right to a fair trial are civil liberties protected by the Constitution",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "Free · Not part of the U.S. government",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
+   "text": "Free, and not the government",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -3093,9 +3773,27 @@
    ]
   },
   {
+   "text": "Freedom of assembly: you can meet together with other people in a peaceful group.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Freedom of expression / Freedom of speech / Freedom of assembly / Freedom to petition the government / Freedom of religion / The right to bear arms",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "Freedom of expression: you can share your ideas in many ways, like writing, art or speaking.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Freedom of religion: you can practice any religion, or no religion at all.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -3105,9 +3803,33 @@
    ]
   },
   {
+   "text": "Freedom of speech and freedom of religion are two of these rights.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Freedom of speech is a right.",
    "from": [
     "sentences"
+   ]
+  },
+  {
+   "text": "Freedom of speech means you can say what you think, and the government cannot punish you for your opinion. The First Amendment protects it.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "Freedom of speech: you can say what you think, even if you disagree with the government.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Freedom to petition the government: you can ask the government to change a law or fix a problem.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -3172,6 +3894,12 @@
    ]
   },
   {
+   "text": "George Washington is called the Father of Our Country. He was the first President and led the Continental Army.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "George Washington is famous for many things. Name one.",
    "from": [
     "civics-questions"
@@ -3184,9 +3912,45 @@
    ]
   },
   {
+   "text": "George Washington led the Continental Army.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "George Washington led the meeting that wrote the Constitution in 1787.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "George Washington was the first president.",
    "from": [
     "sentences"
+   ]
+  },
+  {
+   "text": "Germany, Italy and Japan in World War II",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Germany, Italy and Japan, called the Axis Powers, attacked other countries. The Allied Powers, including England, France and Russia, fought against them.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Get ready for your citizenship interview, with a tutor who speaks your language.",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
+   "text": "Get started",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -3227,6 +3991,12 @@
    ]
   },
   {
+   "text": "Goal done! One more if you like.",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "Goal for today: 3 questions. Let's go.",
    "from": [
     "tutor"
@@ -3242,6 +4012,12 @@
    "text": "Good afternoon!",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "Good afternoon, {name}",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -3263,6 +4039,12 @@
    ]
   },
   {
+   "text": "Good evening, {name}",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "Good evening, {name}.",
    "from": [
     "today"
@@ -3278,6 +4060,12 @@
    "text": "Good morning!",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "Good morning, {name}",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -3332,6 +4120,18 @@
    ]
   },
   {
+   "text": "Great teaching!",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "Green = read clearly · keep going",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "Group of department heads who advise the President and manage executive departments",
    "from": [
     "key-words",
@@ -3360,6 +4160,12 @@
    "text": "Guide",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "Harriet Tubman escaped slavery and helped many others escape to freedom.",
+   "from": [
+    "course-pictures"
    ]
   },
   {
@@ -3675,6 +4481,48 @@
    ]
   },
   {
+   "text": "He became the 34th President and was President at the end of the Korean War.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "He helped start the First Bank of the United States and was one of the writers of the Federalist Papers.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "He hoped people would “not be judged by the color of their skin, but by the content of their character.”",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "He signed the law that built the Interstate highways across the country.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "He was also the fourth President, and President during the War of 1812.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "He was an aide to General George Washington. Washington is on the one-dollar bill, and Hamilton is on the ten-dollar bill.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "He was the third President of the United States.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Head of the Executive Branch, elected to four-year terms, limited to two terms",
    "from": [
     "key-words"
@@ -3687,9 +4535,27 @@
    ]
   },
   {
+   "text": "Hear a sentence, then write it",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "Hear it",
    "from": [
     "ask-screen"
+   ]
+  },
+  {
+   "text": "Hear it again",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "Hear “{word}”",
+   "from": [
+    "lesson-player"
    ]
   },
   {
@@ -3720,6 +4586,12 @@
    "text": "Here",
    "from": [
     "words"
+   ]
+  },
+  {
+   "text": "Hi! I’m Amio. I’ll be your tutor.",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -3756,6 +4628,12 @@
    "text": "Highest federal court with nine justices, has power of judicial review",
    "from": [
     "lessons"
+   ]
+  },
+  {
+   "text": "Hint",
+   "from": [
+    "lesson-player"
    ]
   },
   {
@@ -3832,6 +4710,12 @@
    ]
   },
   {
+   "text": "How long each one serves: representatives 2 years, the President 4 years, senators 6 years.",
+   "from": [
+    "course-pictures"
+   ]
+  },
+  {
    "text": "How long is a term for a U.S. senator?",
    "from": [
     "civics-questions"
@@ -3892,6 +4776,12 @@
    ]
   },
   {
+   "text": "How many lessons a day?",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "How many seats are on the Supreme Court?",
    "from": [
     "civics-questions"
@@ -3946,6 +4836,12 @@
    ]
   },
   {
+   "text": "How the United States grew. The Louisiana Purchase of 1803 is the large area in the middle.",
+   "from": [
+    "course-pictures"
+   ]
+  },
+  {
    "text": "How we study together",
    "from": [
     "home"
@@ -3967,6 +4863,30 @@
    "text": "I don't know yet",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "I don’t know yet",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
+   "text": "I explain in your language",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
+   "text": "I forgot! Can you teach me?",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "I have a code from my tutor",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -4027,6 +4947,12 @@
    "text": "If the President can no longer serve, who becomes President?",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "If the President dies or can no longer do the job, the Vice President becomes President.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -4133,6 +5059,12 @@
    ]
   },
   {
+   "text": "Important events include the Battle of Bunker Hill, Washington crossing the Delaware, Valley Forge and the British surrender at Yorktown.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Important for the whole country.",
    "from": [
     "n400"
@@ -4145,9 +5077,88 @@
    ]
   },
   {
+   "text": "In 1492, Christopher Columbus sailed from Spain and reached the Americas. After that, many more Europeans came.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "In 1773, colonists in Boston threw British tea into the harbor to protest. This was the Boston Tea Party.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "In 1803, the United States bought the Louisiana Territory from France. It doubled the size of the country.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "In 1863, his Emancipation Proclamation freed the slaves in the Confederate states.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "In 1863, the Union won the Battle of Gettysburg, in Pennsylvania, one of the biggest battles of the war.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "In 1865, the Southern general Robert E. Lee surrendered at Appomattox, Virginia. This ended the war.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "In 1870, the 15th Amendment said a man could not be kept from voting because of his race.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "In 1920, after World War I, the 19th Amendment gave women the right to vote.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "In 1950, communist North Korea invaded South Korea. The United States entered the Korean War to help South Korea.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "In 1969, Americans were the first people to land on the moon.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "In 1990, Iraq invaded its small neighbor, Kuwait. In 1991, the United States led many countries in the Persian Gulf War to force the Iraqi military out of Kuwait.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "In 2003, the United States also went to war in Iraq.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "In America, slavery was based on race. Africans and their children were enslaved because of the color of their skin. This is racial discrimination.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "In English",
    "from": [
-    "ask-screen"
+    "ask-screen",
+    "lesson-player"
    ]
   },
   {
@@ -4157,9 +5168,34 @@
    ]
   },
   {
+   "text": "In Vietnam, communist North Vietnam fought to take over South Vietnam. The United States sent soldiers to help South Vietnam.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "In most states, the candidate who gets the most votes wins all of that state's electors. To become President, a candidate needs 270 electoral votes.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "In my language",
    "from": [
-    "ask-screen"
+    "ask-screen",
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "In the 1760s, Britain had spent a lot of money on wars and wanted the colonists to help pay.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "In the 1800s, women could not vote in most of the country.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -4191,6 +5227,12 @@
    "text": "Independence Day is in July.",
    "from": [
     "sentences"
+   ]
+  },
+  {
+   "text": "Independence Day, on July 4, celebrates U.S. independence from Britain. It is the country's birthday.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -4286,6 +5328,18 @@
    ]
   },
   {
+   "text": "It also protects the rights of the people.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It also says all people are created equal and have rights that no one can take away.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "It can take a minute. Check your spam folder too.",
    "from": [
     "sign-in"
@@ -4298,9 +5352,75 @@
    ]
   },
   {
+   "text": "It forms the government and says what each part of the government can do.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It has 13 stripes because there were 13 original colonies.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It has 50 stars, one star for each state.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It is OK to ask. You can say: \"Can you repeat that, please?\" or \"Can you say that another way?\" Don't answer a question until you understand it.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "It is also a constitution-based federal republic: the Constitution is the highest law, and power is shared between the national government and the states.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It is called “cold” because the two countries never fought each other directly in a big war. They competed with weapons, money and ideas.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "It is important for all men age 18 through 25 to register for the Selective Service. Name one reason why.",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "It lasted about ten years, until World War II.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It means the people govern themselves. This is called self-government.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It means the people have the power. They vote for leaders who make decisions for them. The United States is a republic, a representative democracy.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "It means we use our rights in a way that respects other people's rights. You have freedom of speech, and so does your neighbor.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "It protects the basic rights of Americans and of people living in the United States.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -4310,15 +5430,45 @@
    ]
   },
   {
+   "text": "It says that many people and many states become one country.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It started with the stock market crash of 1929, called the Great Crash.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "It's been 2 weeks. Want a 5-minute re-check of {skill}? We'll update your plan.",
    "from": [
     "today"
    ]
   },
   {
+   "text": "I’ll bring back that question in your review chest.",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "I’ll bring back those questions in your review chest.",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "I’ll use the state you picked in Who Represents Me.",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "I’m ready",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -4335,9 +5485,21 @@
    ]
   },
   {
+   "text": "James Madison is called the Father of the Constitution.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "James Madison is famous for many things. Name one.",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "James Madison, Alexander Hamilton and John Jay wrote them, under the name Publius.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -4436,6 +5598,12 @@
    "text": "Keep going",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "Keep going: next lesson",
+   "from": [
+    "lesson-player"
    ]
   },
   {
@@ -4637,9 +5805,27 @@
    ]
   },
   {
+   "text": "Lesson complete!",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "Lesson {n}",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "Lesson {n} of today. Almost there!",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
+   "text": "Lesson {n} of today. Keep going!",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -4649,9 +5835,27 @@
    ]
   },
   {
-   "text": "Lessons open in the next update",
+   "text": "Let’s see where you are",
    "from": [
-    "course"
+    "onboarding"
+   ]
+  },
+  {
+   "text": "Let’s start today’s lesson.",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
+   "text": "Level 1: word bank",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "Level 2: type it yourself",
+   "from": [
+    "lesson-player"
    ]
   },
   {
@@ -4659,6 +5863,12 @@
    "from": [
     "key-words",
     "lessons"
+   ]
+  },
+  {
+   "text": "Liberty means freedom.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -4698,6 +5908,12 @@
    ]
   },
   {
+   "text": "Lincoln also gave the Gettysburg Address. His birthday is in February, near Presidents' Day.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Lincoln was President during the Civil War.",
    "from": [
     "sentences"
@@ -4728,15 +5944,59 @@
    ]
   },
   {
+   "text": "Listen",
+   "from": [
+    "lesson-player",
+    "today-plan"
+   ]
+  },
+  {
+   "text": "Listen and write {n} sentences",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
+   "text": "Listen and write · {n} of {total}",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "Listen to official audio and practice typing exactly what you hear.",
    "from": [
     "home"
    ]
   },
   {
+   "text": "Listen, then build the sentence. Next time you’ll type it yourself.",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "Listen, then type the sentence.",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "Listened and learned",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "Listening… take your time",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "Listening… tap to stop",
    "from": [
-    "ask-screen"
+    "ask-screen",
+    "lesson-player"
    ]
   },
   {
@@ -4758,6 +6018,12 @@
    ]
   },
   {
+   "text": "Long ago, the American colonies were ruled by Britain.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Long before European arrival, Native Americans lived in North America for thousands of years, developing diverse civilizations, cultures, and governments. They had their own laws, trade systems, and societies. When Europeans arrived in the late 1400s, they were seeking new trade routes and resources.\n\nEuropean colonization had devastating effects on Native Americans. Diseases brought from Europe killed millions of Native Americans who had no immunity. Europeans took Native American lands and forced them onto smaller areas called reservations. Native Americans were often treated as inferior and had few legal rights. Many were forced to abandon their languages, religions, and cultures.\n\nDespite these hardships, Native American cultures survived and continue today. There are 574 federally recognized tribes in the United States. Native Americans have fought for justice and recognition. The Indian Removal Act of 1830 forced thousands of Native Americans west on the deadly Trail of Tears. Today, Native Americans advocate for sovereignty, cultural preservation, and justice for historical wrongs.",
    "from": [
     "lessons"
@@ -4767,6 +6033,12 @@
    "text": "Longest economic recession in modern history",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "Look at the words we didn't hear: {words}. Say each one slowly, then read the sentence again.",
+   "from": [
+    "reading-tips"
    ]
   },
   {
@@ -4836,6 +6108,12 @@
    ]
   },
   {
+   "text": "Make my plan",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "Male citizens and residents must register with Selective Service at age 18",
    "from": [
     "key-words"
@@ -4854,6 +6132,18 @@
    ]
   },
   {
+   "text": "Many banks closed, and millions of families lost their jobs, homes and savings. People waited in long lines for free food, called bread lines.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Many colonists had come to America for freedom, including religious freedom. They wanted to govern themselves.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Many documents influenced the U.S. Constitution. Name one.",
    "from": [
     "civics-questions"
@@ -4863,6 +6153,18 @@
    "text": "Many immigrants come to America in pursuit of the American Dream",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "Many interviews take about 20 to 30 minutes, but some are shorter or longer. Come early, because you may have to wait. If you have questions about your own case, talk to a lawyer first.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "Many tribes still live in the United States today.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -4890,9 +6192,21 @@
    ]
   },
   {
+   "text": "Martin Luther King, Jr. in 1964.",
+   "from": [
+    "course-pictures"
+   ]
+  },
+  {
    "text": "Martin Luther King, Jr. is famous for many things. Name one.",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "Martin Luther King, Jr. was a leader of the movement. He worked for equality for all Americans.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -4945,6 +6259,18 @@
    ]
   },
   {
+   "text": "Memorial Day, in May, honors soldiers who died in military service.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Men age 18 through 25 register for the Selective Service. It is required by law, and it makes a draft fair if one is ever needed.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Mexican-American War",
    "from": [
     "lessons"
@@ -4966,6 +6292,12 @@
    "text": "Midwest Region",
    "from": [
     "lessons"
+   ]
+  },
+  {
+   "text": "Missed a day? No problem. I’ll adjust the plan.",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -5306,6 +6638,12 @@
    ]
   },
   {
+   "text": "National holidays include New Year's Day, Martin Luther King, Jr. Day, Presidents Day, Memorial Day, Juneteenth, Independence Day, Labor Day, Columbus Day, Veterans Day, Thanksgiving Day and Christmas Day.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Native American Civilizations",
    "from": [
     "lessons"
@@ -5339,6 +6677,12 @@
    "text": "Never saved",
    "from": [
     "settings"
+   ]
+  },
+  {
+   "text": "Never tell me about your case. We practice with made-up people.",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -5390,9 +6734,34 @@
    ]
   },
   {
+   "text": "New citizens take the Oath of Allegiance at the end of naturalization.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "New lessons open as they are reviewed. Practice or review while you wait.",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "New to Pathways USA? Begin with your tutor. Sign in, answer a few setup questions, then take a short quick check. Your tutor plans your practice from there.",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "New words · tap to hear",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "Next",
+   "from": [
+    "checkpoints",
+    "lesson-player"
    ]
   },
   {
@@ -5429,6 +6798,24 @@
    "text": "No",
    "from": [
     "pilot"
+   ]
+  },
+  {
+   "text": "No hints in a checkpoint. You can ask the officer to repeat, just like on the real day.",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "No language found. Try another name.",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
+   "text": "No one is above the law. For example, the President must pay taxes like everyone else. A mayor who steals can be arrested and go to court like anyone else.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -5488,6 +6875,12 @@
    ]
   },
   {
+   "text": "Not quite yet",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "Not quite. Try again.",
    "from": [
     "tutor"
@@ -5502,7 +6895,44 @@
   {
    "text": "Not yet",
    "from": [
+    "checkpoints",
     "pilot"
+   ]
+  },
+  {
+   "text": "Not yet. Almost there!",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "Not yet. Here is what the officer accepts.",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "Not yet. Listen once, then read it again slowly.",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "Not yet. Look at each word, then try again.",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "Nothing due today",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
+   "text": "Nothing due today. Come back tomorrow.",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -5579,6 +7009,18 @@
    ]
   },
   {
+   "text": "Officer",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
+   "text": "Officer question",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "Official answers",
    "from": [
     "home"
@@ -5615,6 +7057,24 @@
    ]
   },
   {
+   "text": "On July 4, 1776, the Declaration of Independence said the colonies were free from Britain. We remember this day on Independence Day.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "On September 11, 2001, terrorists attacked the United States.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "On September 11, 2001, terrorists from a group called al-Qaeda attacked the United States. Their leaders were hiding in Afghanistan.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "On or after October 20, 2025",
    "from": [
     "getting-started"
@@ -5639,9 +7099,27 @@
    ]
   },
   {
+   "text": "One missed day a week is a rest day. It never breaks your streak.",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "One of the two longest rivers in the U.S., running through the center of the country",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "One question, English only",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "Only U.S. citizens can vote in federal elections, run for federal office and serve on a jury.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -5651,9 +7129,21 @@
    ]
   },
   {
+   "text": "Only your steps and stars are saved. Nothing you said is kept.",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "Open",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "Open this card in the N-400 guide.",
+   "from": [
+    "course"
    ]
   },
   {
@@ -5666,6 +7156,12 @@
    "text": "Optional. Programs you study with can't see this. 'Delete all my data' erases it.",
    "from": [
     "pilot"
+   ]
+  },
+  {
+   "text": "Or when you hope to be ready. This stays on your phone.",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -5684,6 +7180,12 @@
    "text": "Over 600,000 soldiers died in the Civil War, making it the deadliest American conflict",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "Over time, the colonists became angry. Britain made them pay high taxes, but they had no vote in Britain's government. British soldiers even stayed in their homes.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -5723,15 +7225,33 @@
    ]
   },
   {
+   "text": "Pathways is not part of USCIS and doesn’t give legal advice.",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "Pathways is not part of USCIS or the U.S. government.",
    "from": [
     "home"
    ]
   },
   {
+   "text": "Pathways looks up your state’s capital and governor on an official list, using the state you chose in “Who Represents Me?”.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Pay",
    "from": [
     "words"
+   ]
+  },
+  {
+   "text": "Paying federal taxes is required by law. All people pay to fund the federal government.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -5744,6 +7264,12 @@
    "text": "People",
    "from": [
     "words"
+   ]
+  },
+  {
+   "text": "People came from Europe to live in the American colonies.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -5807,6 +7333,12 @@
    ]
   },
   {
+   "text": "Play the sentence",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "Please don't share dates, case numbers or details. Programs you study with can't see this.",
    "from": [
     "pilot"
@@ -5839,7 +7371,14 @@
   {
    "text": "Practice",
    "from": [
-    "course"
+    "course",
+    "today-plan"
+   ]
+  },
+  {
+   "text": "Practice again: it’s in your review chest",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -5861,9 +7400,22 @@
    ]
   },
   {
+   "text": "Practice officer · AI, not a real person",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "Practice one skill",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "Practice only: nothing is saved yet.",
+   "from": [
+    "checkpoints",
+    "lesson-player"
    ]
   },
   {
@@ -5914,6 +7466,12 @@
    "text": "President Roosevelt called December 7, 1941 'a date which will live in infamy'",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "President Thomas Jefferson paid France $15 million for the land, from the Mississippi River to the Rocky Mountains.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -6082,6 +7640,18 @@
    ]
   },
   {
+   "text": "Put your tongue between your teeth for \"th\": \"the\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Question {n} of {total}",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "Questions about how you got your green card",
    "from": [
     "lawyer-checklist"
@@ -6119,9 +7689,34 @@
    ]
   },
   {
+   "text": "Read",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
+   "text": "Read 3 sentences out loud and write 3, from this section’s lessons.",
+   "from": [
+    "course"
+   ]
+  },
+  {
    "text": "Read and write",
    "from": [
+    "checkpoints",
     "home"
+   ]
+  },
+  {
+   "text": "Read and write done!",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "Read clearly!",
+   "from": [
+    "lesson-player"
    ]
   },
   {
@@ -6131,9 +7726,33 @@
    ]
   },
   {
+   "text": "Read it",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "Read it out loud",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "Read it out loud · {n} of {total}",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "Read official sentences aloud and get instant feedback on pronunciation.",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "Read only the words in the sentence, one at a time.",
+   "from": [
+    "reading-tips"
    ]
   },
   {
@@ -6155,9 +7774,28 @@
    ]
   },
   {
+   "text": "Read this out loud, like you will for the officer.",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "Read {n} short sentences out loud",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
+   "text": "Read “{sentence}”",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "Reading",
    "from": [
-    "interview-tab"
+    "interview-tab",
+    "onboarding"
    ]
   },
   {
@@ -6169,6 +7807,7 @@
   {
    "text": "Ready",
    "from": [
+    "course",
     "interview-tab"
    ]
   },
@@ -6176,6 +7815,18 @@
    "text": "Ready and OK with doing something.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "Ready by {month}.",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
+   "text": "Ready for today’s lesson?",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -6194,6 +7845,12 @@
    "text": "Ready to file?",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "Recommended",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -6230,6 +7887,24 @@
    "text": "Released from a job or service.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "Remove “{word}”",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "Representatives serve two-year terms. Senators serve six-year terms.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Representatives speak for one district. States with more people have more of them.",
+   "from": [
+    "course-pictures"
    ]
   },
   {
@@ -6294,6 +7969,19 @@
    ]
   },
   {
+   "text": "Review chest",
+   "from": [
+    "checkpoints",
+    "today-plan"
+   ]
+  },
+  {
+   "text": "Review chest · {n} of {total}",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "Reviews laws / Explains laws / Resolves disputes (disagreements) about the law / Decides if a law goes against the (U.S.) Constitution",
    "from": [
     "civics-questions"
@@ -6309,6 +7997,7 @@
   {
    "text": "Right",
    "from": [
+    "checkpoints",
     "words"
    ]
   },
@@ -6381,7 +8070,9 @@
   {
    "text": "Said in your language",
    "from": [
-    "ask-screen"
+    "ask-screen",
+    "lesson-player",
+    "reading-tips"
    ]
   },
   {
@@ -6404,6 +8095,12 @@
    ]
   },
   {
+   "text": "Save my plan",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "Save state",
    "from": [
     "pilot"
@@ -6416,6 +8113,402 @@
    ]
   },
   {
+   "text": "Say \"DOL-er\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"FAH-ther\". Put your tongue between your teeth for \"th\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"JORJ\". It is one syllable.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"KONG-gress\". Put the stress on the first part.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"KUL-erz\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"KUN-tree\". The \"ou\" sounds like \"u\" in \"up\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"LAY-bor\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"LINK-un\". The second \"l\" is quiet.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"MEN-ee\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"PEE-pul\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"SEK-und\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"SIT-ee\". It starts with an \"s\" sound.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"bill\" with a short \"i\", like \"fill\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"can\" with a short \"a\", like \"man\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"day\" like \"say\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"duz\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"flag\" with a short \"a\", like \"bag\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"furst\" and finish the \"st\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"hav\". The \"e\" is quiet.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"haz\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"hoo\". The \"w\" is quiet.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"house\" with the \"ow\" sound, like \"how\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"how\" with the \"ow\" sound, like \"now\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"kum\". The \"o\" sounds like \"u\" in \"up\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"livd\" with a short \"i\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"livz\" with a short \"i\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"meet\" with a long \"ee\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"most\" and finish the \"st\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"name\" like \"same\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"north\". Put your tongue between your teeth for \"th\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"our\" like \"hour\". It is one syllable.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"pay\" like \"day\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"rite\". The \"gh\" is quiet.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"south\". Put your tongue between your teeth for \"th\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"state\" and finish the \"t\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"uv\". It sounds like \"v\" at the end.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"vote\". Touch your top teeth to your lip for \"v\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"wahnt\" and finish the \"t\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"wair\". The \"h\" is quiet.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"wen\". The \"h\" is quiet.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"wite\". The \"h\" is quiet.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"wun\", like \"won\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"wut\". The \"h\" is quiet.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say \"wy\", like the letter \"Y\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say each letter: \"U. S.\"",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say it in four parts: a-MER-i-ca.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say it in four parts: a-MER-i-can.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say it in four parts: in-de-PEN-dence.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say it in four parts: me-MOR-ee-al.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say it in three parts and end with \"s\": PREZ-i-dents.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say it in three parts: A-bra-ham.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say it in three parts: CAP-i-tal.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say it in three parts: CIT-i-zen. It starts with an \"s\" sound.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say it in three parts: GUV-ern-ment.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say it in three parts: PREZ-i-dent.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say it in three parts: SEN-a-tors.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say it in three parts: WASH-ing-ton.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say it in three parts: co-LUM-bus.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say it in three parts: thanks-GIV-ing. Put your tongue between your teeth for \"th\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say it in three parts: you-NI-ted.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say it in two parts and finish the \"cts\": e-LECTS.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say it in two parts: LARJ-est.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say it like this",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "Say it like this: ee PLOOR-ih-bus OO-num.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Say the \"ts\" at the end: \"rights\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Say the \"ts\" at the end: \"states\".",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
    "text": "Saying or writing something false to get something.",
    "from": [
     "n400"
@@ -6425,6 +8518,12 @@
    "text": "Schools cannot be segregated because equal protection requires equal treatment",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "Search {n}+ languages",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -6452,6 +8551,12 @@
    ]
   },
   {
+   "text": "Section {n} checkpoint",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "Section {n}: {title}",
    "from": [
     "course"
@@ -6461,6 +8566,12 @@
    "text": "See USCIS processing times (optional)",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "See my journey",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -6520,6 +8631,12 @@
    ]
   },
   {
+   "text": "Senators speak for their whole state: 2 from every state.",
+   "from": [
+    "course-pictures"
+   ]
+  },
+  {
    "text": "Send",
    "from": [
     "talk"
@@ -6569,9 +8686,21 @@
    ]
   },
   {
+   "text": "Serving for life helps them stay independent of politics.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Serving on a jury is a civic duty that helps ensure fair trials",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "Set your daily goal",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -6585,6 +8714,12 @@
    "text": "Share my progress with {program}",
    "from": [
     "getting-started"
+   ]
+  },
+  {
+   "text": "Short terms mean representatives face voters often, so they follow what the public thinks.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -6667,15 +8802,58 @@
    ]
   },
   {
+   "text": "Skip any part. No pressure. This just helps me plan your lessons.",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
+   "text": "Skip for now",
+   "from": [
+    "lesson-player",
+    "onboarding"
+   ]
+  },
+  {
    "text": "Skip setup",
    "from": [
     "getting-started"
    ]
   },
   {
+   "text": "Skipped for now",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "Slavery means people are owned by other people and forced to work without pay. Enslaved people could be bought and sold, and they had no freedom.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Slow",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "So in 1791, ten amendments were added to the Constitution. These first ten amendments are called the Bill of Rights.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "So one part does not become too powerful / Checks and balances / Separation of powers",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "So the United States began a war in Afghanistan in 2001. This was part of the War on Terror.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -6695,6 +8873,30 @@
    "text": "Social movement in the 1950s–1960s to end racial segregation and discrimination",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "Sojourner Truth and Harriet Tubman were born into slavery and escaped. They spoke out for the rights of women and of Black Americans. Harriet Tubman also helped many enslaved people escape to freedom.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Some powers are only for the federal government, like printing money and declaring war.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Some powers are only for the states, like schools, police and driver’s licenses.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Some rights belong to everyone living in the United States, not only to citizens. Most of these rights come from the First Amendment.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -6730,6 +8932,12 @@
    ]
   },
   {
+   "text": "Sounds good",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "South",
    "from": [
     "words"
@@ -6739,6 +8947,12 @@
    "text": "South Region",
    "from": [
     "lessons"
+   ]
+  },
+  {
+   "text": "Southern states left the United States, mainly to keep slavery. They called themselves the Confederacy. The North fought to keep the country together, called the Union.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -6754,15 +8968,34 @@
    ]
   },
   {
+   "text": "Speak it!",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "Speak it! checkpoint",
    "from": [
     "course"
    ]
   },
   {
+   "text": "Speak it! is next.",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
+   "text": "Speak it! · Question {n} of {total}",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "Speaking",
    "from": [
-    "interview-tab"
+    "interview-tab",
+    "onboarding"
    ]
   },
   {
@@ -6774,6 +9007,7 @@
   {
    "text": "Start",
    "from": [
+    "course",
     "home",
     "today"
    ]
@@ -6787,15 +9021,39 @@
    ]
   },
   {
+   "text": "Start here: the quick check",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
+   "text": "Start lesson",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "Start lesson · +3 stars",
    "from": [
     "course"
    ]
   },
   {
+   "text": "Start my plan",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "Start practice interview",
    "from": [
     "interview-tab"
+   ]
+  },
+  {
+   "text": "Start quick check",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -6824,6 +9082,12 @@
    ]
   },
   {
+   "text": "Start · +3 stars",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "Start · {m} min",
    "from": [
     "today"
@@ -6832,7 +9096,8 @@
   {
    "text": "Start: quick check",
    "from": [
-    "today"
+    "today",
+    "today-plan"
    ]
   },
   {
@@ -6872,6 +9137,12 @@
    ]
   },
   {
+   "text": "States with more people have more representatives in the House.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Statue of Liberty",
    "from": [
     "key-words",
@@ -6879,9 +9150,21 @@
    ]
   },
   {
+   "text": "Steady",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "Step {n} of 5",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "Step {n} of 5 · {name}",
+   "from": [
+    "lesson-player"
    ]
   },
   {
@@ -6941,6 +9224,12 @@
    ]
   },
   {
+   "text": "Supreme Court justices serve for life, until they retire.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Supreme Court justices serve for life. Why?",
    "from": [
     "civics-questions"
@@ -6956,6 +9245,18 @@
    "text": "Susan B. Anthony / Elizabeth Cady Stanton / Sojourner Truth / Harriet Tubman / Lucretia Mott / Lucy Stone",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "Susan B. Anthony and Elizabeth Cady Stanton led the fight for women's right to vote.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Susan B. Anthony led the fight for women’s right to vote.",
+   "from": [
+    "course-pictures"
    ]
   },
   {
@@ -6989,6 +9290,12 @@
    ]
   },
   {
+   "text": "Take it again",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "Taking control of a plane, ship, or vehicle by force.",
    "from": [
     "n400"
@@ -7015,9 +9322,21 @@
    ]
   },
   {
+   "text": "Tap the words in order",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "Task {n} of {t} · Today",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "Taught Amio in English",
+   "from": [
+    "lesson-player"
    ]
   },
   {
@@ -7036,6 +9355,18 @@
    "text": "Taxes",
    "from": [
     "words"
+   ]
+  },
+  {
+   "text": "Teach",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
+   "text": "Teach it back",
+   "from": [
+    "lesson-player"
    ]
   },
   {
@@ -7118,6 +9449,12 @@
    ]
   },
   {
+   "text": "That doesn’t look like a code. Use letters and numbers, like ABC-123.",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "That email doesn't look right. Check it and try again.",
    "from": [
     "sign-in"
@@ -7142,6 +9479,24 @@
    ]
   },
   {
+   "text": "The \"American Dream\" is the idea that anyone can have a good life through hard work. People use it to talk about hope and opportunity in the United States.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "The 10th Amendment says powers not given to the federal government belong to the states or to the people.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The 13 colonies were along the Atlantic coast.",
+   "from": [
+    "course-pictures"
+   ]
+  },
+  {
    "text": "The 13th Amendment permanently ended slavery after the Civil War",
    "from": [
     "key-words"
@@ -7154,15 +9509,15 @@
    ]
   },
   {
-   "text": "The 15th Amendment gave African American men the right to vote after the Civil War",
+   "text": "The 14th Amendment says people born in the United States are citizens. It also says states must give every person equal protection of the laws.",
    "from": [
-    "key-words"
+    "ask-answers"
    ]
   },
   {
-   "text": "The 5-step lesson player is on its way. Your place on the road is saved.",
+   "text": "The 15th Amendment gave African American men the right to vote after the Civil War",
    "from": [
-    "course"
+    "key-words"
    ]
   },
   {
@@ -7175,6 +9530,24 @@
    "text": "The American Revolution had many important events. Name one.",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "The American flag has 13 stripes and 50 stars. The stripes are for the 13 original colonies. The stars are for the 50 states.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "The American flag is red, white and blue.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The Americans fought the American Revolution, also called the Revolutionary War, to win independence from Britain.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -7196,9 +9569,21 @@
    ]
   },
   {
+   "text": "The Bill of Rights is the first ten amendments to the Constitution. It protects the basic rights of Americans, like freedom of speech and freedom of religion.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
    "text": "The Bill of Rights protects ten fundamental freedoms that are essential to American democracy. The First Amendment guarantees freedom of speech, religion, press, assembly, and petition. These freedoms allow Americans to express themselves and participate in democratic processes.\n\nThe Second Amendment protects the right to bear arms. The Third Amendment prevents quartering of soldiers in homes. The Fourth Amendment protects against unreasonable searches and seizures. The Fifth Amendment provides due process rights and prevents self-incrimination. The Sixth Amendment guarantees the right to a fair trial.\n\nThe Seventh Amendment provides for jury trials in civil cases, and the Eighth Amendment prohibits cruel and unusual punishment. The Ninth Amendment protects rights not specifically listed, and the Tenth Amendment reserves powers to the states or people. These rights apply equally to all citizens and cannot be taken away without legal process.",
    "from": [
     "lessons"
+   ]
+  },
+  {
+   "text": "The Bill of Rights, kept today at the National Archives in Washington, D.C.",
+   "from": [
+    "course-pictures"
    ]
   },
   {
@@ -7208,9 +9593,21 @@
    ]
   },
   {
+   "text": "The Cabinet is a group of leaders who advise the President.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The Cherokee Nation was forced to walk over 1,000 miles, and many died",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "The Chief Justice leads the Supreme Court.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -7244,9 +9641,45 @@
    ]
   },
   {
+   "text": "The Civil War ended slavery in the United States.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The Civil War had many important events. Name one.",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "The Civil War was the war between the North and the South, from 1861 to 1865. It ended slavery in the United States.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "The Civil War was the war between the North and the South. It lasted from 1861 to 1865.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The Constitution has 27 amendments.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The Constitution is the supreme law of the land. It forms the government, defines the parts of government, and protects the rights of the people.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "The Constitution starts with the words “We the People.”",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -7256,9 +9689,57 @@
    ]
   },
   {
+   "text": "The Constitution was written in 1787. Many Americans wanted it to say clearly which rights the government can never take away.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The Constitution was written. / The Founding Fathers wrote the Constitution.",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "The Constitution's 16th Amendment lets Congress collect a federal income tax.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The Constitutional Convention was the meeting in Philadelphia in 1787 where leaders wrote the U.S. Constitution.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "The Declaration and the Constitution share big ideas: equality, liberty, natural rights, limited government and self-government.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The Declaration of Independence said the American colonies were free from Britain. It was adopted on July 4, 1776. Thomas Jefferson wrote it.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "The Declaration of Independence was adopted on July 4, 1776.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The Electoral College decides who is elected President.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The Electoral College is a compromise between a vote of the people and a choice by Congress.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -7280,9 +9761,27 @@
    ]
   },
   {
+   "text": "The Federalist Papers were essays written to support passing the Constitution.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The First Amendment allows people to criticize the government without being arrested",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "The First Amendment protects freedom of speech, religion, the press, assembly, and the right to petition the government.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "The Grand Canyon is a very large, deep canyon in Arizona. The Colorado River made it over millions of years. It is a national park.",
+   "from": [
+    "ask-answers"
    ]
   },
   {
@@ -7310,6 +9809,12 @@
    ]
   },
   {
+   "text": "The House of Representatives has 435 voting members.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The House of Representatives has how many voting members?",
    "from": [
     "civics-questions"
@@ -7319,6 +9824,12 @@
    "text": "The Industrial Revolution transformed America from a rural agricultural society to an urban industrial nation. Factories, railroads, and new technologies created enormous wealth and opportunities. Millions of immigrants came to America seeking jobs and better lives. Cities grew rapidly as people moved from farms to factories.\n\nIndustrialization created new social problems including poor working conditions, child labor, and urban poverty. Workers began organizing into unions to demand better wages, hours, and conditions. The Progressive Era (1890s-1920s) brought reforms including workplace safety laws, food safety regulations, and antitrust laws to prevent monopolies.\n\nTechnology advanced rapidly with the invention of electricity, automobiles, and airplanes. These innovations transformed daily life and commerce. The United States became an industrial power and eventually a global superpower. The 20th century saw America become a center of innovation, culture, and wealth. Industrial progress improved living standards for many Americans, though inequality and social problems persist.",
    "from": [
     "lessons"
+   ]
+  },
+  {
+   "text": "The Industrial Revolution was the time when work moved from farms and hand tools to factories and machines. It changed how Americans lived and worked.",
+   "from": [
+    "ask-answers"
    ]
   },
   {
@@ -7364,6 +9875,12 @@
    ]
   },
   {
+   "text": "The Northeast is a region in the top right of the map, by the Atlantic Ocean. It includes states like New York, Pennsylvania and the New England states.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
    "text": "The Pledge of Allegiance ends with 'with liberty and justice for all'",
    "from": [
     "key-words"
@@ -7376,15 +9893,45 @@
    ]
   },
   {
+   "text": "The President also appoints federal judges.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The President appoints federal judges.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The President can also veto a bill. Veto means saying no to it.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The President commands the military and appoints cabinet members",
    "from": [
     "key-words"
    ]
   },
   {
+   "text": "The President is the Commander in Chief of the military.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The President is the head of the Executive Branch and serves as commander-in-chief of the armed forces. The President is elected to four-year terms and can serve a maximum of two terms due to the 22nd Amendment. The President enforces federal laws, appoints federal judges and cabinet members, negotiates treaties, and proposes the federal budget to Congress.\n\nThe President's Cabinet consists of department heads who advise the President and manage specific areas of government like defense, state, treasury, and interior. The Executive Office of the President includes the White House staff and advisors who assist with daily operations and policy decisions.\n\nThe President can veto legislation passed by Congress, but Congress can override this veto with a two-thirds vote. Presidents issue executive orders to direct government agencies. The President also represents the United States in foreign relations and ceremonial matters. Elections every four years ensure that the President remains accountable to the people.",
    "from": [
     "lessons"
+   ]
+  },
+  {
+   "text": "The President leads the executive branch. The President is elected for four years and can serve only two terms.",
+   "from": [
+    "ask-answers"
    ]
   },
   {
@@ -7409,6 +9956,18 @@
    "text": "The President of the United States is in charge of which branch of government?",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "The President signs a bill to make it a law.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The President signs bills into law and can veto bills.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -7448,9 +10007,27 @@
    ]
   },
   {
+   "text": "The Senate is one of the two parts of Congress. There are 100 senators, two from each state. A senator's term is six years.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
    "text": "The Senate must approve presidential appointments to courts and Cabinet positions",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "The Soviet Union was communist. Under communism, the government owns the farms, factories and stores, and decides what people make and buy. People have little freedom to choose.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The Speaker leads the House of Representatives.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -7460,15 +10037,51 @@
    ]
   },
   {
+   "text": "The Statue of Liberty is in New York Harbor, on Liberty Island, near New York City.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The Statue of Liberty welcomed millions of immigrants arriving by ship",
    "from": [
     "key-words"
    ]
   },
   {
+   "text": "The Supreme Court and the other federal courts are the judicial branch.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The Supreme Court can declare laws unconstitutional",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "The Supreme Court has nine justices.",
+   "from": [
+    "course-pictures"
+   ]
+  },
+  {
+   "text": "The Supreme Court has nine seats.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The Supreme Court is the highest court in the United States.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The Supreme Court is the highest court in the United States. It has nine seats. It can decide if a law goes against the Constitution.",
+   "from": [
+    "ask-answers"
    ]
   },
   {
@@ -7490,6 +10103,12 @@
    ]
   },
   {
+   "text": "The U.S. Constitution is the supreme law of the land. No other law can go against it.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The U.S. Constitution starts with the words “We the People.” What does “We the People” mean?",
    "from": [
     "civics-questions"
@@ -7499,6 +10118,12 @@
    "text": "The U.S. Constitution was created in 1787 at the Constitutional Convention in Philadelphia. Fifty-five delegates from twelve states gathered to draft a document that would establish the framework for American government. The Constitution replaced the Articles of Confederation, which had proven too weak to effectively govern the new nation.\n\nKey Founding Fathers included George Washington, James Madison, Benjamin Franklin, and James Wilson. Madison is often called the \"Father of the Constitution\" because he came prepared with detailed plans for the government structure. Franklin, at 81 years old, was the oldest delegate and provided wisdom and compromise throughout the convention.\n\nThe Constitution established three branches of government with a system of checks and balances. It also protected individual rights through the Bill of Rights, added in 1791. The Constitution has been amended 27 times and remains the supreme law of the land. It was ratified by the states in 1788 and went into effect in 1789.",
    "from": [
     "lessons"
+   ]
+  },
+  {
+   "text": "The U.S. Constitution was written in 1787.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -7517,6 +10142,24 @@
    "text": "The United States / The flag",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "The United States entered World War II after Japan attacked Pearl Harbor, in Hawaii, in 1941.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The United States fought five wars in the 1900s that are on the test: World War I, World War II, the Korean War, the Vietnam War and the Persian Gulf War.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The United States fought several wars in the 1800s: the War of 1812, the Mexican-American War, the Civil War and the Spanish-American War.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -7544,6 +10187,18 @@
    ]
   },
   {
+   "text": "The United States is a republic: the people vote for leaders, and those leaders make laws for them.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The United States is between Canada to the north and Mexico to the south.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The United States is made up of 50 states, each with its own government",
    "from": [
     "key-words"
@@ -7553,6 +10208,18 @@
    "text": "The United States spans from the Atlantic Ocean on the east to the Pacific Ocean on the west. The country can be divided into major regions with distinct geography, climate, and characteristics. The Northeast includes states like New York and Massachusetts with historic cities and manufacturing. The South includes states with warm climates, agriculture, and a unique culture.\n\nThe Midwest includes agricultural states in the heartland. The West includes mountain ranges, deserts, and vast territories. The Pacific Northwest has forests and rainy climate. The Southwest has deserts and canyons. Alaska is the largest state by area, while Hawaii is the most isolated. The United States has diverse geography including the Rocky Mountains, the Mississippi River, the Grand Canyon, and Niagara Falls.\n\nGeography has influenced American history and development. Rivers provided transportation and power. Natural resources like coal, oil, and minerals supported industry. Mountains and natural barriers affected settlement patterns. Understanding American geography helps understand its history, economy, and diversity. Each region contributes uniquely to the nation.",
    "from": [
     "lessons"
+   ]
+  },
+  {
+   "text": "The United States wanted the port of New Orleans, on the Mississippi River, for trade. France needed money for its wars in Europe, so it agreed to sell.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The United States was worried about communism spreading to other countries.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -7592,6 +10259,12 @@
    ]
   },
   {
+   "text": "The capital of the United States is Washington, D.C. Congress, the President and the Supreme Court are there.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The capital of the United States, home to all three branches of the federal government",
    "from": [
     "key-words"
@@ -7601,6 +10274,12 @@
    "text": "The ceremony · you made it",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "The civil rights movement fought to end racial discrimination.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -7616,6 +10295,18 @@
    ]
   },
   {
+   "text": "The country kept growing. In 1867, it bought Alaska, which is now the largest state.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The economic system of the United States is capitalism, also called a free market economy. People and businesses can own things and decide what to make, buy and sell.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The event where a person becomes a U.S. citizen.",
    "from": [
     "n400"
@@ -7625,6 +10316,18 @@
    "text": "The executive branch has many parts. Name one.",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "The executive branch includes the President, the Cabinet and federal departments and agencies.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The federal government has three branches: legislative, executive and judicial.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -7640,9 +10343,21 @@
    ]
   },
   {
+   "text": "The first airplane flight, by the Wright brothers, in 1903.",
+   "from": [
+    "course-pictures"
+   ]
+  },
+  {
    "text": "The first governing document of the U.S., replaced by the Constitution because it was too weak",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "The first people landed on the moon in 1969.",
+   "from": [
+    "course-pictures"
    ]
   },
   {
@@ -7694,6 +10409,24 @@
    ]
   },
   {
+   "text": "The government gets its power from the people. This is called the consent of the governed.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The government has three branches so one part does not become too powerful. Each branch can check the others. This is called checks and balances.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The governor leads the state government.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The head of the Supreme Court and the federal judiciary",
    "from": [
     "key-words"
@@ -7736,6 +10469,18 @@
    ]
   },
   {
+   "text": "The nation's first motto was “E Pluribus Unum.” It means “Out of many, one.”",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The national anthem is “The Star-Spangled Banner.” It is a song about the American flag.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The obligation of citizens to serve on a jury when called upon by a court",
    "from": [
     "key-words"
@@ -7754,6 +10499,24 @@
    ]
   },
   {
+   "text": "The officer asked",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "The officer asks",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "The officer would accept that.",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "The official residence and primary workplace of the President of the United States",
    "from": [
     "key-words"
@@ -7763,6 +10526,12 @@
    "text": "The people elect Congress.",
    "from": [
     "sentences"
+   ]
+  },
+  {
+   "text": "The people who wrote the Constitution learned from older documents, like the Declaration of Independence, the Articles of Confederation and the Federalist Papers.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -7796,9 +10565,27 @@
    ]
   },
   {
+   "text": "The pursuit of Happiness means the freedom to try to make a good life.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The quick check isn’t ready yet. Please try again later.",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "The right of Native American tribes to govern themselves as independent nations",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "The right to bear arms: the Second Amendment protects the right to have guns, following the law.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -7826,6 +10613,30 @@
    ]
   },
   {
+   "text": "The rule keeps a president from becoming too powerful.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The rule of law means everyone must follow the law. Leaders and the government must obey the law too.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The section’s questions, out loud, with no hints. Pass to earn a badge and 10 stars.",
+   "from": [
+    "course"
+   ]
+  },
+  {
+   "text": "The sentence",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "The shared benefit and welfare of the entire community",
    "from": [
     "key-words"
@@ -7850,6 +10661,30 @@
    ]
   },
   {
+   "text": "The three branches are legislative, executive, and judicial. You can also say: Congress, president, and the courts. They share power, so no one part of government becomes too powerful.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "The three branches. Each one has its own job, so no one branch has all the power.",
+   "from": [
+    "course-pictures"
+   ]
+  },
+  {
+   "text": "The two terms do not have to be back to back. A President can serve one term, lose an election, and win again later. That is still two terms.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The war began in 1861, when Southern forces attacked Fort Sumter, a U.S. fort in South Carolina.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The way a country is organized and run.",
    "from": [
     "n400"
@@ -7865,6 +10700,18 @@
    "text": "The world's largest freshwater lake system, located along the U.S.-Canada border",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "There are 100 U.S. senators.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "There are 538 electors. To become President, a candidate needs 270 of their votes.",
+   "from": [
+    "course-pictures"
    ]
   },
   {
@@ -7886,9 +10733,27 @@
    ]
   },
   {
+   "text": "There are many American Indian tribes, like the Cherokee, Navajo, Sioux, Apache and Hopi.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "There are three branches of government. Why?",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "There are three ways to become a U.S. citizen.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "There were 13 colonies. They became the 13 original states, like Virginia, New York, Massachusetts, Pennsylvania and Georgia.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -7907,6 +10772,18 @@
    "text": "These lessons are being reviewed. They will appear here soon.",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "These names change after elections, so Pathways looks them up from an official list.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "These names change after elections, so Pathways looks them up on an official list.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -7952,9 +10829,51 @@
    ]
   },
   {
+   "text": "They came for many reasons: freedom, religious freedom, economic opportunity, or to escape persecution.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "They decide disagreements about the law, and if a law goes against the Constitution.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "They fought because Britain would not let them govern themselves.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "They helped people understand the (U.S.) Constitution. / They supported passing the (U.S.) Constitution.",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "They helped people understand the Constitution.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "They promise to give up loyalty to other countries, defend the Constitution and obey the laws of the United States. They also promise to serve in the military or help the nation if needed.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "They say that a male citizen of any race can vote, that women can vote, that no one has to pay a tax to vote, and that citizens 18 and older can vote.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "They took over planes. Two crashed into the World Trade Center in New York City, one into the Pentagon in Virginia, and one in a field in Pennsylvania.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -7982,9 +10901,183 @@
    ]
   },
   {
+   "text": "Think of a supermarket: stores choose what to sell and what price to ask, and you choose what to buy. Most of the time, the government does not decide this for you. That is a free market.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "This is also called a representative democracy. “Representative” means the leaders speak and act for the people who elected them.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "This is one of the most serious issues in immigration law. Always talk to a lawyer before you file.",
    "from": [
     "lawyer-checklist"
+   ]
+  },
+  {
+   "text": "This lesson is about Congress, the part of the government that writes laws. Congress has two parts: the Senate and the House of Representatives.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about Washington, D.C. and other important places. Each state also has its own capital city, where the state government works.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about fair treatment by the government and the courts. The Constitution protects the right to fair rules and a fair trial.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about famous natural places in the United States. Many are national parks, protected so everyone can visit them.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about how rights and responsibilities go together. Americans have rights, and they also have duties, like obeying the law.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about how the 13 colonies became an independent country. The colonists fought Britain in the Revolutionary War and won.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about how the Constitution can change. Changes are called amendments. Making one is hard, so the Constitution does not change often.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about how the Constitution was written in 1787 and the leaders who wrote it, like James Madison and George Washington.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about how the U.S. government is built. Power is shared between the federal government and the states, and among three branches.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about how the United States changed from a farming country to a country of factories, cities and new inventions.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about how the United States grew west across the continent in the 1800s, and how that changed the country and the people who already lived there.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about how the three branches share power. For example, the President can veto a bill, and Congress can still pass it with more votes.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about ideas many Americans share, like freedom, equality and hard work. People from many cultures live in the United States, and together they make American culture.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about important rights in the United States, like freedom of speech and freedom of religion. Many of them are in the Bill of Rights.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about laws that protect equal treatment. The civil rights movement fought to end racial discrimination.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about state and local government. States run things like schools, driver's licenses and police. Cities and towns have their own local leaders.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about symbols of the United States, like the flag and the national anthem. Each symbol stands for an idea, such as freedom or the states.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about the Civil War and the end of slavery. Abraham Lincoln was President. The Emancipation Proclamation freed slaves in the Confederate states.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about the President and the executive branch. The President signs bills into law, can veto bills and is Commander in Chief of the military.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about the courts, the judicial branch. The courts explain laws and decide disagreements about the law.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about the freedoms the Constitution protects for each person, like speech and religion, and how the government cannot take them away.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about the land of the United States and its regions. The civics test asks about oceans, rivers, borders and states, so a map helps.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about what citizens do to keep democracy strong, like voting, paying taxes and taking part in their community.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about who can vote and how that changed. Today, citizens who are 18 and older can vote in federal elections.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about who lived in America before the Europeans, and how colonization changed their lives. American Indians lost much of their land.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson isn’t open yet.",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "This means the many American Indian nations that lived in America before Europeans came. Each had its own language, government and way of life.",
+   "from": [
+    "ask-answers"
    ]
   },
   {
@@ -8003,6 +11096,12 @@
    "text": "This phone has no voice for your language, so I will speak in English. Your language will still be on the screen.",
    "from": [
     "getting-started"
+   ]
+  },
+  {
+   "text": "This plan is called the Great Compromise.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -8186,9 +11285,21 @@
    ]
   },
   {
+   "text": "This stop isn’t ready yet.",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "This stop opens in a later update. You can go on to the next stop.",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "This time, no hints and no help. Answer out loud, like the real interview.",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -8210,6 +11321,12 @@
    ]
   },
   {
+   "text": "Thomas Jefferson in 1800, the year before he became President.",
+   "from": [
+    "course-pictures"
+   ]
+  },
+  {
    "text": "Thomas Jefferson is famous for many things. Name one.",
    "from": [
     "civics-questions"
@@ -8222,6 +11339,12 @@
    ]
   },
   {
+   "text": "Thomas Jefferson wrote the Declaration of Independence.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Thomas Jefferson wrote the Declaration stating that all men are created equal",
    "from": [
     "key-words"
@@ -8231,6 +11354,60 @@
    "text": "Time Outside the U.S.",
    "from": [
     "lawyer-checklist"
+   ]
+  },
+  {
+   "text": "Tip:",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "Tip: end a sentence with a period.",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "Tip: for the first question, you only need to name one document. “The Declaration of Independence” is the easiest to remember, because you learn about it in other lessons too.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Tip: for the second question, two short words are enough, like “liberty” and “equality.”",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Tip: remember him with three things: a general in World War II, the President when the Korean War ended, and the highways. His nickname was “Ike.”",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Tip: start a sentence with a capital letter.",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "Tip: the answer to both questions is the same: to stop the spread of communism. If you forget, remember the Cold War story.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Tip: the years of all five wars start with 19, so they belong to the 1900s.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Tip: “Freed the slaves” is a correct answer to both questions in this lesson. It is fine to give the same answer twice.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -8326,6 +11503,12 @@
    ]
   },
   {
+   "text": "Today you’ll be able to answer",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "Today's goal: {n} tasks, about {m} minutes. Let's go.",
    "from": [
     "today"
@@ -8341,6 +11524,42 @@
    "text": "Today, federally recognized tribes have sovereignty over their reservation lands",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "Today’s goal",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "Today’s goal: 1 lesson",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
+   "text": "Today’s goal: 1 lesson · {done} done",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
+   "text": "Today’s goal: {goal} lessons",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
+   "text": "Today’s goal: {goal} lessons · {done} done",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
+   "text": "Tomorrow",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -8381,6 +11600,25 @@
    ]
   },
   {
+   "text": "Try again",
+   "from": [
+    "checkpoints",
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "Try the practice interview",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "Try {n} questions from the test",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "Trying to destroy a whole group of people because of their race, religion, or nationality.",
    "from": [
     "n400"
@@ -8405,9 +11643,24 @@
    ]
   },
   {
+   "text": "Two Cabinet-level positions are the Secretary of State and the Attorney General.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Type instead",
    "from": [
-    "ask-screen"
+    "ask-screen",
+    "checkpoints",
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "Type your answer in English",
+   "from": [
+    "checkpoints",
+    "lesson-player"
    ]
   },
   {
@@ -8447,6 +11700,12 @@
    ]
   },
   {
+   "text": "Under communism, the government owns and controls almost everything, and people have little freedom. During the Cold War, the United States tried to stop communism from spreading to more countries.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Under our Constitution, some powers belong to the federal government. What is one power of the federal government?",
    "from": [
     "civics-questions"
@@ -8462,6 +11721,12 @@
    "text": "Under the Articles, Congress had no power to levy taxes or enforce laws",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "Under the Constitution, Congress has the power to declare war.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -8531,9 +11796,45 @@
    ]
   },
   {
+   "text": "Unit {n} complete",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "Unit {n} practice interview",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "Unit {n} · {section}",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
+   "text": "Unit {unit} · Section {section} · Lesson {lesson}",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "United States",
    "from": [
     "words"
+   ]
+  },
+  {
+   "text": "Unlocked:",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "Unlocked: try it any time",
+   "from": [
+    "course"
    ]
   },
   {
@@ -8567,6 +11868,12 @@
    ]
   },
   {
+   "text": "Usually five justices are needed to decide a case.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Values of Freedom",
    "from": [
     "lessons"
@@ -8576,6 +11883,12 @@
    "text": "Very ready",
    "from": [
     "pilot"
+   ]
+  },
+  {
+   "text": "Veterans Day, in November, honors people who have served in the U.S. military.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -8606,6 +11919,12 @@
    "text": "Vote / Run for office / Join a political party / Help with a campaign / Join a civic group / Join a community group / Give an elected official your opinion (on an issue) / Contact elected officials / Support or oppose an issue or policy / Write to a newspaper",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "Voters can elect them again when the term ends.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -8640,6 +11959,18 @@
    ]
   },
   {
+   "text": "Voting rights are the rights of citizens to vote in elections. Over time, amendments to the Constitution gave more citizens the right to vote.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "Voting, joining a community group, helping with a campaign and contacting elected officials are all civic participation.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Waiting for interview",
    "from": [
     "today"
@@ -8655,6 +11986,18 @@
    "text": "Want",
    "from": [
     "words"
+   ]
+  },
+  {
+   "text": "Want more? Review 1 question",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
+   "text": "Want more? Review {n} questions",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -8732,6 +12075,12 @@
    ]
   },
   {
+   "text": "Washington, D.C. is the capital of the United States. Congress, the President and the Supreme Court all work there.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
    "text": "Washington, D.C. is the capital.",
    "from": [
     "sentences"
@@ -8756,9 +12105,33 @@
    ]
   },
   {
+   "text": "We can’t check this one yet",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "We can’t check this one yet. Pick your state in Who Represents Me? to check it.",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "We couldn't detect any speech. Make sure your microphone is working and speak clearly into it.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
    "text": "We couldn't reach Pathways. Check your internet and try again.",
    "from": [
     "sign-in"
+   ]
+  },
+  {
+   "text": "We didn't hear the words of this sentence. Read it slowly, one word at a time.",
+   "from": [
+    "reading-tips"
    ]
   },
   {
@@ -8816,6 +12189,12 @@
    ]
   },
   {
+   "text": "We save only your four levels. Your answers and your voice are not saved.",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "We sent a 6-digit code to {name}.",
    "from": [
     "sign-in"
@@ -8860,7 +12239,8 @@
   {
    "text": "Welcome",
    "from": [
-    "me"
+    "me",
+    "today-plan"
    ]
   },
   {
@@ -8879,6 +12259,12 @@
    "text": "Well done. You are learning a lot.",
    "from": [
     "tutor"
+   ]
+  },
+  {
+   "text": "Well written!",
+   "from": [
+    "lesson-player"
    ]
   },
   {
@@ -9529,7 +12915,8 @@
   {
    "text": "When is your interview?",
    "from": [
-    "today"
+    "today",
+    "today-plan"
    ]
   },
   {
@@ -9548,6 +12935,18 @@
    "text": "When was the Declaration of Independence adopted?",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "When we say the Pledge of Allegiance, we show loyalty to the United States and the flag.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "When you vote for President, you are really choosing your state's electors. Electors are people who vote for President for their state.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -9602,6 +13001,12 @@
    "text": "Which test will I take? (uscis.gov)",
    "from": [
     "getting-started"
+   ]
+  },
+  {
+   "text": "Which way fits a person depends on their own story. For questions about your own case, talk to a lawyer first.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -9962,6 +13367,12 @@
    ]
   },
   {
+   "text": "Words from the official reading list",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "Worked as a member of a group, like the military.",
    "from": [
     "n400"
@@ -9986,10 +13397,28 @@
    ]
   },
   {
+   "text": "World War I was fought mostly in Europe. The United States joined in 1917 because Germany attacked U.S. ships. It joined the Allied Powers: England, France, Italy and Russia.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "World War II",
    "from": [
     "civics-questions",
     "key-words"
+   ]
+  },
+  {
+   "text": "World War II (the United States joined in 1941) was fought against Germany, Italy and Japan. The Korean War (1950) and the Vietnam War (the 1960s) were fought to stop communism. The Persian Gulf War (1991) forced Iraq out of Kuwait.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "World War II was fought around the world from 1939 to 1945.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -10014,6 +13443,18 @@
    "text": "Would you have done this as soon without Pathways?",
    "from": [
     "pilot"
+   ]
+  },
+  {
+   "text": "Write",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
+   "text": "Write it",
+   "from": [
+    "lesson-player"
    ]
   },
   {
@@ -10043,7 +13484,14 @@
   {
    "text": "Writing",
    "from": [
-    "interview-tab"
+    "interview-tab",
+    "onboarding"
+   ]
+  },
+  {
+   "text": "Wrote “{sentence}”",
+   "from": [
+    "lesson-player"
    ]
   },
   {
@@ -10063,6 +13511,12 @@
    "text": "Yes, more English",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "You answer in English, like at the real interview.",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -10102,9 +13556,33 @@
    ]
   },
   {
+   "text": "You can still go back to earlier lessons any time.",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "You did not register for Selective Service when required",
    "from": [
     "lawyer-checklist"
+   ]
+  },
+  {
+   "text": "You finished 1 lesson today.",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
+   "text": "You finished every open lesson",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
+   "text": "You finished {n} lessons today.",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -10138,6 +13616,12 @@
    ]
   },
   {
+   "text": "You need {need} of {total} to pass. Try it again when you’re ready.",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "You owe child support",
    "from": [
     "lawyer-checklist"
@@ -10150,6 +13634,30 @@
    ]
   },
   {
+   "text": "You promise to tell the truth. The officer asks about your N-400 application. You take the English test (reading, writing and speaking) and the civics test. At the end, the officer gives you a paper about the result.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "You read",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "You read every word. Keep a steady, natural pace.",
+   "from": [
+    "reading-tips"
+   ]
+  },
+  {
+   "text": "You said",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "You were signed out.",
    "from": [
     "sign-in"
@@ -10159,6 +13667,12 @@
    "text": "You were signed out. Sign in again to keep going.",
    "from": [
     "sign-in"
+   ]
+  },
+  {
+   "text": "You wrote",
+   "from": [
+    "lesson-player"
    ]
   },
   {
@@ -10193,6 +13707,12 @@
    ]
   },
   {
+   "text": "Your class or program gave you a short code. You’ll pick them after you sign in.",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "Your date stays on this phone. We don't save it.",
    "from": [
     "today"
@@ -10215,6 +13735,12 @@
    "text": "Your interview and test are in English, so we also practice English with you, one step at a time, until you feel confident.",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "Your interview month and how many lessons a day.",
+   "from": [
+    "settings"
    ]
   },
   {
@@ -10284,9 +13810,28 @@
    ]
   },
   {
+   "text": "Your phone turns speech into text. We never keep audio.",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
+   "text": "Your plan",
+   "from": [
+    "settings",
+    "today-plan"
+   ]
+  },
+  {
    "text": "Your practice: which questions, sentences and lessons you got right, and your scores. Mock interview scores only, never what you said.",
    "from": [
     "settings"
+   ]
+  },
+  {
+   "text": "Your program’s code",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -10314,6 +13859,12 @@
    ]
   },
   {
+   "text": "Your results",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "Your road",
    "from": [
     "today"
@@ -10334,7 +13885,8 @@
   {
    "text": "Your story stays yours",
    "from": [
-    "home"
+    "home",
+    "onboarding"
    ]
   },
   {
@@ -10362,9 +13914,33 @@
    ]
   },
   {
+   "text": "Your voice is never recorded",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "You’ll be able to answer:",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "You’ll be asked",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "You’ll see this one again tomorrow.",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "You’ll start at",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -10374,9 +13950,291 @@
    ]
   },
   {
+   "text": "a big, fast road between cities",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a chance to do something good",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "a change (to the Constitution) / an addition (to the Constitution)",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "a change or addition to the Constitution",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a city where ships load and unload goods",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a country where the people elect their leaders",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a country's army and other armed forces",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a country's official song",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a day the whole country celebrates",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a fight between armies",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a fight or war",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a fight to change who governs a country",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a government whose power has limits",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a group of citizens who decide a case in court",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a group of people who share a history and a way of life",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a group of people working together for a change",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a group of people, often by skin color or where their families come from",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a judge on the Supreme Court",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a long time when the economy is very weak",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a long, thin line of color",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a member of the House of Representatives",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a member of the Senate",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a member who can vote on new laws",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a new idea or invention",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a person chosen to vote for President for a state",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a person from Europe",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a person who helps a leader",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a person who is a member of a country",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a person who lives in a colony",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a person who makes something new",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a person who served in the military",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a person who uses violence to make people afraid",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a person who works with other countries for their country",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a place for one member",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a place ruled by a country far away",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a place where judges decide questions about the law",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a plan for how to spend money",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a right to do something",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a safe place on the coast for ships",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a serious promise",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a short piece of writing about one idea",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a short saying that tells what a group believes",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a system where the government owns and controls almost everything",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a time when the economy gets smaller and people lose jobs",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a top leader in the army",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a war between people of the same country",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "about the whole country, not one state",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "about very powerful bombs",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -10407,6 +14265,42 @@
    "text": "all people of the state",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "an agreement where each side gets part of what it wants",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "an economy where people and businesses own and run things",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "an idea for a new law, written by Congress",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "an important paper written when the country began",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "an important statement made in public",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "an official public announcement",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -10458,6 +14352,12 @@
    ]
   },
   {
+   "text": "at this time",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "avoid",
    "from": [
     "n400"
@@ -10491,6 +14391,24 @@
    "text": "because there were 13 original colonies / because the stripes represent the original colonies",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "being free from another country's control",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "being made free",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "being treated the same as everyone else",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -10602,15 +14520,33 @@
    ]
   },
   {
+   "text": "cruel treatment, often for your religion or ideas",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "currently",
    "from": [
     "n400"
    ]
   },
   {
+   "text": "day in a row",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "day trip",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "days in a row",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -10692,6 +14628,12 @@
    ]
   },
   {
+   "text": "each branch can limit the power of the others",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "eighteen (18) and older",
    "from": [
     "civics-questions"
@@ -10716,6 +14658,18 @@
    ]
   },
   {
+   "text": "equal rights for women",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "everyone must follow the law",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "evidence",
    "from": [
     "n400"
@@ -10725,6 +14679,12 @@
    "text": "exemption",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "for the whole country",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -10764,6 +14724,12 @@
    ]
   },
   {
+   "text": "free to decide without pressure",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "freed the slaves (Emancipation Proclamation) / saved (or preserved) the Union / led the United States during the Civil War",
    "from": [
     "civics-questions"
@@ -10773,6 +14739,12 @@
    "text": "freed the slaves / freed slaves in the Confederacy / freed slaves in the Confederate states / freed slaves in most Southern states",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "freedom",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -10797,6 +14769,12 @@
    "text": "give up loyalty to other countries / defend the Constitution and laws of the United States / obey the laws of the United States / serve in the U.S. military (if needed) / serve (do important work for) the nation (if needed) / be loyal to the United States",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "government by the people",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -10830,6 +14808,12 @@
    ]
   },
   {
+   "text": "how many people live in a place",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "if the law requires it",
    "from": [
     "n400"
@@ -10860,6 +14844,12 @@
    ]
   },
   {
+   "text": "land that belongs to a country but is not a state",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "lawful nonimmigrant",
    "from": [
     "n400"
@@ -10872,9 +14862,33 @@
    ]
   },
   {
+   "text": "lessons",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "life / liberty / pursuit of happiness",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "loyalty to a country",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "made a slave against their will",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "meeting together in a group",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -10887,6 +14901,12 @@
    "text": "misrepresentation",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "money people once had to pay to vote",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -10938,9 +14958,39 @@
    ]
   },
   {
+   "text": "one area of a state that elects one representative",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "one hundred (100)",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "one of the 50 parts of the United States",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "one of the people who started the country",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "one part of Congress, with 100 senators",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "one part of the government",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -10983,6 +15033,12 @@
    "text": "passed the English and civics tests?",
    "from": [
     "pilot"
+   ]
+  },
+  {
+   "text": "paying taxes with no vote on them",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -11106,9 +15162,21 @@
    ]
   },
   {
+   "text": "saying yes; agreeing",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "sent in your N-400 application?",
    "from": [
     "pilot"
+   ]
+  },
+  {
+   "text": "sentences read and written",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -11130,6 +15198,12 @@
    ]
   },
   {
+   "text": "showing what you think or feel",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "six (6)",
    "from": [
     "civics-questions"
@@ -11148,15 +15222,39 @@
    ]
   },
   {
+   "text": "someone you compete against",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "something made for the first time",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "speech / religion / assembly / press / petition the government",
    "from": [
     "civics-questions"
    ]
   },
   {
+   "text": "stars today",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "stationed",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "staying true to someone or something",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -11184,9 +15282,21 @@
    ]
   },
   {
+   "text": "taking part in your community and government",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "tax return",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "test questions",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -11226,6 +15336,12 @@
    ]
   },
   {
+   "text": "the Southern states that left the Union",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "the Speaker of the House",
    "from": [
     "civics-questions"
@@ -11244,15 +15360,183 @@
    ]
   },
   {
+   "text": "the United States, during the Civil War",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "the Vice President",
    "from": [
     "civics-questions"
    ]
   },
   {
+   "text": "the branch that carries out the laws",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "the branch with the courts",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "the city where a government meets",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "the countries on the U.S. side in a world war",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "the finish line — get ready to take the Oath",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "the first ten amendments to the Constitution",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "the group of people who write the country's laws",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "the group of top leaders who advise the President",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "the highest",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "the highest court in the United States",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "the leader of a state",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "the leader of all the armed forces",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "the leader of one federal department",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "the leader of the House of Representatives",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "the leader of the Supreme Court",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "the number of years a person serves in a job",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "the other part of Congress, with 435 voting members",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "the part of government that takes care of money",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "the part of the government that makes laws",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "the person who becomes President if the President can no longer serve",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "the plan and highest law of a government",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "the power of government is split into parts",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "the reason for something",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "the right to say what you think",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "the rights every citizen should have",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "the same for everyone",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "the top lawyer of the federal government",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "the work to help someone win an election",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -11274,9 +15558,159 @@
    ]
   },
   {
+   "text": "to accept and approve something",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "to ask the government for something in writing",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "to be for something and help it",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "to become a citizen after applying",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "to become two times as big",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "to choose someone by voting",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "to choose someone for a job",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "to do something special for a happy day",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "to do work that helps others",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "to get something from someone else, like a parent",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "to give ideas and help",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "to help shape how something turns out",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "to keep safe",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "to look at something carefully",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "to move to more places",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "to pay for",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "to print money / to declare war / to create an army / to make treaties",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "to put your name on an official list",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "to say officially that a country is at war",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "to show in public that you disagree",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "to show respect for someone",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "to speak and act for a group of people",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "to stand for something",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "to start fighting against someone",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "to stop fighting and accept that you lost",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "to write your name to say yes",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -11304,9 +15738,21 @@
    ]
   },
   {
+   "text": "treating people unfairly because of who they are",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "trip",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "trying to reach something",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -11319,6 +15765,12 @@
    "text": "two (2)",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "until they die or retire",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -11352,6 +15804,48 @@
    ]
   },
   {
+   "text": "what most people think about something",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "when people and businesses, not the government, decide what to make, sell and buy",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "when people are owned by others and forced to work",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "when the President says no to a bill",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "when the government calls people to serve in the military",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "when the people rule themselves",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "where people buy and sell parts of companies",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "willing",
    "from": [
     "n400"
@@ -11370,6 +15864,30 @@
    ]
   },
   {
+   "text": "{correct} of {total}",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "{correct} of {total} · +10 stars",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "{done} of {goal} done",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "{done} of {total} lessons",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "{m} min",
    "from": [
     "today"
@@ -11382,9 +15900,27 @@
    ]
   },
   {
+   "text": "{need} of {n} to pass",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "{n} lessons",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "{n} lessons a day",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
+   "text": "{n} more lessons to reach Speak it!",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -11401,6 +15937,18 @@
    ]
   },
   {
+   "text": "{n} questions to bring back",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "{n} questions to keep fresh",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "{n} questions · AI officer, not a real person. Amio waits at the door.",
    "from": [
     "interview-tab"
@@ -11413,6 +15961,12 @@
    ]
   },
   {
+   "text": "{n} sentences read and written.",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "{n} short tasks today, about {m} minutes.",
    "from": [
     "today"
@@ -11421,7 +15975,9 @@
   {
    "text": "{n} stars",
    "from": [
-    "course"
+    "course",
+    "lesson-player",
+    "today-plan"
    ]
   },
   {
@@ -11443,9 +15999,58 @@
    ]
   },
   {
+   "text": "{read} to read · {write} to write",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "{right} of {total} right. Each one moves to its next review day.",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "{section} · 1 question",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "{section} · lesson {n} of {of}",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
+   "text": "{section} · {n} questions",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "{section}, out loud!",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "{units} units · {lessons} lessons · {interviews} practice interviews",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "{unit}: done!",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "“Could you repeat that, please?”",
+   "from": [
+    "checkpoints",
+    "lesson-player"
    ]
   },
   {
@@ -11458,6 +16063,12 @@
    "text": "“Father of the Constitution” / Fourth president of the United States / President during the War of 1812 / One of the writers of the Federalist Papers",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "“Life, Liberty, and the pursuit of Happiness” are words from the Declaration of Independence.",
+   "from": [
+    "course-lessons"
    ]
   }
  ]
