@@ -16,6 +16,7 @@ const TAB_FOR_PATH = {
   '/': 'today',
   '/plan': 'today',
   '/done-today': 'today',
+  '/review-chest': 'today',
   '/study': 'course',
   '/lessons': 'course',
   '/practice': 'course',

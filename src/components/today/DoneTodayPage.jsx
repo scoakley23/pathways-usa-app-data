@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Amio } from '@/components/pathways/Amio';
 import { Button } from '@/components/pathways/ui';
 import { checkpointProgress } from '@/lib/dailyPlan';
+import { CHEST_SIZE } from '@/lib/checkpoints';
 import useToday, { useTodayText } from '@/components/today/useToday';
 
 // Done for today (Prompt 7, frame R30Done): lessons finished today, stars
@@ -28,7 +29,7 @@ export default function DoneTodayPage() {
   const cp = next ? checkpointProgress(next.section, day.progress) : null;
   const pct = cp && cp.total ? Math.round((cp.done / cp.total) * 100) : 0;
   const sub = day.doneToday === 0 ? t('done_sub_0') : day.doneToday === 1 ? t('done_sub_1') : t('done_sub_n', { n: day.doneToday });
-  const reviewN = Math.min(5, day.due);
+  const reviewN = Math.min(CHEST_SIZE, day.due);
 
   return (
     <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-full bg-page flex flex-col">
@@ -69,7 +70,7 @@ export default function DoneTodayPage() {
       <div className="px-4 pb-6 flex flex-col items-center gap-3 max-w-lg w-full mx-auto">
         <Button variant="main" className="w-full" onClick={() => navigate('/')}>{t('back_home')}</Button>
         {reviewN > 0 && (
-          <Link to="/review" className="min-h-tap inline-flex items-center text-base font-semibold text-denim underline underline-offset-4">
+          <Link to="/review-chest" className="min-h-tap inline-flex items-center text-base font-semibold text-denim underline underline-offset-4">
             {reviewN === 1 ? t('review_more_1') : t('review_more', { n: reviewN })}
           </Link>
         )}

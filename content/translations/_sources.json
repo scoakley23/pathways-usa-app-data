@@ -247,6 +247,30 @@
  ],
  "texts": [
   {
+   "text": "\"Checks and balances\" means each branch of government can limit the other branches. This way, no one part of government becomes too powerful.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "\"Civic responsibility\" means the things citizens do to help their community and their government, like voting, serving on a jury and obeying the law.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "\"Due process\" means the government must follow fair rules before it takes away a person's freedom, money or property. For example, a person has the right to a fair trial.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "\"Manifest Destiny\" was a belief in the 1800s that the United States should grow west to the Pacific Ocean. It also caused great harm to American Indians, who lost their land.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
    "text": "'The Star-Spangled Banner,' written in 1814, the official song of the United States",
    "from": [
     "key-words"
@@ -373,6 +397,12 @@
    ]
   },
   {
+   "text": "+10 stars + badge",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "1 lesson a day",
    "from": [
     "today-plan"
@@ -382,6 +412,12 @@
    "text": "1 more lesson to reach Speak it!",
    "from": [
     "today-plan"
+   ]
+  },
+  {
+   "text": "1 question to bring back",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -684,6 +720,12 @@
    ]
   },
   {
+   "text": "A governor is the leader of a state government. The governor is like the President, but for one state.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
    "text": "A green card holder is a permanent resident who can apply for citizenship after 5 years",
    "from": [
     "key-words"
@@ -807,6 +849,12 @@
    "text": "A political system that does not allow opposing parties or viewpoints.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "A practice interview with this unit’s questions. It doesn’t block the road.",
+   "from": [
+    "course"
    ]
   },
   {
@@ -1269,6 +1317,12 @@
    ]
   },
   {
+   "text": "An amendment is a change or an addition to the Constitution. The Constitution has 27 amendments. The first ten are the Bill of Rights.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
    "text": "An armed group that fights against a government.",
    "from": [
     "n400"
@@ -1314,6 +1368,12 @@
    "text": "Answer in English",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Answer out loud, in English",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -1555,14 +1615,22 @@
   {
    "text": "Back to home",
    "from": [
+    "checkpoints",
     "today-plan"
    ]
   },
   {
    "text": "Back to the road",
    "from": [
+    "checkpoints",
     "course",
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Badge earned",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -1737,6 +1805,12 @@
    ]
   },
   {
+   "text": "Bring back the questions that are due.",
+   "from": [
+    "course"
+   ]
+  },
+  {
    "text": "Britain added new taxes, like the Stamp Act on paper and a tax on tea. The colonists had no one to speak for them in Britain's government. They said: “No taxation without representation.”",
    "from": [
     "course-lessons"
@@ -1879,6 +1953,7 @@
   {
    "text": "Check",
    "from": [
+    "checkpoints",
     "lesson-player"
    ]
   },
@@ -1909,6 +1984,7 @@
   {
    "text": "Checking…",
    "from": [
+    "checkpoints",
     "lesson-player",
     "sign-in"
    ]
@@ -1918,6 +1994,12 @@
    "from": [
     "key-words",
     "lessons"
+   ]
+  },
+  {
+   "text": "Chest done!",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -2049,6 +2131,7 @@
   {
    "text": "Civics",
    "from": [
+    "checkpoints",
     "interview-tab"
    ]
   },
@@ -2137,6 +2220,7 @@
   {
    "text": "Close",
    "from": [
+    "checkpoints",
     "sign-in"
    ]
   },
@@ -2395,6 +2479,12 @@
     "getting-started",
     "home",
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Continue the journey",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -2728,6 +2818,12 @@
    "text": "Division of power between the national government and state governments",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "Do it again",
+   "from": [
+    "course"
    ]
   },
   {
@@ -3091,6 +3187,12 @@
    "text": "Every answer comes from USCIS",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "Every answer right. You sound ready!",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -3654,6 +3756,12 @@
    "text": "Freedom of speech is a right.",
    "from": [
     "sentences"
+   ]
+  },
+  {
+   "text": "Freedom of speech means you can say what you think, and the government cannot punish you for your opinion. The First Amendment protects it.",
+   "from": [
+    "ask-answers"
    ]
   },
   {
@@ -5176,6 +5284,12 @@
    ]
   },
   {
+   "text": "It is OK to ask. You can say: \"Can you repeat that, please?\" or \"Can you say that another way?\" Don't answer a question until you understand it.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
    "text": "It is also a constitution-based federal republic: the Constitution is the highest law, and power is shared between the national government and the states.",
    "from": [
     "course-lessons"
@@ -5203,6 +5317,18 @@
    "text": "It means the people govern themselves. This is called self-government.",
    "from": [
     "course-lessons"
+   ]
+  },
+  {
+   "text": "It means the people have the power. They vote for leaders who make decisions for them. The United States is a republic, a representative democracy.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "It means we use our rights in a way that respects other people's rights. You have freedom of speech, and so does your neighbor.",
+   "from": [
+    "ask-answers"
    ]
   },
   {
@@ -5236,9 +5362,27 @@
    ]
   },
   {
+   "text": "I’ll bring back that question in your review chest.",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "I’ll bring back those questions in your review chest.",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "I’ll use the state you picked in Who Represents Me.",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "I’m ready",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -5715,6 +5859,12 @@
    ]
   },
   {
+   "text": "Listen and write · {n} of {total}",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "Listen to official audio and practice typing exactly what you hear.",
    "from": [
     "home"
@@ -5736,6 +5886,12 @@
    "text": "Listened and learned",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Listening… take your time",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -5893,6 +6049,12 @@
    "text": "Many immigrants come to America in pursuit of the American Dream",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "Many interviews take about 20 to 30 minutes, but some are shorter or longer. Come early, because you may have to wait. If you have questions about your own case, talk to a lawyer first.",
+   "from": [
+    "ask-answers"
    ]
   },
   {
@@ -6488,6 +6650,7 @@
   {
    "text": "Next",
    "from": [
+    "checkpoints",
     "lesson-player"
    ]
   },
@@ -6525,6 +6688,12 @@
    "text": "No",
    "from": [
     "pilot"
+   ]
+  },
+  {
+   "text": "No hints in a checkpoint. You can ask the officer to repeat, just like on the real day.",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -6610,7 +6779,14 @@
   {
    "text": "Not yet",
    "from": [
+    "checkpoints",
     "pilot"
+   ]
+  },
+  {
+   "text": "Not yet. Almost there!",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -6635,6 +6811,12 @@
    "text": "Nothing due today",
    "from": [
     "today-plan"
+   ]
+  },
+  {
+   "text": "Nothing due today. Come back tomorrow.",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -6840,6 +7022,12 @@
    "text": "Open",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "Open this card in the N-400 guide.",
+   "from": [
+    "course"
    ]
   },
   {
@@ -7066,6 +7254,12 @@
    ]
   },
   {
+   "text": "Practice again: it’s in your review chest",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "Practice for the civics test. Filed your N-400 on or after October 20, 2025? You'll take the 2025 test. Filed before that date? You'll take the 2008 test.",
    "from": [
     "home"
@@ -7098,6 +7292,7 @@
   {
    "text": "Practice only: nothing is saved yet.",
    "from": [
+    "checkpoints",
     "lesson-player"
    ]
   },
@@ -7329,6 +7524,12 @@
    ]
   },
   {
+   "text": "Question {n} of {total}",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "Questions about how you got your green card",
    "from": [
     "lawyer-checklist"
@@ -7372,9 +7573,22 @@
    ]
   },
   {
+   "text": "Read 3 sentences out loud and write 3, from this section’s lessons.",
+   "from": [
+    "course"
+   ]
+  },
+  {
    "text": "Read and write",
    "from": [
+    "checkpoints",
     "home"
+   ]
+  },
+  {
+   "text": "Read and write done!",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -7399,6 +7613,12 @@
    "text": "Read it out loud",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Read it out loud · {n} of {total}",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -7458,6 +7678,7 @@
   {
    "text": "Ready",
    "from": [
+    "course",
     "interview-tab"
    ]
   },
@@ -7621,7 +7842,14 @@
   {
    "text": "Review chest",
    "from": [
+    "checkpoints",
     "today-plan"
+   ]
+  },
+  {
+   "text": "Review chest · {n} of {total}",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -7640,6 +7868,7 @@
   {
    "text": "Right",
    "from": [
+    "checkpoints",
     "words"
    ]
   },
@@ -8187,6 +8416,12 @@
    ]
   },
   {
+   "text": "Section {n} checkpoint",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "Section {n}: {title}",
    "from": [
     "course"
@@ -8196,6 +8431,12 @@
    "text": "See USCIS processing times (optional)",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "See my journey",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -8579,6 +8820,12 @@
    ]
   },
   {
+   "text": "Speak it!",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "Speak it! checkpoint",
    "from": [
     "course"
@@ -8588,6 +8835,12 @@
    "text": "Speak it! is next.",
    "from": [
     "today-plan"
+   ]
+  },
+  {
+   "text": "Speak it! · Question {n} of {total}",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -8605,6 +8858,7 @@
   {
    "text": "Start",
    "from": [
+    "course",
     "home",
     "today"
    ]
@@ -9058,6 +9312,12 @@
    ]
   },
   {
+   "text": "The \"American Dream\" is the idea that anyone can have a good life through hard work. People use it to talk about hope and opportunity in the United States.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
    "text": "The 10th Amendment says powers not given to the federal government belong to the states or to the people.",
    "from": [
     "course-lessons"
@@ -9082,6 +9342,12 @@
    ]
   },
   {
+   "text": "The 14th Amendment says people born in the United States are citizens. It also says states must give every person equal protection of the laws.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
    "text": "The 15th Amendment gave African American men the right to vote after the Civil War",
    "from": [
     "key-words"
@@ -9097,6 +9363,12 @@
    "text": "The American Revolution had many important events. Name one.",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "The American flag has 13 stripes and 50 stars. The stripes are for the 13 original colonies. The stars are for the 50 states.",
+   "from": [
+    "ask-answers"
    ]
   },
   {
@@ -9127,6 +9399,12 @@
    "text": "The Bill of Rights guarantees freedom of speech, religion, and the right to a fair trial",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "The Bill of Rights is the first ten amendments to the Constitution. It protects the basic rights of Americans, like freedom of speech and freedom of religion.",
+   "from": [
+    "ask-answers"
    ]
   },
   {
@@ -9208,6 +9486,12 @@
    ]
   },
   {
+   "text": "The Civil War was the war between the North and the South, from 1861 to 1865. It ended slavery in the United States.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
    "text": "The Civil War was the war between the North and the South. It lasted from 1861 to 1865.",
    "from": [
     "course-lessons"
@@ -9217,6 +9501,12 @@
    "text": "The Constitution has 27 amendments.",
    "from": [
     "course-lessons"
+   ]
+  },
+  {
+   "text": "The Constitution is the supreme law of the land. It forms the government, defines the parts of government, and protects the rights of the people.",
+   "from": [
+    "ask-answers"
    ]
   },
   {
@@ -9250,9 +9540,21 @@
    ]
   },
   {
+   "text": "The Constitutional Convention was the meeting in Philadelphia in 1787 where leaders wrote the U.S. Constitution.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
    "text": "The Declaration and the Constitution share big ideas: equality, liberty, natural rights, limited government and self-government.",
    "from": [
     "course-lessons"
+   ]
+  },
+  {
+   "text": "The Declaration of Independence said the American colonies were free from Britain. It was adopted on July 4, 1776. Thomas Jefferson wrote it.",
+   "from": [
+    "ask-answers"
    ]
   },
   {
@@ -9304,6 +9606,18 @@
    ]
   },
   {
+   "text": "The First Amendment protects freedom of speech, religion, the press, assembly, and the right to petition the government.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "The Grand Canyon is a very large, deep canyon in Arizona. The Colorado River made it over millions of years. It is a national park.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
    "text": "The Grand Canyon is over a mile deep and was formed over millions of years",
    "from": [
     "key-words"
@@ -9346,6 +9660,12 @@
    ]
   },
   {
+   "text": "The Industrial Revolution was the time when work moved from farms and hand tools to factories and machines. It changed how Americans lived and worked.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
    "text": "The Judicial Branch and Supreme Court",
    "from": [
     "lessons"
@@ -9385,6 +9705,12 @@
    "text": "The Nation’s first motto was “E Pluribus Unum.” What does that mean?",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "The Northeast is a region in the top right of the map, by the Atlantic Ocean. It includes states like New York, Pennsylvania and the New England states.",
+   "from": [
+    "ask-answers"
    ]
   },
   {
@@ -9433,6 +9759,12 @@
    "text": "The President is the head of the Executive Branch and serves as commander-in-chief of the armed forces. The President is elected to four-year terms and can serve a maximum of two terms due to the 22nd Amendment. The President enforces federal laws, appoints federal judges and cabinet members, negotiates treaties, and proposes the federal budget to Congress.\n\nThe President's Cabinet consists of department heads who advise the President and manage specific areas of government like defense, state, treasury, and interior. The Executive Office of the President includes the White House staff and advisors who assist with daily operations and policy decisions.\n\nThe President can veto legislation passed by Congress, but Congress can override this veto with a two-thirds vote. Presidents issue executive orders to direct government agencies. The President also represents the United States in foreign relations and ceremonial matters. Elections every four years ensure that the President remains accountable to the people.",
    "from": [
     "lessons"
+   ]
+  },
+  {
+   "text": "The President leads the executive branch. The President is elected for four years and can serve only two terms.",
+   "from": [
+    "ask-answers"
    ]
   },
   {
@@ -9508,6 +9840,12 @@
    ]
   },
   {
+   "text": "The Senate is one of the two parts of Congress. There are 100 senators, two from each state. A senator's term is six years.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
    "text": "The Senate must approve presidential appointments to courts and Cabinet positions",
    "from": [
     "key-words"
@@ -9571,6 +9909,12 @@
    "text": "The Supreme Court is the highest court in the United States.",
    "from": [
     "course-lessons"
+   ]
+  },
+  {
+   "text": "The Supreme Court is the highest court in the United States. It has nine seats. It can decide if a law goes against the Constitution.",
+   "from": [
+    "ask-answers"
    ]
   },
   {
@@ -9994,6 +10338,12 @@
    ]
   },
   {
+   "text": "The officer asks",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "The officer would accept that.",
    "from": [
     "lesson-player"
@@ -10102,6 +10452,12 @@
    ]
   },
   {
+   "text": "The section’s questions, out loud, with no hints. Pass to earn a badge and 10 stars.",
+   "from": [
+    "course"
+   ]
+  },
+  {
    "text": "The sentence",
    "from": [
     "lesson-player"
@@ -10129,6 +10485,12 @@
    "text": "The system of checks and balances ensures that no single branch of government becomes too powerful. Each branch has powers to limit the other branches. The Legislative Branch can override the President's veto, refuse to pass the President's budget, and remove the President through impeachment. The Senate confirms judges and cabinet appointees.\n\nThe Executive Branch (President) can veto laws passed by Congress and appoints judges and cabinet members. The President enforces laws made by Congress. The Judicial Branch can declare laws unconstitutional and interpret how laws apply. The Senate must confirm judicial appointments, and Congress can propose amendments to overturn Supreme Court decisions.\n\nThis system prevents concentration of power and protects citizens' rights. The Founding Fathers deliberately created a government where each branch would compete and balance the others. Examples of checks and balances in action include Congress overriding a presidential veto, the Supreme Court declaring a law unconstitutional, or the Senate rejecting a presidential appointee. This design has kept America's government stable for over 230 years.",
    "from": [
     "lessons"
+   ]
+  },
+  {
+   "text": "The three branches are legislative, executive, and judicial. You can also say: Congress, president, and the courts. They share power, so no one part of government becomes too powerful.",
+   "from": [
+    "ask-answers"
    ]
   },
   {
@@ -10384,9 +10746,165 @@
    ]
   },
   {
+   "text": "This lesson is about Congress, the part of the government that writes laws. Congress has two parts: the Senate and the House of Representatives.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about Washington, D.C. and other important places. Each state also has its own capital city, where the state government works.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about fair treatment by the government and the courts. The Constitution protects the right to fair rules and a fair trial.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about famous natural places in the United States. Many are national parks, protected so everyone can visit them.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about how rights and responsibilities go together. Americans have rights, and they also have duties, like obeying the law.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about how the 13 colonies became an independent country. The colonists fought Britain in the Revolutionary War and won.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about how the Constitution can change. Changes are called amendments. Making one is hard, so the Constitution does not change often.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about how the Constitution was written in 1787 and the leaders who wrote it, like James Madison and George Washington.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about how the U.S. government is built. Power is shared between the federal government and the states, and among three branches.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about how the United States changed from a farming country to a country of factories, cities and new inventions.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about how the United States grew west across the continent in the 1800s, and how that changed the country and the people who already lived there.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about how the three branches share power. For example, the President can veto a bill, and Congress can still pass it with more votes.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about ideas many Americans share, like freedom, equality and hard work. People from many cultures live in the United States, and together they make American culture.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about important rights in the United States, like freedom of speech and freedom of religion. Many of them are in the Bill of Rights.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about laws that protect equal treatment. The civil rights movement fought to end racial discrimination.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about state and local government. States run things like schools, driver's licenses and police. Cities and towns have their own local leaders.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about symbols of the United States, like the flag and the national anthem. Each symbol stands for an idea, such as freedom or the states.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about the Civil War and the end of slavery. Abraham Lincoln was President. The Emancipation Proclamation freed slaves in the Confederate states.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about the President and the executive branch. The President signs bills into law, can veto bills and is Commander in Chief of the military.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about the courts, the judicial branch. The courts explain laws and decide disagreements about the law.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about the freedoms the Constitution protects for each person, like speech and religion, and how the government cannot take them away.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about the land of the United States and its regions. The civics test asks about oceans, rivers, borders and states, so a map helps.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about what citizens do to keep democracy strong, like voting, paying taxes and taking part in their community.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about who can vote and how that changed. Today, citizens who are 18 and older can vote in federal elections.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
+   "text": "This lesson is about who lived in America before the Europeans, and how colonization changed their lives. American Indians lost much of their land.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
    "text": "This lesson isn’t open yet.",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "This means the many American Indian nations that lived in America before Europeans came. Each had its own language, government and way of life.",
+   "from": [
+    "ask-answers"
    ]
   },
   {
@@ -10594,9 +11112,21 @@
    ]
   },
   {
+   "text": "This stop isn’t ready yet.",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "This stop opens in a later update. You can go on to the next stop.",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "This time, no hints and no help. Answer out loud, like the real interview.",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -10899,7 +11429,14 @@
   {
    "text": "Try again",
    "from": [
+    "checkpoints",
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Try the practice interview",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -10936,12 +11473,14 @@
    "text": "Type instead",
    "from": [
     "ask-screen",
+    "checkpoints",
     "lesson-player"
    ]
   },
   {
    "text": "Type your answer in English",
    "from": [
+    "checkpoints",
     "lesson-player"
    ]
   },
@@ -11078,6 +11617,18 @@
    ]
   },
   {
+   "text": "Unit {n} complete",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "Unit {n} practice interview",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "Unit {unit} · Section {section} · Lesson {lesson}",
    "from": [
     "lesson-player"
@@ -11087,6 +11638,18 @@
    "text": "United States",
    "from": [
     "words"
+   ]
+  },
+  {
+   "text": "Unlocked:",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "Unlocked: try it any time",
+   "from": [
+    "course"
    ]
   },
   {
@@ -11211,6 +11774,12 @@
    ]
   },
   {
+   "text": "Voting rights are the rights of citizens to vote in elections. Over time, amendments to the Constitution gave more citizens the right to vote.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
    "text": "Voting, joining a community group, helping with a campaign and contacting elected officials are all civic participation.",
    "from": [
     "course-lessons"
@@ -11321,6 +11890,12 @@
    ]
   },
   {
+   "text": "Washington, D.C. is the capital of the United States. Congress, the President and the Supreme Court all work there.",
+   "from": [
+    "ask-answers"
+   ]
+  },
+  {
    "text": "Washington, D.C. is the capital.",
    "from": [
     "sentences"
@@ -11342,6 +11917,12 @@
    "text": "We can't give legal advice or answer questions about your own case.",
    "from": [
     "talk"
+   ]
+  },
+  {
+   "text": "We can’t check this one yet",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -12831,6 +13412,12 @@
    ]
   },
   {
+   "text": "You need {need} of {total} to pass. Try it again when you’re ready.",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "You owe child support",
    "from": [
     "lawyer-checklist"
@@ -12840,6 +13427,12 @@
    "text": "You owe taxes, didn't file taxes, or filed as a \"nonresident\"",
    "from": [
     "lawyer-checklist"
+   ]
+  },
+  {
+   "text": "You promise to tell the truth. The officer asks about your N-400 application. You take the English test (reading, writing and speaking) and the civics test. At the end, the officer gives you a paper about the result.",
+   "from": [
+    "ask-answers"
    ]
   },
   {
@@ -13095,6 +13688,12 @@
    "text": "You’ll be able to answer:",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "You’ll be asked",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -14022,6 +14621,12 @@
    ]
   },
   {
+   "text": "lessons",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "life / liberty / pursuit of happiness",
    "from": [
     "civics-questions"
@@ -14328,6 +14933,12 @@
    ]
   },
   {
+   "text": "sentences read and written",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "serve on a jury / vote in a federal election",
    "from": [
     "civics-questions"
@@ -14439,6 +15050,12 @@
    "text": "tax return",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "test questions",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -15006,6 +15623,18 @@
    ]
   },
   {
+   "text": "{correct} of {total}",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "{correct} of {total} · +10 stars",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "{done} of {goal} done",
    "from": [
     "lesson-player"
@@ -15027,6 +15656,12 @@
    "text": "{name} is here with you.",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "{need} of {n} to pass",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -15061,6 +15696,12 @@
    ]
   },
   {
+   "text": "{n} questions to bring back",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "{n} questions to keep fresh",
    "from": [
     "today-plan"
@@ -15076,6 +15717,12 @@
    "text": "{n} sections",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "{n} sentences read and written.",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -15111,9 +15758,39 @@
    ]
   },
   {
+   "text": "{read} to read · {write} to write",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "{right} of {total} right. Each one moves to its next review day.",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "{section} · 1 question",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "{section} · lesson {n} of {of}",
    "from": [
     "today-plan"
+   ]
+  },
+  {
+   "text": "{section} · {n} questions",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
+   "text": "{section}, out loud!",
+   "from": [
+    "checkpoints"
    ]
   },
   {
@@ -15123,8 +15800,15 @@
    ]
   },
   {
+   "text": "{unit}: done!",
+   "from": [
+    "checkpoints"
+   ]
+  },
+  {
    "text": "“Could you repeat that, please?”",
    "from": [
+    "checkpoints",
     "lesson-player"
    ]
   },
