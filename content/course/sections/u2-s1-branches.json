@@ -36,7 +36,7 @@
     {
       "id": "u2-s1-l1",
       "title": "Three branches",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de26",
         "6ad16ecf6a9c603911f9de27"
@@ -96,7 +96,7 @@
     {
       "id": "u2-s1-l2",
       "title": "Signing and vetoing",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de41",
         "6ad16ecf6a9c603911f9de42"

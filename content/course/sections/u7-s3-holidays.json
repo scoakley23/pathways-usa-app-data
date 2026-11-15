@@ -41,7 +41,7 @@
     {
       "id": "u7-s3-l1",
       "title": "Independence Day and Memorial Day",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de93",
         "6ad16ecf6a9c603911f9de95"
@@ -92,7 +92,7 @@
     {
       "id": "u7-s3-l2",
       "title": "Veterans Day and national holidays",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de96",
         "6ad16ecf6a9c603911f9de94"

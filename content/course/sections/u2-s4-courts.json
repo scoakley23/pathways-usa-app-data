@@ -57,7 +57,7 @@
     {
       "id": "u2-s4-l1",
       "title": "The highest court",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de4a",
         "6ad16ecf6a9c603911f9de48"
@@ -112,7 +112,7 @@
     {
       "id": "u2-s4-l2",
       "title": "What courts do",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de49",
         "6ad16ecf6a9c603911f9de43"
@@ -169,7 +169,7 @@
     {
       "id": "u2-s4-l3",
       "title": "The Supreme Court",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de4b",
         "6ad16ecf6a9c603911f9de4c"
@@ -222,7 +222,7 @@
     {
       "id": "u2-s4-l4",
       "title": "Justices serve for life",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de4d",
         "6ad16ecf6a9c603911f9de4e"
@@ -275,7 +275,7 @@
     {
       "id": "u2-s4-l5",
       "title": "The Chief Justice",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de4f"
       ],

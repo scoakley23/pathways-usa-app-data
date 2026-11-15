@@ -5,27 +5,9 @@ import { Card, Eyebrow } from '@/components/pathways/ui';
 // full list in plain words. Keep it in step with CLAUDE.md "Where learner
 // data is saved today" and docs/AI-Policy-updated.md when data handling
 // changes. `t` translates a key (falls back to the English below).
-export const WHAT_WE_SAVE_LINES = {
-  title: 'What we save',
-  short_saved: 'Your lesson progress, badges and practice scores.',
-  short_never_lead: 'Never',
-  short_never: 'your voice, your interview date, your address, or anything about your case.',
-  full_list: 'See the full list',
-  account_title: 'With your account',
-  account_1: 'Your name, email, points and badges.',
-  account_2: 'How Amio talks to you (tone and how much English), and your quick check levels.',
-  account_3: 'Your practice: which questions, sentences and lessons you got right, and your scores. Mock interview scores only, never what you said.',
-  account_4: 'Your lesson notes, and which N-400 guide sections you read (never your answers).',
-  account_5: 'Your questions to Amio and Amio’s answers, so you can see them in History. Only you can see them.',
-  account_6: 'Your state and congressional district, if you used “Who Represents Me?” (never your address).',
-  account_7: 'Places you saved in Free help near you.',
-  account_8: 'If you picked a program: which one, the name you gave them, and whether you share your progress. Your program sees only that and counts, never your answers or your questions to Amio.',
-  account_9: 'If you answer them: your “Help us improve Pathways” answers (fixed choices only), the days you opened the app, and which reminder emails we sent.',
-  device_title: 'Only on this phone',
-  device_1: 'Your interview month, your plan and checkmarks, your language, text size, sound and voice settings, and saved translations.',
-  never_title: 'Never saved',
-  never_1: 'Your voice (speech becomes text in your browser; only scores are kept), your interview date, your address, your A-number, your immigration status, or your answers to the N-400.',
-};
+import { WHAT_WE_SAVE_LINES } from './shellStrings';
+
+export { WHAT_WE_SAVE_LINES };
 
 function Group({ title, items }) {
   return (

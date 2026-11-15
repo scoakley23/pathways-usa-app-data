@@ -136,7 +136,7 @@ Pathways USA asks learners a few optional questions to learn whether the app hel
 None of the learners' answers are sent to the AI service.
 
 ## Translations of App Text
-Fixed app text (for example, menu labels and the tutor's standard messages) may be translated into the learner's language by the AI service and saved on the learner's device so it is translated only once. English and Spanish versions of key messages are written by people. No learner text is included in these translations.
+Fixed app text and study content (for example, menu labels, the tutor's standard messages, civics questions, lessons and the N-400 guide) are translated ahead of time, before release, and shipped with the app, so nothing is sent to an AI service to translate them while the learner studies. Text not yet in that set is shown in English on the new system; on the current system it may still be translated by the AI service and saved on the learner's device so it is translated only once. English and Spanish versions of key messages are written by people. No learner text is included in these translations.
 
 ## Ethical Risks and Concerns
 Potential risks include bias in study recommendations that could disadvantage certain learner groups and privacy concerns related to the handling of personal information. Measures will be implemented to detect and prevent bias, with annual audits conducted to assess fairness in AI outputs.

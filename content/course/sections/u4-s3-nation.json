@@ -55,7 +55,7 @@
     {
       "id": "u4-s3-l1",
       "title": "The Constitution of 1787",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de68",
         "6ad16ecf6a9c603911f9de6e"
@@ -102,7 +102,7 @@
     {
       "id": "u4-s3-l2",
       "title": "The Federalist Papers",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de69",
         "6ad16ecf6a9c603911f9de6a"
@@ -154,7 +154,7 @@
     {
       "id": "u4-s3-l3",
       "title": "Washington and Franklin",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de6c",
         "6ad16ecf6a9c603911f9de6b"
@@ -209,7 +209,7 @@
     {
       "id": "u4-s3-l4",
       "title": "Alexander Hamilton",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de6f"
       ],

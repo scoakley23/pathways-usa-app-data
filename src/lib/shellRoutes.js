@@ -5,7 +5,7 @@
 
 export const TAB_PATHS = {
   today: '/',
-  course: '/study?tab=lessons',
+  course: '/course',
   interview: '/interview',
   me: '/me',
 };
@@ -39,6 +39,8 @@ const TAB_FOR_PATH = {
 
 export function tabFor(pathname = '/') {
   const p = (pathname || '/').toLowerCase().replace(/\/+$/, '') || '/';
+  // The Course tab (Prompt 5): /course, its unit guide, all units and lessons.
+  if (p === '/course' || p.startsWith('/course/')) return 'course';
   return TAB_FOR_PATH[p] || null;
 }
 

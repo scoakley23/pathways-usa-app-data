@@ -25,6 +25,10 @@ import MePage from './components/shell/MePage';
 import SettingsPage from './components/shell/SettingsPage';
 import InterviewPage from './components/shell/InterviewPage';
 import AskAmio from './components/ai/StudyBuddy';
+import CoursePage from './components/course/CoursePage';
+import UnitGuidePage from './components/course/UnitGuidePage';
+import UnitsMapPage from './components/course/UnitsMapPage';
+import LessonSoonPage from './components/course/LessonSoonPage';
 
 // Lessons and Practice are tabs of Study now; their old addresses redirect.
 const STUDY_REDIRECTS = { Lessons: 'lessons', Practice: 'practice' };
@@ -102,6 +106,28 @@ const AuthenticatedApp = () => {
       <Route path="ask" element={
         <LayoutWrapper currentPageName="AskAmio">
           <AskAmio />
+        </LayoutWrapper>
+      } />
+      {/* The Course tab (Prompt 5): the journey, the unit guide, all units,
+          and Start on a lesson until the lesson player (Prompt 6). */}
+      <Route path="course" element={
+        <LayoutWrapper currentPageName="Course">
+          <CoursePage />
+        </LayoutWrapper>
+      } />
+      <Route path="course/units" element={
+        <LayoutWrapper currentPageName="CourseUnits">
+          <UnitsMapPage />
+        </LayoutWrapper>
+      } />
+      <Route path="course/unit/:unitId" element={
+        <LayoutWrapper currentPageName="CourseUnit">
+          <UnitGuidePage />
+        </LayoutWrapper>
+      } />
+      <Route path="course/lesson/:lessonId" element={
+        <LayoutWrapper currentPageName="CourseLesson">
+          <LessonSoonPage />
         </LayoutWrapper>
       } />
       <Route path="study" element={

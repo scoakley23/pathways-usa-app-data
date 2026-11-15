@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
-import { LANGUAGES } from '@/hooks/useLessonTranslation';
+import { LANGUAGES } from '@/lib/languages';
 import { getCachedTranslation, translateStrings } from '@/lib/translateStrings';
+import { PACK_ONLY, fromPack, getLoadedPack, hasPack } from '@/lib/translationPack';
 
 // Translates a small object of fixed English strings into the learner's
-// language. Hand-written translations win; otherwise AI translates once and
-// the result is cached on the device. Bump `cacheKey` when the English changes.
+// language. Hand-written translations win; then the translation pack
+// (src/lib/translationPack.js); otherwise AI translates once (switch off
+// only) and the result is cached on the device. Bump `cacheKey` when the
+// English changes.
 // Components asking for the same lines at the same time share one request.
 export default function useTranslatedLines(lines, language, { cacheKey, handWritten = {} }) {
   const [translated, setTranslated] = useState(null);
@@ -19,8 +22,17 @@ export default function useTranslatedLines(lines, language, { cacheKey, handWrit
       setTranslated(handWritten[language]);
       return;
     }
+    // The pack, if it is already loaded and covers these lines.
+    const pack = getLoadedPack(language);
+    if (pack) {
+      const { found, missing } = fromPack(pack, lines);
+      if (!missing.length || PACK_ONLY) {
+        setTranslated(found);
+        return;
+      }
+    }
     const storageKey = `pathways_${cacheKey}_${language}`;
-    const cached = getCachedTranslation(storageKey);
+    const cached = hasPack(language) ? null : getCachedTranslation(storageKey);
     if (cached) {
       setTranslated(cached);
       return;
@@ -30,6 +42,7 @@ export default function useTranslatedLines(lines, language, { cacheKey, handWrit
     let cancelled = false;
     const langName = LANGUAGES.find((l) => l.value === language)?.label || language;
     translateStrings({
+      language,
       storageKey,
       strings: lines,
       buildPrompt: (part) => `Translate every value in this JSON into ${langName}, for adults studying for the U.S. citizenship test. Keep the keys. Keep {name} exactly as written. Keep the tone of each line (some are warm, some short, some formal). Return a JSON object with the same keys.\n\n${JSON.stringify(part, null, 2)}`,

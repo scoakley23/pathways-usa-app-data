@@ -15,7 +15,7 @@ import useTranslatedLines from '@/components/persona/useTranslatedLines';
 import PilotSettingsCard from '@/components/pilot/PilotSettingsCard';
 import DeleteMyData from '@/components/profile/DeleteMyData';
 import { StudyTogetherCard } from '@/components/home/StudyTogether';
-import WhatWeSave, { WHAT_WE_SAVE_LINES } from '@/components/shell/WhatWeSave';
+import WhatWeSave from '@/components/shell/WhatWeSave';
 import { Switch } from '@/components/ui/switch';
 import useAppLanguage, { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
 import { profile as profileApi } from '@/api/profile';
@@ -25,18 +25,7 @@ import { profile as profileApi } from '@/api/profile';
 // data". Same settings, same saving as before. Left out: the frame's
 // "Daily reminder · time" row (there is no reminder time; the in-app daily
 // reminder keeps working on its own).
-const LINES = {
-  title: 'Settings and privacy',
-  language: 'Language',
-  speed: 'Amio’s speaking speed',
-  read_aloud: 'Read everything out loud',
-  read_aloud_help: 'Amio reads each message aloud in the quick check and lessons. Saved on this phone.',
-  how_amio_talks: 'How Amio talks',
-  your_name: 'Your name',
-  your_name_help: 'Shown on your Me page.',
-  save: 'Save',
-  ...Object.fromEntries(Object.entries(WHAT_WE_SAVE_LINES).map(([k, v]) => [`wws_${k}`, v])),
-};
+import { SETTINGS_LINES as LINES } from './shellStrings';
 
 function Row({ label, htmlFor, children, help }) {
   return (

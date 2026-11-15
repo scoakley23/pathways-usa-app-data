@@ -16,6 +16,7 @@ import { matchCivicsAnswer } from '@/lib/answerVariants';
 import { officeholderAnswerFor, officeholderAnswerLine } from '@/lib/officeholderQuestions';
 import { LANGUAGES } from '@/hooks/useLessonTranslation';
 import useAppLanguage from '@/hooks/useAppLanguage';
+import { PACK_ONLY, packText } from '@/lib/translationPack';
 
 // A civics question (The Road): the navy top says WHAT (label, the question,
 // "Hear it" and "In my language"); the cream sheet holds what you DO ("Say
@@ -87,6 +88,17 @@ export default function CivicsTestCard({ question, onComplete, onNext, testMode 
     if (!question || !myLanguage) return;
     setIsTranslating(true);
     try {
+      // The translation pack first; live AI only when it doesn't have this
+      // question, and never when PACK_ONLY (the switch on).
+      const [q, a] = await Promise.all([packText(myLanguage.value, question.question), packText(myLanguage.value, question.answer)]);
+      if (q && a) {
+        setTranslation(`Question: ${q}\nAnswer: ${a}`);
+        return;
+      }
+      if (PACK_ONLY) {
+        setTranslation('Translation unavailable');
+        return;
+      }
       const prompt = `Translate the following Civics Question and Answer into ${myLanguage.label}.
 
       Question: "${question.question}"

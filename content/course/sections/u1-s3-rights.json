@@ -56,7 +56,8 @@
         "listen": {
           "explanationKey": "What does the Bill of Rights protect?",
           "facts": [
-            "The Bill of Rights is the first ten amendments to the Constitution.",
+            "The Constitution was written in 1787. Many Americans wanted it to say clearly which rights the government can never take away.",
+            "So in 1791, ten amendments were added to the Constitution. These first ten amendments are called the Bill of Rights.",
             "It protects the basic rights of Americans and of people living in the United States.",
             "Freedom of speech and freedom of religion are two of these rights."
           ],
@@ -114,8 +115,9 @@
           "explanationKey": "What is the rule of law?",
           "facts": [
             "The rule of law means everyone must follow the law. Leaders and the government must obey the law too.",
-            "No one is above the law.",
-            "The government has three branches so one part does not become too powerful. Each branch can check the others. This is called checks and balances."
+            "No one is above the law. For example, the President must pay taxes like everyone else. A mayor who steals can be arrested and go to court like anyone else.",
+            "The government has three branches so one part does not become too powerful. Each branch can check the others. This is called checks and balances.",
+            "For example, Congress writes laws, the President can veto them, and the courts can decide a law goes against the Constitution."
           ],
           "newWords": [
             {
@@ -169,9 +171,11 @@
         "listen": {
           "explanationKey": "What is the form of government of the United States?",
           "facts": [
-            "The United States is a republic. The people elect leaders to make laws for them. This is also called a representative democracy.",
-            "The economic system of the United States is capitalism, also called a free market economy.",
-            "In a free market, people and businesses can own things and decide what to make, buy and sell."
+            "The United States is a republic: the people vote for leaders, and those leaders make laws for them.",
+            "This is also called a representative democracy. “Representative” means the leaders speak and act for the people who elected them.",
+            "It is also a constitution-based federal republic: the Constitution is the highest law, and power is shared between the national government and the states.",
+            "The economic system of the United States is capitalism, also called a free market economy. People and businesses can own things and decide what to make, buy and sell.",
+            "Think of a supermarket: stores choose what to sell and what price to ask, and you choose what to buy. Most of the time, the government does not decide this for you. That is a free market."
           ],
           "newWords": [
             {
@@ -185,6 +189,10 @@
             {
               "word": "capitalism",
               "meaning": "an economy where people and businesses own and run things"
+            },
+            {
+              "word": "free market",
+              "meaning": "when people and businesses, not the government, decide what to make, sell and buy"
             }
           ]
         },
