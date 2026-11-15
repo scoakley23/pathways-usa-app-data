@@ -30,3 +30,4 @@ dist-ssr
 
 .env
 base44/.app.jsonc
+scripts/translations/.last-batch.json

@@ -3,11 +3,13 @@ import { toast } from 'sonner';
 import { LANGUAGES } from './useLessonTranslation';
 import { HOME_STRINGS } from '@/components/home/homeStrings';
 import { getCachedTranslation, translateStrings } from '@/lib/translateStrings';
+import { PACK_ONLY, fromPack, getLoadedPack, hasPack } from '@/lib/translationPack';
 
 const CACHE_PREFIX = 'pathways_home_tr_v11_'; // bump when HOME_STRINGS changes
 
-// Translates the home screen's static strings via AI, cached per language in
-// localStorage so each language is translated only once. Screens using this
+// Translates the home screen's static strings: the translation pack first,
+// then (switch off only) AI, cached per language in localStorage so each
+// language is translated only once. Screens using this
 // at the same time share one request (src/lib/translateStrings.js).
 export default function useHomeTranslation(language) {
   const [translations, setTranslations] = useState(null);
@@ -20,8 +22,18 @@ export default function useHomeTranslation(language) {
       return;
     }
 
+    // The translation pack first, if it is already loaded.
+    const pack = getLoadedPack(language);
+    if (pack) {
+      const { found, missing } = fromPack(pack, HOME_STRINGS);
+      if (!missing.length || PACK_ONLY) {
+        setTranslations(found);
+        setTranslating(false);
+        return;
+      }
+    }
     const storageKey = CACHE_PREFIX + language;
-    const cached = getCachedTranslation(storageKey);
+    const cached = hasPack(language) ? null : getCachedTranslation(storageKey);
     if (cached) {
       setTranslations(cached);
       setTranslating(false);
@@ -33,6 +45,7 @@ export default function useHomeTranslation(language) {
     setTranslating(true);
     const langName = LANGUAGES.find((l) => l.value === language)?.label || language;
     translateStrings({
+      language,
       storageKey,
       strings: HOME_STRINGS,
       buildPrompt: (part) => `You are a professional translator for US citizenship test preparation materials. Translate every value in the JSON object below into ${langName}. Keep the keys exactly as they are. Keep placeholders like {n} exactly as written. Keep proper nouns (USCIS, USCIS.gov, Pathways) unchanged. Translate naturally — this is educational content for immigrants preparing for naturalization.

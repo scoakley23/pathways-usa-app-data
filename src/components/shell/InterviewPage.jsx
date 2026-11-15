@@ -10,7 +10,6 @@ import { Button, Card } from '@/components/pathways/ui';
 import InterviewRoom from '@/components/interview/InterviewRoom';
 import useTranslatedLines from '@/components/persona/useTranslatedLines';
 import useAppLanguage, { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
-import { LEVELS } from '@/lib/pretest';
 import { loadPlanSettings } from '@/lib/planSettings';
 import { INTERVIEW_LINKS } from '@/lib/shellRoutes';
 import { lastScores, readinessTiles } from '@/lib/interviewReadiness';
@@ -20,25 +19,7 @@ import { lastScores, readinessTiles } from '@/lib/interviewReadiness';
 // civics questions, practice interview scores), the interview room, the last
 // 4 practice scores, "Start practice interview", and links to the day guide,
 // the N-400 guide and the N-400 coach. Reads only; saves nothing.
-const LINES = {
-  title: 'Are you ready?',
-  ready_in: 'Ready in {n} of 4 parts',
-  interview_month: 'Interview month: {month}',
-  reading: 'Reading',
-  writing: 'Writing',
-  speaking: 'Speaking',
-  civics: 'Civics',
-  ready: 'Ready',
-  not_checked: 'Not checked yet',
-  no_interview_yet: 'No practice yet',
-  of: '{n} of {total}',
-  practice_title: 'Practice interview',
-  practice_body: '{n} questions · AI officer, not a real person. Amio waits at the door.',
-  last: 'Last {n}:',
-  start: 'Start practice interview',
-  ...Object.fromEntries(INTERVIEW_LINKS.filter((l) => l.id !== 'mock').map((l) => [`link_${l.id}`, l.label])),
-  ...Object.fromEntries(Object.entries(LEVELS).map(([k, v]) => [`level_${k}`, v.label])),
-};
+import { INTERVIEW_LINES as LINES } from './shellStrings';
 
 const PRACTICE_QUESTIONS = 12; // 2 small talk + 3 about you + 4 "Have you ever…" + 3 swearing in (InterviewPractice)
 

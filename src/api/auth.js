@@ -18,14 +18,14 @@
 //   auth.checkSession()     -> { user, authError } (for AuthContext)
 import { base44Auth } from '@/api/base44Auth';
 import { createSupabaseAuth } from '@/api/supabaseAuth';
-import { getSupabase, supabaseConfigured } from '@/api/supabaseClient';
+import { getSupabase } from '@/api/supabaseClient';
+import { PROVIDER, WANTS_SUPABASE } from '@/api/provider';
 
-const wantsSupabase = import.meta.env.VITE_AUTH_PROVIDER === 'supabase';
-if (wantsSupabase && !supabaseConfigured()) {
+if (WANTS_SUPABASE && PROVIDER !== 'supabase') {
   console.warn('VITE_AUTH_PROVIDER is "supabase" but VITE_SUPABASE_URL or VITE_SUPABASE_ANON_KEY is missing: using Base44 sign-in.');
 }
 
-export const AUTH_PROVIDER = wantsSupabase && supabaseConfigured() ? 'supabase' : 'base44';
+export const AUTH_PROVIDER = PROVIDER;
 
 function makeSupabaseAuth() {
   const a = createSupabaseAuth(getSupabase());
