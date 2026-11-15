@@ -367,6 +367,12 @@
    ]
   },
   {
+   "text": "1 test question",
+   "from": [
+    "course"
+   ]
+  },
+  {
    "text": "1-minute question: how is it going?",
    "from": [
     "pilot"
@@ -519,6 +525,12 @@
    "text": "30.a. Do you now have, or did you EVER have, a hereditary title or an order of nobility in any foreign country? 30.b. If you answered \"Yes,\" to Item Number 30.a., are you willing to give up any inherited titles or orders of nobility, (list titles), that you have in a foreign country at your naturalization ceremony?",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "5 steps",
+   "from": [
+    "course"
    ]
   },
   {
@@ -916,6 +928,12 @@
    "text": "All done for today",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "All units",
+   "from": [
+    "course"
    ]
   },
   {
@@ -1325,7 +1343,14 @@
   {
    "text": "Back",
    "from": [
+    "course",
     "sign-in"
+   ]
+  },
+  {
+   "text": "Back to the road",
+   "from": [
+    "course"
    ]
   },
   {
@@ -1840,6 +1865,12 @@
    "text": "Come",
    "from": [
     "words"
+   ]
+  },
+  {
+   "text": "Coming soon",
+   "from": [
+    "course"
    ]
   },
   {
@@ -2441,6 +2472,7 @@
   {
    "text": "Done",
    "from": [
+    "course",
     "pilot",
     "talk",
     "today"
@@ -2456,6 +2488,12 @@
    "text": "Double Jeopardy",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "Draft",
+   "from": [
+    "course"
    ]
   },
   {
@@ -2802,6 +2840,12 @@
    "text": "Filed, waiting for my interview",
    "from": [
     "pilot"
+   ]
+  },
+  {
+   "text": "Finish “{title}” first. Stops open one at a time, in order.",
+   "from": [
+    "course"
    ]
   },
   {
@@ -3310,6 +3354,12 @@
    "text": "Guarantees right to fair trial and legal representation",
    "from": [
     "lessons"
+   ]
+  },
+  {
+   "text": "Guide",
+   "from": [
+    "course"
    ]
   },
   {
@@ -4266,6 +4316,12 @@
    ]
   },
   {
+   "text": "I’ll use the state you picked in Who Represents Me.",
+   "from": [
+    "course"
+   ]
+  },
+  {
    "text": "James Madison",
    "from": [
     "key-words",
@@ -4581,9 +4637,21 @@
    ]
   },
   {
+   "text": "Lesson {n}",
+   "from": [
+    "course"
+   ]
+  },
+  {
    "text": "Lessons can be in any of {n} languages. The interview is in English, so we practice your answers in English, one step at a time.",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "Lessons open in the next update",
+   "from": [
+    "course"
    ]
   },
   {
@@ -5334,6 +5402,12 @@
    ]
   },
   {
+   "text": "Next!",
+   "from": [
+    "course"
+   ]
+  },
+  {
    "text": "Nice work today. See you tomorrow.",
    "from": [
     "tutor"
@@ -5408,6 +5482,12 @@
    ]
   },
   {
+   "text": "Not open yet",
+   "from": [
+    "course"
+   ]
+  },
+  {
    "text": "Not quite. Try again.",
    "from": [
     "tutor"
@@ -5442,6 +5522,18 @@
    "text": "Now, at this time.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "OK",
+   "from": [
+    "course"
+   ]
+  },
+  {
+   "text": "Oath Day",
+   "from": [
+    "course"
    ]
   },
   {
@@ -5745,6 +5837,12 @@
    ]
   },
   {
+   "text": "Practice",
+   "from": [
+    "course"
+   ]
+  },
+  {
    "text": "Practice for the civics test. Filed your N-400 on or after October 20, 2025? You'll take the 2025 test. Filed before that date? You'll take the 2008 test.",
    "from": [
     "home"
@@ -5784,6 +5882,12 @@
    "text": "Practice the whole interview, start to finish.",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "Practice this lesson again",
+   "from": [
+    "course"
    ]
   },
   {
@@ -6348,6 +6452,12 @@
    ]
   },
   {
+   "text": "Section {n}: {title}",
+   "from": [
+    "course"
+   ]
+  },
+  {
    "text": "See USCIS processing times (optional)",
    "from": [
     "today"
@@ -6644,6 +6754,12 @@
    ]
   },
   {
+   "text": "Speak it! checkpoint",
+   "from": [
+    "course"
+   ]
+  },
+  {
    "text": "Speaking",
    "from": [
     "interview-tab"
@@ -6668,6 +6784,12 @@
     "home",
     "interview-tab",
     "today"
+   ]
+  },
+  {
+   "text": "Start lesson · +3 stars",
+   "from": [
+    "course"
    ]
   },
   {
@@ -7035,6 +7157,12 @@
    "text": "The 15th Amendment gave African American men the right to vote after the Civil War",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "The 5-step lesson player is on its way. Your place on the road is saved.",
+   "from": [
+    "course"
    ]
   },
   {
@@ -7470,6 +7598,12 @@
    ]
   },
   {
+   "text": "The ceremony · you made it",
+   "from": [
+    "course"
+   ]
+  },
+  {
    "text": "The colonists came to America for many reasons. Name one.",
    "from": [
     "civics-questions"
@@ -7770,6 +7904,12 @@
    ]
   },
   {
+   "text": "These lessons are being reviewed. They will appear here soon.",
+   "from": [
+    "course"
+   ]
+  },
+  {
    "text": "These questions are optional. They help us learn if Pathways works. Don't share case numbers or personal details. Programs you study with can't see your answers. You can delete them any time with 'Delete all my data.'",
    "from": [
     "pilot"
@@ -8043,6 +8183,12 @@
    "text": "This question is for people who received a suspended sentence, probation, or parole. It asks whether you completed it.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "This stop opens in a later update. You can go on to the next stop.",
+   "from": [
+    "course"
    ]
   },
   {
@@ -8373,9 +8519,27 @@
    ]
   },
   {
+   "text": "Unit practice interview",
+   "from": [
+    "course"
+   ]
+  },
+  {
+   "text": "Unit {n}",
+   "from": [
+    "course"
+   ]
+  },
+  {
    "text": "United States",
    "from": [
     "words"
+   ]
+  },
+  {
+   "text": "Unlocks when you finish the unit",
+   "from": [
+    "course"
    ]
   },
   {
@@ -9902,6 +10066,12 @@
    ]
   },
   {
+   "text": "You are here",
+   "from": [
+    "course"
+   ]
+  },
+  {
    "text": "You asked",
    "from": [
     "ask-screen"
@@ -10060,6 +10230,12 @@
    ]
   },
   {
+   "text": "Your journey to Oath Day",
+   "from": [
+    "course"
+   ]
+  },
+  {
    "text": "Your language",
    "from": [
     "home"
@@ -10186,6 +10362,12 @@
    ]
   },
   {
+   "text": "You’ll be able to answer:",
+   "from": [
+    "course"
+   ]
+  },
+  {
    "text": "[USCIS Officers will be supplied with a list of federally recognized American Indian tribes.] / Cherokee / Navajo / Sioux / Chippewa / Choctaw / Pueblo / Apache / Iroquois / Creek / Blackfeet / Seminole / Cheyenne / Arawak / Shawnee / Mohegan / Huron / Oneida / Lakota / Crow / Teton / Hopi / Inuit",
    "from": [
     "civics-questions"
@@ -10279,6 +10461,12 @@
    "text": "avoid",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "badge earned",
+   "from": [
+    "course"
    ]
   },
   {
@@ -11194,6 +11382,12 @@
    ]
   },
   {
+   "text": "{n} lessons",
+   "from": [
+    "course"
+   ]
+  },
+  {
    "text": "{n} of 5 done",
    "from": [
     "home"
@@ -11202,6 +11396,7 @@
   {
    "text": "{n} of {total}",
    "from": [
+    "course",
     "interview-tab"
    ]
   },
@@ -11212,15 +11407,45 @@
    ]
   },
   {
+   "text": "{n} sections",
+   "from": [
+    "course"
+   ]
+  },
+  {
    "text": "{n} short tasks today, about {m} minutes.",
    "from": [
     "today"
    ]
   },
   {
+   "text": "{n} stars",
+   "from": [
+    "course"
+   ]
+  },
+  {
+   "text": "{n} stops",
+   "from": [
+    "course"
+   ]
+  },
+  {
    "text": "{n} tasks today. About {m} minutes.",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "{n} test questions",
+   "from": [
+    "course"
+   ]
+  },
+  {
+   "text": "{units} units · {lessons} lessons · {interviews} practice interviews",
+   "from": [
+    "course"
    ]
   },
   {

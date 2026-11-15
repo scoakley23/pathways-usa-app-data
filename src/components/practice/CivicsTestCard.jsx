@@ -11,7 +11,8 @@ import { base44 } from '@/api/base44Client';
 import { checkCivicsAnswer, officeholderCheck } from '@/components/civics/checkCivicsAnswer';
 import OfficeholderNote from '@/components/civics/OfficeholderNote';
 import useLearnerLocation from '@/components/civics/useLearnerLocation';
-import { matchOfficialAnswer, splitOfficialAnswers } from '@/lib/practiceChecks';
+import { splitOfficialAnswers } from '@/lib/practiceChecks';
+import { matchCivicsAnswer } from '@/lib/answerVariants';
 import { officeholderAnswerFor, officeholderAnswerLine } from '@/lib/officeholderQuestions';
 import { LANGUAGES } from '@/hooks/useLessonTranslation';
 import useAppLanguage from '@/hooks/useAppLanguage';
@@ -151,7 +152,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, testMode 
     }
     // Answers that clearly match an accepted answer are checked on the
     // device; only the rest go to the AI (which judges meaning).
-    if (matchOfficialAnswer(userAnswer, question.answer).isCorrect) {
+    if (matchCivicsAnswer(userAnswer, question).sure) {
       setVerificationResult({ is_correct: true, feedback: '' });
       return;
     }

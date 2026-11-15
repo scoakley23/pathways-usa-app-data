@@ -1,0 +1,265 @@
+{
+  "note": "One short tip per word on the official reading list (content/vocab/reading-vocabulary.json), shown after a learner misses that word in Read it practice. Keys are lowercase words without punctuation. Only \"reviewed\" tips are shown; change \"draft\" to \"reviewed\" after checking a tip. Tips are about saying the word, never about the civics answer.",
+  "tips": {
+    "abraham": {
+      "tip": "Say it in three parts: A-bra-ham.",
+      "status": "draft"
+    },
+    "lincoln": {
+      "tip": "Say \"LINK-un\". The second \"l\" is quiet.",
+      "status": "draft"
+    },
+    "george": {
+      "tip": "Say \"JORJ\". It is one syllable.",
+      "status": "draft"
+    },
+    "washington": {
+      "tip": "Say it in three parts: WASH-ing-ton.",
+      "status": "draft"
+    },
+    "american": {
+      "tip": "Say it in four parts: a-MER-i-can.",
+      "status": "draft"
+    },
+    "flag": {
+      "tip": "Say \"flag\" with a short \"a\", like \"bag\".",
+      "status": "draft"
+    },
+    "bill": {
+      "tip": "Say \"bill\" with a short \"i\", like \"fill\".",
+      "status": "draft"
+    },
+    "rights": {
+      "tip": "Say the \"ts\" at the end: \"rights\".",
+      "status": "draft"
+    },
+    "right": {
+      "tip": "Say \"rite\". The \"gh\" is quiet.",
+      "status": "draft"
+    },
+    "capital": {
+      "tip": "Say it in three parts: CAP-i-tal.",
+      "status": "draft"
+    },
+    "citizen": {
+      "tip": "Say it in three parts: CIT-i-zen. It starts with an \"s\" sound.",
+      "status": "draft"
+    },
+    "city": {
+      "tip": "Say \"SIT-ee\". It starts with an \"s\" sound.",
+      "status": "draft"
+    },
+    "congress": {
+      "tip": "Say \"KONG-gress\". Put the stress on the first part.",
+      "status": "draft"
+    },
+    "country": {
+      "tip": "Say \"KUN-tree\". The \"ou\" sounds like \"u\" in \"up\".",
+      "status": "draft"
+    },
+    "father": {
+      "tip": "Say \"FAH-ther\". Put your tongue between your teeth for \"th\".",
+      "status": "draft"
+    },
+    "our": {
+      "tip": "Say \"our\" like \"hour\". It is one syllable.",
+      "status": "draft"
+    },
+    "government": {
+      "tip": "Say it in three parts: GUV-ern-ment.",
+      "status": "draft"
+    },
+    "president": {
+      "tip": "Say it in three parts: PREZ-i-dent.",
+      "status": "draft"
+    },
+    "presidents": {
+      "tip": "Say it in three parts and end with \"s\": PREZ-i-dents.",
+      "status": "draft"
+    },
+    "senators": {
+      "tip": "Say it in three parts: SEN-a-tors.",
+      "status": "draft"
+    },
+    "state": {
+      "tip": "Say \"state\" and finish the \"t\".",
+      "status": "draft"
+    },
+    "states": {
+      "tip": "Say the \"ts\" at the end: \"states\".",
+      "status": "draft"
+    },
+    "white": {
+      "tip": "Say \"wite\". The \"h\" is quiet.",
+      "status": "draft"
+    },
+    "house": {
+      "tip": "Say \"house\" with the \"ow\" sound, like \"how\".",
+      "status": "draft"
+    },
+    "america": {
+      "tip": "Say it in four parts: a-MER-i-ca.",
+      "status": "draft"
+    },
+    "united": {
+      "tip": "Say it in three parts: you-NI-ted.",
+      "status": "draft"
+    },
+    "us": {
+      "tip": "Say each letter: \"U. S.\"",
+      "status": "draft"
+    },
+    "day": {
+      "tip": "Say \"day\" like \"say\".",
+      "status": "draft"
+    },
+    "memorial": {
+      "tip": "Say it in four parts: me-MOR-ee-al.",
+      "status": "draft"
+    },
+    "independence": {
+      "tip": "Say it in four parts: in-de-PEN-dence.",
+      "status": "draft"
+    },
+    "labor": {
+      "tip": "Say \"LAY-bor\".",
+      "status": "draft"
+    },
+    "columbus": {
+      "tip": "Say it in three parts: co-LUM-bus.",
+      "status": "draft"
+    },
+    "thanksgiving": {
+      "tip": "Say it in three parts: thanks-GIV-ing. Put your tongue between your teeth for \"th\".",
+      "status": "draft"
+    },
+    "how": {
+      "tip": "Say \"how\" with the \"ow\" sound, like \"now\".",
+      "status": "draft"
+    },
+    "what": {
+      "tip": "Say \"wut\". The \"h\" is quiet.",
+      "status": "draft"
+    },
+    "when": {
+      "tip": "Say \"wen\". The \"h\" is quiet.",
+      "status": "draft"
+    },
+    "where": {
+      "tip": "Say \"wair\". The \"h\" is quiet.",
+      "status": "draft"
+    },
+    "who": {
+      "tip": "Say \"hoo\". The \"w\" is quiet.",
+      "status": "draft"
+    },
+    "why": {
+      "tip": "Say \"wy\", like the letter \"Y\".",
+      "status": "draft"
+    },
+    "can": {
+      "tip": "Say \"can\" with a short \"a\", like \"man\".",
+      "status": "draft"
+    },
+    "come": {
+      "tip": "Say \"kum\". The \"o\" sounds like \"u\" in \"up\".",
+      "status": "draft"
+    },
+    "does": {
+      "tip": "Say \"duz\".",
+      "status": "draft"
+    },
+    "elects": {
+      "tip": "Say it in two parts and finish the \"cts\": e-LECTS.",
+      "status": "draft"
+    },
+    "have": {
+      "tip": "Say \"hav\". The \"e\" is quiet.",
+      "status": "draft"
+    },
+    "has": {
+      "tip": "Say \"haz\".",
+      "status": "draft"
+    },
+    "lives": {
+      "tip": "Say \"livz\" with a short \"i\".",
+      "status": "draft"
+    },
+    "lived": {
+      "tip": "Say \"livd\" with a short \"i\".",
+      "status": "draft"
+    },
+    "meet": {
+      "tip": "Say \"meet\" with a long \"ee\".",
+      "status": "draft"
+    },
+    "name": {
+      "tip": "Say \"name\" like \"same\".",
+      "status": "draft"
+    },
+    "pay": {
+      "tip": "Say \"pay\" like \"day\".",
+      "status": "draft"
+    },
+    "vote": {
+      "tip": "Say \"vote\". Touch your top teeth to your lip for \"v\".",
+      "status": "draft"
+    },
+    "want": {
+      "tip": "Say \"wahnt\" and finish the \"t\".",
+      "status": "draft"
+    },
+    "colors": {
+      "tip": "Say \"KUL-erz\".",
+      "status": "draft"
+    },
+    "dollar": {
+      "tip": "Say \"DOL-er\".",
+      "status": "draft"
+    },
+    "first": {
+      "tip": "Say \"furst\" and finish the \"st\".",
+      "status": "draft"
+    },
+    "largest": {
+      "tip": "Say it in two parts: LARJ-est.",
+      "status": "draft"
+    },
+    "many": {
+      "tip": "Say \"MEN-ee\".",
+      "status": "draft"
+    },
+    "most": {
+      "tip": "Say \"most\" and finish the \"st\".",
+      "status": "draft"
+    },
+    "north": {
+      "tip": "Say \"north\". Put your tongue between your teeth for \"th\".",
+      "status": "draft"
+    },
+    "south": {
+      "tip": "Say \"south\". Put your tongue between your teeth for \"th\".",
+      "status": "draft"
+    },
+    "one": {
+      "tip": "Say \"wun\", like \"won\".",
+      "status": "draft"
+    },
+    "people": {
+      "tip": "Say \"PEE-pul\".",
+      "status": "draft"
+    },
+    "second": {
+      "tip": "Say \"SEK-und\".",
+      "status": "draft"
+    },
+    "the": {
+      "tip": "Put your tongue between your teeth for \"th\": \"the\".",
+      "status": "draft"
+    },
+    "of": {
+      "tip": "Say \"uv\". It sounds like \"v\" at the end.",
+      "status": "draft"
+    }
+  }
+}
