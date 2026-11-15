@@ -1,7 +1,9 @@
 // The tip after a Read it attempt, chosen on the device (Step 4: no AI).
 // Reviewed per-word tips come from content/vocab/reading-tips.json; otherwise
 // one of the fixed lines below, by what happened. The score never depends on
-// the tip.
+// the tip. readingTipParts() gives the English line with its {word} / {words}
+// placeholders still in it, so the translation pack can translate the line
+// and the missed (English) words are filled in afterwards (useReadingTip()).
 import TIPS_FILE from '../../content/vocab/reading-tips.json';
 
 export const READING_TIP_LINES = {
@@ -24,18 +26,43 @@ export function reviewedTips(file = TIPS_FILE) {
   );
 }
 
-const fill = (line, values) => line.replace(/\{(\w+)\}/g, (_, k) => values[k] ?? '');
+// Other reading-card lines that go with the tip (in the translation pack).
+export const READING_CARD_LINES = {
+  tip: 'Tip:',
+  noSpeech: "We couldn't detect any speech. Make sure your microphone is working and speak clearly into it.",
+  saidInYourLanguage: 'Said in your language',
+};
 
-// diff = wordDiff(sentence, transcript). Returns one short English line.
-export function readingTip(diff, { tips = reviewedTips() } = {}) {
+export const fillTip = (line, values = {}) => String(line || '').replace(/\{(\w+)\}/g, (_, k) => values[k] ?? '');
+
+// diff = wordDiff(sentence, transcript) → { line, values }: the English line
+// (placeholders kept) and the English words to put in them.
+export function readingTipParts(diff, { tips = reviewedTips() } = {}) {
   const words = diff?.words || [];
   const missed = words.filter((w) => w.status === 'missing').map((w) => w.word);
-  if (!words.length || missed.length === words.length) return READING_TIP_LINES.noneMatched;
+  if (!words.length || missed.length === words.length) return { line: READING_TIP_LINES.noneMatched, values: {} };
   if (!missed.length) {
-    return (diff.spokenWordCount || 0) > words.length ? READING_TIP_LINES.extraWords : READING_TIP_LINES.allRight;
+    return { line: (diff.spokenWordCount || 0) > words.length ? READING_TIP_LINES.extraWords : READING_TIP_LINES.allRight, values: {} };
   }
   const withTip = missed.find((w) => tips[tipKey(w)]);
-  if (withTip) return tips[tipKey(withTip)];
-  if (missed.length === 1) return fill(READING_TIP_LINES.oneMissed, { word: missed[0] });
-  return fill(READING_TIP_LINES.someMissed, { words: missed.map((w) => `"${w}"`).join(', ') });
+  if (withTip) return { line: tips[tipKey(withTip)], values: {} };
+  if (missed.length === 1) return { line: READING_TIP_LINES.oneMissed, values: { word: missed[0] } };
+  return { line: READING_TIP_LINES.someMissed, values: { words: missed.map((w) => `"${w}"`).join(', ') } };
+}
+
+// One short English line.
+export function readingTip(diff, options) {
+  const { line, values } = readingTipParts(diff, options);
+  return fillTip(line, values);
+}
+
+// Every English line a tip can be built from (for the translation pack):
+// the fixed lines, the card's lines, and the word tips (drafts too, so they
+// are ready when reviewed).
+export function readingTipSources(file = TIPS_FILE) {
+  return [
+    ...Object.values(READING_TIP_LINES),
+    ...Object.values(READING_CARD_LINES),
+    ...Object.values(file?.tips || {}).map((t) => t?.tip).filter(Boolean),
+  ];
 }

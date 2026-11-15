@@ -39,6 +39,7 @@ import vocabularyWords from '../../content/base44-export/vocabulary-words.json';
 import lessons from '../../content/base44-export/lessons.json';
 import lessonFlashcards from '../../content/base44-export/lesson-flashcards.json';
 import askAnswers from '../../content/ask/answers.json';
+import { readingTipSources } from '@/lib/readingTips';
 
 const TUTOR_LINES = fixedTutorLines();
 
@@ -97,6 +98,9 @@ export function contentTexts() {
     // Ask Amio's pre-written answers (content/ask/answers.json; drafts too, so
     // they are ready when reviewed). The lesson questions stay in English.
     ['ask-answers', texts(askAnswers.answers.map((x) => x.answer))],
+    // Read it tips (src/lib/readingTips.js): fixed lines keep {word} / {words},
+    // filled with the English words after translating; word tips drafts too.
+    ['reading-tips', texts(readingTipSources())],
     // The course (Prompt 6): what the lesson player translates. Official
     // questions, answers and the Read it / Write it sentences stay English.
     ['course-lessons', texts(UNITS.flatMap((u) => u.sections.flatMap((sec) => (sec.lessons || []).flatMap((l) => [

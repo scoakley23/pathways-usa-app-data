@@ -2,7 +2,7 @@
 import { describe, it, expect } from 'vitest';
 import TIPS from '../../content/vocab/reading-tips.json';
 import READING from '../../content/vocab/reading-vocabulary.json';
-import { readingTip, reviewedTips, tipKey, READING_TIP_LINES } from './readingTips';
+import { readingTip, reviewedTips, tipKey, READING_TIP_LINES, READING_CARD_LINES, readingTipParts, fillTip, readingTipSources } from './readingTips';
 import { wordDiff } from '@/components/utils/wordDiff';
 
 const LIST_WORDS = new Set(READING.categories.flatMap((c) => c.entries).flatMap((e) => e.split(/[\s/]+/)).map(tipKey));
@@ -35,5 +35,27 @@ describe('readingTip', () => {
 
   it('draft tips are never shown', () => {
     expect(reviewedTips({ tips: { can: { tip: 'x', status: 'draft' }, vote: { tip: 'Say "vote".', status: 'reviewed' } } })).toEqual({ vote: 'Say "vote".' });
+  });
+});
+
+describe('reading tips in the learner\'s language', () => {
+  it('readingTipParts keeps the placeholder; the English words are filled in after translating', () => {
+    const parts = readingTipParts(wordDiff('Who can vote?', 'who vote'), { tips: {} });
+    expect(parts).toEqual({ line: READING_TIP_LINES.oneMissed, values: { word: 'can' } });
+    const spanish = 'Casi. Diga "{word}" despacio y con claridad.';
+    expect(fillTip(spanish, parts.values)).toBe('Casi. Diga "can" despacio y con claridad.');
+    expect(readingTip(wordDiff('Who can vote?', 'who vote'), { tips: {} })).toBe(fillTip(parts.line, parts.values));
+  });
+
+  it('several missed words go into {words}', () => {
+    const parts = readingTipParts(wordDiff('Who can vote today?', 'who'), { tips: {} });
+    expect(parts.line).toBe(READING_TIP_LINES.someMissed);
+    expect(parts.values.words).toBe('"can", "vote", "today"');
+  });
+
+  it('every line a tip can be built from is in the translation sources', () => {
+    const sources = new Set(readingTipSources());
+    for (const line of [...Object.values(READING_TIP_LINES), ...Object.values(READING_CARD_LINES)]) expect(sources.has(line)).toBe(true);
+    for (const t of Object.values(TIPS.tips)) expect(sources.has(t.tip)).toBe(true);
   });
 });
