@@ -1,0 +1,86 @@
+{
+  "id": "u7-s2",
+  "unitId": "u7",
+  "number": 2,
+  "title": "Places",
+  "note": "Drafted for Prompt 12 (Unit 7). Every lesson is a draft until a person reviews it (content/course/README.md).",
+  "stops": [
+    {
+      "id": "u7-s2-l1",
+      "type": "lesson",
+      "title": "The capital and the Statue of Liberty",
+      "lessonId": "u7-s2-l1"
+    },
+    {
+      "id": "u7-s2-rw",
+      "type": "readwrite",
+      "title": "Read and write",
+      "fromLessons": [
+        "u7-s2-l1"
+      ]
+    },
+    {
+      "id": "u7-s2-speak",
+      "type": "speakit",
+      "title": "Speak it!"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "u7-s2-l1",
+      "title": "The capital and the Statue of Liberty",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de8d",
+        "6ad16ecf6a9c603911f9de8e"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "What is the capital of the United States?",
+          "facts": [
+            "The capital of the United States is Washington, D.C. Congress, the President and the Supreme Court are there.",
+            "The Statue of Liberty is in New York Harbor, on Liberty Island, near New York City.",
+            "The United States is between Canada to the north and Mexico to the south."
+          ],
+          "newWords": [
+            {
+              "word": "capital",
+              "meaning": "the city where a government meets"
+            },
+            {
+              "word": "harbor",
+              "meaning": "a safe place on the coast for ships"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de8d"
+        },
+        "readIt": {
+          "sentence": "What country is north of the United States?",
+          "words": [
+            "What",
+            "country",
+            "is",
+            "north",
+            "of",
+            "the",
+            "United",
+            "States"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Canada is north of the United States.",
+          "distractorWords": [
+            "Mexico",
+            "south",
+            "May"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de8e"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "id": "u7-s1",
+  "unitId": "u7",
+  "number": 1,
+  "title": "The flag and the nation's symbols",
+  "note": "Drafted for Prompt 12 (Unit 7). Every lesson is a draft until a person reviews it (content/course/README.md).",
+  "stops": [
+    {
+      "id": "u7-s1-l1",
+      "type": "lesson",
+      "title": "The flag",
+      "lessonId": "u7-s1-l1"
+    },
+    {
+      "id": "u7-s1-l2",
+      "type": "lesson",
+      "title": "Motto and anthem",
+      "lessonId": "u7-s1-l2"
+    },
+    {
+      "id": "u7-s1-rw",
+      "type": "readwrite",
+      "title": "Read and write",
+      "fromLessons": [
+        "u7-s1-l1",
+        "u7-s1-l2"
+      ]
+    },
+    {
+      "id": "u7-s1-speak",
+      "type": "speakit",
+      "title": "Speak it!"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "u7-s1-l1",
+      "title": "The flag",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de90",
+        "6ad16ecf6a9c603911f9de8f"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "Why does the flag have 50 stars?",
+          "facts": [
+            "The American flag is red, white and blue.",
+            "It has 50 stars, one star for each state.",
+            "It has 13 stripes because there were 13 original colonies."
+          ],
+          "newWords": [
+            {
+              "word": "stripe",
+              "meaning": "a long, thin line of color"
+            },
+            {
+              "word": "represent",
+              "meaning": "to stand for something"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de90"
+        },
+        "readIt": {
+          "sentence": "What are the colors of the American flag?",
+          "words": [
+            "What",
+            "are",
+            "the",
+            "colors",
+            "of",
+            "the",
+            "American",
+            "flag"
+          ]
+        },
+        "writeIt": {
+          "sentence": "The flag is red, white and blue.",
+          "distractorWords": [
+            "Canada",
+            "Congress",
+            "July"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de8f"
+        }
+      }
+    },
+    {
+      "id": "u7-s1-l2",
+      "title": "Motto and anthem",
+      "status": "draft",
+      "questionIds": [
+        "6ad16ecf6a9c603911f9de92",
+        "6ad16ecf6a9c603911f9de91"
+      ],
+      "steps": {
+        "listen": {
+          "explanationKey": "The Nation’s first motto was “E Pluribus Unum.” What does that mean?",
+          "facts": [
+            "The nation's first motto was “E Pluribus Unum.” It means “Out of many, one.”",
+            "It says that many people and many states become one country.",
+            "The national anthem is “The Star-Spangled Banner.” It is a song about the American flag."
+          ],
+          "newWords": [
+            {
+              "word": "motto",
+              "meaning": "a short saying that tells what a group believes"
+            },
+            {
+              "word": "anthem",
+              "meaning": "a country's official song"
+            }
+          ]
+        },
+        "teachBack": {
+          "questionId": "6ad16ecf6a9c603911f9de92"
+        },
+        "readIt": {
+          "sentence": "When is Flag Day?",
+          "words": [
+            "When",
+            "is",
+            "Flag",
+            "Day"
+          ]
+        },
+        "writeIt": {
+          "sentence": "Flag Day is in June.",
+          "distractorWords": [
+            "Labor Day",
+            "September",
+            "Mexico"
+          ]
+        },
+        "officer": {
+          "questionId": "6ad16ecf6a9c603911f9de91"
+        }
+      }
+    }
+  ]
+}

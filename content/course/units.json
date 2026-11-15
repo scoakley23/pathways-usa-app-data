@@ -1,5 +1,5 @@
 {
-  "note": "The course outline (Prompt 4). Unit titles and descriptions from frame R31Map; Unit 2's sections from frame R33UnitGuide; Unit 1's sections from the Prompt 12 outline (the Declaration first); Units 3-6's from their Prompt 12 outlines. U.S. History is split across Units 4-6: each lists its exact questions in `questionIds` (ids from content/base44-export/civics-questions-2025.json). A section with a `file` has its stops and lessons in content/course/sections/. Sections of the other units are outlined before their Prompt 12 run. Course content is 2025-only for now.",
+  "note": "The course outline (Prompt 4). Unit titles and descriptions from frame R31Map; Unit 2's sections from frame R33UnitGuide; Unit 1's sections from the Prompt 12 outline (the Declaration first); Units 3-7's from their Prompt 12 outlines. U.S. History is split across Units 4-6: each lists its exact questions in `questionIds` (ids from content/base44-export/civics-questions-2025.json). A section with a `file` has its stops and lessons in content/course/sections/. Sections of the other units are outlined before their Prompt 12 run. Course content is 2025-only for now.",
   "units": [
     {
       "id": "u1",
@@ -257,7 +257,29 @@
       "title": "Symbols and holidays",
       "description": "The flag · anthem · holidays · geography",
       "icon": "holidays",
-      "sections": []
+      "sections": [
+        {
+          "id": "u7-s1",
+          "number": 1,
+          "title": "The flag and the nation's symbols",
+          "file": "u7-s1-flag.json"
+        },
+        {
+          "id": "u7-s2",
+          "number": 2,
+          "title": "Places",
+          "file": "u7-s2-places.json"
+        },
+        {
+          "id": "u7-s3",
+          "number": 3,
+          "title": "Holidays",
+          "file": "u7-s3-holidays.json"
+        }
+      ],
+      "categories": [
+        "Geography and Symbols"
+      ]
     }
   ]
 }
