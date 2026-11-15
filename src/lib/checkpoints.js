@@ -9,12 +9,20 @@
 import { UNITS, questionRecord, sectionQuestionIds } from '@/lib/course';
 
 export const SPEAK_IT_STARS = 10;
+export const SPEAK_IT_SIZE = 6; // questions per try (5 of 6 to pass)
 export const CHEST_SIZE = 6;
 export const READ_WRITE_COUNT = 3;
 
-/** The questions a Speak it! asks: the section's visible lessons' questions. */
-export function speakItQuestions(section) {
-  return sectionQuestionIds(section).map(questionRecord).filter(Boolean);
+/**
+ * The questions one Speak it! try asks: up to 6 of the section's visible
+ * lessons' questions, picked at random each try (in course order), so
+ * tries over time cover them all. `random` is for tests.
+ */
+export function speakItQuestions(section, { size = SPEAK_IT_SIZE, random = Math.random } = {}) {
+  const all = sectionQuestionIds(section).map(questionRecord).filter(Boolean);
+  if (all.length <= size) return all;
+  const picked = new Set(all.map((q, i) => [random(), i]).sort((a, b) => a[0] - b[0]).slice(0, size).map(([, i]) => i));
+  return all.filter((_, i) => picked.has(i));
 }
 
 /**

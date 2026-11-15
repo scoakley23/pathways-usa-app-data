@@ -13,7 +13,7 @@ import { passMark, speakItQuestions, speakItScore, unitFinishedBy } from '@/lib/
 import { CheckpointHeader, ProgressDots, RingMic, useCheckpointText } from '@/components/checkpoint/checkpointParts';
 
 // Speak it! (Prompt 8, frames R33SpeakIntro, R33SpeakAsk, R33SpeakResult):
-// the section's questions out loud, no hints. The only help is "Could you
+// 6 of the section's questions (picked each try) out loud, no hints. The only help is "Could you
 // repeat that, please?" (and a small "Type instead"). Pass = all but one
 // right; answers the app can't check yet count neither way. Saves (Supabase
 // only) one checkpoint_results row and puts missed questions in review at
@@ -149,7 +149,9 @@ export default function SpeakItPage() {
     for (const u of journey.course) for (const s of u.sections) if (s.id === sectionId) return { unit: u, section: s, number: u.sections.indexOf(s) + 1 };
     return null;
   }, [journey.course, sectionId]);
-  const questions = useMemo(() => (found ? speakItQuestions(found.section) : []), [found]);
+  const [round, setRound] = useState(0); // a new pick of questions each try
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const questions = useMemo(() => (found ? speakItQuestions(found.section) : []), [found?.section.id, round]);
   const back = () => navigate(found ? `/course?unit=${found.unit.id}` : '/course');
 
   if (journey.loading) return <div className="min-h-screen bg-page" />;
@@ -217,7 +219,7 @@ export default function SpeakItPage() {
         answers={answers}
         score={score}
         t={t}
-        onTryAgain={() => { setAnswers([]); setPhase('intro'); }}
+        onTryAgain={() => { setAnswers([]); setRound((r) => r + 1); setPhase('intro'); }}
         onContinue={() => navigate(finishes ? `/course/unit/${finishes}/done` : `/course?unit=${unit.id}`, finishes ? { state: { justFinished: true } } : undefined)}
       />
     );

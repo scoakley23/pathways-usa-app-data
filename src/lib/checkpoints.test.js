@@ -12,10 +12,23 @@ const course = visibleCourse(UNITS, { showDrafts: true });
 const congress = course.flatMap((u) => u.sections).find((s) => s.id === 'u2-s2');
 
 describe('Speak it!', () => {
-  it('asks every question of the section, word for word', () => {
+  it('asks 6 of the section\'s questions, word for word, in course order', () => {
+    const all = sectionQuestionIds(congress);
+    expect(all.length).toBeGreaterThan(6);
     const qs = speakItQuestions(congress);
-    expect(qs.map((q) => q.id)).toEqual(sectionQuestionIds(congress));
-    expect(qs.every((q) => q.question && q.answer)).toBe(true);
+    expect(qs).toHaveLength(6);
+    expect(qs.every((q) => all.includes(q.id) && q.question && q.answer)).toBe(true);
+    const order = qs.map((q) => all.indexOf(q.id));
+    expect(order).toEqual([...order].sort((a, b) => a - b));
+  });
+
+  it('a different pick each try; a small section asks all of its questions', () => {
+    let n = 0;
+    const first = speakItQuestions(congress, { random: () => (n++ % 7) / 7 }).map((q) => q.id);
+    const second = speakItQuestions(congress, { random: () => 1 - (n++ % 7) / 7 }).map((q) => q.id);
+    expect(first).not.toEqual(second);
+    const small = { lessons: congress.lessons.slice(0, 1) };
+    expect(speakItQuestions(small).map((q) => q.id)).toEqual(sectionQuestionIds(small));
   });
 
   it('passes with all but one right', () => {
