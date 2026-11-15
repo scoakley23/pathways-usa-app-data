@@ -2,43 +2,26 @@ import React, { useState } from 'react';
 import { Input } from "@/components/ui/input";
 import { Eyebrow, PrimaryButton, RaisedCard, SecondaryButton } from '@/components/pathways/ui';
 import { MapPin, Loader2, Building2, Users, Landmark, CheckCircle2 } from 'lucide-react';
-import { base44 } from '@/api/base44Client';
+import { districts, NOT_CONFIRMED } from '@/api/districts';
+import { districtForZip } from '@/lib/zipDistricts';
 import useLearnerLocation from '@/components/civics/useLearnerLocation';
 import { getOfficialsFor, isStale, OFFICEHOLDERS_CHECKED_ON, validateLocation } from '@/lib/officeholders';
 import { checkedOnText } from '@/lib/officeholderQuestions';
 
-// "Who Represents Me?": the AI (with a web search) works out ONLY the state
-// and congressional district for a ZIP code (and a street address when the ZIP
-// spans several districts). It never returns names. The result is checked
-// against src/data/officeholders.json with validateLocation(); only the state
-// and district are saved on the learner's PublicProfile. Every name shown here
-// comes from the table (getOfficialsFor()). The ZIP and address are used for
-// this lookup only and never saved.
-export const LOCATION_SCHEMA = {
-  type: 'object',
-  properties: {
-    state: { type: 'string', description: 'Two-letter USPS code of the state, D.C. or territory' },
-    district: { type: 'string', description: 'Congressional district number, or "At-large"' },
-    district_ambiguous: { type: 'boolean' },
-  },
-  required: ['state', 'district', 'district_ambiguous'],
+// "Who Represents Me?": the ZIP code is looked up on the device in the Census
+// table (src/lib/zipDistricts.js), nothing sent. Only when the ZIP spans more
+// than one congressional district (or isn't in the table) is the street
+// address asked for and looked up once (src/api/districts.js: Geocodio on
+// Supabase, the AI on Base44), returning only the state and district. The
+// result is checked against src/data/officeholders.json with
+// validateLocation(); only the state and district are saved. Every name shown
+// here comes from the table (getOfficialsFor()). The ZIP and address are used
+// for this lookup only and never saved.
+
+const ADDRESS_REASONS = {
+  split: 'This zip code spans multiple congressional districts. Please enter your street address so we can find your exact representative.',
+  unknown: "We couldn't find this zip code in our list. Please enter your street address so we can find your representative.",
 };
-
-export function locationPrompt(zip, address = '') {
-  const where = address ? `the U.S. street address "${address}, ${zip}"` : `U.S. ZIP code ${zip}`;
-  return `Find the state (or D.C. / U.S. territory) and the U.S. congressional district for ${where}.
-Use only official sources (census.gov, house.gov).
-${address
-    ? 'Use the full street address to find the exact congressional district.'
-    : 'If this ZIP code is split between more than one congressional district, set district_ambiguous to true. Do not guess.'}
-Return ONLY:
-- state: the two-letter USPS code (for example TX, DC, PR)
-- district: the district number (for example "2"), or "At-large" for a state, D.C. or territory with one seat
-- district_ambiguous: true or false
-Do not return any names of people. Do not repeat the ZIP code or address.`;
-}
-
-const NOT_CONFIRMED = "We couldn't confirm your district. Please try again.";
 
 export default function RepresentativeFinder() {
   const { location, save } = useLearnerLocation();
@@ -49,6 +32,7 @@ export default function RepresentativeFinder() {
   const [saved, setSaved] = useState(false);
   const [error, setError] = useState('');
   const [needsAddress, setNeedsAddress] = useState(false);
+  const [addressReason, setAddressReason] = useState('split');
 
   const handleSearch = async () => {
     const zip = zipCode.trim();
@@ -61,21 +45,26 @@ export default function RepresentativeFinder() {
     setSaved(false);
     setLoading(true);
     try {
-      const data = await base44.integrations.Core.InvokeLLM({
-        prompt: locationPrompt(zip, addressStr),
-        add_context_from_internet: true,
-        model: 'gemini_3_flash',
-        response_json_schema: LOCATION_SCHEMA,
-      });
-
-      const checked = validateLocation({ state: data?.state, district: data?.district });
-      const territory = checked.ok && getOfficialsFor({ state: checked.state })?.type === 'territory';
-      // A split ZIP code needs the street address (not for D.C. or a territory: one seat).
-      if (data?.district_ambiguous && !addressStr && !territory) {
-        setNeedsAddress(true);
-        return;
+      let found = null;
+      if (!addressStr) {
+        // On the device: the Census ZIP table.
+        const fromTable = await districtForZip(zip);
+        if (fromTable?.district) found = fromTable;
+        else {
+          const territory = fromTable?.state && getOfficialsFor({ state: fromTable.state })?.type === 'territory';
+          if (territory) found = { state: fromTable.state, district: 'At-large' };
+          else {
+            setAddressReason(fromTable ? 'split' : 'unknown');
+            setNeedsAddress(true);
+            return;
+          }
+        }
+      } else {
+        found = await districts.lookupAddress({ zip: zip.slice(0, 5), address: addressStr });
       }
-      if (!checked.ok || (data?.district_ambiguous && !territory)) {
+
+      const checked = validateLocation({ state: found.state, district: found.district });
+      if (!checked.ok) {
         setError(NOT_CONFIRMED);
         return;
       }
@@ -136,7 +125,7 @@ export default function RepresentativeFinder() {
           ) : (
             <div className="space-y-3 bg-pw-blue-soft rounded-2xl p-4">
               <p className="text-pw-blue-ink text-base font-semibold leading-snug">
-                This zip code spans multiple congressional districts. Please enter your street address so we can find your exact representative.
+                {ADDRESS_REASONS[addressReason]}
               </p>
               <Input
                 placeholder="Enter your street address (e.g. 123 Main St)..."
