@@ -4,6 +4,7 @@
 // Learners see only "reviewed" lessons; drafts show only on a developer's
 // machine with VITE_SHOW_DRAFT_LESSONS=true. The screens come in Prompts 5-8.
 import outline from '../../content/course/units.json';
+import exported2025 from '../../content/base44-export/civics-questions-2025.json';
 
 const sectionFiles = import.meta.glob('../../content/course/sections/*.json', { eager: true, import: 'default' });
 
@@ -20,6 +21,13 @@ export const UNITS = outline.units.map((unit) => ({
 }));
 
 export const SECTION_FILES = byFile;
+
+// A lesson's questions word for word (the official 2025 wording, by database
+// id; the same ids as Supabase's civics_questions). Shown in English only.
+const QUESTION_TEXT = Object.fromEntries(exported2025.map((q) => [q.id, q.question]));
+export function questionText(id) {
+  return QUESTION_TEXT[id] || null;
+}
 
 export function showDraftLessons(env = import.meta.env) {
   return !!env?.DEV && env?.VITE_SHOW_DRAFT_LESSONS === 'true';
