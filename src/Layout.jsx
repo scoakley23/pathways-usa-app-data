@@ -93,7 +93,8 @@ export default function Layout({ children }) {
   // runs not redesigned yet pad themselves in RunShell), the N-400 guide and
   // the Resource Hub.
   const splitPage = location.pathname === '/'
-    || SPLIT_ROUTES.includes(location.pathname.toLowerCase());
+    || SPLIT_ROUTES.includes(location.pathname.toLowerCase())
+    || /^\/course(\/|$)/i.test(location.pathname);
   const activeTab = tabFor(location.pathname);
 
   return (

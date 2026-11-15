@@ -11,7 +11,8 @@ describe('the four tabs', () => {
 
   it('lights up the right tab for each place', () => {
     expect(tabFor('/')).toBe('today');
-    for (const p of ['/study', '/Lessons', '/Practice', '/learn', '/review', '/Dashboard']) expect(tabFor(p)).toBe('course');
+    for (const p of ['/course', '/course/units', '/course/unit/u2', '/course/lesson/u2-s2-l3', '/study', '/Lessons', '/Practice', '/learn', '/review', '/Dashboard']) expect(tabFor(p)).toBe('course');
+    expect(TAB_PATHS.course).toBe('/course');
     for (const p of ['/interview', '/interview-day', '/n400-guide', '/n400-coach']) expect(tabFor(p)).toBe('interview');
     for (const p of ['/me', '/settings', '/ask', '/resources', '/lawyer-first', '/Progress', '/Profile', '/StudyHistory', '/Partner', '/Admin']) expect(tabFor(p)).toBe('me');
     expect(tabFor('/quick-check')).toBe(null);
