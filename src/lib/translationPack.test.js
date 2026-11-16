@@ -5,6 +5,7 @@ vi.mock('@/api/provider', () => ({ PROVIDER: 'base44', WANTS_SUPABASE: false }))
 
 const { fromPack, packText, packTree, setPackForTests, resetPacks, loadPack, getLoadedPack } = await import('./translationPack');
 const { problem, chunk, missingTexts, buildRequests, readResult } = await import('../../scripts/translations/build-pack.mjs');
+const SOURCES = (await import('../../content/translations/_sources.json')).default;
 
 beforeEach(() => {
   resetPacks();
@@ -69,5 +70,31 @@ describe('build-pack checks', () => {
     expect(ok).toEqual({ Bye: 'Adiós' });
     expect(rejected).toEqual([{ text: 'Hi, {name}.', why: 'placeholders changed' }]);
     expect(readResult({ stop_reason: 'refusal', content: [] }, ['Bye']).rejected[0].why).toBe('refusal');
+  });
+});
+
+describe('feature names stay in English', () => {
+  it('a translation that translates a feature name is rejected', () => {
+    expect(problem('Speak it! is next.', 'Sigue ¡Dígalo!')).toBe('feature name translated');
+    expect(problem('Speak it! is next.', 'Sigue Speak it!')).toBeNull();
+    expect(problem('Read it', 'Léalo')).toBe('feature name translated');
+    expect(problem('Read it out loud', 'Léalo en voz alta')).toBeNull(); // an instruction, not the feature
+  });
+});
+
+describe('content/translations/reviewed/*.json', () => {
+  const files = import.meta.glob('../../content/translations/reviewed/*.json', { eager: true, import: 'default' });
+  const sources = new Set(SOURCES.texts.map((t) => t.text));
+
+  it('every reviewed line is for a real English text and passes the same checks as machine lines', () => {
+    const bad = [];
+    for (const [file, pack] of Object.entries(files)) {
+      for (const [en, tr] of Object.entries(pack.strings || {})) {
+        if (!sources.has(en)) bad.push(`${file}: not in _sources.json: ${en.slice(0, 50)}`);
+        const why = problem(en, tr);
+        if (why) bad.push(`${file}: ${why}: ${en.slice(0, 50)}`);
+      }
+    }
+    expect(bad).toEqual([]);
   });
 });
