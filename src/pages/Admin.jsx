@@ -34,7 +34,7 @@ export default function Admin() {
   if (!authChecked) {
     return (
       <div className="flex justify-center items-center min-h-[50vh]">
-        <div className="w-8 h-8 border-4 border-pw-line border-t-pw-navy rounded-full animate-spin" />
+        <div className="w-8 h-8 border-4 border-line border-t-navy rounded-full animate-spin" />
       </div>
     );
   }
@@ -42,11 +42,11 @@ export default function Admin() {
   if (!currentUser || currentUser.role !== 'admin') {
     return (
       <div className="flex flex-col items-center justify-center min-h-[50vh] text-center space-y-4 px-4">
-        <div className="w-20 h-20 rounded-card bg-pw-red-soft flex items-center justify-center" aria-hidden="true">
-          <AlertCircle className="w-10 h-10 text-pw-red-ink" />
+        <div className="w-20 h-20 rounded-card bg-not-yet-bg flex items-center justify-center" aria-hidden="true">
+          <AlertCircle className="w-10 h-10 text-not-yet" />
         </div>
-        <h2 className="text-[28px] font-display font-normal text-pw-navy">Access Denied</h2>
-        <p className="text-base text-pw-muted">You do not have permission to view this page.</p>
+        <h2 className="text-[28px] font-display font-normal text-navy">Access Denied</h2>
+        <p className="text-base text-muted">You do not have permission to view this page.</p>
       </div>
     );
   }
@@ -58,7 +58,7 @@ export default function Admin() {
         subtitle="Manage all practice content — sentences, civics questions, vocabulary words — Resource Hub places and partner programs."
       >
         <div className="flex flex-wrap gap-2">
-          <Link to="/tutor-demo" className="inline-flex items-center justify-center min-h-[44px] rounded-full border-2 border-navy-line px-5 text-base font-semibold text-white hover:bg-navy-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+          <Link to="/tutor-demo" className="inline-flex items-center justify-center min-h-[44px] rounded-full border-2 border-chip-navy px-5 text-base font-semibold text-white hover:bg-chip-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
             Tutor demo
           </Link>
         </div>

@@ -21,20 +21,4 @@ export const COLORS = {
   notYet: TOKENS['not-yet'],
   card: TOKENS.white,
   white: TOKENS.white,
-  // Older names, kept for screens not yet redone.
-  navy2: TOKENS['chip-navy'],
-  navyLine: TOKENS['chip-navy'],
-  road: TOKENS['chip-navy'], // unfilled road on navy
-  cream: TOKENS.page,
-  cardLine: TOKENS.line,
-  sand: TOKENS.tint,
-  ink: TOKENS.navy,
-  ink2: TOKENS.muted,
-  inkLabel: TOKENS.muted,
-  onNavy: TOKENS.white, // main text and marks on navy
-  onNavy2: TOKENS['on-navy'],
-  onNavyLabel: TOKENS['on-navy'],
-  star: TOKENS.red, // "you are here", the logo's dot
-  sky: TOKENS.denim, // done stops and the filled road (the old light blue)
-  notCorrect: TOKENS['not-yet'],
 };

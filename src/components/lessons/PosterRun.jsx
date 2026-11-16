@@ -160,7 +160,7 @@ export default function PosterRun({ questions, language = 'en', tutorName = 'Ami
                   onChange={(e) => setAnswer(e.target.value)}
                   onKeyDown={(e) => { if (e.key === 'Enter') check(); }}
                   placeholder="Type your answer in English"
-                  className="w-full min-h-[52px] rounded-[10px] bg-white px-4 text-lg text-pw-navy placeholder:text-pw-muted focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
+                  className="w-full min-h-[52px] rounded-[10px] bg-white px-4 text-lg text-navy placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
                 />
               </>
             )}
@@ -206,11 +206,11 @@ export default function PosterRun({ questions, language = 'en', tutorName = 'Ami
 
       {/* "Explain it simply": a white sheet under the poster */}
       {result && explainOpen && (
-        <div className="-mx-4 sm:mx-0 sm:mt-2 sm:rounded-card bg-white border border-pw-line p-5 text-pw-navy space-y-2">
+        <div className="-mx-4 sm:mx-0 sm:mt-2 sm:rounded-card bg-white border border-line p-5 text-navy space-y-2">
           {explanation.text.mine && <p dir={dir} className="text-lg leading-relaxed whitespace-pre-line">{explanation.text.mine}</p>}
-          {explanation.text.en && <p className={`leading-relaxed whitespace-pre-line ${explanation.text.mine ? 'text-pw-muted' : 'text-lg'}`}>{explanation.text.en}</p>}
-          {explanation.note && <p className="text-sm text-pw-muted">{explanation.note.mine || explanation.note.en}</p>}
-          <p className="font-medium text-lg text-pw-muted">— {tutorName}</p>
+          {explanation.text.en && <p className={`leading-relaxed whitespace-pre-line ${explanation.text.mine ? 'text-muted' : 'text-lg'}`}>{explanation.text.en}</p>}
+          {explanation.note && <p className="text-sm text-muted">{explanation.note.mine || explanation.note.en}</p>}
+          <p className="font-medium text-lg text-muted">— {tutorName}</p>
         </div>
       )}
     </div>

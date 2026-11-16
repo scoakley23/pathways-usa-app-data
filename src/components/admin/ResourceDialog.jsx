@@ -12,7 +12,7 @@ const EMPTY = {
   phone: '', website: '', logo_url: '', hours: '', languages: '', cost: '', description: '', source: '', source_url: '', last_verified: '',
 };
 
-const SELECT = 'flex min-h-[44px] w-full rounded-2xl border-2 border-pw-line bg-white px-3 text-base text-pw-navy focus-visible:outline-none focus-visible:border-pw-navy';
+const SELECT = 'flex min-h-[44px] w-full rounded-2xl border-2 border-line bg-white px-3 text-base text-navy focus-visible:outline-none focus-visible:border-navy';
 
 // Add/edit one Resource Hub place. Leave latitude/longitude empty to place the
 // pin at the center of the ZIP code (marked as approximate).
@@ -52,7 +52,7 @@ export default function ResourceDialog({ open, onOpenChange, onSubmit, initialDa
 
   const field = (id, label, props = {}) => (
     <div className="space-y-2">
-      <Label htmlFor={`res-${id}`} className="text-sm font-bold text-pw-navy">{label}</Label>
+      <Label htmlFor={`res-${id}`} className="text-sm font-bold text-navy">{label}</Label>
       <Input id={`res-${id}`} value={form[id]} onChange={set(id)} {...props} />
     </div>
   );
@@ -67,13 +67,13 @@ export default function ResourceDialog({ open, onOpenChange, onSubmit, initialDa
           {field('name', 'Name', { required: true, placeholder: 'e.g., Community Legal Center' })}
           <div className="grid sm:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="res-category" className="text-sm font-bold text-pw-navy">Category</Label>
+              <Label htmlFor="res-category" className="text-sm font-bold text-navy">Category</Label>
               <select id="res-category" value={form.category} onChange={set('category')} className={SELECT}>
                 {RESOURCE_CATEGORIES.map((c) => <option key={c.id} value={c.id}>{c.label}</option>)}
               </select>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="res-cost" className="text-sm font-bold text-pw-navy">Cost</Label>
+              <Label htmlFor="res-cost" className="text-sm font-bold text-navy">Cost</Label>
               <select id="res-cost" value={form.cost} onChange={set('cost')} className={SELECT}>
                 <option value="">Not stated</option>
                 {Object.entries(COST_LABELS).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
@@ -90,12 +90,12 @@ export default function ResourceDialog({ open, onOpenChange, onSubmit, initialDa
             {field('latitude', 'Latitude (optional)', { inputMode: 'decimal' })}
             {field('longitude', 'Longitude (optional)', { inputMode: 'decimal' })}
           </div>
-          <p className="text-sm text-pw-muted -mt-2">Leave empty to put the pin at the center of the ZIP code.</p>
+          <p className="text-sm text-muted -mt-2">Leave empty to put the pin at the center of the ZIP code.</p>
           <fieldset className="space-y-2">
-            <legend className="text-sm font-bold text-pw-navy">Also offers</legend>
+            <legend className="text-sm font-bold text-navy">Also offers</legend>
             <div className="flex flex-wrap gap-x-4 gap-y-2">
               {RESOURCE_CATEGORIES.filter((c) => c.id !== form.category).map((c) => (
-                <label key={c.id} className="flex items-center gap-2 min-h-[44px] text-base text-pw-navy">
+                <label key={c.id} className="flex items-center gap-2 min-h-[44px] text-base text-navy">
                   <input type="checkbox" className="w-5 h-5" checked={(form.services || []).includes(c.id)} onChange={() => toggleService(c.id)} />
                   {c.label}
                 </label>
@@ -108,12 +108,12 @@ export default function ResourceDialog({ open, onOpenChange, onSubmit, initialDa
           {field('logo_url', 'Logo link (https, optional)')}
           {field('languages', 'Languages (separate with ;)', { placeholder: 'English; Spanish' })}
           <div className="space-y-2">
-            <Label htmlFor="res-description" className="text-sm font-bold text-pw-navy">Description</Label>
+            <Label htmlFor="res-description" className="text-sm font-bold text-navy">Description</Label>
             <Textarea
               id="res-description"
               value={form.description}
               onChange={set('description')}
-              className="min-h-[80px] rounded-2xl border-2 border-pw-line text-base md:text-base text-pw-navy focus-visible:border-pw-navy"
+              className="min-h-[80px] rounded-2xl border-2 border-line text-base md:text-base text-navy focus-visible:border-navy"
             />
           </div>
           {field('source', 'Source', { placeholder: 'e.g., DOJ EOIR Recognized Organizations roster' })}

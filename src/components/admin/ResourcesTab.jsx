@@ -146,14 +146,14 @@ export default function ResourcesTab() {
   const visible = filtered.slice(0, SHOW_ROWS);
 
   if (isLoading) {
-    return <div className="flex justify-center py-12"><Loader2 className="w-8 h-8 animate-spin text-pw-navy" /></div>;
+    return <div className="flex justify-center py-12"><Loader2 className="w-8 h-8 animate-spin text-navy" /></div>;
   }
 
   return (
     <div className="space-y-4">
       <div className="flex flex-col sm:flex-row justify-between gap-3">
         <div className="relative flex-1 max-w-sm">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-pw-muted" aria-hidden="true" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted" aria-hidden="true" />
           <Input type="search" placeholder="Search places..." className="pl-9" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
         </div>
         <div className="flex flex-col sm:flex-row gap-2">
@@ -168,12 +168,12 @@ export default function ResourcesTab() {
         </div>
       </div>
       <div className="flex flex-wrap items-center gap-3">
-        <label htmlFor="places-show" className="text-sm font-bold text-pw-navy">Show</label>
+        <label htmlFor="places-show" className="text-sm font-bold text-navy">Show</label>
         <select
           id="places-show"
           value={show}
           onChange={(e) => setShow(e.target.value)}
-          className="min-h-[44px] rounded-2xl border-2 border-pw-line bg-white px-3 text-base text-pw-navy"
+          className="min-h-[44px] rounded-2xl border-2 border-line bg-white px-3 text-base text-navy"
         >
           <option value="all">All places</option>
           <option value="shown">Shown to learners</option>
@@ -181,15 +181,15 @@ export default function ResourcesTab() {
           <option value="removed">Hidden as not relevant</option>
           <option value="hidden">All hidden</option>
         </select>
-        <p className="text-sm text-pw-muted">
+        <p className="text-sm text-muted">
           {items.length} places ({items.filter((r) => r.is_active === false).length} hidden). Learners see only places that are not hidden.
           {filtered.length > SHOW_ROWS && ` Showing the first ${SHOW_ROWS} of ${filtered.length}; search to narrow.`}
         </p>
       </div>
-      <div className="border border-pw-line rounded-card bg-white shadow-raised overflow-hidden">
-        <Table className="text-base [&_th]:px-2 [&_td]:px-2 sm:[&_th]:px-4 sm:[&_td]:px-4 [&_th]:text-sm [&_th]:font-bold [&_th]:text-pw-muted">
+      <div className="border border-line rounded-card bg-white shadow-raised overflow-hidden">
+        <Table className="text-base [&_th]:px-2 [&_td]:px-2 sm:[&_th]:px-4 sm:[&_td]:px-4 [&_th]:text-sm [&_th]:font-bold [&_th]:text-muted">
           <TableHeader>
-            <TableRow className="bg-pw-soft hover:bg-pw-soft">
+            <TableRow className="bg-tint hover:bg-tint">
               <TableHead className="w-[35%]">Name</TableHead>
               <TableHead className="w-[20%]">Category</TableHead>
               <TableHead className="w-[25%]">City</TableHead>
@@ -198,14 +198,14 @@ export default function ResourcesTab() {
           </TableHeader>
           <TableBody>
             {filtered.length === 0 ? (
-              <TableRow><TableCell colSpan={4} className="text-center h-32 text-pw-muted">No places found.</TableCell></TableRow>
+              <TableRow><TableCell colSpan={4} className="text-center h-32 text-muted">No places found.</TableCell></TableRow>
             ) : (
               visible.map((r) => (
                 <TableRow key={r.id} className={r.is_active === false ? 'opacity-60' : ''}>
-                  <TableCell className="font-semibold text-pw-navy">
+                  <TableCell className="font-semibold text-navy">
                     {r.name}
-                    {r.is_active === false && <span className="ml-2 text-sm font-normal text-pw-muted">(hidden)</span>}
-                    {r.relevance_note && <span className="block text-sm font-normal text-pw-muted">{r.relevance_note}</span>}
+                    {r.is_active === false && <span className="ml-2 text-sm font-normal text-muted">(hidden)</span>}
+                    {r.relevance_note && <span className="block text-sm font-normal text-muted">{r.relevance_note}</span>}
                   </TableCell>
                   <TableCell>
                     <div className="flex flex-wrap gap-1">
@@ -214,7 +214,7 @@ export default function ResourcesTab() {
                       ))}
                     </div>
                   </TableCell>
-                  <TableCell className="text-pw-muted">{[r.city, r.state].filter(Boolean).join(', ') || '—'}</TableCell>
+                  <TableCell className="text-muted">{[r.city, r.state].filter(Boolean).join(', ') || '—'}</TableCell>
                   <TableCell className="text-right">
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
@@ -233,7 +233,7 @@ export default function ResourcesTab() {
                         )}
                         <DropdownMenuItem
                           onClick={async () => { await deleteItem(r.id); queryClient.invalidateQueries({ queryKey: ['communityResources'] }); }}
-                          className="text-pw-red-ink focus:text-pw-red-ink"
+                          className="text-not-yet focus:text-not-yet"
                         >
                           <Trash2 className="mr-2 h-4 w-4" /> Delete
                         </DropdownMenuItem>

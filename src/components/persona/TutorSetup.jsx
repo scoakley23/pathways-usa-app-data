@@ -20,8 +20,8 @@ function OptionButton({ selected, onClick, children, className = '' }) {
       type="button"
       onClick={onClick}
       aria-pressed={selected}
-      className={`min-h-[44px] rounded-2xl border-2 px-4 py-3 text-left text-pw-navy transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2 ${
-        selected ? 'border-pw-navy bg-pw-soft' : 'bg-white border-pw-line hover:border-pw-muted'
+      className={`min-h-[44px] rounded-2xl border-2 px-4 py-3 text-left text-navy transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2 ${
+        selected ? 'border-navy bg-tint' : 'bg-white border-line hover:border-muted'
       } ${className}`}
     >
       {children}
@@ -34,7 +34,7 @@ function ListenButton({ text, language, label }) {
     <button
       type="button"
       onClick={() => speakText(text, language)}
-      className="min-h-[44px] -ml-3 inline-flex items-center gap-2 rounded-2xl px-3 text-base font-bold text-pw-navy hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
+      className="min-h-[44px] -ml-3 inline-flex items-center gap-2 rounded-2xl px-3 text-base font-bold text-navy hover:bg-tint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
     >
       <Volume2 className="w-5 h-5" /> {label}
     </button>
@@ -64,22 +64,22 @@ export default function TutorSetup({ initialProfile, onSave, onSkip, saveLabel =
   const sayInEnglish = englishLines.join(' ');
 
   return (
-    <div className="space-y-6 text-base text-pw-navy">
+    <div className="space-y-6 text-base text-navy">
       {/* Preview */}
-      <div className="rounded-card bg-pw-blue-soft p-4">
+      <div className="rounded-card bg-tint p-4">
         <div className="space-y-2">
           {mineLines && (
-            <div className="rounded-2xl rounded-tl-sm bg-white border border-pw-line p-3">
+            <div className="rounded-2xl rounded-tl-sm bg-white border border-line p-3">
               <p dir={RTL_LANGUAGES.includes(language) ? 'rtl' : 'ltr'}>{mineLines.join(' ')}</p>
               <ListenButton text={mineLines.join(' ')} language={language} label="Listen" />
             </div>
           )}
-          <div className={`rounded-2xl p-3 ${mineLines ? 'bg-white/60' : 'rounded-tl-sm bg-white border border-pw-line'}`}>
-            {mineLines && <p className="text-sm font-semibold uppercase tracking-wide text-pw-muted">English</p>}
+          <div className={`rounded-2xl p-3 ${mineLines ? 'bg-white/60' : 'rounded-tl-sm bg-white border border-line'}`}>
+            {mineLines && <p className="text-sm font-semibold uppercase tracking-wide text-muted">English</p>}
             <p>{englishLines.join(' ')}</p>
             <ListenButton text={sayInEnglish} language="en" label={mineLines ? 'Listen in English' : 'Listen'} />
           </div>
-          <p className="font-medium text-lg text-pw-muted">— {profile.name}</p>
+          <p className="font-medium text-lg text-muted">— {profile.name}</p>
         </div>
       </div>
 
@@ -90,7 +90,7 @@ export default function TutorSetup({ initialProfile, onSave, onSkip, saveLabel =
           {Object.entries(TUTOR_TONES).map(([id, t]) => (
             <OptionButton key={id} selected={profile.tone === id} onClick={() => set('tone', id)}>
               <span className="block font-semibold">{t.label}</span>
-              <span className="block text-sm text-pw-muted">{t.description}</span>
+              <span className="block text-sm text-muted">{t.description}</span>
             </OptionButton>
           ))}
         </div>
@@ -107,7 +107,7 @@ export default function TutorSetup({ initialProfile, onSave, onSkip, saveLabel =
               </OptionButton>
             ))}
           </div>
-          <p className="text-sm text-pw-muted">Your tutor explains in your app language. You can change this any time.</p>
+          <p className="text-sm text-muted">Your tutor explains in your app language. You can change this any time.</p>
         </fieldset>
       )}
 

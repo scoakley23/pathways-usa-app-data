@@ -28,7 +28,7 @@ export default function AnswerFeedback({
   const correct = status === 'correct';
   const notCorrect = status === 'not-correct';
   return (
-    <div className="space-y-5 text-ink">
+    <div className="space-y-5 text-navy">
       <div aria-live="polite" className="flex items-start gap-3">
         {correct && (
           <span className="w-10 h-10 shrink-0 rounded-full bg-correct grid place-items-center">
@@ -36,40 +36,40 @@ export default function AnswerFeedback({
           </span>
         )}
         {notCorrect && (
-          <span className="w-10 h-10 shrink-0 rounded-full bg-not-correct grid place-items-center">
+          <span className="w-10 h-10 shrink-0 rounded-full bg-not-yet grid place-items-center">
             <X className="w-6 h-6 text-white" strokeWidth={3} aria-hidden="true" />
           </span>
         )}
         <div className="min-w-0">
-          <p className={`font-display text-[26px] leading-tight ${correct ? 'text-correct' : notCorrect ? 'text-not-correct-text' : 'text-ink'}`}>
+          <p className={`font-display text-[26px] leading-tight ${correct ? 'text-correct' : notCorrect ? 'text-not-yet' : 'text-navy'}`}>
             {correct ? 'Correct' : notCorrect ? 'Not correct' : title}
           </p>
-          {sub && <p className="mt-0.5 text-base text-ink-2">{sub}</p>}
+          {sub && <p className="mt-0.5 text-base text-muted">{sub}</p>}
         </div>
       </div>
 
       {youSaid && (
         <div>
-          <p className="text-label uppercase text-ink-label">{youSaidLabel}</p>
+          <p className="text-label uppercase text-muted">{youSaidLabel}</p>
           <p
-            className={`mt-1 text-lg leading-snug ${notCorrect ? 'line-through decoration-not-correct decoration-2' : ''}`}
+            className={`mt-1 text-lg leading-snug ${notCorrect ? 'line-through decoration-not-yet decoration-2' : ''}`}
           >
             {notCorrect && <span className="sr-only">Not correct: </span>}
             “{youSaid}”
           </p>
-          {notCorrect && reason && <p className="mt-1 text-base text-ink-2">{reason}</p>}
+          {notCorrect && reason && <p className="mt-1 text-base text-muted">{reason}</p>}
         </div>
       )}
 
       {accepted.length > 0 && (
-        <div className="rounded-card bg-sand p-4">
+        <div className="rounded-card bg-tint p-4">
           <div className="flex items-center justify-between gap-2">
-            <p className="text-label uppercase text-ink-label">{acceptedLabel}</p>
+            <p className="text-label uppercase text-muted">{acceptedLabel}</p>
             {onHearAnswer && (
               <button
                 type="button"
                 onClick={onHearAnswer}
-                className="min-h-tap -my-2 -me-2 rounded-full px-3 inline-flex items-center gap-1.5 text-sm font-semibold text-ink hover:bg-sand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
+                className="min-h-tap -my-2 -me-2 rounded-full px-3 inline-flex items-center gap-1.5 text-sm font-semibold text-navy hover:bg-line focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
               >
                 <Volume2 className="w-4 h-4" aria-hidden="true" /> Hear it
               </button>

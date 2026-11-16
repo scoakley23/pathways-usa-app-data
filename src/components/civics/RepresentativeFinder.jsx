@@ -92,18 +92,18 @@ export default function RepresentativeFinder() {
   const officials = location ? getOfficialsFor(location) : null;
 
   return (
-    <section className="py-6 text-pw-navy">
+    <section className="py-6 text-navy">
       <RaisedCard className="max-w-3xl mx-auto">
         <div className="flex items-start gap-4 mb-4">
-          <div className="w-12 h-12 shrink-0 bg-sand text-ink rounded-2xl grid place-items-center">
+          <div className="w-12 h-12 shrink-0 bg-tint text-navy rounded-2xl grid place-items-center">
             <MapPin className="w-6 h-6" aria-hidden="true" />
           </div>
           <h2 className="text-[28px] font-display font-normal leading-tight pt-1.5">Who Represents Me?</h2>
         </div>
-        <p className="text-base text-pw-muted leading-relaxed">
+        <p className="text-base text-muted leading-relaxed">
           Enter your zip code to find your Senators, Representative, Governor, and State Capital — your answers will be used during civics practice.
         </p>
-        <p className="text-sm text-pw-muted mt-2">Your address is used only for this lookup and is never saved.</p>
+        <p className="text-sm text-muted mt-2">Your address is used only for this lookup and is never saved.</p>
 
         <div className="mt-5">
           {!needsAddress ? (
@@ -123,8 +123,8 @@ export default function RepresentativeFinder() {
               </PrimaryButton>
             </div>
           ) : (
-            <div className="space-y-3 bg-pw-blue-soft rounded-2xl p-4">
-              <p className="text-pw-blue-ink text-base font-semibold leading-snug">
+            <div className="space-y-3 bg-tint rounded-2xl p-4">
+              <p className="text-navy text-base font-semibold leading-snug">
                 {ADDRESS_REASONS[addressReason]}
               </p>
               <Input
@@ -136,9 +136,9 @@ export default function RepresentativeFinder() {
                 className="h-12 text-base bg-white"
                 autoFocus
               />
-              <p className="text-sm text-pw-muted">Your address is used only for this search. We don&apos;t save it.</p>
+              <p className="text-sm text-muted">Your address is used only for this search. We don&apos;t save it.</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                <SecondaryButton onClick={() => { setNeedsAddress(false); setStreetAddress(''); }} className="border-pw-line">
+                <SecondaryButton onClick={() => { setNeedsAddress(false); setStreetAddress(''); }} className="border-line">
                   Cancel
                 </SecondaryButton>
                 <PrimaryButton onClick={handleSearch} disabled={loading || !streetAddress.trim()}>
@@ -149,21 +149,21 @@ export default function RepresentativeFinder() {
           )}
           <div aria-live="polite">
             {loading && (
-              <p className="text-pw-muted text-sm mt-3 flex items-center gap-2">
+              <p className="text-muted text-sm mt-3 flex items-center gap-2">
                 <Loader2 className="w-4 h-4 animate-spin shrink-0" aria-hidden="true" /> Finding your congressional district...
               </p>
             )}
             {saving && !loading && (
-              <p className="text-pw-muted text-sm mt-3 flex items-center gap-2">
+              <p className="text-muted text-sm mt-3 flex items-center gap-2">
                 <Loader2 className="w-4 h-4 animate-spin shrink-0" aria-hidden="true" /> Saving to your profile...
               </p>
             )}
             {saved && !loading && !saving && (
-              <p className="text-pw-green-ink text-sm font-semibold mt-3 flex items-center gap-2">
+              <p className="text-correct text-sm font-semibold mt-3 flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 shrink-0" aria-hidden="true" /> Your state and district are saved — your address was not.
               </p>
             )}
-            {error && <p className="text-pw-red-ink text-sm font-semibold mt-3" role="alert">{error}</p>}
+            {error && <p className="text-not-yet text-sm font-semibold mt-3" role="alert">{error}</p>}
           </div>
         </div>
       </RaisedCard>
@@ -177,14 +177,14 @@ const shownName = (entry) => (entry?.name && entry.name !== 'VACANT' && entry.na
 
 // Names for the saved place, from the officeholders table only.
 function OfficialsResult({ officials: o }) {
-  const row = 'flex items-center gap-3 bg-pw-soft rounded-2xl p-3';
+  const row = 'flex items-center gap-3 bg-tint rounded-2xl p-3';
   const capital = shownName(o.capital);
   return (
     <div className="max-w-3xl mx-auto mt-4 space-y-3">
       <div className="grid md:grid-cols-2 gap-4">
         <RaisedCard className="space-y-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 shrink-0 bg-pw-blue-soft text-pw-blue-ink rounded-xl grid place-items-center">
+            <div className="w-10 h-10 shrink-0 bg-tint text-navy rounded-xl grid place-items-center">
               <Landmark className="w-5 h-5" aria-hidden="true" />
             </div>
             <div className="min-w-0">
@@ -194,26 +194,26 @@ function OfficialsResult({ officials: o }) {
           </div>
           {capital && (
             <div className={row}>
-              <Building2 className="w-5 h-5 text-pw-muted shrink-0" aria-hidden="true" />
+              <Building2 className="w-5 h-5 text-muted shrink-0" aria-hidden="true" />
               <div>
-                <p className="text-sm text-pw-muted">{o.type === 'state' ? 'State Capital' : 'Capital'}</p>
+                <p className="text-sm text-muted">{o.type === 'state' ? 'State Capital' : 'Capital'}</p>
                 <p className="font-bold">{capital}</p>
               </div>
             </div>
           )}
           <div className={row}>
-            <Landmark className="w-5 h-5 text-pw-muted shrink-0" aria-hidden="true" />
+            <Landmark className="w-5 h-5 text-muted shrink-0" aria-hidden="true" />
             <div className="min-w-0">
-              <p className="text-sm text-pw-muted">Governor</p>
+              <p className="text-sm text-muted">Governor</p>
               <p className="font-bold">{shownName(o.governor) || `${o.place} does not have a Governor`}</p>
-              {o.mayor && shownName(o.mayor) && <p className="text-sm text-pw-muted">Mayor: {o.mayor.name}</p>}
+              {o.mayor && shownName(o.mayor) && <p className="text-sm text-muted">Mayor: {o.mayor.name}</p>}
             </div>
           </div>
         </RaisedCard>
 
         <RaisedCard className="space-y-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 shrink-0 bg-sand text-ink rounded-xl grid place-items-center">
+            <div className="w-10 h-10 shrink-0 bg-tint text-navy rounded-xl grid place-items-center">
               <Users className="w-5 h-5" aria-hidden="true" />
             </div>
             <Eyebrow>US Senators</Eyebrow>
@@ -226,23 +226,23 @@ function OfficialsResult({ officials: o }) {
           {o.delegate ? (
             <div className={row}>
               <div className="min-w-0">
-                <p className="text-sm text-pw-muted">{o.delegate.title} in the U.S. House (non-voting)</p>
+                <p className="text-sm text-muted">{o.delegate.title} in the U.S. House (non-voting)</p>
                 <p className="font-bold">{o.delegate.name}</p>
               </div>
             </div>
           ) : o.representative && (
             <div className={row}>
               <div className="min-w-0">
-                <p className="text-sm text-pw-muted">US Representative — District {o.district}</p>
+                <p className="text-sm text-muted">US Representative — District {o.district}</p>
                 <p className="font-bold">{shownName(o.representative) || 'This seat is empty right now'}</p>
               </div>
             </div>
           )}
         </RaisedCard>
       </div>
-      <p className="text-sm text-pw-muted px-1">{checkedOnText(OFFICEHOLDERS_CHECKED_ON)}.</p>
+      <p className="text-sm text-muted px-1">{checkedOnText(OFFICEHOLDERS_CHECKED_ON)}.</p>
       {isStale() && (
-        <p className="text-sm text-pw-muted px-1">
+        <p className="text-sm text-muted px-1">
           This list was last checked on {OFFICEHOLDERS_CHECKED_ON}. Officials can change; check usa.gov.
         </p>
       )}

@@ -6,6 +6,8 @@ import { UNITS } from '@/lib/course';
 import { canSeeDrafts, currentUnitId, journeyStops, totalStars, visibleCourse } from '@/lib/journey';
 import { n400Href } from '@/lib/checkpoints';
 import { startingPoint } from '@/lib/startingPoint';
+import { translateCourse } from '@/lib/courseTitles';
+import usePackLookup from '@/components/course/usePackLookup';
 import useTranslatedLines from '@/components/persona/useTranslatedLines';
 import useAppLanguage, { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
 import { COURSE_LINES } from '@/components/course/courseStrings';
@@ -88,9 +90,12 @@ export function useJourney() {
     return () => { active = false; };
   }, []);
 
+  const [language] = useAppLanguage();
+  const tx = usePackLookup(language);
+
   return useMemo(() => {
     const showDrafts = canSeeDrafts(state.user);
-    const course = visibleCourse(UNITS, { showDrafts });
+    const course = translateCourse(visibleCourse(UNITS, { showDrafts }), tx);
     const start = startingPoint(course, state.user?.skill_levels);
     const stops = journeyStops(course, { progress: state.progress, checkpoints: state.checkpoints, startUnitId: start?.unit.id || null });
     return {
@@ -102,5 +107,5 @@ export function useJourney() {
       stars: totalStars(state.progress, UNITS, state.checkpoints),
       currentUnit: currentUnitId(course, stops),
     };
-  }, [state]);
+  }, [state, tx]);
 }

@@ -1,7 +1,8 @@
 import { describe, it, expect } from 'vitest';
 import fs from 'fs';
 import path from 'path';
-import { COLORS, HOVER, ALIASES, PW_ALIASES, TEXT_PAIRS, PIN_COLORS, FONT_STACK, hex } from './tokens';
+import * as TOKENS from './tokens';
+import { COLORS, HOVER, TEXT_PAIRS, PIN_COLORS, FONT_STACK, hex } from './tokens';
 import { SCRIPT_FONT, SCRIPT_FONTS, scriptFontFor } from './scriptFonts';
 import { COLORS as THEME } from '@/lib/theme';
 
@@ -63,11 +64,23 @@ describe('design tokens', () => {
     expect(TEXT_PAIRS).not.toContainEqual(['white', 'gold']);
   });
 
-  it('points every old name at a real token', () => {
-    const names = new Set([...Object.keys(COLORS), ...Object.keys(HOVER)]);
-    for (const [alias, target] of [...Object.entries(ALIASES), ...Object.entries(PW_ALIASES)]) {
-      expect(names.has(target), `${alias} -> ${target}`).toBe(true);
-    }
+  it('has no old color names left (Prompt 13)', () => {
+    expect(TOKENS.ALIASES).toBeUndefined();
+    expect(TOKENS.PW_ALIASES).toBeUndefined();
+    const OLD = /(?<![\w-])(?:bg|text|border(?:-[trblxyse])?|ring(?:-offset)?|fill|stroke|from|to|via|decoration|outline|shadow|divide(?:-[xy])?|placeholder|accent|caret)-(?:pw-[a-z]|cream\b|card-line\b|sand\b|sand-hover\b|ink\b|ink-2\b|ink-label\b|navy-2\b|navy-line\b|road\b|star\b|star-deep\b|not-correct)/;
+    const found = [];
+    const walk = (dir) => {
+      for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+        const p = path.join(dir, e.name);
+        if (e.isDirectory()) walk(p);
+        else if (/\.(jsx?|css)$/.test(e.name) && !e.name.endsWith('.test.js')) {
+          const m = fs.readFileSync(p, 'utf8').match(OLD);
+          if (m) found.push(`${p}: ${m[0]}`);
+        }
+      }
+    };
+    walk(path.resolve(__dirname, '..'));
+    expect(found).toEqual([]);
   });
 
   it('builds theme.js and the map pins from the tokens only', () => {

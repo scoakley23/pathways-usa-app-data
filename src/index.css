@@ -42,3 +42,18 @@
   background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 35px, var(--rule) 35px, var(--rule) 36px);
   background-position: 0 6px;
 }
+
+/* Reduce motion (Prompt 13): when the phone asks for less motion, nothing
+   slides, fades, pulses or spins (sheets, dialogs, toasts, loaders). Screens
+   still change; they just don't animate. Confetti has its own switch
+   (disableForReducedMotion). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

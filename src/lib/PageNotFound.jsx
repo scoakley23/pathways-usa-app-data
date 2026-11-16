@@ -24,7 +24,7 @@ export default function PageNotFound({}) {
     // The Road: a navy top says where you are (404, Page Not Found); the
     // cream sheet holds the message and the way home.
     return (
-        <div className="min-h-screen bg-cream text-ink">
+        <div className="min-h-screen bg-page text-navy">
             <NavyTop className="pb-14 pt-12">
                 <div className="mx-auto max-w-md space-y-2">
                     <p className="text-label uppercase text-on-navy">404</p>
@@ -33,13 +33,13 @@ export default function PageNotFound({}) {
             </NavyTop>
             <CreamSheet>
                 <div className="mx-auto max-w-md space-y-6 pb-8">
-                    <p className="text-lg text-ink-2 leading-relaxed">
-                        The page <span className="font-semibold text-ink">&quot;{pageName}&quot;</span> could not be found in this application.
+                    <p className="text-lg text-muted leading-relaxed">
+                        The page <span className="font-semibold text-navy">&quot;{pageName}&quot;</span> could not be found in this application.
                     </p>
                     {isFetched && authData.isAuthenticated && authData.user?.role === 'admin' && (
-                        <div className="p-4 bg-white rounded-card border border-card-line space-y-1">
+                        <div className="p-4 bg-white rounded-card border border-line space-y-1">
                             <p className="text-base font-semibold">Admin Note</p>
-                            <p className="text-base text-ink-2 leading-relaxed">
+                            <p className="text-base text-muted leading-relaxed">
                                 This could mean that the AI hasn&apos;t implemented this page yet. Ask it to implement it in the chat.
                             </p>
                         </div>

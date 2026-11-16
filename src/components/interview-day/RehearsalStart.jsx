@@ -10,11 +10,11 @@ const VERSIONS = [
 // Start screen: practice notice, how the N-400 part works, civics version.
 export default function RehearsalStart({ version, onSelectVersion, onStart, starting }) {
   return (
-    <section aria-labelledby="rehearsal-title" className="space-y-4 text-pw-navy">
+    <section aria-labelledby="rehearsal-title" className="space-y-4 text-navy">
       <h2 id="rehearsal-title" className="text-title font-bold">Practice the whole day</h2>
 
-      <div className="rounded-card bg-pw-blue-soft p-5 flex items-start gap-3">
-        <Info className="w-6 h-6 text-pw-blue-ink shrink-0 mt-0.5" aria-hidden="true" />
+      <div className="rounded-card bg-tint p-5 flex items-start gap-3">
+        <Info className="w-6 h-6 text-navy shrink-0 mt-0.5" aria-hidden="true" />
         <p className="text-base font-bold leading-relaxed">
           This is practice. Pathways is not part of USCIS. Your answers are not saved.
         </p>
@@ -28,15 +28,15 @@ export default function RehearsalStart({ version, onSelectVersion, onStart, star
 
       <RaisedCard className="space-y-3">
         <p id="civics-version-label" className="text-lg font-extrabold">Civics test</p>
-        <div className="grid grid-cols-2 gap-1 p-1 bg-pw-soft rounded-full" role="group" aria-labelledby="civics-version-label">
+        <div className="grid grid-cols-2 gap-1 p-1 bg-tint rounded-full" role="group" aria-labelledby="civics-version-label">
           {VERSIONS.map((v) => (
             <button
               key={v.id}
               type="button"
               aria-pressed={version === v.id}
               onClick={() => onSelectVersion(v.id)}
-              className={`min-h-[44px] rounded-full text-base font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy ${
-                version === v.id ? 'bg-white text-pw-navy shadow-raised' : 'text-pw-muted hover:text-pw-navy'
+              className={`min-h-[44px] rounded-full text-base font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy ${
+                version === v.id ? 'bg-white text-navy shadow-raised' : 'text-muted hover:text-navy'
               }`}
             >
               {v.label}
@@ -45,7 +45,7 @@ export default function RehearsalStart({ version, onSelectVersion, onStart, star
         </div>
       </RaisedCard>
 
-      <p className="text-base text-pw-muted">About 30 minutes. You can stop any time.</p>
+      <p className="text-base text-muted">About 30 minutes. You can stop any time.</p>
       <Button variant="main" className="w-full" onClick={onStart} disabled={starting}>
         Practice the whole day
       </Button>

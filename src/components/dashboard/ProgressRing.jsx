@@ -5,10 +5,10 @@ export default function ProgressRing({
   progress,
   size = 130,
   stroke = 12,
-  trackColor = COLORS.cardLine,
+  trackColor = COLORS.line,
   progressColor = COLORS.navy,
   label,
-  labelColor = 'text-pw-navy',
+  labelColor = 'text-navy',
 }) {
   const radius = (size - stroke) / 2;
   const circumference = 2 * Math.PI * radius;
@@ -40,7 +40,7 @@ export default function ProgressRing({
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
         <span className={`text-3xl font-extrabold ${labelColor}`}>{Math.round(progress)}%</span>
-        {label && <span className="text-sm font-bold text-pw-muted mt-0.5">{label}</span>}
+        {label && <span className="text-sm font-bold text-muted mt-0.5">{label}</span>}
       </div>
     </div>
   );

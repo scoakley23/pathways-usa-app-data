@@ -189,10 +189,10 @@ export default function ExplanationTools() {
   };
 
   return (
-    <section aria-labelledby="explanations-heading" className="space-y-4 text-pw-navy">
+    <section aria-labelledby="explanations-heading" className="space-y-4 text-navy">
       <div>
         <h2 id="explanations-heading" className="text-[28px] font-display font-normal">Lesson explanations</h2>
-        <p className="text-base text-pw-muted mt-1">
+        <p className="text-base text-muted mt-1">
           Export the official questions, draft explanations with AI, then review them by hand
           (see <code className="text-sm">content/explanations/REVIEW.md</code>). Learners see only reviewed ones.
         </p>
@@ -217,27 +217,27 @@ export default function ExplanationTools() {
               onClick={() => chooseLang(l.value)}
               aria-pressed={lang === l.value}
               disabled={running}
-              className={`min-h-[44px] rounded-2xl border-2 px-3 text-base font-bold transition-colors disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy ${lang === l.value ? 'border-pw-navy bg-pw-soft' : 'border-pw-line bg-white hover:border-pw-navy'}`}
+              className={`min-h-[44px] rounded-2xl border-2 px-3 text-base font-bold transition-colors disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy ${lang === l.value ? 'border-navy bg-tint' : 'border-line bg-white hover:border-navy'}`}
             >
-              {l.label} <span className="font-semibold text-pw-muted">({l.value}.json)</span>
+              {l.label} <span className="font-semibold text-muted">({l.value}.json)</span>
             </button>
           ))}
         </div>
-        <p className="text-base text-pw-muted">
+        <p className="text-base text-muted">
           In the file now: {fileCount} ({reviewedCount} reviewed). New drafts on this device: {newCount}.
           Questions already in the file or drafted are skipped, so you can stop and continue later.
         </p>
 
         {progress && (
-          <div className="rounded-2xl bg-pw-soft p-4 space-y-2" aria-live="polite">
-            <div className="h-2 rounded-full bg-pw-line overflow-hidden" role="progressbar" aria-valuemin={0} aria-valuemax={progress.total} aria-valuenow={progress.done} aria-label="Drafting progress">
-              <div className="h-full rounded-full bg-pw-navy transition-all" style={{ width: `${progress.total ? Math.round((progress.done / progress.total) * 100) : 100}%` }} />
+          <div className="rounded-2xl bg-tint p-4 space-y-2" aria-live="polite">
+            <div className="h-2 rounded-full bg-line overflow-hidden" role="progressbar" aria-valuemin={0} aria-valuemax={progress.total} aria-valuenow={progress.done} aria-label="Drafting progress">
+              <div className="h-full rounded-full bg-navy transition-all" style={{ width: `${progress.total ? Math.round((progress.done / progress.total) * 100) : 100}%` }} />
             </div>
             <p className="text-base font-bold">{progress.done} of {progress.total} drafted</p>
-            <p className="text-sm text-pw-muted">
+            <p className="text-sm text-muted">
               {progress.skipped} skipped (already done){progress.failed ? ` · ${progress.failed} failed (run again to retry)` : ''}
             </p>
-            {progress.current && <p className="text-sm text-pw-muted truncate">Now: {progress.current}</p>}
+            {progress.current && <p className="text-sm text-muted truncate">Now: {progress.current}</p>}
           </div>
         )}
 
@@ -258,7 +258,7 @@ export default function ExplanationTools() {
             <QuietButton className="w-full sm:w-auto" onClick={clearDrafts}>Clear saved drafts</QuietButton>
           )}
         </div>
-        <p className="text-sm text-pw-muted">
+        <p className="text-sm text-muted">
           Replace <code>content/explanations/{lang}.json</code> with the download, commit it, and run <code>npm test</code>.
           New entries are marked &quot;draft&quot; until a person reviews them.
         </p>

@@ -67,9 +67,9 @@ export default function TalkToPerson({ open, onOpenChange, userEmail, language =
   };
 
   const lawyerNote = (
-    <p dir={dir} className="text-base leading-snug text-pw-navy">
+    <p dir={dir} className="text-base leading-snug text-navy">
       {t('noLegal')}{' '}
-      <Link to="/lawyer-first" onClick={() => onOpenChange(false)} className="font-bold underline underline-offset-4 decoration-pw-navy/40 hover:decoration-pw-navy">
+      <Link to="/lawyer-first" onClick={() => onOpenChange(false)} className="font-bold underline underline-offset-4 decoration-navy/40 hover:decoration-navy">
         {t('lawyerLink')}
       </Link>
     </p>
@@ -79,11 +79,11 @@ export default function TalkToPerson({ open, onOpenChange, userEmail, language =
   if (status === 'sent') {
     body = (
       <div className="flex flex-col items-center text-center gap-3 py-4" role="status">
-        <span className="w-12 h-12 rounded-full bg-pw-green-soft text-pw-green-ink grid place-items-center" aria-hidden="true">
+        <span className="w-12 h-12 rounded-full bg-correct-bg text-correct grid place-items-center" aria-hidden="true">
           <CheckCircle2 className="w-7 h-7" />
         </span>
         <p dir={dir} className="text-lg font-bold">{t('sent')}</p>
-        <p dir={dir} className="text-base text-pw-muted">{trReply('reply') || replyLine.reply}</p>
+        <p dir={dir} className="text-base text-muted">{trReply('reply') || replyLine.reply}</p>
         <SecondaryButton onClick={() => onOpenChange(false)} className="w-full">{t('done')}</SecondaryButton>
       </div>
     );
@@ -94,10 +94,10 @@ export default function TalkToPerson({ open, onOpenChange, userEmail, language =
         {ready ? (
           <p dir={dir} className="text-base font-bold">{trReply('reply') || replyLine.reply}</p>
         ) : (
-          <p dir={dir} className="rounded-2xl bg-pw-blue-soft text-pw-blue-ink px-4 py-3 text-base font-bold">{t('comingSoon')}</p>
+          <p dir={dir} className="rounded-2xl bg-tint text-navy px-4 py-3 text-base font-bold">{t('comingSoon')}</p>
         )}
-        <div className="rounded-2xl bg-pw-soft px-4 py-3 space-y-2">
-          <p dir={dir} className="text-base leading-snug text-pw-navy">{t('privacy')}</p>
+        <div className="rounded-2xl bg-tint px-4 py-3 space-y-2">
+          <p dir={dir} className="text-base leading-snug text-navy">{t('privacy')}</p>
           {lawyerNote}
         </div>
         <label htmlFor="talk-person-message" className="text-base font-bold" dir={dir}>{t('label')}</label>
@@ -110,13 +110,13 @@ export default function TalkToPerson({ open, onOpenChange, userEmail, language =
           disabled={!ready || status === 'sending'}
           aria-describedby="talk-person-count talk-person-reply"
         />
-        <div className="flex flex-wrap justify-between gap-x-3 text-sm text-pw-muted">
+        <div className="flex flex-wrap justify-between gap-x-3 text-sm text-muted">
           <span id="talk-person-reply" dir={dir}>{t('replyTo')}</span>
           <span id="talk-person-count">{message.length}/{SUPPORT_MAX_LENGTH}</span>
         </div>
-        {me && <p className="text-sm text-pw-muted break-all -mt-2">{me}</p>}
+        {me && <p className="text-sm text-muted break-all -mt-2">{me}</p>}
         {status === 'error' && (
-          <p role="alert" dir={dir} className="rounded-2xl bg-pw-red-soft text-pw-red-ink px-4 py-3 text-base font-semibold">{t('error')}</p>
+          <p role="alert" dir={dir} className="rounded-2xl bg-not-yet-bg text-not-yet px-4 py-3 text-base font-semibold">{t('error')}</p>
         )}
         <PrimaryButton type="submit" disabled={!ready || !message.trim() || status === 'sending'} className="w-full">
           {status === 'sending' ? <Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" /> : <Send className="w-5 h-5" aria-hidden="true" />}
@@ -130,7 +130,7 @@ export default function TalkToPerson({ open, onOpenChange, userEmail, language =
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent aria-describedby={undefined} className="w-[calc(100vw-2rem)] max-w-md max-h-[90vh] overflow-y-auto overflow-x-hidden p-5 gap-3 grid-cols-[minmax(0,1fr)]">
         <DialogHeader className="text-left pe-10">
-          <DialogTitle dir={dir} className="text-xl font-extrabold text-pw-navy">{t('title')}</DialogTitle>
+          <DialogTitle dir={dir} className="text-xl font-extrabold text-navy">{t('title')}</DialogTitle>
         </DialogHeader>
         {body}
       </DialogContent>

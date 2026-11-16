@@ -6,27 +6,27 @@ import { PrimaryButton, RaisedCard, SkillDot, SKILL_LABEL } from '@/components/p
 // Part 6: one row per skill. Shown once and kept only in page memory.
 export default function RehearsalResults({ rows, onAgain }) {
   return (
-    <div className="space-y-4 text-pw-navy">
+    <div className="space-y-4 text-navy">
       <RaisedCard className="space-y-1">
         <h2 className="text-[28px] leading-snug font-display font-normal">Your rehearsal results</h2>
-        <p className="text-base text-pw-muted">Practice results only. They are not saved, and they don&apos;t predict your real interview.</p>
+        <p className="text-base text-muted">Practice results only. They are not saved, and they don&apos;t predict your real interview.</p>
       </RaisedCard>
 
       <ul className="space-y-2">
         {rows.map((r) => (
-          <li key={r.skill} className="rounded-2xl bg-white border border-pw-line shadow-raised p-4 flex flex-wrap items-center gap-3">
+          <li key={r.skill} className="rounded-2xl bg-white border border-line shadow-raised p-4 flex flex-wrap items-center gap-3">
             <span className="flex items-center gap-3 min-w-0 flex-1">
               <SkillDot skill={r.skill} />
               <span className="text-lg font-extrabold">{SKILL_LABEL[r.skill]}</span>
             </span>
             {r.passed ? (
-              <span className="inline-flex items-center gap-2 text-base font-bold text-pw-green-ink">
+              <span className="inline-flex items-center gap-2 text-base font-bold text-correct">
                 <Check className="w-5 h-5" aria-hidden="true" /> Passed
               </span>
             ) : (
               <Link
                 to={r.practicePath}
-                className="min-h-[44px] rounded-2xl bg-pw-soft hover:bg-pw-soft-hover px-4 text-base font-bold inline-flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2"
+                className="min-h-[44px] rounded-2xl bg-tint hover:bg-line px-4 text-base font-bold inline-flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2"
               >
                 Practice more <ArrowRight className="w-4 h-4 rtl:rotate-180" aria-hidden="true" />
               </Link>

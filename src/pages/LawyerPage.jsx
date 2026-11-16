@@ -103,31 +103,31 @@ export default function LawyerPage({ cachedUser }) {
         <div className="flex flex-wrap items-center justify-between gap-2 px-1">
           <h2 className="text-lg font-bold text-navy">If any of these is true for you</h2>
           {isTranslating && (
-            <p className="flex items-center gap-2 text-sm text-pw-muted">
+            <p className="flex items-center gap-2 text-sm text-muted">
               <Loader2 className="w-4 h-4 animate-spin" /> Translating…
             </p>
           )}
         </div>
         <ul className="space-y-3">
           {LAWYER_CHECKLIST_ITEMS.map((item, i) => (
-            <li key={item.id} className="flex items-start gap-3 rounded-2xl bg-pw-soft p-4">
+            <li key={item.id} className="flex items-start gap-3 rounded-2xl bg-tint p-4">
               <span
-                className="w-8 h-8 rounded-full bg-white text-pw-navy text-sm font-extrabold grid place-items-center shrink-0"
+                className="w-8 h-8 rounded-full bg-white text-navy text-sm font-extrabold grid place-items-center shrink-0"
                 aria-hidden="true"
               >
                 {i + 1}
               </span>
               <div className="min-w-0 space-y-1">
-                <p className="text-base font-bold text-pw-navy leading-snug">
+                <p className="text-base font-bold text-navy leading-snug">
                   {hasTranslation && translation[i] ? translation[i].text : item.text}
                 </p>
-                <p className="text-base text-pw-muted leading-relaxed">
+                <p className="text-base text-muted leading-relaxed">
                   {hasTranslation && translation[i] ? translation[i].explanation : item.explanation}
                 </p>
                 {item.guideSectionId && (
                   <Link
                     to={`/n400-guide?section=${item.guideSectionId}`}
-                    className="inline-flex items-center gap-1.5 min-h-11 text-sm font-bold text-pw-navy underline underline-offset-4 decoration-pw-navy/40 hover:decoration-pw-navy rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
+                    className="inline-flex items-center gap-1.5 min-h-11 text-sm font-bold text-navy underline underline-offset-4 decoration-navy/40 hover:decoration-navy rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
                   >
                     <span>{guideTitleFor(item, i)} — read it in the N-400 guide</span>
                     <ArrowUpRight className="w-4 h-4 shrink-0 rtl:-scale-x-100" aria-hidden="true" />
@@ -137,24 +137,24 @@ export default function LawyerPage({ cachedUser }) {
             </li>
           ))}
         </ul>
-        <p className="text-base text-pw-muted leading-relaxed px-1">
+        <p className="text-base text-muted leading-relaxed px-1">
           Each item links to the part of our N-400 guide that explains those questions. The guide tells you what
           the form asks — it does not tell you how to answer.
         </p>
         {hasTranslation && (
-          <p className="text-sm text-pw-muted">
+          <p className="text-sm text-muted">
             Machine translation. If anything is unclear, ask a person you trust or a lawyer.
           </p>
         )}
         {isAdmin && (
-          <div className="rounded-2xl bg-pw-soft px-4 py-3 text-sm flex items-center gap-2 text-pw-muted">
+          <div className="rounded-2xl bg-tint px-4 py-3 text-sm flex items-center gap-2 text-muted">
             <Lock className="w-4 h-4 shrink-0" />
             This list is a draft pending legal review — do not publish changes without the owner's sign-off.
           </div>
         )}
       </RaisedCard>
 
-      <section className="rounded-card bg-white border border-card-line text-ink p-5 md:p-6 space-y-4">
+      <section className="rounded-card bg-white border border-line text-navy p-5 md:p-6 space-y-4">
         <h2 className="text-lg font-bold">Find free or low-cost legal help</h2>
         <ul className="space-y-3">
           {LEGAL_HELP_LINKS.map((link) => (
@@ -163,11 +163,11 @@ export default function LawyerPage({ cachedUser }) {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-start gap-3 rounded-2xl bg-sand text-ink p-4 min-h-[44px] hover:bg-sand-hover transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2"
+                className="group flex items-start gap-3 rounded-2xl bg-tint text-navy p-4 min-h-[44px] hover:bg-line transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2"
               >
                 <span className="min-w-0 flex-1 space-y-1">
                   <span className="block text-base font-bold group-hover:underline">{link.label}</span>
-                  <span className="block text-sm text-pw-muted">{link.description}</span>
+                  <span className="block text-sm text-muted">{link.description}</span>
                 </span>
                 <ExternalLink className="w-5 h-5 shrink-0 mt-0.5" aria-hidden="true" />
               </a>
@@ -181,7 +181,7 @@ export default function LawyerPage({ cachedUser }) {
           <AlertTriangle className="w-6 h-6 text-not-yet shrink-0" aria-hidden="true" />
           <h2 className="text-lg font-bold text-not-yet">Who can legally help you</h2>
         </div>
-        <p className="text-base text-pw-navy leading-relaxed">
+        <p className="text-base text-navy leading-relaxed">
           Only lawyers and DOJ-accredited representatives can give immigration legal advice. Notarios and
           &ldquo;immigration consultants&rdquo; cannot.
         </p>

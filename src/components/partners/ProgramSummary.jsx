@@ -11,7 +11,7 @@ function Stat({ value, label, note }) {
     <RaisedCard padding="p-4">
       <p className="font-display text-[44px] leading-none">{value}</p>
       <p className="mt-1 text-base font-bold">{label}</p>
-      {note && <p className="text-sm text-pw-muted">{note}</p>}
+      {note && <p className="text-sm text-muted">{note}</p>}
     </RaisedCard>
   );
 }
@@ -36,18 +36,18 @@ export function ProgramTotals({ totals }) {
 
       <RaisedCard padding="p-4 sm:p-5">
         <h3 className="text-lg font-bold">Quick check levels</h3>
-        <p className="text-sm text-pw-muted mb-3">How many learners are at each level, by part of the interview.</p>
+        <p className="text-sm text-muted mb-3">How many learners are at each level, by part of the interview.</p>
         <div className="overflow-x-auto">
           <table className="w-full text-base">
             <thead>
-              <tr className="text-left text-sm text-pw-muted">
+              <tr className="text-left text-sm text-muted">
                 <th scope="col" className="py-2 pe-3 font-semibold">Part</th>
                 {LEVELS.map((l) => <th key={l} scope="col" className="py-2 px-2 font-semibold text-right">{LEVEL_TEXT[l].label}</th>)}
               </tr>
             </thead>
             <tbody>
               {SKILLS.map((s) => (
-                <tr key={s} className="border-t border-pw-line">
+                <tr key={s} className="border-t border-line">
                   <th scope="row" className="py-2 pe-3 text-left font-semibold"><span className="inline-flex items-center gap-2"><SkillDot skill={s} /> {SKILL_LABEL[s]}</span></th>
                   {LEVELS.map((l) => <td key={l} className="py-2 px-2 text-right font-display text-xl">{totals.levels[s][l]}</td>)}
                 </tr>
@@ -64,16 +64,16 @@ export function SharedLearners({ learners }) {
   return (
     <section aria-labelledby="partner-shared" className="space-y-3">
       <h2 id="partner-shared" className="font-display text-[28px] leading-tight">
-        Learners who share their progress <span className="text-pw-muted">{learners.length}</span>
+        Learners who share their progress <span className="text-muted">{learners.length}</span>
       </h2>
-      <p className="text-base text-pw-muted">Each learner chooses this on their Me page and can turn it off.</p>
+      <p className="text-base text-muted">Each learner chooses this on their Me page and can turn it off.</p>
       <RaisedCard padding="px-5 py-2">
         {learners.length === 0
-          ? <p className="py-3 text-base text-pw-muted">No one shares their progress yet.</p>
+          ? <p className="py-3 text-base text-muted">No one shares their progress yet.</p>
           : (
             <ul>
               {learners.map((l) => (
-                <li key={l.id} className="py-3 border-b border-pw-line last:border-0 space-y-1.5">
+                <li key={l.id} className="py-3 border-b border-line last:border-0 space-y-1.5">
                   <p className="text-base font-bold break-words">{l.name}</p>
                   <ul className="flex flex-wrap gap-x-4 gap-y-1 text-sm">
                     {SKILLS.map((s) => (
@@ -82,7 +82,7 @@ export function SharedLearners({ learners }) {
                       </li>
                     ))}
                   </ul>
-                  <p className="text-sm text-pw-muted">
+                  <p className="text-sm text-muted">
                     {[
                       `${l.lessonsCompleted} ${l.lessonsCompleted === 1 ? 'lesson' : 'lessons'} finished`,
                       l.stars != null ? `${l.stars} ${l.stars === 1 ? 'star' : 'stars'}` : null,

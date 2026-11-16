@@ -4,7 +4,7 @@
 // values there, not here.
 const plugin = require('tailwindcss/plugin');
 const {
-	COLORS, HOVER, ALIASES, PW_ALIASES, FONT_STACK, TYPE, RADIUS, SIZES,
+	COLORS, HOVER, FONT_STACK, TYPE, RADIUS, SIZES,
 } = require('./src/design/tokens.js');
 
 const ALL = { ...COLORS, ...HOVER };
@@ -86,7 +86,6 @@ const SHADCN_DARK = {
 };
 const vars = (map) => Object.fromEntries(Object.entries(map).map(([k, name]) => [`--${k}`, hsl(ALL[name])]));
 
-const resolve = (map) => Object.fromEntries(Object.entries(map).map(([k, name]) => [k, ALL[name]]));
 const typeSize = ([size, line]) => [px(size), { lineHeight: px(line) }];
 
 module.exports = {
@@ -150,8 +149,6 @@ module.exports = {
 			colors: {
 				...COLORS,
 				...HOVER,
-				...resolve(ALIASES),
-				pw: resolve(PW_ALIASES),
 				muted: {
 					DEFAULT: COLORS.muted,
 					foreground: 'hsl(var(--muted-foreground))',

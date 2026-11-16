@@ -18,7 +18,7 @@ import { splitOfficialAnswers } from '@/lib/practiceChecks';
 import { officeholderAnswerFor } from '@/lib/officeholderQuestions';
 import { awardBadges } from '@/lib/awardBadges';
 
-const linkClass = 'min-h-[52px] w-full rounded-2xl font-bold text-lg inline-flex items-center justify-center px-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2';
+const linkClass = 'min-h-[52px] w-full rounded-2xl font-bold text-lg inline-flex items-center justify-center px-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2';
 
 const say = (t, language) => ({ en: t.en, mine: language === 'es' ? t.es : null });
 
@@ -46,11 +46,11 @@ const whenLabel = (days) => (days <= 0 ? 'Again soon' : days === 1 ? 'Next check
 function SignInMessage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-[50vh] text-center space-y-4 px-4">
-      <div className="w-20 h-20 rounded-card bg-pw-blue-soft flex items-center justify-center" aria-hidden="true">
-        <CalendarCheck className="w-10 h-10 text-pw-blue-ink" />
+      <div className="w-20 h-20 rounded-card bg-tint flex items-center justify-center" aria-hidden="true">
+        <CalendarCheck className="w-10 h-10 text-navy" />
       </div>
-      <h2 className="text-[28px] font-display font-normal text-pw-navy">Sign in to review civics</h2>
-      <p className="text-base text-pw-muted">Questions you learned come back when it&apos;s time to review them.</p>
+      <h2 className="text-[28px] font-display font-normal text-navy">Sign in to review civics</h2>
+      <p className="text-base text-muted">Questions you learned come back when it&apos;s time to review them.</p>
     </div>
   );
 }
@@ -121,9 +121,9 @@ export default function ReviewCivics() {
     }
   };
 
-  if (user === undefined || !loaded) return <Loader2 className="w-6 h-6 animate-spin mx-auto mt-16 text-pw-navy" />;
+  if (user === undefined || !loaded) return <Loader2 className="w-6 h-6 animate-spin mx-auto mt-16 text-navy" />;
   if (!user) return <SignInMessage />;
-  if (!lesson) return <Loader2 className="w-6 h-6 animate-spin mx-auto mt-16 text-pw-navy" />;
+  if (!lesson) return <Loader2 className="w-6 h-6 animate-spin mx-auto mt-16 text-navy" />;
 
   if (stage === 'lesson') {
     return (
@@ -143,8 +143,8 @@ export default function ReviewCivics() {
   const graded = results.filter((r) => !r.ungraded).length;
 
   return (
-    <div className="max-w-xl mx-auto space-y-5 text-pw-navy">
-      <div className="rounded-card bg-pw-blue-soft px-4 pt-4 pb-5">
+    <div className="max-w-xl mx-auto space-y-5 text-navy">
+      <div className="rounded-card bg-tint px-4 pt-4 pb-5">
         <TopicArt name={art} />
         <Tag tone="teal" className="mt-2">
           {stage === 'done' ? 'Your results' : due.length ? `${due.length} to review` : 'All caught up'}
@@ -158,8 +158,8 @@ export default function ReviewCivics() {
           <PrimaryButton large className="w-full" onClick={() => { setStage('lesson'); window.scrollTo({ top: 0 }); }}>
             Start
           </PrimaryButton>
-          <p className="text-sm text-pw-muted">We save only your scores and when to review. Your voice and your answers are not saved.</p>
-          <Link to="/" className={`${linkClass} text-base min-h-[44px] hover:bg-pw-soft`}>Not now</Link>
+          <p className="text-sm text-muted">We save only your scores and when to review. Your voice and your answers are not saved.</p>
+          <Link to="/" className={`${linkClass} text-base min-h-[44px] hover:bg-tint`}>Not now</Link>
         </>
       )}
 
@@ -167,12 +167,12 @@ export default function ReviewCivics() {
         <>
           <TutorMessage profile={profile} language={language} {...say(LINES.nothingDue, language)} />
           {nextDate && (
-            <p className="text-base text-pw-muted">
+            <p className="text-base text-muted">
               Your next review: {nextDate.toLocaleDateString(language === 'en' ? 'en-US' : language, { weekday: 'long', month: 'long', day: 'numeric' })}.
             </p>
           )}
-          <Link to="/learn" className={`${linkClass} bg-pw-navy text-white hover:bg-pw-navy-deep`}>Learn a new question</Link>
-          <Link to="/" className={`${linkClass} text-base min-h-[44px] hover:bg-pw-soft`}>Back to Today</Link>
+          <Link to="/learn" className={`${linkClass} bg-navy text-white hover:bg-navy-deep`}>Learn a new question</Link>
+          <Link to="/" className={`${linkClass} text-base min-h-[44px] hover:bg-tint`}>Back to Today</Link>
         </>
       )}
 
@@ -193,22 +193,22 @@ export default function ReviewCivics() {
                   </Tag>
                   )}
                   <p className="text-lg font-extrabold leading-snug mt-3">{question.question}</p>
-                  {heard && <p className="mt-2 text-pw-muted">You said: <span className="font-medium">“{heard}”</span></p>}
+                  {heard && <p className="mt-2 text-muted">You said: <span className="font-medium">“{heard}”</span></p>}
                   <Eyebrow className="mt-4 mb-2">Accepted answers</Eyebrow>
                   <ul className="space-y-1">
                     {(officeholder ? officeholder.accepted : splitOfficialAnswers(question.answer)).map((a) => <li key={a} className="font-bold">{a}</li>)}
                   </ul>
                   <OfficeholderNote answer={officeholder} graded={false} className="mt-2" />
-                  {next && <p className="text-sm text-pw-muted mt-3">{whenLabel(next.days)}</p>}
+                  {next && <p className="text-sm text-muted mt-3">{whenLabel(next.days)}</p>}
                 </RaisedCard>
               </li>
               );
             })}
           </ul>
-          <Link to="/" aria-disabled={saving} className={`${linkClass} bg-pw-navy text-white hover:bg-pw-navy-deep ${saving ? 'pointer-events-none opacity-60' : ''}`}>
+          <Link to="/" aria-disabled={saving} className={`${linkClass} bg-navy text-white hover:bg-navy-deep ${saving ? 'pointer-events-none opacity-60' : ''}`}>
             {saving ? <Loader2 className="w-5 h-5 animate-spin" aria-label="Saving" /> : 'Back to Today'}
           </Link>
-          <Link to="/learn" className={`${linkClass} text-base min-h-[44px] hover:bg-pw-soft`}>Learn a new question</Link>
+          <Link to="/learn" className={`${linkClass} text-base min-h-[44px] hover:bg-tint`}>Learn a new question</Link>
         </>
       )}
     </div>

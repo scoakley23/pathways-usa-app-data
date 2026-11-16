@@ -19,12 +19,12 @@ import { BADGES } from '@/lib/badges';
 
 // Names, descriptions and rules live in src/lib/badges.js; this adds the look.
 const BADGE_LOOK = {
-  first_step: { icon: Star, color: "text-pw-blue-ink bg-pw-blue-soft border-pw-blue-soft" },
-  ten_right: { icon: CheckCircle2, color: "text-ink bg-sand border-sand" },
-  fifty_right: { icon: ListChecks, color: "text-pw-navy bg-pw-soft border-pw-soft" },
-  scholar: { icon: BookOpen, color: "text-pw-blue-ink bg-pw-blue-soft border-pw-blue-soft" },
-  full_marks: { icon: Target, color: "text-pw-green-ink bg-pw-green-soft border-pw-green-soft" },
-  points_1000: { icon: Mountain, color: "text-pw-teal-ink bg-pw-teal-soft border-pw-teal-soft" },
+  first_step: { icon: Star, color: "text-navy bg-tint border-tint" },
+  ten_right: { icon: CheckCircle2, color: "text-navy bg-tint border-tint" },
+  fifty_right: { icon: ListChecks, color: "text-navy bg-tint border-tint" },
+  scholar: { icon: BookOpen, color: "text-navy bg-tint border-tint" },
+  full_marks: { icon: Target, color: "text-correct bg-correct-bg border-correct-bg" },
+  points_1000: { icon: Mountain, color: "text-navy bg-tint border-tint" },
 };
 
 const BADGES_CONFIG = Object.fromEntries(BADGES.map((b) => [b.id, { ...b, ...BADGE_LOOK[b.id] }]));
@@ -45,12 +45,12 @@ export default function BadgesDisplay({ earnedBadges = [] }) {
                   className={`relative p-4 rounded-2xl border flex flex-col items-center justify-center gap-3 text-center transition-all aspect-square
                     ${isEarned 
                       ? badge.color 
-                      : 'bg-pw-soft border-pw-line text-pw-muted'
+                      : 'bg-tint border-line text-muted'
                     }`}
                 >
                   {!isEarned && (
                     <div className="absolute top-3 end-3 z-10">
-                      <Lock className="w-4 h-4 text-pw-muted" aria-label="Locked" />
+                      <Lock className="w-4 h-4 text-muted" aria-label="Locked" />
                     </div>
                   )}
                   
@@ -61,9 +61,9 @@ export default function BadgesDisplay({ earnedBadges = [] }) {
                 </motion.div>
               </TooltipTrigger>
               <TooltipContent>
-                <p className="font-bold text-pw-navy">{badge.name}</p>
-                <p className="text-sm text-pw-muted">{badge.description}</p>
-                {!isEarned && <p className="text-sm text-ink-2 mt-1 font-bold">Locked</p>}
+                <p className="font-bold text-navy">{badge.name}</p>
+                <p className="text-sm text-muted">{badge.description}</p>
+                {!isEarned && <p className="text-sm text-muted mt-1 font-bold">Locked</p>}
               </TooltipContent>
             </Tooltip>
           );

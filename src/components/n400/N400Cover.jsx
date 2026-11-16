@@ -35,9 +35,9 @@ export default function N400Cover({ sections, completedIds = [], countFor, onSel
           </span>
           <span className="min-w-0 flex-1">
             <span className="block text-lg font-bold leading-tight">Practice with {tutorName || 'Amio'}</span>
-            <span className="mt-1 block text-base text-ink-2">Say what each question asks. Your answers are never saved.</span>
+            <span className="mt-1 block text-base text-muted">Say what each question asks. Your answers are never saved.</span>
           </span>
-          <ArrowRight className="w-5 h-5 shrink-0 mt-1 text-ink-2 rtl:rotate-180" aria-hidden="true" />
+          <ArrowRight className="w-5 h-5 shrink-0 mt-1 text-muted rtl:rotate-180" aria-hidden="true" />
         </span>
       </Link>
 
@@ -49,13 +49,13 @@ export default function N400Cover({ sections, completedIds = [], countFor, onSel
           <AlertTriangle className="w-6 h-6 shrink-0 text-not-yet" aria-hidden="true" />
           <span className="min-w-0 flex-1">
             <span className="block text-lg font-bold leading-tight">Talk to a lawyer first</span>
-            <span className="mt-1 block text-base text-ink-2">If any answer might not be &ldquo;no,&rdquo; get free legal help before you file.</span>
+            <span className="mt-1 block text-base text-muted">If any answer might not be &ldquo;no,&rdquo; get free legal help before you file.</span>
           </span>
-          <ArrowRight className="w-5 h-5 shrink-0 mt-1 text-ink-2 rtl:rotate-180" aria-hidden="true" />
+          <ArrowRight className="w-5 h-5 shrink-0 mt-1 text-muted rtl:rotate-180" aria-hidden="true" />
         </span>
       </Link>
 
-      <p className="text-center text-[15px] text-ink-2">We never save your answers to the N-400.</p>
+      <p className="text-center text-[15px] text-muted">We never save your answers to the N-400.</p>
     </div>
   );
 }

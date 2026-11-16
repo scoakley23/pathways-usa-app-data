@@ -1,7 +1,6 @@
+// Base44's built-in integrations. No file uploads: learners' files and
+// audio are never uploaded (Prompt 13 removed the unused UploadFile export).
 import { base44 } from './base44Client';
-
-
-
 
 export const Core = base44.integrations.Core;
 
@@ -11,14 +10,4 @@ export const SendEmail = base44.integrations.Core.SendEmail;
 
 export const SendSMS = base44.integrations.Core.SendSMS;
 
-export const UploadFile = base44.integrations.Core.UploadFile;
-
 export const GenerateImage = base44.integrations.Core.GenerateImage;
-
-export const ExtractDataFromUploadedFile = base44.integrations.Core.ExtractDataFromUploadedFile;
-
-
-
-
-
-

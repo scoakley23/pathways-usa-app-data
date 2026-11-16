@@ -22,10 +22,10 @@ const day = (iso) => (iso ? new Date(iso).toLocaleDateString(undefined, { month:
 
 function MemberRow({ member, busy, onSet }) {
   return (
-    <li className="flex flex-col sm:flex-row sm:items-center gap-3 py-3 border-b border-pw-line last:border-0">
+    <li className="flex flex-col sm:flex-row sm:items-center gap-3 py-3 border-b border-line last:border-0">
       <div className="min-w-0 flex-1">
         <p className="text-base font-bold break-words">{member.name}</p>
-        {member.since && <p className="text-sm text-pw-muted">Joined {day(member.since)}</p>}
+        {member.since && <p className="text-sm text-muted">Joined {day(member.since)}</p>}
       </div>
       <div className="flex gap-2 shrink-0">
         {member.status === 'pending' && (
@@ -84,7 +84,7 @@ export default function Partner() {
   };
 
   if (programs === null) {
-    return <div className="flex justify-center py-20"><Loader2 className="w-8 h-8 animate-spin text-pw-navy" aria-label="Loading" /></div>;
+    return <div className="flex justify-center py-20"><Loader2 className="w-8 h-8 animate-spin text-navy" aria-label="Loading" /></div>;
   }
 
   if (programs.length === 0) {
@@ -92,7 +92,7 @@ export default function Partner() {
       <div>
         <PageTop tag="Partner programs" title="For partner programs" />
         <CreamSheet>
-        <div className="max-w-2xl mx-auto space-y-6 pb-12 text-ink">
+        <div className="max-w-2xl mx-auto space-y-6 pb-12 text-navy">
         <RaisedCard>
           <p className="text-base">This page is for the staff of programs that work with Pathways. If you work with one and can't see your learners, write to the Pathways team.</p>
         </RaisedCard>
@@ -113,21 +113,21 @@ export default function Partner() {
         subtitle="How your learners are doing, and who said they study with you."
       />
       <CreamSheet>
-      <div className="max-w-3xl mx-auto space-y-6 pb-12 text-ink">
+      <div className="max-w-3xl mx-auto space-y-6 pb-12 text-navy">
 
 
       {programs.length > 1 && (
         <div className="flex flex-wrap gap-2" role="group" aria-label="Program">
           {programs.map((p) => (
-            <PillButton key={p.code} aria-pressed={p.code === code} onClick={() => setCode(p.code)} className={p.code === code ? 'bg-pw-navy text-white' : 'bg-white border border-pw-line'}>
+            <PillButton key={p.code} aria-pressed={p.code === code} onClick={() => setCode(p.code)} className={p.code === code ? 'bg-navy text-white' : 'bg-white border border-line'}>
               {p.name}
             </PillButton>
           ))}
         </div>
       )}
 
-      {error && <p role="alert" className="text-base font-semibold text-pw-red-ink">Couldn't load your learners. Please try again.</p>}
-      {!members && !error && <div className="flex justify-center py-10"><Loader2 className="w-6 h-6 animate-spin text-pw-muted" aria-label="Loading" /></div>}
+      {error && <p role="alert" className="text-base font-semibold text-not-yet">Couldn't load your learners. Please try again.</p>}
+      {!members && !error && <div className="flex justify-center py-10"><Loader2 className="w-6 h-6 animate-spin text-muted" aria-label="Loading" /></div>}
 
       {summary && <ProgramTotals totals={summary.totals} />}
       {summary && program.shareLearners && <SharedLearners learners={summary.learners} />}
@@ -135,7 +135,7 @@ export default function Partner() {
       {members && (
         <div className="space-y-1">
           <h2 className="font-display text-[28px] leading-tight">Who said they study with you</h2>
-          <p className="text-base text-pw-muted">Confirm the ones you know, and mark anyone else “Not ours”. Only confirmed learners count above.</p>
+          <p className="text-base text-muted">Confirm the ones you know, and mark anyone else “Not ours”. Only confirmed learners count above.</p>
         </div>
       )}
 
@@ -144,18 +144,18 @@ export default function Partner() {
         return (
           <section key={status} aria-labelledby={`partner-${status}`} className="space-y-2">
             <h3 id={`partner-${status}`} className="text-xl font-bold">
-              {title} <span className="font-display font-normal text-pw-muted">{list.length}</span>
+              {title} <span className="font-display font-normal text-muted">{list.length}</span>
             </h3>
             <RaisedCard padding="px-5 py-2">
               {list.length === 0
-                ? <p className="py-3 text-base text-pw-muted">{empty}</p>
+                ? <p className="py-3 text-base text-muted">{empty}</p>
                 : <ul>{list.map((m) => <MemberRow key={m.id} member={m} busy={busyId === m.id} onSet={onSet} />)}</ul>}
             </RaisedCard>
           </section>
         );
       })}
 
-      <p className="text-base text-pw-muted">
+      <p className="text-base text-muted">
         You see the name each learner gave you, or their email. Totals count confirmed learners only. Pathways never shows programs a learner's answers, their chats with the AI tutor, their check-in answers, or anything about their case.
       </p>
       </div>

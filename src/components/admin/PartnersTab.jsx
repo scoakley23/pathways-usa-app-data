@@ -11,8 +11,8 @@ import { normalizeCode, normalizeEmail } from '@/lib/partners';
 // Me. Staff emails can open /Partner for their program. Turn a program
 // off instead of deleting it.
 
-const LABEL = 'text-base font-bold text-pw-navy block';
-const FIELD = 'w-full min-h-11 rounded-xl border-2 border-pw-line bg-white px-3 text-base text-pw-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy';
+const LABEL = 'text-base font-bold text-navy block';
+const FIELD = 'w-full min-h-11 rounded-xl border-2 border-line bg-white px-3 text-base text-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy';
 const BLANK = { name: '', code: '', staff: '', share_learners: false, active: true };
 
 const parseEmails = (text) => [...new Set(String(text || '').split(/[\s,;]+/).map(normalizeEmail).filter((e) => e.includes('@')))];
@@ -61,12 +61,12 @@ export default function PartnersTab() {
     navigator.clipboard?.writeText(shareLink(code)).then(() => toast.success('Link copied.'), () => toast.error("Couldn't copy."));
   };
 
-  if (!partners) return <div className="flex justify-center py-10"><Loader2 className="w-6 h-6 animate-spin text-pw-muted" aria-label="Loading" /></div>;
+  if (!partners) return <div className="flex justify-center py-10"><Loader2 className="w-6 h-6 animate-spin text-muted" aria-label="Loading" /></div>;
 
   return (
-    <div className="space-y-4 text-pw-navy">
+    <div className="space-y-4 text-navy">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <p className="text-base text-pw-muted max-w-2xl">Learners pick these programs in Getting started and on Me. Staff confirm their learners at /Partner.</p>
+        <p className="text-base text-muted max-w-2xl">Learners pick these programs in Getting started and on Me. Staff confirm their learners at /Partner.</p>
         {editing === null && <PrimaryButton onClick={() => startEdit(null)}><Plus className="w-4 h-4" aria-hidden="true" /> Add a program</PrimaryButton>}
       </div>
 
@@ -85,20 +85,20 @@ export default function PartnersTab() {
             </div>
             <div className="space-y-1.5">
               <label htmlFor="partner-staff" className={LABEL}>Staff emails</label>
-              <p id="partner-staff-help" className="text-sm text-pw-muted">One per line. These people can open /Partner and confirm learners.</p>
+              <p id="partner-staff-help" className="text-sm text-muted">One per line. These people can open /Partner and confirm learners.</p>
               <textarea id="partner-staff" aria-describedby="partner-staff-help" rows={3} className={`${FIELD} py-2`} value={form.staff} onChange={(e) => setForm({ ...form, staff: e.target.value })} />
             </div>
             <div className="flex items-start justify-between gap-4">
               <div>
                 <label htmlFor="partner-share" className={LABEL}>Learners may share their own progress</label>
-                <p className="text-sm text-pw-muted">Off unless this program asked for it. Each learner still chooses.</p>
+                <p className="text-sm text-muted">Off unless this program asked for it. Each learner still chooses.</p>
               </div>
               <Switch id="partner-share" checked={form.share_learners} onCheckedChange={(v) => setForm({ ...form, share_learners: v })} className="mt-1 shrink-0" />
             </div>
             <div className="flex items-start justify-between gap-4">
               <div>
                 <label htmlFor="partner-active" className={LABEL}>Shown to learners</label>
-                <p className="text-sm text-pw-muted">Turn off instead of deleting.</p>
+                <p className="text-sm text-muted">Turn off instead of deleting.</p>
               </div>
               <Switch id="partner-active" checked={form.active} onCheckedChange={(v) => setForm({ ...form, active: v })} className="mt-1 shrink-0" />
             </div>
@@ -110,7 +110,7 @@ export default function PartnersTab() {
         </RaisedCard>
       )}
 
-      {partners.length === 0 && editing === null && <RaisedCard><p className="text-base text-pw-muted">No programs yet.</p></RaisedCard>}
+      {partners.length === 0 && editing === null && <RaisedCard><p className="text-base text-muted">No programs yet.</p></RaisedCard>}
 
       <ul className="space-y-3">
         {partners.map((p) => (
@@ -123,7 +123,7 @@ export default function PartnersTab() {
                   {p.active === false && <Tag>Hidden</Tag>}
                   {p.share_learners && <Tag>Learners may share</Tag>}
                 </div>
-                <p className="text-sm text-pw-muted break-all">{(p.staff_emails || []).length} staff · {shareLink(p.code)}</p>
+                <p className="text-sm text-muted break-all">{(p.staff_emails || []).length} staff · {shareLink(p.code)}</p>
               </div>
               <div className="flex gap-2 shrink-0">
                 <SecondaryButton onClick={() => copy(p.code)}><Copy className="w-4 h-4" aria-hidden="true" /> Copy link</SecondaryButton>

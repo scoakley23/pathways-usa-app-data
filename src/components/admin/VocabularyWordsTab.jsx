@@ -31,24 +31,24 @@ export default function VocabularyWordsTab() {
   );
 
   if (isLoading) {
-    return <div className="flex justify-center py-12"><Loader2 className="w-8 h-8 animate-spin text-pw-navy" /></div>;
+    return <div className="flex justify-center py-12"><Loader2 className="w-8 h-8 animate-spin text-navy" /></div>;
   }
 
   return (
     <div className="space-y-4">
       <div className="flex flex-col sm:flex-row justify-between gap-3">
         <div className="relative flex-1 max-w-sm">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-pw-muted" aria-hidden="true" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted" aria-hidden="true" />
           <Input type="search" placeholder="Search words..." className="pl-9" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
         </div>
         <Button onClick={() => { setEditingItem(null); setIsDialogOpen(true); }} className="w-full sm:w-auto">
           <Plus className="w-4 h-4" /> Add Word
         </Button>
       </div>
-      <div className="border border-pw-line rounded-card bg-white shadow-raised overflow-hidden">
-        <Table className="text-base [&_th]:px-2 [&_td]:px-2 sm:[&_th]:px-4 sm:[&_td]:px-4 [&_th]:text-sm [&_th]:font-bold [&_th]:text-pw-muted">
+      <div className="border border-line rounded-card bg-white shadow-raised overflow-hidden">
+        <Table className="text-base [&_th]:px-2 [&_td]:px-2 sm:[&_th]:px-4 sm:[&_td]:px-4 [&_th]:text-sm [&_th]:font-bold [&_th]:text-muted">
           <TableHeader>
-            <TableRow className="bg-pw-soft hover:bg-pw-soft">
+            <TableRow className="bg-tint hover:bg-tint">
               <TableHead className="w-[20%]">Word</TableHead>
               <TableHead className="w-[20%]">Category</TableHead>
               <TableHead className="w-[50%]">Definition</TableHead>
@@ -57,13 +57,13 @@ export default function VocabularyWordsTab() {
           </TableHeader>
           <TableBody>
             {filtered.length === 0 ? (
-              <TableRow><TableCell colSpan={4} className="text-center h-32 text-pw-muted">No vocabulary words found.</TableCell></TableRow>
+              <TableRow><TableCell colSpan={4} className="text-center h-32 text-muted">No vocabulary words found.</TableCell></TableRow>
             ) : (
               filtered.map((w) => (
                 <TableRow key={w.id}>
-                  <TableCell className="font-semibold text-pw-navy">{w.word}</TableCell>
+                  <TableCell className="font-semibold text-navy">{w.word}</TableCell>
                   <TableCell><Badge variant="secondary" className="font-semibold whitespace-nowrap">{w.category || "—"}</Badge></TableCell>
-                  <TableCell className="text-pw-muted">{w.definition || "—"}</TableCell>
+                  <TableCell className="text-muted">{w.definition || "—"}</TableCell>
                   <TableCell className="text-right">
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
@@ -72,7 +72,7 @@ export default function VocabularyWordsTab() {
                       <DropdownMenuContent align="end">
                         <DropdownMenuLabel>Actions</DropdownMenuLabel>
                         <DropdownMenuItem onClick={() => { setEditingItem(w); setIsDialogOpen(true); }}><Pencil className="mr-2 h-4 w-4" /> Edit</DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => deleteItem(w.id)} className="text-pw-red-ink focus:text-pw-red-ink"><Trash2 className="mr-2 h-4 w-4" /> Delete</DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => deleteItem(w.id)} className="text-not-yet focus:text-not-yet"><Trash2 className="mr-2 h-4 w-4" /> Delete</DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>
                   </TableCell>

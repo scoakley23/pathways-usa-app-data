@@ -18,7 +18,7 @@
 | Getting started answers | `localStorage` `pathways_stage`, `civicsVersion`, `pathways_onboarded` | broad stage (preparing / applied / interview / learning), civics test version (2008 / 2025), done flag; never a date or case detail | this device only |
 | Read out loud setting | `localStorage` `pathways_auto_read` | on / off | this device only |
 | Text size, cached translations of fixed text | `localStorage` `pathways_text_size`, `pathways_*_tr_*`, `pathways_tutor_lines_*`, `pathways_today_*`, `pathways_ask_tutor_*` | settings; translated app text (no learner text) | this device only |
-| Ask Vía questions and answers | `AIStudyLog` (Base44, existing entity) | learner's question, the answer, language, email. **Declined case/eligibility questions are not saved** | learner (Study History); Pathways staff. Not tutors |
+| Ask Amio questions and answers | `AIStudyLog` (Base44, existing entity) | learner's question, the answer, language, email. **Declined case/eligibility questions are not saved** | learner (Study History); Pathways staff. Not tutors |
 | Messages to a tutor | `Message` (Base44, existing entity) | message text | learner, that tutor; Pathways staff |
 | "Talk to a person" form | email to `SUPPORT_EMAIL` (not stored in the app) | message + learner's account email (for the reply) | Pathways team mailbox |
 
@@ -38,8 +38,8 @@ Searched all `InvokeLLM`, `SendEmail`, `UploadFile`, entity `create/update`, and
 
 | Concern | Stored? | Sent to the AI? | Notes |
 | --- | --- | --- | --- |
-| Immigration status, A-number, case details | No field stores them | Only if a learner types them into Ask Vía | Privacy note above the chat; email/phone numbers are stripped before sending; case questions are declined (local keyword check before the AI, plus the AI flags them) and not saved. Free text in **Lesson notes** and **tutor messages** could contain anything the learner types (stored, not sent to AI) |
-| Address / zip | Not stored (only the state and congressional district are saved; names come from `src/data/officeholders.json`) | Zip code, and a street address **only when the zip spans several districts**, for the lookup; the AI returns only the state and district | Matches the AI Policy: used once, cleared right after, never saved. The screen says "Your address is used only for this lookup and is never saved." Ask Vía gets the saved state and district (no address) with the official list |
+| Immigration status, A-number, case details | No field stores them | Only if a learner types them into Ask Amio | Privacy note above the chat; email/phone numbers are stripped before sending; case questions are declined (local keyword check before the AI, plus the AI flags them) and not saved. Free text in **Lesson notes** and **tutor messages** could contain anything the learner types (stored, not sent to AI) |
+| Address / zip | Not stored (only the state and congressional district are saved; names come from `src/data/officeholders.json`) | Zip code, and a street address **only when the zip spans several districts**, for the lookup; the AI returns only the state and district | Matches the AI Policy: used once, cleared right after, never saved. The screen says "Your address is used only for this lookup and is never saved." Ask Amio gets the saved state and district (no address) with the official list |
 | Filing date, field office | Never asked or stored | No | The plan asks "when is your interview or when do you hope to be ready" — month only, device only; never asks which office. Getting started asks only whether Form N-400 was sent before or after October 20, 2025, and keeps just the civics test version (2008 / 2025) on the device |
 | N-400 answers | Never collected | No | The guide explains questions and shows blank form pages; N-400 practice checks understanding only; only section completion is saved |
 | Audio | No (reading audio upload removed) | No | Mock interview opens the microphone only to draw a live level meter and for the browser's own speech-to-text; nothing is recorded |
@@ -57,7 +57,7 @@ This line **is not on the home screen yet**. Checked against the code, before ad
 
 - **Free / No ads:** no payment or ads code is used (`@stripe/*` packages are installed but not imported anywhere in `src`). ✔
 - **We never record your voice:** true now — reading audio upload was removed; the interview opens the mic only for a live level meter; speech-to-text runs in the browser. ✔ (Suggested wording for accuracy: "We never record or keep your voice.")
-- **We never ask about your case:** true — the tutor never asks; mock interview personal/morals questions, Interview Day and N-400 coaching ask the learner only to say what a question means, never to answer it; the plan asks only for a month, on the device; Ask Vía declines case questions. The representative lookup may ask for a street address only to find elected officials, and doesn't save it.
+- **We never ask about your case:** true — the tutor never asks; mock interview personal/morals questions, Interview Day and N-400 coaching ask the learner only to say what a question means, never to answer it; the plan asks only for a month, on the device; Ask Amio declines case questions. The representative lookup may ask for a street address only to find elected officials, and doesn't save it.
 
 **Conclusion:** the line is accurate. The representative lookup asks for an address only to find elected officials (not about the learner's case), uses it once and doesn't save it. It can be added to the home screen.
 
@@ -130,7 +130,7 @@ Check-ins at 3, 6 and 12 months, a readiness question before the Mock Interview,
 
 ## Human tutor accounts removed (2026-10-27)
 
-Pathways now focuses on learners studying with Vía. Nobody was using the human-tutor side, so it was removed:
+Pathways now focuses on learners studying with the AI tutor (now Amio). Nobody was using the human-tutor side, so it was removed:
 
 - **Gone from the app:** the role picker at sign-up (everyone is a learner; the first sign-in makes the `PublicProfile` and opens Getting started), the Tutor Portal and My Classroom (`/Tutor`), the Messages page, tutor chat in "Talk to a person" (now the team email form only), "From your tutor" assignments on Practice, and the tutor dashboard on Profile.
 - **Gone from Base44:** the `TutorRelationship`, `Assignment` and `Message` entities, the `tutor-link` and `student-progress` functions, `PublicProfile.invite_code` / `account_type`, and `UserProgress.assignment_id`.
@@ -139,7 +139,7 @@ Pathways now focuses on learners studying with Vía. Nobody was using the human-
 ## Partner programs (2026-10-27)
 
 - **New data:** `ProgramMembership` (Base44): the learner's email, the partner code they picked, status (pending / confirmed / removed), an optional name (a name only: `cleanName()` drops anything with "@" or 3+ digits), and a share choice (only where the program allows it). Created and changed only by `base44/functions/partner`; the learner can read and delete their own; Delete my data removes it. `Partner` (admin-only): program name, code, staff emails, switches.
-- **Who sees it:** the program's staff, through `partner` → `members`, see name-or-email and status for learners who picked their program only. The function never reads `OutcomeCheckIn`, `AIStudyLog`, `LessonNotes`, `InterviewSession` or `UserProgress` (`src/lib/partners.test.js`, plus the existing pilot and Ask Vía privacy tests over every function).
+- **Who sees it:** the program's staff, through `partner` → `members`, see name-or-email and status for learners who picked their program only. The function never reads `OutcomeCheckIn`, `AIStudyLog`, `LessonNotes`, `InterviewSession` or `UserProgress` (`src/lib/partners.test.js`, plus the existing pilot and Ask Amio privacy tests over every function).
 - **Removed:** the free-typed program code on "Help us improve Pathways" and `User.program_code`; `?code=` links were replaced by `?program=CODE`, kept in `localStorage['pathways_program']` until Getting started.
 - **Not sent to the AI.** Partner names are shown as written; only the fixed question text is translated.
 - **Totals (step 3):** `partner` → `summary` reads, for the program's confirmed learners only, `User.skill_levels`, finished `LessonProgress` and `N400SectionProgress` rows, and `ActivityDay` dates. Staff get exact counts (`programSummary()`); activity dates are only counted (7 and 30 days), never shown per learner. Per-learner rows exist only where the program has `share_learners` on and the learner turned on "Share my progress", and hold only the name, quick check levels and two counts (`src/lib/partners.test.js`). `src/lib/pilotPrivacy.test.js` now allows `ActivityDay` in the `partner` function only; every other pilot field and entity stays out of all functions.

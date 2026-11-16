@@ -50,13 +50,13 @@ export default function PilotAdminTool({ currentUser }) {
     <RaisedCard className="space-y-6">
       <div className="space-y-2">
         <Eyebrow>Pilot</Eyebrow>
-        <h2 className="font-display text-[28px] leading-tight text-pw-navy">Check-in reminders</h2>
-        <p className="text-base text-pw-muted">
+        <h2 className="font-display text-[28px] leading-tight text-navy">Check-in reminders</h2>
+        <p className="text-base text-muted">
           Emails learners who turned reminders on and have a 3-, 6- or 12-month check-in open now (30 days from when it opens). Each learner gets one email per check-in.
           Press this once a week. Only counts are shown.
         </p>
       </div>
-      <Link to="/admin/pilot" className="inline-flex items-center gap-2 min-h-11 rounded-xl border-2 border-pw-navy bg-white px-4 text-base font-semibold text-pw-navy hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2">
+      <Link to="/admin/pilot" className="inline-flex items-center gap-2 min-h-11 rounded-xl border-2 border-navy bg-white px-4 text-base font-semibold text-navy hover:bg-tint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2">
         <BarChart3 className="w-4 h-4" aria-hidden="true" /> Open the pilot dashboard
       </Link>
       <div className="space-y-3">
@@ -65,20 +65,20 @@ export default function PilotAdminTool({ currentUser }) {
           Send due reminders
         </SecondaryButton>
         {result && (
-          <p role="status" className="text-base text-pw-navy">
+          <p role="status" className="text-base text-navy">
             Sent {result.sent}. Nothing due for {result.skipped}.{result.failed ? ` Failed: ${result.failed}.` : ''}
           </p>
         )}
       </div>
 
-      <div className="space-y-2 border-t border-pw-line pt-5">
-        <label htmlFor="pilot-test-months" className="text-lg font-bold text-pw-navy block">Testing: pretend I signed up…</label>
-        <p className="text-base text-pw-muted">Only changes your own admin account. 3, 6 or 12 opens that check-in today.</p>
+      <div className="space-y-2 border-t border-line pt-5">
+        <label htmlFor="pilot-test-months" className="text-lg font-bold text-navy block">Testing: pretend I signed up…</label>
+        <p className="text-base text-muted">Only changes your own admin account. 3, 6 or 12 opens that check-in today.</p>
         <select
           id="pilot-test-months"
           value={months}
           onChange={(e) => saveMonths(e.target.value)}
-          className="w-full sm:w-64 min-h-11 rounded-xl border-2 border-pw-line bg-white px-3 text-base text-pw-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
+          className="w-full sm:w-64 min-h-11 rounded-xl border-2 border-line bg-white px-3 text-base text-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
         >
           <option value="">My real sign-up date</option>
           {MONTH_CHOICES.map((n) => <option key={n} value={String(n)}>{n} months ago</option>)}

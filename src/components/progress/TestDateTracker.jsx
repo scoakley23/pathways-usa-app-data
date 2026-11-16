@@ -38,12 +38,12 @@ export default function TestDateTracker() {
   const daysLeft = date ? differenceInDays(date, new Date()) : null;
 
   return (
-    <div className="rounded-card bg-white border border-pw-line p-4 space-y-3 sm:min-w-[280px]">
+    <div className="rounded-card bg-white border border-line p-4 space-y-3 sm:min-w-[280px]">
       <div className="flex flex-wrap items-center gap-3">
         {date && (
           <div className="flex-1 min-w-[120px]">
-            <p className="text-xs text-pw-muted font-bold uppercase tracking-widest">Time Remaining</p>
-            <p className={`text-2xl font-extrabold ${daysLeft < 30 ? 'text-pw-red-ink' : 'text-pw-navy'}`}>
+            <p className="text-xs text-muted font-bold uppercase tracking-widest">Time Remaining</p>
+            <p className={`text-2xl font-extrabold ${daysLeft < 30 ? 'text-not-yet' : 'text-navy'}`}>
               {daysLeft > 0 ? `${daysLeft} Days` : daysLeft === 0 ? 'Today!' : 'Passed'}
             </p>
           </div>
@@ -55,7 +55,7 @@ export default function TestDateTracker() {
               variant={"outline"}
               className={cn(
                 "w-full sm:w-auto flex-1 justify-start text-left font-semibold",
-                !date && "text-pw-muted"
+                !date && "text-muted"
               )}
             >
               <CalendarIcon className="h-4 w-4" aria-hidden="true" />
@@ -72,7 +72,7 @@ export default function TestDateTracker() {
           </PopoverContent>
         </Popover>
       </div>
-      <p className="text-sm text-pw-muted">Your date stays on this phone. We don't save it.</p>
+      <p className="text-sm text-muted">Your date stays on this phone. We don't save it.</p>
     </div>
   );
 }

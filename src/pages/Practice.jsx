@@ -427,7 +427,7 @@ export default function Practice() {
   };
 
   if (mode === 'menu') {
-    const label = 'text-sm font-semibold text-ink';
+    const label = 'text-sm font-semibold text-navy';
     const levels = currentUser?.skill_levels || null;
     const startPart = (part) => {
       const run = PART_ROWS[part].run;
@@ -458,11 +458,11 @@ export default function Practice() {
 
         <CreamSheet>
           <div className="mx-auto max-w-5xl space-y-6 pb-8">
-            <p className="text-base text-ink-2">Pick a part and we start right away. Ten cards, about five minutes.</p>
+            <p className="text-base text-muted">Pick a part and we start right away. Ten cards, about five minutes.</p>
 
             {/* The four parts */}
             <Card padding="p-0">
-              <ul className="divide-y divide-card-line">
+              <ul className="divide-y divide-line">
                 {PRACTICE_PARTS.map((part) => {
                   const row = PART_ROWS[part];
                   const Icon = row.icon;
@@ -472,14 +472,14 @@ export default function Practice() {
                       <button
                         type="button"
                         onClick={() => startPart(part)}
-                        className="w-full flex items-center gap-4 px-4 py-4 min-h-[76px] text-start hover:bg-cream focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-navy first:rounded-t-card last:rounded-b-card"
+                        className="w-full flex items-center gap-4 px-4 py-4 min-h-[76px] text-start hover:bg-page focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-navy first:rounded-t-card last:rounded-b-card"
                       >
                         <span className="w-12 h-12 shrink-0 rounded-full bg-navy text-white grid place-items-center">
                           <Icon className="w-6 h-6" strokeWidth={2} aria-hidden="true" />
                         </span>
                         <span className="min-w-0 flex-1">
-                          <span className="block text-[17px] font-semibold text-ink">{row.label}</span>
-                          <span className="block text-base text-ink-2">{row.line}</span>
+                          <span className="block text-[17px] font-semibold text-navy">{row.label}</span>
+                          <span className="block text-base text-muted">{row.line}</span>
                         </span>
                         <span className="shrink-0 text-end text-sm">
                           {status === 'ready' ? (
@@ -487,7 +487,7 @@ export default function Practice() {
                               <Check className="w-4 h-4" strokeWidth={3} aria-hidden="true" /> Ready
                             </span>
                           ) : (
-                            <span className="text-ink-2">{status === 'not_checked' ? 'Not checked yet' : LEVELS[status].label}</span>
+                            <span className="text-muted">{status === 'not_checked' ? 'Not checked yet' : LEVELS[status].label}</span>
                           )}
                         </span>
                       </button>
@@ -499,7 +499,7 @@ export default function Practice() {
 
             {/* Vocabulary games (part of Writing) */}
             <section aria-labelledby="vocab" className="space-y-2">
-              <h2 id="vocab" className="text-label uppercase text-ink-label">Writing · Vocabulary games</h2>
+              <h2 id="vocab" className="text-label uppercase text-muted">Writing · Vocabulary games</h2>
               <div className="flex flex-wrap gap-2">
                 <Chip onClick={() => startSession('vocabulary', 'dictation')}><Mic className="w-4 h-4" aria-hidden="true" /> Word dictation</Chip>
                 <Chip onClick={() => startSession('vocabulary', 'flashcards')}><Sparkles className="w-4 h-4" aria-hidden="true" /> Flashcards</Chip>
@@ -510,11 +510,11 @@ export default function Practice() {
             {/* Mixed practice: the full run-through on Interview Day */}
             <Card padding="p-5" className="space-y-2">
               <Eyebrow>Mixed practice</Eyebrow>
-              <h2 className="font-display text-[22px] leading-tight text-ink">Interview Day</h2>
-              <p className="text-base text-ink-2 max-w-2xl">The whole interview, in order: the oath, the officer’s questions, reading, writing and civics. Nothing is saved.</p>
+              <h2 className="font-display text-[22px] leading-tight text-navy">Interview Day</h2>
+              <p className="text-base text-muted max-w-2xl">The whole interview, in order: the oath, the officer’s questions, reading, writing and civics. Nothing is saved.</p>
               <Link
                 to="/interview-day"
-                className="mt-2 inline-flex min-h-tap items-center gap-2 rounded-full border-2 border-navy px-5 text-base font-semibold text-ink hover:bg-sand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2"
+                className="mt-2 inline-flex min-h-tap items-center gap-2 rounded-full border-2 border-navy px-5 text-base font-semibold text-navy hover:bg-tint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2"
               >
                 Start the run-through <ArrowRight className="w-4 h-4 rtl:rotate-180" aria-hidden="true" />
               </Link>
@@ -524,11 +524,11 @@ export default function Practice() {
 
         {/* Settings: civics test version, difficulty, voice */}
         <Sheet open={settingsOpen} onOpenChange={setSettingsOpen}>
-          <SheetContent side="bottom" className="bg-pw-page max-h-[90vh] overflow-y-auto">
+          <SheetContent side="bottom" className="bg-page max-h-[90vh] overflow-y-auto">
             <SheetHeader>
-              <SheetTitle className="font-display font-normal text-[30px] text-pw-navy text-left">Practice settings</SheetTitle>
+              <SheetTitle className="font-display font-normal text-[30px] text-navy text-left">Practice settings</SheetTitle>
             </SheetHeader>
-            <div className="mx-auto max-w-lg space-y-5 py-4 text-pw-navy">
+            <div className="mx-auto max-w-lg space-y-5 py-4 text-navy">
               <div className="space-y-2">
                 <label className={label} htmlFor="civics-version">Civics test version</label>
                 <Select value={civicsVersion} onValueChange={(v) => { setCivicsVersion(v); try { localStorage.setItem('civicsVersion', v); } catch (e) { /* storage blocked */ } }}>
@@ -540,12 +540,12 @@ export default function Practice() {
                     <SelectItem value="2008">Applied before Oct 20, 2025? Choose 2008.</SelectItem>
                   </SelectContent>
                 </Select>
-                <p className="text-sm text-pw-muted leading-snug">
+                <p className="text-sm text-muted leading-snug">
                   {civicsVersion === '2025'
                     ? 'The officer asks up to 20 questions from this list of 128. You pass with 12 correct.'
                     : 'The officer asks up to 10 questions from this list of 100. You pass with 6 correct.'}
                 </p>
-                <a href="https://www.uscis.gov/citizenship/2025-test" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-pw-navy underline underline-offset-4 inline-block min-h-[44px] py-2">
+                <a href="https://www.uscis.gov/citizenship/2025-test" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-navy underline underline-offset-4 inline-block min-h-[44px] py-2">
                   Not sure which test you'll take? Check uscis.gov.
                 </a>
               </div>
@@ -668,11 +668,11 @@ export default function Practice() {
 
       {isLoading ? (
         <div className="flex justify-center py-20">
-            <Loader2 className="w-10 h-10 animate-spin text-pw-navy" />
+            <Loader2 className="w-10 h-10 animate-spin text-navy" />
         </div>
       ) : (
          <div className="text-center py-20">
-            <p className="text-lg text-pw-muted">No content found for this mode.</p>
+            <p className="text-lg text-muted">No content found for this mode.</p>
             <Button onClick={exitRun} className="mt-4">Go Back</Button>
          </div>
          )}
@@ -692,11 +692,11 @@ function RunShell({ label, onClose, children }) {
           type="button"
           onClick={onClose}
           aria-label="Close practice"
-          className="w-11 h-11 shrink-0 rounded-full bg-white border border-pw-line grid place-items-center text-pw-navy hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
+          className="w-11 h-11 shrink-0 rounded-full bg-white border border-line grid place-items-center text-navy hover:bg-tint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
         >
           <X className="w-5 h-5" aria-hidden="true" />
         </button>
-        <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-pw-muted">{label}</p>
+        <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-muted">{label}</p>
       </div>
       {children}
     </div>

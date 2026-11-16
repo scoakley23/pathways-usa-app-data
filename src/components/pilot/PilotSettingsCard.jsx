@@ -57,7 +57,7 @@ export default function PilotSettingsCard({ user }) {
     <Card>
       <CardHeader className="p-5 sm:p-6">
         <CardTitle className="flex items-center gap-3">
-          <span className="w-10 h-10 rounded-2xl grid place-items-center shrink-0 bg-pw-blue-soft text-pw-blue-ink">
+          <span className="w-10 h-10 rounded-2xl grid place-items-center shrink-0 bg-tint text-navy">
             <ClipboardList className="w-5 h-5" aria-hidden="true" />
           </span>
           {t('card_title')}
@@ -67,16 +67,16 @@ export default function PilotSettingsCard({ user }) {
       <CardContent className="p-5 pt-0 sm:p-6 sm:pt-0 space-y-6">
         <div className="flex items-start justify-between gap-4">
           <div className="min-w-0">
-            <label htmlFor="pilot-reminders-switch" className="text-lg font-bold text-pw-navy block">{t('reminders_switch')}</label>
-            <p className="text-base text-pw-muted">{t('reminders_help')}</p>
+            <label htmlFor="pilot-reminders-switch" className="text-lg font-bold text-navy block">{t('reminders_switch')}</label>
+            <p className="text-base text-muted">{t('reminders_help')}</p>
           </div>
           <Switch id="pilot-reminders-switch" checked={reminders} onCheckedChange={toggleReminders} className="mt-1 shrink-0" />
         </div>
 
         <div className="flex items-start justify-between gap-4">
           <div className="min-w-0">
-            <label htmlFor="pilot-checkins-switch" className="text-lg font-bold text-pw-navy block">{t('checkins_switch')}</label>
-            <p className="text-base text-pw-muted">{t('checkins_help')}</p>
+            <label htmlFor="pilot-checkins-switch" className="text-lg font-bold text-navy block">{t('checkins_switch')}</label>
+            <p className="text-base text-muted">{t('checkins_help')}</p>
           </div>
           <Switch id="pilot-checkins-switch" checked={checkIns} onCheckedChange={toggleCheckIns} className="mt-1 shrink-0" />
         </div>
