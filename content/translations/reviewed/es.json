@@ -1,0 +1,21 @@
+{
+ "language": "es",
+ "source": "reviewed",
+ "reviewed": "2026-11-16",
+ "note": "Human-checked Spanish lines. These win over content/translations/es.json and are never re-translated. Feature names (Speak it!, Read it, Write it, Teach it back, Read and write) stay in English; \"Item Number\" is always \"Pregunta\".",
+ "strings": {
+  "(For) life / Lifetime appointment / (Until) retirement": "(De por) vida / Nombramiento vitalicio / (Hasta la) jubilación",
+  "1 more lesson to reach Speak it!": "1 lección más para llegar a Speak it!",
+  "1 question to keep fresh": "1 pregunta para repasar",
+  "10.a. Were you EVER a part of any group, or did you EVER help any group, unit, or organization that used a weapon against any person, or threatened to do so? 10.b. If you answered \"Yes\" to Item Number 10.a., when you were part of this group, or when you helped this group, did you ever use a weapon against another person? 10.c. If you answered \"Yes\" to Item Number 10.a., when you were part of this group, or when you helped this group, did you ever threaten another person that you would use a weapon against that person?": "10.a. ¿Ha formado parte ALGUNA VEZ de algún grupo, o ha ayudado ALGUNA VEZ a algún grupo, unidad u organización que haya usado un arma contra cualquier persona, o que haya amenazado con hacerlo? 10.b. Si respondió \"Sí\" a la Pregunta 10.a., cuando formaba parte de este grupo, o cuando ayudó a este grupo, ¿usó alguna vez un arma contra otra persona? 10.c. Si respondió \"Sí\" a la Pregunta 10.a., cuando formaba parte de este grupo, o cuando ayudó a este grupo, ¿amenazó alguna vez a otra persona con usar un arma contra esa persona?",
+  "If you answered \"Yes,\" to Item Number 22.a., did you register for the Selective Service?": "Si respondió \"Sí\" a la Pregunta 22.a., ¿se inscribió en el Servicio Selectivo?",
+  "Read and write": "Read and write",
+  "Read it": "Read it",
+  "Speak it! checkpoint": "Punto de control Speak it!",
+  "Speak it! is next.": "Sigue Speak it!",
+  "Teach it back": "Teach it back",
+  "Write it": "Write it",
+  "{n} more lessons to reach Speak it!": "{n} lecciones más para llegar a Speak it!",
+  "{n} questions to keep fresh": "{n} preguntas para repasar"
+ }
+}
