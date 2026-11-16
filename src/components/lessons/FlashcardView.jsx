@@ -9,7 +9,7 @@ export default function FlashcardView({ flashcards }) {
 
   if (!flashcards || flashcards.length === 0) {
     return (
-      <div className="text-center py-8 text-base text-pw-muted">
+      <div className="text-center py-8 text-base text-muted">
         No flashcards available for this lesson.
       </div>
     );
@@ -32,10 +32,10 @@ export default function FlashcardView({ flashcards }) {
   };
 
   return (
-    <div className="space-y-4 text-pw-navy">
+    <div className="space-y-4 text-navy">
       <div className="flex justify-between items-center gap-2">
         <Tag tone="blue">Card {currentIndex + 1} of {flashcards.length}</Tag>
-        <span className="text-sm font-bold text-pw-muted">Click card to flip</span>
+        <span className="text-sm font-bold text-muted">Click card to flip</span>
       </div>
 
       <div
@@ -45,7 +45,7 @@ export default function FlashcardView({ flashcards }) {
         tabIndex={0}
         aria-pressed={isFlipped}
         style={{ perspective: '1000px' }}
-        className="cursor-pointer w-full h-80 rounded-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2"
+        className="cursor-pointer w-full h-80 rounded-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2"
       >
         <div
           style={{
@@ -60,11 +60,11 @@ export default function FlashcardView({ flashcards }) {
           {/* Front of card */}
           <div
             style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
-            className="absolute inset-0 rounded-card border border-pw-line bg-white shadow-raised flex items-center justify-center p-6"
+            className="absolute inset-0 rounded-card border border-line bg-white shadow-raised flex items-center justify-center p-6"
           >
             <div className="text-center space-y-4">
-              <span className="text-xs font-bold uppercase tracking-widest text-pw-muted">Term</span>
-              <h3 className="text-3xl font-extrabold text-pw-navy break-words">{currentCard.term}</h3>
+              <span className="text-xs font-bold uppercase tracking-widest text-muted">Term</span>
+              <h3 className="text-3xl font-extrabold text-navy break-words">{currentCard.term}</h3>
             </div>
           </div>
 
@@ -75,15 +75,15 @@ export default function FlashcardView({ flashcards }) {
               WebkitBackfaceVisibility: 'hidden',
               transform: 'rotateY(180deg)',
             }}
-            className="absolute inset-0 rounded-card bg-pw-blue-soft shadow-raised flex items-center justify-center p-6 overflow-y-auto"
+            className="absolute inset-0 rounded-card bg-tint shadow-raised flex items-center justify-center p-6 overflow-y-auto"
           >
             <div className="text-center space-y-4">
-              <span className="text-xs font-bold uppercase tracking-widest text-pw-blue-ink">Definition</span>
-              <p className="text-xl font-bold text-pw-navy leading-relaxed">{currentCard.definition}</p>
+              <span className="text-xs font-bold uppercase tracking-widest text-navy">Definition</span>
+              <p className="text-xl font-bold text-navy leading-relaxed">{currentCard.definition}</p>
               {currentCard.example && (
-                <div className="mt-4 pt-4 border-t border-pw-line">
-                  <span className="text-xs font-bold uppercase tracking-widest text-pw-blue-ink">Example</span>
-                  <p className="text-base text-pw-muted mt-2">{currentCard.example}</p>
+                <div className="mt-4 pt-4 border-t border-line">
+                  <span className="text-xs font-bold uppercase tracking-widest text-navy">Example</span>
+                  <p className="text-base text-muted mt-2">{currentCard.example}</p>
                 </div>
               )}
             </div>

@@ -67,18 +67,18 @@ export default function ThisWeekCard({ language = 'en' }) {
   const number = 'font-display text-[34px] leading-none';
 
   return (
-    <div className="space-y-4 text-ink">
+    <div className="space-y-4 text-navy">
       {/* Two numbers: civics questions ready, days practiced this week */}
       <div className="grid grid-cols-2 gap-3">
         <Card padding="p-4">
-          <p className="text-label uppercase text-ink-label">Civics ready</p>
-          <p className="mt-2"><span className={number}>{data.ready}</span><span className="text-lg text-ink-2">/{data.civicsTotal || 128}</span></p>
-          <p className="mt-1 text-sm text-ink-2">2025 civics questions</p>
+          <p className="text-label uppercase text-muted">Civics ready</p>
+          <p className="mt-2"><span className={number}>{data.ready}</span><span className="text-lg text-muted">/{data.civicsTotal || 128}</span></p>
+          <p className="mt-1 text-sm text-muted">2025 civics questions</p>
         </Card>
         <Card padding="p-4">
-          <p className="text-label uppercase text-ink-label">{t('this_week')}</p>
-          <p className="mt-2"><span className={number}>{daysCount}</span><span className="text-lg text-ink-2">/7</span></p>
-          <p className="mt-1 text-sm text-ink-2">Days practiced</p>
+          <p className="text-label uppercase text-muted">{t('this_week')}</p>
+          <p className="mt-2"><span className={number}>{daysCount}</span><span className="text-lg text-muted">/7</span></p>
+          <p className="mt-1 text-sm text-muted">Days practiced</p>
         </Card>
       </div>
 
@@ -92,15 +92,15 @@ export default function ThisWeekCard({ language = 'en' }) {
                 className={`block w-8 h-8 rounded-full ${
                   c.state === 'today' ? 'bg-red'
                     : c.state === 'practiced' ? 'bg-navy'
-                      : c.state === 'future' ? 'border-2 border-dashed border-ink-2'
-                        : 'border-2 border-card-line'
+                      : c.state === 'future' ? 'border-2 border-dashed border-muted'
+                        : 'border-2 border-line'
                 }`}
               />
-              <span className={`text-[13px] ${c.state === 'today' ? 'font-semibold text-ink' : 'text-ink-2'}`} aria-hidden="true">{weekdayInitials[k]}</span>
+              <span className={`text-[13px] ${c.state === 'today' ? 'font-semibold text-navy' : 'text-muted'}`} aria-hidden="true">{weekdayInitials[k]}</span>
             </li>
           ))}
         </ol>
-        {weeks !== null && <p className="mt-3 text-[15px] text-ink-2">{t(weeksKey, { n: weeks })}</p>}
+        {weeks !== null && <p className="mt-3 text-[15px] text-muted">{t(weeksKey, { n: weeks })}</p>}
       </Card>
     </div>
   );

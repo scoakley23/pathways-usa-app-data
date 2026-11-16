@@ -1,5 +1,5 @@
 import { base44 } from '@/api/base44Client';
-import { redactIdentifiers } from '@/lib/askTutor';
+import { buildCivicsCheckPrompt } from '@/lib/civicsCheckPrompt';
 import { gradeCivicsOfficeholder } from '@/lib/officeholderQuestions';
 
 
@@ -26,19 +26,11 @@ export async function checkCivicsAnswer(question, rawAnswer, { location = null, 
   const local = officeholderCheck(question, rawAnswer, location);
   if (local) return local;
 
-  const userAnswer = redactIdentifiers(rawAnswer);
-  let prompt = `You are a USCIS citizenship test examiner. Determine if the student's spoken answer is correct.
-
-Question: ${question.question}
-Official Answer: ${question.answer}
-Student's Answer: ${userAnswer}
-
-In the real USCIS interview, answers don't need to be word-for-word — as long as the meaning is correct, it counts. Determine if the student's answer conveys the correct meaning.`;
-
-  const properties = {
-    is_correct: { type: "boolean" },
-    feedback: { type: "string" }
-  };
+  // The basic prompt lives in src/lib/civicsCheckPrompt.js, shared with the
+  // civics grading eval (scripts/evals/civics-grading/).
+  const base = buildCivicsCheckPrompt(question, rawAnswer);
+  let prompt = base.prompt;
+  const properties = { ...base.properties };
   if (teach) {
     prompt += `
 

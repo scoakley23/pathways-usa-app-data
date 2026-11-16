@@ -10,7 +10,7 @@ export { posterTone, POSTER_SCHEME };
 
 // Tags and chips are labels, so every tone is the same quiet sand chip; only
 // results get their own color (always with an icon and words).
-const NEUTRAL_TAG = 'bg-sand text-ink';
+const NEUTRAL_TAG = 'bg-tint text-navy';
 const TAG_TONES = {
   red: NEUTRAL_TAG,
   blue: NEUTRAL_TAG,
@@ -19,12 +19,12 @@ const TAG_TONES = {
   navy: NEUTRAL_TAG,
   sky: NEUTRAL_TAG,
   manila: NEUTRAL_TAG,
-  correct: 'bg-correct-soft text-correct',
-  notCorrect: 'bg-not-correct-soft text-not-correct',
+  correct: 'bg-correct-bg text-correct',
+  notCorrect: 'bg-not-yet-bg text-not-yet',
 };
 const DOT = {
   red: 'bg-navy', blue: 'bg-navy', teal: 'bg-navy', green: 'bg-navy', navy: 'bg-navy', sky: 'bg-navy', manila: 'bg-navy',
-  correct: 'bg-correct', notCorrect: 'bg-not-correct',
+  correct: 'bg-correct', notCorrect: 'bg-not-yet',
 };
 
 // Skills no longer have their own colors: every skill is navy (solid) or
@@ -37,11 +37,11 @@ export const SKILL_TONE = {
   n400: 'navy',
 };
 export const SKILL_BG = {
-  civics: 'bg-sand',
-  reading: 'bg-sand',
-  writing: 'bg-sand',
-  speaking: 'bg-sand',
-  n400: 'bg-sand',
+  civics: 'bg-tint',
+  reading: 'bg-tint',
+  writing: 'bg-tint',
+  speaking: 'bg-tint',
+  n400: 'bg-tint',
 };
 // Solid fill, for tabs, strips and tiles.
 export const SKILL_COLOR = {
@@ -93,11 +93,11 @@ export function SegmentedProgress({ current, total, label }) {
       {total <= 12 ? (
         <div className="flex gap-1.5">
           {Array.from({ length: total }, (_, k) => (
-            <div key={k} className={`h-1.5 flex-1 rounded-full transition-colors ${k < current ? 'bg-navy' : k === current ? 'bg-ink-2' : 'bg-card-line'}`} />
+            <div key={k} className={`h-1.5 flex-1 rounded-full transition-colors ${k < current ? 'bg-navy' : k === current ? 'bg-muted' : 'bg-line'}`} />
           ))}
         </div>
       ) : (
-        <div className="h-1.5 rounded-full bg-card-line overflow-hidden">
+        <div className="h-1.5 rounded-full bg-line overflow-hidden">
           <div className="h-full rounded-full bg-navy transition-all" style={{ width: `${pct}%` }} />
         </div>
       )}
@@ -177,7 +177,7 @@ export function Card({ className = '', padding = 'p-5', children, ...props }) {
 export const RaisedCard = Card;
 
 export function Eyebrow({ className = '', children }) {
-  return <p className={`text-label uppercase text-ink-label ${className}`}>{children}</p>;
+  return <p className={`text-label uppercase text-muted ${className}`}>{children}</p>;
 }
 
 // --- The split screen ----------------------------------------------------
@@ -192,7 +192,7 @@ export function NavyTop({ as: Tag = 'section', className = '', children, ...prop
 // corners show; `flush` turns that off.
 export function CreamSheet({ as: Tag = 'section', flush = false, className = '', children, ...props }) {
   return (
-    <Tag className={`relative bg-cream text-ink rounded-t-sheet px-4 pt-6 pb-8 sm:px-8 ${flush ? '' : '-mt-7'} ${className}`} {...props}>
+    <Tag className={`relative bg-page text-navy rounded-t-sheet px-4 pt-6 pb-8 sm:px-8 ${flush ? '' : '-mt-7'} ${className}`} {...props}>
       {children}
     </Tag>
   );
@@ -217,8 +217,8 @@ export function PathwaysMark({ size = 40, tone = 'ink', label, className = '' })
   const a11y = label ? { role: 'img', 'aria-label': label } : { 'aria-hidden': true, focusable: 'false' };
   return (
     <svg viewBox="0 0 120 120" width={size} height={size} className={`shrink-0 ${className}`} {...a11y}>
-      <path d={MARK_ROADS} fill="none" stroke={white || onNavy ? COLORS.onNavy : COLORS.navy} strokeWidth={stroke} strokeLinecap="round" />
-      <circle cx="70" cy="20" r={r} fill={white ? COLORS.onNavy : COLORS.star} />
+      <path d={MARK_ROADS} fill="none" stroke={white || onNavy ? COLORS.white : COLORS.navy} strokeWidth={stroke} strokeLinecap="round" />
+      <circle cx="70" cy="20" r={r} fill={white ? COLORS.white : COLORS.red} />
     </svg>
   );
 }
@@ -231,7 +231,7 @@ export function PathwaysLockup({ layout = 'horizontal', size, tone = 'ink', desc
   const markSize = size ?? (stacked ? 72 : 32);
   const light = tone === 'white' || tone === 'navy';
   const text = light ? 'text-white' : 'text-navy';
-  const sub = light ? 'text-on-navy' : 'text-ink-2';
+  const sub = light ? 'text-on-navy' : 'text-muted';
   return (
     <div className={`${stacked ? 'flex flex-col items-center text-center gap-2' : 'flex items-center gap-2.5'} ${className}`}>
       <PathwaysMark size={markSize} tone={tone} />
@@ -270,11 +270,11 @@ const POSTER_BG = { red: 'bg-navy', blue: 'bg-navy' };
 
 // Buttons on a navy poster: solid white, or an outline.
 const POSTER_BTN = 'min-h-[48px] rounded-full px-5 inline-flex items-center justify-center gap-2 text-base font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent disabled:opacity-50 disabled:cursor-not-allowed';
-export const posterSolid = `${POSTER_BTN} bg-white text-navy hover:bg-cream`;
-export const posterOutline = `${POSTER_BTN} border-2 border-navy-line text-white hover:bg-navy-2`;
+export const posterSolid = `${POSTER_BTN} bg-white text-navy hover:bg-page`;
+export const posterOutline = `${POSTER_BTN} border-2 border-chip-navy text-white hover:bg-chip-navy`;
 // Small tools on a poster (Listen, Translate) and quiet text links
 // ("Type it instead"), shared by every practice card.
-export const posterTool = 'min-h-11 rounded-full bg-navy-2 px-4 inline-flex items-center gap-2 text-base font-semibold text-white hover:bg-navy-line focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white';
+export const posterTool = 'min-h-11 rounded-full bg-chip-navy px-4 inline-flex items-center gap-2 text-base font-semibold text-white hover:bg-chip-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white';
 export const posterLink = 'min-h-11 inline-flex items-center gap-2 text-base font-semibold text-white underline underline-offset-4 decoration-white/60 hover:decoration-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded';
 // The one big white action button on a poster (microphone, play).
 export const posterBigButton = 'relative w-[104px] h-[104px] rounded-full bg-white text-navy grid place-items-center disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60';
@@ -294,7 +294,7 @@ export function PosterProgress({ index = 0, total = 0, className = '' }) {
       aria-label={`Card ${Math.min(index + 1, total)} of ${total}`}
     >
       {Array.from({ length: total }, (_, k) => (
-        <span key={k} aria-hidden="true" className={`h-1 flex-1 rounded-full ${k <= index ? 'bg-gold' : 'bg-road'}`} />
+        <span key={k} aria-hidden="true" className={`h-1 flex-1 rounded-full ${k <= index ? 'bg-gold' : 'bg-chip-navy'}`} />
       ))}
     </div>
   );
@@ -308,8 +308,8 @@ export const PosterSquares = PosterProgress;
 // and the N-400 screens. Line height matches the rules (`leading-[36px]`).
 export function RuledPaper({ as: Tag = 'div', className = '', children, ...props }) {
   return (
-    <Tag className={`pw-ruled relative rounded-[6px] bg-white border border-card-line ps-12 pe-5 pt-3 pb-5 text-ink ${className}`} {...props}>
-      <span aria-hidden="true" className="absolute inset-y-0 start-8 w-0.5 bg-pw-margin" />
+    <Tag className={`pw-ruled relative rounded-[6px] bg-white border border-line ps-12 pe-5 pt-3 pb-5 text-navy ${className}`} {...props}>
+      <span aria-hidden="true" className="absolute inset-y-0 start-8 w-0.5 bg-line" />
       {children}
     </Tag>
   );
@@ -338,7 +338,7 @@ export function Folder({ tabs, className = '', children, ...props }) {
   return (
     <div className={className} {...props}>
       {tabs && <div className="flex items-end gap-1.5 overflow-x-auto px-2">{tabs}</div>}
-      <div className="rounded-card bg-sand p-3 text-ink sm:p-6">{children}</div>
+      <div className="rounded-card bg-tint p-3 text-navy sm:p-6">{children}</div>
     </div>
   );
 }
@@ -351,7 +351,7 @@ export function FolderTab({ tone = 'navy', active = false, className = '', ...pr
     <button
       type="button"
       aria-current={active ? 'true' : undefined}
-      className={`min-h-tap shrink-0 whitespace-nowrap rounded-t-lg border-t-4 border-navy px-3 text-base font-semibold text-ink transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy ${active ? 'bg-sand' : 'bg-cream hover:bg-sand'} ${className}`}
+      className={`min-h-tap shrink-0 whitespace-nowrap rounded-t-lg border-t-4 border-navy px-3 text-base font-semibold text-navy transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy ${active ? 'bg-tint' : 'bg-page hover:bg-tint'} ${className}`}
       {...props}
     />
   );
@@ -360,10 +360,10 @@ export function FolderTab({ tone = 'navy', active = false, className = '', ...pr
 // N-400 wording, word for word (Lexend, on a white card).
 export function FormQuote({ item, label = 'ON THE FORM · WORD FOR WORD', className = '', children }) {
   return (
-    <figure className={`rounded-card border border-card-line bg-white p-4 ${className}`}>
-      <p className="text-label uppercase text-ink-label">{label}</p>
-      <blockquote className="mt-2 text-base sm:text-lg font-medium leading-relaxed text-ink">{children}</blockquote>
-      {item != null && <figcaption className="mt-2 text-base text-ink-2">— Form N-400, item {item}</figcaption>}
+    <figure className={`rounded-card border border-line bg-white p-4 ${className}`}>
+      <p className="text-label uppercase text-muted">{label}</p>
+      <blockquote className="mt-2 text-base sm:text-lg font-medium leading-relaxed text-navy">{children}</blockquote>
+      {item != null && <figcaption className="mt-2 text-base text-muted">— Form N-400, item {item}</figcaption>}
     </figure>
   );
 }
@@ -372,7 +372,7 @@ export function FormQuote({ item, label = 'ON THE FORM · WORD FOR WORD', classN
 // navy poster.
 export function ExplainSimplyButton({ onPoster = false, className = '', children = 'Explain it simply', ...props }) {
   const look = onPoster
-    ? 'bg-navy-2 text-white hover:bg-navy-line focus-visible:ring-white focus-visible:ring-offset-0'
-    : 'bg-sand text-ink hover:bg-sand-hover focus-visible:ring-navy';
+    ? 'bg-chip-navy text-white hover:bg-chip-navy focus-visible:ring-white focus-visible:ring-offset-0'
+    : 'bg-tint text-navy hover:bg-line focus-visible:ring-navy';
   return <button type="button" className={`${BTN} rounded-full px-4 text-base ${look} ${className}`} {...props}>{children}</button>;
 }

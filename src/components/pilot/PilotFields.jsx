@@ -6,10 +6,10 @@ import { PREFER_NOT } from '@/lib/pilot';
 // Shared fields for the "Help us improve Pathways" screen and the Profile
 // card. Every choice can be tapped again to clear it.
 
-const CHIP = 'min-h-11 rounded-2xl border-2 px-4 py-2 text-left text-base font-semibold inline-flex items-center gap-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2';
-const chipTone = (selected) => (selected ? 'border-pw-navy bg-pw-soft text-pw-navy' : 'border-pw-line bg-white text-pw-navy hover:border-pw-navy/50');
-const LABEL = 'text-lg font-bold text-pw-navy';
-const FIELD = 'w-full min-h-11 rounded-xl border-2 border-pw-line bg-white px-3 text-base text-pw-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy';
+const CHIP = 'min-h-11 rounded-2xl border-2 px-4 py-2 text-left text-base font-semibold inline-flex items-center gap-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2';
+const chipTone = (selected) => (selected ? 'border-navy bg-tint text-navy' : 'border-line bg-white text-navy hover:border-navy/50');
+const LABEL = 'text-lg font-bold text-navy';
+const FIELD = 'w-full min-h-11 rounded-xl border-2 border-line bg-white px-3 text-base text-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy';
 
 export function Choice({ selected, onClick, children, className = '' }) {
   return (
@@ -30,7 +30,7 @@ export function ChoiceQuestion({ label, value, onChange, options, t, inline = fa
         {options.map(([v, text]) => (
           <Choice key={v} selected={value === v} onClick={() => toggle(v)}>{text}</Choice>
         ))}
-        <Choice selected={value === PREFER_NOT} onClick={() => toggle(PREFER_NOT)} className="text-pw-muted">{t('prefer_not')}</Choice>
+        <Choice selected={value === PREFER_NOT} onClick={() => toggle(PREFER_NOT)} className="text-muted">{t('prefer_not')}</Choice>
       </div>
     </fieldset>
   );
@@ -54,7 +54,7 @@ export function ReadinessQuestion({ label, value, onChange, t }) {
               aria-pressed={selected}
               aria-label={`${v}${i === 0 ? `, ${t('ready_low')}` : i === 4 ? `, ${t('ready_high')}` : ''}`}
               onClick={() => toggle(v)}
-              className={`min-h-[64px] rounded-2xl border-2 flex flex-col items-center justify-center gap-1 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2 ${chipTone(selected)}`}
+              className={`min-h-[64px] rounded-2xl border-2 flex flex-col items-center justify-center gap-1 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2 ${chipTone(selected)}`}
             >
               <Face className="w-6 h-6" aria-hidden="true" />
               <span className="font-display text-xl leading-none">{v}</span>
@@ -62,11 +62,11 @@ export function ReadinessQuestion({ label, value, onChange, t }) {
           );
         })}
       </div>
-      <div className="flex justify-between text-sm text-pw-muted" aria-hidden="true">
+      <div className="flex justify-between text-sm text-muted" aria-hidden="true">
         <span>{t('ready_low')}</span>
         <span>{t('ready_high')}</span>
       </div>
-      <Choice selected={value === PREFER_NOT} onClick={() => toggle(PREFER_NOT)} className="text-pw-muted">{t('prefer_not')}</Choice>
+      <Choice selected={value === PREFER_NOT} onClick={() => toggle(PREFER_NOT)} className="text-muted">{t('prefer_not')}</Choice>
     </fieldset>
   );
 }

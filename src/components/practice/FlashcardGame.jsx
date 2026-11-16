@@ -32,14 +32,14 @@ export default function FlashcardGame({ words, index = 0, total, onComplete, onC
       </NavyTop>
 
       <CreamSheet className="min-h-[50vh]">
-        <div className="mx-auto max-w-2xl space-y-5 pb-6 text-ink" aria-live="polite">
+        <div className="mx-auto max-w-2xl space-y-5 pb-6 text-navy" aria-live="polite">
           {isFlipped ? (
             <>
-              <div className="rounded-card bg-white border border-card-line p-5 space-y-3">
-                <p className="text-label uppercase text-ink-label">Definition</p>
+              <div className="rounded-card bg-white border border-line p-5 space-y-3">
+                <p className="text-label uppercase text-muted">Definition</p>
                 <p className="font-medium text-2xl leading-snug">{currentWord.definition}</p>
                 {currentWord.category && (
-                  <span className="inline-block rounded-full bg-sand px-3 py-1.5 text-sm font-semibold">{currentWord.category}</span>
+                  <span className="inline-block rounded-full bg-tint px-3 py-1.5 text-sm font-semibold">{currentWord.category}</span>
                 )}
               </div>
               <div className="grid grid-cols-2 gap-3">
@@ -56,7 +56,7 @@ export default function FlashcardGame({ words, index = 0, total, onComplete, onC
             </>
           ) : (
             <>
-              <p className="text-base text-ink-2">Do you know what it means? Say it to yourself, then check.</p>
+              <p className="text-base text-muted">Do you know what it means? Say it to yourself, then check.</p>
               <Button variant="main" className="w-full min-h-[60px]" onClick={() => setIsFlipped(true)}>
                 Show the definition
               </Button>

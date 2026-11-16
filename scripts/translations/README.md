@@ -38,7 +38,10 @@ Run these on your computer. Never paste the API key into a chat.
 5. Look over a few files, then commit `content/translations/`.
 
 A translation is rejected (and stays English; run again to retry) when it is
-empty, or its `{placeholders}` or numbers differ from the English.
+empty, its `{placeholders}` or numbers differ from the English, or it
+translates a feature name. Feature names stay in English in every language:
+Speak it!, Read it, Write it, Teach it back, Read and write (`FEATURE_NAMES`
+in `build-pack.mjs`).
 
 ## Reviewing
 

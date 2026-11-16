@@ -15,6 +15,7 @@ import QuestionStep from '@/components/lesson/QuestionStep';
 import ReadItStep from '@/components/lesson/ReadItStep';
 import WriteItStep from '@/components/lesson/WriteItStep';
 import { LessonDone, LessonStart } from '@/components/lesson/LessonStartDone';
+import usePackLookup from '@/components/course/usePackLookup';
 
 // The 5-step lesson player (Prompt 6, /course/lesson/:lessonId): Lesson start
 // → Listen → Teach it back → Read it → Write it → Officer question → Lesson
@@ -36,6 +37,7 @@ export default function LessonPlayer() {
   };
   const rtl = RTL_LANGUAGES.includes(language);
 
+  const tx = usePackLookup(language);
   const found = findLesson(lessonId);
   const [user, setUser] = useState(undefined);
   const [phase, setPhase] = useState('start'); // start | step | done
@@ -115,7 +117,8 @@ export default function LessonPlayer() {
   };
 
   let body;
-  let header = { title: lesson.title, subtitle, step: null };
+  const lessonTitle = tx ? tx(lesson.title) : lesson.title;
+  let header = { title: lessonTitle, subtitle, step: null };
   if (phase === 'start') {
     body = (
       <LessonStart
@@ -130,7 +133,7 @@ export default function LessonPlayer() {
     return (
       <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-screen bg-page">
         <LessonDone
-          lesson={lesson}
+          lesson={{ ...lesson, title: lessonTitle }}
           results={results}
           stars={starsFor(results)}
           goal={goal}
@@ -143,7 +146,7 @@ export default function LessonPlayer() {
     );
   } else {
     const step = STEPS[stepIndex];
-    header = { title: t('step_of', { n: stepIndex + 1, name: t(`step_${step}`) }), subtitle: lesson.title, step: stepIndex + 1 };
+    header = { title: t('step_of', { n: stepIndex + 1, name: t(`step_${step}`) }), subtitle: lessonTitle, step: stepIndex + 1 };
     const k = `${lesson.id}-${step}`;
     const common = { t, onDone: finishStep };
     if (step === 'listen') body = <ListenStep key={k} {...common} lesson={lesson} language={language} />;

@@ -21,11 +21,11 @@ export default function TeachingFeedback({
       <TutorMessage profile={profile} language={language} mine={mine} en={en} expression={isCorrect ? 'proud' : 'default'} />
 
       {accepted.length > 0 && (
-        <div className={`rounded-card p-5 text-pw-navy ${isCorrect ? 'bg-pw-green-soft' : 'bg-white border border-pw-line'} ${sizeClass}`}>
+        <div className={`rounded-card p-5 text-navy ${isCorrect ? 'bg-correct-bg' : 'bg-white border border-line'} ${sizeClass}`}>
           <Eyebrow className="mb-2">{acceptLabel}</Eyebrow>
           <ul className="space-y-1 mb-3">
             {accepted.map((a) => (
-              <li key={a} className={`font-bold ${shown ? 'bg-pw-highlight rounded-lg px-2 py-0.5 -mx-2' : ''}`}>{a}</li>
+              <li key={a} className={`font-bold ${shown ? 'bg-stop-chest rounded-lg px-2 py-0.5 -mx-2' : ''}`}>{a}</li>
             ))}
           </ul>
           <ListenButton text={accepted.join('. ')} language="en" />
@@ -37,7 +37,7 @@ export default function TeachingFeedback({
           <SecondaryButton onClick={onTryAgain}>
             <RotateCcw className="w-4 h-4" aria-hidden="true" /> Try again
           </SecondaryButton>
-          <SecondaryButton onClick={onShowMe} className="border-pw-line">
+          <SecondaryButton onClick={onShowMe} className="border-line">
             <Eye className="w-4 h-4" aria-hidden="true" /> Show me
           </SecondaryButton>
         </div>

@@ -77,12 +77,12 @@ export default function Progress() {
     }
   };
 
-  if (isLoading) return <div className="p-8 text-center text-base text-pw-muted">Loading progress...</div>;
+  if (isLoading) return <div className="p-8 text-center text-base text-muted">Loading progress...</div>;
 
   // Calculate Preparedness Score (Simple metric: Mastered / 100 * 100, cap at 100)
   const preparedness = Math.min(Math.round((stats.mastered / 100) * 100), 100);
 
-  const tileLink = 'block rounded-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2';
+  const tileLink = 'block rounded-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2';
 
   return (
     <div>
@@ -98,7 +98,7 @@ export default function Progress() {
       </PageTop>
 
       <CreamSheet>
-      <div className="mx-auto max-w-5xl space-y-6 pb-8 text-ink">
+      <div className="mx-auto max-w-5xl space-y-6 pb-8 text-navy">
       <ThisWeekCard language={language} />
 
       <TestDateTracker />
@@ -110,41 +110,41 @@ export default function Progress() {
         <Link to={createPageUrl('StudyHistory')} className={tileLink}>
           <RaisedCard className="h-full hover:shadow-lift transition-shadow">
             <div className="flex items-start justify-between">
-              <div className="w-12 h-12 rounded-2xl bg-pw-blue-soft text-pw-blue-ink grid place-items-center">
+              <div className="w-12 h-12 rounded-2xl bg-tint text-navy grid place-items-center">
                 <Clock className="w-6 h-6" aria-hidden="true" />
               </div>
-              <ArrowRight className="w-5 h-5 text-pw-muted rtl:rotate-180" aria-hidden="true" />
+              <ArrowRight className="w-5 h-5 text-muted rtl:rotate-180" aria-hidden="true" />
             </div>
             <p className="mt-4 font-display font-normal text-[44px] leading-none">{stats.total}</p>
-            <p className="mt-2 text-sm font-bold text-pw-muted">Total Practiced</p>
+            <p className="mt-2 text-sm font-bold text-muted">Total Practiced</p>
           </RaisedCard>
         </Link>
 
         <Link to={createPageUrl('Dashboard')} className={tileLink}>
           <RaisedCard className="h-full hover:shadow-lift transition-shadow">
             <div className="flex items-start justify-between">
-              <div className="w-12 h-12 rounded-2xl bg-pw-green-soft text-pw-green-ink grid place-items-center">
+              <div className="w-12 h-12 rounded-2xl bg-correct-bg text-correct grid place-items-center">
                 <Award className="w-6 h-6" aria-hidden="true" />
               </div>
-              <ArrowRight className="w-5 h-5 text-pw-muted rtl:rotate-180" aria-hidden="true" />
+              <ArrowRight className="w-5 h-5 text-muted rtl:rotate-180" aria-hidden="true" />
             </div>
             <p className="mt-4 font-display font-normal text-[44px] leading-none">{stats.mastered}</p>
-            <p className="mt-2 text-sm font-bold text-pw-muted">Items Mastered</p>
+            <p className="mt-2 text-sm font-bold text-muted">Items Mastered</p>
           </RaisedCard>
         </Link>
 
         <RaisedCard className="col-span-2">
           <div className="flex justify-between items-center gap-3 mb-4">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-2xl bg-pw-teal-soft text-pw-teal-ink grid place-items-center shrink-0">
+              <div className="w-12 h-12 rounded-2xl bg-tint text-navy grid place-items-center shrink-0">
                 <Target className="w-6 h-6" aria-hidden="true" />
               </div>
               <p className="font-display text-[26px] leading-tight">Test Preparedness</p>
             </div>
             <span className="font-display text-[44px] leading-none">{preparedness}%</span>
           </div>
-          <ProgressBar value={preparedness} className="h-3 bg-pw-soft" aria-label="Test Preparedness" />
-          <p className="text-sm text-pw-muted mt-3">Based on mastered content items (Goal: 100)</p>
+          <ProgressBar value={preparedness} className="h-3 bg-tint" aria-label="Test Preparedness" />
+          <p className="text-sm text-muted mt-3">Based on mastered content items (Goal: 100)</p>
         </RaisedCard>
       </div>
 
@@ -160,7 +160,7 @@ export default function Progress() {
           <Card>
             <CardHeader className="p-5 sm:p-6">
               <CardTitle className="flex items-center gap-3">
-                <span className="w-10 h-10 rounded-2xl bg-sand text-ink grid place-items-center shrink-0">
+                <span className="w-10 h-10 rounded-2xl bg-tint text-navy grid place-items-center shrink-0">
                   <Award className="w-5 h-5" aria-hidden="true" />
                 </span>
                 Achievements
@@ -182,11 +182,11 @@ export default function Progress() {
               {history.length > 0 ? (
                 <div className="space-y-3">
                   {history.map((item) => (
-                    <div key={item.id} className="rounded-2xl border border-pw-line bg-white p-4">
-                      <p className="text-sm text-pw-muted mb-1">
+                    <div key={item.id} className="rounded-2xl border border-line bg-white p-4">
+                      <p className="text-sm text-muted mb-1">
                         {format(new Date(item.last_practiced), 'MMM d, h:mm a')}
                       </p>
-                      <p className="font-semibold text-pw-navy text-base line-clamp-2">
+                      <p className="font-semibold text-navy text-base line-clamp-2">
                         {item.content?.text || item.content?.word || item.content?.question || 'Unknown'}
                       </p>
                       <div className="flex justify-between items-center mt-3">
@@ -194,16 +194,16 @@ export default function Progress() {
                           {item.content_type || 'Sentence'}
                         </Badge>
                         {item.status === 'mastered' ? (
-                          <CheckCircle className="w-5 h-5 text-pw-green-ink" aria-label="Mastered" />
+                          <CheckCircle className="w-5 h-5 text-correct" aria-label="Mastered" />
                         ) : (
-                          <div className="w-5 h-5 rounded-full border-2 border-pw-line" aria-hidden="true" />
+                          <div className="w-5 h-5 rounded-full border-2 border-line" aria-hidden="true" />
                         )}
                       </div>
                     </div>
                   ))}
                 </div>
               ) : (
-                <div className="text-center py-8 text-base text-pw-muted rounded-2xl bg-pw-soft">
+                <div className="text-center py-8 text-base text-muted rounded-2xl bg-tint">
                   No history yet.
                 </div>
               )}

@@ -6,9 +6,9 @@ import useTutorProfile from './useTutorProfile';
 export default function TutorLine({ children, className = '' }) {
   const { profile } = useTutorProfile();
   return (
-    <p className={`font-medium text-[21px] leading-snug text-pw-navy ${className}`}>
+    <p className={`font-medium text-[21px] leading-snug text-navy ${className}`}>
       {children}{' '}
-      <span className="whitespace-nowrap text-pw-muted">— {profile.name}</span>
+      <span className="whitespace-nowrap text-muted">— {profile.name}</span>
     </p>
   );
 }

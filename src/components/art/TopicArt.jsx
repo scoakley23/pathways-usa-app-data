@@ -119,7 +119,7 @@ export default function TopicArt({ name, className = 'w-full h-24', accent = fal
       <g fill="none" stroke={COLORS.navy} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
         {art}
       </g>
-      {accent && <circle cx={cx} cy="20" r="9" fill={COLORS.star} opacity="0.85" />}
+      {accent && <circle cx={cx} cy="20" r="9" fill={COLORS.red} opacity="0.85" />}
     </svg>
   );
 }

@@ -81,7 +81,7 @@ export default function DeleteMyData({ userEmail }) {
       </details>
       <div>
         {deleting ? (
-          <p role="status" className="text-base font-bold text-pw-red-ink flex items-center gap-2">
+          <p role="status" className="text-base font-bold text-not-yet flex items-center gap-2">
             <Loader2 className="w-4 h-4 animate-spin shrink-0" aria-hidden="true" /> {progress}
           </p>
         ) : (
@@ -93,7 +93,7 @@ export default function DeleteMyData({ userEmail }) {
             </AlertDialogTrigger>
             <AlertDialogContent>
               <AlertDialogHeader>
-                <AlertDialogTitle className="text-pw-red-ink">Delete all your data?</AlertDialogTitle>
+                <AlertDialogTitle className="text-not-yet">Delete all your data?</AlertDialogTitle>
                 <AlertDialogDescription>
                   This permanently removes your chats, study history, notes, progress, interview scores, assignments, check-in answers, activity dates, and profile from Pathways USA, and clears the app's data on this device.
                   Your saved representatives information is included. This action cannot be undone — you'll be signed out afterwards.
@@ -103,7 +103,7 @@ export default function DeleteMyData({ userEmail }) {
                 <AlertDialogCancel>Cancel</AlertDialogCancel>
                 <AlertDialogAction
                   onClick={(e) => { e.preventDefault(); handleDelete(); }}
-                  className="bg-pw-red-ink text-white hover:bg-pw-red-deep"
+                  className="bg-not-yet text-white hover:bg-not-yet"
                 >
                   Yes, delete everything
                 </AlertDialogAction>

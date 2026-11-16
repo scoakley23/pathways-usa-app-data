@@ -23,15 +23,15 @@ export default function ExplainSheet({ question, answer, aiFallback = false, cla
       {found.source ? (
         <>
           {text.mine && <p dir={dir} className="font-medium text-[22px] leading-[36px] whitespace-pre-line">{text.mine}</p>}
-          {text.en && <p className={`font-medium leading-[36px] whitespace-pre-line ${text.mine ? 'text-lg text-pw-muted' : 'text-[22px]'}`}>{text.en}</p>}
-          {note && <p className="text-base leading-[36px] text-pw-muted">{note.mine || note.en}</p>}
+          {text.en && <p className={`font-medium leading-[36px] whitespace-pre-line ${text.mine ? 'text-lg text-muted' : 'text-[22px]'}`}>{text.en}</p>}
+          {note && <p className="text-base leading-[36px] text-muted">{note.mine || note.en}</p>}
         </>
       ) : aiFallback ? (
         <div className="py-2"><AIExplanation question={question} answer={answer} /></div>
       ) : (
         <p className="font-medium text-[22px] leading-[36px]">{text.mine || text.en}</p>
       )}
-      <p className="font-medium text-lg leading-[36px] text-pw-muted">— {profile.name}</p>
+      <p className="font-medium text-lg leading-[36px] text-muted">— {profile.name}</p>
     </RuledPaper>
   );
 }

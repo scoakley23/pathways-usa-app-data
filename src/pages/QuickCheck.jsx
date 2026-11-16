@@ -20,6 +20,8 @@ import { isOnboarded } from '@/lib/onboarding';
 import { UNITS } from '@/lib/course';
 import { canSeeDrafts, visibleCourse } from '@/lib/journey';
 import { startingPoint } from '@/lib/startingPoint';
+import { translateCourse } from '@/lib/courseTitles';
+import usePackLookup from '@/components/course/usePackLookup';
 
 // The quick check (Prompt 9, frame R30QuickCheck). Saves only the four skill
 // levels. The first time on a device, Getting started comes first (language,
@@ -61,7 +63,8 @@ export default function QuickCheck() {
   const goHome = () => navigate(createPageUrl('Home'));
   // After a full check (or skipping it), Your plan; a re-check of one part goes home.
   const next = () => (fullCheck ? navigate('/plan') : goHome());
-  const start = useMemo(() => (levels ? startingPoint(visibleCourse(UNITS, { showDrafts: canSeeDrafts(user) }), levels) : null), [levels, user]);
+  const tx = usePackLookup(language);
+  const start = useMemo(() => (levels ? startingPoint(translateCourse(visibleCourse(UNITS, { showDrafts: canSeeDrafts(user) }), tx), levels) : null), [levels, user, tx]);
 
   const finish = async ({ states, skipped }) => {
     const scored = scorePretest(lesson, states, skipped);
@@ -87,7 +90,7 @@ export default function QuickCheck() {
     );
   }
 
-  if (!loaded || !lesson) return <Loader2 className="w-6 h-6 animate-spin mx-auto mt-16 text-pw-navy" />;
+  if (!loaded || !lesson) return <Loader2 className="w-6 h-6 animate-spin mx-auto mt-16 text-navy" />;
 
   if (stage === 'lesson') {
     return (

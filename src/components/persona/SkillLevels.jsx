@@ -22,11 +22,11 @@ export default function SkillLevels({ levels, language = 'en' }) {
         const level = levels?.[part];
         const label = level ? (language === 'es' ? LEVELS[level].es : LEVELS[level].label) : language === 'es' ? 'Sin revisar' : 'Not checked yet';
         return (
-          <li key={part} className="flex items-center gap-3 rounded-2xl bg-white border border-pw-line px-4 py-3">
+          <li key={part} className="flex items-center gap-3 rounded-2xl bg-white border border-line px-4 py-3">
             <span className={`w-10 h-10 rounded-xl grid place-items-center shrink-0 ${SKILL_COLOR[part]} ${SKILL_ON[part]}`}>
               <Icon className="w-5 h-5" aria-hidden="true" />
             </span>
-            <span className="flex-1 font-bold text-pw-navy">{partName(part, language)}</span>
+            <span className="flex-1 font-bold text-navy">{partName(part, language)}</span>
             <Tag tone={level ? TONE[level] : 'navy'}>{label}</Tag>
           </li>
         );

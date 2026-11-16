@@ -161,7 +161,7 @@ export default function SettingsPage() {
 
             <Card>
               <form onSubmit={saveName} className="space-y-2">
-                <label htmlFor="display-name" className="block text-label uppercase text-ink-label">{t('your_name')}</label>
+                <label htmlFor="display-name" className="block text-label uppercase text-muted">{t('your_name')}</label>
                 <p className="text-small text-muted">{t('your_name_help')}</p>
                 <div className="flex items-center gap-2">
                   <input

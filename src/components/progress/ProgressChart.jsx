@@ -7,9 +7,9 @@ import { COLORS } from '@/lib/theme';
 
 // Chart colors match the pw tokens (recharts needs raw values).
 const NAVY = COLORS.navy;
-const RED = COLORS.notCorrect; // low scores (star red is never used for results)
-const LINE = COLORS.cardLine;
-const MUTED = COLORS.ink2;
+const RED = COLORS.notYet; // low scores (star red is never used for results)
+const LINE = COLORS.line;
+const MUTED = COLORS.muted;
 
 export default function ProgressChart({ userEmail }) {
   const [chartData, setChartData] = useState([]);
@@ -86,7 +86,7 @@ export default function ProgressChart({ userEmail }) {
     return (
       <Card>
         <CardContent className="flex items-center justify-center py-12">
-          <Loader2 className="w-6 h-6 animate-spin text-pw-navy" aria-hidden="true" />
+          <Loader2 className="w-6 h-6 animate-spin text-navy" aria-hidden="true" />
         </CardContent>
       </Card>
     );
@@ -97,14 +97,14 @@ export default function ProgressChart({ userEmail }) {
       <Card>
         <CardHeader className="p-5 sm:p-6">
           <CardTitle className="flex items-center gap-3">
-            <span className="w-10 h-10 rounded-2xl bg-pw-blue-soft text-pw-blue-ink grid place-items-center shrink-0">
+            <span className="w-10 h-10 rounded-2xl bg-tint text-navy grid place-items-center shrink-0">
               <TrendingUp className="w-5 h-5" aria-hidden="true" />
             </span>
             Improvement Over Time
           </CardTitle>
         </CardHeader>
         <CardContent className="p-5 pt-0 sm:p-6 sm:pt-0">
-          <div className="text-center py-8 px-4 text-base text-pw-muted bg-pw-soft rounded-2xl">
+          <div className="text-center py-8 px-4 text-base text-muted bg-tint rounded-2xl">
             Complete lessons and take quizzes to see your progress over time.
           </div>
         </CardContent>
@@ -116,7 +116,7 @@ export default function ProgressChart({ userEmail }) {
     <Card>
       <CardHeader className="p-5 sm:p-6">
         <CardTitle className="flex items-center gap-3">
-          <span className="w-10 h-10 rounded-2xl bg-pw-blue-soft text-pw-blue-ink grid place-items-center shrink-0">
+          <span className="w-10 h-10 rounded-2xl bg-tint text-navy grid place-items-center shrink-0">
             <TrendingUp className="w-5 h-5" aria-hidden="true" />
           </span>
           Improvement Over Time

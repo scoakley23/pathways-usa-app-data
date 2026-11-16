@@ -100,8 +100,8 @@ export default function DictationCard({ sentence, onComplete, onNext, testMode =
   );
   const translationLine = showTranslation && myLanguage && (
     isTranslating
-      ? <p className="flex items-center gap-2 text-base text-ink-2"><Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> Translating…</p>
-      : translation && <p lang={myLanguage.value} dir="auto" className="text-base text-ink-2">{translation}</p>
+      ? <p className="flex items-center gap-2 text-base text-muted"><Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> Translating…</p>
+      : translation && <p lang={myLanguage.value} dir="auto" className="text-base text-muted">{translation}</p>
   );
 
   return (
@@ -115,7 +115,7 @@ export default function DictationCard({ sentence, onComplete, onNext, testMode =
             {testMode ? 'Listen, then type what you hear.' : 'Listen, then write what you hear.'}
           </h2>
           <div className="flex flex-wrap gap-2">
-            <Chip onNavy onClick={speak} className={isPlaying ? 'bg-navy-line' : ''}>
+            <Chip onNavy onClick={speak} className={isPlaying ? 'bg-chip-navy' : ''}>
               <Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" /> Hear it
             </Chip>
             {done && myLanguage && (
@@ -133,7 +133,7 @@ export default function DictationCard({ sentence, onComplete, onNext, testMode =
           {!done && (
             <>
               <RuledPaper>
-                <label htmlFor="dictation-input" className="block text-[13px] font-semibold uppercase tracking-[0.14em] leading-[36px] text-ink-label">
+                <label htmlFor="dictation-input" className="block text-[13px] font-semibold uppercase tracking-[0.14em] leading-[36px] text-muted">
                   {testMode ? 'Type the sentence' : 'Your sentence'}
                 </label>
                 <textarea
@@ -142,7 +142,7 @@ export default function DictationCard({ sentence, onComplete, onNext, testMode =
                   onChange={(e) => setUserInput(e.target.value)}
                   placeholder="Type the sentence here…"
                   rows={2}
-                  className="block w-full resize-none bg-transparent text-[22px] leading-[36px] text-ink placeholder:text-ink-2 focus:outline-none"
+                  className="block w-full resize-none bg-transparent text-[22px] leading-[36px] text-navy placeholder:text-muted focus:outline-none"
                   onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); if (userInput.trim()) checkAnswer(); } }}
                 />
               </RuledPaper>
@@ -169,7 +169,7 @@ export default function DictationCard({ sentence, onComplete, onNext, testMode =
             >
               {words && (
                 <RuledPaper>
-                  <p className="text-[13px] font-semibold uppercase tracking-[0.14em] leading-[36px] text-ink-label">The sentence, word by word</p>
+                  <p className="text-[13px] font-semibold uppercase tracking-[0.14em] leading-[36px] text-muted">The sentence, word by word</p>
                   <WordByWord words={words} legend="Words to check" />
                 </RuledPaper>
               )}

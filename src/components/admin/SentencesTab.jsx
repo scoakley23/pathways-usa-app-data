@@ -9,9 +9,9 @@ import SentenceDialog from '@/components/admin/SentenceDialog';
 import { useContentManager } from '@/hooks/useContentManager';
 
 const difficultyColor = {
-  easy: "bg-pw-green-soft text-pw-green-ink",
-  medium: "bg-pw-blue-soft text-pw-blue-ink",
-  hard: "bg-pw-red-soft text-pw-red-ink",
+  easy: "bg-correct-bg text-correct",
+  medium: "bg-tint text-navy",
+  hard: "bg-not-yet-bg text-not-yet",
 };
 
 export default function SentencesTab() {
@@ -36,24 +36,24 @@ export default function SentencesTab() {
   );
 
   if (isLoading) {
-    return <div className="flex justify-center py-12"><Loader2 className="w-8 h-8 animate-spin text-pw-navy" /></div>;
+    return <div className="flex justify-center py-12"><Loader2 className="w-8 h-8 animate-spin text-navy" /></div>;
   }
 
   return (
     <div className="space-y-4">
       <div className="flex flex-col sm:flex-row justify-between gap-3">
         <div className="relative flex-1 max-w-sm">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-pw-muted" aria-hidden="true" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted" aria-hidden="true" />
           <Input type="search" placeholder="Search sentences..." className="pl-9" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
         </div>
         <Button onClick={() => { setEditingItem(null); setIsDialogOpen(true); }} className="w-full sm:w-auto">
           <Plus className="w-4 h-4" /> Add Sentence
         </Button>
       </div>
-      <div className="border border-pw-line rounded-card bg-white shadow-raised overflow-hidden">
-        <Table className="text-base [&_th]:px-2 [&_td]:px-2 sm:[&_th]:px-4 sm:[&_td]:px-4 [&_th]:text-sm [&_th]:font-bold [&_th]:text-pw-muted">
+      <div className="border border-line rounded-card bg-white shadow-raised overflow-hidden">
+        <Table className="text-base [&_th]:px-2 [&_td]:px-2 sm:[&_th]:px-4 sm:[&_td]:px-4 [&_th]:text-sm [&_th]:font-bold [&_th]:text-muted">
           <TableHeader>
-            <TableRow className="bg-pw-soft hover:bg-pw-soft">
+            <TableRow className="bg-tint hover:bg-tint">
               <TableHead className="w-[50%]">Sentence Text</TableHead>
               <TableHead>Category</TableHead>
               <TableHead>Difficulty</TableHead>
@@ -62,13 +62,13 @@ export default function SentencesTab() {
           </TableHeader>
           <TableBody>
             {filtered.length === 0 ? (
-              <TableRow><TableCell colSpan={4} className="text-center h-32 text-pw-muted">No sentences found.</TableCell></TableRow>
+              <TableRow><TableCell colSpan={4} className="text-center h-32 text-muted">No sentences found.</TableCell></TableRow>
             ) : (
               filtered.map((sentence) => (
                 <TableRow key={sentence.id}>
-                  <TableCell className="font-semibold text-pw-navy">{sentence.text}</TableCell>
+                  <TableCell className="font-semibold text-navy">{sentence.text}</TableCell>
                   <TableCell><Badge variant="secondary" className="font-semibold whitespace-nowrap">{sentence.category}</Badge></TableCell>
-                  <TableCell><Badge className={`${difficultyColor[sentence.difficulty] || "bg-pw-soft text-pw-navy"} capitalize whitespace-nowrap`}>{sentence.difficulty}</Badge></TableCell>
+                  <TableCell><Badge className={`${difficultyColor[sentence.difficulty] || "bg-tint text-navy"} capitalize whitespace-nowrap`}>{sentence.difficulty}</Badge></TableCell>
                   <TableCell className="text-right">
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
@@ -77,7 +77,7 @@ export default function SentencesTab() {
                       <DropdownMenuContent align="end">
                         <DropdownMenuLabel>Actions</DropdownMenuLabel>
                         <DropdownMenuItem onClick={() => { setEditingItem(sentence); setIsDialogOpen(true); }}><Pencil className="mr-2 h-4 w-4" /> Edit</DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => deleteItem(sentence.id)} className="text-pw-red-ink focus:text-pw-red-ink"><Trash2 className="mr-2 h-4 w-4" /> Delete</DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => deleteItem(sentence.id)} className="text-not-yet focus:text-not-yet"><Trash2 className="mr-2 h-4 w-4" /> Delete</DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>
                   </TableCell>

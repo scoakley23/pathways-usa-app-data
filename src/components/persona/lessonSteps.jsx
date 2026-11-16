@@ -50,21 +50,21 @@ function MicButton({ speech, busy, idleLabel = 'Tap and answer in English', onPo
   return (
     <div className="flex flex-col items-center mt-6">
       <div className="relative">
-        <span className={`absolute inset-0 rounded-full ${onPoster ? 'bg-white/25' : 'bg-pw-navy/15'} transition-transform ${speech.listening ? 'scale-150 animate-pulse' : 'scale-125'}`} aria-hidden="true" />
+        <span className={`absolute inset-0 rounded-full ${onPoster ? 'bg-white/25' : 'bg-navy/15'} transition-transform ${speech.listening ? 'scale-150 animate-pulse' : 'scale-125'}`} aria-hidden="true" />
         <button
           type="button"
           onClick={speech.listening ? speech.stop : speech.start}
           disabled={busy}
           aria-label={speech.listening ? 'Stop' : idleLabel}
-          className={`relative w-20 h-20 rounded-full grid place-items-center shadow-lift disabled:opacity-50 focus-visible:outline-none focus-visible:ring-4 ${onPoster ? 'bg-white text-pw-navy focus-visible:ring-white/60' : 'bg-pw-navy text-white focus-visible:ring-pw-navy/30'}`}
+          className={`relative w-20 h-20 rounded-full grid place-items-center shadow-lift disabled:opacity-50 focus-visible:outline-none focus-visible:ring-4 ${onPoster ? 'bg-white text-navy focus-visible:ring-white/60' : 'bg-navy text-white focus-visible:ring-navy/30'}`}
         >
-          {speech.listening ? <Square className={`w-7 h-7 ${onPoster ? 'fill-pw-navy' : 'fill-white'}`} /> : <Mic className="w-8 h-8" />}
+          {speech.listening ? <Square className={`w-7 h-7 ${onPoster ? 'fill-navy' : 'fill-white'}`} /> : <Mic className="w-8 h-8" />}
         </button>
       </div>
       <p className="mt-4 text-base font-semibold text-center" aria-live="polite">
         {busy ? 'Checking…' : speech.listening ? 'Listening… tap to stop' : idleLabel}
       </p>
-      {speech.transcript && <p className={`mt-2 text-center ${onPoster ? '' : 'text-pw-muted'}`}>“{speech.transcript}”</p>}
+      {speech.transcript && <p className={`mt-2 text-center ${onPoster ? '' : 'text-muted'}`}>“{speech.transcript}”</p>}
       {busy && <Loader2 className="w-5 h-5 animate-spin mt-2" />}
     </div>
   );
@@ -76,7 +76,7 @@ function CheckNext({ ctx }) {
 
 function QuestionCard({ ctx, eyebrow = 'The officer asks', text, children }) {
   return (
-    <RaisedCard className={`text-pw-navy ${ctx.sizeClass}`}>
+    <RaisedCard className={`text-navy ${ctx.sizeClass}`}>
       <Eyebrow className="mb-2">{eyebrow}</Eyebrow>
       <p className="text-[1.375em] font-extrabold leading-snug mb-3">{text}</p>
       <ListenButton text={text} language="en" />
@@ -90,10 +90,10 @@ function QuestionCard({ ctx, eyebrow = 'The officer asks', text, children }) {
 export function PartIntroStep({ step, ctx }) {
   return (
     <div className="space-y-4">
-      <div className="rounded-card bg-pw-blue-soft px-4 pt-4 pb-4">
+      <div className="rounded-card bg-tint px-4 pt-4 pb-4">
         <TopicArt name={step.art} />
-        <p className="text-[1.375em] font-extrabold mt-2 text-pw-navy">{step.title.mine || step.title.en}</p>
-        {step.title.mine && <p className="text-pw-muted">{step.title.en}</p>}
+        <p className="text-[1.375em] font-extrabold mt-2 text-navy">{step.title.mine || step.title.en}</p>
+        {step.title.mine && <p className="text-muted">{step.title.en}</p>}
       </div>
       <TutorMessage profile={ctx.profile} language={ctx.language} mine={step.text.mine} en={step.text.en} />
     </div>
@@ -105,7 +105,7 @@ export function ExplainStep({ step, ctx }) {
   return (
     <TutorMessage profile={ctx.profile} language={ctx.language} mine={step.text.mine} en={step.text.en}>
       {note && (
-        <p className="mt-3 text-sm font-semibold text-pw-muted">
+        <p className="mt-3 text-sm font-semibold text-muted">
           {ctx.language !== 'en' && note.mine ? `${note.mine} · ${note.en}` : note.en}
         </p>
       )}
@@ -114,7 +114,7 @@ export function ExplainStep({ step, ctx }) {
           href={link.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-3 min-h-[44px] rounded-2xl bg-white text-pw-navy border-2 border-pw-navy px-4 font-bold inline-flex items-center gap-2 hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2"
+          className="mt-3 min-h-[44px] rounded-2xl bg-white text-navy border-2 border-navy px-4 font-bold inline-flex items-center gap-2 hover:bg-tint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2"
         >
           <Volume2 className="w-5 h-5" aria-hidden="true" /> {link.label}
           <ExternalLink className="w-4 h-4" aria-hidden="true" />
@@ -132,7 +132,7 @@ function NowAnswer({ now, ctx }) {
   if (!now) return null;
   const t = (key) => { const v = ctx.ui(key); return ctx.language === 'es' && v.mine ? v.mine : v.en; };
   return (
-    <div className="mt-4 rounded-2xl bg-pw-blue-soft p-4">
+    <div className="mt-4 rounded-2xl bg-tint p-4">
       {now.kind === 'current' && (
         <>
           <Eyebrow className="mb-1">{t('currentAnswer')}</Eyebrow>
@@ -140,13 +140,13 @@ function NowAnswer({ now, ctx }) {
           {now.accepted.length > 0 && <ListenButton text={now.accepted.join('. ')} language="en" />}
           {now.message && <p className="mt-2">{now.message}</p>}
           {now.mayChangeSoon && <p className="font-semibold mt-2">{t('mayChangeSoon')}</p>}
-          <p className="text-sm text-pw-muted mt-2">{t('checkedOn').replace('{date}', now.checkedOn)}.</p>
+          <p className="text-sm text-muted mt-2">{t('checkedOn').replace('{date}', now.checkedOn)}.</p>
         </>
       )}
       {now.kind === 'find' && (
         <>
           <p className="font-semibold">{t('findYours')}</p>
-          <Link to={FIND_REPRESENTATIVE_PATH} className="mt-3 min-h-[44px] rounded-2xl bg-pw-navy text-white px-4 font-bold inline-flex items-center hover:bg-pw-navy-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2">
+          <Link to={FIND_REPRESENTATIVE_PATH} className="mt-3 min-h-[44px] rounded-2xl bg-navy text-white px-4 font-bold inline-flex items-center hover:bg-navy-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2">
             {t('findButton')}
           </Link>
         </>
@@ -158,7 +158,7 @@ function NowAnswer({ now, ctx }) {
 // Text with key words in yellow marks (official text is never changed).
 function Marked({ text, words }) {
   return markKeyWords(text, words).map((p, i) => (p.mark
-    ? <mark key={i} className="bg-pw-highlight text-pw-navy rounded px-0.5">{p.text}</mark>
+    ? <mark key={i} className="bg-stop-chest text-navy rounded px-0.5">{p.text}</mark>
     : <React.Fragment key={i}>{p.text}</React.Fragment>));
 }
 
@@ -175,7 +175,7 @@ export function ShowEnglishStep({ step, ctx }) {
   return (
     <div className="space-y-4">
       <TutorMessage profile={ctx.profile} language={ctx.language} {...ctx.ui('showEnglish')} />
-      <Card className={`text-pw-navy ${ctx.sizeClass}`}>
+      <Card className={`text-navy ${ctx.sizeClass}`}>
         <Eyebrow className="mb-2">The officer asks</Eyebrow>
         <p className="text-[1.375em] font-extrabold leading-snug mb-3"><Marked text={step.question.question} words={words} /></p>
         <ListenButton text={step.question.question} language="en" />
@@ -187,13 +187,13 @@ export function ShowEnglishStep({ step, ctx }) {
         <NowAnswer now={step.now} ctx={ctx} />
       </Card>
       {translated.length > 0 && (
-        <RaisedCard className={`text-pw-navy ${ctx.sizeClass}`}>
+        <RaisedCard className={`text-navy ${ctx.sizeClass}`}>
           <Eyebrow className="mb-3">{ctx.language === 'es' ? 'Palabras clave · Key words' : 'Key words'}</Eyebrow>
-          <ul className="divide-y divide-pw-line">
+          <ul className="divide-y divide-line">
             {translated.map((k) => (
               <li key={k.en} className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 py-2.5">
-                <span className="font-bold"><mark className="bg-pw-highlight text-pw-navy rounded px-1">{k.en}</mark></span>
-                <span dir={dir} lang={ctx.language} className="text-pw-muted">{k.translation}</span>
+                <span className="font-bold"><mark className="bg-stop-chest text-navy rounded px-1">{k.en}</mark></span>
+                <span dir={dir} lang={ctx.language} className="text-muted">{k.translation}</span>
               </li>
             ))}
           </ul>
@@ -280,9 +280,9 @@ export function SpeakingStep({ step, ctx, state, setState }) {
                 onChange={(e) => setTyped(e.target.value)}
                 placeholder="Type your answer in English"
                 aria-label="Your answer"
-                className="flex-1 min-w-0 min-h-[48px] rounded-[10px] bg-white px-4 text-base text-pw-navy placeholder:text-pw-muted"
+                className="flex-1 min-w-0 min-h-[48px] rounded-[10px] bg-white px-4 text-base text-navy placeholder:text-muted"
               />
-              <button type="submit" className="min-h-[48px] rounded-full bg-white text-pw-navy px-5 font-semibold hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent">Check</button>
+              <button type="submit" className="min-h-[48px] rounded-full bg-white text-navy px-5 font-semibold hover:bg-tint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent">Check</button>
             </form>
           ))}
           {state.heard && <p className="mt-4">You said: <span className="font-medium">“{state.heard}”</span></p>}
@@ -298,17 +298,17 @@ export function SpeakingStep({ step, ctx, state, setState }) {
                 onChange={(e) => setTyped(e.target.value)}
                 placeholder="Type your answer in English"
                 aria-label="Your answer"
-                className="flex-1 min-w-0 min-h-[44px] rounded-2xl border border-pw-line px-4 text-base"
+                className="flex-1 min-w-0 min-h-[44px] rounded-2xl border border-line px-4 text-base"
               />
               <PrimaryButton type="submit">Check</PrimaryButton>
             </form>
           ))}
-          {state.heard && <p className="mt-4 text-pw-muted">You said: <span className="font-medium">“{state.heard}”</span></p>}
+          {state.heard && <p className="mt-4 text-muted">You said: <span className="font-medium">“{state.heard}”</span></p>}
         </QuestionCard>
       )}
 
       {state.answered && state.result?.isCorrect === null && (
-        <RaisedCard className={`text-pw-navy ${ctx.sizeClass}`}>
+        <RaisedCard className={`text-navy ${ctx.sizeClass}`}>
           <p className="font-semibold mb-2">{(() => { const v = ctx.ui('notCounted'); return ctx.language === 'es' && v.mine ? v.mine : v.en; })()}</p>
           <OfficeholderNote answer={state.result.officeholder} graded={false} />
         </RaisedCard>
@@ -338,7 +338,7 @@ function WordChips({ words }) {
   return (
     <p className="flex flex-wrap gap-1.5 mt-4">
       {words.map((w, i) => (
-        <span key={i} className={`rounded-lg px-2 py-0.5 font-semibold ${w.status === 'correct' ? 'bg-pw-green-soft text-pw-green-ink' : 'bg-pw-red-soft text-pw-red-ink underline'}`}>{w.word}</span>
+        <span key={i} className={`rounded-lg px-2 py-0.5 font-semibold ${w.status === 'correct' ? 'bg-correct-bg text-correct' : 'bg-not-yet-bg text-not-yet underline'}`}>{w.word}</span>
       ))}
     </p>
   );
@@ -362,13 +362,13 @@ export function WritingStep({ step, ctx, state, setState }) {
   return (
     <div className="space-y-4">
       <TutorMessage profile={ctx.profile} language={ctx.language} {...ctx.ui('writePrompt')} expression="listening" />
-      <RaisedCard className={`text-pw-navy ${ctx.sizeClass}`}>
+      <RaisedCard className={`text-navy ${ctx.sizeClass}`}>
         <div className="flex items-center gap-4">
           <button
             type="button"
             onClick={say}
             aria-label="Play the sentence"
-            className="w-16 h-16 shrink-0 rounded-full bg-pw-navy text-white grid place-items-center shadow-lift focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-pw-navy/40"
+            className="w-16 h-16 shrink-0 rounded-full bg-navy text-white grid place-items-center shadow-lift focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-navy/40"
           >
             <Volume2 className="w-7 h-7" />
           </button>
@@ -382,7 +382,7 @@ export function WritingStep({ step, ctx, state, setState }) {
               placeholder="Write what you hear"
               aria-label="Write what you hear"
               autoCapitalize="sentences"
-              className="w-full min-h-[48px] rounded-2xl border border-pw-line px-4 text-base"
+              className="w-full min-h-[48px] rounded-2xl border border-line px-4 text-base"
             />
             <PrimaryButton type="submit" className="w-full">Check</PrimaryButton>
           </form>
@@ -423,11 +423,11 @@ export function ReadingStep({ step, ctx, state, setState }) {
   return (
     <div className="space-y-4">
       <TutorMessage profile={ctx.profile} language={ctx.language} {...ctx.ui('readPrompt')} expression="listening" />
-      <RaisedCard className={`text-pw-navy ${ctx.sizeClass}`}>
+      <RaisedCard className={`text-navy ${ctx.sizeClass}`}>
         <Eyebrow className="mb-2">Read out loud</Eyebrow>
         <p className="text-[1.375em] font-extrabold leading-snug">{step.sentence}</p>
         {!state.answered && (speech.supported ? <MicButton speech={speech} idleLabel="Tap and read out loud" /> : (
-          <p className="mt-4 text-pw-muted">Reading needs a browser with speech recognition, like Chrome or Safari. You can skip this part.</p>
+          <p className="mt-4 text-muted">Reading needs a browser with speech recognition, like Chrome or Safari. You can skip this part.</p>
         ))}
         {state.answered && !isCheck(step) && <WordChips words={state.result.words} />}
       </RaisedCard>
@@ -480,9 +480,9 @@ export function InterviewStep({ step, ctx, state, setState }) {
       <TutorMessage profile={ctx.profile} language={ctx.language} {...ctx.ui(step.understand ? 'understandPrompt' : 'interviewPrompt')} expression="listening" />
       <QuestionCard ctx={ctx} text={step.question.question}>
         {!state.answered && (speech.supported ? <MicButton speech={speech} busy={checking} /> : (
-          <p className="mt-4 text-pw-muted">Speaking needs a browser with speech recognition, like Chrome or Safari. You can skip this part.</p>
+          <p className="mt-4 text-muted">Speaking needs a browser with speech recognition, like Chrome or Safari. You can skip this part.</p>
         ))}
-        {state.heard && <p className="mt-4 text-pw-muted">You said: <span className="font-medium">“{state.heard}”</span></p>}
+        {state.heard && <p className="mt-4 text-muted">You said: <span className="font-medium">“{state.heard}”</span></p>}
       </QuestionCard>
       {failed && <TutorMessage profile={ctx.profile} language={ctx.language} {...ctx.ui('checkFailed')} />}
       {state.answered && (isCheck(step) ? <CheckNext ctx={ctx} /> : (
@@ -526,11 +526,11 @@ export function CheckStep({ step, ctx, state, setState }) {
               type="button"
               onClick={() => choose(o)}
               aria-pressed={state.choice === o}
-              className={`min-h-[52px] rounded-2xl border-2 px-4 py-2 text-left font-bold inline-flex items-center justify-between gap-2 text-pw-navy transition-colors ${
-                isRight ? 'border-pw-green-ink bg-pw-green-soft' : isWrongChoice ? 'border-pw-red-ink bg-pw-red-soft' : 'border-pw-line bg-white hover:border-pw-navy'
+              className={`min-h-[52px] rounded-2xl border-2 px-4 py-2 text-left font-bold inline-flex items-center justify-between gap-2 text-navy transition-colors ${
+                isRight ? 'border-correct bg-correct-bg' : isWrongChoice ? 'border-not-yet bg-not-yet-bg' : 'border-line bg-white hover:border-navy'
               }`}
             >
-              {o} {isRight && <Check className="w-5 h-5 text-pw-green-ink shrink-0" aria-label="Correct answer" />}
+              {o} {isRight && <Check className="w-5 h-5 text-correct shrink-0" aria-label="Correct answer" />}
             </button>
           );
         })}

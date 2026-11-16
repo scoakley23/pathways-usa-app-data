@@ -229,7 +229,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, testMode 
             {question.question}
           </h2>
           <div className="flex flex-wrap gap-2">
-            <Chip onNavy onClick={() => speak(question.question)} aria-label="Hear the question" className={isPlaying ? 'bg-navy-line' : ''}>
+            <Chip onNavy onClick={() => speak(question.question)} aria-label="Hear the question" className={isPlaying ? 'bg-chip-navy' : ''}>
               <Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" /> Hear it
             </Chip>
             {myLanguage && (
@@ -242,7 +242,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, testMode 
             isTranslating ? (
               <p className="flex items-center gap-2 text-base text-on-navy"><Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> Translating…</p>
             ) : translatedQuestion && (
-              <p lang={myLanguage.value} dir="auto" className="border-s-2 border-navy-line ps-4 text-lg text-on-navy">{translatedQuestion}</p>
+              <p lang={myLanguage.value} dir="auto" className="border-s-2 border-chip-navy ps-4 text-lg text-on-navy">{translatedQuestion}</p>
             )
           )}
         </div>
@@ -253,7 +253,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, testMode 
         <div className="mx-auto max-w-2xl space-y-5 pb-6">
           {!done && (
             <>
-              <p className="text-base font-semibold text-ink">Answer out loud, in English</p>
+              <p className="text-base font-semibold text-navy">Answer out loud, in English</p>
 
               {inputMode === 'type' && (
                 <input
@@ -262,14 +262,14 @@ export default function CivicsTestCard({ question, onComplete, onNext, testMode 
                   value={userAnswer}
                   onChange={(e) => setUserAnswer(e.target.value)}
                   onKeyDown={(e) => { if (e.key === 'Enter' && userAnswer.trim() && !verifying) checkAnswer(); }}
-                  className="w-full min-h-[56px] rounded-card border border-card-line bg-white px-4 text-lg text-ink placeholder:text-ink-2 focus:outline-none focus:ring-2 focus:ring-navy"
+                  className="w-full min-h-[56px] rounded-card border border-line bg-white px-4 text-lg text-navy placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-navy"
                 />
               )}
 
               {inputMode === 'speak' && (isListening || userAnswer) && (
-                <div aria-live="polite" className="rounded-card bg-white border border-card-line p-4">
-                  <p className="text-label uppercase text-ink-label">{isListening ? 'Listening…' : 'You said'}</p>
-                  <p className="mt-1 text-xl leading-snug text-ink min-h-[1.5em]">{userAnswer ? `“${userAnswer}”` : ''}</p>
+                <div aria-live="polite" className="rounded-card bg-white border border-line p-4">
+                  <p className="text-label uppercase text-muted">{isListening ? 'Listening…' : 'You said'}</p>
+                  <p className="mt-1 text-xl leading-snug text-navy min-h-[1.5em]">{userAnswer ? `“${userAnswer}”` : ''}</p>
                 </div>
               )}
 
@@ -301,7 +301,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, testMode 
                 )}
               </div>
 
-              <p className="text-[15px] text-ink-2">Answer only the civics question. Don&apos;t include personal information.</p>
+              <p className="text-[15px] text-muted">Answer only the civics question. Don&apos;t include personal information.</p>
 
               <Button variant="link" className="px-0" onClick={iDontKnow} disabled={verifying}>
                 {testMode ? 'I don’t know' : 'I don’t know, show me'}
@@ -319,7 +319,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, testMode 
               onHearAnswer={() => speak(spokenAnswer)}
               acceptedExtra={<OfficeholderNote answer={verificationResult.officeholder} className="mt-3" />}
             >
-              {translatedAnswer && showTranslation && <p lang={myLanguage?.value} dir="auto" className="text-base text-ink-2">{translatedAnswer}</p>}
+              {translatedAnswer && showTranslation && <p lang={myLanguage?.value} dir="auto" className="text-base text-muted">{translatedAnswer}</p>}
               <div className="flex flex-col items-start gap-2">
                 <Button variant="next" className="w-full min-h-[52px]" onClick={() => finish(true)}>
                   Next question <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" />
@@ -344,7 +344,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, testMode 
               onHearAnswer={() => speak(spokenAnswer)}
               acceptedExtra={<OfficeholderNote answer={verificationResult?.officeholder} className="mt-3" />}
             >
-              {translatedAnswer && showTranslation && <p lang={myLanguage?.value} dir="auto" className="text-base text-ink-2">{translatedAnswer}</p>}
+              {translatedAnswer && showTranslation && <p lang={myLanguage?.value} dir="auto" className="text-base text-muted">{translatedAnswer}</p>}
               <div className="flex flex-col items-start gap-2">
                 <div className="grid w-full grid-cols-2 gap-3">
                   {!testMode && !dontKnow ? (

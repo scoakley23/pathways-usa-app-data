@@ -44,14 +44,14 @@ export default function LanguageStep({ language, t, onPick, onContinue, note }) 
           />
         </label>
         {note}
-        <ul className="flex flex-col gap-2 list-none m-0 p-0" role="radiogroup" aria-label={t('language_title')}>
+        <div className="flex flex-col gap-2" role="radiogroup" aria-label={t('language_title')}>
           {shown.map((l) => {
             const on = l.value === language;
             const native = nativeName(l.label);
             const english = englishName(l.label);
             return (
-              <li key={l.value}>
-                <button
+              <button
+                  key={l.value}
                   type="button"
                   role="radio"
                   aria-checked={on}
@@ -64,10 +64,9 @@ export default function LanguageStep({ language, t, onPick, onContinue, note }) 
                   </span>
                   {on && <CheckCircle2 className="w-7 h-7 shrink-0 text-denim" aria-hidden="true" />}
                 </button>
-              </li>
             );
           })}
-        </ul>
+        </div>
         {!shown.length && <p className="text-base text-muted text-center py-6">{t('language_none')}</p>}
       </div>
       <div className="sticky bottom-0 bg-page px-4 pt-2 pb-6 max-w-lg w-full mx-auto">

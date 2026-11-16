@@ -45,7 +45,7 @@ export default function VocabularyWordDialog({ open, onOpenChange, onSubmit, ini
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4 py-4">
           <div className="space-y-2">
-            <Label htmlFor="word" className="text-sm font-bold text-pw-navy">Word</Label>
+            <Label htmlFor="word" className="text-sm font-bold text-navy">Word</Label>
             <Input
               id="word"
               value={formData.word}
@@ -55,7 +55,7 @@ export default function VocabularyWordDialog({ open, onOpenChange, onSubmit, ini
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="category" className="text-sm font-bold text-pw-navy">Category</Label>
+            <Label htmlFor="category" className="text-sm font-bold text-navy">Category</Label>
             <Input
               id="category"
               value={formData.category}
@@ -64,13 +64,13 @@ export default function VocabularyWordDialog({ open, onOpenChange, onSubmit, ini
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="definition" className="text-sm font-bold text-pw-navy">Definition</Label>
+            <Label htmlFor="definition" className="text-sm font-bold text-navy">Definition</Label>
             <Textarea
               id="definition"
               value={formData.definition}
               onChange={(e) => setFormData({ ...formData, definition: e.target.value })}
               placeholder="e.g., A change or addition to the Constitution"
-              className="min-h-[80px] rounded-2xl border-2 border-pw-line text-base md:text-base text-pw-navy focus-visible:border-pw-navy"
+              className="min-h-[80px] rounded-2xl border-2 border-line text-base md:text-base text-navy focus-visible:border-navy"
             />
           </div>
           <DialogFooter className="gap-2">

@@ -11,10 +11,10 @@ const badgeVariants = cva(
         default:
           "border-transparent bg-navy text-white",
         secondary:
-          "border-transparent bg-sand text-ink",
+          "border-transparent bg-tint text-navy",
         destructive:
-          "border-transparent bg-not-correct-soft text-not-correct",
-        outline: "border-card-line bg-white text-ink",
+          "border-transparent bg-not-yet-bg text-not-yet",
+        outline: "border-line bg-white text-navy",
       },
     },
     defaultVariants: {

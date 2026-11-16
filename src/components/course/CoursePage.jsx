@@ -31,7 +31,7 @@ function UnitCard({ unit, counts, t }) {
           <span className="flex-1 h-2 rounded-full bg-white/25 overflow-hidden" aria-hidden="true">
             <span className="block h-full rounded-full bg-gold" style={{ width: `${pct}%` }} />
           </span>
-          <span dir="auto" className="text-small text-on-navy tabular-nums whitespace-nowrap">{t('of', { n: counts.done, total: counts.total })}</span>
+          <span dir="auto" className="text-small text-white tabular-nums whitespace-nowrap">{t('of', { n: counts.done, total: counts.total })}</span>
         </span>
       </span>
     </Link>

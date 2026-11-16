@@ -34,6 +34,11 @@ const MAX_ITEMS = 40;
 
 // ---------------------------------------------------------------- pure parts
 
+// App feature names that stay in English in every language.
+export const FEATURE_NAMES = ['Speak it!', 'Read it', 'Write it', 'Teach it back', 'Read and write'];
+// Whole-phrase match, so "Read it out loud" (an instruction) isn't a feature name.
+const featuresIn = (s) => FEATURE_NAMES.filter((f) => new RegExp(`(^|[^\\w])${f.replace(/[!]/g, '\\!')}(?![\\w ]*\\w*out loud)($|[^\\w])`).test(String(s)));
+
 export const placeholders = (s) => (String(s).match(/\{[A-Za-z_][\w]*\}/g) || []).sort();
 export const numbers = (s) => (String(s).match(/\d+/g) || []).sort();
 
@@ -42,6 +47,7 @@ export function problem(english, translated) {
   if (typeof translated !== 'string' || !translated.trim()) return 'empty';
   if (placeholders(english).join() !== placeholders(translated).join()) return 'placeholders changed';
   if (numbers(english).join() !== numbers(translated).join()) return 'numbers changed';
+  if (featuresIn(english).some((f) => !String(translated).includes(f))) return 'feature name translated';
   return null;
 }
 
@@ -72,6 +78,8 @@ Rules:
 - Keep placeholders in curly braces exactly as written, for example {name}, {n}, {language}.
 - Keep every number exactly as written.
 - Keep these names in English: Pathways, Pathways USA, Amio, USCIS, N-400. For "A-number" you may add the local term in parentheses.
+- Keep the app's feature names in English, exactly as written: Speak it!, Read it, Write it, Teach it back, Read and write. Translate the words around them.
+- Translate a repeated form term the same way every time. On the N-400 form, "Item Number" is always the word for "question" in your language followed by the number.
 - Keep markdown, line breaks and bullet characters as they are.
 - Use plain, respectful language for adults. Use the formal "you" where the language has one.
 - Official civics questions and answers: translate them faithfully, keeping names, dates and numbers exactly.

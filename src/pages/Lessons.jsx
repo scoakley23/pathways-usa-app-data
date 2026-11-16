@@ -116,7 +116,7 @@ export default function Lessons() {
           <div className="flex items-center justify-center min-h-[300px]">
             <div className="text-center">
               <div className="w-12 h-12 border-4 border-navy border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-              <p className="text-base text-ink-2">Loading lessons...</p>
+              <p className="text-base text-muted">Loading lessons...</p>
             </div>
           </div>
         </CreamSheet>
@@ -137,8 +137,8 @@ export default function Lessons() {
     <div>
       {top}
       <CreamSheet>
-        <div className="mx-auto max-w-3xl space-y-5 pb-8 text-ink">
-          <p className="text-base text-ink-2">Each lesson ends with the exact questions the officer may ask. We go over them together.</p>
+        <div className="mx-auto max-w-3xl space-y-5 pb-8 text-navy">
+          <p className="text-base text-muted">Each lesson ends with the exact questions the officer may ask. We go over them together.</p>
           {lessons.length > 0 && <Eyebrow>Civics · {doneTotal} of {lessons.length} lessons done</Eyebrow>}
 
           {/* The topics as a vertical road */}
@@ -153,7 +153,7 @@ export default function Lessons() {
                   {!last && (
                     <span
                       aria-hidden="true"
-                      className={`absolute start-[20px] top-[22px] bottom-0 w-1 -translate-x-1/2 rtl:translate-x-1/2 rounded-full ${row.state === 'done' ? 'bg-denim' : 'bg-card-line'}`}
+                      className={`absolute start-[20px] top-[22px] bottom-0 w-1 -translate-x-1/2 rtl:translate-x-1/2 rounded-full ${row.state === 'done' ? 'bg-denim' : 'bg-line'}`}
                     />
                   )}
                   <span className="relative z-10 w-10 h-11 shrink-0 grid place-items-center">
@@ -167,7 +167,7 @@ export default function Lessons() {
                         <Star className="w-4 h-4 text-white fill-white" aria-hidden="true" />
                       </span>
                     )}
-                    {row.state === 'later' && <span className="w-6 h-6 rounded-full border-2 border-ink-2 bg-cream" />}
+                    {row.state === 'later' && <span className="w-6 h-6 rounded-full border-2 border-muted bg-page" />}
                   </span>
 
                   <div className="min-w-0 flex-1 pb-6">
@@ -180,12 +180,12 @@ export default function Lessons() {
                     >
                       <span className="min-w-0 flex-1">
                         <span className="block font-display text-[20px] leading-tight">{row.name}</span>
-                        <span className="block text-sm text-ink-2">
+                        <span className="block text-sm text-muted">
                           {row.doneCount} of {row.lessons.length} lessons
                           <span className="sr-only">{row.state === 'done' ? ', done' : row.state === 'current' ? ", you're here" : ''}</span>
                         </span>
                       </span>
-                      <ChevronDown className={`w-5 h-5 shrink-0 text-ink-2 transition-transform ${isOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
+                      <ChevronDown className={`w-5 h-5 shrink-0 text-muted transition-transform ${isOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
                     </button>
 
                     {/* You're here: the lesson nextLesson() picks */}
@@ -194,7 +194,7 @@ export default function Lessons() {
                         <div className="min-w-0 flex-1">
                           <Eyebrow>You&apos;re here</Eyebrow>
                           <p className="mt-1 font-display text-[22px] leading-tight">{next.lesson.title}</p>
-                          <p className="mt-1 text-sm text-ink-2">{NEXT_LABEL[next.reason]}</p>
+                          <p className="mt-1 text-sm text-muted">{NEXT_LABEL[next.reason]}</p>
                         </div>
                         <button
                           type="button"
@@ -209,7 +209,7 @@ export default function Lessons() {
 
                     {/* The topic's lessons */}
                     {isOpen && (
-                      <ul id={listId} className="mt-3 rounded-card bg-white border border-card-line divide-y divide-card-line">
+                      <ul id={listId} className="mt-3 rounded-card bg-white border border-line divide-y divide-line">
                         {row.lessons.map((lesson) => {
                           const lessonProgress = getLessonProgress(lesson.id);
                           const isCompleted = !!lessonProgress?.completed;
@@ -219,14 +219,14 @@ export default function Lessons() {
                               <button
                                 type="button"
                                 onClick={() => setSelectedLesson(lesson)}
-                                className="w-full flex items-center gap-3 px-4 py-3 min-h-[60px] text-start hover:bg-cream focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-navy"
+                                className="w-full flex items-center gap-3 px-4 py-3 min-h-[60px] text-start hover:bg-page focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-navy"
                               >
-                                <span className={`w-6 h-6 shrink-0 rounded-full grid place-items-center ${isCompleted ? 'bg-denim' : 'border-2 border-card-line'}`} aria-hidden="true">
+                                <span className={`w-6 h-6 shrink-0 rounded-full grid place-items-center ${isCompleted ? 'bg-denim' : 'border-2 border-line'}`} aria-hidden="true">
                                   {isCompleted && <Check className="w-3.5 h-3.5 text-white" strokeWidth={3} />}
                                 </span>
                                 <span className="min-w-0 flex-1">
                                   <span className="block text-base font-semibold leading-snug">{lesson.title}</span>
-                                  <span className="flex items-center gap-2 text-sm text-ink-2">
+                                  <span className="flex items-center gap-2 text-sm text-muted">
                                     {status}
                                     {lesson.video_url && <Video className="w-4 h-4" aria-label="Has a video" />}
                                   </span>
@@ -246,10 +246,10 @@ export default function Lessons() {
           {lessons.length === 0 && (
             <Card className="text-center py-12">
               <div className="space-y-4">
-                <BookOpen className="w-16 h-16 text-card-line mx-auto" aria-hidden="true" />
+                <BookOpen className="w-16 h-16 text-line mx-auto" aria-hidden="true" />
                 <div>
                   <h3 className="font-display text-[22px] mb-2">No lessons yet</h3>
-                  <p className="text-base text-ink-2">Lessons are loading. Please check back shortly.</p>
+                  <p className="text-base text-muted">Lessons are loading. Please check back shortly.</p>
                 </div>
               </div>
             </Card>

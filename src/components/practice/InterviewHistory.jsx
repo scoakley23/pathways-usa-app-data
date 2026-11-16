@@ -24,18 +24,18 @@ export default function InterviewHistory() {
   if (!sessions || sessions.length === 0) return null;
 
   return (
-    <RaisedCard className="text-pw-navy">
+    <RaisedCard className="text-navy">
       <h3 className="flex items-center gap-2 text-xl font-extrabold mb-4">
         <History className="w-5 h-5" aria-hidden="true" /> Your Past Interviews
       </h3>
       <div className="space-y-2">
         {sessions.map((s) => (
-          <div key={s.id} className="flex items-center justify-between gap-3 border border-pw-line rounded-2xl px-4 py-3">
+          <div key={s.id} className="flex items-center justify-between gap-3 border border-line rounded-2xl px-4 py-3">
             <div className="min-w-0">
               <p className="font-bold text-base">
                 {s.created_date ? format(new Date(s.created_date), 'MMM d, yyyy • h:mm a') : 'Past session'}
               </p>
-              <p className="text-sm text-pw-muted">
+              <p className="text-sm text-muted">
                 {s.passed_count ?? 0} of {s.question_count ?? 0} questions passed
               </p>
             </div>

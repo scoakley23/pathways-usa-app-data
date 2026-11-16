@@ -31,9 +31,9 @@ export default function RoadProgress({ index = 0, total = 0, answered = false, c
       className={`relative h-8 ${className}`}
     >
       <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" className="absolute inset-x-0 top-1 w-full h-6 overflow-visible" aria-hidden="true" focusable="false">
-        <path d={PATH} fill="none" stroke={COLORS.road} strokeWidth="8" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
+        <path d={PATH} fill="none" stroke={COLORS.chipNavy} strokeWidth="8" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
         {f > 0 && (
-          <path d={PATH} fill="none" stroke={COLORS.sky} strokeWidth="8" strokeLinecap="round" vectorEffect="non-scaling-stroke" pathLength="1" strokeDasharray={`${f} 1`} />
+          <path d={PATH} fill="none" stroke={COLORS.denim} strokeWidth="8" strokeLinecap="round" vectorEffect="non-scaling-stroke" pathLength="1" strokeDasharray={`${f} 1`} />
         )}
       </svg>
       <span

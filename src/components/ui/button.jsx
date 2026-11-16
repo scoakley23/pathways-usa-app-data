@@ -12,13 +12,13 @@ const buttonVariants = cva(
         default:
           "bg-navy text-white hover:bg-navy-deep",
         destructive:
-          "bg-not-correct text-white hover:bg-pw-red-deep",
+          "bg-not-yet text-white hover:bg-not-yet",
         outline:
-          "border-2 border-navy bg-transparent text-ink hover:bg-sand",
+          "border-2 border-navy bg-transparent text-navy hover:bg-tint",
         secondary:
-          "bg-sand text-ink hover:bg-sand-hover",
-        ghost: "text-ink hover:bg-sand",
-        link: "text-ink underline underline-offset-4 decoration-ink/40 hover:decoration-ink",
+          "bg-tint text-navy hover:bg-line",
+        ghost: "text-navy hover:bg-tint",
+        link: "text-navy underline underline-offset-4 decoration-navy/40 hover:decoration-navy",
       },
       size: {
         default: "min-h-11 px-5 py-2",

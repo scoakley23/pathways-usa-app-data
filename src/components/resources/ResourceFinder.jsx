@@ -125,28 +125,28 @@ export default function ResourceFinder() {
     <div className="space-y-4">
       <RaisedCard className="space-y-4 md:p-6">
         <div className="flex items-center gap-3">
-          <div className="w-11 h-11 rounded-2xl grid place-items-center bg-pw-blue-soft text-pw-blue-ink shrink-0">
+          <div className="w-11 h-11 rounded-2xl grid place-items-center bg-tint text-navy shrink-0">
             <MapPin className="w-5 h-5" aria-hidden="true" />
           </div>
-          <h2 className="text-[28px] leading-snug font-display font-normal text-pw-navy">Find help near you</h2>
+          <h2 className="text-[28px] leading-snug font-display font-normal text-navy">Find help near you</h2>
         </div>
 
         {isLoading && (
-          <p className="flex items-center gap-2 text-base text-pw-muted"><Loader2 className="w-5 h-5 animate-spin" /> Loading places…</p>
+          <p className="flex items-center gap-2 text-base text-muted"><Loader2 className="w-5 h-5 animate-spin" /> Loading places…</p>
         )}
         {isError && (
-          <p className="text-base text-pw-red-ink font-semibold" role="alert">We couldn&apos;t load the list of places. Please try again later.</p>
+          <p className="text-base text-not-yet font-semibold" role="alert">We couldn&apos;t load the list of places. Please try again later.</p>
         )}
         {!isLoading && !isError && (
           <div className="space-y-4">
             <div className="flex flex-wrap items-center justify-between gap-2">
               {overview ? (
-                <p className="text-base text-pw-navy" aria-live="polite">
+                <p className="text-base text-navy" aria-live="polite">
                   <strong>{results.length}</strong> {results.length === 1 ? 'place' : 'places'} on the map. Tap a dot to see
                   a place, or use your location or ZIP code to see the closest ones first.
                 </p>
               ) : (
-                <p className="text-base text-pw-navy" aria-live="polite">
+                <p className="text-base text-navy" aria-live="polite">
                   <strong>{results.length}</strong> {results.length === 1 ? 'place' : 'places'} within {radius} miles of {origin.label}
                 </p>
               )}
@@ -163,21 +163,21 @@ export default function ResourceFinder() {
                 <div
                   className={fullscreen
                     ? 'fixed inset-0 !mt-0 z-[70] bg-white flex flex-col'
-                    : 'relative h-[380px] sm:h-[440px] rounded-card overflow-hidden border border-pw-line shadow-raised bg-pw-soft isolate'}
+                    : 'relative h-[380px] sm:h-[440px] rounded-card overflow-hidden border border-line shadow-raised bg-tint isolate'}
                   role={fullscreen ? 'dialog' : undefined}
                   aria-modal={fullscreen ? 'true' : undefined}
                   aria-label={fullscreen ? 'Map of places near you' : undefined}
                 >
                   {fullscreen && (
-                    <div className="flex items-center justify-between gap-3 px-4 py-2 border-b border-pw-line bg-white">
-                      <p className="text-base font-bold text-pw-navy truncate">{results.length} places · {mapOrigin.label}</p>
+                    <div className="flex items-center justify-between gap-3 px-4 py-2 border-b border-line bg-white">
+                      <p className="text-base font-bold text-navy truncate">{results.length} places · {mapOrigin.label}</p>
                       <SecondaryButton onClick={() => setFullscreen(false)} aria-label="Close full-screen map">
                         <X className="w-5 h-5" aria-hidden="true" /> Close
                       </SecondaryButton>
                     </div>
                   )}
                   <div className="relative flex-1 h-full min-h-0 isolate">
-                    <Suspense fallback={<div className="h-full grid place-items-center text-pw-muted"><Loader2 className="w-6 h-6 animate-spin" /></div>}>
+                    <Suspense fallback={<div className="h-full grid place-items-center text-muted"><Loader2 className="w-6 h-6 animate-spin" /></div>}>
                       <ResourceMap
                         origin={mapOrigin}
                         places={results}
@@ -192,19 +192,19 @@ export default function ResourceFinder() {
                         type="button"
                         onClick={() => setFullscreen(true)}
                         aria-label="Open the map full screen"
-                        className="absolute bottom-3 end-3 z-[1000] w-11 h-11 rounded-xl bg-white border border-pw-line shadow-raised grid place-items-center text-pw-navy hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
+                        className="absolute bottom-3 end-3 z-[1000] w-11 h-11 rounded-xl bg-white border border-line shadow-raised grid place-items-center text-navy hover:bg-tint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
                       >
                         <Maximize2 className="w-5 h-5" aria-hidden="true" />
                       </button>
                     )}
                     {selected && (
                       <div className={`absolute inset-x-2 z-[1000] ${fullscreen ? (sheetOpen ? 'hidden' : 'bottom-16') : 'bottom-2'}`}>
-                        <div className="relative rounded-2xl bg-white border border-pw-line shadow-lift p-3 pe-12 max-h-[70%] overflow-y-auto">
+                        <div className="relative rounded-2xl bg-white border border-line shadow-lift p-3 pe-12 max-h-[70%] overflow-y-auto">
                           <button
                             type="button"
                             onClick={() => setSelectedId(null)}
                             aria-label="Close summary"
-                            className="absolute top-1 end-1 w-11 h-11 grid place-items-center rounded-xl text-pw-muted hover:bg-pw-soft"
+                            className="absolute top-1 end-1 w-11 h-11 grid place-items-center rounded-xl text-muted hover:bg-tint"
                           >
                             <X className="w-5 h-5" aria-hidden="true" />
                           </button>
@@ -228,11 +228,11 @@ export default function ResourceFinder() {
           </div>
         )}
 
-        <p className="text-base text-pw-navy leading-relaxed">
+        <p className="text-base text-navy leading-relaxed">
           Free legal help, English and citizenship classes, and USCIS offices. Your location is used only on this
           screen to sort places by distance. It is not saved or shared.
         </p>
-        <p className="text-base text-pw-muted leading-relaxed">
+        <p className="text-base text-muted leading-relaxed">
           Where these places come from: the U.S. Department of Justice list of recognized legal-help organizations,
           the National Literacy Directory, and the list of USCIS field offices. A person checks each place before it
           is added.
@@ -258,10 +258,10 @@ export default function ResourceFinder() {
             <SecondaryButton type="submit" disabled={status.busy}>Search</SecondaryButton>
           </form>
         </div>
-        {status.error && <p className="text-base font-semibold text-pw-red-ink" role="alert">{status.error}</p>}
+        {status.error && <p className="text-base font-semibold text-not-yet" role="alert">{status.error}</p>}
 
         <fieldset className="space-y-2">
-          <legend className="text-sm font-bold text-pw-muted mb-2">Show</legend>
+          <legend className="text-sm font-bold text-muted mb-2">Show</legend>
           <div className="flex flex-wrap gap-2">
             {RESOURCE_CATEGORIES.map((c) => {
               const on = categories.includes(c.id);
@@ -271,8 +271,8 @@ export default function ResourceFinder() {
                   type="button"
                   aria-pressed={on}
                   onClick={() => toggleCategory(c.id)}
-                  className={`min-h-[44px] rounded-full px-4 text-base font-semibold border-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2
-                    ${on ? 'bg-pw-navy border-pw-navy text-white hover:bg-pw-navy-deep' : 'bg-white border-pw-line text-pw-navy hover:bg-pw-soft'}`}
+                  className={`min-h-[44px] rounded-full px-4 text-base font-semibold border-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2
+                    ${on ? 'bg-navy border-navy text-white hover:bg-navy-deep' : 'bg-white border-line text-navy hover:bg-tint'}`}
                 >
                   {c.label}
                 </button>
@@ -282,12 +282,12 @@ export default function ResourceFinder() {
         </fieldset>
 
         <div className="flex flex-wrap items-center gap-3">
-          <label htmlFor="resource-radius" className="text-base font-bold text-pw-navy">Within</label>
+          <label htmlFor="resource-radius" className="text-base font-bold text-navy">Within</label>
           <select
             id="resource-radius"
             value={radius}
             onChange={(e) => setRadius(Number(e.target.value))}
-            className="min-h-[44px] rounded-2xl border-2 border-pw-line bg-white px-3 text-base text-pw-navy focus-visible:outline-none focus-visible:border-pw-navy"
+            className="min-h-[44px] rounded-2xl border-2 border-line bg-white px-3 text-base text-navy focus-visible:outline-none focus-visible:border-navy"
           >
             {RADIUS_OPTIONS.map((r) => <option key={r} value={r}>{r} miles</option>)}
           </select>
@@ -301,8 +301,8 @@ export default function ResourceFinder() {
         <div className="space-y-4">
           {results.length === 0 ? (
             <RaisedCard className="space-y-2">
-              <p className="text-base font-bold text-pw-navy">No places found here yet.</p>
-              <p className="text-base text-pw-muted">
+              <p className="text-base font-bold text-navy">No places found here yet.</p>
+              <p className="text-base text-muted">
                 Try a bigger distance, more categories, or move the map and search that area. You can also search the
                 national directories below.
               </p>
@@ -325,8 +325,8 @@ export default function ResourceFinder() {
       )}
 
       <RaisedCard className="space-y-3 md:p-6">
-        <h2 className="text-[28px] leading-snug font-display font-normal text-pw-navy">Search national directories</h2>
-        <p className="text-base text-pw-muted">Our map doesn&apos;t list every place yet. These sites have more.</p>
+        <h2 className="text-[28px] leading-snug font-display font-normal text-navy">Search national directories</h2>
+        <p className="text-base text-muted">Our map doesn&apos;t list every place yet. These sites have more.</p>
         <ul className="space-y-2">
           {DIRECTORY_LINKS.map((link) => (
             <li key={link.url}>
@@ -334,11 +334,11 @@ export default function ResourceFinder() {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-start gap-3 rounded-2xl bg-pw-soft p-4 min-h-[44px] text-pw-navy hover:bg-pw-soft-hover transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2"
+                className="group flex items-start gap-3 rounded-2xl bg-tint p-4 min-h-[44px] text-navy hover:bg-line transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2"
               >
                 <span className="min-w-0 flex-1 space-y-1">
                   <span className="block text-base font-bold group-hover:underline">{link.label}</span>
-                  <span className="block text-base text-pw-muted">{link.description}</span>
+                  <span className="block text-base text-muted">{link.description}</span>
                 </span>
                 <ExternalLink className="w-5 h-5 shrink-0 mt-0.5" aria-hidden="true" />
               </a>
@@ -347,9 +347,9 @@ export default function ResourceFinder() {
         </ul>
       </RaisedCard>
 
-      <div className="rounded-card bg-pw-red-soft p-4 sm:p-5 flex items-start gap-3">
-        <AlertTriangle className="w-5 h-5 text-pw-red-ink shrink-0 mt-0.5" aria-hidden="true" />
-        <p className="text-base text-pw-navy leading-relaxed">
+      <div className="rounded-card bg-not-yet-bg p-4 sm:p-5 flex items-start gap-3">
+        <AlertTriangle className="w-5 h-5 text-not-yet shrink-0 mt-0.5" aria-hidden="true" />
+        <p className="text-base text-navy leading-relaxed">
           Pathways USA does not run or endorse these places. Hours and services change, so call before you go. For
           legal advice, see only a lawyer or a DOJ-accredited representative, never a notario.
         </p>
@@ -366,10 +366,10 @@ function SavedPlaces({ places }) {
     <RaisedCard className="space-y-3 md:p-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
-          <div className="w-11 h-11 rounded-2xl grid place-items-center bg-pw-soft text-pw-navy shrink-0">
+          <div className="w-11 h-11 rounded-2xl grid place-items-center bg-tint text-navy shrink-0">
             <Bookmark className="w-5 h-5" aria-hidden="true" />
           </div>
-          <h2 className="text-[28px] leading-snug font-display font-normal text-pw-navy">Your saved places</h2>
+          <h2 className="text-[28px] leading-snug font-display font-normal text-navy">Your saved places</h2>
         </div>
         <SecondaryButton onClick={() => setOpen((v) => !v)} aria-expanded={open} aria-controls="saved-places-list">
           {open ? 'Hide' : `Show (${places.length})`}
@@ -390,29 +390,29 @@ function ResourceCard({ r, selected, onSelect, idPrefix = 'resource' }) {
     <li id={`${idPrefix}-${r.id}`} className="scroll-mt-24">
       <RaisedCard
         padding="p-4 sm:p-5"
-        className={`space-y-3 ${selected ? 'ring-2 ring-pw-navy' : ''}`}
+        className={`space-y-3 ${selected ? 'ring-2 ring-navy' : ''}`}
         onClick={onSelect}
       >
         <div className="flex flex-wrap items-start justify-between gap-2">
           <ServiceTags r={r} />
-          <span className="text-base font-bold text-pw-muted">{formatDistance(r.distance)}</span>
+          <span className="text-base font-bold text-muted">{formatDistance(r.distance)}</span>
         </div>
         <div className="space-y-1">
-          <h3 className="text-lg font-extrabold text-pw-navy leading-snug">{r.name}</h3>
-          {address && <p className="text-base text-pw-navy">{address}</p>}
+          <h3 className="text-lg font-extrabold text-navy leading-snug">{r.name}</h3>
+          {address && <p className="text-base text-navy">{address}</p>}
           {r.location_precision === 'zip' && (
-            <p className="text-sm text-pw-muted">Map pin shows the ZIP code area, not the exact building.</p>
+            <p className="text-sm text-muted">Map pin shows the ZIP code area, not the exact building.</p>
           )}
-          {r.description && <p className="text-base text-pw-muted leading-relaxed">{r.description}</p>}
-          {r.hours && <p className="text-base text-pw-muted">Hours: {r.hours}</p>}
+          {r.description && <p className="text-base text-muted leading-relaxed">{r.description}</p>}
+          {r.hours && <p className="text-base text-muted">Hours: {r.hours}</p>}
           {(r.languages?.length > 0 || COST_LABELS[r.cost]) && (
-            <p className="text-base text-pw-muted">
+            <p className="text-base text-muted">
               {[COST_LABELS[r.cost], r.languages?.length ? `Languages: ${r.languages.join(', ')}` : ''].filter(Boolean).join(' · ')}
             </p>
           )}
         </div>
         <PlaceActions r={r} />
-        {r.last_verified && <p className="text-sm text-pw-muted">Last checked {r.last_verified}</p>}
+        {r.last_verified && <p className="text-sm text-muted">Last checked {r.last_verified}</p>}
       </RaisedCard>
     </li>
   );
@@ -425,13 +425,13 @@ function MapLegend({ places }) {
   return (
     <ul className="flex flex-wrap gap-x-4 gap-y-1 px-1" aria-label="Map key">
       {RESOURCE_CATEGORIES.filter((c) => shown.includes(c.id)).map((c) => (
-        <li key={c.id} className="flex items-center gap-2 text-sm text-pw-muted">
+        <li key={c.id} className="flex items-center gap-2 text-sm text-muted">
           <span className="w-3 h-3 rounded-full border-2 border-white shadow-raised" style={{ background: PIN_COLORS[c.id] }} aria-hidden="true" />
           {c.label}
         </li>
       ))}
-      <li className="flex items-center gap-2 text-sm text-pw-muted">
-        <span className="w-4 h-4 rounded-full bg-pw-navy text-white text-[9px] font-extrabold grid place-items-center" aria-hidden="true">3</span>
+      <li className="flex items-center gap-2 text-sm text-muted">
+        <span className="w-4 h-4 rounded-full bg-navy text-white text-[9px] font-extrabold grid place-items-center" aria-hidden="true">3</span>
         Group of places (tap to zoom)
       </li>
     </ul>
@@ -452,7 +452,7 @@ function ListSheet({ places, open, onToggle, onPick }) {
   };
   return (
     <div
-      className={`border-t border-pw-line bg-white shadow-lift rounded-t-3xl flex flex-col ${open ? 'h-[60vh]' : ''} pb-[env(safe-area-inset-bottom)]`}
+      className={`border-t border-line bg-white shadow-lift rounded-t-3xl flex flex-col ${open ? 'h-[60vh]' : ''} pb-[env(safe-area-inset-bottom)]`}
       onTouchStart={(e) => setStartY(e.touches[0].clientY)}
       onTouchEnd={onTouchEnd}
     >
@@ -460,9 +460,9 @@ function ListSheet({ places, open, onToggle, onPick }) {
         type="button"
         onClick={() => onToggle(!open)}
         aria-expanded={open}
-        className="w-full min-h-[52px] flex flex-col items-center justify-center gap-1 text-base font-bold text-pw-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-pw-navy rounded-t-3xl"
+        className="w-full min-h-[52px] flex flex-col items-center justify-center gap-1 text-base font-bold text-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-navy rounded-t-3xl"
       >
-        <span className="w-10 h-1.5 rounded-full bg-pw-line" aria-hidden="true" />
+        <span className="w-10 h-1.5 rounded-full bg-line" aria-hidden="true" />
         <span className="flex items-center gap-2">
           <ChevronUp className={`w-5 h-5 transition-transform ${open ? 'rotate-180' : ''}`} aria-hidden="true" />
           {open ? 'Hide list' : `Show list (${places.length})`}
@@ -475,17 +475,17 @@ function ListSheet({ places, open, onToggle, onPick }) {
               <button
                 type="button"
                 onClick={() => onPick(p.id)}
-                className="w-full text-left rounded-2xl border border-pw-line p-3 min-h-[44px] hover:bg-pw-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
+                className="w-full text-left rounded-2xl border border-line p-3 min-h-[44px] hover:bg-tint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
               >
                 <span className="flex items-start justify-between gap-3">
                   <span className="min-w-0">
-                    <span className="block text-base font-bold text-pw-navy leading-snug">{p.name}</span>
-                    <span className="flex items-center gap-2 text-sm text-pw-muted mt-0.5">
+                    <span className="block text-base font-bold text-navy leading-snug">{p.name}</span>
+                    <span className="flex items-center gap-2 text-sm text-muted mt-0.5">
                       <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: PIN_COLORS[p.category] }} aria-hidden="true" />
                       {categoryById(p.category).label}
                     </span>
                   </span>
-                  <span className="text-sm font-bold text-pw-muted whitespace-nowrap">{formatDistance(p.distance)}</span>
+                  <span className="text-sm font-bold text-muted whitespace-nowrap">{formatDistance(p.distance)}</span>
                 </span>
               </button>
             </li>
