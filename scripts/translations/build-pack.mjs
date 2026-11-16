@@ -40,13 +40,52 @@ export const FEATURE_NAMES = ['Speak it!', 'Read it', 'Write it', 'Teach it back
 const featuresIn = (s) => FEATURE_NAMES.filter((f) => new RegExp(`(^|[^\\w])${f.replace(/[!]/g, '\\!')}(?![\\w ]*\\w*out loud)($|[^\\w])`).test(String(s)));
 
 export const placeholders = (s) => (String(s).match(/\{[A-Za-z_][\w]*\}/g) || []).sort();
-export const numbers = (s) => (String(s).match(/\d+/g) || []).sort();
+// The "0" of each script's own digits our languages may use (Arabic, Persian
+// and Urdu, the Indian scripts, Sinhala, Thai, Lao, Tibetan, Myanmar, Khmer,
+// full-width). A digit counts by its value, so Persian ۱۳ is 13.
+const DIGIT_ZEROS = [0x660, 0x6f0, 0x966, 0x9e6, 0xa66, 0xae6, 0xb66, 0xbe6, 0xc66, 0xce6, 0xd66, 0xde6, 0xe50, 0xed0, 0xf20, 0x1040, 0x17e0, 0xff10];
+const asciiDigits = (s) => String(s).replace(/\p{Nd}/gu, (c) => {
+  const cp = c.codePointAt(0);
+  const zero = DIGIT_ZEROS.find((z) => cp >= z && cp <= z + 9);
+  return zero === undefined ? c : String(cp - zero);
+});
+export const numbers = (s) => (asciiDigits(s).match(/[0-9]+/g) || []).sort();
+
+// Month names in the English, as numbers: Chinese, Japanese and Korean write
+// "November" as 11月, so those numbers may appear in the translation. "May"
+// at the start of a sentence is the verb, not the month.
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const monthNumbers = (s) => MONTHS.flatMap((m, i) => {
+  const re = m === 'May' ? /(?<!^|[.!?:]\s*|["“]\s*)\bMay\b/g : new RegExp(`\\b${m}\\b`, 'g');
+  return (String(s).match(re) || []).map(() => String(i + 1));
+});
+
+// The translation's numbers must be the English ones, plus at most the
+// English month names written as numbers.
+function numbersMatch(english, translated) {
+  const want = numbers(english);
+  const got = numbers(translated);
+  if (want.join() === got.join()) return true;
+  const extra = [...got];
+  for (const n of want) {
+    const at = extra.indexOf(n);
+    if (at === -1) return false;
+    extra.splice(at, 1);
+  }
+  const months = monthNumbers(english);
+  return extra.every((n) => {
+    const at = months.indexOf(n);
+    if (at === -1) return false;
+    months.splice(at, 1);
+    return true;
+  });
+}
 
 // Why a translation can't be used, or null when it's fine.
 export function problem(english, translated) {
   if (typeof translated !== 'string' || !translated.trim()) return 'empty';
   if (placeholders(english).join() !== placeholders(translated).join()) return 'placeholders changed';
-  if (numbers(english).join() !== numbers(translated).join()) return 'numbers changed';
+  if (!numbersMatch(english, translated)) return 'numbers changed';
   if (featuresIn(english).some((f) => !String(translated).includes(f))) return 'feature name translated';
   return null;
 }
@@ -76,7 +115,7 @@ export function systemPrompt(languageLabel) {
 Rules:
 - Translate each item faithfully. Do not add, remove, explain or give advice. Keep the meaning and the length close to the English.
 - Keep placeholders in curly braces exactly as written, for example {name}, {n}, {language}.
-- Keep every number exactly as written.
+- Keep every number exactly as written, with the digits 0-9 (not your script's own digits, and not spelled out). Keep "10th", "1800s" and similar as numbers too.
 - Keep these names in English: Pathways, Pathways USA, Amio, USCIS, N-400. For "A-number" you may add the local term in parentheses.
 - Keep the app's feature names in English, exactly as written: Speak it!, Read it, Write it, Teach it back, Read and write. Translate the words around them.
 - Translate a repeated form term the same way every time. On the N-400 form, "Item Number" is always the word for "question" in your language followed by the number.
@@ -110,7 +149,7 @@ export function buildRequests({ language, texts, model = DEFAULT_MODEL, effort =
     texts: part,
     params: {
       model,
-      max_tokens: 16000,
+      max_tokens: 32000,
       output_config: { effort, format: { type: 'json_schema', schema: OUTPUT_SCHEMA } },
       system: systemPrompt(language.label),
       messages: [{ role: 'user', content: JSON.stringify({ items: part.map((text, i) => ({ id: `t${i}`, text })) }) }],

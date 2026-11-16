@@ -47,6 +47,28 @@ describe('build-pack checks', () => {
     expect(problem('Hello', '  ')).toBe('empty');
   });
 
+  it("counts a script's own digits by their value", () => {
+    expect(problem('There were 13 original states.', '۱۳ ایالت اولیه وجود داشت.')).toBeNull(); // Persian
+    expect(problem('Each state has 2 senators.', 'แต่ละรัฐมีวุฒิสมาชิก ๒ คน')).toBeNull(); // Thai
+    expect(problem('The Constitution has 27 amendments.', 'ਸੰਵਿਧਾਨ ਵਿੱਚ ੨੭ ਸੋਧਾਂ ਹਨ।')).toBeNull(); // Gurmukhi
+    expect(problem('There were 13 original states.', '۱۴ ایالت')).toBe('numbers changed');
+  });
+
+  it('allows a month written as a number, and nothing else extra', () => {
+    expect(problem('We vote for president in November.', '我们在11月投票选举总统。')).toBeNull();
+    expect(problem('We vote for president in November.', '我们在12月投票选举总统。')).toBe('numbers changed');
+    expect(problem('We vote for president in November.', '我们在11月3日投票。')).toBe('numbers changed');
+    expect(problem('The Constitution was signed on September 17, 1787.', '憲法は1787年9月17日に署名されました。')).toBeNull();
+    expect(problem('May I see your passport?', '5 여권을 보여 주시겠어요?')).toBe('numbers changed'); // "May" the verb
+    expect(problem('Memorial Day is in May.', '阵亡将士纪念日在5月。')).toBeNull();
+  });
+
+  it('gives each request room for long scripts', () => {
+    const [req] = buildRequests({ language: { value: 'pa', label: 'ਪੰਜਾਬੀ' }, texts: ['Hi'] });
+    expect(req.params.max_tokens).toBe(32000);
+    expect(req.params.system).toContain('digits 0-9');
+  });
+
   it('only missing texts are sent; reviewed lines are never re-translated', () => {
     const sources = { texts: [{ text: 'A' }, { text: 'B' }, { text: 'C' }] };
     expect(missingTexts(sources, { A: 'a' }, { B: 'b' })).toEqual(['C']);
