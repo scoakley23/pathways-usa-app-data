@@ -1,0 +1,850 @@
+{
+  "note": "Fake learner answers for the civics grading eval (scripts/evals/civics-grading/). Each is what speech recognition might hand the app for an answer the phone could not match on its own, so the AI decides. expected = should the answer count as correct in the real interview. Change status to \"reviewed\" once checked; the runner refuses to run while any case is a draft unless --allow-drafts is given.",
+  "cases": [
+    {
+      "id": "c01",
+      "questionId": "6ad16ecf6a9c603911f9de8f",
+      "question": "Why does the flag have 13 stripes?",
+      "answer": "because of the first thirteen colonies",
+      "expected": true,
+      "why": "\"first\" means \"original\"",
+      "tags": [
+        "other-words"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c02",
+      "questionId": "6ad16ecf6a9c603911f9de22",
+      "question": "What is the economic system of the United States?",
+      "answer": "a capitalist system",
+      "expected": true,
+      "why": "capitalist = capitalism",
+      "tags": [
+        "other-words"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c03",
+      "questionId": "6ad16ecf6a9c603911f9de2a",
+      "question": "Name one power of the U.S. Congress.",
+      "answer": "they make the laws",
+      "expected": true,
+      "why": "makes laws = writes laws",
+      "tags": [
+        "other-words"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c04",
+      "questionId": "6ad16ecf6a9c603911f9de45",
+      "question": "What does the President’s Cabinet do?",
+      "answer": "they give advice to the president",
+      "expected": true,
+      "why": "advises the President",
+      "tags": [
+        "other-words"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c05",
+      "questionId": "6ad16ecf6a9c603911f9de23",
+      "question": "What is the rule of law?",
+      "answer": "nobody is over the law even the president",
+      "expected": true,
+      "why": "no one is above the law",
+      "tags": [
+        "other-words"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c06",
+      "questionId": "6ad16ecf6a9c603911f9de2b",
+      "question": "How many U.S. senators are there?",
+      "answer": "a hundred",
+      "expected": true,
+      "why": "100",
+      "tags": [
+        "other-words"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c07",
+      "questionId": "6ad16ecf6a9c603911f9de2c",
+      "question": "How long is a term for a U.S. senator?",
+      "answer": "half a dozen years",
+      "expected": true,
+      "why": "six years, said another way",
+      "tags": [
+        "other-words"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c08",
+      "questionId": "6ad16ecf6a9c603911f9de40",
+      "question": "Who is Commander in Chief of the U.S. military?",
+      "answer": "the president of the country",
+      "expected": true,
+      "why": "the President",
+      "tags": [
+        "other-words"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c09",
+      "questionId": "6ad16ecf6a9c603911f9de86",
+      "question": "What did the civil rights movement do?",
+      "answer": "they fought so black people have the same rights as everybody",
+      "expected": true,
+      "why": "fought to end racial discrimination",
+      "tags": [
+        "other-words"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c10",
+      "questionId": "6ad16ecf6a9c603911f9de85",
+      "question": "Why did the United States enter the Vietnam War?",
+      "answer": "to stop the communists from spreading",
+      "expected": true,
+      "why": "to stop the spread of communism",
+      "tags": [
+        "other-words"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c11",
+      "questionId": "6ad16ecf6a9c603911f9de7d",
+      "question": "What was the Great Depression?",
+      "answer": "a long time when the economy was very bad and many people had no job",
+      "expected": true,
+      "why": "longest economic recession",
+      "tags": [
+        "other-words"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c12",
+      "questionId": "6ad16ecf6a9c603911f9de95",
+      "question": "What is Memorial Day?",
+      "answer": "a day to remember the soldiers who died in the wars",
+      "expected": true,
+      "why": "honors soldiers who died in military service",
+      "tags": [
+        "other-words"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c13",
+      "questionId": "6ad16ecf6a9c603911f9de49",
+      "question": "What does the judicial branch do?",
+      "answer": "the courts decide if a law follow the constitution",
+      "expected": true,
+      "why": "decides if a law goes against the Constitution",
+      "tags": [
+        "other-words"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c14",
+      "questionId": "6ad16ecf6a9c603911f9de30",
+      "question": "Why do U.S. representatives serve shorter terms than U.S. senators?",
+      "answer": "so they listen more to what the people want right now",
+      "expected": true,
+      "why": "to more closely follow public opinion",
+      "tags": [
+        "other-words"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c15",
+      "questionId": "6ad16ecf6a9c603911f9de58",
+      "question": "What do we show loyalty to when we say the Pledge of Allegiance?",
+      "answer": "to the American flag",
+      "expected": true,
+      "why": "the flag",
+      "tags": [
+        "other-words"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c16",
+      "questionId": "6ad16ecf6a9c603911f9de70",
+      "question": "What territory did the United States buy from France in 1803?",
+      "answer": "the Louisiana purchase",
+      "expected": true,
+      "why": "Louisiana",
+      "tags": [
+        "other-words"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c17",
+      "questionId": "6ad16ecf6a9c603911f9de64",
+      "question": "Who wrote the Declaration of Independence?",
+      "answer": "Thomas Jeferson",
+      "expected": true,
+      "why": "Jefferson, misspelled",
+      "tags": [
+        "other-words"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c18",
+      "questionId": "6ad16ecf6a9c603911f9de7c",
+      "question": "When did all women get the right to vote?",
+      "answer": "around 1920 with a new amendment",
+      "expected": true,
+      "why": "1920 / the 19th Amendment",
+      "tags": [
+        "other-words"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c19",
+      "questionId": "6ad16ecf6a9c603911f9de42",
+      "question": "Who vetoes bills?",
+      "answer": "presiden",
+      "expected": true,
+      "why": "speech recognition dropped the last letter of \"president\"",
+      "tags": [
+        "broken-english"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c20",
+      "questionId": "6ad16ecf6a9c603911f9de29",
+      "question": "What are the two parts of the U.S. Congress?",
+      "answer": "senate and the house of the representants",
+      "expected": true,
+      "why": "Senate and House of Representatives",
+      "tags": [
+        "broken-english"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c21",
+      "questionId": "6ad16ecf6a9c603911f9de71",
+      "question": "Name one war fought by the United States in the 1800s.",
+      "answer": "civil war between north and south",
+      "expected": true,
+      "why": "Civil War",
+      "tags": [
+        "broken-english"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c22",
+      "questionId": "6ad16ecf6a9c603911f9de8d",
+      "question": "What is the capital of the United States?",
+      "answer": "washington d c",
+      "expected": true,
+      "why": "Washington, D.C., letters split by speech recognition",
+      "tags": [
+        "broken-english"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c23",
+      "questionId": "6ad16ecf6a9c603911f9de32",
+      "question": "Why does each state have two senators?",
+      "answer": "so the small states have the same voice",
+      "expected": true,
+      "why": "equal representation for small states",
+      "tags": [
+        "broken-english"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c24",
+      "questionId": "6ad16ecf6a9c603911f9de17",
+      "question": "What is the form of government of the United States?",
+      "answer": "a republic country",
+      "expected": true,
+      "why": "republic",
+      "tags": [
+        "broken-english"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c25",
+      "questionId": "6ad16ecf6a9c603911f9de4b",
+      "question": "How many seats are on the Supreme Court?",
+      "answer": "nine judge",
+      "expected": true,
+      "why": "nine",
+      "tags": [
+        "broken-english"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c26",
+      "questionId": "6ad16ecf6a9c603911f9de87",
+      "question": "Martin Luther King, Jr. is famous for many things. Name one.",
+      "answer": "he fight for the civil rights for black people",
+      "expected": true,
+      "why": "fought for civil rights",
+      "tags": [
+        "broken-english"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c27",
+      "questionId": "6ad16ecf6a9c603911f9de60",
+      "question": "Who lived in America before the Europeans arrived?",
+      "answer": "the native people who was here first",
+      "expected": true,
+      "why": "Native Americans, in broken English",
+      "tags": [
+        "broken-english"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c28",
+      "questionId": "6ad16ecf6a9c603911f9de2b",
+      "question": "How many U.S. senators are there?",
+      "answer": "two for each state",
+      "expected": false,
+      "why": "two per state, not the total of 100",
+      "tags": [
+        "wrong"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c29",
+      "questionId": "6ad16ecf6a9c603911f9de42",
+      "question": "Who vetoes bills?",
+      "answer": "the Congress",
+      "expected": false,
+      "why": "the President vetoes bills",
+      "tags": [
+        "wrong"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c30",
+      "questionId": "6ad16ecf6a9c603911f9de29",
+      "question": "What are the two parts of the U.S. Congress?",
+      "answer": "the Senate and the Supreme Court",
+      "expected": false,
+      "why": "the Supreme Court is not part of Congress",
+      "tags": [
+        "wrong"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c31",
+      "questionId": "6ad16ecf6a9c603911f9de2f",
+      "question": "How long is a term for a member of the House of Representatives?",
+      "answer": "four years",
+      "expected": false,
+      "why": "two years",
+      "tags": [
+        "wrong"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c32",
+      "questionId": "6ad16ecf6a9c603911f9de64",
+      "question": "Who wrote the Declaration of Independence?",
+      "answer": "George Washington",
+      "expected": false,
+      "why": "Thomas Jefferson",
+      "tags": [
+        "wrong"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c33",
+      "questionId": "6ad16ecf6a9c603911f9de4a",
+      "question": "What is the highest court in the United States?",
+      "answer": "the federal court",
+      "expected": false,
+      "why": "the Supreme Court",
+      "tags": [
+        "wrong"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c34",
+      "questionId": "6ad16ecf6a9c603911f9de65",
+      "question": "When was the Declaration of Independence adopted?",
+      "answer": "1787",
+      "expected": false,
+      "why": "July 4, 1776; 1787 is the Constitution",
+      "tags": [
+        "wrong"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c35",
+      "questionId": "6ad16ecf6a9c603911f9de72",
+      "question": "Name the U.S. war between the North and the South.",
+      "answer": "the Revolutionary War",
+      "expected": false,
+      "why": "the Civil War",
+      "tags": [
+        "wrong"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c36",
+      "questionId": "6ad16ecf6a9c603911f9de7f",
+      "question": "Who was president during the Great Depression and World War II?",
+      "answer": "Truman",
+      "expected": false,
+      "why": "Franklin Roosevelt",
+      "tags": [
+        "wrong"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c37",
+      "questionId": "6ad16ecf6a9c603911f9de22",
+      "question": "What is the economic system of the United States?",
+      "answer": "democracy",
+      "expected": false,
+      "why": "a democracy is a form of government, not an economic system",
+      "tags": [
+        "wrong"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c38",
+      "questionId": "6ad16ecf6a9c603911f9de90",
+      "question": "Why does the flag have 50 stars?",
+      "answer": "for the 50 presidents",
+      "expected": false,
+      "why": "one star for each state",
+      "tags": [
+        "wrong"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c39",
+      "questionId": "6ad16ecf6a9c603911f9de35",
+      "question": "Who does a U.S. senator represent?",
+      "answer": "the president",
+      "expected": false,
+      "why": "the people of their state",
+      "tags": [
+        "wrong"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c40",
+      "questionId": "6ad16ecf6a9c603911f9de52",
+      "question": "What is the purpose of the 10th Amendment?",
+      "answer": "it gives freedom of speech",
+      "expected": false,
+      "why": "that is the First Amendment",
+      "tags": [
+        "wrong"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c41",
+      "questionId": "6ad16ecf6a9c603911f9de3e",
+      "question": "If the president can no longer serve, who becomes president?",
+      "answer": "the Speaker of the House",
+      "expected": false,
+      "why": "the Vice President",
+      "tags": [
+        "wrong"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c42",
+      "questionId": "6ad16ecf6a9c603911f9de40",
+      "question": "Who is Commander in Chief of the U.S. military?",
+      "answer": "the general of the army",
+      "expected": false,
+      "why": "the President",
+      "tags": [
+        "wrong"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c43",
+      "questionId": "6ad16ecf6a9c603911f9de75",
+      "question": "What did the Emancipation Proclamation do?",
+      "answer": "it ended the Civil War",
+      "expected": false,
+      "why": "it freed the slaves",
+      "tags": [
+        "wrong"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c44",
+      "questionId": "6ad16ecf6a9c603911f9de88",
+      "question": "Why did the United States enter the Persian Gulf War?",
+      "answer": "to stop communism",
+      "expected": false,
+      "why": "to force the Iraqi military from Kuwait",
+      "tags": [
+        "wrong"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c45",
+      "questionId": "6ad16ecf6a9c603911f9de51",
+      "question": "Name one power that is only for the states.",
+      "answer": "print money",
+      "expected": false,
+      "why": "printing money is a federal power",
+      "tags": [
+        "wrong"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c46",
+      "questionId": "6ad16ecf6a9c603911f9de50",
+      "question": "Name one power that is only for the federal government.",
+      "answer": "give a driver license",
+      "expected": false,
+      "why": "driver's licenses are a state power",
+      "tags": [
+        "wrong"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c47",
+      "questionId": "6ad16ecf6a9c603911f9de68",
+      "question": "What founding document was written in 1787?",
+      "answer": "the Declaration of Independence",
+      "expected": false,
+      "why": "the Constitution",
+      "tags": [
+        "wrong"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c48",
+      "questionId": "6ad16ecf6a9c603911f9de3a",
+      "question": "The President of the United States is elected for how many years?",
+      "answer": "two terms",
+      "expected": false,
+      "why": "four years; two terms is the limit",
+      "tags": [
+        "wrong"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c49",
+      "questionId": "6ad16ecf6a9c603911f9de94",
+      "question": "Name three national U.S. holidays.",
+      "answer": "Christmas and Thanksgiving",
+      "expected": false,
+      "why": "only two holidays for \"name three\"",
+      "tags": [
+        "how-many"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c50",
+      "questionId": "6ad16ecf6a9c603911f9de46",
+      "question": "What are two Cabinet-level positions?",
+      "answer": "Secretary of State",
+      "expected": false,
+      "why": "only one position for \"two\"",
+      "tags": [
+        "how-many"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c51",
+      "questionId": "6ad16ecf6a9c603911f9de57",
+      "question": "What are three rights of everyone living in the United States?",
+      "answer": "freedom of speech freedom of religion and the right to vote",
+      "expected": false,
+      "why": "voting is for citizens only, so only two of the three count",
+      "tags": [
+        "how-many"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c52",
+      "questionId": "6ad16ecf6a9c603911f9de59",
+      "question": "Name two promises that new citizens make in the Oath of Allegiance.",
+      "answer": "obey the laws and defend the constitution",
+      "expected": true,
+      "why": "two promises, in other words",
+      "tags": [
+        "how-many"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c53",
+      "questionId": "6ad16ecf6a9c603911f9de67",
+      "question": "There were 13 original states. Name five.",
+      "answer": "New York Virginia Georgia Texas Maryland",
+      "expected": false,
+      "why": "Texas was not one of the 13, so only four",
+      "tags": [
+        "how-many"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c54",
+      "questionId": "6ad16ecf6a9c603911f9de94",
+      "question": "Name three national U.S. holidays.",
+      "answer": "the Fourth of July Labor Day and Memorial Day",
+      "expected": true,
+      "why": "Fourth of July = Independence Day",
+      "tags": [
+        "how-many"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c55",
+      "questionId": "6ad16ecf6a9c603911f9de5b",
+      "question": "What are two examples of civic participation in the United States?",
+      "answer": "vote and join a party",
+      "expected": true,
+      "why": "vote; join a political party",
+      "tags": [
+        "how-many"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c56",
+      "questionId": "6ad16ecf6a9c603911f9de41",
+      "question": "Who signs bills to become laws?",
+      "answer": "I don't know",
+      "expected": false,
+      "why": "no answer",
+      "tags": [
+        "not-an-answer"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c57",
+      "questionId": "6ad16ecf6a9c603911f9de23",
+      "question": "What is the rule of law?",
+      "answer": "can you repeat the question please",
+      "expected": false,
+      "why": "asks to repeat; no answer",
+      "tags": [
+        "not-an-answer"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c58",
+      "questionId": "6ad16ecf6a9c603911f9de93",
+      "question": "What is Independence Day?",
+      "answer": "my birthday is in July",
+      "expected": false,
+      "why": "off topic",
+      "tags": [
+        "not-an-answer"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c59",
+      "questionId": "6ad16ecf6a9c603911f9de36",
+      "question": "Who elects U.S. senators?",
+      "answer": "the citizens of my state call me at 617 555 0199",
+      "expected": true,
+      "why": "citizens from their state; the phone number must be removed",
+      "tags": [
+        "personal-info"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c60",
+      "questionId": "6ad16ecf6a9c603911f9de5d",
+      "question": "Why is it important to pay federal taxes?",
+      "answer": "because it is the law my email is maria.fake@example.com",
+      "expected": true,
+      "why": "required by law; the email must be removed",
+      "tags": [
+        "personal-info"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c61",
+      "questionId": "6ad16ecf6a9c603911f9de91",
+      "question": "What is the name of the national anthem?",
+      "answer": "the star spangled banner my a number is A123456789",
+      "expected": true,
+      "why": "right answer; the A-number must be removed",
+      "tags": [
+        "personal-info"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c62",
+      "questionId": "6ad16ecf6a9c603911f9de82",
+      "question": "Who was the United States’ main rival during the Cold War?",
+      "answer": "England France or Russia",
+      "expected": false,
+      "why": "a list of guesses, not one answer",
+      "tags": [
+        "hedging"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c63",
+      "questionId": "6ad16ecf6a9c603911f9de4a",
+      "question": "What is the highest court in the United States?",
+      "answer": "the Supreme Court or the Congress",
+      "expected": false,
+      "why": "a list of guesses, one of them wrong",
+      "tags": [
+        "hedging"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c64",
+      "questionId": "6ad16ecf6a9c603911f9de82",
+      "question": "Who was the United States’ main rival during the Cold War?",
+      "answer": "Germany or the Soviet Union I think Germany",
+      "expected": false,
+      "why": "the final answer is Germany",
+      "tags": [
+        "hedging"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    },
+    {
+      "id": "c65",
+      "questionId": "6ad16ecf6a9c603911f9de41",
+      "question": "Who signs bills to become laws?",
+      "answer": "el presidente",
+      "expected": false,
+      "why": "answered in Spanish; the test must be answered in English",
+      "tags": [
+        "not-english"
+      ],
+      "source": "drafted",
+      "status": "draft"
+    }
+  ]
+}
