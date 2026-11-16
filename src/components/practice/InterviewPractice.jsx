@@ -8,6 +8,8 @@ import { content } from '@/api/content';
 import { auth } from '@/api/auth';
 import { speakText, stopSpeaking, getRandomVoice } from "@/components/utils/textToSpeech";
 import { toast } from "sonner";
+import { isAiLimit } from '@/api/ai';
+import { AI_LIMIT_MESSAGE } from '@/lib/aiRequests';
 import InterviewReport from './InterviewReport';
 import { evaluateInterviewAnswer, evaluateUnderstanding, isUnderstandingSection } from './evaluateInterviewAnswer';
 import InterviewHistory from './InterviewHistory';
@@ -339,7 +341,7 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
         ...result
       }]);
     } catch (e) {
-      toast.error('Failed to analyze response');
+      toast.error(isAiLimit(e) ? AI_LIMIT_MESSAGE : 'Failed to analyze response');
       setInterviewerState('listening');
     } finally {
       setIsAnalyzing(false);

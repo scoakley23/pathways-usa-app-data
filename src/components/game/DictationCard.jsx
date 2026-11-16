@@ -6,7 +6,7 @@ import AnswerFeedback from '@/components/practice/AnswerFeedback';
 import RunTopBar from '@/components/practice/RunTopBar';
 import WordByWord from '@/components/practice/WordByWord';
 import { wordScore } from '@/lib/practiceResults';
-import { base44 } from '@/api/base44Client';
+import { ai } from '@/api/ai';
 import { checkDictation } from '@/lib/practiceChecks';
 import { LANGUAGES } from '@/hooks/useLessonTranslation';
 import useAppLanguage from '@/hooks/useAppLanguage';
@@ -60,7 +60,7 @@ export default function DictationCard({ sentence, onComplete, onNext, testMode =
         return;
       }
       const prompt = `Translate the following text (which could be a word or a sentence) into ${myLanguage.label}: "${sentence.text}". Return ONLY the translated text, nothing else.`;
-      const res = await base44.integrations.Core.InvokeLLM({ prompt });
+      const res = await ai.translate({ prompt });
       setTranslation(res);
     } catch (error) {
       console.error("Translation error", error);

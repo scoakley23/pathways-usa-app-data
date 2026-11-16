@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, ChevronDown, ChevronRight, Globe, History, Loader2, Scale, Users, Volume2 } from 'lucide-react';
-import { base44 } from '@/api/base44Client';
+import { ai, isAiLimit } from '@/api/ai';
 import { askHistory } from '@/api/askHistory';
 import { lessonProgress as lessonProgressApi } from '@/api/lessons';
 import { content } from '@/api/content';
@@ -19,17 +19,14 @@ import { speakText } from '@/components/utils/textToSpeech';
 import useTutorProfile from '@/components/persona/useTutorProfile';
 import { getLearnerLocation } from '@/components/civics/useLearnerLocation';
 import useTranslatedLines from '@/components/persona/useTranslatedLines';
-import { languageNameFor } from '@/components/persona/languageName';
 import {
   ASK_LINES,
   ASK_LINES_ES,
   ASK_LINES_CACHE_KEY,
-  ASK_RESPONSE_SCHEMA,
   ASK_SCREEN_LINES,
   ASK_SCREEN_LINES_ES,
   ASK_SCREEN_CACHE_KEY,
   MAX_QUESTION_LENGTH,
-  buildAskPrompt,
   historyAnswerText,
   interpretAskResponse,
   looksPersonalLegal,
@@ -85,7 +82,7 @@ function usePrivacyNote(language, texts = PRIVACY_NOTE, cacheKey = PRIVACY_NOTE_
         // ignore
       }
       const langName = LANGUAGES.find((l) => l.value === language)?.label || language;
-      base44.integrations.Core.InvokeLLM({
+      ai.translate({
         prompt: `Translate this privacy note for an app that helps immigrants study for the U.S. citizenship test into ${langName}. Keep "A-number" understandable (you may add the local term). Return only the translated text.\n\n${texts.en}`,
       }).then((res) => {
         if (cancelled || typeof res !== 'string' || !res.trim()) return;
@@ -173,7 +170,7 @@ export default function StudyBuddy() {
   // Amio explains in the app language by default; "Amio explains in" can
   // change it for this screen.
   const [language, setLanguage] = useState(appLanguage);
-  const [asked, setAsked] = useState(null); // { question, reply: { kind: 'answer'|'decline'|'error', en, mine, language } | null }
+  const [asked, setAsked] = useState(null); // { question, reply: { kind: 'answer'|'decline'|'error'|'limit', en, mine, language } | null }
   const [typing, setTyping] = useState(false);
   const [input, setInput] = useState('');
   const [heard, setHeard] = useState('');
@@ -252,14 +249,18 @@ export default function StudyBuddy() {
         // Officeholder names come only from the official list in the prompt
         // (src/data/officeholders.json), never from a web search, so internet
         // context stays off here. Only the saved state and district are
-        // added, never an address or account details.
+        // added, never an address or account details. The instructions are
+        // `ask` in src/lib/aiRequests.js; on Supabase the server builds them
+        // and counts the daily limit (src/api/ai.js).
         const location = await getLearnerLocation();
-        // The official 2025 civics list, loaded once and reused.
-        const civics = await loadCivicsBank();
-        const res = await base44.integrations.Core.InvokeLLM({
-          prompt: buildAskPrompt(profile, languageNameFor(askedIn), question, { location, civics }),
-          response_json_schema: ASK_RESPONSE_SCHEMA,
-        });
+        // The official 2025 civics list, loaded once and reused (on Base44;
+        // the server has its own copy).
+        const res = await ai.run('ask', {
+          question,
+          language: askedIn,
+          tutor: { tone: profile?.tone, english_mix: profile?.english_mix },
+          location: location ? { state: location.state, district: location.district } : null,
+        }, { civics: loadCivicsBank });
         const result = interpretAskResponse(res, askedIn);
         if (result.type === 'decline') {
           setAsked({ question: typed, reply: { kind: 'decline' } });
@@ -271,7 +272,7 @@ export default function StudyBuddy() {
         }
       } catch (error) {
         console.error('Ask Amio error:', error);
-        setAsked({ question: typed, reply: { kind: 'error' } });
+        setAsked({ question: typed, reply: { kind: isAiLimit(error) ? 'limit' : 'error' } });
       }
     }
 
@@ -412,6 +413,7 @@ export default function StudyBuddy() {
                 />
               )}
               {reply?.kind === 'error' && <AmioSays mood="kind">{t('no_answer')}</AmioSays>}
+              {reply?.kind === 'limit' && <AmioSays mood="kind">{t('ai_limit')}</AmioSays>}
             </div>
             {!asked.loading && (
               <Button variant="second" className="w-full" onClick={() => { setAsked(null); window.scrollTo({ top: 0 }); }}>
