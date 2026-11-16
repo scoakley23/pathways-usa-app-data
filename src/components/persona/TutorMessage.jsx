@@ -60,18 +60,18 @@ export default function TutorMessage({ profile, language = 'en', mine, en, child
   useEffect(() => () => { if (currentSpeakingId() === id) stopReading(); }, [id]);
 
   return (
-    <div className={`relative text-pw-navy ${sizeClass}`}>
-      {speaking && <span className="pointer-events-none absolute -inset-1 rounded-[18px] ring-4 ring-pw-navy/20 motion-safe:animate-pulse" aria-hidden="true" />}
-      <div className="relative rounded-card bg-white border border-pw-line shadow-raised p-4">
+    <div className={`relative text-navy ${sizeClass}`}>
+      {speaking && <span className="pointer-events-none absolute -inset-1 rounded-[18px] ring-4 ring-navy/20 motion-safe:animate-pulse" aria-hidden="true" />}
+      <div className="relative rounded-card bg-white border border-line shadow-raised p-4">
         {showMine ? (
           <>
             <p dir={dir} className="leading-relaxed whitespace-pre-line">{mine}</p>
-            {en && <p className="leading-relaxed whitespace-pre-line text-pw-muted mt-2">{en}</p>}
+            {en && <p className="leading-relaxed whitespace-pre-line text-muted mt-2">{en}</p>}
           </>
         ) : (
           en && <p className="leading-relaxed whitespace-pre-line">{en}</p>
         )}
-        <p className="mt-1 font-medium text-lg text-pw-muted">— {profile.name}</p>
+        <p className="mt-1 font-medium text-lg text-muted">— {profile.name}</p>
         <div className="flex flex-wrap gap-2 mt-3">
           {speaking ? (
             <PillButton onClick={stopReading}>

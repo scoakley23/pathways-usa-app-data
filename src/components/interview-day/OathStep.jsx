@@ -48,7 +48,7 @@ export default function OathStep({ onDone }) {
   };
 
   return (
-    <div className="space-y-4 text-pw-navy">
+    <div className="space-y-4 text-navy">
       <div className="rounded-card bg-tint px-4 py-5 flex flex-col items-center text-center gap-2">
         <div className={`rounded-full ${officer === 'speaking' ? 'ring-4 ring-denim/40' : ''}`}><Officer size={112} /></div>
         <p className="text-small font-semibold text-muted">AI practice officer · not a real person</p>
@@ -59,7 +59,7 @@ export default function OathStep({ onDone }) {
         <PillButton onClick={say} disabled={officer === 'speaking'}>
           <Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" /> Repeat
         </PillButton>
-        <p className="text-base text-pw-muted">Stand up, raise your right hand, and say &ldquo;I do.&rdquo;</p>
+        <p className="text-base text-muted">Stand up, raise your right hand, and say &ldquo;I do.&rdquo;</p>
 
         {SR && (
           <div className="flex flex-col items-center gap-3">
@@ -67,7 +67,7 @@ export default function OathStep({ onDone }) {
               type="button"
               onClick={listen}
               aria-label={listening ? 'Stop listening' : 'Say "I do"'}
-              className="relative w-20 h-20 rounded-full bg-pw-navy text-white grid place-items-center shadow-lift focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-pw-navy/30"
+              className="relative w-20 h-20 rounded-full bg-navy text-white grid place-items-center shadow-lift focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-navy/30"
             >
               {listening ? <MicOff className="w-8 h-8" /> : <Mic className="w-8 h-8" />}
             </button>

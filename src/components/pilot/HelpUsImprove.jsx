@@ -44,8 +44,8 @@ export default function HelpUsImprove({ user, language = 'en', onDone }) {
       <form onSubmit={(e) => { e.preventDefault(); finish(true); }} className="space-y-7" aria-labelledby="pilot-title">
         <div className="space-y-3">
           <Eyebrow>{t('eyebrow')}</Eyebrow>
-          <h1 id="pilot-title" className="font-display text-[36px] leading-tight text-pw-navy">{t('title')}</h1>
-          <p className="text-base text-pw-navy">{t('intro')}</p>
+          <h1 id="pilot-title" className="font-display text-[36px] leading-tight text-navy">{t('title')}</h1>
+          <p className="text-base text-navy">{t('intro')}</p>
         </div>
 
         <StateSelect id="pilot-state" value={state} onChange={setState} t={t} />
@@ -66,10 +66,10 @@ export default function HelpUsImprove({ user, language = 'en', onDone }) {
 
         <label htmlFor="pilot-reminders" className="flex items-start gap-3 min-h-11 cursor-pointer">
           <Checkbox id="pilot-reminders" checked={reminders} onCheckedChange={(v) => setReminders(v === true)} className="mt-1 h-5 w-5" />
-          <span className="text-base text-pw-navy">{t('reminders_label')}</span>
+          <span className="text-base text-navy">{t('reminders_label')}</span>
         </label>
 
-        {error && <p role="alert" className="text-base font-semibold text-pw-red-ink">{t('error')}</p>}
+        {error && <p role="alert" className="text-base font-semibold text-not-yet">{t('error')}</p>}
 
         <div className="flex flex-col-reverse sm:flex-row sm:justify-end gap-2">
           <QuietButton onClick={() => finish(false)} disabled={saving} className="w-full sm:w-auto">{t('skip')}</QuietButton>

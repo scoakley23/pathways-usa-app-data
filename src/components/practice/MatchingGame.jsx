@@ -97,8 +97,8 @@ export default function MatchingGame({ words, onComplete, onClose = null }) {
         </div>
       </NavyTop>
       <CreamSheet className="min-h-[50vh]">
-      <div className="mx-auto max-w-4xl pb-6 text-ink">
-        <p className="min-h-[28px] text-base font-semibold text-not-correct" aria-live="polite">
+      <div className="mx-auto max-w-4xl pb-6 text-navy">
+        <p className="min-h-[28px] text-base font-semibold text-not-yet" aria-live="polite">
           {missed && <><X className="inline w-4 h-4 -mt-0.5 me-1" strokeWidth={3} aria-hidden="true" />Not a pair. Try again.</>}
         </p>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
@@ -120,21 +120,21 @@ export default function MatchingGame({ words, onComplete, onClose = null }) {
                 disabled={isMatched}
                 aria-pressed={isSelected}
                 aria-label={isMatched ? `${item.content} (matched)` : item.content}
-                className={`relative min-h-[128px] overflow-hidden rounded-card border bg-white p-3 text-center flex items-center justify-center transition-[box-shadow,border-color,background-color] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2 focus-visible:ring-offset-cream
+                className={`relative min-h-[128px] overflow-hidden rounded-card border bg-white p-3 text-center flex items-center justify-center transition-[box-shadow,border-color,background-color] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2 focus-visible:ring-offset-page
                   ${isMatched
-                    ? 'border-pw-line bg-pw-page pt-9 shadow-none cursor-default'
+                    ? 'border-line bg-page pt-9 shadow-none cursor-default'
                     : isError
-                      ? 'border-pw-red-ink ring-2 ring-pw-red-ink shadow-raised'
+                      ? 'border-not-yet ring-2 ring-not-yet shadow-raised'
                       : isSelected
-                        ? 'border-pw-navy ring-2 ring-pw-navy shadow-lift'
-                        : 'border-pw-line shadow-raised hover:border-pw-navy'}`}
+                        ? 'border-navy ring-2 ring-navy shadow-lift'
+                        : 'border-line shadow-raised hover:border-navy'}`}
               >
                 {isMatched && (
-                  <span className="pointer-events-none absolute end-2 top-2 -rotate-[8deg] rounded-md border-2 border-pw-navy px-1.5 text-xs font-bold uppercase tracking-[0.12em] text-pw-navy" aria-hidden="true">
+                  <span className="pointer-events-none absolute end-2 top-2 -rotate-[8deg] rounded-md border-2 border-navy px-1.5 text-xs font-bold uppercase tracking-[0.12em] text-navy" aria-hidden="true">
                     Matched
                   </span>
                 )}
-                <span className={`leading-snug ${item.type === 'word' ? 'font-display text-2xl' : 'text-base font-medium'} ${isMatched ? 'text-pw-muted' : 'text-pw-navy'}`}>
+                <span className={`leading-snug ${item.type === 'word' ? 'font-display text-2xl' : 'text-base font-medium'} ${isMatched ? 'text-muted' : 'text-navy'}`}>
                   {item.content}
                 </span>
               </motion.button>

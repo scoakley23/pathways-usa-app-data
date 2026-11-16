@@ -25,6 +25,7 @@ import { LESSON_LINES } from '@/components/lesson/lessonStrings';
 import { CHECKPOINT_LINES } from '@/components/checkpoint/checkpointStrings';
 import { ONBOARDING_LINES } from '@/components/onboarding/onboardingStrings';
 import { MY_TUTOR_LINES } from '@/components/partners/myTutorStrings';
+import { courseTitleTexts } from '@/lib/courseTitles';
 import { TODAY_LINES } from '@/components/today/todayLines';
 import { UNITS } from '@/lib/course';
 import coursePictures from '../../content/course/pictures.json';
@@ -112,6 +113,8 @@ export function contentTexts() {
       ...l.steps.listen.newWords.map((w) => w.meaning),
     ]))))],
     ['course-pictures', texts(Object.values(coursePictures.lessons).flat().map((p) => p.caption))],
+    // Unit, section, lesson and stop titles and unit descriptions (Prompt 13).
+    ['course-titles', texts(courseTitleTexts(UNITS))],
   ];
 }
 

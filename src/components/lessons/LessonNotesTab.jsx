@@ -71,19 +71,19 @@ export default function LessonNotesTab({ lesson, userEmail, tutorName = 'Amio' }
 
   if (loading) return (
     <div className="flex items-center justify-center p-12">
-      <Loader2 className="w-6 h-6 animate-spin text-pw-navy" />
+      <Loader2 className="w-6 h-6 animate-spin text-navy" />
     </div>
   );
 
   return (
     <RuledPaper className="pb-4">
       <div className="flex items-center justify-between gap-3 flex-wrap">
-        <label htmlFor="lesson-notes" className="text-[13px] font-semibold uppercase tracking-[0.14em] leading-[36px] text-pw-muted">
+        <label htmlFor="lesson-notes" className="text-[13px] font-semibold uppercase tracking-[0.14em] leading-[36px] text-muted">
           My notes
         </label>
         <span className="flex items-center gap-2" aria-live="polite">
-          {isSaving && <span className="text-sm font-semibold text-pw-muted flex items-center gap-1"><Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> Saving…</span>}
-          {!isSaving && lastSaved && <span className="text-sm font-semibold text-pw-writing flex items-center gap-1"><CheckCircle className="w-4 h-4" aria-hidden="true" /> Saved</span>}
+          {isSaving && <span className="text-sm font-semibold text-muted flex items-center gap-1"><Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> Saving…</span>}
+          {!isSaving && lastSaved && <span className="text-sm font-semibold text-navy flex items-center gap-1"><CheckCircle className="w-4 h-4" aria-hidden="true" /> Saved</span>}
         </span>
       </div>
       <textarea
@@ -92,11 +92,11 @@ export default function LessonNotesTab({ lesson, userEmail, tutorName = 'Amio' }
         onChange={handleChange}
         placeholder="Write it in your own words…"
         rows={7}
-        className="block w-full resize-y bg-transparent text-[19px] leading-[36px] text-pw-navy placeholder:text-pw-muted focus:outline-none"
+        className="block w-full resize-y bg-transparent text-[19px] leading-[36px] text-navy placeholder:text-muted focus:outline-none"
       />
-      <p className="mt-1 text-lg font-medium leading-snug text-ink-2">Your own words help you remember. — {tutorName}</p>
+      <p className="mt-1 text-lg font-medium leading-snug text-muted">Your own words help you remember. — {tutorName}</p>
       <div className="mt-3 flex items-center justify-between gap-3">
-        <span className="text-[15px] text-pw-muted">Only you see these.</span>
+        <span className="text-[15px] text-muted">Only you see these.</span>
         <PillButton onClick={() => saveNote()} disabled={isSaving}>
           <Save className="w-4 h-4" aria-hidden="true" /> Save
         </PillButton>

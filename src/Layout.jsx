@@ -106,10 +106,10 @@ export default function Layout({ children }) {
   const activeTab = tabFor(location.pathname);
 
   return (
-    <div className="min-h-screen bg-pw-page font-sans text-pw-navy">
+    <div className="min-h-screen bg-page font-sans text-navy">
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:start-3 focus:z-[60] focus:rounded-2xl focus:bg-pw-navy focus:text-white focus:font-bold focus:px-4 focus:py-3"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:start-3 focus:z-[60] focus:rounded-2xl focus:bg-navy focus:text-white focus:font-bold focus:px-4 focus:py-3"
       >
         Skip to main content
       </a>
@@ -175,7 +175,7 @@ export default function Layout({ children }) {
       </main>
 
       {!practiceRun && <footer className={`mt-8 ${showTabs ? 'pb-24 lg:pb-0' : ''}`}>
-        <p className="container mx-auto px-4 py-6 max-w-5xl text-sm text-center text-pw-muted">
+        <p className="container mx-auto px-4 py-6 max-w-5xl text-sm text-center text-muted">
           Free practice · Not affiliated with USCIS · Not legal advice
         </p>
       </footer>}

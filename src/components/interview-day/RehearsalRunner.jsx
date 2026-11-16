@@ -56,19 +56,19 @@ export default function RehearsalRunner({ version, userEmail, onStop }) {
   const current = REHEARSAL_PARTS[part];
 
   return (
-    <div className="space-y-4 text-pw-navy">
+    <div className="space-y-4 text-navy">
       <div className="space-y-2">
         <div className="flex items-center justify-between gap-3">
           <p className="text-base font-bold">Part {part + 1} of {REHEARSAL_PARTS.length}: {current.label}</p>
           {current.id !== 'results' && (
-            <QuietButton onClick={stop} className="shrink-0 px-3 text-pw-muted">Stop</QuietButton>
+            <QuietButton onClick={stop} className="shrink-0 px-3 text-muted">Stop</QuietButton>
           )}
         </div>
         <SegmentedProgress current={part} total={REHEARSAL_PARTS.length} label={`Part ${part + 1} of ${REHEARSAL_PARTS.length}`} />
       </div>
 
       {!content ? (
-        <Loader2 className="w-8 h-8 animate-spin mx-auto mt-10 text-pw-navy" aria-label="Loading" />
+        <Loader2 className="w-8 h-8 animate-spin mx-auto mt-10 text-navy" aria-label="Loading" />
       ) : current.id === 'oath' ? (
         <OathStep onDone={() => finishPart(null)} />
       ) : current.id === 'interview' ? (

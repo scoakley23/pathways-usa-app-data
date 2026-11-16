@@ -57,15 +57,15 @@ export default function VoiceSettings() {
       onOpenChange={(isOpen) => { setOpen(isOpen); if (!isOpen) stopSpeaking(); }}
     >
       <PopoverTrigger asChild>
-        <Button variant="outline" className="gap-2 rounded-full min-h-[44px] border-pw-line text-pw-navy font-bold">
+        <Button variant="outline" className="gap-2 rounded-full min-h-[44px] border-line text-navy font-bold">
           <Volume2 className="w-4 h-4" aria-hidden="true" /> Voice
         </Button>
       </PopoverTrigger>
-      <PopoverContent align="center" className="w-80 max-w-[calc(100vw-2rem)] space-y-5 rounded-card border-pw-line shadow-lift p-5 text-pw-navy">
+      <PopoverContent align="center" className="w-80 max-w-[calc(100vw-2rem)] space-y-5 rounded-card border-line shadow-lift p-5 text-navy">
         <div>
           <p className="text-base font-bold mb-2">Voice</p>
           {voicesLoaded && voices.length === 0 ? (
-            <p className="text-sm text-pw-muted leading-relaxed">
+            <p className="text-sm text-muted leading-relaxed">
               Your browser has limited voices. For the most natural voices, try Microsoft Edge or Google Chrome, or install enhanced voices in your device's speech settings.
             </p>
           ) : (
@@ -78,9 +78,9 @@ export default function VoiceSettings() {
                     <span className="flex items-center gap-2">
                       <span className="truncate">{v.name}</span>
                       {rankVoice(v) >= 3 && (
-                        <span className="text-[10px] font-bold uppercase bg-pw-green-soft text-pw-green-ink rounded-full px-1.5 shrink-0">Natural</span>
+                        <span className="text-[10px] font-bold uppercase bg-correct-bg text-correct rounded-full px-1.5 shrink-0">Natural</span>
                       )}
-                      <span className="text-xs text-pw-muted">{v.lang}</span>
+                      <span className="text-xs text-muted">{v.lang}</span>
                     </span>
                   </SelectItem>
                 ))}
@@ -92,7 +92,7 @@ export default function VoiceSettings() {
         <div>
           <div className="flex items-center justify-between mb-2">
             <p className="text-base font-bold">Speed</p>
-            <span className="text-sm font-bold text-pw-navy tabular-nums bg-pw-soft rounded-full px-2.5 py-0.5">{rate.toFixed(2)}×</span>
+            <span className="text-sm font-bold text-navy tabular-nums bg-tint rounded-full px-2.5 py-0.5">{rate.toFixed(2)}×</span>
           </div>
           <Slider
             value={[rate]}
@@ -102,7 +102,7 @@ export default function VoiceSettings() {
             onValueChange={handleRateChange}
             aria-label="Speed"
           />
-          <p className="text-sm text-pw-muted mt-2 leading-snug">
+          <p className="text-sm text-muted mt-2 leading-snug">
             Tip: practice at slower speeds first, then at 1.0× like the real interview.
           </p>
         </div>

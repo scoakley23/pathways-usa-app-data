@@ -64,7 +64,7 @@ export default function InterviewDay() {
       <InterviewDayGuide version={version} />
 
       {user === undefined ? (
-        <Loader2 className="w-6 h-6 animate-spin mx-auto text-pw-navy" aria-label="Loading" />
+        <Loader2 className="w-6 h-6 animate-spin mx-auto text-navy" aria-label="Loading" />
       ) : user ? (
         <RehearsalStart
           version={version}

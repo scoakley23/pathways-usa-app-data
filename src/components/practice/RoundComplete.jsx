@@ -21,7 +21,7 @@ export default function RoundComplete({ outcomes = [], title, rule, review = nul
             type="button"
             onClick={onClose}
             aria-label="Close practice"
-            className="w-11 h-11 rounded-full border-2 border-navy-line text-white grid place-items-center hover:bg-navy-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="w-11 h-11 rounded-full border-2 border-chip-navy text-white grid place-items-center hover:bg-chip-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
           >
             <X className="w-5 h-5" aria-hidden="true" />
           </button>
@@ -42,7 +42,7 @@ export default function RoundComplete({ outcomes = [], title, rule, review = nul
         </div>
 
         {review && review.lines.length > 0 && (
-          <Card padding="p-5" className="text-ink">
+          <Card padding="p-5" className="text-navy">
             <h3 className="font-display text-[22px] leading-tight">{review.heading}</h3>
             <ul className="mt-3 space-y-2 list-disc ps-5 text-base">
               {review.lines.map((line, i) => <li key={i}>{line}</li>)}

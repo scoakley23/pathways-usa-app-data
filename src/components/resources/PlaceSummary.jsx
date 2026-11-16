@@ -8,7 +8,7 @@ import useSavedPlaces from '@/components/resources/useSavedPlaces';
 
 // Text colors use ! so Leaflet's popup link color can't override them.
 const LINK_BTN =
-  'min-h-[44px] rounded-2xl font-bold inline-flex items-center justify-center gap-2 px-4 text-base transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2';
+  'min-h-[44px] rounded-2xl font-bold inline-flex items-center justify-center gap-2 px-4 text-base transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2';
 
 // One tag per service the place offers, main category first.
 export function ServiceTags({ r }) {
@@ -35,7 +35,7 @@ export function SaveButton({ r }) {
       aria-label={saved ? `Saved: ${r.name}. Tap to remove from your saved places` : `Save ${r.name} to your saved places`}
       disabled={isSaving}
       onClick={(e) => { e.stopPropagation(); toggleSaved(r.id); }}
-      className={`${LINK_BTN} border-2 border-pw-navy disabled:opacity-60 ${saved ? 'bg-pw-soft !text-pw-navy hover:bg-pw-soft-hover' : 'bg-white !text-pw-navy hover:bg-pw-soft'}`}
+      className={`${LINK_BTN} border-2 border-navy disabled:opacity-60 ${saved ? 'bg-tint !text-navy hover:bg-line' : 'bg-white !text-navy hover:bg-tint'}`}
     >
       <Icon className="w-5 h-5" aria-hidden="true" /> {saved ? 'Saved' : 'Save'}
     </button>
@@ -48,17 +48,17 @@ export function PlaceActions({ r }) {
   return (
     <div className="flex flex-wrap gap-2">
       {!isPoBoxOnly(r.address) && (
-        <a href={directionsUrl(r)} target="_blank" rel="noopener noreferrer" className={`${LINK_BTN} bg-pw-navy !text-white hover:bg-pw-navy-deep`}>
+        <a href={directionsUrl(r)} target="_blank" rel="noopener noreferrer" className={`${LINK_BTN} bg-navy !text-white hover:bg-navy-deep`}>
           <Navigation className="w-5 h-5" aria-hidden="true" /> Directions
         </a>
       )}
       {tel && (
-        <a href={tel} className={`${LINK_BTN} bg-white !text-pw-navy border-2 border-pw-navy hover:bg-pw-soft`}>
+        <a href={tel} className={`${LINK_BTN} bg-white !text-navy border-2 border-navy hover:bg-tint`}>
           <Phone className="w-5 h-5" aria-hidden="true" /> Call
         </a>
       )}
       {site && (
-        <a href={site} target="_blank" rel="noopener noreferrer" className={`${LINK_BTN} bg-white !text-pw-navy border-2 border-pw-navy hover:bg-pw-soft`}>
+        <a href={site} target="_blank" rel="noopener noreferrer" className={`${LINK_BTN} bg-white !text-navy border-2 border-navy hover:bg-tint`}>
           <Globe className="w-5 h-5" aria-hidden="true" /> Website
         </a>
       )}
@@ -88,15 +88,15 @@ function Logo({ r }) {
 // Summary shown when a learner taps a pin on the map.
 export function PlaceSummary({ r }) {
   return (
-    <div className="space-y-2 font-sans text-pw-navy min-w-[220px] max-w-[260px]">
+    <div className="space-y-2 font-sans text-navy min-w-[220px] max-w-[260px]">
       <div className="flex items-start justify-between gap-3">
         <Logo r={r} />
-        <span className="text-sm font-bold text-pw-muted whitespace-nowrap">{formatDistance(r.distance)}</span>
+        <span className="text-sm font-bold text-muted whitespace-nowrap">{formatDistance(r.distance)}</span>
       </div>
       <p className="text-base font-extrabold leading-snug !m-0">{r.name}</p>
       <ServiceTags r={r} />
       {fullAddress(r) && <p className="text-sm !m-0">{fullAddress(r)}</p>}
-      {r.hours && <p className="text-sm text-pw-muted !m-0">Hours: {r.hours}</p>}
+      {r.hours && <p className="text-sm text-muted !m-0">Hours: {r.hours}</p>}
       <PlaceActions r={r} />
     </div>
   );

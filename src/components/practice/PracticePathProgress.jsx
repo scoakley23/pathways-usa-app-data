@@ -55,8 +55,8 @@ export default function PracticePathProgress({ userEmail }) {
   const currentKey = STEPS.find((s) => !stats[s.key] || stats[s.key].practiced === 0)?.key;
 
   return (
-    <div className="bg-white rounded-card border border-pw-line shadow-raised p-5 text-pw-navy">
-      <h2 className="text-xs font-bold text-pw-muted uppercase tracking-widest mb-5">
+    <div className="bg-white rounded-card border border-line shadow-raised p-5 text-navy">
+      <h2 className="text-xs font-bold text-muted uppercase tracking-widest mb-5">
         Your Learning Path
       </h2>
       <div className="flex items-start justify-between">
@@ -71,24 +71,24 @@ export default function PracticePathProgress({ userEmail }) {
                 <div
                   className={`w-14 h-14 rounded-full flex items-center justify-center mb-3 ring-2 transition-all ${
                     isActive
-                      ? 'bg-pw-green-soft text-pw-green-ink ring-transparent'
+                      ? 'bg-correct-bg text-correct ring-transparent'
                       : step.key === currentKey
-                        ? 'bg-sand text-ink ring-navy/40'
-                        : 'bg-pw-soft text-pw-muted ring-transparent'
+                        ? 'bg-tint text-navy ring-navy/40'
+                        : 'bg-tint text-muted ring-transparent'
                   }`}
                 >
                   {isActive ? <Check className="w-6 h-6" aria-hidden="true" /> : <Icon className="w-6 h-6" aria-hidden="true" />}
                 </div>
                 <p className="font-bold text-base">{step.label}</p>
-                <p className="text-sm text-pw-muted leading-tight mb-1">{step.desc}</p>
-                <p className="text-sm font-semibold text-pw-navy">
+                <p className="text-sm text-muted leading-tight mb-1">{step.desc}</p>
+                <p className="text-sm font-semibold text-navy">
                   {loading ? '—' : `${data.mastered} mastered`}
                 </p>
               </div>
               {idx < STEPS.length - 1 && (
-                <div className="flex-1 h-0.5 bg-pw-line mx-1 mt-7 rounded-full overflow-hidden max-w-[2rem]">
+                <div className="flex-1 h-0.5 bg-line mx-1 mt-7 rounded-full overflow-hidden max-w-[2rem]">
                   <div
-                    className={`h-full ${isActive ? 'bg-pw-green-ink' : ''}`}
+                    className={`h-full ${isActive ? 'bg-correct' : ''}`}
                     style={{ width: isActive ? '100%' : '0%' }}
                   />
                 </div>

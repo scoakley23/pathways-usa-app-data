@@ -20,7 +20,7 @@ export default function YourRoad({ roadmap, stopName = (s) => s.name }) {
             {!last && (
               <span
                 aria-hidden="true"
-                className={`absolute start-[20px] top-[30px] bottom-0 w-1 -translate-x-1/2 rtl:translate-x-1/2 rounded-full ${state === 'done' ? 'bg-denim' : 'bg-road'}`}
+                className={`absolute start-[20px] top-[30px] bottom-0 w-1 -translate-x-1/2 rtl:translate-x-1/2 rounded-full ${state === 'done' ? 'bg-denim' : 'bg-chip-navy'}`}
               />
             )}
             <span className="relative z-10 w-10 h-[60px] shrink-0 grid place-items-center">

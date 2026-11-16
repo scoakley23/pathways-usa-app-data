@@ -28,8 +28,8 @@ export default function PreInterviewQuestion({ email, onDone }) {
     <RaisedCard padding="p-5 sm:p-8" className="max-w-2xl w-full mx-auto space-y-6">
       <div className="space-y-3">
         <Eyebrow>{t('eyebrow')}</Eyebrow>
-        <h2 className="font-display text-[32px] leading-tight text-pw-navy">{t('pre_title')}</h2>
-        <p className="text-base text-pw-muted">{t('small_print')}</p>
+        <h2 className="font-display text-[32px] leading-tight text-navy">{t('pre_title')}</h2>
+        <p className="text-base text-muted">{t('small_print')}</p>
       </div>
       <ReadinessQuestion label={t('ready_label')} value={confidence} onChange={setConfidence} t={t} />
       <div className="flex flex-col-reverse sm:flex-row sm:justify-end gap-2">

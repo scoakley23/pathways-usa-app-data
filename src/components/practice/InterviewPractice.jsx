@@ -432,7 +432,7 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
           type="button"
           onClick={onClose}
           aria-label="Close practice"
-          className="w-11 h-11 rounded-full bg-white border border-card-line grid place-items-center text-ink hover:bg-sand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
+          className="w-11 h-11 rounded-full bg-white border border-line grid place-items-center text-navy hover:bg-tint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
         >
           <X className="w-5 h-5" aria-hidden="true" />
         </button>
@@ -442,15 +442,15 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
   ));
 
   if (isLoadingQuestions) return padded(
-    <RaisedCard padding="p-10" className="text-center text-ink">
+    <RaisedCard padding="p-10" className="text-center text-navy">
       <Loader2 className="w-10 h-10 animate-spin mx-auto mb-4 text-navy" aria-hidden="true" />
-      <p className="font-semibold text-ink-2">Loading interview questions...</p>
+      <p className="font-semibold text-muted">Loading interview questions...</p>
     </RaisedCard>
   );
 
   if (questions.length === 0) return padded(
-    <RaisedCard padding="p-10" className="text-center text-ink">
-      <p className="text-ink-2 mb-4">No interview questions found.</p>
+    <RaisedCard padding="p-10" className="text-center text-navy">
+      <p className="text-muted mb-4">No interview questions found.</p>
       <SecondaryButton onClick={() => window.location.reload()}>Reload</SecondaryButton>
     </RaisedCard>
   );
@@ -466,7 +466,7 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
   );
 
   if (!sessionStarted && rehearsal) return (
-    <RaisedCard padding="p-10" className="text-center text-ink">
+    <RaisedCard padding="p-10" className="text-center text-navy">
       <Loader2 className="w-10 h-10 animate-spin mx-auto text-navy" aria-label="Starting" />
     </RaisedCard>
   );
@@ -660,8 +660,8 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
   );
 }
 
-const scoreColor = (s) => s >= 80 ? 'text-pw-green-ink' : s >= 60 ? 'text-pw-blue-ink' : 'text-pw-red-ink';
-const barColor = (s) => s >= 80 ? 'bg-pw-green-ink' : s >= 60 ? 'bg-pw-blue-ink' : 'bg-pw-red-ink';
+const scoreColor = (s) => s >= 80 ? 'text-correct' : s >= 60 ? 'text-navy' : 'text-not-yet';
+const barColor = (s) => s >= 80 ? 'bg-correct' : s >= 60 ? 'bg-navy' : 'bg-not-yet';
 
 // The details under the poster: the three scores, the suggested wording on
 // ruled paper, and the full feedback behind a toggle. The verdict itself is
@@ -677,19 +677,19 @@ function FeedbackPanel({ feedback, understanding = false }) {
           { label: 'Grammar', score: feedback.grammar_score },
           { label: 'Fluency', score: feedback.fluency_score },
         ].map(({ label, score }) => (
-          <div key={label} className="bg-white rounded-2xl p-3 border border-pw-line shadow-raised text-center">
+          <div key={label} className="bg-white rounded-2xl p-3 border border-line shadow-raised text-center">
             <p className={`font-display text-[34px] leading-none ${scoreColor(score)}`}>{score}</p>
-            <div className="w-full bg-pw-soft rounded-full h-1.5 my-1.5">
+            <div className="w-full bg-tint rounded-full h-1.5 my-1.5">
               <div className={`h-1.5 rounded-full ${barColor(score)}`} style={{ width: `${score}%` }} />
             </div>
-            <p className="text-sm text-pw-muted font-semibold">{label}</p>
+            <p className="text-sm text-muted font-semibold">{label}</p>
           </div>
         ))}
       </div>}
 
       {feedback.corrected_version && (
         <RuledPaper>
-          <p className="text-[13px] font-semibold uppercase tracking-[0.14em] leading-[36px] text-pw-muted">{feedback.civics ? 'The officer accepts' : understanding ? 'What the question is asking' : 'A better way to say it'}</p>
+          <p className="text-[13px] font-semibold uppercase tracking-[0.14em] leading-[36px] text-muted">{feedback.civics ? 'The officer accepts' : understanding ? 'What the question is asking' : 'A better way to say it'}</p>
           <p className="font-medium text-[22px] leading-[36px]">“{feedback.corrected_version}”</p>
         </RuledPaper>
       )}
@@ -698,7 +698,7 @@ function FeedbackPanel({ feedback, understanding = false }) {
         type="button"
         onClick={() => setExpanded(!expanded)}
         aria-expanded={expanded}
-        className="w-full min-h-[48px] flex items-center justify-between bg-white border border-pw-line hover:bg-pw-soft px-4 py-3 rounded-2xl transition-colors text-base font-bold text-pw-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
+        className="w-full min-h-[48px] flex items-center justify-between bg-white border border-line hover:bg-tint px-4 py-3 rounded-2xl transition-colors text-base font-bold text-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
       >
         <span>Detailed feedback</span>
         {expanded ? <ChevronUp className="w-5 h-5" aria-hidden="true" /> : <ChevronDown className="w-5 h-5" aria-hidden="true" />}
@@ -715,7 +715,7 @@ function FeedbackPanel({ feedback, understanding = false }) {
           ].filter(Boolean).map(({ title, text }) => (
             <div key={title}>
               <Eyebrow className="mb-1">{title}</Eyebrow>
-              <p className="text-base text-pw-navy leading-relaxed">{text}</p>
+              <p className="text-base text-navy leading-relaxed">{text}</p>
             </div>
           ))}
         </RaisedCard>
@@ -729,19 +729,19 @@ function InterviewIntro({ questions, onStart, varyOfficer, onToggleVary }) {
   const sectionNames = { small_talk: 'Small Talk', personal_info: 'Personal Information', morals_ethics: 'Morals & Ethics', oath_requirements: 'Oath Requirements' };
 
   return (
-    <div className="w-full max-w-2xl mx-auto space-y-4 text-pw-navy">
+    <div className="w-full max-w-2xl mx-auto space-y-4 text-navy">
       <RaisedCard>
         {/* The AI officer: a drawing, never a photo */}
         <div className="flex items-center gap-4">
           <div className="rounded-full bg-tint p-1"><Officer size={80} /></div>
           <div className="min-w-0">
             <p className="font-bold text-lg">AI practice officer</p>
-            <p className="text-sm text-pw-muted">AI, not a real person</p>
+            <p className="text-sm text-muted">AI, not a real person</p>
           </div>
         </div>
 
         <h2 className="text-[32px] font-display font-normal leading-tight mt-5 mb-2">Mock Interview</h2>
-        <p className="text-base text-pw-muted leading-relaxed">
+        <p className="text-base text-muted leading-relaxed">
           The AI officer asks you real interview questions out loud and checks your answers. Amio waits at the door.
         </p>
 
@@ -752,8 +752,8 @@ function InterviewIntro({ questions, onStart, varyOfficer, onToggleVary }) {
             { Icon: Bot, text: 'Real-time AI evaluation' },
             { Icon: BarChart3, text: 'Content, grammar & fluency scores' },
           ].map(({ Icon, text }) => (
-            <div key={text} className="flex flex-col gap-2 bg-pw-soft p-3 rounded-2xl">
-              <Icon className="w-5 h-5 text-pw-navy shrink-0" aria-hidden="true" />
+            <div key={text} className="flex flex-col gap-2 bg-tint p-3 rounded-2xl">
+              <Icon className="w-5 h-5 text-navy shrink-0" aria-hidden="true" />
               <p className="text-sm font-semibold leading-snug">{text}</p>
             </div>
           ))}
@@ -782,9 +782,9 @@ function InterviewIntro({ questions, onStart, varyOfficer, onToggleVary }) {
         role="switch"
         aria-checked={varyOfficer}
         onClick={onToggleVary}
-        className="flex items-center gap-3 bg-white rounded-2xl px-4 py-3 min-h-[56px] border border-pw-line w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
+        className="flex items-center gap-3 bg-white rounded-2xl px-4 py-3 min-h-[56px] border border-line w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
       >
-        <span className={`w-11 h-6 rounded-full relative transition-colors shrink-0 ${varyOfficer ? 'bg-pw-navy' : 'bg-pw-line'}`}>
+        <span className={`w-11 h-6 rounded-full relative transition-colors shrink-0 ${varyOfficer ? 'bg-navy' : 'bg-line'}`}>
           <span className={`absolute top-0.5 start-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform ${varyOfficer ? 'translate-x-5 rtl:-translate-x-5' : ''}`} />
         </span>
         <span className="text-base font-semibold">Different officer voice each interview</span>

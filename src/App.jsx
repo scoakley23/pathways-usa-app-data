@@ -55,7 +55,7 @@ const AuthenticatedApp = () => {
   if (isLoadingAuth) {
     return (
       <div className="fixed inset-0 flex items-center justify-center">
-        <div className="w-8 h-8 border-4 border-pw-line border-t-pw-navy rounded-full animate-spin"></div>
+        <div className="w-8 h-8 border-4 border-line border-t-navy rounded-full animate-spin"></div>
       </div>
     );
   }

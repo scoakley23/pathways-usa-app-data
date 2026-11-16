@@ -7,7 +7,7 @@ import { TEXT_SIZES } from '@/lib/textSize';
 export default function TextSizePicker({ className = '' }) {
   const textSize = useTextSize();
   return (
-    <div role="group" aria-labelledby="text-size-label" className={`space-y-2 text-pw-navy ${className}`}>
+    <div role="group" aria-labelledby="text-size-label" className={`space-y-2 text-navy ${className}`}>
       <p id="text-size-label" className="font-bold text-base">Text size in lessons</p>
       <div className="grid grid-cols-3 gap-2">
         {Object.entries(TEXT_SIZES).map(([id, t]) => (
@@ -16,8 +16,8 @@ export default function TextSizePicker({ className = '' }) {
             type="button"
             aria-pressed={textSize.size === id}
             onClick={() => textSize.changeSize(id)}
-            className={`min-h-[44px] rounded-2xl border-2 px-2 font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2 ${
-              textSize.size === id ? 'border-pw-navy bg-pw-soft' : 'border-pw-line bg-white hover:border-pw-muted'
+            className={`min-h-[44px] rounded-2xl border-2 px-2 font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2 ${
+              textSize.size === id ? 'border-navy bg-tint' : 'border-line bg-white hover:border-muted'
             }`}
             style={{ fontSize: t.px }}
           >
@@ -25,7 +25,7 @@ export default function TextSizePicker({ className = '' }) {
           </button>
         ))}
       </div>
-      <p className="text-sm text-pw-muted">Saved on this device. Takes effect right away.</p>
+      <p className="text-sm text-muted">Saved on this device. Takes effect right away.</p>
     </div>
   );
 }

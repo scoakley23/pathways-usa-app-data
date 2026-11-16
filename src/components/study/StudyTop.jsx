@@ -18,7 +18,7 @@ export default function StudyTop({ tab, action = null, children }) {
         {action}
       </div>
       <nav aria-label="Study">
-        <div className="inline-flex rounded-full bg-navy-2 p-1">
+        <div className="inline-flex rounded-full bg-chip-navy p-1">
           {TABS.map((t) => {
             const active = t.id === tab;
             return (

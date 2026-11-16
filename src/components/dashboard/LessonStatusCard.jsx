@@ -14,23 +14,23 @@ export default function LessonStatusCard({ lesson, progress }) {
   const config = {
     completed: {
       icon: CheckCircle,
-      color: 'text-pw-green-ink',
-      bg: 'bg-pw-green-soft',
+      color: 'text-correct',
+      bg: 'bg-correct-bg',
       border: 'border-transparent',
       label: 'Completed',
     },
     inProgress: {
       icon: Clock,
-      color: 'text-pw-teal-ink',
-      bg: 'bg-pw-teal-soft',
+      color: 'text-navy',
+      bg: 'bg-tint',
       border: 'border-transparent',
       label: 'In Progress',
     },
     notStarted: {
       icon: Circle,
-      color: 'text-pw-muted',
+      color: 'text-muted',
       bg: 'bg-white',
-      border: 'border-pw-line',
+      border: 'border-line',
       label: 'Not Started',
     },
   }[status];
@@ -38,13 +38,13 @@ export default function LessonStatusCard({ lesson, progress }) {
   const StatusIcon = config.icon;
 
   return (
-    <Link to={createPageUrl('Lessons')} className="block h-full rounded-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2">
+    <Link to={createPageUrl('Lessons')} className="block h-full rounded-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2">
       <Card
         className={`${config.border} ${config.bg} rounded-card shadow-raised hover:shadow-lift transition-all cursor-pointer h-full`}
       >
         <CardContent className="p-4 space-y-2">
           <div className="flex items-start justify-between gap-2">
-            <h4 className="text-base font-bold text-pw-navy line-clamp-2 leading-snug">
+            <h4 className="text-base font-bold text-navy line-clamp-2 leading-snug">
               {lesson.title}
             </h4>
             <StatusIcon className={`w-5 h-5 ${config.color} shrink-0`} aria-hidden="true" />
@@ -52,7 +52,7 @@ export default function LessonStatusCard({ lesson, progress }) {
           <div className="flex items-center justify-between">
             <span className={`text-sm font-bold ${config.color}`}>{config.label}</span>
             {isCompleted && bestScore > 0 && (
-              <span className="text-sm font-bold text-pw-navy">{Math.round(bestScore)}%</span>
+              <span className="text-sm font-bold text-navy">{Math.round(bestScore)}%</span>
             )}
           </div>
         </CardContent>

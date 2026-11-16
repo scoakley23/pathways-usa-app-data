@@ -70,19 +70,19 @@ export default function TutorLesson({ lesson, profile, language = 'en', language
   };
 
   return (
-    <div className="max-w-xl mx-auto text-pw-navy">
+    <div className="max-w-xl mx-auto text-navy">
       <div className="flex items-center justify-between mb-3">
         {onExit ? (
           <button
             type="button"
             onClick={onExit}
             aria-label="Leave lesson"
-            className="w-11 h-11 rounded-xl bg-white border border-pw-line grid place-items-center hover:bg-pw-soft"
+            className="w-11 h-11 rounded-xl bg-white border border-line grid place-items-center hover:bg-tint"
           >
             <X className="w-5 h-5" />
           </button>
         ) : <span className="w-11" />}
-        <span className="text-sm font-bold uppercase tracking-wide text-pw-muted">{progressLabel(index, steps.length)}</span>
+        <span className="text-sm font-bold uppercase tracking-wide text-muted">{progressLabel(index, steps.length)}</span>
         <span className="w-11" />
       </div>
       <SegmentedProgress current={index} total={steps.length} label={progressLabel(index, steps.length)} />
@@ -102,7 +102,7 @@ export default function TutorLesson({ lesson, profile, language = 'en', language
         </motion.div>
       </AnimatePresence>
 
-      <div className="sticky bottom-0 -mx-4 px-4 pt-6 pb-4 bg-gradient-to-t from-pw-page via-pw-page to-transparent">
+      <div className="sticky bottom-0 -mx-4 px-4 pt-6 pb-4 bg-gradient-to-t from-page via-page to-transparent">
         <PrimaryButton large className="w-full" onClick={() => goTo(index + 1)} disabled={!ready}>
           {step.type === 'part-intro' ? 'Start' : isLast ? 'Finish' : 'Continue'}
         </PrimaryButton>

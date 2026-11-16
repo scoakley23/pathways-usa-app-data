@@ -43,65 +43,7 @@ export const HOVER = {
   'navy-deep': '#141E33',
 };
 
-// Old names ("The Road" and the older pw-* names), each pointing at a
-// style-guide color so screens not yet redone follow the new palette.
-// Later prompts replace them with the names above; Prompt 13 removes what's left.
-export const ALIASES = {
-  cream: 'page',
-  'card-line': 'line',
-  sand: 'tint',
-  'sand-hover': 'line',
-  ink: 'navy',
-  'ink-2': 'muted',
-  'ink-label': 'muted',
-  'navy-2': 'chip-navy',
-  'navy-line': 'chip-navy',
-  road: 'chip-navy',
-  star: 'red',
-  'star-deep': 'red-text',
-  'not-correct': 'not-yet',
-  'not-correct-text': 'not-yet',
-  'not-correct-soft': 'not-yet-bg',
-  'correct-soft': 'correct-bg',
-};
 
-// The pw-* names, same idea.
-export const PW_ALIASES = {
-  navy: 'navy',
-  'navy-deep': 'navy-deep',
-  ink: 'navy',
-  'ink-deep': 'navy-deep',
-  red: 'red',
-  page: 'page',
-  line: 'line',
-  muted: 'muted',
-  linen: 'tint',
-  slate: 'tint',
-  manila: 'tint',
-  sky: 'tint',
-  plum: 'navy',
-  go: 'correct',
-  almost: 'gold',
-  miss: 'not-yet',
-  rule: 'line',
-  margin: 'line',
-  civics: 'navy',
-  reading: 'navy',
-  writing: 'navy',
-  speaking: 'navy',
-  soft: 'tint',
-  'soft-hover': 'line',
-  'red-soft': 'not-yet-bg',
-  'red-ink': 'not-yet',
-  'red-deep': 'not-yet',
-  'blue-soft': 'tint',
-  'blue-ink': 'navy',
-  'teal-soft': 'tint',
-  'teal-ink': 'navy',
-  'green-soft': 'correct-bg',
-  'green-ink': 'correct',
-  highlight: 'stop-chest',
-};
 
 const ALL = { ...COLORS, ...HOVER };
 export const hex = (name) => ALL[name];

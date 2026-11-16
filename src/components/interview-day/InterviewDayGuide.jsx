@@ -55,7 +55,7 @@ const SECTIONS = [
   },
 ];
 
-const linkClass = 'min-h-[48px] w-full rounded-2xl bg-pw-soft hover:bg-pw-soft-hover px-4 py-3 text-base font-bold text-pw-navy inline-flex items-center justify-between gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2';
+const linkClass = 'min-h-[48px] w-full rounded-2xl bg-tint hover:bg-line px-4 py-3 text-base font-bold text-navy inline-flex items-center justify-between gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2';
 
 export default function InterviewDayGuide({ version = '2025' }) {
   const before = SECTIONS.find((x) => x.tag === 'Before you go');
@@ -99,18 +99,18 @@ export default function InterviewDayGuide({ version = '2025' }) {
         <Eyebrow>After the interview</Eyebrow>
         <ul className="space-y-2">
           <li className="flex gap-3 text-base leading-relaxed">
-            <span className="w-1.5 h-1.5 rounded-full bg-pw-navy mt-2.5 shrink-0" aria-hidden="true" />
+            <span className="w-1.5 h-1.5 rounded-full bg-navy mt-2.5 shrink-0" aria-hidden="true" />
             <span>You get a results paper.</span>
           </li>
           <li className="flex gap-3 text-base leading-relaxed">
-            <span className="w-1.5 h-1.5 rounded-full bg-pw-navy mt-2.5 shrink-0" aria-hidden="true" />
+            <span className="w-1.5 h-1.5 rounded-full bg-navy mt-2.5 shrink-0" aria-hidden="true" />
             <span>
               It can say <strong>approved</strong>, <strong>continued</strong> (USCIS needs more papers, or you need to
               take a test again), or <strong>denied</strong>.
             </span>
           </li>
           <li className="flex gap-3 text-base leading-relaxed">
-            <span className="w-1.5 h-1.5 rounded-full bg-pw-navy mt-2.5 shrink-0" aria-hidden="true" />
+            <span className="w-1.5 h-1.5 rounded-full bg-navy mt-2.5 shrink-0" aria-hidden="true" />
             <span>If you don&apos;t pass a test, you get one retest, usually 60 to 90 days later.</span>
           </li>
         </ul>

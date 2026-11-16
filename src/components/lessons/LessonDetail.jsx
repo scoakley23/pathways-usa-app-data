@@ -20,7 +20,7 @@ import { Eyebrow, ExplainSimplyButton, IndexCard, PrimaryButton, QuietButton, Se
 import { questionsForLesson } from '@/lib/lessonQuestions';
 import { STEP_LABELS, deckSteps, splitIdeas } from '@/lib/lessonDeck';
 
-const MARKDOWN = 'max-w-none text-lg leading-relaxed text-pw-navy [&_h1]:font-display [&_h2]:font-display [&_h3]:font-display [&_h1]:text-3xl [&_h2]:text-[28px] [&_h3]:text-2xl [&_h1]:font-normal [&_h2]:font-normal [&_h3]:font-normal [&_h1]:mb-2 [&_h2]:mb-2 [&_h3]:mb-2 [&>*:first-child]:mt-0 [&_p]:my-3 [&_ul]:list-disc [&_ol]:list-decimal [&_ul]:ps-6 [&_ol]:ps-6 [&_ul]:my-3 [&_ol]:my-3 [&_li]:my-1 [&_strong]:font-bold [&_a]:underline';
+const MARKDOWN = 'max-w-none text-lg leading-relaxed text-navy [&_h1]:font-display [&_h2]:font-display [&_h3]:font-display [&_h1]:text-3xl [&_h2]:text-[28px] [&_h3]:text-2xl [&_h1]:font-normal [&_h2]:font-normal [&_h3]:font-normal [&_h1]:mb-2 [&_h2]:mb-2 [&_h3]:mb-2 [&>*:first-child]:mt-0 [&_p]:my-3 [&_ul]:list-disc [&_ol]:list-decimal [&_ul]:ps-6 [&_ol]:ps-6 [&_ul]:my-3 [&_ol]:my-3 [&_li]:my-1 [&_strong]:font-bold [&_a]:underline';
 
 const extractYouTubeId = (url) => {
   if (!url) return null;
@@ -47,11 +47,11 @@ function KeyPointCard({ point, number }) {
   return (
     <IndexCard tab={`Key point ${number}`} tabSkill="civics">
       <p className="font-display text-[26px] leading-snug"><GlossaryText>{text}</GlossaryText></p>
-      {imageUrl && <img src={imageUrl} alt="" className="mt-4 w-full max-h-64 object-cover rounded-[10px] border border-pw-line" />}
+      {imageUrl && <img src={imageUrl} alt="" className="mt-4 w-full max-h-64 object-cover rounded-[10px] border border-line" />}
       {definition && (
         <div className="mt-4 space-y-3">
           <ExplainSimplyButton aria-expanded={open} onClick={() => setOpen((v) => !v)} />
-          {open && <p className="rounded-[10px] bg-pw-blue-soft p-4 text-lg leading-relaxed">{definition}</p>}
+          {open && <p className="rounded-[10px] bg-tint p-4 text-lg leading-relaxed">{definition}</p>}
         </div>
       )}
     </IndexCard>
@@ -204,7 +204,7 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <Loader2 className="w-8 h-8 animate-spin text-pw-navy" aria-label="Loading" />
+        <Loader2 className="w-8 h-8 animate-spin text-navy" aria-label="Loading" />
       </div>
     );
   }
@@ -222,7 +222,7 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
   const version = questions[0]?.version || '2025';
 
   return (
-    <div className="space-y-6 text-pw-navy">
+    <div className="space-y-6 text-navy">
       {/* Header */}
       <header className="space-y-4">
         <QuietButton onClick={onBack} className="-ml-3">
@@ -231,7 +231,7 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
         <div>
           {displayLesson.topic && <Eyebrow>{displayLesson.topic}</Eyebrow>}
           <h1 className="mt-1 font-display text-[36px] sm:text-[44px] leading-[1.05]">{displayLesson.title}</h1>
-          {displayLesson.description && <p className="text-pw-muted text-lg mt-2">{displayLesson.description}</p>}
+          {displayLesson.description && <p className="text-muted text-lg mt-2">{displayLesson.description}</p>}
         </div>
         <div className="flex items-center gap-3 flex-wrap">
           <LanguageSelector language={language} onLanguageChange={setLanguage} translating={translating} />
@@ -243,7 +243,7 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
         </div>
         {!finished && (
           <div className="space-y-2">
-            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-pw-muted">
+            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-muted">
               Step {stepIndex + 1} of {steps.length} · {STEP_LABELS[step]}
             </p>
             <SegmentedProgress current={stepIndex} total={steps.length} label={`Step ${stepIndex + 1} of ${steps.length}: ${STEP_LABELS[step]}`} />
@@ -269,7 +269,7 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
                 </div>
               </div>
             ) : (
-              <IndexCard><p className="text-lg text-pw-muted">Video not available.</p></IndexCard>
+              <IndexCard><p className="text-lg text-muted">Video not available.</p></IndexCard>
             )
           )}
 
@@ -291,7 +291,7 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
                   </div>
                 </IndexCard>
               ))}
-              {!keyPoints.length && !ideas.length && <IndexCard><p className="text-lg text-pw-muted">This lesson has no text yet.</p></IndexCard>}
+              {!keyPoints.length && !ideas.length && <IndexCard><p className="text-lg text-muted">This lesson has no text yet.</p></IndexCard>}
             </div>
           )}
 
@@ -307,7 +307,7 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
             <div className="space-y-4">
               <div>
                 <p className="font-medium text-2xl leading-snug">These are the exact questions the officer may ask.</p>
-                <p className="mt-1 text-base text-pw-muted">{questions.length} {questions.length === 1 ? 'question' : 'questions'} from the {version} civics test, in English, with the official answers.</p>
+                <p className="mt-1 text-base text-muted">{questions.length} {questions.length === 1 ? 'question' : 'questions'} from the {version} civics test, in English, with the official answers.</p>
               </div>
               <ol className="space-y-4">
                 {questions.map((q, i) => (
@@ -349,18 +349,18 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
       {finished && (
         <div className="space-y-6">
           <IndexCard padding="p-6" tab={displayLesson.topic || 'Civics'} tabSkill="civics" className="relative">
-            <span className="pointer-events-none absolute end-5 top-12 -rotate-[8deg] rounded-md border-[2.5px] border-pw-navy px-2.5 py-0.5 text-base font-bold uppercase tracking-[0.12em]" aria-hidden="true">Done</span>
+            <span className="pointer-events-none absolute end-5 top-12 -rotate-[8deg] rounded-md border-[2.5px] border-navy px-2.5 py-0.5 text-base font-bold uppercase tracking-[0.12em]" aria-hidden="true">Done</span>
             <Eyebrow>Lesson done</Eyebrow>
             <h2 className="mt-2 pe-20 font-display text-[32px] leading-tight">{displayLesson.title}</h2>
             {result ? (
               <>
                 <p className="mt-3 text-xl"><span className="font-display text-[44px] leading-none">{result.correct}</span> of {result.total} questions right.</p>
-                <p className="mt-2 text-lg text-pw-muted">At the interview, the officer asks out loud. Your answer doesn't need to be word for word, only right in meaning.</p>
+                <p className="mt-2 text-lg text-muted">At the interview, the officer asks out loud. Your answer doesn't need to be word for word, only right in meaning.</p>
               </>
             ) : questions.length === 0 ? (
-              <p className="mt-3 text-lg text-pw-muted">This lesson has no test questions to go over yet.</p>
+              <p className="mt-3 text-lg text-muted">This lesson has no test questions to go over yet.</p>
             ) : (
-              <p className="mt-3 text-lg text-pw-muted">Go over the questions any time to check what you know.</p>
+              <p className="mt-3 text-lg text-muted">Go over the questions any time to check what you know.</p>
             )}
             <div className="mt-5 flex flex-wrap gap-2">
               {questions.length > 0 && (
@@ -382,16 +382,16 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
 
       {/* Lesson navigation */}
       {lessons && lessons.length > 1 && (
-        <nav aria-label="Lesson navigation" className="grid grid-cols-2 gap-3 pt-6 border-t border-pw-line">
+        <nav aria-label="Lesson navigation" className="grid grid-cols-2 gap-3 pt-6 border-t border-line">
           {prevLesson ? (
             <button
               type="button"
               onClick={() => goToLesson(prevLesson)}
-              className="min-h-[56px] rounded-card border border-pw-line bg-white p-3 flex items-center gap-2 text-left hover:border-pw-navy transition-colors min-w-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
+              className="min-h-[56px] rounded-card border border-line bg-white p-3 flex items-center gap-2 text-left hover:border-navy transition-colors min-w-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
             >
               <ChevronLeft className="w-5 h-5 shrink-0 rtl:rotate-180" aria-hidden="true" />
               <span className="min-w-0">
-                <span className="block text-sm text-pw-muted">Previous</span>
+                <span className="block text-sm text-muted">Previous</span>
                 <span className="block text-base font-semibold truncate">{prevLesson.title}</span>
               </span>
             </button>
@@ -400,10 +400,10 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
             <button
               type="button"
               onClick={() => goToLesson(nextLesson)}
-              className="min-h-[56px] rounded-card border border-pw-line bg-white p-3 flex items-center justify-end gap-2 text-right hover:border-pw-navy transition-colors min-w-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
+              className="min-h-[56px] rounded-card border border-line bg-white p-3 flex items-center justify-end gap-2 text-right hover:border-navy transition-colors min-w-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
             >
               <span className="min-w-0">
-                <span className="block text-sm text-pw-muted">Next</span>
+                <span className="block text-sm text-muted">Next</span>
                 <span className="block text-base font-semibold truncate">{nextLesson.title}</span>
               </span>
               <ChevronRight className="w-5 h-5 shrink-0 rtl:rotate-180" aria-hidden="true" />

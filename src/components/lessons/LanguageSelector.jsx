@@ -16,14 +16,14 @@ export default function LanguageSelector({ language, onLanguageChange, translati
     <Select value={language} onValueChange={onLanguageChange} disabled={translating}>
       <SelectTrigger
         className={compact
-          ? `w-auto min-h-[44px] gap-1.5 rounded-full px-3 font-semibold [&>svg:last-child]:hidden ${onNavy ? 'bg-navy-2 border-navy-line text-white focus:ring-white focus:ring-offset-navy' : 'bg-white text-pw-navy'} ${className}`
+          ? `w-auto min-h-[44px] gap-1.5 rounded-full px-3 font-semibold [&>svg:last-child]:hidden ${onNavy ? 'bg-chip-navy border-chip-navy text-white focus:ring-white focus:ring-offset-navy' : 'bg-white text-navy'} ${className}`
           : `w-[160px] min-h-[44px] bg-white ${className}`}
         aria-label={compact ? `Language: ${label}` : 'Lesson language'}
       >
         {translating ? (
-          <Loader2 className={`w-4 h-4 animate-spin me-2 ${onNavy ? 'text-white' : 'text-pw-navy'}`} />
+          <Loader2 className={`w-4 h-4 animate-spin me-2 ${onNavy ? 'text-white' : 'text-navy'}`} />
         ) : (
-          <Globe className={`w-4 h-4 ${compact ? (onNavy ? 'text-white' : 'text-pw-navy') : 'me-2 text-pw-muted'}`} aria-hidden="true" />
+          <Globe className={`w-4 h-4 ${compact ? (onNavy ? 'text-white' : 'text-navy') : 'me-2 text-muted'}`} aria-hidden="true" />
         )}
         {compact ? <span className="uppercase">{language.split('-')[0]}</span> : <SelectValue />}
       </SelectTrigger>

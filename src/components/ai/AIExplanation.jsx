@@ -45,12 +45,12 @@ export default function AIExplanation({ question, answer, context = "US Civics T
             Explain with AI
         </PillButton>
       ) : (
-        <div className="bg-pw-blue-soft rounded-2xl overflow-hidden transition-all text-left">
+        <div className="bg-tint rounded-2xl overflow-hidden transition-all text-left">
             <button 
                 type="button"
                 onClick={() => setIsOpen(!isOpen)}
                 aria-expanded={isOpen}
-                className="w-full min-h-[44px] flex items-center justify-between px-4 py-3 text-sm font-bold text-pw-blue-ink rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
+                className="w-full min-h-[44px] flex items-center justify-between px-4 py-3 text-sm font-bold text-navy rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
             >
                 <span className="flex items-center gap-2"><Sparkles className="w-4 h-4" aria-hidden="true" /> AI Explanation</span>
                 {isOpen ? <ChevronUp className="w-5 h-5" aria-hidden="true" /> : <ChevronDown className="w-5 h-5" aria-hidden="true" />}
@@ -65,11 +65,11 @@ export default function AIExplanation({ question, answer, context = "US Civics T
                         className="px-4 pb-4"
                     >
                         {loading ? (
-                            <div className="flex items-center gap-2 text-pw-muted text-sm py-1">
+                            <div className="flex items-center gap-2 text-muted text-sm py-1">
                                 <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> Thinking...
                             </div>
                         ) : (
-                            <p className="text-base text-pw-navy leading-relaxed">
+                            <p className="text-base text-navy leading-relaxed">
                                 {explanation}
                             </p>
                         )}

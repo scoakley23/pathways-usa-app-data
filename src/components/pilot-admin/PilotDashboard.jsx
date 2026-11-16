@@ -34,19 +34,19 @@ const pct = (x) => `${Math.round(x * 100)}%`;
 function Stat({ title, value, definition, children }) {
   return (
     <RaisedCard className="space-y-2">
-      <h2 className="text-base font-semibold text-pw-muted">{title}</h2>
-      <p className="font-display text-[32px] leading-tight text-pw-navy">{value}</p>
+      <h2 className="text-base font-semibold text-muted">{title}</h2>
+      <p className="font-display text-[32px] leading-tight text-navy">{value}</p>
       {children}
-      <p className="text-sm text-pw-muted">{definition}</p>
+      <p className="text-sm text-muted">{definition}</p>
     </RaisedCard>
   );
 }
 
 function CountList({ counts, names = {} }) {
   const entries = Object.entries(counts).sort((a, b) => b[1] - a[1]);
-  if (entries.length === 0) return <p className="text-base text-pw-muted">No answers yet.</p>;
+  if (entries.length === 0) return <p className="text-base text-muted">No answers yet.</p>;
   return (
-    <ul className="divide-y divide-pw-line">
+    <ul className="divide-y divide-line">
       {entries.map(([key, count]) => (
         <li key={key} className="flex justify-between gap-3 py-1.5 text-base">
           <span className="min-w-0">{names[key] || STAGE_LABELS[key] || key}</span>
@@ -98,7 +98,7 @@ export default function PilotDashboard() {
   const m = useMemo(() => pilotMetrics(filtered), [filtered]);
 
   if (me === undefined) {
-    return <div className="flex justify-center items-center min-h-[50vh]"><Loader2 className="w-8 h-8 animate-spin text-pw-navy" aria-label="Loading" /></div>;
+    return <div className="flex justify-center items-center min-h-[50vh]"><Loader2 className="w-8 h-8 animate-spin text-navy" aria-label="Loading" /></div>;
   }
   if (!me || me.role !== 'admin') return <PageNotFound />;
 
@@ -119,7 +119,7 @@ export default function PilotDashboard() {
     <div>
       <PageTop tag="Admin" title="Pilot dashboard" subtitle="One row per learner, by a random pilot ID. No emails or names are on this page or in the CSV." />
       <CreamSheet>
-      <div className="max-w-5xl mx-auto space-y-6 pb-12 text-ink">
+      <div className="max-w-5xl mx-auto space-y-6 pb-12 text-navy">
 
 
       <RaisedCard className="flex flex-col sm:flex-row sm:flex-wrap sm:items-end gap-4">
@@ -129,7 +129,7 @@ export default function PilotDashboard() {
             id="pilot-program"
             value={program}
             onChange={(e) => setProgram(e.target.value)}
-            className="w-full sm:w-56 min-h-11 rounded-xl border-2 border-pw-line bg-white px-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy"
+            className="w-full sm:w-56 min-h-11 rounded-xl border-2 border-line bg-white px-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
           >
             <option value="all">All learners</option>
             {programs.map((p) => <option key={p} value={p}>{p}</option>)}
@@ -152,16 +152,16 @@ export default function PilotDashboard() {
       </RaisedCard>
 
       {partner && (
-        <p role="status" className="rounded-card bg-pw-soft px-4 py-3 text-base">
+        <p role="status" className="rounded-card bg-tint px-4 py-3 text-base">
           Partner view: exact numbers, no CSV download. Report counts ("11 of 30"), not only percentages.
         </p>
       )}
-      {error && <p role="alert" className="text-base font-semibold text-pw-red-ink">{error}</p>}
-      {!summaries && !error && <div className="flex justify-center py-12"><Loader2 className="w-8 h-8 animate-spin text-pw-navy" aria-label="Loading" /></div>}
+      {error && <p role="alert" className="text-base font-semibold text-not-yet">{error}</p>}
+      {!summaries && !error && <div className="flex justify-center py-12"><Loader2 className="w-8 h-8 animate-spin text-navy" aria-label="Loading" /></div>}
 
       {summaries && (
         <>
-          {generatedAt && <p className="text-sm text-pw-muted">Data as of {new Date(generatedAt).toLocaleString()}.</p>}
+          {generatedAt && <p className="text-sm text-muted">Data as of {new Date(generatedAt).toLocaleString()}.</p>}
 
           <section aria-labelledby="pilot-use" className="space-y-3">
             <h2 id="pilot-use" className="font-display text-[28px]">Sign-ups and use</h2>
@@ -178,7 +178,7 @@ export default function PilotDashboard() {
             <RaisedCard className="space-y-3">
               <h3 className="text-lg font-bold">Weekly active learners</h3>
               <WeeklyChart weeks={m.weekly} />
-              <p className="text-sm text-pw-muted">Learners who opened the app at least once that week (ISO weeks, Monday to Sunday).</p>
+              <p className="text-sm text-muted">Learners who opened the app at least once that week (ISO weeks, Monday to Sunday).</p>
             </RaisedCard>
           </section>
 
@@ -204,7 +204,7 @@ export default function PilotDashboard() {
 
           <section aria-labelledby="pilot-outcomes" className="space-y-3">
             <h2 id="pilot-outcomes" className="font-display text-[28px]">Check-ins and milestones</h2>
-            <p className="text-base text-pw-muted">Self-reported and optional. People who passed are more likely to answer, and "when" is only as exact as the check-in window.</p>
+            <p className="text-base text-muted">Self-reported and optional. People who passed are more likely to answer, and "when" is only as exact as the check-in window.</p>
             <div className="grid gap-4 sm:grid-cols-3">
               {Object.entries(m.responses).map(([kind, r]) => (
                 <Stat key={kind} title={`${WINDOW_LABELS[kind]} check-in answered`} value={share(r.count, r.of)} definition={`Answered, of learners whose ${WINDOW_LABELS[kind]} check-in has opened.`} />
@@ -214,7 +214,7 @@ export default function PilotDashboard() {
               <table className="w-full min-w-[480px] text-left text-base">
                 <caption className="text-left text-lg font-bold pb-2">Milestones: first said Yes</caption>
                 <thead>
-                  <tr className="text-pw-muted">
+                  <tr className="text-muted">
                     <th className="font-semibold py-1.5">Milestone</th>
                     <th className="font-semibold py-1.5">Said Yes</th>
                     {Object.values(WINDOW_LABELS).map((w) => <th key={w} className="font-semibold py-1.5">At {w}</th>)}
@@ -222,17 +222,17 @@ export default function PilotDashboard() {
                 </thead>
                 <tbody>
                   {Object.entries(m.milestones).map(([key, row]) => (
-                    <tr key={key} className="border-t border-pw-line">
+                    <tr key={key} className="border-t border-line">
                       <td className="py-1.5">{MILESTONE_LABELS[key]}</td>
                       <td className="py-1.5 font-semibold">{share(row.count, row.of)}</td>
                       {Object.keys(WINDOW_LABELS).map((w) => <td key={w} className="py-1.5">{count(row.byWindow[w] || 0)}</td>)}
                     </tr>
                   ))}
-                  <tr className="border-t border-pw-line">
+                  <tr className="border-t border-line">
                     <td className="py-1.5">Passed on the first try</td>
                     <td className="py-1.5 font-semibold" colSpan={4}>{share(m.passedFirstTry.count, m.passedFirstTry.of)} · {PROGRAM_BASELINE.label}: {pct(PROGRAM_BASELINE.firstTryPass)}</td>
                   </tr>
-                  <tr className="border-t border-pw-line">
+                  <tr className="border-t border-line">
                     <td className="py-1.5">Needed a retest</td>
                     <td className="py-1.5 font-semibold" colSpan={4}>{share(m.neededRetest.count, m.neededRetest.of)}</td>
                   </tr>
@@ -242,7 +242,7 @@ export default function PilotDashboard() {
             <RaisedCard className="space-y-2">
               <h3 className="text-lg font-bold">"Would you have done this as soon without Pathways?"</h3>
               <CountList counts={m.wouldHave} names={{ yes: 'Yes', maybe: 'Maybe', no: 'No', prefer_not: 'Rather not say' }} />
-              <p className="text-sm text-pw-muted">Latest answer per learner, asked only after a new Yes.</p>
+              <p className="text-sm text-muted">Latest answer per learner, asked only after a new Yes.</p>
             </RaisedCard>
           </section>
 

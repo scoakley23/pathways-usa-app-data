@@ -40,17 +40,17 @@ export default function CheckInForm({ kind, rows = [], user, language = 'en', on
       <form onSubmit={save} className="space-y-7" aria-labelledby="checkin-title">
         <div className="space-y-3">
           <Eyebrow>{t('eyebrow')}</Eyebrow>
-          <h1 id="checkin-title" className="font-display text-[36px] leading-tight text-pw-navy">{t('checkin_title')}</h1>
-          <p className="text-base text-pw-muted">{t('small_print')}</p>
+          <h1 id="checkin-title" className="font-display text-[36px] leading-tight text-navy">{t('checkin_title')}</h1>
+          <p className="text-base text-muted">{t('small_print')}</p>
         </div>
 
         {(q.ask.length > 0 || q.done.length > 0) && (
           <div className="space-y-5">
-            <p className="text-lg font-bold text-pw-navy">{t('since')}</p>
+            <p className="text-lg font-bold text-navy">{t('since')}</p>
             {q.done.length > 0 && (
               <ul className="space-y-2">
                 {q.done.map((m) => (
-                  <li key={m} className="flex items-start gap-2 text-base text-pw-navy">
+                  <li key={m} className="flex items-start gap-2 text-base text-navy">
                     <Check className="w-5 h-5 shrink-0 mt-0.5" aria-hidden="true" />
                     <span><span className="sr-only">{t('done_label')}: </span>{t(`m_${m}`)}</span>
                   </li>
@@ -86,7 +86,7 @@ export default function CheckInForm({ kind, rows = [], user, language = 'en', on
           />
         )}
 
-        {error && <p role="alert" className="text-base font-semibold text-pw-red-ink">{t('error')}</p>}
+        {error && <p role="alert" className="text-base font-semibold text-not-yet">{t('error')}</p>}
 
         <div className="flex flex-col-reverse sm:flex-row sm:justify-end gap-2">
           <QuietButton onClick={onNotNow} disabled={saving} className="w-full sm:w-auto">{t('not_now')}</QuietButton>

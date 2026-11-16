@@ -18,7 +18,7 @@ import useAppLanguage from '@/hooks/useAppLanguage';
 import { buildLearnLesson, pickNextToLearn } from '@/lib/explanations';
 import { awardBadges } from '@/lib/awardBadges';
 
-const linkClass = 'min-h-[52px] w-full rounded-2xl font-bold text-lg inline-flex items-center justify-center px-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pw-navy focus-visible:ring-offset-2';
+const linkClass = 'min-h-[52px] w-full rounded-2xl font-bold text-lg inline-flex items-center justify-center px-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2';
 
 const say = (t, language) => ({ en: t.en, mine: language === 'es' ? t.es : null });
 
@@ -40,11 +40,11 @@ const LINES = {
 function SignInMessage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-[50vh] text-center space-y-4 px-4">
-      <div className="w-20 h-20 rounded-card bg-pw-blue-soft flex items-center justify-center" aria-hidden="true">
-        <BookOpen className="w-10 h-10 text-pw-blue-ink" />
+      <div className="w-20 h-20 rounded-card bg-tint flex items-center justify-center" aria-hidden="true">
+        <BookOpen className="w-10 h-10 text-navy" />
       </div>
-      <h2 className="text-[28px] font-display font-normal text-pw-navy">Sign in to learn civics</h2>
-      <p className="text-base text-pw-muted">Your tutor teaches each question first, then you practice it.</p>
+      <h2 className="text-[28px] font-display font-normal text-navy">Sign in to learn civics</h2>
+      <p className="text-base text-muted">Your tutor teaches each question first, then you practice it.</p>
     </div>
   );
 }
@@ -132,9 +132,9 @@ export default function LearnCivics() {
 
   const learnMore = () => { setStage('intro'); setResults([]); setRunId(runId + 1); load(); window.scrollTo({ top: 0 }); };
 
-  if (user === undefined || !loaded) return <Loader2 className="w-6 h-6 animate-spin mx-auto mt-16 text-pw-navy" />;
+  if (user === undefined || !loaded) return <Loader2 className="w-6 h-6 animate-spin mx-auto mt-16 text-navy" />;
   if (!user) return <SignInMessage />;
-  if (!lesson) return <Loader2 className="w-6 h-6 animate-spin mx-auto mt-16 text-pw-navy" />;
+  if (!lesson) return <Loader2 className="w-6 h-6 animate-spin mx-auto mt-16 text-navy" />;
 
   if (stage === 'lesson') {
     return (
@@ -154,8 +154,8 @@ export default function LearnCivics() {
   const n = stage === 'done' ? results.length : picked.length;
 
   return (
-    <div className="max-w-xl mx-auto space-y-5 text-pw-navy">
-      <div className="rounded-card bg-pw-blue-soft px-4 pt-4 pb-5">
+    <div className="max-w-xl mx-auto space-y-5 text-navy">
+      <div className="rounded-card bg-tint px-4 pt-4 pb-5">
         <TopicArt name={art} />
         <Tag tone="blue" className="mt-2">
           {stage === 'done' ? 'Lesson done' : picked.length ? `${n} new ${n === 1 ? 'question' : 'questions'}` : 'All started'}
@@ -171,7 +171,7 @@ export default function LearnCivics() {
             <ol className="space-y-3">
               {picked.map((q, i) => (
                 <li key={q.id} className="flex gap-3 text-base font-bold leading-snug">
-                  <span className="w-7 h-7 shrink-0 rounded-full bg-pw-soft grid place-items-center text-sm" aria-hidden="true">{i + 1}</span>
+                  <span className="w-7 h-7 shrink-0 rounded-full bg-tint grid place-items-center text-sm" aria-hidden="true">{i + 1}</span>
                   <span>{q.question}</span>
                 </li>
               ))}
@@ -180,16 +180,16 @@ export default function LearnCivics() {
           <PrimaryButton large className="w-full" onClick={() => { setStage('lesson'); window.scrollTo({ top: 0 }); }}>
             Start
           </PrimaryButton>
-          <p className="text-sm text-pw-muted">We save only your scores and when to review. Your voice and your answers are not saved.</p>
-          <Link to="/" className={`${linkClass} text-base min-h-[44px] hover:bg-pw-soft`}>Not now</Link>
+          <p className="text-sm text-muted">We save only your scores and when to review. Your voice and your answers are not saved.</p>
+          <Link to="/" className={`${linkClass} text-base min-h-[44px] hover:bg-tint`}>Not now</Link>
         </>
       )}
 
       {stage === 'intro' && picked.length === 0 && (
         <>
           <TutorMessage profile={profile} language={language} {...say(LINES.allStarted, language)} />
-          <Link to="/review" className={`${linkClass} bg-pw-navy text-white hover:bg-pw-navy-deep`}>Review civics</Link>
-          <Link to="/" className={`${linkClass} text-base min-h-[44px] hover:bg-pw-soft`}>Back to Today</Link>
+          <Link to="/review" className={`${linkClass} bg-navy text-white hover:bg-navy-deep`}>Review civics</Link>
+          <Link to="/" className={`${linkClass} text-base min-h-[44px] hover:bg-tint`}>Back to Today</Link>
         </>
       )}
 
@@ -203,9 +203,9 @@ export default function LearnCivics() {
                 <li key={question.id} className="text-base font-bold leading-snug">{question.question}</li>
               ))}
             </ul>
-            <p className="text-base text-pw-muted mt-4">Quick check: in 3 days.</p>
+            <p className="text-base text-muted mt-4">Quick check: in 3 days.</p>
           </RaisedCard>
-          <Link to="/" aria-disabled={saving} className={`${linkClass} bg-pw-navy text-white hover:bg-pw-navy-deep ${saving ? 'pointer-events-none opacity-60' : ''}`}>
+          <Link to="/" aria-disabled={saving} className={`${linkClass} bg-navy text-white hover:bg-navy-deep ${saving ? 'pointer-events-none opacity-60' : ''}`}>
             {saving ? <Loader2 className="w-5 h-5 animate-spin" aria-label="Saving" /> : 'Back to Today'}
           </Link>
           <QuietButton className="w-full" onClick={learnMore} disabled={saving}>Learn more questions</QuietButton>

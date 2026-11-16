@@ -21,19 +21,19 @@ export default function PageHeader({ title, subtitle, children, tag, guide }) {
   };
 
   return (
-    <header className="text-ink">
+    <header className="text-navy">
       <button
         type="button"
         onClick={handleBack}
-        className="-ml-2 inline-flex items-center gap-1.5 min-h-11 rounded-full px-2 text-base font-semibold text-ink-2 hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
+        className="-ml-2 inline-flex items-center gap-1.5 min-h-11 rounded-full px-2 text-base font-semibold text-muted hover:text-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
       >
         <ArrowLeft className="w-4 h-4 rtl:rotate-180" aria-hidden="true" /> Back
       </button>
       <div className="mt-2 flex flex-col sm:flex-row sm:items-end gap-4">
         <div className="min-w-0 flex-1">
-          {tag && <p className="mb-1.5 text-label uppercase text-ink-label">{tag}</p>}
+          {tag && <p className="mb-1.5 text-label uppercase text-muted">{tag}</p>}
           <h1 className="font-display text-[28px] sm:text-[34px] leading-[1.1]">{title}</h1>
-          {subtitle && <p className="text-ink-2 text-lg mt-2 max-w-2xl">{subtitle}</p>}
+          {subtitle && <p className="text-muted text-lg mt-2 max-w-2xl">{subtitle}</p>}
         </div>
         {children && <div className="sm:shrink-0">{children}</div>}
       </div>

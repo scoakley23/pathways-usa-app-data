@@ -28,6 +28,9 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext, test
   const [analysis, setAnalysis] = useState(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [wordResults, setWordResults] = useState(null);
+  // "Type instead" (Prompt 13): typed words get the same word check. In memory only.
+  const [typing, setTyping] = useState(false);
+  const [typed, setTyped] = useState('');
 
   const recognitionRef = useRef(null);
   const spokenTextRef = useRef('');
@@ -214,8 +217,8 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext, test
         <div className="mx-auto max-w-2xl space-y-5 pb-6">
           {status === 'unsupported' ? (
             <div className="space-y-3">
-              <p className="flex items-center gap-2 text-lg font-semibold"><AlertCircle className="w-5 h-5 text-not-correct" aria-hidden="true" /> Your browser can&apos;t listen</p>
-              <p className="text-base text-ink-2">Your browser doesn&apos;t support speech recognition. Please use Chrome, Edge, or Safari.</p>
+              <p className="flex items-center gap-2 text-lg font-semibold"><AlertCircle className="w-5 h-5 text-not-yet" aria-hidden="true" /> Your browser can&apos;t listen</p>
+              <p className="text-base text-muted">Your browser doesn&apos;t support speech recognition. Please use Chrome, Edge, or Safari.</p>
               <Button variant="next" className="w-full" onClick={() => { if (testMode) onComplete(false, 0); onNext(); }}>Skip</Button>
             </div>
           ) : status === 'manual' ? (
@@ -234,17 +237,33 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext, test
             <>
               <p className="text-base font-semibold">Read the sentence out loud, in English</p>
               {(isListening || spokenText) && (
-                <div aria-live="polite" className="rounded-card bg-white border border-card-line p-4">
-                  <p className="text-label uppercase text-ink-label">{isListening ? 'Listening… tap Stop when you finish' : 'You said'}</p>
+                <div aria-live="polite" className="rounded-card bg-white border border-line p-4">
+                  <p className="text-label uppercase text-muted">{isListening ? 'Listening… tap Stop when you finish' : 'You said'}</p>
                   <p className="mt-1 text-xl leading-snug min-h-[1.5em]">{spokenText ? `“${spokenText}”` : ''}</p>
                 </div>
               )}
               {isAnalyzing ? (
                 <p className="flex items-center gap-2 text-lg font-semibold" aria-live="polite"><Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" /> Checking your reading…</p>
+              ) : typing && !isListening ? (
+                <form
+                  className="flex flex-col gap-3"
+                  onSubmit={(e) => { e.preventDefault(); if (!typed.trim()) return; spokenTextRef.current = typed.trim(); setSpokenText(typed.trim()); setTyping(false); analyzeReading(); }}
+                >
+                  <label htmlFor="reading-typed" className="text-base font-semibold">Type the sentence in English</label>
+                  <input id="reading-typed" lang="en" dir="ltr" autoComplete="off" value={typed} onChange={(e) => setTyped(e.target.value)} className="min-h-[52px] rounded-2xl border border-line bg-white px-4 text-lg text-navy focus:outline-none focus:ring-2 focus:ring-denim" />
+                  <Button variant="main" type="submit" className="w-full" disabled={!typed.trim()}>Check</Button>
+                </form>
               ) : (
-                <Button variant="main" className="w-full min-h-[60px]" onClick={toggleListening}>
-                  {isListening ? <><MicOff className="w-6 h-6" aria-hidden="true" /> Stop</> : <><Mic className="w-6 h-6" aria-hidden="true" /> Say it</>}
-                </Button>
+                <>
+                  <Button variant="main" className="w-full min-h-[60px]" onClick={toggleListening}>
+                    {isListening ? <><MicOff className="w-6 h-6" aria-hidden="true" /> Stop</> : <><Mic className="w-6 h-6" aria-hidden="true" /> Say it</>}
+                  </Button>
+                  {!isListening && (
+                    <button type="button" onClick={() => { setTyped(''); setTyping(true); }} className="self-center min-h-tap px-2 text-small font-semibold text-denim underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim rounded">
+                      Type instead
+                    </button>
+                  )}
+                </>
               )}
             </>
           ) : (
@@ -258,8 +277,8 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext, test
               youSaid={heard ? analysis.transcription : ''}
             >
               {wordResults && heard && (
-                <div className="rounded-card bg-white border border-card-line p-4">
-                  <p className="text-label uppercase text-ink-label mb-1">The sentence, word by word</p>
+                <div className="rounded-card bg-white border border-line p-4">
+                  <p className="text-label uppercase text-muted mb-1">The sentence, word by word</p>
                   <WordByWord words={wordResults} />
                 </div>
               )}
@@ -307,8 +326,8 @@ function ReadingTip({ parts }) {
   if (!tip.en) return null;
   return (
     <div className="space-y-1">
-      <p className="text-base leading-relaxed text-ink-2">
-        <span className="font-semibold text-ink">{label.mine || label.en}</span> {tip.mine || tip.en}
+      <p className="text-base leading-relaxed text-muted">
+        <span className="font-semibold text-navy">{label.mine || label.en}</span> {tip.mine || tip.en}
       </p>
       {tip.mine && (
         <>

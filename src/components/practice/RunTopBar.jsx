@@ -11,7 +11,7 @@ export default function RunTopBar({ onClose, index = 0, total = 0, answered = fa
         type="button"
         onClick={onClose}
         aria-label="Close practice"
-        className="w-11 h-11 shrink-0 rounded-full border-2 border-navy-line text-white grid place-items-center hover:bg-navy-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+        className="w-11 h-11 shrink-0 rounded-full border-2 border-chip-navy text-white grid place-items-center hover:bg-chip-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
       >
         <X className="w-5 h-5" aria-hidden="true" />
       </button>

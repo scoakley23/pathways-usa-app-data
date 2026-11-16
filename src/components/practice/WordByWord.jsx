@@ -10,14 +10,14 @@ export default function WordByWord({ words = [], legend = 'Words we didn’t hea
   const missed = shown.some((w) => w.status !== 'correct');
   return (
     <div className={className}>
-      <p className="text-[22px] leading-[1.7] text-ink">
+      <p className="text-[22px] leading-[1.7] text-navy">
         {shown.map((w, i) => (
           <React.Fragment key={i}>
             {w.status === 'correct' ? (
               <span>{w.word}</span>
             ) : (
-              <span className="whitespace-nowrap font-semibold underline decoration-not-correct decoration-[3px] underline-offset-[6px]">
-                <X className="inline w-4 h-4 me-0.5 -mt-1 text-not-correct" strokeWidth={3} aria-hidden="true" />
+              <span className="whitespace-nowrap font-semibold underline decoration-not-yet decoration-[3px] underline-offset-[6px]">
+                <X className="inline w-4 h-4 me-0.5 -mt-1 text-not-yet" strokeWidth={3} aria-hidden="true" />
                 {w.word}<span className="sr-only"> (missed)</span>
               </span>
             )}
@@ -26,8 +26,8 @@ export default function WordByWord({ words = [], legend = 'Words we didn’t hea
         ))}
       </p>
       {missed && (
-        <p className="mt-2 flex items-center gap-1.5 text-sm text-ink-2">
-          <X className="w-4 h-4 text-not-correct" strokeWidth={3} aria-hidden="true" /> {legend}
+        <p className="mt-2 flex items-center gap-1.5 text-sm text-muted">
+          <X className="w-4 h-4 text-not-yet" strokeWidth={3} aria-hidden="true" /> {legend}
         </p>
       )}
     </div>
