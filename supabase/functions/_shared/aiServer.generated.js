@@ -4685,8 +4685,7 @@ function civicsTaskLines(numbered) {
   return numbered ? CIVICS_TASK_LINES : [CIVICS_TASK_LINES[0], UNNUMBERED_ANSWER_LINE, CIVICS_TASK_LINES[2]];
 }
 
-// src/lib/askTutor.js
-var MAX_QUESTION_LENGTH = 500;
+// src/lib/redact.js
 var ID_DIGITS = String.raw`(?:\d[\s-]?){6,8}\d(?![\s-]?\d)`;
 var LABELED_A_NUMBER = new RegExp(
   String.raw`\b(a[\s-]?number|alien (?:registration )?number|uscis (?:account )?number|número a)\b([\s:#-]*(?:is\s+|es\s+)?)${ID_DIGITS}`,
@@ -4697,6 +4696,9 @@ var SSN = /\b\d{3}([-\s])\d{2}\1\d{4}\b/g;
 function redactIdentifiers(text2) {
   return String(text2 || "").replace(/[^\s@]+@[^\s@]+\.[^\s@]+/g, "[removed]").replace(LABELED_A_NUMBER, (m, label, sep) => `${label}${sep}[removed]`).replace(A_NUMBER, "[removed]").replace(SSN, "[removed]").replace(/\+?\d[\d\s().-]{7,}\d/g, (m) => m.replace(/\D/g, "").length >= 10 ? "[removed]" : m).trim();
 }
+
+// src/lib/askTutor.js
+var MAX_QUESTION_LENGTH = 500;
 function buildAskPrompt(profile, languageName2, question, { location = null, today, civics = null } = {}) {
   const p = normalizeTutorProfile(profile);
   const isEnglish = /^english$/i.test(String(languageName2 || "").trim());

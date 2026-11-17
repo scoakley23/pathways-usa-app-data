@@ -16,7 +16,8 @@
     "translations:check": "node scripts/translations/build-pack.mjs --check",
     "translations:build": "node scripts/translations/build-pack.mjs --translate",
     "evals:civics": "vite-node --config scripts/evals/vite.config.mjs scripts/evals/civics-grading/run.mjs --",
-    "evals:civics:cases": "node scripts/evals/civics-grading/write-cases-md.mjs"
+    "evals:civics:cases": "node scripts/evals/civics-grading/write-cases-md.mjs",
+    "email:texts": "node scripts/supabase/build-reminder-texts.mjs"
   },
   "dependencies": {
     "@base44/sdk": "^0.8.62",

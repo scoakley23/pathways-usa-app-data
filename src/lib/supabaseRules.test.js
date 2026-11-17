@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { makeDb, addUser, as } from '../../supabase/tests/db';
 import { AI_LIMITS } from './aiRequests';
+import { SUPPORT_DAILY_LIMIT } from '../config/support';
 
 // The Supabase data rules (supabase/migrations), checked in PGlite with a
 // small stand-in for Supabase's auth (supabase/tests/supabase-shim.sql).
@@ -238,6 +239,15 @@ describe('AI daily limits (Step 4)', () => {
       const [row] = await as(db, ana, (q) => q('select public.ai_daily_limit($1) as n', [kind]));
       expect(row.n, kind).toBe(limit);
     }
+  });
+
+  it('"Talk to a person" has its own limit (Step 5), matching src/config/support.js', async () => {
+    const [row] = await as(db, ana, (q) => q("select public.ai_daily_limit('support') as n"));
+    expect(row.n).toBe(SUPPORT_DAILY_LIMIT);
+    const fay = await addUser(db, 'fay@example.test');
+    for (let i = 0; i < SUPPORT_DAILY_LIMIT; i++) expect(await take(fay, 'support')).toBe(true);
+    expect(await take(fay, 'support')).toBe(false);
+    expect(await take(fay, 'ask')).toBe(true);
   });
 
   it('count requests until the day\'s limit, then say no', async () => {

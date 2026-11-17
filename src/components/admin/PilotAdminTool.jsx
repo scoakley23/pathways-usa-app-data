@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { Loader2, Mail, BarChart3 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
-import { base44 } from '@/api/base44Client';
+import { pilotApi } from '@/api/pilot';
 import { auth } from '@/api/auth';
 import { Eyebrow, RaisedCard, SecondaryButton } from '@/components/pathways/ui';
 
 // Admin-only pilot tools.
-// - "Send due reminders": Base44 can't run a daily job from this repo, so an
-//   admin presses this weekly. The pilot-reminders function emails learners
+// - "Send due reminders": an admin presses this weekly (src/api/pilot.js:
+//   Base44's function, or the Supabase Edge Function on the switch). The pilot-reminders function emails learners
 //   who asked for reminders and have a check-in due, once per window, and
 //   returns counts only (never who).
 // - Testing: "Pretend I signed up N months ago" on the admin's own account
@@ -27,8 +27,7 @@ export default function PilotAdminTool({ currentUser }) {
     setSending(true);
     setResult(null);
     try {
-      const res = await base44.functions.invoke('pilot-reminders', { action: 'send', appUrl: window.location.origin });
-      setResult(res.data);
+      setResult(await pilotApi.sendReminders(window.location.origin));
     } catch (err) {
       toast.error(err?.response?.data?.error || err?.message || 'Could not send reminders.');
     } finally {

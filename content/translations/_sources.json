@@ -900,6 +900,12 @@
    ]
   },
   {
+   "text": "A quick question from Pathways",
+   "from": [
+    "reminder-email"
+   ]
+  },
+  {
    "text": "A ship or large boat.",
    "from": [
     "n400"
@@ -4754,6 +4760,12 @@
    ]
   },
   {
+   "text": "Hi! You have a 1-minute question waiting in Pathways.\n\nOpen Pathways: {link}\n\nYou asked us to send this reminder. To stop, turn off reminders on your Profile page.",
+   "from": [
+    "reminder-email"
+   ]
+  },
+  {
    "text": "Hi, I'm Amio, your AI tutor. I'll explain things in plain words.",
    "from": [
     "home"
@@ -4983,7 +4995,7 @@
    ]
   },
   {
-   "text": "How many times you used AI help in a day (a number only, for the daily limit). Older days are removed the next time you use it.",
+   "text": "How many times you used AI help or wrote to the team in a day (a number only, for the daily limits). Older days are removed the next time you use them.",
    "from": [
     "settings"
    ]
@@ -14457,6 +14469,12 @@
    "text": "You've practiced {n} days this week",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "You've sent 3 messages today. Please write again tomorrow.",
+   "from": [
+    "talk"
    ]
   },
   {

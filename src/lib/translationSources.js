@@ -47,6 +47,7 @@ import { readingTipSources } from '@/lib/readingTips';
 const TUTOR_LINES = fixedTutorLines();
 
 // [id, strings, usedIn: [file, identifier passed to the hook]]
+import { REMINDER_BODY, REMINDER_SUBJECT } from '../../base44/shared/pilotCheckIns.js';
 export const STRING_SETS = [
   { id: 'home', strings: HOME_STRINGS, usedIn: [['src/hooks/useHomeTranslation.js', 'HOME_STRINGS']] },
   { id: 'today', strings: TODAY_EN, usedIn: [['src/components/persona/useTodayText.js', 'TODAY_EN']] },
@@ -115,6 +116,9 @@ export function contentTexts() {
     ['course-pictures', texts(Object.values(coursePictures.lessons).flat().map((p) => p.caption))],
     // Unit, section, lesson and stop titles and unit descriptions (Prompt 13).
     ['course-titles', texts(courseTitleTexts(UNITS))],
+    // The pilot check-in reminder email (Step 5): the `pilot-reminders`
+    // Edge Function sends the pack's copy (npm run email:texts).
+    ['reminder-email', texts([REMINDER_SUBJECT, REMINDER_BODY])],
   ];
 }
 
