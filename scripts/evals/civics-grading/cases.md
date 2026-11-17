@@ -2,7 +2,7 @@
 
 65 fake learner answers, each one the phone can't settle on its own, so the AI decides. "Should count?" is the label the models are scored against. Generated from cases.json; edit that file, then run `npm run evals:civics:cases`.
 
-Right answers: 33 · wrong or not an answer: 32 · reviewed: 0 of 65
+Right answers: 33 · wrong or not an answer: 32 · reviewed: 65 of 65
 
 ## other-words
 
