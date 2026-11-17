@@ -44,6 +44,7 @@ export const ASK_SCREEN_LINES = {
   in_my_language: 'In my language',
   thinking: 'Amio is thinking',
   no_answer: "Sorry, I couldn't answer that right now. Please try again.",
+  ai_limit: "That's all my answers for today. Ask me again tomorrow.",
   history: 'History',
   chat_language: 'Amio explains in',
   talk_to_person: 'Talk to a person',
@@ -75,6 +76,7 @@ export const ASK_SCREEN_LINES_ES = {
   in_my_language: 'En mi idioma',
   thinking: 'Amio está pensando',
   no_answer: 'Lo siento, no pude contestar ahora. Por favor, intente otra vez.',
+  ai_limit: 'Esas son todas mis respuestas por hoy. Pregúnteme otra vez mañana.',
   history: 'Historial',
   chat_language: 'Amio explica en',
   talk_to_person: 'Hablar con una persona',
@@ -85,7 +87,7 @@ export const ASK_SCREEN_LINES_ES = {
   q_dont_understand: '¿Qué pasa si no entiendo al oficial?',
   q_what_happens: '¿Qué pasa en la entrevista?',
 };
-export const ASK_SCREEN_CACHE_KEY = 'ask_screen_v1';
+export const ASK_SCREEN_CACHE_KEY = 'ask_screen_v2';
 
 // Safety net that runs before any AI call. If a question clearly asks about
 // the learner's own case or eligibility, we decline without sending it.

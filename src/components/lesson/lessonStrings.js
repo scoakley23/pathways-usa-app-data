@@ -55,6 +55,7 @@ export const LESSON_LINES = {
   officer_label: 'Practice officer · AI, not a real person',
   english_only: 'English only, like the real interview',
   repeat_please: '“Could you repeat that, please?”',
+  asked_again: 'Sure. Here’s the question again.',
   officer_right: 'The officer would accept that.',
   not_quite: 'Not quite yet',
   again_tomorrow: 'You’ll see this one again tomorrow.',

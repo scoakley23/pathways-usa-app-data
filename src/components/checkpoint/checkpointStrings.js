@@ -25,6 +25,7 @@ export const CHECKPOINT_LINES = {
   question_of: 'Speak it! · Question {n} of {total}',
   officer_asks: 'The officer asks',
   repeat_please: '“Could you repeat that, please?”',
+  asked_again: 'Sure. Here’s the question again.',
   no_hints: 'No hints in a checkpoint. You can ask the officer to repeat, just like on the real day.',
   answer_in_english: 'Answer out loud, in English',
   listening: 'Listening… take your time',

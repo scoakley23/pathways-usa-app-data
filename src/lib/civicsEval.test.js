@@ -8,7 +8,8 @@ import QUESTIONS from '../../content/base44-export/civics-questions-2025.json';
 import { matchCivicsAnswer } from './answerVariants';
 import { gradeCivicsOfficeholder } from './officeholderQuestions';
 import { buildCivicsCheckPrompt } from './civicsCheckPrompt';
-import { summarize, wilson, readVerdict, costUsd, casesMarkdown, CLAUDE_MODELS } from '../../scripts/evals/civics-grading/lib.mjs';
+import { buildRequest } from './aiRequests';
+import { summarize, wilson, readVerdict, costUsd, casesMarkdown, CLAUDE_MODELS, VERDICT_SCHEMA } from '../../scripts/evals/civics-grading/lib.mjs';
 
 const ROOT = path.resolve(__dirname, '../..');
 const byId = new Map(QUESTIONS.map((q) => [q.id, q]));
@@ -46,11 +47,19 @@ describe('cases.json', () => {
 });
 
 describe('the eval sends the app\'s own prompt', () => {
-  it('checkCivicsAnswer builds its prompt with buildCivicsCheckPrompt', () => {
-    const src = fs.readFileSync(path.join(ROOT, 'src/components/civics/checkCivicsAnswer.js'), 'utf8');
-    expect(src).toMatch(/buildCivicsCheckPrompt\(question, rawAnswer\)/);
+  it('the app\'s civics check (src/lib/aiRequests.js) sends the same words and schema as the eval', () => {
+    const c = FILE.cases[0];
+    const q = byId.get(c.questionId);
+    const app = buildRequest('civics_check', { question: q.question, answer: q.answer, said: c.answer });
+    expect(app.prompt).toBe(buildCivicsCheckPrompt(q, c.answer).prompt);
+    expect(app.schema).toEqual(VERDICT_SCHEMA);
     const run = fs.readFileSync(path.join(ROOT, 'scripts/evals/civics-grading/run.mjs'), 'utf8');
     expect(run).toMatch(/buildCivicsCheckPrompt\(q, c\.answer\)/);
+  });
+
+  it('asks for answers in English (the app practices the English test)', () => {
+    const { prompt } = buildCivicsCheckPrompt({ question: 'Who signs bills to become laws?', answer: 'The President' }, 'el presidente');
+    expect(prompt).toContain("If the student's answer is not in English, set is_correct to false");
   });
 
   it('personal details are removed before anything is sent', () => {

@@ -1,4 +1,4 @@
-import { base44 } from '@/api/base44Client';
+import { ai } from '@/api/ai';
 import { PACK_ONLY, fromPack, loadPack } from '@/lib/translationPack';
 
 // Shared AI translation of the app's fixed English strings (never learner
@@ -51,7 +51,7 @@ export function chunkKeys(keys, size = CHUNK_SIZE) {
   return chunks;
 }
 
-const defaultInvoke = (args) => base44.integrations.Core.InvokeLLM(args);
+const defaultInvoke = (args) => ai.translate(args);
 
 // Translates `strings` ({ key: English }) with prompts from `buildPrompt(chunk)`.
 // Resolves with { key: translated } for every key that came back; rejects

@@ -2,6 +2,7 @@ import { describe, it, expect, beforeAll } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { makeDb, addUser, as } from '../../supabase/tests/db';
+import { AI_LIMITS } from './aiRequests';
 
 // The Supabase data rules (supabase/migrations), checked in PGlite with a
 // small stand-in for Supabase's auth (supabase/tests/supabase-shim.sql).
@@ -55,7 +56,7 @@ describe('every table', () => {
   it('is covered by these tests if it holds learner rows (add new learner tables to LEARNER_ROWS)', async () => {
     const { rows } = await db.query(`select table_name from information_schema.columns
       where table_schema = 'public' and column_name = 'user_id' order by table_name`);
-    const special = ['profiles', 'program_memberships', 'check_in_reminders']; // tested on their own below
+    const special = ['profiles', 'program_memberships', 'check_in_reminders', 'ai_usage']; // tested on their own below
     expect(rows.map((r) => r.table_name).filter((t) => !special.includes(t)).sort()).toEqual(Object.keys(LEARNER_ROWS).sort());
   });
 });
@@ -229,6 +230,51 @@ describe('partner programs', () => {
   });
 });
 
+describe('AI daily limits (Step 4)', () => {
+  const take = (person, kind) => as(db, person, (q) => q('select public.take_ai_request($1) as ok', [kind])).then(([r]) => r.ok);
+
+  it('match AI_LIMITS in src/lib/aiRequests.js', async () => {
+    for (const [kind, limit] of Object.entries(AI_LIMITS)) {
+      const [row] = await as(db, ana, (q) => q('select public.ai_daily_limit($1) as n', [kind]));
+      expect(row.n, kind).toBe(limit);
+    }
+  });
+
+  it('count requests until the day\'s limit, then say no', async () => {
+    const dee = await addUser(db, 'dee@example.test');
+    for (let i = 0; i < AI_LIMITS.ask; i++) expect(await take(dee, 'ask')).toBe(true);
+    expect(await take(dee, 'ask')).toBe(false);
+    expect(await take(dee, 'other')).toBe(true); // each group has its own limit
+    const rows = await as(db, dee, (q) => q('select kind, count from public.ai_usage order by kind'));
+    expect(rows).toEqual([{ kind: 'ask', count: AI_LIMITS.ask }, { kind: 'other', count: 1 }]);
+  });
+
+  it('keep only today\'s counts', async () => {
+    const eve = await addUser(db, 'eve@example.test');
+    await as(db, 'service', (q) => q("insert into public.ai_usage (user_id, day, kind, count) values ($1, current_date - 3, 'ask', 30)", [eve.id]));
+    expect(await take(eve, 'ask')).toBe(true);
+    const rows = await as(db, eve, (q) => q('select count from public.ai_usage'));
+    expect(rows).toEqual([{ count: 1 }]);
+  });
+
+  it('can be read by the learner only, and changed only through take_ai_request()', async () => {
+    await take(ana, 'civics');
+    expect(await as(db, ben, (q) => q('select * from public.ai_usage where user_id = $1', [ana.id]))).toEqual([]);
+    expect(await as(db, admin, (q) => q('select * from public.ai_usage where user_id = $1', [ana.id]))).toEqual([]);
+    await fails(as(db, ana, (q) => q("update public.ai_usage set count = 0")));
+    await fails(as(db, ana, (q) => q("delete from public.ai_usage")));
+    await fails(as(db, ana, (q) => q("insert into public.ai_usage (day, kind, count) values (current_date, 'ask', 0)")));
+    await fails(as(db, 'anon', (q) => q("select public.take_ai_request('ask')")));
+    await expect(as(db, ana, (q) => q("select public.take_ai_request('anything')"))).rejects.toThrow(/unknown kind/);
+  });
+
+  it('hold counts only: no question, answer or text column', async () => {
+    const { rows } = await db.query(`select column_name from information_schema.columns
+      where table_schema = 'public' and table_name = 'ai_usage' order by column_name`);
+    expect(rows.map((r) => r.column_name)).toEqual(['count', 'day', 'kind', 'user_id']);
+  });
+});
+
 describe('Delete all my data', () => {
   it('removes the login and every row tied to it, and nobody else\'s', async () => {
     const cam = await addUser(db, 'cam@example.test');
@@ -236,6 +282,7 @@ describe('Delete all my data', () => {
     await as(db, cam, (q) => q("select * from public.join_program('FAKE-CLASS', 'Cam', false)"));
     await as(db, 'service', (q) => q("insert into public.check_in_reminders (user_id, kind) values ($1, 'six_month')", [cam.id]));
 
+    await as(db, cam, (q) => q("select public.take_ai_request('ask')"));
     await as(db, cam, (q) => q('select public.delete_my_account()'));
 
     // Every public table with a user_id column, so a new learner table is covered automatically.

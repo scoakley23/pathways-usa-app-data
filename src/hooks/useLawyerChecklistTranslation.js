@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { base44 } from '@/api/base44Client';
+import { ai } from '@/api/ai';
 import { LANGUAGES } from './useLessonTranslation';
 import { PACK_ONLY, hasPack, packTree } from '@/lib/translationPack';
 import { LAWYER_CHECKLIST_ITEMS } from '@/components/lawyer/lawyerChecklist';
@@ -49,7 +49,7 @@ export default function useLawyerChecklistTranslation(language) {
           return;
         }
         const langName = LANGUAGES.find((l) => l.value === language)?.label || language;
-        const result = await base44.integrations.Core.InvokeLLM({
+        const result = await ai.translate({
           prompt: `You are a professional translator for US citizenship education materials. Translate the following JSON into ${langName}. Translate every value exactly as written — do not add advice, interpretation, or any content that is not in the original. Keep the same order and structure.
 ${'\n'}JSON:
 ${JSON.stringify({ items: LAWYER_CHECKLIST_ITEMS.map((i) => ({ text: i.text, explanation: i.explanation, section: sectionTitle(i.guideSectionId) })) }, null, 2)}`,

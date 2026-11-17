@@ -8,6 +8,7 @@ import useSpeechCapture from '@/components/persona/useSpeechCapture';
 import useLearnerLocation from '@/components/civics/useLearnerLocation';
 import { speakText } from '@/components/utils/textToSpeech';
 import { gradeCivics } from '@/components/lesson/lessonParts';
+import { isRepeatRequest } from '@/lib/repeatRequest';
 import { checkpoints as checkpointsApi } from '@/api/checkpoints';
 import { passMark, speakItQuestions, speakItScore, unitFinishedBy } from '@/lib/checkpoints';
 import { CheckpointHeader, ProgressDots, RingMic, useCheckpointText } from '@/components/checkpoint/checkpointParts';
@@ -24,10 +25,17 @@ function Ask({ question, index, total, results, t, onAnswer, onClose }) {
   const [typing, setTyping] = useState(false);
   const [typed, setTyped] = useState('');
   const [checking, setChecking] = useState(false);
+  const [askedAgain, setAskedAgain] = useState(false);
 
   const grade = async (answer, typedAnswer = false) => {
     const said = String(answer || '').trim();
     if (!said) return;
+    // Asking the officer to repeat is allowed and is not an answer.
+    if (isRepeatRequest(said)) {
+      setTyped(''); speech.reset(); setAskedAgain(true);
+      speakText(question.question, 'en');
+      return;
+    }
     setChecking(true);
     let correct = false;
     try { correct = (await gradeCivics(question, said, { location, typed: typedAnswer })).correct; } catch (e) { correct = false; }
@@ -54,6 +62,7 @@ function Ask({ question, index, total, results, t, onAnswer, onClose }) {
 
         <div className="mt-auto w-full flex flex-col items-center gap-3 pt-8">
           {checking && <p className="text-base text-muted" role="status">{t('checking')}</p>}
+          {!checking && askedAgain && <p className="text-base text-navy text-center" role="status">{t('asked_again')}</p>}
           {!checking && !typing && (
             <>
               {speech.listening && speech.transcript && <p className="text-base text-navy text-center" lang="en" dir="ltr">“{speech.transcript}”</p>}

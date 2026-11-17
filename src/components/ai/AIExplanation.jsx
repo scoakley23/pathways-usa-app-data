@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { PillButton } from '@/components/pathways/ui';
 import { Sparkles, Loader2, ChevronDown, ChevronUp } from 'lucide-react';
-import { base44 } from '@/api/base44Client';
+import { ai, isAiLimit } from '@/api/ai';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export default function AIExplanation({ question, answer, context = "US Civics Test" }) {
+export default function AIExplanation({ question, answer }) {
   const [explanation, setExplanation] = useState(null);
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -18,20 +18,15 @@ export default function AIExplanation({ question, answer, context = "US Civics T
     setLoading(true);
     setIsOpen(true);
     try {
-      const prompt = `Explain clearly and simply why "${answer}" is the correct answer to the question: "${question}". 
-      Context: ${context}. 
-      Target audience: English language learners studying for US Citizenship. 
-      Keep it concise (2-3 sentences).`;
-
-      const response = await base44.integrations.Core.InvokeLLM({
-        prompt,
-        add_context_from_internet: false
-      });
-
-      setExplanation(typeof response === 'string' ? response : JSON.stringify(response));
+      // `explain` in src/lib/aiRequests.js (civics questions only; never
+      // current officeholders), through src/api/ai.js.
+      const response = await ai.run('explain', { question, answer });
+      const text = typeof response === 'string' ? response : response?.explanation;
+      if (!text) throw new Error('no explanation');
+      setExplanation(text);
     } catch (error) {
       console.error("Error fetching explanation:", error);
-      setExplanation("Sorry, I couldn't generate an explanation right now.");
+      setExplanation(isAiLimit(error) ? error.message : "Sorry, I couldn't generate an explanation right now.");
     } finally {
       setLoading(false);
     }

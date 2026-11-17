@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { base44 } from '@/api/base44Client';
+import { ai } from '@/api/ai';
 import { toast } from 'sonner';
 import { PACK_ONLY, packTree } from '@/lib/translationPack';
 
@@ -109,7 +109,7 @@ ${JSON.stringify(flashcardData)}
 Quiz questions and answers:
 ${JSON.stringify(quizData)}`;
 
-        const result = await base44.integrations.Core.InvokeLLM({
+        const result = await ai.translate({
           prompt,
           response_json_schema: {
             type: 'object',

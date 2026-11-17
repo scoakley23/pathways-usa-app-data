@@ -13,10 +13,10 @@ import OfficeholderNote from '@/components/civics/OfficeholderNote';
 import useLearnerLocation from '@/components/civics/useLearnerLocation';
 import { FIND_REPRESENTATIVE_PATH, MAY_CHANGE_SOON, officeholderAnswerFor } from '@/lib/officeholderQuestions';
 import { evaluateInterviewAnswer, evaluateUnderstanding } from '@/components/practice/evaluateInterviewAnswer';
-import { buildTutorInstructions } from '@/lib/tutorPersona';
 import { checkDictation, splitOfficialAnswers } from '@/lib/practiceChecks';
 import { matchCivicsAnswer } from '@/lib/answerVariants';
 import { READING_PASS } from '@/lib/pretest';
+import { isRepeatRequest } from '@/lib/repeatRequest';
 import { markKeyWords } from '@/lib/tutorLesson';
 import { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
 
@@ -39,6 +39,7 @@ export const UI = {
   findYours: { en: 'This answer depends on where you live. Use “Who Represents Me?” on the Learn page.', es: 'Esta respuesta depende de dónde vive. Use “Who Represents Me?” en la página Learn.' },
   findButton: { en: 'Who Represents Me?', es: 'Who Represents Me?' },
   notCounted: { en: "We can't check this one yet, so it isn't counted as right or wrong.", es: 'Todavía no podemos revisar esta, así que no cuenta como correcta ni incorrecta.' },
+  askedAgain: { en: 'Sure. Here’s the question again.', es: 'Claro. Aquí está la pregunta otra vez.' },
   checkFailed: { en: "I couldn't check that answer. Please try again.", es: 'No pude revisar esa respuesta. Por favor, intente otra vez.' },
 };
 
@@ -214,6 +215,12 @@ export function SpeakingStep({ step, ctx, state, setState }) {
 
   const evaluate = async (answer, wasTyped) => {
     if (!answer.trim()) return;
+    // "Could you say that again?" is not an answer: ask again, grade nothing.
+    if (isRepeatRequest(answer)) {
+      speech.reset(); setTyped(''); setState({ askedAgain: true });
+      speakText(question.question, 'en');
+      return;
+    }
     // Graded from the table on the device, never the AI. correct === null =
     // can't be graded (e.g. no saved place): counted neither right nor wrong.
     const officeholderResult = officeholderCheck(question, answer, location);
@@ -238,7 +245,7 @@ export function SpeakingStep({ step, ctx, state, setState }) {
     }
     setChecking(true);
     try {
-      const teach = isCheck(step) ? null : { instructions: buildTutorInstructions(ctx.profile, ctx.languageName), languageName: ctx.languageName };
+      const teach = isCheck(step) ? null : { language: ctx.language, tutor: ctx.profile };
       const r = await checkCivicsAnswer(question, answer, { teach });
       const isCorrect = !!r.is_correct;
       setState({
@@ -262,6 +269,7 @@ export function SpeakingStep({ step, ctx, state, setState }) {
   return (
     <div className="space-y-4">
       <TutorMessage profile={ctx.profile} language={ctx.language} {...ctx.ui('speakPrompt')} expression="listening" />
+      {state.askedAgain && !state.answered && <TutorMessage profile={ctx.profile} language={ctx.language} {...ctx.ui('askedAgain')} />}
       {ctx.posters ? (
         <Poster
           tone={posterTone(Math.max(0, ctx.posterIndex))}
@@ -456,15 +464,20 @@ export function InterviewStep({ step, ctx, state, setState }) {
 
   const onDone = async (transcript) => {
     if (!transcript.trim()) return;
+    // Asking the officer to repeat is not an answer: ask again, score nothing.
+    if (isRepeatRequest(transcript)) {
+      speech.reset(); setFailed(false); setState({ askedAgain: true });
+      speakText(step.question.question, 'en');
+      return;
+    }
     setChecking(true);
     setFailed(false);
     try {
       // step.understand: say what the question is asking, never answer it
-      // (N-400 questions); only understanding is checked. step.extra: more
-      // scoring instructions for ordinary interview questions.
+      // (N-400 questions); only understanding is checked.
       const r = step.understand
         ? await evaluateUnderstanding(step.question, transcript, { meaning: step.meaning })
-        : await evaluateInterviewAnswer(step.question, transcript, step.extra || '');
+        : await evaluateInterviewAnswer(step.question, transcript);
       const score = Number(r?.overall_score) || 0;
       setState({ answered: true, heard: transcript, outcome: { score }, result: { isCorrect: !!r.is_acceptable, better: r.corrected_version, tip: r.improvement_tips } });
     } catch (e) {
@@ -478,6 +491,7 @@ export function InterviewStep({ step, ctx, state, setState }) {
   return (
     <div className="space-y-4">
       <TutorMessage profile={ctx.profile} language={ctx.language} {...ctx.ui(step.understand ? 'understandPrompt' : 'interviewPrompt')} expression="listening" />
+      {state.askedAgain && !state.answered && <TutorMessage profile={ctx.profile} language={ctx.language} {...ctx.ui('askedAgain')} />}
       <QuestionCard ctx={ctx} text={step.question.question}>
         {!state.answered && (speech.supported ? <MicButton speech={speech} busy={checking} /> : (
           <p className="mt-4 text-muted">Speaking needs a browser with speech recognition, like Chrome or Safari. You can skip this part.</p>

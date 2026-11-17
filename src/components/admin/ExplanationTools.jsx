@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Download, Loader2, Square, Wand2 } from 'lucide-react';
 import { toast } from 'sonner';
-import { base44 } from '@/api/base44Client';
+import { ai } from '@/api/ai';
 import { content } from '@/api/content';
 import { Eyebrow, PrimaryButton, RaisedCard, SecondaryButton, QuietButton } from '@/components/pathways/ui';
 import { EXPLANATIONS } from '@/lib/explanations';
@@ -145,7 +145,7 @@ export default function ExplanationTools() {
         setProgress({ ...stats, current: record.question });
         const answers = splitOfficialAnswers(record.answer);
         try {
-          const r = await base44.integrations.Core.InvokeLLM({ prompt: buildPrompt(record, answers, language.name), response_json_schema: SCHEMA });
+          const r = await ai.adminDraft({ prompt: buildPrompt(record, answers, language.name), response_json_schema: SCHEMA });
           const explanation = String(r?.explanation || '').trim();
           if (!explanation) throw new Error('empty');
           current = {
