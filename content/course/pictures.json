@@ -1,5 +1,5 @@
 {
-  "note": "Pictures for course lessons (src/lib/lessonPictures.js). Photos and maps are public domain only, with their source; drawings are the app's own (src/components/course/drawings.jsx). Officeholder names always come from src/data/officeholders.json.",
+  "note": "Pictures for course lessons (src/lib/lessonPictures.js). Photos and maps are public domain only, with their source; drawings are the app's own (src/components/course/drawings.jsx). Audio (public/course-audio/) is public domain only, with its source, like photos. Officeholder names always come from src/data/officeholders.json.",
   "photos": {
     "anthony.jpg": {
       "credit": "Photo: about 1855 · Library of Congress",
@@ -50,6 +50,13 @@
       "commons": "First flight2.jpg",
       "author": "John T. Daniels"
     },
+    "hopi-man.jpg": {
+      "credit": "Photo: Edward S. Curtis, 1921 · Library of Congress",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:A_Hopi_Man_LCCN2002708846.jpg",
+      "commons": "A Hopi Man LCCN2002708846.jpg",
+      "author": "Edward S. Curtis"
+    },
     "jefferson.jpg": {
       "credit": "Painting: Rembrandt Peale, 1800 · White House Historical Association",
       "license": "Public domain",
@@ -63,6 +70,20 @@
       "source": "https://commons.wikimedia.org/wiki/File:Martin_Luther_King_Jr_NYWTS.jpg",
       "commons": "Martin Luther King Jr NYWTS.jpg",
       "author": "Dick DeMarsico"
+    },
+    "lincoln.jpg": {
+      "credit": "Photo: Alexander Gardner, 1863",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:Abraham_Lincoln_O-77_matte_collodion_print.jpg",
+      "commons": "Abraham Lincoln O-77 matte collodion print.jpg",
+      "author": "Alexander Gardner"
+    },
+    "louisiana-purchase.jpg": {
+      "credit": "Map: National Atlas of the United States",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:National-atlas-1970-1810-loupurchase-1.png",
+      "commons": "National-atlas-1970-1810-loupurchase-1.png",
+      "author": "National Atlas of the United States (U.S. government)"
     },
     "middle-east.jpg": {
       "credit": "Map: U.S. Central Intelligence Agency, 2003",
@@ -85,6 +106,13 @@
       "commons": "Aldrin Apollo 11 original.jpg",
       "author": "Neil Armstrong"
     },
+    "navajo-weaver.jpg": {
+      "credit": "Photo: Edward S. Curtis, about 1904 · Library of Congress",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:Navajo_weaver.jpg",
+      "commons": "Navajo weaver.jpg",
+      "author": "Edward S. Curtis"
+    },
     "president.jpg": {
       "credit": "Official White House portrait, 2025",
       "license": "Public domain",
@@ -105,13 +133,6 @@
       "source": "https://commons.wikimedia.org/wiki/File:Speaker_Mike_Johnson_Official_Portrait.jpg",
       "commons": "Speaker Mike Johnson Official Portrait.jpg",
       "author": "United States Congress"
-    },
-    "territorial-expansion.jpg": {
-      "credit": "Map: William R. Shepherd, Historical Atlas, 1923",
-      "license": "Public domain",
-      "source": "https://commons.wikimedia.org/wiki/File:Territorial_Expansion_of_the_United_States_since_1803.jpg",
-      "commons": "Territorial Expansion of the United States since 1803.jpg",
-      "author": "William Robert Shepherd"
     },
     "tubman.jpg": {
       "credit": "Photo: H. Seymour Squyer, about 1885 · National Portrait Gallery",
@@ -188,6 +209,11 @@
     "u2-s3-l3": [
       {
         "kind": "drawing",
+        "drawing": "electorsMap",
+        "caption": "Each square is a state. The number is how many electors it has. States with more people have more electors."
+      },
+      {
+        "kind": "drawing",
         "drawing": "electoralCollege",
         "caption": "There are 538 electors. To become President, a candidate needs 270 of their votes."
       }
@@ -218,9 +244,21 @@
     "u4-s1-l1": [
       {
         "kind": "photo",
+        "file": "navajo-weaver.jpg",
+        "alt": "A Navajo woman weaving a blanket on a large wooden loom outdoors, under a tree",
+        "caption": "A Navajo woman weaving a blanket, about 1904. American Indians lived here long before the Europeans came."
+      },
+      {
+        "kind": "photo",
+        "file": "hopi-man.jpg",
+        "alt": "A portrait of a Hopi man with long hair, wearing a blanket",
+        "caption": "A Hopi man. The Hopi are one of many American Indian tribes."
+      },
+      {
+        "kind": "photo",
         "file": "columbus.jpg",
         "alt": "A painting of a man in dark clothes, said to be Christopher Columbus",
-        "caption": "Christopher Columbus reached the Americas in 1492. This painting is said to show him."
+        "caption": "Christopher Columbus was an explorer from Italy who sailed for Spain. He was European, not American Indian. He reached the Americas in 1492."
       }
     ],
     "u4-s1-l2": [
@@ -242,9 +280,9 @@
     "u5-s1-l1": [
       {
         "kind": "photo",
-        "file": "territorial-expansion.jpg",
-        "alt": "A historical map of the United States showing the land it added over time, including the Louisiana Purchase",
-        "caption": "How the United States grew. The Louisiana Purchase of 1803 is the large area in the middle."
+        "file": "louisiana-purchase.jpg",
+        "alt": "A map of the United States in 1810. The Louisiana Purchase is a large green area in the middle, from the Mississippi River west to the Rocky Mountains",
+        "caption": "The Louisiana Purchase of 1803 is the large green area in the middle, between the Mississippi River and the Rocky Mountains."
       }
     ],
     "u5-s3-l2": [
@@ -314,6 +352,52 @@
         "alt": "An astronaut standing on the moon",
         "caption": "The first people landed on the moon in 1969."
       }
+    ],
+    "u5-s2-l2": [
+      {
+        "kind": "drawing",
+        "drawing": "civilWarMap",
+        "caption": "The Union was in the North. The Confederacy was in the South. The war began at Fort Sumter, in South Carolina."
+      }
+    ],
+    "u5-s2-l3": [
+      {
+        "kind": "photo",
+        "file": "lincoln.jpg",
+        "alt": "A black-and-white photo of Abraham Lincoln with a beard, in a dark suit",
+        "caption": "Abraham Lincoln, the 16th President, in 1863, the year of the Emancipation Proclamation."
+      }
+    ],
+    "u6-s1-l1": [
+      {
+        "kind": "drawing",
+        "drawing": "warsTimeline",
+        "caption": "The five wars of the 1900s that are on the test, in order."
+      }
+    ],
+    "u6-s3-l1": [
+      {
+        "kind": "drawing",
+        "drawing": "coldWar",
+        "caption": "In the Cold War, the United States and the Soviet Union were rivals with two different systems. It lasted from about 1947 to 1991."
+      }
+    ],
+    "u7-s1-l2": [
+      {
+        "kind": "audio",
+        "file": "star-spangled-banner.mp3",
+        "title": "“The Star-Spangled Banner”",
+        "caption": "Listen to the national anthem, “The Star-Spangled Banner.”"
+      }
     ]
+  },
+  "audio": {
+    "star-spangled-banner.mp3": {
+      "credit": "Played by the United States Navy Band",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:%22The_Star-Spangled_Banner%22_performed_by_the_United_States_Navy_Band.mp3",
+      "commons": "\"The Star-Spangled Banner\" performed by the United States Navy Band.mp3",
+      "author": "United States Navy Band (U.S. government)"
+    }
   }
 }

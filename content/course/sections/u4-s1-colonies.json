@@ -46,7 +46,7 @@
           "explanationKey": "Who lived in America before the Europeans arrived?",
           "facts": [
             "American Indians, also called Native Americans, lived in America for thousands of years before the Europeans arrived.",
-            "In 1492, Christopher Columbus sailed from Spain and reached the Americas. After that, many more Europeans came.",
+            "In 1492, Christopher Columbus, an explorer from Italy, sailed from Spain and reached the Americas. After that, many more Europeans came.",
             "There are many American Indian tribes, like the Cherokee, Navajo, Sioux, Apache and Hopi.",
             "Many tribes still live in the United States today."
           ],
@@ -89,7 +89,7 @@
     {
       "id": "u4-s1-l2",
       "title": "The colonies",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de5f",
         "6ad16ecf6a9c603911f9de67"

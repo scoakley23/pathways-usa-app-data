@@ -4,7 +4,8 @@ import { DRAWINGS } from '@/components/course/drawings';
 
 // A lesson's pictures (src/lib/lessonPictures.js): public-domain photos and
 // maps with a credit line, the app's own drawings, and officeholders' official
-// portraits with today's name from the official list. Used by the lesson
+// portraits with today's name from the official list, and public-domain
+// recordings (the anthem) that play only when tapped. Used by the lesson
 // player's Listen step (Prompt 6). Captions are English content; the player
 // translates them with the rest of the lesson.
 
@@ -25,6 +26,26 @@ export function LessonPicture({ p, caption = p.caption }) {
       <figure className="m-0 rounded-card bg-white border border-line p-4">
         {Drawing && <Drawing />}
         <figcaption className="mt-3 text-base text-navy" dir="auto">{caption}</figcaption>
+      </figure>
+    );
+  }
+  if (p.kind === 'audio') {
+    return (
+      <figure className="m-0 rounded-card bg-white border border-line p-4 flex flex-col gap-3">
+        <span className="text-lg font-bold text-navy">{p.title}</span>
+        <audio
+          controls
+          preload="none"
+          src={p.src}
+          className="w-full min-h-tap"
+          onPlay={() => { try { window.speechSynthesis?.cancel(); } catch { /* no read-aloud */ } }}
+        >
+          <a href={p.src}>{p.title}</a>
+        </audio>
+        <figcaption className="flex flex-col gap-1">
+          <span className="text-base text-navy" dir="auto">{caption}</span>
+          <Credit p={p} />
+        </figcaption>
       </figure>
     );
   }
