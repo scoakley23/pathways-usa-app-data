@@ -730,19 +730,6 @@
       "status": "reviewed"
     },
     {
-      "id": "c57",
-      "questionId": "6ad16ecf6a9c603911f9de23",
-      "question": "What is the rule of law?",
-      "answer": "can you repeat the question please",
-      "expected": false,
-      "why": "asks to repeat; no answer",
-      "tags": [
-        "not-an-answer"
-      ],
-      "source": "drafted",
-      "status": "reviewed"
-    },
-    {
       "id": "c58",
       "questionId": "6ad16ecf6a9c603911f9de93",
       "question": "What is Independence Day?",

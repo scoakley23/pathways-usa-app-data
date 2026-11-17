@@ -9,6 +9,7 @@ import useLearnerLocation from '@/components/civics/useLearnerLocation';
 import { speakText } from '@/components/utils/textToSpeech';
 import { packText } from '@/lib/translationPack';
 import { TryAgain, acceptedAnswers, gradeCivics } from '@/components/lesson/lessonParts';
+import { isRepeatRequest } from '@/lib/repeatRequest';
 
 // Step 2 · Teach it back (frame R33Teach) and Step 5 · Officer question
 // (frame R33Officer). The learner answers out loud in English (the big mic)
@@ -33,10 +34,19 @@ export default function QuestionStep({ kind, question, hint, language, t, savesR
   const [mine, setMine] = useState(null); // the question in the learner's language, from the pack only
   const [showMine, setShowMine] = useState(false);
   const [missed, setMissed] = useState(false);
+  const [askedAgain, setAskedAgain] = useState(false);
 
   const grade = async (answer, { typedAnswer = false } = {}) => {
     const text = String(answer || '').trim();
     if (!text) return;
+    // "Could you say that again?" is not an answer: the question is asked
+    // again, nothing is graded or counted (src/lib/repeatRequest.js).
+    if (isRepeatRequest(text)) {
+      setTyped(''); speech.reset(); setAskedAgain(true);
+      speakText(question.question, 'en');
+      return;
+    }
+    setAskedAgain(false);
     setSaid(text);
     setMode('checking');
     try {
@@ -129,6 +139,7 @@ export default function QuestionStep({ kind, question, hint, language, t, savesR
 
         <div className="mt-auto w-full flex flex-col items-center gap-3 pt-4">
           {mode === 'checking' && <p className="text-base text-muted" role="status">{t('checking')}</p>}
+          {mode === 'ask' && askedAgain && <p className="text-base text-navy text-center" role="status">{t('asked_again')}</p>}
           {mode === 'ask' && !typing && (
             <>
               {speech.listening && speech.transcript && <p className="text-base text-navy text-center" lang="en" dir="ltr">“{speech.transcript}”</p>}

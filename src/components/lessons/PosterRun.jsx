@@ -5,6 +5,8 @@ import { checkCivicsAnswer, officeholderCheck } from '@/components/civics/checkC
 import OfficeholderNote from '@/components/civics/OfficeholderNote';
 import useLearnerLocation from '@/components/civics/useLearnerLocation';
 import { stopReading } from '@/components/persona/useAutoRead';
+import { speakText } from '@/components/utils/textToSpeech';
+import { isRepeatRequest } from '@/lib/repeatRequest';
 import { splitOfficialAnswers } from '@/lib/practiceChecks';
 import { matchCivicsAnswer } from '@/lib/answerVariants';
 import { officeholderAnswerFor, officeholderAnswerLine } from '@/lib/officeholderQuestions';
@@ -40,6 +42,7 @@ export default function PosterRun({ questions, language = 'en', tutorName = 'Ami
   const [answer, setAnswer] = useState('');
   const [listening, setListening] = useState(false);
   const [checking, setChecking] = useState(false);
+  const [askedAgain, setAskedAgain] = useState(false); // "Could you repeat that?" (not an answer)
   const [result, setResult] = useState(null); // { isCorrect } | { selfCheck: true }
   const [explainOpen, setExplainOpen] = useState(false);
   const [correct, setCorrect] = useState(0);
@@ -79,6 +82,15 @@ export default function PosterRun({ questions, language = 'en', tutorName = 'Ami
   const check = async () => {
     if (!answer.trim()) return;
     stopMic();
+    // Asking to hear the question again is not an answer: read it again,
+    // grade nothing.
+    if (isRepeatRequest(answer)) {
+      setAnswer('');
+      setAskedAgain(true);
+      speakText(cleanQuestionText(q.question), 'en');
+      return;
+    }
+    setAskedAgain(false);
     const local = officeholderCheck(q, answer, location);
     if (local) {
       setResult({ isCorrect: local.is_correct, officeholder: local.officeholder });
@@ -111,6 +123,7 @@ export default function PosterRun({ questions, language = 'en', tutorName = 'Ami
     if (gotIt !== null) setOutcomes((prev) => { const n = [...prev]; n[index] = gotIt ? 'right' : 'missed'; return n; });
     setAnswer('');
     setResult(null);
+    setAskedAgain(false);
     setExplainOpen(false);
     if (index + 1 < total) setIndex(index + 1);
     else onFinish?.({ correct: nextCorrect, total: total - nextUngraded });
@@ -131,6 +144,7 @@ export default function PosterRun({ questions, language = 'en', tutorName = 'Ami
       >
         {!result ? (
           <div className="space-y-4">
+            {askedAgain && !answer && <p role="status" className="text-lg">Sure. Here’s the question again.</p>}
             <div className="flex gap-2" role="group" aria-label="Answer mode">
               {SR && (
                 <button type="button" aria-pressed={mode === 'speak'} onClick={() => setMode('speak')} className={mode === 'speak' ? solidWhite : outlineWhite}>
