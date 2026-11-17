@@ -9,11 +9,13 @@
 //   Justice. The NAME always comes from src/data/officeholders.json; the
 //   portrait (src/data/officeholderPhotos.json) shows only while its name
 //   matches that list, so a new officeholder never gets the old photo.
+// - audio: a recording in public/course-audio/ (public domain only, listed in
+//   "audio" with its source), played only when the learner taps Play.
 import pictures from '../../content/course/pictures.json';
 import officeholderPhotos from '../data/officeholderPhotos.json';
 import { getNational } from '@/lib/officeholders';
 
-export const DRAWING_IDS = ['threeBranches', 'termLengths', 'congressNumbers', 'electoralCollege', 'supremeCourt'];
+export const DRAWING_IDS = ['threeBranches', 'termLengths', 'congressNumbers', 'electoralCollege', 'supremeCourt', 'electorsMap', 'civilWarMap', 'warsTimeline', 'coldWar'];
 export const OFFICES = ['president', 'vicePresident', 'speaker', 'chiefJustice'];
 export const OFFICE_TITLES = {
   president: 'President of the United States',
@@ -22,14 +24,17 @@ export const OFFICE_TITLES = {
   chiefJustice: 'Chief Justice of the United States',
 };
 export const PICTURE_DIR = '/course-pictures/';
+export const AUDIO_DIR = '/course-audio/';
 
 export const LESSON_PICTURES = pictures.lessons;
 export const PHOTO_SOURCES = pictures.photos;
+export const AUDIO_SOURCES = pictures.audio || {};
 
 /** A lesson's pictures, ready to show. Officeholders resolve to today's name. */
 export function picturesFor(lessonId, { national = getNational(), photos = officeholderPhotos } = {}) {
   return (LESSON_PICTURES[lessonId] || []).map((p) => {
     if (p.kind === 'photo') return { ...p, ...PHOTO_SOURCES[p.file], src: PICTURE_DIR + p.file };
+    if (p.kind === 'audio') return { ...p, ...AUDIO_SOURCES[p.file], src: AUDIO_DIR + p.file };
     if (p.kind === 'officeholder') {
       const name = national?.[p.office]?.name || null;
       const photo = photos[p.office];
@@ -46,11 +51,12 @@ export function picturesFor(lessonId, { national = getNational(), photos = offic
 }
 
 /** Problems with the picture list, as sentences ([] = all good). */
-export function pictureProblems({ lessonIds, files, data = pictures, photos = officeholderPhotos }) {
+export function pictureProblems({ lessonIds, files, audioFiles = [], data = pictures, photos = officeholderPhotos }) {
   const problems = [];
   const known = new Set(lessonIds);
-  for (const [file, src] of Object.entries(data.photos)) {
-    if (!files.includes(file)) problems.push(`${file}: not in public/course-pictures/`);
+  const sources = [...Object.entries(data.photos).map(([f, s]) => [f, s, files, 'public/course-pictures/']), ...Object.entries(data.audio || {}).map(([f, s]) => [f, s, audioFiles, 'public/course-audio/'])];
+  for (const [file, src, present, dir] of sources) {
+    if (!present.includes(file)) problems.push(`${file}: not in ${dir}`);
     if (!/public domain/i.test(src.license || '')) problems.push(`${file}: license must be public domain (is "${src.license}")`);
     for (const k of ['source', 'credit']) if (!src[k]) problems.push(`${file}: missing ${k}`);
   }
@@ -64,6 +70,9 @@ export function pictureProblems({ lessonIds, files, data = pictures, photos = of
       } else if (p.kind === 'drawing') {
         if (!DRAWING_IDS.includes(p.drawing)) problems.push(`${at}: unknown drawing "${p.drawing}"`);
         if (!p.caption) problems.push(`${at}: needs a caption`);
+      } else if (p.kind === 'audio') {
+        if (!(data.audio || {})[p.file]) problems.push(`${at}: ${p.file} is not in "audio"`);
+        if (!p.title || !p.caption) problems.push(`${at}: needs title and caption`);
       } else if (p.kind === 'officeholder') {
         if (!OFFICES.includes(p.office)) problems.push(`${at}: unknown office "${p.office}"`);
       } else problems.push(`${at}: unknown kind`);

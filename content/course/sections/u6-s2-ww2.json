@@ -36,7 +36,7 @@
     {
       "id": "u6-s2-l1",
       "title": "Roosevelt and World War II",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de7f",
         "6ad16ecf6a9c603911f9de80"
@@ -91,7 +91,7 @@
     {
       "id": "u6-s2-l2",
       "title": "Dwight Eisenhower",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de81"
       ],

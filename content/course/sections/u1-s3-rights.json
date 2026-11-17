@@ -48,7 +48,7 @@
     {
       "id": "u1-s3-l1",
       "title": "The Bill of Rights",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de1c"
       ],
@@ -105,7 +105,7 @@
     {
       "id": "u1-s3-l2",
       "title": "No one is above the law",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de23",
         "6ad16ecf6a9c603911f9de25"
@@ -162,7 +162,7 @@
     {
       "id": "u1-s3-l3",
       "title": "How our country works",
-      "status": "draft",
+      "status": "reviewed",
       "questionIds": [
         "6ad16ecf6a9c603911f9de17",
         "6ad16ecf6a9c603911f9de22"
