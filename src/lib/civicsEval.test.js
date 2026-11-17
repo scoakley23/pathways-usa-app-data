@@ -57,6 +57,11 @@ describe('the eval sends the app\'s own prompt', () => {
     expect(run).toMatch(/buildCivicsCheckPrompt\(q, c\.answer\)/);
   });
 
+  it('asks for answers in English (the app practices the English test)', () => {
+    const { prompt } = buildCivicsCheckPrompt({ question: 'Who signs bills to become laws?', answer: 'The President' }, 'el presidente');
+    expect(prompt).toContain("If the student's answer is not in English, set is_correct to false");
+  });
+
   it('personal details are removed before anything is sent', () => {
     const q = byId.get(FILE.cases.find((c) => c.tags[0] === 'personal-info').questionId);
     const { prompt } = buildCivicsCheckPrompt(q, 'citizens call me at 617 555 0199 or maria.fake@example.com A123456789');
