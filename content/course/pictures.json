@@ -106,11 +106,11 @@
       "commons": "Aldrin Apollo 11 original.jpg",
       "author": "Neil Armstrong"
     },
-    "navajo-weaver.jpg": {
+    "navajo-woman.jpg": {
       "credit": "Photo: Edward S. Curtis, about 1904 · Library of Congress",
       "license": "Public domain",
-      "source": "https://commons.wikimedia.org/wiki/File:Navajo_weaver.jpg",
-      "commons": "Navajo weaver.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Head-and-shoulders_portrait_of_Navajo_woman_3c03498v.jpg",
+      "commons": "Head-and-shoulders portrait of Navajo woman 3c03498v.jpg",
       "author": "Edward S. Curtis"
     },
     "president.jpg": {
@@ -244,9 +244,9 @@
     "u4-s1-l1": [
       {
         "kind": "photo",
-        "file": "navajo-weaver.jpg",
-        "alt": "A Navajo woman weaving a blanket on a large wooden loom outdoors, under a tree",
-        "caption": "A Navajo woman weaving a blanket, about 1904. American Indians lived here long before the Europeans came."
+        "file": "navajo-woman.jpg",
+        "alt": "A portrait of a Navajo woman wearing a striped blanket, a silver necklace and a silver belt",
+        "caption": "A Navajo woman, about 1904. American Indians lived here long before the Europeans came."
       },
       {
         "kind": "photo",
