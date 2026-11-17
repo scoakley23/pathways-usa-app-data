@@ -184,7 +184,9 @@ function ElectorsMap() {
   );
 }
 
-// The Union, the Confederacy and the border states in 1861.
+// The Union, the Confederacy and the border states in 1861. Union blue and
+// Confederate red, as Civil War maps are usually drawn: the one place red
+// fills a drawing (the owner's choice; `red-text` so white labels can be read).
 const CONFEDERACY = ['SC', 'MS', 'FL', 'AL', 'GA', 'LA', 'TX', 'VA', 'AR', 'NC', 'TN'];
 const BORDER = ['DE', 'MD', 'KY', 'MO', 'WV'];
 const UNION = ['ME', 'NH', 'VT', 'MA', 'RI', 'CT', 'NY', 'NJ', 'PA', 'OH', 'IN', 'IL', 'MI', 'WI', 'MN', 'IA', 'KS', 'CA', 'OR', 'DC'];
@@ -195,14 +197,14 @@ function CivilWarMap() {
   const y0 = 2;
   const style = (c) => {
     if (UNION.includes(c)) return { fill: 'fill-denim stroke-denim' };
-    if (CONFEDERACY.includes(c)) return { fill: 'fill-navy stroke-navy' };
+    if (CONFEDERACY.includes(c)) return { fill: 'fill-red-text stroke-red-text' };
     if (BORDER.includes(c)) return { fill: 'fill-tint stroke-denim', text: 'fill-navy' };
     return { fill: 'fill-white stroke-line', text: 'fill-muted' };
   };
   const [sx, sy] = tileAt('SC', x0, y0);
   const legend = [
     ['fill-denim stroke-denim', 'The Union (North)'],
-    ['fill-navy stroke-navy', 'The Confederacy (South)'],
+    ['fill-red-text stroke-red-text', 'The Confederacy (South)'],
     ['fill-tint stroke-denim', 'Border states: slavery, but stayed'],
     ['fill-white stroke-line', 'Not states yet'],
   ];
