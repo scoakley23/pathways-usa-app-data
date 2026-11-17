@@ -13,7 +13,8 @@ Question: ${question.question}
 Official Answer: ${question.answer}
 Student's Answer: ${userAnswer}
 
-In the real USCIS interview, answers don't need to be word-for-word — as long as the meaning is correct, it counts. Determine if the student's answer conveys the correct meaning.`;
+In the real USCIS interview, answers don't need to be word-for-word — as long as the meaning is correct, it counts. Determine if the student's answer conveys the correct meaning.
+The civics test is in English. If the student's answer is not in English, set is_correct to false, and in the feedback kindly ask them to say it in English. Names and terms such as "George Washington" or "Constitution" count as English.`;
   const properties = {
     is_correct: { type: 'boolean' },
     feedback: { type: 'string' },
