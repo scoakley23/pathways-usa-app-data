@@ -4959,6 +4959,12 @@
    ]
   },
   {
+   "text": "How many times you used AI help in a day (a number only, for the daily limit). Older days are removed the next time you use it.",
+   "from": [
+    "settings"
+   ]
+  },
+  {
    "text": "How many trips of more than 24 hours have you taken outside the United States?",
    "from": [
     "n400"
@@ -9838,6 +9844,12 @@
    "text": "That email doesn't look right. Check it and try again.",
    "from": [
     "sign-in"
+   ]
+  },
+  {
+   "text": "That's all my answers for today. Ask me again tomorrow.",
+   "from": [
+    "ask-screen"
    ]
   },
   {

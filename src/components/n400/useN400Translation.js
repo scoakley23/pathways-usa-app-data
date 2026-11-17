@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { base44 } from '@/api/base44Client';
+import { ai } from '@/api/ai';
 import { LANGUAGES } from '@/hooks/useLessonTranslation';
 import { PACK_ONLY, hasPack, packTree } from '@/lib/translationPack';
 
@@ -48,7 +48,7 @@ export default function useN400Translation(sectionId, question, language) {
           if (!cancelled) setTranslation(packed.complete ? packed.value : null);
           return;
         }
-        const result = await base44.integrations.Core.InvokeLLM({
+        const result = await ai.translate({
           prompt: `You are a professional translator for US citizenship education materials. Translate the following JSON into ${langName}. Translate every value exactly as written — do not add advice, interpretation, or any content that is not in the original. Return the same JSON structure, translated.
 
 JSON:

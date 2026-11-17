@@ -13,7 +13,6 @@ import OfficeholderNote from '@/components/civics/OfficeholderNote';
 import useLearnerLocation from '@/components/civics/useLearnerLocation';
 import { FIND_REPRESENTATIVE_PATH, MAY_CHANGE_SOON, officeholderAnswerFor } from '@/lib/officeholderQuestions';
 import { evaluateInterviewAnswer, evaluateUnderstanding } from '@/components/practice/evaluateInterviewAnswer';
-import { buildTutorInstructions } from '@/lib/tutorPersona';
 import { checkDictation, splitOfficialAnswers } from '@/lib/practiceChecks';
 import { matchCivicsAnswer } from '@/lib/answerVariants';
 import { READING_PASS } from '@/lib/pretest';
@@ -238,7 +237,7 @@ export function SpeakingStep({ step, ctx, state, setState }) {
     }
     setChecking(true);
     try {
-      const teach = isCheck(step) ? null : { instructions: buildTutorInstructions(ctx.profile, ctx.languageName), languageName: ctx.languageName };
+      const teach = isCheck(step) ? null : { language: ctx.language, tutor: ctx.profile };
       const r = await checkCivicsAnswer(question, answer, { teach });
       const isCorrect = !!r.is_correct;
       setState({
@@ -460,11 +459,10 @@ export function InterviewStep({ step, ctx, state, setState }) {
     setFailed(false);
     try {
       // step.understand: say what the question is asking, never answer it
-      // (N-400 questions); only understanding is checked. step.extra: more
-      // scoring instructions for ordinary interview questions.
+      // (N-400 questions); only understanding is checked.
       const r = step.understand
         ? await evaluateUnderstanding(step.question, transcript, { meaning: step.meaning })
-        : await evaluateInterviewAnswer(step.question, transcript, step.extra || '');
+        : await evaluateInterviewAnswer(step.question, transcript);
       const score = Number(r?.overall_score) || 0;
       setState({ answered: true, heard: transcript, outcome: { score }, result: { isCorrect: !!r.is_acceptable, better: r.corrected_version, tip: r.improvement_tips } });
     } catch (e) {

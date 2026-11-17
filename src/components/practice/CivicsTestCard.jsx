@@ -7,7 +7,7 @@ import RunTopBar from '@/components/practice/RunTopBar';
 import { Button, Chip, CreamSheet, NavyTop } from '@/components/pathways/ui';
 import { stopReading } from '@/components/persona/useAutoRead';
 import { toast } from "sonner";
-import { base44 } from '@/api/base44Client';
+import { ai } from '@/api/ai';
 import { checkCivicsAnswer, officeholderCheck } from '@/components/civics/checkCivicsAnswer';
 import OfficeholderNote from '@/components/civics/OfficeholderNote';
 import useLearnerLocation from '@/components/civics/useLearnerLocation';
@@ -107,7 +107,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, testMode 
       Return ONLY the translation in this format:
       Question: [Translated Question]
       Answer: [Translated Answer]`;
-      const res = await base44.integrations.Core.InvokeLLM({ prompt });
+      const res = await ai.translate({ prompt });
       setTranslation(res);
     } catch (error) {
       console.error("Translation error", error);
