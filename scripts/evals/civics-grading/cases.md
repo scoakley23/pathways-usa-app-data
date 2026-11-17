@@ -1,8 +1,8 @@
 # Civics grading eval: test cases
 
-65 fake learner answers, each one the phone can't settle on its own, so the AI decides. "Should count?" is the label the models are scored against. Generated from cases.json; edit that file, then run `npm run evals:civics:cases`.
+64 fake learner answers, each one the phone can't settle on its own, so the AI decides. "Should count?" is the label the models are scored against. Generated from cases.json; edit that file, then run `npm run evals:civics:cases`.
 
-Right answers: 33 · wrong or not an answer: 32 · reviewed: 65 of 65
+Right answers: 33 · wrong or not an answer: 31 · reviewed: 64 of 64
 
 ## other-words
 
@@ -84,7 +84,6 @@ Right answers: 33 · wrong or not an answer: 32 · reviewed: 65 of 65
 | Id | Question | Learner said | Should count? | Why | Official answer |
 | --- | --- | --- | --- | --- | --- |
 | c56 | Who signs bills to become laws? | I don't know | No | no answer | The President (of the United States) |
-| c57 | What is the rule of law? | can you repeat the question please | No | asks to repeat; no answer | Everyone must follow the law. / Leaders must obey the law. / Government must obey the law. / No one is above the law. |
 | c58 | What is Independence Day? | my birthday is in July | No | off topic | A holiday to celebrate U.S. independence (from Britain) / The country’s birthday |
 
 ## personal-info

@@ -9,6 +9,7 @@ import { stopReading } from '@/components/persona/useAutoRead';
 import { toast } from "sonner";
 import { ai } from '@/api/ai';
 import { checkCivicsAnswer, officeholderCheck } from '@/components/civics/checkCivicsAnswer';
+import { isRepeatRequest } from '@/lib/repeatRequest';
 import OfficeholderNote from '@/components/civics/OfficeholderNote';
 import useLearnerLocation from '@/components/civics/useLearnerLocation';
 import { splitOfficialAnswers } from '@/lib/practiceChecks';
@@ -48,6 +49,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, testMode 
   const [verificationResult, setVerificationResult] = useState(null);
   const [selfCheckMode, setSelfCheckMode] = useState(false); // the AI check failed: show the answer, ask how it went
   const [dontKnow, setDontKnow] = useState(false);
+  const [askedAgain, setAskedAgain] = useState(false); // "Could you repeat that?" (not an answer)
   const [recorded, setRecorded] = useState(false); // this question's result is already saved (before Try again)
   const [inputMode, setInputMode] = useState('speak');
   const [isListening, setIsListening] = useState(false);
@@ -73,6 +75,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, testMode 
     setVerificationResult(null);
     setSelfCheckMode(false);
     setDontKnow(false);
+    setAskedAgain(false);
     setRecorded(false);
     setExplainOpen(false);
     stopListening();
@@ -144,6 +147,15 @@ export default function CivicsTestCard({ question, onComplete, onNext, testMode 
   const checkAnswer = async () => {
     if (!userAnswer.trim()) return;
     stopListening();
+    // Asking the officer to repeat is allowed and is not an answer: the
+    // question is read again; nothing is graded, counted or sent to the AI.
+    if (isRepeatRequest(userAnswer)) {
+      setUserAnswer('');
+      setAskedAgain(true);
+      speak(question.question);
+      return;
+    }
+    setAskedAgain(false);
     // Officeholder questions: graded from the table on the device, never the AI.
     const local = officeholderCheck(question, userAnswer, location);
     if (local) {
@@ -254,6 +266,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, testMode 
           {!done && (
             <>
               <p className="text-base font-semibold text-navy">Answer out loud, in English</p>
+              {askedAgain && !userAnswer && <p role="status" className="rounded-card bg-tint px-4 py-3 text-base text-navy">Sure. Here’s the question again.</p>}
 
               {inputMode === 'type' && (
                 <input

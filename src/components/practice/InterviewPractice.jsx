@@ -10,6 +10,7 @@ import { speakText, stopSpeaking, getRandomVoice } from "@/components/utils/text
 import { toast } from "sonner";
 import { isAiLimit } from '@/api/ai';
 import { AI_LIMIT_MESSAGE } from '@/lib/aiRequests';
+import { isRepeatRequest } from '@/lib/repeatRequest';
 import InterviewReport from './InterviewReport';
 import { evaluateInterviewAnswer, evaluateUnderstanding, isUnderstandingSection } from './evaluateInterviewAnswer';
 import InterviewHistory from './InterviewHistory';
@@ -49,6 +50,7 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
   const [isListening, setIsListening] = useState(false);
   const [userResponse, setUserResponse] = useState('');
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [askedAgain, setAskedAgain] = useState(false); // "Could you repeat that?" (not an answer)
   const [feedback, setFeedback] = useState(null);
   const [sessionStarted, setSessionStarted] = useState(false);
   const [isLoadingQuestions, setIsLoadingQuestions] = useState(true);
@@ -223,6 +225,7 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
 
     setUserResponse('');
     setFeedback(null);
+    setAskedAgain(false);
     responseRef.current = '';
     setShowTyping(true);
     setInterviewerState('idle');
@@ -319,6 +322,16 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
   const analyzeResponse = async () => {
     const response = responseRef.current || userResponse;
     if (!response.trim()) { toast.error('Please record a response first'); return; }
+    // Asking the officer to repeat is allowed and is not an answer: the
+    // officer asks again; nothing is scored, saved or sent to the AI.
+    if (isRepeatRequest(response)) {
+      setUserResponse('');
+      responseRef.current = '';
+      setAskedAgain(true);
+      speakQuestion();
+      return;
+    }
+    setAskedAgain(false);
 
     setConversation(prev => [...prev, { role: 'user', text: response, id: `u_${currentIndex}` }]);
     setInterviewerState('thinking');
@@ -566,6 +579,7 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
         <Card>
           <p className="text-small font-semibold text-muted">Question {currentIndex + 1} of {questions.length}</p>
           <h2 className={`mt-1 font-bold leading-snug ${feedback ? 'text-[22px]' : 'text-question'}`}>{current.question}</h2>
+          {askedAgain && !userResponse && !isListening && <p className="mt-2 text-base text-navy" role="status">Sure. Here’s the question again.</p>}
           {(isListening || userResponse) && (
             <p className="mt-2 text-base font-semibold text-denim break-words" aria-live="polite">
               {isListening && !userResponse ? `Listening… ${formatTime(recordingTime)}` : `You: “${userResponse}”`}
