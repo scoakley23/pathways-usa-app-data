@@ -8,7 +8,7 @@
           "text": "13 colonies",
           "answer": "(Because there were) 13 original colonies",
           "why": "often said without \"original\"",
-          "status": "draft"
+          "status": "reviewed"
         }
       ]
     },
@@ -19,7 +19,7 @@
           "text": "District of Columbia",
           "answer": "Washington, D.C.",
           "why": "the full name of D.C.",
-          "status": "draft"
+          "status": "reviewed"
         }
       ]
     },
@@ -30,13 +30,13 @@
           "text": "FDR",
           "answer": "(Franklin) Roosevelt",
           "why": "common initials",
-          "status": "draft"
+          "status": "reviewed"
         },
         {
           "text": "Franklin Delano Roosevelt",
           "answer": "(Franklin) Roosevelt",
           "why": "full name",
-          "status": "draft"
+          "status": "reviewed"
         }
       ]
     },
@@ -47,18 +47,7 @@
           "text": "the Soviets",
           "answer": "Soviet Union",
           "why": "common short name",
-          "status": "draft"
-        }
-      ]
-    },
-    "6ad16ecf6a9c603911f9de62": {
-      "question": "What war did the Americans fight to win independence from Britain?",
-      "variants": [
-        {
-          "text": "the Revolution",
-          "answer": "American Revolution",
-          "why": "often said without \"American\"",
-          "status": "draft"
+          "status": "reviewed"
         }
       ]
     },
@@ -69,13 +58,13 @@
           "text": "free market",
           "answer": "Free market economy",
           "why": "often said without \"economy\"",
-          "status": "draft"
+          "status": "reviewed"
         },
         {
           "text": "capitalist",
           "answer": "Capitalism",
           "why": "the same word as an adjective",
-          "status": "draft"
+          "status": "reviewed"
         }
       ]
     },
@@ -86,7 +75,7 @@
           "text": "nobody is above the law",
           "answer": "No one is above the law.",
           "why": "same words, \"nobody\" = \"no one\"",
-          "status": "draft"
+          "status": "reviewed"
         }
       ]
     },
@@ -97,7 +86,7 @@
           "text": "the VP",
           "answer": "The Vice President (of the United States)",
           "why": "common short name",
-          "status": "draft"
+          "status": "reviewed"
         }
       ]
     },
@@ -108,25 +97,25 @@
           "text": "MLK Day",
           "answer": "Martin Luther King, Jr. Day",
           "why": "common short name",
-          "status": "draft"
+          "status": "reviewed"
         },
         {
           "text": "Fourth of July",
           "answer": "Independence Day",
           "why": "the holiday's other name",
-          "status": "draft"
+          "status": "reviewed"
         },
         {
           "text": "July 4th",
           "answer": "Independence Day",
           "why": "the holiday's date name",
-          "status": "draft"
+          "status": "reviewed"
         },
         {
           "text": "President's Day",
           "answer": "Presidents Day (Washington’s Birthday)",
           "why": "apostrophe spelling",
-          "status": "draft"
+          "status": "reviewed"
         }
       ]
     },
@@ -137,47 +126,25 @@
           "text": "cars",
           "answer": "Automobile (cars, internal combustion engine)",
           "why": "the word in parentheses",
-          "status": "draft"
+          "status": "reviewed"
         },
         {
           "text": "internal combustion engine",
           "answer": "Automobile (cars, internal combustion engine)",
           "why": "the words in parentheses",
-          "status": "draft"
+          "status": "reviewed"
         },
         {
           "text": "moon landing",
           "answer": "Landing on the moon",
           "why": "same words, other order",
-          "status": "draft"
+          "status": "reviewed"
         },
         {
           "text": "IC",
           "answer": "Integrated circuit (IC)",
           "why": "the short name in parentheses",
-          "status": "draft"
-        }
-      ]
-    },
-    "6ad16ecf6a9c603911f9de71": {
-      "question": "Name one war fought by the United States in the 1800s.",
-      "variants": [
-        {
-          "text": "Mexican War",
-          "answer": "Mexican-American War",
-          "why": "the war's other common name",
-          "status": "draft"
-        }
-      ]
-    },
-    "6ad16ecf6a9c603911f9de60": {
-      "question": "Who lived in America before the Europeans arrived?",
-      "variants": [
-        {
-          "text": "Natives",
-          "answer": "Native Americans",
-          "why": "short form",
-          "status": "draft"
+          "status": "reviewed"
         }
       ]
     },
@@ -188,7 +155,7 @@
           "text": "African people",
           "answer": "People from Africa",
           "why": "same words, other order",
-          "status": "draft"
+          "status": "reviewed"
         }
       ]
     },
@@ -199,7 +166,7 @@
           "text": "Navaho",
           "answer": "Navajo",
           "why": "other spelling",
-          "status": "draft"
+          "status": "reviewed"
         }
       ]
     },
@@ -210,7 +177,7 @@
           "text": "Star Spangle Banner",
           "answer": "The Star-Spangled Banner",
           "why": "how speech recognition often writes it",
-          "status": "draft"
+          "status": "reviewed"
         }
       ]
     }

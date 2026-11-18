@@ -16,7 +16,7 @@
         }
       ],
       "source": "Official 2025 civics answers",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "q_constitution",
@@ -41,7 +41,7 @@
         }
       ],
       "source": "Official 2025 civics answers",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "q_rights",
@@ -54,7 +54,7 @@
         }
       ],
       "source": "Official 2025 civics answers",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "q_how_long",
@@ -70,7 +70,7 @@
       "answer": "It is OK to ask. You can say: \"Can you repeat that, please?\" or \"Can you say that another way?\" Don't answer a question until you understand it.",
       "official": [],
       "source": "General information about the interview",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "q_what_happens",
@@ -78,7 +78,7 @@
       "answer": "You promise to tell the truth. The officer asks about your N-400 application. You take the English test (reading, writing and speaking) and the civics test. At the end, the officer gives you a paper about the result.",
       "official": [],
       "source": "General information about the interview",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1049_term",
@@ -86,7 +86,7 @@
       "answer": "The \"American Dream\" is the idea that anyone can have a good life through hard work. People use it to talk about hope and opportunity in the United States.",
       "official": [],
       "source": "Lesson \"American Culture and Values\" (key point \"American Dream\")",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1049_title",
@@ -94,7 +94,7 @@
       "answer": "This lesson is about ideas many Americans share, like freedom, equality and hard work. People from many cultures live in the United States, and together they make American culture.",
       "official": [],
       "source": "Lesson \"American Culture and Values\"",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1048_term",
@@ -102,7 +102,7 @@
       "answer": "Washington, D.C. is the capital of the United States. Congress, the President and the Supreme Court all work there.",
       "official": [],
       "source": "Lesson \"Capital Cities and Important Places\" (key point \"Washington, D.C.\")",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1048_title",
@@ -110,7 +110,7 @@
       "answer": "This lesson is about Washington, D.C. and other important places. Each state also has its own capital city, where the state government works.",
       "official": [],
       "source": "Lesson \"Capital Cities and Important Places\"",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1047_term",
@@ -118,7 +118,7 @@
       "answer": "The Grand Canyon is a very large, deep canyon in Arizona. The Colorado River made it over millions of years. It is a national park.",
       "official": [],
       "source": "Lesson \"Natural Landmarks and National Parks\" (key point \"Grand Canyon\")",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1047_title",
@@ -126,12 +126,12 @@
       "answer": "This lesson is about famous natural places in the United States. Many are national parks, protected so everyone can visit them.",
       "official": [],
       "source": "Lesson \"Natural Landmarks and National Parks\"",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1046_term",
       "question": "What does \"Northeast Region\" mean?",
-      "answer": "The Northeast is a region in the top right of the map, by the Atlantic Ocean. It includes states like New York, Pennsylvania and the New England states.",
+      "answer": "The Northeast is a region in the top right of the map, by the Atlantic Ocean. It includes states like New York, Pennsylvania and the New England states. New England is the six states in the far northeast: Maine, New Hampshire, Vermont, Massachusetts, Rhode Island and Connecticut.",
       "official": [],
       "source": "Lesson \"U.S. Geography and Regions\" (key point \"Northeast Region\")",
       "status": "draft"
