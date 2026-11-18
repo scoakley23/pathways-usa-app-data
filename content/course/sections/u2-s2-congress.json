@@ -229,7 +229,7 @@
               "meaning": "a member who can vote on new laws"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "Congress has two parts.",
@@ -530,7 +530,7 @@
               "meaning": "a member of the House of Representatives"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "Every state has two U.S. senators.",
@@ -630,7 +630,7 @@
               "meaning": "a person who is a member of a country"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "A U.S. senator speaks for all the people of their state.",
@@ -720,7 +720,7 @@
               "meaning": "a member of the House of Representatives"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "Each state is cut into areas called congressional districts.",
@@ -814,7 +814,7 @@
               "meaning": "an agreement where each side gets part of what it wants"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "When the Constitution was written, big states and small states disagreed.",

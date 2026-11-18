@@ -23,10 +23,11 @@ describe('stories (Listen as a short video)', () => {
     expect(storyProblems(UNITS, { focusFor: DRAWING_FOCUS, officeholderNames: allNames(officeholders) })).toEqual([]);
   });
 
-  it('the Congress trial: every lesson has a story; five reviewed, the rest draft', () => {
-    for (const l of congress.lessons) expect(l.steps.listen.story?.length, l.id).toBeGreaterThan(3);
-    expect(congress.lessons.filter((l) => l.steps.listen.storyStatus === 'reviewed').map((l) => l.id))
-      .toEqual(['u2-s2-l1', 'u2-s2-l3', 'u2-s2-l4', 'u2-s2-l9', 'u2-s2-l10']);
+  it('the Congress trial: every lesson has a reviewed story', () => {
+    for (const l of congress.lessons) {
+      expect(l.steps.listen.story?.length, l.id).toBeGreaterThan(3);
+      expect(l.steps.listen.storyStatus, l.id).toBe('reviewed');
+    }
   });
 
   it('Your senators shows the learner\'s senators; the new drawings are used', () => {
@@ -38,7 +39,8 @@ describe('stories (Listen as a short video)', () => {
   });
 
   it('a draft story shows to admins only; learners keep the facts', () => {
-    const lesson = congress.lessons.find((l) => l.steps.listen.storyStatus === 'draft');
+    const reviewedLesson = congress.lessons[0];
+    const lesson = { ...reviewedLesson, steps: { ...reviewedLesson.steps, listen: { ...reviewedLesson.steps.listen, storyStatus: 'draft' } } };
     expect(storyFor(lesson)).toBe(null);
     expect(storyFor(lesson, { showDrafts: true })).toMatchObject({ draft: true });
     const reviewed = { ...lesson, steps: { ...lesson.steps, listen: { ...lesson.steps.listen, storyStatus: 'reviewed' } } };
