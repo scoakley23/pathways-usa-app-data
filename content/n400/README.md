@@ -21,7 +21,8 @@ adds only:
 | `lessons[].same` | **Same question?**: `phrasing` = one of the guide's officer phrasings for `answer`; `choices` = 3 guide question ids, one of them `answer`. |
 | `lessons[].spot` | **Spot the word**: `text` copied from the form or an officer phrasing, `word` in it, 3 `choices`, `answer` = the index of the right one. When the guide lists the word, the right choice must be the guide's own definition, word for word. |
 | `lessons[].understand` | **Say what it asks**: `phrasing` = one of the guide's officer phrasings for `questionId`. The AI checks only that the learner understood it. |
-| `lessons[].context` | Optional **Before you start** lines shown at the top of Listen: plain explanations and tips (never how to answer). |
+| `lessons[].context` | Optional **Before you start** lines shown at the top of Listen: plain explanations and tips (never how to answer). A web address written as `https://…` becomes a link. |
+| `lessons[].questionNotes` | Optional small labels on a question in Listen, by question id (e.g. 22.b: "Only for men who answered “Yes” to 22.a"). |
 | `lessons[].helpWord` | The word in "What does “{word}” mean?", one of the section's words to know. |
 | `help.phrases` | The three phrases for **Ask for help**, the same in every lesson. |
 
