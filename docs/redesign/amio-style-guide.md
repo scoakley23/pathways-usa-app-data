@@ -82,9 +82,12 @@ WORKING RULES:
   `/Partner`).
 - **Streaks are allowed**, kept kind: one rest day a week, a missed day never
   punishes, no "in a row" pressure. Calculated from `ActivityDay`, not stored.
-- **Practice people are a trial** (Prompt 10): a made-up person, always
-  labeled "practice person, not real", whose answers are reviewed like other
-  N-400 wording. We'll see if we like it.
+- **No practice people** (Nov 18, 2026; replaces the Prompt 10 trial and the
+  "practice person" line above): personal N-400 questions are taught as
+  understanding only, in N-400 lessons (one per guide section, at the end of
+  each unit): what each question means, the officer's other words for it, the
+  words that change the meaning, saying what it asks, and asking for help. No
+  sample answers anywhere.
 - **One review schedule** (`review_items`, boxes 1–5: 1, 3, 7, 14, 30 days)
   replaces the spaced-review fields on `UserProgress` when the data moves to
   Supabase.

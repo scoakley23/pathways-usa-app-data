@@ -19,7 +19,8 @@ Course content is 2025-only for now.
 - `lesson`: `"lessonId"` (a lesson in this file)
 - `readwrite`: `"fromLessons"` (the lessons whose sentences it uses)
 - `speakit`: the section's questions, out loud (nothing extra)
-- `n400`, `review`, `practiceInterview`: used by later prompts
+- `n400`: `"lessonId"` = an N-400 lesson in `content/n400/lessons.json` (one at the end of each unit, just before the practice interview)
+- `review`, `practiceInterview`: used by later prompts
 
 **A lesson:**
 

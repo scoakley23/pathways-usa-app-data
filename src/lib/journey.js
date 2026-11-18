@@ -8,11 +8,14 @@
 // - Stops unlock in order, across the whole course: the first stop that
 //   isn't done is "current"; everything after it is "locked".
 // - Lessons, Read and write and Speak it! must be done in order (Prompt 8).
-// - The unit practice interview, N-400 cards and review stops are optional:
-//   "open" once everything before them is done, never blocking.
+// - The unit practice interview, N-400 lessons and review stops are optional:
+//   "open" once everything before them is done, never blocking. An N-400
+//   lesson stop (`lessonId`, content/n400/lessons.json) shows only when that
+//   lesson may be seen (reviewed, or drafts for admins).
 import { UNITS, sectionQuestionIds, showDraftLessons } from '@/lib/course';
 import { OFFICEHOLDER_QUESTIONS } from '@/lib/officeholderQuestions';
 import { checkpointStars } from '@/lib/checkpoints';
+import { N400_LESSON_IDS, findN400Lesson, n400LessonVisible } from '@/lib/n400Lessons';
 
 // Stops that must be done in order, and stops that are optional (open once
 // reached, never blocking). Anything else is "soon".
@@ -31,7 +34,8 @@ export function visibleSection(section, { showDrafts = false } = {}) {
   // A non-lesson stop is shown only once at least one of its section's lessons is.
   const stops = lessons.length
     ? (section.stops || [])
-      .filter((s) => s.type !== 'lesson' || ids.has(s.lessonId))
+      .filter((s) => (s.type === 'lesson' ? ids.has(s.lessonId) : true))
+      .filter((s) => s.type !== 'n400' || !s.lessonId || n400LessonVisible(findN400Lesson(s.lessonId), showDrafts))
       .map((s) => ({ ...s, lesson: s.type === 'lesson' ? byId[s.lessonId] : null }))
     : [];
   return { ...section, lessons, stops };
@@ -46,6 +50,7 @@ const isDone = (stop, progress, checkpoints) => {
   if (stop.type === 'lesson') return !!(progress[stop.lessonId]?.completed || progress[stop.lessonId]?.completed_at);
   if (stop.type === 'speakit') return checkpoints.has(stop.sectionKey);
   if (stop.type === 'readwrite') return checkpoints.has(stop.id); // saved under the stop id
+  if (stop.type === 'n400' && stop.lessonId) return !!(progress[stop.lessonId]?.completed || progress[stop.lessonId]?.completed_at);
   return false;
 };
 
@@ -69,7 +74,7 @@ export function journeyStops(course, { progress = {}, checkpoints = new Set(), s
     else if (current) item.state = 'locked';
     else if (!PLAYABLE_STOPS.includes(item.type)) item.state = 'soon';
     else { item.state = 'current'; current = item; }
-    if (item.type === 'lesson') item.stars = progress[item.lessonId]?.stars || 0;
+    if (item.type === 'lesson' || (item.type === 'n400' && item.lessonId)) item.stars = progress[item.lessonId]?.stars || 0;
     out.push(item);
   }
   // Every stop after the current one waits for it.
@@ -77,12 +82,18 @@ export function journeyStops(course, { progress = {}, checkpoints = new Set(), s
   return out;
 }
 
+/** Every lesson id progress is loaded for: the course's lessons and the N-400 lessons. */
+export function courseLessonIds(units = UNITS) {
+  return units.flatMap((u) => u.sections.flatMap((s) => (s.lessons || []).map((l) => l.id)));
+}
+export const allLessonIds = (units = UNITS) => [...courseLessonIds(units), ...N400_LESSON_IDS];
+
 /**
  * Stars: calculated from saved lesson progress and passed Speak it!
  * checkpoints (+10 each), never stored twice.
  */
 export function totalStars(progress = {}, units = UNITS, checkpoints = new Set()) {
-  const ids = new Set(units.flatMap((u) => u.sections.flatMap((s) => (s.lessons || []).map((l) => l.id))));
+  const ids = new Set([...courseLessonIds(units), ...N400_LESSON_IDS]);
   const lessonStars = Object.entries(progress).reduce((n, [id, p]) => n + (ids.has(id) ? Number(p?.stars) || 0 : 0), 0);
   return lessonStars + checkpointStars(checkpoints, units);
 }

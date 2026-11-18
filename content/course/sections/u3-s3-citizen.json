@@ -32,6 +32,12 @@
       "title": "Speak it!"
     },
     {
+      "id": "u3-n400",
+      "type": "n400",
+      "title": "N-400: Groups and violence",
+      "lessonId": "n400-groups-violence"
+    },
+    {
       "id": "u3-practice-interview",
       "type": "practiceInterview",
       "title": "Unit practice interview"

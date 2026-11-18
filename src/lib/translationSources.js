@@ -25,6 +25,8 @@ import { LESSON_LINES } from '@/components/lesson/lessonStrings';
 import { CHECKPOINT_LINES } from '@/components/checkpoint/checkpointStrings';
 import { ONBOARDING_LINES } from '@/components/onboarding/onboardingStrings';
 import { MY_TUTOR_LINES } from '@/components/partners/myTutorStrings';
+import { N400_LESSON_LINES } from '@/components/n400lesson/n400LessonStrings';
+import { HELP_PHRASES, N400_LESSONS, N400_QUESTION_NAMES } from '@/lib/n400Lessons';
 import { courseTitleTexts } from '@/lib/courseTitles';
 import { TODAY_LINES } from '@/components/today/todayLines';
 import { UNITS } from '@/lib/course';
@@ -73,6 +75,7 @@ export const STRING_SETS = [
   { id: 'my-tutor', strings: MY_TUTOR_LINES, usedIn: [['src/components/partners/ProgramCard.jsx', 'MY_TUTOR_LINES']] },
   { id: 'onboarding', strings: ONBOARDING_LINES, usedIn: [['src/components/onboarding/useOnboardingText.js', 'ONBOARDING_LINES']] },
   { id: 'checkpoints', strings: CHECKPOINT_LINES, usedIn: [['src/components/checkpoint/checkpointParts.jsx', 'CHECKPOINT_LINES']] },
+  { id: 'n400-lessons', strings: N400_LESSON_LINES, usedIn: [['src/components/n400lesson/N400LessonPage.jsx', 'N400_LESSON_LINES'], ['src/components/n400lesson/N400LessonsCard.jsx', 'N400_LESSON_LINES']] },
   { id: 'today-plan', strings: TODAY_LINES, usedIn: [['src/components/today/useToday.js', 'TODAY_LINES']] },
   { id: 'talk', strings: TALK_LINES, usedIn: [['src/components/ai/TalkToPerson.jsx', 'LINES']] },
   { id: 'talk-reply', strings: { reply: `We reply within ${REPLY_TIME}.` }, usedIn: [['src/components/ai/TalkToPerson.jsx', 'replyLine']] },
@@ -114,6 +117,14 @@ export function contentTexts() {
       ...l.steps.listen.newWords.map((w) => w.meaning),
     ]))))],
     ['course-pictures', texts(Object.values(coursePictures.lessons).flat().map((p) => p.caption))],
+    // N-400 lessons (content/n400/lessons.json): the short question names
+    // (Listen), the lesson titles and what each help phrase is for. The form
+    // wording, officer phrasings, choices and phrases to say stay English.
+    ['n400-lessons', texts([
+      ...Object.values(N400_QUESTION_NAMES),
+      ...N400_LESSONS.map((l) => l.title),
+      ...HELP_PHRASES.map((p) => p.meaning),
+    ])],
     // Unit, section, lesson and stop titles and unit descriptions (Prompt 13).
     ['course-titles', texts(courseTitleTexts(UNITS))],
     // The pilot check-in reminder email (Step 5): the `pilot-reminders`

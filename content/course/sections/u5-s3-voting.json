@@ -32,6 +32,12 @@
       "title": "Speak it!"
     },
     {
+      "id": "u5-n400",
+      "type": "n400",
+      "title": "N-400: Immigration history",
+      "lessonId": "n400-immigration-history"
+    },
+    {
       "id": "u5-practice-interview",
       "type": "practiceInterview",
       "title": "Unit practice interview"
