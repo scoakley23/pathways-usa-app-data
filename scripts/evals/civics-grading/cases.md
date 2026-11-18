@@ -1,15 +1,14 @@
 # Civics grading eval: test cases
 
-64 fake learner answers, each one the phone can't settle on its own, so the AI decides. "Should count?" is the label the models are scored against. Generated from cases.json; edit that file, then run `npm run evals:civics:cases`.
+62 fake learner answers, each one the phone can't settle on its own, so the AI decides. "Should count?" is the label the models are scored against. Generated from cases.json; edit that file, then run `npm run evals:civics:cases`.
 
-Right answers: 33 · wrong or not an answer: 31 · reviewed: 64 of 64
+Right answers: 31 · wrong or not an answer: 31 · reviewed: 62 of 62
 
 ## other-words
 
 | Id | Question | Learner said | Should count? | Why | Official answer |
 | --- | --- | --- | --- | --- | --- |
 | c01 | Why does the flag have 13 stripes? | because of the first thirteen colonies | Yes | "first" means "original" | (Because there were) 13 original colonies / (Because the stripes) represent the original colonies |
-| c02 | What is the economic system of the United States? | a capitalist system | Yes | capitalist = capitalism | Capitalism / Free market economy |
 | c03 | Name one power of the U.S. Congress. | they make the laws | Yes | makes laws = writes laws | Writes laws / Declares war / Makes the federal budget |
 | c04 | What does the President’s Cabinet do? | they give advice to the president | Yes | advises the President | Advises the President (of the United States) |
 | c05 | What is the rule of law? | nobody is over the law even the president | Yes | no one is above the law | Everyone must follow the law. / Leaders must obey the law. / Government must obey the law. / No one is above the law. |
@@ -76,7 +75,6 @@ Right answers: 33 · wrong or not an answer: 31 · reviewed: 64 of 64
 | c51 | What are three rights of everyone living in the United States? | freedom of speech freedom of religion and the right to vote | No | voting is for citizens only, so only two of the three count | Freedom of expression / Freedom of speech / Freedom of assembly / Freedom to petition the government / Freedom of religion / The right to bear arms |
 | c52 | Name two promises that new citizens make in the Oath of Allegiance. | obey the laws and defend the constitution | Yes | two promises, in other words | Give up loyalty to other countries / Defend the (U.S.) Constitution / Obey the laws of the United States / Serve in the military (if needed) / Serve (help, do important work for) the nation (if needed) / Be loyal to the United States |
 | c53 | There were 13 original states. Name five. | New York Virginia Georgia Texas Maryland | No | Texas was not one of the 13, so only four | New Hampshire / Massachusetts / Rhode Island / Connecticut / New York / New Jersey / Pennsylvania / Delaware / Maryland / Virginia / North Carolina / South Carolina / Georgia |
-| c54 | Name three national U.S. holidays. | the Fourth of July Labor Day and Memorial Day | Yes | Fourth of July = Independence Day | New Year’s Day / Martin Luther King, Jr. Day / Presidents Day (Washington’s Birthday) / Memorial Day / Juneteenth / Independence Day / Labor Day / Columbus Day / Veterans Day / Thanksgiving Day / Christmas Day |
 | c55 | What are two examples of civic participation in the United States? | vote and join a party | Yes | vote; join a political party | Vote / Run for office / Join a political party / Help with a campaign / Join a civic group / Join a community group / Give an elected official your opinion (on an issue) / Contact elected officials / Support or oppose an issue or policy / Write to a newspaper |
 
 ## not-an-answer

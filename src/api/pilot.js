@@ -45,6 +45,16 @@ export function createPilotApi({ provider = DATA_PROVIDER, base44: b44 = base44,
       return shape(user)(await run(sb().from('outcome_checkins').insert({ ...only(checkIn), user_id: user.id }).select('*').single()));
     },
 
+    // Admins: email every learner with a check-in due (Step 5) →
+    // { sent, skipped, failed }, counts only. Base44's `pilot-reminders`
+    // function, or the Supabase Edge Function of the same name (Resend).
+    async sendReminders(appUrl) {
+      if (!onSupabase) return (await b44.functions.invoke('pilot-reminders', { action: 'send', appUrl })).data;
+      const { data, error } = await sb().functions.invoke('pilot-reminders', { body: { appUrl } });
+      if (error) throw new Error('Could not send reminders.');
+      return data;
+    },
+
     // Admins: { summaries, generated_at }.
     async report() {
       if (!onSupabase) return (await b44.functions.invoke('pilot-report', {})).data;
