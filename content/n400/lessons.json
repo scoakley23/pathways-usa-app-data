@@ -70,7 +70,7 @@
       "context": [
         "Before your interview, make a list of every trip outside the United States: where you went, the day you left and the day you came back.",
         "If you don't remember the dates, look at photos from your trips, the stamps in your passport, flight confirmation emails, bank or card statements, and frequent flyer accounts.",
-        "You can also see your recent trips on the I-94 website of U.S. Customs and Border Protection (CBP): i94.cbp.dhs.gov. It is fast, but it may not show every trip.",
+        "You can also see your recent trips on the I-94 website of U.S. Customs and Border Protection (CBP): https://i94.cbp.dhs.gov. It is fast, but it may not show every trip.",
         "If you still can't find the dates, you can ask CBP for your official travel record with a FOIA request. It takes a long time, so try the other ways first."
       ],
       "same": [
@@ -378,7 +378,7 @@
       "section": "immigration-history",
       "unitId": "u5",
       "title": "N-400: Immigration history",
-      "status": "draft",
+      "status": "reviewed",
       "context": [
         "These questions use legal words for things many people know from life.",
         "Detained: held by the police or immigration officers and not free to leave.",
@@ -458,10 +458,14 @@
       "title": "N-400: Selective Service and the military",
       "status": "draft",
       "context": [
-        "Questions 22.a and 22.b are only for male applicants: men who lived in the United States at any time between their 18th and 26th birthdays.",
+        "Everyone answers question 22.a on the form: “Are you a male who lived in the United States at any time between your 18th and 26th birthdays?”",
+        "Question 22.b is only for people who answered “Yes” to 22.a. So if you are not a man, 22.b doesn't apply to you.",
         "The Selective Service is the U.S. list of men who could be called to serve in the military if the country needs them.",
-        "The questions after them, about the U.S. armed forces, are for everyone."
+        "The questions after 22.b, about the U.S. armed forces, are for everyone."
       ],
+      "questionNotes": {
+        "p9-22b": "Only for men who answered “Yes” to 22.a"
+      },
       "same": [
         {
           "phrasing": "Were you living in the U.S. between your 18th and 26th birthdays?",
@@ -543,7 +547,7 @@
       "section": "oath-questions",
       "unitId": "u7",
       "title": "N-400: Oath questions",
-      "status": "draft",
+      "status": "reviewed",
       "context": [
         "Questions 35 to 37 start with “If the law requires it.” They do not ask you to join the military now. They ask if you would be willing, if a law ever required it.",
         "These are the same promises you make in the Oath of Allegiance at your naturalization ceremony.",
