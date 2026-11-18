@@ -148,9 +148,23 @@ export function problem(english, translated) {
   return null;
 }
 
-// Texts this language still needs: not in the machine pack or the reviewed file.
+// Texts this language still needs: not in the reviewed file, and not in the
+// machine pack, or in it with a line that breaks today's checks (for example
+// a feature name translated before that rule existed), which is sent again.
+// Reviewed lines are never re-translated.
 export function missingTexts(sources, machine = {}, reviewed = {}) {
-  return sources.texts.map((t) => t.text).filter((text) => !machine[text] && !reviewed[text]);
+  return sources.texts.map((t) => t.text).filter((text) => !reviewed[text] && (!machine[text] || problem(text, machine[text])));
+}
+
+// Machine lines that break today's checks (sent again by missingTexts).
+export const failingLines = (machine = {}) => Object.entries(machine).filter(([en, tr]) => problem(en, tr)).length;
+
+// The pack after a run: the new lines added, and old lines that still break
+// today's checks dropped (they show in English until a run gets them right).
+export function mergePack(machine = {}, added = {}) {
+  const out = { ...machine, ...added };
+  for (const [en, tr] of Object.entries(out)) if (problem(en, tr)) delete out[en];
+  return out;
 }
 
 // Splits texts into requests of at most MAX_ITEMS and about MAX_CHARS.
@@ -308,7 +322,8 @@ async function main() {
     const total = sources.texts.length;
     for (const l of languages) {
       const miss = missingByLang[l.value].length;
-      console.log(`${l.value.padEnd(8)} ${String(total - miss).padStart(5)} of ${total} translated${miss ? `, ${miss} missing` : ''}`);
+      const redo = failingLines(readJson(packFile(l.value), {}).strings || {});
+      console.log(`${l.value.padEnd(8)} ${String(total - miss).padStart(5)} of ${total} translated${miss ? `, ${miss} missing` : ''}${redo ? ` (incl. ${redo} to redo)` : ''}`);
     }
     const { dollars } = estimate(missingByLang, args.model);
     console.log(`\nTo translate what's missing with ${args.model} (batch mode): about $${dollars.toFixed(2)}.`);
@@ -355,7 +370,7 @@ async function main() {
   }
   for (const [lang, strings] of Object.entries(results)) {
     const machine = readJson(packFile(lang), {}).strings || {};
-    writePack(lang, { ...machine, ...strings }, state.model);
+    writePack(lang, mergePack(machine, strings), state.model);
     console.log(`${lang}: +${Object.keys(strings).length}`);
   }
   if (rejected.length) {

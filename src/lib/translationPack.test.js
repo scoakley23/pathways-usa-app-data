@@ -4,7 +4,7 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 vi.mock('@/api/provider', () => ({ PROVIDER: 'base44', WANTS_SUPABASE: false }));
 
 const { fromPack, packText, packTree, setPackForTests, resetPacks, loadPack, getLoadedPack } = await import('./translationPack');
-const { problem, chunk, missingTexts, buildRequests, readResult } = await import('../../scripts/translations/build-pack.mjs');
+const { problem, chunk, missingTexts, mergePack, failingLines, buildRequests, readResult } = await import('../../scripts/translations/build-pack.mjs');
 const SOURCES = (await import('../../content/translations/_sources.json')).default;
 
 beforeEach(() => {
@@ -95,6 +95,18 @@ describe('build-pack checks', () => {
       ['Sept. 11', '11/10'],
     ];
     for (const [en, tr] of bad) expect(problem(en, tr), en).toBe('numbers changed');
+  });
+
+  it('sends again a machine line that breaks today\'s checks, never a reviewed one', () => {
+    const sources = { texts: [{ text: 'Speak it!' }, { text: 'Hello' }, { text: 'Read it' }] };
+    const machine = { 'Speak it!': 'Ka no!', Hello: 'Hola', 'Read it': 'Léelo' };
+    expect(missingTexts(sources, machine, { 'Read it': 'Read it (léalo)' })).toEqual(['Speak it!']);
+    expect(failingLines(machine)).toBe(2);
+  });
+
+  it('a run keeps good lines, adds new ones, and drops old lines that still break the checks', () => {
+    const machine = { Hello: 'Hola', 'Speak it!': 'Ka no!', 'Write it': 'Kyerɛw' };
+    expect(mergePack(machine, { 'Speak it!': 'Speak it! (ka no)' })).toEqual({ Hello: 'Hola', 'Speak it!': 'Speak it! (ka no)' });
   });
 
   it('only missing texts are sent; reviewed lines are never re-translated', () => {
