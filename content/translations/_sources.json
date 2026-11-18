@@ -1788,6 +1788,12 @@
    ]
   },
   {
+   "text": "Bear arms: carry and use weapons for the United States, as a soldier.",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "Because Germany attacked U.S. (civilian) ships / To support the Allied Powers (England, France, Italy, and Russia) / To oppose the Central Powers (Germany, Austria-Hungary, the Ottoman Empire, and Bulgaria)",
    "from": [
     "civics-questions"
@@ -1826,7 +1832,14 @@
   {
    "text": "Before you start",
    "from": [
+    "n400-lessons",
     "pilot"
+   ]
+  },
+  {
+   "text": "Before your interview, make a list of every trip outside the United States: where you went, the day you left and the day you came back.",
+   "from": [
+    "n400-lessons"
    ]
   },
   {
@@ -2872,6 +2885,12 @@
    "text": "Description of the U.S. as a country built by people who came from all over the world",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "Detained: held by the police or immigration officers and not free to leave.",
+   "from": [
+    "n400-lessons"
    ]
   },
   {
@@ -5285,6 +5304,12 @@
    ]
   },
   {
+   "text": "If a religious or moral reason means you could not make one of these promises, talk to a lawyer before you file.",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "If both the President and the Vice President can no longer serve, who becomes President?",
    "from": [
     "civics-questions"
@@ -5381,6 +5406,12 @@
    ]
   },
   {
+   "text": "If you don't remember the dates, look at photos from your trips, the stamps in your passport, flight confirmation emails, bank or card statements, and frequent flyer accounts.",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "If you had a suspended sentence, did you finish all of its conditions?",
    "from": [
     "n400"
@@ -5396,6 +5427,12 @@
    "text": "If you received a suspended sentence, were placed on probation, or were paroled, have you completed your suspended sentence, probation, or parole?",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "If you still can't find the dates, you can ask CBP for your official travel record with a FOIA request. It takes a long time, so try the other ways first.",
+   "from": [
+    "n400-lessons"
    ]
   },
   {
@@ -7437,6 +7474,12 @@
    ]
   },
   {
+   "text": "Noncombatant service: work in the military that is not fighting, such as caring for wounded soldiers.",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "North",
    "from": [
     "words"
@@ -8298,6 +8341,18 @@
    ]
   },
   {
+   "text": "Questions 22.a and 22.b are only for male applicants: men who lived in the United States at any time between their 18th and 26th birthdays.",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
+   "text": "Questions 35 to 37 start with “If the law requires it.” They do not ask you to join the military now. They ask if you would be willing, if a law ever required it.",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "Questions about how you got your green card",
    "from": [
     "lawyer-checklist"
@@ -8549,9 +8604,21 @@
    ]
   },
   {
+   "text": "Removal proceedings: a case before an immigration judge, where the government tries to make a person leave the country.",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "Remove “{word}”",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Removed or deported: forced by the U.S. government to leave the country.",
+   "from": [
+    "n400-lessons"
    ]
   },
   {
@@ -10973,6 +11040,12 @@
    ]
   },
   {
+   "text": "The Selective Service is the U.S. list of men who could be called to serve in the military if the country needs them.",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "The Senate is one of the two parts of Congress. There are 100 senators, two from each state. A senator's term is six years.",
    "from": [
     "ask-answers"
@@ -11627,6 +11700,12 @@
    ]
   },
   {
+   "text": "The questions after them, about the U.S. armed forces, are for everyone.",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "The quick check isn’t ready yet. Please try again later.",
    "from": [
     "onboarding"
@@ -11843,6 +11922,12 @@
    ]
   },
   {
+   "text": "These are the same promises you make in the Oath of Allegiance at your naturalization ceremony.",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "These lessons are being reviewed. They will appear here soon.",
    "from": [
     "course"
@@ -11885,6 +11970,12 @@
    ]
   },
   {
+   "text": "These questions ask about your whole life. If any of this ever happened to you, talk to a lawyer before you file.",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "These questions ask if you are in the U.S. military right now. If you are, they also ask where you will work in the next three months and where you are now. If you are not in the military now, the last question asks if you used to be in the military and now live outside the United States.",
    "from": [
     "n400"
@@ -11900,6 +11991,12 @@
    "text": "These questions cover eight separate areas: prostitution; selling or smuggling illegal drugs; being married to more than one person at the same time; marrying someone to get an immigration benefit; helping anyone enter the United States illegally; illegal gambling; failing to support your dependents or pay alimony; and misrepresentation to get a public benefit.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "These questions use legal words for things many people know from life.",
+   "from": [
+    "n400-lessons"
    ]
   },
   {
@@ -14706,6 +14803,12 @@
    ]
   },
   {
+   "text": "Work of national importance under civilian direction: important work for the country that is not military, led by people who are not in the military.",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "Worked as a member of a group, like the military.",
    "from": [
     "n400"
@@ -14881,6 +14984,12 @@
    "text": "You asked",
    "from": [
     "ask-screen"
+   ]
+  },
+  {
+   "text": "You can also see your recent trips on the I-94 website of U.S. Customs and Border Protection (CBP): i94.cbp.dhs.gov. It is fast, but it may not show every trip.",
+   "from": [
+    "n400-lessons"
    ]
   },
   {

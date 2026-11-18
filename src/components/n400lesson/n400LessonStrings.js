@@ -24,6 +24,7 @@ export const N400_LESSON_LINES = {
   continue: 'Continue',
   next: 'Next',
   amio_listen: 'Here is what the officer may ask about this part of the form.',
+  before_you_start: 'Before you start',
   said_in_language: 'Said in your language',
   in_english: 'In English',
   in_my_language: 'In my language',

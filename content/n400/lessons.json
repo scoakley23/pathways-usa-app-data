@@ -67,6 +67,12 @@
       "unitId": "u1",
       "title": "N-400: Time outside the U.S.",
       "status": "draft",
+      "context": [
+        "Before your interview, make a list of every trip outside the United States: where you went, the day you left and the day you came back.",
+        "If you don't remember the dates, look at photos from your trips, the stamps in your passport, flight confirmation emails, bank or card statements, and frequent flyer accounts.",
+        "You can also see your recent trips on the I-94 website of U.S. Customs and Border Protection (CBP): i94.cbp.dhs.gov. It is fast, but it may not show every trip.",
+        "If you still can't find the dates, you can ask CBP for your official travel record with a FOIA request. It takes a long time, so try the other ways first."
+      ],
       "same": [
         {
           "phrasing": "Tell me about the trips you have taken outside the United States.",
@@ -137,7 +143,7 @@
       "section": "citizenship-voting-taxes",
       "unitId": "u2",
       "title": "N-400: Citizenship, voting and taxes",
-      "status": "draft",
+      "status": "reviewed",
       "same": [
         {
           "phrasing": "Have you ever told anyone you were a U.S. citizen?",
@@ -219,7 +225,7 @@
       "section": "groups-violence",
       "unitId": "u3",
       "title": "N-400: Groups and violence",
-      "status": "draft",
+      "status": "reviewed",
       "same": [
         {
           "phrasing": "Have you ever been a member of the Communist Party?",
@@ -290,7 +296,7 @@
       "section": "crimes-offenses",
       "unitId": "u4",
       "title": "N-400: Crimes and offenses",
-      "status": "draft",
+      "status": "reviewed",
       "same": [
         {
           "phrasing": "Have you ever committed a crime you were not arrested for?",
@@ -373,6 +379,13 @@
       "unitId": "u5",
       "title": "N-400: Immigration history",
       "status": "draft",
+      "context": [
+        "These questions use legal words for things many people know from life.",
+        "Detained: held by the police or immigration officers and not free to leave.",
+        "Removed or deported: forced by the U.S. government to leave the country.",
+        "Removal proceedings: a case before an immigration judge, where the government tries to make a person leave the country.",
+        "These questions ask about your whole life. If any of this ever happened to you, talk to a lawyer before you file."
+      ],
       "same": [
         {
           "phrasing": "Have you ever been in immigration court proceedings?",
@@ -444,6 +457,11 @@
       "unitId": "u6",
       "title": "N-400: Selective Service and the military",
       "status": "draft",
+      "context": [
+        "Questions 22.a and 22.b are only for male applicants: men who lived in the United States at any time between their 18th and 26th birthdays.",
+        "The Selective Service is the U.S. list of men who could be called to serve in the military if the country needs them.",
+        "The questions after them, about the U.S. armed forces, are for everyone."
+      ],
       "same": [
         {
           "phrasing": "Were you living in the U.S. between your 18th and 26th birthdays?",
@@ -526,6 +544,14 @@
       "unitId": "u7",
       "title": "N-400: Oath questions",
       "status": "draft",
+      "context": [
+        "Questions 35 to 37 start with “If the law requires it.” They do not ask you to join the military now. They ask if you would be willing, if a law ever required it.",
+        "These are the same promises you make in the Oath of Allegiance at your naturalization ceremony.",
+        "Bear arms: carry and use weapons for the United States, as a soldier.",
+        "Noncombatant service: work in the military that is not fighting, such as caring for wounded soldiers.",
+        "Work of national importance under civilian direction: important work for the country that is not military, led by people who are not in the military.",
+        "If a religious or moral reason means you could not make one of these promises, talk to a lawyer before you file."
+      ],
       "same": [
         {
           "phrasing": "Do you support the U.S. Constitution?",

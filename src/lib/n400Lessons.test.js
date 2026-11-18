@@ -45,6 +45,18 @@ describe('N-400 lessons (content/n400/lessons.json)', () => {
     for (const name of Object.values(data.questionNames)) expect(name).not.toMatch(/^(yes|no)\b/i);
   });
 
+  it('the review notes: Before you start cards, and three lessons reviewed', () => {
+    const byId = Object.fromEntries(N400_LESSONS.map((l) => [l.id, l]));
+    for (const id of ['n400-time-outside-us', 'n400-immigration-history', 'n400-oath-questions', 'n400-selective-service-military']) expect(byId[id].context?.length, id).toBeGreaterThan(0);
+    expect(byId['n400-selective-service-military'].context.join(' ')).toMatch(/only for male applicants/);
+    expect(byId['n400-time-outside-us'].context.join(' ')).toMatch(/i94\.cbp\.dhs\.gov/);
+    expect(N400_LESSONS.filter((l) => l.status === 'reviewed').map((l) => l.id).sort()).toEqual(['n400-citizenship-voting-taxes', 'n400-crimes-offenses', 'n400-groups-violence']);
+  });
+
+  it('a Before you start card never says how to answer', () => {
+    for (const l of N400_LESSONS) for (const line of l.context || []) expect(line, l.id).not.toMatch(/\b(answer|say) (yes|no)\b|you should answer/i);
+  });
+
   it('every guide question has a short name', () => {
     for (const s of N400_SECTIONS) for (const q of s.questions) expect(questionName(q.id), q.id).toBeTruthy();
   });
