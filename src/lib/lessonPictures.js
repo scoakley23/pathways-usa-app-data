@@ -15,7 +15,7 @@ import pictures from '../../content/course/pictures.json';
 import officeholderPhotos from '../data/officeholderPhotos.json';
 import { getNational } from '@/lib/officeholders';
 
-export const DRAWING_IDS = ['threeBranches', 'termLengths', 'congressNumbers', 'electoralCollege', 'supremeCourt', 'electorsMap', 'civilWarMap', 'warsTimeline', 'coldWar'];
+export const DRAWING_IDS = ['threeBranches', 'termLengths', 'congressNumbers', 'electoralCollege', 'supremeCourt', 'electorsMap', 'civilWarMap', 'warsTimeline', 'coldWar', 'billToLaw', 'seatsByPopulation'];
 export const OFFICES = ['president', 'vicePresident', 'speaker', 'chiefJustice'];
 export const OFFICE_TITLES = {
   president: 'President of the United States',
@@ -30,24 +30,27 @@ export const LESSON_PICTURES = pictures.lessons;
 export const PHOTO_SOURCES = pictures.photos;
 export const AUDIO_SOURCES = pictures.audio || {};
 
+/** One picture, ready to show. Officeholders resolve to today's name. */
+export function resolvePicture(p, { national = getNational(), photos = officeholderPhotos } = {}) {
+  if (p.kind === 'photo') return { ...p, ...PHOTO_SOURCES[p.file], src: PICTURE_DIR + p.file };
+  if (p.kind === 'audio') return { ...p, ...AUDIO_SOURCES[p.file], src: AUDIO_DIR + p.file };
+  if (p.kind === 'officeholder') {
+    const name = national?.[p.office]?.name || null;
+    const photo = photos[p.office];
+    const matches = name && photo && photo.name === name;
+    return {
+      ...p,
+      name,
+      title: OFFICE_TITLES[p.office],
+      ...(matches ? { src: PICTURE_DIR + photo.file, ...PHOTO_SOURCES[photo.file] } : {}),
+    };
+  }
+  return p;
+}
+
 /** A lesson's pictures, ready to show. Officeholders resolve to today's name. */
-export function picturesFor(lessonId, { national = getNational(), photos = officeholderPhotos } = {}) {
-  return (LESSON_PICTURES[lessonId] || []).map((p) => {
-    if (p.kind === 'photo') return { ...p, ...PHOTO_SOURCES[p.file], src: PICTURE_DIR + p.file };
-    if (p.kind === 'audio') return { ...p, ...AUDIO_SOURCES[p.file], src: AUDIO_DIR + p.file };
-    if (p.kind === 'officeholder') {
-      const name = national?.[p.office]?.name || null;
-      const photo = photos[p.office];
-      const matches = name && photo && photo.name === name;
-      return {
-        ...p,
-        name,
-        title: OFFICE_TITLES[p.office],
-        ...(matches ? { src: PICTURE_DIR + photo.file, ...PHOTO_SOURCES[photo.file] } : {}),
-      };
-    }
-    return p;
-  });
+export function picturesFor(lessonId, opts = {}) {
+  return (LESSON_PICTURES[lessonId] || []).map((p) => resolvePicture(p, opts));
 }
 
 /** Problems with the picture list, as sentences ([] = all good). */

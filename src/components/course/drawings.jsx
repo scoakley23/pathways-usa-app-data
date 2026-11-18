@@ -22,19 +22,23 @@ function Frame({ viewBox, title, children }) {
   );
 }
 
+// A drawing can light up one part (`focus`, used by the story player): the
+// other parts fade.
+const dim = (focus, key) => (focus && focus !== key ? { opacity: 0.3 } : undefined);
+
 // The three branches and what each one does.
-function ThreeBranches() {
+function ThreeBranches({ focus } = {}) {
   const cols = [
-    { x: 10, name: 'Legislative', who: 'Congress', what: 'makes laws' },
-    { x: 125, name: 'Executive', who: 'President', what: 'carries out laws' },
-    { x: 240, name: 'Judicial', who: 'Courts', what: 'explain laws' },
+    { x: 10, key: 'legislative', name: 'Legislative', who: 'Congress', what: 'makes laws' },
+    { x: 125, key: 'executive', name: 'Executive', who: 'President', what: 'carries out laws' },
+    { x: 240, key: 'judicial', name: 'Judicial', who: 'Courts', what: 'explain laws' },
   ];
   return (
     <Frame viewBox="0 0 350 190" title="The three branches of government: legislative (Congress makes laws), executive (the President carries out laws), judicial (the courts explain laws)">
       <Box x={10} y={8} w={330} h={36} className="fill-navy stroke-navy" />
       <T x={175} y={31} className="fill-white">Federal government</T>
       {cols.map((c) => (
-        <g key={c.name}>
+        <g key={c.name} style={dim(focus, c.key)}>
           <line x1={c.x + 50} y1={44} x2={c.x + 50} y2={62} className="stroke-mid" strokeWidth="3" />
           <Box x={c.x} y={62} w={100} h={118} className="fill-white stroke-denim" />
           <T x={c.x + 50} y={86} className="fill-denim" size={13}>{c.name}</T>
@@ -47,17 +51,17 @@ function ThreeBranches() {
 }
 
 // Term lengths on one scale: representative 2, President 4, senator 6.
-function TermLengths() {
+function TermLengths({ focus } = {}) {
   const rows = [
-    { who: 'Representative', years: 2 },
-    { who: 'President', years: 4 },
-    { who: 'Senator', years: 6 },
+    { key: 'representative', who: 'Representative', years: 2 },
+    { key: 'president', who: 'President', years: 4 },
+    { key: 'senator', who: 'Senator', years: 6 },
   ];
   const unit = 27; // px per year
   return (
     <Frame viewBox="0 0 350 160" title="Terms: a representative serves 2 years, the President 4 years, a senator 6 years">
       {rows.map((r, i) => (
-        <g key={r.who} transform={`translate(0 ${12 + i * 46})`}>
+        <g key={r.who} transform={`translate(0 ${12 + i * 46})`} style={dim(focus, r.key)}>
           <T x={0} y={14} anchor="start" size={13}>{r.who}</T>
           {Array.from({ length: 6 }).map((_, k) => (
             <rect key={k} x={112 + k * unit} y={0} width={unit - 4} height={22} rx={5} className={k < r.years ? 'fill-denim' : 'fill-tint'} />
@@ -70,22 +74,26 @@ function TermLengths() {
 }
 
 // The two parts of Congress and their numbers.
-function CongressNumbers() {
+function CongressNumbers({ focus } = {}) {
   const dots = (n, cols, x0, y0, size, gap, cls) => Array.from({ length: n }).map((_, i) => (
     <circle key={i} cx={x0 + (i % cols) * gap} cy={y0 + Math.floor(i / cols) * gap} r={size} className={cls} />
   ));
   return (
     <Frame viewBox="0 0 350 210" title="Congress: the Senate has 100 senators, 2 from every state; the House of Representatives has 435 voting members, more for states with more people">
+      <g style={dim(focus, 'senate')}>
       <Box x={4} y={4} w={140} h={200} />
       <T x={74} y={28}>Senate</T>
       <T x={74} y={52} size={22} weight={800}>100</T>
       {dots(100, 10, 26, 72, 4, 10.5, 'fill-denim')}
       <T x={74} y={196} className="fill-muted" size={11} weight={400}>2 from every state</T>
+      </g>
+      <g style={dim(focus, 'house')}>
       <Box x={154} y={4} w={192} h={200} />
       <T x={250} y={28}>House</T>
       <T x={250} y={52} size={22} weight={800}>435</T>
       {dots(435, 29, 166, 68, 2.2, 5.8, 'fill-stop-read-write')}
       <T x={250} y={196} className="fill-muted" size={11} weight={400}>more for states with more people</T>
+      </g>
     </Frame>
   );
 }
@@ -297,6 +305,62 @@ function ColdWar() {
   );
 }
 
+// How a law is made: Congress writes a bill, the President signs it, it
+// becomes a law.
+function BillToLaw({ focus } = {}) {
+  const steps = [
+    { key: 'congress', x: 4, who: 'Congress', what: 'writes a bill' },
+    { key: 'president', x: 124, who: 'President', what: 'signs it' },
+    { key: 'law', x: 244, who: 'Law', what: 'for everyone' },
+  ];
+  return (
+    <Frame viewBox="0 0 350 120" title="How a law is made: Congress writes a bill, the President signs it, and it becomes a law for the whole country">
+      {steps.map((s, i) => (
+        <g key={s.key} style={dim(focus, s.key)}>
+          <Box x={s.x} y={14} w={102} h={92} className={s.key === 'law' ? 'fill-navy stroke-navy' : 'fill-white stroke-denim'} />
+          <T x={s.x + 51} y={52} size={15} weight={700} className={s.key === 'law' ? 'fill-white' : 'fill-navy'}>{s.who}</T>
+          <T x={s.x + 51} y={76} size={12} weight={400} className={s.key === 'law' ? 'fill-white' : 'fill-muted'}>{s.what}</T>
+          {i < 2 && <path d={`M${s.x + 106} 60 l12 0 m-5 -5 l5 5 l-5 5`} className="stroke-mid" strokeWidth="3" fill="none" />}
+        </g>
+      ))}
+    </Frame>
+  );
+}
+
+// A small state and a big state: the same 2 senators, more representatives
+// for the state with more people.
+function SeatsByPopulation({ focus } = {}) {
+  const states = [
+    { x: 4, name: 'A small state', people: 2, reps: 1 },
+    { x: 180, name: 'A big state', people: 8, reps: 6 },
+  ];
+  const person = (cx, cy, k, cls) => (
+    <g key={k}>
+      <circle cx={cx} cy={cy} r={5} className={cls} />
+      <rect x={cx - 6} y={cy + 6} width={12} height={10} rx={4} className={cls} />
+    </g>
+  );
+  return (
+    <Frame viewBox="0 0 350 230" title="A small state and a big state both have 2 senators. The big state, with more people, has more representatives in the House.">
+      {states.map((s) => (
+        <g key={s.name}>
+          <Box x={s.x} y={4} w={166} h={222} />
+          <T x={s.x + 83} y={26} size={14} weight={700}>{s.name}</T>
+          <T x={s.x + 83} y={46} size={12} weight={400} className="fill-muted">{s.people === 2 ? 'fewer people' : 'more people'}</T>
+          <g style={dim(focus, 'senators')}>
+            <T x={s.x + 83} y={76} size={12}>Senators: 2</T>
+            {[0, 1].map((k) => person(s.x + 70 + k * 26, 90, k, 'fill-denim'))}
+          </g>
+          <g style={dim(focus, 'house')}>
+            <T x={s.x + 83} y={142} size={12}>Representatives: {s.reps}</T>
+            {Array.from({ length: s.reps }).map((_, k) => person(s.x + 83 + ((k % 6) - (Math.min(s.reps, 6) - 1) / 2) * 22, 158, k, 'fill-stop-read-write'))}
+          </g>
+        </g>
+      ))}
+    </Frame>
+  );
+}
+
 export const DRAWINGS = {
   threeBranches: ThreeBranches,
   termLengths: TermLengths,
@@ -307,4 +371,15 @@ export const DRAWINGS = {
   civilWarMap: CivilWarMap,
   warsTimeline: WarsTimeline,
   coldWar: ColdWar,
+  billToLaw: BillToLaw,
+  seatsByPopulation: SeatsByPopulation,
+};
+
+// The parts each drawing can light up (story scenes' `focus`).
+export const DRAWING_FOCUS = {
+  threeBranches: ['legislative', 'executive', 'judicial'],
+  termLengths: ['representative', 'president', 'senator'],
+  congressNumbers: ['senate', 'house'],
+  billToLaw: ['congress', 'president', 'law'],
+  seatsByPopulation: ['senators', 'house'],
 };
