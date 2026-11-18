@@ -125,6 +125,7 @@ export function contentTexts() {
       ...Object.values(N400_QUESTION_NAMES),
       ...N400_LESSONS.map((l) => l.title),
       ...N400_LESSONS.flatMap((l) => l.context || []),
+      ...N400_LESSONS.flatMap((l) => Object.values(l.questionNotes || {})),
       ...HELP_PHRASES.map((p) => p.meaning),
     ])],
     // Unit, section, lesson and stop titles and unit descriptions (Prompt 13).

@@ -100,6 +100,12 @@ export function n400LessonProblems(content = data, sections = N400_SECTIONS) {
       if (!phrasingOf(item.questionId, item.phrasing)) problems.push(`${at}/understand[${i}]: the phrasing must be one of the guide's officer phrasings for ${item.questionId}`);
     }
     if (l.context !== undefined && (!Array.isArray(l.context) || !l.context.length || l.context.some((x) => typeof x !== 'string' || !x.trim()))) problems.push(`${at}: context must be a list of short lines`);
+    const sectionQs = new Set(sections.find((s) => s.id === l.section)?.questions.map((q) => q.id) || []);
+    for (const [qid, note] of Object.entries(l.questionNotes || {})) {
+      if (!sectionQs.has(qid)) problems.push(`${at}: questionNotes ${qid} is not in this section`);
+      if (typeof note !== 'string' || !note.trim()) problems.push(`${at}: questionNotes ${qid} needs text`);
+    }
+    for (const line of l.context || []) for (const url of String(line).match(/https?:\/\/\S+/g) || []) if (!url.startsWith('https://')) problems.push(`${at}: links must be https (${url})`);
     if ((l.same || []).length < 2) problems.push(`${at}: needs at least 2 Same question? items`);
     if ((l.spot || []).length < 2) problems.push(`${at}: needs at least 2 Spot the word items`);
     if ((l.understand || []).length < 1) problems.push(`${at}: needs at least 1 Say what it asks item`);

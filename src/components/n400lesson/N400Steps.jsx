@@ -21,23 +21,32 @@ import { HELP_PHRASES, guideQuestion, helpPhrase, questionName } from '@/lib/n40
 
 const chip = 'min-h-tap rounded-full border border-line bg-white px-4 text-base font-semibold text-navy hover:border-denim focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim';
 
+// Web addresses in reviewed lines (https://…) become links that open in a new tab.
+export function linkify(text) {
+  const parts = String(text || '').split(/(https:\/\/[^\s]+?)(?=[.,;:)]?(?:\s|$))/);
+  return parts.map((p, i) => (i % 2
+    ? <a key={i} href={p} target="_blank" rel="noreferrer" className="font-semibold text-denim underline underline-offset-2 break-all" dir="ltr">{p.replace(/^https:\/\//, '')}</a>
+    : <React.Fragment key={i}>{p}</React.Fragment>));
+}
+
 function Footer({ children }) {
   return <div className="sticky bottom-0 bg-page px-4 pt-2 pb-6 max-w-lg w-full mx-auto">{children}</div>;
 }
 
 // The section's meanings and words in the learner's language: the
 // translation pack, or (switch off, no pack) the existing on-demand translation.
-function useSectionTranslation(section, context, language) {
+function useSectionTranslation(section, context, notes, language) {
   const strings = useMemo(() => {
     const s = {};
     context.forEach((line, i) => { s[`c${i}`] = line; });
+    section.questions.forEach((q, i) => { if (notes[q.id]) s[`q${i}`] = notes[q.id]; });
     section.questions.forEach((q, i) => {
       s[`n${i}`] = questionName(q.id);
       s[`m${i}`] = q.meaning;
       (q.words || []).forEach((w, k) => { s[`w${i}_${k}`] = w.definition; });
     });
     return s;
-  }, [section, context]);
+  }, [section, context, notes]);
   const [mine, setMine] = useState(null);
   useEffect(() => {
     setMine(null);
@@ -59,7 +68,8 @@ function useSectionTranslation(section, context, language) {
 /** Step 1 · Listen: what each question means, and the words to know. */
 export function ListenN400({ lesson, section, language, t, onDone }) {
   const context = useMemo(() => lesson.context || [], [lesson]);
-  const mine = useSectionTranslation(section, context, language);
+  const notes = useMemo(() => lesson.questionNotes || {}, [lesson]);
+  const mine = useSectionTranslation(section, context, notes, language);
   const [english, setEnglish] = useState(false);
   const has = language !== 'en' && mine && section.questions.every((_, i) => mine[`m${i}`]);
   const show = (key, en) => (has && !english && mine[key]) || en;
@@ -79,13 +89,14 @@ export function ListenN400({ lesson, section, language, t, onDone }) {
           <section className="rounded-card bg-white border-2 border-denim p-5 flex flex-col gap-3">
             <h2 className="text-lg font-bold text-navy">{t('before_you_start')}</h2>
             <ul className="list-disc ps-5 flex flex-col gap-2 m-0" lang={has && !english ? language : 'en'}>
-              {context.map((line, i) => <li key={i} className="text-base text-navy leading-relaxed" dir="auto">{show(`c${i}`, line)}</li>)}
+              {context.map((line, i) => <li key={i} className="text-base text-navy leading-relaxed" dir="auto">{linkify(show(`c${i}`, line))}</li>)}
             </ul>
           </section>
         )}
         {section.questions.map((q, i) => (
           <section key={q.id} className="rounded-card bg-white border border-line p-5 flex flex-col gap-3">
             <h2 className="text-lg font-bold text-navy" dir="auto">{show(`n${i}`, questionName(q.id))}</h2>
+            {notes[q.id] && <span className="self-start rounded-full bg-tint px-3 py-1 text-small font-semibold text-navy" dir="auto">{show(`q${i}`, notes[q.id])}</span>}
             <p className="text-base text-navy leading-relaxed" dir="auto" lang={has && !english ? language : 'en'}>{show(`m${i}`, q.meaning)}</p>
             {(q.words || []).length > 0 && (
               <div className="flex flex-col gap-2">
