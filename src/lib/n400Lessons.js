@@ -6,7 +6,8 @@
 // only "reviewed" lessons). The form wording, meanings, words to know and the
 // officer's phrasings come from the N-400 guide (src/components/n400/
 // n400Content.js); lessons.json adds only the short question names, the
-// "Same question?" choices and the "Spot the word" items.
+// "Same question?" choices, the "Spot the word" items and, for some lessons,
+// a "Before you start" card (`context`) shown in Listen.
 //
 // Five steps: Listen → Same question? → Spot the word → Say what it asks →
 // Ask for help. One star each for Same question?, Spot the word and Say what
@@ -98,6 +99,7 @@ export function n400LessonProblems(content = data, sections = N400_SECTIONS) {
     for (const [i, item] of (l.understand || []).entries()) {
       if (!phrasingOf(item.questionId, item.phrasing)) problems.push(`${at}/understand[${i}]: the phrasing must be one of the guide's officer phrasings for ${item.questionId}`);
     }
+    if (l.context !== undefined && (!Array.isArray(l.context) || !l.context.length || l.context.some((x) => typeof x !== 'string' || !x.trim()))) problems.push(`${at}: context must be a list of short lines`);
     if ((l.same || []).length < 2) problems.push(`${at}: needs at least 2 Same question? items`);
     if ((l.spot || []).length < 2) problems.push(`${at}: needs at least 2 Spot the word items`);
     if ((l.understand || []).length < 1) problems.push(`${at}: needs at least 1 Say what it asks item`);

@@ -27,16 +27,17 @@ function Footer({ children }) {
 
 // The section's meanings and words in the learner's language: the
 // translation pack, or (switch off, no pack) the existing on-demand translation.
-function useSectionTranslation(section, language) {
+function useSectionTranslation(section, context, language) {
   const strings = useMemo(() => {
     const s = {};
+    context.forEach((line, i) => { s[`c${i}`] = line; });
     section.questions.forEach((q, i) => {
       s[`n${i}`] = questionName(q.id);
       s[`m${i}`] = q.meaning;
       (q.words || []).forEach((w, k) => { s[`w${i}_${k}`] = w.definition; });
     });
     return s;
-  }, [section]);
+  }, [section, context]);
   const [mine, setMine] = useState(null);
   useEffect(() => {
     setMine(null);
@@ -56,8 +57,9 @@ function useSectionTranslation(section, language) {
 }
 
 /** Step 1 · Listen: what each question means, and the words to know. */
-export function ListenN400({ section, language, t, onDone }) {
-  const mine = useSectionTranslation(section, language);
+export function ListenN400({ lesson, section, language, t, onDone }) {
+  const context = useMemo(() => lesson.context || [], [lesson]);
+  const mine = useSectionTranslation(section, context, language);
   const [english, setEnglish] = useState(false);
   const has = language !== 'en' && mine && section.questions.every((_, i) => mine[`m${i}`]);
   const show = (key, en) => (has && !english && mine[key]) || en;
@@ -73,6 +75,14 @@ export function ListenN400({ section, language, t, onDone }) {
             </button>
           )}
         </div>
+        {context.length > 0 && (
+          <section className="rounded-card bg-white border-2 border-denim p-5 flex flex-col gap-3">
+            <h2 className="text-lg font-bold text-navy">{t('before_you_start')}</h2>
+            <ul className="list-disc ps-5 flex flex-col gap-2 m-0" lang={has && !english ? language : 'en'}>
+              {context.map((line, i) => <li key={i} className="text-base text-navy leading-relaxed" dir="auto">{show(`c${i}`, line)}</li>)}
+            </ul>
+          </section>
+        )}
         {section.questions.map((q, i) => (
           <section key={q.id} className="rounded-card bg-white border border-line p-5 flex flex-col gap-3">
             <h2 className="text-lg font-bold text-navy" dir="auto">{show(`n${i}`, questionName(q.id))}</h2>

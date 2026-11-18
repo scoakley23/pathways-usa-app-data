@@ -118,11 +118,13 @@ export function contentTexts() {
     ]))))],
     ['course-pictures', texts(Object.values(coursePictures.lessons).flat().map((p) => p.caption))],
     // N-400 lessons (content/n400/lessons.json): the short question names
-    // (Listen), the lesson titles and what each help phrase is for. The form
+    // (Listen), the lesson titles, the "Before you start" lines and what each
+    // help phrase is for. The form
     // wording, officer phrasings, choices and phrases to say stay English.
     ['n400-lessons', texts([
       ...Object.values(N400_QUESTION_NAMES),
       ...N400_LESSONS.map((l) => l.title),
+      ...N400_LESSONS.flatMap((l) => l.context || []),
       ...HELP_PHRASES.map((p) => p.meaning),
     ])],
     // Unit, section, lesson and stop titles and unit descriptions (Prompt 13).
