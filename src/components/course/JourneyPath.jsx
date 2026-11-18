@@ -143,7 +143,7 @@ export default function JourneyPath({ unit, t, rtl, onStop }) {
                       ? <span className="relative"><StopIcon type={stop.type} unitIcon={unit.icon} className="w-6 h-6" /><Lock className="absolute -bottom-2 -end-3 w-3.5 h-3.5" aria-hidden="true" /></span>
                       : <StopIcon type={stop.type} unitIcon={unit.icon} className="w-7 h-7" />}
                 </button>
-                {stop.type === 'lesson' && stop.state === 'done' && <span className="mt-1.5"><Stars n={stop.stars} /></span>}
+                {(stop.type === 'lesson' || (stop.type === 'n400' && stop.lessonId)) && stop.state === 'done' && <span className="mt-1.5"><Stars n={stop.stars} /></span>}
                 <span dir="auto" className={`mt-2 text-center text-base leading-tight ${current ? 'font-bold text-navy' : locked ? 'text-muted' : 'text-navy'}`}>{label}</span>
                 {(soon || draft) && (
                   <span className="mt-0.5 text-small text-muted">{[soon ? t('coming_soon') : null, draft ? t('draft') : null].filter(Boolean).join(' · ')}</span>

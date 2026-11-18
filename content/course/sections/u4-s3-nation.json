@@ -46,6 +46,12 @@
       "title": "Speak it!"
     },
     {
+      "id": "u4-n400",
+      "type": "n400",
+      "title": "N-400: Crimes and offenses",
+      "lessonId": "n400-crimes-offenses"
+    },
+    {
       "id": "u4-practice-interview",
       "type": "practiceInterview",
       "title": "Unit practice interview"

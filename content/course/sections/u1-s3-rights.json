@@ -39,6 +39,12 @@
       "title": "Speak it!"
     },
     {
+      "id": "u1-n400",
+      "type": "n400",
+      "title": "N-400: Time outside the U.S.",
+      "lessonId": "n400-time-outside-us"
+    },
+    {
       "id": "u1-practice-interview",
       "type": "practiceInterview",
       "title": "Unit practice interview"

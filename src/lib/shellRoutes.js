@@ -52,7 +52,8 @@ export const INTERVIEW_LINKS = [
   { id: 'mock', label: 'Practice interview', body: 'Answer the officer’s questions out loud and get scores.', path: '/study?tab=practice&mode=interview' },
   { id: 'day', label: 'What happens on the day', body: 'What to expect, and a full practice run of the day.', path: '/interview-day' },
   { id: 'n400', label: 'N-400 guide', body: 'What each question on the form means and how the officer may say it.', path: '/n400-guide' },
-  { id: 'coach', label: 'Practice the N-400 with Amio', body: 'Learn to understand the officer’s N-400 questions.', path: '/n400-coach' },
+  // The old N-400 coach address now opens the learner's next N-400 lesson.
+  { id: 'coach', label: 'Next N-400 lesson', body: 'Learn to understand the officer’s N-400 questions.', path: '/n400-coach' },
 ];
 
 // What Me lists. `when` limits a row to some learners: 'staff' (a partner

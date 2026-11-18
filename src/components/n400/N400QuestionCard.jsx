@@ -4,21 +4,18 @@ import { ArrowRight, ChevronDown, Loader2, Volume2 } from 'lucide-react';
 import { Card, Eyebrow, Tag } from '@/components/pathways/ui';
 import { speakText } from '@/components/utils/textToSpeech';
 import { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
-import { practiceAnswer, PRACTICE_PERSON_LABEL } from '@/lib/practicePerson';
 import SayItBack from './SayItBack';
 import useN400Translation from './useN400Translation';
 
 // One N-400 question card (frame R30N400Card): "On the form" (the form's
 // wording, word for word), "Said in your language" (the plain meaning from
 // n400Content.js; machine-translated for other languages, with a note),
-// words to know, "The officer might say" with Listen, the practice person's
-// answer (content/n400/practice-person.json, reviewed only; "practice person,
-// not real"), the lawyer card, and Say it back. There is deliberately NO field
-// for the learner to answer the question, and nothing is saved.
+// words to know, "The officer might say" with Listen, the lawyer card, and
+// Say it back. There is deliberately NO field for the learner to answer the
+// question, no sample answer, and nothing is saved.
 export default function N400QuestionCard({ sectionId, question, isAdmin, language }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const { translation, isTranslating } = useN400Translation(sectionId, question, language);
-  const practice = practiceAnswer(question.id, { isAdmin });
   const mine = language && language !== 'en';
   const dir = mine && RTL_LANGUAGES.includes(language) ? 'rtl' : 'ltr';
 
@@ -30,7 +27,6 @@ export default function N400QuestionCard({ sectionId, question, isAdmin, languag
   };
 
   const sayItBackTargets = [
-    ...(practice ? [{ key: 'practice', label: `${practice.name}'s answer`, text: practice.answer }] : []),
     { key: 'question', label: 'The whole question', text: question.official },
     ...question.words.map((w, i) => ({ key: `word-${i}`, label: w.word, text: w.word })),
   ];
@@ -128,22 +124,6 @@ export default function N400QuestionCard({ sectionId, question, isAdmin, languag
               </li>
             ))}
           </ul>
-        </Card>
-      )}
-
-      {/* The practice person's answer (made up, reviewed content only) */}
-      {practice && (
-        <Card className="flex items-start gap-3">
-          <span className="w-12 h-12 shrink-0 rounded-full bg-tint grid place-items-center text-lg font-bold" aria-hidden="true">
-            {practice.name.charAt(0)}
-          </span>
-          <div className="min-w-0">
-            <p className="text-small text-muted">
-              {practice.name} · {PRACTICE_PERSON_LABEL}
-              {practice.draft && <span className="ms-2 font-semibold text-not-yet">(draft, admins only)</span>}
-            </p>
-            <p className="mt-0.5 text-[17px] font-bold leading-snug">“{practice.answer}”</p>
-          </div>
         </Card>
       )}
 

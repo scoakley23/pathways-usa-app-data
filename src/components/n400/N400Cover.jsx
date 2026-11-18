@@ -2,12 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { AlertTriangle, ArrowRight, MessageSquareText } from 'lucide-react';
 import { Card, Eyebrow } from '@/components/pathways/ui';
-import { PRACTICE_PERSON } from '@/lib/practicePerson';
 import N400SectionList from './N400SectionList';
 
 // The guide's home (frame R30N400): the warning, "n of 7 sections read", the
-// sections as numbered rows, "Practice with Amio" (the N-400 coach:
-// understanding only), "Talk to a lawyer first" with a not-yet border, and
+// sections as numbered rows, "N-400 lessons" (understanding only; the old
+// coach address opens the next one), "Talk to a lawyer first" with a not-yet border, and
 // "We never save your answers". (The file keeps its old name; it used to be
 // the folder cover.)
 export default function N400Cover({ sections, completedIds = [], countFor, onSelect, tutorName }) {
@@ -17,9 +16,7 @@ export default function N400Cover({ sections, completedIds = [], countFor, onSel
       <Card className="border-2 border-not-yet bg-not-yet-bg">
         <p className="text-base leading-relaxed">
           <strong>Never type your own answers here.</strong>{' '}
-          {PRACTICE_PERSON.person.status === 'reviewed'
-            ? 'You practice as a made-up person.'
-            : 'You learn what each question means.'}
+          You learn what each question means.
         </p>
       </Card>
       <Eyebrow>{read} of {sections.length} sections read</Eyebrow>
@@ -34,8 +31,8 @@ export default function N400Cover({ sections, completedIds = [], countFor, onSel
             <MessageSquareText className="w-6 h-6" aria-hidden="true" />
           </span>
           <span className="min-w-0 flex-1">
-            <span className="block text-lg font-bold leading-tight">Practice with {tutorName || 'Amio'}</span>
-            <span className="mt-1 block text-base text-muted">Say what each question asks. Your answers are never saved.</span>
+            <span className="block text-lg font-bold leading-tight">N-400 lessons with {tutorName || 'Amio'}</span>
+            <span className="mt-1 block text-base text-muted">Learn to understand each question the way the officer may ask it. You never answer here.</span>
           </span>
           <ArrowRight className="w-5 h-5 shrink-0 mt-1 text-muted rtl:rotate-180" aria-hidden="true" />
         </span>

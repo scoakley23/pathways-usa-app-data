@@ -46,6 +46,12 @@
       "title": "Speak it!"
     },
     {
+      "id": "u6-n400",
+      "type": "n400",
+      "title": "N-400: Selective Service and the military",
+      "lessonId": "n400-selective-service-military"
+    },
+    {
       "id": "u6-practice-interview",
       "type": "practiceInterview",
       "title": "Unit practice interview"

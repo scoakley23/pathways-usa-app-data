@@ -42,11 +42,14 @@ export function createCoursePlay({ provider = DATA_PROVIDER, auth = appAuth, les
       await review.afterPractice(questionId, false);
     },
 
-    /** Save the run (results from the player); never lowers saved stars. */
-    async saveRun(lessonId, results, now = new Date()) {
+    /**
+     * Save the run (results from the player); never lowers saved stars.
+     * `rules` = another lesson kind's steps and stars (N-400 lessons).
+     */
+    async saveRun(lessonId, results, now = new Date(), rules = null) {
       if (!on) return null;
       const existing = await lessonProgress.get(lessonId);
-      const row = progressRow(lessonId, results, existing, now);
+      const row = progressRow(lessonId, results, existing, now, rules);
       await lessonProgress.save(existing, row);
       return row;
     },

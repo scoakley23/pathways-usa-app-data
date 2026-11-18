@@ -393,7 +393,8 @@
   {
    "text": "+1 star",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "n400-lessons"
    ]
   },
   {
@@ -429,7 +430,8 @@
   {
    "text": "1 star",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "n400-lessons"
    ]
   },
   {
@@ -762,6 +764,12 @@
    ]
   },
   {
+   "text": "A group that used weapons against people",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "A growing country",
    "from": [
     "course-titles"
@@ -1069,6 +1077,12 @@
    ]
   },
   {
+   "text": "After Unit {unit}",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "After World War II, the United States and the Soviet Union became rivals. This was called the Cold War.",
    "from": [
     "course-lessons"
@@ -1192,6 +1206,12 @@
    "text": "Also today",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "Always tell the truth. If “yes” might be true for you, talk to a lawyer before you file.",
+   "from": [
+    "n400-lessons"
    ]
   },
   {
@@ -1623,6 +1643,12 @@
    ]
   },
   {
+   "text": "Ask for help",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "Ask me about the civics test, reading, writing, or speaking English for your interview.",
    "from": [
     "ask"
@@ -1635,6 +1661,24 @@
    ]
   },
   {
+   "text": "Ask the officer to say the question again.",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
+   "text": "Ask the officer to use easier words.",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
+   "text": "Ask what a word means.",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "Asked in an official way, usually with a form.",
    "from": [
     "n400"
@@ -1644,6 +1688,12 @@
    "text": "Asked someone to join.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "Asking to be excused from military service",
+   "from": [
+    "n400-lessons"
    ]
   },
   {
@@ -1696,7 +1746,8 @@
    "from": [
     "checkpoints",
     "course",
-    "lesson-player"
+    "lesson-player",
+    "n400-lessons"
    ]
   },
   {
@@ -2052,7 +2103,8 @@
    "text": "Check",
    "from": [
     "checkpoints",
-    "lesson-player"
+    "lesson-player",
+    "n400-lessons"
    ]
   },
   {
@@ -2084,6 +2136,7 @@
    "from": [
     "checkpoints",
     "lesson-player",
+    "n400-lessons",
     "sign-in"
    ]
   },
@@ -2110,6 +2163,18 @@
    "text": "Chief executive of a state government, similar to the President at federal level",
    "from": [
     "lessons"
+   ]
+  },
+  {
+   "text": "Children under 15 in armed groups",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
+   "text": "Children under 15 in fighting",
+   "from": [
+    "n400-lessons"
    ]
   },
   {
@@ -2350,7 +2415,8 @@
   {
    "text": "Close lesson",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "n400-lessons"
    ]
   },
   {
@@ -2425,6 +2491,12 @@
    "text": "Communism / Nuclear war",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "Communist or totalitarian groups",
+   "from": [
+    "n400-lessons"
    ]
   },
   {
@@ -2614,7 +2686,8 @@
    "from": [
     "getting-started",
     "home",
-    "lesson-player"
+    "lesson-player",
+    "n400-lessons"
    ]
   },
   {
@@ -2638,7 +2711,8 @@
   {
    "text": "Continue: {step}",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "n400-lessons"
    ]
   },
   {
@@ -2666,6 +2740,12 @@
    ]
   },
   {
+   "text": "Court-martial or a discharge that was not honorable",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "Court-ordered money paid to a former spouse after divorce.",
    "from": [
     "n400"
@@ -2687,6 +2767,12 @@
    "text": "Crimes and Offenses",
    "from": [
     "lawyer-checklist"
+   ]
+  },
+  {
+   "text": "Crimes and arrests",
+   "from": [
+    "n400-lessons"
    ]
   },
   {
@@ -2927,6 +3013,12 @@
    ]
   },
   {
+   "text": "Discharged for not being a citizen",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "Discover how the American colonies gained independence from Great Britain",
    "from": [
     "lessons"
@@ -3087,6 +3179,7 @@
    "text": "Done",
    "from": [
     "course",
+    "n400-lessons",
     "onboarding",
     "pilot",
     "talk",
@@ -3096,7 +3189,8 @@
   {
    "text": "Done for today",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "n400-lessons"
    ]
   },
   {
@@ -3112,6 +3206,12 @@
    ]
   },
   {
+   "text": "Don’t answer the question. Tell me in English what the officer wants to know.",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "Double Jeopardy",
    "from": [
     "key-words"
@@ -3122,7 +3222,14 @@
    "from": [
     "course",
     "lesson-player",
+    "n400-lessons",
     "today-plan"
+   ]
+  },
+  {
+   "text": "Drugs, smuggling, prostitution and other acts",
+   "from": [
+    "n400-lessons"
    ]
   },
   {
@@ -3357,6 +3464,24 @@
    ]
   },
   {
+   "text": "Ever registered to vote or voted",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
+   "text": "Ever removed or deported",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
+   "text": "Ever said you were a U.S. citizen",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "Every U.S. President since John Adams has lived in the White House",
    "from": [
     "key-words"
@@ -3489,6 +3614,12 @@
    ]
   },
   {
+   "text": "False information to U.S. officials",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "Fast",
    "from": [
     "today-plan"
@@ -3598,6 +3729,12 @@
    ]
   },
   {
+   "text": "Filing taxes as a “nonresident”",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "Find my program",
    "from": [
     "my-tutor"
@@ -3606,7 +3743,8 @@
   {
    "text": "Finish all 5 steps for 3 stars",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "n400-lessons"
    ]
   },
   {
@@ -3619,6 +3757,12 @@
    "text": "Finished everything you were required to do.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "Finishing probation, parole or a sentence",
+   "from": [
+    "n400-lessons"
    ]
   },
   {
@@ -4310,6 +4454,12 @@
    ]
   },
   {
+   "text": "Groups that use violence",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "Guarantees equal protection and due process to all citizens",
    "from": [
     "lessons"
@@ -4714,13 +4864,15 @@
   {
    "text": "Hear it again",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "n400-lessons"
    ]
   },
   {
    "text": "Hear “{word}”",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "n400-lessons"
    ]
   },
   {
@@ -4751,6 +4903,12 @@
    "text": "Here",
    "from": [
     "words"
+   ]
+  },
+  {
+   "text": "Here is what the officer may ask about this part of the form.",
+   "from": [
+    "n400-lessons"
    ]
   },
   {
@@ -5359,7 +5517,8 @@
    "text": "In English",
    "from": [
     "ask-screen",
-    "lesson-player"
+    "lesson-player",
+    "n400-lessons"
    ]
   },
   {
@@ -5384,7 +5543,8 @@
    "text": "In my language",
    "from": [
     "ask-screen",
-    "lesson-player"
+    "lesson-player",
+    "n400-lessons"
    ]
   },
   {
@@ -5406,9 +5566,27 @@
    ]
   },
   {
+   "text": "In the U.S. armed forces now",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "In the U.S., the prosecution must prove guilt beyond a reasonable doubt",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "In the interview, you can always ask for help. Say each phrase out loud.",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
+   "text": "In this question",
+   "from": [
+    "n400-lessons"
    ]
   },
   {
@@ -6000,6 +6178,18 @@
    ]
   },
   {
+   "text": "Learn to understand each question on the form, the way the officer may ask it.",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
+   "text": "Learned what the questions mean",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "Learning and practicing how to do something.",
    "from": [
     "n400"
@@ -6009,6 +6199,18 @@
    "text": "Leave this program",
    "from": [
     "my-tutor"
+   ]
+  },
+  {
+   "text": "Leaving the U.S. to avoid the draft",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
+   "text": "Leaving the armed forces without permission",
+   "from": [
+    "n400-lessons"
    ]
   },
   {
@@ -6056,7 +6258,8 @@
   {
    "text": "Lesson complete!",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "n400-lessons"
    ]
   },
   {
@@ -6208,6 +6411,7 @@
    "text": "Listen",
    "from": [
     "lesson-player",
+    "n400-lessons",
     "today-plan"
    ]
   },
@@ -6263,7 +6467,8 @@
    "text": "Listening… tap to stop",
    "from": [
     "ask-screen",
-    "lesson-player"
+    "lesson-player",
+    "n400-lessons"
    ]
   },
   {
@@ -6354,6 +6559,12 @@
    "text": "Lowered the voting age to 18 years old",
    "from": [
     "lessons"
+   ]
+  },
+  {
+   "text": "Lying to enter the U.S. or get benefits",
+   "from": [
+    "n400-lessons"
    ]
   },
   {
@@ -6489,6 +6700,18 @@
    ]
   },
   {
+   "text": "Match the officer’s words to the form",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
+   "text": "Matched the officer’s words to the form",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "May",
    "from": [
     "words"
@@ -6544,6 +6767,12 @@
    ]
   },
   {
+   "text": "Men in the U.S. between ages 18 and 26",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "Mexican-American War",
    "from": [
     "lessons"
@@ -6565,6 +6794,12 @@
    "text": "Midwest Region",
    "from": [
     "lessons"
+   ]
+  },
+  {
+   "text": "Military, police or armed groups",
+   "from": [
+    "n400-lessons"
    ]
   },
   {
@@ -6698,6 +6933,61 @@
    "text": "N-400 guide",
    "from": [
     "interview-tab"
+   ]
+  },
+  {
+   "text": "N-400 lessons",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
+   "text": "N-400: Citizenship, voting and taxes",
+   "from": [
+    "course-titles",
+    "n400-lessons"
+   ]
+  },
+  {
+   "text": "N-400: Crimes and offenses",
+   "from": [
+    "course-titles",
+    "n400-lessons"
+   ]
+  },
+  {
+   "text": "N-400: Groups and violence",
+   "from": [
+    "course-titles",
+    "n400-lessons"
+   ]
+  },
+  {
+   "text": "N-400: Immigration history",
+   "from": [
+    "course-titles",
+    "n400-lessons"
+   ]
+  },
+  {
+   "text": "N-400: Oath questions",
+   "from": [
+    "course-titles",
+    "n400-lessons"
+   ]
+  },
+  {
+   "text": "N-400: Selective Service and the military",
+   "from": [
+    "course-titles",
+    "n400-lessons"
+   ]
+  },
+  {
+   "text": "N-400: Time outside the U.S.",
+   "from": [
+    "course-titles",
+    "n400-lessons"
    ]
   },
   {
@@ -7052,7 +7342,14 @@
    "text": "Next",
    "from": [
     "checkpoints",
-    "lesson-player"
+    "lesson-player",
+    "n400-lessons"
+   ]
+  },
+  {
+   "text": "Next N-400 lesson",
+   "from": [
+    "interview-tab"
    ]
   },
   {
@@ -7128,6 +7425,12 @@
    ]
   },
   {
+   "text": "No star this time. You’ll get it next time.",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "No, I'm studying on my own",
    "from": [
     "getting-started"
@@ -7174,7 +7477,8 @@
   {
    "text": "Not quite yet",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "n400-lessons"
    ]
   },
   {
@@ -7218,6 +7522,12 @@
    "text": "Not yet. Look at each word, then try again.",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Not yet. This is the one:",
+   "from": [
+    "n400-lessons"
    ]
   },
   {
@@ -7378,6 +7688,12 @@
    ]
   },
   {
+   "text": "On the form",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "One",
    "from": [
     "words"
@@ -7420,6 +7736,12 @@
    ]
   },
   {
+   "text": "One small word can change the question. What does it mean here?",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "Only U.S. citizens can vote in federal elections, run for federal office and serve on a jury.",
    "from": [
     "course-lessons"
@@ -7434,7 +7756,8 @@
   {
    "text": "Only your steps and stars are saved. Nothing you said is kept.",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "n400-lessons"
    ]
   },
   {
@@ -7618,6 +7941,12 @@
    ]
   },
   {
+   "text": "Phrases that help in the room",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "Pick a month",
    "from": [
     "today"
@@ -7711,7 +8040,8 @@
   {
    "text": "Practice officer · AI, not a real person",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "n400-lessons"
    ]
   },
   {
@@ -7724,19 +8054,14 @@
    "text": "Practice only: nothing is saved yet.",
    "from": [
     "checkpoints",
-    "lesson-player"
+    "lesson-player",
+    "n400-lessons"
    ]
   },
   {
    "text": "Practice out loud with an AI officer.",
    "from": [
     "home"
-   ]
-  },
-  {
-   "text": "Practice the N-400 with Amio",
-   "from": [
-    "interview-tab"
    ]
   },
   {
@@ -7749,6 +8074,12 @@
    "text": "Practice this lesson again",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "Practiced asking for help",
+   "from": [
+    "n400-lessons"
    ]
   },
   {
@@ -8194,6 +8525,12 @@
    ]
   },
   {
+   "text": "Registering for the Selective Service",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "Release from military service.",
    "from": [
     "n400"
@@ -8203,6 +8540,12 @@
    "text": "Released from a job or service.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "Removal or deportation proceedings",
+   "from": [
+    "n400-lessons"
    ]
   },
   {
@@ -8418,6 +8761,7 @@
    "from": [
     "ask-screen",
     "lesson-player",
+    "n400-lessons",
     "reading-tips"
    ]
   },
@@ -8428,9 +8772,21 @@
    ]
   },
   {
+   "text": "Said what the officer is asking",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "Said you would harm someone.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "Same question?",
+   "from": [
+    "n400-lessons"
    ]
   },
   {
@@ -8736,6 +9092,12 @@
    ]
   },
   {
+   "text": "Say it in English",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "Say it in four parts: a-MER-i-ca.",
    "from": [
     "reading-tips"
@@ -8862,6 +9224,24 @@
    ]
   },
   {
+   "text": "Say this",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
+   "text": "Say what it asks",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
+   "text": "Say what the question means, not your answer.",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "Saying or writing something false to get something.",
    "from": [
     "n400"
@@ -8956,6 +9336,12 @@
    "text": "Self-government / Popular sovereignty / Consent of the governed / People should govern themselves / (Example of) social contract",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "Selling or moving weapons",
+   "from": [
+    "n400-lessons"
    ]
   },
   {
@@ -9054,6 +9440,12 @@
    "text": "Serving for life helps them stay independent of politics.",
    "from": [
     "course-lessons"
+   ]
+  },
+  {
+   "text": "Serving in the U.S. armed forces",
+   "from": [
+    "n400-lessons"
    ]
   },
   {
@@ -9195,6 +9587,7 @@
    "text": "Skip for now",
    "from": [
     "lesson-player",
+    "n400-lessons",
     "onboarding"
    ]
   },
@@ -9207,7 +9600,8 @@
   {
    "text": "Skipped for now",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "n400-lessons"
    ]
   },
   {
@@ -9409,6 +9803,18 @@
    ]
   },
   {
+   "text": "Spot the word",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
+   "text": "Spotted the words that change the meaning",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "Start",
    "from": [
     "course",
@@ -9433,7 +9839,8 @@
   {
    "text": "Start lesson",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "n400-lessons"
    ]
   },
   {
@@ -9574,7 +9981,8 @@
   {
    "text": "Step {n} of 5 · {name}",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "n400-lessons"
    ]
   },
   {
@@ -9605,6 +10013,12 @@
    "text": "Supported and promoted.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "Supporting the Constitution",
+   "from": [
+    "n400-lessons"
    ]
   },
   {
@@ -9655,7 +10069,8 @@
    "text": "Sure. Here’s the question again.",
    "from": [
     "checkpoints",
-    "lesson-player"
+    "lesson-player",
+    "n400-lessons"
    ]
   },
   {
@@ -9734,6 +10149,7 @@
    "text": "Talk to a lawyer first",
    "from": [
     "ask",
+    "n400-lessons",
     "talk"
    ]
   },
@@ -9793,6 +10209,12 @@
    ]
   },
   {
+   "text": "Taxes you owe now",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "Teach",
    "from": [
     "today-plan"
@@ -9808,6 +10230,12 @@
    "text": "Technology Innovation",
    "from": [
     "lessons"
+   ]
+  },
+  {
+   "text": "Tell Amio what the officer is asking",
+   "from": [
+    "n400-lessons"
    ]
   },
   {
@@ -9896,6 +10324,12 @@
    ]
   },
   {
+   "text": "That sounded like a different phrase. Try this one again.",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "That's all my answers for today. Ask me again tomorrow.",
    "from": [
     "ask-screen"
@@ -9911,6 +10345,12 @@
    "text": "That's one more answer you know.",
    "from": [
     "tutor"
+   ]
+  },
+  {
+   "text": "That’s right!",
+   "from": [
+    "n400-lessons"
    ]
   },
   {
@@ -11121,6 +11561,12 @@
    ]
   },
   {
+   "text": "The officer may use other words. Which question on the form is the officer asking?",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "The officer would accept that.",
    "from": [
     "lesson-player"
@@ -11310,6 +11756,12 @@
    "text": "The way a country is organized and run.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "The words that change the meaning",
+   "from": [
+    "n400-lessons"
    ]
   },
   {
@@ -11705,7 +12157,8 @@
   {
    "text": "This lesson isn’t open yet.",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "n400-lessons"
    ]
   },
   {
@@ -12052,6 +12505,12 @@
    ]
   },
   {
+   "text": "Titles of nobility",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "To",
    "from": [
     "words"
@@ -12150,6 +12609,12 @@
    ]
   },
   {
+   "text": "Today you’ll learn to understand",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "Today's goal: {n} tasks, about {m} minutes. Let's go.",
    "from": [
     "today"
@@ -12216,6 +12681,12 @@
    ]
   },
   {
+   "text": "Torture, genocide and other harm to people",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "Torturing a prisoner would violate the 8th Amendment",
    "from": [
     "key-words"
@@ -12247,10 +12718,17 @@
    ]
   },
   {
+   "text": "Trips outside the United States",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "Try again",
    "from": [
     "checkpoints",
-    "lesson-player"
+    "lesson-player",
+    "n400-lessons"
    ]
   },
   {
@@ -12306,7 +12784,14 @@
    "from": [
     "ask-screen",
     "checkpoints",
-    "lesson-player"
+    "lesson-player",
+    "n400-lessons"
+   ]
+  },
+  {
+   "text": "Type what the officer is asking, in English",
+   "from": [
+    "n400-lessons"
    ]
   },
   {
@@ -12350,6 +12835,12 @@
    "text": "USCIS asks whether you failed to support your dependents. A lawyer can help you answer this safely.",
    "from": [
     "lawyer-checklist"
+   ]
+  },
+  {
+   "text": "Unable to take the Oath because of a disability",
+   "from": [
+    "n400-lessons"
    ]
   },
   {
@@ -12437,6 +12928,12 @@
    ]
   },
   {
+   "text": "Understanding the Oath of Allegiance",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "Unit practice interview",
    "from": [
     "course",
@@ -12466,6 +12963,12 @@
    "text": "Unit {n} · {section}",
    "from": [
     "onboarding"
+   ]
+  },
+  {
+   "text": "Unit {unit} · N-400 lesson",
+   "from": [
+    "n400-lessons"
    ]
   },
   {
@@ -12820,6 +13323,12 @@
    ]
   },
   {
+   "text": "We couldn’t check this right now. You can try again or go on.",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "We couldn’t find that code. Check it with your teacher.",
    "from": [
     "my-tutor"
@@ -12935,6 +13444,12 @@
    ]
   },
   {
+   "text": "Weapons or military training",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "Welcome",
    "from": [
     "me",
@@ -12957,6 +13472,12 @@
    "text": "Well done. You are learning a lot.",
    "from": [
     "tutor"
+   ]
+  },
+  {
+   "text": "Well said!",
+   "from": [
+    "n400-lessons"
    ]
   },
   {
@@ -13201,6 +13722,12 @@
    ]
   },
   {
+   "text": "What each question means, in your language",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "What founding document said the American colonies were free from Britain?",
    "from": [
     "civics-questions"
@@ -13437,6 +13964,12 @@
    ]
   },
   {
+   "text": "What it means",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "What major event happened on September 11, 2001 in the United States?",
    "from": [
     "civics-questions"
@@ -13500,6 +14033,12 @@
    "text": "What the President does",
    "from": [
     "course-titles"
+   ]
+  },
+  {
+   "text": "What the question is asking",
+   "from": [
+    "n400-lessons"
    ]
   },
   {
@@ -14107,6 +14646,30 @@
    ]
   },
   {
+   "text": "Willing to bear arms",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
+   "text": "Willing to do noncombatant service",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
+   "text": "Willing to do work of national importance",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
+   "text": "Willing to take the full Oath",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "With rights come responsibilities. Citizens have a duty to obey laws that apply equally to everyone. Paying taxes funds government services like schools, roads, defense, and welfare programs. Serving on juries when called ensures that trials are fair and justice is served by a group of peers.\n\nCitizens should vote in elections to ensure their voices are heard and that leaders remain accountable. Educating oneself about issues and candidates helps ensure informed voting. Citizens can volunteer in their communities and participate in civic organizations. Respecting the rights and property of others is essential for a functioning society.\n\nParents have responsibility to educate their children. Citizens should respect the environment for future generations. Many believe citizens also have responsibility to understand the Constitution and their rights. These responsibilities help maintain the strong democracy that protects everyone's rights. When citizens fulfill these responsibilities, government works more effectively and communities thrive.",
    "from": [
     "lessons"
@@ -14137,6 +14700,12 @@
    ]
   },
   {
+   "text": "Words to know · tap to hear",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "Worked as a member of a group, like the military.",
    "from": [
     "n400"
@@ -14146,6 +14715,12 @@
    "text": "Worked without being paid.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "Working where people were held",
+   "from": [
+    "n400-lessons"
    ]
   },
   {
@@ -14393,6 +14968,12 @@
    ]
   },
   {
+   "text": "You learn what the questions mean. You never answer them here, and nothing about you is asked or saved.",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "You need {need} of {total} to pass. Try it again when you’re ready.",
    "from": [
     "checkpoints"
@@ -14431,7 +15012,14 @@
   {
    "text": "You said",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "n400-lessons"
+   ]
+  },
+  {
+   "text": "You understood the question.",
+   "from": [
+    "n400-lessons"
    ]
   },
   {
@@ -16750,7 +17338,8 @@
    "text": "{n} of {total}",
    "from": [
     "course",
-    "interview-tab"
+    "interview-tab",
+    "n400-lessons"
    ]
   },
   {
@@ -16794,6 +17383,7 @@
    "from": [
     "course",
     "lesson-player",
+    "n400-lessons",
     "today-plan"
    ]
   },
