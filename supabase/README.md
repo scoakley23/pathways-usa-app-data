@@ -1,8 +1,8 @@
-# Supabase (Standalone Step 1)
+# Supabase (Standalone Steps 1–5)
 
-The database for Pathways after it leaves Base44. **The app doesn't use its
-data yet**: screens still talk to Base44 until Standalone Step 3. Sign-in
-(Step 2) is ready behind a switch; see "Sign-in" below.
+The database and server code for Pathways after it leaves Base44. The app
+uses it when the switch is on (`VITE_AUTH_PROVIDER=supabase`, see "Turning
+the switch on" below); with the switch off it still uses Base44.
 
 | File | What it is |
 |---|---|
@@ -10,6 +10,9 @@ data yet**: screens still talk to Base44 until Standalone Step 3. Sign-in
 | `migrations/20261114000002_functions.sql` | Partner program actions and "Delete all my data" |
 | `migrations/20261114000003_content.sql` | The real content (questions, sentences, words, lessons, flashcards, 5,588 places), **generated** from `content/base44-export/` by `scripts/supabase/build-content-migration.mjs` |
 | `migrations/20261115000001_course_data.sql` | Prompt 4: two passes at Write it level 1 move the learner to level 2 (`write_level1_passes` 0-2, a trigger sets `write_level`), and the old spaced-review fields (`ease_factor`, `interval`) leave `user_progress`: `review_items` is the one review schedule |
+| `migrations/20261116000001_partner_counts.sql` | Prompt 11: `program_summary()` also counts stars and checkpoints passed |
+| `migrations/20261117000001_ai_usage.sql` | Step 4: `ai_usage` and `take_ai_request()`, the daily AI limits (counts only, today only) |
+| `migrations/20261118000001_support_limit.sql` | Step 5: the "Talk to a person" limit (3 a day) in `take_ai_request('support')` |
 | `seed.sql` | **Fake** accounts and progress for a local Supabase only (`@example.test`); never pushed |
 | `tests/` | The stand-in for Supabase's auth used by `src/lib/supabaseRules.test.js` (PGlite, runs in `npm test`) |
 | `config.toml` | Supabase CLI settings, including sign-in for the local stack |
@@ -31,26 +34,48 @@ Every learner table is deleted together with the login, so
 
 ## Apply it to your Supabase project (you run this)
 
-On your computer, with the [Supabase CLI](https://supabase.com/docs/guides/local-development/cli/getting-started) installed:
+On your computer, with the [Supabase CLI](https://supabase.com/docs/guides/local-development/cli/getting-started) installed (version 3 or later).
+Run every command from inside the project folder; a new Terminal window
+starts in your home folder, so go there first:
+
+```bash
+cd ~/pathways-usa-app-data
+```
 
 ```bash
 supabase login
 ```
 
-```bash
-supabase link --project-ref <your project ref>
-```
+Link this folder to the project. Our project ref is `myrkrrvigxzgfiznizvj`
+(20 lowercase letters, also in the dashboard address
+`supabase.com/dashboard/project/…`). It is **not** the `sb_publishable_…` key.
+Type it as is, with no `< >` around it (in zsh, `<` and `>` cause
+`parse error near '\n'`):
 
 ```bash
-supabase db push
+supabase link --project-ref myrkrrvigxzgfiznizvj
 ```
 
-The project ref is in your Supabase dashboard URL. `db push` asks for the
-database password; type it there, never in a chat. It applies the three
-migrations, including the content. It does **not** load `seed.sql`.
+Apply the migrations to the real project. `--remote` matters: without it,
+CLI version 3 aims at a local test database that needs Docker
+(`ECONNREFUSED 127.0.0.1:54322`):
+
+```bash
+supabase db push --remote
+```
+
+It lists the migrations it hasn't applied yet and asks you to confirm. If it
+asks for the database password, type it there, never in a chat (reset it in
+Project Settings → Database). It applies every migration, including the
+content. It does **not** load `seed.sql`. Run it again after new migrations
+arrive (`git pull` first).
+
+If a `supabase secrets` or `supabase functions` command ever says it's aiming
+at the "local stack", add `--project-ref myrkrrvigxzgfiznizvj` to it.
 
 **Make yourself an admin** (Supabase dashboard → SQL editor, after you've
-signed in to the app once with your email, with the sign-in switch on):
+signed in to the app once with your email, with the sign-in switch on).
+Replace `you@example.org` with your email, keeping the single quotes:
 
 ```sql
 update auth.users
@@ -58,8 +83,18 @@ set raw_app_meta_data = raw_app_meta_data || '{"role": "admin"}'
 where email = 'you@example.org';
 ```
 
-Then sign out and sign in again: the admin role reaches the app with the
-next login.
+"Success. No rows returned" appears even when the email matched nobody (a
+typo, or that email hasn't signed in yet), so check it:
+
+```sql
+select email, raw_app_meta_data
+from auth.users
+where email = 'you@example.org';
+```
+
+One row with `"role":"admin"` means it worked. Then sign out and sign in
+again: the admin role reaches the app with the next login, and Me shows an
+Admin link.
 
 ## Sign-in (Standalone Step 2)
 
@@ -127,19 +162,68 @@ add a CAPTCHA (Cloudflare Turnstile, Authentication → Attack Protection).
 | `functions/pilot-reminders/` | Pilot check-in reminder emails (Step 5): admins only (anyone else gets 404); the "Send due reminders" button in Admin → Pilot. Uses the shared rules (`reminderPlan()` in `_shared/pilotCheckIns.js`) through `_shared/reminderJob.js`, the email text from the translation pack (`_shared/reminderTexts.generated.js`, `npm run email:texts`; English otherwise), sends through Resend, records each in `check_in_reminders`, returns counts only. Needs `RESEND_API_KEY` |
 | `functions/pilot-report/` | The admin pilot dashboard (`/admin/pilot`): admins only (anyone else gets 404); reads the pilot learners' rows with the service role and returns one summary per learner keyed by `pilot_id`, never an email, name or login id. The math is `functions/_shared/pilotReport.js`, an exact copy of `base44/shared/pilotReport.js` (a test checks they match; change both together) |
 
-Deploy (on your computer, after `supabase link`; again whenever a function's folder changes):
+Deploy (on your computer, in the project folder, after `supabase link`;
+again whenever a function's folder changes).
+
+**Secrets first.** Put the real key straight after the `=`: no spaces, no
+quotes, no brackets. A placeholder left in by mistake is saved as the secret
+(the function is then refused); running the command again with the real key
+replaces it. Type keys in your terminal only, never in a chat.
+
+| Secret | Where to get it |
+|---|---|
+| `ANTHROPIC_API_KEY` | console.anthropic.com → API Keys (starts with `sk-ant-`) |
+| `GEOCODIO_API_KEY` | geocod.io → API Keys (the free tier is enough) |
+| `RESEND_API_KEY` | resend.com → API Keys (starts with `re_`); the `pathwaysusa.org` domain must show as verified under Domains |
+
+```bash
+supabase secrets set ANTHROPIC_API_KEY=sk-ant-your-whole-key
+```
+
+```bash
+supabase secrets set GEOCODIO_API_KEY=your-whole-key
+```
+
+```bash
+supabase secrets set RESEND_API_KEY=re_your-whole-key
+```
+
+Optional: the model the civics eval picks (the default is `claude-sonnet-5-5`):
+
+```bash
+supabase secrets set AI_MODEL=claude-sonnet-5-5
+```
+
+Check: this lists each name with a fingerprint, never the key itself:
+
+```bash
+supabase secrets list
+```
+
+**Then the five functions**, one command each. If one says Docker isn't
+running, add `--use-api` to the end:
+
+```bash
+supabase functions deploy ai
+```
+
+```bash
+supabase functions deploy district-lookup
+```
+
+```bash
+supabase functions deploy support-message
+```
+
+```bash
+supabase functions deploy pilot-reminders
+```
 
 ```bash
 supabase functions deploy pilot-report
-supabase secrets set GEOCODIO_API_KEY=...   # your key from geocod.io; type it in your terminal, never in a chat
-supabase functions deploy district-lookup
-supabase secrets set ANTHROPIC_API_KEY=...  # your key from console.anthropic.com; in your terminal only
-supabase secrets set AI_MODEL=claude-sonnet-5-5   # optional: the model the civics eval picks
-supabase functions deploy ai
-supabase secrets set RESEND_API_KEY=...     # resend.com → API Keys; in your terminal only
-supabase functions deploy support-message
-supabase functions deploy pilot-reminders
 ```
+
+Dashboard → Edge Functions then lists all five.
 
 `pilot-reminders` sends the reminder email in each learner's language from the
 translation pack. After rebuilding the pack, refresh its copy and redeploy
@@ -171,7 +255,7 @@ that no screen reads or writes data any other way.
 ### 1. Before you try it
 
 - [ ] Every Step 3 pull request is merged into `standalone`.
-- [ ] `supabase db push` has applied every migration (run it again after new ones).
+- [ ] `supabase db push --remote` has applied every migration (run it again after new ones).
 - [ ] The pilot dashboard's server function is deployed: `supabase functions deploy pilot-report`.
 - [ ] The split-ZIP lookup is deployed with its key: `supabase secrets set GEOCODIO_API_KEY=...`, then `supabase functions deploy district-lookup`.
 - [ ] The AI function is deployed with its key: `supabase secrets set ANTHROPIC_API_KEY=...`, then `supabase functions deploy ai`.

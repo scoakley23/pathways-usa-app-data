@@ -30,7 +30,8 @@ sign_in_sign_ups = 30
 token_verifications = 30
 
 [auth.email]
-enable_signup = true
+# `enabled` replaced `enable_signup` in Supabase CLI 3 (the old name only warns).
+enabled = true
 otp_length = 6
 # Seconds a code works (10 minutes). Matches CODE_MINUTES in src/api/supabaseAuth.js.
 otp_expiry = 600
