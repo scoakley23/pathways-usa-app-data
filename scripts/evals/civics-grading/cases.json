@@ -15,19 +15,6 @@
       "status": "reviewed"
     },
     {
-      "id": "c02",
-      "questionId": "6ad16ecf6a9c603911f9de22",
-      "question": "What is the economic system of the United States?",
-      "answer": "a capitalist system",
-      "expected": true,
-      "why": "capitalist = capitalism",
-      "tags": [
-        "other-words"
-      ],
-      "source": "drafted",
-      "status": "reviewed"
-    },
-    {
       "id": "c03",
       "questionId": "6ad16ecf6a9c603911f9de2a",
       "question": "Name one power of the U.S. Congress.",
@@ -684,19 +671,6 @@
       "answer": "New York Virginia Georgia Texas Maryland",
       "expected": false,
       "why": "Texas was not one of the 13, so only four",
-      "tags": [
-        "how-many"
-      ],
-      "source": "drafted",
-      "status": "reviewed"
-    },
-    {
-      "id": "c54",
-      "questionId": "6ad16ecf6a9c603911f9de94",
-      "question": "Name three national U.S. holidays.",
-      "answer": "the Fourth of July Labor Day and Memorial Day",
-      "expected": true,
-      "why": "Fourth of July = Independence Day",
       "tags": [
         "how-many"
       ],
