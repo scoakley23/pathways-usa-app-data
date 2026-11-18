@@ -1,0 +1,603 @@
+{
+  "note": "Senators' official Bioguide portraits (public domain). Built by scripts/officeholders/build_senator_photos.py from senate.gov; names copied from src/data/officeholders.json. A photo shows only while its name matches that list.",
+  "checkedOn": "2026-11-18",
+  "credit": "Official portrait · Biographical Directory of the U.S. Congress",
+  "source": "https://bioguide.congress.gov/",
+  "photos": {
+    "Alabama": [
+      {
+        "name": "Katie Boyd Britt",
+        "file": "B001319.jpg",
+        "bioguide": "B001319"
+      },
+      {
+        "name": "Tommy Tuberville",
+        "file": "T000278.jpg",
+        "bioguide": "T000278"
+      }
+    ],
+    "Alaska": [
+      {
+        "name": "Lisa Murkowski",
+        "file": "M001153.jpg",
+        "bioguide": "M001153"
+      },
+      {
+        "name": "Dan Sullivan",
+        "file": "S001198.jpg",
+        "bioguide": "S001198"
+      }
+    ],
+    "Arizona": [
+      {
+        "name": "Ruben Gallego",
+        "file": "G000574.jpg",
+        "bioguide": "G000574"
+      },
+      {
+        "name": "Mark Kelly",
+        "file": "K000377.jpg",
+        "bioguide": "K000377"
+      }
+    ],
+    "Arkansas": [
+      {
+        "name": "John Boozman",
+        "file": "B001236.jpg",
+        "bioguide": "B001236"
+      },
+      {
+        "name": "Tom Cotton",
+        "file": "C001095.jpg",
+        "bioguide": "C001095"
+      }
+    ],
+    "California": [
+      {
+        "name": "Alex Padilla",
+        "file": "P000145.jpg",
+        "bioguide": "P000145"
+      },
+      {
+        "name": "Adam B. Schiff",
+        "file": "S001150.jpg",
+        "bioguide": "S001150"
+      }
+    ],
+    "Colorado": [
+      {
+        "name": "Michael F. Bennet",
+        "file": "B001267.jpg",
+        "bioguide": "B001267"
+      },
+      {
+        "name": "John W. Hickenlooper",
+        "file": "H000273.jpg",
+        "bioguide": "H000273"
+      }
+    ],
+    "Connecticut": [
+      {
+        "name": "Richard Blumenthal",
+        "file": "B001277.jpg",
+        "bioguide": "B001277"
+      },
+      {
+        "name": "Christopher Murphy",
+        "file": "M001169.jpg",
+        "bioguide": "M001169"
+      }
+    ],
+    "Delaware": [
+      {
+        "name": "Lisa Blunt Rochester",
+        "file": "B001303.jpg",
+        "bioguide": "B001303"
+      },
+      {
+        "name": "Christopher A. Coons",
+        "file": "C001088.jpg",
+        "bioguide": "C001088"
+      }
+    ],
+    "Florida": [
+      {
+        "name": "Ashley Moody",
+        "file": "M001244.jpg",
+        "bioguide": "M001244"
+      },
+      {
+        "name": "Rick Scott",
+        "file": "S001217.jpg",
+        "bioguide": "S001217"
+      }
+    ],
+    "Georgia": [
+      {
+        "name": "Jon Ossoff",
+        "file": "O000174.jpg",
+        "bioguide": "O000174"
+      },
+      {
+        "name": "Raphael G. Warnock",
+        "file": "W000790.jpg",
+        "bioguide": "W000790"
+      }
+    ],
+    "Hawaii": [
+      {
+        "name": "Mazie K. Hirono",
+        "file": "H001042.jpg",
+        "bioguide": "H001042"
+      },
+      {
+        "name": "Brian Schatz",
+        "file": "S001194.jpg",
+        "bioguide": "S001194"
+      }
+    ],
+    "Idaho": [
+      {
+        "name": "Mike Crapo",
+        "file": "C000880.jpg",
+        "bioguide": "C000880"
+      },
+      {
+        "name": "James E. Risch",
+        "file": "R000584.jpg",
+        "bioguide": "R000584"
+      }
+    ],
+    "Illinois": [
+      {
+        "name": "Tammy Duckworth",
+        "file": "D000622.jpg",
+        "bioguide": "D000622"
+      },
+      {
+        "name": "Richard J. Durbin",
+        "file": "D000563.jpg",
+        "bioguide": "D000563"
+      }
+    ],
+    "Indiana": [
+      {
+        "name": "Jim Banks",
+        "file": "B001299.jpg",
+        "bioguide": "B001299"
+      },
+      {
+        "name": "Todd Young",
+        "file": "Y000064.jpg",
+        "bioguide": "Y000064"
+      }
+    ],
+    "Iowa": [
+      {
+        "name": "Joni Ernst",
+        "file": "E000295.jpg",
+        "bioguide": "E000295"
+      },
+      {
+        "name": "Chuck Grassley",
+        "file": "G000386.jpg",
+        "bioguide": "G000386"
+      }
+    ],
+    "Kansas": [
+      {
+        "name": "Roger Marshall",
+        "file": "M001198.jpg",
+        "bioguide": "M001198"
+      },
+      {
+        "name": "Jerry Moran",
+        "file": "M000934.jpg",
+        "bioguide": "M000934"
+      }
+    ],
+    "Kentucky": [
+      {
+        "name": "Mitch McConnell",
+        "file": "M000355.jpg",
+        "bioguide": "M000355"
+      },
+      {
+        "name": "Rand Paul",
+        "file": "P000603.jpg",
+        "bioguide": "P000603"
+      }
+    ],
+    "Louisiana": [
+      {
+        "name": "Bill Cassidy",
+        "file": "C001075.jpg",
+        "bioguide": "C001075"
+      },
+      {
+        "name": "John Kennedy",
+        "file": "K000393.jpg",
+        "bioguide": "K000393"
+      }
+    ],
+    "Maine": [
+      {
+        "name": "Susan M. Collins",
+        "file": "C001035.jpg",
+        "bioguide": "C001035"
+      },
+      {
+        "name": "Angus S. King, Jr.",
+        "file": "K000383.jpg",
+        "bioguide": "K000383"
+      }
+    ],
+    "Maryland": [
+      {
+        "name": "Angela D. Alsobrooks",
+        "file": "A000382.jpg",
+        "bioguide": "A000382"
+      },
+      {
+        "name": "Chris Van Hollen",
+        "file": "V000128.jpg",
+        "bioguide": "V000128"
+      }
+    ],
+    "Massachusetts": [
+      {
+        "name": "Edward J. Markey",
+        "file": "M000133.jpg",
+        "bioguide": "M000133"
+      },
+      {
+        "name": "Elizabeth Warren",
+        "file": "W000817.jpg",
+        "bioguide": "W000817"
+      }
+    ],
+    "Michigan": [
+      {
+        "name": "Gary C. Peters",
+        "file": "P000595.jpg",
+        "bioguide": "P000595"
+      },
+      {
+        "name": "Elissa Slotkin",
+        "file": "S001208.jpg",
+        "bioguide": "S001208"
+      }
+    ],
+    "Minnesota": [
+      {
+        "name": "Amy Klobuchar",
+        "file": "K000367.jpg",
+        "bioguide": "K000367"
+      },
+      {
+        "name": "Tina Smith",
+        "file": "S001203.jpg",
+        "bioguide": "S001203"
+      }
+    ],
+    "Mississippi": [
+      {
+        "name": "Cindy Hyde-Smith",
+        "file": "H001079.jpg",
+        "bioguide": "H001079"
+      },
+      {
+        "name": "Roger F. Wicker",
+        "file": "W000437.jpg",
+        "bioguide": "W000437"
+      }
+    ],
+    "Missouri": [
+      {
+        "name": "Josh Hawley",
+        "file": "H001089.jpg",
+        "bioguide": "H001089"
+      },
+      {
+        "name": "Eric Schmitt",
+        "file": "S001227.jpg",
+        "bioguide": "S001227"
+      }
+    ],
+    "Montana": [
+      {
+        "name": "Steve Daines",
+        "file": "D000618.jpg",
+        "bioguide": "D000618"
+      },
+      {
+        "name": "Tim Sheehy",
+        "file": "S001232.jpg",
+        "bioguide": "S001232"
+      }
+    ],
+    "Nebraska": [
+      {
+        "name": "Deb Fischer",
+        "file": "F000463.jpg",
+        "bioguide": "F000463"
+      },
+      {
+        "name": "Pete Ricketts",
+        "file": "R000618.jpg",
+        "bioguide": "R000618"
+      }
+    ],
+    "Nevada": [
+      {
+        "name": "Catherine Cortez Masto",
+        "file": "C001113.jpg",
+        "bioguide": "C001113"
+      },
+      {
+        "name": "Jacky Rosen",
+        "file": "R000608.jpg",
+        "bioguide": "R000608"
+      }
+    ],
+    "New Hampshire": [
+      {
+        "name": "Margaret Wood Hassan",
+        "file": "H001076.jpg",
+        "bioguide": "H001076"
+      },
+      {
+        "name": "Jeanne Shaheen",
+        "file": "S001181.jpg",
+        "bioguide": "S001181"
+      }
+    ],
+    "New Jersey": [
+      {
+        "name": "Cory A. Booker",
+        "file": "B001288.jpg",
+        "bioguide": "B001288"
+      },
+      {
+        "name": "Andy Kim",
+        "file": "K000394.jpg",
+        "bioguide": "K000394"
+      }
+    ],
+    "New Mexico": [
+      {
+        "name": "Martin Heinrich",
+        "file": "H001046.jpg",
+        "bioguide": "H001046"
+      },
+      {
+        "name": "Ben Ray Luján",
+        "file": "L000570.jpg",
+        "bioguide": "L000570"
+      }
+    ],
+    "New York": [
+      {
+        "name": "Kirsten E. Gillibrand",
+        "file": "G000555.jpg",
+        "bioguide": "G000555"
+      },
+      {
+        "name": "Charles E. Schumer",
+        "file": "S000148.jpg",
+        "bioguide": "S000148"
+      }
+    ],
+    "North Carolina": [
+      {
+        "name": "Ted Budd",
+        "file": "B001305.jpg",
+        "bioguide": "B001305"
+      },
+      {
+        "name": "Thom Tillis",
+        "file": "T000476.jpg",
+        "bioguide": "T000476"
+      }
+    ],
+    "North Dakota": [
+      {
+        "name": "Kevin Cramer",
+        "file": "C001096.jpg",
+        "bioguide": "C001096"
+      },
+      {
+        "name": "John Hoeven",
+        "file": "H001061.jpg",
+        "bioguide": "H001061"
+      }
+    ],
+    "Ohio": [
+      {
+        "name": "Jon Husted",
+        "file": "H001104.jpg",
+        "bioguide": "H001104"
+      },
+      {
+        "name": "Bernie Moreno",
+        "file": "M001242.jpg",
+        "bioguide": "M001242"
+      }
+    ],
+    "Oklahoma": [
+      {
+        "name": "James Lankford",
+        "file": "L000575.jpg",
+        "bioguide": "L000575"
+      }
+    ],
+    "Oregon": [
+      {
+        "name": "Jeff Merkley",
+        "file": "M001176.jpg",
+        "bioguide": "M001176"
+      },
+      {
+        "name": "Ron Wyden",
+        "file": "W000779.jpg",
+        "bioguide": "W000779"
+      }
+    ],
+    "Pennsylvania": [
+      {
+        "name": "John Fetterman",
+        "file": "F000479.jpg",
+        "bioguide": "F000479"
+      },
+      {
+        "name": "David McCormick",
+        "file": "M001243.jpg",
+        "bioguide": "M001243"
+      }
+    ],
+    "Rhode Island": [
+      {
+        "name": "Jack Reed",
+        "file": "R000122.jpg",
+        "bioguide": "R000122"
+      },
+      {
+        "name": "Sheldon Whitehouse",
+        "file": "W000802.jpg",
+        "bioguide": "W000802"
+      }
+    ],
+    "South Carolina": [
+      {
+        "name": "Darline Graham",
+        "file": "G000608.jpg",
+        "bioguide": "G000608"
+      },
+      {
+        "name": "Tim Scott",
+        "file": "S001184.jpg",
+        "bioguide": "S001184"
+      }
+    ],
+    "South Dakota": [
+      {
+        "name": "Mike Rounds",
+        "file": "R000605.jpg",
+        "bioguide": "R000605"
+      },
+      {
+        "name": "John Thune",
+        "file": "T000250.jpg",
+        "bioguide": "T000250"
+      }
+    ],
+    "Tennessee": [
+      {
+        "name": "Marsha Blackburn",
+        "file": "B001243.jpg",
+        "bioguide": "B001243"
+      },
+      {
+        "name": "Bill Hagerty",
+        "file": "H000601.jpg",
+        "bioguide": "H000601"
+      }
+    ],
+    "Texas": [
+      {
+        "name": "John Cornyn",
+        "file": "C001056.jpg",
+        "bioguide": "C001056"
+      },
+      {
+        "name": "Ted Cruz",
+        "file": "C001098.jpg",
+        "bioguide": "C001098"
+      }
+    ],
+    "Utah": [
+      {
+        "name": "John R. Curtis",
+        "file": "C001114.jpg",
+        "bioguide": "C001114"
+      },
+      {
+        "name": "Mike Lee",
+        "file": "L000577.jpg",
+        "bioguide": "L000577"
+      }
+    ],
+    "Vermont": [
+      {
+        "name": "Bernard Sanders",
+        "file": "S000033.jpg",
+        "bioguide": "S000033"
+      },
+      {
+        "name": "Peter Welch",
+        "file": "W000800.jpg",
+        "bioguide": "W000800"
+      }
+    ],
+    "Virginia": [
+      {
+        "name": "Tim Kaine",
+        "file": "K000384.jpg",
+        "bioguide": "K000384"
+      },
+      {
+        "name": "Mark R. Warner",
+        "file": "W000805.jpg",
+        "bioguide": "W000805"
+      }
+    ],
+    "Washington": [
+      {
+        "name": "Maria Cantwell",
+        "file": "C000127.jpg",
+        "bioguide": "C000127"
+      },
+      {
+        "name": "Patty Murray",
+        "file": "M001111.jpg",
+        "bioguide": "M001111"
+      }
+    ],
+    "West Virginia": [
+      {
+        "name": "Shelley Moore Capito",
+        "file": "C001047.jpg",
+        "bioguide": "C001047"
+      },
+      {
+        "name": "James C. Justice",
+        "file": "J000312.jpg",
+        "bioguide": "J000312"
+      }
+    ],
+    "Wisconsin": [
+      {
+        "name": "Tammy Baldwin",
+        "file": "B001230.jpg",
+        "bioguide": "B001230"
+      },
+      {
+        "name": "Ron Johnson",
+        "file": "J000293.jpg",
+        "bioguide": "J000293"
+      }
+    ],
+    "Wyoming": [
+      {
+        "name": "John Barrasso",
+        "file": "B001261.jpg",
+        "bioguide": "B001261"
+      },
+      {
+        "name": "Cynthia M. Lummis",
+        "file": "L000571.jpg",
+        "bioguide": "L000571"
+      }
+    ]
+  }
+}

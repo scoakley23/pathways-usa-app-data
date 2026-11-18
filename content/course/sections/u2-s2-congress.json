@@ -125,7 +125,7 @@
               "meaning": "a plan for how to spend money"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "The federal government has three branches.",
@@ -332,7 +332,7 @@
               "meaning": "one of the 50 parts of the United States"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "There are 100 U.S. senators.",
@@ -433,7 +433,7 @@
               "meaning": "to choose someone by voting"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "A senator’s term is six years.",
@@ -559,10 +559,13 @@
               }
             },
             {
-              "say": "These names change after elections."
+              "say": "These names change after elections, so Pathways looks them up from an official list."
             },
             {
-              "say": "So Pathways looks them up from an official list."
+              "say": "These are your state’s two senators today.",
+              "picture": {
+                "senators": true
+              }
             },
             {
               "say": "Check the names again before your interview."
@@ -632,12 +635,16 @@
             {
               "say": "A U.S. senator speaks for all the people of their state.",
               "picture": {
-                "drawing": "seatsByPopulation",
-                "focus": "senators"
+                "drawing": "stateDistricts",
+                "focus": "state"
               }
             },
             {
-              "say": "Not just one city or one group: everyone in the state."
+              "say": "Not just one city or one district: everyone in the state.",
+              "picture": {
+                "drawing": "stateDistricts",
+                "focus": "state"
+              }
             },
             {
               "say": "Citizens of the state vote to choose their senators."
@@ -718,12 +725,15 @@
             {
               "say": "Each state is cut into areas called congressional districts.",
               "picture": {
-                "drawing": "seatsByPopulation",
-                "focus": "house"
+                "drawing": "stateDistricts"
               }
             },
             {
-              "say": "A member of the House of Representatives speaks for the people in one district."
+              "say": "A member of the House of Representatives speaks for the people in one district.",
+              "picture": {
+                "drawing": "stateDistricts",
+                "focus": "district"
+              }
             },
             {
               "check": {
@@ -807,36 +817,57 @@
           "storyStatus": "draft",
           "story": [
             {
-              "say": "States with more people have more representatives in the House.",
+              "say": "When the Constitution was written, big states and small states disagreed.",
+              "picture": {
+                "drawing": "greatCompromise"
+              }
+            },
+            {
+              "say": "Big states wanted more seats for states with more people.",
+              "picture": {
+                "drawing": "greatCompromise",
+                "focus": "big"
+              }
+            },
+            {
+              "say": "Small states wanted every state to have the same number.",
+              "picture": {
+                "drawing": "greatCompromise",
+                "focus": "small"
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "What did small states want?",
+                "choices": [
+                  "The same number for every state",
+                  "More seats for more people",
+                  "No Congress"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "The Great Compromise gave both: the House by population, and two senators for every state.",
+              "picture": {
+                "drawing": "greatCompromise",
+                "focus": "both"
+              }
+            },
+            {
+              "say": "So states with more people have more representatives in the House.",
               "picture": {
                 "drawing": "seatsByPopulation",
                 "focus": "house"
               }
             },
             {
-              "check": {
-                "kind": "pick",
-                "prompt": "Which state has more representatives?",
-                "choices": [
-                  "A state with more people",
-                  "A state with more land",
-                  "Every state has the same number"
-                ],
-                "answer": 0
-              }
-            },
-            {
-              "say": "Every state has two senators, big or small.",
+              "say": "And every state has two senators, big or small. This gives small states an equal voice.",
               "picture": {
                 "drawing": "seatsByPopulation",
                 "focus": "senators"
               }
-            },
-            {
-              "say": "This gives small states an equal voice."
-            },
-            {
-              "say": "This plan is called the Great Compromise."
             },
             {
               "check": {
@@ -898,7 +929,7 @@
               "meaning": "the number of years a person serves in a job"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "Representatives serve two-year terms.",
@@ -989,7 +1020,7 @@
               "meaning": "the leader of the House of Representatives"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "The Speaker leads the House of Representatives.",

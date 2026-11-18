@@ -23,15 +23,22 @@ describe('stories (Listen as a short video)', () => {
     expect(storyProblems(UNITS, { focusFor: DRAWING_FOCUS, officeholderNames: allNames(officeholders) })).toEqual([]);
   });
 
-  it('the Congress trial: every lesson has a story, all draft for review', () => {
-    for (const l of congress.lessons) {
-      expect(l.steps.listen.story?.length, l.id).toBeGreaterThan(3);
-      expect(l.steps.listen.storyStatus, l.id).toBe('draft');
-    }
+  it('the Congress trial: every lesson has a story; five reviewed, the rest draft', () => {
+    for (const l of congress.lessons) expect(l.steps.listen.story?.length, l.id).toBeGreaterThan(3);
+    expect(congress.lessons.filter((l) => l.steps.listen.storyStatus === 'reviewed').map((l) => l.id))
+      .toEqual(['u2-s2-l1', 'u2-s2-l3', 'u2-s2-l4', 'u2-s2-l9', 'u2-s2-l10']);
+  });
+
+  it('Your senators shows the learner\'s senators; the new drawings are used', () => {
+    const story = (id) => congress.lessons.find((l) => l.id === id).steps.listen.story;
+    expect(story('u2-s2-l5').some((x) => x.picture?.senators)).toBe(true);
+    expect(story('u2-s2-l6')[0].picture).toEqual({ drawing: 'stateDistricts', focus: 'state' });
+    expect(story('u2-s2-l7').some((x) => x.picture?.focus === 'district')).toBe(true);
+    expect(story('u2-s2-l8').some((x) => x.picture?.drawing === 'greatCompromise')).toBe(true);
   });
 
   it('a draft story shows to admins only; learners keep the facts', () => {
-    const lesson = congress.lessons[0];
+    const lesson = congress.lessons.find((l) => l.steps.listen.storyStatus === 'draft');
     expect(storyFor(lesson)).toBe(null);
     expect(storyFor(lesson, { showDrafts: true })).toMatchObject({ draft: true });
     const reviewed = { ...lesson, steps: { ...lesson.steps, listen: { ...lesson.steps.listen, storyStatus: 'reviewed' } } };
@@ -56,6 +63,7 @@ describe('stories (Listen as a short video)', () => {
   it('pictures and texts', () => {
     expect(storyPicture({ drawing: 'threeBranches', focus: 'legislative' })).toEqual({ kind: 'drawing', drawing: 'threeBranches', focus: 'legislative' });
     expect(storyPicture({ officeholder: 'speaker' })).toEqual({ kind: 'officeholder', office: 'speaker' });
+    expect(storyPicture({ senators: true })).toEqual({ kind: 'senators' });
     expect(storyTexts([{ say: 'A' }, { check: { kind: 'pick', prompt: 'B', choices: ['C', 'D', 'E'], answer: 0 } }])).toEqual(['A', 'B', 'C', 'D', 'E']);
   });
 });

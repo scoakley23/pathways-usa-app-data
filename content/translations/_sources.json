@@ -962,18 +962,6 @@
    ]
   },
   {
-   "text": "A state with more land",
-   "from": [
-    "course-lessons"
-   ]
-  },
-  {
-   "text": "A state with more people",
-   "from": [
-    "course-lessons"
-   ]
-  },
-  {
    "text": "A system where citizens elect representatives to govern on their behalf",
    "from": [
     "key-words"
@@ -1487,6 +1475,12 @@
    ]
   },
   {
+   "text": "And every state has two senators, big or small. This gives small states an equal voice.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Answer",
    "from": [
     "pilot"
@@ -1935,6 +1929,12 @@
   },
   {
    "text": "Big states and small states have the same number of senators.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Big states wanted more seats for states with more people.",
    "from": [
     "course-lessons"
    ]
@@ -3616,12 +3616,6 @@
    ]
   },
   {
-   "text": "Every state has the same number",
-   "from": [
-    "course-lessons"
-   ]
-  },
-  {
    "text": "Every state has the same number of senators.",
    "from": [
     "course-lessons"
@@ -3635,12 +3629,6 @@
   },
   {
    "text": "Every state has two U.S. senators.",
-   "from": [
-    "course-lessons"
-   ]
-  },
-  {
-   "text": "Every state has two senators, big or small.",
    "from": [
     "course-lessons"
    ]
@@ -7052,6 +7040,12 @@
    ]
   },
   {
+   "text": "More seats for more people",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Most",
    "from": [
     "words"
@@ -7572,6 +7566,12 @@
    ]
   },
   {
+   "text": "No Congress",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "No hints in a checkpoint. You can ask the officer to repeat, just like on the real day.",
    "from": [
     "checkpoints"
@@ -7651,7 +7651,7 @@
    ]
   },
   {
-   "text": "Not just one city or one group: everyone in the state.",
+   "text": "Not just one city or one district: everyone in the state.",
    "from": [
     "course-lessons"
    ]
@@ -7838,6 +7838,12 @@
    "text": "Official papers or files.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "Official portrait of {name}",
+   "from": [
+    "lesson-player"
    ]
   },
   {
@@ -8182,6 +8188,12 @@
    "text": "Pick a month",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "Pick your state in Who Represents Me? to see your senators here.",
+   "from": [
+    "lesson-player"
    ]
   },
   {
@@ -9940,7 +9952,7 @@
    ]
   },
   {
-   "text": "So Pathways looks them up from an official list.",
+   "text": "Small states wanted every state to have the same number.",
    "from": [
     "course-lessons"
    ]
@@ -9961,6 +9973,12 @@
    "text": "So one part does not become too powerful / Checks and balances / Separation of powers",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "So states with more people have more representatives in the House.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -11075,6 +11093,12 @@
    ]
   },
   {
+   "text": "The Great Compromise gave both: the House by population, and two senators for every state.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The Great Crash (1929) / Stock market crash of 1929",
    "from": [
     "civics-questions"
@@ -12110,6 +12134,12 @@
    ]
   },
   {
+   "text": "The same number for every state",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The section’s questions, out loud, with no hints. Pass to earn a badge and 10 stars.",
    "from": [
     "course"
@@ -12290,6 +12320,12 @@
    ]
   },
   {
+   "text": "These are your state’s two senators today.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "These lessons are being reviewed. They will appear here soon.",
    "from": [
     "course"
@@ -12453,12 +12489,6 @@
   },
   {
    "text": "Think of a supermarket: stores choose what to sell and what price to ask, and you choose what to buy. Most of the time, the government does not decide this for you. That is a free market.",
-   "from": [
-    "course-lessons"
-   ]
-  },
-  {
-   "text": "This gives small states an equal voice.",
    "from": [
     "course-lessons"
    ]
@@ -14156,6 +14186,12 @@
    ]
   },
   {
+   "text": "What did small states want?",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "What did the Declaration of Independence do?",
    "from": [
     "civics-questions"
@@ -14694,6 +14730,12 @@
    ]
   },
   {
+   "text": "When the Constitution was written, big states and small states disagreed.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "When the term ends, voters can elect them again.",
    "from": [
     "course-lessons"
@@ -14784,12 +14826,6 @@
    ]
   },
   {
-   "text": "Which state has more representatives?",
-   "from": [
-    "course-lessons"
-   ]
-  },
-  {
    "text": "Which test will I take? (uscis.gov)",
    "from": [
     "getting-started"
@@ -14813,6 +14849,12 @@
     "key-words",
     "lessons",
     "words"
+   ]
+  },
+  {
+   "text": "Who Represents Me?",
+   "from": [
+    "lesson-player"
    ]
   },
   {
@@ -15833,6 +15875,12 @@
    "text": "Your state and congressional district, if you used “Who Represents Me?” (never your address).",
    "from": [
     "settings"
+   ]
+  },
+  {
+   "text": "Your state’s senators today",
+   "from": [
+    "lesson-player"
    ]
   },
   {

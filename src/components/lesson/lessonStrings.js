@@ -105,4 +105,8 @@ export const LESSON_LINES = {
   story_no_voice: 'Your phone has no voice for this language. Read along on screen.',
   story_draft: 'Draft story',
   story_watch_again: 'Watch again',
+  story_your_senators: 'Your state’s senators today',
+  story_portrait_of: 'Official portrait of {name}',
+  story_pick_state: 'Pick your state in Who Represents Me? to see your senators here.',
+  story_find_state: 'Who Represents Me?',
 };

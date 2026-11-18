@@ -73,7 +73,8 @@ function TermLengths({ focus } = {}) {
   );
 }
 
-// The two parts of Congress and their numbers.
+// The two parts of Congress and their numbers: the Senate in denim, the
+// House in purple, so the two parts never look alike (no party colors).
 function CongressNumbers({ focus } = {}) {
   const dots = (n, cols, x0, y0, size, gap, cls) => Array.from({ length: n }).map((_, i) => (
     <circle key={i} cx={x0 + (i % cols) * gap} cy={y0 + Math.floor(i / cols) * gap} r={size} className={cls} />
@@ -91,7 +92,7 @@ function CongressNumbers({ focus } = {}) {
       <Box x={154} y={4} w={192} h={200} />
       <T x={250} y={28}>House</T>
       <T x={250} y={52} size={22} weight={800}>435</T>
-      {dots(435, 29, 166, 68, 2.2, 5.8, 'fill-stop-read-write')}
+      {dots(435, 29, 166, 68, 2.2, 5.8, 'fill-stop-n400')}
       <T x={250} y={196} className="fill-muted" size={11} weight={400}>more for states with more people</T>
       </g>
     </Frame>
@@ -361,6 +362,62 @@ function SeatsByPopulation({ focus } = {}) {
   );
 }
 
+// One state cut into congressional districts: senators speak for the whole
+// state (focus "state"), a representative for one district (focus "district").
+const DISTRICTS = [
+  'M20 30 L120 22 L130 95 L28 102 Z',
+  'M120 22 L230 18 L226 88 L130 95 Z',
+  'M230 18 L330 28 L322 110 L226 88 Z',
+  'M28 102 L130 95 L138 178 L36 186 Z',
+  'M130 95 L226 88 L234 170 L138 178 Z',
+  'M226 88 L322 110 L314 190 L234 170 Z',
+];
+function StateDistricts({ focus } = {}) {
+  const fill = (k) => {
+    if (focus === 'state') return 'fill-denim stroke-denim';
+    if (focus === 'district') return k === 4 ? 'fill-stop-n400 stroke-white' : 'fill-tint stroke-mid';
+    return 'fill-tint stroke-mid';
+  };
+  const label = focus === 'state' ? 'Senators: the whole state' : focus === 'district' ? 'A representative: one district' : 'One state, cut into districts';
+  return (
+    <Frame viewBox="0 0 350 230" title="A state cut into six congressional districts. Senators speak for the whole state; a representative speaks for one district.">
+      {DISTRICTS.map((d, k) => <path key={k} d={d} className={fill(k)} strokeWidth="3" strokeLinejoin="round" />)}
+      {focus === 'district' && <T x={186} y={142} size={13} weight={700} className="fill-white">1 district</T>}
+      {focus === 'state' && <T x={175} y={104} size={16} weight={700} className="fill-white">The whole state</T>}
+      <T x={175} y={218} size={13} weight={700}>{label}</T>
+    </Frame>
+  );
+}
+
+// The Great Compromise: big states wanted seats by population, small states
+// wanted the same number for every state; the compromise gave both.
+function GreatCompromise({ focus } = {}) {
+  const sides = [
+    { key: 'big', x: 4, who: 'Big states wanted', what: ['More people,', 'more seats'] },
+    { key: 'small', x: 182, who: 'Small states wanted', what: ['Every state', 'the same'] },
+  ];
+  const both = focus === 'both';
+  return (
+    <Frame viewBox="0 0 350 250" title="The Great Compromise: big states wanted more seats for more people; small states wanted every state to have the same number. The compromise gave both: the House by population, and two senators for every state.">
+      {sides.map((s) => (
+        <g key={s.key} style={focus && !both ? (focus === s.key ? undefined : { opacity: 0.3 }) : undefined}>
+          <Box x={s.x} y={4} w={164} h={110} className="fill-white stroke-denim" />
+          <T x={s.x + 82} y={30} size={13} weight={600} className="fill-muted">{s.who}</T>
+          <T x={s.x + 82} y={60} size={16} weight={700}>{s.what[0]}</T>
+          <T x={s.x + 82} y={82} size={16} weight={700}>{s.what[1]}</T>
+        </g>
+      ))}
+      <g style={focus && !both ? { opacity: 0.3 } : undefined}>
+        <path d="M86 118 L150 150 M264 118 L200 150" className="stroke-mid" strokeWidth="3" fill="none" />
+        <Box x={40} y={150} w={270} h={92} className="fill-navy stroke-navy" />
+        <T x={175} y={174} size={13} weight={600} className="fill-white">The Great Compromise: both</T>
+        <T x={175} y={200} size={14} weight={700} className="fill-white">House: by population</T>
+        <T x={175} y={224} size={14} weight={700} className="fill-white">Senate: 2 for every state</T>
+      </g>
+    </Frame>
+  );
+}
+
 export const DRAWINGS = {
   threeBranches: ThreeBranches,
   termLengths: TermLengths,
@@ -373,6 +430,8 @@ export const DRAWINGS = {
   coldWar: ColdWar,
   billToLaw: BillToLaw,
   seatsByPopulation: SeatsByPopulation,
+  stateDistricts: StateDistricts,
+  greatCompromise: GreatCompromise,
 };
 
 // The parts each drawing can light up (story scenes' `focus`).
@@ -382,4 +441,6 @@ export const DRAWING_FOCUS = {
   congressNumbers: ['senate', 'house'],
   billToLaw: ['congress', 'president', 'law'],
   seatsByPopulation: ['senators', 'house'],
+  stateDistricts: ['state', 'district'],
+  greatCompromise: ['big', 'small', 'both'],
 };
