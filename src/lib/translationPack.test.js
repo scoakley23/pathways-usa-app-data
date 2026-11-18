@@ -69,6 +69,34 @@ describe('build-pack checks', () => {
     expect(req.params.system).toContain('digits 0-9');
   });
 
+  it('accepts numbers written another way: centuries, decades, digits for words, short months, 万', () => {
+    const ok = [
+      ['The 1800s', '19世纪'],
+      ['Name one war fought by the United States in the 1800s.', '举出美国在19世纪参与的一场战争。'],
+      ['Social movement in the 1950s–1960s', '20世纪50至60年代的社会运动'],
+      ['World wars · civil rights · Sept. 11', 'Các cuộc thế chiến · dân quyền · 11/9'],
+      ['First Amendment', 'ບົດແກ້ໄຂທີ ໑'],
+      ['Four-year terms', 'ວາລະ 4 ປີ'],
+      ['Twenty-sixth Amendment', '第26修正案'],
+      ['The United States fought five wars in the 1900s.', '美国在20世纪打了5场战争。'],
+      ['Jefferson paid France $15 million.', '杰斐逊向法国支付了1500万美元。'],
+      ['It cost 1,500 dollars.', 'Costó 1.500 dólares.'],
+    ];
+    for (const [en, tr] of ok) expect(problem(en, tr), en).toBeNull();
+  });
+
+  it('still rejects numbers that really changed', () => {
+    const bad = [
+      ['12 of 20', '12 de 21'],
+      ['12 of 20', '12 de 20 y 7'],
+      ['The 1800s', '18世纪'],
+      ['Four-year terms', 'ວາລະ 6 ປີ'],
+      ['Jefferson paid France $15 million.', '杰斐逊向法国支付了1600万美元。'],
+      ['Sept. 11', '11/10'],
+    ];
+    for (const [en, tr] of bad) expect(problem(en, tr), en).toBe('numbers changed');
+  });
+
   it('only missing texts are sent; reviewed lines are never re-translated', () => {
     const sources = { texts: [{ text: 'A' }, { text: 'B' }, { text: 'C' }] };
     expect(missingTexts(sources, { A: 'a' }, { B: 'b' })).toEqual(['C']);
