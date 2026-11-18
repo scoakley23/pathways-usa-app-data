@@ -614,6 +614,12 @@
    ]
   },
   {
+   "text": "50 states with two senators each make 100 senators.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "6-digit code",
    "from": [
     "sign-in"
@@ -675,6 +681,12 @@
   },
   {
    "text": "A U.S. senator's term is six years.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "A big state has more senators than a small state.",
    "from": [
     "course-lessons"
    ]
@@ -914,6 +926,12 @@
    ]
   },
   {
+   "text": "A senator’s term is six years.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "A ship or large boat.",
    "from": [
     "n400"
@@ -944,9 +962,27 @@
    ]
   },
   {
+   "text": "A state with more land",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "A state with more people",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "A system where citizens elect representatives to govern on their behalf",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "A term is the number of years a person serves in a job.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -1176,6 +1212,12 @@
    "text": "All done for today",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "All the people of their state",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -1730,6 +1772,7 @@
    "text": "Back",
    "from": [
     "course",
+    "lesson-player",
     "sign-in",
     "today-plan"
    ]
@@ -2550,6 +2593,12 @@
    ]
   },
   {
+   "text": "Congress also makes the federal budget: the plan for how to spend the government’s money.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Congress and the Legislative Branch",
    "from": [
     "lessons"
@@ -2557,6 +2606,12 @@
   },
   {
    "text": "Congress can declare war and makes the federal budget.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Congress can declare war.",
    "from": [
     "course-lessons"
    ]
@@ -2571,6 +2626,12 @@
    "text": "Congress can reverse a presidential veto with a two-thirds vote in both chambers",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "Congress has two parts.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -2593,6 +2654,12 @@
   },
   {
    "text": "Congress is the legislative branch of the federal government.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Congress is the legislative branch.",
    "from": [
     "course-lessons"
    ]
@@ -3246,6 +3313,12 @@
    ]
   },
   {
+   "text": "Draft story",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "Drugs, smuggling, prostitution and other acts",
    "from": [
     "n400-lessons"
@@ -3525,6 +3598,12 @@
    ]
   },
   {
+   "text": "Every congressional district has one representative.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Every state has 2 senators, so there are 100 in all.",
    "from": [
     "course-pictures"
@@ -3537,7 +3616,31 @@
    ]
   },
   {
+   "text": "Every state has the same number",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Every state has the same number of senators.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Every state has two U.S. senators, and every congressional district has one representative.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Every state has two U.S. senators.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Every state has two senators, big or small.",
    "from": [
     "course-lessons"
    ]
@@ -3636,6 +3739,12 @@
    "text": "Fair treatment through established judicial procedures and laws",
    "from": [
     "lessons"
+   ]
+  },
+  {
+   "text": "False",
+   "from": [
+    "lesson-player"
    ]
   },
   {
@@ -3982,6 +4091,12 @@
    "text": "Four hundred thirty-five (435)",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "Four years",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -5082,6 +5197,18 @@
    ]
   },
   {
+   "text": "How long is a representative’s term?",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "How long is a senator’s term?",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "How long is a term for a U.S. senator?",
    "from": [
     "civics-questions"
@@ -5124,6 +5251,12 @@
    ]
   },
   {
+   "text": "How many U.S. senators does your state have?",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "How many amendments does the Constitution have?",
    "from": [
     "civics-questions"
@@ -5162,7 +5295,8 @@
   {
    "text": "How many senators does each state have?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -5789,6 +5923,12 @@
    "text": "It decides who is elected president. / It provides a compromise between the popular election of the president and congressional selection.",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "It depends on the state",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -7511,6 +7651,12 @@
    ]
   },
   {
+   "text": "Not just one city or one group: everyone in the state.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Not now",
    "from": [
     "pilot",
@@ -7569,6 +7715,12 @@
   },
   {
    "text": "Not yet. Look at each word, then try again.",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "Not yet. The answer is:",
    "from": [
     "lesson-player"
    ]
@@ -7745,6 +7897,7 @@
   {
    "text": "One",
    "from": [
+    "course-lessons",
     "words"
    ]
   },
@@ -7779,6 +7932,12 @@
    ]
   },
   {
+   "text": "One part is the Senate.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "One question, English only",
    "from": [
     "lesson-player"
@@ -7806,6 +7965,18 @@
    "text": "Only on this phone",
    "from": [
     "settings"
+   ]
+  },
+  {
+   "text": "Only one city",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Only the governor",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -7924,6 +8095,12 @@
    ]
   },
   {
+   "text": "Pause",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "Pay",
    "from": [
     "words"
@@ -8026,7 +8203,19 @@
    ]
   },
   {
+   "text": "Play",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "Play the sentence",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "Play this again",
    "from": [
     "lesson-player"
    ]
@@ -8385,6 +8574,7 @@
   {
    "text": "Quick check",
    "from": [
+    "lesson-player",
     "today"
    ]
   },
@@ -8631,6 +8821,18 @@
    "text": "Removed or deported: forced by the U.S. government to leave the country.",
    "from": [
     "n400-lessons"
+   ]
+  },
+  {
+   "text": "Representatives face voters every six years.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Representatives serve two-year terms.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -9327,6 +9529,12 @@
    ]
   },
   {
+   "text": "Scene {n} of {total}",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "Schools cannot be segregated because equal protection requires equal treatment",
    "from": [
     "key-words"
@@ -9449,9 +9657,21 @@
    ]
   },
   {
+   "text": "Senators serve six-year terms.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Senators speak for their whole state: 2 from every state.",
    "from": [
     "course-pictures"
+   ]
+  },
+  {
+   "text": "Senators’ names never change.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -9566,6 +9786,12 @@
    ]
   },
   {
+   "text": "Short terms mean representatives face voters often.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Shorter terms",
    "from": [
     "course-titles"
@@ -9645,6 +9871,12 @@
    ]
   },
   {
+   "text": "Six years",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Sixth Amendment",
    "from": [
     "lessons"
@@ -9708,6 +9940,18 @@
    ]
   },
   {
+   "text": "So Pathways looks them up from an official list.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "So Pathways looks them up on an official list.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "So in 1791, ten amendments were added to the Constitution. These first ten amendments are called the Bill of Rights.",
    "from": [
     "course-lessons"
@@ -9721,6 +9965,12 @@
   },
   {
    "text": "So the United States began a war in Afghanistan in 2001. This was part of the War on Terror.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "So they follow what the public thinks.",
    "from": [
     "course-lessons"
    ]
@@ -10324,6 +10574,18 @@
    ]
   },
   {
+   "text": "Ten",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Ten years",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Terrorists attacked the United States / Terrorists took over two planes and crashed them into the World Trade Center in New York City / Terrorists took over a plane and crashed into the Pentagon in Arlington, Virginia / Terrorists took over a plane originally aimed at Washington, D.C., and crashed in a field in Pennsylvania",
    "from": [
     "civics-questions"
@@ -10429,6 +10691,7 @@
   {
    "text": "That’s right!",
    "from": [
+    "lesson-player",
     "n400-lessons"
    ]
   },
@@ -10836,6 +11099,18 @@
    ]
   },
   {
+   "text": "The House of Representatives",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The House of Representatives has 100 voting members.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The House of Representatives has 435 voting members.",
    "from": [
     "course-lessons"
@@ -10922,6 +11197,7 @@
   {
    "text": "The President",
    "from": [
+    "course-lessons",
     "course-titles"
    ]
   },
@@ -10938,6 +11214,12 @@
    ]
   },
   {
+   "text": "The President and the courts",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The President appoints federal judges.",
    "from": [
     "course-lessons"
@@ -10945,6 +11227,12 @@
   },
   {
    "text": "The President can also veto a bill. Veto means saying no to it.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The President chooses the senators.",
    "from": [
     "course-lessons"
    ]
@@ -11058,6 +11346,18 @@
    ]
   },
   {
+   "text": "The Senate",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The Senate and the House of Representatives",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The Senate is one of the two parts of Congress. There are 100 senators, two from each state. A senator's term is six years.",
    "from": [
     "ask-answers"
@@ -11088,6 +11388,12 @@
    ]
   },
   {
+   "text": "The Speaker leads the Senate.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The Star-Spangled Banner",
    "from": [
     "civics-questions"
@@ -11108,6 +11414,7 @@
   {
    "text": "The Supreme Court",
    "from": [
+    "course-lessons",
     "course-titles"
    ]
   },
@@ -11402,6 +11709,7 @@
   {
    "text": "The executive branch",
    "from": [
+    "course-lessons",
     "course-titles"
    ]
   },
@@ -11413,6 +11721,12 @@
   },
   {
    "text": "The executive branch includes the President, the Cabinet and federal departments and agencies.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The federal government has three branches.",
    "from": [
     "course-lessons"
    ]
@@ -11586,9 +11900,21 @@
    ]
   },
   {
+   "text": "The judicial branch",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The legal process by which an immigrant becomes a U.S. citizen",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "The legislative branch",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -11664,9 +11990,21 @@
    ]
   },
   {
+   "text": "The other part is the House of Representatives.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The people elect Congress.",
    "from": [
     "sentences"
+   ]
+  },
+  {
+   "text": "The people in one district",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -11802,6 +12140,12 @@
    ]
   },
   {
+   "text": "The states and the cities",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The supreme law",
    "from": [
     "course-titles"
@@ -11847,6 +12191,12 @@
    "text": "The way a country is organized and run.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "The whole country",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -11953,6 +12303,12 @@
   },
   {
    "text": "These names change after elections, so Pathways looks them up on an official list.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "These names change after elections.",
    "from": [
     "course-lessons"
    ]
@@ -12097,6 +12453,12 @@
   },
   {
    "text": "Think of a supermarket: stores choose what to sell and what price to ask, and you choose what to buy. Most of the time, the government does not decide this for you. That is a free market.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "This gives small states an equal voice.",
    "from": [
     "course-lessons"
    ]
@@ -12833,6 +13195,18 @@
    ]
   },
   {
+   "text": "True",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "True or false?",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "Try again",
    "from": [
     "checkpoints",
@@ -12865,6 +13239,12 @@
    ]
   },
   {
+   "text": "Two",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Two (2)",
    "from": [
     "civics-questions"
@@ -12886,6 +13266,12 @@
    "text": "Two parts of Congress",
    "from": [
     "course-titles"
+   ]
+  },
+  {
+   "text": "Two years",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -13396,6 +13782,12 @@
    ]
   },
   {
+   "text": "Watch again",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "We",
    "from": [
     "words"
@@ -13686,6 +14078,12 @@
    ]
   },
   {
+   "text": "What are the two parts of Congress?",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "What are the two parts of the U.S. Congress?",
    "from": [
     "civics-questions"
@@ -13822,6 +14220,12 @@
    "text": "What does the President’s Cabinet do?",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "What does the Speaker lead?",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -14290,6 +14694,12 @@
    ]
   },
   {
+   "text": "When the term ends, voters can elect them again.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "When was the Constitution written?",
    "from": [
     "civics-questions"
@@ -14362,9 +14772,21 @@
    ]
   },
   {
+   "text": "Which branch is Congress?",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Which state do you live in?",
    "from": [
     "pilot"
+   ]
+  },
+  {
+   "text": "Which state has more representatives?",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -14438,13 +14860,20 @@
   {
    "text": "Who does a U.S. senator represent?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
    "text": "Who does a member of the House of Representatives represent?",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "Who does a member of the House represent?",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -15306,6 +15735,12 @@
    "text": "Your path",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "Your phone has no voice for this language. Read along on screen.",
+   "from": [
+    "lesson-player"
    ]
   },
   {

@@ -40,6 +40,7 @@ Course content is 2025-only for now.
 }
 ```
 
+- **`listen.story`** (optional, the story player): scenes `{ "say": "...", "picture": { "drawing": "congressNumbers", "focus": "senate" } }` (or `{ "photo": file }` / `{ "officeholder": "speaker" }`), and a check at least every 3 scenes: `{ "check": { "kind": "tf", "statement": "...", "answer": true } }` or `{ "check": { "kind": "pick", "prompt": "...", "choices": ["a", "b", "c"], "answer": 0 } }`. `listen.storyStatus` is `draft` until reviewed; learners see the facts list until then. Lines stay short (≤ 140 characters) and never name a current officeholder.
 - **`questionIds`**: 1–2 official 2025 questions, by their **database id** (the
   `id` in `content/base44-export/civics-questions-2025.json`, the same id as
   Supabase's `civics_questions`). The test checks that each one's wording and

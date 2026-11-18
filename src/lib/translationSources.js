@@ -45,6 +45,7 @@ import lessons from '../../content/base44-export/lessons.json';
 import lessonFlashcards from '../../content/base44-export/lesson-flashcards.json';
 import askAnswers from '../../content/ask/answers.json';
 import { readingTipSources } from '@/lib/readingTips';
+import { storyTexts } from '@/lib/story';
 
 const TUTOR_LINES = fixedTutorLines();
 
@@ -115,6 +116,7 @@ export function contentTexts() {
     ['course-lessons', texts(UNITS.flatMap((u) => u.sections.flatMap((sec) => (sec.lessons || []).flatMap((l) => [
       ...l.steps.listen.facts,
       ...l.steps.listen.newWords.map((w) => w.meaning),
+      ...storyTexts(l.steps.listen.story || []),
     ]))))],
     ['course-pictures', texts(Object.values(coursePictures.lessons).flat().map((p) => p.caption))],
     // N-400 lessons (content/n400/lessons.json): the short question names
