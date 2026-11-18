@@ -14,5 +14,6 @@ export const TALK_LINES = {
   comingSoon: 'Contact form coming soon.',
   sent: 'Thank you. Your message was sent.',
   error: "Sorry, your message couldn't be sent. Please try again later.",
+  limit: "You've sent 3 messages today. Please write again tomorrow.",
   done: 'Done',
 };
