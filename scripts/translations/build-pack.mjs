@@ -25,6 +25,8 @@ const ROOT = path.resolve(HERE, '../..');
 const DIR = path.join(ROOT, 'content/translations');
 const SOURCES = path.join(DIR, '_sources.json');
 const STATE = path.join(HERE, '.last-batch.json');
+// Every rejected line of the last run, with the reason (for checking; not committed).
+const REJECTED = path.join(ROOT, '.claude/translations/rejected.json');
 
 export const DEFAULT_MODEL = 'claude-opus-5-5';
 // Per million tokens, batch mode (half the normal price), for the estimate only.
@@ -49,36 +51,92 @@ const asciiDigits = (s) => String(s).replace(/\p{Nd}/gu, (c) => {
   const zero = DIGIT_ZEROS.find((z) => cp >= z && cp <= z + 9);
   return zero === undefined ? c : String(cp - zero);
 });
-export const numbers = (s) => (asciiDigits(s).match(/[0-9]+/g) || []).sort();
 
-// Month names in the English, as numbers: Chinese, Japanese and Korean write
-// "November" as 11月, so those numbers may appear in the translation. "May"
-// at the start of a sentence is the verb, not the month.
-const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-const monthNumbers = (s) => MONTHS.flatMap((m, i) => {
-  const re = m === 'May' ? /(?<!^|[.!?:]\s*|["“]\s*)\bMay\b/g : new RegExp(`\\b${m}\\b`, 'g');
+// Thousands separators between digit groups ("1,500", "1.500", "1 500")
+// are dropped first, so 1,500 counts as 1500 in any language.
+const joinThousands = (s) => String(s).replace(/(\d)[,.   ](?=\d{3}(?!\d))/g, '$1');
+export const numbers = (s) => (asciiDigits(joinThousands(s)).match(/[0-9]+/g) || []).sort();
+
+// Numbers the English says without digits, which a translation may write as
+// digits: month names and their short forms (Chinese, Japanese and Korean
+// write "November" as 11月, Vietnamese "Sept. 11" as 11/9), and number words
+// and ordinals ("five wars", "First Amendment", "Twenty-sixth"). "May" at the
+// start of a sentence is the verb, not the month.
+const MONTHS = [
+  ['January', 'Jan'], ['February', 'Feb'], ['March', 'Mar'], ['April', 'Apr'], ['May'], ['June', 'Jun'],
+  ['July', 'Jul'], ['August', 'Aug'], ['September', 'Sept', 'Sep'], ['October', 'Oct'], ['November', 'Nov'], ['December', 'Dec'],
+];
+const monthNumbers = (s) => MONTHS.flatMap((names, i) => names.flatMap((m, k) => {
+  const word = k === 0 ? `\\b${m}\\b` : `\\b${m}\\.`;
+  const re = m === 'May' ? /(?<!^|[.!?:]\s*|["“]\s*)\bMay\b/g : new RegExp(word, 'g');
   return (String(s).match(re) || []).map(() => String(i + 1));
-});
+}));
 
-// The translation's numbers must be the English ones, plus at most the
-// English month names written as numbers.
-function numbersMatch(english, translated) {
+const ONES = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve',
+  'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+const ONES_TH = ['', 'first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth',
+  'eleventh', 'twelfth', 'thirteenth', 'fourteenth', 'fifteenth', 'sixteenth', 'seventeenth', 'eighteenth', 'nineteenth'];
+const TENS = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+const TENS_TH = ['', '', 'twentieth', 'thirtieth', 'fortieth', 'fiftieth', 'sixtieth', 'seventieth', 'eightieth', 'ninetieth'];
+const WORD_VALUES = new Map();
+for (let n = 1; n < 100; n++) {
+  const t = Math.floor(n / 10);
+  const o = n % 10;
+  if (n < 20) {
+    WORD_VALUES.set(ONES[n], n);
+    WORD_VALUES.set(ONES_TH[n], n);
+  } else if (o === 0) {
+    WORD_VALUES.set(TENS[t], n);
+    WORD_VALUES.set(TENS_TH[t], n);
+  } else {
+    WORD_VALUES.set(`${TENS[t]}-${ONES[o]}`, n);
+    WORD_VALUES.set(`${TENS[t]}-${ONES_TH[o]}`, n);
+  }
+}
+// "twenty-sixth" is one number; "four-year" is "four" plus "year".
+const wordNumbers = (s) => (String(s).toLowerCase().match(/[a-z]+(?:-[a-z]+)*/g) || [])
+  .flatMap((w) => (WORD_VALUES.has(w) ? [w] : w.split('-').filter((part) => WORD_VALUES.has(part))))
+  .map((w) => String(WORD_VALUES.get(w)));
+
+// Other ways a translation may write one of the English numbers:
+// "the 1800s" as the 19th century, "the 1950s" as the 20th century's 50s
+// (Chinese 20世纪50年代), "$15 million" as 1500万 or 15000000, "2 billion"
+// as 20亿. Each option is a list of numbers that replace it.
+function otherWays(english, n) {
+  const text = joinThousands(english);
+  const v = Number(n);
+  const ways = [];
+  if (new RegExp(`\\b${n}s\\b`).test(text) && v % 10 === 0 && v >= 1000) {
+    const century = String(Math.floor(v / 100) + 1);
+    if (v % 100 === 0) ways.push([century]);
+    else ways.push([century, String(v % 100)], [String(v % 100)], [century]);
+  }
+  if (new RegExp(`\\b${n} million\\b`, 'i').test(text)) ways.push([String(v * 100)], [String(v * 1e6)]);
+  if (new RegExp(`\\b${n} billion\\b`, 'i').test(text)) ways.push([String(v * 10)], [String(v * 1e9)]);
+  return ways;
+}
+
+// The translation's numbers must be the English ones (or another way of
+// writing one of them, above), plus at most numbers the English says in words.
+export function numbersMatch(english, translated) {
   const want = numbers(english);
   const got = numbers(translated);
   if (want.join() === got.join()) return true;
   const extra = [...got];
-  for (const n of want) {
-    const at = extra.indexOf(n);
+  const take = (list, n) => {
+    const at = list.indexOf(n);
     if (at === -1) return false;
-    extra.splice(at, 1);
-  }
-  const months = monthNumbers(english);
-  return extra.every((n) => {
-    const at = months.indexOf(n);
-    if (at === -1) return false;
-    months.splice(at, 1);
+    list.splice(at, 1);
     return true;
-  });
+  };
+  const missing = want.filter((n) => !take(extra, n));
+  for (const n of missing) {
+    const way = otherWays(english, n).find((option) => option.every((m) => extra.filter((x) => x === m).length >= option.filter((y) => y === m).length));
+    if (!way) return false;
+    way.forEach((m) => take(extra, m));
+  }
+  const allowed = [...monthNumbers(english), ...wordNumbers(english)];
+  return extra.every((n) => take(allowed, n));
 }
 
 // Why a translation can't be used, or null when it's fine.
@@ -301,8 +359,11 @@ async function main() {
     console.log(`${lang}: +${Object.keys(strings).length}`);
   }
   if (rejected.length) {
+    fs.mkdirSync(path.dirname(REJECTED), { recursive: true });
+    fs.writeFileSync(REJECTED, JSON.stringify(rejected, null, 2));
     console.log(`\n${rejected.length} translations were rejected and stay English (run again to retry):`);
     rejected.slice(0, 20).forEach((r) => console.log(`  ${r.lang} · ${r.why} · ${r.text.slice(0, 60)}`));
+    console.log(`The full list is in ${path.relative(ROOT, REJECTED)} (not committed).`);
   }
   fs.rmSync(STATE, { force: true });
   console.log('\nDone. Check the files in content/translations/, then commit them.');
