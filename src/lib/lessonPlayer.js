@@ -38,12 +38,14 @@ export function nextStepIndex(results = {}) {
 
 /**
  * The lesson_progress row to save after a run. A replay never lowers saved
- * stars or steps, and completed_at keeps the first finish.
+ * stars or steps, and completed_at keeps the first finish. `rules` lets
+ * another kind of lesson (the N-400 lessons) count its own steps and stars.
  */
-export function progressRow(lessonId, results, existing = null, now = new Date()) {
-  const steps = stepsDone(results);
-  const stars = starsFor(results);
-  const completed = steps === STEPS.length;
+export function progressRow(lessonId, results, existing = null, now = new Date(), rules = null) {
+  const list = rules?.steps || STEPS;
+  const steps = list.filter((s) => results[s]).length;
+  const stars = (rules?.starsFor || starsFor)(results);
+  const completed = steps === list.length;
   return {
     lesson_id: lessonId,
     steps_done: Math.max(steps, Number(existing?.steps_done) || 0),

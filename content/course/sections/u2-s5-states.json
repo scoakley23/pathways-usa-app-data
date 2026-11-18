@@ -39,6 +39,12 @@
       "title": "Speak it!"
     },
     {
+      "id": "u2-n400",
+      "type": "n400",
+      "title": "N-400: Citizenship, voting and taxes",
+      "lessonId": "n400-citizenship-voting-taxes"
+    },
+    {
       "id": "u2-practice-interview",
       "type": "practiceInterview",
       "title": "Unit practice interview"

@@ -13,12 +13,14 @@ import useAppLanguage, { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
 import { loadPlanSettings } from '@/lib/planSettings';
 import { INTERVIEW_LINKS } from '@/lib/shellRoutes';
 import { lastScores, readinessTiles } from '@/lib/interviewReadiness';
+import N400LessonsCard from '@/components/n400lesson/N400LessonsCard';
 
 // The Interview tab (/interview, frame R30Interview): "Are you ready?" with
 // four tiles from what the app already saves (quick-check levels, mastered
 // civics questions, practice interview scores), the interview room, the last
 // 4 practice scores, "Start practice interview", and links to the day guide,
-// the N-400 guide and the N-400 coach. Reads only; saves nothing.
+// the N-400 guide and the next N-400 lesson, then the N-400 lessons. Reads
+// only; saves nothing.
 import { INTERVIEW_LINES as LINES } from './shellStrings';
 
 const PRACTICE_QUESTIONS = 12; // 2 small talk + 3 about you + 4 "Have you ever…" + 3 swearing in (InterviewPractice)
@@ -131,6 +133,8 @@ export default function InterviewPage() {
             </Link>
           ))}
         </div>
+
+        <N400LessonsCard />
       </div>
     </div>
   );

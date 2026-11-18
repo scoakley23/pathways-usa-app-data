@@ -4,7 +4,7 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 vi.mock('@/api/provider', () => ({ PROVIDER: 'base44', WANTS_SUPABASE: false }));
 
 const { fromPack, packText, packTree, setPackForTests, resetPacks, loadPack, getLoadedPack } = await import('./translationPack');
-const { problem, chunk, missingTexts, buildRequests, readResult } = await import('../../scripts/translations/build-pack.mjs');
+const { problem, chunk, missingTexts, mergePack, failingLines, buildRequests, readResult } = await import('../../scripts/translations/build-pack.mjs');
 const SOURCES = (await import('../../content/translations/_sources.json')).default;
 
 beforeEach(() => {
@@ -67,6 +67,46 @@ describe('build-pack checks', () => {
     const [req] = buildRequests({ language: { value: 'pa', label: 'ਪੰਜਾਬੀ' }, texts: ['Hi'] });
     expect(req.params.max_tokens).toBe(32000);
     expect(req.params.system).toContain('digits 0-9');
+  });
+
+  it('accepts numbers written another way: centuries, decades, digits for words, short months, 万', () => {
+    const ok = [
+      ['The 1800s', '19世纪'],
+      ['Name one war fought by the United States in the 1800s.', '举出美国在19世纪参与的一场战争。'],
+      ['Social movement in the 1950s–1960s', '20世纪50至60年代的社会运动'],
+      ['World wars · civil rights · Sept. 11', 'Các cuộc thế chiến · dân quyền · 11/9'],
+      ['First Amendment', 'ບົດແກ້ໄຂທີ ໑'],
+      ['Four-year terms', 'ວາລະ 4 ປີ'],
+      ['Twenty-sixth Amendment', '第26修正案'],
+      ['The United States fought five wars in the 1900s.', '美国在20世纪打了5场战争。'],
+      ['Jefferson paid France $15 million.', '杰斐逊向法国支付了1500万美元。'],
+      ['It cost 1,500 dollars.', 'Costó 1.500 dólares.'],
+    ];
+    for (const [en, tr] of ok) expect(problem(en, tr), en).toBeNull();
+  });
+
+  it('still rejects numbers that really changed', () => {
+    const bad = [
+      ['12 of 20', '12 de 21'],
+      ['12 of 20', '12 de 20 y 7'],
+      ['The 1800s', '18世纪'],
+      ['Four-year terms', 'ວາລະ 6 ປີ'],
+      ['Jefferson paid France $15 million.', '杰斐逊向法国支付了1600万美元。'],
+      ['Sept. 11', '11/10'],
+    ];
+    for (const [en, tr] of bad) expect(problem(en, tr), en).toBe('numbers changed');
+  });
+
+  it('sends again a machine line that breaks today\'s checks, never a reviewed one', () => {
+    const sources = { texts: [{ text: 'Speak it!' }, { text: 'Hello' }, { text: 'Read it' }] };
+    const machine = { 'Speak it!': 'Ka no!', Hello: 'Hola', 'Read it': 'Léelo' };
+    expect(missingTexts(sources, machine, { 'Read it': 'Read it (léalo)' })).toEqual(['Speak it!']);
+    expect(failingLines(machine)).toBe(2);
+  });
+
+  it('a run keeps good lines, adds new ones, and drops old lines that still break the checks', () => {
+    const machine = { Hello: 'Hola', 'Speak it!': 'Ka no!', 'Write it': 'Kyerɛw' };
+    expect(mergePack(machine, { 'Speak it!': 'Speak it! (ka no)' })).toEqual({ Hello: 'Hola', 'Speak it!': 'Speak it! (ka no)' });
   });
 
   it('only missing texts are sent; reviewed lines are never re-translated', () => {

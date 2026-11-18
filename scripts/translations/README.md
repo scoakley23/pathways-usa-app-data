@@ -43,6 +43,20 @@ translates a feature name. Feature names stay in English in every language:
 Speak it!, Read it, Write it, Teach it back, Read and write (`FEATURE_NAMES`
 in `build-pack.mjs`).
 
+Numbers may be written the way the language writes them: in its own digits,
+"1,500" as "1.500", "the 1800s" as the 19th century (Chinese 19世纪), "the
+1950s" as 20世纪50年代, "$15 million" as 1500万, and a number the English says
+in words ("five", "First Amendment", "Sept. 11") as digits. Anything else that
+changes a number is rejected. The full list of the last run's rejected lines
+is saved to `.claude/translations/rejected.json` on your computer (not
+committed).
+
+Lines already in a machine pack are checked again on every run. One that
+breaks today's checks (for example a feature name translated before that rule
+existed) counts as missing and is sent again; if the new translation is
+rejected too, the old line is dropped and the text shows in English.
+`--check` lists them as "to redo". Reviewed lines are never sent again.
+
 ## Reviewing
 
 Copy lines a fluent speaker has checked into `reviewed/{lang}.json` with the

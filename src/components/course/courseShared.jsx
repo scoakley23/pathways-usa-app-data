@@ -3,7 +3,7 @@ import { CalendarDays, Eye, FileText, Landmark, Map as MapIcon, Mic, Package, Sa
 import { auth } from '@/api/auth';
 import { courseProgress } from '@/api/course';
 import { UNITS } from '@/lib/course';
-import { canSeeDrafts, currentUnitId, journeyStops, totalStars, visibleCourse } from '@/lib/journey';
+import { allLessonIds, canSeeDrafts, currentUnitId, journeyStops, totalStars, visibleCourse } from '@/lib/journey';
 import { n400Href } from '@/lib/checkpoints';
 import { startingPoint } from '@/lib/startingPoint';
 import { translateCourse } from '@/lib/courseTitles';
@@ -60,7 +60,7 @@ export function stopHref(stop) {
   if (stop.type === 'speakit') return `/course/speak/${stop.sectionId}`;
   if (stop.type === 'readwrite') return `/course/readwrite/${stop.id}`;
   if (stop.type === 'practiceInterview') return `/course/unit/${stop.unitId}/interview`;
-  if (stop.type === 'n400') return n400Href(stop);
+  if (stop.type === 'n400') return stop.lessonId ? `/course/n400/${stop.lessonId}` : n400Href(stop);
   if (stop.type === 'review') return '/review-chest';
   return null;
 }
@@ -80,7 +80,7 @@ export function useJourney() {
     (async () => {
       let user = null;
       try { user = await auth.me(); } catch (e) { user = null; }
-      const ids = UNITS.flatMap((u) => u.sections.flatMap((s) => (s.lessons || []).map((l) => l.id)));
+      const ids = allLessonIds(UNITS);
       let saved = { lessons: {}, checkpoints: new Set() };
       if (user) {
         try { saved = await courseProgress.load(ids); } catch (e) { saved = { lessons: {}, checkpoints: new Set() }; }

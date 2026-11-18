@@ -32,6 +32,12 @@
       "title": "Speak it!"
     },
     {
+      "id": "u7-n400",
+      "type": "n400",
+      "title": "N-400: Oath questions",
+      "lessonId": "n400-oath-questions"
+    },
+    {
       "id": "u7-practice-interview",
       "type": "practiceInterview",
       "title": "Unit practice interview"

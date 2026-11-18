@@ -16,7 +16,8 @@ import DesignPreview from './pages/DesignPreview';
 import QuickCheck from './pages/QuickCheck';
 import LearnCivics from './pages/LearnCivics';
 import ReviewCivics from './pages/ReviewCivics';
-import N400Coach from './pages/N400Coach';
+import N400CoachRedirect from './components/n400lesson/N400CoachRedirect';
+import N400LessonPage from './components/n400lesson/N400LessonPage';
 import InterviewDay from './pages/InterviewDay';
 import PilotDashboard from './components/pilot-admin/PilotDashboard';
 import Study from './pages/Study';
@@ -137,6 +138,11 @@ const AuthenticatedApp = () => {
           <LessonPlayer />
         </LayoutWrapper>
       } />
+      <Route path="course/n400/:lessonId" element={
+        <LayoutWrapper currentPageName="N400Lesson">
+          <N400LessonPage />
+        </LayoutWrapper>
+      } />
       {/* Checkpoints (Prompt 8): Speak it!, Read and write, Unit complete,
           the unit practice interview and the review chest. */}
       <Route path="course/speak/:sectionId" element={
@@ -200,11 +206,8 @@ const AuthenticatedApp = () => {
           <QuickCheck />
         </LayoutWrapper>
       } />
-      <Route path="n400-coach" element={
-        <LayoutWrapper currentPageName="N400Coach">
-          <N400Coach />
-        </LayoutWrapper>
-      } />
+      {/* The old N-400 coach is now the N-400 lessons. */}
+      <Route path="n400-coach" element={<N400CoachRedirect />} />
       <Route path="learn" element={
         <LayoutWrapper currentPageName="LearnCivics">
           <LearnCivics />

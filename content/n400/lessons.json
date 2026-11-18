@@ -1,0 +1,636 @@
+{
+  "note": "N-400 lessons (one per N-400 guide section, at the end of each unit). Teaches UNDERSTANDING each question, never an answer: no sample answers, no practice person. Reviewed content like the course: learners see only \"reviewed\" lessons. The form wording, meanings, words and the officer's phrasings come from src/components/n400/n400Content.js; this file adds only the short question names, the choices and the Spot the word items. Format: content/n400/README.md.",
+  "questionNames": {
+    "p8-1": "Trips outside the United States",
+    "p9-1": "Ever said you were a U.S. citizen",
+    "p9-2": "Ever registered to vote or voted",
+    "p9-3": "Taxes you owe now",
+    "p9-4": "Filing taxes as a “nonresident”",
+    "p9-5": "Communist or totalitarian groups",
+    "p9-6": "Groups that use violence",
+    "p9-7": "Torture, genocide and other harm to people",
+    "p9-8": "Military, police or armed groups",
+    "p9-9": "Working where people were held",
+    "p9-10": "A group that used weapons against people",
+    "p9-11": "Selling or moving weapons",
+    "p9-12": "Weapons or military training",
+    "p9-13": "Children under 15 in armed groups",
+    "p9-14": "Children under 15 in fighting",
+    "p9-15": "Crimes and arrests",
+    "p9-16": "Finishing probation, parole or a sentence",
+    "p9-17": "Drugs, smuggling, prostitution and other acts",
+    "p9-18": "False information to U.S. officials",
+    "p9-19": "Lying to enter the U.S. or get benefits",
+    "p9-20": "Removal or deportation proceedings",
+    "p9-21": "Ever removed or deported",
+    "p9-22a": "Men in the U.S. between ages 18 and 26",
+    "p9-22b": "Registering for the Selective Service",
+    "p9-23": "Leaving the U.S. to avoid the draft",
+    "p9-24": "Asking to be excused from military service",
+    "p9-25": "Serving in the U.S. armed forces",
+    "p9-26": "In the U.S. armed forces now",
+    "p9-27": "Court-martial or a discharge that was not honorable",
+    "p9-28": "Discharged for not being a citizen",
+    "p9-29": "Leaving the armed forces without permission",
+    "p9-30": "Titles of nobility",
+    "p9-31": "Supporting the Constitution",
+    "p9-32": "Understanding the Oath of Allegiance",
+    "p9-33": "Unable to take the Oath because of a disability",
+    "p9-34": "Willing to take the full Oath",
+    "p9-35": "Willing to bear arms",
+    "p9-36": "Willing to do noncombatant service",
+    "p9-37": "Willing to do work of national importance"
+  },
+  "help": {
+    "phrases": [
+      {
+        "id": "repeat",
+        "say": "Could you repeat that, please?",
+        "meaning": "Ask the officer to say the question again."
+      },
+      {
+        "id": "meaning",
+        "say": "What does “{word}” mean?",
+        "meaning": "Ask what a word means."
+      },
+      {
+        "id": "simpler",
+        "say": "Can you say it more simply, please?",
+        "meaning": "Ask the officer to use easier words."
+      }
+    ]
+  },
+  "lessons": [
+    {
+      "id": "n400-time-outside-us",
+      "section": "time-outside-us",
+      "unitId": "u1",
+      "title": "N-400: Time outside the U.S.",
+      "status": "draft",
+      "context": [
+        "Before your interview, make a list of every trip outside the United States: where you went, the day you left and the day you came back.",
+        "If you don't remember the dates, look at photos from your trips, the stamps in your passport, flight confirmation emails, bank or card statements, and frequent flyer accounts.",
+        "You can also see your recent trips on the I-94 website of U.S. Customs and Border Protection (CBP): https://i94.cbp.dhs.gov. It is fast, but it may not show every trip.",
+        "If you still can't find the dates, you can ask CBP for your official travel record with a FOIA request. It takes a long time, so try the other ways first."
+      ],
+      "same": [
+        {
+          "phrasing": "Tell me about the trips you have taken outside the United States.",
+          "answer": "p8-1",
+          "choices": [
+            "p8-1",
+            "p9-21",
+            "p9-23"
+          ]
+        },
+        {
+          "phrasing": "How many trips of more than 24 hours have you taken outside the United States?",
+          "answer": "p8-1",
+          "choices": [
+            "p9-23",
+            "p8-1",
+            "p9-20"
+          ]
+        },
+        {
+          "phrasing": "Have you taken any trips outside the United States that lasted more than 6 months?",
+          "answer": "p8-1",
+          "choices": [
+            "p9-21",
+            "p9-23",
+            "p8-1"
+          ]
+        }
+      ],
+      "spot": [
+        {
+          "questionId": "p8-1",
+          "text": "Do not include day trips",
+          "word": "day trips",
+          "choices": [
+            "A trip where you left and returned within 24 hours (one day).",
+            "A trip you took for work.",
+            "A trip that lasted more than 6 months."
+          ],
+          "answer": 0
+        },
+        {
+          "questionId": "p8-1",
+          "text": "Start with your most recent trip and work backwards",
+          "word": "work backwards",
+          "choices": [
+            "Start with the most recent trip first, then go back in time.",
+            "Start with your first trip ever, then come forward in time.",
+            "Write the longest trip first."
+          ],
+          "answer": 0
+        }
+      ],
+      "understand": [
+        {
+          "questionId": "p8-1",
+          "phrasing": "Tell me about the trips you have taken outside the United States."
+        },
+        {
+          "questionId": "p8-1",
+          "phrasing": "Have you taken any trips outside the United States that lasted more than 6 months?"
+        }
+      ],
+      "helpWord": "evidence"
+    },
+    {
+      "id": "n400-citizenship-voting-taxes",
+      "section": "citizenship-voting-taxes",
+      "unitId": "u2",
+      "title": "N-400: Citizenship, voting and taxes",
+      "status": "reviewed",
+      "same": [
+        {
+          "phrasing": "Have you ever told anyone you were a U.S. citizen?",
+          "answer": "p9-1",
+          "choices": [
+            "p9-1",
+            "p9-2",
+            "p9-4"
+          ]
+        },
+        {
+          "phrasing": "Do you owe any overdue taxes right now?",
+          "answer": "p9-3",
+          "choices": [
+            "p9-4",
+            "p9-3",
+            "p9-2"
+          ]
+        },
+        {
+          "phrasing": "Did you ever file taxes as a \"nonresident alien\"?",
+          "answer": "p9-4",
+          "choices": [
+            "p9-3",
+            "p9-1",
+            "p9-4"
+          ]
+        }
+      ],
+      "spot": [
+        {
+          "questionId": "p9-1",
+          "text": "Have you EVER claimed to be a U.S. citizen",
+          "word": "EVER",
+          "choices": [
+            "At any time in your whole life.",
+            "Only in the last 5 years.",
+            "Only right now."
+          ],
+          "answer": 0
+        },
+        {
+          "questionId": "p9-3",
+          "text": "Do you currently owe any overdue",
+          "word": "currently",
+          "choices": [
+            "Now, at this time.",
+            "At any time in your life.",
+            "Before you came to the United States."
+          ],
+          "answer": 0
+        },
+        {
+          "questionId": "p9-1",
+          "text": "(in writing or any other way)",
+          "word": "in writing or any other way",
+          "choices": [
+            "On paper, out loud, or in any other way.",
+            "Only on a government form.",
+            "Only when you talked to an officer."
+          ],
+          "answer": 0
+        }
+      ],
+      "understand": [
+        {
+          "questionId": "p9-2",
+          "phrasing": "Have you ever registered to vote in the United States?"
+        },
+        {
+          "questionId": "p9-3",
+          "phrasing": "Do you currently owe any Federal, state, or local taxes?"
+        }
+      ],
+      "helpWord": "overdue"
+    },
+    {
+      "id": "n400-groups-violence",
+      "section": "groups-violence",
+      "unitId": "u3",
+      "title": "N-400: Groups and violence",
+      "status": "reviewed",
+      "same": [
+        {
+          "phrasing": "Have you ever been a member of the Communist Party?",
+          "answer": "p9-5",
+          "choices": [
+            "p9-5",
+            "p9-8",
+            "p9-12"
+          ]
+        },
+        {
+          "phrasing": "Have you ever worked in a prison or detention facility?",
+          "answer": "p9-9",
+          "choices": [
+            "p9-8",
+            "p9-9",
+            "p9-13"
+          ]
+        },
+        {
+          "phrasing": "Have you ever received weapons training?",
+          "answer": "p9-12",
+          "choices": [
+            "p9-11",
+            "p9-10",
+            "p9-12"
+          ]
+        }
+      ],
+      "spot": [
+        {
+          "questionId": "p9-5",
+          "text": "in any way associated with",
+          "word": "associated with",
+          "choices": [
+            "Connected to, took part in, or helped.",
+            "Only a leader of the group.",
+            "Paid by the group."
+          ],
+          "answer": 0
+        },
+        {
+          "questionId": "p9-9",
+          "text": "where people were detained",
+          "word": "detained",
+          "choices": [
+            "Forced to stay somewhere.",
+            "Visited by their family.",
+            "Paid to do work."
+          ],
+          "answer": 0
+        }
+      ],
+      "understand": [
+        {
+          "questionId": "p9-6",
+          "phrasing": "Have you ever belonged to a group that used weapons to harm people?"
+        },
+        {
+          "questionId": "p9-12",
+          "phrasing": "Were you ever trained in any military-type skills?"
+        }
+      ],
+      "helpWord": "totalitarian"
+    },
+    {
+      "id": "n400-crimes-offenses",
+      "section": "crimes-offenses",
+      "unitId": "u4",
+      "title": "N-400: Crimes and offenses",
+      "status": "reviewed",
+      "same": [
+        {
+          "phrasing": "Have you ever committed a crime you were not arrested for?",
+          "answer": "p9-15",
+          "choices": [
+            "p9-15",
+            "p9-18",
+            "p9-16"
+          ]
+        },
+        {
+          "phrasing": "Did you complete your probation or parole?",
+          "answer": "p9-16",
+          "choices": [
+            "p9-19",
+            "p9-16",
+            "p9-15"
+          ]
+        },
+        {
+          "phrasing": "Have you ever lied to a U.S. immigration officer?",
+          "answer": "p9-19",
+          "choices": [
+            "p9-17",
+            "p9-15",
+            "p9-19"
+          ]
+        }
+      ],
+      "spot": [
+        {
+          "questionId": "p9-15",
+          "text": "for which you were NOT arrested",
+          "word": "NOT",
+          "choices": [
+            "Even if the police did not arrest you.",
+            "Only if the police arrested you.",
+            "Only crimes in another country."
+          ],
+          "answer": 0
+        },
+        {
+          "questionId": "p9-18",
+          "text": "false, fraudulent, or misleading",
+          "word": "misleading",
+          "choices": [
+            "Causing someone to believe something that is not true.",
+            "Written in English.",
+            "Sent by mail."
+          ],
+          "answer": 0
+        },
+        {
+          "questionId": "p9-16",
+          "text": "were placed on probation",
+          "word": "probation",
+          "choices": [
+            "A court-ordered period of supervision instead of, or after, jail time.",
+            "Money you paid to a court.",
+            "A trip outside the country."
+          ],
+          "answer": 0
+        }
+      ],
+      "understand": [
+        {
+          "questionId": "p9-15",
+          "phrasing": "Have you ever been arrested or detained by the police, or any official?"
+        },
+        {
+          "questionId": "p9-18",
+          "phrasing": "Have you ever given false information to a U.S. Government official?"
+        }
+      ],
+      "helpWord": "offense"
+    },
+    {
+      "id": "n400-immigration-history",
+      "section": "immigration-history",
+      "unitId": "u5",
+      "title": "N-400: Immigration history",
+      "status": "reviewed",
+      "context": [
+        "These questions use legal words for things many people know from life.",
+        "Detained: held by the police or immigration officers and not free to leave.",
+        "Removed or deported: forced by the U.S. government to leave the country.",
+        "Removal proceedings: a case before an immigration judge, where the government tries to make a person leave the country.",
+        "These questions ask about your whole life. If any of this ever happened to you, talk to a lawyer before you file."
+      ],
+      "same": [
+        {
+          "phrasing": "Have you ever been in immigration court proceedings?",
+          "answer": "p9-20",
+          "choices": [
+            "p9-20",
+            "p9-21",
+            "p8-1"
+          ]
+        },
+        {
+          "phrasing": "Have you ever been deported from the United States?",
+          "answer": "p9-21",
+          "choices": [
+            "p9-20",
+            "p8-1",
+            "p9-21"
+          ]
+        },
+        {
+          "phrasing": "Has the government ever tried to remove or deport you?",
+          "answer": "p9-20",
+          "choices": [
+            "p9-21",
+            "p9-20",
+            "p9-19"
+          ]
+        }
+      ],
+      "spot": [
+        {
+          "questionId": "p9-20",
+          "text": "placed in removal, rescission, or deportation proceedings",
+          "word": "proceedings",
+          "choices": [
+            "An official legal process before a judge.",
+            "A trip to another country.",
+            "A job with the government."
+          ],
+          "answer": 0
+        },
+        {
+          "questionId": "p9-21",
+          "text": "Have you EVER been removed or deported",
+          "word": "removed",
+          "choices": [
+            "Forced by the government to leave the country.",
+            "Moved to a new house.",
+            "Taken off a list of voters."
+          ],
+          "answer": 0
+        }
+      ],
+      "understand": [
+        {
+          "questionId": "p9-20",
+          "phrasing": "Have you ever been in immigration court proceedings?"
+        },
+        {
+          "questionId": "p9-21",
+          "phrasing": "Were you ever ordered to leave the U.S.?"
+        }
+      ],
+      "helpWord": "deportation"
+    },
+    {
+      "id": "n400-selective-service-military",
+      "section": "selective-service-military",
+      "unitId": "u6",
+      "title": "N-400: Selective Service and the military",
+      "status": "draft",
+      "context": [
+        "Everyone answers question 22.a on the form: “Are you a male who lived in the United States at any time between your 18th and 26th birthdays?”",
+        "Question 22.b is only for people who answered “Yes” to 22.a. So if you are not a man, 22.b doesn't apply to you.",
+        "The Selective Service is the U.S. list of men who could be called to serve in the military if the country needs them.",
+        "The questions after 22.b, about the U.S. armed forces, are for everyone."
+      ],
+      "questionNotes": {
+        "p9-22b": "Only for men who answered “Yes” to 22.a"
+      },
+      "same": [
+        {
+          "phrasing": "Were you living in the U.S. between your 18th and 26th birthdays?",
+          "answer": "p9-22a",
+          "choices": [
+            "p9-22a",
+            "p9-25",
+            "p9-22b"
+          ]
+        },
+        {
+          "phrasing": "Have you ever asked to be excused from military service?",
+          "answer": "p9-24",
+          "choices": [
+            "p9-23",
+            "p9-24",
+            "p9-29"
+          ]
+        },
+        {
+          "phrasing": "Have you ever left the military without permission?",
+          "answer": "p9-29",
+          "choices": [
+            "p9-28",
+            "p9-27",
+            "p9-29"
+          ]
+        }
+      ],
+      "spot": [
+        {
+          "questionId": "p9-23",
+          "text": "to avoid being drafted",
+          "word": "drafted",
+          "choices": [
+            "Required by law to join the military.",
+            "Asked to vote in an election.",
+            "Paid to work for the army."
+          ],
+          "answer": 0
+        },
+        {
+          "questionId": "p9-26",
+          "text": "Are you currently a member",
+          "word": "currently",
+          "choices": [
+            "Now, at this time.",
+            "At any time in your life.",
+            "Before you came to the United States."
+          ],
+          "answer": 0
+        },
+        {
+          "questionId": "p9-24",
+          "text": "any kind of exemption from military service",
+          "word": "exemption",
+          "choices": [
+            "Permission not to do something that most people must do.",
+            "A reward for military service.",
+            "A test to join the military."
+          ],
+          "answer": 0
+        }
+      ],
+      "understand": [
+        {
+          "questionId": "p9-22b",
+          "phrasing": "Did you register for the Selective Service?"
+        },
+        {
+          "questionId": "p9-25",
+          "phrasing": "Have you ever been in the U.S. military?"
+        }
+      ],
+      "helpWord": "Selective Service"
+    },
+    {
+      "id": "n400-oath-questions",
+      "section": "oath-questions",
+      "unitId": "u7",
+      "title": "N-400: Oath questions",
+      "status": "reviewed",
+      "context": [
+        "Questions 35 to 37 start with “If the law requires it.” They do not ask you to join the military now. They ask if you would be willing, if a law ever required it.",
+        "These are the same promises you make in the Oath of Allegiance at your naturalization ceremony.",
+        "Bear arms: carry and use weapons for the United States, as a soldier.",
+        "Noncombatant service: work in the military that is not fighting, such as caring for wounded soldiers.",
+        "Work of national importance under civilian direction: important work for the country that is not military, led by people who are not in the military.",
+        "If a religious or moral reason means you could not make one of these promises, talk to a lawyer before you file."
+      ],
+      "same": [
+        {
+          "phrasing": "Do you support the U.S. Constitution?",
+          "answer": "p9-31",
+          "choices": [
+            "p9-31",
+            "p9-32",
+            "p9-34"
+          ]
+        },
+        {
+          "phrasing": "If the law requires it, would you do military work that does not include fighting?",
+          "answer": "p9-36",
+          "choices": [
+            "p9-35",
+            "p9-37",
+            "p9-36"
+          ]
+        },
+        {
+          "phrasing": "Do you have any titles or ranks of nobility from another country?",
+          "answer": "p9-30",
+          "choices": [
+            "p9-30",
+            "p9-31",
+            "p9-33"
+          ]
+        }
+      ],
+      "spot": [
+        {
+          "questionId": "p9-35",
+          "text": "are you willing to bear arms",
+          "word": "bear arms",
+          "choices": [
+            "To carry and use weapons.",
+            "Wear a uniform.",
+            "Build houses for the army."
+          ],
+          "answer": 0
+        },
+        {
+          "questionId": "p9-36",
+          "text": "noncombatant services",
+          "word": "noncombatant",
+          "choices": [
+            "A person who is part of the military but does not fight.",
+            "Fighting in a war.",
+            "Working for a company."
+          ],
+          "answer": 0
+        },
+        {
+          "questionId": "p9-34",
+          "text": "Are you willing to take the full Oath",
+          "word": "willing",
+          "choices": [
+            "Ready and OK with doing something.",
+            "Able to read it out loud.",
+            "Required to sign it."
+          ],
+          "answer": 0
+        }
+      ],
+      "understand": [
+        {
+          "questionId": "p9-32",
+          "phrasing": "Do you understand the Oath of Allegiance?"
+        },
+        {
+          "questionId": "p9-35",
+          "phrasing": "If the law requires it, are you willing to bear arms for the United States?"
+        }
+      ],
+      "helpWord": "noncombatant"
+    }
+  ]
+}
