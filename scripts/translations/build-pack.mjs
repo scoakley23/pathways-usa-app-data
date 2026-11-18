@@ -39,7 +39,8 @@ const MAX_ITEMS = 40;
 // App feature names that stay in English in every language.
 export const FEATURE_NAMES = ['Speak it!', 'Read it', 'Write it', 'Teach it back', 'Read and write'];
 // Whole-phrase match, so "Read it out loud" (an instruction) isn't a feature name.
-const featuresIn = (s) => FEATURE_NAMES.filter((f) => new RegExp(`(^|[^\\w])${f.replace(/[!]/g, '\\!')}(?![\\w ]*\\w*out loud)($|[^\\w])`).test(String(s)));
+// "Read it out loud" and "Read it slowly" are instructions, not the feature.
+const featuresIn = (s) => FEATURE_NAMES.filter((f) => new RegExp(`(^|[^\\w])${f.replace(/[!]/g, '\\!')}(?!\\s+(?:out loud|slowly|again|down)\\b)($|[^\\w])`).test(String(s)));
 
 export const placeholders = (s) => (String(s).match(/\{[A-Za-z_][\w]*\}/g) || []).sort();
 // The "0" of each script's own digits our languages may use (Arabic, Persian
@@ -93,15 +94,54 @@ for (let n = 1; n < 100; n++) {
     WORD_VALUES.set(`${TENS[t]}-${ONES_TH[o]}`, n);
   }
 }
+// Fractions: "two-thirds" may be written 2/3 or 3分の2.
+WORD_VALUES.set('half', 2);
+WORD_VALUES.set('halves', 2);
+WORD_VALUES.set('quarter', 4);
+WORD_VALUES.set('quarters', 4);
+for (let n = 3; n <= 10; n++) WORD_VALUES.set(`${ONES_TH[n]}s`, n);
+
 // "twenty-sixth" is one number; "four-year" is "four" plus "year".
-const wordNumbers = (s) => (String(s).toLowerCase().match(/[a-z]+(?:-[a-z]+)*/g) || [])
+const plainWords = (s) => (String(s).toLowerCase().match(/[a-z]+(?:-[a-z]+)*/g) || [])
   .flatMap((w) => (WORD_VALUES.has(w) ? [w] : w.split('-').filter((part) => WORD_VALUES.has(part))))
-  .map((w) => String(WORD_VALUES.get(w)));
+  .map((w) => WORD_VALUES.get(w));
+
+// Phrases a language may write with a digit: "a day" as 1日, "doubled" as
+// 2倍, "half" as 1/2, "a dozen" as 12.
+const PHRASE_NUMBERS = [
+  [/\b(?:a|an|per|each|every|one) (?:day|week|month|year|time)\b|\bdaily\b|\bonce\b|\bannual(?:ly)?\b|\byearly\b|\bsingle\b|\bhalf\b/gi, 1],
+  [/\btwice\b|\bdoubl(?:e|ed|es)\b|\bboth\b|\bpair\b|\bcouple\b|\bsecond(?:s)?\b/gi, 2],
+  [/\btripl(?:e|ed)\b|\bthrice\b/gi, 3],
+  [/\bdozens?\b/gi, 12],
+  [/\bdecades?\b/gi, 10],
+  [/\bcentur(?:y|ies)\b/gi, 100],
+];
+// "one hundred", "two hundred years", "a thousand": the whole amount.
+const SCALES = { hundred: 100, thousand: 1000 };
+const scaledNumbers = (s) => [...String(s).matchAll(/\b(?:([a-z]+(?:-[a-z]+)?|\d+)\s+)?(hundred|thousand)s?\b/gi)]
+  .map((m) => {
+    const w = (m[1] || '').toLowerCase();
+    const base = WORD_VALUES.get(w) ?? (/^\d+$/.test(w) ? Number(w) : 1);
+    return base * SCALES[m[2].toLowerCase()];
+  });
+// Roman numerals in names: World War II, Pope John Paul II, Title IX.
+const ROMAN = { II: 2, III: 3, IV: 4, V: 5, VI: 6, VII: 7, VIII: 8, IX: 9, X: 10, XI: 11, XII: 12 };
+const romanNumbers = (s) => [
+  ...[...String(s).matchAll(/\b(II|III|IV|VI|VII|VIII|IX|XI|XII)\b/g)].map((m) => ROMAN[m[1]]),
+  ...[...String(s).matchAll(/\bWar I\b/g)].map(() => 1),
+];
+
+const wordNumbers = (s) => [
+  ...plainWords(s),
+  ...PHRASE_NUMBERS.flatMap(([re, n]) => (String(s).match(re) || []).map(() => n)),
+  ...scaledNumbers(s),
+  ...romanNumbers(s),
+].map(String);
 
 // Other ways a translation may write one of the English numbers:
 // "the 1800s" as the 19th century, "the 1950s" as the 20th century's 50s
 // (Chinese 20世纪50年代), "$15 million" as 1500万 or 15000000, "2 billion"
-// as 20亿. Each option is a list of numbers that replace it.
+// as 20亿, a year in the Thai Buddhist Era (+543). Each option is a list of numbers that replace it.
 function otherWays(english, n) {
   const text = joinThousands(english);
   const v = Number(n);
@@ -113,6 +153,8 @@ function otherWays(english, n) {
   }
   if (new RegExp(`\\b${n} million\\b`, 'i').test(text)) ways.push([String(v * 100)], [String(v * 1e6)]);
   if (new RegExp(`\\b${n} billion\\b`, 'i').test(text)) ways.push([String(v * 10)], [String(v * 1e9)]);
+  // Thai may count years in the Buddhist Era: 1803 is 2346.
+  if (v >= 1000 && v <= 2100) ways.push([String(v + 543)]);
   return ways;
 }
 

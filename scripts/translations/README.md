@@ -46,7 +46,9 @@ in `build-pack.mjs`).
 Numbers may be written the way the language writes them: in its own digits,
 "1,500" as "1.500", "the 1800s" as the 19th century (Chinese 19世纪), "the
 1950s" as 20世纪50年代, "$15 million" as 1500万, and a number the English says
-in words ("five", "First Amendment", "Sept. 11") as digits. Anything else that
+in words as digits: "five", "First Amendment", "Sept. 11", "two-thirds" (3分の2),
+"one hundred years" (100年), "a day" (1日), "doubled" (2倍), "World War II", and
+a year in the Thai Buddhist Era (1803 as 2346). Anything else that
 changes a number is rejected. The full list of the last run's rejected lines
 is saved to `.claude/translations/rejected.json` on your computer (not
 committed).
