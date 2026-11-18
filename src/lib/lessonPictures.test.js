@@ -33,7 +33,7 @@ describe('lesson pictures (content/course/pictures.json)', () => {
   it('round 2 review: the eight lessons get their new pictures and the anthem', () => {
     const kinds = (id) => LESSON_PICTURES[id].map((p) => p.drawing || p.file);
     expect(kinds('u2-s3-l3')).toContain('electorsMap');
-    expect(kinds('u4-s1-l1')).toEqual(['navajo-weaver.jpg', 'hopi-man.jpg', 'columbus.jpg']);
+    expect(kinds('u4-s1-l1')).toEqual(['navajo-woman.jpg', 'hopi-man.jpg', 'columbus.jpg']);
     expect(kinds('u5-s1-l1')).toEqual(['louisiana-purchase.jpg']);
     expect(kinds('u5-s2-l2')).toEqual(['civilWarMap']);
     expect(kinds('u5-s2-l3')).toEqual(['lincoln.jpg']);

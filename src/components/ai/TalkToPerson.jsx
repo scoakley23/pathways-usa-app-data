@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CheckCircle2, Loader2, Send } from 'lucide-react';
-import { base44 } from '@/api/base44Client';
+import { support } from '@/api/support';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Textarea } from '@/components/ui/textarea';
 import { PrimaryButton, SecondaryButton } from '@/components/pathways/ui';
 import useTranslatedLines from '@/components/persona/useTranslatedLines';
 import { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
-import { REPLY_TIME, SUPPORT_EMAIL, SUPPORT_MAX_LENGTH, SUPPORT_SUBJECT, supportFormReady } from '@/config/support';
+import { REPLY_TIME, SUPPORT_MAX_LENGTH, supportFormReady } from '@/config/support';
 
 // "Talk to a person": a short email form to the Pathways USA team. Messages
-// are emailed only; nothing is saved in the app database.
+// are emailed only (src/api/support.js); nothing is saved in the app
+// database. Identifiers are removed first; 3 messages a day on Supabase.
 
 import { TALK_LINES as LINES } from './talkStrings';
 const LINES_ES = {
@@ -25,11 +26,12 @@ const LINES_ES = {
   comingSoon: 'El formulario de contacto estará disponible pronto.',
   sent: 'Gracias. Su mensaje fue enviado.',
   error: 'Lo sentimos, no se pudo enviar su mensaje. Por favor, intente más tarde.',
+  limit: 'Ya envió 3 mensajes hoy. Por favor, escriba otra vez mañana.',
   done: 'Listo',
 };
 
 export default function TalkToPerson({ open, onOpenChange, userEmail, language = 'en' }) {
-  const tr = useTranslatedLines(LINES, language, { cacheKey: 'talk_person_v1', handWritten: { es: LINES_ES } });
+  const tr = useTranslatedLines(LINES, language, { cacheKey: 'talk_person_v2', handWritten: { es: LINES_ES } });
   const t = (key) => tr(key) || LINES[key];
   const ready = supportFormReady();
   const replyLine = { reply: `We reply within ${REPLY_TIME}.` };
@@ -38,7 +40,7 @@ export default function TalkToPerson({ open, onOpenChange, userEmail, language =
 
   const me = (userEmail || '').toLowerCase().trim();
   const [message, setMessage] = useState('');
-  const [status, setStatus] = useState('idle'); // idle | sending | sent | error
+  const [status, setStatus] = useState('idle'); // idle | sending | sent | error | limit
 
   useEffect(() => {
     if (open) return;
@@ -53,16 +55,11 @@ export default function TalkToPerson({ open, onOpenChange, userEmail, language =
     if (!ready || !text || status === 'sending') return;
     setStatus('sending');
     try {
-      await base44.integrations.Core.SendEmail({
-        to: SUPPORT_EMAIL,
-        subject: SUPPORT_SUBJECT,
-        from_name: 'Pathways USA',
-        body: `${text}\n\n---\nReply to: ${me}\nSent from the "Talk to a person" form in the Pathways USA app. This message is not stored in the app.`,
-      });
+      await support.send({ message: text, replyTo: me });
       setStatus('sent');
       setMessage('');
     } catch (err) {
-      setStatus('error');
+      setStatus(err?.limit ? 'limit' : 'error');
     }
   };
 
@@ -115,10 +112,10 @@ export default function TalkToPerson({ open, onOpenChange, userEmail, language =
           <span id="talk-person-count">{message.length}/{SUPPORT_MAX_LENGTH}</span>
         </div>
         {me && <p className="text-sm text-muted break-all -mt-2">{me}</p>}
-        {status === 'error' && (
-          <p role="alert" dir={dir} className="rounded-2xl bg-not-yet-bg text-not-yet px-4 py-3 text-base font-semibold">{t('error')}</p>
+        {(status === 'error' || status === 'limit') && (
+          <p role="alert" dir={dir} className="rounded-2xl bg-not-yet-bg text-not-yet px-4 py-3 text-base font-semibold">{t(status)}</p>
         )}
-        <PrimaryButton type="submit" disabled={!ready || !message.trim() || status === 'sending'} className="w-full">
+        <PrimaryButton type="submit" disabled={!ready || !message.trim() || status === 'sending' || status === 'limit'} className="w-full">
           {status === 'sending' ? <Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" /> : <Send className="w-5 h-5" aria-hidden="true" />}
           {t('send')}
         </PrimaryButton>

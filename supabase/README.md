@@ -123,6 +123,8 @@ add a CAPTCHA (Cloudflare Turnstile, Authentication → Attack Protection).
 |---|---|
 | `functions/ai/` | Every live AI request when the switch is on (Step 4): Ask Amio, checking a spoken civics answer, interview scoring, the "understood the question" check, "Explain it simply". Signed-in learners only. The phone sends `{ kind, input }` (data, never instructions); `functions/_shared/aiServer.generated.js` (bundled from `src/lib/aiServer.js` by `npm run ai:server`) confirms the question against `civics_questions` / `interview_questions` / the N-400 guide and writes the instructions; `take_ai_request()` counts the daily limit (`ai_usage`, counts only); then Claude (`AI_MODEL`, default `claude-sonnet-5-5`, with the server-side refusal fallback on Sonnet/Opus). Never logs or saves the text. Needs the secret `ANTHROPIC_API_KEY` |
 | `functions/district-lookup/` | "Who Represents Me?" for a ZIP that spans districts: signed-in learners only; sends the street address and ZIP to Geocodio once and returns only `{ state, district }` (logic in `functions/_shared/districtLookup.js`, tested in `src/api/districts.test.js`). Never logs or saves the address. Needs the secret `GEOCODIO_API_KEY` |
+| `functions/support-message/` | "Talk to a person" (Step 5): signed-in learners only; takes only the message, removes identifiers (`_shared/redact.js`, an exact copy of `src/lib/redact.js`), counts the daily limit (`take_ai_request('support')`, 3 a day), and emails the team inbox through Resend with the learner's login email as Reply-To (`_shared/supportMessage.js`, `_shared/email.js`). Saves nothing. Needs the secret `RESEND_API_KEY` |
+| `functions/pilot-reminders/` | Pilot check-in reminder emails (Step 5): admins only (anyone else gets 404); the "Send due reminders" button in Admin → Pilot. Uses the shared rules (`reminderPlan()` in `_shared/pilotCheckIns.js`) through `_shared/reminderJob.js`, the email text from the translation pack (`_shared/reminderTexts.generated.js`, `npm run email:texts`; English otherwise), sends through Resend, records each in `check_in_reminders`, returns counts only. Needs `RESEND_API_KEY` |
 | `functions/pilot-report/` | The admin pilot dashboard (`/admin/pilot`): admins only (anyone else gets 404); reads the pilot learners' rows with the service role and returns one summary per learner keyed by `pilot_id`, never an email, name or login id. The math is `functions/_shared/pilotReport.js`, an exact copy of `base44/shared/pilotReport.js` (a test checks they match; change both together) |
 
 Deploy (on your computer, after `supabase link`; again whenever a function's folder changes):
@@ -134,6 +136,18 @@ supabase functions deploy district-lookup
 supabase secrets set ANTHROPIC_API_KEY=...  # your key from console.anthropic.com; in your terminal only
 supabase secrets set AI_MODEL=claude-sonnet-5-5   # optional: the model the civics eval picks
 supabase functions deploy ai
+supabase secrets set RESEND_API_KEY=...     # resend.com → API Keys; in your terminal only
+supabase functions deploy support-message
+supabase functions deploy pilot-reminders
+```
+
+`pilot-reminders` sends the reminder email in each learner's language from the
+translation pack. After rebuilding the pack, refresh its copy and redeploy
+(`npm test` fails until you do):
+
+```bash
+npm run email:texts
+supabase functions deploy pilot-reminders
 ```
 
 The `ai` function's shared code is a generated bundle. Rebuild it and deploy
@@ -161,6 +175,7 @@ that no screen reads or writes data any other way.
 - [ ] The pilot dashboard's server function is deployed: `supabase functions deploy pilot-report`.
 - [ ] The split-ZIP lookup is deployed with its key: `supabase secrets set GEOCODIO_API_KEY=...`, then `supabase functions deploy district-lookup`.
 - [ ] The AI function is deployed with its key: `supabase secrets set ANTHROPIC_API_KEY=...`, then `supabase functions deploy ai`.
+- [ ] The email functions are deployed with their key: `supabase secrets set RESEND_API_KEY=...`, then `supabase functions deploy support-message` and `supabase functions deploy pilot-reminders`.
 - [ ] You are an admin (SQL above), signed out and in again.
 - [ ] Your computer's `.env` has `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` and `VITE_AUTH_PROVIDER=supabase`.
 
@@ -182,6 +197,8 @@ Use your own email, and a second **fake** email you control for the delete test.
 | Saved places | Save a place | `saved_places` |
 | Partner programs | Admin → Partners: a fake program with your email as staff; pick it in Me with the fake account; confirm it on `/Partner` | `partners`, `program_memberships` |
 | Pilot | Answer "Help us improve"; open `/admin/pilot` as admin | `outcome_checkins`; the dashboard lists the fake learner |
+| Talk to a person | Ask Amio → Talk to a person: send a fake message | it arrives in the team inbox with your email as Reply-To; a fourth message that day says "write again tomorrow"; `support` count in `ai_usage` |
+| Reminder emails | Admin → Pilot: "Pretend I signed up 3 months ago", turn reminders on, then "Send due reminders" | the email arrives once; a second press sends nothing; a row in `check_in_reminders` |
 | Delete my data | With the **fake** account: Settings → Delete all my data | the fake login is gone from Authentication → Users, and its rows from every table |
 
 ### 3. Still on Base44 after Step 3
@@ -189,10 +206,10 @@ Use your own email, and a second **fake** email you control for the delete test.
 These keep working only while the switch is **off**, until their step moves them:
 
 - ~~**AI**~~: moved in Step 4. With the switch on, AI goes through the `ai` function (above) and the split-ZIP lookup through `district-lookup`; app text comes from the translation pack only.
-- **Emails** (Talk to a person, pilot reminder emails in Admin → Pilot): Step 5.
+- ~~**Emails**~~: moved in Step 5. With the switch on, "Talk to a person" goes through `support-message` and the pilot reminders through `pilot-reminders` (above).
 - **The review schedule**: the screens still use the old one on `user_progress`; `review_items` (Prompt 4) replaces it in its own PR.
 
-So turn the switch on in Cloudflare Pages only after Step 5.
+With Steps 4 and 5 done, the switch can go on in Cloudflare Pages once the checklist above is complete.
 
 ## Names that changed from Base44 (for Step 3)
 

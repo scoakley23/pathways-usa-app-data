@@ -22,7 +22,7 @@ export const WHAT_WE_SAVE_LINES = {
   account_8: 'If you picked a program: which one, the name you gave them, and whether you share your progress. Your program sees only that and counts, never your answers or your questions to Amio.',
   account_9: 'If you answer them: your “Help us improve Pathways” answers (fixed choices only), the days you opened the app, and which reminder emails we sent.',
   account_10: 'Your course: the steps and stars of each lesson, the checkpoints you passed (how many right, never what you said), when each test question comes back in your review chest, how many lessons a day you picked, and your Write it level.',
-  account_11: 'How many times you used AI help in a day (a number only, for the daily limit). Older days are removed the next time you use it.',
+  account_11: 'How many times you used AI help or wrote to the team in a day (a number only, for the daily limits). Older days are removed the next time you use them.',
   device_title: 'Only on this phone',
   device_1: 'Your interview month, your plan and checkmarks, your language, text size, sound and voice settings, the daily reminder switch, and saved translations.',
   never_title: 'Never saved',

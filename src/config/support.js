@@ -8,6 +8,8 @@ export const REPLY_TIME = '3-5 business days';
 
 export const SUPPORT_SUBJECT = 'Pathways USA question';
 export const SUPPORT_MAX_LENGTH = 1000;
+// Messages per learner per day (Supabase: counted by take_ai_request('support')).
+export const SUPPORT_DAILY_LIMIT = 3;
 
 // Where messages are stored, and for how long: contact-form messages are NOT
 // stored in the app. They are sent by email to SUPPORT_EMAIL (with the
