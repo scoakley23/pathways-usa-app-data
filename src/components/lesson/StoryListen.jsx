@@ -6,6 +6,8 @@ import { LessonPicture } from '@/components/course/LessonPictures';
 import { hasVoice, speakText, stopSpeaking } from '@/components/utils/textToSpeech';
 import { resolvePicture } from '@/lib/lessonPictures';
 import { storyPicture } from '@/lib/story';
+import { senatorsFor } from '@/lib/senatorPhotos';
+import useLearnerLocation from '@/components/civics/useLearnerLocation';
 
 // The story player (Listen as a short "video", src/lib/story.js): one idea
 // per scene, read aloud in the learner's language with captions, moving on
@@ -16,9 +18,44 @@ import { storyPicture } from '@/lib/story';
 
 const NEXT_DELAY = 900; // ms after the voice ends
 
-function ScenePicture({ picture }) {
+// The learner's two senators (state from Who Represents Me?; names from the
+// official list; a photo only while its name matches).
+export function YourSenators({ t }) {
+  const { location, loaded } = useLearnerLocation();
+  if (!loaded) return <div className="min-h-[120px] rounded-card bg-white border border-line" />;
+  const senators = senatorsFor(location);
+  if (!senators.length) {
+    return (
+      <section className="rounded-card bg-white border border-line p-5 flex flex-col gap-2">
+        <p className="text-base text-navy">{t('story_pick_state')}</p>
+        <a href="/learn#find-representative" className="self-start min-h-tap inline-flex items-center text-base font-semibold text-denim underline underline-offset-4">{t('story_find_state')}</a>
+      </section>
+    );
+  }
+  return (
+    <section className="rounded-card bg-white border border-line p-4 flex flex-col gap-3">
+      <p className="text-small font-semibold uppercase tracking-wide text-muted">{t('story_your_senators')}</p>
+      <ul className="list-none m-0 p-0 grid grid-cols-2 gap-3">
+        {senators.map((s) => (
+          <li key={s.name} className="flex flex-col items-center gap-2 text-center">
+            {s.src
+              ? <img src={s.src} alt={t('story_portrait_of', { name: s.name })} loading="lazy" className="w-28 h-36 rounded-2xl object-cover bg-tint" />
+              : <span className="w-28 h-36 rounded-2xl bg-tint" aria-hidden="true" />}
+            <span className="text-base font-bold text-navy break-words" lang="en">{s.name}</span>
+          </li>
+        ))}
+      </ul>
+      {senators.some((s) => s.credit) && (
+        <p className="text-small text-muted">{senators.find((s) => s.credit).credit} · <a href={senators.find((s) => s.source).source} target="_blank" rel="noreferrer" className="underline underline-offset-2">Public domain</a></p>
+      )}
+    </section>
+  );
+}
+
+function ScenePicture({ picture, t }) {
   const p = storyPicture(picture);
   if (!p) return null;
+  if (p.kind === 'senators') return <YourSenators t={t} />;
   if (p.kind === 'drawing') {
     const Drawing = DRAWINGS[p.drawing];
     return Drawing ? <div className="rounded-card bg-white border border-line p-4"><Drawing focus={p.focus} /></div> : null;
@@ -127,7 +164,7 @@ export default function StoryListen({ story, language, mine, t, onEnd }) {
   } else {
     body = (
       <>
-        <ScenePicture picture={item.picture} />
+        <ScenePicture picture={item.picture} t={t} />
         <section className="rounded-card bg-white border border-line p-5 flex flex-col gap-2">
           {sceneLang !== 'en' && <span className="self-start rounded-full bg-tint px-3 py-1 text-small font-semibold uppercase tracking-wide text-navy">{t('said_in_language')}</span>}
           <p className="text-[22px] font-bold text-navy leading-snug" dir="auto" lang={sceneLang} aria-live="polite">{sceneText}</p>

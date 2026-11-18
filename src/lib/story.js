@@ -8,7 +8,10 @@
 // A story item is either a scene { say, picture? } or { check }.
 // picture: { drawing, focus? } (src/components/course/drawings.jsx; `focus`
 // lights up one part), { photo } (a file listed in pictures.json) or
-// { officeholder } (the name always from src/data/officeholders.json).
+// { officeholder } (the name always from src/data/officeholders.json) or
+// { senators: true } (the learner's two senators from the state saved in
+// Who Represents Me?, names from the official list, photos from
+// src/lib/senatorPhotos.js).
 // check: { kind: 'tf', statement, answer: true|false } or
 //        { kind: 'pick', prompt, choices: [3], answer: index }.
 // Checks are practice only: no stars, nothing saved.
@@ -30,6 +33,7 @@ export function storyPicture(picture) {
   if (picture.drawing) return { kind: 'drawing', drawing: picture.drawing, focus: picture.focus || null };
   if (picture.photo) return { kind: 'photo', file: picture.photo, alt: '' };
   if (picture.officeholder) return { kind: 'officeholder', office: picture.officeholder };
+  if (picture.senators) return { kind: 'senators' };
   return null;
 }
 
@@ -87,7 +91,7 @@ export function storyProblems(units, { focusFor = {}, officeholderNames = [] } =
           if (!PHOTO_SOURCES[p.photo]) problems.push(`${w}: ${p.photo} is not in pictures.json`);
         } else if (p.officeholder) {
           if (!OFFICES.includes(p.officeholder)) problems.push(`${w}: unknown office "${p.officeholder}"`);
-        } else problems.push(`${w}: unknown picture`);
+        } else if (p.senators !== true) problems.push(`${w}: unknown picture`);
       }
     });
     if (scenes < 3) problems.push(`${at}: needs at least 3 scenes`);
