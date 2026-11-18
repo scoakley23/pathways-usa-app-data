@@ -51,6 +51,12 @@ changes a number is rejected. The full list of the last run's rejected lines
 is saved to `.claude/translations/rejected.json` on your computer (not
 committed).
 
+Lines already in a machine pack are checked again on every run. One that
+breaks today's checks (for example a feature name translated before that rule
+existed) counts as missing and is sent again; if the new translation is
+rejected too, the old line is dropped and the text shows in English.
+`--check` lists them as "to redo". Reviewed lines are never sent again.
+
 ## Reviewing
 
 Copy lines a fluent speaker has checked into `reviewed/{lang}.json` with the
