@@ -47,6 +47,9 @@ const NON_TEXT_PAIRS = [
   ['amio-red', 'paper'], // Amio himself on the page
   ['denim', 'paper'],
   ['muted', 'paper'],
+  ['muted', 'tint'], // the dashed outline of a badge not earned yet (BadgeShelf)
+  ['muted', 'white'], // a missed star (RoundComplete)
+  ['muted', 'scene-sky'], // the dashed border of a locked unit (UnitsMapPage)
 ];
 
 function luminance(h) {

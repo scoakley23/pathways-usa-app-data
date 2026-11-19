@@ -50,7 +50,7 @@ export default function UnitsMapPage() {
             const state = unitState(u, journey.stops, journey.currentUnit);
             const counts = lessonCounts(u, journey.progress);
             const current = state === 'current';
-            const look = current ? 'bg-white border-2 border-red' : state === 'done' ? 'bg-white border-2 border-denim' : 'bg-white/80 border-2 border-dashed border-mid';
+            const look = current ? 'bg-white border-2 border-red' : state === 'done' ? 'bg-white border-2 border-denim' : 'bg-white/80 border-2 border-dashed border-muted';
             return (
               <li key={u.id} className={`flex ${i % 2 ? 'justify-end' : 'justify-start'}`} ref={current ? currentRef : undefined}>
                 <Link
