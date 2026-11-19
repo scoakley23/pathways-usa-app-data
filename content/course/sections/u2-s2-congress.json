@@ -124,6 +124,54 @@
               "word": "budget",
               "meaning": "a plan for how to spend money"
             }
+          ],
+          "storyStatus": "reviewed",
+          "story": [
+            {
+              "say": "The federal government has three branches.",
+              "picture": {
+                "drawing": "threeBranches"
+              }
+            },
+            {
+              "say": "Congress is the legislative branch.",
+              "picture": {
+                "drawing": "threeBranches",
+                "focus": "legislative"
+              }
+            },
+            {
+              "say": "Congress writes the laws for the whole country.",
+              "picture": {
+                "drawing": "billToLaw",
+                "focus": "congress"
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "Congress writes the laws for the whole country.",
+                "answer": true
+              }
+            },
+            {
+              "say": "Congress can declare war."
+            },
+            {
+              "say": "Congress also makes the federal budget: the plan for how to spend the government’s money."
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Which branch is Congress?",
+                "choices": [
+                  "The legislative branch",
+                  "The executive branch",
+                  "The judicial branch"
+                ],
+                "answer": 0
+              }
+            }
           ]
         },
         "teachBack": {
@@ -180,6 +228,58 @@
               "word": "voting member",
               "meaning": "a member who can vote on new laws"
             }
+          ],
+          "storyStatus": "reviewed",
+          "story": [
+            {
+              "say": "Congress has two parts.",
+              "picture": {
+                "drawing": "congressNumbers"
+              }
+            },
+            {
+              "say": "One part is the Senate.",
+              "picture": {
+                "drawing": "congressNumbers",
+                "focus": "senate"
+              }
+            },
+            {
+              "say": "The other part is the House of Representatives.",
+              "picture": {
+                "drawing": "congressNumbers",
+                "focus": "house"
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "What are the two parts of Congress?",
+                "choices": [
+                  "The Senate and the House of Representatives",
+                  "The President and the courts",
+                  "The states and the cities"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "The House of Representatives has 435 voting members.",
+              "picture": {
+                "drawing": "congressNumbers",
+                "focus": "house"
+              }
+            },
+            {
+              "say": "Both parts meet in the U.S. Capitol in Washington, D.C."
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "The House of Representatives has 100 voting members.",
+                "answer": false
+              }
+            }
           ]
         },
         "teachBack": {
@@ -230,6 +330,52 @@
             {
               "word": "state",
               "meaning": "one of the 50 parts of the United States"
+            }
+          ],
+          "storyStatus": "reviewed",
+          "story": [
+            {
+              "say": "There are 100 U.S. senators.",
+              "picture": {
+                "drawing": "congressNumbers",
+                "focus": "senate"
+              }
+            },
+            {
+              "say": "Each state has two senators.",
+              "picture": {
+                "drawing": "seatsByPopulation",
+                "focus": "senators"
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "How many senators does each state have?",
+                "choices": [
+                  "One",
+                  "Two",
+                  "Ten"
+                ],
+                "answer": 1
+              }
+            },
+            {
+              "say": "Big states and small states have the same number of senators.",
+              "picture": {
+                "drawing": "seatsByPopulation",
+                "focus": "senators"
+              }
+            },
+            {
+              "say": "50 states with two senators each make 100 senators."
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "A big state has more senators than a small state.",
+                "answer": false
+              }
             }
           ]
         },
@@ -286,6 +432,48 @@
               "word": "elect",
               "meaning": "to choose someone by voting"
             }
+          ],
+          "storyStatus": "reviewed",
+          "story": [
+            {
+              "say": "A senator’s term is six years.",
+              "picture": {
+                "drawing": "termLengths",
+                "focus": "senator"
+              }
+            },
+            {
+              "say": "A term is the number of years a person serves in a job."
+            },
+            {
+              "say": "A member of the House of Representatives has a two-year term.",
+              "picture": {
+                "drawing": "termLengths",
+                "focus": "representative"
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "How long is a senator’s term?",
+                "choices": [
+                  "Two years",
+                  "Four years",
+                  "Six years"
+                ],
+                "answer": 2
+              }
+            },
+            {
+              "say": "When the term ends, voters can elect them again."
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "A member of the House of Representatives has a two-year term.",
+                "answer": true
+              }
+            }
           ]
         },
         "teachBack": {
@@ -341,6 +529,54 @@
               "word": "representative",
               "meaning": "a member of the House of Representatives"
             }
+          ],
+          "storyStatus": "reviewed",
+          "story": [
+            {
+              "say": "Every state has two U.S. senators.",
+              "picture": {
+                "drawing": "seatsByPopulation",
+                "focus": "senators"
+              }
+            },
+            {
+              "say": "Every congressional district has one representative.",
+              "picture": {
+                "drawing": "seatsByPopulation",
+                "focus": "house"
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "How many U.S. senators does your state have?",
+                "choices": [
+                  "One",
+                  "Two",
+                  "It depends on the state"
+                ],
+                "answer": 1
+              }
+            },
+            {
+              "say": "These names change after elections, so Pathways looks them up from an official list."
+            },
+            {
+              "say": "These are your state’s two senators today.",
+              "picture": {
+                "senators": true
+              }
+            },
+            {
+              "say": "Check the names again before your interview."
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "Senators’ names never change.",
+                "answer": false
+              }
+            }
           ]
         },
         "teachBack": {
@@ -393,6 +629,45 @@
               "word": "citizen",
               "meaning": "a person who is a member of a country"
             }
+          ],
+          "storyStatus": "reviewed",
+          "story": [
+            {
+              "say": "A U.S. senator speaks for all the people of their state.",
+              "picture": {
+                "drawing": "stateDistricts",
+                "focus": "state"
+              }
+            },
+            {
+              "say": "Not just one city or one district: everyone in the state.",
+              "picture": {
+                "drawing": "stateDistricts",
+                "focus": "state"
+              }
+            },
+            {
+              "say": "Citizens of the state vote to choose their senators."
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Who does a U.S. senator represent?",
+                "choices": [
+                  "All the people of their state",
+                  "Only one city",
+                  "The President"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "The President chooses the senators.",
+                "answer": false
+              }
+            }
           ]
         },
         "teachBack": {
@@ -443,6 +718,44 @@
             {
               "word": "representative",
               "meaning": "a member of the House of Representatives"
+            }
+          ],
+          "storyStatus": "reviewed",
+          "story": [
+            {
+              "say": "Each state is cut into areas called congressional districts.",
+              "picture": {
+                "drawing": "stateDistricts"
+              }
+            },
+            {
+              "say": "A member of the House of Representatives speaks for the people in one district.",
+              "picture": {
+                "drawing": "stateDistricts",
+                "focus": "district"
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Who does a member of the House represent?",
+                "choices": [
+                  "The people in one district",
+                  "The whole country",
+                  "Only the governor"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "Citizens in the district vote to choose their representative."
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "Each state is cut into areas called congressional districts.",
+                "answer": true
+              }
             }
           ]
         },
@@ -500,6 +813,69 @@
               "word": "compromise",
               "meaning": "an agreement where each side gets part of what it wants"
             }
+          ],
+          "storyStatus": "reviewed",
+          "story": [
+            {
+              "say": "When the Constitution was written, big states and small states disagreed.",
+              "picture": {
+                "drawing": "greatCompromise"
+              }
+            },
+            {
+              "say": "Big states wanted more seats for states with more people.",
+              "picture": {
+                "drawing": "greatCompromise",
+                "focus": "big"
+              }
+            },
+            {
+              "say": "Small states wanted every state to have the same number.",
+              "picture": {
+                "drawing": "greatCompromise",
+                "focus": "small"
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "What did small states want?",
+                "choices": [
+                  "The same number for every state",
+                  "More seats for more people",
+                  "No Congress"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "The Great Compromise gave both: the House by population, and two senators for every state.",
+              "picture": {
+                "drawing": "greatCompromise",
+                "focus": "both"
+              }
+            },
+            {
+              "say": "So states with more people have more representatives in the House.",
+              "picture": {
+                "drawing": "seatsByPopulation",
+                "focus": "house"
+              }
+            },
+            {
+              "say": "And every state has two senators, big or small. This gives small states an equal voice.",
+              "picture": {
+                "drawing": "seatsByPopulation",
+                "focus": "senators"
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "Every state has the same number of senators.",
+                "answer": true
+              }
+            }
           ]
         },
         "teachBack": {
@@ -552,6 +928,48 @@
               "word": "term",
               "meaning": "the number of years a person serves in a job"
             }
+          ],
+          "storyStatus": "reviewed",
+          "story": [
+            {
+              "say": "Representatives serve two-year terms.",
+              "picture": {
+                "drawing": "termLengths",
+                "focus": "representative"
+              }
+            },
+            {
+              "say": "Senators serve six-year terms.",
+              "picture": {
+                "drawing": "termLengths",
+                "focus": "senator"
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "How long is a representative’s term?",
+                "choices": [
+                  "Two years",
+                  "Six years",
+                  "Ten years"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "Short terms mean representatives face voters often."
+            },
+            {
+              "say": "So they follow what the public thinks."
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "Representatives face voters every six years.",
+                "answer": false
+              }
+            }
           ]
         },
         "teachBack": {
@@ -600,6 +1018,43 @@
             {
               "word": "Speaker",
               "meaning": "the leader of the House of Representatives"
+            }
+          ],
+          "storyStatus": "reviewed",
+          "story": [
+            {
+              "say": "The Speaker leads the House of Representatives.",
+              "picture": {
+                "officeholder": "speaker"
+              }
+            },
+            {
+              "say": "These names change after elections."
+            },
+            {
+              "say": "So Pathways looks them up on an official list."
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "What does the Speaker lead?",
+                "choices": [
+                  "The House of Representatives",
+                  "The Senate",
+                  "The Supreme Court"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "Check the names again before your interview."
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "The Speaker leads the Senate.",
+                "answer": false
+              }
             }
           ]
         },

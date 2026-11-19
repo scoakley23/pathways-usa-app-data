@@ -1,0 +1,35 @@
+/* Amio look v2 (locked Nov 18, 2026). One place for every color, font, radius and shadow. */
+@import "./fonts/fonts.css"; /* self-hosted Lexend + Bricolage Grotesque; never load Google Fonts */
+
+:root {
+  /* color */
+  --amio-red: #F0503C;      /* Amio ONLY: the character and its speech-bubble outline. Never errors, never text. */
+  --navy: #1E2B45;          /* main text, dark blocks, main buttons, speaking screens */
+  --navy-deep: #0B1222;     /* button outline and the 5px "lip" under pressable buttons */
+  --navy-2: #2A3A5C;        /* "You said" box on navy */
+  --navy-line: #3A4A6B;     /* empty progress on navy */
+  --denim: #3B5B92;         /* Reading color; secondary dark block */
+  --gold: #FFC23D;          /* Writing color; main button on navy; right-answer panel; "done" marks */
+  --sky: #A9CBEC;           /* Civics color; highlighted / current block; secondary text on navy */
+  --paper: #FBF7EE;         /* page background */
+  --card: #FFFFFF;          /* Speaking color; plain cards */
+  --line: #E2D8C3;          /* borders and dividers on paper */
+  --line-soft: #EFE7D6;     /* empty progress on paper; dividers inside cards */
+  --muted: #6B6555;         /* secondary text on paper (passes 4.5:1) */
+
+  /* the four parts of the test always use these */
+  --part-reading: var(--denim);
+  --part-writing: var(--gold);
+  --part-civics: var(--sky);
+  --part-speaking: var(--card);
+
+  /* type */
+  --font-display: "Bricolage Grotesque", "Lexend", system-ui, sans-serif; /* 800: headlines, big numbers */
+  --font-body: "Lexend", "Noto Sans", "Noto Sans Arabic", "Noto Sans SC", "Noto Sans Devanagari", system-ui, sans-serif;
+
+  /* shape */
+  --radius: 12px;           /* blocks, cards, buttons. Nothing pill-shaped except the mic (round). */
+  --radius-sheet: 20px;     /* bottom panels (top corners only) */
+  --lip: 0 5px 0 var(--navy-deep);   /* main buttons: 2.5px navy-deep border + this */
+  --tap: 44px;              /* minimum tap target */
+}

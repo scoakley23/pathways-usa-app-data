@@ -50,6 +50,13 @@ export async function getAvailableVoices(language = 'en') {
     );
 }
 
+// True when this device has a voice for the language (the story player
+// shows captions only when it doesn't).
+export async function hasVoice(language = 'en') {
+  if (typeof window === 'undefined' || !window.speechSynthesis) return false;
+  return (await getAvailableVoices(language)).length > 0;
+}
+
 // A random voice name from the top-ranked voices for that language.
 export async function getRandomVoice(language = 'en') {
   const voices = await getAvailableVoices(language);

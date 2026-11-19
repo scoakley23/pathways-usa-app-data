@@ -85,6 +85,24 @@ describe('build-pack checks', () => {
     for (const [en, tr] of ok) expect(problem(en, tr), en).toBeNull();
   });
 
+  it('accepts digits for phrases, fractions, hundreds, Roman numerals and Thai years', () => {
+    const ok = [
+      ['1 lesson a day', '1日1レッスン'],
+      ['Congress can override a veto with a two-thirds vote.', '議会は3分の2の賛成で拒否権を覆せる。'],
+      ['But for almost one hundred years after that', 'しかしその後ほぼ100年間'],
+      ['For more than two hundred years', '200年以上もの間'],
+      ['He doubled the size of the United States', '彼は米国の面積を2倍にした'],
+      ['Roosevelt and World War II', 'រ៉ូហ្សេវ៉ែល និងសង្គ្រាមលោកលើកទី 2'],
+      ['The Louisiana Purchase in 1803', 'การซื้อหลุยเซียนาในปี 2346'],
+    ];
+    for (const [en, tr] of ok) expect(problem(en, tr), en).toBeNull();
+  });
+
+  it('"Read it slowly" is an instruction; "your Write it level" is the feature', () => {
+    expect(problem("Read it slowly, one word at a time.", 'Léalo despacio, una palabra a la vez.')).toBeNull();
+    expect(problem('Your Write it level', 'Tu nivel de escritura')).toBe('feature name translated');
+  });
+
   it('still rejects numbers that really changed', () => {
     const bad = [
       ['12 of 20', '12 de 21'],
@@ -93,6 +111,8 @@ describe('build-pack checks', () => {
       ['Four-year terms', 'ວາລະ 6 ປີ'],
       ['Jefferson paid France $15 million.', '杰斐逊向法国支付了1600万美元。'],
       ['Sept. 11', '11/10'],
+      ['a two-thirds vote', '4分の3の投票'],
+      ['But for almost one hundred years', 'ほぼ200年'],
     ];
     for (const [en, tr] of bad) expect(problem(en, tr), en).toBe('numbers changed');
   });
