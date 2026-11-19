@@ -2,30 +2,33 @@ import { describe, it, expect } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import * as TOKENS from './tokens';
-import { COLORS, HOVER, TEXT_PAIRS, PIN_COLORS, FONT_STACK, hex } from './tokens';
+import {
+  COLORS, HOVER, TEXT_PAIRS, PIN_COLORS, FONT_STACK, DISPLAY_STACK, DISPLAY_FONT, RADIUS, SIZES, hex,
+} from './tokens';
 import { SCRIPT_FONT, SCRIPT_FONTS, scriptFontFor } from './scriptFonts';
 import { COLORS as THEME } from '@/lib/theme';
 
-// The Pathways + Amio style guide, word for word (docs/redesign/amio-style-guide.md).
-const GUIDE = {
-  navy: '#1E2B45',
-  denim: '#3B5B92',
+// Amio look v2: every color in docs/design-v2/tokens.css, read from the file
+// itself, must be in the tokens with the same value (tokens.css name → ours).
+const V2_FILE = fs.readFileSync(path.resolve(__dirname, '../../docs/design-v2/tokens.css'), 'utf8');
+const V2 = Object.fromEntries([...V2_FILE.matchAll(/--([a-z0-9-]+):\s*(#[0-9A-Fa-f]{6})\b/g)].map((m) => [m[1], m[2].toUpperCase()]));
+const V2_NAMES = { card: 'white' };
+
+// Names not in tokens.css, kept from the older style guide
+// (docs/redesign/amio-style-guide.md), with the values decided for v2.
+const KEPT = {
   red: '#F0503C',
   'red-text': '#C8352B',
-  gold: '#FFC23D',
-  page: '#F5F7FA',
-  tint: '#E7ECF4',
-  mid: '#C7D1E2',
-  line: '#DCE2EC',
+  tint: '#EFE7D6', // = line-soft
+  mid: '#E2D8C3', // = line
   'chip-navy': '#33415E',
-  muted: '#4E5A70',
   'on-navy': '#C9D1DF',
   correct: '#1F7A4D',
   'correct-bg': '#E3F3EA',
   'correct-title': '#165C3A',
   'not-yet': '#A8460E',
   'not-yet-bg': '#FFF4EC',
-  sky: '#EAF1FA',
+  'scene-sky': '#EAF1FA',
   grass: '#DCEBDD',
   tree: '#7FA88A',
   'stop-lesson': '#3B5B92',
@@ -36,6 +39,15 @@ const GUIDE = {
   'stop-chest-border': '#FFC23D',
   'stop-interview': '#1E2B45',
 };
+
+// Borders and icons that carry meaning need 3:1 against what they sit on.
+const NON_TEXT_PAIRS = [
+  ['navy-deep', 'paper'], // the main button's outline and lip
+  ['amio-red', 'white'], // Amio's speech-bubble outline
+  ['amio-red', 'paper'], // Amio himself on the page
+  ['denim', 'paper'],
+  ['muted', 'paper'],
+];
 
 function luminance(h) {
   const [r, g, b] = [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16) / 255)
@@ -48,8 +60,35 @@ const contrast = (a, b) => {
 };
 
 describe('design tokens', () => {
-  it('has every style-guide color with its exact value', () => {
-    for (const [name, value] of Object.entries(GUIDE)) expect(COLORS[name], name).toBe(value);
+  it('has every docs/design-v2/tokens.css color with its exact value', () => {
+    expect(Object.keys(V2).length).toBeGreaterThanOrEqual(12);
+    for (const [cssName, value] of Object.entries(V2)) {
+      const name = V2_NAMES[cssName] || cssName;
+      expect(hex(name)?.toUpperCase(), `--${cssName}`).toBe(value);
+    }
+  });
+
+  it('keeps the older names at their decided values', () => {
+    for (const [name, value] of Object.entries(KEPT)) expect(COLORS[name], name).toBe(value);
+    expect(COLORS.tint).toBe(COLORS['line-soft']);
+    expect(COLORS.mid).toBe(COLORS.line);
+    expect(COLORS.red).toBe(COLORS['amio-red']);
+  });
+
+  it('uses the v2 shapes: 12px corners, 20px sheets, a 5px lip and a 2.5px outline', () => {
+    const px = (v) => Number(V2_FILE.match(new RegExp(`--${v}:\\s*([0-9.]+)px`))[1]);
+    expect(RADIUS.card).toBe(px('radius'));
+    expect(RADIUS.button).toBe(px('radius'));
+    expect(RADIUS.sheet).toBe(px('radius-sheet'));
+    expect(SIZES.tap).toBe(px('tap'));
+    expect(SIZES.lip).toBe(5);
+    expect(SIZES.outline).toBe(2.5);
+  });
+
+  it('keeps meaningful borders and icons at 3:1 or more', () => {
+    for (const [fg, bg] of NON_TEXT_PAIRS) {
+      expect(contrast(hex(fg), hex(bg)), `${fg} on ${bg}`).toBeGreaterThanOrEqual(3);
+    }
   });
 
   it('keeps every text pair at 4.5:1 or more', () => {
@@ -58,16 +97,18 @@ describe('design tokens', () => {
     }
   });
 
-  it('never pairs white text with red or gold', () => {
-    expect(contrast(COLORS.white, COLORS.red)).toBeLessThan(4.5);
-    expect(TEXT_PAIRS).not.toContainEqual(['white', 'red']);
+  it('never uses Amio red for text, and never white text on red or gold', () => {
+    expect(contrast(COLORS.white, COLORS['amio-red'])).toBeLessThan(4.5);
+    for (const red of ['red', 'amio-red']) {
+      expect(TEXT_PAIRS.filter(([fg, bg]) => fg === red || bg === red), red).toEqual([]);
+    }
     expect(TEXT_PAIRS).not.toContainEqual(['white', 'gold']);
   });
 
   it('has no old color names left (Prompt 13)', () => {
     expect(TOKENS.ALIASES).toBeUndefined();
     expect(TOKENS.PW_ALIASES).toBeUndefined();
-    const OLD = /(?<![\w-])(?:bg|text|border(?:-[trblxyse])?|ring(?:-offset)?|fill|stroke|from|to|via|decoration|outline|shadow|divide(?:-[xy])?|placeholder|accent|caret)-(?:pw-[a-z]|cream\b|card-line\b|sand\b|sand-hover\b|ink\b|ink-2\b|ink-label\b|navy-2\b|navy-line\b|road\b|star\b|star-deep\b|not-correct)/;
+    const OLD = /(?<![\w-])(?:bg|text|border(?:-[trblxyse])?|ring(?:-offset)?|fill|stroke|from|to|via|decoration|outline|shadow|divide(?:-[xy])?|placeholder|accent|caret)-(?:pw-[a-z]|cream\b|card-line\b|sand\b|sand-hover\b|ink\b|ink-2\b|ink-label\b|page\b|road\b|star\b|star-deep\b|not-correct)/;
     const found = [];
     const walk = (dir) => {
       for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -89,9 +130,28 @@ describe('design tokens', () => {
     for (const [name, value] of Object.entries(PIN_COLORS)) expect(values.has(value), `pin ${name}`).toBe(true);
   });
 
-  it('uses Lexend first and no other Latin fonts', () => {
+  it('uses Lexend for body text and no other Latin fonts', () => {
     expect(FONT_STACK[0]).toBe('Lexend');
     expect(FONT_STACK.filter((f) => !/^(Lexend|Noto Sans.*|system-ui|sans-serif)$/.test(f))).toEqual([]);
+  });
+
+  it('uses Bricolage Grotesque for headlines only, then the body stack', () => {
+    expect(DISPLAY_FONT).toBe('Bricolage Grotesque');
+    expect(DISPLAY_STACK).toEqual([DISPLAY_FONT, ...FONT_STACK]);
+  });
+
+  it('self-hosts Bricolage Grotesque 800 only, and never asks Google Fonts', () => {
+    const dir = path.resolve(__dirname, 'fonts');
+    const files = fs.readdirSync(dir).filter((f) => f.endsWith('.woff2'));
+    expect(files.length).toBe(3);
+    for (const f of files) expect(f, f).toMatch(/^bricolage-grotesque-(latin|latin-ext|vietnamese)-800-normal\.woff2$/);
+    const css = fs.readFileSync(path.join(dir, 'bricolage.css'), 'utf8');
+    expect([...css.matchAll(/font-weight:\s*(\d+)/g)].map((m) => m[1])).toEqual(['800', '800', '800']);
+    for (const m of css.matchAll(/url\(\.\/([^)]+)\)/g)) expect(files, m[1]).toContain(m[1]);
+    const main = fs.readFileSync(path.resolve(__dirname, '../main.jsx'), 'utf8');
+    expect(main).toContain("import '@/design/fonts/bricolage.css'");
+    const html = fs.readFileSync(path.resolve(__dirname, '../../index.html'), 'utf8');
+    expect(`${html}${main}${css}`).not.toMatch(/fonts\.(googleapis|gstatic)\.com/);
   });
 });
 

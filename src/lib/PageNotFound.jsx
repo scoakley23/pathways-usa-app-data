@@ -24,7 +24,7 @@ export default function PageNotFound({}) {
     // The Road: a navy top says where you are (404, Page Not Found); the
     // cream sheet holds the message and the way home.
     return (
-        <div className="min-h-screen bg-page text-navy">
+        <div className="min-h-screen bg-paper text-navy">
             <NavyTop className="pb-14 pt-12">
                 <div className="mx-auto max-w-md space-y-2">
                     <p className="text-label uppercase text-on-navy">404</p>

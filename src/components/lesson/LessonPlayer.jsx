@@ -16,6 +16,7 @@ import ReadItStep from '@/components/lesson/ReadItStep';
 import WriteItStep from '@/components/lesson/WriteItStep';
 import { LessonDone, LessonStart } from '@/components/lesson/LessonStartDone';
 import usePackLookup from '@/components/course/usePackLookup';
+import { MAIN_LINK } from '@/components/pathways/ui';
 
 // The 5-step lesson player (Prompt 6, /course/lesson/:lessonId): Lesson start
 // → Listen → Teach it back → Read it → Write it → Officer question → Lesson
@@ -72,15 +73,15 @@ export default function LessonPlayer() {
 
   const back = () => navigate(found ? `/course?unit=${found.unit.id}` : '/course');
 
-  if (user === undefined) return <div className="min-h-screen bg-page" />;
+  if (user === undefined) return <div className="min-h-screen bg-paper" />;
 
   if (!lesson || (lesson.status !== 'reviewed' && !showDrafts)) {
     return (
-      <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-screen bg-page">
+      <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-screen bg-paper">
         <LessonHeader title={t('not_found')} onClose={back} closeLabel={t('close')} />
         <div className="max-w-lg mx-auto px-4 py-8 flex flex-col gap-6">
           <AmioSays mood="kind" size={64}>{t('not_found')}</AmioSays>
-          <Link to="/course" className="min-h-main inline-flex items-center justify-center rounded-button bg-denim px-6 text-base font-bold text-white shadow-lip">{t('back_to_road')}</Link>
+          <Link to="/course" className={`${MAIN_LINK} px-6 text-base`}>{t('back_to_road')}</Link>
         </div>
       </div>
     );
@@ -131,7 +132,7 @@ export default function LessonPlayer() {
     );
   } else if (phase === 'done') {
     return (
-      <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-screen bg-page">
+      <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-screen bg-paper">
         <LessonDone
           lesson={{ ...lesson, title: lessonTitle }}
           results={results}
@@ -157,7 +158,7 @@ export default function LessonPlayer() {
   }
 
   return (
-    <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-screen bg-page flex flex-col">
+    <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-screen bg-paper flex flex-col">
       <LessonHeader title={header.title} subtitle={header.subtitle} step={header.step} onClose={back} closeLabel={t('close')} />
       <div className="flex-1 flex flex-col">{body}</div>
     </div>

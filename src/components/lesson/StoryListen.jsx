@@ -192,7 +192,7 @@ export default function StoryListen({ story, language, mine, t, onEnd }) {
         </div>
         {body}
       </div>
-      <div className="sticky bottom-0 bg-page px-4 pt-2 pb-6 max-w-lg w-full mx-auto flex items-center gap-3">
+      <div className="sticky bottom-0 bg-paper px-4 pt-2 pb-6 max-w-lg w-full mx-auto flex items-center gap-3">
         <button type="button" className={iconBtn} onClick={() => go(i - 1)} disabled={i === 0} aria-label={t('story_back')}>
           <ChevronLeft className="w-6 h-6 rtl:rotate-180" aria-hidden="true" />
         </button>

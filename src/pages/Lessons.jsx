@@ -167,7 +167,7 @@ export default function Lessons() {
                         <Star className="w-4 h-4 text-white fill-white" aria-hidden="true" />
                       </span>
                     )}
-                    {row.state === 'later' && <span className="w-6 h-6 rounded-full border-2 border-muted bg-page" />}
+                    {row.state === 'later' && <span className="w-6 h-6 rounded-full border-2 border-muted bg-paper" />}
                   </span>
 
                   <div className="min-w-0 flex-1 pb-6">
@@ -219,7 +219,7 @@ export default function Lessons() {
                               <button
                                 type="button"
                                 onClick={() => setSelectedLesson(lesson)}
-                                className="w-full flex items-center gap-3 px-4 py-3 min-h-[60px] text-start hover:bg-page focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-navy"
+                                className="w-full flex items-center gap-3 px-4 py-3 min-h-[60px] text-start hover:bg-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-navy"
                               >
                                 <span className={`w-6 h-6 shrink-0 rounded-full grid place-items-center ${isCompleted ? 'bg-denim' : 'border-2 border-line'}`} aria-hidden="true">
                                   {isCompleted && <Check className="w-3.5 h-3.5 text-white" strokeWidth={3} />}

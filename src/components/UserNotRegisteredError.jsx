@@ -6,7 +6,7 @@ import { CreamSheet, NavyTop } from '@/components/pathways/ui';
 // the title on navy, what to do on the cream sheet).
 const UserNotRegisteredError = () => {
   return (
-    <div className="min-h-screen bg-page text-navy">
+    <div className="min-h-screen bg-paper text-navy">
       <NavyTop className="pb-14 pt-12">
         <div className="mx-auto max-w-md space-y-2">
           <AlertTriangle className="w-8 h-8 text-on-navy" aria-hidden="true" />

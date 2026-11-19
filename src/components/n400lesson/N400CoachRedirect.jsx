@@ -28,5 +28,5 @@ export default function N400CoachRedirect() {
     })();
     return () => { active = false; };
   }, [navigate]);
-  return <div className="min-h-screen bg-page" />;
+  return <div className="min-h-screen bg-paper" />;
 }

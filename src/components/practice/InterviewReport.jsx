@@ -78,7 +78,7 @@ export default function InterviewReport({ results, onRestart, onClose, onBack })
   const leave = onBack || onClose;
 
   return (
-    <div className="min-h-screen bg-page text-navy">
+    <div className="min-h-screen bg-paper text-navy">
       <NavyBanner
         title="Practice interview report"
         subtitle="Today"

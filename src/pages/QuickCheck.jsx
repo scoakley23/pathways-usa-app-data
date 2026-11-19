@@ -121,7 +121,7 @@ export default function QuickCheck() {
 
   // Results: the four levels and where the course starts.
   return (
-    <div className="min-h-screen bg-page flex flex-col">
+    <div className="min-h-screen bg-paper flex flex-col">
       <div className="flex-1 max-w-lg w-full mx-auto px-4 pt-8 pb-4 flex flex-col gap-5 text-navy">
         <h1 className="text-[26px] font-bold leading-tight">{t('qc_results')}</h1>
         {levels && <SkillLevels levels={levels} language={language} />}
@@ -137,7 +137,7 @@ export default function QuickCheck() {
         )}
         <AmioSays mood="proud" size={56}>{t('qc_saved')}</AmioSays>
       </div>
-      <div className="sticky bottom-0 bg-page px-4 pt-2 pb-6 max-w-lg w-full mx-auto flex flex-col items-center gap-2">
+      <div className="sticky bottom-0 bg-paper px-4 pt-2 pb-6 max-w-lg w-full mx-auto flex flex-col items-center gap-2">
         <Button variant="main" className="w-full" onClick={next} disabled={saving}>
           {saving ? <Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" /> : t(fullCheck ? 'qc_make_plan' : 'qc_done')}
         </Button>

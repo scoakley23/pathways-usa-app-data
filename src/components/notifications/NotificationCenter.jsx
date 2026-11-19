@@ -104,7 +104,7 @@ export default function NotificationCenter({ userEmail, open = false, onOpenChan
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
-      <SheetContent className="w-[92vw] max-w-[380px] sm:w-[380px] flex flex-col bg-page border-line">
+      <SheetContent className="w-[92vw] max-w-[380px] sm:w-[380px] flex flex-col bg-paper border-line">
         <SheetHeader className="flex flex-row items-center justify-between gap-2 space-y-0 mb-4 pe-8">
           <SheetTitle className="text-title font-bold text-navy">Notifications</SheetTitle>
           {unreadCount > 0 && (

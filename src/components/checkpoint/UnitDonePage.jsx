@@ -6,6 +6,7 @@ import { Amio } from '@/components/pathways/Amio';
 import { UnitIcon, useJourney } from '@/components/course/courseShared';
 import { unitComplete, unitStats } from '@/lib/checkpoints';
 import { useCheckpointText } from '@/components/checkpoint/checkpointParts';
+import { MAIN_PRESS } from '@/components/pathways/ui';
 
 // Unit complete (Prompt 8, /course/unit/:unitId/done, frame R33UnitDone):
 // confetti (reduced motion respected), the unit badge, the unit's numbers
@@ -60,7 +61,7 @@ export default function UnitDonePage() {
         <button
           type="button"
           onClick={() => navigate(`/course/unit/${unit.id}/interview`)}
-          className="w-full min-h-main mb-[5px] rounded-button bg-gold px-6 text-lg font-bold text-navy shadow-[0_5px_0_theme(colors.navy-deep)] active:translate-y-1 motion-reduce:active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-navy"
+          className={`w-full min-h-main mb-[5px] rounded-button bg-gold px-6 text-lg font-bold text-navy ${MAIN_PRESS} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-navy`}
         >
           {t('try_interview')}
         </button>

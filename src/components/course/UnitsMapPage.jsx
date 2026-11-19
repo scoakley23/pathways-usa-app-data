@@ -23,7 +23,7 @@ export default function UnitsMapPage() {
   }, [journey.loading]);
 
   return (
-    <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-full bg-sky">
+    <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-full bg-scene-sky">
       <NavyBanner
         title={t('journey_title')}
         subtitle={<span dir="auto">{t('journey_sub', { units: journey.course.length, lessons, interviews })}</span>}

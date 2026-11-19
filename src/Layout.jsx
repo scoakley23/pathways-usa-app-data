@@ -106,7 +106,7 @@ export default function Layout({ children }) {
   const activeTab = tabFor(location.pathname);
 
   return (
-    <div className="min-h-screen bg-page font-sans text-navy">
+    <div className="min-h-screen bg-paper font-sans text-navy">
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:start-3 focus:z-[60] focus:rounded-2xl focus:bg-navy focus:text-white focus:font-bold focus:px-4 focus:py-3"

@@ -32,7 +32,7 @@ export default function DoneTodayPage() {
   const reviewN = Math.min(CHEST_SIZE, day.due);
 
   return (
-    <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-full bg-page flex flex-col">
+    <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-full bg-paper flex flex-col">
       <section className="bg-navy text-white px-4 pt-10 pb-8 flex flex-col items-center gap-3 text-center">
         <Amio mood="proud" size={110} onNavy />
         <h1 className="text-celebrate font-extrabold">{t('done_title')}</h1>

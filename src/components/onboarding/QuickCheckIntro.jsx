@@ -19,7 +19,7 @@ const ORDER = ['reading', 'writing', 'speaking', 'civics'];
 export default function QuickCheckIntro({ t, parts = PRETEST_PARTS, ready = true, onStart, onSkip }) {
   const shown = ORDER.filter((p) => parts.includes(p));
   return (
-    <div className="min-h-screen bg-page flex flex-col">
+    <div className="min-h-screen bg-paper flex flex-col">
       <div className="flex-1 max-w-lg w-full mx-auto px-4 pt-8 pb-4 flex flex-col gap-5">
         <div className="flex items-center gap-4">
           <Amio mood="curious" size={72} className="shrink-0" />
@@ -45,7 +45,7 @@ export default function QuickCheckIntro({ t, parts = PRETEST_PARTS, ready = true
         <p className="text-small text-muted">{t('qc_saved')}</p>
         {!ready && <p className="text-base text-muted">{t('qc_not_ready')}</p>}
       </div>
-      <div className="sticky bottom-0 bg-page px-4 pt-2 pb-6 max-w-lg w-full mx-auto flex flex-col items-center gap-2">
+      <div className="sticky bottom-0 bg-paper px-4 pt-2 pb-6 max-w-lg w-full mx-auto flex flex-col items-center gap-2">
         <Button variant="main" className="w-full" disabled={!ready} onClick={onStart}>{t('qc_start')}</Button>
         <Button variant="link" onClick={onSkip}>{t('qc_skip')}</Button>
       </div>

@@ -77,7 +77,7 @@ export default function JourneyPath({ unit, t, rtl, onStop }) {
   const points = stops.map((r) => `${r.x},${r.y}`).join(' ');
 
   return (
-    <div className="relative overflow-hidden bg-sky" style={{ height }} dir="ltr">
+    <div className="relative overflow-hidden bg-scene-sky" style={{ height }} dir="ltr">
       {/* The grass hill at the bottom and a few trees and clouds. */}
       <svg className="absolute inset-x-0 bottom-0 w-full h-72" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
         <path d="M0 30 C30 10 60 5 100 18 L100 100 L0 100 Z" className="fill-grass" />
@@ -123,7 +123,7 @@ export default function JourneyPath({ unit, t, rtl, onStop }) {
           const look = locked
             ? 'bg-white text-muted shadow-[0_5px_0_theme(colors.mid)]'
             : current
-              ? 'bg-red text-navy ring-4 ring-red ring-offset-4 ring-offset-sky shadow-[0_5px_0_theme(colors.red-text)]'
+              ? 'bg-red text-navy ring-4 ring-red ring-offset-4 ring-offset-scene-sky shadow-[0_5px_0_theme(colors.red-text)]'
               : `${STOP_LOOK[stop.type]} shadow-lip ${soon ? 'opacity-70' : ''}`;
           const label = stopLabel(stop, t);
           const draft = stop.lesson?.status === 'draft';

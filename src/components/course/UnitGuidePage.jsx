@@ -69,7 +69,7 @@ export default function UnitGuidePage() {
   const subtitle = [t('sections_n', { n: unit.sections.length }), t('lessons_n', { n: lessons }), t('questions_n', { n: questionCount(unit) })].join(' · ');
 
   return (
-    <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-full bg-page">
+    <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-full bg-paper">
       <NavyBanner
         title={<span dir="auto">{t('unit_n', { n: unit.number })} · {unit.title}</span>}
         subtitle={<span dir="auto">{subtitle}</span>}

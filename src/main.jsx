@@ -7,6 +7,8 @@ import '@fontsource/lexend/500.css'
 import '@fontsource/lexend/600.css'
 import '@fontsource/lexend/700.css'
 import '@fontsource/lexend/800.css'
+// Bricolage Grotesque 800 for headlines only, self-hosted.
+import '@/design/fonts/bricolage.css'
 import '@/index.css'
 import { loadScriptFont } from '@/design/scriptFonts'
 import { getSavedLanguage } from '@/hooks/useAppLanguage'
