@@ -102,7 +102,7 @@ export default function TutorLesson({ lesson, profile, language = 'en', language
         </motion.div>
       </AnimatePresence>
 
-      <div className="sticky bottom-0 -mx-4 px-4 pt-6 pb-4 bg-gradient-to-t from-page via-page to-transparent">
+      <div className="sticky bottom-0 -mx-4 px-4 pt-6 pb-4 bg-gradient-to-t from-paper via-paper to-transparent">
         <PrimaryButton large className="w-full" onClick={() => goTo(index + 1)} disabled={!ready}>
           {step.type === 'part-intro' ? 'Start' : isLast ? 'Finish' : 'Continue'}
         </PrimaryButton>

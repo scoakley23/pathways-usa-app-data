@@ -102,7 +102,7 @@ export default function WriteItStep({ lesson, level = 1, t, onWritten, onDone })
           {result.fixes.includes('period') && <span className="block">{t('fix_period')}</span>}
         </SuccessBanner>
       ) : (
-        <div className="sticky bottom-0 bg-page px-4 pt-2 pb-6 max-w-lg w-full mx-auto">
+        <div className="sticky bottom-0 bg-paper px-4 pt-2 pb-6 max-w-lg w-full mx-auto">
           <Button variant="main" className="w-full" disabled={!written.trim()} onClick={check}>{t('check')}</Button>
         </div>
       )}

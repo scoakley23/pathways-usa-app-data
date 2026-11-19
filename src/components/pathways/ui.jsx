@@ -107,7 +107,8 @@ export function SegmentedProgress({ current, total, label }) {
 
 // Buttons (docs/redesign/amio-style-guide.md): 16px corners, Lexend 700, at
 // least 44px tall. `main` is the ONE main action on a screen: denim, 56px,
-// with a 5px navy "lip" that presses down when tapped. `second` is white with
+// a 2.5px navy-deep outline and a 5px navy-deep "lip" under it
+// (docs/design-v2/tokens.css); pressed, it sinks into the lip. `second` is white with
 // a line border. `link` (also `text-link`) is a text link. `next` stays navy
 // for screens not yet redone (`onNavy` makes it white on navy).
 //
@@ -118,7 +119,10 @@ const BTN_LOOK = 'font-bold inline-flex items-center justify-center gap-2 text-c
 const BTN_BASE = `min-h-tap ${BTN_LOOK}`;
 const BTN = `${BTN_BASE} rounded-button`;
 const MAIN_BTN = `${BTN_LOOK} rounded-button`;
-const MAIN = 'min-h-main mb-[5px] bg-denim text-white hover:bg-denim-deep shadow-lip active:translate-y-1 active:shadow-lip-pressed motion-reduce:active:translate-y-0 disabled:active:translate-y-0 px-6 text-lg';
+export const MAIN_PRESS = 'border-[2.5px] border-navy-deep shadow-lip active:translate-y-[5px] active:shadow-none motion-reduce:active:translate-y-0 motion-reduce:active:shadow-lip disabled:active:translate-y-0 disabled:active:shadow-lip';
+const MAIN = `min-h-main mb-[5px] bg-denim text-white hover:bg-denim-deep ${MAIN_PRESS} px-6 text-lg`;
+// The main-button look for a link (a <Link> that is the screen's main action).
+export const MAIN_LINK = `min-h-main mb-[5px] inline-flex items-center justify-center rounded-button bg-denim text-white hover:bg-denim-deep font-bold ${MAIN_PRESS} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-navy`;
 const LINK_LOOK = 'underline underline-offset-4 px-2 text-base';
 const BUTTON_VARIANTS = {
   main: `${MAIN} focus-visible:ring-navy`,
@@ -128,7 +132,7 @@ const BUTTON_VARIANTS = {
 };
 const BUTTON_ON_NAVY = {
   main: `${MAIN} focus-visible:ring-white focus-visible:ring-offset-navy`,
-  next: 'bg-white text-navy hover:bg-page px-5 text-base focus-visible:ring-white focus-visible:ring-offset-navy',
+  next: 'bg-white text-navy hover:bg-paper px-5 text-base focus-visible:ring-white focus-visible:ring-offset-navy',
   second: 'bg-transparent text-white border border-chip-navy hover:bg-chip-navy px-5 text-base focus-visible:ring-white focus-visible:ring-offset-navy',
   link: `text-white decoration-white/50 hover:decoration-white ${LINK_LOOK} focus-visible:ring-white focus-visible:ring-offset-navy`,
 };
@@ -192,7 +196,7 @@ export function NavyTop({ as: Tag = 'section', className = '', children, ...prop
 // corners show; `flush` turns that off.
 export function CreamSheet({ as: Tag = 'section', flush = false, className = '', children, ...props }) {
   return (
-    <Tag className={`relative bg-page text-navy rounded-t-sheet px-4 pt-6 pb-8 sm:px-8 ${flush ? '' : '-mt-7'} ${className}`} {...props}>
+    <Tag className={`relative bg-paper text-navy rounded-t-sheet px-4 pt-6 pb-8 sm:px-8 ${flush ? '' : '-mt-7'} ${className}`} {...props}>
       {children}
     </Tag>
   );
@@ -270,7 +274,7 @@ const POSTER_BG = { red: 'bg-navy', blue: 'bg-navy' };
 
 // Buttons on a navy poster: solid white, or an outline.
 const POSTER_BTN = 'min-h-[48px] rounded-full px-5 inline-flex items-center justify-center gap-2 text-base font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent disabled:opacity-50 disabled:cursor-not-allowed';
-export const posterSolid = `${POSTER_BTN} bg-white text-navy hover:bg-page`;
+export const posterSolid = `${POSTER_BTN} bg-white text-navy hover:bg-paper`;
 export const posterOutline = `${POSTER_BTN} border-2 border-chip-navy text-white hover:bg-chip-navy`;
 // Small tools on a poster (Listen, Translate) and quiet text links
 // ("Type it instead"), shared by every practice card.
@@ -351,7 +355,7 @@ export function FolderTab({ tone = 'navy', active = false, className = '', ...pr
     <button
       type="button"
       aria-current={active ? 'true' : undefined}
-      className={`min-h-tap shrink-0 whitespace-nowrap rounded-t-lg border-t-4 border-navy px-3 text-base font-semibold text-navy transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy ${active ? 'bg-tint' : 'bg-page hover:bg-tint'} ${className}`}
+      className={`min-h-tap shrink-0 whitespace-nowrap rounded-t-lg border-t-4 border-navy px-3 text-base font-semibold text-navy transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy ${active ? 'bg-tint' : 'bg-paper hover:bg-tint'} ${className}`}
       {...props}
     />
   );

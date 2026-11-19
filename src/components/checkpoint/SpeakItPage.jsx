@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { AlertCircle, Check, Volume2 } from 'lucide-react';
 import { Amio, AmioSays } from '@/components/pathways/Amio';
-import { Button } from '@/components/pathways/ui';
+import { Button, MAIN_LINK } from '@/components/pathways/ui';
 import { UnitIcon, useJourney } from '@/components/course/courseShared';
 import useSpeechCapture from '@/components/persona/useSpeechCapture';
 import useLearnerLocation from '@/components/civics/useLearnerLocation';
@@ -46,7 +46,7 @@ function Ask({ question, index, total, results, t, onAnswer, onClose }) {
   useEffect(() => { speakText(question.question, 'en'); }, [question.question]);
 
   return (
-    <div className="min-h-screen bg-page flex flex-col">
+    <div className="min-h-screen bg-paper flex flex-col">
       <CheckpointHeader title={t('question_of', { n: index + 1, total })} onClose={onClose} closeLabel={t('close')}>
         <ProgressDots total={total} results={results} current={index} label={t('progress_label', { n: index + 1, total })} />
       </CheckpointHeader>
@@ -95,7 +95,7 @@ function Result({ section, unit, answers, score, t, onContinue, onTryAgain }) {
   const missed = answers.filter((a) => a.correct === false).length;
   const amioLine = missed === 0 ? t('amio_all_right') : missed === 1 ? t('amio_missed_1') : t('amio_missed_n');
   return (
-    <div className="min-h-screen bg-page flex flex-col">
+    <div className="min-h-screen bg-paper flex flex-col">
       <section className="bg-gold text-navy px-4 pt-10 pb-8 flex flex-col items-center gap-2 text-center">
         {score.passed ? (
           <>
@@ -163,14 +163,14 @@ export default function SpeakItPage() {
   const questions = useMemo(() => (found ? speakItQuestions(found.section) : []), [found?.section.id, round]);
   const back = () => navigate(found ? `/course?unit=${found.unit.id}` : '/course');
 
-  if (journey.loading) return <div className="min-h-screen bg-page" />;
+  if (journey.loading) return <div className="min-h-screen bg-paper" />;
   if (!found || !questions.length) {
     return (
-      <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-screen bg-page">
+      <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-screen bg-paper">
         <CheckpointHeader title={t('speak_it')} onClose={back} closeLabel={t('close')} />
         <div className="max-w-lg mx-auto px-4 py-8 flex flex-col gap-6">
           <AmioSays mood="kind" size={64}>{t('not_found')}</AmioSays>
-          <Link to="/course" className="min-h-main inline-flex items-center justify-center rounded-button bg-denim px-6 text-base font-bold text-white shadow-lip">{t('back_to_road')}</Link>
+          <Link to="/course" className={`${MAIN_LINK} px-6 text-base`}>{t('back_to_road')}</Link>
         </div>
       </div>
     );
@@ -192,7 +192,7 @@ export default function SpeakItPage() {
   let body;
   if (phase === 'intro') {
     body = (
-      <div className="min-h-screen bg-page flex flex-col">
+      <div className="min-h-screen bg-paper flex flex-col">
         <CheckpointHeader title={t('speak_it')} subtitle={t('section_checkpoint', { n: found.number })} onClose={back} closeLabel={t('close')} />
         <div className="flex-1 max-w-lg w-full mx-auto px-4 py-5 flex flex-col gap-4">
           <section className="rounded-card bg-white border border-line p-5 flex flex-col gap-2">

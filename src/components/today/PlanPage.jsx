@@ -51,7 +51,7 @@ export default function PlanPage() {
   const chip = (active) => `min-h-tap rounded-2xl border px-4 text-base font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim ${active ? 'bg-denim border-denim text-white' : 'bg-white border-line text-navy hover:border-denim'}`;
 
   return (
-    <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-full bg-page flex flex-col">
+    <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-full bg-paper flex flex-col">
       <NavyBanner
         title={t('plan_title')}
         left={(
@@ -105,7 +105,7 @@ export default function PlanPage() {
 
         <AmioSays mood="kind" size={56}>{t('plan_amio')}</AmioSays>
       </div>
-      <div className="sticky bottom-0 bg-page px-4 pt-2 pb-6 max-w-lg w-full mx-auto">
+      <div className="sticky bottom-0 bg-paper px-4 pt-2 pb-6 max-w-lg w-full mx-auto">
         <Button variant="main" className="w-full" disabled={busy || journey.loading} onClick={save}>{firstTime ? t('start_plan') : t('save_plan')}</Button>
       </div>
     </div>

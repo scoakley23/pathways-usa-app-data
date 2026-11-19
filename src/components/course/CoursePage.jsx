@@ -122,7 +122,7 @@ export default function CoursePage() {
   const isLesson = open && open.type === 'lesson' && open.state !== 'locked';
 
   return (
-    <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-full bg-sky">
+    <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-full bg-scene-sky">
       <header className="bg-navy px-4 pt-5 pb-5 flex flex-col gap-4">
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-1">

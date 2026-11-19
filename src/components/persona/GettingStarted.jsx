@@ -154,7 +154,7 @@ export default function GettingStarted({ language, onLanguageChange, onDone }) {
   const position = steps.indexOf(step) - 1; // after language and Meet Amio
   const asked = steps.length - 2;
   return (
-    <div className="min-h-screen bg-page">
+    <div className="min-h-screen bg-paper">
       <NavyBanner
         title={label('title')}
         right={<Button variant="link" onNavy onClick={finish}>{label('skip')}</Button>}

@@ -46,14 +46,14 @@ function GoalBar({ goal, done, t, saves }) {
 
 function Scene({ unitIcon, line }) {
   return (
-    <div className="relative h-44 bg-sky overflow-hidden" aria-hidden="true">
+    <div className="relative h-44 bg-scene-sky overflow-hidden" aria-hidden="true">
       <svg className="absolute inset-x-0 bottom-0 w-full h-20" viewBox="0 0 100 40" preserveAspectRatio="none" focusable="false">
         <path d="M0 18 C30 6 60 4 100 14 L100 40 L0 40 Z" className="fill-grass" />
       </svg>
       <svg viewBox="0 0 60 24" className="absolute w-14 h-6 top-5 start-[38%]" focusable="false">
         <path d="M10 22h40a8 8 0 0 0 0-16 12 12 0 0 0-22-2 9 9 0 0 0-18 4 7 7 0 0 0 0 14z" className="fill-white" />
       </svg>
-      <span className="absolute start-6 top-1/2 -translate-y-1/2 grid place-items-center w-20 h-20 rounded-full bg-red text-navy ring-4 ring-red ring-offset-4 ring-offset-sky">
+      <span className="absolute start-6 top-1/2 -translate-y-1/2 grid place-items-center w-20 h-20 rounded-full bg-red text-navy ring-4 ring-red ring-offset-4 ring-offset-scene-sky">
         <StopIcon type="lesson" unitIcon={unitIcon} className="w-8 h-8" />
       </span>
       <div className="absolute end-4 top-4 flex flex-col items-end gap-1 max-w-[58%]">
@@ -74,7 +74,7 @@ export default function TodayPage({ user, sheetTop, quickCheckFirst = false }) {
   const lesson = day.lesson;
 
   return (
-    <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-full bg-page">
+    <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-full bg-paper">
       <header className="bg-navy text-white px-5 pt-6 pb-5 flex flex-col gap-3">
         <div className="flex items-center justify-between gap-3">
           <h1 className="text-title font-bold break-words min-w-0" dir="auto">{greeting}</h1>

@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Eye } from 'lucide-react';
 import { AmioSays } from '@/components/pathways/Amio';
-import { Button } from '@/components/pathways/ui';
+import { Button, MAIN_LINK } from '@/components/pathways/ui';
 import { StepBar } from '@/components/pathways/StepBar';
 import useTranslatedLines from '@/components/persona/useTranslatedLines';
 import ReadItStep from '@/components/lesson/ReadItStep';
@@ -53,14 +53,14 @@ export default function ReadWritePage() {
   }, [found]);
   const back = () => navigate(found ? `/course?unit=${found.unit.id}` : '/course');
 
-  if (journey.loading) return <div className="min-h-screen bg-page" />;
+  if (journey.loading) return <div className="min-h-screen bg-paper" />;
   if (!found || !items.length) {
     return (
-      <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-screen bg-page">
+      <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-screen bg-paper">
         <CheckpointHeader title={t('rw_title')} onClose={back} closeLabel={t('close')} tone="navy" />
         <div className="max-w-lg mx-auto px-4 py-8 flex flex-col gap-6">
           <AmioSays mood="kind" size={64}>{t('not_found')}</AmioSays>
-          <Link to="/course" className="min-h-main inline-flex items-center justify-center rounded-button bg-denim px-6 text-base font-bold text-white shadow-lip">{t('back_to_road')}</Link>
+          <Link to="/course" className={`${MAIN_LINK} px-6 text-base`}>{t('back_to_road')}</Link>
         </div>
       </div>
     );
@@ -73,7 +73,7 @@ export default function ReadWritePage() {
   if (index < 0 || index >= total) {
     const finished = index >= total;
     return (
-      <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-screen bg-page flex flex-col">
+      <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-screen bg-paper flex flex-col">
         <CheckpointHeader title={finished ? t('rw_done') : t('rw_title')} subtitle={found.section.title} onClose={back} closeLabel={t('close')} tone="navy" />
         <div className="flex-1 max-w-lg w-full mx-auto px-4 py-6 flex flex-col items-center gap-5 text-center">
           <span className="grid place-items-center w-20 h-20 rounded-full bg-stop-read-write text-white"><Eye className="w-9 h-9" aria-hidden="true" /></span>
@@ -104,7 +104,7 @@ export default function ReadWritePage() {
   const k = `${item.lesson.id}-${item.kind}-${index}`;
 
   return (
-    <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-screen bg-page flex flex-col">
+    <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-screen bg-paper flex flex-col">
       <CheckpointHeader title={title} subtitle={found.section.title} onClose={back} closeLabel={t('close')} tone="navy">
         <StepBar total={total} current={index + 1} label={t('progress_label', { n: index + 1, total })} />
       </CheckpointHeader>

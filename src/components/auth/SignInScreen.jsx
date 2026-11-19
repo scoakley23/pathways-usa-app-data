@@ -99,7 +99,7 @@ export default function SignInScreen() {
   if (AUTH_PROVIDER !== 'supabase') return null;
 
   return (
-    <div dir={dir} className="min-h-screen bg-page text-navy font-sans flex flex-col">
+    <div dir={dir} className="min-h-screen bg-paper text-navy font-sans flex flex-col">
       <NavyBanner
         title={step === 'email' ? t('title') : t('checkTitle')}
         subtitle="Pathways USA"

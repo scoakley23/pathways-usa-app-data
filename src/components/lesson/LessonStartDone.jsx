@@ -53,7 +53,7 @@ export function LessonStart({ lesson, question, results, t, onStart }) {
           {t('three_stars')}
         </p>
       </div>
-      <div className="sticky bottom-0 bg-page px-4 pt-2 pb-6 max-w-lg w-full mx-auto">
+      <div className="sticky bottom-0 bg-paper px-4 pt-2 pb-6 max-w-lg w-full mx-auto">
         <Button variant="main" className="w-full" onClick={onStart}>
           {at > 0 ? t('continue_step', { step: t(`step_${STEPS[at]}`) }) : t('start_lesson')}
         </Button>

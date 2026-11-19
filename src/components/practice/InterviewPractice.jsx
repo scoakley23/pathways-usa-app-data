@@ -531,7 +531,7 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
   // please", the big mic and End call. How it works and what it saves are
   // unchanged.
   return (
-    <div className={`text-navy ${embedded ? 'w-full max-w-3xl mx-auto' : 'min-h-screen bg-page'}`}>
+    <div className={`text-navy ${embedded ? 'w-full max-w-3xl mx-auto' : 'min-h-screen bg-paper'}`}>
       <div className={`mx-auto max-w-lg space-y-4 ${embedded ? '' : 'px-4 pt-5 pb-10'}`}>
         <div className="flex items-center gap-3">
           {onClose && (

@@ -4,13 +4,14 @@
 // values there, not here.
 const plugin = require('tailwindcss/plugin');
 const {
-	COLORS, HOVER, FONT_STACK, TYPE, RADIUS, SIZES,
+	COLORS, HOVER, FONT_STACK, DISPLAY_STACK, TYPE, RADIUS, SIZES,
 } = require('./src/design/tokens.js');
 
 const ALL = { ...COLORS, ...HOVER };
 const px = (n) => `${n}px`;
 const quote = (f) => (/[\s]/.test(f) ? `"${f}"` : f);
 const stack = FONT_STACK.map(quote);
+const displayStack = DISPLAY_STACK.map(quote);
 
 // "#1E2B45" -> "219 40% 19%" for the shadcn CSS variables.
 function hsl(hex) {
@@ -31,7 +32,7 @@ function hsl(hex) {
 
 // The shadcn components (src/components/ui) read these CSS variables.
 const SHADCN = {
-	background: 'page',
+	background: 'paper',
 	foreground: 'navy',
 	card: 'white',
 	'card-foreground': 'navy',
@@ -97,7 +98,7 @@ module.exports = {
 				sans: stack,
 				heading: stack,
 				body: stack,
-				display: stack,
+				display: displayStack,
 			},
 			fontWeight: {
 				// Lexend is loaded at 400-800, so every weight is real.
@@ -140,8 +141,7 @@ module.exports = {
 				lg: 'none',
 				raised: 'none',
 				lift: 'none',
-				lip: `0 ${SIZES.lip}px 0 ${COLORS.navy}`,
-				'lip-pressed': `0 1px 0 ${COLORS.navy}`,
+				lip: `0 ${SIZES.lip}px 0 ${HOVER['navy-deep']}`,
 				xl: '0 12px 32px rgba(30, 43, 69, 0.16)',
 				'2xl': '0 12px 32px rgba(30, 43, 69, 0.16)',
 				float: '0 12px 32px rgba(30, 43, 69, 0.16)',
@@ -221,7 +221,7 @@ module.exports = {
 		// The shadcn CSS variables, generated from the tokens (no hex in CSS).
 		plugin(({ addBase }) => {
 			addBase({
-				':root': { ...vars(SHADCN), '--radius': '1rem', '--rule': COLORS.line },
+				':root': { ...vars(SHADCN), '--radius': px(RADIUS.button), '--rule': COLORS.line },
 				'.dark': vars(SHADCN_DARK),
 			});
 		}),

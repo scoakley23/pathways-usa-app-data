@@ -120,9 +120,9 @@ export default function MatchingGame({ words, onComplete, onClose = null }) {
                 disabled={isMatched}
                 aria-pressed={isSelected}
                 aria-label={isMatched ? `${item.content} (matched)` : item.content}
-                className={`relative min-h-[128px] overflow-hidden rounded-card border bg-white p-3 text-center flex items-center justify-center transition-[box-shadow,border-color,background-color] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2 focus-visible:ring-offset-page
+                className={`relative min-h-[128px] overflow-hidden rounded-card border bg-white p-3 text-center flex items-center justify-center transition-[box-shadow,border-color,background-color] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2 focus-visible:ring-offset-paper
                   ${isMatched
-                    ? 'border-line bg-page pt-9 shadow-none cursor-default'
+                    ? 'border-line bg-paper pt-9 shadow-none cursor-default'
                     : isError
                       ? 'border-not-yet ring-2 ring-not-yet shadow-raised'
                       : isSelected

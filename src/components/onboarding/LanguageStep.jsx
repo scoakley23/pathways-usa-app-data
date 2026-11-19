@@ -26,7 +26,7 @@ export default function LanguageStep({ language, t, onPick, onContinue, note }) 
   const floor = Math.floor(LANGUAGES.length / 10) * 10;
 
   return (
-    <div className="min-h-screen bg-page flex flex-col">
+    <div className="min-h-screen bg-paper flex flex-col">
       <NavyBanner
         title={t('language_title')}
         subtitle={t('language_sub')}
@@ -69,7 +69,7 @@ export default function LanguageStep({ language, t, onPick, onContinue, note }) 
         </div>
         {!shown.length && <p className="text-base text-muted text-center py-6">{t('language_none')}</p>}
       </div>
-      <div className="sticky bottom-0 bg-page px-4 pt-2 pb-6 max-w-lg w-full mx-auto">
+      <div className="sticky bottom-0 bg-paper px-4 pt-2 pb-6 max-w-lg w-full mx-auto">
         <Button variant="main" className="w-full" onClick={onContinue}>{t('continue_in', { language: nativeName(current.label) })}</Button>
       </div>
     </div>

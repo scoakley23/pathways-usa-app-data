@@ -43,7 +43,7 @@ export default function DesignPreview() {
   if (user?.role !== 'admin') return <PageNotFound />;
 
   return (
-    <div className="min-h-screen bg-page text-navy pb-28">
+    <div className="min-h-screen bg-paper text-navy pb-28">
       <NavyBanner
         left={(
           <Link to="/" aria-label="Close" className="w-11 h-11 grid place-items-center rounded-full text-white hover:bg-chip-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
@@ -57,7 +57,7 @@ export default function DesignPreview() {
       />
 
       <div className="max-w-lg mx-auto px-4 py-6 space-y-8">
-        <Section title="Amio · 7 moods">
+        <Section title={`Amio · ${AMIO_MOODS.length} moods`}>
           <div className="grid grid-cols-4 gap-3">
             {AMIO_MOODS.map((mood) => (
               <div key={mood} className="flex flex-col items-center gap-1">

@@ -15,7 +15,7 @@ const PROMISES = [
 
 export default function MeetAmioStep({ t, onContinue }) {
   return (
-    <div className="min-h-screen bg-page flex flex-col">
+    <div className="min-h-screen bg-paper flex flex-col">
       <div className="flex-1 max-w-lg w-full mx-auto px-4 pt-8 pb-4 flex flex-col items-center gap-5">
         <p className="rounded-2xl border-2 border-red bg-white px-5 py-3 text-lg font-bold text-navy text-center">{t('meet_title')}</p>
         <Amio mood="happy" size={120} />
@@ -31,7 +31,7 @@ export default function MeetAmioStep({ t, onContinue }) {
           ))}
         </ul>
       </div>
-      <div className="sticky bottom-0 bg-page px-4 pt-2 pb-6 max-w-lg w-full mx-auto">
+      <div className="sticky bottom-0 bg-paper px-4 pt-2 pb-6 max-w-lg w-full mx-auto">
         <Button variant="main" className="w-full" onClick={onContinue}>{t('sounds_good')}</Button>
       </div>
     </div>

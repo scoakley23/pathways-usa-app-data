@@ -472,7 +472,7 @@ export default function Practice() {
                       <button
                         type="button"
                         onClick={() => startPart(part)}
-                        className="w-full flex items-center gap-4 px-4 py-4 min-h-[76px] text-start hover:bg-page focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-navy first:rounded-t-card last:rounded-b-card"
+                        className="w-full flex items-center gap-4 px-4 py-4 min-h-[76px] text-start hover:bg-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-navy first:rounded-t-card last:rounded-b-card"
                       >
                         <span className="w-12 h-12 shrink-0 rounded-full bg-navy text-white grid place-items-center">
                           <Icon className="w-6 h-6" strokeWidth={2} aria-hidden="true" />
@@ -524,7 +524,7 @@ export default function Practice() {
 
         {/* Settings: civics test version, difficulty, voice */}
         <Sheet open={settingsOpen} onOpenChange={setSettingsOpen}>
-          <SheetContent side="bottom" className="bg-page max-h-[90vh] overflow-y-auto">
+          <SheetContent side="bottom" className="bg-paper max-h-[90vh] overflow-y-auto">
             <SheetHeader>
               <SheetTitle className="font-display font-normal text-[30px] text-navy text-left">Practice settings</SheetTitle>
             </SheetHeader>

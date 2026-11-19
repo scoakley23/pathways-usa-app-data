@@ -1,6 +1,7 @@
-/* Pathways + Amio (docs/redesign/amio-style-guide.md). Lexend is self-hosted
-   from @fontsource/lexend, imported in src/main.jsx; colors and the shadcn
-   variables come from src/design/tokens.js through tailwind.config.js. */
+/* Pathways + Amio (docs/design-v2/tokens.css). Lexend is self-hosted from
+   @fontsource/lexend and Bricolage Grotesque 800 from src/design/fonts/, both
+   imported in src/main.jsx; colors and the shadcn variables come from
+   src/design/tokens.js through tailwind.config.js. */
 
 @tailwind base;
 @tailwind components;
@@ -19,16 +20,17 @@
     font-size: 16px;
     font-weight: 400;
   }
-  /* Headings (and buttons) are Lexend 700. */
-  h1, h2, h3 {
+  /* Section headings (and buttons) are Lexend 700. */
+  h2, h3 {
     font-family: theme('fontFamily.sans');
     font-weight: 700;
   }
-  /* Older headings and big numbers (font-display): Lexend 700 unless the
-     element sets another weight (celebration titles: font-extrabold, 800).
-     In the base layer so weight utilities still win. */
-  .font-display {
-    font-weight: 700;
+  /* Headlines (h1) and big numbers (font-display): Bricolage Grotesque 800,
+     the only weight we ship. Other scripts fall back to Lexend / Noto.
+     In the base layer so utilities still win. */
+  h1, .font-display {
+    font-family: theme('fontFamily.display');
+    font-weight: 800;
     font-style: normal;
   }
 }

@@ -30,7 +30,7 @@ export function linkify(text) {
 }
 
 function Footer({ children }) {
-  return <div className="sticky bottom-0 bg-page px-4 pt-2 pb-6 max-w-lg w-full mx-auto">{children}</div>;
+  return <div className="sticky bottom-0 bg-paper px-4 pt-2 pb-6 max-w-lg w-full mx-auto">{children}</div>;
 }
 
 // The section's meanings and words in the learner's language: the
