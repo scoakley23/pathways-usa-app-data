@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Check } from 'lucide-react';
-import { interviewSessions as interviewSessionsApi } from '@/api/interview';
-import { progress as progressApi } from '@/api/progress';
-import { content } from '@/api/content';
-import { auth } from '@/api/auth';
+import useReadinessData from '@/components/shell/useReadinessData';
 import NavyBanner from '@/components/pathways/NavyBanner';
 import { Button, Card } from '@/components/pathways/ui';
 import InterviewRoom from '@/components/interview/InterviewRoom';
@@ -61,30 +58,7 @@ export default function InterviewPage() {
   const [language] = useAppLanguage();
   const tr = useTranslatedLines(LINES, language, { cacheKey: 'interview_tab_v2' });
   const t = (key) => (language !== 'en' && tr(key)) || LINES[key];
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    let active = true;
-    (async () => {
-      let user = null;
-      try { user = await auth.me(); } catch (e) { user = null; }
-      if (!user) { if (active) setData({ levels: null, sessions: [], civicsMastered: 0, civicsTotal: 128 }); return; }
-      const [progress, sessions, civics2025] = await Promise.all([
-        progressApi.list({ contentType: 'civics_question', sort: '-last_practiced', limit: 500 }).catch(() => []),
-        interviewSessionsApi.list({ sort: '-created_date', limit: 50 }).catch(() => []),
-        content.civicsQuestions({ version: '2025', limit: 300 }).catch(() => []),
-      ]);
-      if (!active) return;
-      const ids = new Set(civics2025.map((q) => q.id));
-      setData({
-        levels: user.skill_levels || null,
-        sessions,
-        civicsMastered: progress.filter((p) => p.status === 'mastered' && ids.has(p.content_id)).length,
-        civicsTotal: civics2025.length || 128,
-      });
-    })();
-    return () => { active = false; };
-  }, []);
+  const data = useReadinessData();
 
   const { tiles, readyCount } = readinessTiles(data || {});
   const plan = loadPlanSettings();

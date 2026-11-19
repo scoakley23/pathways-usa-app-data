@@ -102,3 +102,18 @@ export function stopStatus(id, counts, done) {
   if (id === 4) return 'Practice the whole interview (nothing is saved)';
   return 'The finish line';
 }
+
+// Lesson done (Amio v2): this week's squares from the days the app was opened
+// (`profile.activeDays()`, 'YYYY-MM-DD'), Monday first, and how many of them.
+export function activeWeek(dates = [], today = new Date()) {
+  const t = dayIndex(today);
+  const monday = t - ((today.getDay() + 6) % 7);
+  const days = new Set();
+  for (const d of dates) {
+    const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(d || ''));
+    if (!m) continue;
+    const i = dayIndex(new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]), 12));
+    if (i >= monday && i <= t) days.add(i);
+  }
+  return { squares: weekCircles([...days], t, today.getDay()), count: days.size };
+}

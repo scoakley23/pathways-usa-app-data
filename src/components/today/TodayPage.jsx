@@ -1,30 +1,37 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Eye, Headphones, MessageCircle, Package, Pencil, UserRound, ChevronRight } from 'lucide-react';
-import { Amio } from '@/components/pathways/Amio';
-import StarsPill from '@/components/pathways/StarsPill';
-import { Button } from '@/components/pathways/ui';
-import { StopIcon } from '@/components/course/courseShared';
+import { Package, ChevronRight } from 'lucide-react';
+import { Amio, AmioSays } from '@/components/pathways/Amio';
+import { Button, MAIN_PRESS } from '@/components/pathways/ui';
 import { firstName, timeOfDay } from '@/lib/todayView';
 import { amioLineKey } from '@/lib/dailyPlan';
+import { readinessTiles } from '@/lib/interviewReadiness';
 import { coursePlay } from '@/api/coursePlay';
 import useToday, { useTodayText } from '@/components/today/useToday';
+import useReadinessData from '@/components/shell/useReadinessData';
 
-// Today (Prompt 7, frame R33Today): the plan comes first. On navy: the
-// greeting (the sign-in first name, shown only), stars and today's goal bar.
-// Below: today's lesson (the current stop of the Course road) in a small
-// sky-and-grass scene with Amio's one line, the 5 step chips and Start; the
-// Review chest (questions due). No text box. The Holiday bonus card in the
-// frame is left out (no data). `sheetTop` holds the pilot check-in card.
+// Today (Amio v2, frame Today): the plan comes first. Amio greets the learner
+// (the sign-in first name, shown only) with one line, then today's lesson
+// (the current stop of the Course road) on a navy card with a gold Start,
+// then the four parts of the test as tiles from what the app already saves
+// (src/lib/interviewReadiness.js): Civics = civics answers mastered of 128,
+// Speaking = the latest practice interview score, Reading and Writing = the
+// quick-check level in words. "Today" marks today's lesson's part (the
+// course is civics). Then the Review chest. No stars, no minutes, no
+// "interview likely" line yet (a later prompt adds it). `sheetTop` holds the
+// pilot check-in card.
 
-const STEP_CHIPS = [
-  ['step_listen', Headphones], ['step_teach', MessageCircle], ['step_read', Eye], ['step_write', Pencil], ['step_officer', UserRound],
-];
+const TILE_LOOK = {
+  reading: ['bg-denim text-white', 'border-denim'],
+  writing: ['bg-gold text-navy', 'border-gold'],
+  civics: ['bg-sky text-navy', 'border-sky'],
+  speaking: ['bg-white text-navy', 'border-line'],
+};
 
 function GoalBar({ goal, done, t, saves }) {
   if (!goal) {
     return (
-      <Link to="/plan" className="self-start min-h-tap inline-flex items-center gap-1 rounded-full px-1 text-base font-semibold text-on-navy underline underline-offset-4 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+      <Link to="/plan" className="self-start min-h-tap inline-flex items-center px-1 text-base font-semibold text-denim underline underline-offset-4 hover:text-navy rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim">
         {t('set_goal')}
       </Link>
     );
@@ -33,33 +40,30 @@ function GoalBar({ goal, done, t, saves }) {
     ? (goal === 1 ? t('goal_bar_1', { done }) : t('goal_bar', { goal, done }))
     : (goal === 1 ? t('goal_only_1') : t('goal_only', { goal }));
   return (
-    <Link to="/plan" className="flex items-center gap-3 rounded-2xl -mx-1 px-1 min-h-tap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white" aria-label={`${label}. ${t('your_plan')}`}>
+    <Link to="/plan" className="flex items-center gap-3 rounded-button -mx-1 px-1 min-h-tap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim" aria-label={`${label}. ${t('your_plan')}`}>
       <span className="flex gap-1.5 shrink-0" aria-hidden="true">
         {Array.from({ length: goal }).map((_, i) => (
-          <span key={i} className={`h-2.5 w-10 rounded-full ${i < done ? 'bg-gold' : 'bg-white'}`} />
+          <span key={i} className={`h-2.5 w-10 rounded-full ${i < done ? 'bg-gold' : 'bg-line'}`} />
         ))}
       </span>
-      <span className="text-base text-on-navy">{label}</span>
+      <span className="text-base text-muted">{label}</span>
     </Link>
   );
 }
 
-function Scene({ unitIcon, line }) {
+function Tile({ tile, t, today }) {
+  let value;
+  if (tile.kind === 'level') value = tile.level ? t(`level_${tile.level}`) : t('not_checked');
+  else if (tile.kind === 'percent') value = tile.value === null ? t('no_practice_yet') : `${tile.value}%`;
+  else value = `${Math.round((tile.value / (tile.total || 128)) * 100)}%`;
+  const big = tile.kind !== 'level' && !(tile.kind === 'percent' && tile.value === null);
   return (
-    <div className="relative h-44 bg-scene-sky overflow-hidden" aria-hidden="true">
-      <svg className="absolute inset-x-0 bottom-0 w-full h-20" viewBox="0 0 100 40" preserveAspectRatio="none" focusable="false">
-        <path d="M0 18 C30 6 60 4 100 14 L100 40 L0 40 Z" className="fill-grass" />
-      </svg>
-      <svg viewBox="0 0 60 24" className="absolute w-14 h-6 top-5 start-[38%]" focusable="false">
-        <path d="M10 22h40a8 8 0 0 0 0-16 12 12 0 0 0-22-2 9 9 0 0 0-18 4 7 7 0 0 0 0 14z" className="fill-white" />
-      </svg>
-      <span className="absolute start-6 top-1/2 -translate-y-1/2 grid place-items-center w-20 h-20 rounded-full bg-red text-navy ring-4 ring-red ring-offset-4 ring-offset-scene-sky">
-        <StopIcon type="lesson" unitIcon={unitIcon} className="w-8 h-8" />
-      </span>
-      <div className="absolute end-4 top-4 flex flex-col items-end gap-1 max-w-[58%]">
-        <p className="rounded-2xl border-2 border-red bg-white px-3 py-2 text-[0.9375rem] font-semibold leading-snug text-navy">{line}</p>
-        <Amio mood="happy" size={56} />
+    <div className={`min-h-[6.5rem] rounded-card border-[2.5px] p-4 flex flex-col justify-between gap-2 ${TILE_LOOK[tile.id][0]} ${today ? 'border-navy' : TILE_LOOK[tile.id][1]}`}>
+      <div className="flex items-start justify-between gap-2">
+        <p className="text-lg font-semibold">{t(`part_${tile.id}`)}</p>
+        {today && <span className="shrink-0 rounded-button bg-white px-2 py-0.5 text-small font-bold text-navy">{t('today_tag')}</span>}
       </div>
+      <p className={big ? 'font-display text-[2.25rem] leading-none tabular-nums' : 'text-lg font-bold leading-tight'}>{value}</p>
     </div>
   );
 }
@@ -68,75 +72,77 @@ export default function TodayPage({ user, sheetTop, quickCheckFirst = false }) {
   const navigate = useNavigate();
   const { t, rtl } = useTodayText();
   const day = useToday();
+  const readiness = useReadinessData();
   const name = firstName(user);
   const greeting = name ? t(`good_${timeOfDay(new Date())}`, { name }) : t('welcome');
   const line = amioLineKey(day.goal, day.doneToday);
   const lesson = day.lesson;
+  const { tiles } = readinessTiles(readiness || {});
+  const order = ['reading', 'writing', 'civics', 'speaking'];
+  const shown = order.map((id) => tiles.find((x) => x.id === id)).filter(Boolean);
 
   return (
-    <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-full bg-paper">
-      <header className="bg-navy text-white px-5 pt-6 pb-5 flex flex-col gap-3">
-        <div className="flex items-center justify-between gap-3">
-          <h1 className="text-title font-bold break-words min-w-0" dir="auto">{greeting}</h1>
-          <StarsPill count={day.stars} label={t('stars_n', { n: day.stars })} />
-        </div>
+    <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-full bg-paper text-navy">
+      <div className="max-w-lg mx-auto px-4 pt-6 pb-8 flex flex-col gap-4">
+        <h1 className="sr-only" dir="auto">{greeting}</h1>
+        <AmioSays mood="hello" size={64}>{t('amio_greeting', { greeting, line: t(line.key, line.vars) })}</AmioSays>
         {!day.loading && <GoalBar goal={day.goal} done={day.doneToday} t={t} saves={coursePlay.saves} />}
-      </header>
 
-      <div className="max-w-lg mx-auto px-4 py-5 flex flex-col gap-4">
         {sheetTop}
 
         {quickCheckFirst && (
           <section className="rounded-card bg-white border border-line p-5 flex flex-col gap-3">
-            <h2 className="text-lg font-bold text-navy">{t('quick_check_title')}</h2>
+            <h2 className="text-lg font-bold">{t('quick_check_title')}</h2>
             <p className="text-base text-muted">{t('quick_check_body')}</p>
             <Button variant="main" className="w-full" onClick={() => navigate('/quick-check')}>{t('quick_check')}</Button>
           </section>
         )}
 
         {!day.loading && lesson && (
-          <>
-            <section className="rounded-card bg-white border border-line overflow-hidden">
-              <Scene unitIcon={lesson.unit.icon} line={t(line.key, line.vars)} />
-              <div className="p-5 flex flex-col gap-3">
-                <p className="text-small font-semibold uppercase tracking-wide text-muted" dir="auto">
-                  {t('lesson_of', { section: lesson.section.title, n: lesson.number, of: lesson.of })}
-                  {lesson.lesson.status === 'draft' && ` · ${t('draft')}`}
-                </p>
-                <h2 className="text-[1.5rem] font-bold text-navy leading-tight" dir="auto">{lesson.lesson.title}</h2>
-                <ul className="flex flex-wrap gap-2 list-none m-0 p-0">
-                  {STEP_CHIPS.map(([key, Icon]) => (
-                    <li key={key} className="inline-flex items-center gap-1.5 rounded-full bg-tint px-3 py-1.5 text-base font-semibold text-navy">
-                      <Icon className="w-4 h-4" aria-hidden="true" />{t(key)}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </section>
-            {!quickCheckFirst && <Button variant="main" className="w-full" onClick={() => navigate(`/course/lesson/${lesson.lesson.id}`)}>{t('start')}</Button>}
-          </>
+          <section className="rounded-card bg-navy text-white p-5 flex flex-col gap-3">
+            <p className="text-base font-semibold text-sky" dir="auto">
+              {t('lesson_of', { section: lesson.section.title, n: lesson.number, of: lesson.of })}
+              {lesson.lesson.status === 'draft' && ` · ${t('draft')}`}
+            </p>
+            <h2 className="font-display text-[2.25rem] leading-[1.05] tracking-tight" dir="auto">{lesson.lesson.title}</h2>
+            {!quickCheckFirst && (
+              <button
+                type="button"
+                onClick={() => navigate(`/course/lesson/${lesson.lesson.id}`)}
+                className={`mt-2 w-full min-h-main mb-[5px] rounded-button bg-gold px-6 text-lg font-extrabold text-navy ${MAIN_PRESS} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-navy`}
+              >
+                {t('start')}
+              </button>
+            )}
+          </section>
         )}
 
         {!day.loading && !lesson && (
           <section className="rounded-card bg-white border border-line p-5 flex items-center gap-4">
             <Amio mood="proud" size={64} className="shrink-0" />
             <div className="min-w-0">
-              <h2 className="text-lg font-bold text-navy">{t('all_done_title')}</h2>
+              <h2 className="text-lg font-bold">{t('all_done_title')}</h2>
               <p className="text-base text-muted">{t('all_done_body')}</p>
               <Link to="/study?tab=practice" className="mt-2 inline-flex min-h-tap items-center font-semibold text-denim underline underline-offset-4">{t('practice')}</Link>
             </div>
           </section>
         )}
 
+        {readiness && (
+          <div className="grid grid-cols-2 gap-2">
+            {shown.map((tile) => <Tile key={tile.id} tile={tile} t={t} today={!!lesson && tile.id === 'civics'} />)}
+          </div>
+        )}
+
         <Link
           to="/review-chest"
-          className="flex items-center gap-4 rounded-card bg-white border border-line px-4 py-4 hover:border-denim focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim"
+          className="flex items-center gap-4 rounded-card bg-white border border-line px-4 py-4 hover:border-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim"
         >
-          <span className="grid place-items-center w-14 h-14 shrink-0 rounded-2xl bg-stop-chest border-2 border-stop-chest-border text-navy">
+          <span className="grid place-items-center w-14 h-14 shrink-0 rounded-button bg-stop-chest border-2 border-stop-chest-border text-navy">
             <Package className="w-6 h-6" aria-hidden="true" />
           </span>
           <span className="flex-1 min-w-0">
-            <span className="block text-lg font-bold text-navy">{t('review_chest')}</span>
+            <span className="block text-lg font-bold">{t('review_chest')}</span>
             <span className="block text-base text-muted">
               {day.due === 0 ? t('review_none') : day.due === 1 ? t('review_due_1') : t('review_due', { n: day.due })}
             </span>

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link, Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
 import confetti from 'canvas-confetti';
-import { COLORS } from '@/lib/theme';
+import { CONFETTI_COLORS } from '@/lib/theme';
 import { Amio } from '@/components/pathways/Amio';
 import { UnitIcon, useJourney } from '@/components/course/courseShared';
 import { unitComplete, unitStats } from '@/lib/checkpoints';
@@ -34,7 +34,7 @@ export default function UnitDonePage() {
 
   useEffect(() => {
     if (journey.loading || !show) return;
-    confetti({ particleCount: 120, spread: 80, origin: { y: 0.3 }, colors: [COLORS.gold, COLORS.red, COLORS.denim, COLORS.white], disableForReducedMotion: true });
+    confetti({ particleCount: 120, spread: 80, origin: { y: 0.3 }, colors: CONFETTI_COLORS, disableForReducedMotion: true });
   }, [journey.loading, show]);
 
   if (journey.loading) return <div className="min-h-screen bg-navy" />;

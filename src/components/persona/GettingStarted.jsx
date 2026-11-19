@@ -40,12 +40,12 @@ const LINES_ES = {
   program_name_label: 'Su nombre (opcional)',
   program_name_help: 'Para que {program} sepa que es usted. Si lo deja en blanco, verán su correo electrónico.',
   program_share: 'Compartir mi progreso con {program}',
-  program_share_help: 'Verían sus niveles de la evaluación rápida, las lecciones que terminó, sus estrellas, los puntos de control que pasó y las secciones del N-400 que leyó. Puede cambiarlo después en «Yo».',
+  program_share_help: 'Verían sus niveles de la evaluación rápida, las lecciones que terminó, sus puntajes de las lecciones, los puntos de control que pasó y las secciones del N-400 que leyó. Puede cambiarlo después en «Yo».',
   program_error: 'Algo salió mal. Por favor, intente otra vez.',
   continue: 'Continuar',
   skip: 'Saltar',
 };
-const CACHE_KEY = 'onboarding_v7';
+const CACHE_KEY = 'onboarding_v8';
 
 function ChoiceButton({ selected, onClick, children, className = '' }) {
   return (

@@ -1,12 +1,14 @@
 // The fixed lines of Today, Your plan and Done for today (Prompt 7),
 // translated like every screen and listed in the translation pack
-// (src/lib/translationSources.js). No minutes: the app doesn't time anything.
+// (src/lib/translationSources.js). No minutes on lessons (the plan picker's
+// "about N min a day" is the only place minutes appear).
+import { LEVELS } from '@/lib/pretest';
+
 export const TODAY_LINES = {
   good_morning: 'Good morning, {name}',
   good_afternoon: 'Good afternoon, {name}',
   good_evening: 'Good evening, {name}',
   welcome: 'Welcome',
-  stars_n: '{n} stars',
   goal_bar: 'Today’s goal: {goal} lessons · {done} done',
   goal_bar_1: 'Today’s goal: 1 lesson · {done} done',
   goal_only: 'Today’s goal: {goal} lessons',
@@ -24,7 +26,7 @@ export const TODAY_LINES = {
   step_read: 'Read',
   step_write: 'Write',
   step_officer: 'Officer',
-  start: 'Start · +3 stars',
+  start: 'Start',
   draft: 'Draft',
   all_done_title: 'You finished every open lesson',
   all_done_body: 'New lessons open as they are reviewed. Practice or review while you wait.',
@@ -36,6 +38,16 @@ export const TODAY_LINES = {
   quick_check_title: 'Start here: the quick check',
   quick_check_body: 'A short check of reading, writing, civics and speaking, so Amio knows where to start.',
   quick_check: 'Start: quick check',
+  amio_greeting: '{greeting}. {line}',
+  // The four tiles (Amio v2 frame Today), from what the app already saves
+  part_reading: 'Reading',
+  part_writing: 'Writing',
+  part_civics: 'Civics',
+  part_speaking: 'Speaking',
+  today_tag: 'Today',
+  not_checked: 'Not checked yet',
+  no_practice_yet: 'No practice yet',
+  ...Object.fromEntries(Object.entries(LEVELS).map(([k, v]) => [`level_${k}`, v.label])),
   // Your plan (R33Plan)
   plan_title: 'Your plan',
   plan_when: 'When is your interview?',
@@ -59,9 +71,9 @@ export const TODAY_LINES = {
   done_sub_1: 'You finished 1 lesson today.',
   done_sub_n: 'You finished {n} lessons today.',
   done_sub_0: 'Every bit of practice counts.',
-  stars_today: 'stars today',
-  days_in_a_row: 'days in a row',
-  day_in_a_row: 'day in a row',
+  lessons_today: 'Lessons today',
+  days_in_a_row: 'Days in a row',
+  day_in_a_row: 'Day in a row',
   rest_note: 'One missed day a week is a rest day. It never breaks your streak.',
   lessons_of: '{done} of {total} lessons',
   to_speak_n: '{n} more lessons to reach Speak it!',

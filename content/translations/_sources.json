@@ -393,7 +393,6 @@
   {
    "text": "+1 star",
    "from": [
-    "lesson-player",
     "n400-lessons"
    ]
   },
@@ -401,6 +400,12 @@
    "text": "+10 stars + badge",
    "from": [
     "checkpoints"
+   ]
+  },
+  {
+   "text": "1 day this week",
+   "from": [
+    "lesson-player"
    ]
   },
   {
@@ -430,7 +435,6 @@
   {
    "text": "1 star",
    "from": [
-    "lesson-player",
     "n400-lessons"
    ]
   },
@@ -1245,6 +1249,18 @@
    ]
   },
   {
+   "text": "Almost. Let’s look at it together.",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "Also accepted:",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "Also today",
    "from": [
     "today"
@@ -1391,12 +1407,6 @@
    ]
   },
   {
-   "text": "Amio asked",
-   "from": [
-    "lesson-player"
-   ]
-  },
-  {
    "text": "Amio explains in",
    "from": [
     "ask-screen"
@@ -1508,12 +1518,6 @@
    "text": "Answer {n} easy questions",
    "from": [
     "onboarding"
-   ]
-  },
-  {
-   "text": "Answered the officer’s question",
-   "from": [
-    "lesson-player"
    ]
   },
   {
@@ -2370,7 +2374,8 @@
    "from": [
     "checkpoints",
     "interview-tab",
-    "onboarding"
+    "onboarding",
+    "today-plan"
    ]
   },
   {
@@ -2875,9 +2880,21 @@
    ]
   },
   {
+   "text": "Day in a row",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "Days celebrating American history and values like Independence Day and Thanksgiving",
    "from": [
     "lessons"
+   ]
+  },
+  {
+   "text": "Days in a row",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -3866,7 +3883,6 @@
   {
    "text": "Finish all 5 steps for 3 stars",
    "from": [
-    "lesson-player",
     "n400-lessons"
    ]
   },
@@ -4384,7 +4400,8 @@
   {
    "text": "Getting there",
    "from": [
-    "interview-tab"
+    "interview-tab",
+    "today-plan"
    ]
   },
   {
@@ -4502,6 +4519,12 @@
    ]
   },
   {
+   "text": "Good try. Here’s the answer.",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "Got it",
    "from": [
     "onboarding"
@@ -4541,7 +4564,7 @@
    ]
   },
   {
-   "text": "Great teaching!",
+   "text": "Great answer.",
    "from": [
     "lesson-player"
    ]
@@ -5341,6 +5364,12 @@
    "text": "How you got your green card matters. If you are not sure it was proper, ask a lawyer first.",
    "from": [
     "lawyer-checklist"
+   ]
+  },
+  {
+   "text": "I ask in English. You answer out loud.",
+   "from": [
+    "lesson-player"
    ]
   },
   {
@@ -6183,12 +6212,6 @@
    ]
   },
   {
-   "text": "Keep going: next lesson",
-   "from": [
-    "lesson-player"
-   ]
-  },
-  {
    "text": "Kept in a closed place, like a jail, and not allowed to leave.",
    "from": [
     "n400"
@@ -6419,8 +6442,13 @@
   {
    "text": "Lesson complete!",
    "from": [
-    "lesson-player",
     "n400-lessons"
+   ]
+  },
+  {
+   "text": "Lesson done.",
+   "from": [
+    "lesson-player"
    ]
   },
   {
@@ -6445,6 +6473,12 @@
    "text": "Lessons can be in any of {n} languages. The interview is in English, so we practice your answers in English, one step at a time.",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "Lessons today",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -6608,12 +6642,6 @@
   },
   {
    "text": "Listen, then type the sentence.",
-   "from": [
-    "lesson-player"
-   ]
-  },
-  {
-   "text": "Listened and learned",
    "from": [
     "lesson-player"
    ]
@@ -7422,6 +7450,12 @@
    ]
   },
   {
+   "text": "Nearly there. One more time.",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "Never",
    "from": [
     "settings"
@@ -7544,6 +7578,12 @@
    ]
   },
   {
+   "text": "Nicely done.",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "Nine (9)",
    "from": [
     "civics-questions"
@@ -7588,7 +7628,8 @@
   {
    "text": "No practice yet",
    "from": [
-    "interview-tab"
+    "interview-tab",
+    "today-plan"
    ]
   },
   {
@@ -7631,7 +7672,8 @@
    "text": "Not checked yet",
    "from": [
     "interview-tab",
-    "today"
+    "today",
+    "today-plan"
    ]
   },
   {
@@ -7660,9 +7702,14 @@
    ]
   },
   {
+   "text": "Not quite",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "Not quite yet",
    "from": [
-    "lesson-player",
     "n400-lessons"
    ]
   },
@@ -7692,12 +7739,6 @@
    ]
   },
   {
-   "text": "Not yet. Here is what the officer accepts.",
-   "from": [
-    "lesson-player"
-   ]
-  },
-  {
    "text": "Not yet. Listen once, then read it again slowly.",
    "from": [
     "lesson-player"
@@ -7719,6 +7760,12 @@
    "text": "Not yet. This is the one:",
    "from": [
     "n400-lessons"
+   ]
+  },
+  {
+   "text": "Not yet. You’re getting closer.",
+   "from": [
+    "lesson-player"
    ]
   },
   {
@@ -7922,6 +7969,12 @@
    ]
   },
   {
+   "text": "One more lesson",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "One of the two longest rivers in the U.S., running through the center of the country",
    "from": [
     "key-words"
@@ -7982,9 +8035,14 @@
    ]
   },
   {
+   "text": "Only your steps and scores are saved. Nothing you said is kept.",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "Only your steps and stars are saved. Nothing you said is kept.",
    "from": [
-    "lesson-player",
     "n400-lessons"
    ]
   },
@@ -8692,16 +8750,11 @@
    ]
   },
   {
-   "text": "Read “{sentence}”",
-   "from": [
-    "lesson-player"
-   ]
-  },
-  {
    "text": "Reading",
    "from": [
     "interview-tab",
-    "onboarding"
+    "onboarding",
+    "today-plan"
    ]
   },
   {
@@ -8944,6 +8997,12 @@
    ]
   },
   {
+   "text": "Right answers",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "Right to Counsel",
    "from": [
     "key-words"
@@ -8977,6 +9036,12 @@
    "text": "Right to practice any faith or no faith without government interference",
    "from": [
     "lessons"
+   ]
+  },
+  {
+   "text": "Right!",
+   "from": [
+    "lesson-player"
    ]
   },
   {
@@ -9483,15 +9548,15 @@
    ]
   },
   {
-   "text": "Say it like this",
-   "from": [
-    "lesson-player"
-   ]
-  },
-  {
    "text": "Say it like this: ee PLOOR-ih-bus OO-num.",
    "from": [
     "course-lessons"
+   ]
+  },
+  {
+   "text": "Say it once more",
+   "from": [
+    "lesson-player"
    ]
   },
   {
@@ -9913,7 +9978,6 @@
   {
    "text": "Skipped for now",
    "from": [
-    "lesson-player",
     "n400-lessons"
    ]
   },
@@ -10130,7 +10194,8 @@
    "text": "Speaking",
    "from": [
     "interview-tab",
-    "onboarding"
+    "onboarding",
+    "today-plan"
    ]
   },
   {
@@ -10157,7 +10222,8 @@
     "course",
     "home",
     "onboarding",
-    "today"
+    "today",
+    "today-plan"
    ]
   },
   {
@@ -10165,7 +10231,8 @@
    "from": [
     "home",
     "interview-tab",
-    "today"
+    "today",
+    "today-plan"
    ]
   },
   {
@@ -10233,12 +10300,6 @@
    "text": "Start with the most recent trip first, then go back in time.",
    "from": [
     "n400"
-   ]
-  },
-  {
-   "text": "Start · +3 stars",
-   "from": [
-    "today-plan"
    ]
   },
   {
@@ -10343,7 +10404,8 @@
   {
    "text": "Strong",
    "from": [
-    "interview-tab"
+    "interview-tab",
+    "today-plan"
    ]
   },
   {
@@ -10528,15 +10590,21 @@
    ]
   },
   {
-   "text": "Task {n} of {t} · Today",
+   "text": "Tap to answer",
    "from": [
-    "today"
+    "lesson-player"
    ]
   },
   {
-   "text": "Taught Amio in English",
+   "text": "Tap to stop",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Task {n} of {t} · Today",
+   "from": [
+    "today"
    ]
   },
   {
@@ -10712,6 +10780,18 @@
    "text": "That's one more answer you know.",
    "from": [
     "tutor"
+   ]
+  },
+  {
+   "text": "That’s it! Well said.",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "That’s okay. Listen, then try again.",
+   "from": [
+    "lesson-player"
    ]
   },
   {
@@ -11655,6 +11735,12 @@
    ]
   },
   {
+   "text": "The answer is: {answer}",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "The belief that through hard work, anyone can achieve success and prosperity in the U.S.",
    "from": [
     "key-words"
@@ -11992,12 +12078,6 @@
    ]
   },
   {
-   "text": "The officer asked",
-   "from": [
-    "lesson-player"
-   ]
-  },
-  {
    "text": "The officer asks",
    "from": [
     "checkpoints"
@@ -12007,12 +12087,6 @@
    "text": "The officer may use other words. Which question on the form is the officer asking?",
    "from": [
     "n400-lessons"
-   ]
-  },
-  {
-   "text": "The officer would accept that.",
-   "from": [
-    "lesson-player"
    ]
   },
   {
@@ -12478,13 +12552,13 @@
    ]
   },
   {
-   "text": "They would see your quick check levels, the lessons you finished, your stars, the checkpoints you passed and the N-400 sections you read.",
+   "text": "They would see your quick check levels, the lessons you finished, your lesson scores, the checkpoints you passed and the N-400 sections you read.",
    "from": [
     "my-tutor"
    ]
   },
   {
-   "text": "They would see your quick check levels, the lessons you finished, your stars, the checkpoints you passed and the N-400 sections you read. You can change this on Me.",
+   "text": "They would see your quick check levels, the lessons you finished, your lesson scores, the checkpoints you passed and the N-400 sections you read. You can change this on Me.",
    "from": [
     "getting-started"
    ]
@@ -13114,7 +13188,8 @@
    "from": [
     "home",
     "tabs",
-    "today"
+    "today",
+    "today-plan"
    ]
   },
   {
@@ -13254,7 +13329,6 @@
    "text": "Try again",
    "from": [
     "checkpoints",
-    "lesson-player",
     "n400-lessons"
    ]
   },
@@ -15437,13 +15511,8 @@
    "text": "Writing",
    "from": [
     "interview-tab",
-    "onboarding"
-   ]
-  },
-  {
-   "text": "Wrote “{sentence}”",
-   "from": [
-    "lesson-player"
+    "onboarding",
+    "today-plan"
    ]
   },
   {
@@ -15457,6 +15526,12 @@
    "text": "Yes",
    "from": [
     "pilot"
+   ]
+  },
+  {
+   "text": "Yes! Just right.",
+   "from": [
+    "lesson-player"
    ]
   },
   {
@@ -15520,6 +15595,18 @@
    ]
   },
   {
+   "text": "You did it!",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "You did it! Next: {lesson}.",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "You did not register for Selective Service when required",
    "from": [
     "lawyer-checklist"
@@ -15571,6 +15658,12 @@
    "text": "You have the right to a lawyer and a fair trial under due process",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "You know",
+   "from": [
+    "lesson-player"
    ]
   },
   {
@@ -15953,6 +16046,12 @@
   },
   {
    "text": "You’ll see this one again tomorrow.",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "You’ve got it.",
    "from": [
     "lesson-player"
    ]
@@ -16468,6 +16567,12 @@
    ]
   },
   {
+   "text": "civics answers",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "civics answers mastered",
    "from": [
     "me"
@@ -16554,8 +16659,7 @@
   {
    "text": "day in a row",
    "from": [
-    "me",
-    "today-plan"
+    "me"
    ]
   },
   {
@@ -16567,8 +16671,7 @@
   {
    "text": "days in a row",
    "from": [
-    "me",
-    "today-plan"
+    "me"
    ]
   },
   {
@@ -17274,12 +17377,6 @@
    ]
   },
   {
-   "text": "stars today",
-   "from": [
-    "today-plan"
-   ]
-  },
-  {
    "text": "stationed",
    "from": [
     "n400"
@@ -17922,6 +18019,12 @@
    ]
   },
   {
+   "text": "{greeting}. {line}",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "{m} min",
    "from": [
     "today"
@@ -17937,6 +18040,12 @@
    "text": "{need} of {n} to pass",
    "from": [
     "checkpoints"
+   ]
+  },
+  {
+   "text": "{n} days this week",
+   "from": [
+    "lesson-player"
    ]
   },
   {
@@ -17968,6 +18077,7 @@
    "from": [
     "course",
     "interview-tab",
+    "lesson-player",
     "n400-lessons"
    ]
   },
@@ -18011,9 +18121,7 @@
    "text": "{n} stars",
    "from": [
     "course",
-    "lesson-player",
-    "n400-lessons",
-    "today-plan"
+    "n400-lessons"
    ]
   },
   {

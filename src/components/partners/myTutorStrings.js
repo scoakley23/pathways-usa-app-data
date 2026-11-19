@@ -11,7 +11,7 @@ export const MY_TUTOR_LINES = {
   name_label: 'Your name (optional)',
   name_help: 'So {program} knows it’s you. If you leave it blank, they see your email.',
   share: 'Share my progress with {program}',
-  share_help: 'They would see your quick check levels, the lessons you finished, your stars, the checkpoints you passed and the N-400 sections you read.',
+  share_help: 'They would see your quick check levels, the lessons you finished, your lesson scores, the checkpoints you passed and the N-400 sections you read.',
   join: 'Join',
   save: 'Save',
   change: 'Change',

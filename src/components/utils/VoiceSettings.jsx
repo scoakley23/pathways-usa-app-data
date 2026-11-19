@@ -78,7 +78,7 @@ export default function VoiceSettings() {
                     <span className="flex items-center gap-2">
                       <span className="truncate">{v.name}</span>
                       {rankVoice(v) >= 3 && (
-                        <span className="text-[0.625rem] font-bold uppercase bg-correct-bg text-correct rounded-full px-1.5 shrink-0">Natural</span>
+                        <span className="text-small font-bold uppercase bg-correct-bg text-correct rounded-full px-1.5 shrink-0">Natural</span>
                       )}
                       <span className="text-xs text-muted">{v.lang}</span>
                     </span>

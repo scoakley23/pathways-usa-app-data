@@ -4,7 +4,10 @@ import { auth } from '@/api/auth';
 import { coursePlay } from '@/api/coursePlay';
 import { UNITS, findLesson, questionRecord } from '@/lib/course';
 import { canSeeDrafts, visibleCourse } from '@/lib/journey';
-import { STEPS, starsFor } from '@/lib/lessonPlayer';
+import { STEPS } from '@/lib/lessonPlayer';
+import { activeWeek } from '@/lib/todayView';
+import { today as todayApi } from '@/api/today';
+import { loadReadiness } from '@/components/shell/useReadinessData';
 import useTranslatedLines from '@/components/persona/useTranslatedLines';
 import useAppLanguage, { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
 import { AmioSays } from '@/components/pathways/Amio';
@@ -30,7 +33,7 @@ export default function LessonPlayer() {
   const { lessonId } = useParams();
   const navigate = useNavigate();
   const [language] = useAppLanguage();
-  const tr = useTranslatedLines(LESSON_LINES, language, { cacheKey: 'lesson_v1' });
+  const tr = useTranslatedLines(LESSON_LINES, language, { cacheKey: 'lesson_v2' });
   const t = (key, vars = {}) => {
     let s = (language !== 'en' && tr(key)) || LESSON_LINES[key] || key;
     for (const [k, v] of Object.entries(vars)) s = s.split(`{${k}}`).join(String(v));
@@ -46,6 +49,7 @@ export default function LessonPlayer() {
   const [results, setResults] = useState({});
   const [writeLevel, setWriteLevel] = useState(1);
   const [goal, setGoal] = useState(null);
+  const [doneInfo, setDoneInfo] = useState({ know: null, week: null });
   const wrotePass = useRef(false);
 
   useEffect(() => {
@@ -57,7 +61,7 @@ export default function LessonPlayer() {
 
   // Reset when moving to another lesson ("Keep going").
   useEffect(() => {
-    setPhase('start'); setStepIndex(0); setResults({}); setGoal(null); wrotePass.current = false;
+    setPhase('start'); setStepIndex(0); setResults({}); setGoal(null); setDoneInfo({ know: null, week: null }); wrotePass.current = false;
   }, [lessonId]);
 
   const lesson = found?.lesson;
@@ -71,6 +75,8 @@ export default function LessonPlayer() {
     return i >= 0 ? all[i + 1] || null : null;
   }, [lesson, showDrafts]);
 
+  const nextFound = nextLessonId ? findLesson(nextLessonId) : null;
+  const nextTitle = nextFound ? (tx ? tx(nextFound.lesson.title) : nextFound.lesson.title) : null;
   const back = () => navigate(found ? `/course?unit=${found.unit.id}` : '/course');
 
   if (user === undefined) return <div className="min-h-screen bg-paper" />;
@@ -109,6 +115,14 @@ export default function LessonPlayer() {
     window.scrollTo?.(0, 0);
     const ids = UNITS.flatMap((u) => u.sections.flatMap((s) => (s.lessons || []).map((l) => l.id)));
     coursePlay.todayGoal(ids).then(setGoal).catch(() => {});
+    // Lesson done's numbers: civics answers mastered (user_progress) and this
+    // week's days. Read only.
+    Promise.all([loadReadiness().catch(() => null), todayApi.activeDays()]).then(([r, days]) => {
+      setDoneInfo({
+        know: r && r.civicsTotal ? { n: r.civicsMastered, total: r.civicsTotal } : null,
+        week: activeWeek(days || []),
+      });
+    }).catch(() => {});
   };
   const missed = (questionId) => { coursePlay.missed(questionId).catch(() => {}); };
   const written = (passed) => {
@@ -134,10 +148,11 @@ export default function LessonPlayer() {
     return (
       <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-screen bg-paper">
         <LessonDone
-          lesson={{ ...lesson, title: lessonTitle }}
           results={results}
-          stars={starsFor(results)}
           goal={goal}
+          know={doneInfo.know}
+          week={doneInfo.week}
+          nextTitle={nextTitle}
           saves={coursePlay.saves}
           t={t}
           onDoneForToday={() => navigate('/done-today')}
