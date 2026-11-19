@@ -1016,9 +1016,21 @@
    ]
   },
   {
+   "text": "About how long each day?",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "About the interview",
    "from": [
     "ask-screen"
+   ]
+  },
+  {
+   "text": "About {n} min a day",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -1406,12 +1418,6 @@
    "text": "Amio reads each message aloud in the quick check and lessons. Saved on this phone.",
    "from": [
     "settings"
-   ]
-  },
-  {
-   "text": "Amio will explain everything in it. You practice in English.",
-   "from": [
-    "onboarding"
    ]
   },
   {
@@ -2240,12 +2246,6 @@
    ]
   },
   {
-   "text": "Choose your language",
-   "from": [
-    "onboarding"
-   ]
-  },
-  {
    "text": "Christopher Columbus was an explorer from Italy who sailed for Spain. He was European, not American Indian. He reached the Americas in 1492.",
    "from": [
     "course-pictures"
@@ -2327,6 +2327,12 @@
    "text": "Citizenship and the vote",
    "from": [
     "course-titles"
+   ]
+  },
+  {
+   "text": "Citizenship tutor",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -2767,17 +2773,12 @@
     "getting-started",
     "home",
     "lesson-player",
-    "n400-lessons"
-   ]
-  },
-  {
-   "text": "Continue and sign in",
-   "from": [
+    "n400-lessons",
     "onboarding"
    ]
   },
   {
-   "text": "Continue in {language}",
+   "text": "Continue and sign in",
    "from": [
     "onboarding"
    ]
@@ -4150,6 +4151,7 @@
   {
    "text": "Free practice · Not affiliated with USCIS · Not legal advice",
    "from": [
+    "onboarding",
     "sign-in"
    ]
   },
@@ -4157,18 +4159,6 @@
    "text": "Free speech and the right to a fair trial are civil liberties protected by the Constitution",
    "from": [
     "key-words"
-   ]
-  },
-  {
-   "text": "Free · Not part of the U.S. government",
-   "from": [
-    "onboarding"
-   ]
-  },
-  {
-   "text": "Free, and not the government",
-   "from": [
-    "onboarding"
    ]
   },
   {
@@ -4379,18 +4369,6 @@
    ]
   },
   {
-   "text": "Get ready for your citizenship interview, with a tutor who speaks your language.",
-   "from": [
-    "onboarding"
-   ]
-  },
-  {
-   "text": "Get started",
-   "from": [
-    "onboarding"
-   ]
-  },
-  {
    "text": "Getting ready to apply",
    "from": [
     "getting-started",
@@ -4521,6 +4499,12 @@
    "text": "Good morning. Please answer the questions in English.",
    "from": [
     "tutor"
+   ]
+  },
+  {
+   "text": "Got it",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -4918,6 +4902,12 @@
    ]
   },
   {
+   "text": "Have you sent your N-400?",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "Have you taken any trips outside the United States that lasted more than 6 months?",
    "from": [
     "n400"
@@ -5040,7 +5030,7 @@
    ]
   },
   {
-   "text": "Hi! I’m Amio. I’ll be your tutor.",
+   "text": "Hi! I’ll explain everything in {language}.",
    "from": [
     "onboarding"
    ]
@@ -5058,12 +5048,6 @@
    ]
   },
   {
-   "text": "Hi, I'm {name}, your tutor. Which language should I use to explain things? We will practice English together.",
-   "from": [
-    "getting-started"
-   ]
-  },
-  {
    "text": "Hi, I'm {name}. I'll be your teacher.",
    "from": [
     "home"
@@ -5073,6 +5057,12 @@
    "text": "Hi, I'm {name}. I'll be your teacher. First, a quick check shows me what you already know.",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "Hi, I’m Amio.",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -5372,7 +5362,7 @@
    ]
   },
   {
-   "text": "I explain in your language",
+   "text": "I explain in {language}",
    "from": [
     "onboarding"
    ]
@@ -6157,6 +6147,12 @@
    ]
   },
   {
+   "text": "Just a suggestion. You can open any topic and any lesson.",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "Just learning",
    "from": [
     "today"
@@ -6238,12 +6234,6 @@
    "text": "Largest",
    "from": [
     "words"
-   ]
-  },
-  {
-   "text": "Last step. I will read everything out loud for you. You can turn this off, and make the text bigger.",
-   "from": [
-    "getting-started"
    ]
   },
   {
@@ -6652,6 +6642,12 @@
    "text": "Lives",
    "from": [
     "words"
+   ]
+  },
+  {
+   "text": "Loading",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -7438,12 +7434,6 @@
    ]
   },
   {
-   "text": "Never tell me about your case. We practice with made-up people.",
-   "from": [
-    "onboarding"
-   ]
-  },
-  {
    "text": "New Hampshire / Massachusetts / Rhode Island / Connecticut / New York / New Jersey / Pennsylvania / Delaware / Maryland / Virginia / North Carolina / South Carolina / Georgia",
    "from": [
     "civics-questions"
@@ -7602,9 +7592,9 @@
    ]
   },
   {
-   "text": "No sound, please",
+   "text": "No rush. We’ll go at your pace.",
    "from": [
-    "getting-started"
+    "onboarding"
    ]
   },
   {
@@ -7986,6 +7976,12 @@
    ]
   },
   {
+   "text": "Only the words, to check your answer.",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "Only your steps and stars are saved. Nothing you said is kept.",
    "from": [
     "lesson-player",
@@ -8026,6 +8022,12 @@
    "text": "Organizations of workers demanding better wages, hours, and working conditions",
    "from": [
     "lessons"
+   ]
+  },
+  {
+   "text": "Out loud, like the real interview.",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -8080,12 +8082,6 @@
    "text": "Past the deadline for payment.",
    "from": [
     "n400"
-   ]
-  },
-  {
-   "text": "Pathways is not part of USCIS and doesn’t give legal advice.",
-   "from": [
-    "onboarding"
    ]
   },
   {
@@ -8669,12 +8665,6 @@
    "text": "Read only the words in the sentence, one at a time.",
    "from": [
     "reading-tips"
-   ]
-  },
-  {
-   "text": "Read out loud for me",
-   "from": [
-    "getting-started"
    ]
   },
   {
@@ -9994,6 +9984,12 @@
    ]
   },
   {
+   "text": "So you always understand.",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "So {program} knows it's you. If you leave it blank, they see your email.",
    "from": [
     "getting-started"
@@ -10073,12 +10069,6 @@
    "text": "Sorry, your message couldn't be sent. Please try again later.",
    "from": [
     "talk"
-   ]
-  },
-  {
-   "text": "Sounds good",
-   "from": [
-    "onboarding"
    ]
   },
   {
@@ -10166,6 +10156,7 @@
    "from": [
     "course",
     "home",
+    "onboarding",
     "today"
    ]
   },
@@ -10181,6 +10172,12 @@
    "text": "Start here: the quick check",
    "from": [
     "today-plan"
+   ]
+  },
+  {
+   "text": "Start learning",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -10217,7 +10214,6 @@
   {
    "text": "Start the quick check",
    "from": [
-    "getting-started",
     "home"
    ]
   },
@@ -10333,6 +10329,12 @@
    ]
   },
   {
+   "text": "Step {n} of {total}",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "Stop {n} of 5 · {name}",
    "from": [
     "today"
@@ -10354,6 +10356,12 @@
    "text": "Studying in {language}",
    "from": [
     "me"
+   ]
+  },
+  {
+   "text": "Suggested start",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -12497,6 +12505,12 @@
    "text": "This is also called a representative democracy. “Representative” means the leaders speak and act for the people who elected them.",
    "from": [
     "course-lessons"
+   ]
+  },
+  {
+   "text": "This is how we study together.",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -14778,12 +14792,6 @@
    ]
   },
   {
-   "text": "Where are you in the citizenship process? Your answer stays on this phone. It helps me plan your practice.",
-   "from": [
-    "getting-started"
-   ]
-  },
-  {
    "text": "Where does Congress meet?",
    "from": [
     "sentences"
@@ -14817,6 +14825,12 @@
    "text": "Which branch is Congress?",
    "from": [
     "course-lessons"
+   ]
+  },
+  {
+   "text": "Which language do you speak best?",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -15452,7 +15466,7 @@
    ]
   },
   {
-   "text": "You answer in English, like at the real interview.",
+   "text": "You answer in English",
    "from": [
     "onboarding"
    ]
@@ -15473,6 +15487,12 @@
    "text": "You can also see your recent trips on the I-94 website of U.S. Customs and Border Protection (CBP): https://i94.cbp.dhs.gov. It is fast, but it may not show every trip.",
    "from": [
     "n400-lessons"
+   ]
+  },
+  {
+   "text": "You can change this anytime.",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -15497,12 +15517,6 @@
    "text": "You can still apply if you owe money — but how you filed (or did not file) must be handled the right way first.",
    "from": [
     "lawyer-checklist"
-   ]
-  },
-  {
-   "text": "You can still go back to earlier lessons any time.",
-   "from": [
-    "onboarding"
    ]
   },
   {
@@ -15664,6 +15678,12 @@
    ]
   },
   {
+   "text": "Your answer stays on this phone.",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "Your badges",
    "from": [
     "me"
@@ -15698,6 +15718,12 @@
    "text": "Your four parts",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "Your free tutor for the U.S. citizenship test.",
+   "from": [
+    "onboarding"
    ]
   },
   {
@@ -15783,12 +15809,6 @@
    "text": "Your phone has no voice for this language. Read along on screen.",
    "from": [
     "lesson-player"
-   ]
-  },
-  {
-   "text": "Your phone turns speech into text. We never keep audio.",
-   "from": [
-    "onboarding"
    ]
   },
   {
@@ -15886,8 +15906,7 @@
   {
    "text": "Your story stays yours",
    "from": [
-    "home",
-    "onboarding"
+    "home"
    ]
   },
   {
@@ -15915,7 +15934,7 @@
    ]
   },
   {
-   "text": "Your voice is never recorded",
+   "text": "Your voice is never saved",
    "from": [
     "onboarding"
    ]
@@ -15936,12 +15955,6 @@
    "text": "You’ll see this one again tomorrow.",
    "from": [
     "lesson-player"
-   ]
-  },
-  {
-   "text": "You’ll start at",
-   "from": [
-    "onboarding"
    ]
   },
   {
@@ -16236,6 +16249,12 @@
    "text": "about very powerful bombs",
    "from": [
     "course-lessons"
+   ]
+  },
+  {
+   "text": "about {n} min a day",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -16892,6 +16911,12 @@
    "text": "meeting together in a group",
    "from": [
     "course-lessons"
+   ]
+  },
+  {
+   "text": "min a day",
+   "from": [
+    "onboarding"
    ]
   },
   {

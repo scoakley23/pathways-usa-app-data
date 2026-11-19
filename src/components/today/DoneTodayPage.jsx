@@ -15,7 +15,7 @@ import useToday, { useTodayText } from '@/components/today/useToday';
 function Stat({ value, label }) {
   return (
     <div className="flex-1 min-w-0 rounded-card bg-white border border-line px-3 py-4 text-center">
-      <p className="text-[30px] font-extrabold text-navy tabular-nums leading-none">{value}</p>
+      <p className="text-[1.875rem] font-extrabold text-navy tabular-nums leading-none">{value}</p>
       <p className="mt-1 text-base text-muted">{label}</p>
     </div>
   );

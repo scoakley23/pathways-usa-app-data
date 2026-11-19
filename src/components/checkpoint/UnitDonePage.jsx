@@ -17,7 +17,7 @@ import { MAIN_PRESS } from '@/components/pathways/ui';
 function Stat({ value, label }) {
   return (
     <div className="flex-1 min-w-0 rounded-card bg-chip-navy px-2 py-4 text-center">
-      <p className="text-[26px] font-extrabold text-white tabular-nums leading-none">{value}</p>
+      <p className="text-[1.625rem] font-extrabold text-white tabular-nums leading-none">{value}</p>
       <p className="mt-1 text-small text-on-navy">{label}</p>
     </div>
   );

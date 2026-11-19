@@ -40,7 +40,7 @@ export default function CheckInForm({ kind, rows = [], user, language = 'en', on
       <form onSubmit={save} className="space-y-7" aria-labelledby="checkin-title">
         <div className="space-y-3">
           <Eyebrow>{t('eyebrow')}</Eyebrow>
-          <h1 id="checkin-title" className="font-display text-[36px] leading-tight text-navy">{t('checkin_title')}</h1>
+          <h1 id="checkin-title" className="font-display text-[2.25rem] leading-tight text-navy">{t('checkin_title')}</h1>
           <p className="text-base text-muted">{t('small_print')}</p>
         </div>
 

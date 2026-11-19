@@ -29,7 +29,7 @@ function Tile({ tile, t }) {
   let body;
   if (tile.ready) {
     body = (
-      <p className="text-[22px] font-bold text-correct flex items-center gap-1.5">
+      <p className="text-[1.375rem] font-bold text-correct flex items-center gap-1.5">
         {t('ready')} <Check className="w-6 h-6" strokeWidth={3} aria-hidden="true" />
       </p>
     );
@@ -38,9 +38,9 @@ function Tile({ tile, t }) {
   } else if (tile.kind === 'percent') {
     body = tile.value === null
       ? <p className="text-lg font-bold text-navy">{t('no_interview_yet')}</p>
-      : <p className="text-[22px] font-bold text-navy tabular-nums">{tile.value}%</p>;
+      : <p className="text-[1.375rem] font-bold text-navy tabular-nums">{tile.value}%</p>;
   } else {
-    body = <p className="text-[22px] font-bold text-navy tabular-nums">{t('of').replace('{n}', tile.value).replace('{total}', tile.total)}</p>;
+    body = <p className="text-[1.375rem] font-bold text-navy tabular-nums">{t('of').replace('{n}', tile.value).replace('{total}', tile.total)}</p>;
   }
   const bar = !tile.ready && (tile.kind === 'percent' ? tile.value : tile.kind === 'count' ? Math.round((tile.value / (tile.total || 1)) * 100) : null);
   return (

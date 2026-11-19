@@ -163,7 +163,7 @@ export default function SignInScreen() {
                   value={code}
                   onChange={onCodeChange}
                   aria-invalid={Boolean(error)}
-                  className={`${INPUT} text-center text-[28px] font-bold tracking-[0.4em]`}
+                  className={`${INPUT} text-center text-[1.75rem] font-bold tracking-[0.4em]`}
                 />
               </label>
               {error && <ErrorLine>{t(error)}</ErrorLine>}

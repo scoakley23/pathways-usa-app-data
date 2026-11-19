@@ -446,7 +446,7 @@ export default function Practice() {
           <StudyTop tab="practice" action={testButton}>
             <div className="pt-2 space-y-3">
               <p className="text-label uppercase text-on-navy">Suggested for you</p>
-              <p className="font-display text-[22px] leading-tight">
+              <p className="font-display text-[1.375rem] leading-tight">
                 {PART_ROWS[suggested].label} · {PART_ROWS[suggested].line}
               </p>
               <PwButton variant="main" onNavy className="w-full sm:w-auto" onClick={() => startPart(suggested)}>
@@ -478,7 +478,7 @@ export default function Practice() {
                           <Icon className="w-6 h-6" strokeWidth={2} aria-hidden="true" />
                         </span>
                         <span className="min-w-0 flex-1">
-                          <span className="block text-[17px] font-semibold text-navy">{row.label}</span>
+                          <span className="block text-[1.0625rem] font-semibold text-navy">{row.label}</span>
                           <span className="block text-base text-muted">{row.line}</span>
                         </span>
                         <span className="shrink-0 text-end text-sm">
@@ -510,7 +510,7 @@ export default function Practice() {
             {/* Mixed practice: the full run-through on Interview Day */}
             <Card padding="p-5" className="space-y-2">
               <Eyebrow>Mixed practice</Eyebrow>
-              <h2 className="font-display text-[22px] leading-tight text-navy">Interview Day</h2>
+              <h2 className="font-display text-[1.375rem] leading-tight text-navy">Interview Day</h2>
               <p className="text-base text-muted max-w-2xl">The whole interview, in order: the oath, the officer’s questions, reading, writing and civics. Nothing is saved.</p>
               <Link
                 to="/interview-day"
@@ -526,7 +526,7 @@ export default function Practice() {
         <Sheet open={settingsOpen} onOpenChange={setSettingsOpen}>
           <SheetContent side="bottom" className="bg-paper max-h-[90vh] overflow-y-auto">
             <SheetHeader>
-              <SheetTitle className="font-display font-normal text-[30px] text-navy text-left">Practice settings</SheetTitle>
+              <SheetTitle className="font-display font-normal text-[1.875rem] text-navy text-left">Practice settings</SheetTitle>
             </SheetHeader>
             <div className="mx-auto max-w-lg space-y-5 py-4 text-navy">
               <div className="space-y-2">
@@ -696,7 +696,7 @@ function RunShell({ label, onClose, children }) {
         >
           <X className="w-5 h-5" aria-hidden="true" />
         </button>
-        <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-muted">{label}</p>
+        <p className="text-[0.8125rem] font-semibold uppercase tracking-[0.14em] text-muted">{label}</p>
       </div>
       {children}
     </div>

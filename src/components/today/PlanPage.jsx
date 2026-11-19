@@ -8,13 +8,15 @@ import { today as todayApi } from '@/api/today';
 import { UNITS } from '@/lib/course';
 import { loadPlanSettings, savePlanChoice } from '@/lib/planSettings';
 import { PACES, lessonsLeft, monthChoices, readyBy, recommendedPace } from '@/lib/dailyPlan';
+import { minutesForPerDay } from '@/lib/dailyMinutes';
 import { useJourney } from '@/components/course/courseShared';
 import { useTodayText } from '@/components/today/useToday';
 
 // Your plan (Prompt 7, frame R33Plan): the interview month (device only, "I
-// don't know yet" allowed) and lessons per day (1 easy / 2 steady / 3 fast),
-// each with the "Ready by" month from the lessons left in the whole course
-// at 6 study days a week. No reminder time, no minutes.
+// don't know yet" allowed) and lessons per day (1 easy / 2 steady / 3 fast,
+// each "about 5 / 10 / 15 min a day", src/lib/dailyMinutes.js), each with the
+// "Ready by" month from the lessons left in the whole course at 6 study days
+// a week. No reminder time. First open sets lessons per day too.
 
 const ym = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
 
@@ -91,9 +93,10 @@ export default function PlanPage() {
                   onClick={() => setPerDay(p.perDay)}
                   className={`flex items-center gap-4 rounded-card border-2 px-4 py-4 text-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim ${on ? 'border-denim bg-tint' : 'border-line bg-white hover:border-denim'}`}
                 >
-                  <span className="text-[34px] font-extrabold text-denim w-8 text-center shrink-0" aria-hidden="true">{p.perDay}</span>
+                  <span className="text-[2.125rem] font-extrabold text-denim w-8 text-center shrink-0" aria-hidden="true">{p.perDay}</span>
                   <span className="flex-1 min-w-0">
                     <span className="block text-lg font-bold text-navy">{t(`pace_${p.id}`)} · {p.perDay === 1 ? t('pace_lessons_1') : t('pace_lessons_n', { n: p.perDay })}</span>
+                    <span className="block text-base text-navy">{t('pace_minutes', { n: minutesForPerDay(p.perDay) })}</span>
                     <span className="block text-base text-muted">{t('ready_by', { month: fmt(ready, { month: 'long', year: ready.getFullYear() !== now.getFullYear() ? 'numeric' : undefined }) })}</span>
                   </span>
                   {p.perDay === recommended && <span className="shrink-0 rounded-full bg-denim px-3 py-1 text-small font-semibold text-white">{t('recommended')}</span>}

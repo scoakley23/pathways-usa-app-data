@@ -14,7 +14,7 @@ export default function StudyTop({ tab, action = null, children }) {
   return (
     <div className="mx-auto max-w-5xl space-y-5">
       <div className="flex items-center justify-between gap-3">
-        <h1 className="font-display text-[30px] sm:text-[34px] leading-[1.1]">Study</h1>
+        <h1 className="font-display text-[1.875rem] sm:text-[2.125rem] leading-[1.1]">Study</h1>
         {action}
       </div>
       <nav aria-label="Study">

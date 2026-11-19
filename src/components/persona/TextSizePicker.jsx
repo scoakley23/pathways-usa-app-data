@@ -19,7 +19,7 @@ export default function TextSizePicker({ className = '' }) {
             className={`min-h-[44px] rounded-2xl border-2 px-2 font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2 ${
               textSize.size === id ? 'border-navy bg-tint' : 'border-line bg-white hover:border-muted'
             }`}
-            style={{ fontSize: t.px }}
+            style={{ fontSize: `${t.px / 16}rem` }}
           >
             {t.label}
           </button>

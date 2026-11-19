@@ -41,7 +41,7 @@ export default function YourRoad({ roadmap, stopName = (s) => s.name }) {
               aria-current={state === 'current' ? 'step' : undefined}
               className="min-w-0 flex-1 min-h-[60px] py-2 pb-4 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
             >
-              <span className={`block text-[17px] leading-snug ${state === 'current' ? 'font-semibold text-white' : 'font-medium text-white'}`}>
+              <span className={`block text-[1.0625rem] leading-snug ${state === 'current' ? 'font-semibold text-white' : 'font-medium text-white'}`}>
                 {stopName(stop)}
                 <span className="sr-only">{state === 'done' ? ', done' : state === 'current' ? ", you're here" : ''}</span>
               </span>

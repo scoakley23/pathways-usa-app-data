@@ -49,7 +49,7 @@ export default function PilotAdminTool({ currentUser }) {
     <RaisedCard className="space-y-6">
       <div className="space-y-2">
         <Eyebrow>Pilot</Eyebrow>
-        <h2 className="font-display text-[28px] leading-tight text-navy">Check-in reminders</h2>
+        <h2 className="font-display text-[1.75rem] leading-tight text-navy">Check-in reminders</h2>
         <p className="text-base text-muted">
           Emails learners who turned reminders on and have a 3-, 6- or 12-month check-in open now (30 days from when it opens). Each learner gets one email per check-in.
           Press this once a week. Only counts are shown.

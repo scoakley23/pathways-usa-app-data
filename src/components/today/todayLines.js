@@ -47,6 +47,7 @@ export const TODAY_LINES = {
   pace_fast: 'Fast',
   pace_lessons_1: '1 lesson a day',
   pace_lessons_n: '{n} lessons a day',
+  pace_minutes: 'about {n} min a day',
   ready_by: 'Ready by {month}.',
   recommended: 'Recommended',
   plan_amio: 'Missed a day? No problem. I’ll adjust the plan.',

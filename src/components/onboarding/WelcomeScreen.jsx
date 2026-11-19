@@ -1,15 +1,25 @@
 import React, { useState } from 'react';
 import { auth } from '@/api/auth';
 import { Amio } from '@/components/pathways/Amio';
-import { Button, PathwaysLockup } from '@/components/pathways/ui';
+import { Button, MAIN_PRESS } from '@/components/pathways/ui';
 import { rememberProgramCode } from '@/lib/programLink';
 import useOnboardingText from '@/components/onboarding/useOnboardingText';
 
-// Welcome (Prompt 9, frame R30Welcome): what signed-out visitors see on Home.
-// "Get started" signs them in and goes on to Getting started and the quick
-// check. "I have a code from my tutor" keeps a partner program's code on the
-// device (like a /?program=CODE link) through the sign-in, so the program
-// question starts with it picked. Nothing else is asked or saved here.
+// Welcome (Amio v2, frame OnboardWelcome): what signed-out visitors see on
+// Home. "Hi, I'm Amio." with hellos in a few languages, Start (signs them in,
+// then first open and the quick check) and "I have a code from my tutor",
+// which keeps a partner program's code on the device (like a /?program=CODE
+// link) through the sign-in, so the program question starts with it picked.
+// Nothing else is asked or saved here.
+
+// Decorative hellos (frame OnboardWelcome), each in its own language.
+const HELLOS = [
+  { text: 'Hola', lang: 'es', className: 'start-[6%] top-[8%] bg-white text-navy -rotate-[4deg]' },
+  { text: 'Xin chào', lang: 'vi', className: 'end-[7%] top-[30%] bg-sky text-navy rotate-[3deg]' },
+  { text: 'Bonjou', lang: 'ht', className: 'start-[10%] top-[58%] bg-gold text-navy rotate-[2deg]' },
+  { text: '你好', lang: 'zh', className: 'end-[12%] top-[72%] bg-white text-navy -rotate-[3deg]' },
+  { text: 'مرحبا', lang: 'ar', className: 'start-[38%] top-[40%] bg-denim text-white -rotate-[2deg]', dir: 'rtl' },
+];
 
 const NEXT = '/quick-check';
 
@@ -27,18 +37,28 @@ export default function WelcomeScreen() {
   };
 
   return (
-    <section dir={rtl ? 'rtl' : 'ltr'} aria-labelledby="welcome-title" className="min-h-[calc(100vh-64px)] bg-navy text-white px-4 pt-6 pb-8 flex flex-col">
-      <div className="flex-1 max-w-md w-full mx-auto flex flex-col items-center text-center gap-4">
-        <PathwaysLockup layout="stacked" size={56} tone="navy" />
-        <Amio mood="wave" size={112} onNavy />
-        <h1 id="welcome-title" className="text-[26px] font-bold leading-snug">{t('welcome_tagline')}</h1>
-        <p className="text-base text-on-navy">{t('welcome_free')}</p>
+    <section dir={rtl ? 'rtl' : 'ltr'} aria-labelledby="welcome-title" className="min-h-[calc(100vh-64px)] bg-navy text-white px-5 pt-4 pb-8 flex flex-col">
+      <div className="flex-1 max-w-md w-full mx-auto flex flex-col items-center text-center">
+        <div className="relative w-full h-44" aria-hidden="true">
+          {HELLOS.map((h) => (
+            <span key={h.lang} lang={h.lang} dir={h.dir} className={`absolute rounded-button px-3 py-2 text-base font-bold ${h.className}`}>{h.text}</span>
+          ))}
+        </div>
+        <Amio mood="speaking" size={176} onNavy />
+        <h1 id="welcome-title" className="mt-4 font-display text-[2.5rem] leading-none tracking-tight">{t('welcome_hi')}</h1>
+        <p className="mt-3 text-[1.0625rem] leading-snug text-sky">{t('welcome_sub')}</p>
       </div>
       <div className="max-w-md w-full mx-auto flex flex-col gap-3 pt-6">
         {!codeOpen ? (
           <>
-            <Button variant="main" onNavy className="w-full" onClick={start}>{t('get_started')}</Button>
-            <Button variant="second" onNavy className="w-full min-h-[52px]" onClick={() => setCodeOpen(true)}>{t('have_code')}</Button>
+            <button
+              type="button"
+              onClick={start}
+              className={`w-full min-h-main mb-[5px] rounded-button bg-gold px-6 text-lg font-extrabold text-navy ${MAIN_PRESS} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-navy`}
+            >
+              {t('start')}
+            </button>
+            <button type="button" onClick={() => setCodeOpen(true)} className="self-center min-h-tap px-2 text-[0.9375rem] text-sky underline underline-offset-4 decoration-sky/60 hover:decoration-sky rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">{t('have_code')}</button>
           </>
         ) : (
           <form onSubmit={useCode} className="rounded-card bg-white text-navy p-5 flex flex-col gap-3 text-start">
@@ -62,6 +82,7 @@ export default function WelcomeScreen() {
             <Button variant="link" type="button" className="self-center" onClick={() => { setCodeOpen(false); setBad(false); }}>{t('cancel')}</Button>
           </form>
         )}
+        <p className="mt-2 text-center text-small text-on-navy">{t('public_line')}</p>
       </div>
     </section>
   );

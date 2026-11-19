@@ -26,14 +26,14 @@ export default function QuickCheckCard({ variant = 'home', t = (k, en) => en, la
         {levels ? (
           <>
             <Tag tone="teal">Your levels</Tag>
-            <h2 className="text-[28px] font-display font-normal">Quick check results</h2>
+            <h2 className="text-[1.75rem] font-display font-normal">Quick check results</h2>
             <SkillLevels levels={levels} language={language} />
             <Link to="/quick-check" className={quietLink}>Take the quick check again</Link>
           </>
         ) : (
           <>
             <Tag tone="teal">{t('qc_time', 'About 10 minutes')}</Tag>
-            <h2 className="text-[28px] font-display font-normal">{t('qc_title', 'Start with a quick check')}</h2>
+            <h2 className="text-[1.75rem] font-display font-normal">{t('qc_title', 'Start with a quick check')}</h2>
             <p className="text-base text-muted leading-relaxed">
               {t('qc_desc', 'Your tutor checks your civics, reading, writing, and speaking, then plans your practice. You can skip any part.')}
             </p>

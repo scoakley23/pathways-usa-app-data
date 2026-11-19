@@ -28,7 +28,7 @@ export default function PageNotFound({}) {
             <NavyTop className="pb-14 pt-12">
                 <div className="mx-auto max-w-md space-y-2">
                     <p className="text-label uppercase text-on-navy">404</p>
-                    <h1 className="font-display text-[34px] leading-[1.1]">Page Not Found</h1>
+                    <h1 className="font-display text-[2.125rem] leading-[1.1]">Page Not Found</h1>
                 </div>
             </NavyTop>
             <CreamSheet>

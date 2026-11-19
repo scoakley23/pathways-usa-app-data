@@ -14,7 +14,7 @@ export default function ReadyToFile() {
   return (
     <section id="ready-to-file" aria-labelledby="ready-title" className="scroll-mt-24 text-navy rounded-card bg-white border border-line p-5 sm:p-6 space-y-3">
       <p className="text-label uppercase text-muted">When you’re ready</p>
-      <h2 id="ready-title" className="font-display text-[22px] leading-tight">{t('ready_title')}</h2>
+      <h2 id="ready-title" className="font-display text-[1.375rem] leading-tight">{t('ready_title')}</h2>
       <p className="text-base text-muted max-w-xl">{t('ready_body')}</p>
       <p className="text-base">
         <Link to="/lawyer-first" className="inline-flex min-h-tap items-center font-semibold underline underline-offset-4 decoration-navy/40 hover:decoration-navy">

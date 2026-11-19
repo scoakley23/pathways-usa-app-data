@@ -1,29 +1,30 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import {
-  CIVICS_VERSION_KEY, STAGE_KEY, isOnboarded, loadStage, markOnboarded, nextStep, onboardingSteps, saveFiledAnswer, saveStage,
+  CIVICS_VERSION_KEY, FIRST_OPEN_STEPS, STAGE_KEY, asksFiled, isOnboarded, loadStage, markOnboarded, nextStep, onboardingSteps, saveFiledAnswer, saveStage,
 } from './onboarding';
 
 describe('onboardingSteps', () => {
-  it('starts with the language and Meet Amio; skips the test question for people who have not applied', () => {
-    expect(onboardingSteps({ stage: 'preparing' })).toEqual(['language', 'meet', 'stage', 'settings']);
-    expect(onboardingSteps({ stage: 'learning' })).toEqual(['language', 'meet', 'stage', 'settings']);
-    expect(onboardingSteps({})).toEqual(['language', 'meet', 'stage', 'settings']);
+  it('is language, how Amio works, then Your plan; no sound and text size step', () => {
+    expect(FIRST_OPEN_STEPS).toEqual(['language', 'how', 'plan']);
+    expect(onboardingSteps({})).toEqual(['language', 'how', 'plan']);
+    expect(onboardingSteps({ stage: 'interview' })).toEqual(['language', 'how', 'plan']);
   });
-  it('asks which test after applying; the interview month waits for Your plan', () => {
-    expect(onboardingSteps({ stage: 'applied' })).toEqual(['language', 'meet', 'stage', 'filed', 'settings']);
-    expect(onboardingSteps({ stage: 'interview' })).toEqual(['language', 'meet', 'stage', 'filed', 'settings']);
+  it('asks about a program only when there are partner programs, after the plan', () => {
+    expect(onboardingSteps({ hasPrograms: true })).toEqual(['language', 'how', 'plan', 'program']);
+    expect(nextStep('plan', { hasPrograms: true })).toBe('program');
+    expect(nextStep('program', { hasPrograms: true })).toBe(null);
   });
-  it('asks about a program only when there are partner programs, in the same place as before', () => {
-    expect(onboardingSteps({ stage: 'preparing', hasPrograms: true })).toEqual(['language', 'meet', 'stage', 'program', 'settings']);
-    expect(onboardingSteps({ stage: 'interview', hasPrograms: true })).toEqual(['language', 'meet', 'stage', 'filed', 'program', 'settings']);
-    expect(nextStep('filed', { stage: 'applied', hasPrograms: true })).toBe('program');
+  it('moves to the next step and ends after the plan', () => {
+    expect(nextStep('language', {})).toBe('how');
+    expect(nextStep('how', {})).toBe('plan');
+    expect(nextStep('plan', {})).toBe(null);
   });
-  it('moves to the next step and ends after settings', () => {
-    expect(nextStep('language', {})).toBe('meet');
-    expect(nextStep('meet', {})).toBe('stage');
-    expect(nextStep('stage', { stage: 'interview' })).toBe('filed');
-    expect(nextStep('filed', { stage: 'applied' })).toBe('settings');
-    expect(nextStep('settings', {})).toBe(null);
+  it('asks which civics test on the plan only once the N-400 is sent', () => {
+    expect(asksFiled('applied')).toBe(true);
+    expect(asksFiled('interview')).toBe(true);
+    expect(asksFiled('preparing')).toBe(false);
+    expect(asksFiled('learning')).toBe(false);
+    expect(asksFiled(null)).toBe(false);
   });
 });
 

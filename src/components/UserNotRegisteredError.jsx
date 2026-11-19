@@ -10,7 +10,7 @@ const UserNotRegisteredError = () => {
       <NavyTop className="pb-14 pt-12">
         <div className="mx-auto max-w-md space-y-2">
           <AlertTriangle className="w-8 h-8 text-on-navy" aria-hidden="true" />
-          <h1 className="font-display text-[34px] leading-[1.1]">Access Restricted</h1>
+          <h1 className="font-display text-[2.125rem] leading-[1.1]">Access Restricted</h1>
         </div>
       </NavyTop>
       <CreamSheet>

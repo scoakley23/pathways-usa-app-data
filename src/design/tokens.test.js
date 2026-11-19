@@ -223,3 +223,36 @@ describe('no one-off colors', () => {
     expect(found).toEqual([]);
   });
 });
+
+describe('text follows the phone text-size setting', () => {
+  // Font sizes are rem, never px, so they scale with the phone's text size.
+  // SVG drawings (course/drawings.jsx) size their labels in viewBox units and
+  // scale with the drawing, so they are not checked here.
+  const SRC = path.resolve(__dirname, '..');
+  const PX_FONT = /\b(?:text|leading)-\[[0-9.]+px\]|fontSize:\s*['"]?[0-9.]+(?:px)?['"]?\s*[,}]|font-size:\s*[0-9.]+px/g;
+
+  function files(dir) {
+    return fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) => {
+      const p = path.join(dir, e.name);
+      if (e.isDirectory()) return e.name === 'data' ? [] : files(p);
+      return /\.(js|jsx|css)$/.test(e.name) && !/\.test\.js$/.test(e.name) ? [p] : [];
+    });
+  }
+
+  it('has no px font sizes in src/', () => {
+    const found = [];
+    for (const file of files(SRC)) {
+      const text = fs.readFileSync(file, 'utf8');
+      for (const m of text.matchAll(PX_FONT)) found.push(`${path.relative(SRC, file)}: ${m[0]}`);
+    }
+    expect(found).toEqual([]);
+  });
+
+  it('builds the type sizes in rem', async () => {
+    const config = (await import('../../tailwind.config.js')).default;
+    for (const [name, [size, opts]] of Object.entries(config.theme.extend.fontSize)) {
+      expect(size, name).toMatch(/rem$/);
+      expect(opts.lineHeight, name).toMatch(/rem$/);
+    }
+  });
+});

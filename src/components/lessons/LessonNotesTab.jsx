@@ -78,7 +78,7 @@ export default function LessonNotesTab({ lesson, userEmail, tutorName = 'Amio' }
   return (
     <RuledPaper className="pb-4">
       <div className="flex items-center justify-between gap-3 flex-wrap">
-        <label htmlFor="lesson-notes" className="text-[13px] font-semibold uppercase tracking-[0.14em] leading-[36px] text-muted">
+        <label htmlFor="lesson-notes" className="text-[0.8125rem] font-semibold uppercase tracking-[0.14em] leading-[2.25rem] text-muted">
           My notes
         </label>
         <span className="flex items-center gap-2" aria-live="polite">
@@ -92,11 +92,11 @@ export default function LessonNotesTab({ lesson, userEmail, tutorName = 'Amio' }
         onChange={handleChange}
         placeholder="Write it in your own words…"
         rows={7}
-        className="block w-full resize-y bg-transparent text-[19px] leading-[36px] text-navy placeholder:text-muted focus:outline-none"
+        className="block w-full resize-y bg-transparent text-[1.1875rem] leading-[2.25rem] text-navy placeholder:text-muted focus:outline-none"
       />
       <p className="mt-1 text-lg font-medium leading-snug text-muted">Your own words help you remember. — {tutorName}</p>
       <div className="mt-3 flex items-center justify-between gap-3">
-        <span className="text-[15px] text-muted">Only you see these.</span>
+        <span className="text-[0.9375rem] text-muted">Only you see these.</span>
         <PillButton onClick={() => saveNote()} disabled={isSaving}>
           <Save className="w-4 h-4" aria-hidden="true" /> Save
         </PillButton>

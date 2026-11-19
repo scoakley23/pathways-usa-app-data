@@ -41,7 +41,7 @@ export default function AnswerFeedback({
           </span>
         )}
         <div className="min-w-0">
-          <p className={`font-display text-[26px] leading-tight ${correct ? 'text-correct' : notCorrect ? 'text-not-yet' : 'text-navy'}`}>
+          <p className={`font-display text-[1.625rem] leading-tight ${correct ? 'text-correct' : notCorrect ? 'text-not-yet' : 'text-navy'}`}>
             {correct ? 'Correct' : notCorrect ? 'Not correct' : title}
           </p>
           {sub && <p className="mt-0.5 text-base text-muted">{sub}</p>}

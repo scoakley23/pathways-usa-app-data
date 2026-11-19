@@ -4,7 +4,7 @@ import { Check, X } from 'lucide-react';
 // The bottom banners after an answer (frames R33Teach, R30TryAgain).
 // Success: the correct colors with a check icon. Not yet: the not-yet
 // colors with words, never color alone. Each has one button.
-const BTN = 'shrink-0 min-h-tap rounded-button px-4 font-bold text-[15px] text-white inline-flex items-center justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-navy';
+const BTN = 'shrink-0 min-h-tap rounded-button px-4 font-bold text-[0.9375rem] text-white inline-flex items-center justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-navy';
 
 function Banner({ tone, icon: Icon, title, children, actionLabel, onAction, className }) {
   const ok = tone === 'success';
@@ -18,7 +18,7 @@ function Banner({ tone, icon: Icon, title, children, actionLabel, onAction, clas
           <Icon className="w-4 h-4" strokeWidth={3} />
         </span>
         <div className="flex flex-col gap-0.5 min-w-0">
-          <p className={`text-[17px] font-bold leading-tight ${ok ? 'text-correct-title' : 'text-not-yet'}`}>{title}</p>
+          <p className={`text-[1.0625rem] font-bold leading-tight ${ok ? 'text-correct-title' : 'text-not-yet'}`}>{title}</p>
           {children && <div className="text-small text-navy break-words">{children}</div>}
         </div>
       </div>

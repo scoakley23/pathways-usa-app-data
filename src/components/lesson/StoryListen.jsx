@@ -167,7 +167,7 @@ export default function StoryListen({ story, language, mine, t, onEnd }) {
         <ScenePicture picture={item.picture} t={t} />
         <section className="rounded-card bg-white border border-line p-5 flex flex-col gap-2">
           {sceneLang !== 'en' && <span className="self-start rounded-full bg-tint px-3 py-1 text-small font-semibold uppercase tracking-wide text-navy">{t('said_in_language')}</span>}
-          <p className="text-[22px] font-bold text-navy leading-snug" dir="auto" lang={sceneLang} aria-live="polite">{sceneText}</p>
+          <p className="text-[1.375rem] font-bold text-navy leading-snug" dir="auto" lang={sceneLang} aria-live="polite">{sceneText}</p>
           {hasMine && (
             <button type="button" onClick={() => setEnglish((v) => !v)} aria-pressed={english} className="self-start min-h-tap text-base font-semibold text-denim underline underline-offset-4">
               {english ? t('in_my_language') : t('in_english')}

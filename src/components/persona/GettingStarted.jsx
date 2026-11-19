@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { Check, ExternalLink, Loader2, Volume2, VolumeX } from 'lucide-react';
+import { Check, Loader2 } from 'lucide-react';
 import TutorMessage from './TutorMessage';
-import TextSizePicker from './TextSizePicker';
 import useTutorProfile from './useTutorProfile';
 import useTranslatedLines from './useTranslatedLines';
-import { useAutoReadSetting } from './useAutoRead';
 import { getAvailableVoices, speakText } from '@/components/utils/textToSpeech';
-import { markOnboarded, nextStep, onboardingSteps, saveFiledAnswer, saveStage, loadStage } from '@/lib/onboarding';
+import { markOnboarded, nextStep, saveFiledAnswer, saveStage, loadStage } from '@/lib/onboarding';
+import { DEFAULT_PER_DAY } from '@/lib/dailyMinutes';
+import { today as todayApi } from '@/api/today';
 import { Button } from '@/components/pathways/ui';
 import NavyBanner from '@/components/pathways/NavyBanner';
-import { StepBar } from '@/components/pathways/StepBar';
 import LanguageStep, { nativeName } from '@/components/onboarding/LanguageStep';
-import MeetAmioStep from '@/components/onboarding/MeetAmioStep';
+import HowAmioWorksStep from '@/components/onboarding/HowAmioWorksStep';
+import PlanStep from '@/components/onboarding/PlanStep';
 import useOnboardingText from '@/components/onboarding/useOnboardingText';
+import { LANGUAGES } from '@/lib/languages';
 import { Checkbox } from '@/components/ui/checkbox';
 import { listPartners, joinProgram } from '@/lib/partners';
 import { loadPendingProgram, clearPendingProgram } from '@/lib/programLink';
@@ -24,9 +25,7 @@ import { MAX_NAME_LENGTH } from '@/lib/partners';
 import { GETTING_STARTED_LINES as LINES } from './gettingStartedStrings';
 const LINES_ES = {
   title: 'Primeros pasos',
-  language_ask: 'Hola, soy {name}. Le voy a enseñar. ¿En qué idioma le explico las cosas? Vamos a practicar inglés.',
   no_voice: 'Este teléfono no tiene voz para su idioma, así que hablaré en inglés. Su idioma seguirá en la pantalla.',
-  stage_ask: '¿En qué parte del proceso de ciudadanía está? Su respuesta se queda en este teléfono. Me ayuda a planear su práctica.',
   stage_preparing: 'Preparándome para aplicar',
   stage_applied: 'Ya envié mi N-400',
   stage_interview: 'Ya tengo fecha de entrevista',
@@ -43,15 +42,10 @@ const LINES_ES = {
   program_share: 'Compartir mi progreso con {program}',
   program_share_help: 'Verían sus niveles de la evaluación rápida, las lecciones que terminó, sus estrellas, los puntos de control que pasó y las secciones del N-400 que leyó. Puede cambiarlo después en «Yo».',
   program_error: 'Algo salió mal. Por favor, intente otra vez.',
-  settings_ask: 'Último paso. Le leeré todo en voz alta. Puede apagarlo y hacer el texto más grande.',
-  read_on: 'Léame en voz alta',
-  read_off: 'Sin sonido, por favor',
-  start_check: 'Empezar la evaluación rápida',
   continue: 'Continuar',
   skip: 'Saltar',
 };
-const CACHE_KEY = 'onboarding_v6';
-const USCIS_TEST = 'https://www.uscis.gov/citizenship/2025-test';
+const CACHE_KEY = 'onboarding_v7';
 
 function ChoiceButton({ selected, onClick, children, className = '' }) {
   return (
@@ -69,20 +63,23 @@ function ChoiceButton({ selected, onClick, children, className = '' }) {
   );
 }
 
-// Getting started (Prompt 9), after Welcome and the sign-in: Choose your
-// language (R30Language), Meet Amio (R30MeetAmio), then the pilot sign-up
-// questions exactly as before: where they are in the process (and which
-// civics test once they have applied), which partner program they study
-// with (when there are any), then sound and text size. Every step can be
-// skipped. The interview month is asked on Your plan, after the quick check.
+// First open (Amio v2), after Welcome and the sign-in: Your language
+// (OnboardLanguage), How Amio works (OnboardHowItWorks) and Your plan
+// (OnboardPlan: the stage question, which civics test once sent, and about
+// 5 / 10 / 15 min a day = lessons_per_day 1 / 2 / 3), then the partner program
+// question exactly as before (only when there are programs). Sound and text
+// size are in Settings. The quick check comes next and only suggests where
+// to start.
 export default function GettingStarted({ language, onLanguageChange, onDone }) {
   const { profile } = useTutorProfile();
   const tr = useTranslatedLines(LINES, language, { cacheKey: CACHE_KEY, handWritten: { es: LINES_ES } });
-  const { t } = useOnboardingText(language);
+  const { t, rtl } = useOnboardingText(language);
   const [step, setStep] = useState('language');
   const [stage, setStage] = useState(loadStage);
+  const [filed, setFiled] = useState(null);
+  const [perDay, setPerDay] = useState(DEFAULT_PER_DAY);
+  const [savingPlan, setSavingPlan] = useState(false);
   const [noVoice, setNoVoice] = useState(false);
-  const [readOn, setReadOn] = useAutoReadSetting();
   const [partners, setPartners] = useState([]);
   const [program, setProgram] = useState(null); // the picked partner
   const [learnerName, setLearnerName] = useState('');
@@ -106,14 +103,13 @@ export default function GettingStarted({ language, onLanguageChange, onDone }) {
   }, []);
 
   const hasPrograms = partners.length > 0;
-  const steps = onboardingSteps({ stage, hasPrograms });
   const fill = (s) => (s || '').split('{name}').join(profile.name);
   const say = (key) => ({ en: fill(LINES[key]), mine: language !== 'en' ? fill(tr(key)) || null : null });
   const label = (key) => (language !== 'en' && tr(key)) || LINES[key];
   // Wait a moment for a translation that is still loading before reading.
   const readDelay = language !== 'en' && !tr('continue') ? 1500 : 0;
   const go = (next, answers = {}) => {
-    const n = next || nextStep(step, { stage, hasPrograms, ...answers });
+    const n = next || nextStep(step, { hasPrograms, ...answers });
     if (!n) { finish(); return; }
     setStep(n);
     window.scrollTo({ top: 0 });
@@ -135,13 +131,24 @@ export default function GettingStarted({ language, onLanguageChange, onDone }) {
     });
   };
 
-  const options = (keys) => ({ en: keys.map((k) => LINES[k]).join('. ') + '.', mine: language !== 'en' && tr(keys[0]) ? keys.map((k) => tr(k)).join('. ') + '.' : null });
+  const languageName = nativeName((LANGUAGES.find((l) => l.value === language) || LANGUAGES[0]).label);
+
+  // Make my plan: the stage and civics test are already saved on the device
+  // when tapped; lessons per day goes where Your plan saves it (the profile on
+  // Supabase, this device on Base44). A failed save never blocks first open.
+  const savePlan = async () => {
+    setSavingPlan(true);
+    try { await todayApi.setLessonsPerDay(perDay); } catch { /* Your plan can set it later */ }
+    setSavingPlan(false);
+    go();
+  };
 
   if (step === 'language') {
     return (
       <LanguageStep
         language={language}
         t={t}
+        rtl={rtl}
         onPick={pickLanguage}
         onContinue={() => go()}
         note={noVoice ? <p className="rounded-card bg-tint p-4 text-base text-navy">{label('no_voice')}</p> : null}
@@ -149,66 +156,34 @@ export default function GettingStarted({ language, onLanguageChange, onDone }) {
     );
   }
 
-  if (step === 'meet') return <MeetAmioStep t={t} onContinue={() => go()} />;
+  if (step === 'how') return <HowAmioWorksStep t={t} rtl={rtl} languageName={languageName} onContinue={() => go()} />;
 
-  const position = steps.indexOf(step) - 1; // after language and Meet Amio
-  const asked = steps.length - 2;
+  if (step === 'plan') {
+    return (
+      <PlanStep
+        t={t}
+        rtl={rtl}
+        label={label}
+        stage={stage}
+        onStage={(s) => { setStage(s); saveStage(s); }}
+        filed={filed}
+        onFiled={(a) => { setFiled(a); saveFiledAnswer(a); }}
+        perDay={perDay}
+        onPerDay={setPerDay}
+        busy={savingPlan}
+        onDone={savePlan}
+      />
+    );
+  }
+
+  // The partner program question, exactly as before.
   return (
     <div className="min-h-screen bg-paper">
       <NavyBanner
         title={label('title')}
         right={<Button variant="link" onNavy onClick={finish}>{label('skip')}</Button>}
-        extra={<StepBar total={asked} current={position} label={`${label('title')}: ${position} / ${asked}`} />}
       />
       <div className="max-w-lg mx-auto px-4 py-5 flex flex-col gap-5 text-navy">
-      {step === 'stage' && (
-        <>
-          <TutorMessage
-            profile={profile}
-            language={language}
-            {...say('stage_ask')}
-            readAlso={options(['stage_preparing', 'stage_applied', 'stage_interview', 'stage_learning'])}
-            readDelay={readDelay}
-          />
-          <div className="space-y-2" role="group" aria-label="Where you are">
-            {['preparing', 'applied', 'interview', 'learning'].map((s) => (
-              <ChoiceButton
-                key={s}
-                selected={stage === s}
-                onClick={() => { setStage(s); saveStage(s); go(null, { stage: s }); }}
-              >
-                {label(`stage_${s}`)}
-              </ChoiceButton>
-            ))}
-          </div>
-        </>
-      )}
-
-      {step === 'filed' && (
-        <>
-          <TutorMessage
-            profile={profile}
-            language={language}
-            {...say('filed_ask')}
-            readAlso={options(['filed_before', 'filed_after', 'filed_unsure'])}
-            readDelay={readDelay}
-          />
-          <div className="space-y-2" role="group" aria-label="When you sent Form N-400">
-            {['before', 'after', 'unsure'].map((a) => (
-              <ChoiceButton key={a} onClick={() => { saveFiledAnswer(a); go(); }}>{label(`filed_${a}`)}</ChoiceButton>
-            ))}
-          </div>
-          <a
-            href={USCIS_TEST}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 min-h-11 text-base font-bold text-denim underline underline-offset-4 decoration-denim/40 hover:decoration-denim"
-          >
-            {label('filed_link')} <ExternalLink className="w-4 h-4" aria-hidden="true" />
-          </a>
-        </>
-      )}
-
       {step === 'program' && (
         <>
           <TutorMessage
@@ -276,21 +251,6 @@ export default function GettingStarted({ language, onLanguageChange, onDone }) {
         </>
       )}
 
-      {step === 'settings' && (
-        <>
-          <TutorMessage profile={profile} language={language} {...say('settings_ask')} readDelay={readDelay} />
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2" role="group" aria-label="Sound">
-            <ChoiceButton selected={readOn} onClick={() => setReadOn(true)}>
-              <span className="flex items-center gap-2"><Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" /> {label('read_on')}</span>
-            </ChoiceButton>
-            <ChoiceButton selected={!readOn} onClick={() => setReadOn(false)}>
-              <span className="flex items-center gap-2"><VolumeX className="w-5 h-5 shrink-0" aria-hidden="true" /> {label('read_off')}</span>
-            </ChoiceButton>
-          </div>
-          <TextSizePicker />
-          <Button variant="main" className="w-full" onClick={finish}>{label('start_check')}</Button>
-        </>
-      )}
       </div>
     </div>
   );

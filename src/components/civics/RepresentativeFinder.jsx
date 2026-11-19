@@ -98,7 +98,7 @@ export default function RepresentativeFinder() {
           <div className="w-12 h-12 shrink-0 bg-tint text-navy rounded-2xl grid place-items-center">
             <MapPin className="w-6 h-6" aria-hidden="true" />
           </div>
-          <h2 className="text-[28px] font-display font-normal leading-tight pt-1.5">Who Represents Me?</h2>
+          <h2 className="text-[1.75rem] font-display font-normal leading-tight pt-1.5">Who Represents Me?</h2>
         </div>
         <p className="text-base text-muted leading-relaxed">
           Enter your zip code to find your Senators, Representative, Governor, and State Capital — your answers will be used during civics practice.

@@ -128,7 +128,7 @@ export default function ResourceFinder() {
           <div className="w-11 h-11 rounded-2xl grid place-items-center bg-tint text-navy shrink-0">
             <MapPin className="w-5 h-5" aria-hidden="true" />
           </div>
-          <h2 className="text-[28px] leading-snug font-display font-normal text-navy">Find help near you</h2>
+          <h2 className="text-[1.75rem] leading-snug font-display font-normal text-navy">Find help near you</h2>
         </div>
 
         {isLoading && (
@@ -325,7 +325,7 @@ export default function ResourceFinder() {
       )}
 
       <RaisedCard className="space-y-3 md:p-6">
-        <h2 className="text-[28px] leading-snug font-display font-normal text-navy">Search national directories</h2>
+        <h2 className="text-[1.75rem] leading-snug font-display font-normal text-navy">Search national directories</h2>
         <p className="text-base text-muted">Our map doesn&apos;t list every place yet. These sites have more.</p>
         <ul className="space-y-2">
           {DIRECTORY_LINKS.map((link) => (
@@ -369,7 +369,7 @@ function SavedPlaces({ places }) {
           <div className="w-11 h-11 rounded-2xl grid place-items-center bg-tint text-navy shrink-0">
             <Bookmark className="w-5 h-5" aria-hidden="true" />
           </div>
-          <h2 className="text-[28px] leading-snug font-display font-normal text-navy">Your saved places</h2>
+          <h2 className="text-[1.75rem] leading-snug font-display font-normal text-navy">Your saved places</h2>
         </div>
         <SecondaryButton onClick={() => setOpen((v) => !v)} aria-expanded={open} aria-controls="saved-places-list">
           {open ? 'Hide' : `Show (${places.length})`}
@@ -431,7 +431,7 @@ function MapLegend({ places }) {
         </li>
       ))}
       <li className="flex items-center gap-2 text-sm text-muted">
-        <span className="w-4 h-4 rounded-full bg-navy text-white text-[9px] font-extrabold grid place-items-center" aria-hidden="true">3</span>
+        <span className="w-4 h-4 rounded-full bg-navy text-white text-[0.5625rem] font-extrabold grid place-items-center" aria-hidden="true">3</span>
         Group of places (tap to zoom)
       </li>
     </ul>

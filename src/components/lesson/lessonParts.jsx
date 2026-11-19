@@ -80,7 +80,7 @@ export function TryAgain({ t, askedLabel, asked, saidLabel, said, accepted, amio
       <div className="flex-1 px-4 py-5 flex flex-col gap-4 max-w-lg w-full mx-auto">
         <section className="rounded-card bg-white border border-line p-5">
           <p className="text-small text-muted">{askedLabel}</p>
-          <p className="mt-1 text-[22px] font-bold text-navy leading-snug" lang="en" dir="ltr">{asked}</p>
+          <p className="mt-1 text-[1.375rem] font-bold text-navy leading-snug" lang="en" dir="ltr">{asked}</p>
         </section>
         <section className="rounded-card bg-white border border-line p-5">
           <p className="text-small text-muted">{saidLabel}</p>
@@ -89,7 +89,7 @@ export function TryAgain({ t, askedLabel, asked, saidLabel, said, accepted, amio
         <AmioSays mood="kind" size={56}>{amioLine}</AmioSays>
         <section className="rounded-card bg-white border border-line p-5">
           <p className="text-small font-semibold uppercase tracking-wide text-muted">{sayLabel}</p>
-          <p className="mt-2 text-[20px] font-bold text-navy leading-snug" lang="en" dir="ltr">“{sayText}”</p>
+          <p className="mt-2 text-[1.25rem] font-bold text-navy leading-snug" lang="en" dir="ltr">“{sayText}”</p>
           {accepted && accepted.length > 1 && (
             <ul className="mt-2 list-disc ps-5 text-base text-muted" lang="en" dir="ltr">
               {accepted.slice(1, 6).map((a) => <li key={a}>{a}</li>)}

@@ -115,7 +115,7 @@ export default function Progress() {
               </div>
               <ArrowRight className="w-5 h-5 text-muted rtl:rotate-180" aria-hidden="true" />
             </div>
-            <p className="mt-4 font-display font-normal text-[44px] leading-none">{stats.total}</p>
+            <p className="mt-4 font-display font-normal text-[2.75rem] leading-none">{stats.total}</p>
             <p className="mt-2 text-sm font-bold text-muted">Total Practiced</p>
           </RaisedCard>
         </Link>
@@ -128,7 +128,7 @@ export default function Progress() {
               </div>
               <ArrowRight className="w-5 h-5 text-muted rtl:rotate-180" aria-hidden="true" />
             </div>
-            <p className="mt-4 font-display font-normal text-[44px] leading-none">{stats.mastered}</p>
+            <p className="mt-4 font-display font-normal text-[2.75rem] leading-none">{stats.mastered}</p>
             <p className="mt-2 text-sm font-bold text-muted">Items Mastered</p>
           </RaisedCard>
         </Link>
@@ -139,9 +139,9 @@ export default function Progress() {
               <div className="w-12 h-12 rounded-2xl bg-tint text-navy grid place-items-center shrink-0">
                 <Target className="w-6 h-6" aria-hidden="true" />
               </div>
-              <p className="font-display text-[26px] leading-tight">Test Preparedness</p>
+              <p className="font-display text-[1.625rem] leading-tight">Test Preparedness</p>
             </div>
-            <span className="font-display text-[44px] leading-none">{preparedness}%</span>
+            <span className="font-display text-[2.75rem] leading-none">{preparedness}%</span>
           </div>
           <ProgressBar value={preparedness} className="h-3 bg-tint" aria-label="Test Preparedness" />
           <p className="text-sm text-muted mt-3">Based on mastered content items (Goal: 100)</p>

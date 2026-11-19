@@ -14,10 +14,22 @@
   html {
     font-family: theme('fontFamily.sans');
   }
+  /* Text follows the phone's own text-size setting: every font size is in
+     rem (tokens.test.js fails on a px font size), so it scales with the
+     browser's size (Android, desktop). iPhones and iPads only pass their
+     Text Size setting to web pages through -apple-system-body, so there
+     the root size comes from it (17px at the default setting). */
+  @supports (font: -apple-system-body) and (-webkit-touch-callout: none) {
+    html {
+      font: -apple-system-body;
+      font-family: theme('fontFamily.sans');
+      line-height: 1.5;
+    }
+  }
   body {
     @apply bg-background text-foreground;
     font-family: theme('fontFamily.sans');
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 400;
   }
   /* Section headings (and buttons) are Lexend 700. */

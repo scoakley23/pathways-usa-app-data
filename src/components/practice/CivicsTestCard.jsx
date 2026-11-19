@@ -237,7 +237,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, testMode 
         <div className="mx-auto max-w-2xl space-y-4">
           {onClose && <RunTopBar onClose={onClose} index={index} total={total} answered={done} />}
           <p className="text-label uppercase text-on-navy">{label}</p>
-          <h2 className={`font-display leading-[1.08] transition-[font-size] ${done ? 'text-[30px]' : 'text-[38px] sm:text-[40px]'}`}>
+          <h2 className={`font-display leading-[1.08] transition-[font-size] ${done ? 'text-[1.875rem]' : 'text-[2.375rem] sm:text-[2.5rem]'}`}>
             {question.question}
           </h2>
           <div className="flex flex-wrap gap-2">
@@ -314,7 +314,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, testMode 
                 )}
               </div>
 
-              <p className="text-[15px] text-muted">Answer only the civics question. Don&apos;t include personal information.</p>
+              <p className="text-[0.9375rem] text-muted">Answer only the civics question. Don&apos;t include personal information.</p>
 
               <Button variant="link" className="px-0" onClick={iDontKnow} disabled={verifying}>
                 {testMode ? 'I don’t know' : 'I don’t know, show me'}

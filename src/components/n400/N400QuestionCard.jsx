@@ -39,7 +39,7 @@ export default function N400QuestionCard({ sectionId, question, isAdmin, languag
           <Eyebrow>On the form · item {question.label}</Eyebrow>
           {isAdmin && question.status === 'draft' && <Tag tone="red">Draft — pending review</Tag>}
         </div>
-        <blockquote className="mt-2 text-[20px] font-bold leading-snug">{question.official}</blockquote>
+        <blockquote className="mt-2 text-[1.25rem] font-bold leading-snug">{question.official}</blockquote>
         <button
           type="button"
           onClick={() => speak(question.official)}
@@ -120,7 +120,7 @@ export default function N400QuestionCard({ sectionId, question, isAdmin, languag
                 >
                   <Volume2 className="w-5 h-5" aria-hidden="true" />
                 </button>
-                <p className="flex-1 pt-2 text-[17px] leading-snug">“{p}”</p>
+                <p className="flex-1 pt-2 text-[1.0625rem] leading-snug">“{p}”</p>
               </li>
             ))}
           </ul>

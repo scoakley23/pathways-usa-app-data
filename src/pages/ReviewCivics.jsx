@@ -49,7 +49,7 @@ function SignInMessage() {
       <div className="w-20 h-20 rounded-card bg-tint flex items-center justify-center" aria-hidden="true">
         <CalendarCheck className="w-10 h-10 text-navy" />
       </div>
-      <h2 className="text-[28px] font-display font-normal text-navy">Sign in to review civics</h2>
+      <h2 className="text-[1.75rem] font-display font-normal text-navy">Sign in to review civics</h2>
       <p className="text-base text-muted">Questions you learned come back when it&apos;s time to review them.</p>
     </div>
   );
@@ -149,7 +149,7 @@ export default function ReviewCivics() {
         <Tag tone="teal" className="mt-2">
           {stage === 'done' ? 'Your results' : due.length ? `${due.length} to review` : 'All caught up'}
         </Tag>
-        <h1 className="font-display text-[36px] leading-tight mt-3">Review civics</h1>
+        <h1 className="font-display text-[2.25rem] leading-tight mt-3">Review civics</h1>
       </div>
 
       {stage === 'intro' && due.length > 0 && (
