@@ -35,7 +35,7 @@ function Stat({ title, value, definition, children }) {
   return (
     <RaisedCard className="space-y-2">
       <h2 className="text-base font-semibold text-muted">{title}</h2>
-      <p className="font-display text-[32px] leading-tight text-navy">{value}</p>
+      <p className="font-display text-[2rem] leading-tight text-navy">{value}</p>
       {children}
       <p className="text-sm text-muted">{definition}</p>
     </RaisedCard>
@@ -164,7 +164,7 @@ export default function PilotDashboard() {
           {generatedAt && <p className="text-sm text-muted">Data as of {new Date(generatedAt).toLocaleString()}.</p>}
 
           <section aria-labelledby="pilot-use" className="space-y-3">
-            <h2 id="pilot-use" className="font-display text-[28px]">Sign-ups and use</h2>
+            <h2 id="pilot-use" className="font-display text-[1.75rem]">Sign-ups and use</h2>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               <Stat title="Sign-ups" value={count(m.signups.count)} definition="Learners with a student profile (tutors and admins left out).">
                 <p className="text-base">{count(m.signups.withCode)} with a program code</p>
@@ -183,7 +183,7 @@ export default function PilotDashboard() {
           </section>
 
           <section aria-labelledby="pilot-practice" className="space-y-3">
-            <h2 id="pilot-practice" className="font-display text-[28px]">Practice and readiness</h2>
+            <h2 id="pilot-practice" className="font-display text-[1.75rem]">Practice and readiness</h2>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               <Stat title="Mock interviews completed" value={count(m.practice.mocks)} definition="Saved Mock Interviews (Practice), all learners.">
                 <p className="text-base">{count(m.practice.learnersWithMocks)} learners did at least one</p>
@@ -203,7 +203,7 @@ export default function PilotDashboard() {
           </section>
 
           <section aria-labelledby="pilot-outcomes" className="space-y-3">
-            <h2 id="pilot-outcomes" className="font-display text-[28px]">Check-ins and milestones</h2>
+            <h2 id="pilot-outcomes" className="font-display text-[1.75rem]">Check-ins and milestones</h2>
             <p className="text-base text-muted">Self-reported and optional. People who passed are more likely to answer, and "when" is only as exact as the check-in window.</p>
             <div className="grid gap-4 sm:grid-cols-3">
               {Object.entries(m.responses).map(([kind, r]) => (
@@ -247,7 +247,7 @@ export default function PilotDashboard() {
           </section>
 
           <section aria-labelledby="pilot-reach" className="space-y-3">
-            <h2 id="pilot-reach" className="font-display text-[28px]">Reach</h2>
+            <h2 id="pilot-reach" className="font-display text-[1.75rem]">Reach</h2>
             <div className="grid gap-4 md:grid-cols-3">
               <RaisedCard className="space-y-2"><Eyebrow>By state</Eyebrow><CountList counts={m.reach.state} names={{ ...STATE_NAMES, prefer_not: 'Rather not say' }} /></RaisedCard>
               <RaisedCard className="space-y-2"><Eyebrow>By app language</Eyebrow><CountList counts={m.reach.language} names={LANGUAGE_NAMES} /></RaisedCard>

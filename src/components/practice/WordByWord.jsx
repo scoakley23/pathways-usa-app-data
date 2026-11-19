@@ -10,7 +10,7 @@ export default function WordByWord({ words = [], legend = 'Words we didn’t hea
   const missed = shown.some((w) => w.status !== 'correct');
   return (
     <div className={className}>
-      <p className="text-[22px] leading-[1.7] text-navy">
+      <p className="text-[1.375rem] leading-[1.7] text-navy">
         {shown.map((w, i) => (
           <React.Fragment key={i}>
             {w.status === 'correct' ? (

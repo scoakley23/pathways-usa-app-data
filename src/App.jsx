@@ -36,6 +36,7 @@ import SpeakItPage from './components/checkpoint/SpeakItPage';
 import ReadWritePage from './components/checkpoint/ReadWritePage';
 import UnitDonePage from './components/checkpoint/UnitDonePage';
 import UnitInterviewPage from './components/checkpoint/UnitInterviewPage';
+import LaunchScreen from '@/components/shell/LaunchScreen';
 import ReviewChestPage from './components/checkpoint/ReviewChestPage';
 
 // Lessons and Practice are tabs of Study now; their old addresses redirect.
@@ -52,14 +53,8 @@ const LayoutWrapper = ({ children, currentPageName }) => Layout ?
 const AuthenticatedApp = () => {
   const { isLoadingAuth, authError, navigateToLogin } = useAuth();
 
-  // Show loading spinner while checking app public settings or auth
-  if (isLoadingAuth) {
-    return (
-      <div className="fixed inset-0 flex items-center justify-center">
-        <div className="w-8 h-8 border-4 border-line border-t-navy rounded-full animate-spin"></div>
-      </div>
-    );
-  }
+  // The launch screen (Amio and the wordmark) while the sign-in is checked.
+  if (isLoadingAuth) return <LaunchScreen />;
 
   // Base44's login states (only while the sign-in switch in src/api/auth.js
   // is off; Supabase has no "not registered" state).

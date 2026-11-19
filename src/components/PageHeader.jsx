@@ -32,7 +32,7 @@ export default function PageHeader({ title, subtitle, children, tag, guide }) {
       <div className="mt-2 flex flex-col sm:flex-row sm:items-end gap-4">
         <div className="min-w-0 flex-1">
           {tag && <p className="mb-1.5 text-label uppercase text-muted">{tag}</p>}
-          <h1 className="font-display text-[28px] sm:text-[34px] leading-[1.1]">{title}</h1>
+          <h1 className="font-display text-[1.75rem] sm:text-[2.125rem] leading-[1.1]">{title}</h1>
           {subtitle && <p className="text-muted text-lg mt-2 max-w-2xl">{subtitle}</p>}
         </div>
         {children && <div className="sm:shrink-0">{children}</div>}

@@ -57,7 +57,7 @@ function Scene({ unitIcon, line }) {
         <StopIcon type="lesson" unitIcon={unitIcon} className="w-8 h-8" />
       </span>
       <div className="absolute end-4 top-4 flex flex-col items-end gap-1 max-w-[58%]">
-        <p className="rounded-2xl border-2 border-red bg-white px-3 py-2 text-[15px] font-semibold leading-snug text-navy">{line}</p>
+        <p className="rounded-2xl border-2 border-red bg-white px-3 py-2 text-[0.9375rem] font-semibold leading-snug text-navy">{line}</p>
         <Amio mood="happy" size={56} />
       </div>
     </div>
@@ -103,7 +103,7 @@ export default function TodayPage({ user, sheetTop, quickCheckFirst = false }) {
                   {t('lesson_of', { section: lesson.section.title, n: lesson.number, of: lesson.of })}
                   {lesson.lesson.status === 'draft' && ` · ${t('draft')}`}
                 </p>
-                <h2 className="text-[24px] font-bold text-navy leading-tight" dir="auto">{lesson.lesson.title}</h2>
+                <h2 className="text-[1.5rem] font-bold text-navy leading-tight" dir="auto">{lesson.lesson.title}</h2>
                 <ul className="flex flex-wrap gap-2 list-none m-0 p-0">
                   {STEP_CHIPS.map(([key, Icon]) => (
                     <li key={key} className="inline-flex items-center gap-1.5 rounded-full bg-tint px-3 py-1.5 text-base font-semibold text-navy">

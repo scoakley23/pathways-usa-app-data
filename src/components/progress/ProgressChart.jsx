@@ -129,38 +129,38 @@ export default function ProgressChart({ userEmail }) {
               <CartesianGrid strokeDasharray="3 3" stroke={LINE} />
               <XAxis
                 dataKey="date"
-                tick={{ fontSize: 12, fill: MUTED }}
+                tick={{ fontSize: '0.75rem', fill: MUTED }}
                 tickLine={false}
                 axisLine={{ stroke: LINE }}
               />
               <YAxis
                 yAxisId="left"
-                tick={{ fontSize: 12, fill: MUTED }}
+                tick={{ fontSize: '0.75rem', fill: MUTED }}
                 tickLine={false}
                 axisLine={{ stroke: LINE }}
                 domain={[0, 100]}
-                label={{ value: 'Quiz Score %', angle: -90, position: 'insideLeft', style: { fontSize: 12, fill: NAVY, fontWeight: 700 } }}
+                label={{ value: 'Quiz Score %', angle: -90, position: 'insideLeft', style: { fontSize: '0.75rem', fill: NAVY, fontWeight: 700 } }}
               />
               <YAxis
                 yAxisId="right"
                 orientation="right"
-                tick={{ fontSize: 12, fill: MUTED }}
+                tick={{ fontSize: '0.75rem', fill: MUTED }}
                 tickLine={false}
                 axisLine={{ stroke: LINE }}
                 allowDecimals={false}
-                label={{ value: 'Lessons', angle: 90, position: 'insideRight', style: { fontSize: 12, fill: NAVY, fontWeight: 700 } }}
+                label={{ value: 'Lessons', angle: 90, position: 'insideRight', style: { fontSize: '0.75rem', fill: NAVY, fontWeight: 700 } }}
               />
               <Tooltip
                 contentStyle={{
                   backgroundColor: COLORS.white,
                   border: `1px solid ${LINE}`,
                   borderRadius: '16px',
-                  fontSize: '14px',
+                  fontSize: '0.875rem',
                   color: NAVY
                 }}
               />
               <Legend
-                wrapperStyle={{ fontSize: '14px', paddingTop: '12px', color: NAVY }}
+                wrapperStyle={{ fontSize: '0.875rem', paddingTop: '12px', color: NAVY }}
               />
               <Line
                 yAxisId="left"

@@ -19,19 +19,19 @@ export default function ExplainSheet({ question, answer, aiFallback = false, cla
 
   return (
     <RuledPaper className={className} aria-label="Explain it simply">
-      <h3 className="font-display text-[26px] leading-[36px]">Explain it simply</h3>
+      <h3 className="font-display text-[1.625rem] leading-[2.25rem]">Explain it simply</h3>
       {found.source ? (
         <>
-          {text.mine && <p dir={dir} className="font-medium text-[22px] leading-[36px] whitespace-pre-line">{text.mine}</p>}
-          {text.en && <p className={`font-medium leading-[36px] whitespace-pre-line ${text.mine ? 'text-lg text-muted' : 'text-[22px]'}`}>{text.en}</p>}
-          {note && <p className="text-base leading-[36px] text-muted">{note.mine || note.en}</p>}
+          {text.mine && <p dir={dir} className="font-medium text-[1.375rem] leading-[2.25rem] whitespace-pre-line">{text.mine}</p>}
+          {text.en && <p className={`font-medium leading-[2.25rem] whitespace-pre-line ${text.mine ? 'text-lg text-muted' : 'text-[1.375rem]'}`}>{text.en}</p>}
+          {note && <p className="text-base leading-[2.25rem] text-muted">{note.mine || note.en}</p>}
         </>
       ) : aiFallback ? (
         <div className="py-2"><AIExplanation question={question} answer={answer} /></div>
       ) : (
-        <p className="font-medium text-[22px] leading-[36px]">{text.mine || text.en}</p>
+        <p className="font-medium text-[1.375rem] leading-[2.25rem]">{text.mine || text.en}</p>
       )}
-      <p className="font-medium text-lg leading-[36px] text-muted">— {profile.name}</p>
+      <p className="font-medium text-lg leading-[2.25rem] text-muted">— {profile.name}</p>
     </RuledPaper>
   );
 }

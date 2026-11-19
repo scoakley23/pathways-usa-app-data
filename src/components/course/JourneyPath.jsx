@@ -157,7 +157,7 @@ export default function JourneyPath({ unit, t, rtl, onStop }) {
                 >
                   {/* Amio beside the stop, never over a label: the bubble sits above Amio. */}
                   <div className="flex flex-col items-center gap-1">
-                    <p className="rounded-2xl border-2 border-red bg-white px-3 py-1 text-[15px] font-semibold leading-snug text-navy whitespace-nowrap">{t('next')}</p>
+                    <p className="rounded-2xl border-2 border-red bg-white px-3 py-1 text-[0.9375rem] font-semibold leading-snug text-navy whitespace-nowrap">{t('next')}</p>
                     <Amio mood="cheer" size={44} />
                   </div>
                 </div>

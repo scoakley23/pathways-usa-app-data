@@ -8,7 +8,7 @@ export default function RehearsalResults({ rows, onAgain }) {
   return (
     <div className="space-y-4 text-navy">
       <RaisedCard className="space-y-1">
-        <h2 className="text-[28px] leading-snug font-display font-normal">Your rehearsal results</h2>
+        <h2 className="text-[1.75rem] leading-snug font-display font-normal">Your rehearsal results</h2>
         <p className="text-base text-muted">Practice results only. They are not saved, and they don&apos;t predict your real interview.</p>
       </RaisedCard>
 

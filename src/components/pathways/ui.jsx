@@ -309,7 +309,7 @@ export const PosterSquares = PosterProgress;
 
 // Ruled paper: the learner's own page (white, pale blue rules, a pale
 // margin line). For the Listen-and-write surface, "Explain it simply", notes
-// and the N-400 screens. Line height matches the rules (`leading-[36px]`).
+// and the N-400 screens. Line height matches the rules (`leading-[2.25rem]`).
 export function RuledPaper({ as: Tag = 'div', className = '', children, ...props }) {
   return (
     <Tag className={`pw-ruled relative rounded-[6px] bg-white border border-line ps-12 pe-5 pt-3 pb-5 text-navy ${className}`} {...props}>
@@ -329,7 +329,7 @@ export function Poster({ tone = 'red', label, question, answer, progress, questi
       <PathwaysMark size={36} tone="white" className="absolute end-5 top-6 sm:end-8 sm:top-8" />
       {label && <p className="pe-12 text-label uppercase text-on-navy">{label}</p>}
       {progress && <div className="mt-3 pe-12"><PosterProgress index={progress.index} total={progress.total} /></div>}
-      {question && <Q className="mt-4 font-display text-[38px] leading-[1.1] sm:text-[40px]">{question}</Q>}
+      {question && <Q className="mt-4 font-display text-[2.375rem] leading-[1.1] sm:text-[2.5rem]">{question}</Q>}
       {answer && <p className="mt-5 font-display text-2xl leading-snug sm:text-3xl">{answer}</p>}
       {children && <div className="mt-6">{children}</div>}
     </section>

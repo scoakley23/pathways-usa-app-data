@@ -8,7 +8,7 @@ export default function CheckInCard({ language = 'en', onOpen, onNotNow, onNever
   return (
     <RaisedCard className="space-y-4" aria-labelledby="checkin-card-title">
       <Eyebrow>{t('eyebrow')}</Eyebrow>
-      <h2 id="checkin-card-title" className="font-display text-[28px] leading-tight text-navy">{t('card_prompt')}</h2>
+      <h2 id="checkin-card-title" className="font-display text-[1.75rem] leading-tight text-navy">{t('card_prompt')}</h2>
       <div className="flex flex-col sm:flex-row gap-2">
         <PrimaryButton onClick={onOpen} className="w-full sm:w-auto">{t('card_open')}</PrimaryButton>
         <QuietButton onClick={onNotNow} className="w-full sm:w-auto">{t('not_now')}</QuietButton>

@@ -191,7 +191,7 @@ export default function ExplanationTools() {
   return (
     <section aria-labelledby="explanations-heading" className="space-y-4 text-navy">
       <div>
-        <h2 id="explanations-heading" className="text-[28px] font-display font-normal">Lesson explanations</h2>
+        <h2 id="explanations-heading" className="text-[1.75rem] font-display font-normal">Lesson explanations</h2>
         <p className="text-base text-muted mt-1">
           Export the official questions, draft explanations with AI, then review them by hand
           (see <code className="text-sm">content/explanations/REVIEW.md</code>). Learners see only reviewed ones.

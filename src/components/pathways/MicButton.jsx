@@ -41,7 +41,7 @@ export default function MicButton({
           ? <Square className="w-9 h-9 fill-white" strokeWidth={2} aria-hidden="true" />
           : <Mic className="w-10 h-10" strokeWidth={2} aria-hidden="true" />}
       </button>
-      <span className="text-[15px] font-semibold text-navy text-center" aria-hidden="true">{text}</span>
+      <span className="text-[0.9375rem] font-semibold text-navy text-center" aria-hidden="true">{text}</span>
       {onTypeInstead && (
         <button
           type="button"

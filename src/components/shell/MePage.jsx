@@ -37,7 +37,7 @@ const languageLabel = (code) => {
 function Stat({ value, label }) {
   return (
     <Card padding="p-3" className="text-center flex flex-col justify-center min-h-[96px]">
-      <p className="text-[26px] font-bold leading-none text-navy tabular-nums">{value}</p>
+      <p className="text-[1.625rem] font-bold leading-none text-navy tabular-nums">{value}</p>
       <p className="mt-1.5 text-small text-muted leading-tight">{label}</p>
     </Card>
   );

@@ -52,7 +52,7 @@ export default function N400Cover({ sections, completedIds = [], countFor, onSel
         </span>
       </Link>
 
-      <p className="text-center text-[15px] text-muted">We never save your answers to the N-400.</p>
+      <p className="text-center text-[0.9375rem] text-muted">We never save your answers to the N-400.</p>
     </div>
   );
 }

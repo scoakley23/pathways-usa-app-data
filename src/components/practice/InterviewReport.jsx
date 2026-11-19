@@ -93,7 +93,7 @@ export default function InterviewReport({ results, onRestart, onClose, onBack })
         <Card className="flex items-center justify-between gap-3">
           <div>
             <p className="font-extrabold leading-none tabular-nums">
-              <span className="text-[56px]">{passed}</span><span className="text-[28px] text-muted">/{total}</span>
+              <span className="text-[3.5rem]">{passed}</span><span className="text-[1.75rem] text-muted">/{total}</span>
             </p>
             {best && <p className="mt-2 text-base font-semibold text-correct">Your best so far</p>}
             <span className="sr-only">{passed} of {total} answers passed.</span>

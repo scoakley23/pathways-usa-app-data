@@ -87,7 +87,10 @@ const SHADCN_DARK = {
 };
 const vars = (map) => Object.fromEntries(Object.entries(map).map(([k, name]) => [`--${k}`, hsl(ALL[name])]));
 
-const typeSize = ([size, line]) => [px(size), { lineHeight: px(line) }];
+// Font sizes in rem, so text follows the phone's own text-size setting
+// (the tokens keep the px values at the default 16px).
+const rem = (n) => `${n / 16}rem`;
+const typeSize = ([size, line]) => [rem(size), { lineHeight: rem(line) }];
 
 module.exports = {
 	darkMode: ['class'],
@@ -110,7 +113,7 @@ module.exports = {
 				black: '800',
 			},
 			fontSize: {
-				label: ['12px', { lineHeight: '16px', letterSpacing: '0.12em', fontWeight: '600' }],
+				label: [rem(12), { lineHeight: rem(16), letterSpacing: '0.12em', fontWeight: '600' }],
 				small: typeSize(TYPE.small),
 				body: typeSize(TYPE.body),
 				title: typeSize(TYPE.title),

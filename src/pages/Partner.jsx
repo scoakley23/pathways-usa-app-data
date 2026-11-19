@@ -134,7 +134,7 @@ export default function Partner() {
 
       {members && (
         <div className="space-y-1">
-          <h2 className="font-display text-[28px] leading-tight">Who said they study with you</h2>
+          <h2 className="font-display text-[1.75rem] leading-tight">Who said they study with you</h2>
           <p className="text-base text-muted">Confirm the ones you know, and mark anyone else “Not ours”. Only confirmed learners count above.</p>
         </div>
       )}

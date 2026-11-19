@@ -37,13 +37,13 @@ export default function RoundComplete({ outcomes = [], title, rule, review = nul
         )}
         <div className="space-y-2" aria-live="polite">
           <p className="text-label uppercase text-on-navy">Round complete</p>
-          <h2 className="font-display text-[30px] sm:text-[34px] leading-[1.1]">{title}</h2>
+          <h2 className="font-display text-[1.875rem] sm:text-[2.125rem] leading-[1.1]">{title}</h2>
           {rule && <p className="text-lg text-on-navy">{rule}</p>}
         </div>
 
         {review && review.lines.length > 0 && (
           <Card padding="p-5" className="text-navy">
-            <h3 className="font-display text-[22px] leading-tight">{review.heading}</h3>
+            <h3 className="font-display text-[1.375rem] leading-tight">{review.heading}</h3>
             <ul className="mt-3 space-y-2 list-disc ps-5 text-base">
               {review.lines.map((line, i) => <li key={i}>{line}</li>)}
             </ul>
