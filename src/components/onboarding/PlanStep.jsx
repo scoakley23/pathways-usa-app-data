@@ -18,6 +18,11 @@ const choice = (on) => `rounded-button text-navy focus-visible:outline-none focu
   on ? 'bg-sky border-[2.5px] border-navy font-extrabold' : 'bg-white border-[1.5px] border-line font-semibold hover:border-navy'
 }`;
 
+// "N-400" never breaks at its hyphen ("N-" / "400?").
+function keepTogether(text) {
+  return String(text).split(/(N-400)/).map((part, k) => (part === 'N-400' ? <span key={k} className="whitespace-nowrap">{part}</span> : part));
+}
+
 export default function PlanStep({ t, rtl, label, stage, onStage, filed, onFiled, perDay, onPerDay, busy, onDone }) {
   return (
     <OnboardingShell
@@ -30,7 +35,7 @@ export default function PlanStep({ t, rtl, label, stage, onStage, filed, onFiled
       buttonDisabled={busy}
     >
       <section className="flex flex-col gap-3" aria-labelledby="plan-sent">
-        <h1 id="plan-sent" dir="auto" className="font-display text-[1.625rem] leading-[1.1] tracking-tight">{t('plan_sent')}</h1>
+        <h1 id="plan-sent" dir="auto" className="font-display text-[1.625rem] leading-[1.1] tracking-tight">{keepTogether(t('plan_sent'))}</h1>
         <div className="grid grid-cols-2 gap-2" role="radiogroup" aria-labelledby="plan-sent">
           {STAGES.map((s) => (
             <button key={s} type="button" role="radio" aria-checked={stage === s} onClick={() => onStage(s)} className={`min-h-[4rem] px-3 py-2 text-base leading-tight ${choice(stage === s)}`}>

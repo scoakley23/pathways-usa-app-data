@@ -163,7 +163,7 @@ export default function Layout({ children }) {
         />
       )}
 
-      <main id="main" tabIndex={-1} className={`focus:outline-none ${splitPage ? '' : 'container mx-auto px-4 pt-6 max-w-5xl'} ${showTabs ? 'pb-32 lg:pb-24' : 'pb-24'}`}>
+      <main id="main" tabIndex={-1} className={`focus:outline-none ${splitPage ? '' : 'container mx-auto px-4 pt-6 max-w-5xl'} ${splash ? '' : showTabs ? 'pb-32 lg:pb-24' : 'pb-24'}`}>
         <AutoReadContext.Provider value={readAloud}>
         {React.Children.map(children, child => {
             if (React.isValidElement(child)) {
@@ -174,7 +174,8 @@ export default function Layout({ children }) {
         </AutoReadContext.Provider>
       </main>
 
-      {!practiceRun && <footer className={`mt-8 ${showTabs ? 'pb-24 lg:pb-0' : ''}`}>
+      {/* Welcome (the splash) has the line on its own navy screen: shown once. */}
+      {!practiceRun && !splash && <footer className={`mt-8 ${showTabs ? 'pb-24 lg:pb-0' : ''}`}>
         <p className="container mx-auto px-4 py-6 max-w-5xl text-sm text-center text-muted">
           Free practice · Not affiliated with USCIS · Not legal advice
         </p>

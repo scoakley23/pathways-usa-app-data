@@ -32,7 +32,6 @@ export default function QuickCheckCard({ variant = 'home', t = (k, en) => en, la
           </>
         ) : (
           <>
-            <Tag tone="teal">{t('qc_time', 'About 10 minutes')}</Tag>
             <h2 className="text-[1.75rem] font-display font-normal">{t('qc_title', 'Start with a quick check')}</h2>
             <p className="text-base text-muted leading-relaxed">
               {t('qc_desc', 'Your tutor checks your civics, reading, writing, and speaking, then plans your practice. You can skip any part.')}

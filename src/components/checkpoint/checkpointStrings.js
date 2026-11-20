@@ -72,8 +72,6 @@ export const CHECKPOINT_LINES = {
   stat_lessons: 'lessons',
   stat_questions: 'test questions',
   stat_sentences: 'sentences read and written',
-  unlocked: 'Unlocked:',
-  unit_interview: 'Unit {n} practice interview',
   try_interview: 'Try the practice interview',
   see_journey: 'See my journey',
 

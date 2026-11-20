@@ -391,12 +391,6 @@
    ]
   },
   {
-   "text": "+1 star",
-   "from": [
-    "n400-lessons"
-   ]
-  },
-  {
    "text": "1 day this week",
    "from": [
     "lesson-player"
@@ -984,9 +978,21 @@
    ]
   },
   {
+   "text": "AI practice officer",
+   "from": [
+    "interview-intro"
+   ]
+  },
+  {
    "text": "AI practice officer, not a real person · Not legal advice",
    "from": [
     "interview-tab"
+   ]
+  },
+  {
+   "text": "AI, not a real person",
+   "from": [
+    "interview-intro"
    ]
   },
   {
@@ -2826,6 +2832,12 @@
    ]
   },
   {
+   "text": "Content, grammar and fluency scores",
+   "from": [
+    "interview-intro"
+   ]
+  },
+  {
    "text": "Continue",
    "from": [
     "course",
@@ -3171,6 +3183,12 @@
    ]
   },
   {
+   "text": "Different officer voice each interview",
+   "from": [
+    "interview-intro"
+   ]
+  },
+  {
    "text": "Directive issued by the President to direct government agencies and enforce laws",
    "from": [
     "lessons"
@@ -3373,6 +3391,12 @@
    "text": "Don’t answer the question. Tell me in English what the officer wants to know.",
    "from": [
     "n400-lessons"
+   ]
+  },
+  {
+   "text": "Don’t share your immigration status, A-number, case details, or address. Only your scores are saved.",
+   "from": [
+    "interview-intro"
    ]
   },
   {
@@ -4084,6 +4108,12 @@
    "text": "For more than two hundred years, people from Africa were taken from their homes and sold as slaves in America.",
    "from": [
     "course-lessons"
+   ]
+  },
+  {
+   "text": "For personal information and “Have you ever…” questions, you don’t answer. You say in your own words what the officer is asking, and we check that you understood. We never ask about your own history.",
+   "from": [
+    "interview-intro"
    ]
   },
   {
@@ -5274,6 +5304,12 @@
    "text": "How Pathways teaches",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "How a question applies to you is for a lawyer.",
+   "from": [
+    "interview-intro"
    ]
   },
   {
@@ -7137,6 +7173,12 @@
    ]
   },
   {
+   "text": "Mock Interview",
+   "from": [
+    "interview-intro"
+   ]
+  },
+  {
    "text": "Modern America",
    "from": [
     "course-titles"
@@ -7176,6 +7218,12 @@
    "text": "Monuments and Memorials",
    "from": [
     "lessons"
+   ]
+  },
+  {
+   "text": "Morals and Ethics",
+   "from": [
+    "interview-intro"
    ]
   },
   {
@@ -7773,12 +7821,6 @@
    ]
   },
   {
-   "text": "No star this time. You’ll get it next time.",
-   "from": [
-    "n400-lessons"
-   ]
-  },
-  {
    "text": "No, I'm studying on my own",
    "from": [
     "getting-started"
@@ -7953,6 +7995,12 @@
    ]
   },
   {
+   "text": "Oath Requirements",
+   "from": [
+    "interview-intro"
+   ]
+  },
+  {
    "text": "Oath day",
    "from": [
     "home"
@@ -8010,6 +8058,12 @@
    "text": "Officer question",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Officer speaks questions aloud",
+   "from": [
+    "interview-intro"
    ]
   },
   {
@@ -8185,12 +8239,7 @@
   {
    "text": "Only your steps and scores are saved. Nothing you said is kept.",
    "from": [
-    "lesson-player"
-   ]
-  },
-  {
-   "text": "Only your steps and stars are saved. Nothing you said is kept.",
-   "from": [
+    "lesson-player",
     "n400-lessons"
    ]
   },
@@ -8390,6 +8439,12 @@
    "text": "Permission not to do something that most people must do.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "Personal Information",
+   "from": [
+    "interview-intro"
    ]
   },
   {
@@ -8804,6 +8859,12 @@
    ]
   },
   {
+   "text": "Questions about your application",
+   "from": [
+    "interview-intro"
+   ]
+  },
+  {
    "text": "Questions about your lessons",
    "from": [
     "ask-screen"
@@ -8989,6 +9050,12 @@
    "text": "Ready to file?",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "Real-time AI evaluation",
+   "from": [
+    "interview-intro"
    ]
   },
   {
@@ -9853,6 +9920,12 @@
    ]
   },
   {
+   "text": "Sections covered",
+   "from": [
+    "interview-intro"
+   ]
+  },
+  {
    "text": "See USCIS processing times (optional)",
    "from": [
     "today"
@@ -10215,6 +10288,12 @@
    ]
   },
   {
+   "text": "Small Talk",
+   "from": [
+    "interview-intro"
+   ]
+  },
+  {
    "text": "Small states wanted every state to have the same number.",
    "from": [
     "course-lessons"
@@ -10446,6 +10525,12 @@
     "onboarding",
     "today",
     "today-plan"
+   ]
+  },
+  {
+   "text": "Start Interview",
+   "from": [
+    "interview-intro"
    ]
   },
   {
@@ -10775,6 +10860,7 @@
    "text": "Talk to a lawyer first",
    "from": [
     "ask",
+    "interview-intro",
     "n400-lessons",
     "talk"
    ]
@@ -11080,6 +11166,12 @@
    "text": "The 50 stars represent the 50 states; a new star was added when Hawaii joined in 1960",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "The AI officer asks you real interview questions out loud and checks your answers.",
+   "from": [
+    "interview-intro"
    ]
   },
   {
@@ -12773,7 +12865,7 @@
    ]
   },
   {
-   "text": "They would see your quick check levels, the lessons you finished, your lesson scores, the checkpoints you passed and the N-400 sections you read. You can change this on Me.",
+   "text": "They would see your quick check levels, the lessons you finished, your lesson scores, the checkpoints you passed and the N-400 sections you read. You can change this in Settings, under My tutor.",
    "from": [
     "getting-started"
    ]
@@ -13793,12 +13885,6 @@
    ]
   },
   {
-   "text": "Unit {n} practice interview",
-   "from": [
-    "checkpoints"
-   ]
-  },
-  {
    "text": "Unit {n} · {section}",
    "from": [
     "onboarding"
@@ -13820,12 +13906,6 @@
    "text": "United States",
    "from": [
     "words"
-   ]
-  },
-  {
-   "text": "Unlocked:",
-   "from": [
-    "checkpoints"
    ]
   },
   {
@@ -18338,6 +18418,12 @@
    "text": "{n} questions",
    "from": [
     "me"
+   ]
+  },
+  {
+   "text": "{n} questions across {s} sections",
+   "from": [
+    "interview-intro"
    ]
   },
   {

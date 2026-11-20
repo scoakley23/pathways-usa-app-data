@@ -114,7 +114,7 @@ export default function QuestionStep({ kind, question, hint, language, t, savesR
           </div>
         )}
         {amioLine && <AmioSays mood={amioMood} size={56} onNavy>{amioLine}</AmioSays>}
-        {kind === 'teach' && !answered && <p className="text-base text-on-navy">{t('speak_amio')}</p>}
+        {kind === 'teach' && !answered && <p dir="auto" className="text-base text-on-navy">{t('speak_amio')}</p>}
 
         <p className={`font-display leading-[1.08] tracking-tight ${answered ? 'text-[1.75rem] text-sky' : 'text-[2.25rem] text-white'}`} lang="en" dir="ltr">{question.question}</p>
         {showMine && mine && !answered && <p className="text-base text-sky" dir="auto" lang={language}>{mine}</p>}
