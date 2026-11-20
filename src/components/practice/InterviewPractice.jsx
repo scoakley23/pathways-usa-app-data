@@ -23,6 +23,9 @@ import PreInterviewQuestion from '@/components/pilot/PreInterviewQuestion';
 import { loadMyCheckIns } from '@/components/pilot/checkInData';
 import { loadPreInterviewSkip } from '@/lib/pilot';
 import { shouldAskPreInterview } from '@/lib/pilotCheckIns';
+import useTranslatedLines from '@/components/persona/useTranslatedLines';
+import useAppLanguage, { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
+import { INTERVIEW_INTRO_LINES } from './interviewIntroStrings';
 
 // Long text is now spoken in chunks, so the fallback timeout must cover all of them.
 const speechTimeoutMs = (text) => {
@@ -57,7 +60,6 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
   const [sessionResults, setSessionResults] = useState([]);
   const [showReport, setShowReport] = useState(false);
   const [audioLevel, setAudioLevel] = useState(0);
-  const [recordingTime, setRecordingTime] = useState(0);
 
   // Conversational UI state
   const [interviewerState, setInterviewerState] = useState('idle');
@@ -68,12 +70,6 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
   // call's clock. Both in memory only.
   const [typing, setTyping] = useState(false);
   const [typed, setTyped] = useState('');
-  const [elapsed, setElapsed] = useState(0);
-  useEffect(() => {
-    if (!sessionStarted || showReport) { if (!sessionStarted) setElapsed(0); return undefined; }
-    const timer = setInterval(() => setElapsed((s) => s + 1), 1000);
-    return () => clearInterval(timer);
-  }, [sessionStarted, showReport]);
   // Pilot: "How ready do you feel?" once before a Mock Interview when the
   // learner's interview is scheduled. Never in Interview Day (rehearsal).
   const [pilot, setPilot] = useState(null); // { email, rows }
@@ -88,7 +84,6 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
   const responseRef = useRef('');
   const analyzerRef = useRef(null);
   const animFrameRef = useRef(null);
-  const timerRef = useRef(null);
   const streamRef = useRef(null);
   const transcriptRef = useRef(null);
   const silenceTimeoutRef = useRef(null);
@@ -99,7 +94,6 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
     initializeSpeechRecognition();
     return () => {
       stopAudioAnalysis();
-      if (timerRef.current) clearInterval(timerRef.current);
       if (silenceTimeoutRef.current) clearTimeout(silenceTimeoutRef.current);
     };
   }, []);
@@ -149,7 +143,7 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
       }, 12000);
     };
 
-    recognitionRef.current.onstart = () => { setIsListening(true); startTimer(); resetSilenceTimer(); };
+    recognitionRef.current.onstart = () => { setIsListening(true); resetSilenceTimer(); };
     recognitionRef.current.onresult = (e) => {
       const t = Array.from(e.results).map(r => r[0].transcript).join('');
       setUserResponse(t);
@@ -157,11 +151,11 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
       resetSilenceTimer();
     };
     recognitionRef.current.onerror = () => {
-      setIsListening(false); stopTimer(); stopAudioAnalysis();
+      setIsListening(false); stopAudioAnalysis();
       if (silenceTimeoutRef.current) clearTimeout(silenceTimeoutRef.current);
     };
     recognitionRef.current.onend = () => {
-      setIsListening(false); stopTimer(); stopAudioAnalysis();
+      setIsListening(false); stopAudioAnalysis();
       if (silenceTimeoutRef.current) clearTimeout(silenceTimeoutRef.current);
     };
   };
@@ -191,15 +185,6 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
     if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
     if (streamRef.current) streamRef.current.getTracks().forEach(t => t.stop());
     setAudioLevel(0);
-  };
-
-  const startTimer = () => {
-    setRecordingTime(0);
-    timerRef.current = setInterval(() => setRecordingTime(t => t + 1), 1000);
-  };
-
-  const stopTimer = () => {
-    if (timerRef.current) clearInterval(timerRef.current);
   };
 
   const toggleListening = async () => {
@@ -435,7 +420,6 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
     setQuestions(standardQuestionsRef.current);
   };
 
-  const formatTime = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
 
   // Screens before and after the questions keep a padded page with a close
   // button (in Practice); Interview Day brings its own page.
@@ -525,7 +509,7 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
       ? <>Continue <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" /></>
       : <><FileText className="w-5 h-5" aria-hidden="true" /> See the full report</>;
 
-  // The practice call (frame R30Call): the part and a timer, one dash per
+  // The practice call (frame R30Call): the part (no timer: no clocks anywhere), one dash per
   // question, the AI officer in a light room, the question with live
   // captions of what the learner says (kept in memory only), then "Repeat,
   // please", the big mic and End call. How it works and what it saves are
@@ -547,7 +531,6 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
           <p className="flex-1 min-w-0 text-base font-semibold text-muted">
             Practice interview · Part {partIndex + 1}: {partLabel}
           </p>
-          <span className="text-base font-semibold text-muted tabular-nums" aria-label={`Time: ${formatTime(elapsed)}`}>{formatTime(elapsed)}</span>
         </div>
         <div className="flex gap-1.5" role="img" aria-label={`Question ${currentIndex + 1} of ${questions.length}`}>
           {questions.map((q, i) => (
@@ -582,7 +565,7 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
           {askedAgain && !userResponse && !isListening && <p className="mt-2 text-base text-navy" role="status">Sure. Here’s the question again.</p>}
           {(isListening || userResponse) && (
             <p className="mt-2 text-base font-semibold text-denim break-words" aria-live="polite">
-              {isListening && !userResponse ? `Listening… ${formatTime(recordingTime)}` : `You: “${userResponse}”`}
+              {isListening && !userResponse ? 'Listening…' : `You: “${userResponse}”`}
             </p>
           )}
         </Card>
@@ -741,45 +724,50 @@ function FeedbackPanel({ feedback, understanding = false }) {
 }
 
 function InterviewIntro({ questions, onStart, varyOfficer, onToggleVary }) {
+  const [language] = useAppLanguage();
+  const tr = useTranslatedLines(INTERVIEW_INTRO_LINES, language, { cacheKey: 'interview_intro_v1' });
+  const t = (key, vars = {}) => {
+    let s = (language !== 'en' && tr(key)) || INTERVIEW_INTRO_LINES[key] || key;
+    for (const [k, v] of Object.entries(vars)) s = s.split(`{${k}}`).join(String(v));
+    return s;
+  };
+  const dir = RTL_LANGUAGES.includes(language) ? 'rtl' : 'ltr';
   const sections = [...new Set(questions.map(q => q.section))];
-  const sectionNames = { small_talk: 'Small Talk', personal_info: 'Personal Information', morals_ethics: 'Morals & Ethics', oath_requirements: 'Oath Requirements' };
 
   return (
-    <div className="w-full max-w-2xl mx-auto space-y-4 text-navy">
+    <div dir={dir} className="w-full max-w-2xl mx-auto space-y-4 text-navy">
       <RaisedCard>
         {/* The AI officer: a drawing, never a photo */}
         <div className="flex items-center gap-4">
           <div className="rounded-full bg-tint p-1"><Officer size={80} /></div>
           <div className="min-w-0">
-            <p className="font-bold text-lg">AI practice officer</p>
-            <p className="text-sm text-muted">AI, not a real person</p>
+            <p className="font-bold text-lg">{t('officer')}</p>
+            <p className="text-sm text-muted">{t('not_real')}</p>
           </div>
         </div>
 
-        <h2 className="text-[2rem] font-display font-normal leading-tight mt-5 mb-2">Mock Interview</h2>
-        <p className="text-base text-muted leading-relaxed">
-          The AI officer asks you real interview questions out loud and checks your answers. Amio waits at the door.
-        </p>
+        <h2 className="text-[2rem] font-display font-normal leading-tight mt-5 mb-2">{t('title')}</h2>
+        <p dir="auto" className="text-base text-muted leading-relaxed">{t('intro')}</p>
 
         <div className="grid grid-cols-2 gap-2 mt-5">
           {[
-            { Icon: Mic, text: `${questions.length} questions across ${sections.length} sections` },
-            { Icon: Volume2, text: 'Officer speaks questions aloud' },
-            { Icon: Bot, text: 'Real-time AI evaluation' },
-            { Icon: BarChart3, text: 'Content, grammar & fluency scores' },
-          ].map(({ Icon, text }) => (
-            <div key={text} className="flex flex-col gap-2 bg-tint p-3 rounded-2xl">
+            { Icon: Mic, key: 'n', text: t('n_questions', { n: questions.length, s: sections.length }) },
+            { Icon: Volume2, key: 'speaks', text: t('speaks') },
+            { Icon: Bot, key: 'ai', text: t('ai_checks') },
+            { Icon: BarChart3, key: 'scores', text: t('scores') },
+          ].map(({ Icon, key, text }) => (
+            <div key={key} className="flex flex-col gap-2 bg-tint p-3 rounded-2xl">
               <Icon className="w-5 h-5 text-navy shrink-0" aria-hidden="true" />
-              <p className="text-sm font-semibold leading-snug">{text}</p>
+              <p dir="auto" className="text-sm font-semibold leading-snug">{text}</p>
             </div>
           ))}
         </div>
 
         <div className="mt-5">
-          <Eyebrow className="mb-2">Sections Covered</Eyebrow>
+          <Eyebrow className="mb-2">{t('sections')}</Eyebrow>
           <div className="flex flex-wrap gap-2">
             {sections.map(s => (
-              <Tag key={s} tone="blue">{sectionNames[s] || s}</Tag>
+              <Tag key={s} tone="blue">{INTERVIEW_INTRO_LINES[s] ? t(s) : s}</Tag>
             ))}
           </div>
         </div>
@@ -787,30 +775,30 @@ function InterviewIntro({ questions, onStart, varyOfficer, onToggleVary }) {
 
       {questions.some(isUnderstandingSection) && (
         <RaisedCard className="space-y-2">
-          <Eyebrow>Questions about your application</Eyebrow>
-          <p className="text-base leading-relaxed">For personal information and "Have you ever…" questions, you don't answer. You say in your own words what the officer is asking, and we check that you understood. We never ask about your own history.</p>
-          <p className="text-base">How a question applies to you is for a lawyer. <Link to="/lawyer-first" className="font-semibold underline underline-offset-4">Talk to a lawyer first</Link></p>
+          <Eyebrow>{t('application_title')}</Eyebrow>
+          <p dir="auto" className="text-base leading-relaxed">{t('application_body')}</p>
+          <p dir="auto" className="text-base">{t('lawyer_lead')} <Link to="/lawyer-first" className="font-semibold underline underline-offset-4">{t('lawyer_link')}</Link></p>
         </RaisedCard>
       )}
 
       {/* Always shown before starting (was also a first-open promise). */}
-      <p className="text-base text-muted">Don&apos;t share your immigration status, A-number, case details, or address. Only your scores are saved.</p>
+      <p dir="auto" className="text-base text-muted">{t('privacy')}</p>
 
       <button
         type="button"
         role="switch"
         aria-checked={varyOfficer}
         onClick={onToggleVary}
-        className="flex items-center gap-3 bg-white rounded-2xl px-4 py-3 min-h-[56px] border border-line w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
+        className="flex items-center gap-3 bg-white rounded-2xl px-4 py-3 min-h-[56px] border border-line w-full text-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
       >
         <span className={`w-11 h-6 rounded-full relative transition-colors shrink-0 ${varyOfficer ? 'bg-navy' : 'bg-line'}`}>
           <span className={`absolute top-0.5 start-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform ${varyOfficer ? 'translate-x-5 rtl:-translate-x-5' : ''}`} />
         </span>
-        <span className="text-base font-semibold">Different officer voice each interview</span>
+        <span className="text-base font-semibold">{t('vary_voice')}</span>
       </button>
 
       <PrimaryButton large onClick={onStart} className="w-full">
-        Start Interview
+        {t('start')}
       </PrimaryButton>
     </div>
   );

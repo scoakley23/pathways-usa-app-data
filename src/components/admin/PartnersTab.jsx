@@ -66,7 +66,7 @@ export default function PartnersTab() {
   return (
     <div className="space-y-4 text-navy">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <p className="text-base text-muted max-w-2xl">Learners pick these programs in Getting started and on Me. Staff confirm their learners at /Partner.</p>
+        <p className="text-base text-muted max-w-2xl">Learners pick these programs in Getting started and in Settings (My tutor). Staff confirm their learners at /Partner.</p>
         {editing === null && <PrimaryButton onClick={() => startEdit(null)}><Plus className="w-4 h-4" aria-hidden="true" /> Add a program</PrimaryButton>}
       </div>
 

@@ -37,7 +37,7 @@ export default function WelcomeScreen() {
   };
 
   return (
-    <section dir={rtl ? 'rtl' : 'ltr'} aria-labelledby="welcome-title" className="min-h-[calc(100vh-64px)] bg-navy text-white px-5 pt-4 pb-8 flex flex-col">
+    <section dir={rtl ? 'rtl' : 'ltr'} aria-labelledby="welcome-title" className="min-h-[calc(100dvh-3.5rem)] lg:min-h-[calc(100dvh-72px)] bg-navy text-white px-5 pt-4 pb-8 flex flex-col">
       <div className="flex-1 max-w-md w-full mx-auto flex flex-col items-center text-center">
         <div className="relative w-full h-44" aria-hidden="true">
           {HELLOS.map((h) => (
