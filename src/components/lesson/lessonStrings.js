@@ -100,6 +100,7 @@ export const LESSON_LINES = {
   know_note: 'civics answers',
   days_week_1: '1 day this week',
   days_week_n: '{n} days this week',
+  goal_met: 'Today’s goal is done.',
   one_more_lesson: 'One more lesson',
   story_scene_of: 'Scene {n} of {total}',
   story_back: 'Back',

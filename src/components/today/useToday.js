@@ -7,6 +7,7 @@ import useAppLanguage, { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
 import { TODAY_LINES } from '@/components/today/todayLines';
 import { finishedToday, starsToday, todayLesson } from '@/lib/dailyPlan';
 import { streak } from '@/lib/streak';
+import { activeWeek } from '@/lib/todayView';
 
 // Today's numbers (Prompt 7), shared by Today and Done for today: the
 // journey (src/components/course/courseShared.jsx), lessons per day, lessons
@@ -51,6 +52,7 @@ export default function useToday({ withStreak = false } = {}) {
       lesson: todayLesson(journey.course, journey.stops),
       due: extra.due,
       streak: streak(extra.days, now),
+      week: withStreak ? activeWeek(extra.days, now) : null,
       extraLoaded: extra.loaded,
     };
   }, [journey, extra]);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { COLORS } from '@/lib/theme';
 
-// Simple navy line drawings with one red accent, one per topic. Calm and
+// Simple navy line drawings, one per topic. Calm and
 // adult: no characters or mascots. Used on lesson and page headers.
 const ART = {
   // System of Government
@@ -107,19 +107,14 @@ export const TOPIC_ART = {
   'Geography and Symbols': 'map',
 };
 
-// The red accent (off by default: a screen keeps only the logo's and Amio's
-// dots) sits top-right, except where it would cover the drawing.
-const ACCENT_LEFT = new Set(['scroll', 'pencil']);
-
-export default function TopicArt({ name, className = 'w-full h-24', accent = false }) {
+// No red accent: red means Amio or a celebration (an old `accent` prop is ignored).
+export default function TopicArt({ name, className = 'w-full h-24' }) {
   const art = ART[name] || ART.capitol;
-  const cx = ACCENT_LEFT.has(name) ? 28 : 172;
   return (
     <svg viewBox="0 0 200 90" className={className} aria-hidden="true">
       <g fill="none" stroke={COLORS.navy} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
         {art}
       </g>
-      {accent && <circle cx={cx} cy="20" r="9" fill={COLORS.red} opacity="0.85" />}
     </svg>
   );
 }

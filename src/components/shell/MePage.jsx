@@ -31,6 +31,21 @@ function LinkRow({ to, children }) {
   );
 }
 
+function MilestoneFlag({ pct }) {
+  return (
+    <svg
+      viewBox="0 0 12 16"
+      className="absolute bottom-1/2 mb-1.5 w-3 h-4 -translate-x-[1px] rtl:translate-x-[1px] rtl:-scale-x-100 text-amio-red"
+      style={{ insetInlineStart: `${pct}%` }}
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path d="M1 16V1" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+      <path d="M1.75 1.5h8.5l-2.2 2.8 2.2 2.8h-8.5z" fill="currentColor" />
+    </svg>
+  );
+}
+
 function Path({ view, t }) {
   return (
     <div className="pt-12">
@@ -38,11 +53,15 @@ function Path({ view, t }) {
         <span className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-2 rounded-full bg-navy-line" />
         <span className="absolute start-0 top-1/2 -translate-y-1/2 h-2 rounded-full bg-gold" style={{ width: `${view.pct}%` }} />
         {view.marks.map((m) => (
-          <span
-            key={m.at}
-            className={`absolute top-1/2 -translate-y-1/2 -translate-x-1/2 rtl:translate-x-1/2 w-4 h-4 rounded-full border-2 ${m.reached ? 'bg-gold border-gold' : m.at === view.next ? 'bg-navy border-sky' : 'bg-navy border-navy-line'}`}
-            style={{ insetInlineStart: `${m.pct}%` }}
-          />
+          <React.Fragment key={m.at}>
+            {/* A reached milestone is a celebration: an Amio-red dot with a
+                white ring and a small red flag above it. */}
+            {m.reached && <MilestoneFlag pct={m.pct} />}
+            <span
+              className={`absolute top-1/2 -translate-y-1/2 -translate-x-1/2 rtl:translate-x-1/2 w-4 h-4 rounded-full border-2 ${m.reached ? 'bg-amio-red border-white' : m.at === view.next ? 'bg-navy border-sky' : 'bg-navy border-navy-line'}`}
+              style={{ insetInlineStart: `${m.pct}%` }}
+            />
+          </React.Fragment>
         ))}
         <span className="absolute bottom-full mb-1 -translate-x-1/2 rtl:translate-x-1/2" style={{ insetInlineStart: `${view.pct}%` }}>
           <Amio mood="hello" size={36} onNavy />

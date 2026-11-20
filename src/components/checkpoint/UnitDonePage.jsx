@@ -7,6 +7,7 @@ import { useJourney } from '@/components/course/courseShared';
 import { unitComplete, unitStats } from '@/lib/checkpoints';
 import { useCheckpointText } from '@/components/checkpoint/checkpointParts';
 import { MAIN_PRESS } from '@/components/pathways/ui';
+import RedStop from '@/components/pathways/RedStop';
 
 // Unit complete (Prompt 8, /course/unit/:unitId/done, frame R33UnitDone):
 // confetti (reduced motion respected), Amio cheering, the unit's numbers
@@ -46,7 +47,7 @@ export default function UnitDonePage() {
       <div className="flex-1 max-w-lg w-full mx-auto px-4 pt-10 pb-6 flex flex-col items-center gap-5 text-center">
         <p className="text-small font-bold text-gold">{t('unit_complete', { n: unit.number })}</p>
         <Amio mood="cheer" size={110} onNavy />
-        <h1 className="text-celebrate font-extrabold leading-tight" dir="auto">{t('unit_done_title', { unit: unit.title })}</h1>
+        <h1 className="text-celebrate font-extrabold leading-tight" dir="auto"><RedStop>{t('unit_done_title', { unit: unit.title })}</RedStop></h1>
         <div className="w-full flex gap-2">
           <Stat value={stats.lessons} label={t('stat_lessons')} />
           <Stat value={stats.questions} label={t('stat_questions')} />
