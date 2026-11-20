@@ -25,6 +25,7 @@ import StudyRedirect from './components/study/StudyRedirect';
 import MePage from './components/shell/MePage';
 import SettingsPage from './components/shell/SettingsPage';
 import InterviewPage from './components/shell/InterviewPage';
+import WhenInterviewPage from './components/interview/WhenInterviewPage';
 import AskAmio from './components/ai/StudyBuddy';
 import CoursePage from './components/course/CoursePage';
 import UnitGuidePage from './components/course/UnitGuidePage';
@@ -94,6 +95,12 @@ const AuthenticatedApp = () => {
       <Route path="interview" element={
         <LayoutWrapper currentPageName="Interview">
           <InterviewPage />
+        </LayoutWrapper>
+      } />
+      {/* "When's my interview?" (Amio v2): device-only estimate. */}
+      <Route path="interview/when" element={
+        <LayoutWrapper currentPageName="InterviewWhen">
+          <WhenInterviewPage />
         </LayoutWrapper>
       } />
       <Route path="me" element={

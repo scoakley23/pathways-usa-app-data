@@ -16,6 +16,8 @@
 | Plan settings | `localStorage` `pathways_plan` | mode (date / unknown / study) + start date | this device only |
 | Today checkmarks, visit dates, dismissed check-ins | `localStorage` `pathways_done_*`, `pathways_last_visit`, `pathways_missed_today`, `pathways_checkins_dismissed` | task ids, dates | this device only |
 | Getting started answers | `localStorage` `pathways_stage`, `civicsVersion`, `pathways_onboarded` | broad stage (preparing / applied / interview / learning), civics test version (2008 / 2025), done flag; never a date or case detail | this device only |
+| "When's my interview?" answers | `localStorage` `pathways_field_office`, `pathways_filed_month` | a field office id from the bundled list; a filing month (`YYYY-MM`) or "not filed". Never sent to the account, the AI, a URL or USCIS | this device only; cleared by Delete my data |
+| Course tab's last part | `localStorage` `pathways_course_tab` | reading / writing / civics / speaking | this device only |
 | Read out loud setting | `localStorage` `pathways_auto_read` | on / off | this device only |
 | Text size, cached translations of fixed text | `localStorage` `pathways_text_size`, `pathways_*_tr_*`, `pathways_tutor_lines_*`, `pathways_today_*`, `pathways_ask_tutor_*` | settings; translated app text (no learner text) | this device only |
 | Ask Amio questions and answers | `AIStudyLog` (Base44, existing entity) | learner's question, the answer, language, email. **Declined case/eligibility questions are not saved** | learner (Study History); Pathways staff. Not tutors |

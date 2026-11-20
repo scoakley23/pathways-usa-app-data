@@ -984,6 +984,12 @@
    ]
   },
   {
+   "text": "AI practice officer, not a real person · Not legal advice",
+   "from": [
+    "interview-tab"
+   ]
+  },
+  {
    "text": "Abolished slavery throughout the United States in 1865",
    "from": [
     "lessons"
@@ -1084,6 +1090,12 @@
    "text": "Add",
    "from": [
     "my-tutor"
+   ]
+  },
+  {
+   "text": "Added to your plan.",
+   "from": [
+    "interview-when"
    ]
   },
   {
@@ -1246,6 +1258,18 @@
    "text": "Almost. Let’s look at it together.",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Almost. Next: {part}.",
+   "from": [
+    "interview-tab"
+   ]
+  },
+  {
+   "text": "Already filed",
+   "from": [
+    "interview-when"
    ]
   },
   {
@@ -1677,6 +1701,12 @@
    ]
   },
   {
+   "text": "Ask a lawyer",
+   "from": [
+    "interview-tab"
+   ]
+  },
+  {
    "text": "Ask another question",
    "from": [
     "ask-screen"
@@ -1770,6 +1800,7 @@
    "text": "Back",
    "from": [
     "course",
+    "interview-when",
     "lesson-player",
     "sign-in",
     "today-plan"
@@ -1856,6 +1887,12 @@
    "text": "Before the Civil Rights Act, many Southern states had segregated schools and lunch counters",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "Before you file",
+   "from": [
+    "interview-tab"
    ]
   },
   {
@@ -2123,6 +2160,12 @@
    ]
   },
   {
+   "text": "Case likely done {from} – {to}",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "Causing serious pain to a person on purpose, often to punish them or force them to talk.",
    "from": [
     "n400"
@@ -2159,6 +2202,12 @@
     "checkpoints",
     "lesson-player",
     "n400-lessons"
+   ]
+  },
+  {
+   "text": "Check USCIS processing times",
+   "from": [
+    "interview-when"
    ]
   },
   {
@@ -2520,7 +2569,8 @@
   {
    "text": "Coming soon",
    "from": [
-    "course"
+    "course",
+    "interview-when"
    ]
   },
   {
@@ -3546,6 +3596,12 @@
    ]
   },
   {
+   "text": "Estimate only. Not legal advice.",
+   "from": [
+    "interview-when"
+   ]
+  },
+  {
    "text": "European Colonization",
    "from": [
     "lessons"
@@ -3609,6 +3665,12 @@
    "text": "Every congressional district has one representative.",
    "from": [
     "course-lessons"
+   ]
+  },
+  {
+   "text": "Every part is ready. Keep practicing!",
+   "from": [
+    "interview-tab"
    ]
   },
   {
@@ -3823,6 +3885,12 @@
    ]
   },
   {
+   "text": "Field office",
+   "from": [
+    "interview-when"
+   ]
+  },
+  {
    "text": "Fifth Amendment",
    "from": [
     "lessons"
@@ -3847,9 +3915,21 @@
    ]
   },
   {
+   "text": "File",
+   "from": [
+    "interview-tab"
+   ]
+  },
+  {
    "text": "Filed",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "Filed in",
+   "from": [
+    "interview-when"
    ]
   },
   {
@@ -3868,6 +3948,12 @@
    "text": "Find my program",
    "from": [
     "my-tutor"
+   ]
+  },
+  {
+   "text": "Find out",
+   "from": [
+    "interview-tab"
    ]
   },
   {
@@ -4396,7 +4482,6 @@
   {
    "text": "Getting there",
    "from": [
-    "interview-tab",
     "today-plan"
    ]
   },
@@ -5882,7 +5967,6 @@
   {
    "text": "Interview month: {month}",
    "from": [
-    "interview-tab",
     "me"
    ]
   },
@@ -6262,12 +6346,6 @@
    ]
   },
   {
-   "text": "Last {n}:",
-   "from": [
-    "interview-tab"
-   ]
-  },
-  {
    "text": "Latin for 'Out of many, one' — the original U.S. motto representing unity from diversity",
    "from": [
     "key-words"
@@ -6487,6 +6565,12 @@
    "text": "Lessons today",
    "from": [
     "today-plan"
+   ]
+  },
+  {
+   "text": "Let’s get you ready, one part at a time.",
+   "from": [
+    "interview-tab"
    ]
   },
   {
@@ -6795,8 +6879,15 @@
    ]
   },
   {
+   "text": "Make a plan to see when you’ll be ready.",
+   "from": [
+    "interview-when"
+   ]
+  },
+  {
    "text": "Make my plan",
    "from": [
+    "interview-when",
     "onboarding"
    ]
   },
@@ -7084,6 +7175,12 @@
    ]
   },
   {
+   "text": "Most N-400s at this office are finished between {from} and {to}. Your interview usually comes before that.",
+   "from": [
+    "interview-when"
+   ]
+  },
+  {
    "text": "Most men living in the U.S. between ages 18 and 26 had to register. A lawyer can help if you did not.",
    "from": [
     "lawyer-checklist"
@@ -7124,6 +7221,12 @@
    "text": "My tutor",
    "from": [
     "my-tutor"
+   ]
+  },
+  {
+   "text": "N-400",
+   "from": [
+    "interview-tab"
    ]
   },
   {
@@ -7636,7 +7739,6 @@
   {
    "text": "No practice yet",
    "from": [
-    "interview-tab",
     "today-plan"
    ]
   },
@@ -7679,7 +7781,6 @@
   {
    "text": "Not checked yet",
    "from": [
-    "interview-tab",
     "today",
     "today-plan"
    ]
@@ -7687,6 +7788,7 @@
   {
    "text": "Not filed yet",
    "from": [
+    "interview-when",
     "pilot"
    ]
   },
@@ -7737,6 +7839,7 @@
    "text": "Not yet",
    "from": [
     "checkpoints",
+    "interview-tab",
     "pilot"
    ]
   },
@@ -7952,6 +8055,12 @@
    ]
   },
   {
+   "text": "On uscis.gov",
+   "from": [
+    "interview-tab"
+   ]
+  },
+  {
    "text": "One",
    "from": [
     "course-lessons",
@@ -8070,6 +8179,12 @@
    "text": "Open this card in the N-400 guide.",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "Opens uscis.gov",
+   "from": [
+    "interview-tab"
    ]
   },
   {
@@ -8262,6 +8377,24 @@
    "text": "Pick a month",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "Pick the month",
+   "from": [
+    "interview-when"
+   ]
+  },
+  {
+   "text": "Pick your field office",
+   "from": [
+    "interview-when"
+   ]
+  },
+  {
+   "text": "Pick your filing month and field office to see an estimate.",
+   "from": [
+    "interview-when"
    ]
   },
   {
@@ -8816,12 +8949,6 @@
    ]
   },
   {
-   "text": "Ready in {n} of 4 parts",
-   "from": [
-    "interview-tab"
-   ]
-  },
-  {
    "text": "Ready on {n} of {t} civics questions",
    "from": [
     "today"
@@ -9165,6 +9292,12 @@
    ]
   },
   {
+   "text": "Sample offices: shown to admins only.",
+   "from": [
+    "interview-when"
+   ]
+  },
+  {
    "text": "Save",
    "from": [
     "my-tutor",
@@ -9182,6 +9315,18 @@
    "text": "Save state",
    "from": [
     "pilot"
+   ]
+  },
+  {
+   "text": "Saved only on this phone",
+   "from": [
+    "interview-when"
+   ]
+  },
+  {
+   "text": "Saved only on this phone · Checked by hand on {date}",
+   "from": [
+    "interview-when"
    ]
   },
   {
@@ -10270,7 +10415,6 @@
    "text": "Start here",
    "from": [
     "home",
-    "interview-tab",
     "today",
     "today-plan"
    ]
@@ -10299,12 +10443,6 @@
    "text": "Start my plan",
    "from": [
     "today-plan"
-   ]
-  },
-  {
-   "text": "Start practice interview",
-   "from": [
-    "interview-tab"
    ]
   },
   {
@@ -10439,7 +10577,6 @@
   {
    "text": "Strong",
    "from": [
-    "interview-tab",
     "today-plan"
    ]
   },
@@ -13498,6 +13635,12 @@
    ]
   },
   {
+   "text": "USCIS says {min} to {max} months at this office, counted from the day they received your form.",
+   "from": [
+    "interview-when"
+   ]
+  },
+  {
    "text": "Unable to take the Oath because of a disability",
    "from": [
     "n400-lessons"
@@ -13671,6 +13814,12 @@
    "text": "Use a different email",
    "from": [
     "sign-in"
+   ]
+  },
+  {
+   "text": "Use this in my plan",
+   "from": [
+    "interview-when"
    ]
   },
   {
@@ -14189,6 +14338,12 @@
    ]
   },
   {
+   "text": "We’re still checking the times for each field office. For now, look up your office on the USCIS website.",
+   "from": [
+    "interview-when"
+   ]
+  },
+  {
    "text": "What Congress does",
    "from": [
     "course-titles"
@@ -14397,6 +14552,12 @@
    "text": "What does the judicial branch do?",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "What each question means",
+   "from": [
+    "interview-tab"
    ]
   },
   {
@@ -14898,6 +15059,12 @@
    "text": "When you're ready, you'll apply and check your case on the official USCIS website. Pathways is not part of USCIS or the U.S. government.",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "When?",
+   "from": [
+    "interview-tab"
    ]
   },
   {
@@ -15843,6 +16010,12 @@
    ]
   },
   {
+   "text": "Your filing month and field office, if you used “When’s my interview?”. On this device only: never saved to your account or sent anywhere.",
+   "from": [
+    "settings"
+   ]
+  },
+  {
    "text": "Your first step",
    "from": [
     "home",
@@ -15859,6 +16032,12 @@
    "text": "Your free tutor for the U.S. citizenship test.",
    "from": [
     "onboarding"
+   ]
+  },
+  {
+   "text": "Your interview",
+   "from": [
+    "interview-when"
    ]
   },
   {
@@ -15951,6 +16130,12 @@
    "from": [
     "settings",
     "today-plan"
+   ]
+  },
+  {
+   "text": "Your plan: ready by {month}.",
+   "from": [
+    "interview-when"
    ]
   },
   {
@@ -16084,6 +16269,12 @@
    "text": "You’ll be asked",
    "from": [
     "checkpoints"
+   ]
+  },
+  {
+   "text": "You’ll be ready by {month}.",
+   "from": [
+    "interview-when"
    ]
   },
   {
@@ -17209,6 +17400,12 @@
    ]
   },
   {
+   "text": "parts of the interview ready",
+   "from": [
+    "interview-tab"
+   ]
+  },
+  {
    "text": "passed the English and civics tests?",
    "from": [
     "pilot"
@@ -18133,12 +18330,6 @@
    "text": "{n} questions to keep fresh",
    "from": [
     "today-plan"
-   ]
-  },
-  {
-   "text": "{n} questions · AI officer, not a real person. Amio waits at the door.",
-   "from": [
-    "interview-tab"
    ]
   },
   {
