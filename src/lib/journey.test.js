@@ -162,3 +162,15 @@ describe('the road', () => {
     expect(usesYourState(['How many U.S. senators are there?'])).toBe(false);
   });
 });
+
+describe('lessonGroups (Course topic bar)', () => {
+  it('gives one segment per section, at most 8', async () => {
+    const { lessonGroups } = await import('./journey');
+    const unit = (n) => ({ sections: Array.from({ length: n }, (_, i) => ({ id: `s${i}`, lessons: [{ id: `l${i}a` }, { id: `l${i}b` }] })) });
+    expect(lessonGroups(unit(3))).toEqual([['l0a', 'l0b'], ['l1a', 'l1b'], ['l2a', 'l2b']]);
+    const many = lessonGroups(unit(11));
+    expect(many).toHaveLength(8);
+    expect(many.flat()).toHaveLength(22);
+    expect(lessonGroups({ sections: [{ id: 'x', lessons: [] }] })).toEqual([]);
+  });
+});

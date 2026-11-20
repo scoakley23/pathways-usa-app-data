@@ -97,7 +97,7 @@ export default function SayItBack({ targets }) {
             type="button"
             onClick={() => selectTarget(t.key)}
             aria-pressed={selectedKey === t.key}
-            className={`min-h-[44px] px-4 py-2 rounded-full text-base font-semibold border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2 ${
+            className={`min-h-[44px] px-4 py-2 rounded-button text-base font-semibold border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2 ${
               selectedKey === t.key
                 ? 'bg-navy text-white border-navy'
                 : 'bg-white text-navy border-line hover:bg-white/70'
@@ -110,7 +110,7 @@ export default function SayItBack({ targets }) {
       <button
         type="button"
         onClick={toggle}
-        className={`min-h-[52px] rounded-full bg-denim text-white hover:bg-denim-deep font-bold text-base ps-2 pe-6 inline-flex items-center gap-3 transition-shadow hover:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2 ${
+        className={`min-h-[52px] rounded-button bg-denim text-white hover:bg-denim-deep font-bold text-base ps-2 pe-6 inline-flex items-center gap-3 transition-shadow hover:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2 ${
           isListening ? 'ring-8 ring-navy/25' : 'ring-4 ring-navy/15'
         }`}
       >
@@ -131,7 +131,7 @@ export default function SayItBack({ targets }) {
         <form onSubmit={checkTyped} className="flex flex-col gap-2">
           <label htmlFor="say-it-back-typed" className="text-base font-semibold text-navy">Type it in English</label>
           <input id="say-it-back-typed" lang="en" dir="ltr" autoComplete="off" value={typed} onChange={(e) => setTyped(e.target.value)} className="min-h-[52px] rounded-2xl border border-line bg-white px-4 text-base text-navy focus:outline-none focus:ring-2 focus:ring-denim" />
-          <button type="submit" disabled={!typed.trim()} className="self-start min-h-tap rounded-full bg-denim px-5 text-base font-bold text-white disabled:opacity-40">Check</button>
+          <button type="submit" disabled={!typed.trim()} className="self-start min-h-tap rounded-button bg-denim px-5 text-base font-bold text-white disabled:opacity-40">Check</button>
         </form>
       )}
       {transcript && !isListening && (
@@ -142,7 +142,7 @@ export default function SayItBack({ targets }) {
       {result && (
         <div className="space-y-2 rounded-2xl bg-white border border-line p-4">
           <p
-            className={`inline-flex items-center rounded-full px-3 py-1.5 text-lg font-extrabold ${
+            className={`inline-flex items-center rounded-button px-3 py-1.5 text-lg font-extrabold ${
               result.accuracy >= 80 ? 'bg-correct-bg text-correct' : 'bg-not-yet-bg text-not-yet'
             }`}
           >

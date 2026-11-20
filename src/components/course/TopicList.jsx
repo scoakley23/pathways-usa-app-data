@@ -2,7 +2,7 @@ import React from 'react';
 import { Check, ChevronDown, ChevronRight } from 'lucide-react';
 import { Amio } from '@/components/pathways/Amio';
 import { MAIN_PRESS } from '@/components/pathways/ui';
-import { lessonCounts, unitQuestionsDone, unitState } from '@/lib/journey';
+import { lessonCounts, lessonGroups, unitQuestionsDone, unitState } from '@/lib/journey';
 import { STOP_LOOK, StopIcon, stopLabel } from '@/components/course/courseShared';
 
 // The Course tab's pieces (Amio v2, frame Course). Nothing is locked: every
@@ -40,19 +40,21 @@ export function StopRow({ stop, unitIcon, t, onOpen, section = null }) {
   );
 }
 
-/** The unit's lesson bar: one segment per lesson. */
-function LessonBar({ lessons, progress, currentLessonId, tone }) {
+/** The unit's lesson bar: one segment per lesson group (a section), at most 8,
+ *  each filled by the share of its lessons finished. */
+function LessonBar({ unit, progress, currentLessonId, tone }) {
+  const track = tone === 'navy' ? 'bg-navy-line' : tone === 'sky' ? 'bg-white/60' : 'bg-line-soft';
+  const fill = tone === 'sky' ? 'bg-navy' : 'bg-gold';
   return (
     <span className="flex gap-1" aria-hidden="true">
-      {lessons.map((l) => {
-        const done = progress[l.id]?.completed || progress[l.id]?.completed_at;
-        const current = l.id === currentLessonId;
-        const look = tone === 'navy'
-          ? (done ? 'bg-gold' : 'bg-navy-line')
-          : tone === 'sky'
-            ? (done ? 'bg-navy' : current ? 'bg-white border-2 border-navy' : 'bg-white/60')
-            : (done ? 'bg-gold' : 'bg-line-soft');
-        return <span key={l.id} className={`flex-1 h-2.5 rounded-sm ${look}`} />;
+      {lessonGroups(unit).map((ids) => {
+        const done = ids.filter((id) => progress[id]?.completed || progress[id]?.completed_at).length;
+        const current = ids.includes(currentLessonId);
+        return (
+          <span key={ids[0]} className={`relative flex-1 h-2.5 rounded-sm overflow-hidden ${track} ${current && tone === 'sky' ? 'ring-2 ring-navy' : ''}`}>
+            <span className={`absolute inset-y-0 start-0 ${fill}`} style={{ width: `${Math.round((done / ids.length) * 100)}%` }} />
+          </span>
+        );
       })}
     </span>
   );
@@ -93,7 +95,7 @@ function TopicCard({ unit, journey, masteredIds, t, expanded, onToggle, onOpen }
             ? <Amio mood="hello" size={44} />
             : <span className={`shrink-0 text-base ${subText}`}>{t('lessons_n', { n: counts.total })}</span>}
       </div>
-      {lessons.length > 0 && <LessonBar lessons={lessons} progress={journey.progress} currentLessonId={current?.lessonId} tone={tone} />}
+      {lessons.length > 0 && <LessonBar unit={unit} progress={journey.progress} currentLessonId={current?.lessonId} tone={tone} />}
       {current && (
         <button
           type="button"

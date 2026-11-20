@@ -82,7 +82,7 @@ export default function TutorLesson({ lesson, profile, language = 'en', language
             <X className="w-5 h-5" />
           </button>
         ) : <span className="w-11" />}
-        <span className="text-sm font-bold uppercase tracking-wide text-muted">{progressLabel(index, steps.length)}</span>
+        <span className="text-sm font-bold text-muted">{progressLabel(index, steps.length)}</span>
         <span className="w-11" />
       </div>
       <SegmentedProgress current={index} total={steps.length} label={progressLabel(index, steps.length)} />

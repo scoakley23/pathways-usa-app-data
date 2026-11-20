@@ -50,7 +50,7 @@ export default function AnswerFeedback({
 
       {youSaid && (
         <div>
-          <p className="text-label uppercase text-muted">{youSaidLabel}</p>
+          <p className="text-label text-muted">{youSaidLabel}</p>
           <p
             className={`mt-1 text-lg leading-snug ${notCorrect ? 'line-through decoration-not-yet decoration-2' : ''}`}
           >
@@ -64,12 +64,12 @@ export default function AnswerFeedback({
       {accepted.length > 0 && (
         <div className="rounded-card bg-tint p-4">
           <div className="flex items-center justify-between gap-2">
-            <p className="text-label uppercase text-muted">{acceptedLabel}</p>
+            <p className="text-label text-muted">{acceptedLabel}</p>
             {onHearAnswer && (
               <button
                 type="button"
                 onClick={onHearAnswer}
-                className="min-h-tap -my-2 -me-2 rounded-full px-3 inline-flex items-center gap-1.5 text-sm font-semibold text-navy hover:bg-line focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
+                className="min-h-tap -my-2 -me-2 rounded-button px-3 inline-flex items-center gap-1.5 text-sm font-semibold text-navy hover:bg-line focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
               >
                 <Volume2 className="w-4 h-4" aria-hidden="true" /> Hear it
               </button>

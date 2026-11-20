@@ -588,7 +588,7 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
                   type="button"
                   onClick={speakQuestion}
                   disabled={interviewerState === 'speaking'}
-                  className="min-h-tap rounded-full border border-line bg-white px-4 text-base font-semibold text-navy hover:border-denim disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim"
+                  className="min-h-tap rounded-button border border-line bg-white px-4 text-base font-semibold text-navy hover:border-denim disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim"
                 >
                   “Repeat, please”
                 </button>
@@ -688,7 +688,7 @@ function FeedbackPanel({ feedback, understanding = false }) {
 
       {feedback.corrected_version && (
         <RuledPaper>
-          <p className="text-[0.8125rem] font-semibold uppercase tracking-[0.14em] leading-[2.25rem] text-muted">{feedback.civics ? 'The officer accepts' : understanding ? 'What the question is asking' : 'A better way to say it'}</p>
+          <p className="text-[0.8125rem] font-semibold leading-[2.25rem] text-muted">{feedback.civics ? 'The officer accepts' : understanding ? 'What the question is asking' : 'A better way to say it'}</p>
           <p className="font-medium text-[1.375rem] leading-[2.25rem]">“{feedback.corrected_version}”</p>
         </RuledPaper>
       )}

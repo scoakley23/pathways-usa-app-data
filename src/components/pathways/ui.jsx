@@ -78,7 +78,7 @@ export function SkillTag({ skill, className = '' }) {
 
 export function Tag({ tone = 'navy', children, className = '' }) {
   return (
-    <span className={`inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-semibold ${TAG_TONES[tone] || NEUTRAL_TAG} ${className}`}>
+    <span className={`inline-flex items-center gap-2 rounded-button px-3 py-1.5 text-sm font-semibold ${TAG_TONES[tone] || NEUTRAL_TAG} ${className}`}>
       <span className={`w-2 h-2 rounded-full ${DOT[tone] || DOT.navy}`} aria-hidden="true" />
       {children}
     </span>
@@ -105,8 +105,8 @@ export function SegmentedProgress({ current, total, label }) {
   );
 }
 
-// Buttons (docs/redesign/amio-style-guide.md): 16px corners, Lexend 700, at
-// least 44px tall. `main` is the ONE main action on a screen: denim, 56px,
+// Buttons (docs/design-v2/tokens.css): 12px corners, Lexend 700, at
+// least 44px tall. `main` is the ONE main action on a screen: navy (gold on navy), 56px,
 // a 2.5px navy-deep outline and a 5px navy-deep "lip" under it
 // (docs/design-v2/tokens.css); pressed, it sinks into the lip. `second` is white with
 // a line border. `link` (also `text-link`) is a text link. `next` stays navy
@@ -120,9 +120,12 @@ const BTN_BASE = `min-h-tap ${BTN_LOOK}`;
 const BTN = `${BTN_BASE} rounded-button`;
 const MAIN_BTN = `${BTN_LOOK} rounded-button`;
 export const MAIN_PRESS = 'border-[2.5px] border-navy-deep shadow-lip active:translate-y-[5px] active:shadow-none motion-reduce:active:translate-y-0 motion-reduce:active:shadow-lip disabled:active:translate-y-0 disabled:active:shadow-lip';
-const MAIN = `min-h-main mb-[5px] bg-denim text-white hover:bg-denim-deep ${MAIN_PRESS} px-6 text-lg`;
+// Amio v2 (docs/design-v2/tokens.css): the main button is navy with white
+// text; on a navy screen it is gold with navy text.
+const MAIN = `min-h-main mb-[5px] bg-navy text-white hover:bg-navy-2 ${MAIN_PRESS} px-6 text-lg`;
+const MAIN_GOLD = `min-h-main mb-[5px] bg-gold text-navy hover:brightness-95 ${MAIN_PRESS} px-6 text-lg`;
 // The main-button look for a link (a <Link> that is the screen's main action).
-export const MAIN_LINK = `min-h-main mb-[5px] inline-flex items-center justify-center rounded-button bg-denim text-white hover:bg-denim-deep font-bold ${MAIN_PRESS} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-navy`;
+export const MAIN_LINK = `min-h-main mb-[5px] inline-flex items-center justify-center rounded-button bg-navy text-white hover:bg-navy-2 font-bold ${MAIN_PRESS} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-navy`;
 const LINK_LOOK = 'underline underline-offset-4 px-2 text-base';
 const BUTTON_VARIANTS = {
   main: `${MAIN} focus-visible:ring-navy`,
@@ -131,7 +134,7 @@ const BUTTON_VARIANTS = {
   link: `text-denim decoration-denim/40 hover:decoration-denim ${LINK_LOOK} focus-visible:ring-navy`,
 };
 const BUTTON_ON_NAVY = {
-  main: `${MAIN} focus-visible:ring-white focus-visible:ring-offset-navy`,
+  main: `${MAIN_GOLD} focus-visible:ring-white focus-visible:ring-offset-navy`,
   next: 'bg-white text-navy hover:bg-paper px-5 text-base focus-visible:ring-white focus-visible:ring-offset-navy',
   second: 'bg-transparent text-white border border-chip-navy hover:bg-chip-navy px-5 text-base focus-visible:ring-white focus-visible:ring-offset-navy',
   link: `text-white decoration-white/50 hover:decoration-white ${LINK_LOOK} focus-visible:ring-white focus-visible:ring-offset-navy`,
@@ -165,13 +168,13 @@ export function QuietButton({ className = '', ...props }) {
 export function Chip({ onNavy = false, className = '', children, ...props }) {
   const look = onNavy ? 'bg-chip-navy text-white hover:bg-navy-deep' : 'bg-white text-navy border border-line hover:bg-tint';
   if (!props.onClick) {
-    return <span className={`inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-semibold ${look} ${className}`} {...props}>{children}</span>;
+    return <span className={`inline-flex items-center gap-2 rounded-button px-3 py-1.5 text-sm font-semibold ${look} ${className}`} {...props}>{children}</span>;
   }
-  return <button type="button" className={`min-h-tap rounded-full font-semibold inline-flex items-center justify-center gap-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 px-4 text-base ${look} ${onNavy ? 'focus-visible:ring-white focus-visible:ring-offset-navy' : 'focus-visible:ring-navy'} ${className}`} {...props}>{children}</button>;
+  return <button type="button" className={`min-h-tap rounded-button font-semibold inline-flex items-center justify-center gap-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 px-4 text-base ${look} ${onNavy ? 'focus-visible:ring-white focus-visible:ring-offset-navy' : 'focus-visible:ring-navy'} ${className}`} {...props}>{children}</button>;
 }
 
 export function PillButton({ className = '', ...props }) {
-  return <button type="button" className={`${BTN_BASE} rounded-full bg-tint text-navy hover:bg-line px-4 text-base focus-visible:ring-navy ${className}`} {...props} />;
+  return <button type="button" className={`${BTN_BASE} rounded-button bg-tint text-navy hover:bg-line px-4 text-base focus-visible:ring-navy ${className}`} {...props} />;
 }
 
 // White card: 20px corners, a thin line border, no shadow.
@@ -181,7 +184,7 @@ export function Card({ className = '', padding = 'p-5', children, ...props }) {
 export const RaisedCard = Card;
 
 export function Eyebrow({ className = '', children }) {
-  return <p className={`text-label uppercase text-muted ${className}`}>{children}</p>;
+  return <p className={`text-label text-muted ${className}`}>{children}</p>;
 }
 
 // --- The split screen ----------------------------------------------------
@@ -196,7 +199,7 @@ export function NavyTop({ as: Tag = 'section', className = '', children, ...prop
 // corners show; `flush` turns that off.
 export function CreamSheet({ as: Tag = 'section', flush = false, className = '', children, ...props }) {
   return (
-    <Tag className={`relative bg-paper text-navy rounded-t-sheet px-4 pt-6 pb-8 sm:px-8 ${flush ? '' : '-mt-7'} ${className}`} {...props}>
+    <Tag className={`relative bg-paper text-navy rounded-t-card px-4 pt-6 pb-8 sm:px-8 ${flush ? '' : '-mt-7'} ${className}`} {...props}>
       {children}
     </Tag>
   );
@@ -249,12 +252,12 @@ export function IndexCard({ tab, tabSkill = 'n400', rule = false, padding = 'p-5
 const POSTER_BG = { red: 'bg-navy', blue: 'bg-navy' };
 
 // Buttons on a navy poster: solid white, or an outline.
-const POSTER_BTN = 'min-h-[48px] rounded-full px-5 inline-flex items-center justify-center gap-2 text-base font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent disabled:opacity-50 disabled:cursor-not-allowed';
+const POSTER_BTN = 'min-h-[48px] rounded-button px-5 inline-flex items-center justify-center gap-2 text-base font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent disabled:opacity-50 disabled:cursor-not-allowed';
 export const posterSolid = `${POSTER_BTN} bg-white text-navy hover:bg-paper`;
 export const posterOutline = `${POSTER_BTN} border-2 border-chip-navy text-white hover:bg-chip-navy`;
 // Small tools on a poster (Listen, Translate) and quiet text links
 // ("Type it instead"), shared by every practice card.
-export const posterTool = 'min-h-11 rounded-full bg-chip-navy px-4 inline-flex items-center gap-2 text-base font-semibold text-white hover:bg-chip-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white';
+export const posterTool = 'min-h-11 rounded-button bg-chip-navy px-4 inline-flex items-center gap-2 text-base font-semibold text-white hover:bg-chip-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white';
 export const posterLink = 'min-h-11 inline-flex items-center gap-2 text-base font-semibold text-white underline underline-offset-4 decoration-white/60 hover:decoration-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded';
 // The one big white action button on a poster (microphone, play).
 export const posterBigButton = 'relative w-[104px] h-[104px] rounded-full bg-white text-navy grid place-items-center disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60';
@@ -303,7 +306,7 @@ export function Poster({ tone = 'red', label, question, answer, progress, questi
   return (
     <section className={`relative ${POSTER_BG[tone] || POSTER_BG.red} text-white px-5 py-8 sm:px-8 sm:py-10 ${className}`} {...props}>
       <PathwaysMark size={36} className="absolute end-5 top-6 sm:end-8 sm:top-8" />
-      {label && <p className="pe-12 text-label uppercase text-on-navy">{label}</p>}
+      {label && <p className="pe-12 text-label text-on-navy">{label}</p>}
       {progress && <div className="mt-3 pe-12"><PosterProgress index={progress.index} total={progress.total} /></div>}
       {question && <Q className="mt-4 font-display text-[2.375rem] leading-[1.1] sm:text-[2.5rem]">{question}</Q>}
       {answer && <p className="mt-5 font-display text-2xl leading-snug sm:text-3xl">{answer}</p>}
@@ -341,7 +344,7 @@ export function FolderTab({ tone = 'navy', active = false, className = '', ...pr
 export function FormQuote({ item, label = 'ON THE FORM · WORD FOR WORD', className = '', children }) {
   return (
     <figure className={`rounded-card border border-line bg-white p-4 ${className}`}>
-      <p className="text-label uppercase text-muted">{label}</p>
+      <p className="text-label text-muted">{label}</p>
       <blockquote className="mt-2 text-base sm:text-lg font-medium leading-relaxed text-navy">{children}</blockquote>
       {item != null && <figcaption className="mt-2 text-base text-muted">— Form N-400, item {item}</figcaption>}
     </figure>
@@ -354,5 +357,5 @@ export function ExplainSimplyButton({ onPoster = false, className = '', children
   const look = onPoster
     ? 'bg-chip-navy text-white hover:bg-chip-navy focus-visible:ring-white focus-visible:ring-offset-0'
     : 'bg-tint text-navy hover:bg-line focus-visible:ring-navy';
-  return <button type="button" className={`${BTN} rounded-full px-4 text-base ${look} ${className}`} {...props}>{children}</button>;
+  return <button type="button" className={`${BTN} rounded-button px-4 text-base ${look} ${className}`} {...props}>{children}</button>;
 }

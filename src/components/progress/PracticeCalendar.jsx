@@ -76,7 +76,7 @@ export default function PracticeCalendar({ history }) {
                                     {item.sentence?.text || item.content?.text || item.content?.word || item.content?.question || "Practice Session"}
                                 </p>
                                 <div className="flex items-center gap-2 mt-2">
-                                    <span className={`text-sm font-bold px-3 py-0.5 rounded-full ${
+                                    <span className={`text-sm font-bold px-3 py-0.5 rounded-button ${
                                         item.status === 'mastered' ? 'bg-correct-bg text-correct' : 'bg-tint text-navy'
                                     }`}>
                                         {item.status === 'mastered' ? 'Mastered' : 'Practiced'}

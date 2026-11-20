@@ -96,3 +96,11 @@ describe('Ask Amio suggestions', () => {
     expect(Object.keys(ASK_SCREEN_LINES_ES).sort()).toEqual(Object.keys(ASK_SCREEN_LINES).sort());
   });
 });
+
+describe('headerless screens (Amio v2)', () => {
+  it('drops the phone header on first open and the four tabs only', async () => {
+    const { isHeaderless } = await import('./shellRoutes');
+    for (const p of ['/', '/course', '/interview', '/me', '/quick-check', '/Me/']) expect(isHeaderless(p)).toBe(true);
+    for (const p of ['/settings', '/ask', '/Progress', '/course/units', '/interview/when', '/plan']) expect(isHeaderless(p)).toBe(false);
+  });
+});

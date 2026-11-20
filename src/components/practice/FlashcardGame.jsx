@@ -23,7 +23,7 @@ export default function FlashcardGame({ words, index = 0, total, onComplete, onC
       <NavyTop className="pb-12">
         <div className="mx-auto max-w-2xl space-y-4">
           {onClose && <RunTopBar onClose={onClose} index={index} total={count} answered={isFlipped} />}
-          <p className="text-label uppercase text-on-navy">Writing · Flashcards</p>
+          <p className="text-label text-on-navy">Writing · Flashcards</p>
           <h2 className="font-display text-[2.5rem] sm:text-[3rem] leading-[1.05] break-words">{currentWord.word}</h2>
           <Chip onNavy onClick={() => speakText(currentWord.word)}>
             <Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" /> Hear it
@@ -36,10 +36,10 @@ export default function FlashcardGame({ words, index = 0, total, onComplete, onC
           {isFlipped ? (
             <>
               <div className="rounded-card bg-white border border-line p-5 space-y-3">
-                <p className="text-label uppercase text-muted">Definition</p>
+                <p className="text-label text-muted">Definition</p>
                 <p className="font-medium text-2xl leading-snug">{currentWord.definition}</p>
                 {currentWord.category && (
-                  <span className="inline-block rounded-full bg-tint px-3 py-1.5 text-sm font-semibold">{currentWord.category}</span>
+                  <span className="inline-block rounded-button bg-tint px-3 py-1.5 text-sm font-semibold">{currentWord.category}</span>
                 )}
               </div>
               <div className="grid grid-cols-2 gap-3">

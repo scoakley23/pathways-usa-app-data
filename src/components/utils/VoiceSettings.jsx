@@ -78,7 +78,7 @@ export default function VoiceSettings() {
                     <span className="flex items-center gap-2">
                       <span className="truncate">{v.name}</span>
                       {rankVoice(v) >= 3 && (
-                        <span className="text-small font-bold uppercase bg-correct-bg text-correct rounded-full px-1.5 shrink-0">Natural</span>
+                        <span className="text-small font-bold bg-correct-bg text-correct rounded-button px-1.5 shrink-0">Natural</span>
                       )}
                       <span className="text-xs text-muted">{v.lang}</span>
                     </span>
@@ -92,7 +92,7 @@ export default function VoiceSettings() {
         <div>
           <div className="flex items-center justify-between mb-2">
             <p className="text-base font-bold">Speed</p>
-            <span className="text-sm font-bold text-navy tabular-nums bg-tint rounded-full px-2.5 py-0.5">{rate.toFixed(2)}×</span>
+            <span className="text-sm font-bold text-navy tabular-nums bg-tint rounded-button px-2.5 py-0.5">{rate.toFixed(2)}×</span>
           </div>
           <Slider
             value={[rate]}

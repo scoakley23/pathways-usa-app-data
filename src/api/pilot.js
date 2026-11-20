@@ -1,5 +1,5 @@
 // Pilot data (Standalone Step 3, PR 7): the learner's own check-in answers
-// ("Help us improve Pathways", the 3/6/12-month check-ins, the pre-interview
+// ("Help us improve Amio", the 3/6/12-month check-ins, the pre-interview
 // question; fixed choices only) and the admins' pilot dashboard report.
 //
 // Check-ins: switch off = Base44 `OutcomeCheckIn` (user_email); switch on =

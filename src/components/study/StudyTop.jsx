@@ -18,7 +18,7 @@ export default function StudyTop({ tab, action = null, children }) {
         {action}
       </div>
       <nav aria-label="Study">
-        <div className="inline-flex rounded-full bg-chip-navy p-1">
+        <div className="inline-flex rounded-button bg-chip-navy p-1">
           {TABS.map((t) => {
             const active = t.id === tab;
             return (
@@ -26,7 +26,7 @@ export default function StudyTop({ tab, action = null, children }) {
                 key={t.id}
                 to={`/study?tab=${t.id}`}
                 aria-current={active ? 'page' : undefined}
-                className={`min-h-tap inline-flex items-center rounded-full px-5 text-base font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white
+                className={`min-h-tap inline-flex items-center rounded-button px-5 text-base font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white
                   ${active ? 'bg-white text-navy' : 'text-on-navy hover:text-white'}`}
               >
                 {t.label}

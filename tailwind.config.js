@@ -121,6 +121,11 @@ module.exports = {
 				celebrate: typeSize(TYPE.celebrate),
 			},
 			borderRadius: {
+				// Amio v2: 12px corners everywhere (docs/design-v2/tokens.css);
+				// nothing pill-shaped except the mic (rounded-full = circles only).
+				'3xl': px(RADIUS.card),
+				'2xl': px(RADIUS.card),
+				xl: px(RADIUS.card),
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)',

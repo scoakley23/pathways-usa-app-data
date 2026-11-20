@@ -110,7 +110,7 @@ export default function DictationCard({ sentence, onComplete, onNext, testMode =
       <NavyTop className={`pb-12 ${embedded ? 'rounded-card' : ''}`}>
         <div className="mx-auto max-w-2xl space-y-4">
           {onClose && <RunTopBar onClose={onClose} index={index} total={total} answered={done} />}
-          <p className="text-label uppercase text-on-navy">{label}</p>
+          <p className="text-label text-on-navy">{label}</p>
           <h2 className="font-display text-[2.375rem] sm:text-[2.5rem] leading-[1.1]">
             {testMode ? 'Listen, then type what you hear.' : 'Listen, then write what you hear.'}
           </h2>
@@ -133,7 +133,7 @@ export default function DictationCard({ sentence, onComplete, onNext, testMode =
           {!done && (
             <>
               <RuledPaper>
-                <label htmlFor="dictation-input" className="block text-[0.8125rem] font-semibold uppercase tracking-[0.14em] leading-[2.25rem] text-muted">
+                <label htmlFor="dictation-input" className="block text-[0.8125rem] font-semibold leading-[2.25rem] text-muted">
                   {testMode ? 'Type the sentence' : 'Your sentence'}
                 </label>
                 <textarea
@@ -169,7 +169,7 @@ export default function DictationCard({ sentence, onComplete, onNext, testMode =
             >
               {words && (
                 <RuledPaper>
-                  <p className="text-[0.8125rem] font-semibold uppercase tracking-[0.14em] leading-[2.25rem] text-muted">The sentence, word by word</p>
+                  <p className="text-[0.8125rem] font-semibold leading-[2.25rem] text-muted">The sentence, word by word</p>
                   <WordByWord words={words} legend="Words to check" />
                 </RuledPaper>
               )}

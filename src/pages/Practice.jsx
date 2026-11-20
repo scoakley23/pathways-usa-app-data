@@ -445,7 +445,7 @@ export default function Practice() {
         <NavyTop className="pb-14">
           <StudyTop tab="practice" action={testButton}>
             <div className="pt-2 space-y-3">
-              <p className="text-label uppercase text-on-navy">Suggested for you</p>
+              <p className="text-label text-on-navy">Suggested for you</p>
               <p className="font-display text-[1.375rem] leading-tight">
                 {PART_ROWS[suggested].label} · {PART_ROWS[suggested].line}
               </p>
@@ -499,7 +499,7 @@ export default function Practice() {
 
             {/* Vocabulary games (part of Writing) */}
             <section aria-labelledby="vocab" className="space-y-2">
-              <h2 id="vocab" className="text-label uppercase text-muted">Writing · Vocabulary games</h2>
+              <h2 id="vocab" className="text-label text-muted">Writing · Vocabulary games</h2>
               <div className="flex flex-wrap gap-2">
                 <Chip onClick={() => startSession('vocabulary', 'dictation')}><Mic className="w-4 h-4" aria-hidden="true" /> Word dictation</Chip>
                 <Chip onClick={() => startSession('vocabulary', 'flashcards')}><Sparkles className="w-4 h-4" aria-hidden="true" /> Flashcards</Chip>
@@ -514,7 +514,7 @@ export default function Practice() {
               <p className="text-base text-muted max-w-2xl">The whole interview, in order: the oath, the officer’s questions, reading, writing and civics. Nothing is saved.</p>
               <Link
                 to="/interview-day"
-                className="mt-2 inline-flex min-h-tap items-center gap-2 rounded-full border-2 border-navy px-5 text-base font-semibold text-navy hover:bg-tint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2"
+                className="mt-2 inline-flex min-h-tap items-center gap-2 rounded-button border-2 border-navy px-5 text-base font-semibold text-navy hover:bg-tint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2"
               >
                 Start the run-through <ArrowRight className="w-4 h-4 rtl:rotate-180" aria-hidden="true" />
               </Link>
@@ -696,7 +696,7 @@ function RunShell({ label, onClose, children }) {
         >
           <X className="w-5 h-5" aria-hidden="true" />
         </button>
-        <p className="text-[0.8125rem] font-semibold uppercase tracking-[0.14em] text-muted">{label}</p>
+        <p className="text-[0.8125rem] font-semibold text-muted">{label}</p>
       </div>
       {children}
     </div>

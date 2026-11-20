@@ -1,5 +1,5 @@
 // Pilot outcome questions (docs/AI-Policy-updated.md, "Pilot Check-ins").
-// Pure helpers for the "Help us improve Pathways" screen and the Profile
+// Pure helpers for the "Help us improve Amio" screen and the Profile
 // card. Every answer is optional and a fixed choice; nothing here takes free
 // text. (Which partner program a learner studies with is separate: see
 // src/lib/partners.js.)

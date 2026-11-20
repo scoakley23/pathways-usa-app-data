@@ -204,7 +204,7 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext, test
       <NavyTop className={`pb-12 ${embedded ? 'rounded-card' : ''}`}>
         <div className="mx-auto max-w-2xl space-y-4">
           {onClose && <RunTopBar onClose={onClose} index={index} total={total} answered={!!analysis && (passed || tried)} />}
-          <p className="text-label uppercase text-on-navy">{label}</p>
+          <p className="text-label text-on-navy">{label}</p>
           <h2 className="font-display text-[2.375rem] sm:text-[2.5rem] leading-[1.1]">{sentence.text}</h2>
           <Chip onNavy onClick={() => speakText(sentence.text, 'en')}>
             <Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" /> Hear it
@@ -238,7 +238,7 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext, test
               <p className="text-base font-semibold">Read the sentence out loud, in English</p>
               {(isListening || spokenText) && (
                 <div aria-live="polite" className="rounded-card bg-white border border-line p-4">
-                  <p className="text-label uppercase text-muted">{isListening ? 'Listening… tap Stop when you finish' : 'You said'}</p>
+                  <p className="text-label text-muted">{isListening ? 'Listening… tap Stop when you finish' : 'You said'}</p>
                   <p className="mt-1 text-xl leading-snug min-h-[1.5em]">{spokenText ? `“${spokenText}”` : ''}</p>
                 </div>
               )}
@@ -278,7 +278,7 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext, test
             >
               {wordResults && heard && (
                 <div className="rounded-card bg-white border border-line p-4">
-                  <p className="text-label uppercase text-muted mb-1">The sentence, word by word</p>
+                  <p className="text-label text-muted mb-1">The sentence, word by word</p>
                   <WordByWord words={wordResults} />
                 </div>
               )}

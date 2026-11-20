@@ -78,7 +78,7 @@ export default function LessonNotesTab({ lesson, userEmail, tutorName = 'Amio' }
   return (
     <RuledPaper className="pb-4">
       <div className="flex items-center justify-between gap-3 flex-wrap">
-        <label htmlFor="lesson-notes" className="text-[0.8125rem] font-semibold uppercase tracking-[0.14em] leading-[2.25rem] text-muted">
+        <label htmlFor="lesson-notes" className="text-[0.8125rem] font-semibold leading-[2.25rem] text-muted">
           My notes
         </label>
         <span className="flex items-center gap-2" aria-live="polite">

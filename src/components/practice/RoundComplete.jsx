@@ -39,7 +39,7 @@ export default function RoundComplete({ outcomes = [], title, rule, review = nul
           </ul>
         )}
         <div className="space-y-2" aria-live="polite">
-          <p className="text-label uppercase text-on-navy">Round complete</p>
+          <p className="text-label text-on-navy">Round complete</p>
           <h2 className="font-display text-[1.875rem] sm:text-[2.125rem] leading-[1.1]">{title}</h2>
           {rule && <p className="text-lg text-on-navy">{rule}</p>}
         </div>

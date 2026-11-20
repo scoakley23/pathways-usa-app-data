@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import { Dumbbell } from 'lucide-react';
+import { ChevronRight, Dumbbell } from 'lucide-react';
 import { Button } from '@/components/pathways/ui';
 import { Amio } from '@/components/pathways/Amio';
 import { Sheet, SheetContent, SheetDescription, SheetTitle } from '@/components/ui/sheet';
@@ -12,29 +12,43 @@ import { STOP_LOOK, StopIcon, stopHref, stopLabel, useCourseText, useJourney } f
 
 // The Course tab (/course, Amio v2 frame Course; the preview sheet is frame
 // R31Preview). Four part tabs, kept inside Course and remembered on this
-// device (`pathways_course_tab`, cleared by Delete my data):
+// device (`pathways_course_tab`, cleared by Delete my data; an old saved
+// "reading" or "writing" opens the joined tab):
 // - Civics: the topics (one per unit) with their lessons, "n of m
 //   questions" (civics answers mastered), the suggested next lesson with
 //   Continue, and every stop when a topic is opened.
-// - Reading and Writing: each unit's Read and write stops.
+// - Reading and writing (one tab, denim): each unit's Read and write stops.
+//   A Read and write stop always starts at reading, so the two parts share a tab.
 // - Speaking: each unit's Speak it! checkpoints and practice interview.
-// Each tab ends with a small "Free practice" link to that Practice run.
+// Each tab ends with its "Free practice" run(s), then "Practice" (the
+// Practice home, /study?tab=practice). Inactive tabs are the pale colour.
 // Nothing is locked: every stop opens. The winding road (JourneyPath.jsx)
 // stays in the code but isn't shown. No stars or badges. Reads only.
 
 export const COURSE_TAB_KEY = 'pathways_course_tab';
-const PARTS = ['reading', 'writing', 'civics', 'speaking'];
-const PRACTICE_RUN = { reading: 'reading', writing: 'dictation', civics: 'civics', speaking: 'interview' };
-const PART_STOPS = { reading: ['readwrite'], writing: ['readwrite'], speaking: ['speakit', 'practiceInterview'] };
+const PARTS = ['readwrite', 'civics', 'speaking'];
+const OLD_TABS = { reading: 'readwrite', writing: 'readwrite' };
+// Free practice runs for each tab: [mode, label key].
+const PRACTICE_RUNS = {
+  readwrite: [['reading', 'free_reading'], ['dictation', 'free_writing']],
+  civics: [['civics', 'free_practice']],
+  speaking: [['interview', 'free_practice']],
+};
+const PART_STOPS = { readwrite: ['readwrite'], speaking: ['speakit', 'practiceInterview'] };
+// [open, not open]: the open tab is the full colour with a navy border; the
+// others are the pale colour (faded), with navy text.
 const PART_LOOK = {
-  reading: ['bg-denim text-white', 'border-denim'],
-  writing: ['bg-gold text-navy', 'border-gold'],
-  civics: ['bg-sky text-navy', 'border-sky'],
-  speaking: ['bg-white text-navy', 'border-line'],
+  readwrite: ['bg-denim text-white border-navy', 'bg-denim-soft text-navy border-denim-soft'],
+  civics: ['bg-sky text-navy border-navy', 'bg-sky-soft text-navy border-sky-soft'],
+  speaking: ['bg-white text-navy border-navy', 'bg-paper text-muted border-line'],
 };
 
+export function courseTab(saved) {
+  const v = OLD_TABS[saved] || saved;
+  return PARTS.includes(v) ? v : 'civics';
+}
 function loadTab() {
-  try { const v = localStorage.getItem(COURSE_TAB_KEY); return PARTS.includes(v) ? v : 'civics'; } catch { return 'civics'; }
+  try { return courseTab(localStorage.getItem(COURSE_TAB_KEY)); } catch { return 'civics'; }
 }
 function saveTab(v) {
   try { localStorage.setItem(COURSE_TAB_KEY, v); } catch { /* storage blocked: this visit only */ }
@@ -71,14 +85,14 @@ function LessonPreview({ stop, unit, lessonNumber, t, onStart }) {
           <StopIcon type="lesson" unitIcon={unit.icon} className="w-7 h-7" />
         </span>
         <div className="min-w-0">
-          <p className="text-small font-semibold uppercase tracking-wide text-muted">{t('unit_n', { n: unit.number })} · {t('lesson_n', { n: lessonNumber })}</p>
+          <p className="text-small font-semibold text-muted">{t('unit_n', { n: unit.number })} · {t('lesson_n', { n: lessonNumber })}</p>
           <SheetTitle dir="auto" className="mt-1 text-title font-bold text-navy break-words">{lesson.title}</SheetTitle>
         </div>
       </div>
       <div className="flex flex-wrap gap-2">
-        <span className="rounded-full bg-tint px-3 py-1.5 text-base font-semibold text-navy">{t('steps_5')}</span>
-        <span className="rounded-full bg-tint px-3 py-1.5 text-base font-semibold text-navy">{questions.length === 1 ? t('question_1') : t('questions_n', { n: questions.length })}</span>
-        {lesson.status === 'draft' && <span className="rounded-full border border-line px-3 py-1.5 text-base font-semibold text-muted">{t('draft')}</span>}
+        <span className="rounded-button bg-tint px-3 py-1.5 text-base font-semibold text-navy">{t('steps_5')}</span>
+        <span className="rounded-button bg-tint px-3 py-1.5 text-base font-semibold text-navy">{questions.length === 1 ? t('question_1') : t('questions_n', { n: questions.length })}</span>
+        {lesson.status === 'draft' && <span className="rounded-button border border-line px-3 py-1.5 text-base font-semibold text-muted">{t('draft')}</span>}
       </div>
       <div>
         <SheetDescription className="text-base font-bold text-navy">{t('answer_these')}</SheetDescription>
@@ -141,7 +155,7 @@ export default function CoursePage() {
   return (
     <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-full bg-paper text-navy">
       <div className="max-w-lg mx-auto px-4 pt-6 pb-8 flex flex-col gap-5">
-        <div role="tablist" aria-label={t('parts_label')} className="grid grid-cols-4 gap-1.5">
+        <div role="tablist" aria-label={t('parts_label')} className="grid grid-cols-3 gap-1.5">
           {PARTS.map((p) => {
             const on = p === tab;
             return (
@@ -153,7 +167,7 @@ export default function CoursePage() {
                 aria-selected={on}
                 aria-controls={`panel-${p}`}
                 onClick={() => setTab(p)}
-                className={`min-h-[3rem] rounded-button px-0.5 text-[0.8125rem] font-bold leading-tight hyphens-auto border-[2.5px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim focus-visible:ring-offset-2 ${PART_LOOK[p][0]} ${on ? 'border-navy' : PART_LOOK[p][1]}`}
+                className={`min-h-[3rem] rounded-button px-1 text-[0.875rem] font-bold leading-tight border-[2.5px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim focus-visible:ring-offset-2 ${PART_LOOK[p][on ? 0 : 1]}`}
               >
                 {t(`part_${p}`)}
               </button>
@@ -183,12 +197,25 @@ export default function CoursePage() {
             )
             : <PartStops part={tab} journey={journey} t={t} onOpen={setOpen} />)}
 
-          <Link
-            to={`/study?tab=practice&mode=${PRACTICE_RUN[tab]}`}
-            className="self-start min-h-tap inline-flex items-center gap-2 rounded-button px-1 text-base font-semibold text-denim underline underline-offset-4 hover:text-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim"
-          >
-            <Dumbbell className="w-5 h-5" aria-hidden="true" />{t('free_practice')}
-          </Link>
+          <div className="flex flex-col items-start gap-1">
+            {PRACTICE_RUNS[tab].map(([mode, label]) => (
+              <Link
+                key={mode}
+                to={`/study?tab=practice&mode=${mode}`}
+                className="min-h-tap inline-flex items-center gap-2 rounded-button px-1 text-base font-semibold text-denim underline underline-offset-4 hover:text-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim"
+              >
+                <Dumbbell className="w-5 h-5" aria-hidden="true" />{t(label)}
+              </Link>
+            ))}
+            {/* The Practice home: every practice run, the vocabulary games and
+                the test settings (on Base44 the older lessons there still save). */}
+            <Link
+              to="/study?tab=practice"
+              className="min-h-tap inline-flex items-center gap-2 rounded-button px-1 text-base font-semibold text-denim underline underline-offset-4 hover:text-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim"
+            >
+              <ChevronRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" />{t('practice_home')}
+            </Link>
+          </div>
         </div>
       </div>
 

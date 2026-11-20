@@ -129,7 +129,7 @@ export default function QuickCheck() {
           <section className="rounded-card bg-white border-2 border-denim p-5 flex items-start gap-4">
             <span className="grid place-items-center w-12 h-12 shrink-0 rounded-full bg-sky text-navy"><MapPin className="w-6 h-6" aria-hidden="true" /></span>
             <div className="min-w-0">
-              <p className="text-small font-semibold uppercase tracking-wide text-muted">{t('qc_start_at')}</p>
+              <p className="text-small font-semibold text-muted">{t('qc_start_at')}</p>
               <p className="text-lg font-bold" dir="auto">{t('qc_start_unit', { n: start.unit.number, section: start.section.title })}</p>
               <p className="mt-1 text-base text-muted">{t('qc_go_back')}</p>
             </div>

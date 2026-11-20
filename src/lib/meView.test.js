@@ -30,7 +30,22 @@ describe('topic blocks', () => {
   it('fills each topic by its questions mastered, and skips topics with none', () => {
     const blocks = topicBlocks(course, new Set(['q1', 'q5']));
     expect(blocks.map((b) => [b.id, b.done, b.total, b.pct, b.complete])).toEqual([['a', 1, 4, 25, false], ['b', 1, 1, 100, true]]);
-    expect(blocks.map((b) => b.fill)).toEqual(['gold', 'sky']);
+    expect(blocks.map((b) => b.tone)).toEqual(['gold', 'sky']);
+  });
+
+  it('keeps one colour per topic in turn (gold, sky, denim), whatever the percent', () => {
+    const many = ['a', 'b', 'c', 'd'].map((id) => ({ id, title: id, sections: [{ id: `s${id}`, lessons: [{ id: `l${id}`, questionIds: [`q${id}`] }] }] }));
+    expect(topicBlocks(many).map((b) => b.tone)).toEqual(['gold', 'sky', 'denim', 'gold']);
+    expect(topicBlocks(many, new Set(['qa'])).map((b) => b.tone)).toEqual(['gold', 'sky', 'denim', 'gold']);
+  });
+
+  it('puts the suggested topic first and wide; never a finished one', () => {
+    const many = ['a', 'b', 'c', 'd'].map((id) => ({ id, title: id, sections: [{ id: `s${id}`, lessons: [{ id: `l${id}`, questionIds: [`q${id}`] }] }] }));
+    const blocks = topicBlocks(many, new Set(), { suggestedId: 'c' });
+    expect(blocks.map((b) => b.id)).toEqual(['c', 'a', 'b', 'd']);
+    expect(blocks.map((b) => b.wide)).toEqual([true, false, false, true]);
+    expect(blocks[0].tone).toBe('denim');
+    expect(topicBlocks(many, new Set(['qc']), { suggestedId: 'c' }).some((b) => b.suggested)).toBe(false);
   });
 
   it('covers all 128 questions of the real course once', () => {

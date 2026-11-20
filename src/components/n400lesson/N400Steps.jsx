@@ -19,7 +19,7 @@ import { HELP_PHRASES, guideQuestion, helpPhrase, questionName } from '@/lib/n40
 // teaches understanding the question, never an answer. What the learner says
 // stays in memory only. onDone(result): 'right' | 'missed' | 'skipped'.
 
-const chip = 'min-h-tap rounded-full border border-line bg-white px-4 text-base font-semibold text-navy hover:border-denim focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim';
+const chip = 'min-h-tap rounded-button border border-line bg-white px-4 text-base font-semibold text-navy hover:border-denim focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim';
 
 // Web addresses in reviewed lines (https://…) become links that open in a new tab.
 export function linkify(text) {
@@ -78,7 +78,7 @@ export function ListenN400({ lesson, section, language, t, onDone }) {
       <div className="flex-1 px-4 py-5 flex flex-col gap-4 max-w-lg w-full mx-auto">
         <AmioSays mood="happy" size={56}>{t('amio_listen')}</AmioSays>
         <div className="flex items-center justify-between gap-3">
-          {has && !english ? <span className="rounded-full bg-tint px-3 py-1 text-small font-semibold uppercase tracking-wide text-navy">{t('said_in_language')}</span> : <span />}
+          {has && !english ? <span className="rounded-button bg-tint px-3 py-1 text-small font-semibold text-navy">{t('said_in_language')}</span> : <span />}
           {has && (
             <button type="button" onClick={() => setEnglish((v) => !v)} aria-pressed={english} className="min-h-tap text-base font-semibold text-denim underline underline-offset-4">
               {english ? t('in_my_language') : t('in_english')}
@@ -96,11 +96,11 @@ export function ListenN400({ lesson, section, language, t, onDone }) {
         {section.questions.map((q, i) => (
           <section key={q.id} className="rounded-card bg-white border border-line p-5 flex flex-col gap-3">
             <h2 className="text-lg font-bold text-navy" dir="auto">{show(`n${i}`, questionName(q.id))}</h2>
-            {notes[q.id] && <span className="self-start rounded-full bg-tint px-3 py-1 text-small font-semibold text-navy" dir="auto">{show(`q${i}`, notes[q.id])}</span>}
+            {notes[q.id] && <span className="self-start rounded-button bg-tint px-3 py-1 text-small font-semibold text-navy" dir="auto">{show(`q${i}`, notes[q.id])}</span>}
             <p className="text-base text-navy leading-relaxed" dir="auto" lang={has && !english ? language : 'en'}>{show(`m${i}`, q.meaning)}</p>
             {(q.words || []).length > 0 && (
               <div className="flex flex-col gap-2">
-                <p className="text-small font-semibold uppercase tracking-wide text-muted">{t('words_to_know')}</p>
+                <p className="text-small font-semibold text-muted">{t('words_to_know')}</p>
                 {q.words.map((w, k) => (
                   <button
                     key={w.word}
@@ -195,7 +195,7 @@ function OfficerCard({ phrasing, t }) {
       <Officer size={96} />
       <p className="text-small text-on-navy">{t('officer_label')}</p>
       <p className="text-question font-bold leading-snug" lang="en" dir="ltr">{phrasing}</p>
-      <button type="button" onClick={() => speakText(phrasing, 'en')} className="min-h-tap rounded-full bg-chip-navy px-4 text-base font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+      <button type="button" onClick={() => speakText(phrasing, 'en')} className="min-h-tap rounded-button bg-chip-navy px-4 text-base font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
         {t('hear_again')}
       </button>
     </section>
@@ -299,7 +299,7 @@ export function SayWhatItAsks({ lesson, t, onDone }) {
         )}
         {(mode === 'right' || mode === 'wrong') && explain && (
           <section className="rounded-card bg-tint p-4">
-            <p className="text-small font-semibold uppercase tracking-wide text-muted">{t('the_officer_is_asking')}</p>
+            <p className="text-small font-semibold text-muted">{t('the_officer_is_asking')}</p>
             <p className="mt-1 text-base text-navy" lang="en" dir="ltr">{explain}</p>
           </section>
         )}
@@ -375,7 +375,7 @@ export function AskForHelp({ lesson, language, t, onDone }) {
         <p className="text-small font-semibold text-muted">{t('item_of', { n: i + 1, total: HELP_PHRASES.length })}</p>
         <AmioSays mood="wave" size={56}>{t('amio_help')}</AmioSays>
         <section className="rounded-card bg-white border-2 border-denim p-5">
-          <p className="text-small font-semibold uppercase tracking-wide text-muted">{t('say_this')}</p>
+          <p className="text-small font-semibold text-muted">{t('say_this')}</p>
           <p className="mt-1 text-base text-muted" dir="auto">{mine || phrase.meaning}</p>
           <p className="mt-2 text-question font-bold text-navy leading-snug" lang="en" dir="ltr">“{say}”</p>
           <button type="button" onClick={() => speakText(say, 'en')} className={`mt-3 ${chip}`}>{t('hear_again')}</button>

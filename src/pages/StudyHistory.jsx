@@ -71,7 +71,7 @@ export default function StudyHistory() {
                       {new Date(log.created_at || log.created_date).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
                    </div>
                    {log.language && log.language !== 'en' && (
-                      <Badge variant="secondary" className="uppercase">{log.language}</Badge>
+                      <Badge variant="secondary" className="">{log.language}</Badge>
                    )}
                 </div>
                 <CardTitle className="text-xl mt-2">

@@ -32,7 +32,7 @@ import { reviewedFaq } from '@/lib/faq';
 //   Language · Daily reminder (On / Off) · Your interview · My tutor · Your plan
 //   Sound and voice · How Amio talks
 //   Questions and answers (hidden until an entry is reviewed) · How Amio works
-//   · Contact us · Help us improve Pathways
+//   · Contact us · Help us improve Amio
 //   What we save · AI policy · Delete all my data (navy, never red)
 //   More: history, notifications, partner (staff), admin (admins) · Sign out
 // Every setting from the old Settings and Me pages is here; saving is the

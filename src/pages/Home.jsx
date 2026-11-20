@@ -12,7 +12,7 @@ import { loadPlanSettings } from '@/lib/planSettings';
 import { useAuth } from '@/lib/AuthContext';
 import useAppLanguage, { isRTL } from '@/hooks/useAppLanguage';
 
-// Set once the learner answers or skips "Help us improve Pathways", so the
+// Set once the learner answers or skips "Help us improve Amio", so the
 // screen doesn't come back before Layout reloads the account.
 let pilotAnswered = false;
 // Same for a check-in answered, put off or stopped.
@@ -28,7 +28,7 @@ export default function Home({ cachedUser }) {
   // (Auth is known before pages render, so signed-in users never see Welcome.)
   const { isAuthenticated } = useAuth();
   const learner = isAuthenticated && cachedUser;
-  // "Help us improve Pathways" (optional pilot questions): once, after the
+  // "Help us improve Amio" (optional pilot questions): once, after the
   // learner's first day, instead of Today.
   const [pilotDone, setPilotDone] = useState(pilotAnswered);
   const askPilot = learner && !pilotDone && shouldShowPilotIntro({ user: cachedUser, hasPlan: !!loadPlanSettings() });
