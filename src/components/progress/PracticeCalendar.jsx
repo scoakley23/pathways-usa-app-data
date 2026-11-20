@@ -58,9 +58,9 @@ export default function PracticeCalendar({ history }) {
         </div>
 
         <div className="flex-1 min-w-0 space-y-3 px-3 pb-3 sm:px-0 sm:pb-0">
-            <h4 className="text-lg font-extrabold text-navy">
+            <h3 className="text-lg font-extrabold text-navy">
                 Activity for {date ? format(date, 'MMMM do, yyyy') : 'Selected Date'}
-            </h4>
+            </h3>
 
             {selectedDayData.length > 0 ? (
                 <div className="space-y-3 max-h-[300px] overflow-y-auto pe-1">

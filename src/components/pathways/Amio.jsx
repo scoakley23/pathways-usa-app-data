@@ -162,7 +162,7 @@ export function AmioSays({ mood = 'hello', size = 64, lang, onNavy = false, titl
           <path d="M16 6 C80 2 200 4 292 8 C297 34 296 66 291 94 C200 98 100 97 18 93 C15 80 13 66 14 56 L2 46 L15 38 C14 26 14 16 16 6Z"
             fill={WHITE} stroke={RED} strokeWidth={2.5} vectorEffect="non-scaling-stroke" strokeLinejoin="round" />
         </svg>
-        <p className="relative m-0 ps-6 pe-4 py-3 text-base font-semibold leading-snug">{children}</p>
+        <p dir="auto" className="relative m-0 ps-6 pe-4 py-3 text-base font-semibold leading-snug">{children}</p>
       </div>
     </div>
   );

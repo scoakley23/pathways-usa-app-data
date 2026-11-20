@@ -427,12 +427,6 @@
    ]
   },
   {
-   "text": "1 star",
-   "from": [
-    "n400-lessons"
-   ]
-  },
-  {
    "text": "1 test question",
    "from": [
     "course"
@@ -984,6 +978,12 @@
    ]
   },
   {
+   "text": "AI policy",
+   "from": [
+    "settings"
+   ]
+  },
+  {
    "text": "AI practice officer, not a real person · Not legal advice",
    "from": [
     "interview-tab"
@@ -1093,6 +1093,12 @@
    ]
   },
   {
+   "text": "Add with a code",
+   "from": [
+    "settings"
+   ]
+  },
+  {
    "text": "Added to your plan.",
    "from": [
     "interview-when"
@@ -1101,7 +1107,7 @@
   {
    "text": "Admin",
    "from": [
-    "me"
+    "settings"
    ]
   },
   {
@@ -1802,6 +1808,7 @@
     "course",
     "interview-when",
     "lesson-player",
+    "settings",
     "sign-in",
     "today-plan"
    ]
@@ -2119,7 +2126,8 @@
    "text": "Cancel",
    "from": [
     "my-tutor",
-    "onboarding"
+    "onboarding",
+    "settings"
    ]
   },
   {
@@ -2812,6 +2820,12 @@
    ]
   },
   {
+   "text": "Contact us",
+   "from": [
+    "settings"
+   ]
+  },
+  {
    "text": "Continue",
    "from": [
     "course",
@@ -2967,6 +2981,12 @@
    "text": "Delaware was the first state.",
    "from": [
     "sentences"
+   ]
+  },
+  {
+   "text": "Delete all my data",
+   "from": [
+    "settings"
    ]
   },
   {
@@ -3522,6 +3542,12 @@
    ]
   },
   {
+   "text": "Edit name",
+   "from": [
+    "settings"
+   ]
+  },
+  {
    "text": "Education is mainly controlled by states, while national defense is federal",
    "from": [
     "key-words"
@@ -3953,13 +3979,8 @@
   {
    "text": "Find out",
    "from": [
-    "interview-tab"
-   ]
-  },
-  {
-   "text": "Finish all 5 steps for 3 stars",
-   "from": [
-    "n400-lessons"
+    "interview-tab",
+    "settings"
    ]
   },
   {
@@ -5112,7 +5133,8 @@
   {
    "text": "Help us improve Pathways",
    "from": [
-    "pilot"
+    "pilot",
+    "settings"
    ]
   },
   {
@@ -5238,6 +5260,12 @@
   },
   {
    "text": "How Amio talks to you (tone and how much English), and your quick check levels.",
+   "from": [
+    "settings"
+   ]
+  },
+  {
+   "text": "How Amio works",
    "from": [
     "settings"
    ]
@@ -5962,12 +5990,6 @@
    "text": "Interview day",
    "from": [
     "home"
-   ]
-  },
-  {
-   "text": "Interview month: {month}",
-   "from": [
-    "me"
    ]
   },
   {
@@ -7159,7 +7181,8 @@
   {
    "text": "More",
    "from": [
-    "me"
+    "me",
+    "settings"
    ]
   },
   {
@@ -7220,7 +7243,8 @@
   {
    "text": "My tutor",
    "from": [
-    "my-tutor"
+    "my-tutor",
+    "settings"
    ]
   },
   {
@@ -7900,7 +7924,7 @@
   {
    "text": "Notifications",
    "from": [
-    "me"
+    "settings"
    ]
   },
   {
@@ -7971,6 +7995,12 @@
    ]
   },
   {
+   "text": "Off",
+   "from": [
+    "settings"
+   ]
+  },
+  {
    "text": "Officer",
    "from": [
     "today-plan"
@@ -8021,6 +8051,7 @@
   {
    "text": "On",
    "from": [
+    "settings",
     "words"
    ]
   },
@@ -8071,12 +8102,6 @@
    "text": "One Hundred/100",
    "from": [
     "words"
-   ]
-  },
-  {
-   "text": "One for each section you pass out loud, and one for each unit you finish.",
-   "from": [
-    "me"
    ]
   },
   {
@@ -8250,7 +8275,7 @@
   {
    "text": "Partner program page",
    "from": [
-    "me"
+    "settings"
    ]
   },
   {
@@ -8788,6 +8813,12 @@
    "text": "Questions about your own case go to a free legal helper, not Amio.",
    "from": [
     "ask-screen"
+   ]
+  },
+  {
+   "text": "Questions and answers",
+   "from": [
+    "settings"
    ]
   },
   {
@@ -10011,7 +10042,7 @@
    ]
   },
   {
-   "text": "Settings and privacy",
+   "text": "Settings",
    "from": [
     "me",
     "settings"
@@ -10062,7 +10093,7 @@
    ]
   },
   {
-   "text": "Sign in to see your progress, badges and settings.",
+   "text": "Sign in to see how many civics questions you know.",
    "from": [
     "me"
    ]
@@ -10070,7 +10101,7 @@
   {
    "text": "Sign out",
    "from": [
-    "me"
+    "settings"
    ]
   },
   {
@@ -10311,6 +10342,12 @@
    "text": "Sorry, your message couldn't be sent. Please try again later.",
    "from": [
     "talk"
+   ]
+  },
+  {
+   "text": "Sound and voice",
+   "from": [
+    "settings"
    ]
   },
   {
@@ -10584,12 +10621,6 @@
    "text": "Structures honoring important historical figures and events",
    "from": [
     "lessons"
-   ]
-  },
-  {
-   "text": "Studying in {language}",
-   "from": [
-    "me"
    ]
   },
   {
@@ -10867,6 +10898,12 @@
    "text": "Terrorists attacked the United States.",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "Text size",
+   "from": [
+    "settings"
    ]
   },
   {
@@ -13746,8 +13783,7 @@
   {
    "text": "Unit {n}",
    "from": [
-    "course",
-    "me"
+    "course"
    ]
   },
   {
@@ -15872,7 +15908,8 @@
   {
    "text": "You know",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "me"
    ]
   },
   {
@@ -15986,12 +16023,6 @@
    ]
   },
   {
-   "text": "Your badges",
-   "from": [
-    "me"
-   ]
-  },
-  {
    "text": "Your class or program gave you a short code. You’ll pick them after you sign in.",
    "from": [
     "onboarding"
@@ -16037,7 +16068,8 @@
   {
    "text": "Your interview",
    "from": [
-    "interview-when"
+    "interview-when",
+    "settings"
    ]
   },
   {
@@ -16083,7 +16115,7 @@
    ]
   },
   {
-   "text": "Your lesson progress, stars and practice scores.",
+   "text": "Your lesson progress and practice scores.",
    "from": [
     "settings"
    ]
@@ -16166,7 +16198,7 @@
   {
    "text": "Your questions to Amio",
    "from": [
-    "me"
+    "settings"
    ]
   },
   {
@@ -16227,6 +16259,12 @@
    "text": "Your story stays yours",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "Your topics",
+   "from": [
+    "me"
    ]
   },
   {
@@ -16764,12 +16802,6 @@
    ]
   },
   {
-   "text": "best practice interview",
-   "from": [
-    "me"
-   ]
-  },
-  {
    "text": "capitalist economy / market economy",
    "from": [
     "civics-questions"
@@ -16803,12 +16835,6 @@
    "text": "civics answers",
    "from": [
     "lesson-player"
-   ]
-  },
-  {
-   "text": "civics answers mastered",
-   "from": [
-    "me"
    ]
   },
   {
@@ -16890,21 +16916,9 @@
    ]
   },
   {
-   "text": "day in a row",
-   "from": [
-    "me"
-   ]
-  },
-  {
    "text": "day trip",
    "from": [
     "n400"
-   ]
-  },
-  {
-   "text": "days in a row",
-   "from": [
-    "me"
    ]
   },
   {
@@ -16983,12 +16997,6 @@
    "text": "each branch can limit the power of the others",
    "from": [
     "course-lessons"
-   ]
-  },
-  {
-   "text": "earned",
-   "from": [
-    "me"
    ]
   },
   {
@@ -17298,19 +17306,13 @@
    ]
   },
   {
-   "text": "none yet",
-   "from": [
-    "me"
-   ]
-  },
-  {
    "text": "nonresident",
    "from": [
     "n400"
    ]
   },
   {
-   "text": "not earned yet",
+   "text": "of {total} civics questions",
    "from": [
     "me"
    ]
@@ -18270,6 +18272,12 @@
    ]
   },
   {
+   "text": "{name}, you know",
+   "from": [
+    "me"
+   ]
+  },
+  {
    "text": "{need} of {n} to pass",
    "from": [
     "checkpoints"
@@ -18315,9 +18323,21 @@
    ]
   },
   {
+   "text": "{n} of {total} civics questions mastered",
+   "from": [
+    "me"
+   ]
+  },
+  {
    "text": "{n} of {total} questions",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "{n} questions",
+   "from": [
+    "me"
    ]
   },
   {
@@ -18353,8 +18373,7 @@
   {
    "text": "{n} stars",
    "from": [
-    "course",
-    "n400-lessons"
+    "course"
    ]
   },
   {
@@ -18421,6 +18440,12 @@
    "text": "{section}, out loud!",
    "from": [
     "checkpoints"
+   ]
+  },
+  {
+   "text": "{title}: {done} of {total} questions",
+   "from": [
+    "me"
    ]
   },
   {

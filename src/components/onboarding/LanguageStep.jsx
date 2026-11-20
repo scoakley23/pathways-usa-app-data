@@ -35,7 +35,7 @@ export default function LanguageStep({ language, t, rtl, onPick, onContinue, not
       button={t('continue')}
       onButton={onContinue}
     >
-      <h1 id="language-title" className="font-display text-[2rem] leading-[1.05] tracking-tight">{t('language_ask')}</h1>
+      <h1 id="language-title" dir="auto" className="font-display text-[2rem] leading-[1.05] tracking-tight">{t('language_ask')}</h1>
       <label className="relative block">
         <span className="sr-only">{t('language_search', { n: floor })}</span>
         <Search className="absolute start-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted" aria-hidden="true" />

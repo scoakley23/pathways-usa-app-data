@@ -45,7 +45,7 @@ export default function WelcomeScreen() {
           ))}
         </div>
         <Amio mood="speaking" size={176} onNavy />
-        <h1 id="welcome-title" className="mt-4 font-display text-[2.5rem] leading-none tracking-tight">{t('welcome_hi')}</h1>
+        <h1 id="welcome-title" dir="auto" className="mt-4 font-display text-[2.5rem] leading-none tracking-tight">{t('welcome_hi')}</h1>
         <p className="mt-3 text-[1.0625rem] leading-snug text-sky">{t('welcome_sub')}</p>
       </div>
       <div className="max-w-md w-full mx-auto flex flex-col gap-3 pt-6">

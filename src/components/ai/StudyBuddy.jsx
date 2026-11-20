@@ -124,14 +124,13 @@ function AmioReply({ mine, en, language, t, action, mood = 'happy' }) {
   const textLang = showEn && en ? 'en' : language;
   const dir = !showEn && RTL_LANGUAGES.includes(language) ? 'rtl' : 'ltr';
   return (
-    <div className="flex items-start gap-2.5">
-      <Amio mood={mood} size={56} className="mt-1" />
-      <div className="min-w-0 flex-1">
-        {hasMine && !showEn && <p className="text-small font-semibold text-muted mb-1">{t('said_in_your_language')}</p>}
-        <div className="rounded-card rounded-ss-[4px] border-2 border-red bg-white px-4 py-3 text-navy">
-          <p dir={dir} lang={textLang} className="text-base leading-relaxed whitespace-pre-line break-words">{text}</p>
-          {action}
-        </div>
+    <div>
+      {hasMine && !showEn && <p className="text-small font-semibold text-muted mb-1">{t('said_in_your_language')}</p>}
+      <AmioSays mood={mood} size={56}>
+        <span dir={dir} lang={textLang} className="block font-normal leading-relaxed whitespace-pre-line break-words">{text}</span>
+      </AmioSays>
+      <div className="min-w-0">
+        {action && <div className="mt-2">{action}</div>}
         <div className="flex flex-wrap gap-2 mt-2">
           <Chip onClick={() => { stopReading(); speakText(text, textLang); }}>
             <Volume2 className="w-4 h-4" aria-hidden="true" /> {t('hear_it')}

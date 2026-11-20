@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Check, Star } from 'lucide-react';
+import { Check } from 'lucide-react';
 import { ROADMAP_STOPS } from '@/components/home/roadmapStops';
 import { roadStates, stopStatus } from '@/lib/todayView';
 
 // "Your road" on Progress (The Road): the five stops as a vertical road on
-// navy, with the same circles as Today (done = sky + check, current = star
-// red + star, later = hollow) and one line of status each, from the
+// navy, with the same circles as Today (done = sky + check, current =
+// gold, later = hollow) and one line of status each, from the
 // roadmap's existing counts. Each stop opens its part of the app.
 export default function YourRoad({ roadmap, stopName = (s) => s.name }) {
   const states = roadStates(ROADMAP_STOPS.map((s) => s.id), roadmap?.done || {}, roadmap?.currentStop?.id, false);
@@ -30,9 +30,7 @@ export default function YourRoad({ roadmap, stopName = (s) => s.name }) {
                 </span>
               )}
               {state === 'current' && (
-                <span className="w-10 h-10 rounded-full bg-red ring-[5px] ring-red/30 grid place-items-center">
-                  <Star className="w-4 h-4 text-white fill-white" aria-hidden="true" />
-                </span>
+                <span className="w-10 h-10 rounded-full bg-gold ring-[5px] ring-gold/30" />
               )}
               {state === 'later' && <span className="w-6 h-6 rounded-full border-2 border-on-navy bg-navy" />}
             </span>
