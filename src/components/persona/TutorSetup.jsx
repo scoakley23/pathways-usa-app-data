@@ -75,7 +75,7 @@ export default function TutorSetup({ initialProfile, onSave, onSkip, saveLabel =
             </div>
           )}
           <div className={`rounded-2xl p-3 ${mineLines ? 'bg-white/60' : 'rounded-tl-sm bg-white border border-line'}`}>
-            {mineLines && <p className="text-sm font-semibold uppercase tracking-wide text-muted">English</p>}
+            {mineLines && <p className="text-sm font-semibold text-muted">English</p>}
             <p>{englishLines.join(' ')}</p>
             <ListenButton text={sayInEnglish} language="en" label={mineLines ? 'Listen in English' : 'Listen'} />
           </div>

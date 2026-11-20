@@ -61,7 +61,7 @@ export default function TutorMessage({ profile, language = 'en', mine, en, child
 
   return (
     <div className={`relative text-navy ${sizeClass}`}>
-      {speaking && <span className="pointer-events-none absolute -inset-1 rounded-[18px] ring-4 ring-navy/20 motion-safe:animate-pulse" aria-hidden="true" />}
+      {speaking && <span className="pointer-events-none absolute -inset-1 rounded-card ring-4 ring-navy/20 motion-safe:animate-pulse" aria-hidden="true" />}
       <div className="relative rounded-card bg-white border border-line shadow-raised p-4">
         {showMine ? (
           <>

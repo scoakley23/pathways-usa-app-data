@@ -11,9 +11,14 @@ export const COLORS = {
   navy: '#1E2B45', // main text, dark blocks, speaking screens
   'navy-2': '#2A3A5C', // "You said" box on navy
   'navy-line': '#3A4A6B', // empty progress on navy
-  denim: '#3B5B92', // main actions today; the Reading color in v2
+  denim: '#3B5B92', // the Reading color; secondary dark block (main buttons are navy in v2)
   gold: '#FFC23D', // stars, rewards, "done" marks; the Writing color in v2 (navy text)
   sky: '#A9CBEC', // the Civics color; highlighted / current block
+  // Pale versions for the Me page's topic blocks (frame Me): the block, with
+  // the full colour filling it by the percent mastered. Navy text on all three.
+  'gold-soft': '#FFF0C7',
+  'sky-soft': '#E4EEF8',
+  'denim-soft': '#D5DEEC',
   paper: '#FBF7EE', // page background
   line: '#E2D8C3', // borders and dividers on paper
   'line-soft': '#EFE7D6', // empty progress on paper; dividers inside cards
@@ -143,6 +148,9 @@ export const TEXT_PAIRS = [
   ['muted', 'tint'],
   ['denim', 'tint'],
   ['navy', 'sky'],
+  ['navy', 'gold-soft'],
+  ['navy', 'sky-soft'],
+  ['navy', 'denim-soft'],
   ['navy', 'line-soft'],
   ['white', 'navy-2'],
   ['muted', 'line-soft'],

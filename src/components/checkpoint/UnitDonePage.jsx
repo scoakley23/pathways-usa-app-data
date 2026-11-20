@@ -44,7 +44,7 @@ export default function UnitDonePage() {
   return (
     <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-screen bg-navy text-white flex flex-col">
       <div className="flex-1 max-w-lg w-full mx-auto px-4 pt-10 pb-6 flex flex-col items-center gap-5 text-center">
-        <p className="text-small font-bold uppercase tracking-widest text-gold">{t('unit_complete', { n: unit.number })}</p>
+        <p className="text-small font-bold text-gold">{t('unit_complete', { n: unit.number })}</p>
         <Amio mood="cheer" size={110} onNavy />
         <h1 className="text-celebrate font-extrabold leading-tight" dir="auto">{t('unit_done_title', { unit: unit.title })}</h1>
         <div className="w-full flex gap-2">

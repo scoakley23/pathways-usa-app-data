@@ -27,47 +27,43 @@ export function AmioIcon({ className = 'w-6 h-6', strokeWidth = 2 }) {
   );
 }
 
-// The four bottom tabs (Pathways + Amio, frame R33Today). Decorative: the
-// tab's text label names the place.
-function TabSvg({ className, strokeWidth, children }) {
+// The four tab icons, drawn as in docs/design-v2/frames/Today.html. `active`
+// fills Today's house (the frame's open tab); the others stay outlines.
+const TAB_SVG = { viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeLinecap: 'round', strokeLinejoin: 'round', 'aria-hidden': 'true', focusable: 'false' };
+
+export function TodayIcon({ className = 'w-6 h-6', strokeWidth = 2, active = false }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true" focusable="false">
-      {children}
+    <svg {...TAB_SVG} strokeWidth={strokeWidth} fill={active ? 'currentColor' : 'none'} className={className}>
+      <path d="M4 11l8-7 8 7v9H4z" />
     </svg>
   );
 }
 
-// Today: a house.
-export function TodayIcon({ className = 'w-6 h-6', strokeWidth = 2 }) {
-  return <TabSvg className={className} strokeWidth={strokeWidth}><path d="M4 10.5L12 4l8 6.5V20H4z" /></TabSvg>;
-}
-
-// Course: the course building.
+// Course: books on a shelf.
 export function CourseIcon({ className = 'w-6 h-6', strokeWidth = 2 }) {
   return (
-    <TabSvg className={className} strokeWidth={strokeWidth}>
-      <path d="M4 20V9l4-3 4 3 4-3 4 3v11" />
-      <path d="M9 20v-5h6v5" />
-    </TabSvg>
+    <svg {...TAB_SVG} strokeWidth={strokeWidth} className={className}>
+      <path d="M5 4v16M10 4v16M15 6l5 14" />
+    </svg>
   );
 }
 
-// Interview: a screen on a stand.
+// Interview: a microphone.
 export function InterviewIcon({ className = 'w-6 h-6', strokeWidth = 2 }) {
   return (
-    <TabSvg className={className} strokeWidth={strokeWidth}>
-      <rect x="4" y="5" width="16" height="12" rx="3" />
-      <path d="M9 21h6M12 17v4" />
-    </TabSvg>
+    <svg {...TAB_SVG} strokeWidth={strokeWidth} className={className}>
+      <rect x="9" y="3" width="6" height="11" rx="3" />
+      <path d="M5 11a7 7 0 0014 0M12 18v3" />
+    </svg>
   );
 }
 
 // Me: a person.
-export function MeIcon({ className = 'w-6 h-6', strokeWidth = 2 }) {
+export function MeIcon({ className = 'w-6 h-6', strokeWidth = 2, active = false }) {
   return (
-    <TabSvg className={className} strokeWidth={strokeWidth}>
-      <circle cx="12" cy="8.5" r="3.5" />
-      <path d="M5 20c1-4 4-6 7-6s6 2 7 6" />
-    </TabSvg>
+    <svg {...TAB_SVG} strokeWidth={strokeWidth} fill={active ? 'currentColor' : 'none'} className={className}>
+      <circle cx="12" cy="8" r="4" />
+      <path d="M4 21c1-4 4-6 8-6s7 2 8 6" />
+    </svg>
   );
 }

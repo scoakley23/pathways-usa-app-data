@@ -168,3 +168,16 @@ export function stopX(index, rtl = false) {
   const x = ZIGZAG[index % ZIGZAG.length];
   return rtl ? 100 - x : x;
 }
+
+/**
+ * The Course topic bar (Amio v2): one segment per lesson group, at most `max`.
+ * A group is a section; with more sections than `max`, neighbouring sections
+ * share a segment, spread evenly. Each group: its lesson ids.
+ */
+export function lessonGroups(unit, max = 8) {
+  const sections = (unit?.sections || []).map((s) => s.lessons.map((l) => l.id)).filter((ids) => ids.length);
+  if (sections.length <= max) return sections;
+  const groups = Array.from({ length: max }, () => []);
+  sections.forEach((ids, i) => { groups[Math.floor((i * max) / sections.length)].push(...ids); });
+  return groups;
+}

@@ -55,7 +55,7 @@ function Ask({ question, index, total, results, t, onAnswer, onClose }) {
           <p className="inline-flex items-center gap-2 text-base text-on-navy"><Volume2 className="w-5 h-5" aria-hidden="true" />{t('officer_asks')}</p>
           <p className="mt-2 text-question font-bold leading-snug" lang="en" dir="ltr">{question.question}</p>
         </section>
-        <button type="button" onClick={() => speakText(question.question, 'en')} className="min-h-tap rounded-full border border-line bg-white px-5 text-base font-semibold text-navy hover:border-denim focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim">
+        <button type="button" onClick={() => speakText(question.question, 'en')} className="min-h-tap rounded-button border border-line bg-white px-5 text-base font-semibold text-navy hover:border-denim focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim">
           {t('repeat_please')}
         </button>
         <p className="text-base text-muted text-center">{t('no_hints')}</p>
@@ -206,7 +206,7 @@ export default function SpeakItPage() {
             </ul>
           </section>
           <div className="flex flex-wrap gap-2">
-            <span className="rounded-full bg-gold px-4 py-2 text-base font-bold text-navy">{t('to_pass', { need: passMark(n), n })}</span>
+            <span className="rounded-button bg-gold px-4 py-2 text-base font-bold text-navy">{t('to_pass', { need: passMark(n), n })}</span>
           </div>
         </div>
         <div className="px-4 pb-6 max-w-lg w-full mx-auto">

@@ -1,13 +1,13 @@
 import useTranslatedLines from '@/components/persona/useTranslatedLines';
 
-// English text for the "Help us improve Pathways" screen and the Profile
+// English text for the "Help us improve Amio" screen and the Profile
 // card, translated on demand like Today's text. Bump PILOT_CACHE_KEY when the
 // English changes.
 export const PILOT_CACHE_KEY = 'pilot_v3';
 
 export const PILOT_EN = {
   eyebrow: 'Optional',
-  title: 'Help us improve Pathways',
+  title: 'Help us improve Amio',
   intro: "These questions are optional. They help us learn if Pathways works. Don't share case numbers or personal details. Programs you study with can't see your answers. You can delete them any time with 'Delete all my data.'",
   prefer_not: "I'd rather not say",
   state_label: 'Which state do you live in?',
@@ -25,7 +25,7 @@ export const PILOT_EN = {
   saving: 'Saving…',
   saved: 'Thank you.',
   error: 'Something went wrong. Please try again.',
-  card_title: 'Help us improve Pathways',
+  card_title: 'Help us improve Amio',
   card_desc: "Optional. Programs you study with can't see this. 'Delete all my data' erases it.",
   reminders_switch: 'Email reminders at 3, 6 and 12 months',
   reminders_help: 'A short email asking a 1-minute question. Off unless you turn it on.',

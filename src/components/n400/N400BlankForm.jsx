@@ -29,7 +29,7 @@ export default function N400BlankForm({ sections, isAdmin = false, onOpenSection
               type="button"
               aria-pressed={on}
               onClick={() => setActiveId(s.id)}
-              className={`min-h-11 rounded-full border-2 px-4 text-[0.9375rem] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2 ${SECTION_BORDER[tone]} ${on ? SECTION_SOLID[tone] : 'bg-white text-navy hover:bg-tint'}`}
+              className={`min-h-11 rounded-button border-2 px-4 text-[0.9375rem] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2 ${SECTION_BORDER[tone]} ${on ? SECTION_SOLID[tone] : 'bg-white text-navy hover:bg-tint'}`}
             >
               {tabFor(s).label}
             </button>
@@ -66,7 +66,7 @@ export default function N400BlankForm({ sections, isAdmin = false, onOpenSection
               <button
                 type="button"
                 onClick={() => onOpenSection(section.id)}
-                className="font-sans min-h-11 rounded-full bg-tint px-4 text-[0.9375rem] font-semibold inline-flex items-center gap-1.5 hover:bg-line focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
+                className="font-sans min-h-11 rounded-button bg-tint px-4 text-[0.9375rem] font-semibold inline-flex items-center gap-1.5 hover:bg-line focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
               >
                 What it asks <ArrowRight className="w-4 h-4 rtl:rotate-180" aria-hidden="true" />
               </button>

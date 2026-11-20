@@ -54,7 +54,7 @@ export function LessonPicture({ p, caption = p.caption }) {
       <figure className="m-0 flex items-center gap-4 rounded-card bg-white border border-line p-4">
         {p.src && <img src={p.src} alt={p.name ? `${p.name}, official portrait` : ''} loading="lazy" className="w-20 h-24 shrink-0 rounded-2xl object-cover bg-tint" />}
         <figcaption className="min-w-0">
-          <span className="block text-small font-semibold uppercase tracking-wide text-muted">{p.title}</span>
+          <span className="block text-small font-semibold text-muted">{p.title}</span>
           <span className="block text-lg font-bold text-navy break-words">{p.name || 'Not listed'}</span>
           <Credit p={p} />
         </figcaption>

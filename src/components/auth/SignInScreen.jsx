@@ -102,7 +102,7 @@ export default function SignInScreen() {
     <div dir={dir} className="min-h-screen bg-paper text-navy font-sans flex flex-col">
       <NavyBanner
         title={step === 'email' ? t('title') : t('checkTitle')}
-        subtitle="Pathways USA"
+        subtitle="from Pathways USA"
         left={(
           <Link to="/" aria-label={t('back')} className="min-w-tap min-h-tap inline-flex items-center justify-center rounded-full text-white hover:bg-chip-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
             <ArrowLeft className="w-6 h-6 rtl:rotate-180" strokeWidth={2} aria-hidden="true" />

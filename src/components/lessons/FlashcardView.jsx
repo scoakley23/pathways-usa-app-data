@@ -63,7 +63,7 @@ export default function FlashcardView({ flashcards }) {
             className="absolute inset-0 rounded-card border border-line bg-white shadow-raised flex items-center justify-center p-6"
           >
             <div className="text-center space-y-4">
-              <span className="text-xs font-bold uppercase tracking-widest text-muted">Term</span>
+              <span className="text-xs font-bold text-muted">Term</span>
               <h3 className="text-3xl font-extrabold text-navy break-words">{currentCard.term}</h3>
             </div>
           </div>
@@ -78,11 +78,11 @@ export default function FlashcardView({ flashcards }) {
             className="absolute inset-0 rounded-card bg-tint shadow-raised flex items-center justify-center p-6 overflow-y-auto"
           >
             <div className="text-center space-y-4">
-              <span className="text-xs font-bold uppercase tracking-widest text-navy">Definition</span>
+              <span className="text-xs font-bold text-navy">Definition</span>
               <p className="text-xl font-bold text-navy leading-relaxed">{currentCard.definition}</p>
               {currentCard.example && (
                 <div className="mt-4 pt-4 border-t border-line">
-                  <span className="text-xs font-bold uppercase tracking-widest text-navy">Example</span>
+                  <span className="text-xs font-bold text-navy">Example</span>
                   <p className="text-base text-muted mt-2">{currentCard.example}</p>
                 </div>
               )}

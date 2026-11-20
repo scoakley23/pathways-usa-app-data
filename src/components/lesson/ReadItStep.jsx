@@ -71,9 +71,9 @@ export default function ReadItStep({ lesson, t, onDone }) {
           <p className="mt-3 text-small text-muted">{t('read_key')}</p>
         </section>
         <section>
-          <h2 className="text-small font-semibold uppercase tracking-wide text-muted">{t('reading_words')}</h2>
+          <h2 className="text-small font-semibold text-muted">{t('reading_words')}</h2>
           <ul className="mt-2 flex flex-wrap gap-2 list-none m-0 p-0" lang="en" dir="ltr">
-            {[...new Set(words)].map((w) => <li key={w} className="rounded-full border border-line bg-white px-4 py-2 text-base font-semibold text-navy">{w}</li>)}
+            {[...new Set(words)].map((w) => <li key={w} className="rounded-button border border-line bg-white px-4 py-2 text-base font-semibold text-navy">{w}</li>)}
           </ul>
         </section>
         <div className="mt-auto flex flex-col items-center gap-3 pt-4">

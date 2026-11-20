@@ -126,7 +126,7 @@ Pathways USA asks learners a few optional questions to learn whether the app hel
 
 **Who can see the answers:** only Pathways USA administrators. Partner staff cannot see any learner's answers.
 
-**Reminder emails:** only if the learner turns them on. The emails do not mention citizenship, immigration or the interview. Learners can turn them off in Settings (Help us improve Pathways).
+**Reminder emails:** only if the learner turns them on. The emails do not mention citizenship, immigration or the interview. Learners can turn them off in Settings (Help us improve Amio).
 
 **Activity dates:** the app records which days a learner opened it (the date only, not what they did) to measure how often people practice. It also keeps the code of the language the learner uses the app in, to see which language groups the app reaches.
 

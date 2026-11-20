@@ -1237,6 +1237,12 @@
    ]
   },
   {
+   "text": "All practice",
+   "from": [
+    "course"
+   ]
+  },
+  {
    "text": "All the people of their state",
    "from": [
     "course-lessons"
@@ -4300,8 +4306,21 @@
   {
    "text": "Free practice · Not affiliated with USCIS · Not legal advice",
    "from": [
+    "footer",
     "onboarding",
     "sign-in"
+   ]
+  },
+  {
+   "text": "Free practice: reading",
+   "from": [
+    "course"
+   ]
+  },
+  {
+   "text": "Free practice: writing",
+   "from": [
+    "course"
    ]
   },
   {
@@ -5161,7 +5180,7 @@
    ]
   },
   {
-   "text": "Help us improve Pathways",
+   "text": "Help us improve Amio",
    "from": [
     "pilot",
     "settings"
@@ -5295,15 +5314,15 @@
    ]
   },
   {
-   "text": "How Amio works",
+   "text": "How Amio teaches",
    "from": [
-    "settings"
+    "home"
    ]
   },
   {
-   "text": "How Pathways teaches",
+   "text": "How Amio works",
    "from": [
-    "home"
+    "settings"
    ]
   },
   {
@@ -5686,7 +5705,7 @@
    ]
   },
   {
-   "text": "If you answer them: your “Help us improve Pathways” answers (fixed choices only), the days you opened the app, and which reminder emails we sent.",
+   "text": "If you answer them: your “Help us improve Amio” answers (fixed choices only), the days you opened the app, and which reminder emails we sent.",
    "from": [
     "settings"
    ]
@@ -9003,7 +9022,6 @@
   {
    "text": "Reading",
    "from": [
-    "course",
     "interview-tab",
     "onboarding",
     "today-plan"
@@ -9013,6 +9031,12 @@
    "text": "Reading Practice",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "Reading and writing",
+   "from": [
+    "course"
    ]
   },
   {
@@ -14242,7 +14266,7 @@
    ]
   },
   {
-   "text": "We couldn't reach Pathways. Check your internet and try again.",
+   "text": "We couldn't reach Amio. Check your internet and try again.",
    "from": [
     "sign-in"
    ]
@@ -15834,7 +15858,6 @@
   {
    "text": "Writing",
    "from": [
-    "course",
     "interview-tab",
     "onboarding",
     "today-plan"

@@ -243,7 +243,7 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
         </div>
         {!finished && (
           <div className="space-y-2">
-            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-muted">
+            <p className="text-sm font-semibold text-muted">
               Step {stepIndex + 1} of {steps.length} · {STEP_LABELS[step]}
             </p>
             <SegmentedProgress current={stepIndex} total={steps.length} label={`Step ${stepIndex + 1} of ${steps.length}: ${STEP_LABELS[step]}`} />
@@ -349,7 +349,7 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
       {finished && (
         <div className="space-y-6">
           <IndexCard padding="p-6" tab={displayLesson.topic || 'Civics'} tabSkill="civics" className="relative">
-            <span className="pointer-events-none absolute end-5 top-12 -rotate-[8deg] rounded-md border-[2.5px] border-navy px-2.5 py-0.5 text-base font-bold uppercase tracking-[0.12em]" aria-hidden="true">Done</span>
+            <span className="pointer-events-none absolute end-5 top-12 -rotate-[8deg] rounded-md border-[2.5px] border-navy px-2.5 py-0.5 text-base font-bold" aria-hidden="true">Done</span>
             <Eyebrow>Lesson done</Eyebrow>
             <h2 className="mt-2 pe-20 font-display text-[2rem] leading-tight">{displayLesson.title}</h2>
             {result ? (

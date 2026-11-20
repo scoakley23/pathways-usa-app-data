@@ -11,7 +11,7 @@ export const HOME_STRINGS = {
   intro_time: 'About 10 minutes. You can skip any part.',
   intro_first_step: 'Your first step',
   intro_after: 'After the quick check, your study plan and daily practice appear here.',
-  promise_title: 'How Pathways teaches',
+  promise_title: 'How Amio teaches',
   promise_official_tag: 'Official answers',
   promise_official_title: 'Every answer comes from USCIS',
   promise_official_body:

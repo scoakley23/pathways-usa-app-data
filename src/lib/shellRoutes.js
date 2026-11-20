@@ -86,3 +86,12 @@ export function profileRedirect(hash = '') {
   if (h === 'program') return '/settings#program';
   return '/me';
 }
+
+// Amio v2: on phones there is no header on first open (Welcome, the
+// first-open steps and the quick check) or on the four tabs; desktop keeps a
+// slim header with the tabs. Other pages keep the header (no language button).
+export const HEADERLESS = ['/', '/course', '/interview', '/me', '/quick-check'];
+export function isHeaderless(pathname = '') {
+  const p = pathname.toLowerCase().replace(/\/+$/, '') || '/';
+  return HEADERLESS.includes(p);
+}

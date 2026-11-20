@@ -8,15 +8,15 @@ import {
 } from '@/components/ui/select';
 import { LANGUAGES } from '@/hooks/useLessonTranslation';
 
-// `compact`: a small pill (globe + language code) for the app header;
-// `onNavy` styles it for the navy header.
+// `compact`: a small button (globe + the language's own name, e.g. "Español")
+// for Settings; `onNavy` styles it for a navy background. No all-caps codes.
 export default function LanguageSelector({ language, onLanguageChange, translating, compact = false, onNavy = false, className = '' }) {
   const label = LANGUAGES.find((l) => l.value === language)?.label || language;
   return (
     <Select value={language} onValueChange={onLanguageChange} disabled={translating}>
       <SelectTrigger
         className={compact
-          ? `w-auto min-h-[44px] gap-1.5 rounded-full px-3 font-semibold [&>svg:last-child]:hidden ${onNavy ? 'bg-chip-navy border-chip-navy text-white focus:ring-white focus:ring-offset-navy' : 'bg-white text-navy'} ${className}`
+          ? `w-auto min-h-[44px] gap-1.5 rounded-button px-3 font-semibold [&>svg:last-child]:hidden ${onNavy ? 'bg-chip-navy border-chip-navy text-white focus:ring-white focus:ring-offset-navy' : 'bg-white text-navy'} ${className}`
           : `w-[160px] min-h-[44px] bg-white ${className}`}
         aria-label={compact ? `Language: ${label}` : 'Lesson language'}
       >
@@ -25,7 +25,7 @@ export default function LanguageSelector({ language, onLanguageChange, translati
         ) : (
           <Globe className={`w-4 h-4 ${compact ? (onNavy ? 'text-white' : 'text-navy') : 'me-2 text-muted'}`} aria-hidden="true" />
         )}
-        {compact ? <span className="uppercase">{language.split('-')[0]}</span> : <SelectValue />}
+        {compact ? <span dir="auto">{String(label).replace(/\s*\([^)]*\)$/, "")}</span> : <SelectValue />}
       </SelectTrigger>
       <SelectContent>
         {LANGUAGES.map((opt) => (

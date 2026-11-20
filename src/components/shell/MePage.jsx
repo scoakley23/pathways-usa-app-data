@@ -57,22 +57,49 @@ function Path({ view, t }) {
   );
 }
 
-function TopicBlock({ block, t, wide }) {
+const SOFT = { gold: 'bg-gold-soft', sky: 'bg-sky-soft', denim: 'bg-denim-soft' };
+const FULL = { gold: 'bg-gold', sky: 'bg-sky', denim: 'bg-denim' };
+
+// A topic block (frame Me): the pale colour, filled by the percent mastered
+// (from the bottom; the wide suggested block fills from the start side).
+// Navy text everywhere, except on denim, where a white copy of the text is
+// clipped to the filled part, so every letter keeps its contrast.
+function TopicBlock({ block, t, rtl }) {
   const sr = t('topic_sr', { title: block.title, done: block.done, total: block.total });
+  const wide = block.wide ? 'col-span-2' : '';
   if (block.complete) {
     return (
-      <li className={`rounded-card bg-navy text-white px-4 py-4 flex items-center gap-3 ${wide ? 'col-span-2' : ''}`}>
+      <li className={`rounded-card bg-navy text-white min-h-[4rem] px-4 py-3 flex items-center gap-3 ${wide}`}>
         <span className="flex-1 min-w-0 text-base font-bold break-words" dir="auto">{block.title}</span>
         <Check className="w-6 h-6 shrink-0 text-gold" strokeWidth={3} aria-hidden="true" />
         <span className="sr-only">{sr}</span>
       </li>
     );
   }
+  const across = block.suggested;
+  const fillStyle = across ? { width: `${block.pct}%` } : { height: `${block.pct}%` };
+  const fillPlace = across ? 'inset-y-0 start-0' : 'inset-x-0 bottom-0';
+  const clip = across
+    ? (rtl ? `inset(0 0 0 ${100 - block.pct}%)` : `inset(0 ${100 - block.pct}% 0 0)`)
+    : `inset(${100 - block.pct}% 0 0 0)`;
+  const body = (tone) => (across ? (
+    <span className={`relative h-full flex items-center justify-between gap-3 px-4 ${tone}`}>
+      <span className="min-w-0 text-base font-bold break-words" dir="auto">{block.title}</span>
+      <span className="shrink-0 font-display text-[1.75rem] leading-none tabular-nums">{block.pct}%</span>
+    </span>
+  ) : (
+    <span className={`relative h-full flex flex-col justify-between gap-2 px-4 py-3 ${tone}`}>
+      <span className="text-base font-bold break-words" dir="auto">{block.title}</span>
+      <span className="font-display text-[1.75rem] leading-none tabular-nums">{block.pct}%</span>
+    </span>
+  ));
   return (
-    <li className={`relative overflow-hidden rounded-card bg-line-soft text-navy min-h-[6rem] px-4 py-3 flex flex-col justify-between ${wide ? 'col-span-2' : ''}`}>
-      <span className={`absolute inset-x-0 bottom-0 ${block.fill === 'gold' ? 'bg-gold' : 'bg-sky'}`} style={{ height: `${block.pct}%` }} aria-hidden="true" />
-      <span className="relative text-base font-bold break-words" dir="auto">{block.title}</span>
-      <span className="relative font-display text-[1.75rem] leading-none tabular-nums" aria-hidden="true">{block.pct}%</span>
+    <li className={`relative overflow-hidden rounded-card ${SOFT[block.tone]} ${across ? 'min-h-[4.25rem]' : 'min-h-[5.5rem]'} ${wide}`}>
+      <span className={`absolute ${fillPlace} ${FULL[block.tone]}`} style={fillStyle} aria-hidden="true" />
+      {body('text-navy')}
+      {block.tone === 'denim' && block.pct > 0 && (
+        <span className="absolute inset-0" style={{ clipPath: clip }} aria-hidden="true">{body('text-white')}</span>
+      )}
       <span className="sr-only">{sr}</span>
     </li>
   );
@@ -137,21 +164,23 @@ export default function MePage() {
 
   const total = readiness?.civicsTotal || 128;
   const view = pathView(readiness?.civicsMastered || 0, total);
-  const blocks = journey.loading ? [] : topicBlocks(journey.course, readiness?.masteredIds || new Set());
+  const blocks = journey.loading ? [] : topicBlocks(journey.course, readiness?.masteredIds || new Set(), { suggestedId: journey.currentUnit });
 
   return (
     <div dir={dir} className="min-h-full bg-paper text-navy">
       <section className="bg-navy text-white" aria-labelledby="me-title">
         <div className="max-w-lg mx-auto px-4 pt-6 pb-6">
-          <div className="flex items-start justify-between gap-3">
+          {/* The number and "of 128 civics questions" share one line (frame Me):
+              the settings button sits in the corner so the line has the full width. */}
+          <div className="relative">
             <h1 id="me-title" className="min-w-0">
-              <span className="block text-lg text-on-navy break-words" dir="auto">{name ? t('you_know_name', { name }) : t('you_know')}</span>
-              <span className="mt-2 flex items-baseline gap-3 flex-wrap">
-                <span className="font-display text-[4.5rem] leading-none tabular-nums">{readiness ? view.n : ' '}</span>
-                <span className="font-sans text-lg font-semibold">{t('of_civics', { total })}</span>
+              <span className="block pe-14"><span className="block text-base text-on-navy break-words" dir="auto">{name ? t('you_know_name', { name }) : t('you_know')}</span></span>
+              <span className="mt-1 flex items-baseline gap-x-2 gap-y-1 flex-wrap">
+                <span className="font-display text-[4rem] leading-none tabular-nums">{readiness ? view.n : ' '}</span>
+                <span className="font-sans text-base font-semibold">{t('of_civics', { total })}</span>
               </span>
             </h1>
-            {settingsButton}
+            <span className="absolute top-0 end-0">{settingsButton}</span>
           </div>
           {readiness && <Path view={view} t={t} />}
         </div>
@@ -161,7 +190,7 @@ export default function MePage() {
         {blocks.length > 0 && (
           <section aria-label={t('topics')}>
             <ul className="grid grid-cols-2 gap-2 list-none m-0 p-0">
-              {blocks.map((b, i) => <TopicBlock key={b.id} block={b} t={t} wide={i === 0 || (i === blocks.length - 1 && blocks.length % 2 === 0)} />)}
+              {blocks.map((b) => <TopicBlock key={b.id} block={b} t={t} rtl={dir === 'rtl'} />)}
             </ul>
           </section>
         )}

@@ -9,7 +9,7 @@ import usePilotText from './pilotStrings';
 import { saveCheckIn } from './checkInData';
 import { ChoiceQuestion, ReadinessQuestion, StateSelect } from './PilotFields';
 
-// "Help us improve Pathways": shown once on Home, after the learner's first
+// "Help us improve Amio": shown once on Home, after the learner's first
 // day (src/lib/pilot.js, shouldShowPilotIntro). Every question is optional;
 // Skip saves nothing but "seen". Answers become one OutcomeCheckIn of kind
 // "signup" plus the pilot fields on the account. Partner programs never see

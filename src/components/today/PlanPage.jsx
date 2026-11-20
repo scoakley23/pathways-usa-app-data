@@ -99,7 +99,7 @@ export default function PlanPage() {
                     <span className="block text-base text-navy">{t('pace_minutes', { n: minutesForPerDay(p.perDay) })}</span>
                     <span className="block text-base text-muted">{t('ready_by', { month: fmt(ready, { month: 'long', year: ready.getFullYear() !== now.getFullYear() ? 'numeric' : undefined }) })}</span>
                   </span>
-                  {p.perDay === recommended && <span className="shrink-0 rounded-full bg-denim px-3 py-1 text-small font-semibold text-white">{t('recommended')}</span>}
+                  {p.perDay === recommended && <span className="shrink-0 rounded-button bg-denim px-3 py-1 text-small font-semibold text-white">{t('recommended')}</span>}
                 </button>
               );
             })}

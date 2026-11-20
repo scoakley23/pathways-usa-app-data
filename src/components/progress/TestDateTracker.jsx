@@ -42,7 +42,7 @@ export default function TestDateTracker() {
       <div className="flex flex-wrap items-center gap-3">
         {date && (
           <div className="flex-1 min-w-[120px]">
-            <p className="text-xs text-muted font-bold uppercase tracking-widest">Time Remaining</p>
+            <p className="text-xs text-muted font-bold">Time Remaining</p>
             <p className={`text-2xl font-extrabold ${daysLeft < 30 ? 'text-not-yet' : 'text-navy'}`}>
               {daysLeft > 0 ? `${daysLeft} Days` : daysLeft === 0 ? 'Today!' : 'Passed'}
             </p>

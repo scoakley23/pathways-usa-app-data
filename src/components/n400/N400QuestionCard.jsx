@@ -51,7 +51,7 @@ export default function N400QuestionCard({ sectionId, question, isAdmin, languag
 
       {/* What it means, in the learner's language */}
       <Card>
-        <span className="inline-block rounded-full bg-tint px-3 py-1 text-label uppercase text-navy">
+        <span className="inline-block rounded-button bg-tint px-3 py-1 text-label text-navy">
           {mine ? 'Said in your language' : 'What it means'}
         </span>
         {mine ? (

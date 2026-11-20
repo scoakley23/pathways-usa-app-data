@@ -34,7 +34,7 @@ export function YourSenators({ t }) {
   }
   return (
     <section className="rounded-card bg-white border border-line p-4 flex flex-col gap-3">
-      <p className="text-small font-semibold uppercase tracking-wide text-muted">{t('story_your_senators')}</p>
+      <p className="text-small font-semibold text-muted">{t('story_your_senators')}</p>
       <ul className="list-none m-0 p-0 grid grid-cols-2 gap-3">
         {senators.map((s) => (
           <li key={s.name} className="flex flex-col items-center gap-2 text-center">
@@ -129,7 +129,7 @@ export default function StoryListen({ story, language, mine, t, onEnd }) {
     body = (
       <>
         <section className="rounded-card bg-white border-2 border-denim p-5 flex flex-col gap-2">
-          <p className="text-small font-semibold uppercase tracking-wide text-muted">{t('story_quick_check')}{c.kind === 'tf' ? ` · ${t('story_true_or_false')}` : ''}</p>
+          <p className="text-small font-semibold text-muted">{t('story_quick_check')}{c.kind === 'tf' ? ` · ${t('story_true_or_false')}` : ''}</p>
           <p className="text-question font-bold text-navy leading-snug" lang="en" dir="ltr">{question}</p>
           {lang !== 'en' && qMine && english && <p className="text-base text-muted" dir="auto" lang={lang}>{qMine}</p>}
           {lang !== 'en' && qMine && (
@@ -166,7 +166,7 @@ export default function StoryListen({ story, language, mine, t, onEnd }) {
       <>
         <ScenePicture picture={item.picture} t={t} />
         <section className="rounded-card bg-white border border-line p-5 flex flex-col gap-2">
-          {sceneLang !== 'en' && <span className="self-start rounded-full bg-tint px-3 py-1 text-small font-semibold uppercase tracking-wide text-navy">{t('said_in_language')}</span>}
+          {sceneLang !== 'en' && <span className="self-start rounded-button bg-tint px-3 py-1 text-small font-semibold text-navy">{t('said_in_language')}</span>}
           <p className="text-[1.375rem] font-bold text-navy leading-snug" dir="auto" lang={sceneLang} aria-live="polite">{sceneText}</p>
           {hasMine && (
             <button type="button" onClick={() => setEnglish((v) => !v)} aria-pressed={english} className="self-start min-h-tap text-base font-semibold text-denim underline underline-offset-4">
@@ -188,7 +188,7 @@ export default function StoryListen({ story, language, mine, t, onEnd }) {
               <li key={k} className={`h-2 rounded-full ${x.check ? 'w-4' : 'w-2'} ${k < i ? 'bg-denim' : k === i ? 'bg-gold' : 'bg-mid'}`} aria-hidden="true" />
             ))}
           </ol>
-          {story.draft && <span className="rounded-full bg-tint px-3 py-1 text-small font-semibold text-navy">{t('story_draft')}</span>}
+          {story.draft && <span className="rounded-button bg-tint px-3 py-1 text-small font-semibold text-navy">{t('story_draft')}</span>}
         </div>
         {body}
       </div>

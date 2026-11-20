@@ -101,7 +101,7 @@ export default function JourneyPath({ unit, t, rtl, onStop }) {
             return (
               <li key={`d-${r.section.id}`} className="absolute inset-x-0 flex items-center gap-3 px-4" style={{ top: r.y + 12 }}>
                 <span className="flex-1 h-0.5 bg-mid rounded-full" aria-hidden="true" />
-                <h2 dir="auto" className="shrink min-w-0 max-w-[80%] rounded-full bg-white border border-line px-4 py-2 text-base font-semibold text-navy text-center">
+                <h2 dir="auto" className="shrink min-w-0 max-w-[80%] rounded-button bg-white border border-line px-4 py-2 text-base font-semibold text-navy text-center">
                   {t('section_n', { n: r.number, title: r.section.title })}
                   {r.section.stops.length > 0 && <span className="font-normal text-muted"> · {t('stops_n', { n: r.section.stops.length })}</span>}
                 </h2>

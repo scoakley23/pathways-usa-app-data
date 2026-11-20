@@ -13,7 +13,7 @@ export default function OfficeholderNote({ answer, graded = true, onPoster = fal
   if (!answer) return null;
   const ungraded = graded && answer.correct === null;
   const link = onPoster
-    ? 'min-h-[44px] inline-flex items-center gap-2 rounded-full border-2 border-white px-4 font-semibold text-white hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent'
+    ? 'min-h-[44px] inline-flex items-center gap-2 rounded-button border-2 border-white px-4 font-semibold text-white hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent'
     : 'min-h-[44px] inline-flex items-center gap-2 rounded-2xl bg-navy text-white px-4 font-bold hover:bg-navy-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2';
   return (
     <div className={cn('space-y-2 text-base leading-relaxed', className)}>

@@ -17,6 +17,11 @@
   --line-soft: #EFE7D6;     /* empty progress on paper; dividers inside cards */
   --muted: #6B6555;         /* secondary text on paper (passes 4.5:1) */
 
+  /* pale versions (Me topic blocks: the block; the full colour fills it). Navy text. */
+  --gold-soft: #FFF0C7;
+  --sky-soft: #E4EEF8;
+  --denim-soft: #D5DEEC;
+
   /* the four parts of the test always use these */
   --part-reading: var(--denim);
   --part-writing: var(--gold);
