@@ -23,7 +23,7 @@ export default function UnitsMapPage() {
   }, [journey.loading]);
 
   return (
-    <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-full bg-sky">
+    <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-full bg-scene-sky">
       <NavyBanner
         title={t('journey_title')}
         subtitle={<span dir="auto">{t('journey_sub', { units: journey.course.length, lessons, interviews })}</span>}
@@ -50,7 +50,7 @@ export default function UnitsMapPage() {
             const state = unitState(u, journey.stops, journey.currentUnit);
             const counts = lessonCounts(u, journey.progress);
             const current = state === 'current';
-            const look = current ? 'bg-white border-2 border-red' : state === 'done' ? 'bg-white border-2 border-denim' : 'bg-white/80 border-2 border-dashed border-mid';
+            const look = current ? 'bg-white border-2 border-red' : state === 'done' ? 'bg-white border-2 border-denim' : 'bg-white/80 border-2 border-dashed border-muted';
             return (
               <li key={u.id} className={`flex ${i % 2 ? 'justify-end' : 'justify-start'}`} ref={current ? currentRef : undefined}>
                 <Link

@@ -167,7 +167,7 @@ export default function Lessons() {
                         <Star className="w-4 h-4 text-white fill-white" aria-hidden="true" />
                       </span>
                     )}
-                    {row.state === 'later' && <span className="w-6 h-6 rounded-full border-2 border-muted bg-page" />}
+                    {row.state === 'later' && <span className="w-6 h-6 rounded-full border-2 border-muted bg-paper" />}
                   </span>
 
                   <div className="min-w-0 flex-1 pb-6">
@@ -179,7 +179,7 @@ export default function Lessons() {
                       className="w-full min-h-11 flex items-center gap-3 text-start rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
                     >
                       <span className="min-w-0 flex-1">
-                        <span className="block font-display text-[20px] leading-tight">{row.name}</span>
+                        <span className="block font-display text-[1.25rem] leading-tight">{row.name}</span>
                         <span className="block text-sm text-muted">
                           {row.doneCount} of {row.lessons.length} lessons
                           <span className="sr-only">{row.state === 'done' ? ', done' : row.state === 'current' ? ", you're here" : ''}</span>
@@ -193,7 +193,7 @@ export default function Lessons() {
                       <Card padding="p-4" className="mt-3 flex items-center gap-4">
                         <div className="min-w-0 flex-1">
                           <Eyebrow>You&apos;re here</Eyebrow>
-                          <p className="mt-1 font-display text-[22px] leading-tight">{next.lesson.title}</p>
+                          <p className="mt-1 font-display text-[1.375rem] leading-tight">{next.lesson.title}</p>
                           <p className="mt-1 text-sm text-muted">{NEXT_LABEL[next.reason]}</p>
                         </div>
                         <button
@@ -219,7 +219,7 @@ export default function Lessons() {
                               <button
                                 type="button"
                                 onClick={() => setSelectedLesson(lesson)}
-                                className="w-full flex items-center gap-3 px-4 py-3 min-h-[60px] text-start hover:bg-page focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-navy"
+                                className="w-full flex items-center gap-3 px-4 py-3 min-h-[60px] text-start hover:bg-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-navy"
                               >
                                 <span className={`w-6 h-6 shrink-0 rounded-full grid place-items-center ${isCompleted ? 'bg-denim' : 'border-2 border-line'}`} aria-hidden="true">
                                   {isCompleted && <Check className="w-3.5 h-3.5 text-white" strokeWidth={3} />}
@@ -248,7 +248,7 @@ export default function Lessons() {
               <div className="space-y-4">
                 <BookOpen className="w-16 h-16 text-line mx-auto" aria-hidden="true" />
                 <div>
-                  <h3 className="font-display text-[22px] mb-2">No lessons yet</h3>
+                  <h3 className="font-display text-[1.375rem] mb-2">No lessons yet</h3>
                   <p className="text-base text-muted">Lessons are loading. Please check back shortly.</p>
                 </div>
               </div>

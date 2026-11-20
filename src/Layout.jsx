@@ -4,7 +4,7 @@ import { auth } from '@/api/auth';
 import { profile } from '@/api/profile';
 import NotificationCenter, { OPEN_NOTIFICATIONS_EVENT } from '@/components/notifications/NotificationCenter';
 import BottomTabs, { TABS } from '@/components/pathways/BottomTabs';
-import { PathwaysLockup } from '@/components/pathways/ui';
+import { Amio } from '@/components/pathways/Amio';
 import LanguageSelector from '@/components/lessons/LanguageSelector';
 import useAppLanguage from '@/hooks/useAppLanguage';
 import useTranslatedLines from '@/components/persona/useTranslatedLines';
@@ -106,22 +106,22 @@ export default function Layout({ children }) {
   const activeTab = tabFor(location.pathname);
 
   return (
-    <div className="min-h-screen bg-page font-sans text-navy">
+    <div className="min-h-screen bg-paper font-sans text-navy">
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:start-3 focus:z-[60] focus:rounded-2xl focus:bg-navy focus:text-white focus:font-bold focus:px-4 focus:py-3"
       >
         Skip to main content
       </a>
-      {/* A slim navy header: the Pathways mark, (desktop) the four tabs as
+      {/* A slim navy header: Amio alone (no wordmark; its name is "Amio"), (desktop) the four tabs as
           pills, and the language button. Everything else lives in the tabs:
           Me has Ask Amio, Free help, Settings, Progress, Notifications,
           Partner and Admin pages, and Sign out. */}
       {!practiceRun && <nav aria-label="Site" className="sticky top-0 z-50 w-full bg-navy text-white">
         <div className="container mx-auto px-4 h-14 lg:h-[72px] max-w-5xl flex items-center justify-between gap-3">
           {splash ? <span /> : (
-            <Link to="/" aria-label="Pathways, home" className="shrink-0 flex items-center min-h-11 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
-              <PathwaysLockup size={26} tone="navy" />
+            <Link to="/" aria-label="Amio" className="shrink-0 flex items-center min-h-11 min-w-11 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+              <Amio size={36} onNavy />
             </Link>
           )}
 

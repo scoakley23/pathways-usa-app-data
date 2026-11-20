@@ -7,7 +7,7 @@ import { coursePlay } from '@/api/coursePlay';
 import { n400Progress } from '@/api/interview';
 import { UNITS } from '@/lib/course';
 import { canSeeDrafts } from '@/lib/journey';
-import { COLORS } from '@/lib/theme';
+import { CONFETTI_COLORS } from '@/lib/theme';
 import {
   N400_LESSON_STEPS, N400_RULES, findN400Lesson, lessonSection, n400LessonVisible, n400StarsFor, questionName,
 } from '@/lib/n400Lessons';
@@ -15,7 +15,7 @@ import useTranslatedLines from '@/components/persona/useTranslatedLines';
 import useAppLanguage, { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
 import usePackLookup from '@/components/course/usePackLookup';
 import { Amio, AmioSays } from '@/components/pathways/Amio';
-import { Button } from '@/components/pathways/ui';
+import { Button, MAIN_LINK } from '@/components/pathways/ui';
 import { StarIcon } from '@/components/pathways/StarsPill';
 import { LessonHeader } from '@/components/lesson/lessonParts';
 import { N400_LESSON_LINES } from '@/components/n400lesson/n400LessonStrings';
@@ -69,7 +69,7 @@ function Start({ lesson, section, results, t, onStart }) {
           {t('three_stars')}
         </p>
       </div>
-      <div className="sticky bottom-0 bg-page px-4 pt-2 pb-6 max-w-lg w-full mx-auto">
+      <div className="sticky bottom-0 bg-paper px-4 pt-2 pb-6 max-w-lg w-full mx-auto">
         <Button variant="main" className="w-full" onClick={onStart}>
           {at > 0 ? t('continue_step', { step: t(`step_${N400_LESSON_STEPS[at]}`) }) : t('start_lesson')}
         </Button>
@@ -81,7 +81,7 @@ function Start({ lesson, section, results, t, onStart }) {
 function Done({ title, results, t, saves, onDoneForToday, onBack }) {
   const stars = n400StarsFor(results);
   useEffect(() => {
-    if (stars > 0) confetti({ particleCount: 90, spread: 70, origin: { y: 0.3 }, colors: [COLORS.gold, COLORS.red, COLORS.denim, COLORS.white], disableForReducedMotion: true });
+    if (stars > 0) confetti({ particleCount: 90, spread: 70, origin: { y: 0.3 }, colors: CONFETTI_COLORS, disableForReducedMotion: true });
   }, [stars]);
   const label = stars === 1 ? t('star_1') : t('stars_n', { n: stars });
   return (
@@ -154,15 +154,15 @@ export default function N400LessonPage() {
   useEffect(() => { setPhase('start'); setStepIndex(0); setResults({}); }, [lessonId]);
 
   const back = () => navigate(unit ? `/course?unit=${unit.id}` : '/course');
-  if (user === undefined) return <div className="min-h-screen bg-page" />;
+  if (user === undefined) return <div className="min-h-screen bg-paper" />;
 
   if (!lesson || !section || !n400LessonVisible(lesson, canSeeDrafts(user))) {
     return (
-      <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-screen bg-page">
+      <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-screen bg-paper">
         <LessonHeader title={t('not_found')} onClose={back} closeLabel={t('close')} />
         <div className="max-w-lg mx-auto px-4 py-8 flex flex-col gap-6">
           <AmioSays mood="kind" size={64}>{t('not_found')}</AmioSays>
-          <Link to="/course" className="min-h-main inline-flex items-center justify-center rounded-button bg-denim px-6 text-base font-bold text-white shadow-lip">{t('back_to_road')}</Link>
+          <Link to="/course" className={`${MAIN_LINK} px-6 text-base`}>{t('back_to_road')}</Link>
         </div>
       </div>
     );
@@ -193,7 +193,7 @@ export default function N400LessonPage() {
 
   if (phase === 'done') {
     return (
-      <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-screen bg-page">
+      <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-screen bg-paper">
         <Done title={title} results={results} t={t} saves={coursePlay.saves} onDoneForToday={() => navigate('/done-today')} onBack={back} />
       </div>
     );
@@ -216,7 +216,7 @@ export default function N400LessonPage() {
   }
 
   return (
-    <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-screen bg-page flex flex-col">
+    <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-screen bg-paper flex flex-col">
       <LessonHeader title={header.title} subtitle={header.subtitle} step={header.step} onClose={back} closeLabel={t('close')} />
       <div className="flex-1 flex flex-col">{body}</div>
     </div>

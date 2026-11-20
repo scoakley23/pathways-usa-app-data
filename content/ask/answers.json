@@ -62,7 +62,7 @@
       "answer": "Many interviews take about 20 to 30 minutes, but some are shorter or longer. Come early, because you may have to wait. If you have questions about your own case, talk to a lawyer first.",
       "official": [],
       "source": "General information about the interview",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "q_dont_understand",
@@ -134,7 +134,7 @@
       "answer": "The Northeast is a region in the top right of the map, by the Atlantic Ocean. It includes states like New York, Pennsylvania and the New England states. New England is the six states in the far northeast: Maine, New Hampshire, Vermont, Massachusetts, Rhode Island and Connecticut.",
       "official": [],
       "source": "Lesson \"U.S. Geography and Regions\" (key point \"Northeast Region\")",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1046_title",
@@ -142,7 +142,7 @@
       "answer": "This lesson is about the land of the United States and its regions. The civics test asks about oceans, rivers, borders and states, so a map helps.",
       "official": [],
       "source": "Lesson \"U.S. Geography and Regions\"",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1045_term",
@@ -150,7 +150,7 @@
       "answer": "The American flag has 13 stripes and 50 stars. The stripes are for the 13 original colonies. The stars are for the 50 states.",
       "official": [],
       "source": "Lesson \"American Symbols of Freedom and Democracy\" (key point \"American Flag\")",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1045_title",
@@ -158,7 +158,7 @@
       "answer": "This lesson is about symbols of the United States, like the flag and the national anthem. Each symbol stands for an idea, such as freedom or the states.",
       "official": [],
       "source": "Lesson \"American Symbols of Freedom and Democracy\"",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1044_term",
@@ -166,7 +166,7 @@
       "answer": "The Industrial Revolution was the time when work moved from farms and hand tools to factories and machines. It changed how Americans lived and worked.",
       "official": [],
       "source": "Lesson \"Industrial Revolution and Modern America\" (key point \"Industrial Revolution\")",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1044_title",
@@ -174,7 +174,7 @@
       "answer": "This lesson is about how the United States changed from a farming country to a country of factories, cities and new inventions.",
       "official": [],
       "source": "Lesson \"Industrial Revolution and Modern America\"",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1043_term",
@@ -182,7 +182,7 @@
       "answer": "\"Manifest Destiny\" was a belief in the 1800s that the United States should grow west to the Pacific Ocean. It also caused great harm to American Indians, who lost their land.",
       "official": [],
       "source": "Lesson \"Westward Expansion and Manifest Destiny\" (key point \"Manifest Destiny\")",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1043_title",
@@ -190,7 +190,7 @@
       "answer": "This lesson is about how the United States grew west across the continent in the 1800s, and how that changed the country and the people who already lived there.",
       "official": [],
       "source": "Lesson \"Westward Expansion and Manifest Destiny\"",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1042_term",
@@ -198,7 +198,7 @@
       "answer": "The Civil War was the war between the North and the South, from 1861 to 1865. It ended slavery in the United States.",
       "official": [],
       "source": "Lesson \"The Civil War and Abolition of Slavery\" (key point \"Civil War\")",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1042_title",
@@ -206,7 +206,7 @@
       "answer": "This lesson is about the Civil War and the end of slavery. Abraham Lincoln was President. The Emancipation Proclamation freed slaves in the Confederate states.",
       "official": [],
       "source": "Lesson \"The Civil War and Abolition of Slavery\"",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1041_term",
@@ -214,7 +214,7 @@
       "answer": "The Declaration of Independence said the American colonies were free from Britain. It was adopted on July 4, 1776. Thomas Jefferson wrote it.",
       "official": [],
       "source": "Lesson \"American Independence and the Revolutionary War\" (key point \"Declaration of Independence\")",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1041_title",
@@ -222,7 +222,7 @@
       "answer": "This lesson is about how the 13 colonies became an independent country. The colonists fought Britain in the Revolutionary War and won.",
       "official": [],
       "source": "Lesson \"American Independence and the Revolutionary War\"",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1040_term",
@@ -230,7 +230,7 @@
       "answer": "This means the many American Indian nations that lived in America before Europeans came. Each had its own language, government and way of life.",
       "official": [],
       "source": "Lesson \"Native Americans and European Colonization\" (key point \"Native American Civilizations\")",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1040_title",
@@ -238,7 +238,7 @@
       "answer": "This lesson is about who lived in America before the Europeans, and how colonization changed their lives. American Indians lost much of their land.",
       "official": [],
       "source": "Lesson \"Native Americans and European Colonization\"",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d103f_term",
@@ -246,7 +246,7 @@
       "answer": "\"Due process\" means the government must follow fair rules before it takes away a person's freedom, money or property. For example, a person has the right to a fair trial.",
       "official": [],
       "source": "Lesson \"Due Process and Justice\" (key point \"Due Process\")",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d103f_title",
@@ -254,7 +254,7 @@
       "answer": "This lesson is about fair treatment by the government and the courts. The Constitution protects the right to fair rules and a fair trial.",
       "official": [],
       "source": "Lesson \"Due Process and Justice\"",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d103e_term",
@@ -262,7 +262,7 @@
       "answer": "It means we use our rights in a way that respects other people's rights. You have freedom of speech, and so does your neighbor.",
       "official": [],
       "source": "Lesson \"Balancing Rights and Responsibilities\" (key point \"Balanced Rights\")",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d103e_title",
@@ -270,7 +270,7 @@
       "answer": "This lesson is about how rights and responsibilities go together. Americans have rights, and they also have duties, like obeying the law.",
       "official": [],
       "source": "Lesson \"Balancing Rights and Responsibilities\"",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d103d_term",
@@ -278,7 +278,7 @@
       "answer": "The 14th Amendment says people born in the United States are citizens. It also says states must give every person equal protection of the laws.",
       "official": [],
       "source": "Lesson \"Civil Rights and Equal Protection\" (key point \"14th Amendment\")",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d103d_title",
@@ -286,7 +286,7 @@
       "answer": "This lesson is about laws that protect equal treatment. The civil rights movement fought to end racial discrimination.",
       "official": [],
       "source": "Lesson \"Civil Rights and Equal Protection\"",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d103c_term",
@@ -294,7 +294,7 @@
       "answer": "\"Civic responsibility\" means the things citizens do to help their community and their government, like voting, serving on a jury and obeying the law.",
       "official": [],
       "source": "Lesson \"Responsibilities of American Citizens\" (key point \"Civic Responsibility\")",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d103c_title",
@@ -302,7 +302,7 @@
       "answer": "This lesson is about what citizens do to keep democracy strong, like voting, paying taxes and taking part in their community.",
       "official": [],
       "source": "Lesson \"Responsibilities of American Citizens\"",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d103b_term",
@@ -310,7 +310,7 @@
       "answer": "Freedom of speech means you can say what you think, and the government cannot punish you for your opinion. The First Amendment protects it.",
       "official": [],
       "source": "Lesson \"Fundamental Rights of Citizens\" (key point \"Freedom of Speech\")",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d103b_title",
@@ -318,7 +318,7 @@
       "answer": "This lesson is about important rights in the United States, like freedom of speech and freedom of religion. Many of them are in the Bill of Rights.",
       "official": [],
       "source": "Lesson \"Fundamental Rights of Citizens\"",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d103a_term",
@@ -326,7 +326,7 @@
       "answer": "A governor is the leader of a state government. The governor is like the President, but for one state.",
       "official": [],
       "source": "Lesson \"State and Local Government\" (key point \"Governor\")",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d103a_title",
@@ -334,7 +334,7 @@
       "answer": "This lesson is about state and local government. States run things like schools, driver's licenses and police. Cities and towns have their own local leaders.",
       "official": [],
       "source": "Lesson \"State and Local Government\"",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1039_term",
@@ -342,7 +342,7 @@
       "answer": "\"Checks and balances\" means each branch of government can limit the other branches. This way, no one part of government becomes too powerful.",
       "official": [],
       "source": "Lesson \"Checks and Balances\" (key point \"Checks and Balances\")",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1039_title",
@@ -350,7 +350,7 @@
       "answer": "This lesson is about how the three branches share power. For example, the President can veto a bill, and Congress can still pass it with more votes.",
       "official": [],
       "source": "Lesson \"Checks and Balances\"",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1038_term",
@@ -358,7 +358,7 @@
       "answer": "The Supreme Court is the highest court in the United States. It has nine seats. It can decide if a law goes against the Constitution.",
       "official": [],
       "source": "Lesson \"The Judicial Branch and Supreme Court\" (key point \"Supreme Court\")",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1038_title",
@@ -366,7 +366,7 @@
       "answer": "This lesson is about the courts, the judicial branch. The courts explain laws and decide disagreements about the law.",
       "official": [],
       "source": "Lesson \"The Judicial Branch and Supreme Court\"",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1037_term",
@@ -374,7 +374,7 @@
       "answer": "The President leads the executive branch. The President is elected for four years and can serve only two terms.",
       "official": [],
       "source": "Lesson \"The Executive Branch and the Presidency\" (key point \"President\")",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1037_title",
@@ -382,7 +382,7 @@
       "answer": "This lesson is about the President and the executive branch. The President signs bills into law, can veto bills and is Commander in Chief of the military.",
       "official": [],
       "source": "Lesson \"The Executive Branch and the Presidency\"",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1036_term",
@@ -390,7 +390,7 @@
       "answer": "The Senate is one of the two parts of Congress. There are 100 senators, two from each state. A senator's term is six years.",
       "official": [],
       "source": "Lesson \"Congress and the Legislative Branch\" (key point \"Senate\")",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1036_title",
@@ -398,7 +398,7 @@
       "answer": "This lesson is about Congress, the part of the government that writes laws. Congress has two parts: the Senate and the House of Representatives.",
       "official": [],
       "source": "Lesson \"Congress and the Legislative Branch\"",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1035_term",
@@ -406,7 +406,7 @@
       "answer": "It means the people have the power. They vote for leaders who make decisions for them. The United States is a republic, a representative democracy.",
       "official": [],
       "source": "Lesson \"Democracy and Federal Government Structure\" (key point \"Democratic Republic\")",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1035_title",
@@ -414,7 +414,7 @@
       "answer": "This lesson is about how the U.S. government is built. Power is shared between the federal government and the states, and among three branches.",
       "official": [],
       "source": "Lesson \"Democracy and Federal Government Structure\"",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1034_term",
@@ -422,7 +422,7 @@
       "answer": "Voting rights are the rights of citizens to vote in elections. Over time, amendments to the Constitution gave more citizens the right to vote.",
       "official": [],
       "source": "Lesson \"Voting Rights and Democratic Participation\" (key point \"Voting Rights\")",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1034_title",
@@ -430,7 +430,7 @@
       "answer": "This lesson is about who can vote and how that changed. Today, citizens who are 18 and older can vote in federal elections.",
       "official": [],
       "source": "Lesson \"Voting Rights and Democratic Participation\"",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1033_term",
@@ -438,7 +438,7 @@
       "answer": "The First Amendment protects freedom of speech, religion, the press, assembly, and the right to petition the government.",
       "official": [],
       "source": "Lesson \"Individual Rights and Civil Liberties\" (key point \"First Amendment\")",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1033_title",
@@ -446,7 +446,7 @@
       "answer": "This lesson is about the freedoms the Constitution protects for each person, like speech and religion, and how the government cannot take them away.",
       "official": [],
       "source": "Lesson \"Individual Rights and Civil Liberties\"",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1032_term",
@@ -454,7 +454,7 @@
       "answer": "An amendment is a change or an addition to the Constitution. The Constitution has 27 amendments. The first ten are the Bill of Rights.",
       "official": [],
       "source": "Lesson \"Amendments and Constitutional Changes\" (key point \"Constitutional Amendment\")",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1032_title",
@@ -462,7 +462,7 @@
       "answer": "This lesson is about how the Constitution can change. Changes are called amendments. Making one is hard, so the Constitution does not change often.",
       "official": [],
       "source": "Lesson \"Amendments and Constitutional Changes\"",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1031_term",
@@ -470,7 +470,7 @@
       "answer": "The Constitutional Convention was the meeting in Philadelphia in 1787 where leaders wrote the U.S. Constitution.",
       "official": [],
       "source": "Lesson \"The U.S. Constitution and the Founding Fathers\" (key point \"Constitutional Convention\")",
-      "status": "draft"
+      "status": "reviewed"
     },
     {
       "id": "lesson_699db0a1297afea4b73d1031_title",
@@ -478,7 +478,7 @@
       "answer": "This lesson is about how the Constitution was written in 1787 and the leaders who wrote it, like James Madison and George Washington.",
       "official": [],
       "source": "Lesson \"The U.S. Constitution and the Founding Fathers\"",
-      "status": "draft"
+      "status": "reviewed"
     }
   ]
 }

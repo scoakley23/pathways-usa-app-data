@@ -45,7 +45,7 @@ export default function Admin() {
         <div className="w-20 h-20 rounded-card bg-not-yet-bg flex items-center justify-center" aria-hidden="true">
           <AlertCircle className="w-10 h-10 text-not-yet" />
         </div>
-        <h2 className="text-[28px] font-display font-normal text-navy">Access Denied</h2>
+        <h2 className="text-[1.75rem] font-display font-normal text-navy">Access Denied</h2>
         <p className="text-base text-muted">You do not have permission to view this page.</p>
       </div>
     );

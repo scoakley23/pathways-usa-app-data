@@ -29,7 +29,7 @@ export default function PageTop({ tag, title, subtitle, guide, back = false, cla
           </button>
         )}
         {tag && <p className="text-label uppercase text-on-navy">{tag}</p>}
-        <h1 className="font-display text-[28px] sm:text-[34px] leading-[1.1]">{title}</h1>
+        <h1 className="font-display text-[1.75rem] sm:text-[2.125rem] leading-[1.1]">{title}</h1>
         {subtitle && <p className="text-lg text-on-navy max-w-2xl">{subtitle}</p>}
         {guide && (
           <p className="text-lg font-medium leading-snug max-w-2xl">

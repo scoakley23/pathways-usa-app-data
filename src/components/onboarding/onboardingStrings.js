@@ -1,12 +1,17 @@
-// Wording for Getting started's new screens (Prompt 9): Welcome, Choose your
-// language, Meet Amio and the quick check's intro and results. In the
+// Wording for first open (Amio v2): Launch, Welcome, Your language, How Amio
+// works, Your plan, and the quick check's intro and results. In the
 // translation pack (src/lib/translationSources.js, set "onboarding");
 // Spanish is written by hand.
 export const ONBOARDING_LINES = {
-  // Welcome (R30Welcome)
-  welcome_tagline: 'Get ready for your citizenship interview, with a tutor who speaks your language.',
-  welcome_free: 'Free · Not part of the U.S. government',
-  get_started: 'Get started',
+  // Launch (frame Launch)
+  launch_sub: 'Citizenship tutor',
+  launch_loading: 'Loading',
+
+  // Welcome (frame OnboardWelcome)
+  welcome_hi: 'Hi, I’m Amio.',
+  welcome_sub: 'Your free tutor for the U.S. citizenship test.',
+  start: 'Start',
+  public_line: 'Free practice · Not affiliated with USCIS · Not legal advice',
   have_code: 'I have a code from my tutor',
   code_title: 'Your program’s code',
   code_help: 'Your class or program gave you a short code. You’ll pick them after you sign in.',
@@ -15,24 +20,35 @@ export const ONBOARDING_LINES = {
   code_continue: 'Continue and sign in',
   cancel: 'Cancel',
 
-  // Choose your language (R30Language)
-  language_title: 'Choose your language',
-  language_sub: 'Amio will explain everything in it. You practice in English.',
+  // First open's progress bar
+  step_of: 'Step {n} of {total}',
+  continue: 'Continue',
+
+  // Your language (frame OnboardLanguage)
+  language_hello: 'Hi! I’ll explain everything in {language}.',
+  language_ask: 'Which language do you speak best?',
   language_search: 'Search {n}+ languages',
   language_none: 'No language found. Try another name.',
-  continue_in: 'Continue in {language}',
 
-  // Meet Amio (R30MeetAmio)
-  meet_title: 'Hi! I’m Amio. I’ll be your tutor.',
-  promise_language: 'I explain in your language',
-  promise_language_body: 'You answer in English, like at the real interview.',
-  promise_voice: 'Your voice is never recorded',
-  promise_voice_body: 'Your phone turns speech into text. We never keep audio.',
-  promise_story: 'Your story stays yours',
-  promise_story_body: 'Never tell me about your case. We practice with made-up people.',
-  promise_free: 'Free, and not the government',
-  promise_free_body: 'Pathways is not part of USCIS and doesn’t give legal advice.',
-  sounds_good: 'Sounds good',
+  // How Amio works (frame OnboardHowItWorks)
+  how_amio: 'This is how we study together.',
+  how_explain: 'I explain in {language}',
+  how_explain_body: 'So you always understand.',
+  how_answer: 'You answer in English',
+  how_answer_body: 'Out loud, like the real interview.',
+  how_voice: 'Your voice is never saved',
+  how_voice_body: 'Only the words, to check your answer.',
+  got_it: 'Got it',
+
+  // Your plan (frame OnboardPlan)
+  plan_amio: 'No rush. We’ll go at your pace.',
+  plan_sent: 'Have you sent your N-400?',
+  plan_stays: 'Your answer stays on this phone.',
+  plan_how_long: 'About how long each day?',
+  plan_min_a_day: 'min a day',
+  plan_about: 'About {n} min a day',
+  plan_change: 'You can change this anytime.',
+  make_plan: 'Make my plan',
 
   // Quick check (R30QuickCheck)
   qc_title: 'Let’s see where you are',
@@ -50,18 +66,21 @@ export const ONBOARDING_LINES = {
   qc_saved: 'We save only your four levels. Your answers and your voice are not saved.',
   qc_not_ready: 'The quick check isn’t ready yet. Please try again later.',
   qc_results: 'Your results',
-  qc_start_at: 'You’ll start at',
+  qc_start_at: 'Suggested start',
   qc_start_unit: 'Unit {n} · {section}',
-  qc_go_back: 'You can still go back to earlier lessons any time.',
-  qc_make_plan: 'Make my plan',
+  qc_go_back: 'Just a suggestion. You can open any topic and any lesson.',
+  qc_start_learning: 'Start learning',
   qc_done: 'Done',
   qc_again: 'Take it again',
 };
 
 export const ONBOARDING_LINES_ES = {
-  welcome_tagline: 'Prepárese para su entrevista de ciudadanía, con un tutor que habla su idioma.',
-  welcome_free: 'Gratis · No es parte del gobierno de EE. UU.',
-  get_started: 'Empezar',
+  launch_sub: 'Tutor de ciudadanía',
+  launch_loading: 'Cargando',
+  welcome_hi: 'Hola, soy Amio.',
+  welcome_sub: 'Su tutor gratis para el examen de ciudadanía de EE. UU.',
+  start: 'Empezar',
+  public_line: 'Práctica gratis · No afiliado con USCIS · No es asesoría legal',
   have_code: 'Tengo un código de mi tutor',
   code_title: 'El código de su programa',
   code_help: 'Su clase o programa le dio un código corto. Lo elegirá después de entrar.',
@@ -69,21 +88,28 @@ export const ONBOARDING_LINES_ES = {
   code_bad: 'Eso no parece un código. Use letras y números, como ABC-123.',
   code_continue: 'Continuar y entrar',
   cancel: 'Cancelar',
-  language_title: 'Elija su idioma',
-  language_sub: 'Amio le explicará todo en ese idioma. Usted practica en inglés.',
+  step_of: 'Paso {n} de {total}',
+  continue: 'Continuar',
+  language_hello: '¡Hola! Le explico todo en {language}.',
+  language_ask: '¿Qué idioma habla mejor?',
   language_search: 'Buscar entre {n}+ idiomas',
   language_none: 'No encontramos ese idioma. Pruebe otro nombre.',
-  continue_in: 'Continuar en {language}',
-  meet_title: '¡Hola! Soy Amio. Seré su tutor.',
-  promise_language: 'Le explico en su idioma',
-  promise_language_body: 'Usted responde en inglés, como en la entrevista real.',
-  promise_voice: 'Nunca grabamos su voz',
-  promise_voice_body: 'Su teléfono convierte la voz en texto. Nunca guardamos audio.',
-  promise_story: 'Su historia es suya',
-  promise_story_body: 'Nunca me cuente sobre su caso. Practicamos con personas inventadas.',
-  promise_free: 'Gratis, y no es el gobierno',
-  promise_free_body: 'Pathways no es parte de USCIS y no da asesoría legal.',
-  sounds_good: 'Me parece bien',
+  how_amio: 'Así estudiamos juntos.',
+  how_explain: 'Le explico en {language}',
+  how_explain_body: 'Para que siempre entienda.',
+  how_answer: 'Usted responde en inglés',
+  how_answer_body: 'En voz alta, como en la entrevista real.',
+  how_voice: 'Nunca guardamos su voz',
+  how_voice_body: 'Solo las palabras, para revisar su respuesta.',
+  got_it: 'Entendido',
+  plan_amio: 'Sin prisa. Vamos a su ritmo.',
+  plan_sent: '¿Ya envió su N-400?',
+  plan_stays: 'Su respuesta se queda en este teléfono.',
+  plan_how_long: '¿Más o menos cuánto tiempo al día?',
+  plan_min_a_day: 'min al día',
+  plan_about: 'Unos {n} min al día',
+  plan_change: 'Puede cambiarlo cuando quiera.',
+  make_plan: 'Hacer mi plan',
   qc_title: 'Veamos cómo va',
   qc_sub: 'Puede saltar cualquier parte. Sin presión. Solo me ayuda a planear sus lecciones.',
   qc_reading: 'Lectura',
@@ -99,10 +125,10 @@ export const ONBOARDING_LINES_ES = {
   qc_saved: 'Solo guardamos sus cuatro niveles. No guardamos sus respuestas ni su voz.',
   qc_not_ready: 'La evaluación rápida todavía no está lista. Intente más tarde.',
   qc_results: 'Sus resultados',
-  qc_start_at: 'Empezará en',
+  qc_start_at: 'Sugerencia para empezar',
   qc_start_unit: 'Unidad {n} · {section}',
-  qc_go_back: 'Siempre puede volver a lecciones anteriores.',
-  qc_make_plan: 'Hacer mi plan',
+  qc_go_back: 'Es solo una sugerencia. Puede abrir cualquier tema y cualquier lección.',
+  qc_start_learning: 'Empezar a aprender',
   qc_done: 'Listo',
   qc_again: 'Hacerla otra vez',
 };

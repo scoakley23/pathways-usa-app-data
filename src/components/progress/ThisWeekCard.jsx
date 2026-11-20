@@ -64,7 +64,7 @@ export default function ThisWeekCard({ language = 'en' }) {
     const d = new Date(2024, 0, 1 + k); // Jan 1 2024 was a Monday
     try { return d.toLocaleDateString(locale, { weekday: 'narrow' }); } catch (e) { return ''; }
   });
-  const number = 'font-display text-[34px] leading-none';
+  const number = 'font-display text-[2.125rem] leading-none';
 
   return (
     <div className="space-y-4 text-navy">
@@ -96,11 +96,11 @@ export default function ThisWeekCard({ language = 'en' }) {
                         : 'border-2 border-line'
                 }`}
               />
-              <span className={`text-[13px] ${c.state === 'today' ? 'font-semibold text-navy' : 'text-muted'}`} aria-hidden="true">{weekdayInitials[k]}</span>
+              <span className={`text-[0.8125rem] ${c.state === 'today' ? 'font-semibold text-navy' : 'text-muted'}`} aria-hidden="true">{weekdayInitials[k]}</span>
             </li>
           ))}
         </ol>
-        {weeks !== null && <p className="mt-3 text-[15px] text-muted">{t(weeksKey, { n: weeks })}</p>}
+        {weeks !== null && <p className="mt-3 text-[0.9375rem] text-muted">{t(weeksKey, { n: weeks })}</p>}
       </Card>
     </div>
   );

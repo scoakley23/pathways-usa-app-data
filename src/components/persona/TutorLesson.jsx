@@ -97,12 +97,12 @@ export default function TutorLesson({ lesson, profile, language = 'en', language
           className="pt-5 pb-4"
         >
           {tag && <Tag tone={tag.tone}>{tag.label}</Tag>}
-          <h1 className="font-display text-[36px] leading-tight mt-3 mb-4">{lesson.title}</h1>
+          <h1 className="font-display text-[2.25rem] leading-tight mt-3 mb-4">{lesson.title}</h1>
           <Step step={step} ctx={ctx} state={state} setState={setState} />
         </motion.div>
       </AnimatePresence>
 
-      <div className="sticky bottom-0 -mx-4 px-4 pt-6 pb-4 bg-gradient-to-t from-page via-page to-transparent">
+      <div className="sticky bottom-0 -mx-4 px-4 pt-6 pb-4 bg-gradient-to-t from-paper via-paper to-transparent">
         <PrimaryButton large className="w-full" onClick={() => goTo(index + 1)} disabled={!ready}>
           {step.type === 'part-intro' ? 'Start' : isLast ? 'Finish' : 'Continue'}
         </PrimaryButton>

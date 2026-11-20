@@ -14,7 +14,7 @@ import { streak } from '@/lib/streak';
 
 export function useTodayText() {
   const [language] = useAppLanguage();
-  const tr = useTranslatedLines(TODAY_LINES, language, { cacheKey: 'today_v2' });
+  const tr = useTranslatedLines(TODAY_LINES, language, { cacheKey: 'today_v3' });
   const t = (key, vars = {}) => {
     let s = (language !== 'en' && tr(key)) || TODAY_LINES[key] || key;
     for (const [k, v] of Object.entries(vars)) s = s.split(`{${k}}`).join(String(v));

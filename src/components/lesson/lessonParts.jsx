@@ -1,15 +1,13 @@
 import React from 'react';
-import { X, Volume2 } from 'lucide-react';
+import { X } from 'lucide-react';
 import { StepBar } from '@/components/pathways/StepBar';
-import { NotYetBanner } from '@/components/pathways/ResultBanner';
-import { AmioSays } from '@/components/pathways/Amio';
-import { speakText } from '@/components/utils/textToSpeech';
+import { NotQuitePanel } from '@/components/pathways/ResultBanner';
 import { checkCivicsAnswer, officeholderCheck } from '@/components/civics/checkCivicsAnswer';
 import { matchCivicsAnswer } from '@/lib/answerVariants';
 import { splitOfficialAnswers } from '@/lib/practiceChecks';
 
 // Shared pieces of the lesson player (Prompt 6): the navy header with the
-// step bar, the "Not quite yet" screen (frame R30TryAgain), and grading a
+// step bar, the Not quite panel (frame NotQuite), and grading a
 // civics answer with the existing checks.
 
 export function LessonHeader({ title, subtitle, step, onClose, closeLabel }) {
@@ -49,7 +47,7 @@ export function SaidWithMisses({ said, accepted }) {
         const w = p.toLowerCase().replace(/[^a-z0-9]/g, '');
         const off = w && !STOP.has(w) && !ok.has(w);
         return off
-          ? <span key={i} className="underline decoration-not-yet decoration-2 underline-offset-4">{p}</span>
+          ? <span key={i} className="underline decoration-gold decoration-2 underline-offset-4">{p}</span>
           : <React.Fragment key={i}>{p}</React.Fragment>;
       })}”
     </span>
@@ -73,37 +71,29 @@ export async function gradeCivics(question, answer, { location = null, typed = f
   return { correct: !!graded?.is_correct, graded };
 }
 
-/** The "Not quite yet" screen (frame R30TryAgain). */
-export function TryAgain({ t, askedLabel, asked, saidLabel, said, accepted, amioLine, sayLabel, sayText, savesReview, onTryAgain, onSkip }) {
+/**
+ * Not quite (Amio v2, frame NotQuite): a paper panel at the bottom of the
+ * question screen, never a full screen and never red. The answer (the first
+ * official one) and the other accepted answers, Listen, "Say it once more"
+ * and "Skip for now"; "You'll see this one again tomorrow." when the missed
+ * question was saved to review (the caller does that, as before).
+ */
+export function TryAgain({ t, accepted = [], savesReview, onTryAgain, onSkip, className = '' }) {
+  const first = accepted[0] || '';
   return (
-    <div className="flex flex-col min-h-full">
-      <div className="flex-1 px-4 py-5 flex flex-col gap-4 max-w-lg w-full mx-auto">
-        <section className="rounded-card bg-white border border-line p-5">
-          <p className="text-small text-muted">{askedLabel}</p>
-          <p className="mt-1 text-[22px] font-bold text-navy leading-snug" lang="en" dir="ltr">{asked}</p>
-        </section>
-        <section className="rounded-card bg-white border border-line p-5">
-          <p className="text-small text-muted">{saidLabel}</p>
-          <p className="mt-1 text-lg text-navy">{said ? <SaidWithMisses said={said} accepted={accepted || [sayText]} /> : '—'}</p>
-        </section>
-        <AmioSays mood="kind" size={56}>{amioLine}</AmioSays>
-        <section className="rounded-card bg-white border border-line p-5">
-          <p className="text-small font-semibold uppercase tracking-wide text-muted">{sayLabel}</p>
-          <p className="mt-2 text-[20px] font-bold text-navy leading-snug" lang="en" dir="ltr">“{sayText}”</p>
-          {accepted && accepted.length > 1 && (
-            <ul className="mt-2 list-disc ps-5 text-base text-muted" lang="en" dir="ltr">
-              {accepted.slice(1, 6).map((a) => <li key={a}>{a}</li>)}
-            </ul>
-          )}
-          <button type="button" onClick={() => speakText(sayText, 'en')} className="mt-3 min-h-tap inline-flex items-center gap-2 font-semibold text-denim hover:text-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim rounded-lg">
-            <Volume2 className="w-5 h-5" aria-hidden="true" />{t('listen')}
-          </button>
-        </section>
-        <button type="button" onClick={onSkip} className="self-center min-h-tap px-3 text-base font-semibold text-muted underline underline-offset-4 hover:text-navy">{t('skip_for_now')}</button>
-      </div>
-      <NotYetBanner title={t('not_quite')} actionLabel={t('try_again')} onAction={onTryAgain} className="sticky bottom-0">
-        {savesReview ? t('again_tomorrow') : null}
-      </NotYetBanner>
-    </div>
+    <NotQuitePanel
+      title={t('not_quite')}
+      answerLine={first ? t('the_answer_is', { answer: first }) : null}
+      answer={first}
+      others={accepted.slice(1, 6)}
+      othersLabel={t('also_accepted')}
+      listenLabel={t('listen')}
+      note={savesReview ? t('again_tomorrow') : null}
+      actionLabel={t('say_once_more')}
+      onAction={onTryAgain}
+      skipLabel={t('skip_for_now')}
+      onSkip={onSkip}
+      className={className}
+    />
   );
 }

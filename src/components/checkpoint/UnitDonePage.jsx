@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import { Link, Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
 import confetti from 'canvas-confetti';
-import { COLORS } from '@/lib/theme';
+import { CONFETTI_COLORS } from '@/lib/theme';
 import { Amio } from '@/components/pathways/Amio';
 import { UnitIcon, useJourney } from '@/components/course/courseShared';
 import { unitComplete, unitStats } from '@/lib/checkpoints';
 import { useCheckpointText } from '@/components/checkpoint/checkpointParts';
+import { MAIN_PRESS } from '@/components/pathways/ui';
 
 // Unit complete (Prompt 8, /course/unit/:unitId/done, frame R33UnitDone):
 // confetti (reduced motion respected), the unit badge, the unit's numbers
@@ -16,7 +17,7 @@ import { useCheckpointText } from '@/components/checkpoint/checkpointParts';
 function Stat({ value, label }) {
   return (
     <div className="flex-1 min-w-0 rounded-card bg-chip-navy px-2 py-4 text-center">
-      <p className="text-[26px] font-extrabold text-white tabular-nums leading-none">{value}</p>
+      <p className="text-[1.625rem] font-extrabold text-white tabular-nums leading-none">{value}</p>
       <p className="mt-1 text-small text-on-navy">{label}</p>
     </div>
   );
@@ -33,7 +34,7 @@ export default function UnitDonePage() {
 
   useEffect(() => {
     if (journey.loading || !show) return;
-    confetti({ particleCount: 120, spread: 80, origin: { y: 0.3 }, colors: [COLORS.gold, COLORS.red, COLORS.denim, COLORS.white], disableForReducedMotion: true });
+    confetti({ particleCount: 120, spread: 80, origin: { y: 0.3 }, colors: CONFETTI_COLORS, disableForReducedMotion: true });
   }, [journey.loading, show]);
 
   if (journey.loading) return <div className="min-h-screen bg-navy" />;
@@ -60,7 +61,7 @@ export default function UnitDonePage() {
         <button
           type="button"
           onClick={() => navigate(`/course/unit/${unit.id}/interview`)}
-          className="w-full min-h-main mb-[5px] rounded-button bg-gold px-6 text-lg font-bold text-navy shadow-[0_5px_0_theme(colors.navy-deep)] active:translate-y-1 motion-reduce:active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-navy"
+          className={`w-full min-h-main mb-[5px] rounded-button bg-gold px-6 text-lg font-bold text-navy ${MAIN_PRESS} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-navy`}
         >
           {t('try_interview')}
         </button>

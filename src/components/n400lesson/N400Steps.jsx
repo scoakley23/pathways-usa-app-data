@@ -30,7 +30,7 @@ export function linkify(text) {
 }
 
 function Footer({ children }) {
-  return <div className="sticky bottom-0 bg-page px-4 pt-2 pb-6 max-w-lg w-full mx-auto">{children}</div>;
+  return <div className="sticky bottom-0 bg-paper px-4 pt-2 pb-6 max-w-lg w-full mx-auto">{children}</div>;
 }
 
 // The section's meanings and words in the learner's language: the
@@ -235,7 +235,7 @@ export function SpotWord({ lesson, t, onDone }) {
       renderTop={(item) => (
         <section className="rounded-card bg-white border border-line p-5">
           <p className="text-small text-muted">{t('in_this_question')} · {questionName(item.questionId)}</p>
-          <p className="mt-2 text-[20px] font-bold text-navy leading-snug" lang="en" dir="ltr">“{mark(item.text, item.word)}”</p>
+          <p className="mt-2 text-[1.25rem] font-bold text-navy leading-snug" lang="en" dir="ltr">“{mark(item.text, item.word)}”</p>
           <button type="button" onClick={() => speakText(item.text, 'en')} className={`mt-3 ${chip}`}>{t('hear_again')}</button>
         </section>
       )}

@@ -20,7 +20,7 @@ import { Eyebrow, ExplainSimplyButton, IndexCard, PrimaryButton, QuietButton, Se
 import { questionsForLesson } from '@/lib/lessonQuestions';
 import { STEP_LABELS, deckSteps, splitIdeas } from '@/lib/lessonDeck';
 
-const MARKDOWN = 'max-w-none text-lg leading-relaxed text-navy [&_h1]:font-display [&_h2]:font-display [&_h3]:font-display [&_h1]:text-3xl [&_h2]:text-[28px] [&_h3]:text-2xl [&_h1]:font-normal [&_h2]:font-normal [&_h3]:font-normal [&_h1]:mb-2 [&_h2]:mb-2 [&_h3]:mb-2 [&>*:first-child]:mt-0 [&_p]:my-3 [&_ul]:list-disc [&_ol]:list-decimal [&_ul]:ps-6 [&_ol]:ps-6 [&_ul]:my-3 [&_ol]:my-3 [&_li]:my-1 [&_strong]:font-bold [&_a]:underline';
+const MARKDOWN = 'max-w-none text-lg leading-relaxed text-navy [&_h1]:font-display [&_h2]:font-display [&_h3]:font-display [&_h1]:text-3xl [&_h2]:text-[1.75rem] [&_h3]:text-2xl [&_h1]:font-normal [&_h2]:font-normal [&_h3]:font-normal [&_h1]:mb-2 [&_h2]:mb-2 [&_h3]:mb-2 [&>*:first-child]:mt-0 [&_p]:my-3 [&_ul]:list-disc [&_ol]:list-decimal [&_ul]:ps-6 [&_ol]:ps-6 [&_ul]:my-3 [&_ol]:my-3 [&_li]:my-1 [&_strong]:font-bold [&_a]:underline';
 
 const extractYouTubeId = (url) => {
   if (!url) return null;
@@ -46,7 +46,7 @@ function KeyPointCard({ point, number }) {
   const imageUrl = typeof point === 'string' ? null : point.image_url;
   return (
     <IndexCard tab={`Key point ${number}`} tabSkill="civics">
-      <p className="font-display text-[26px] leading-snug"><GlossaryText>{text}</GlossaryText></p>
+      <p className="font-display text-[1.625rem] leading-snug"><GlossaryText>{text}</GlossaryText></p>
       {imageUrl && <img src={imageUrl} alt="" className="mt-4 w-full max-h-64 object-cover rounded-[10px] border border-line" />}
       {definition && (
         <div className="mt-4 space-y-3">
@@ -230,7 +230,7 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
         </QuietButton>
         <div>
           {displayLesson.topic && <Eyebrow>{displayLesson.topic}</Eyebrow>}
-          <h1 className="mt-1 font-display text-[36px] sm:text-[44px] leading-[1.05]">{displayLesson.title}</h1>
+          <h1 className="mt-1 font-display text-[2.25rem] sm:text-[2.75rem] leading-[1.05]">{displayLesson.title}</h1>
           {displayLesson.description && <p className="text-muted text-lg mt-2">{displayLesson.description}</p>}
         </div>
         <div className="flex items-center gap-3 flex-wrap">
@@ -351,10 +351,10 @@ export default function LessonDetail({ lesson, onBack, onComplete, lessons, onNa
           <IndexCard padding="p-6" tab={displayLesson.topic || 'Civics'} tabSkill="civics" className="relative">
             <span className="pointer-events-none absolute end-5 top-12 -rotate-[8deg] rounded-md border-[2.5px] border-navy px-2.5 py-0.5 text-base font-bold uppercase tracking-[0.12em]" aria-hidden="true">Done</span>
             <Eyebrow>Lesson done</Eyebrow>
-            <h2 className="mt-2 pe-20 font-display text-[32px] leading-tight">{displayLesson.title}</h2>
+            <h2 className="mt-2 pe-20 font-display text-[2rem] leading-tight">{displayLesson.title}</h2>
             {result ? (
               <>
-                <p className="mt-3 text-xl"><span className="font-display text-[44px] leading-none">{result.correct}</span> of {result.total} questions right.</p>
+                <p className="mt-3 text-xl"><span className="font-display text-[2.75rem] leading-none">{result.correct}</span> of {result.total} questions right.</p>
                 <p className="mt-2 text-lg text-muted">At the interview, the officer asks out loud. Your answer doesn't need to be word for word, only right in meaning.</p>
               </>
             ) : questions.length === 0 ? (

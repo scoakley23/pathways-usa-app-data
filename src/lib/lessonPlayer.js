@@ -26,6 +26,15 @@ export function starsFor(results = {}) {
   return (right('teachBack') ? 1 : 0) + (right('readIt') && right('writeIt') ? 1 : 0) + (right('officer') ? 1 : 0);
 }
 
+// "Right n of m" on Lesson done: the answer steps (not Listen) answered
+// right, out of those that were graded (an answer the app can't check
+// counts neither way). In memory only, from this run.
+export const ANSWER_STEPS = ['teachBack', 'readIt', 'writeIt', 'officer'];
+export function rightOf(results = {}) {
+  const graded = ANSWER_STEPS.filter((s) => results[s] && results[s] !== 'unchecked');
+  return { right: graded.filter((s) => results[s] === 'right').length, of: graded.length };
+}
+
 export function stepsDone(results = {}) {
   return STEPS.filter((s) => results[s]).length;
 }

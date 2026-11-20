@@ -31,7 +31,7 @@ export default function UnitInterviewPage() {
     return [...all].sort(() => Math.random() - 0.5).slice(0, UNIT_INTERVIEW_CIVICS);
   }, [unit]);
 
-  if (journey.loading) return <div className="min-h-screen bg-page" />;
+  if (journey.loading) return <div className="min-h-screen bg-paper" />;
   if (!unit || !open) return <Navigate to={unit ? `/course/unit/${unit.id}` : '/course'} replace />;
 
   const close = () => navigate(`/course?unit=${unit.id}`);

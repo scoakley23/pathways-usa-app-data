@@ -9,7 +9,7 @@ import { SKILLS, LEVELS } from '@/lib/partners';
 function Stat({ value, label, note }) {
   return (
     <RaisedCard padding="p-4">
-      <p className="font-display text-[44px] leading-none">{value}</p>
+      <p className="font-display text-[2.75rem] leading-none">{value}</p>
       <p className="mt-1 text-base font-bold">{label}</p>
       {note && <p className="text-sm text-muted">{note}</p>}
     </RaisedCard>
@@ -21,7 +21,7 @@ const learnersText = (n) => `${n} ${n === 1 ? 'learner' : 'learners'}`;
 export function ProgramTotals({ totals }) {
   return (
     <section aria-labelledby="partner-totals" className="space-y-3">
-      <h2 id="partner-totals" className="font-display text-[28px] leading-tight">Your learners</h2>
+      <h2 id="partner-totals" className="font-display text-[1.75rem] leading-tight">Your learners</h2>
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
         <Stat value={totals.learners} label="Confirmed learners" />
         <Stat value={totals.activeWeek} label="Studied this week" note="Opened Pathways in the last 7 days" />
@@ -63,7 +63,7 @@ export function ProgramTotals({ totals }) {
 export function SharedLearners({ learners }) {
   return (
     <section aria-labelledby="partner-shared" className="space-y-3">
-      <h2 id="partner-shared" className="font-display text-[28px] leading-tight">
+      <h2 id="partner-shared" className="font-display text-[1.75rem] leading-tight">
         Learners who share their progress <span className="text-muted">{learners.length}</span>
       </h2>
       <p className="text-base text-muted">Each learner chooses this on their Me page and can turn it off.</p>

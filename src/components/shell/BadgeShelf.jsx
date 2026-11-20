@@ -15,7 +15,7 @@ export default function BadgeShelf({ badges = [], t, className = '' }) {
             className={`w-16 h-16 rounded-full grid place-items-center ${
               b.earned
                 ? b.kind === 'unit' ? 'border-4 border-gold bg-denim text-white' : 'border-4 border-gold bg-white text-navy'
-                : 'border-2 border-dashed border-mid bg-tint text-muted'
+                : 'border-2 border-dashed border-muted bg-tint text-muted'
             }`}
             aria-hidden="true"
           >

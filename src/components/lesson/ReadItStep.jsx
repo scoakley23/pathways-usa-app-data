@@ -57,7 +57,7 @@ export default function ReadItStep({ lesson, t, onDone }) {
       <div className="flex-1 px-4 py-5 flex flex-col gap-5 max-w-lg w-full mx-auto">
         <AmioSays mood="listen" size={56}>{t('read_this')}</AmioSays>
         <section className="rounded-card bg-white border border-line px-5 py-6 text-center">
-          <p className="text-[30px] leading-snug font-bold" lang="en" dir="ltr">
+          <p className="text-[1.875rem] leading-snug font-bold" lang="en" dir="ltr">
             {words.map((w, i) => {
               const ok = live.words[i]?.status === 'correct';
               return (

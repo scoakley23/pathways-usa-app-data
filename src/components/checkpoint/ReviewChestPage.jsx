@@ -25,7 +25,7 @@ const hintFor = (questionId) => LESSONS.find((l) => l.questionIds.includes(quest
 export default function ReviewChestPage() {
   const navigate = useNavigate();
   const { t, rtl, language } = useCheckpointText();
-  const trLesson = useTranslatedLines(LESSON_LINES, language, { cacheKey: 'lesson_v1' });
+  const trLesson = useTranslatedLines(LESSON_LINES, language, { cacheKey: 'lesson_v2' });
   const tl = (key, vars = {}) => {
     let s = (language !== 'en' && trLesson(key)) || LESSON_LINES[key] || key;
     for (const [k, v] of Object.entries(vars)) s = s.split(`{${k}}`).join(String(v));
@@ -46,14 +46,14 @@ export default function ReviewChestPage() {
   const questions = useMemo(() => (entries || []).map((e) => questionRecord(e.questionId)), [entries]);
   const home = () => navigate('/');
 
-  if (entries === null) return <div className="min-h-screen bg-page" />;
+  if (entries === null) return <div className="min-h-screen bg-paper" />;
 
   const total = entries.length;
   const done = index >= total;
 
   if (!total || done) {
     return (
-      <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-screen bg-page flex flex-col">
+      <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-screen bg-paper flex flex-col">
         <CheckpointHeader title={t('chest_title')} onClose={home} closeLabel={t('close')} tone="navy" />
         <div className="flex-1 max-w-lg w-full mx-auto px-4 py-8 flex flex-col items-center gap-5 text-center">
           <span className="grid place-items-center w-20 h-20 rounded-2xl bg-stop-chest border-2 border-stop-chest-border text-navy">
@@ -89,7 +89,7 @@ export default function ReviewChestPage() {
   };
 
   return (
-    <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-screen bg-page flex flex-col">
+    <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-screen bg-paper flex flex-col">
       <CheckpointHeader title={t('chest_of', { n: index + 1, total })} subtitle={total === 1 ? t('chest_sub_1') : t('chest_sub_n', { n: total })} onClose={home} closeLabel={t('close')} tone="navy">
         <StepBar total={total} current={index + 1} label={t('progress_label', { n: index + 1, total })} />
       </CheckpointHeader>

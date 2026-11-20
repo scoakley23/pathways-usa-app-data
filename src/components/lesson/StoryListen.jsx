@@ -167,7 +167,7 @@ export default function StoryListen({ story, language, mine, t, onEnd }) {
         <ScenePicture picture={item.picture} t={t} />
         <section className="rounded-card bg-white border border-line p-5 flex flex-col gap-2">
           {sceneLang !== 'en' && <span className="self-start rounded-full bg-tint px-3 py-1 text-small font-semibold uppercase tracking-wide text-navy">{t('said_in_language')}</span>}
-          <p className="text-[22px] font-bold text-navy leading-snug" dir="auto" lang={sceneLang} aria-live="polite">{sceneText}</p>
+          <p className="text-[1.375rem] font-bold text-navy leading-snug" dir="auto" lang={sceneLang} aria-live="polite">{sceneText}</p>
           {hasMine && (
             <button type="button" onClick={() => setEnglish((v) => !v)} aria-pressed={english} className="self-start min-h-tap text-base font-semibold text-denim underline underline-offset-4">
               {english ? t('in_my_language') : t('in_english')}
@@ -185,14 +185,14 @@ export default function StoryListen({ story, language, mine, t, onEnd }) {
         <div className="flex items-center justify-between gap-3">
           <ol className="flex flex-wrap gap-1.5 list-none m-0 p-0" aria-label={t('story_scene_of', { n: i + 1, total: items.length })}>
             {items.map((x, k) => (
-              <li key={k} className={`h-2 rounded-full ${x.check ? 'w-4' : 'w-2'} ${k < i ? 'bg-denim' : k === i ? 'bg-red' : 'bg-mid'}`} aria-hidden="true" />
+              <li key={k} className={`h-2 rounded-full ${x.check ? 'w-4' : 'w-2'} ${k < i ? 'bg-denim' : k === i ? 'bg-gold' : 'bg-mid'}`} aria-hidden="true" />
             ))}
           </ol>
           {story.draft && <span className="rounded-full bg-tint px-3 py-1 text-small font-semibold text-navy">{t('story_draft')}</span>}
         </div>
         {body}
       </div>
-      <div className="sticky bottom-0 bg-page px-4 pt-2 pb-6 max-w-lg w-full mx-auto flex items-center gap-3">
+      <div className="sticky bottom-0 bg-paper px-4 pt-2 pb-6 max-w-lg w-full mx-auto flex items-center gap-3">
         <button type="button" className={iconBtn} onClick={() => go(i - 1)} disabled={i === 0} aria-label={t('story_back')}>
           <ChevronLeft className="w-6 h-6 rtl:rotate-180" aria-hidden="true" />
         </button>

@@ -8,9 +8,12 @@ export const COLORS = {
   navy: TOKENS.navy,
   denim: TOKENS.denim,
   red: TOKENS.red,
+  amioRed: TOKENS['amio-red'],
+  amioBlush: TOKENS['amio-blush'],
+  sky: TOKENS.sky,
   redText: TOKENS['red-text'],
   gold: TOKENS.gold,
-  page: TOKENS.page,
+  paper: TOKENS.paper,
   tint: TOKENS.tint,
   mid: TOKENS.mid,
   line: TOKENS.line,
@@ -22,3 +25,6 @@ export const COLORS = {
   card: TOKENS.white,
   white: TOKENS.white,
 };
+
+// Confetti (Amio v2): gold, sky, denim and navy. Never red: red is Amio only.
+export const CONFETTI_COLORS = [COLORS.gold, COLORS.sky, COLORS.denim, COLORS.navy];

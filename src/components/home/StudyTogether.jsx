@@ -20,13 +20,13 @@ export default function StudyTogether({ t, tutorName, language, onLanguageChange
   const Sub = `h${headingLevel + 1}`;
   return (
     <section aria-labelledby="study-title" className="space-y-3 text-navy">
-      <H id="study-title" className="font-display text-[22px] leading-tight text-navy">{t('study_title')}</H>
+      <H id="study-title" className="font-display text-[1.375rem] leading-tight text-navy">{t('study_title')}</H>
       <ol className="grid grid-cols-1 lg:grid-cols-3 rounded-card bg-white border border-line overflow-hidden divide-y lg:divide-y-0 lg:divide-x divide-line">
         {ROWS.map((row) => (
           <li key={row.n} className="flex lg:flex-col gap-4 lg:gap-2 p-4 sm:p-5">
-            <span className={`grid place-items-center w-10 h-10 shrink-0 rounded-full font-display text-[20px] leading-none ${row.tone}`} aria-hidden="true">{row.n}</span>
+            <span className={`grid place-items-center w-10 h-10 shrink-0 rounded-full font-display text-[1.25rem] leading-none ${row.tone}`} aria-hidden="true">{row.n}</span>
             <div className="space-y-1.5 min-w-0">
-              <Sub className="font-sans text-[17px] font-semibold tracking-normal">{t(row.title)}</Sub>
+              <Sub className="font-sans text-[1.0625rem] font-semibold tracking-normal">{t(row.title)}</Sub>
               <p className="text-base leading-relaxed text-muted">
                 {t(row.body).replace('{name}', tutorName).replace('{n}', LANGUAGES.length)}
               </p>

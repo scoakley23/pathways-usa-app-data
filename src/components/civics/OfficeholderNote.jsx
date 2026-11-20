@@ -26,7 +26,7 @@ export default function OfficeholderNote({ answer, graded = true, onPoster = fal
       )}
       {answer.mayChangeSoon && <p className="font-semibold">{MAY_CHANGE_SOON}</p>}
       {answer.checkedOn && !answer.needsLocation && (
-        <p className={cn('text-[15px]', !onPoster && 'text-muted')}>{checkedOnText(answer.checkedOn)}.</p>
+        <p className={cn('text-[0.9375rem]', !onPoster && 'text-muted')}>{checkedOnText(answer.checkedOn)}.</p>
       )}
     </div>
   );

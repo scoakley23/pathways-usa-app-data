@@ -111,7 +111,7 @@ export default function DictationCard({ sentence, onComplete, onNext, testMode =
         <div className="mx-auto max-w-2xl space-y-4">
           {onClose && <RunTopBar onClose={onClose} index={index} total={total} answered={done} />}
           <p className="text-label uppercase text-on-navy">{label}</p>
-          <h2 className="font-display text-[38px] sm:text-[40px] leading-[1.1]">
+          <h2 className="font-display text-[2.375rem] sm:text-[2.5rem] leading-[1.1]">
             {testMode ? 'Listen, then type what you hear.' : 'Listen, then write what you hear.'}
           </h2>
           <div className="flex flex-wrap gap-2">
@@ -133,7 +133,7 @@ export default function DictationCard({ sentence, onComplete, onNext, testMode =
           {!done && (
             <>
               <RuledPaper>
-                <label htmlFor="dictation-input" className="block text-[13px] font-semibold uppercase tracking-[0.14em] leading-[36px] text-muted">
+                <label htmlFor="dictation-input" className="block text-[0.8125rem] font-semibold uppercase tracking-[0.14em] leading-[2.25rem] text-muted">
                   {testMode ? 'Type the sentence' : 'Your sentence'}
                 </label>
                 <textarea
@@ -142,7 +142,7 @@ export default function DictationCard({ sentence, onComplete, onNext, testMode =
                   onChange={(e) => setUserInput(e.target.value)}
                   placeholder="Type the sentence here…"
                   rows={2}
-                  className="block w-full resize-none bg-transparent text-[22px] leading-[36px] text-navy placeholder:text-muted focus:outline-none"
+                  className="block w-full resize-none bg-transparent text-[1.375rem] leading-[2.25rem] text-navy placeholder:text-muted focus:outline-none"
                   onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); if (userInput.trim()) checkAnswer(); } }}
                 />
               </RuledPaper>
@@ -169,7 +169,7 @@ export default function DictationCard({ sentence, onComplete, onNext, testMode =
             >
               {words && (
                 <RuledPaper>
-                  <p className="text-[13px] font-semibold uppercase tracking-[0.14em] leading-[36px] text-muted">The sentence, word by word</p>
+                  <p className="text-[0.8125rem] font-semibold uppercase tracking-[0.14em] leading-[2.25rem] text-muted">The sentence, word by word</p>
                   <WordByWord words={words} legend="Words to check" />
                 </RuledPaper>
               )}

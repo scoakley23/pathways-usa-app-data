@@ -24,10 +24,10 @@ import { translateCourse } from '@/lib/courseTitles';
 import usePackLookup from '@/components/course/usePackLookup';
 
 // The quick check (Prompt 9, frame R30QuickCheck). Saves only the four skill
-// levels. The first time on a device, Getting started comes first (language,
-// Meet Amio, the pilot sign-up questions, sound and text size). The results
-// say where the course starts (src/lib/startingPoint.js, from the civics
-// level), then "Make my plan" opens Your plan (Prompt 7), then Today.
+// levels. The first time on a device, first open comes first (Your language,
+// How Amio works, Your plan, the program question). The results only suggest
+// a starting topic (src/lib/startingPoint.js, from the civics level; nothing
+// is locked), then "Start learning" goes to Today.
 // ?part=<skill> re-checks one skill, keeps the others and goes back home.
 export default function QuickCheck() {
   const navigate = useNavigate();
@@ -61,8 +61,8 @@ export default function QuickCheck() {
 
   const lesson = useMemo(() => (sources ? buildPretestLesson(sources, language, undefined, parts) : null), [sources, language, parts]);
   const goHome = () => navigate(createPageUrl('Home'));
-  // After a full check (or skipping it), Your plan; a re-check of one part goes home.
-  const next = () => (fullCheck ? navigate('/plan') : goHome());
+  // After the check (or skipping it), Today: the plan was made in first open.
+  const next = goHome;
   const tx = usePackLookup(language);
   const start = useMemo(() => (levels ? startingPoint(translateCourse(visibleCourse(UNITS, { showDrafts: canSeeDrafts(user) }), tx), levels) : null), [levels, user, tx]);
 
@@ -119,15 +119,15 @@ export default function QuickCheck() {
     );
   }
 
-  // Results: the four levels and where the course starts.
+  // Results: the four levels and a suggested starting topic.
   return (
-    <div className="min-h-screen bg-page flex flex-col">
+    <div className="min-h-screen bg-paper flex flex-col">
       <div className="flex-1 max-w-lg w-full mx-auto px-4 pt-8 pb-4 flex flex-col gap-5 text-navy">
-        <h1 className="text-[26px] font-bold leading-tight">{t('qc_results')}</h1>
+        <h1 className="text-[1.625rem] font-bold leading-tight">{t('qc_results')}</h1>
         {levels && <SkillLevels levels={levels} language={language} />}
         {fullCheck && start && (
           <section className="rounded-card bg-white border-2 border-denim p-5 flex items-start gap-4">
-            <span className="grid place-items-center w-12 h-12 shrink-0 rounded-full bg-red text-navy"><MapPin className="w-6 h-6" aria-hidden="true" /></span>
+            <span className="grid place-items-center w-12 h-12 shrink-0 rounded-full bg-sky text-navy"><MapPin className="w-6 h-6" aria-hidden="true" /></span>
             <div className="min-w-0">
               <p className="text-small font-semibold uppercase tracking-wide text-muted">{t('qc_start_at')}</p>
               <p className="text-lg font-bold" dir="auto">{t('qc_start_unit', { n: start.unit.number, section: start.section.title })}</p>
@@ -137,9 +137,9 @@ export default function QuickCheck() {
         )}
         <AmioSays mood="proud" size={56}>{t('qc_saved')}</AmioSays>
       </div>
-      <div className="sticky bottom-0 bg-page px-4 pt-2 pb-6 max-w-lg w-full mx-auto flex flex-col items-center gap-2">
+      <div className="sticky bottom-0 bg-paper px-4 pt-2 pb-6 max-w-lg w-full mx-auto flex flex-col items-center gap-2">
         <Button variant="main" className="w-full" onClick={next} disabled={saving}>
-          {saving ? <Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" /> : t(fullCheck ? 'qc_make_plan' : 'qc_done')}
+          {saving ? <Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" /> : t(fullCheck ? 'qc_start_learning' : 'qc_done')}
         </Button>
         <Button variant="link" onClick={() => setStage('intro')}>{t('qc_again')}</Button>
       </div>

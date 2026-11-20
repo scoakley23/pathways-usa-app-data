@@ -531,7 +531,7 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
   // please", the big mic and End call. How it works and what it saves are
   // unchanged.
   return (
-    <div className={`text-navy ${embedded ? 'w-full max-w-3xl mx-auto' : 'min-h-screen bg-page'}`}>
+    <div className={`text-navy ${embedded ? 'w-full max-w-3xl mx-auto' : 'min-h-screen bg-paper'}`}>
       <div className={`mx-auto max-w-lg space-y-4 ${embedded ? '' : 'px-4 pt-5 pb-10'}`}>
         <div className="flex items-center gap-3">
           {onClose && (
@@ -578,7 +578,7 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
         {/* The question, with live captions */}
         <Card>
           <p className="text-small font-semibold text-muted">Question {currentIndex + 1} of {questions.length}</p>
-          <h2 className={`mt-1 font-bold leading-snug ${feedback ? 'text-[22px]' : 'text-question'}`}>{current.question}</h2>
+          <h2 className={`mt-1 font-bold leading-snug ${feedback ? 'text-[1.375rem]' : 'text-question'}`}>{current.question}</h2>
           {askedAgain && !userResponse && !isListening && <p className="mt-2 text-base text-navy" role="status">Sure. Here’s the question again.</p>}
           {(isListening || userResponse) && (
             <p className="mt-2 text-base font-semibold text-denim break-words" aria-live="polite">
@@ -694,7 +694,7 @@ function FeedbackPanel({ feedback, understanding = false }) {
           { label: 'Fluency', score: feedback.fluency_score },
         ].map(({ label, score }) => (
           <div key={label} className="bg-white rounded-2xl p-3 border border-line shadow-raised text-center">
-            <p className={`font-display text-[34px] leading-none ${scoreColor(score)}`}>{score}</p>
+            <p className={`font-display text-[2.125rem] leading-none ${scoreColor(score)}`}>{score}</p>
             <div className="w-full bg-tint rounded-full h-1.5 my-1.5">
               <div className={`h-1.5 rounded-full ${barColor(score)}`} style={{ width: `${score}%` }} />
             </div>
@@ -705,8 +705,8 @@ function FeedbackPanel({ feedback, understanding = false }) {
 
       {feedback.corrected_version && (
         <RuledPaper>
-          <p className="text-[13px] font-semibold uppercase tracking-[0.14em] leading-[36px] text-muted">{feedback.civics ? 'The officer accepts' : understanding ? 'What the question is asking' : 'A better way to say it'}</p>
-          <p className="font-medium text-[22px] leading-[36px]">“{feedback.corrected_version}”</p>
+          <p className="text-[0.8125rem] font-semibold uppercase tracking-[0.14em] leading-[2.25rem] text-muted">{feedback.civics ? 'The officer accepts' : understanding ? 'What the question is asking' : 'A better way to say it'}</p>
+          <p className="font-medium text-[1.375rem] leading-[2.25rem]">“{feedback.corrected_version}”</p>
         </RuledPaper>
       )}
 
@@ -756,7 +756,7 @@ function InterviewIntro({ questions, onStart, varyOfficer, onToggleVary }) {
           </div>
         </div>
 
-        <h2 className="text-[32px] font-display font-normal leading-tight mt-5 mb-2">Mock Interview</h2>
+        <h2 className="text-[2rem] font-display font-normal leading-tight mt-5 mb-2">Mock Interview</h2>
         <p className="text-base text-muted leading-relaxed">
           The AI officer asks you real interview questions out loud and checks your answers. Amio waits at the door.
         </p>
@@ -792,6 +792,9 @@ function InterviewIntro({ questions, onStart, varyOfficer, onToggleVary }) {
           <p className="text-base">How a question applies to you is for a lawyer. <Link to="/lawyer-first" className="font-semibold underline underline-offset-4">Talk to a lawyer first</Link></p>
         </RaisedCard>
       )}
+
+      {/* Always shown before starting (was also a first-open promise). */}
+      <p className="text-base text-muted">Don&apos;t share your immigration status, A-number, case details, or address. Only your scores are saved.</p>
 
       <button
         type="button"

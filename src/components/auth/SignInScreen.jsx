@@ -99,7 +99,7 @@ export default function SignInScreen() {
   if (AUTH_PROVIDER !== 'supabase') return null;
 
   return (
-    <div dir={dir} className="min-h-screen bg-page text-navy font-sans flex flex-col">
+    <div dir={dir} className="min-h-screen bg-paper text-navy font-sans flex flex-col">
       <NavyBanner
         title={step === 'email' ? t('title') : t('checkTitle')}
         subtitle="Pathways USA"
@@ -163,7 +163,7 @@ export default function SignInScreen() {
                   value={code}
                   onChange={onCodeChange}
                   aria-invalid={Boolean(error)}
-                  className={`${INPUT} text-center text-[28px] font-bold tracking-[0.4em]`}
+                  className={`${INPUT} text-center text-[1.75rem] font-bold tracking-[0.4em]`}
                 />
               </label>
               {error && <ErrorLine>{t(error)}</ErrorLine>}

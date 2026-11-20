@@ -28,7 +28,7 @@ export default function N400SectionList({ sections, completedIds = [], countFor,
                 {state === 'done' ? <Check className="w-5 h-5" strokeWidth={3} /> : i + 1}
               </span>
               <span className="min-w-0 flex-1">
-                <span className="block text-[17px] font-semibold leading-snug">{s.title}</span>
+                <span className="block text-[1.0625rem] font-semibold leading-snug">{s.title}</span>
                 <span className="block text-small text-muted">
                   {n} {n === 1 ? 'card' : 'cards'}
                   {state === 'done' && ' · Read'}

@@ -44,7 +44,7 @@ export default function HelpUsImprove({ user, language = 'en', onDone }) {
       <form onSubmit={(e) => { e.preventDefault(); finish(true); }} className="space-y-7" aria-labelledby="pilot-title">
         <div className="space-y-3">
           <Eyebrow>{t('eyebrow')}</Eyebrow>
-          <h1 id="pilot-title" className="font-display text-[36px] leading-tight text-navy">{t('title')}</h1>
+          <h1 id="pilot-title" className="font-display text-[2.25rem] leading-tight text-navy">{t('title')}</h1>
           <p className="text-base text-navy">{t('intro')}</p>
         </div>
 
