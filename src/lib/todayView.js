@@ -117,3 +117,9 @@ export function activeWeek(dates = [], today = new Date()) {
   }
   return { squares: weekCircles([...days], t, today.getDay()), count: days.size };
 }
+
+/** Today's goal is met: a goal is set and that many lessons were finished today. */
+export function goalMet(goal, doneToday) {
+  const g = Number(goal) || 0;
+  return g > 0 && (Number(doneToday) || 0) >= g;
+}

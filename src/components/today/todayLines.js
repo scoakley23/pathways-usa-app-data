@@ -69,6 +69,9 @@ export const TODAY_LINES = {
   back: 'Back',
   // Done for today (R30Done)
   done_title: 'Done for today!',
+  days_week_1: '1 day this week',
+  days_week_n: '{n} days this week',
+  goal_met: 'Today’s goal is done.',
   done_sub_1: 'You finished 1 lesson today.',
   done_sub_n: 'You finished {n} lessons today.',
   done_sub_0: 'Every bit of practice counts.',

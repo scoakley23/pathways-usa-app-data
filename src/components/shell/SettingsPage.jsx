@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { ArrowLeft, ChevronDown, ChevronRight, Loader2 } from 'lucide-react';
+import { ChevronDown, ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { auth } from '@/api/auth';
 import { Button } from '@/components/pathways/ui';
@@ -27,8 +27,8 @@ import { PROCESSING_TIMES, canSeeSampleOffices, savedRange } from '@/lib/intervi
 import { SETTINGS_LINKS } from '@/lib/shellRoutes';
 import { reviewedFaq } from '@/lib/faq';
 
-// Settings (Amio v2, frame MeSettings), from the button on Me. On navy: Back,
-// the learner's name and "Edit name". Then white groups of rows:
+// Settings (Amio v2, frame MeSettings), from the button on Me. A paper header:
+// Back, Amio beside the learner's name, and "Edit name". Then white groups of rows:
 //   Language · Daily reminder (On / Off) · Your interview · My tutor · Your plan
 //   Sound and voice · How Amio talks
 //   Questions and answers (hidden until an entry is reviewed) · How Amio works
@@ -39,6 +39,7 @@ import { reviewedFaq } from '@/lib/faq';
 // same as before. #program, #delete-data, #what-we-save and #settings (from
 // old addresses) open and scroll to that row.
 import { SETTINGS_LINES as LINES } from './shellStrings';
+import { Amio } from '@/components/pathways/Amio';
 
 const ROW = 'w-full min-h-[3.25rem] flex items-center gap-3 px-4 py-2 text-start text-navy hover:bg-line-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-denim';
 
@@ -194,34 +195,41 @@ export default function SettingsPage() {
 
   return (
     <div dir={dir} className="min-h-full bg-paper text-navy">
-      <section className="bg-navy text-white">
-        <div className="max-w-lg mx-auto px-4 pt-4 pb-6">
-          <button type="button" onClick={back} aria-label={t('back')} className="w-11 h-11 -ms-2 grid place-items-center rounded-full text-white hover:bg-chip-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
-            <ArrowLeft className="w-6 h-6 rtl:rotate-180" aria-hidden="true" />
+      {/* The paper header (frame MeSettings): Back, Amio beside the name,
+          "Edit name" as a small link; the name form opens under it. */}
+      <section aria-labelledby="settings-name">
+        <div className="max-w-lg mx-auto px-4 pt-3">
+          <button type="button" onClick={back} aria-label={t('back')} className="w-11 h-11 -ms-2 grid place-items-center rounded-button text-navy hover:bg-line-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim">
+            <ChevronLeft className="w-6 h-6 rtl:rotate-180" aria-hidden="true" />
           </button>
-          <p className="mt-2 text-base text-on-navy">{t('title')}</p>
-          <h1 className="font-display text-[2rem] leading-tight break-words" dir="auto">{savedName || t('title')}</h1>
-          {user && !editing && (
-            <button type="button" onClick={() => setEditing(true)} className="mt-1 min-h-tap inline-flex items-center px-1 -ms-1 text-base font-semibold text-white underline underline-offset-4 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
-              {t('edit_name')}
-            </button>
-          )}
+          <div className="mt-1 flex items-center gap-3.5">
+            <Amio mood="hello" size={60} className="shrink-0" />
+            <div className="min-w-0">
+              <p className="sr-only">{t('title')}</p>
+              <h1 id="settings-name" className="font-display text-[1.875rem] leading-none tracking-tight text-navy break-words" dir="auto">{savedName || t('title')}</h1>
+              {user && !editing && (
+                <button type="button" onClick={() => setEditing(true)} className="mt-1 min-h-tap inline-flex items-center px-1 -ms-1 text-[0.875rem] font-semibold text-denim hover:text-navy rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim">
+                  {t('edit_name')}
+                </button>
+              )}
+            </div>
+          </div>
           {user && editing && (
-            <form onSubmit={saveName} className="mt-3 flex flex-col gap-2">
-              <label htmlFor="display-name" className="text-base text-on-navy">{t('your_name')}</label>
+            <form onSubmit={saveName} className="mt-3 rounded-card bg-white border-[1.5px] border-line p-4 flex flex-col gap-2">
+              <label htmlFor="display-name" className="text-base font-semibold text-navy">{t('your_name')}</label>
               <input
                 id="display-name"
                 value={displayName}
                 onChange={(e) => setDisplayName(e.target.value)}
                 autoComplete="name"
-                className="w-full h-[3.25rem] rounded-button border border-line bg-white px-4 text-base text-navy focus:outline-none focus:ring-2 focus:ring-white"
+                className="w-full h-[3.25rem] rounded-button border border-line bg-white px-4 text-base text-navy focus:outline-none focus:ring-2 focus:ring-denim"
               />
-              <p className="text-small text-on-navy">{t('your_name_help')}</p>
+              <p className="text-small text-muted">{t('your_name_help')}</p>
               <div className="flex gap-2">
-                <Button variant="second" type="submit" disabled={savingName} className="min-h-tap px-5">
+                <Button variant="main" type="submit" disabled={savingName} className="px-6">
                   {savingName && <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />} {t('save')}
                 </Button>
-                <button type="button" onClick={() => { setDisplayName(savedName); setEditing(false); }} className="min-h-tap px-4 text-base font-semibold text-white underline underline-offset-4 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+                <button type="button" onClick={() => { setDisplayName(savedName); setEditing(false); }} className="min-h-tap px-4 text-base font-semibold text-denim underline underline-offset-4 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim">
                   {t('cancel')}
                 </button>
               </div>

@@ -134,3 +134,14 @@ describe('activeWeek', () => {
     expect(w.squares[2].practiced).toBe(true);
   });
 });
+
+describe('goalMet (red "today" square)', () => {
+  it('is met only when a goal is set and reached', async () => {
+    const { goalMet } = await import('./todayView');
+    expect(goalMet(2, 2)).toBe(true);
+    expect(goalMet(2, 3)).toBe(true);
+    expect(goalMet(2, 1)).toBe(false);
+    expect(goalMet(0, 3)).toBe(false);
+    expect(goalMet(null, 1)).toBe(false);
+  });
+});

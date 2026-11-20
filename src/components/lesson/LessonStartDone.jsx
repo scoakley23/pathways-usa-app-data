@@ -5,6 +5,9 @@ import { Amio, AmioSays } from '@/components/pathways/Amio';
 import { Button } from '@/components/pathways/ui';
 import { CONFETTI_COLORS } from '@/lib/theme';
 import { STEPS, rightOf } from '@/lib/lessonPlayer';
+import RedStop from '@/components/pathways/RedStop';
+import WeekSquares from '@/components/today/WeekSquares';
+import { goalMet } from '@/lib/todayView';
 
 // Lesson start (frame R32Lesson; no stars shown, Amio v2) and Lesson done
 // (Amio v2 frame LessonDone).
@@ -84,21 +87,17 @@ export function LessonDone({ results, goal, saves, t, know, week, nextTitle, onD
     <div className="flex flex-col min-h-full bg-paper text-navy">
       <div className="flex-1 px-4 pt-8 pb-4 flex flex-col gap-5 max-w-lg w-full mx-auto">
         <AmioSays mood="proud" size={72}>{nextTitle ? t('done_amio_next', { lesson: nextTitle }) : t('done_amio')}</AmioSays>
-        <h1 className="font-display text-[2.75rem] leading-none tracking-tight">{t('lesson_done')}</h1>
+        <h1 dir="auto" className="font-display text-[2.75rem] leading-none tracking-tight"><RedStop>{t('lesson_done')}</RedStop></h1>
         <div className="flex gap-2">
           {score.of > 0 && <Tile className="bg-denim text-white" label={t('stat_right')} value={t('n_of_total', { n: score.right, total: score.of })} />}
           {know && <Tile className="bg-gold text-navy" label={t('stat_know')} value={t('n_of_total', { n: know.n, total: know.total })} note={t('know_note')} />}
         </div>
-        {week && (
-          <div className="flex items-center gap-3">
-            <span className="flex gap-1" aria-hidden="true">
-              {week.squares.map((sq, i) => (
-                <span key={i} className={`w-4 h-4 rounded ${sq.practiced ? (sq.state === 'today' ? 'bg-gold' : 'bg-navy') : sq.state === 'future' ? 'border-2 border-dashed border-line' : 'border-2 border-line'}`} />
-              ))}
-            </span>
-            <span className="text-base text-muted">{days === 1 ? t('days_week_1') : t('days_week_n', { n: days })}</span>
-          </div>
-        )}
+        <WeekSquares
+          week={week}
+          goalMet={!!goal && goalMet(goal.goal, goal.done)}
+          label={days === 1 ? t('days_week_1') : t('days_week_n', { n: days })}
+          metLabel={t('goal_met')}
+        />
         {goal && (
           <section className="rounded-card bg-white border border-line p-4">
             <div className="flex items-center justify-between gap-3">
