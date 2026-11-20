@@ -397,12 +397,6 @@
    ]
   },
   {
-   "text": "+10 stars + badge",
-   "from": [
-    "checkpoints"
-   ]
-  },
-  {
    "text": "1 day this week",
    "from": [
     "lesson-player"
@@ -906,7 +900,7 @@
    ]
   },
   {
-   "text": "A practice interview with this unit’s questions. It doesn’t block the road.",
+   "text": "A practice interview with this unit’s questions. Try it any time.",
    "from": [
     "course"
    ]
@@ -1798,12 +1792,6 @@
    ]
   },
   {
-   "text": "Badge earned",
-   "from": [
-    "checkpoints"
-   ]
-  },
-  {
    "text": "Balanced Rights",
    "from": [
     "lessons"
@@ -2373,6 +2361,7 @@
    "text": "Civics",
    "from": [
     "checkpoints",
+    "course",
     "interview-tab",
     "onboarding",
     "today-plan"
@@ -2775,6 +2764,7 @@
   {
    "text": "Continue",
    "from": [
+    "course",
     "getting-started",
     "home",
     "lesson-player",
@@ -4159,6 +4149,12 @@
    ]
   },
   {
+   "text": "Free practice",
+   "from": [
+    "course"
+   ]
+  },
+  {
    "text": "Free practice · Not affiliated with USCIS",
    "from": [
     "home"
@@ -5086,6 +5082,12 @@
    "text": "Hi, I’m Amio.",
    "from": [
     "onboarding"
+   ]
+  },
+  {
+   "text": "Hide",
+   "from": [
+    "course"
    ]
   },
   {
@@ -6470,6 +6472,12 @@
    ]
   },
   {
+   "text": "Lesson {n} of {total} · {title}",
+   "from": [
+    "course"
+   ]
+  },
+  {
    "text": "Lessons can be in any of {n} languages. The interview is in English, so we practice your answers in English, one step at a time.",
    "from": [
     "home"
@@ -7781,6 +7789,12 @@
    ]
   },
   {
+   "text": "Nothing here yet. It opens as lessons are reviewed.",
+   "from": [
+    "course"
+   ]
+  },
+  {
    "text": "Notifications",
    "from": [
     "me"
@@ -8122,6 +8136,12 @@
    "text": "Partner program page",
    "from": [
     "me"
+   ]
+  },
+  {
+   "text": "Parts of the test",
+   "from": [
+    "course"
    ]
   },
   {
@@ -8684,6 +8704,12 @@
    ]
   },
   {
+   "text": "Read and write practice from each topic",
+   "from": [
+    "course"
+   ]
+  },
+  {
    "text": "Read clearly!",
    "from": [
     "lesson-player"
@@ -8752,6 +8778,7 @@
   {
    "text": "Reading",
    "from": [
+    "course",
     "interview-tab",
     "onboarding",
     "today-plan"
@@ -9656,6 +9683,12 @@
    ]
   },
   {
+   "text": "See everything in this topic",
+   "from": [
+    "course"
+   ]
+  },
+  {
    "text": "See my journey",
    "from": [
     "checkpoints"
@@ -10173,6 +10206,12 @@
    ]
   },
   {
+   "text": "Speak it! and practice interviews from each topic",
+   "from": [
+    "course"
+   ]
+  },
+  {
    "text": "Speak it! checkpoint",
    "from": [
     "course"
@@ -10193,6 +10232,7 @@
   {
    "text": "Speaking",
    "from": [
+    "course",
     "interview-tab",
     "onboarding",
     "today-plan"
@@ -10250,14 +10290,9 @@
   {
    "text": "Start lesson",
    "from": [
+    "course",
     "lesson-player",
     "n400-lessons"
-   ]
-  },
-  {
-   "text": "Start lesson · +3 stars",
-   "from": [
-    "course"
    ]
   },
   {
@@ -10418,6 +10453,12 @@
    "text": "Studying in {language}",
    "from": [
     "me"
+   ]
+  },
+  {
+   "text": "Suggested next",
+   "from": [
+    "course"
    ]
   },
   {
@@ -12222,7 +12263,7 @@
    ]
   },
   {
-   "text": "The section’s questions, out loud, with no hints. Pass to earn a badge and 10 stars.",
+   "text": "The section’s questions, out loud, with no hints.",
    "from": [
     "course"
    ]
@@ -13333,6 +13374,12 @@
    ]
   },
   {
+   "text": "Try it any time",
+   "from": [
+    "course"
+   ]
+  },
+  {
    "text": "Try the practice interview",
    "from": [
     "checkpoints"
@@ -13600,12 +13647,6 @@
    "text": "Unlocked:",
    "from": [
     "checkpoints"
-   ]
-  },
-  {
-   "text": "Unlocked: try it any time",
-   "from": [
-    "course"
    ]
   },
   {
@@ -15510,6 +15551,7 @@
   {
    "text": "Writing",
    "from": [
+    "course",
     "interview-tab",
     "onboarding",
     "today-plan"
@@ -18001,12 +18043,6 @@
    ]
   },
   {
-   "text": "{correct} of {total} · +10 stars",
-   "from": [
-    "checkpoints"
-   ]
-  },
-  {
    "text": "{done} of {goal} done",
    "from": [
     "lesson-player"
@@ -18079,6 +18115,12 @@
     "interview-tab",
     "lesson-player",
     "n400-lessons"
+   ]
+  },
+  {
+   "text": "{n} of {total} questions",
+   "from": [
+    "course"
    ]
   },
   {

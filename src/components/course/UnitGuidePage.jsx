@@ -6,8 +6,10 @@ import { lessonCounts, questionCount, sectionState } from '@/lib/journey';
 import { STOP_LOOK, StopIcon, stopLabel, useCourseText, useJourney } from '@/components/course/courseShared';
 
 // The unit guide (/course/unit/:unitId, frame R33UnitGuide): one row per
-// section (done / current / locked) that opens to list its stops, then the
-// unit practice interview at the end. Reads only.
+// section (done / current / open; nothing is locked) that opens to list its
+// stops, then the unit practice interview at the end, always open. The
+// current section and stop are marked gold (red is Amio only). No badges or
+// stars. Reads only.
 
 function SectionRow({ section, number, unit, stops, state, progress, t, startOpen }) {
   const [open, setOpen] = useState(startOpen);
@@ -15,13 +17,13 @@ function SectionRow({ section, number, unit, stops, state, progress, t, startOpe
   const mine = stops.filter((s) => s.sectionId === section.id && s.type !== 'practiceInterview');
   const badge = state === 'done'
     ? <span className="grid place-items-center w-11 h-11 rounded-2xl bg-denim text-white"><Check className="w-6 h-6" strokeWidth={3} aria-hidden="true" /></span>
-    : <span className={`grid place-items-center w-11 h-11 rounded-2xl text-lg font-bold ${state === 'current' ? 'bg-red text-navy' : 'bg-tint text-muted'}`}>{number}</span>;
+    : <span className={`grid place-items-center w-11 h-11 rounded-2xl text-lg font-bold ${state === 'current' ? 'bg-gold text-navy' : 'bg-tint text-navy'}`}>{number}</span>;
   const sub = state === 'empty'
     ? t('being_reviewed')
-    : [t('of', { n: counts.done, total: counts.total }), state === 'done' ? t('badge_earned') : null].filter(Boolean).join(' · ');
+    : t('of', { n: counts.done, total: counts.total });
   const panel = `sec-${section.id}`;
   return (
-    <div className={`rounded-card bg-white border-2 ${state === 'current' ? 'border-red' : 'border-transparent'}`}>
+    <div className={`rounded-card bg-white border-2 ${state === 'current' ? 'border-gold' : 'border-transparent'}`}>
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
@@ -39,13 +41,13 @@ function SectionRow({ section, number, unit, stops, state, progress, t, startOpe
       {open && mine.length > 0 && (
         <ol id={panel} className="list-none m-0 mx-4 mb-4 pt-3 border-t border-line flex flex-col gap-2">
           {mine.map((s) => {
-            const look = s.state === 'done' ? 'bg-denim text-white' : s.state === 'current' ? 'bg-red text-navy' : s.state === 'open' ? STOP_LOOK[s.type] : s.state === 'soon' ? `${STOP_LOOK[s.type]} opacity-70` : 'bg-tint text-muted';
+            const look = s.state === 'done' ? 'bg-denim text-white' : s.state === 'current' ? 'bg-gold text-navy' : s.state === 'soon' ? `${STOP_LOOK[s.type]} opacity-70` : STOP_LOOK[s.type];
             return (
               <li key={s.id} className="flex items-center gap-3 min-h-[44px]">
                 <span className={`grid place-items-center w-9 h-9 shrink-0 rounded-full ${look}`}>
                   {s.state === 'done' ? <Check className="w-5 h-5" strokeWidth={3} aria-hidden="true" /> : <StopIcon type={s.type} unitIcon={unit.icon} className="w-4 h-4" />}
                 </span>
-                <span dir="auto" className={`text-base break-words ${s.state === 'current' ? 'font-bold text-navy' : s.state === 'locked' ? 'text-muted' : 'text-navy'}`}>
+                <span dir="auto" className={`text-base break-words ${s.state === 'current' ? 'font-bold text-navy' : 'text-navy'}`}>
                   {stopLabel(s, t)}
                   {s.state === 'soon' && <span className="text-small text-muted"> · {t('coming_soon')}</span>}
                   {s.lesson?.status === 'draft' && <span className="text-small text-muted"> · {t('draft')}</span>}

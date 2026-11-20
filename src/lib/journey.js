@@ -1,15 +1,17 @@
-// The Course tab's journey (Prompt 5): which stops a learner sees, which are
-// done, which one is next and which are locked. Pure functions over the
+// The Course tab's journey (Prompt 5; nothing locked since Amio v2): which
+// stops a learner sees, which are done and which one is suggested next. Pure
+// functions over the
 // course (src/lib/course.js) and the learner's saved progress, so tests can
 // check them without a screen.
 //
 // - Learners see only reviewed lessons; admins (and a developer with
 //   VITE_SHOW_DRAFT_LESSONS=true) also see drafts, marked "Draft".
-// - Stops unlock in order, across the whole course: the first stop that
-//   isn't done is "current"; everything after it is "locked".
-// - Lessons, Read and write and Speak it! must be done in order (Prompt 8).
-// - The unit practice interview, N-400 lessons and review stops are optional:
-//   "open" once everything before them is done, never blocking. An N-400
+// - Nothing is locked (CLAUDE.md "Nothing is locked"): every lesson, Read and
+//   write and Speak it! stop can be opened at any time. The first one that
+//   isn't done (from the quick check's starting unit, when there is one) is
+//   the suggested next stop, "current"; the others are "open".
+// - The unit practice interview, N-400 lessons and review stops are always
+//   "open". A stop type that isn't built yet is "soon". An N-400
 //   lesson stop (`lessonId`, content/n400/lessons.json) shows only when that
 //   lesson may be seen (reviewed, or drafts for admins).
 import { UNITS, sectionQuestionIds, showDraftLessons } from '@/lib/course';
@@ -17,8 +19,8 @@ import { OFFICEHOLDER_QUESTIONS } from '@/lib/officeholderQuestions';
 import { checkpointStars } from '@/lib/checkpoints';
 import { N400_LESSON_IDS, findN400Lesson, n400LessonVisible } from '@/lib/n400Lessons';
 
-// Stops that must be done in order, and stops that are optional (open once
-// reached, never blocking). Anything else is "soon".
+// Stops the suggestion walks through (the course order), and extra stops
+// that are always open. Anything else is "soon".
 export const PLAYABLE_STOPS = ['lesson', 'readwrite', 'speakit'];
 export const OPTIONAL_STOPS = ['practiceInterview', 'n400', 'review'];
 
@@ -55,30 +57,31 @@ const isDone = (stop, progress, checkpoints) => {
 };
 
 /**
- * Every visible stop in course order with its state: done | current |
- * open | locked | soon. `startUnitId` (Prompt 9, from the quick check): stops
- * in units before it are "open" (playable, never blocking). `progress`: { lessonId: { completed, stars, steps_done } };
- * `checkpoints`: section ids with a passed Speak it!.
+ * Every visible stop in course order with its state: done | current | open |
+ * soon. Nothing is ever locked. "current" is the one suggested next stop:
+ * the first lesson, Read and write or Speak it! that isn't done, starting at
+ * `startUnitId` (the quick check's suggestion, Prompt 9) when given, else at
+ * the beginning; when everything from there on is done, the first one not
+ * done anywhere. `progress`: { lessonId: { completed, stars, steps_done } };
+ * `checkpoints`: section ids with a passed Speak it! (and Read and write
+ * stop ids).
  */
 export function journeyStops(course, { progress = {}, checkpoints = new Set(), startUnitId = null } = {}) {
   const out = [];
-  let current = null;
-  let beforeStart = !!startUnitId && course.some((u) => u.id === startUnitId);
+  let reachedStart = !startUnitId || !course.some((u) => u.id === startUnitId);
   for (const u of course) for (const s of u.sections) for (const stop of s.stops) {
-    if (u.id === startUnitId) beforeStart = false;
-    const item = { ...stop, unitId: u.id, sectionId: s.id, sectionKey: s.id };
-    const done = isDone(item, progress, checkpoints);
-    if (done) item.state = 'done';
-    else if (beforeStart && PLAYABLE_STOPS.includes(item.type)) item.state = 'open';
-    else if (OPTIONAL_STOPS.includes(item.type)) item.state = current ? 'locked' : 'open';
-    else if (current) item.state = 'locked';
-    else if (!PLAYABLE_STOPS.includes(item.type)) item.state = 'soon';
-    else { item.state = 'current'; current = item; }
+    if (u.id === startUnitId) reachedStart = true;
+    const item = { ...stop, unitId: u.id, sectionId: s.id, sectionKey: s.id, fromStart: reachedStart };
+    if (isDone(item, progress, checkpoints)) item.state = 'done';
+    else if (PLAYABLE_STOPS.includes(item.type) || OPTIONAL_STOPS.includes(item.type)) item.state = 'open';
+    else item.state = 'soon';
     if (item.type === 'lesson' || (item.type === 'n400' && item.lessonId)) item.stars = progress[item.lessonId]?.stars || 0;
     out.push(item);
   }
-  // Every stop after the current one waits for it.
-  for (const item of out) if (item.state === 'locked') item.waitFor = current;
+  const suggestable = (x) => x.state === 'open' && PLAYABLE_STOPS.includes(x.type);
+  const next = out.find((x) => x.fromStart && suggestable(x)) || out.find(suggestable);
+  if (next) next.state = 'current';
+  for (const x of out) delete x.fromStart;
   return out;
 }
 
@@ -120,22 +123,35 @@ export function currentUnitId(course, stops) {
   return (withLessons || course[0])?.id;
 }
 
-/** A section's state in the unit guide: done | current | locked | empty. */
+// Done = every lesson, Read and write and Speak it! in it is done (the extra
+// stops never hold it back).
+const allDone = (mine) => mine.filter((s) => PLAYABLE_STOPS.includes(s.type)).every((s) => s.state === 'done');
+
+/** A section's state in the unit guide: done | current | open | empty. Never locked. */
 export function sectionState(section, stops) {
   const mine = stops.filter((s) => s.sectionId === section.id);
   if (!mine.length) return 'empty';
   if (mine.some((s) => s.state === 'current')) return 'current';
-  if (mine.every((s) => ['done', 'soon', 'open'].includes(s.state))) return 'done';
-  return 'locked';
+  return allDone(mine) ? 'done' : 'open';
 }
 
-/** A unit's state on the all-units map: done | current | locked | empty. */
+/** A unit's state on the all-units map and the topic list: done | current | open | empty. Never locked. */
 export function unitState(unit, stops, currentId) {
   const mine = stops.filter((s) => s.unitId === unit.id);
   if (!mine.length) return 'empty';
   if (unit.id === currentId && mine.some((s) => s.state === 'current')) return 'current';
-  if (mine.every((s) => ['done', 'soon', 'open'].includes(s.state))) return 'done';
-  return 'locked';
+  return allDone(mine) ? 'done' : 'open';
+}
+
+/**
+ * Course (Amio v2): a unit's test questions and how many of them the learner
+ * has mastered (civics answers mastered in user_progress, `masteredIds`).
+ */
+export function unitQuestionsDone(unit, masteredIds = new Set()) {
+  const ids = new Set(unit.sections.flatMap((s) => sectionQuestionIds(s)));
+  let done = 0;
+  for (const id of ids) if (masteredIds.has(id)) done += 1;
+  return { done, total: ids.size };
 }
 
 const OFFICEHOLDER_TEXTS = new Set(OFFICEHOLDER_QUESTIONS.filter((q) => q.version === '2025' && ['senator', 'representative', 'governor', 'capital'].includes(q.office)).map((q) => q.question));

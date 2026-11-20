@@ -20,7 +20,7 @@ export { COURSE_LINES };
 
 export function useCourseText() {
   const [language] = useAppLanguage();
-  const tr = useTranslatedLines(COURSE_LINES, language, { cacheKey: 'course_v1' });
+  const tr = useTranslatedLines(COURSE_LINES, language, { cacheKey: 'course_v2' });
   const t = (key, vars = {}) => {
     let s = (language !== 'en' && tr(key)) || COURSE_LINES[key] || key;
     for (const [k, v] of Object.entries(vars)) s = s.split(`{${k}}`).join(String(v));

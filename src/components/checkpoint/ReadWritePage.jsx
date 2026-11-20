@@ -26,7 +26,7 @@ export default function ReadWritePage() {
   const { stopId } = useParams();
   const navigate = useNavigate();
   const { t, rtl, language } = useCheckpointText();
-  const trLesson = useTranslatedLines(LESSON_LINES, language, { cacheKey: 'lesson_v1' });
+  const trLesson = useTranslatedLines(LESSON_LINES, language, { cacheKey: 'lesson_v2' });
   const tl = (key, vars = {}) => {
     let s = (language !== 'en' && trLesson(key)) || LESSON_LINES[key] || key;
     for (const [k, v] of Object.entries(vars)) s = s.split(`{${k}}`).join(String(v));

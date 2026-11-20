@@ -8,8 +8,9 @@ import { questionRecord, sectionQuestionIds } from '@/lib/course';
 
 // The unit practice interview (Prompt 8, /course/unit/:unitId/interview):
 // the existing mock interview with a Civics part of up to 6 of the unit's
-// test questions. Open once the unit's lessons, Read and write stops and
-// Speak it! checkpoints are done; it never blocks the road. Saves what the
+// test questions. Open any time (nothing is locked): the stop is always
+// "open" in journeyStops(); only a unit with no stop a learner may see sends
+// them back. It never blocks anything. Saves what the
 // mock interview always saves (scores only). Questions about the learner's
 // own state are left out here (they need the state picked in Who Represents
 // Me?, and the Speak it! checkpoints already ask them).
