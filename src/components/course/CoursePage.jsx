@@ -1,40 +1,62 @@
 import React, { useMemo, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import { Lock, Map as MapIcon, Dumbbell } from 'lucide-react';
-import StarsPill from '@/components/pathways/StarsPill';
+import { Dumbbell } from 'lucide-react';
 import { Button } from '@/components/pathways/ui';
 import { Amio } from '@/components/pathways/Amio';
 import { Sheet, SheetContent, SheetDescription, SheetTitle } from '@/components/ui/sheet';
 import { questionText } from '@/lib/course';
-import { lessonCounts, usesYourState } from '@/lib/journey';
-import JourneyPath from '@/components/course/JourneyPath';
-import { STOP_LOOK, StopIcon, UnitIcon, stopHref, stopLabel, useCourseText, useJourney } from '@/components/course/courseShared';
+import { usesYourState } from '@/lib/journey';
+import TopicList, { StopRow } from '@/components/course/TopicList';
+import useReadinessData from '@/components/shell/useReadinessData';
+import { STOP_LOOK, StopIcon, stopHref, stopLabel, useCourseText, useJourney } from '@/components/course/courseShared';
 
-// The Course tab (/course, frames R32Path and R31Preview): the navy banner
-// ("All units", stars, the unit card that opens the unit guide), the
-// winding road of one unit, and a bottom sheet for the stop you tap: a
-// lesson's preview with Start, or why a stop isn't open yet. Reads only.
+// The Course tab (/course, Amio v2 frame Course; the preview sheet is frame
+// R31Preview). Four part tabs, kept inside Course and remembered on this
+// device (`pathways_course_tab`, cleared by Delete my data):
+// - Civics: the topics (one per unit) with their lessons, "n of m
+//   questions" (civics answers mastered), the suggested next lesson with
+//   Continue, and every stop when a topic is opened.
+// - Reading and Writing: each unit's Read and write stops.
+// - Speaking: each unit's Speak it! checkpoints and practice interview.
+// Each tab ends with a small "Free practice" link to that Practice run.
+// Nothing is locked: every stop opens. The winding road (JourneyPath.jsx)
+// stays in the code but isn't shown. No stars or badges. Reads only.
 
-function UnitCard({ unit, counts, t }) {
-  const pct = counts.total ? Math.round((counts.done / counts.total) * 100) : 0;
+export const COURSE_TAB_KEY = 'pathways_course_tab';
+const PARTS = ['reading', 'writing', 'civics', 'speaking'];
+const PRACTICE_RUN = { reading: 'reading', writing: 'dictation', civics: 'civics', speaking: 'interview' };
+const PART_STOPS = { reading: ['readwrite'], writing: ['readwrite'], speaking: ['speakit', 'practiceInterview'] };
+const PART_LOOK = {
+  reading: ['bg-denim text-white', 'border-denim'],
+  writing: ['bg-gold text-navy', 'border-gold'],
+  civics: ['bg-sky text-navy', 'border-sky'],
+  speaking: ['bg-white text-navy', 'border-line'],
+};
+
+function loadTab() {
+  try { const v = localStorage.getItem(COURSE_TAB_KEY); return PARTS.includes(v) ? v : 'civics'; } catch { return 'civics'; }
+}
+function saveTab(v) {
+  try { localStorage.setItem(COURSE_TAB_KEY, v); } catch { /* storage blocked: this visit only */ }
+}
+
+/** Reading/Writing and Speaking: the part's stops, grouped by unit. */
+function PartStops({ part, journey, t, onOpen }) {
+  const groups = journey.course
+    .map((u) => ({ unit: u, stops: journey.stops.filter((s) => s.unitId === u.id && PART_STOPS[part].includes(s.type)) }))
+    .filter((g) => g.stops.length);
+  if (!groups.length) return <p className="text-base text-muted">{t('nothing_yet')}</p>;
   return (
-    <Link
-      to={`/course/unit/${unit.id}`}
-      className="flex items-center gap-4 rounded-card bg-denim px-4 py-4 text-white hover:bg-denim-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-    >
-      <span className="grid place-items-center w-12 h-12 shrink-0 rounded-2xl bg-white text-denim">
-        <UnitIcon name={unit.icon} className="w-6 h-6" />
-      </span>
-      <span className="flex-1 min-w-0">
-        <span dir="auto" className="block text-lg font-bold leading-tight break-words">{t('unit_n', { n: unit.number })} · {unit.title}</span>
-        <span className="mt-2 flex items-center gap-3">
-          <span className="flex-1 h-2 rounded-full bg-white/25 overflow-hidden" aria-hidden="true">
-            <span className="block h-full rounded-full bg-gold" style={{ width: `${pct}%` }} />
-          </span>
-          <span dir="auto" className="text-small text-white tabular-nums whitespace-nowrap">{t('of', { n: counts.done, total: counts.total })}</span>
-        </span>
-      </span>
-    </Link>
+    <div className="flex flex-col gap-2">
+      {groups.map(({ unit, stops }) => (
+        <section key={unit.id} className="rounded-card bg-white border-[1.5px] border-line px-2 py-3" aria-labelledby={`part-${unit.id}`}>
+          <h2 id={`part-${unit.id}`} dir="auto" className="px-2 text-lg font-bold text-navy break-words">{unit.title}</h2>
+          <ul className="mt-1 list-none m-0 p-0 flex flex-col">
+            {stops.map((stop) => <StopRow key={stop.id} stop={stop} unitIcon={unit.icon} t={t} onOpen={onOpen} section={unit.sections.find((x) => x.id === stop.sectionId)?.title} />)}
+          </ul>
+        </section>
+      ))}
+    </div>
   );
 }
 
@@ -45,7 +67,7 @@ function LessonPreview({ stop, unit, lessonNumber, t, onStart }) {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-start gap-4">
-        <span className={`grid place-items-center w-16 h-16 shrink-0 rounded-full ${current ? 'bg-red text-navy' : STOP_LOOK.lesson}`}>
+        <span className={`grid place-items-center w-16 h-16 shrink-0 rounded-full ${current ? 'bg-gold text-navy' : STOP_LOOK.lesson}`}>
           <StopIcon type="lesson" unitIcon={unit.icon} className="w-7 h-7" />
         </span>
         <div className="min-w-0">
@@ -79,19 +101,18 @@ function LessonPreview({ stop, unit, lessonNumber, t, onStart }) {
 }
 
 function StopNote({ stop, t, onClose, onGo }) {
-  const locked = stop.state === 'locked';
   const href = stopHref(stop);
-  const playable = !locked && stop.state !== 'soon' && href;
+  const playable = stop.state !== 'soon' && href;
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center gap-4">
-        <span className={`grid place-items-center w-14 h-14 shrink-0 rounded-full ${locked ? 'bg-tint text-muted' : STOP_LOOK[stop.type]}`}>
-          {locked ? <Lock className="w-6 h-6" aria-hidden="true" /> : <StopIcon type={stop.type} className="w-6 h-6" />}
+        <span className={`grid place-items-center w-14 h-14 shrink-0 rounded-full ${stop.state === 'current' ? 'bg-gold text-navy' : STOP_LOOK[stop.type]}`}>
+          <StopIcon type={stop.type} className="w-6 h-6" />
         </span>
         <SheetTitle className="text-title font-bold text-navy break-words">{stopLabel(stop, t)}</SheetTitle>
       </div>
       <SheetDescription className="text-base text-navy">
-        {locked ? t('locked_body', { title: stop.waitFor ? stopLabel(stop.waitFor, t) : '' }) : playable ? t(`${stop.type}_body`) : t('soon_body')}
+        {playable ? t(`${stop.type === 'practiceInterview' ? 'interview' : stop.type}_body`) : t('soon_body')}
       </SheetDescription>
       {playable
         ? <Button variant="main" className="w-full" onClick={() => onGo(href)}>{stop.state === 'done' ? t('stop_again') : t('stop_go')}</Button>
@@ -105,46 +126,76 @@ export default function CoursePage() {
   const [params] = useSearchParams();
   const { t, rtl } = useCourseText();
   const journey = useJourney();
+  const readiness = useReadinessData();
+  const wantedUnit = params.get('unit');
+  // ?unit= (from Unit complete, the unit guide or All units) opens that topic on Civics.
+  const [tab, setTabState] = useState(() => (wantedUnit ? 'civics' : loadTab()));
+  const [expanded, setExpanded] = useState(wantedUnit);
   const [open, setOpen] = useState(null);
+  const setTab = (v) => { setTabState(v); saveTab(v); };
 
-  const unit = useMemo(() => {
-    const wanted = params.get('unit');
-    return journey.course.find((u) => u.id === wanted) || journey.course.find((u) => u.id === journey.currentUnit) || journey.course[0];
-  }, [journey, params]);
-
-  const stops = useMemo(() => {
-    const byId = Object.fromEntries(journey.stops.map((s) => [s.id, s]));
-    return { ...unit, sections: unit.sections.map((s) => ({ ...s, stops: s.stops.map((st) => byId[st.id] || st) })) };
-  }, [journey, unit]);
-
-  const lessonNumber = (lessonId) => unit.sections.flatMap((s) => s.lessons).findIndex((l) => l.id === lessonId) + 1;
-  const counts = lessonCounts(unit, journey.progress);
-  const isLesson = open && open.type === 'lesson' && open.state !== 'locked';
+  const openUnit = useMemo(() => (open ? journey.course.find((u) => u.id === open.unitId) : null), [open, journey.course]);
+  const lessonNumber = (unit, lessonId) => unit.sections.flatMap((s) => s.lessons).findIndex((l) => l.id === lessonId) + 1;
+  const isLesson = open && openUnit && open.type === 'lesson';
 
   return (
-    <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-full bg-scene-sky">
-      <header className="bg-navy px-4 pt-5 pb-5 flex flex-col gap-4">
-        <div className="flex items-center justify-between gap-2">
-          <div className="flex items-center gap-1">
-            <Link to="/course/units" className="min-h-tap inline-flex items-center gap-2 rounded-full px-2 text-base font-semibold text-white hover:bg-chip-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
-              <MapIcon className="w-5 h-5" aria-hidden="true" />{t('all_units')}
-            </Link>
-            <Link to="/study?tab=practice" className="min-h-tap inline-flex items-center gap-2 rounded-full px-2 text-base font-semibold text-on-navy hover:bg-chip-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
-              <Dumbbell className="w-5 h-5" aria-hidden="true" />{t('practice')}
-            </Link>
-          </div>
-          <StarsPill count={journey.stars} label={t('stars_n', { n: journey.stars })} />
+    <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-full bg-paper text-navy">
+      <div className="max-w-lg mx-auto px-4 pt-6 pb-8 flex flex-col gap-5">
+        <div role="tablist" aria-label={t('parts_label')} className="grid grid-cols-4 gap-1.5">
+          {PARTS.map((p) => {
+            const on = p === tab;
+            return (
+              <button
+                key={p}
+                type="button"
+                role="tab"
+                id={`tab-${p}`}
+                aria-selected={on}
+                aria-controls={`panel-${p}`}
+                onClick={() => setTab(p)}
+                className={`min-h-[3rem] rounded-button px-0.5 text-[0.8125rem] font-bold leading-tight hyphens-auto border-[2.5px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim focus-visible:ring-offset-2 ${PART_LOOK[p][0]} ${on ? 'border-navy' : PART_LOOK[p][1]}`}
+              >
+                {t(`part_${p}`)}
+              </button>
+            );
+          })}
         </div>
-        <h1 className="sr-only">{t('unit_n', { n: unit.number })} · {unit.title}</h1>
-        <UnitCard unit={unit} counts={counts} t={t} />
-      </header>
 
-      {!journey.loading && <JourneyPath unit={stops} t={t} rtl={rtl} onStop={setOpen} />}
+        <div role="tabpanel" id={`panel-${tab}`} aria-labelledby={`tab-${tab}`} className="flex flex-col gap-4">
+          <div className="flex items-end justify-between gap-3 flex-wrap">
+            <h1 className="font-display text-[2.5rem] leading-none tracking-tight">{t(`part_${tab}`)}</h1>
+            {tab === 'civics' && readiness && (
+              <p className="text-base text-muted tabular-nums">{t('questions_of', { n: readiness.civicsMastered, total: readiness.civicsTotal })}</p>
+            )}
+          </div>
+          {tab !== 'civics' && <p className="text-base text-muted">{tab === 'speaking' ? t('speaking_sub') : t('rw_sub')}</p>}
+
+          {!journey.loading && (tab === 'civics'
+            ? (
+              <TopicList
+                journey={journey}
+                masteredIds={readiness?.masteredIds || null}
+                t={t}
+                expandedId={expanded}
+                onToggle={(id) => setExpanded((cur) => (cur === id ? null : id))}
+                onOpen={setOpen}
+              />
+            )
+            : <PartStops part={tab} journey={journey} t={t} onOpen={setOpen} />)}
+
+          <Link
+            to={`/study?tab=practice&mode=${PRACTICE_RUN[tab]}`}
+            className="self-start min-h-tap inline-flex items-center gap-2 rounded-button px-1 text-base font-semibold text-denim underline underline-offset-4 hover:text-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim"
+          >
+            <Dumbbell className="w-5 h-5" aria-hidden="true" />{t('free_practice')}
+          </Link>
+        </div>
+      </div>
 
       <Sheet open={!!open} onOpenChange={(v) => !v && setOpen(null)}>
-        <SheetContent side="bottom" className="rounded-t-[28px] bg-white px-5 pt-6 pb-8 max-h-[85vh] overflow-y-auto" dir={rtl ? 'rtl' : 'ltr'}>
+        <SheetContent side="bottom" className="rounded-t-sheet bg-white px-5 pt-6 pb-8 max-h-[85vh] overflow-y-auto" dir={rtl ? 'rtl' : 'ltr'}>
           {open && (isLesson
-            ? <LessonPreview stop={open} unit={unit} lessonNumber={lessonNumber(open.lessonId)} t={t} onStart={() => navigate(`/course/lesson/${open.lessonId}`)} />
+            ? <LessonPreview stop={open} unit={openUnit} lessonNumber={lessonNumber(openUnit, open.lessonId)} t={t} onStart={() => navigate(`/course/lesson/${open.lessonId}`)} />
             : <StopNote stop={open} t={t} onClose={() => setOpen(null)} onGo={(href) => navigate(href)} />)}
         </SheetContent>
       </Sheet>
