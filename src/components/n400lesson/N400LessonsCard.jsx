@@ -7,7 +7,6 @@ import { UNITS } from '@/lib/course';
 import { canSeeDrafts } from '@/lib/journey';
 import { N400_LESSONS, N400_LESSON_IDS, n400LessonVisible } from '@/lib/n400Lessons';
 import { Card } from '@/components/pathways/ui';
-import { StarIcon } from '@/components/pathways/StarsPill';
 import usePackLookup from '@/components/course/usePackLookup';
 import useTranslatedLines from '@/components/persona/useTranslatedLines';
 import useAppLanguage from '@/hooks/useAppLanguage';
@@ -67,11 +66,6 @@ export default function N400LessonsCard() {
                     {l.status === 'draft' ? ` · ${t('draft')}` : null}
                   </span>
                 </span>
-                {finished && p?.stars > 0 && (
-                  <span className="flex gap-0.5" aria-label={p.stars === 1 ? t('star_1') : t('stars_n', { n: p.stars })}>
-                    {Array.from({ length: p.stars }).map((_, k) => <StarIcon key={k} className="w-4 h-4 text-gold" />)}
-                  </span>
-                )}
                 <ChevronRight className="w-5 h-5 shrink-0 text-muted rtl:rotate-180" aria-hidden="true" />
               </Link>
             </li>

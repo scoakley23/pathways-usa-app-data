@@ -1,12 +1,12 @@
 // The Me, Settings and Interview tabs' fixed English lines (translated through
 // useTranslatedLines and the translation pack). Plain data, no imports, so
 // src/lib/translationSources.js can read them without loading the screens.
-import { ME_LINKS, ME_MORE_LINKS, INTERVIEW_LINKS } from '@/lib/shellRoutes';
+import { ME_LINKS, SETTINGS_LINKS, INTERVIEW_LINKS } from '@/lib/shellRoutes';
 
 // WhatWeSave.jsx
 export const WHAT_WE_SAVE_LINES = {
   title: 'What we save',
-  short_saved: 'Your lesson progress, stars and practice scores.',
+  short_saved: 'Your lesson progress and practice scores.',
   short_never_lead: 'Never',
   short_never: 'your voice, your interview date, your address, or anything about your case.',
   full_list: 'See the full list',
@@ -31,41 +31,59 @@ export const WHAT_WE_SAVE_LINES = {
 
 // MePage.jsx
 export const ME_LINES = {
+  // Me (Amio v2, frame Me)
   welcome: 'Welcome',
-  studying_in: 'Studying in {language}',
-  interview_month: 'Interview month: {month}',
-  day_in_a_row: 'day in a row',
-  days_in_a_row: 'days in a row',
-  civics_ready: 'civics answers mastered',
-  best_interview: 'best practice interview',
-  none_yet: 'none yet',
-  badges: 'Your badges',
-  badges_help: 'One for each section you pass out loud, and one for each unit you finish.',
-  unit_badge: 'Unit {n}',
-  earned: 'earned',
-  not_earned: 'not earned yet',
+  you_know_name: '{name}, you know',
+  you_know: 'You know',
+  of_civics: 'of {total} civics questions',
+  path_label: '{n} of {total} civics questions mastered',
+  milestone: '{n} questions',
+  topics: 'Your topics',
+  topic_sr: '{title}: {done} of {total} questions',
+  settings: 'Settings',
   more: 'More',
-  sign_out: 'Sign out',
   sign_in: 'Sign in',
-  sign_in_body: 'Sign in to see your progress, badges and settings.',
-  ...Object.fromEntries([...ME_LINKS, ...ME_MORE_LINKS].map((l) => [`link_${l.id}`, l.label])),
+  sign_in_body: 'Sign in to see how many civics questions you know.',
+  ...Object.fromEntries(ME_LINKS.map((l) => [`link_${l.id}`, l.label])),
 };
 
 // SettingsPage.jsx
 export const SETTINGS_LINES = {
-  title: 'Settings and privacy',
-  your_plan: 'Your plan',
-  your_plan_help: 'Your interview month and how many lessons a day.',
-  language: 'Language',
-  speed: 'Amio’s speaking speed',
-  read_aloud: 'Read everything out loud',
-  read_aloud_help: 'Amio reads each message aloud in the quick check and lessons. Saved on this phone.',
-  reminder: 'Daily reminder',
-  reminder_help: 'A note in the app when today’s lesson is waiting. No time to set, and no phone notifications. Saved on this phone.',
-  how_amio_talks: 'How Amio talks',
+  // Settings (Amio v2, frame MeSettings)
+  title: 'Settings',
+  back: 'Back',
+  edit_name: 'Edit name',
   your_name: 'Your name',
   your_name_help: 'Shown on your Me page.',
   save: 'Save',
+  cancel: 'Cancel',
+  language: 'Language',
+  reminder: 'Daily reminder',
+  reminder_help: 'A note in the app when today’s lesson is waiting. No time to set, and no phone notifications. Saved on this phone.',
+  on: 'On',
+  off: 'Off',
+  your_interview: 'Your interview',
+  find_out: 'Find out',
+  your_plan: 'Your plan',
+  your_plan_help: 'Your interview month and how many lessons a day.',
+  my_tutor: 'My tutor',
+  add_code: 'Add with a code',
+  sound: 'Sound and voice',
+  speed: 'Amio’s speaking speed',
+  read_aloud: 'Read everything out loud',
+  read_aloud_help: 'Amio reads each message aloud in the quick check and lessons. Saved on this phone.',
+  text_size: 'Text size',
+  how_amio_talks: 'How Amio talks',
+  faq: 'Questions and answers',
+  how_amio_works: 'How Amio works',
+  contact_us: 'Contact us',
+  help_us: 'Help us improve Pathways',
+  what_we_save: 'What we save',
+  ai_policy: 'AI policy',
+  delete_data: 'Delete all my data',
+  more: 'More',
+  sign_out: 'Sign out',
+  ...Object.fromEntries(SETTINGS_LINKS.map((l) => [`link_${l.id}`, l.label])),
   ...Object.fromEntries(Object.entries(WHAT_WE_SAVE_LINES).map(([k, v]) => [`wws_${k}`, v])),
 };
 

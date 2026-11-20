@@ -82,7 +82,7 @@ export default function ThisWeekCard({ language = 'en' }) {
         </Card>
       </div>
 
-      {/* The week strip: navy = practiced, star red = today, dashed = future */}
+      {/* The week strip: navy = practiced, gold = today, dashed = future */}
       <Card padding="p-4">
         <ol className="grid grid-cols-7 gap-1.5" aria-label={t(daysCount === 0 ? 'days_week_none' : daysCount === 1 ? 'days_week_one' : 'days_week', { n: daysCount })}>
           {circles.map((c, k) => (
@@ -90,7 +90,7 @@ export default function ThisWeekCard({ language = 'en' }) {
               <span
                 aria-hidden="true"
                 className={`block w-8 h-8 rounded-full ${
-                  c.state === 'today' ? 'bg-red'
+                  c.state === 'today' ? 'bg-gold border-2 border-navy'
                     : c.state === 'practiced' ? 'bg-navy'
                       : c.state === 'future' ? 'border-2 border-dashed border-muted'
                         : 'border-2 border-line'

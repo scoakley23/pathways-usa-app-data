@@ -205,47 +205,23 @@ export function CreamSheet({ as: Tag = 'section', flush = false, className = '',
 // --- Logo --------------------------------------------------------------
 
 // "Merging roads": a long road and a shorter side road merge and bend toward
-// one dot. Geometry from docs/redesign/assets/pathways-mark*.svg.
+// one dot. Geometry from docs/redesign/assets/pathways-mark*.svg. Only the
+// lesson posters show it now, all white (Amio v2: red is Amio only, and the
+// header and Welcome show Amio; the old PathwaysLockup and the red dot are
+// gone). At 24px and below it uses the heavier small geometry. Decorative
+// unless `label` is given.
 const MARK_ROADS = 'M18 108C30 86 44 72 62 64M102 90C90 86 76 76 62 64M62 64C74 56 79 44 73 32';
 
-// tone: ink (navy roads, star dot) | navy (on navy: white roads, star dot) |
-// white (all white, for posters).
-// At 24px and below it uses the heavier small geometry. Decorative unless
-// `label` is given.
-export function PathwaysMark({ size = 40, tone = 'ink', label, className = '' }) {
+export function PathwaysMark({ size = 40, label, className = '' }) {
   const small = size <= 24;
-  const white = tone === 'white';
-  const onNavy = tone === 'navy';
-  const stroke = small ? 14 : white ? 12 : 10;
-  const r = small ? 13 : white ? 12 : 10;
+  const stroke = small ? 14 : 12;
+  const r = small ? 13 : 12;
   const a11y = label ? { role: 'img', 'aria-label': label } : { 'aria-hidden': true, focusable: 'false' };
   return (
     <svg viewBox="0 0 120 120" width={size} height={size} className={`shrink-0 ${className}`} {...a11y}>
-      <path d={MARK_ROADS} fill="none" stroke={white || onNavy ? COLORS.white : COLORS.navy} strokeWidth={stroke} strokeLinecap="round" />
-      <circle cx="70" cy="20" r={r} fill={white ? COLORS.white : COLORS.red} />
+      <path d={MARK_ROADS} fill="none" stroke={COLORS.white} strokeWidth={stroke} strokeLinecap="round" />
+      <circle cx="70" cy="20" r={r} fill={COLORS.white} />
     </svg>
-  );
-}
-
-// Symbol + "Pathways" wordmark in Lexend 700. layout: horizontal
-// (symbol left of word) | stacked (symbol over word). Optional descriptor
-// line, e.g. "Free U.S. citizenship test practice".
-export function PathwaysLockup({ layout = 'horizontal', size, tone = 'ink', descriptor, className = '' }) {
-  const stacked = layout === 'stacked';
-  const markSize = size ?? (stacked ? 72 : 32);
-  const light = tone === 'white' || tone === 'navy';
-  const text = light ? 'text-white' : 'text-navy';
-  const sub = light ? 'text-on-navy' : 'text-muted';
-  return (
-    <div className={`${stacked ? 'flex flex-col items-center text-center gap-2' : 'flex items-center gap-2.5'} ${className}`}>
-      <PathwaysMark size={markSize} tone={tone} />
-      <div className={stacked ? '' : 'min-w-0'}>
-        <span className={`block font-display leading-none ${text}`} style={{ fontSize: Math.round(markSize * (stacked ? 0.66 : 0.95)) }}>
-          Pathways
-        </span>
-        {descriptor && <span className={`mt-1 block text-base ${sub}`}>{descriptor}</span>}
-      </div>
-    </div>
   );
 }
 
@@ -326,7 +302,7 @@ export function RuledPaper({ as: Tag = 'div', className = '', children, ...props
 export function Poster({ tone = 'red', label, question, answer, progress, questionAs: Q = 'h2', className = '', children, ...props }) {
   return (
     <section className={`relative ${POSTER_BG[tone] || POSTER_BG.red} text-white px-5 py-8 sm:px-8 sm:py-10 ${className}`} {...props}>
-      <PathwaysMark size={36} tone="white" className="absolute end-5 top-6 sm:end-8 sm:top-8" />
+      <PathwaysMark size={36} className="absolute end-5 top-6 sm:end-8 sm:top-8" />
       {label && <p className="pe-12 text-label uppercase text-on-navy">{label}</p>}
       {progress && <div className="mt-3 pe-12"><PosterProgress index={progress.index} total={progress.total} /></div>}
       {question && <Q className="mt-4 font-display text-[2.375rem] leading-[1.1] sm:text-[2.5rem]">{question}</Q>}

@@ -24,6 +24,7 @@ import Study from './pages/Study';
 import StudyRedirect from './components/study/StudyRedirect';
 import MePage from './components/shell/MePage';
 import SettingsPage from './components/shell/SettingsPage';
+import AiPolicyPage from './components/shell/AiPolicyPage';
 import InterviewPage from './components/shell/InterviewPage';
 import WhenInterviewPage from './components/interview/WhenInterviewPage';
 import AskAmio from './components/ai/StudyBuddy';
@@ -111,6 +112,11 @@ const AuthenticatedApp = () => {
       <Route path="settings" element={
         <LayoutWrapper currentPageName="Settings">
           <SettingsPage />
+        </LayoutWrapper>
+      } />
+      <Route path="settings/ai-policy" element={
+        <LayoutWrapper currentPageName="AiPolicy">
+          <AiPolicyPage />
         </LayoutWrapper>
       } />
       <Route path="ask" element={

@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Loader2 } from 'lucide-react';
+import { ArrowLeft, ChevronDown, ChevronRight, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { auth } from '@/api/auth';
-import NavyBanner from '@/components/pathways/NavyBanner';
-import { Button, Card, Eyebrow } from '@/components/pathways/ui';
+import { Button } from '@/components/pathways/ui';
 import LanguageSelector from '@/components/lessons/LanguageSelector';
 import VoiceSettings from '@/components/utils/VoiceSettings';
 import TextSizePicker from '@/components/persona/TextSizePicker';
@@ -14,38 +13,90 @@ import { useAutoReadSetting } from '@/components/persona/useAutoRead';
 import useTranslatedLines from '@/components/persona/useTranslatedLines';
 import PilotSettingsCard from '@/components/pilot/PilotSettingsCard';
 import DeleteMyData from '@/components/profile/DeleteMyData';
+import ProgramCard from '@/components/partners/ProgramCard';
+import TalkToPerson from '@/components/ai/TalkToPerson';
 import { StudyTogetherCard } from '@/components/home/StudyTogether';
 import WhatWeSave from '@/components/shell/WhatWeSave';
+import { openNotifications } from '@/components/notifications/NotificationCenter';
 import { Switch } from '@/components/ui/switch';
 import useAppLanguage, { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
 import { profile as profileApi } from '@/api/profile';
 import { dailyReminderOn, setDailyReminder } from '@/lib/reminderSetting';
+import { listPartners, loadMembership, normalizeCode, staffPrograms } from '@/lib/partners';
+import { PROCESSING_TIMES, canSeeSampleOffices, savedRange } from '@/lib/interviewEstimate';
+import { SETTINGS_LINKS } from '@/lib/shellRoutes';
+import { reviewedFaq } from '@/lib/faq';
 
-// Settings and privacy (frame R30Settings), under Me: everything that was a
-// setting on the old Profile page, then "What we save" and "Delete all my
-// data". Same settings, same saving as before. The daily reminder (Prompt 11)
-// is an on/off switch on this device; there is no reminder time.
+// Settings (Amio v2, frame MeSettings), from the button on Me. On navy: Back,
+// the learner's name and "Edit name". Then white groups of rows:
+//   Language · Daily reminder (On / Off) · Your interview · My tutor · Your plan
+//   Sound and voice · How Amio talks
+//   Questions and answers (hidden until an entry is reviewed) · How Amio works
+//   · Contact us · Help us improve Pathways
+//   What we save · AI policy · Delete all my data (navy, never red)
+//   More: history, notifications, partner (staff), admin (admins) · Sign out
+// Every setting from the old Settings and Me pages is here; saving is the
+// same as before. #program, #delete-data, #what-we-save and #settings (from
+// old addresses) open and scroll to that row.
 import { SETTINGS_LINES as LINES } from './shellStrings';
 
-function Row({ label, htmlFor, children, help }) {
+const ROW = 'w-full min-h-[3.25rem] flex items-center gap-3 px-4 py-2 text-start text-navy hover:bg-line-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-denim';
+
+function Group({ children, label }) {
+  return <section aria-label={label} className="rounded-card bg-white border-[1.5px] border-line overflow-hidden divide-y divide-line">{children}</section>;
+}
+
+function Label({ children }) {
+  return <span className="flex-1 min-w-0 text-base font-semibold break-words">{children}</span>;
+}
+
+function Value({ children }) {
+  return <span className="shrink-0 max-w-[45%] text-end text-base text-muted break-words" dir="auto">{children}</span>;
+}
+
+function LinkRow({ to, label, value, external = false }) {
+  const inner = (
+    <>
+      <Label>{label}</Label>
+      {value && <Value>{value}</Value>}
+      <ChevronRight className="w-5 h-5 shrink-0 text-muted rtl:rotate-180" aria-hidden="true" />
+    </>
+  );
+  return external
+    ? <a href={to} className={ROW}>{inner}</a>
+    : <Link to={to} className={ROW}>{inner}</Link>;
+}
+
+function ButtonRow({ label, onClick }) {
   return (
-    <div className="py-3 border-b border-line last:border-b-0">
-      <div className="flex items-center justify-between gap-3 min-h-tap">
-        {htmlFor
-          ? <label htmlFor={htmlFor} className="text-base text-navy">{label}</label>
-          : <span className="text-base text-navy">{label}</span>}
-        {children}
-      </div>
-      {help && <p className="text-small text-muted">{help}</p>}
+    <button type="button" onClick={onClick} className={ROW}>
+      <Label>{label}</Label>
+      <ChevronRight className="w-5 h-5 shrink-0 text-muted rtl:rotate-180" aria-hidden="true" />
+    </button>
+  );
+}
+
+/** A row that opens its setting under it. */
+function OpenRow({ id, label, value, open, onToggle, children }) {
+  return (
+    <div id={id} className="scroll-mt-20">
+      <button type="button" onClick={onToggle} aria-expanded={open} aria-controls={`${id}-panel`} className={ROW}>
+        <Label>{label}</Label>
+        {value && <Value>{value}</Value>}
+        <ChevronDown className={`w-5 h-5 shrink-0 text-muted transition-transform ${open ? 'rotate-180' : ''}`} aria-hidden="true" />
+      </button>
+      {open && <div id={`${id}-panel`} className="px-4 pb-4 pt-1 bg-paper">{children}</div>}
     </div>
   );
 }
+
+const HASH_OPENS = { program: 'program', 'delete-data': 'delete-data', 'what-we-save': 'what-we-save' };
 
 export default function SettingsPage() {
   const navigate = useNavigate();
   const { hash } = useLocation();
   const [language, setLanguage] = useAppLanguage();
-  const tr = useTranslatedLines(LINES, language, { cacheKey: 'settings_v1' });
+  const tr = useTranslatedLines(LINES, language, { cacheKey: 'settings_v2' });
   const t = (key) => (language !== 'en' && tr(key)) || LINES[key];
   const [readOn, setReadOn] = useAutoReadSetting();
   const [reminderOn, setReminderOn] = useState(dailyReminderOn);
@@ -54,7 +105,15 @@ export default function SettingsPage() {
   const [user, setUser] = useState(undefined);
   const [publicProfile, setPublicProfile] = useState(null);
   const [displayName, setDisplayName] = useState('');
+  const [savedName, setSavedName] = useState('');
+  const [editing, setEditing] = useState(false);
   const [savingName, setSavingName] = useState(false);
+  const [program, setProgram] = useState(null);
+  const [isStaff, setIsStaff] = useState(false);
+  const [talkOpen, setTalkOpen] = useState(false);
+  const [open, setOpen] = useState(() => new Set(hash ? [HASH_OPENS[decodeURIComponent(hash.slice(1))]].filter(Boolean) : []));
+  const toggle = (id) => setOpen((s) => { const n = new Set(s); if (n.has(id)) n.delete(id); else n.add(id); return n; });
+  const faq = reviewedFaq();
 
   useEffect(() => {
     let active = true;
@@ -65,13 +124,26 @@ export default function SettingsPage() {
         const found = await profileApi.getPublic().catch(() => null);
         if (!active) return;
         setPublicProfile(found);
-        setDisplayName(found?.display_name || u.full_name || '');
+        const name = found?.display_name || u.full_name || '';
+        setDisplayName(name);
+        setSavedName(name);
+        const [membership, partners, staff] = await Promise.all([
+          loadMembership(u).catch(() => null),
+          listPartners().catch(() => []),
+          staffPrograms().catch(() => []),
+        ]);
+        if (!active) return;
+        if (membership && membership.status !== 'removed') {
+          const p = (partners || []).find((x) => normalizeCode(x.code) === normalizeCode(membership.partner_code));
+          setProgram(p?.name || membership.partner_code);
+        }
+        setIsStaff((staff || []).length > 0);
       })
       .catch(() => { if (active) setUser(null); });
     return () => { active = false; };
   }, []);
 
-  // #settings / #delete-data (from the old Profile address) scroll there.
+  // Old addresses (#settings, #program, #delete-data, #what-we-save) scroll there.
   useEffect(() => {
     if (user === undefined || !hash) return;
     document.getElementById(decodeURIComponent(hash.slice(1)))?.scrollIntoView({ block: 'start' });
@@ -82,15 +154,14 @@ export default function SettingsPage() {
     try {
       await saveProfile(next);
       toast.success('Saved.');
-    } catch (e) {
+    } catch {
       toast.error("Couldn't save. Please try again.");
     } finally {
       setSavingTutor(false);
     }
   };
 
-  // Same as the old Profile's "Edit Profile": the public display name and
-  // the account's full name.
+  // The public display name and the account's full name, as before.
   const saveName = async (e) => {
     e.preventDefault();
     setSavingName(true);
@@ -105,8 +176,10 @@ export default function SettingsPage() {
         setPublicProfile(created);
       }
       await auth.updateMe({ full_name: displayName });
+      setSavedName(displayName);
+      setEditing(false);
       toast.success('Saved.');
-    } catch (error) {
+    } catch {
       toast.error("Couldn't save. Please try again.");
     } finally {
       setSavingName(false);
@@ -115,83 +188,143 @@ export default function SettingsPage() {
 
   const back = () => (window.history.length > 1 ? navigate(-1) : navigate('/me'));
   const dir = RTL_LANGUAGES.includes(language) ? 'rtl' : 'ltr';
+  const range = savedRange(PROCESSING_TIMES, { showSamples: canSeeSampleOffices(user) });
+  const monthName = (d) => d.toLocaleDateString(language === 'en' ? 'en-US' : language, { month: 'short', year: 'numeric' });
+  const links = SETTINGS_LINKS.filter((l) => (l.when === 'staff' ? isStaff : l.when === 'admin' ? user?.role === 'admin' : !!user));
 
   return (
-    <div dir={dir}>
-      <NavyBanner
-        title={t('title')}
-        left={(
-          <button type="button" onClick={back} aria-label="Back" className="w-11 h-11 grid place-items-center rounded-full text-white hover:bg-chip-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+    <div dir={dir} className="min-h-full bg-paper text-navy">
+      <section className="bg-navy text-white">
+        <div className="max-w-lg mx-auto px-4 pt-4 pb-6">
+          <button type="button" onClick={back} aria-label={t('back')} className="w-11 h-11 -ms-2 grid place-items-center rounded-full text-white hover:bg-chip-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
             <ArrowLeft className="w-6 h-6 rtl:rotate-180" aria-hidden="true" />
           </button>
-        )}
-      />
+          <p className="mt-2 text-base text-on-navy">{t('title')}</p>
+          <h1 className="font-display text-[2rem] leading-tight break-words" dir="auto">{savedName || t('title')}</h1>
+          {user && !editing && (
+            <button type="button" onClick={() => setEditing(true)} className="mt-1 min-h-tap inline-flex items-center px-1 -ms-1 text-base font-semibold text-white underline underline-offset-4 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+              {t('edit_name')}
+            </button>
+          )}
+          {user && editing && (
+            <form onSubmit={saveName} className="mt-3 flex flex-col gap-2">
+              <label htmlFor="display-name" className="text-base text-on-navy">{t('your_name')}</label>
+              <input
+                id="display-name"
+                value={displayName}
+                onChange={(e) => setDisplayName(e.target.value)}
+                autoComplete="name"
+                className="w-full h-[3.25rem] rounded-button border border-line bg-white px-4 text-base text-navy focus:outline-none focus:ring-2 focus:ring-white"
+              />
+              <p className="text-small text-on-navy">{t('your_name_help')}</p>
+              <div className="flex gap-2">
+                <Button variant="second" type="submit" disabled={savingName} className="min-h-tap px-5">
+                  {savingName && <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />} {t('save')}
+                </Button>
+                <button type="button" onClick={() => { setDisplayName(savedName); setEditing(false); }} className="min-h-tap px-4 text-base font-semibold text-white underline underline-offset-4 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+                  {t('cancel')}
+                </button>
+              </div>
+            </form>
+          )}
+        </div>
+      </section>
 
-      <div className="max-w-lg mx-auto px-4 py-5 space-y-4">
-        <Card id="settings" padding="px-5 py-2" className="scroll-mt-20">
-          <Row label={t('language')}>
+      <div className="max-w-lg mx-auto px-4 py-5 flex flex-col gap-4">
+        <div id="settings" className="scroll-mt-20" />
+        <Group label={t('title')}>
+          <div className="min-h-[3.25rem] flex items-center gap-3 px-4 py-2">
+            <Label>{t('language')}</Label>
             <LanguageSelector compact language={language} onLanguageChange={setLanguage} />
-          </Row>
-          <div className="py-3 border-b border-line">
-            <p className="text-base text-navy mb-2">{t('speed')}</p>
-            <VoiceSettings />
           </div>
-          <TextSizePicker className="py-3 border-b border-line" />
-          <Row label={t('read_aloud')} htmlFor="read-aloud" help={t('read_aloud_help')}>
-            <Switch id="read-aloud" checked={readOn} onCheckedChange={setReadOn} className="shrink-0" />
-          </Row>
-          <Row label={t('reminder')} htmlFor="daily-reminder" help={t('reminder_help')}>
-            <Switch id="daily-reminder" checked={reminderOn} onCheckedChange={(v) => { setDailyReminder(v); setReminderOn(v); }} className="shrink-0" />
-          </Row>
-        </Card>
+          <div className="px-4 py-2">
+            <div className="min-h-[2.75rem] flex items-center gap-3">
+              <label htmlFor="daily-reminder" className="flex-1 min-w-0 text-base font-semibold">{t('reminder')}</label>
+              <span className="text-base text-muted" aria-hidden="true">{reminderOn ? t('on') : t('off')}</span>
+              <Switch id="daily-reminder" checked={reminderOn} onCheckedChange={(v) => { setDailyReminder(v); setReminderOn(v); }} className="shrink-0" />
+            </div>
+            <p className="text-small text-muted">{t('reminder_help')}</p>
+          </div>
+          <LinkRow to="/interview/when" label={t('your_interview')} value={range ? `${monthName(range.from)} – ${monthName(range.to)}` : t('find_out')} />
+          {user && (
+            <OpenRow id="program" label={t('my_tutor')} value={program || t('add_code')} open={open.has('program')} onToggle={() => toggle('program')}>
+              <ProgramCard user={user} />
+            </OpenRow>
+          )}
+          {user && <LinkRow to="/plan" label={t('your_plan')} />}
+        </Group>
+
+        <Group label={t('sound')}>
+          <OpenRow id="sound" label={t('sound')} open={open.has('sound')} onToggle={() => toggle('sound')}>
+            <div className="flex flex-col gap-3">
+              <div>
+                <p className="text-base font-semibold mb-2">{t('speed')}</p>
+                <VoiceSettings />
+              </div>
+              <TextSizePicker />
+              <div>
+                <div className="flex items-center gap-3 min-h-tap">
+                  <label htmlFor="read-aloud" className="flex-1 min-w-0 text-base font-semibold">{t('read_aloud')}</label>
+                  <Switch id="read-aloud" checked={readOn} onCheckedChange={setReadOn} className="shrink-0" />
+                </div>
+                <p className="text-small text-muted">{t('read_aloud_help')}</p>
+              </div>
+            </div>
+          </OpenRow>
+          {user && (
+            <OpenRow id="amio-talks" label={t('how_amio_talks')} open={open.has('amio-talks')} onToggle={() => toggle('amio-talks')}>
+              {loaded && <TutorSetup key="loaded" initialProfile={profile} onSave={saveTutor} saving={savingTutor} />}
+            </OpenRow>
+          )}
+        </Group>
+
+        <Group label={t('faq')}>
+          {faq.length > 0 && (
+            <OpenRow id="faq" label={t('faq')} open={open.has('faq')} onToggle={() => toggle('faq')}>
+              <dl className="flex flex-col gap-3" lang="en" dir="ltr">
+                {faq.map((x) => (
+                  <div key={x.id}>
+                    <dt className="text-base font-bold">{x.q}</dt>
+                    <dd className="text-base">{x.a}</dd>
+                  </div>
+                ))}
+              </dl>
+            </OpenRow>
+          )}
+          <OpenRow id="how-amio-works" label={t('how_amio_works')} open={open.has('how-amio-works')} onToggle={() => toggle('how-amio-works')}>
+            <StudyTogetherCard headingLevel={3} />
+          </OpenRow>
+          {user && <ButtonRow label={t('contact_us')} onClick={() => setTalkOpen(true)} />}
+          {user && (
+            <OpenRow id="help-us" label={t('help_us')} open={open.has('help-us')} onToggle={() => toggle('help-us')}>
+              <PilotSettingsCard user={user} />
+            </OpenRow>
+          )}
+        </Group>
+
+        <Group label={t('what_we_save')}>
+          <OpenRow id="what-we-save" label={t('what_we_save')} open={open.has('what-we-save')} onToggle={() => toggle('what-we-save')}>
+            <WhatWeSave t={(k) => t(`wws_${k}`)} />
+          </OpenRow>
+          <LinkRow to="/settings/ai-policy" label={t('ai_policy')} />
+          {user?.email && (
+            <OpenRow id="delete-data" label={t('delete_data')} open={open.has('delete-data')} onToggle={() => toggle('delete-data')}>
+              <DeleteMyData userEmail={user.email} />
+            </OpenRow>
+          )}
+        </Group>
 
         {user && (
-          <>
-            <Link to="/plan" className="block rounded-card bg-white border border-line px-5 py-4 hover:border-denim focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim">
-              <span className="block text-lg font-bold text-navy">{t('your_plan')}</span>
-              <span className="block text-base text-muted">{t('your_plan_help')}</span>
-            </Link>
-
-            <Card>
-              <Eyebrow>{t('how_amio_talks')}</Eyebrow>
-              <div className="mt-3">
-                {loaded && <TutorSetup key="loaded" initialProfile={profile} onSave={saveTutor} saving={savingTutor} />}
-              </div>
-            </Card>
-
-            <Card>
-              <form onSubmit={saveName} className="space-y-2">
-                <label htmlFor="display-name" className="block text-label uppercase text-muted">{t('your_name')}</label>
-                <p className="text-small text-muted">{t('your_name_help')}</p>
-                <div className="flex items-center gap-2">
-                  <input
-                    id="display-name"
-                    value={displayName}
-                    onChange={(e) => setDisplayName(e.target.value)}
-                    autoComplete="name"
-                    className="flex-1 min-w-0 h-[52px] rounded-button border border-line bg-white px-4 text-base text-navy focus:outline-none focus:ring-2 focus:ring-denim"
-                  />
-                  <Button variant="second" type="submit" disabled={savingName} className="shrink-0 min-h-[52px] px-5">
-                    {savingName && <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />} {t('save')}
-                  </Button>
-                </div>
-              </form>
-            </Card>
-
-            <PilotSettingsCard user={user} />
-          </>
-        )}
-
-        <StudyTogetherCard />
-
-        <WhatWeSave t={(k) => t(`wws_${k}`)} />
-
-        {user?.email && (
-          <div id="delete-data" className="scroll-mt-20">
-            <DeleteMyData userEmail={user.email} />
-          </div>
+          <Group label={t('more')}>
+            {links.map((l) => (l.action === 'notifications'
+              ? <ButtonRow key={l.id} label={t(`link_${l.id}`)} onClick={openNotifications} />
+              : <LinkRow key={l.id} to={l.path} label={t(`link_${l.id}`)} />))}
+            <ButtonRow label={t('sign_out')} onClick={() => auth.signOut()} />
+          </Group>
         )}
       </div>
+
+      {user && <TalkToPerson open={talkOpen} onOpenChange={setTalkOpen} userEmail={user.email} language={language} />}
     </div>
   );
 }

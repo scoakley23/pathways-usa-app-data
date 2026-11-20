@@ -30,6 +30,7 @@ const TAB_FOR_PATH = {
   '/n400-coach': 'interview',
   '/me': 'me',
   '/settings': 'me',
+  '/settings/ai-policy': 'me',
   '/ask': 'me',
   '/resources': 'me',
   '/lawyer-first': 'me',
@@ -57,26 +58,31 @@ export const INTERVIEW_LINKS = [
   { id: 'coach', label: 'Next N-400 lesson', body: 'Learn to understand the officer’s N-400 questions.', path: '/n400-coach' },
 ];
 
-// What Me lists. `when` limits a row to some learners: 'staff' (a partner
+// What Me lists under the path and topics (Amio v2, frame Me): Ask Amio, Free
+// help near you and Progress. Everything else moved to Settings
+// (SETTINGS_LINKS). `when` limits a row to some learners: 'staff' (a partner
 // program's staff) or 'admin'.
 export const ME_LINKS = [
   { id: 'ask', label: 'Ask Amio a question', path: '/ask' },
   { id: 'help', label: 'Free help near you', path: '/resources' },
-  { id: 'settings', label: 'Settings and privacy', path: '/settings' },
-];
-export const ME_MORE_LINKS = [
   { id: 'progress', label: 'Your progress', path: '/Progress' },
+];
+// Me's top corner opens Settings (frame Me's settings icon).
+export const SETTINGS_PATH = '/settings';
+export const SETTINGS_LINKS = [
   { id: 'history', label: 'Your questions to Amio', path: '/StudyHistory' },
   { id: 'notifications', label: 'Notifications', action: 'notifications' },
   { id: 'partner', label: 'Partner program page', path: '/Partner', when: 'staff' },
   { id: 'admin', label: 'Admin', path: '/Admin', when: 'admin' },
 ];
+/** @deprecated older name; Settings lists these now. */
+export const ME_MORE_LINKS = SETTINGS_LINKS;
 
-// The old Profile page moved: Me has the person and the program, Settings
-// has the rest. Its old #anchors go where that card lives now.
+// The old Profile page moved to Settings (Amio v2: My tutor is a Settings
+// row too). Its old #anchors go where that card lives now.
 export function profileRedirect(hash = '') {
   const h = (hash || '').replace(/^#/, '');
   if (h === 'settings' || h === 'delete-data') return `/settings#${h}`;
-  if (h === 'program') return '/me#program';
+  if (h === 'program') return '/settings#program';
   return '/me';
 }
