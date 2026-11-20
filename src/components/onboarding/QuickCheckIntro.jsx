@@ -24,7 +24,7 @@ export default function QuickCheckIntro({ t, parts = PRETEST_PARTS, ready = true
         <div className="flex items-center gap-4">
           <Amio mood="curious" size={72} className="shrink-0" />
           <div className="min-w-0">
-            <h1 className="text-[1.625rem] font-bold text-navy leading-tight">{t('qc_title')}</h1>
+            <h1 dir="auto" className="text-[1.625rem] font-bold text-navy leading-tight">{t('qc_title')}</h1>
             <p className="mt-1 text-base text-muted">{t('qc_sub')}</p>
           </div>
         </div>

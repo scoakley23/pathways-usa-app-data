@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { lessonProgress as lessonProgressApi } from '@/api/lessons';
 import { content } from '@/api/content';
 import { auth } from '@/api/auth';
-import { ArrowRight, BookOpen, Check, ChevronDown, Star, Video } from 'lucide-react';
+import { ArrowRight, BookOpen, Check, ChevronDown, Video } from 'lucide-react';
 import LessonDetail from '@/components/lessons/LessonDetail.jsx';
 import StudyTop from '@/components/study/StudyTop';
 import { Card, CreamSheet, Eyebrow, NavyTop } from '@/components/pathways/ui';
@@ -28,7 +28,7 @@ const TOPICS = [
 // Lessons (the Lessons tab of Study): on navy, the Study top; on the cream
 // sheet, "Civics · n of m lessons done" and the topics as a vertical road.
 // Done topics (every lesson finished) are sky circles with a check; the
-// current topic (the one with nextLesson()) is a star-red circle with a star
+// current topic (the one with nextLesson()) is a gold circle (no star)
 // and a "You're here" card for that lesson; later topics are hollow. Tapping a
 // topic opens its lessons. An open lesson (LessonDetail) keeps the padded
 // layout.
@@ -163,9 +163,7 @@ export default function Lessons() {
                       </span>
                     )}
                     {row.state === 'current' && (
-                      <span className="w-10 h-10 rounded-full bg-gold ring-[5px] ring-gold/30 grid place-items-center">
-                        <Star className="w-4 h-4 text-navy fill-navy" aria-hidden="true" />
-                      </span>
+                      <span className="w-10 h-10 rounded-full bg-gold ring-[5px] ring-gold/30" />
                     )}
                     {row.state === 'later' && <span className="w-6 h-6 rounded-full border-2 border-muted bg-paper" />}
                   </span>

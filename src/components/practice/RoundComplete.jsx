@@ -1,10 +1,11 @@
 import React from 'react';
-import { Star, X } from 'lucide-react';
+import { Check, X } from 'lucide-react';
 import { Button, Card, NavyTop } from '@/components/pathways/ui';
 
 // The end of a practice round (The Road), shared by civics, reading, writing
-// and the mock interview: a navy screen with one star per counted card (star
-// red = right, sky outline = not right), "Round complete", the title ("8
+// and the mock interview: a navy screen with one mark per counted card (gold
+// check = right, outlined X = not right; no stars since Amio v2, and the
+// count is said in words), "Round complete", the title ("8
 // right. Nice work, Ana."), the real test's rule, an optional cream card of
 // things to review, and the buttons. Only results the app already has;
 // nothing new is stored. `children` go under the review card (e.g. the
@@ -30,7 +31,9 @@ export default function RoundComplete({ outcomes = [], title, rule, review = nul
           <ul className="flex flex-wrap gap-1.5" aria-label={`${right} of ${outcomes.length} right`}>
             {outcomes.map((r, i) => (
               <li key={i}>
-                <Star className={`w-7 h-7 ${r === 'right' ? 'text-gold fill-gold' : 'text-muted'}`} strokeWidth={2} aria-hidden="true" />
+                {r === 'right'
+                  ? <span className="grid place-items-center w-7 h-7 rounded-full bg-gold text-navy"><Check className="w-4 h-4" strokeWidth={3} aria-hidden="true" /></span>
+                  : <span className="grid place-items-center w-7 h-7 rounded-full border-2 border-on-navy text-on-navy"><X className="w-4 h-4" strokeWidth={3} aria-hidden="true" /></span>}
               </li>
             ))}
           </ul>

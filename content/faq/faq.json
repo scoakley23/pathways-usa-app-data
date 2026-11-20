@@ -1,0 +1,53 @@
+{
+  "_note": "Settings → Questions and answers. Draft until the owner reviews each one; learners see only \"reviewed\" entries, and the row is hidden while none is reviewed. Facts come only from the app and docs/AI-Policy-updated.md. Never name a current officeholder; never tell a learner how to answer about their own case.",
+  "items": [
+    {
+      "id": "free",
+      "status": "draft",
+      "q": "Is Pathways free?",
+      "a": "Yes. Pathways is free practice for the U.S. citizenship test: civics, reading, writing, speaking and the N-400."
+    },
+    {
+      "id": "uscis",
+      "status": "draft",
+      "q": "Is Pathways part of USCIS or the government?",
+      "a": "No. Pathways is not affiliated with USCIS or the government. The civics questions and answers come from the official USCIS lists."
+    },
+    {
+      "id": "legal",
+      "status": "draft",
+      "q": "Can Pathways tell me how to answer the N-400 questions about me?",
+      "a": "No. Pathways is not legal advice. We teach what each N-400 question means and how the officer may ask it. If yes might be true for you, talk to a lawyer first."
+    },
+    {
+      "id": "amio",
+      "status": "draft",
+      "q": "Who is Amio?",
+      "a": "Amio is your AI tutor, not a real person. Amio explains in your language. You answer, read and write in English, like at the interview."
+    },
+    {
+      "id": "voice",
+      "status": "draft",
+      "q": "Do you record my voice?",
+      "a": "No. Your phone turns what you say into text. Only your scores are saved, never your voice or what you said."
+    },
+    {
+      "id": "order",
+      "status": "draft",
+      "q": "Do I have to do the lessons in order?",
+      "a": "No. You can open any topic and any lesson. The quick check only suggests where to start."
+    },
+    {
+      "id": "program",
+      "status": "draft",
+      "q": "Can my class or program see my answers?",
+      "a": "No. If you join a program with its code, it sees your name and counts, like lessons done. Never your answers or your questions to Amio."
+    },
+    {
+      "id": "delete",
+      "status": "draft",
+      "q": "How do I delete my data?",
+      "a": "Go to Settings, then Delete all my data. It erases everything, on our side and on this phone."
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { tabFor, TAB_PATHS, INTERVIEW_LINKS, ME_LINKS, ME_MORE_LINKS, profileRedirect } from './shellRoutes';
+import { tabFor, TAB_PATHS, INTERVIEW_LINKS, ME_LINKS, SETTINGS_LINKS, SETTINGS_PATH, profileRedirect } from './shellRoutes';
 import { lessonSuggestions, STARTER_SUGGESTIONS, INTERVIEW_SUGGESTIONS } from './askSuggestions';
 import { ASK_SCREEN_LINES, ASK_SCREEN_LINES_ES, looksPersonalLegal } from './askTutor';
 import layoutSrc from '../Layout.jsx?raw';
@@ -25,7 +25,8 @@ describe('every old place is still reachable', () => {
     ...Object.values(TAB_PATHS),
     ...INTERVIEW_LINKS.map((l) => l.path),
     ...ME_LINKS.map((l) => l.path),
-    ...ME_MORE_LINKS.filter((l) => l.path).map((l) => l.path),
+    SETTINGS_PATH,
+    ...SETTINGS_LINKS.filter((l) => l.path).map((l) => l.path),
   ].map((p) => p.split('?')[0].toLowerCase());
 
   const OLD_PLACES = [
@@ -42,13 +43,13 @@ describe('every old place is still reachable', () => {
     it(`can reach ${place}`, () => expect(reachable).toContain(place));
   }
 
-  it('Notifications and Sign out are on Me', () => {
-    expect(ME_MORE_LINKS.some((l) => l.action === 'notifications')).toBe(true);
+  it('Notifications are in Settings', () => {
+    expect(SETTINGS_LINKS.some((l) => l.action === 'notifications')).toBe(true);
   });
 
   it('the old Profile anchors go where those cards live now', () => {
     expect(profileRedirect('')).toBe('/me');
-    expect(profileRedirect('#program')).toBe('/me#program');
+    expect(profileRedirect('#program')).toBe('/settings#program');
     expect(profileRedirect('#settings')).toBe('/settings#settings');
     expect(profileRedirect('#delete-data')).toBe('/settings#delete-data');
   });

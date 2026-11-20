@@ -57,7 +57,7 @@ export default function DeleteMyData({ userEmail }) {
       {/* Settings (frame R30Settings): the short line first, the full list
           on request. What it does is unchanged. */}
       <div>
-        <h2 className="text-lg font-bold text-red-text">Delete all my data</h2>
+        <h2 className="text-lg font-bold text-navy">Delete all my data</h2>
         <p className="text-base text-muted">Erases everything, on our side and on this phone.</p>
       </div>
       <details className="group text-small text-muted">

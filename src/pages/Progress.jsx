@@ -134,8 +134,8 @@ export default function Progress() {
         </Link>
 
         <RaisedCard className="col-span-2">
-          <div className="flex justify-between items-center gap-3 mb-4">
-            <div className="flex items-center gap-3">
+          <div className="flex flex-wrap justify-between items-center gap-3 mb-4">
+            <div className="flex items-center gap-3 min-w-0">
               <div className="w-12 h-12 rounded-2xl bg-tint text-navy grid place-items-center shrink-0">
                 <Target className="w-6 h-6" aria-hidden="true" />
               </div>
@@ -169,7 +169,7 @@ export default function Progress() {
             <CardHeader className="p-5 sm:p-6">
               <CardTitle>Recent Activity</CardTitle>
             </CardHeader>
-            <CardContent className="flex-1 overflow-y-auto p-5 pt-0 sm:p-6 sm:pt-0">
+            <CardContent tabIndex={0} role="region" aria-label="Recent Activity" className="flex-1 overflow-y-auto p-5 pt-0 sm:p-6 sm:pt-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-denim">
               {history.length > 0 ? (
                 <div className="space-y-3">
                   {history.map((item) => (

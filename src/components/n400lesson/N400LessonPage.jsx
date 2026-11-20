@@ -16,7 +16,6 @@ import useAppLanguage, { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
 import usePackLookup from '@/components/course/usePackLookup';
 import { Amio, AmioSays } from '@/components/pathways/Amio';
 import { Button, MAIN_LINK } from '@/components/pathways/ui';
-import { StarIcon } from '@/components/pathways/StarsPill';
 import { LessonHeader } from '@/components/lesson/lessonParts';
 import { N400_LESSON_LINES } from '@/components/n400lesson/n400LessonStrings';
 import { AskForHelp, ListenN400, SameQuestion, SayWhatItAsks, SpotWord } from '@/components/n400lesson/N400Steps';
@@ -52,7 +51,7 @@ function Start({ lesson, section, results, t, onStart }) {
             const current = i === at;
             const Icon = ICONS[s];
             return (
-              <li key={s} aria-current={current ? 'step' : undefined} className={`flex items-center gap-4 rounded-card bg-white px-4 py-3 border-2 ${current ? 'border-red' : 'border-line'}`}>
+              <li key={s} aria-current={current ? 'step' : undefined} className={`flex items-center gap-4 rounded-card bg-white px-4 py-3 border-2 ${current ? 'border-gold' : 'border-line'}`}>
                 <span className={`grid place-items-center w-12 h-12 shrink-0 rounded-2xl ${done ? 'bg-denim text-white' : 'bg-tint text-denim'}`}>
                   {done ? <Check className="w-6 h-6" strokeWidth={3} aria-hidden="true" /> : <Icon className="w-6 h-6" aria-hidden="true" />}
                 </span>
@@ -64,10 +63,6 @@ function Start({ lesson, section, results, t, onStart }) {
             );
           })}
         </ol>
-        <p className="mt-1 flex items-center gap-2 text-base text-muted">
-          <span className="flex gap-0.5" aria-hidden="true">{[0, 1, 2].map((k) => <StarIcon key={k} className="w-5 h-5 text-gold" />)}</span>
-          {t('three_stars')}
-        </p>
       </div>
       <div className="sticky bottom-0 bg-paper px-4 pt-2 pb-6 max-w-lg w-full mx-auto">
         <Button variant="main" className="w-full" onClick={onStart}>
@@ -83,16 +78,12 @@ function Done({ title, results, t, saves, onDoneForToday, onBack }) {
   useEffect(() => {
     if (stars > 0) confetti({ particleCount: 90, spread: 70, origin: { y: 0.3 }, colors: CONFETTI_COLORS, disableForReducedMotion: true });
   }, [stars]);
-  const label = stars === 1 ? t('star_1') : t('stars_n', { n: stars });
   return (
     <div className="flex flex-col min-h-full">
       <section className="bg-navy text-white px-4 pt-10 pb-8 flex flex-col items-center gap-3 text-center">
         <Amio mood="cheer" size={110} onNavy />
         <h1 className="text-celebrate font-extrabold">{t('lesson_complete')}</h1>
-        <p className="flex gap-2" aria-label={label}>
-          {[0, 1, 2].map((k) => <StarIcon key={k} className={`w-10 h-10 ${k < stars ? 'text-gold' : 'text-chip-navy'}`} />)}
-        </p>
-        <p className="text-base text-on-navy" dir="auto">{title} · {label}</p>
+        <p className="text-base text-on-navy" dir="auto">{title}</p>
       </section>
       <div className="flex-1 px-4 py-5 flex flex-col gap-4 max-w-lg w-full mx-auto">
         <ul className="rounded-card bg-white border border-line p-5 list-none m-0 flex flex-col gap-4">

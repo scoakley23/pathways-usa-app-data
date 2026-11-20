@@ -1,11 +1,10 @@
 import React from 'react';
-import { Star } from 'lucide-react';
 import { COLORS } from '@/lib/theme';
 import { roadFraction } from '@/lib/practiceResults';
 
 // The road progress bar on a practice run's navy top (The Road): a small wavy
-// road, sky where it has been traveled and road-blue ahead, with a star-red
-// circle (white star) at the current position. It moves one step when a
+// road, denim where it has been traveled and navy-blue ahead, with a gold
+// dot (no star; red is Amio only) at the current position. It moves one step when a
 // question is answered. Screen readers hear "Question 4 of 10".
 const W = 200;
 const H = 24;
@@ -38,11 +37,9 @@ export default function RoadProgress({ index = 0, total = 0, answered = false, c
       </svg>
       <span
         aria-hidden="true"
-        className="absolute w-[22px] h-[22px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-red grid place-items-center transition-[left,top] duration-300"
+        className="absolute w-[22px] h-[22px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold border-2 border-navy transition-[left,top] duration-300"
         style={{ left: `${(x / W) * 100}%`, top: `calc(0.25rem + ${(yAt(x) / H) * 1.5}rem)` }}
-      >
-        <Star className="w-3 h-3 text-white fill-white" />
-      </span>
+      />
     </div>
   );
 }
