@@ -1,0 +1,9 @@
+{
+  "note": "How long USCIS says it takes to finish Form N-400 at each field office, in months, copied BY HAND from the official USCIS processing times page (source_url). The app never fetches this from USCIS; a person checks it and updates checked_on. These months are when the case is usually finished, not the interview date. Entries with \"sample\": true are made-up examples: learners never see them (admins and dev only). See content/uscis/README.md.",
+  "source_url": "https://egov.uscis.gov/processing-times/",
+  "checked_on": null,
+  "offices": [
+    { "id": "sample-a", "name": "Sample office A (sample, not real)", "state": "--", "min_months": 6, "max_months": 9, "sample": true },
+    { "id": "sample-b", "name": "Sample office B (sample, not real)", "state": "--", "min_months": 8, "max_months": 14, "sample": true }
+  ]
+}

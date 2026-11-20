@@ -57,3 +57,25 @@ describe('the report', () => {
     expect(WORK_ON_NEXT.morals_ethics.tip).toMatch(/talk to a lawyer first/);
   });
 });
+
+describe('readyParts (Interview tab: n of 5 ready)', () => {
+  it('counts N-400, Speaking, Reading, Writing and Civics', async () => {
+    const { readyParts } = await import('./interviewReadiness');
+    const none = readyParts({});
+    expect(none.parts.map((p) => p.id)).toEqual(['n400', 'speaking', 'reading', 'writing', 'civics']);
+    expect([none.readyCount, none.total]).toEqual([0, 5]);
+    const some = readyParts({
+      levels: { reading: 'strong', writing: 'getting_there', civics: 'strong' },
+      sessions: [{ created_date: '2026-11-01', overall_score: 40, passed: false }, { created_date: '2026-11-10', overall_score: 85, passed: true }],
+      n400Read: 6, n400Total: 7,
+    });
+    expect(some.parts.filter((p) => p.ready).map((p) => p.id)).toEqual(['speaking', 'reading', 'civics']);
+    expect(readyParts({ n400Read: 7, n400Total: 7 }).parts[0].ready).toBe(true);
+  });
+
+  it('speaking follows the latest interview, not the best', async () => {
+    const { readyParts } = await import('./interviewReadiness');
+    const r = readyParts({ sessions: [{ created_date: '2026-11-01', overall_score: 90, passed: true }, { created_date: '2026-11-10', overall_score: 30, passed: false }] });
+    expect(r.parts.find((p) => p.id === 'speaking').ready).toBe(false);
+  });
+});

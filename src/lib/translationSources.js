@@ -18,7 +18,7 @@ import { ASK_LINES, ASK_SCREEN_LINES } from '@/lib/askTutor';
 import { fixedTutorLines } from '@/lib/tutorPersona';
 import { REPLY_TIME } from '@/config/support';
 import { TABS } from '@/components/pathways/BottomTabs';
-import { ME_LINES, SETTINGS_LINES, INTERVIEW_LINES } from '@/components/shell/shellStrings';
+import { ME_LINES, SETTINGS_LINES, INTERVIEW_LINES, WHEN_LINES } from '@/components/shell/shellStrings';
 import { TALK_LINES } from '@/components/ai/talkStrings';
 import { COURSE_LINES } from '@/components/course/courseStrings';
 import { LESSON_LINES } from '@/components/lesson/lessonStrings';
@@ -71,6 +71,7 @@ export const STRING_SETS = [
   { id: 'me', strings: ME_LINES, usedIn: [['src/components/shell/MePage.jsx', 'LINES']] },
   { id: 'settings', strings: SETTINGS_LINES, usedIn: [['src/components/shell/SettingsPage.jsx', 'LINES']] },
   { id: 'interview-tab', strings: INTERVIEW_LINES, usedIn: [['src/components/shell/InterviewPage.jsx', 'LINES']] },
+  { id: 'interview-when', strings: WHEN_LINES, usedIn: [['src/components/interview/WhenInterviewPage.jsx', 'WHEN_LINES']] },
   { id: 'course', strings: COURSE_LINES, usedIn: [['src/components/course/courseShared.jsx', 'COURSE_LINES']] },
   { id: 'lesson-player', strings: LESSON_LINES, usedIn: [['src/components/lesson/LessonPlayer.jsx', 'LESSON_LINES'], ['src/components/checkpoint/ReviewChestPage.jsx', 'LESSON_LINES'], ['src/components/checkpoint/ReadWritePage.jsx', 'LESSON_LINES']] },
   { id: 'my-tutor', strings: MY_TUTOR_LINES, usedIn: [['src/components/partners/ProgramCard.jsx', 'MY_TUTOR_LINES']] },

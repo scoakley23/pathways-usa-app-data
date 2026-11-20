@@ -620,10 +620,10 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
                   <button
                     type="button"
                     onClick={onClose}
-                    aria-label="End the practice interview"
-                    className="w-14 h-14 shrink-0 rounded-full bg-red-text text-white grid place-items-center hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-text"
+                    className="min-h-tap shrink-0 inline-flex items-center gap-1.5 rounded-button border-2 border-navy bg-white px-3 text-base font-bold text-navy hover:bg-line-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-navy"
                   >
-                    <PhoneOff className="w-6 h-6" aria-hidden="true" />
+                    {/* Navy words, not red (red is Amio only): the words say what it does. */}
+                    <PhoneOff className="w-5 h-5" aria-hidden="true" />End call
                   </button>
                 ) : <span className="w-14 shrink-0" aria-hidden="true" />}
               </div>

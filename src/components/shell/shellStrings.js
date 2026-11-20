@@ -2,7 +2,6 @@
 // useTranslatedLines and the translation pack). Plain data, no imports, so
 // src/lib/translationSources.js can read them without loading the screens.
 import { ME_LINKS, ME_MORE_LINKS, INTERVIEW_LINKS } from '@/lib/shellRoutes';
-import { LEVELS } from '@/lib/pretest';
 
 // WhatWeSave.jsx
 export const WHAT_WE_SAVE_LINES = {
@@ -25,6 +24,7 @@ export const WHAT_WE_SAVE_LINES = {
   account_11: 'How many times you used AI help or wrote to the team in a day (a number only, for the daily limits). Older days are removed the next time you use them.',
   device_title: 'Only on this phone',
   device_1: 'Your interview month, your plan and checkmarks, your language, text size, sound and voice settings, the daily reminder switch, and saved translations.',
+  device_2: 'Your filing month and field office, if you used “When’s my interview?”. On this device only: never saved to your account or sent anywhere.',
   never_title: 'Never saved',
   never_1: 'Your voice (speech becomes text in your browser; only scores are kept), your interview date, your address, your A-number, your immigration status, or your answers to the N-400.',
 };
@@ -71,21 +71,59 @@ export const SETTINGS_LINES = {
 
 // InterviewPage.jsx
 export const INTERVIEW_LINES = {
+  // The Interview tab (Amio v2, frame Interview)
   title: 'Are you ready?',
-  ready_in: 'Ready in {n} of 4 parts',
-  interview_month: 'Interview month: {month}',
-  reading: 'Reading',
-  writing: 'Writing',
-  speaking: 'Speaking',
-  civics: 'Civics',
+  n_of_total: '{n} of {total}',
+  parts_ready: 'parts of the interview ready',
+  part_n400: 'N-400',
+  part_speaking: 'Speaking',
+  part_reading: 'Reading',
+  part_writing: 'Writing',
+  part_civics: 'Civics',
   ready: 'Ready',
-  not_checked: 'Not checked yet',
-  no_interview_yet: 'No practice yet',
-  of: '{n} of {total}',
-  practice_title: 'Practice interview',
-  practice_body: '{n} questions · AI officer, not a real person. Amio waits at the door.',
-  last: 'Last {n}:',
-  start: 'Start practice interview',
-  ...Object.fromEntries(INTERVIEW_LINKS.filter((l) => l.id !== 'mock').map((l) => [`link_${l.id}`, l.label])),
-  ...Object.fromEntries(Object.entries(LEVELS).map(([k, v]) => [`level_${k}`, v.label])),
+  not_yet: 'Not yet',
+  amio_start: 'Let’s get you ready, one part at a time.',
+  amio_next: 'Almost. Next: {part}.',
+  amio_all: 'Every part is ready. Keep practicing!',
+  start: 'Practice interview',
+  tile_when: 'When?',
+  tile_when_none: 'Find out',
+  tile_n400: 'N-400 guide',
+  tile_n400_sub: 'What each question means',
+  tile_lawyer: 'Ask a lawyer',
+  tile_lawyer_sub: 'Before you file',
+  tile_file: 'File',
+  tile_file_sub: 'On uscis.gov',
+  opens_outside: 'Opens uscis.gov',
+  footer: 'AI practice officer, not a real person · Not legal advice',
+  ...Object.fromEntries(INTERVIEW_LINKS.filter((l) => ['day', 'coach'].includes(l.id)).map((l) => [`link_${l.id}`, l.label])),
+};
+
+// "When's my interview?" (Amio v2, frame WhenInterview). The USCIS months
+// are when the case is usually finished, not the interview date.
+export const WHEN_LINES = {
+  title: 'Your interview',
+  back: 'Back',
+  not_filed: 'Not filed yet',
+  filed: 'Already filed',
+  filed_in: 'Filed in',
+  pick_month: 'Pick the month',
+  field_office: 'Field office',
+  pick_office: 'Pick your field office',
+  most_finished: 'Most N-400s at this office are finished between {from} and {to}. Your interview usually comes before that.',
+  uscis_months: 'USCIS says {min} to {max} months at this office, counted from the day they received your form.',
+  pick_both: 'Pick your filing month and field office to see an estimate.',
+  ready_by: 'Your plan: ready by {month}.',
+  ready_by_amio: 'You’ll be ready by {month}.',
+  no_plan: 'Make a plan to see when you’ll be ready.',
+  make_plan: 'Make my plan',
+  estimate_only: 'Estimate only. Not legal advice.',
+  saved_here: 'Saved only on this phone · Checked by hand on {date}',
+  saved_here_nodate: 'Saved only on this phone',
+  use_in_plan: 'Use this in my plan',
+  used_in_plan: 'Added to your plan.',
+  check_uscis: 'Check USCIS processing times',
+  coming_soon_title: 'Coming soon',
+  coming_soon_body: 'We’re still checking the times for each field office. For now, look up your office on the USCIS website.',
+  sample_note: 'Sample offices: shown to admins only.',
 };

@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import PracticeCalendar from '@/components/progress/PracticeCalendar';
 import ProgressChart from '@/components/progress/ProgressChart';
+import InterviewHistory from '@/components/practice/InterviewHistory';
 import TestDateTracker from '@/components/progress/TestDateTracker';
 import ThisWeekCard from '@/components/progress/ThisWeekCard';
 import QuickCheckCard from '@/components/persona/QuickCheckCard';
@@ -151,6 +152,10 @@ export default function Progress() {
         <div className="lg:col-span-2 space-y-6">
           {/* Calendar */}
           <PracticeCalendar history={history} />
+
+          {/* Past practice interview scores (the Interview tab's "Last 4" moved
+              here, Amio v2): scores only, never what was said. */}
+          <InterviewHistory />
 
           {/* Progress Chart */}
           <ProgressChart userEmail={userData?.email} />
