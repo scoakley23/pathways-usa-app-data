@@ -9,7 +9,6 @@ import { auth } from '@/api/auth';
 import NavyBanner from '@/components/pathways/NavyBanner';
 import { Button, Card, Eyebrow } from '@/components/pathways/ui';
 import ProgramCard from '@/components/partners/ProgramCard';
-import BadgeShelf from '@/components/shell/BadgeShelf';
 import useTranslatedLines from '@/components/persona/useTranslatedLines';
 import useAppLanguage, { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
 import { LANGUAGES } from '@/hooks/useLessonTranslation';
@@ -18,12 +17,11 @@ import { loadPlanSettings } from '@/lib/planSettings';
 import { staffPrograms } from '@/lib/partners';
 import { ME_LINKS, ME_MORE_LINKS } from '@/lib/shellRoutes';
 import { streak } from '@/lib/streak';
-import { badgeShelf } from '@/lib/checkpoints';
 import { useJourney } from '@/components/course/courseShared';
 
 // Me (frame R30Me; Prompt 11): who you are, three numbers from what the app
 // already saves (days in a row = the kind streak, civics answers mastered,
-// best practice interview), the course badge shelf, "My tutor" (a partner
+// best practice interview), "My tutor" (a partner
 // program, joined with a code), and links to Ask Amio, Free help near you and
 // Settings, then the pages that used to be in the profile menu. No new saved
 // data.
@@ -150,11 +148,8 @@ export default function MePage() {
           <Stat value={stats?.best || '–'} label={stats && !stats.best ? t('none_yet') : t('best_interview')} />
         </div>
 
-        <Card>
-          <Eyebrow>{t('badges')}</Eyebrow>
-          <p className="mt-1 text-small text-muted">{t('badges_help')}</p>
-          {!journey.loading && <BadgeShelf badges={badgeShelf(journey.stops, journey.course)} t={t} className="mt-3" />}
-        </Card>
+        {/* The badge shelf (BadgeShelf.jsx, badgeShelf()) is hidden from learners
+            (Amio v2: no stars or badges on learner screens); the data stays. */}
 
         <div id="program" className="scroll-mt-20">
           <ProgramCard user={user} />

@@ -1,107 +1,118 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Check } from 'lucide-react';
+import { ArrowUpRight, BookOpen, CalendarDays, FileText, Landmark, Mic, PenLine, Scale } from 'lucide-react';
 import useReadinessData from '@/components/shell/useReadinessData';
-import NavyBanner from '@/components/pathways/NavyBanner';
-import { Button, Card } from '@/components/pathways/ui';
-import InterviewRoom from '@/components/interview/InterviewRoom';
+import { AmioSays } from '@/components/pathways/Amio';
+import { MAIN_PRESS } from '@/components/pathways/ui';
 import useTranslatedLines from '@/components/persona/useTranslatedLines';
 import useAppLanguage, { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
-import { loadPlanSettings } from '@/lib/planSettings';
+import { useAuth } from '@/lib/AuthContext';
 import { INTERVIEW_LINKS } from '@/lib/shellRoutes';
-import { lastScores, readinessTiles } from '@/lib/interviewReadiness';
+import { readyParts } from '@/lib/interviewReadiness';
+import { PROCESSING_TIMES, USCIS_N400_URL, canSeeSampleOffices, savedRange } from '@/lib/interviewEstimate';
 import N400LessonsCard from '@/components/n400lesson/N400LessonsCard';
 
-// The Interview tab (/interview, frame R30Interview): "Are you ready?" with
-// four tiles from what the app already saves (quick-check levels, mastered
-// civics questions, practice interview scores), the interview room, the last
-// 4 practice scores, "Start practice interview", and links to the day guide,
-// the N-400 guide and the next N-400 lesson, then the N-400 lessons. Reads
-// only; saves nothing.
+// The Interview tab (/interview, Amio v2 frame Interview). On navy: Amio's
+// line, "n of 5 parts of the interview ready" with five circles (N-400 ·
+// Speaking · Reading · Writing · Civics, readyParts() over what the app
+// already saves: N-400 guide sections read, the latest practice interview,
+// quick-check levels), and the gold Practice interview button. Then four big
+// tiles: When? (the device-only estimate, /interview/when), the N-400 guide,
+// Ask a lawyer (/lawyer-first) and File (uscis.gov), the "AI practice
+// officer" line, the day guide and next N-400 lesson links, and the N-400
+// lessons. Past practice interview scores are on the mock interview's start
+// screen and on Progress. Reads only; saves nothing.
 import { INTERVIEW_LINES as LINES } from './shellStrings';
 
-const PRACTICE_QUESTIONS = 12; // 2 small talk + 3 about you + 4 "Have you ever…" + 3 swearing in (InterviewPractice)
+const PART_ICONS = { n400: FileText, speaking: Mic, reading: BookOpen, writing: PenLine, civics: Landmark };
 
-function Tile({ tile, t }) {
-  let body;
-  if (tile.ready) {
-    body = (
-      <p className="text-[1.375rem] font-bold text-correct flex items-center gap-1.5">
-        {t('ready')} <Check className="w-6 h-6" strokeWidth={3} aria-hidden="true" />
-      </p>
-    );
-  } else if (tile.kind === 'level') {
-    body = <p className="text-lg font-bold text-navy">{tile.level ? t(`level_${tile.level}`) : t('not_checked')}</p>;
-  } else if (tile.kind === 'percent') {
-    body = tile.value === null
-      ? <p className="text-lg font-bold text-navy">{t('no_interview_yet')}</p>
-      : <p className="text-[1.375rem] font-bold text-navy tabular-nums">{tile.value}%</p>;
-  } else {
-    body = <p className="text-[1.375rem] font-bold text-navy tabular-nums">{t('of').replace('{n}', tile.value).replace('{total}', tile.total)}</p>;
-  }
-  const bar = !tile.ready && (tile.kind === 'percent' ? tile.value : tile.kind === 'count' ? Math.round((tile.value / (tile.total || 1)) * 100) : null);
-  return (
-    <Card padding="p-4" className="min-h-[96px] flex flex-col justify-center">
-      <p className="text-base text-muted">{t(tile.id)}</p>
-      <div className="mt-1">{body}</div>
-      {typeof bar === 'number' && (
-        <div className="mt-3 h-2 rounded-full bg-tint overflow-hidden" aria-hidden="true">
-          <div className="h-full rounded-full bg-denim" style={{ width: `${Math.max(0, Math.min(100, bar))}%` }} />
-        </div>
-      )}
-    </Card>
+function Tile({ to, href, icon: Icon, title, sub, className, srNote }) {
+  const inner = (
+    <>
+      <Icon className="w-7 h-7" strokeWidth={2} aria-hidden="true" />
+      <span className="mt-auto block text-lg font-bold leading-tight">{title}</span>
+      <span className="block text-sm">{sub}</span>
+      {srNote && <span className="sr-only"> ({srNote})</span>}
+    </>
   );
+  const cls = `min-h-[7rem] rounded-card p-4 flex flex-col gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2 ${className}`;
+  return href
+    ? <a href={href} target="_blank" rel="noopener noreferrer" className={cls}>{inner}</a>
+    : <Link to={to} className={cls}>{inner}</Link>;
 }
 
 export default function InterviewPage() {
   const navigate = useNavigate();
   const [language] = useAppLanguage();
-  const tr = useTranslatedLines(LINES, language, { cacheKey: 'interview_tab_v2' });
-  const t = (key) => (language !== 'en' && tr(key)) || LINES[key];
+  const tr = useTranslatedLines(LINES, language, { cacheKey: 'interview_tab_v3' });
+  const t = (key, vars = {}) => {
+    let s = (language !== 'en' && tr(key)) || LINES[key] || key;
+    for (const [k, v] of Object.entries(vars)) s = s.split(`{${k}}`).join(String(v));
+    return s;
+  };
+  const { user } = useAuth();
   const data = useReadinessData();
-
-  const { tiles, readyCount } = readinessTiles(data || {});
-  const plan = loadPlanSettings();
-  const month = plan?.target ? plan.target.toLocaleDateString(language === 'en' ? 'en-US' : language, { month: 'long' }) : null;
-  const subtitle = [t('ready_in').replace('{n}', readyCount), month ? t('interview_month').replace('{month}', month) : null].filter(Boolean).join(' · ');
-  const last = lastScores(data?.sessions || []);
+  const { parts, readyCount, total } = readyParts(data || {});
+  const firstNotReady = parts.find((p) => !p.ready);
+  const amio = !data ? null : readyCount === 0 ? t('amio_start') : firstNotReady ? t('amio_next', { part: t(`part_${firstNotReady.id}`) }) : t('amio_all');
+  const range = savedRange(PROCESSING_TIMES, { showSamples: canSeeSampleOffices(user) });
+  const locale = language === 'en' ? 'en-US' : language;
+  let when = t('tile_when_none');
+  if (range) {
+    try { when = new Intl.DateTimeFormat(locale, { month: 'short', year: 'numeric' }).formatRange(range.from, range.to); } catch { when = `${range.from.toLocaleDateString(locale, { month: 'short' })} – ${range.to.toLocaleDateString(locale, { month: 'short', year: 'numeric' })}`; }
+  }
   const mock = INTERVIEW_LINKS.find((l) => l.id === 'mock');
 
   return (
-    <div dir={RTL_LANGUAGES.includes(language) ? 'rtl' : 'ltr'}>
-      <NavyBanner title={t('title')} subtitle={data ? subtitle : ' '} />
-      <div className="max-w-lg mx-auto px-4 py-5 space-y-4">
-        <div className="grid grid-cols-2 gap-3">
-          {tiles.map((tile) => <Tile key={tile.id} tile={tile} t={t} />)}
-        </div>
-
-        <Card padding="p-0" className="overflow-hidden">
-          <InterviewRoom />
-          <div className="p-5">
-            <h2 className="text-title font-bold text-navy">{t('practice_title')}</h2>
-            <p className="mt-1 text-base text-muted">{t('practice_body').replace('{n}', PRACTICE_QUESTIONS)}</p>
-            {last.length > 0 && (
-              <p className="mt-2 text-base text-navy">
-                <span className="font-bold">{t('last').replace('{n}', last.length)}</span>{' '}
-                {last.map((s, i) => (
-                  <span key={i} className={i === last.length - 1 ? 'font-bold' : 'text-muted'}>
-                    {i > 0 && ' · '}
-                    {i === last.length - 1 ? t('of').replace('{n}', s.passed).replace('{total}', s.total) : s.passed}
-                  </span>
-                ))}
-              </p>
-            )}
+    <div dir={RTL_LANGUAGES.includes(language) ? 'rtl' : 'ltr'} className="min-h-full bg-paper text-navy">
+      <section className="bg-navy text-white" aria-labelledby="ready-title">
+        <div className="max-w-lg mx-auto px-4 pt-6 pb-6 flex flex-col gap-4">
+          <h1 id="ready-title" className="sr-only">{t('title')}</h1>
+          {amio && <AmioSays mood="hello" size={56} onNavy>{amio}</AmioSays>}
+          <div>
+            <p className="font-display text-[4rem] leading-none tracking-tight tabular-nums">{data ? t('n_of_total', { n: readyCount, total }) : ' '}</p>
+            <p className="mt-1 text-lg text-sky">{t('parts_ready')}</p>
           </div>
-        </Card>
+          <ul className="grid grid-cols-5 gap-1 list-none m-0 p-0">
+            {parts.map((p) => {
+              const Icon = PART_ICONS[p.id];
+              return (
+                <li key={p.id} className="flex flex-col items-center gap-1.5 text-center">
+                  <span className={`grid place-items-center w-14 h-14 rounded-full ${p.ready ? 'bg-gold text-navy' : 'border-2 border-dashed border-on-navy text-on-navy'}`}>
+                    <Icon className="w-6 h-6" strokeWidth={2} aria-hidden="true" />
+                  </span>
+                  <span className={`text-small leading-tight ${p.ready ? 'text-white font-semibold' : 'text-on-navy'}`}>
+                    {t(`part_${p.id}`)}<span className="sr-only">: {p.ready ? t('ready') : t('not_yet')}</span>
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
+          <button
+            type="button"
+            onClick={() => navigate(mock.path)}
+            className={`w-full min-h-main mb-[5px] rounded-button bg-gold px-6 text-lg font-extrabold text-navy ${MAIN_PRESS} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-navy`}
+          >
+            {t('start')}
+          </button>
+        </div>
+      </section>
 
-        <Button variant="main" className="w-full" onClick={() => navigate(mock.path)}>{t('start')}</Button>
+      <div className="max-w-lg mx-auto px-4 py-5 flex flex-col gap-4">
+        <div className="grid grid-cols-2 gap-2">
+          <Tile to="/interview/when" icon={CalendarDays} title={t('tile_when')} sub={when} className="bg-sky text-navy" />
+          <Tile to="/n400-guide" icon={FileText} title={t('tile_n400')} sub={t('tile_n400_sub')} className="bg-gold text-navy" />
+          <Tile to="/lawyer-first" icon={Scale} title={t('tile_lawyer')} sub={t('tile_lawyer_sub')} className="bg-denim text-white" />
+          <Tile href={USCIS_N400_URL} icon={ArrowUpRight} title={t('tile_file')} sub={t('tile_file_sub')} srNote={t('opens_outside')} className="bg-white text-navy border-[1.5px] border-line" />
+        </div>
+        <p className="text-small text-muted text-center">{t('footer')}</p>
 
         <div className="flex flex-wrap gap-2">
-          {INTERVIEW_LINKS.filter((l) => l.id !== 'mock').map((l) => (
+          {INTERVIEW_LINKS.filter((l) => ['day', 'coach'].includes(l.id)).map((l) => (
             <Link
               key={l.id}
               to={l.path}
-              className="min-h-tap inline-flex items-center rounded-full border border-line bg-white px-4 text-base font-semibold text-navy hover:border-denim focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim"
+              className="min-h-tap inline-flex items-center rounded-button border border-line bg-white px-4 text-base font-semibold text-navy hover:border-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim"
             >
               {t(`link_${l.id}`)}
             </Link>

@@ -9,6 +9,7 @@ import { readinessTiles } from '@/lib/interviewReadiness';
 import { coursePlay } from '@/api/coursePlay';
 import useToday, { useTodayText } from '@/components/today/useToday';
 import useReadinessData from '@/components/shell/useReadinessData';
+import { PROCESSING_TIMES, canSeeSampleOffices, savedRange } from '@/lib/interviewEstimate';
 
 // Today (Amio v2, frame Today): the plan comes first. Amio greets the learner
 // (the sign-in first name, shown only) with one line, then today's lesson
@@ -70,13 +71,17 @@ function Tile({ tile, t, today }) {
 
 export default function TodayPage({ user, sheetTop, quickCheckFirst = false }) {
   const navigate = useNavigate();
-  const { t, rtl } = useTodayText();
+  const { t, rtl, language } = useTodayText();
   const day = useToday();
   const readiness = useReadinessData();
   const name = firstName(user);
   const greeting = name ? t(`good_${timeOfDay(new Date())}`, { name }) : t('welcome');
   const line = amioLineKey(day.goal, day.doneToday);
   const lesson = day.lesson;
+  // "Case likely done …": only when the learner picked a field office and a
+  // filing month on this device ("When's my interview?"); estimate only.
+  const caseRange = savedRange(PROCESSING_TIMES, { showSamples: canSeeSampleOffices(user) });
+  const monthName = (d) => d.toLocaleDateString(language === 'en' ? 'en-US' : language, { month: 'short', year: 'numeric' });
   const { tiles } = readinessTiles(readiness || {});
   const order = ['reading', 'writing', 'civics', 'speaking'];
   const shown = order.map((id) => tiles.find((x) => x.id === id)).filter(Boolean);
@@ -105,6 +110,7 @@ export default function TodayPage({ user, sheetTop, quickCheckFirst = false }) {
               {lesson.lesson.status === 'draft' && ` · ${t('draft')}`}
             </p>
             <h2 className="font-display text-[2.25rem] leading-[1.05] tracking-tight" dir="auto">{lesson.lesson.title}</h2>
+            {caseRange && <p className="text-base text-on-navy">{t('case_likely', { from: monthName(caseRange.from), to: monthName(caseRange.to) })}</p>}
             {!quickCheckFirst && (
               <button
                 type="button"

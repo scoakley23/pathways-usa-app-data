@@ -7,8 +7,9 @@ import { lessonCounts, unitState } from '@/lib/journey';
 import { OathIcon, UnitIcon, useCourseText, useJourney } from '@/components/course/courseShared';
 
 // All units (/course/units, frame R31Map): the 7 unit cards on a trail up to
-// Oath Day, Unit 1 at the bottom. The current unit has a red border and
-// Amio; the page opens scrolled to it. Tapping a unit opens its road.
+// Oath Day, Unit 1 at the bottom. The suggested unit has a gold border and
+// Amio (red is Amio only); nothing is locked. The page opens scrolled to it.
+// Tapping a unit opens it on the Course tab.
 
 export default function UnitsMapPage() {
   const { t, rtl } = useCourseText();
@@ -50,7 +51,7 @@ export default function UnitsMapPage() {
             const state = unitState(u, journey.stops, journey.currentUnit);
             const counts = lessonCounts(u, journey.progress);
             const current = state === 'current';
-            const look = current ? 'bg-white border-2 border-red' : state === 'done' ? 'bg-white border-2 border-denim' : 'bg-white/80 border-2 border-dashed border-muted';
+            const look = current ? 'bg-white border-2 border-gold' : state === 'done' ? 'bg-white border-2 border-denim' : 'bg-white border-2 border-line';
             return (
               <li key={u.id} className={`flex ${i % 2 ? 'justify-end' : 'justify-start'}`} ref={current ? currentRef : undefined}>
                 <Link
@@ -58,7 +59,7 @@ export default function UnitsMapPage() {
                   aria-current={current ? 'step' : undefined}
                   className={`relative flex items-center gap-4 rounded-card px-4 py-4 w-[85%] max-w-sm ${look} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim`}
                 >
-                  <span className={`grid place-items-center w-12 h-12 shrink-0 rounded-2xl ${current ? 'bg-red text-navy' : state === 'done' ? 'bg-denim text-white' : 'bg-tint text-muted'}`}>
+                  <span className={`grid place-items-center w-12 h-12 shrink-0 rounded-2xl ${current ? 'bg-gold text-navy' : state === 'done' ? 'bg-denim text-white' : 'bg-tint text-navy'}`}>
                     <UnitIcon name={u.icon} className="w-6 h-6" />
                   </span>
                   <span className="flex-1 min-w-0">

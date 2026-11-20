@@ -21,6 +21,7 @@ export const TODAY_LINES = {
   amio_last: 'Lesson {n} of today. Almost there!',
   amio_goal_done: 'Goal done! One more if you like.',
   lesson_of: '{section} · lesson {n} of {of}',
+  case_likely: 'Case likely done {from} – {to}',
   step_listen: 'Listen',
   step_teach: 'Teach',
   step_read: 'Read',

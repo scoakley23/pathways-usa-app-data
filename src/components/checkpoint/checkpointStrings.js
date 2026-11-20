@@ -18,7 +18,6 @@ export const CHECKPOINT_LINES = {
   speak_rules: 'This time, no hints and no help. Answer out loud, like the real interview.',
   youll_be_asked: 'You’ll be asked',
   to_pass: '{need} of {n} to pass',
-  reward: '+10 stars + badge',
   im_ready: 'I’m ready',
 
   // Speak it! · question (R33SpeakAsk)
@@ -35,10 +34,8 @@ export const CHECKPOINT_LINES = {
   progress_label: 'Question {n} of {total}',
 
   // Speak it! · result (R33SpeakResult)
-  badge_earned: 'Badge earned',
   passed_title: '{section}, out loud!',
   not_yet_title: 'Not yet. Almost there!',
-  score_stars: '{correct} of {total} · +10 stars',
   score_only: '{correct} of {total}',
   need_to_pass: 'You need {need} of {total} to pass. Try it again when you’re ready.',
   practice_again: 'Practice again: it’s in your review chest',

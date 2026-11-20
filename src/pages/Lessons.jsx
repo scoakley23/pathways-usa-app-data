@@ -163,8 +163,8 @@ export default function Lessons() {
                       </span>
                     )}
                     {row.state === 'current' && (
-                      <span className="w-10 h-10 rounded-full bg-red ring-[5px] ring-red/25 grid place-items-center">
-                        <Star className="w-4 h-4 text-white fill-white" aria-hidden="true" />
+                      <span className="w-10 h-10 rounded-full bg-gold ring-[5px] ring-gold/30 grid place-items-center">
+                        <Star className="w-4 h-4 text-navy fill-navy" aria-hidden="true" />
                       </span>
                     )}
                     {row.state === 'later' && <span className="w-6 h-6 rounded-full border-2 border-muted bg-paper" />}

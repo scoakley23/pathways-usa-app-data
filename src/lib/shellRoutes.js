@@ -24,6 +24,7 @@ const TAB_FOR_PATH = {
   '/review': 'course',
   '/dashboard': 'course',
   '/interview': 'interview',
+  '/interview/when': 'interview',
   '/interview-day': 'interview',
   '/n400-guide': 'interview',
   '/n400-coach': 'interview',

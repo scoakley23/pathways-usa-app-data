@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { AlertCircle, Check, Volume2 } from 'lucide-react';
 import { Amio, AmioSays } from '@/components/pathways/Amio';
 import { Button, MAIN_LINK } from '@/components/pathways/ui';
-import { UnitIcon, useJourney } from '@/components/course/courseShared';
+import { useJourney } from '@/components/course/courseShared';
 import useSpeechCapture from '@/components/persona/useSpeechCapture';
 import useLearnerLocation from '@/components/civics/useLearnerLocation';
 import { speakText } from '@/components/utils/textToSpeech';
@@ -91,7 +91,7 @@ function Ask({ question, index, total, results, t, onAnswer, onClose }) {
   );
 }
 
-function Result({ section, unit, answers, score, t, onContinue, onTryAgain }) {
+function Result({ section, answers, score, t, onContinue, onTryAgain }) {
   const missed = answers.filter((a) => a.correct === false).length;
   const amioLine = missed === 0 ? t('amio_all_right') : missed === 1 ? t('amio_missed_1') : t('amio_missed_n');
   return (
@@ -99,10 +99,10 @@ function Result({ section, unit, answers, score, t, onContinue, onTryAgain }) {
       <section className="bg-gold text-navy px-4 pt-10 pb-8 flex flex-col items-center gap-2 text-center">
         {score.passed ? (
           <>
-            <span className="grid place-items-center w-24 h-24 rounded-full bg-navy text-gold ring-4 ring-white"><UnitIcon name={unit.icon} className="w-10 h-10" /></span>
-            <p className="mt-2 text-small font-bold uppercase tracking-widest">{t('badge_earned')}</p>
+            {/* No badge or stars shown (Amio v2); the pass is still saved and counted. */}
+            <Amio mood="cheering" size={96} />
             <h1 className="text-celebrate font-extrabold" dir="auto">{t('passed_title', { section: section.title })}</h1>
-            <p className="text-lg">{t('score_stars', { correct: score.correct, total: score.total })}</p>
+            <p className="text-lg">{t('score_only', { correct: score.correct, total: score.total })}</p>
           </>
         ) : (
           <>
@@ -207,7 +207,6 @@ export default function SpeakItPage() {
           </section>
           <div className="flex flex-wrap gap-2">
             <span className="rounded-full bg-gold px-4 py-2 text-base font-bold text-navy">{t('to_pass', { need: passMark(n), n })}</span>
-            <span className="rounded-full bg-white border border-line px-4 py-2 text-base font-semibold text-navy">{t('reward')}</span>
           </div>
         </div>
         <div className="px-4 pb-6 max-w-lg w-full mx-auto">

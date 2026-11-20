@@ -47,6 +47,28 @@ export function readinessTiles({ levels = null, sessions = [], civicsMastered = 
   return { tiles, readyCount: tiles.filter((t) => t.ready).length };
 }
 
+/**
+ * The Interview tab's "n of 5 parts of the interview ready" (Amio v2, frame
+ * Interview): N-400 · Speaking · Reading · Writing · Civics.
+ * - N-400: every N-400 guide section read (`n400Read` of `n400Total`).
+ * - Speaking: the latest practice interview passed (as Today's Speaking tile).
+ * - Reading, Writing, Civics: the quick check's "strong" level (as before).
+ */
+export const READY_PARTS = ['n400', 'speaking', 'reading', 'writing', 'civics'];
+export function readyParts({ levels = null, sessions = [], n400Read = 0, n400Total = 7 } = {}) {
+  const level = (part) => levels?.[part] || null;
+  const latest = byDate(sessions.filter((s) => typeof s?.overall_score === 'number')).pop() || null;
+  const ready = {
+    n400: n400Total > 0 && n400Read >= n400Total,
+    speaking: !!latest?.passed,
+    reading: level('reading') === 'strong',
+    writing: level('writing') === 'strong',
+    civics: level('civics') === 'strong',
+  };
+  const parts = READY_PARTS.map((id) => ({ id, ready: ready[id] }));
+  return { parts, readyCount: parts.filter((x) => x.ready).length, total: parts.length };
+}
+
 // The last `n` practice interviews, oldest first: { passed, total }.
 export function lastScores(sessions = [], n = 4) {
   return scored(sessions).slice(-n).map((s) => ({ passed: Number(s.passed_count) || 0, total: Number(s.question_count) }));

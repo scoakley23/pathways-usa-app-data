@@ -8,9 +8,9 @@ import { CheckCircle, Clock, Award, Target, ArrowRight } from 'lucide-react';
 import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import BadgesDisplay from '@/components/gamification/BadgesDisplay';
 import PracticeCalendar from '@/components/progress/PracticeCalendar';
 import ProgressChart from '@/components/progress/ProgressChart';
+import InterviewHistory from '@/components/practice/InterviewHistory';
 import TestDateTracker from '@/components/progress/TestDateTracker';
 import ThisWeekCard from '@/components/progress/ThisWeekCard';
 import QuickCheckCard from '@/components/persona/QuickCheckCard';
@@ -153,23 +153,14 @@ export default function Progress() {
           {/* Calendar */}
           <PracticeCalendar history={history} />
 
+          {/* Past practice interview scores (the Interview tab's "Last 4" moved
+              here, Amio v2): scores only, never what was said. */}
+          <InterviewHistory />
+
           {/* Progress Chart */}
           <ProgressChart userEmail={userData?.email} />
 
-          {/* Badges Section */}
-          <Card>
-            <CardHeader className="p-5 sm:p-6">
-              <CardTitle className="flex items-center gap-3">
-                <span className="w-10 h-10 rounded-2xl bg-tint text-navy grid place-items-center shrink-0">
-                  <Award className="w-5 h-5" aria-hidden="true" />
-                </span>
-                Achievements
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="p-5 pt-0 sm:p-6 sm:pt-0">
-              <BadgesDisplay earnedBadges={userData?.badges || []} />
-            </CardContent>
-          </Card>
+          {/* Badges (BadgesDisplay) are hidden from learners (Amio v2); the data stays. */}
         </div>
 
         <div className="lg:col-span-1 space-y-6">
