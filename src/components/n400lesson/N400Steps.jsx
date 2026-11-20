@@ -145,7 +145,6 @@ function TapItems({ items, t, amioLine, renderTop, choiceLabel, isRight, rightIn
     if (last) { onDone(misses === 0 ? 'right' : 'missed'); return; }
     setI(i + 1); setPicked(null); window.scrollTo?.(0, 0);
   };
-  const lastLine = last ? (misses === 0 ? t('plus_star') : t('no_star')) : null;
   return (
     <div className="flex flex-col min-h-full">
       <div className="flex-1 px-4 py-5 flex flex-col gap-4 max-w-lg w-full mx-auto">
@@ -178,12 +177,11 @@ function TapItems({ items, t, amioLine, renderTop, choiceLabel, isRight, rightIn
         </ul>
       </div>
       {answered && ok && (
-        <SuccessBanner title={t('right')} actionLabel={t('next')} onAction={next} className="sticky bottom-0">{lastLine}</SuccessBanner>
+        <SuccessBanner title={t('right')} actionLabel={t('next')} onAction={next} className="sticky bottom-0" />
       )}
       {answered && !ok && (
         <NotYetBanner title={t('not_yet')} actionLabel={t('next')} onAction={next} className="sticky bottom-0">
           <span lang="en" dir="ltr">{choiceLabel(item.choices[rightIndex(item)])}</span>
-          {lastLine && <span className="block">{lastLine}</span>}
         </NotYetBanner>
       )}
     </div>
@@ -334,9 +332,7 @@ export function SayWhatItAsks({ lesson, t, onDone }) {
         </div>
       </div>
       {mode === 'right' && (
-        <SuccessBanner title={t('understood')} actionLabel={t('next')} onAction={() => next('right')} className="sticky bottom-0">
-          {last && misses === 0 ? t('plus_star') : null}
-        </SuccessBanner>
+        <SuccessBanner title={t('understood')} actionLabel={t('next')} onAction={() => next('right')} className="sticky bottom-0" />
       )}
       {mode === 'wrong' && (
         <NotYetBanner title={t('not_understood')} actionLabel={t('try_again')} onAction={reset} className="sticky bottom-0">
