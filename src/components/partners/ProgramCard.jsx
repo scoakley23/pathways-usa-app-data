@@ -25,7 +25,7 @@ export const findProgram = (programs, code) => {
 
 export default function ProgramCard({ user }) {
   const [language] = useAppLanguage();
-  const tr = useTranslatedLines(MY_TUTOR_LINES, language, { cacheKey: 'my_tutor_v1' });
+  const tr = useTranslatedLines(MY_TUTOR_LINES, language, { cacheKey: 'my_tutor_v2' });
   const t = (key, vars = {}) => {
     let s = (language !== 'en' && tr(key)) || MY_TUTOR_LINES[key] || key;
     for (const [k, v] of Object.entries(vars)) s = s.split(`{${k}}`).join(String(v));

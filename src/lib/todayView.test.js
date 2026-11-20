@@ -123,3 +123,14 @@ describe('stopStatus', () => {
     expect(stopStatus(1, null, false)).toBe('');
   });
 });
+
+describe('activeWeek', () => {
+  it('counts this week’s opened days, Monday first', async () => {
+    const { activeWeek } = await import('./todayView');
+    const wed = new Date(2026, 10, 18, 9); // Wednesday, Nov 18 2026
+    const w = activeWeek(['2026-11-16', '2026-11-18', '2026-11-15', '2026-11-20', 'nonsense'], wed);
+    expect(w.count).toBe(2);
+    expect(w.squares.map((s) => s.state)).toEqual(['practiced', 'missed', 'today', 'future', 'future', 'future', 'future']);
+    expect(w.squares[2].practiced).toBe(true);
+  });
+});

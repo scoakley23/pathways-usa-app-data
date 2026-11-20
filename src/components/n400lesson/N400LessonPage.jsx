@@ -7,7 +7,7 @@ import { coursePlay } from '@/api/coursePlay';
 import { n400Progress } from '@/api/interview';
 import { UNITS } from '@/lib/course';
 import { canSeeDrafts } from '@/lib/journey';
-import { COLORS } from '@/lib/theme';
+import { CONFETTI_COLORS } from '@/lib/theme';
 import {
   N400_LESSON_STEPS, N400_RULES, findN400Lesson, lessonSection, n400LessonVisible, n400StarsFor, questionName,
 } from '@/lib/n400Lessons';
@@ -81,7 +81,7 @@ function Start({ lesson, section, results, t, onStart }) {
 function Done({ title, results, t, saves, onDoneForToday, onBack }) {
   const stars = n400StarsFor(results);
   useEffect(() => {
-    if (stars > 0) confetti({ particleCount: 90, spread: 70, origin: { y: 0.3 }, colors: [COLORS.gold, COLORS.red, COLORS.denim, COLORS.white], disableForReducedMotion: true });
+    if (stars > 0) confetti({ particleCount: 90, spread: 70, origin: { y: 0.3 }, colors: CONFETTI_COLORS, disableForReducedMotion: true });
   }, [stars]);
   const label = stars === 1 ? t('star_1') : t('stars_n', { n: stars });
   return (

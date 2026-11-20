@@ -85,3 +85,12 @@ describe('the lessons’ questions', () => {
     expect(missedQuestions(['q1', 'q1', null, 'q2'])).toEqual(['q1', 'q2']);
   });
 });
+
+describe('rightOf (Lesson done: "Right n of m")', () => {
+  it('counts the answer steps answered right, out of those graded', async () => {
+    const { rightOf } = await import('./lessonPlayer');
+    expect(rightOf({ listen: 'right', teachBack: 'right', readIt: 'right', writeIt: 'skipped', officer: 'right' })).toEqual({ right: 3, of: 4 });
+    expect(rightOf({ listen: 'right', teachBack: 'unchecked', readIt: 'right', writeIt: 'right', officer: 'right' })).toEqual({ right: 3, of: 3 });
+    expect(rightOf({})).toEqual({ right: 0, of: 0 });
+  });
+});

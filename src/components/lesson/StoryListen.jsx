@@ -185,7 +185,7 @@ export default function StoryListen({ story, language, mine, t, onEnd }) {
         <div className="flex items-center justify-between gap-3">
           <ol className="flex flex-wrap gap-1.5 list-none m-0 p-0" aria-label={t('story_scene_of', { n: i + 1, total: items.length })}>
             {items.map((x, k) => (
-              <li key={k} className={`h-2 rounded-full ${x.check ? 'w-4' : 'w-2'} ${k < i ? 'bg-denim' : k === i ? 'bg-red' : 'bg-mid'}`} aria-hidden="true" />
+              <li key={k} className={`h-2 rounded-full ${x.check ? 'w-4' : 'w-2'} ${k < i ? 'bg-denim' : k === i ? 'bg-gold' : 'bg-mid'}`} aria-hidden="true" />
             ))}
           </ol>
           {story.draft && <span className="rounded-full bg-tint px-3 py-1 text-small font-semibold text-navy">{t('story_draft')}</span>}
