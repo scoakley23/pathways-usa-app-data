@@ -14,7 +14,7 @@ export default function StarsPill({ count = 0, onNavy = true, label, className =
   const look = onNavy ? 'bg-chip-navy text-white' : 'bg-white text-navy border border-line';
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-sm font-semibold ${look} ${className}`}
+      className={`inline-flex items-center gap-1.5 rounded-button px-2.5 py-1.5 text-sm font-semibold ${look} ${className}`}
       aria-label={label || `${count} ${count === 1 ? 'star' : 'stars'}`}
       role="img"
     >

@@ -88,7 +88,7 @@ export default function MatchingGame({ words, onComplete, onClose = null }) {
       <NavyTop className="pb-12">
         <div className="mx-auto max-w-4xl space-y-3">
           {onClose && <RunTopBar onClose={onClose} />}
-          <p className="text-label uppercase text-on-navy">Matching · Words and meanings</p>
+          <p className="text-label text-on-navy">Matching · Words and meanings</p>
           <h2 className="font-display text-[1.875rem] sm:text-[2.125rem] leading-[1.1]">Match each word to what it means.</h2>
           <p className="text-base text-on-navy" aria-live="polite">
             <span className="font-display text-2xl text-white">{matchedPairs}</span> of{' '}
@@ -130,7 +130,7 @@ export default function MatchingGame({ words, onComplete, onClose = null }) {
                         : 'border-line shadow-raised hover:border-navy'}`}
               >
                 {isMatched && (
-                  <span className="pointer-events-none absolute end-2 top-2 -rotate-[8deg] rounded-md border-2 border-navy px-1.5 text-xs font-bold uppercase tracking-[0.12em] text-navy" aria-hidden="true">
+                  <span className="pointer-events-none absolute end-2 top-2 -rotate-[8deg] rounded-md border-2 border-navy px-1.5 text-xs font-bold text-navy" aria-hidden="true">
                     Matched
                   </span>
                 )}

@@ -92,8 +92,8 @@ export default function WriteItStep({ lesson, level = 1, t, onWritten, onDone })
         )}
 
         <div className="flex flex-wrap items-center justify-center gap-3 text-small">
-          <span className={`rounded-full px-3 py-1.5 font-semibold ${level === 1 ? 'bg-denim text-white' : 'text-muted'}`}>{t('level_1')}</span>
-          <span className={`rounded-full px-3 py-1.5 font-semibold ${level === 2 ? 'bg-denim text-white' : 'text-muted'}`}>{t('level_2')}</span>
+          <span className={`rounded-button px-3 py-1.5 font-semibold ${level === 1 ? 'bg-denim text-white' : 'text-muted'}`}>{t('level_1')}</span>
+          <span className={`rounded-button px-3 py-1.5 font-semibold ${level === 2 ? 'bg-denim text-white' : 'text-muted'}`}>{t('level_2')}</span>
         </div>
       </div>
       {result?.isCorrect ? (

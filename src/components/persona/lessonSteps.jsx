@@ -290,7 +290,7 @@ export function SpeakingStep({ step, ctx, state, setState }) {
                 aria-label="Your answer"
                 className="flex-1 min-w-0 min-h-[48px] rounded-[10px] bg-white px-4 text-base text-navy placeholder:text-muted"
               />
-              <button type="submit" className="min-h-[48px] rounded-full bg-white text-navy px-5 font-semibold hover:bg-tint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent">Check</button>
+              <button type="submit" className="min-h-[48px] rounded-button bg-white text-navy px-5 font-semibold hover:bg-tint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent">Check</button>
             </form>
           ))}
           {state.heard && <p className="mt-4">You said: <span className="font-medium">“{state.heard}”</span></p>}

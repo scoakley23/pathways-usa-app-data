@@ -73,7 +73,7 @@ export default function ListenStep({ lesson, language, t, onDone, showDrafts = f
         <section className="rounded-card bg-white border border-line p-5 flex gap-4">
           <Amio mood="happy" size={56} className="shrink-0" />
           <div className="min-w-0 flex flex-col gap-3">
-            {showMine && <span className="self-start rounded-full bg-tint px-3 py-1 text-small font-semibold uppercase tracking-wide text-navy">{t('said_in_language')}</span>}
+            {showMine && <span className="self-start rounded-button bg-tint px-3 py-1 text-small font-semibold text-navy">{t('said_in_language')}</span>}
             <ul className="flex flex-col gap-3 list-none m-0 p-0" lang={showMine ? language : 'en'} dir="auto">
               {facts.map((f, i) => <li key={i} className="text-base text-navy leading-relaxed">{fact(f, i)}</li>)}
             </ul>
@@ -90,7 +90,7 @@ export default function ListenStep({ lesson, language, t, onDone, showDrafts = f
 
         {newWords.length > 0 && (
           <section className="flex flex-col gap-2">
-            <h2 className="text-small font-semibold uppercase tracking-wide text-muted">{t('new_words')}</h2>
+            <h2 className="text-small font-semibold text-muted">{t('new_words')}</h2>
             {newWords.map((w, i) => (
               <button
                 key={w.word}

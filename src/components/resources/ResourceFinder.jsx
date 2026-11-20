@@ -271,7 +271,7 @@ export default function ResourceFinder() {
                   type="button"
                   aria-pressed={on}
                   onClick={() => toggleCategory(c.id)}
-                  className={`min-h-[44px] rounded-full px-4 text-base font-semibold border-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2
+                  className={`min-h-[44px] rounded-button px-4 text-base font-semibold border-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2
                     ${on ? 'bg-navy border-navy text-white hover:bg-navy-deep' : 'bg-white border-line text-navy hover:bg-tint'}`}
                 >
                   {c.label}

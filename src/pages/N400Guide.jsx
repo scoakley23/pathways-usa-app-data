@@ -99,7 +99,7 @@ export default function N400Guide({ cachedUser }) {
           type="button"
           aria-pressed={view === id}
           onClick={() => setView(id)}
-          className={`min-h-tap rounded-full px-4 text-[0.9375rem] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${view === id ? 'bg-white text-navy' : 'text-on-navy hover:text-white'}`}
+          className={`min-h-tap rounded-button px-4 text-[0.9375rem] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${view === id ? 'bg-white text-navy' : 'text-on-navy hover:text-white'}`}
         >
           {label}
         </button>
@@ -138,7 +138,7 @@ export default function N400Guide({ cachedUser }) {
                         onClick={() => openSection(s.id)}
                         data-section-chip
                         aria-current={active ? 'true' : undefined}
-                        className={`min-h-tap whitespace-nowrap rounded-full px-4 inline-flex items-center gap-1.5 text-[0.9375rem] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${active ? 'bg-white text-navy' : 'bg-chip-navy text-white hover:bg-navy-deep'}`}
+                        className={`min-h-tap whitespace-nowrap rounded-button px-4 inline-flex items-center gap-1.5 text-[0.9375rem] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${active ? 'bg-white text-navy' : 'bg-chip-navy text-white hover:bg-navy-deep'}`}
                       >
                         {read && <Check className="w-4 h-4" strokeWidth={3} aria-hidden="true" />}
                         {tabFor(s).label}

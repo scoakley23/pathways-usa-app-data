@@ -3,7 +3,7 @@ import { Check, Frown, Annoyed, Meh, Smile, Laugh } from 'lucide-react';
 import { US_STATES } from '@/config/pilot';
 import { PREFER_NOT } from '@/lib/pilot';
 
-// Shared fields for the "Help us improve Pathways" screen and the Profile
+// Shared fields for the "Help us improve Amio" screen and the Profile
 // card. Every choice can be tapped again to clear it.
 
 const CHIP = 'min-h-11 rounded-2xl border-2 px-4 py-2 text-left text-base font-semibold inline-flex items-center gap-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2';

@@ -59,7 +59,7 @@ export default function DoneTodayPage() {
 
         {next && (
           <section className="rounded-card bg-white border border-line p-5">
-            <p className="text-small font-semibold uppercase tracking-wide text-muted">{t('tomorrow')}</p>
+            <p className="text-small font-semibold text-muted">{t('tomorrow')}</p>
             <p className="mt-1 text-lg font-bold text-navy" dir="auto">{next.lesson.title}</p>
           </section>
         )}

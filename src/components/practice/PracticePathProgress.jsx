@@ -56,7 +56,7 @@ export default function PracticePathProgress({ userEmail }) {
 
   return (
     <div className="bg-white rounded-card border border-line shadow-raised p-5 text-navy">
-      <h2 className="text-xs font-bold text-muted uppercase tracking-widest mb-5">
+      <h2 className="text-xs font-bold text-muted mb-5">
         Your Learning Path
       </h2>
       <div className="flex items-start justify-between">

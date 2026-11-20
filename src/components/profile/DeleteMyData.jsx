@@ -66,15 +66,15 @@ export default function DeleteMyData({ userEmail }) {
           <p className="mt-1 leading-relaxed">
             Permanently erase your sign-in and everything tied to it: your questions to Amio, lesson notes, progress and quiz scores,
             mock interview scores, N-400 guide section completion, your program connection, notifications, saved places, your answers to the
-            "Help us improve Pathways" and check-in questions, the days you used the app, the record of reminder emails sent to you, and your
+            "Help us improve Amio" and check-in questions, the days you used the app, the record of reminder emails sent to you, and your
             profile (name, badges, tutor settings, quick check levels, state, app language and reminder settings). The app's data on this
-            device (your target date, language, and settings) is cleared too. To use Pathways again you would start fresh. This cannot be undone.
+            device (your target date, language, and settings) is cleared too. To use Amio again you would start fresh. This cannot be undone.
           </p>
         ) : (
           <p className="mt-1 leading-relaxed">
           Permanently erase everything tied to your email: your chat messages (including the copies in the other person's history),
           your questions to Amio, lesson notes, progress & quiz scores, mock interview scores, N-400 guide section completion, assignments,
-          program connections, notifications, saved places, your answers to the "Help us improve Pathways" and check-in questions, the days you used the app, the record of reminder emails sent to you, and your profile. Your points, badges, display name, tutor settings, quick check levels, state, program code, app language and reminder settings are reset, and the app's data on
+          program connections, notifications, saved places, your answers to the "Help us improve Amio" and check-in questions, the days you used the app, the record of reminder emails sent to you, and your profile. Your points, badges, display name, tutor settings, quick check levels, state, program code, app language and reminder settings are reset, and the app's data on
           this device (your target date, language, and settings) is cleared. This cannot be undone.
         </p>
         )}

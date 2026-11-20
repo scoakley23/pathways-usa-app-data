@@ -92,8 +92,8 @@ export default function LawyerPage({ cachedUser }) {
           <h2 className="text-lg font-bold text-navy">Talk to a lawyer first</h2>
         </div>
         <p className="text-base text-navy leading-relaxed">
-          Most people can apply on their own. But if <strong>ANY</strong> of these are true for you, talk to a
-          lawyer or accredited representative <strong>BEFORE</strong> you file. Filing with one of these issues
+          Most people can apply on their own. But if <strong>any</strong> of these are true for you, talk to a
+          lawyer or accredited representative <strong>before</strong> you file. Filing with one of these issues
           can cause serious problems, including more than a denied application. You do not need to tell this
           app anything.
         </p>

@@ -71,12 +71,12 @@ export default function ThisWeekCard({ language = 'en' }) {
       {/* Two numbers: civics questions ready, days practiced this week */}
       <div className="grid grid-cols-2 gap-3">
         <Card padding="p-4">
-          <p className="text-label uppercase text-muted">Civics ready</p>
+          <p className="text-label text-muted">Civics ready</p>
           <p className="mt-2"><span className={number}>{data.ready}</span><span className="text-lg text-muted">/{data.civicsTotal || 128}</span></p>
           <p className="mt-1 text-sm text-muted">2025 civics questions</p>
         </Card>
         <Card padding="p-4">
-          <p className="text-label uppercase text-muted">{t('this_week')}</p>
+          <p className="text-label text-muted">{t('this_week')}</p>
           <p className="mt-2"><span className={number}>{daysCount}</span><span className="text-lg text-muted">/7</span></p>
           <p className="mt-1 text-sm text-muted">Days practiced</p>
         </Card>

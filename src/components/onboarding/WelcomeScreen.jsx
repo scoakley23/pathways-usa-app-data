@@ -37,7 +37,7 @@ export default function WelcomeScreen() {
   };
 
   return (
-    <section dir={rtl ? 'rtl' : 'ltr'} aria-labelledby="welcome-title" className="min-h-[calc(100dvh-3.5rem)] lg:min-h-[calc(100dvh-72px)] bg-navy text-white px-5 pt-4 pb-8 flex flex-col">
+    <section dir={rtl ? 'rtl' : 'ltr'} aria-labelledby="welcome-title" className="min-h-[100dvh] lg:min-h-[calc(100dvh-72px)] bg-navy text-white px-5 pt-4 pb-8 flex flex-col">
       <div className="flex-1 max-w-md w-full mx-auto flex flex-col items-center text-center">
         <div className="relative w-full h-44" aria-hidden="true">
           {HELLOS.map((h) => (
@@ -75,7 +75,7 @@ export default function WelcomeScreen() {
               dir="ltr"
               aria-describedby="welcome-code-help"
               aria-invalid={bad}
-              className="min-h-[52px] rounded-2xl border border-line bg-white px-4 text-lg font-bold uppercase tracking-wide focus:outline-none focus:ring-2 focus:ring-denim"
+              className="min-h-[52px] rounded-2xl border border-line bg-white px-4 text-lg font-bold focus:outline-none focus:ring-2 focus:ring-denim"
             />
             {bad && <p role="alert" className="text-base font-semibold text-not-yet">{t('code_bad')}</p>}
             <Button variant="main" type="submit" className="w-full" disabled={!code.trim()}>{t('code_continue')}</Button>

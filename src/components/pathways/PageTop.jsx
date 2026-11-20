@@ -23,12 +23,12 @@ export default function PageTop({ tag, title, subtitle, guide, back = false, cla
           <button
             type="button"
             onClick={goBack}
-            className="-ms-2 inline-flex items-center gap-1.5 min-h-11 rounded-full px-2 text-base font-semibold text-on-navy hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="-ms-2 inline-flex items-center gap-1.5 min-h-11 rounded-button px-2 text-base font-semibold text-on-navy hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
           >
             <ArrowLeft className="w-4 h-4 rtl:rotate-180" aria-hidden="true" /> Back
           </button>
         )}
-        {tag && <p className="text-label uppercase text-on-navy">{tag}</p>}
+        {tag && <p className="text-label text-on-navy">{tag}</p>}
         <h1 className="font-display text-[1.75rem] sm:text-[2.125rem] leading-[1.1]">{title}</h1>
         {subtitle && <p className="text-lg text-on-navy max-w-2xl">{subtitle}</p>}
         {guide && (

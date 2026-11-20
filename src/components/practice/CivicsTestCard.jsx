@@ -236,7 +236,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, testMode 
       <NavyTop className={`pb-12 ${embedded ? 'rounded-card' : ''}`}>
         <div className="mx-auto max-w-2xl space-y-4">
           {onClose && <RunTopBar onClose={onClose} index={index} total={total} answered={done} />}
-          <p className="text-label uppercase text-on-navy">{label}</p>
+          <p className="text-label text-on-navy">{label}</p>
           <h2 className={`font-display leading-[1.08] transition-[font-size] ${done ? 'text-[1.875rem]' : 'text-[2.375rem] sm:text-[2.5rem]'}`}>
             {question.question}
           </h2>
@@ -281,7 +281,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, testMode 
 
               {inputMode === 'speak' && (isListening || userAnswer) && (
                 <div aria-live="polite" className="rounded-card bg-white border border-line p-4">
-                  <p className="text-label uppercase text-muted">{isListening ? 'Listening…' : 'You said'}</p>
+                  <p className="text-label text-muted">{isListening ? 'Listening…' : 'You said'}</p>
                   <p className="mt-1 text-xl leading-snug text-navy min-h-[1.5em]">{userAnswer ? `“${userAnswer}”` : ''}</p>
                 </div>
               )}

@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { TodayIcon, CourseIcon, InterviewIcon, MeIcon } from '@/components/pathways/icons';
 import { TAB_PATHS } from '@/lib/shellRoutes';
 
-// The bottom tabs (Pathways + Amio, frame R33Today): Today · Course ·
-// Interview · Me on a white bar, the active tab in denim. Which addresses
+// The bottom tabs (Amio v2, frame Today): Today · Course · Interview · Me on
+// a white bar; the open tab is navy (bold label, filled icon), the others muted. Which addresses
 // belong to which tab: src/lib/shellRoutes.js. Course opens Study until the
 // journey (Prompt 5).
 export const TABS = [
@@ -34,10 +34,10 @@ export default function BottomTabs({ active = 'today', tabs = TABS, labels = {},
               key={tab.id}
               to={tab.path}
               aria-current={on ? 'page' : undefined}
-              className={`${TAB} ${on ? 'text-denim font-bold' : 'text-muted font-medium hover:text-navy'}`}
+              className={`${TAB} ${on ? 'text-navy font-bold' : 'text-muted font-medium hover:text-navy'}`}
             >
               <span className="relative">
-                <Icon className="w-[22px] h-[22px]" strokeWidth={2} />
+                <Icon className="w-[22px] h-[22px]" strokeWidth={2} active={on} />
                 {dots[tab.id] && <span className="absolute -top-0.5 -end-1 w-2.5 h-2.5 rounded-full bg-denim ring-2 ring-white" aria-hidden="true" />}
               </span>
               <span className="leading-none truncate max-w-full">{labels[tab.id] || tab.label}</span>

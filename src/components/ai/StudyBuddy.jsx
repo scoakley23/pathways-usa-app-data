@@ -353,7 +353,7 @@ export default function StudyBuddy() {
         right={(
           <Link
             to={createPageUrl('StudyHistory')}
-            className="min-h-11 rounded-full bg-chip-navy px-4 inline-flex items-center gap-1.5 text-small font-semibold text-white hover:bg-navy-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="min-h-11 rounded-button bg-chip-navy px-4 inline-flex items-center gap-1.5 text-small font-semibold text-white hover:bg-navy-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
           >
             <History className="w-4 h-4" aria-hidden="true" /> {t('history')}
           </Link>
@@ -477,7 +477,7 @@ export default function StudyBuddy() {
           <div className="flex items-center gap-2 flex-wrap">
             <span className="text-small font-semibold text-muted">{t('chat_language')}</span>
             <Select value={language} onValueChange={setLanguage}>
-              <SelectTrigger className="w-auto min-h-11 h-11 rounded-full bg-white border-line text-navy text-small font-semibold gap-1.5 px-3" aria-label="Amio explains in">
+              <SelectTrigger className="w-auto min-h-11 h-11 rounded-button bg-white border-line text-navy text-small font-semibold gap-1.5 px-3" aria-label="Amio explains in">
                 <Globe className="w-4 h-4 shrink-0" aria-hidden="true" />
                 <SelectValue placeholder="Language" />
               </SelectTrigger>

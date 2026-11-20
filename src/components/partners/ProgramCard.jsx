@@ -100,7 +100,7 @@ export default function ProgramCard({ user }) {
       {mode === 'code' && (
         <form onSubmit={find} className="mt-4 flex flex-col gap-3">
           <label htmlFor="my-tutor-code" className="text-base font-semibold text-navy">{t('code_label')}</label>
-          <input id="my-tutor-code" value={code} onChange={(e) => { setCode(e.target.value); setNotFound(false); }} autoComplete="off" autoCapitalize="characters" maxLength={40} dir="ltr" aria-invalid={notFound} className={`${FIELD} font-bold uppercase tracking-wide`} />
+          <input id="my-tutor-code" value={code} onChange={(e) => { setCode(e.target.value); setNotFound(false); }} autoComplete="off" autoCapitalize="characters" maxLength={40} dir="ltr" aria-invalid={notFound} className={`${FIELD} font-bold`} />
           {notFound && <p role="alert" className="text-base font-semibold text-not-yet">{t('not_found')}</p>}
           <Button variant="main" type="submit" className="w-full" disabled={!code.trim()}>{t('find')}</Button>
           <Button variant="link" type="button" className="self-center" onClick={() => { setMode('view'); setNotFound(false); }}>{t('cancel')}</Button>

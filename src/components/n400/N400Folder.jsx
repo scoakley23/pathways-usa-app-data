@@ -71,7 +71,7 @@ export default function N400Folder({ sections, activeId, completedIds = [], onSe
         <div className="space-y-4">
           <div className="flex flex-wrap items-end justify-between gap-x-4 gap-y-1">
             <div className="min-w-0">
-              {active && <p className="text-sm font-semibold uppercase tracking-[0.14em]">{active.partLabel}</p>}
+              {active && <p className="text-sm font-semibold">{active.partLabel}</p>}
               {active && <h2 className="font-display text-[1.875rem] sm:text-[2.25rem] leading-tight">{active.title}</h2>}
             </div>
             <p className="text-base font-semibold">{read} of {sections.length} sections read</p>
