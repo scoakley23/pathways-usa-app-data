@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Button, Card, Eyebrow, PrimaryButton, RaisedCard, SecondaryButton, Tag } from '@/components/pathways/ui';
+import { Button, Card, RaisedCard, SecondaryButton, Tag } from '@/components/pathways/ui';
 import AnswerFeedback from './AnswerFeedback';
 import { Link } from 'react-router-dom';
 import { Mic, Volume2, ArrowRight, Check, Loader2, ChevronDown, ChevronUp, FileText, Bot, BarChart3, Scale, X } from 'lucide-react';
@@ -708,18 +708,18 @@ function InterviewIntro({ questions, onStart, varyOfficer, onToggleVary }) {
   const sections = [...new Set(questions.map(q => q.section))];
 
   return (
-    <div dir={dir} className="w-full max-w-2xl mx-auto space-y-4 text-navy">
-      <RaisedCard>
+    <div dir={dir} className="w-full max-w-lg mx-auto flex flex-col gap-4 text-navy">
+      <Card padding="p-5">
         {/* The AI officer: a drawing, never a photo */}
         <div className="flex items-center gap-4">
-          <div className="rounded-full bg-tint p-1"><Officer size={80} /></div>
+          <div className="rounded-full bg-line-soft p-1"><Officer size={80} /></div>
           <div className="min-w-0">
-            <p className="font-bold text-lg">{t('officer')}</p>
-            <p className="text-sm text-muted">{t('not_real')}</p>
+            <p className="font-bold text-lg" dir="auto">{t('officer')}</p>
+            <p className="text-base text-muted" dir="auto">{t('not_real')}</p>
           </div>
         </div>
 
-        <h1 className="text-[2rem] font-display leading-tight mt-5 mb-2" dir="auto">{t('title')}</h1>
+        <h1 className="text-[1.75rem] font-display leading-tight mt-5 mb-2" dir="auto">{t('title')}</h1>
         <p dir="auto" className="text-base text-muted leading-relaxed">{t('intro')}</p>
 
         <div className="grid grid-cols-2 gap-2 mt-5">
@@ -729,29 +729,29 @@ function InterviewIntro({ questions, onStart, varyOfficer, onToggleVary }) {
             { Icon: Bot, key: 'ai', text: t('ai_checks') },
             { Icon: BarChart3, key: 'scores', text: t('scores') },
           ].map(({ Icon, key, text }) => (
-            <div key={key} className="flex flex-col gap-2 bg-tint p-3 rounded-2xl">
+            <div key={key} className="flex flex-col gap-2 bg-line-soft p-3 rounded-card">
               <Icon className="w-5 h-5 text-navy shrink-0" aria-hidden="true" />
-              <p dir="auto" className="text-sm font-semibold leading-snug">{text}</p>
+              <p dir="auto" className="text-base font-semibold leading-snug">{text}</p>
             </div>
           ))}
         </div>
 
         <div className="mt-5">
-          <Eyebrow className="mb-2">{t('sections')}</Eyebrow>
+          <h2 className="mb-2 text-lg font-bold" dir="auto">{t('sections')}</h2>
           <div className="flex flex-wrap gap-2">
             {sections.map(s => (
-              <Tag key={s} tone="blue">{INTERVIEW_INTRO_LINES[s] ? t(s) : s}</Tag>
+              <Tag key={s}>{INTERVIEW_INTRO_LINES[s] ? t(s) : s}</Tag>
             ))}
           </div>
         </div>
-      </RaisedCard>
+      </Card>
 
       {questions.some(isUnderstandingSection) && (
-        <RaisedCard className="space-y-2">
-          <Eyebrow>{t('application_title')}</Eyebrow>
+        <Card padding="p-5" className="space-y-2 border-[2.5px] border-not-yet">
+          <h2 className="text-lg font-bold" dir="auto">{t('application_title')}</h2>
           <p dir="auto" className="text-base leading-relaxed">{t('application_body')}</p>
-          <p dir="auto" className="text-base">{t('lawyer_lead')} <Link to="/lawyer-first" className="font-semibold underline underline-offset-4">{t('lawyer_link')}</Link></p>
-        </RaisedCard>
+          <p dir="auto" className="text-base">{t('lawyer_lead')} <Link to="/lawyer-first" className="font-semibold text-denim underline underline-offset-4">{t('lawyer_link')}</Link></p>
+        </Card>
       )}
 
       {/* Always shown before starting (was also a first-open promise). */}
@@ -762,17 +762,17 @@ function InterviewIntro({ questions, onStart, varyOfficer, onToggleVary }) {
         role="switch"
         aria-checked={varyOfficer}
         onClick={onToggleVary}
-        className="flex items-center gap-3 bg-white rounded-2xl px-4 py-3 min-h-[56px] border border-line w-full text-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
+        className="flex items-center gap-3 bg-white rounded-card px-4 py-3 min-h-[56px] border-[1.5px] border-line w-full text-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim"
       >
-        <span className={`w-11 h-6 rounded-full relative transition-colors shrink-0 ${varyOfficer ? 'bg-navy' : 'bg-line'}`}>
-          <span className={`absolute top-0.5 start-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform ${varyOfficer ? 'translate-x-5 rtl:-translate-x-5' : ''}`} />
+        <span className={`w-11 h-6 rounded-[8px] relative transition-colors shrink-0 ${varyOfficer ? 'bg-navy' : 'bg-line'}`}>
+          <span className={`absolute top-0.5 start-0.5 w-5 h-5 bg-white rounded-[6px] transition-transform ${varyOfficer ? 'translate-x-5 rtl:-translate-x-5' : ''}`} />
         </span>
-        <span className="text-base font-semibold">{t('vary_voice')}</span>
+        <span className="text-base font-semibold" dir="auto">{t('vary_voice')}</span>
       </button>
 
-      <PrimaryButton large onClick={onStart} className="w-full">
-        {t('start')}
-      </PrimaryButton>
+      <Button variant="main" onClick={onStart} className="w-full">
+        <span dir="auto">{t('start')}</span>
+      </Button>
     </div>
   );
 }

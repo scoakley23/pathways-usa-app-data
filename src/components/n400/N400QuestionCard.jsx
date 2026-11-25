@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronDown, Loader2, Volume2 } from 'lucide-react';
-import { Card, Eyebrow, Tag } from '@/components/pathways/ui';
+import { Card, Tag } from '@/components/pathways/ui';
+import useN400GuideText from './useN400GuideText';
 import { speakText } from '@/components/utils/textToSpeech';
 import { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
 import SayItBack from './SayItBack';
@@ -14,6 +15,7 @@ import useN400Translation from './useN400Translation';
 // Say it back. There is deliberately NO field for the learner to answer the
 // question, no sample answer, and nothing is saved.
 export default function N400QuestionCard({ sectionId, question, isAdmin, language }) {
+  const { t } = useN400GuideText();
   const [isPlaying, setIsPlaying] = useState(false);
   const { translation, isTranslating } = useN400Translation(sectionId, question, language);
   const mine = language && language !== 'en';
@@ -27,7 +29,7 @@ export default function N400QuestionCard({ sectionId, question, isAdmin, languag
   };
 
   const sayItBackTargets = [
-    { key: 'question', label: 'The whole question', text: question.official },
+    { key: 'question', label: t('say_whole'), text: question.official },
     ...question.words.map((w, i) => ({ key: `word-${i}`, label: w.word, text: w.word })),
   ];
 
@@ -36,47 +38,47 @@ export default function N400QuestionCard({ sectionId, question, isAdmin, languag
       {/* On the form, word for word */}
       <Card>
         <div className="flex flex-wrap items-center gap-2">
-          <Eyebrow>On the form · item {question.label}</Eyebrow>
-          {isAdmin && question.status === 'draft' && <Tag tone="red">Draft — pending review</Tag>}
+          <p className="text-base font-semibold text-muted" dir="auto">{t('on_form', { label: question.label })}</p>
+          {isAdmin && question.status === 'draft' && <Tag>{t('draft_pending')}</Tag>}
         </div>
-        <blockquote className="mt-2 text-[1.25rem] font-bold leading-snug">{question.official}</blockquote>
+        <blockquote className="mt-2 text-[1.25rem] font-bold leading-snug" lang="en" dir="ltr">{question.official}</blockquote>
         <button
           type="button"
           onClick={() => speak(question.official)}
           className="mt-2 -ms-2 min-h-tap inline-flex items-center gap-2 px-2 text-base font-semibold text-denim rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim"
         >
-          {isPlaying ? <Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" /> : <Volume2 className="w-5 h-5" aria-hidden="true" />} Listen
+          {isPlaying ? <Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" /> : <Volume2 className="w-5 h-5" aria-hidden="true" />} {t('listen')}
         </button>
       </Card>
 
       {/* What it means, in the learner's language */}
       <Card>
-        <span className="inline-block rounded-button bg-tint px-3 py-1 text-label text-navy">
-          {mine ? 'Said in your language' : 'What it means'}
+        <span className="inline-block rounded-button bg-line-soft px-3 py-1 text-small font-semibold text-navy" dir="auto">
+          {mine ? t('said_mine') : t('what_means')}
         </span>
         {mine ? (
           isTranslating ? (
-            <p className="mt-3 flex items-center gap-2 text-base text-muted"><Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> Translating…</p>
+            <p className="mt-3 flex items-center gap-2 text-base text-muted"><Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> {t('translating')}</p>
           ) : translation?.meaning ? (
             <>
               <p className="mt-3 text-base leading-relaxed" dir={dir} lang={language}>{translation.meaning}</p>
-              <p className="mt-2 text-small text-muted">Machine translation. If anything is unclear, ask a person you trust or a lawyer.</p>
+              <p className="mt-2 text-small text-muted" dir="auto">{t('machine_note')}</p>
             </>
           ) : (
-            <p className="mt-3 text-base leading-relaxed">{question.meaning}</p>
+            <p className="mt-3 text-base leading-relaxed" lang="en" dir="ltr">{question.meaning}</p>
           )
         ) : (
-          <p className="mt-3 text-base leading-relaxed">{question.meaning}</p>
+          <p className="mt-3 text-base leading-relaxed" lang="en" dir="ltr">{question.meaning}</p>
         )}
         {mine && translation?.meaning && (
           <details className="mt-2">
-            <summary className="min-h-tap flex items-center cursor-pointer text-small font-semibold text-denim">In English</summary>
-            <p className="text-base leading-relaxed">{question.meaning}</p>
+            <summary className="min-h-tap flex items-center cursor-pointer text-small font-semibold text-denim" dir="auto">{t('in_english')}</summary>
+            <p className="text-base leading-relaxed" lang="en" dir="ltr">{question.meaning}</p>
           </details>
         )}
         {mine && translation && (
           <details className="mt-1">
-            <summary className="min-h-tap flex items-center cursor-pointer text-small font-semibold text-denim">The whole card in your language</summary>
+            <summary className="min-h-tap flex items-center cursor-pointer text-small font-semibold text-denim" dir="auto">{t('whole_card')}</summary>
             <div className="space-y-2 text-base" dir={dir} lang={language}>
               <p className="font-semibold">{translation.official}</p>
               {translation.words?.length > 0 && (
@@ -91,9 +93,9 @@ export default function N400QuestionCard({ sectionId, question, isAdmin, languag
         {question.words.length > 0 && (
           <details className="mt-2 group">
             <summary className="min-h-tap flex items-center gap-1 cursor-pointer text-small font-semibold text-denim">
-              Words to know <ChevronDown className="w-4 h-4 group-open:rotate-180 transition-transform" aria-hidden="true" />
+              <span dir="auto">{t('words_to_know')}</span> <ChevronDown className="w-4 h-4 group-open:rotate-180 transition-transform" aria-hidden="true" />
             </summary>
-            <dl className="space-y-2">
+            <dl className="space-y-2" lang="en" dir="ltr">
               {question.words.map((w) => (
                 <div key={w.word}>
                   <dt className="font-semibold">{w.word}</dt>
@@ -108,19 +110,19 @@ export default function N400QuestionCard({ sectionId, question, isAdmin, languag
       {/* How the officer might say it */}
       {question.officerPhrasings.length > 0 && (
         <Card>
-          <Eyebrow>The officer might say</Eyebrow>
+          <p className="text-base font-semibold text-muted" dir="auto">{t('officer_might')}</p>
           <ul className="mt-2 space-y-2">
             {question.officerPhrasings.map((p, i) => (
               <li key={i} className="flex items-start gap-2">
                 <button
                   type="button"
-                  aria-label="Listen to this"
+                  aria-label={t('listen_this')}
                   onClick={() => speak(p)}
                   className="w-11 h-11 -ms-2 shrink-0 rounded-full text-denim grid place-items-center hover:bg-tint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim"
                 >
                   <Volume2 className="w-5 h-5" aria-hidden="true" />
                 </button>
-                <p className="flex-1 pt-2 text-[1.0625rem] leading-snug">“{p}”</p>
+                <p className="flex-1 pt-2 text-[1.0625rem] leading-snug" lang="en" dir="ltr">“{p}”</p>
               </li>
             ))}
           </ul>
@@ -130,17 +132,17 @@ export default function N400QuestionCard({ sectionId, question, isAdmin, languag
       {/* If "yes" might be true for you */}
       <Link
         to="/lawyer-first"
-        className="block rounded-card border-2 border-not-yet bg-not-yet-bg p-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-not-yet focus-visible:ring-offset-2"
+        className="block rounded-card border-[2.5px] border-not-yet bg-white p-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-not-yet focus-visible:ring-offset-2"
       >
-        <span className="text-base leading-snug text-navy">
-          <strong className="text-not-yet">If “yes” might be true for you,</strong> talk to a lawyer first, before you file.{' '}
+        <span className="text-base leading-snug text-navy" dir="auto">
+          <strong className="text-not-yet">{t('if_yes')}</strong> {t('if_yes_rest')}{' '}
           <ArrowRight className="inline w-4 h-4 rtl:rotate-180" aria-hidden="true" />
         </span>
       </Link>
 
       <SayItBack targets={sayItBackTargets} />
 
-      <p className="text-small text-muted">We explain what questions mean. How they apply to you is for a lawyer. We never save your answers to the N-400.</p>
+      <p className="text-small text-muted" dir="auto">{t('card_footer')}</p>
     </article>
   );
 }
