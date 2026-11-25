@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Button, Card, Eyebrow, PrimaryButton, RaisedCard, RuledPaper, SecondaryButton, Tag } from '@/components/pathways/ui';
 import AnswerFeedback from './AnswerFeedback';
 import { Link } from 'react-router-dom';
-import { Mic, Volume2, ArrowRight, Check, Loader2, ChevronDown, ChevronUp, FileText, Bot, BarChart3, Scale, X, PhoneOff } from 'lucide-react';
+import { Mic, Volume2, ArrowRight, Check, Loader2, ChevronDown, ChevronUp, FileText, Bot, BarChart3, Scale, X } from 'lucide-react';
 import { interviewSessions as interviewSessionsApi } from '@/api/interview';
 import { content } from '@/api/content';
 import { auth } from '@/api/auth';
@@ -14,6 +14,7 @@ import { isRepeatRequest } from '@/lib/repeatRequest';
 import InterviewReport from './InterviewReport';
 import { evaluateInterviewAnswer, evaluateUnderstanding, isUnderstandingSection } from './evaluateInterviewAnswer';
 import InterviewHistory from './InterviewHistory';
+import CallFrame, { EndCallButton } from '@/components/interview/CallFrame';
 import Officer from '@/components/interview/Officer';
 import MicButton from '@/components/pathways/MicButton';
 import { INTERVIEW_PARTS } from '@/lib/interviewReadiness';
@@ -47,7 +48,7 @@ const speechTimeoutMs = (text) => {
 // interview adds a Civics part with these official questions after the usual
 // ones, graded like lessons (on the device first, then the AI for spoken
 // answers), with official answers only.
-export default function InterviewPractice({ onComplete, onNext, rehearsal = null, onClose = null, onBack = null, learnerName = '', civicsQuestions = null }) {
+export default function InterviewPractice({ onComplete, onNext, rehearsal = null, onClose = null, onBack = null, learnerName = '', civicsQuestions = null, day = null }) {
   const [questions, setQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isListening, setIsListening] = useState(false);
@@ -515,37 +516,16 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
   // please", the big mic and End call. How it works and what it saves are
   // unchanged.
   return (
-    <div className={`text-navy ${embedded ? 'w-full max-w-3xl mx-auto' : 'min-h-screen bg-paper'}`}>
-      <div className={`mx-auto max-w-lg space-y-4 ${embedded ? '' : 'px-4 pt-5 pb-10'}`}>
-        <div className="flex items-center gap-3">
-          {onClose && (
-            <button
-              type="button"
-              onClick={onClose}
-              aria-label="Close practice"
-              className="w-11 h-11 -ms-2 shrink-0 rounded-full grid place-items-center text-navy hover:bg-tint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim"
-            >
-              <X className="w-6 h-6" aria-hidden="true" />
-            </button>
-          )}
-          <p className="flex-1 min-w-0 text-base font-semibold text-muted">
-            Practice interview · Part {partIndex + 1}: {partLabel}
-          </p>
-        </div>
-        <div className="flex gap-1.5" role="img" aria-label={`Question ${currentIndex + 1} of ${questions.length}`}>
-          {questions.map((q, i) => (
-            <span key={i} className={`h-2 flex-1 rounded-full ${i < currentIndex || (i === currentIndex && feedback) ? 'bg-gold' : i === currentIndex ? 'bg-denim' : 'bg-mid'}`} />
-          ))}
-        </div>
-
-        {/* The officer, in a light room */}
-        <div className="rounded-card bg-tint px-4 py-6 flex flex-col items-center text-center gap-3">
-          <div className={`rounded-full ${interviewerState === 'speaking' ? 'ring-4 ring-denim/40' : ''}`}>
-            <Officer size={feedback ? 96 : 144} />
-          </div>
-          <p className="text-small font-semibold text-muted">AI practice officer · not a real person</p>
-          <p className="text-base font-semibold text-navy" aria-live="polite">{statusText}</p>
-        </div>
+    <CallFrame
+      title={day ? day.title : `Practice interview · Part ${partIndex + 1}: ${partLabel}`}
+      dashes={day ? { total: day.total, current: day.current, currentDone: false } : { total: questions.length, current: currentIndex, currentDone: !!feedback }}
+      dashLabel={day ? day.dashLabel : `Question ${currentIndex + 1} of ${questions.length}`}
+      speaking={interviewerState === 'speaking'}
+      small={!!feedback}
+      status={statusText}
+      onClose={onClose}
+      closeLabel={day ? day.closeLabel : 'Close practice'}
+    >
 
         {/* Questions about the learner's history: understanding only */}
         {understanding && (
@@ -599,16 +579,7 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
                   label="Answer out loud"
                   disabled={isAnalyzing}
                 />
-                {!embedded && onClose ? (
-                  <button
-                    type="button"
-                    onClick={onClose}
-                    className="min-h-tap shrink-0 inline-flex items-center gap-1.5 rounded-button border-2 border-navy bg-white px-3 text-base font-bold text-navy hover:bg-line-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-navy"
-                  >
-                    {/* Navy words, not red (red is Amio only): the words say what it does. */}
-                    <PhoneOff className="w-5 h-5" aria-hidden="true" />End call
-                  </button>
-                ) : <span className="w-14 shrink-0" aria-hidden="true" />}
+                {onClose ? <EndCallButton onClick={onClose} label={day ? day.endLabel : 'End call'} /> : <span className="w-14 shrink-0" aria-hidden="true" />}
               </div>
             )}
 
@@ -654,8 +625,7 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
             <Button variant="main" className="w-full" onClick={() => handleNext()}>{nextLabel}</Button>
           </AnswerFeedback>
         )}
-      </div>
-    </div>
+    </CallFrame>
   );
 }
 

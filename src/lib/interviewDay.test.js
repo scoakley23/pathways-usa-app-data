@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import {
-  CIVICS_TEST_RULES, civicsStatus, sentenceStatus, speakingPassed, heardOathYes, pickRandom, rehearsalResults,
+  CIVICS_TEST_RULES, civicsStatus, sentenceStatus, speakingPassed, heardOathYes, pickRandom, rehearsalResults, DAY_PARTS, dayGuideSteps,
 } from './interviewDay';
 
 const times = (n, v) => Array.from({ length: n }, () => v);
@@ -86,6 +86,20 @@ describe('rehearsalResults', () => {
     expect(rows.map((r) => [r.skill, r.passed])).toEqual([
       ['speaking', true], ['reading', false], ['writing', true], ['civics', false],
     ]);
-    expect(rows.find((r) => r.skill === 'reading').practicePath).toBe('/Practice?mode=reading');
+    expect(rows.find((r) => r.skill === 'reading').practicePath).toBe('/study?tab=practice&mode=reading');
+    for (const r of rows) expect(r.practicePath.startsWith('/study?tab=practice&mode=')).toBe(true);
+  });
+});
+
+describe('the whole-day call', () => {
+  it('runs oath, N-400, reading, writing, civics in that order', () => {
+    expect(DAY_PARTS).toEqual(['oath', 'n400', 'reading', 'writing', 'civics']);
+  });
+  it('takes the guide numbers from the rules', () => {
+    const steps = dayGuideSteps('2025');
+    expect(steps.map((x) => x.key)).toEqual(['checkin', 'oath', 'n400', 'reading', 'writing', 'civics']);
+    expect(steps[3].vars).toEqual({ n: 3 });
+    expect(steps[5].vars).toEqual({ max: 20, pass: 12 });
+    expect(dayGuideSteps('2008')[5].vars).toEqual({ max: 10, pass: 6 });
   });
 });

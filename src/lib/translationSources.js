@@ -21,6 +21,7 @@ import { TABS } from '@/components/pathways/BottomTabs';
 import { ME_LINES, SETTINGS_LINES, INTERVIEW_LINES, WHEN_LINES } from '@/components/shell/shellStrings';
 import { TALK_LINES } from '@/components/ai/talkStrings';
 import { INTERVIEW_INTRO_LINES } from '@/components/practice/interviewIntroStrings';
+import { INTERVIEW_DAY_LINES } from '@/components/interview-day/interviewDayStrings';
 import { COURSE_LINES } from '@/components/course/courseStrings';
 import { LESSON_LINES } from '@/components/lesson/lessonStrings';
 import { CHECKPOINT_LINES } from '@/components/checkpoint/checkpointStrings';
@@ -81,6 +82,7 @@ export const STRING_SETS = [
   { id: 'checkpoints', strings: CHECKPOINT_LINES, usedIn: [['src/components/checkpoint/checkpointParts.jsx', 'CHECKPOINT_LINES']] },
   { id: 'n400-lessons', strings: N400_LESSON_LINES, usedIn: [['src/components/n400lesson/N400LessonPage.jsx', 'N400_LESSON_LINES'], ['src/components/n400lesson/N400LessonsCard.jsx', 'N400_LESSON_LINES']] },
   { id: 'today-plan', strings: TODAY_LINES, usedIn: [['src/components/today/useToday.js', 'TODAY_LINES']] },
+  { id: 'interview-day', strings: INTERVIEW_DAY_LINES, usedIn: [['src/components/interview-day/useDayText.js', 'INTERVIEW_DAY_LINES']] },
   { id: 'interview-intro', strings: INTERVIEW_INTRO_LINES, usedIn: [['src/components/practice/InterviewPractice.jsx', 'INTERVIEW_INTRO_LINES']] },
   { id: 'talk', strings: TALK_LINES, usedIn: [['src/components/ai/TalkToPerson.jsx', 'LINES']] },
   { id: 'talk-reply', strings: { reply: `We reply within ${REPLY_TIME}.` }, usedIn: [['src/components/ai/TalkToPerson.jsx', 'replyLine']] },

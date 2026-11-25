@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowUpRight, BookOpen, CalendarDays, FileText, Landmark, Mic, PenLine, Scale } from 'lucide-react';
 import useReadinessData from '@/components/shell/useReadinessData';
@@ -11,6 +11,8 @@ import { INTERVIEW_LINKS } from '@/lib/shellRoutes';
 import { readyParts } from '@/lib/interviewReadiness';
 import { PROCESSING_TIMES, USCIS_N400_URL, canSeeSampleOffices, savedRange } from '@/lib/interviewEstimate';
 import N400LessonsCard from '@/components/n400lesson/N400LessonsCard';
+import { Sheet, SheetContent, SheetDescription, SheetTitle } from '@/components/ui/sheet';
+import { ChevronRight } from 'lucide-react';
 
 // The Interview tab (/interview, Amio v2 frame Interview). On navy: Amio's
 // line, "n of 5 parts of the interview ready" with five circles (N-400 ·
@@ -62,6 +64,14 @@ export default function InterviewPage() {
     try { when = new Intl.DateTimeFormat(locale, { month: 'short', year: 'numeric' }).formatRange(range.from, range.to); } catch { when = `${range.from.toLocaleDateString(locale, { month: 'short' })} – ${range.to.toLocaleDateString(locale, { month: 'short', year: 'numeric' })}`; }
   }
   const mock = INTERVIEW_LINKS.find((l) => l.id === 'mock');
+  // The gold button offers two lengths: the practice interview (about 10
+  // questions, scores saved) or the whole day (/interview-day, nothing saved).
+  const [choose, setChoose] = useState(false);
+  const dir = RTL_LANGUAGES.includes(language) ? 'rtl' : 'ltr';
+  const lengths = [
+    { id: 'short', title: t('len_short'), body: t('len_short_body'), path: mock.path },
+    { id: 'day', title: t('len_day'), body: t('len_day_body'), path: '/interview-day?call=1' },
+  ];
 
   return (
     <div dir={RTL_LANGUAGES.includes(language) ? 'rtl' : 'ltr'} className="min-h-full bg-paper text-navy">
@@ -90,7 +100,7 @@ export default function InterviewPage() {
           </ul>
           <button
             type="button"
-            onClick={() => navigate(mock.path)}
+            onClick={() => setChoose(true)}
             className={`w-full min-h-main mb-[5px] rounded-button bg-gold px-6 text-lg font-extrabold text-navy ${MAIN_PRESS} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-navy`}
           >
             {t('start')}
@@ -121,6 +131,30 @@ export default function InterviewPage() {
 
         <N400LessonsCard />
       </div>
+
+      <Sheet open={choose} onOpenChange={setChoose}>
+        <SheetContent side="bottom" dir={dir} className="rounded-t-sheet bg-paper text-navy px-4 pt-6 pb-8">
+          <SheetTitle className="pe-10 font-display text-[1.625rem] leading-tight text-navy" dir="auto">{t('len_title')}</SheetTitle>
+          <SheetDescription className="sr-only">{t('len_title')}</SheetDescription>
+          <ul className="mt-4 flex flex-col gap-2 list-none m-0 p-0">
+            {lengths.map((l) => (
+              <li key={l.id}>
+                <button
+                  type="button"
+                  onClick={() => { setChoose(false); navigate(l.path); }}
+                  className="w-full min-h-[4.5rem] rounded-card bg-white border-[1.5px] border-line px-4 py-3 flex items-center gap-3 text-start hover:border-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim"
+                >
+                  <span className="flex-1 min-w-0">
+                    <span className="block text-lg font-bold" dir="auto">{l.title}</span>
+                    <span className="block text-base text-muted" dir="auto">{l.body}</span>
+                  </span>
+                  <ChevronRight className="w-5 h-5 shrink-0 text-muted rtl:rotate-180" aria-hidden="true" />
+                </button>
+              </li>
+            ))}
+          </ul>
+        </SheetContent>
+      </Sheet>
     </div>
   );
 }

@@ -18,7 +18,7 @@ import MatchingGame from '@/components/practice/MatchingGame';
 import ReadingPracticeCard from '@/components/practice/ReadingPracticeCard';
 import InterviewPractice from '@/components/practice/InterviewPractice';
 import StudyTop from '@/components/study/StudyTop';
-import { Button as PwButton, Card, Chip, CreamSheet, Eyebrow, NavyTop } from '@/components/pathways/ui';
+import { Button as PwButton, Card, Chip, CreamSheet, NavyTop } from '@/components/pathways/ui';
 import { LEVELS } from '@/lib/pretest';
 import { PRACTICE_PARTS, partStatus, suggestPart } from '@/lib/studyView';
 import { cardOutcome, countOutcomes, countedOutcomes, missedItems, roundRule, roundTitle } from '@/lib/practiceResults';
@@ -507,16 +507,15 @@ export default function Practice() {
               </div>
             </section>
 
-            {/* Mixed practice: the full run-through on Interview Day */}
+            {/* The whole day: the full practice call on Interview Day */}
             <Card padding="p-5" className="space-y-2">
-              <Eyebrow>Mixed practice</Eyebrow>
-              <h2 className="font-display text-[1.375rem] leading-tight text-navy">Interview Day</h2>
-              <p className="text-base text-muted max-w-2xl">The whole interview, in order: the oath, the officer’s questions, reading, writing and civics. Nothing is saved.</p>
+              <h2 className="font-display text-[1.375rem] leading-tight text-navy">The whole day</h2>
+              <p className="text-base text-muted max-w-2xl">The whole interview as one practice call: the oath, your N-400 questions, reading, writing and civics. Nothing is saved.</p>
               <Link
                 to="/interview-day"
                 className="mt-2 inline-flex min-h-tap items-center gap-2 rounded-button border-2 border-navy px-5 text-base font-semibold text-navy hover:bg-tint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2"
               >
-                Start the run-through <ArrowRight className="w-4 h-4 rtl:rotate-180" aria-hidden="true" />
+                See the day <ArrowRight className="w-4 h-4 rtl:rotate-180" aria-hidden="true" />
               </Link>
             </Card>
           </div>
