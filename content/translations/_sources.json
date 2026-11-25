@@ -558,6 +558,18 @@
    ]
   },
   {
+   "text": "2008 test",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
+   "text": "2025 test",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
    "text": "22nd Amendment",
    "from": [
     "key-words"
@@ -985,6 +997,12 @@
    ]
   },
   {
+   "text": "AI practice officer · not a real person",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
    "text": "AI practice officer, not a real person · Not legal advice",
    "from": [
     "interview-tab"
@@ -1024,6 +1042,12 @@
    "text": "About 10 minutes. You can skip any part.",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "About 10 questions with the AI officer. Only your scores are saved.",
+   "from": [
+    "interview-tab"
    ]
   },
   {
@@ -1163,6 +1187,12 @@
    "text": "After the Civil War, the 14th Amendment said that all persons born or naturalized in the United States are citizens.",
    "from": [
     "course-lessons"
+   ]
+  },
+  {
+   "text": "After the interview",
+   "from": [
+    "interview-day"
    ]
   },
   {
@@ -1552,6 +1582,12 @@
    ]
   },
   {
+   "text": "Answer out loud. Up to {max} questions; pass with {pass}.",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
    "text": "Answer {n} easy questions",
    "from": [
     "onboarding"
@@ -1690,6 +1726,12 @@
    ]
   },
   {
+   "text": "Arrive early. You will go through a security check.",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
    "text": "Articles of Confederation",
    "from": [
     "key-words"
@@ -1819,11 +1861,18 @@
    "text": "Back",
    "from": [
     "course",
+    "interview-day",
     "interview-when",
     "lesson-player",
     "settings",
     "sign-in",
     "today-plan"
+   ]
+  },
+  {
+   "text": "Back to Interview",
+   "from": [
+    "interview-day"
    ]
   },
   {
@@ -1919,6 +1968,12 @@
    "text": "Before you file, check \"Talk to a lawyer first\" — some situations need a lawyer or accredited representative before you apply.",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "Before you go",
+   "from": [
+    "interview-day"
    ]
   },
   {
@@ -2051,9 +2106,39 @@
    ]
   },
   {
+   "text": "Bring all your passports and travel documents.",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
+   "text": "Bring any papers USCIS asked for in your letter.",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
    "text": "Bring back the questions that are due.",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "Bring everything your interview letter asks for.",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
+   "text": "Bring your appointment notice (your interview letter).",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
+   "text": "Bring your green card and a photo ID, like a driver’s license.",
+   "from": [
+    "interview-day"
    ]
   },
   {
@@ -2221,6 +2306,7 @@
    "text": "Check",
    "from": [
     "checkpoints",
+    "interview-day",
     "lesson-player",
     "n400-lessons"
    ]
@@ -2235,6 +2321,12 @@
    "text": "Check case status on USCIS.gov",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "Check in",
+   "from": [
+    "interview-day"
    ]
   },
   {
@@ -2253,6 +2345,12 @@
    "text": "Check-in questions",
    "from": [
     "pilot"
+   ]
+  },
+  {
+   "text": "Checking your answer…",
+   "from": [
+    "interview-day"
    ]
   },
   {
@@ -2432,6 +2530,7 @@
    "from": [
     "checkpoints",
     "course",
+    "interview-day",
     "interview-tab",
     "onboarding",
     "today-plan"
@@ -2850,6 +2949,7 @@
     "course",
     "getting-started",
     "home",
+    "interview-day",
     "lesson-player",
     "n400-lessons",
     "onboarding"
@@ -2890,6 +2990,12 @@
    "text": "Correct.",
    "from": [
     "tutor"
+   ]
+  },
+  {
+   "text": "Couldn’t load the practice day. Please check your connection.",
+   "from": [
+    "interview-day"
    ]
   },
   {
@@ -3368,6 +3474,7 @@
    "text": "Done",
    "from": [
     "course",
+    "interview-day",
     "n400-lessons",
     "onboarding",
     "pilot",
@@ -3625,6 +3732,12 @@
    "text": "Encouraged others to do something.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "End call",
+   "from": [
+    "interview-day"
    ]
   },
   {
@@ -3999,6 +4112,12 @@
    "text": "Filing taxes as a “nonresident”",
    "from": [
     "n400-lessons"
+   ]
+  },
+  {
+   "text": "Find help near you",
+   "from": [
+    "interview-day"
    ]
   },
   {
@@ -4548,6 +4667,12 @@
    "text": "Getting started",
    "from": [
     "getting-started"
+   ]
+  },
+  {
+   "text": "Getting the day ready…",
+   "from": [
+    "interview-day"
    ]
   },
   {
@@ -5157,6 +5282,7 @@
   {
    "text": "Hear it again",
    "from": [
+    "interview-day",
     "lesson-player",
     "n400-lessons"
    ]
@@ -5399,6 +5525,12 @@
    ]
   },
   {
+   "text": "How long?",
+   "from": [
+    "interview-tab"
+   ]
+  },
+  {
    "text": "How many Senators do we have?",
    "from": [
     "sentences"
@@ -5550,6 +5682,12 @@
    ]
   },
   {
+   "text": "I do",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
    "text": "I don't know yet",
    "from": [
     "today"
@@ -5577,6 +5715,12 @@
    "text": "I have a code from my tutor",
    "from": [
     "onboarding"
+   ]
+  },
+  {
+   "text": "I heard “{heard}”. Try again, or tap “I do”.",
+   "from": [
+    "interview-day"
    ]
   },
   {
@@ -5727,6 +5871,18 @@
    "text": "If you don't remember the dates, look at photos from your trips, the stamps in your passport, flight confirmation emails, bank or card statements, and frequent flyer accounts.",
    "from": [
     "n400-lessons"
+   ]
+  },
+  {
+   "text": "If you don’t pass a test, you get one retest, usually 60 to 90 days later.",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
+   "text": "If you don’t understand, you can say:",
+   "from": [
+    "interview-day"
    ]
   },
   {
@@ -6085,6 +6241,12 @@
    ]
   },
   {
+   "text": "It can say approved, continued (USCIS needs more papers, or you need to take a test again), or denied.",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
    "text": "It can take a minute. Check your spam folder too.",
    "from": [
     "sign-in"
@@ -6196,6 +6358,12 @@
    "text": "It's been 2 weeks. Want a 5-minute re-check of {skill}? We'll update your plan.",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "It’s OK to ask",
+   "from": [
+    "interview-day"
    ]
   },
   {
@@ -6818,6 +6986,12 @@
    ]
   },
   {
+   "text": "Listen, then write the sentence.",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
    "text": "Listening… take your time",
    "from": [
     "checkpoints"
@@ -7347,6 +7521,18 @@
    ]
   },
   {
+   "text": "N-400 questions",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
+   "text": "N-400 questions and speaking",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
    "text": "N-400: Citizenship, voting and taxes",
    "from": [
     "course-titles",
@@ -7747,6 +7933,7 @@
    "text": "Next",
    "from": [
     "checkpoints",
+    "interview-day",
     "lesson-player",
     "n400-lessons"
    ]
@@ -7923,9 +8110,22 @@
    ]
   },
   {
+   "text": "Not this time.",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
+   "text": "Not this time. The officer may give you another sentence.",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
    "text": "Not yet",
    "from": [
     "checkpoints",
+    "interview-day",
     "interview-tab",
     "pilot"
    ]
@@ -7979,6 +8179,12 @@
    ]
   },
   {
+   "text": "Nothing from this practice is saved. Not legal advice.",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
    "text": "Nothing here yet. It opens as lessons are reviewed.",
    "from": [
     "course"
@@ -8007,6 +8213,12 @@
    "text": "OK",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "Oath",
+   "from": [
+    "interview-day"
    ]
   },
   {
@@ -8343,6 +8555,12 @@
    ]
   },
   {
+   "text": "Part {n} of {total}",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
    "text": "Partner program page",
    "from": [
     "settings"
@@ -8352,6 +8570,12 @@
    "text": "Parts of the test",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "Passed",
+   "from": [
+    "interview-day"
    ]
   },
   {
@@ -8629,6 +8853,24 @@
    ]
   },
   {
+   "text": "Practice results only. Nothing is saved, and they don’t predict your real interview.",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
+   "text": "Practice the day again",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
+   "text": "Practice the whole day",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
    "text": "Practice the whole interview, start to finish.",
    "from": [
     "home"
@@ -8638,6 +8880,12 @@
    "text": "Practice this lesson again",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "Practice {part}",
+   "from": [
+    "interview-day"
    ]
   },
   {
@@ -8783,6 +9031,12 @@
    ]
   },
   {
+   "text": "Promise to tell the truth",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
    "text": "Proposed legislation that must pass both chambers and be signed by the President",
    "from": [
     "lessons"
@@ -8862,6 +9116,12 @@
    ]
   },
   {
+   "text": "Question {n}",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
    "text": "Question {n} of {total}",
    "from": [
     "checkpoints"
@@ -8895,6 +9155,12 @@
    "text": "Questions about your own case go to a free legal helper, not Amio.",
    "from": [
     "ask-screen"
+   ]
+  },
+  {
+   "text": "Questions about your own case?",
+   "from": [
+    "interview-day"
    ]
   },
   {
@@ -8992,6 +9258,12 @@
    ]
   },
   {
+   "text": "Read one of up to {n} sentences out loud.",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
    "text": "Read only the words in the sentence, one at a time.",
    "from": [
     "reading-tips"
@@ -9016,6 +9288,12 @@
    ]
   },
   {
+   "text": "Read this sentence out loud.",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
    "text": "Read {n} short sentences out loud",
    "from": [
     "onboarding"
@@ -9024,6 +9302,7 @@
   {
    "text": "Reading",
    "from": [
+    "interview-day",
     "interview-tab",
     "onboarding",
     "today-plan"
@@ -9154,6 +9433,12 @@
    "text": "Removed or deported: forced by the U.S. government to leave the country.",
    "from": [
     "n400-lessons"
+   ]
+  },
+  {
+   "text": "Repeat, please",
+   "from": [
+    "interview-day"
    ]
   },
   {
@@ -9320,6 +9605,12 @@
    "text": "Right!",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Right.",
+   "from": [
+    "interview-day"
    ]
   },
   {
@@ -10092,6 +10383,12 @@
    ]
   },
   {
+   "text": "Sentence {n} of up to {total}",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
    "text": "Separation of Powers",
    "from": [
     "key-words",
@@ -10181,6 +10478,7 @@
   {
    "text": "Sign in",
    "from": [
+    "interview-day",
     "me",
     "sign-in"
    ]
@@ -10189,6 +10487,12 @@
    "text": "Sign in again",
    "from": [
     "sign-in"
+   ]
+  },
+  {
+   "text": "Sign in to practice the whole interview, start to finish.",
+   "from": [
+    "interview-day"
    ]
   },
   {
@@ -10335,6 +10639,12 @@
    "text": "So in 1791, ten amendments were added to the Constitution. These first ten amendments are called the Bill of Rights.",
    "from": [
     "course-lessons"
+   ]
+  },
+  {
+   "text": "So nothing surprises you",
+   "from": [
+    "interview-day"
    ]
   },
   {
@@ -10544,6 +10854,12 @@
    ]
   },
   {
+   "text": "Stand up, raise your right hand, and say “I do.”",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
    "text": "Start",
    "from": [
     "course",
@@ -10717,6 +11033,12 @@
    ]
   },
   {
+   "text": "Stop practice",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
    "text": "Stop {n} of 5 · {name}",
    "from": [
     "today"
@@ -10886,6 +11208,7 @@
    "text": "Talk to a lawyer first",
    "from": [
     "ask",
+    "interview-day",
     "interview-intro",
     "n400-lessons",
     "talk"
@@ -10913,12 +11236,14 @@
   {
    "text": "Tap to answer",
    "from": [
+    "interview-day",
     "lesson-player"
    ]
   },
   {
    "text": "Tap to stop",
    "from": [
+    "interview-day",
     "lesson-player"
    ]
   },
@@ -12393,6 +12718,18 @@
    ]
   },
   {
+   "text": "The oath, your N-400 questions, reading, writing and civics, in one practice call with an AI officer.",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
+   "text": "The oath, your N-400 questions, reading, writing and civics. Nothing is saved.",
+   "from": [
+    "interview-tab"
+   ]
+  },
+  {
    "text": "The obligation of citizens to serve on a jury when called upon by a court",
    "from": [
     "key-words"
@@ -12417,6 +12754,24 @@
    ]
   },
   {
+   "text": "The officer asks you to stand and raise your right hand.",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
+   "text": "The officer goes over your application with you.",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
+   "text": "The officer is speaking…",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
    "text": "The officer may use other words. Which question on the form is the officer asking?",
    "from": [
     "n400-lessons"
@@ -12426,6 +12781,12 @@
    "text": "The official residence and primary workplace of the President of the United States",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "The order can be different at a real interview.",
+   "from": [
+    "interview-day"
    ]
   },
   {
@@ -12642,6 +13003,18 @@
    "text": "The whole country",
    "from": [
     "course-lessons"
+   ]
+  },
+  {
+   "text": "The whole day",
+   "from": [
+    "interview-tab"
+   ]
+  },
+  {
+   "text": "The whole day · Part {n} of {total}: {part}",
+   "from": [
+    "interview-day"
    ]
   },
   {
@@ -13090,9 +13463,27 @@
    ]
   },
   {
+   "text": "This page is for practice only. It can’t tell you how to answer about your own life or whether you can apply.",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
    "text": "This part of the form asks you to write down every trip you took outside the United States during the required time period. Start with your most recent trip. Then go back in time. Do not write down day trips — trips where you left and came back within 24 hours. If any trip lasted more than 6 months, the Instructions list evidence you can provide.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "This part: not yet.",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
+   "text": "This part: passed.",
+   "from": [
+    "interview-day"
    ]
   },
   {
@@ -13739,10 +14130,17 @@
    ]
   },
   {
+   "text": "Type in English",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
    "text": "Type instead",
    "from": [
     "ask-screen",
     "checkpoints",
+    "interview-day",
     "lesson-player",
     "n400-lessons"
    ]
@@ -14263,6 +14661,12 @@
    ]
   },
   {
+   "text": "We can’t check this one yet. It doesn’t count either way.",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
    "text": "We can’t check this one yet. Pick your state in Who Represents Me? to check it.",
    "from": [
     "lesson-player"
@@ -14754,6 +15158,7 @@
   {
    "text": "What happens on the day",
    "from": [
+    "interview-day",
     "interview-tab"
    ]
   },
@@ -15259,6 +15664,12 @@
    ]
   },
   {
+   "text": "Which civics test?",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
    "text": "Which language do you speak best?",
    "from": [
     "onboarding"
@@ -15737,6 +16148,12 @@
    ]
   },
   {
+   "text": "Work on next",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
    "text": "Worked as a member of a group, like the military.",
    "from": [
     "n400"
@@ -15841,6 +16258,12 @@
    ]
   },
   {
+   "text": "Write one of up to {n} sentences.",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
    "text": "Write sentences you hear",
    "from": [
     "today"
@@ -15867,6 +16290,7 @@
   {
    "text": "Writing",
    "from": [
+    "interview-day",
     "interview-tab",
     "onboarding",
     "today-plan"
@@ -15988,6 +16412,12 @@
    ]
   },
   {
+   "text": "You get a results paper.",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
    "text": "You have been outside the U.S. for 6 months or more at one time",
    "from": [
     "lawyer-checklist"
@@ -16067,8 +16497,15 @@
    ]
   },
   {
+   "text": "You read it.",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
    "text": "You said",
    "from": [
+    "interview-day",
     "lesson-player",
     "n400-lessons"
    ]
@@ -16095,6 +16532,12 @@
    "text": "You wrote",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "You wrote it.",
+   "from": [
+    "interview-day"
    ]
   },
   {
@@ -16126,6 +16569,12 @@
    "text": "Young people who served in Vietnam pushed for the 26th Amendment",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "Your N-400 questions",
+   "from": [
+    "interview-day"
    ]
   },
   {
@@ -16380,6 +16829,12 @@
    ]
   },
   {
+   "text": "Your turn.",
+   "from": [
+    "interview-day"
+   ]
+  },
+  {
    "text": "Your tutor",
    "from": [
     "home"
@@ -16407,6 +16862,12 @@
    "text": "Your voice is never saved",
    "from": [
     "onboarding"
+   ]
+  },
+  {
+   "text": "Your whole day",
+   "from": [
+    "interview-day"
    ]
   },
   {
@@ -18535,6 +18996,12 @@
    "text": "{right} of {total} right. Each one moves to its next review day.",
    "from": [
     "checkpoints"
+   ]
+  },
+  {
+   "text": "{right} right · {wrong} not yet",
+   "from": [
+    "interview-day"
    ]
   },
   {
