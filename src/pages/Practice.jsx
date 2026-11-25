@@ -4,7 +4,6 @@ import { review } from '@/api/review';
 import { pickForPractice } from '@/lib/practicePicking';
 import { content as contentApi } from '@/api/content';
 import { auth } from '@/api/auth';
-import { Button } from "@/components/ui/button";
 import { ArrowRight, BookOpen, Check, Landmark, Loader2, Sparkles, Layers, Mic, MessagesSquare, PenLine, SlidersHorizontal, X } from 'lucide-react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -18,38 +17,34 @@ import MatchingGame from '@/components/practice/MatchingGame';
 import ReadingPracticeCard from '@/components/practice/ReadingPracticeCard';
 import InterviewPractice from '@/components/practice/InterviewPractice';
 import StudyTop from '@/components/study/StudyTop';
-import { Button as PwButton, Card, Chip, CreamSheet, Eyebrow, NavyTop } from '@/components/pathways/ui';
-import { LEVELS } from '@/lib/pretest';
+import { Button as PwButton, Card, Chip } from '@/components/pathways/ui';
+import { AmioSays } from '@/components/pathways/Amio';
+import usePracticeText from '@/components/practice/usePracticeText';
 import { PRACTICE_PARTS, partStatus, suggestPart } from '@/lib/studyView';
-import { cardOutcome, countOutcomes, countedOutcomes, missedItems, roundRule, roundTitle } from '@/lib/practiceResults';
+import { cardOutcome, countOutcomes, countedOutcomes, missedItems, passRule } from '@/lib/practiceResults';
 import { awardBadges } from '@/lib/awardBadges';
 import { toast } from "sonner";
 import VoiceSettings from '@/components/utils/VoiceSettings';
 
-// Practice hub (the Practice tab of Study): on navy, "Suggested for you"
-// (the part with the lowest quick-check level) with a star-red Start; on the
-// cream sheet, the four parts as rows in the order Reading · Writing · Civics
-// · Speaking with their status (quick-check level; "Ready" when strong).
-// Tapping one starts right away; a run is full screen
-// (?mode=… hides the app header and tab bar, see Layout).
+// Practice home (the Practice tab of Study, Amio v2): on paper, the Study
+// title and tabs, Amio's line, "Suggested for you" (the part with the lowest
+// quick-check level) on a navy card with the gold Start, the four parts as
+// tiles in their colours (Reading denim · Writing gold · Civics sky ·
+// Speaking white) with their status (quick-check level; "Ready" when strong),
+// the vocabulary games and "The whole day". Tapping a part starts right away;
+// a run is full screen (?mode=… hides the app header and tab bar, see
+// Layout). Wording in practiceStrings.js (usePracticeText).
 const RUN_MODES = ['reading', 'dictation', 'civics', 'interview', 'vocabulary'];
-const RUN_LABEL = {
-  reading: 'Reading · Read aloud',
-  dictation: 'Writing · Listen and write',
-  vocabulary: 'Writing · Vocabulary',
-  civics: 'Civics questions',
-  interview: 'Speaking · The officer’s questions',
-};
-
-// The four parts as rows: name, one line, icon, and the run each starts.
+// The four parts: icon, the run each starts, and its tile colours.
 const PART_ROWS = {
-  reading: { label: 'Reading', line: 'Read a sentence aloud', icon: BookOpen, run: 'reading' },
-  writing: { label: 'Writing', line: 'Listen and write', icon: PenLine, run: 'dictation' },
-  civics: { label: 'Civics', line: 'Answer out loud or type', icon: Landmark, run: 'civics' },
-  speaking: { label: 'Speaking', line: 'Mock interview', icon: MessagesSquare, run: 'interview' },
+  reading: { icon: BookOpen, run: 'reading', look: 'bg-denim text-white border-denim', sub: 'text-white' },
+  writing: { icon: PenLine, run: 'dictation', look: 'bg-gold text-navy border-gold', sub: 'text-navy' },
+  civics: { icon: Landmark, run: 'civics', look: 'bg-sky text-navy border-sky', sub: 'text-navy' },
+  speaking: { icon: MessagesSquare, run: 'interview', look: 'bg-white text-navy border-line', sub: 'text-muted' },
 };
 
 export default function Practice() {
+  const { t, rtl } = usePracticeText();
   const [mode, setMode] = useState('menu'); // menu, dictation, vocabulary, civics
   const [vocabSubMode, setVocabSubMode] = useState('dictation'); // dictation, flashcards, matching
   const [civicsVersion, setCivicsVersion] = useState(() => localStorage.getItem('civicsVersion') || '2025');
@@ -331,7 +326,7 @@ export default function Practice() {
       setContent(data);
     } catch (error) {
       console.error("Error starting session", error);
-      toast.error("Failed to start practice session");
+      toast.error(t('start_failed'));
       exitRun();
     } finally {
       setIsLoading(false);
@@ -427,7 +422,7 @@ export default function Practice() {
   };
 
   if (mode === 'menu') {
-    const label = 'text-sm font-semibold text-navy';
+    const label = 'text-base font-semibold text-navy';
     const levels = currentUser?.skill_levels || null;
     const startPart = (part) => {
       const run = PART_ROWS[part].run;
@@ -435,136 +430,119 @@ export default function Practice() {
       else startSession(run);
     };
     const suggested = suggestPart(levels);
+    const statusText = (part) => {
+      const st = partStatus(levels?.[part]);
+      return st === 'ready' ? null : st === 'not_checked' ? t('not_checked') : t(`level_${st}`);
+    };
     const testButton = (
-      <Chip onNavy onClick={() => setSettingsOpen(true)} aria-label={`Practice settings: ${civicsVersion} test`}>
-        <SlidersHorizontal className="w-4 h-4" aria-hidden="true" /> {civicsVersion} test
+      <Chip onClick={() => setSettingsOpen(true)} aria-label={t('settings_label', { version: civicsVersion })}>
+        <SlidersHorizontal className="w-4 h-4" aria-hidden="true" /> {t('test_button', { version: civicsVersion })}
       </Chip>
     );
     return (
-      <div>
-        <NavyTop className="pb-14">
-          <StudyTop tab="practice" action={testButton}>
-            <div className="pt-2 space-y-3">
-              <p className="text-label text-on-navy">Suggested for you</p>
-              <p className="font-display text-[1.375rem] leading-tight">
-                {PART_ROWS[suggested].label} · {PART_ROWS[suggested].line}
-              </p>
-              <PwButton variant="main" onNavy className="w-full sm:w-auto" onClick={() => startPart(suggested)}>
-                Start <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" />
-              </PwButton>
+      <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-full bg-paper text-navy">
+        <div className="mx-auto max-w-lg px-4 pt-6 pb-8 flex flex-col gap-5">
+          <StudyTop tab="practice" action={testButton} />
+          <AmioSays mood="hello" size={56}>{t('amio_practice')}</AmioSays>
+
+          {/* Suggested for you */}
+          <section aria-labelledby="practice-suggested" className="rounded-card bg-navy text-white p-5 flex flex-col gap-3">
+            <p id="practice-suggested" className="text-base font-semibold text-sky" dir="auto">{t('suggested')}</p>
+            <p className="font-display text-[1.75rem] leading-tight" dir="auto"><bdi>{t(`part_${suggested}`)}</bdi> · <bdi>{t(`line_${suggested}`)}</bdi></p>
+            <PwButton variant="main" onNavy className="w-full" onClick={() => startPart(suggested)}>
+              {t('start')} <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" />
+            </PwButton>
+          </section>
+
+          {/* The four parts, as tiles in their colours */}
+          <ul className="grid grid-cols-2 gap-2 list-none m-0 p-0">
+            {PRACTICE_PARTS.map((part) => {
+              const row = PART_ROWS[part];
+              const Icon = row.icon;
+              const st = statusText(part);
+              return (
+                <li key={part}>
+                  <button
+                    type="button"
+                    onClick={() => startPart(part)}
+                    className={`w-full h-full min-h-[8.5rem] rounded-card border-[2.5px] p-4 flex flex-col justify-between gap-3 text-start hover:border-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim focus-visible:ring-offset-2 ${row.look}`}
+                  >
+                    <Icon className="w-6 h-6" strokeWidth={2} aria-hidden="true" />
+                    <span>
+                      <span className="block text-lg font-bold" dir="auto">{t(`part_${part}`)}</span>
+                      <span className={`block text-base ${row.sub}`} dir="auto">{t(`line_${part}`)}</span>
+                      <span className={`mt-1 flex items-center gap-1 text-base font-semibold ${row.sub}`} dir="auto">
+                        {st === null ? <><Check className="w-4 h-4" strokeWidth={3} aria-hidden="true" /> {t('ready')}</> : st}
+                      </span>
+                    </span>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+
+          {/* Vocabulary games (part of Writing) */}
+          <section aria-labelledby="vocab" className="flex flex-col gap-2">
+            <h2 id="vocab" className="text-lg font-bold" dir="auto">{t('vocab_title')}</h2>
+            <div className="flex flex-wrap gap-2">
+              <Chip onClick={() => startSession('vocabulary', 'dictation')}><Mic className="w-4 h-4" aria-hidden="true" /> {t('word_dictation')}</Chip>
+              <Chip onClick={() => startSession('vocabulary', 'flashcards')}><Sparkles className="w-4 h-4" aria-hidden="true" /> {t('flashcards')}</Chip>
+              <Chip onClick={() => startSession('vocabulary', 'matching')}><Layers className="w-4 h-4" aria-hidden="true" /> {t('matching')}</Chip>
             </div>
-          </StudyTop>
-        </NavyTop>
+          </section>
 
-        <CreamSheet>
-          <div className="mx-auto max-w-5xl space-y-6 pb-8">
-            <p className="text-base text-muted">Pick a part and we start right away. Ten cards, about five minutes.</p>
-
-            {/* The four parts */}
-            <Card padding="p-0">
-              <ul className="divide-y divide-line">
-                {PRACTICE_PARTS.map((part) => {
-                  const row = PART_ROWS[part];
-                  const Icon = row.icon;
-                  const status = partStatus(levels?.[part]);
-                  return (
-                    <li key={part}>
-                      <button
-                        type="button"
-                        onClick={() => startPart(part)}
-                        className="w-full flex items-center gap-4 px-4 py-4 min-h-[76px] text-start hover:bg-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-navy first:rounded-t-card last:rounded-b-card"
-                      >
-                        <span className="w-12 h-12 shrink-0 rounded-full bg-navy text-white grid place-items-center">
-                          <Icon className="w-6 h-6" strokeWidth={2} aria-hidden="true" />
-                        </span>
-                        <span className="min-w-0 flex-1">
-                          <span className="block text-[1.0625rem] font-semibold text-navy">{row.label}</span>
-                          <span className="block text-base text-muted">{row.line}</span>
-                        </span>
-                        <span className="shrink-0 text-end text-sm">
-                          {status === 'ready' ? (
-                            <span className="inline-flex items-center gap-1 font-semibold text-correct">
-                              <Check className="w-4 h-4" strokeWidth={3} aria-hidden="true" /> Ready
-                            </span>
-                          ) : (
-                            <span className="text-muted">{status === 'not_checked' ? 'Not checked yet' : LEVELS[status].label}</span>
-                          )}
-                        </span>
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
-            </Card>
-
-            {/* Vocabulary games (part of Writing) */}
-            <section aria-labelledby="vocab" className="space-y-2">
-              <h2 id="vocab" className="text-label text-muted">Writing · Vocabulary games</h2>
-              <div className="flex flex-wrap gap-2">
-                <Chip onClick={() => startSession('vocabulary', 'dictation')}><Mic className="w-4 h-4" aria-hidden="true" /> Word dictation</Chip>
-                <Chip onClick={() => startSession('vocabulary', 'flashcards')}><Sparkles className="w-4 h-4" aria-hidden="true" /> Flashcards</Chip>
-                <Chip onClick={() => startSession('vocabulary', 'matching')}><Layers className="w-4 h-4" aria-hidden="true" /> Matching</Chip>
-              </div>
-            </section>
-
-            {/* Mixed practice: the full run-through on Interview Day */}
-            <Card padding="p-5" className="space-y-2">
-              <Eyebrow>Mixed practice</Eyebrow>
-              <h2 className="font-display text-[1.375rem] leading-tight text-navy">Interview Day</h2>
-              <p className="text-base text-muted max-w-2xl">The whole interview, in order: the oath, the officer’s questions, reading, writing and civics. Nothing is saved.</p>
-              <Link
-                to="/interview-day"
-                className="mt-2 inline-flex min-h-tap items-center gap-2 rounded-button border-2 border-navy px-5 text-base font-semibold text-navy hover:bg-tint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2"
-              >
-                Start the run-through <ArrowRight className="w-4 h-4 rtl:rotate-180" aria-hidden="true" />
-              </Link>
-            </Card>
-          </div>
-        </CreamSheet>
+          {/* The whole day: the full practice call on Interview Day */}
+          <Card padding="p-5" className="flex flex-col gap-2">
+            <h2 className="text-lg font-bold" dir="auto">{t('whole_day')}</h2>
+            <p className="text-base text-muted" dir="auto">{t('whole_day_body')}</p>
+            <Link
+              to="/interview-day"
+              className="mt-1 self-start min-h-tap inline-flex items-center gap-2 px-1 text-base font-semibold text-denim underline underline-offset-4 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim"
+            >
+              {t('see_the_day')} <ArrowRight className="w-4 h-4 rtl:rotate-180" aria-hidden="true" />
+            </Link>
+          </Card>
+        </div>
 
         {/* Settings: civics test version, difficulty, voice */}
         <Sheet open={settingsOpen} onOpenChange={setSettingsOpen}>
-          <SheetContent side="bottom" className="bg-paper max-h-[90vh] overflow-y-auto">
+          <SheetContent side="bottom" dir={rtl ? 'rtl' : 'ltr'} className="rounded-t-sheet bg-paper max-h-[90vh] overflow-y-auto">
             <SheetHeader>
-              <SheetTitle className="font-display font-normal text-[1.875rem] text-navy text-left">Practice settings</SheetTitle>
+              <SheetTitle className="pe-10 font-display text-[1.75rem] text-navy text-start" dir="auto">{t('settings_title')}</SheetTitle>
             </SheetHeader>
             <div className="mx-auto max-w-lg space-y-5 py-4 text-navy">
               <div className="space-y-2">
-                <label className={label} htmlFor="civics-version">Civics test version</label>
+                <label className={label} htmlFor="civics-version" dir="auto">{t('civics_version')}</label>
                 <Select value={civicsVersion} onValueChange={(v) => { setCivicsVersion(v); try { localStorage.setItem('civicsVersion', v); } catch (e) { /* storage blocked */ } }}>
-                  <SelectTrigger id="civics-version" className="h-auto min-h-11 text-left bg-white">
+                  <SelectTrigger id="civics-version" className="h-auto min-h-11 text-start bg-white">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="2025">2025</SelectItem>
-                    <SelectItem value="2008">Applied before Oct 20, 2025? Choose 2008.</SelectItem>
+                    <SelectItem value="2008">{t('v2008_choice')}</SelectItem>
                   </SelectContent>
                 </Select>
-                <p className="text-sm text-muted leading-snug">
-                  {civicsVersion === '2025'
-                    ? 'The officer asks up to 20 questions from this list of 128. You pass with 12 correct.'
-                    : 'The officer asks up to 10 questions from this list of 100. You pass with 6 correct.'}
-                </p>
-                <a href="https://www.uscis.gov/citizenship/2025-test" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-navy underline underline-offset-4 inline-block min-h-[44px] py-2">
-                  Not sure which test you'll take? Check uscis.gov.
+                <p className="text-base text-muted leading-snug" dir="auto">{civicsVersion === '2025' ? t('rule_2025') : t('rule_2008')}</p>
+                <a href="https://www.uscis.gov/citizenship/2025-test" target="_blank" rel="noopener noreferrer" className="text-base font-semibold text-navy underline underline-offset-4 inline-block min-h-[44px] py-2" dir="auto">
+                  {t('which_test')}
                 </a>
               </div>
               <div className="space-y-2">
-                <label className={label} htmlFor="civics-difficulty">Civics difficulty</label>
+                <label className={label} htmlFor="civics-difficulty" dir="auto">{t('difficulty')}</label>
                 <Select value={civicsDifficulty} onValueChange={setCivicsDifficulty}>
                   <SelectTrigger id="civics-difficulty" className="min-h-11 bg-white">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">All</SelectItem>
-                    <SelectItem value="easy">Easy</SelectItem>
-                    <SelectItem value="medium">Medium</SelectItem>
-                    <SelectItem value="hard">Hard</SelectItem>
+                    <SelectItem value="all">{t('diff_all')}</SelectItem>
+                    <SelectItem value="easy">{t('diff_easy')}</SelectItem>
+                    <SelectItem value="medium">{t('diff_medium')}</SelectItem>
+                    <SelectItem value="hard">{t('diff_hard')}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
               <div className="space-y-2">
-                <p className={label}>Voice</p>
+                <p className={label} dir="auto">{t('voice')}</p>
                 <VoiceSettings />
               </div>
             </div>
@@ -596,7 +574,7 @@ export default function Practice() {
     return (
       <RoundComplete
         outcomes={results}
-        title={`All ${results.length} pairs matched. Nice work${firstName(currentUser) ? `, ${firstName(currentUser)}` : ''}.`}
+        title={firstName(currentUser) ? t('all_matched_name', { n: results.length, name: firstName(currentUser) }) : t('all_matched', { n: results.length })}
         onClose={exitRun}
         onAgain={() => startSession(mode, vocabSubMode)}
         onBack={() => navigate('/')}
@@ -606,17 +584,23 @@ export default function Practice() {
   if (roundKind && sessionComplete) {
     const missed = missedItems(content, results);
     const right = countOutcomes(results).right;
-    const noun = roundKind === 'civics' ? 'question' : (roundKind === 'words' || roundKind === 'flashcards') ? 'word' : 'sentence';
-    const plural = (n) => `${n} ${noun}${n === 1 ? '' : 's'}`;
+    const name = firstName(currentUser);
+    const title = right > 0
+      ? (name ? t('round_right_name', { n: right, name }) : t('round_right', { n: right }))
+      : (name ? t('round_zero_name', { name }) : t('round_zero'));
+    const rule = roundKind === 'reading' ? t('rule_reading')
+      : roundKind === 'writing' ? t('rule_writing')
+        : roundKind === 'civics' ? t('rule_civics', passRule(civicsVersion))
+          : null;
     return (
       <RoundComplete
         outcomes={countedOutcomes(content, results)}
-        title={roundTitle(right, firstName(currentUser))}
-        rule={(roundKind === 'words' || roundKind === 'flashcards') ? null : roundRule(roundKind, civicsVersion)}
+        title={title}
+        rule={rule}
         review={{
-          heading: `${plural(missed.length)} to review`,
+          heading: t('to_review'),
           lines: missed.map((item) => item.question || item.text || item.word),
-          button: `Review the ${plural(missed.length)}`,
+          button: t('review_button'),
         }}
         onClose={exitRun}
         onReview={() => startReview(missed)}
@@ -664,7 +648,7 @@ export default function Practice() {
   }
 
   return (
-    <RunShell label={RUN_LABEL[mode]} onClose={exitRun}>
+    <RunShell label={t(`run_${mode}`)} closeLabel={t('close')} onClose={exitRun}>
 
       {isLoading ? (
         <div className="flex justify-center py-20">
@@ -672,8 +656,8 @@ export default function Practice() {
         </div>
       ) : (
          <div className="text-center py-20">
-            <p className="text-lg text-muted">No content found for this mode.</p>
-            <Button onClick={exitRun} className="mt-4">Go Back</Button>
+            <p className="text-lg text-muted" dir="auto">{t('no_content')}</p>
+            <PwButton variant="second" onClick={exitRun} className="mt-4">{t('go_back')}</PwButton>
          </div>
          )}
     </RunShell>
@@ -684,14 +668,14 @@ export default function Practice() {
 // then the cards (each poster carries its own stars).
 // The other runs (reading, writing, vocabulary, interview) keep the padded
 // layout until their redesign; Layout gives /study the full width.
-function RunShell({ label, onClose, children }) {
+function RunShell({ label, closeLabel, onClose, children }) {
   return (
     <div className="container max-w-2xl mx-auto px-4 pt-6 space-y-4 pb-8">
       <div className="flex items-center gap-3 -mt-2">
         <button
           type="button"
           onClick={onClose}
-          aria-label="Close practice"
+          aria-label={closeLabel}
           className="w-11 h-11 shrink-0 rounded-full bg-white border border-line grid place-items-center text-navy hover:bg-tint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
         >
           <X className="w-5 h-5" aria-hidden="true" />

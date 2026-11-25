@@ -1,6 +1,7 @@
 // Interview Day: a full practice rehearsal of the naturalization interview
-// (/interview-day). Pure rules only; the page keeps everything in memory and
-// saves nothing (no Base44 records, no browser storage).
+// (/interview-day), run as one practice call (Amio v2, amio-v2/interview-day).
+// Pure rules only; the call keeps everything in memory and saves nothing (no
+// records, no browser storage).
 
 // Civics test rules. Check on uscis.gov (https://www.uscis.gov/citizenship/testupdates).
 // The officer stops as soon as the learner passes (passAt correct) or can no
@@ -13,14 +14,23 @@ export const CIVICS_TEST_RULES = {
 // Reading and writing: up to 3 sentences, stop after the first correct one.
 export const SENTENCE_TRIES = 3;
 
-export const REHEARSAL_PARTS = [
-  { id: 'oath', label: 'Oath' },
-  { id: 'interview', label: 'Small talk and N-400 review' },
-  { id: 'reading', label: 'Reading' },
-  { id: 'writing', label: 'Writing' },
-  { id: 'civics', label: 'Civics' },
-  { id: 'results', label: 'Results' },
-];
+// The parts of the whole-day call, in order (the order can change at a real
+// interview). The oath isn't scored; the others each pass or "not yet".
+export const DAY_PARTS = ['oath', 'n400', 'reading', 'writing', 'civics'];
+
+// "What happens on the day": six steps as translation keys plus the numbers
+// from the rules above (never typed into the text).
+export function dayGuideSteps(version = '2025') {
+  const rules = civicsRules(version);
+  return [
+    { key: 'checkin' },
+    { key: 'oath' },
+    { key: 'n400' },
+    { key: 'reading', vars: { n: SENTENCE_TRIES } },
+    { key: 'writing', vars: { n: SENTENCE_TRIES } },
+    { key: 'civics', vars: { max: rules.maxQuestions, pass: rules.passAt } },
+  ];
+}
 
 export const civicsRules = (version) => CIVICS_TEST_RULES[version] || CIVICS_TEST_RULES['2025'];
 
@@ -64,12 +74,12 @@ export function pickRandom(list, n, random = Math.random) {
   return copy.slice(0, n);
 }
 
-// Results rows: one per skill, each "Practice more" goes to that skill's page.
+// Results rows: one per skill, each with the Practice run for "Work on next".
 export function rehearsalResults({ speaking, reading, writing, civics }) {
   return [
-    { skill: 'speaking', passed: !!speaking, practicePath: '/Practice?mode=interview' },
-    { skill: 'reading', passed: !!reading, practicePath: '/Practice?mode=reading' },
-    { skill: 'writing', passed: !!writing, practicePath: '/Practice?mode=dictation' },
-    { skill: 'civics', passed: !!civics, practicePath: '/Practice?mode=civics' },
+    { skill: 'speaking', passed: !!speaking, practicePath: '/study?tab=practice&mode=interview' },
+    { skill: 'reading', passed: !!reading, practicePath: '/study?tab=practice&mode=reading' },
+    { skill: 'writing', passed: !!writing, practicePath: '/study?tab=practice&mode=dictation' },
+    { skill: 'civics', passed: !!civics, practicePath: '/study?tab=practice&mode=civics' },
   ];
 }

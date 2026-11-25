@@ -90,9 +90,11 @@ export default function Layout({ children }) {
   // A practice run (/study?tab=practice&mode=…) is full screen: no header,
   // tab bar or footer; the run has its own close button.
   const practiceMode = ['/practice', '/study'].includes(location.pathname.toLowerCase()) && new URLSearchParams(location.search).has('mode');
+  // The whole-day call on Interview Day (/interview-day?call=1) is full screen too.
+  const dayCall = location.pathname.toLowerCase() === '/interview-day' && new URLSearchParams(location.search).get('call') === '1';
   // A course lesson (/course/lesson/:id, Prompt 6) and the checkpoint screens
   // (Prompt 8) are full screen the same way.
-  const practiceRun = practiceMode || CHECKPOINT_SCREEN.test(location.pathname);
+  const practiceRun = practiceMode || dayCall || CHECKPOINT_SCREEN.test(location.pathname);
   const readAloud = FOCUS_ROUTES.includes(location.pathname);
   const focusMode = readAloud || practiceRun;
   // Welcome (signed-out Home, Prompt 9) is one screen with its own two buttons: no tab bar.
