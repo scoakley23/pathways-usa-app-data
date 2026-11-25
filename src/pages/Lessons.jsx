@@ -5,16 +5,11 @@ import { auth } from '@/api/auth';
 import { ArrowRight, BookOpen, Check, ChevronDown, Video } from 'lucide-react';
 import LessonDetail from '@/components/lessons/LessonDetail.jsx';
 import StudyTop from '@/components/study/StudyTop';
-import { Card, CreamSheet, Eyebrow, NavyTop } from '@/components/pathways/ui';
+import { Button as PwButton, Card } from '@/components/pathways/ui';
+import usePracticeText from '@/components/practice/usePracticeText';
 import { nextLesson } from '@/lib/lessonDeck';
 import { topicStates } from '@/lib/studyView';
 import { toast } from "sonner";
-
-const NEXT_LABEL = {
-  review: 'Worth going over again',
-  continue: 'Pick up where you left off',
-  start: 'Next lesson',
-};
 
 // The five official topics, in order.
 const TOPICS = [
@@ -25,14 +20,16 @@ const TOPICS = [
   'Geography and Symbols',
 ];
 
-// Lessons (the Lessons tab of Study): on navy, the Study top; on the cream
-// sheet, "Civics · n of m lessons done" and the topics as a vertical road.
-// Done topics (every lesson finished) are sky circles with a check; the
-// current topic (the one with nextLesson()) is a gold circle (no star)
-// and a "You're here" card for that lesson; later topics are hollow. Tapping a
-// topic opens its lessons. An open lesson (LessonDetail) keeps the padded
-// layout.
+// Lessons (the Lessons tab of Study, Amio v2): on paper, the Study title and
+// tabs, one line on what a lesson is, "Civics · n of m lessons done", the
+// suggested lesson (nextLesson()) on a navy card with the gold Start, then
+// the five official topics as cards: done (every lesson finished) = navy with
+// a gold check, the suggested topic = sky, others white; each shows
+// "n of m lessons" and a bar. Tapping a topic opens its lessons. Nothing is
+// locked. An open lesson (LessonDetail) keeps the padded layout. Wording in
+// practiceStrings.js (usePracticeText).
 export default function Lessons() {
+  const { t, rtl } = usePracticeText();
   const [open, setOpen] = useState(() => new Set());
   const [lessons, setLessons] = useState([]);
   const [selectedLesson, setSelectedLesson] = useState(null);
@@ -94,7 +91,7 @@ export default function Lessons() {
           refreshProgress();
         }}
         onComplete={() => {
-          toast.success('Saved. Lesson complete.');
+          toast.success(t('lesson_saved'));
           refreshProgress();
         }}
       />
@@ -102,24 +99,22 @@ export default function Lessons() {
     );
   }
 
-  const top = (
-    <NavyTop className="pb-12">
-      <StudyTop tab="lessons" />
-    </NavyTop>
+  const shell = (body) => (
+    <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-full bg-paper text-navy">
+      <div className="mx-auto max-w-lg px-4 pt-6 pb-8 flex flex-col gap-5">
+        <StudyTop tab="lessons" />
+        {body}
+      </div>
+    </div>
   );
 
   if (loading) {
-    return (
-      <div>
-        {top}
-        <CreamSheet>
-          <div className="flex items-center justify-center min-h-[300px]">
-            <div className="text-center">
-              <div className="w-12 h-12 border-4 border-navy border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-              <p className="text-base text-muted">Loading lessons...</p>
-            </div>
-          </div>
-        </CreamSheet>
+    return shell(
+      <div className="flex items-center justify-center min-h-[300px]">
+        <div className="text-center">
+          <div className="w-12 h-12 border-4 border-navy border-t-transparent rounded-full animate-spin mx-auto mb-4" aria-hidden="true" />
+          <p className="text-base text-muted" dir="auto">{t('loading_lessons')}</p>
+        </div>
       </div>
     );
   }
@@ -132,128 +127,110 @@ export default function Lessons() {
     if (copy.has(name)) copy.delete(name); else copy.add(name);
     return copy;
   });
+  const LOOK = {
+    done: { card: 'bg-navy text-white border-navy', sub: 'text-on-navy', bar: 'bg-navy-line', fill: 'bg-gold' },
+    current: { card: 'bg-sky text-navy border-sky', sub: 'text-navy', bar: 'bg-white', fill: 'bg-navy' },
+    later: { card: 'bg-white text-navy border-line', sub: 'text-muted', bar: 'bg-line-soft', fill: 'bg-denim' },
+  };
 
-  return (
-    <div>
-      {top}
-      <CreamSheet>
-        <div className="mx-auto max-w-3xl space-y-5 pb-8 text-navy">
-          <p className="text-base text-muted">Each lesson ends with the exact questions the officer may ask. We go over them together.</p>
-          {lessons.length > 0 && <Eyebrow>Civics · {doneTotal} of {lessons.length} lessons done</Eyebrow>}
+  return shell(
+    <>
+      <p className="text-base text-muted" dir="auto">{t('lessons_intro')}</p>
 
-          {/* The topics as a vertical road */}
-          <ol className="space-y-0">
-            {rows.map((row, i) => {
-              const last = i === rows.length - 1;
-              const isOpen = open.has(row.name);
-              const listId = `topic-lessons-${i}`;
-              return (
-                <li key={row.name} className="relative flex gap-4">
-                  {/* The road: a 4px line from this circle to the next (sky once this topic is done) */}
-                  {!last && (
-                    <span
-                      aria-hidden="true"
-                      className={`absolute start-[20px] top-[22px] bottom-0 w-1 -translate-x-1/2 rtl:translate-x-1/2 rounded-full ${row.state === 'done' ? 'bg-denim' : 'bg-line'}`}
-                    />
-                  )}
-                  <span className="relative z-10 w-10 h-11 shrink-0 grid place-items-center">
-                    {row.state === 'done' && (
-                      <span className="w-8 h-8 rounded-full bg-denim grid place-items-center">
-                        <Check className="w-4 h-4 text-white" strokeWidth={3} aria-hidden="true" />
-                      </span>
-                    )}
-                    {row.state === 'current' && (
-                      <span className="w-10 h-10 rounded-full bg-gold ring-[5px] ring-gold/30" />
-                    )}
-                    {row.state === 'later' && <span className="w-6 h-6 rounded-full border-2 border-muted bg-paper" />}
+      {next && (
+        <section aria-labelledby="lesson-next" className="rounded-card bg-navy text-white p-5 flex flex-col gap-3">
+          <p id="lesson-next" className="text-base font-semibold text-sky" dir="auto">{t('suggested_next')} · {t(`next_${next.reason}`)}</p>
+          <p className="font-display text-[1.5rem] leading-tight" dir="auto">{next.lesson.title}</p>
+          <PwButton variant="main" onNavy className="w-full" onClick={() => setSelectedLesson(next.lesson)}>
+            {next.reason === 'start' ? t('start') : t('continue')} <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" />
+          </PwButton>
+        </section>
+      )}
+
+      {lessons.length > 0 && (
+        <h2 className="text-lg font-bold" dir="auto">{t('civics_done', { n: doneTotal, total: lessons.length })}</h2>
+      )}
+
+      <ul className="flex flex-col gap-2 list-none m-0 p-0">
+        {rows.map((row, i) => {
+          const look = LOOK[row.state] || LOOK.later;
+          const isOpen = open.has(row.name);
+          const listId = `topic-lessons-${i}`;
+          const pct = row.lessons.length ? Math.round((row.doneCount / row.lessons.length) * 100) : 0;
+          return (
+            <li key={row.name}>
+              <button
+                type="button"
+                onClick={() => toggle(row.name)}
+                aria-expanded={isOpen}
+                aria-controls={listId}
+                className={`w-full rounded-card border-[2.5px] p-4 flex flex-col gap-3 text-start hover:border-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim focus-visible:ring-offset-2 ${look.card}`}
+              >
+                <span className="flex items-center gap-3">
+                  <span className="min-w-0 flex-1">
+                    <span className="block font-display text-[1.25rem] leading-tight" dir="auto">{row.name}</span>
+                    <span className={`block text-base ${look.sub}`} dir="auto">
+                      {t('topic_lessons', { n: row.doneCount, total: row.lessons.length })}
+                      <span className="sr-only">{row.state === 'done' ? `, ${t('topic_done_sr')}` : row.state === 'current' ? `, ${t('topic_here_sr')}` : ''}</span>
+                    </span>
                   </span>
+                  {row.state === 'done' && (
+                    <span className="w-8 h-8 shrink-0 rounded-full bg-gold grid place-items-center" aria-hidden="true">
+                      <Check className="w-4 h-4 text-navy" strokeWidth={3} />
+                    </span>
+                  )}
+                  <ChevronDown className={`w-5 h-5 shrink-0 transition-transform ${isOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
+                </span>
+                <span className={`block h-2 rounded-[4px] overflow-hidden ${look.bar}`} aria-hidden="true">
+                  <span className={`block h-full ${look.fill}`} style={{ width: `${pct}%` }} />
+                </span>
+              </button>
 
-                  <div className="min-w-0 flex-1 pb-6">
-                    <button
-                      type="button"
-                      onClick={() => toggle(row.name)}
-                      aria-expanded={isOpen}
-                      aria-controls={listId}
-                      className="w-full min-h-11 flex items-center gap-3 text-start rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
-                    >
-                      <span className="min-w-0 flex-1">
-                        <span className="block font-display text-[1.25rem] leading-tight">{row.name}</span>
-                        <span className="block text-sm text-muted">
-                          {row.doneCount} of {row.lessons.length} lessons
-                          <span className="sr-only">{row.state === 'done' ? ', done' : row.state === 'current' ? ", you're here" : ''}</span>
-                        </span>
-                      </span>
-                      <ChevronDown className={`w-5 h-5 shrink-0 text-muted transition-transform ${isOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
-                    </button>
-
-                    {/* You're here: the lesson nextLesson() picks */}
-                    {row.state === 'current' && next && (
-                      <Card padding="p-4" className="mt-3 flex items-center gap-4">
-                        <div className="min-w-0 flex-1">
-                          <Eyebrow>You&apos;re here</Eyebrow>
-                          <p className="mt-1 font-display text-[1.375rem] leading-tight">{next.lesson.title}</p>
-                          <p className="mt-1 text-sm text-muted">{NEXT_LABEL[next.reason]}</p>
-                        </div>
+              {isOpen && (
+                <ul id={listId} className="mt-2 rounded-card bg-white border border-line divide-y divide-line list-none m-0 p-0">
+                  {row.lessons.map((lesson) => {
+                    const lessonProgress = getLessonProgress(lesson.id);
+                    const isCompleted = !!lessonProgress?.completed;
+                    const status = lessonProgress?.needs_review ? t('status_review') : isCompleted ? t('status_done') : lessonProgress ? t('status_progress') : t('status_new');
+                    return (
+                      <li key={lesson.id}>
                         <button
                           type="button"
-                          onClick={() => setSelectedLesson(next.lesson)}
-                          aria-label={`${next.reason === 'start' ? 'Start' : 'Continue'}: ${next.lesson.title}`}
-                          className="w-14 h-14 shrink-0 rounded-full bg-navy text-white grid place-items-center hover:bg-navy-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2"
+                          onClick={() => setSelectedLesson(lesson)}
+                          className="w-full flex items-center gap-3 px-4 py-3 min-h-[60px] text-start hover:bg-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-navy"
                         >
-                          <ArrowRight className="w-6 h-6 rtl:rotate-180" aria-hidden="true" />
+                          <span className={`w-6 h-6 shrink-0 rounded-full grid place-items-center ${isCompleted ? 'bg-gold' : 'border-2 border-line'}`} aria-hidden="true">
+                            {isCompleted && <Check className="w-3.5 h-3.5 text-navy" strokeWidth={3} />}
+                          </span>
+                          <span className="min-w-0 flex-1">
+                            <span className="block text-base font-semibold leading-snug" dir="auto">{lesson.title}</span>
+                            <span className="flex items-center gap-2 text-base text-muted" dir="auto">
+                              {status}
+                              {lesson.video_url && <Video className="w-4 h-4" aria-label={t('has_video')} />}
+                            </span>
+                          </span>
                         </button>
-                      </Card>
-                    )}
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
+            </li>
+          );
+        })}
+      </ul>
 
-                    {/* The topic's lessons */}
-                    {isOpen && (
-                      <ul id={listId} className="mt-3 rounded-card bg-white border border-line divide-y divide-line">
-                        {row.lessons.map((lesson) => {
-                          const lessonProgress = getLessonProgress(lesson.id);
-                          const isCompleted = !!lessonProgress?.completed;
-                          const status = lessonProgress?.needs_review ? 'Go over again' : isCompleted ? 'Done' : lessonProgress ? 'In progress' : 'Not started';
-                          return (
-                            <li key={lesson.id}>
-                              <button
-                                type="button"
-                                onClick={() => setSelectedLesson(lesson)}
-                                className="w-full flex items-center gap-3 px-4 py-3 min-h-[60px] text-start hover:bg-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-navy"
-                              >
-                                <span className={`w-6 h-6 shrink-0 rounded-full grid place-items-center ${isCompleted ? 'bg-denim' : 'border-2 border-line'}`} aria-hidden="true">
-                                  {isCompleted && <Check className="w-3.5 h-3.5 text-white" strokeWidth={3} />}
-                                </span>
-                                <span className="min-w-0 flex-1">
-                                  <span className="block text-base font-semibold leading-snug">{lesson.title}</span>
-                                  <span className="flex items-center gap-2 text-sm text-muted">
-                                    {status}
-                                    {lesson.video_url && <Video className="w-4 h-4" aria-label="Has a video" />}
-                                  </span>
-                                </span>
-                              </button>
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    )}
-                  </div>
-                </li>
-              );
-            })}
-          </ol>
-
-          {lessons.length === 0 && (
-            <Card className="text-center py-12">
-              <div className="space-y-4">
-                <BookOpen className="w-16 h-16 text-line mx-auto" aria-hidden="true" />
-                <div>
-                  <h3 className="font-display text-[1.375rem] mb-2">No lessons yet</h3>
-                  <p className="text-base text-muted">Lessons are loading. Please check back shortly.</p>
-                </div>
-              </div>
-            </Card>
-          )}
-        </div>
-      </CreamSheet>
-    </div>
+      {lessons.length === 0 && (
+        <Card className="text-center py-12">
+          <div className="space-y-4">
+            <BookOpen className="w-16 h-16 text-line mx-auto" aria-hidden="true" />
+            <div>
+              <h2 className="font-display text-[1.375rem] mb-2" dir="auto">{t('no_lessons')}</h2>
+              <p className="text-base text-muted" dir="auto">{t('no_lessons_body')}</p>
+            </div>
+          </div>
+        </Card>
+      )}
+    </>
   );
 }

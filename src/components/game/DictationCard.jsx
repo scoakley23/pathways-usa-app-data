@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Check, Globe, Loader2, Volume2, X } from 'lucide-react';
 import { speakText } from "@/components/utils/textToSpeech";
-import { Button, Chip, CreamSheet, NavyTop, RuledPaper } from '@/components/pathways/ui';
+import { Button } from '@/components/pathways/ui';
+import RunScreen, { NavyChip } from '@/components/practice/RunScreen';
+import usePracticeText from '@/components/practice/usePracticeText';
 import AnswerFeedback from '@/components/practice/AnswerFeedback';
 import RunTopBar from '@/components/practice/RunTopBar';
 import WordByWord from '@/components/practice/WordByWord';
@@ -12,18 +14,17 @@ import { LANGUAGES } from '@/hooks/useLessonTranslation';
 import useAppLanguage from '@/hooks/useAppLanguage';
 import { PACK_ONLY, packText } from '@/lib/translationPack';
 
-// Listen and write (The Road; also the vocabulary Word dictation). On navy:
-// what to do and "Hear it" (and, after the check, "In my language" in the
-// app language). On the cream sheet: the learner types on ruled paper and
-// checks; then Correct / Not correct (AnswerFeedback), what they wrote and
-// the sentence word by word with missed words marked (WordByWord). The check
+// Listen and write (Amio v2; also the vocabulary Word dictation). A navy
+// screen with what to do and Hear it, and the learner's sentence in a white
+// box with Check; then a bottom panel (AnswerFeedback: Right! / Not quite)
+// with what they wrote, the sentence word by word with missed words marked
+// (WordByWord) and, after the check, In my language. The check
 // (checkDictation, on the device) and what is saved are unchanged. "Show the
 // sentence" is for learners who wrote on paper: they check themselves.
-// `testMode` (Interview Day): checked once, no translation, no "Show the
-// sentence". `onClose` adds the run's top bar; `embedded` = inside another
-// page's padding.
-export default function DictationCard({ sentence, onComplete, onNext, testMode = false, index = 0, total = 0, onClose = null, embedded = false }) {
+// `onClose` adds the run's top bar.
+export default function DictationCard({ sentence, onComplete, onNext, index = 0, total = 0, onClose = null }) {
   const [appLanguage] = useAppLanguage();
+  const { t } = usePracticeText();
   const [userInput, setUserInput] = useState('');
   const [isPlaying, setIsPlaying] = useState(false);
   const [feedback, setFeedback] = useState(null); // null, correct, incorrect, manual, manual-done
@@ -31,7 +32,7 @@ export default function DictationCard({ sentence, onComplete, onNext, testMode =
   const [translation, setTranslation] = useState('');
   const [isTranslating, setIsTranslating] = useState(false);
 
-  const myLanguage = !testMode && appLanguage && appLanguage !== 'en'
+  const myLanguage = appLanguage && appLanguage !== 'en'
     ? LANGUAGES.find((l) => l.value === appLanguage)
     : null;
 
@@ -56,7 +57,7 @@ export default function DictationCard({ sentence, onComplete, onNext, testMode =
       // text, and never when PACK_ONLY (the switch on).
       const packed = await packText(myLanguage.value, sentence.text);
       if (packed || PACK_ONLY) {
-        setTranslation(packed || 'Translation unavailable');
+        setTranslation(packed || t('translation_unavailable'));
         return;
       }
       const prompt = `Translate the following text (which could be a word or a sentence) into ${myLanguage.label}: "${sentence.text}". Return ONLY the translated text, nothing else.`;
@@ -64,7 +65,7 @@ export default function DictationCard({ sentence, onComplete, onNext, testMode =
       setTranslation(res);
     } catch (error) {
       console.error("Translation error", error);
-      setTranslation("Translation unavailable");
+      setTranslation(t('translation_unavailable'));
     } finally {
       setIsTranslating(false);
     }
@@ -92,112 +93,92 @@ export default function DictationCard({ sentence, onComplete, onNext, testMode =
 
   const done = !!feedback;
   const words = feedback === 'incorrect' ? checkDictation(sentence.text, userInput).words : null;
-  const label = testMode ? 'Writing test' : 'Writing · Listen and write';
   const nextButton = (
-    <Button variant="next" className="w-full min-h-[52px]" onClick={onNext}>
-      Next sentence <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" />
+    <Button variant="main" className="w-full" onClick={onNext}>
+      {t('next_sentence')} <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" />
     </Button>
   );
   const translationLine = showTranslation && myLanguage && (
     isTranslating
-      ? <p className="flex items-center gap-2 text-base text-muted"><Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> Translating…</p>
+      ? <p className="flex items-center gap-2 text-base text-muted"><Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> {t('translating')}</p>
       : translation && <p lang={myLanguage.value} dir="auto" className="text-base text-muted">{translation}</p>
   );
 
+  const panel = (feedback === 'correct' || feedback === 'incorrect') ? (
+    <AnswerFeedback
+      status={feedback === 'correct' ? 'correct' : 'not-correct'}
+      sub={feedback === 'correct' ? t('every_word') : t('check_marked')}
+      youSaid={userInput}
+      youSaidLabel={t('you_wrote')}
+      accepted={[sentence.text]}
+      acceptedLabel={t('the_sentence')}
+      onHearAnswer={speak}
+    >
+      {words && (
+        <div className="rounded-card bg-white border border-line p-4">
+          <p className="text-small font-semibold text-muted mb-1">{t('word_by_word')}</p>
+          <WordByWord words={words} legend={t('words_to_check')} missedLabel={t('missed_sr')} />
+        </div>
+      )}
+      {myLanguage && (
+        <Button variant="link" className="self-start px-0" aria-pressed={showTranslation} onClick={() => setShowTranslation((v) => !v)}>
+          <Globe className="w-5 h-5" aria-hidden="true" /> {t('in_my_language')}
+        </Button>
+      )}
+      {translationLine}
+      {nextButton}
+    </AnswerFeedback>
+  ) : (feedback === 'manual' || feedback === 'manual-done') ? (
+    <AnswerFeedback
+      status="neutral"
+      title={t('check_page')}
+      sub={feedback === 'manual' ? t('wrote_right_q') : null}
+      accepted={[sentence.text]}
+      acceptedLabel={t('the_sentence')}
+      onHearAnswer={speak}
+    >
+      {translationLine}
+      {feedback === 'manual' ? (
+        <div className="grid grid-cols-2 gap-3">
+          <Button variant="main" className="px-3" onClick={() => selfCheck(true)}><Check className="w-5 h-5" aria-hidden="true" /> {t('yes_matches')}</Button>
+          <Button variant="second" onClick={() => selfCheck(false)}><X className="w-5 h-5" aria-hidden="true" /> {t('no_mistake')}</Button>
+        </div>
+      ) : nextButton}
+    </AnswerFeedback>
+  ) : null;
+
   return (
-    <div className={embedded ? 'w-full max-w-2xl mx-auto' : ''}>
-      {/* NAVY TOP: what to do, and the sentence to hear */}
-      <NavyTop className={`pb-12 ${embedded ? 'rounded-card' : ''}`}>
-        <div className="mx-auto max-w-2xl space-y-4">
-          {onClose && <RunTopBar onClose={onClose} index={index} total={total} answered={done} />}
-          <p className="text-label text-on-navy">{label}</p>
-          <h2 className="font-display text-[2.375rem] sm:text-[2.5rem] leading-[1.1]">
-            {testMode ? 'Listen, then type what you hear.' : 'Listen, then write what you hear.'}
-          </h2>
-          <div className="flex flex-wrap gap-2">
-            <Chip onNavy onClick={speak} className={isPlaying ? 'bg-chip-navy' : ''}>
-              <Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" /> Hear it
-            </Chip>
-            {done && myLanguage && (
-              <Chip onNavy onClick={() => setShowTranslation((v) => !v)} aria-pressed={showTranslation}>
-                <Globe className="w-5 h-5 shrink-0" aria-hidden="true" /> In my language
-              </Chip>
-            )}
-          </div>
-        </div>
-      </NavyTop>
-
-      {/* CREAM SHEET: the learner's page, then the result */}
-      <CreamSheet className={embedded ? 'rounded-b-card' : 'min-h-[50vh]'}>
-        <div className="mx-auto max-w-2xl space-y-5 pb-6">
-          {!done && (
-            <>
-              <RuledPaper>
-                <label htmlFor="dictation-input" className="block text-[0.8125rem] font-semibold leading-[2.25rem] text-muted">
-                  {testMode ? 'Type the sentence' : 'Your sentence'}
-                </label>
-                <textarea
-                  id="dictation-input"
-                  value={userInput}
-                  onChange={(e) => setUserInput(e.target.value)}
-                  placeholder="Type the sentence here…"
-                  rows={2}
-                  className="block w-full resize-none bg-transparent text-[1.375rem] leading-[2.25rem] text-navy placeholder:text-muted focus:outline-none"
-                  onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); if (userInput.trim()) checkAnswer(); } }}
-                />
-              </RuledPaper>
-              <Button variant="main" className="w-full min-h-[60px]" onClick={checkAnswer} disabled={!userInput.trim()}>
-                <Check className="w-6 h-6" aria-hidden="true" /> Check
-              </Button>
-              {!testMode && (
-                <Button variant="link" className="px-0" onClick={() => setFeedback('manual')}>
-                  Wrote it on paper? Show the sentence
-                </Button>
-              )}
-            </>
-          )}
-
-          {(feedback === 'correct' || feedback === 'incorrect') && (
-            <AnswerFeedback
-              status={feedback === 'correct' ? 'correct' : 'not-correct'}
-              sub={feedback === 'correct' ? 'Every word matches.' : 'Not yet, but you’re close. Check the marked words.'}
-              youSaid={userInput}
-              youSaidLabel="You wrote"
-              accepted={[sentence.text]}
-              acceptedLabel="The sentence"
-              onHearAnswer={speak}
-            >
-              {words && (
-                <RuledPaper>
-                  <p className="text-[0.8125rem] font-semibold leading-[2.25rem] text-muted">The sentence, word by word</p>
-                  <WordByWord words={words} legend="Words to check" />
-                </RuledPaper>
-              )}
-              {translationLine}
-              {nextButton}
-            </AnswerFeedback>
-          )}
-
-          {(feedback === 'manual' || feedback === 'manual-done') && (
-            <AnswerFeedback
-              status="neutral"
-              title="Check your page"
-              sub={feedback === 'manual' ? 'Did you write it correctly?' : null}
-              accepted={[sentence.text]}
-              acceptedLabel="The sentence"
-              onHearAnswer={speak}
-            >
-              {translationLine}
-              {feedback === 'manual' ? (
-                <div className="grid grid-cols-2 gap-3">
-                  <Button variant="next" className="min-h-[52px]" onClick={() => selfCheck(true)}><Check className="w-5 h-5" aria-hidden="true" /> Yes, it matches</Button>
-                  <Button variant="second" className="min-h-[52px]" onClick={() => selfCheck(false)}><X className="w-5 h-5" aria-hidden="true" /> No, I made a mistake</Button>
-                </div>
-              ) : nextButton}
-            </AnswerFeedback>
-          )}
-        </div>
-      </CreamSheet>
-    </div>
+    <RunScreen
+      topBar={onClose && <RunTopBar onClose={onClose} index={index} total={total} answered={done} />}
+      label={t('writing_label')}
+      panel={panel}
+    >
+      <h2 className="font-display text-[2.25rem] leading-[1.1]" dir="auto">{t('listen_write')}</h2>
+      <div>
+        <NavyChip onClick={speak} pressed={isPlaying}>
+          <Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" /> {t('hear_it')}
+        </NavyChip>
+      </div>
+      {!done && (
+        <form className="flex flex-col gap-3 pt-2" onSubmit={(e) => { e.preventDefault(); if (userInput.trim()) checkAnswer(); }}>
+          <label htmlFor="dictation-input" className="text-base font-semibold" dir="auto">{t('your_sentence')}</label>
+          <textarea
+            id="dictation-input"
+            value={userInput}
+            onChange={(e) => setUserInput(e.target.value)}
+            placeholder={t('type_here')}
+            rows={2}
+            lang="en"
+            dir="ltr"
+            className="block w-full resize-none rounded-button border border-line bg-white px-4 py-3 text-[1.375rem] leading-snug text-navy placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-white"
+            onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); if (userInput.trim()) checkAnswer(); } }}
+          />
+          <Button variant="main" onNavy type="submit" className="w-full" disabled={!userInput.trim()}>
+            <Check className="w-6 h-6" aria-hidden="true" /> {t('check')}
+          </Button>
+          <Button variant="link" onNavy className="self-start px-0" onClick={() => setFeedback('manual')}>{t('on_paper')}</Button>
+        </form>
+      )}
+    </RunScreen>
   );
 }

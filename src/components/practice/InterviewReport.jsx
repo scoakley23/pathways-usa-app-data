@@ -5,33 +5,32 @@ import { interviewSessions as interviewSessionsApi } from '@/api/interview';
 import { progress as progressApi } from '@/api/progress';
 import { content } from '@/api/content';
 import { auth } from '@/api/auth';
-import NavyBanner from '@/components/pathways/NavyBanner';
-import { Button, Card, Eyebrow } from '@/components/pathways/ui';
+import { Button, Card } from '@/components/pathways/ui';
+import usePracticeText from '@/components/practice/usePracticeText';
 import { Amio } from '@/components/pathways/Amio';
-import { LEVELS } from '@/lib/pretest';
-import { INTERVIEW_PARTS, isBestSoFar, reportParts, workOnNext } from '@/lib/interviewReadiness';
+import { isBestSoFar, reportParts, workOnNext } from '@/lib/interviewReadiness';
 
-// The practice interview report (frame R30Report): the score ("n/12", "Your
+// The practice interview report (Amio v2: on paper, a Back button and the
+// title, then the score ("n/12", "Your
 // best so far"), one row per part of this interview, then Reading, Writing
 // and Civics from the learner's other practice (labeled so; this interview
 // doesn't test them), "Work on next", and "Only your scores are saved".
 // The question-by-question detail (kept in memory only) is folded below.
 // Saving happens in InterviewPractice, as before; this screen saves nothing.
+// Wording in practiceStrings.js (usePracticeText).
 
-const LEVEL_WORDS = Object.fromEntries(Object.entries(LEVELS).map(([k, v]) => [k, v.label]));
-
-function Status({ ready, text }) {
+function Status({ ready, text, readyLabel }) {
   return ready
-    ? <span className="inline-flex items-center gap-1 font-bold text-correct">Ready <Check className="w-5 h-5" strokeWidth={3} aria-hidden="true" /></span>
-    : <span className="font-bold text-not-yet">{text}</span>;
+    ? <span className="inline-flex items-center gap-1 font-bold text-correct" dir="auto">{readyLabel} <Check className="w-5 h-5" strokeWidth={3} aria-hidden="true" /></span>
+    : <span className="font-bold text-not-yet" dir="auto">{text}</span>;
 }
 
 function Row({ label, sub, children }) {
   return (
     <div className="flex items-center justify-between gap-3 py-3 border-b border-line last:border-b-0 min-h-tap">
       <div className="min-w-0">
-        <p className="text-base text-navy">{label}</p>
-        {sub && <p className="text-small text-muted">{sub}</p>}
+        <p className="text-base text-navy" dir="auto">{label}</p>
+        {sub && <p className="text-small text-muted" dir="auto">{sub}</p>}
       </div>
       <div className="shrink-0 text-base">{children}</div>
     </div>
@@ -39,6 +38,7 @@ function Row({ label, sub, children }) {
 }
 
 export default function InterviewReport({ results, onRestart, onClose, onBack }) {
+  const { t, rtl } = usePracticeText();
   const [expandedIdx, setExpandedIdx] = useState(null);
   const [other, setOther] = useState(null); // { levels, civicsMastered, civicsTotal, sessions }
 
@@ -73,68 +73,71 @@ export default function InterviewReport({ results, onRestart, onClose, onBack })
   }, []);
 
   const best = other && isBestSoFar(passed, total, other.sessions);
-  const levelText = (part) => (other?.levels?.[part] ? LEVEL_WORDS[other.levels[part]] : 'Not checked yet');
-  const fromPractice = 'From your practice, not this interview';
+  const levelText = (part) => (other?.levels?.[part] ? t(`level_${other.levels[part]}`) : t('not_checked'));
+  const fromPractice = t('from_practice');
+  const partLabel = (id) => t(`ipart_${id}`);
   const leave = onBack || onClose;
 
   return (
-    <div className="min-h-screen bg-paper text-navy">
-      <NavyBanner
-        title="Practice interview report"
-        subtitle="Today"
-        left={leave && (
-          <button type="button" onClick={leave} aria-label="Back" className="w-11 h-11 grid place-items-center rounded-full text-white hover:bg-chip-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
-            <ArrowLeft className="w-6 h-6 rtl:rotate-180" aria-hidden="true" />
-          </button>
-        )}
-      />
+    <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-screen bg-paper text-navy">
+      <div className="max-w-lg mx-auto px-4 pt-4 pb-8 space-y-4">
+        <div className="flex items-start gap-2">
+          {leave && (
+            <button type="button" onClick={leave} aria-label={t('back')} className="w-11 h-11 shrink-0 -ms-2 grid place-items-center rounded-full text-navy hover:bg-line-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim">
+              <ArrowLeft className="w-6 h-6 rtl:rotate-180" aria-hidden="true" />
+            </button>
+          )}
+          <div className="min-w-0 pt-1">
+            <h1 className="font-display text-[1.75rem] leading-tight" dir="auto">{t('report_title')}</h1>
+            <p className="text-base text-muted" dir="auto">{t('report_today')}</p>
+          </div>
+        </div>
 
-      <div className="max-w-lg mx-auto px-4 py-5 space-y-4">
         <Card className="flex items-center justify-between gap-3">
           <div>
             <p className="font-extrabold leading-none tabular-nums">
               <span className="text-[3.5rem]">{passed}</span><span className="text-[1.75rem] text-muted">/{total}</span>
             </p>
-            {best && <p className="mt-2 text-base font-semibold text-correct">Your best so far</p>}
-            <span className="sr-only">{passed} of {total} answers passed.</span>
+            {best && <p className="mt-2 text-base font-semibold text-correct" dir="auto">{t('best_so_far')}</p>}
+            <span className="sr-only">{t('passed_of', { n: passed, total })}</span>
           </div>
           <Amio mood={passed >= total * 0.7 ? 'proud' : 'kind'} size={88} />
         </Card>
 
         <Card padding="px-5 py-1">
           {parts.map((p) => (
-            <Row key={p.id} label={p.label}>
-              <Status ready={p.ready} text={`${p.passed} of ${p.total}`} />
+            <Row key={p.id} label={partLabel(p.id)}>
+              <Status ready={p.ready} readyLabel={t('status_ready')} text={t('n_of_right', { n: p.passed, total: p.total })} />
             </Row>
           ))}
-          <Row label="Reading" sub={fromPractice}>
-            <Status ready={other?.levels?.reading === 'strong'} text={levelText('reading')} />
+          <Row label={t('part_reading')} sub={fromPractice}>
+            <Status ready={other?.levels?.reading === 'strong'} readyLabel={t('status_ready')} text={levelText('reading')} />
           </Row>
-          <Row label="Writing" sub={fromPractice}>
-            <Status ready={other?.levels?.writing === 'strong'} text={levelText('writing')} />
+          <Row label={t('part_writing')} sub={fromPractice}>
+            <Status ready={other?.levels?.writing === 'strong'} readyLabel={t('status_ready')} text={levelText('writing')} />
           </Row>
-          <Row label="Civics" sub={`${fromPractice} · answers ready`}>
-            <span className="font-bold text-navy tabular-nums">{other ? `${other.civicsMastered} of ${other.civicsTotal}` : '–'}</span>
+          <Row label={t('part_civics')} sub={`${fromPractice} · ${t('answers_ready')}`}>
+            <span className="font-bold text-navy tabular-nums">{other ? t('n_of', { n: other.civicsMastered, total: other.civicsTotal }) : '–'}</span>
           </Row>
         </Card>
 
         {next && (
           <Card>
-            <Eyebrow>Work on next</Eyebrow>
-            <p className="mt-2 text-base leading-relaxed"><strong>{next.label}.</strong> {next.tip}</p>
-            <Link to={next.link} className="mt-2 inline-flex min-h-tap items-center text-base font-semibold text-denim underline underline-offset-4">
-              {next.linkLabel}
+            <h2 className="text-lg font-bold" dir="auto">{t('work_on')}</h2>
+            <p className="mt-2 text-base leading-relaxed" dir="auto"><strong>{partLabel(next.id)}.</strong> {t(`work_${next.id}`)}</p>
+            <Link to={next.link} className="mt-2 inline-flex min-h-tap items-center text-base font-semibold text-denim underline underline-offset-4" dir="auto">
+              {t(`work_${next.id}_link`)}
             </Link>
           </Card>
         )}
 
-        <p className="text-small text-muted text-center">Only your scores are saved. Nothing you said is kept.</p>
+        <p className="text-small text-muted text-center" dir="auto">{t('scores_only')}</p>
 
         <details className="rounded-card bg-white border border-line">
-          <summary className="min-h-[52px] px-5 flex items-center cursor-pointer text-base font-semibold">Question by question</summary>
+          <summary className="min-h-[52px] px-5 flex items-center cursor-pointer text-base font-semibold" dir="auto">{t('q_by_q')}</summary>
           <div className="px-3 pb-3 space-y-2">
             {results.map((r, i) => (
-              <div key={i} className="rounded-2xl border border-line overflow-hidden">
+              <div key={i} className="rounded-card border border-line overflow-hidden">
                 <button
                   type="button"
                   onClick={() => setExpandedIdx(expandedIdx === i ? null : i)}
@@ -142,20 +145,20 @@ export default function InterviewReport({ results, onRestart, onClose, onBack })
                   className="w-full min-h-[56px] flex items-center gap-3 p-3 bg-white hover:bg-tint text-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-denim"
                 >
                   {r.is_acceptable
-                    ? <CheckCircle className="w-6 h-6 shrink-0 text-correct" aria-label="Passed" />
-                    : <XCircle className="w-6 h-6 shrink-0 text-not-yet" aria-label="Not yet" />}
+                    ? <CheckCircle className="w-6 h-6 shrink-0 text-correct" aria-label={t('passed')} />
+                    : <XCircle className="w-6 h-6 shrink-0 text-not-yet" aria-label={t('not_yet')} />}
                   <div className="flex-1 min-w-0">
-                    <p className="text-small font-semibold text-muted">{INTERVIEW_PARTS.find((p) => p.id === r.section)?.label || r.section}</p>
-                    <p className="font-semibold">{r.question}</p>
+                    <p className="text-small font-semibold text-muted">{partLabel(r.section)}</p>
+                    <p className="font-semibold" lang="en" dir="ltr">{r.question}</p>
                   </div>
                   <span className="text-base font-bold tabular-nums">{r.overall_score}</span>
                   {expandedIdx === i ? <ChevronUp className="w-5 h-5 text-muted" aria-hidden="true" /> : <ChevronDown className="w-5 h-5 text-muted" aria-hidden="true" />}
                 </button>
                 {expandedIdx === i && (
                   <div className="bg-tint p-4 space-y-3 text-base">
-                    {r.section !== 'civics' && <p className="text-small text-muted">Content {r.content_score} · Grammar {r.grammar_score} · Fluency {r.fluency_score}</p>}
-                    {r.response !== '(skipped)' && <p><span className="font-semibold">You said:</span> “{r.response}”</p>}
-                    {r.corrected_version && <p><span className="font-semibold">{r.section === 'civics' ? 'The officer accepts:' : r.understanding ? 'What the question is asking:' : 'A better way to say it:'}</span> “{r.corrected_version}”</p>}
+                    {r.section !== 'civics' && <p className="text-small text-muted" dir="auto">{t('scores_line', { c: r.content_score, g: r.grammar_score, f: r.fluency_score })}</p>}
+                    {r.response !== '(skipped)' && <p><span className="font-semibold" dir="auto">{t('you_said')}:</span> <span lang="en" dir="ltr">“{r.response}”</span></p>}
+                    {r.corrected_version && <p><span className="font-semibold" dir="auto">{r.section === 'civics' ? t('accepts') : r.understanding ? t('what_asking') : t('better_way')}:</span> <span lang="en" dir="ltr">“{r.corrected_version}”</span></p>}
                     {r.content_feedback && <p>{r.content_feedback}</p>}
                     {r.grammar_feedback && <p>{r.grammar_feedback}</p>}
                     {r.improvement_tips && <p>{r.improvement_tips}</p>}
@@ -166,8 +169,8 @@ export default function InterviewReport({ results, onRestart, onClose, onBack })
           </div>
         </details>
 
-        <Button variant="main" className="w-full" onClick={leave || onRestart}>Done</Button>
-        {onRestart && <Button variant="second" className="w-full" onClick={onRestart}>Practice again</Button>}
+        <Button variant="main" className="w-full" onClick={leave || onRestart}>{t('done')}</Button>
+        {onRestart && <Button variant="second" className="w-full" onClick={onRestart}>{t('practice_again')}</Button>}
       </div>
     </div>
   );

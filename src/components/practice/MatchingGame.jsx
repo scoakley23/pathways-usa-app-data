@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { X } from 'lucide-react';
-import { CreamSheet, NavyTop } from '@/components/pathways/ui';
+import { Check, X } from 'lucide-react';
 import RunTopBar from './RunTopBar';
+import RunScreen from './RunScreen';
+import usePracticeText from './usePracticeText';
 
-// Match each word to its definition (The Road): the task and "n of m
-// matched" on navy (with the run's close button when `onClose` is given),
-// white cards on the cream sheet. A matched pair gets a navy MATCHED stamp;
+// Match each word to its definition (Amio v2): a navy screen with the task,
+// "n of m matched" (and the run's close button when `onClose` is given) and
+// white cards; a matched pair turns navy-2 with a check and "Matched";
 // when all pairs are matched the run ends on Round complete
 // (`onComplete(pairs)`, nothing is saved).
 export default function MatchingGame({ words, onComplete, onClose = null }) {
+  const { t } = usePracticeText();
   const [items, setItems] = useState([]);
   const [selectedIds, setSelectedIds] = useState([]);
   const [matchedIds, setMatchedIds] = useState([]);
@@ -84,65 +86,52 @@ export default function MatchingGame({ words, onComplete, onClose = null }) {
     && items.find(i => i.id === selectedIds[0])?.pairId !== items.find(i => i.id === selectedIds[1])?.pairId;
 
   return (
-    <div>
-      <NavyTop className="pb-12">
-        <div className="mx-auto max-w-4xl space-y-3">
-          {onClose && <RunTopBar onClose={onClose} />}
-          <p className="text-label text-on-navy">Matching · Words and meanings</p>
-          <h2 className="font-display text-[1.875rem] sm:text-[2.125rem] leading-[1.1]">Match each word to what it means.</h2>
-          <p className="text-base text-on-navy" aria-live="polite">
-            <span className="font-display text-2xl text-white">{matchedPairs}</span> of{' '}
-            <span className="font-display text-2xl text-white">{pairs}</span> matched
-          </p>
-        </div>
-      </NavyTop>
-      <CreamSheet className="min-h-[50vh]">
-      <div className="mx-auto max-w-4xl pb-6 text-navy">
-        <p className="min-h-[28px] text-base font-semibold text-not-yet" aria-live="polite">
-          {missed && <><X className="inline w-4 h-4 -mt-0.5 me-1" strokeWidth={3} aria-hidden="true" />Not a pair. Try again.</>}
-        </p>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-          {items.map((item) => {
-            const isSelected = selectedIds.includes(item.id);
-            const isMatched = matchedIds.includes(item.id);
-            const isError = isSelected && missed;
+    <RunScreen topBar={onClose && <RunTopBar onClose={onClose} />} label={t('match_label')}>
+      <h2 className="font-display text-[1.875rem] leading-[1.1]" dir="auto">{t('match_task')}</h2>
+      <p className="text-base text-on-navy" aria-live="polite" dir="auto">{t('matched_count', { n: matchedPairs, total: pairs })}</p>
+      <p className="min-h-[1.75rem] text-base font-semibold text-white" aria-live="polite" dir="auto">
+        {missed && <><X className="inline w-4 h-4 -mt-0.5 me-1" strokeWidth={3} aria-hidden="true" />{t('not_a_pair')}</>}
+      </p>
+      <div className="grid grid-cols-2 gap-3">
+        {items.map((item) => {
+          const isSelected = selectedIds.includes(item.id);
+          const isMatched = matchedIds.includes(item.id);
+          const isError = isSelected && missed;
 
-            return (
-              <motion.button
-                type="button"
-                key={item.id}
-                layout
-                initial={{ scale: 0.95, opacity: 0 }}
-                animate={isError ? { x: [0, -6, 6, -4, 4, 0], opacity: 1, scale: 1 } : { scale: 1, opacity: 1, x: 0 }}
-                transition={{ duration: isError ? 0.4 : 0.2 }}
-                whileTap={!isMatched && !isChecking ? { scale: 0.97 } : {}}
-                onClick={() => handleCardClick(item)}
-                disabled={isMatched}
-                aria-pressed={isSelected}
-                aria-label={isMatched ? `${item.content} (matched)` : item.content}
-                className={`relative min-h-[128px] overflow-hidden rounded-card border bg-white p-3 text-center flex items-center justify-center transition-[box-shadow,border-color,background-color] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2 focus-visible:ring-offset-paper
-                  ${isMatched
-                    ? 'border-line bg-paper pt-9 shadow-none cursor-default'
-                    : isError
-                      ? 'border-not-yet ring-2 ring-not-yet shadow-raised'
-                      : isSelected
-                        ? 'border-navy ring-2 ring-navy shadow-lift'
-                        : 'border-line shadow-raised hover:border-navy'}`}
-              >
-                {isMatched && (
-                  <span className="pointer-events-none absolute end-2 top-2 -rotate-[8deg] rounded-md border-2 border-navy px-1.5 text-xs font-bold text-navy" aria-hidden="true">
-                    Matched
-                  </span>
-                )}
-                <span className={`leading-snug ${item.type === 'word' ? 'font-display text-2xl' : 'text-base font-medium'} ${isMatched ? 'text-muted' : 'text-navy'}`}>
-                  {item.content}
+          return (
+            <motion.button
+              type="button"
+              key={item.id}
+              layout
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={isError ? { x: [0, -6, 6, -4, 4, 0], opacity: 1, scale: 1 } : { scale: 1, opacity: 1, x: 0 }}
+              transition={{ duration: isError ? 0.4 : 0.2 }}
+              whileTap={!isMatched && !isChecking ? { scale: 0.97 } : {}}
+              onClick={() => handleCardClick(item)}
+              disabled={isMatched}
+              aria-pressed={isSelected}
+              aria-label={isMatched ? `${item.content} (${t('matched')})` : item.content}
+              className={`relative min-h-[8rem] overflow-hidden rounded-card border-[2.5px] p-3 text-center flex items-center justify-center text-navy transition-[border-color,background-color] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-navy
+                ${isMatched
+                  ? 'bg-navy-2 border-navy-2 text-white pt-9 cursor-default'
+                  : isError
+                    ? 'bg-white border-not-yet'
+                    : isSelected
+                      ? 'bg-sky border-white'
+                      : 'bg-white border-white hover:border-gold'}`}
+            >
+              {isMatched && (
+                <span className="pointer-events-none absolute start-2 top-2 inline-flex items-center gap-1 text-small font-bold text-gold" aria-hidden="true">
+                  <Check className="w-4 h-4" strokeWidth={3} /> {t('matched')}
                 </span>
-              </motion.button>
-            );
-          })}
-        </div>
+              )}
+              <span className={`leading-snug ${item.type === 'word' ? 'font-display text-2xl' : 'text-base font-medium'}`} lang="en" dir="ltr">
+                {item.content}
+              </span>
+            </motion.button>
+          );
+        })}
       </div>
-      </CreamSheet>
-    </div>
+    </RunScreen>
   );
 }
