@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { auth } from '@/api/auth';
 import { Amio } from '@/components/pathways/Amio';
 import { Button, MAIN_PRESS } from '@/components/pathways/ui';
 import { rememberProgramCode } from '@/lib/programLink';
 import useOnboardingText from '@/components/onboarding/useOnboardingText';
+import { Globe } from 'lucide-react';
+import useAppLanguage from '@/hooks/useAppLanguage';
+import { hasPickedLanguage, languageFromPhone, phoneLanguages } from '@/lib/welcomeLanguage';
+import WelcomeLanguageSheet from '@/components/onboarding/WelcomeLanguageSheet';
 
 // Welcome (Amio v2, frame OnboardWelcome): what signed-out visitors see on
 // Home. "Hi, I'm Amio." with hellos in a few languages, Start (signs them in,
@@ -24,7 +28,16 @@ const HELLOS = [
 const NEXT = '/quick-check';
 
 export default function WelcomeScreen() {
+  const [language, setLanguage] = useAppLanguage();
   const { t, rtl } = useOnboardingText();
+  const [langOpen, setLangOpen] = useState(false);
+  // First visit on this device: follow the phone's language when the app has
+  // a pack for it (else English). A language picked before always wins.
+  useEffect(() => {
+    if (hasPickedLanguage()) return;
+    const lang = languageFromPhone(phoneLanguages());
+    if (lang !== 'en') setLanguage(lang);
+  }, [setLanguage]);
   const [codeOpen, setCodeOpen] = useState(false);
   const [code, setCode] = useState('');
   const [bad, setBad] = useState(false);
@@ -82,8 +95,14 @@ export default function WelcomeScreen() {
             <Button variant="link" type="button" className="self-center" onClick={() => { setCodeOpen(false); setBad(false); }}>{t('cancel')}</Button>
           </form>
         )}
+        {/* A small plain link to change the language, in that language and in English. */}
+        <button type="button" onClick={() => setLangOpen(true)} className="self-center min-h-tap inline-flex items-center gap-1.5 px-2 text-[0.9375rem] text-on-navy underline underline-offset-4 decoration-on-navy/50 hover:text-white rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+          <Globe className="w-4 h-4" aria-hidden="true" />
+          <span dir="auto">{language === 'en' ? 'Language' : `${t('language_link')} · Language`}</span>
+        </button>
         <p className="mt-2 text-center text-small text-on-navy">{t('public_line')}</p>
       </div>
+      <WelcomeLanguageSheet open={langOpen} onOpenChange={setLangOpen} language={language} onPick={setLanguage} t={t} rtl={rtl} />
     </section>
   );
 }

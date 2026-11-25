@@ -3,7 +3,9 @@
 
 :root {
   /* color */
-  --amio-red: #F0503C;      /* Amio ONLY: the character and its speech-bubble outline. Never errors, never text. */
+  /* Red means Amio or a celebration. Never a button, tab, border, tag, warning or wrong answer. */
+  --amio-red: #F0503C;      /* Amio, its speech-bubble outline, and celebrations (confetti, a headline's full stop, today's done square, Me milestones). Never errors, never text. */
+  --amio-tint: #FFE9E4;     /* Amio's speech-bubble fill (navy text) */
   --navy: #1E2B45;          /* main text, dark blocks, main buttons, speaking screens */
   --navy-deep: #0B1222;     /* button outline and the 5px "lip" under pressable buttons */
   --navy-2: #2A3A5C;        /* "You said" box on navy */

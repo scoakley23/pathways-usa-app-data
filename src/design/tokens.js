@@ -26,6 +26,8 @@ export const COLORS = {
   white: '#FFFFFF', // cards (tokens.css: --card)
   // Amio's cheeks in the "proud" mood (docs/design-v2/amio/Amio.tsx). Amio only.
   'amio-blush': '#FFB3A6',
+  // Amio's speech bubble (Amio v2 red accents): navy text on it.
+  'amio-tint': '#FFE9E4',
 
   // Older names, kept until the screens that use them are redone.
   red: '#F0503C', // = amio-red. The non-Amio uses are listed in the amio-v2/base PR; later prompts remove them
@@ -148,6 +150,7 @@ export const TEXT_PAIRS = [
   ['muted', 'tint'],
   ['denim', 'tint'],
   ['navy', 'sky'],
+  ['navy', 'amio-tint'],
   ['navy', 'gold-soft'],
   ['navy', 'sky-soft'],
   ['navy', 'denim-soft'],

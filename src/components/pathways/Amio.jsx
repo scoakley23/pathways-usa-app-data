@@ -40,6 +40,7 @@ const GOLD = COLORS.gold;
 const SKY = COLORS.sky;
 const WHITE = COLORS.white;
 const BLUSH = COLORS.amioBlush;
+const TINT = COLORS.amioTint;
 
 const BODY =
   'M60 14 C90 12 108 32 106 58 C104 82 86 98 62 98 C56 98 52 97 48 96 L22 112 L32 88 C18 80 12 66 14 52 C16 30 36 16 60 14Z';
@@ -160,7 +161,7 @@ export function AmioSays({ mood = 'hello', size = 64, lang, onNavy = false, titl
         <svg width="100%" height="100%" viewBox="0 0 300 100" preserveAspectRatio="none"
           className="absolute inset-0 rtl:-scale-x-100" aria-hidden="true" focusable="false">
           <path d="M16 6 C80 2 200 4 292 8 C297 34 296 66 291 94 C200 98 100 97 18 93 C15 80 13 66 14 56 L2 46 L15 38 C14 26 14 16 16 6Z"
-            fill={WHITE} stroke={RED} strokeWidth={2.5} vectorEffect="non-scaling-stroke" strokeLinejoin="round" />
+            fill={TINT} stroke={RED} strokeWidth={2.5} vectorEffect="non-scaling-stroke" strokeLinejoin="round" />
         </svg>
         <p dir="auto" className="relative m-0 ps-6 pe-4 py-3 text-base font-semibold leading-snug">{children}</p>
       </div>

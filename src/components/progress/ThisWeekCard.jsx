@@ -9,6 +9,8 @@ import { Card } from '@/components/pathways/ui';
 import { dayIndex } from '@/lib/studyPlan';
 import { loadPlanSettings } from '@/lib/planSettings';
 import { practiceDaysThisWeek, weekCircles, weeksToInterview } from '@/lib/todayView';
+import useToday from '@/components/today/useToday';
+import { goalMet } from '@/lib/todayView';
 
 // On Progress (The Road): two number cards (2025 civics questions ready,
 // days practiced this week), the week strip (seven circles: navy =
@@ -16,6 +18,9 @@ import { practiceDaysThisWeek, weekCircles, weeksToInterview } from '@/lib/today
 // interview month (only when one is set on this device). Reads saved
 // progress dates only; nothing new is stored.
 export default function ThisWeekCard({ language = 'en' }) {
+  // Today's goal met → today's circle is Amio red (a celebration).
+  const day = useToday();
+  const met = goalMet(day.goal, day.doneToday);
   const today = useMemo(() => new Date(), []);
   const { t } = useTodayText(language);
   const [data, setData] = useState(null);
@@ -82,7 +87,7 @@ export default function ThisWeekCard({ language = 'en' }) {
         </Card>
       </div>
 
-      {/* The week strip: navy = practiced, gold = today, dashed = future */}
+      {/* The week strip: navy = practiced, gold = today (Amio red once today's goal is met), dashed = future */}
       <Card padding="p-4">
         <ol className="grid grid-cols-7 gap-1.5" aria-label={t(daysCount === 0 ? 'days_week_none' : daysCount === 1 ? 'days_week_one' : 'days_week', { n: daysCount })}>
           {circles.map((c, k) => (
@@ -90,7 +95,7 @@ export default function ThisWeekCard({ language = 'en' }) {
               <span
                 aria-hidden="true"
                 className={`block w-8 h-8 rounded-full ${
-                  c.state === 'today' ? 'bg-gold border-2 border-navy'
+                  c.state === 'today' ? (met ? 'bg-amio-red' : 'bg-gold border-2 border-navy')
                     : c.state === 'practiced' ? 'bg-navy'
                       : c.state === 'future' ? 'border-2 border-dashed border-muted'
                         : 'border-2 border-line'
