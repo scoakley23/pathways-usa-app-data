@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Globe, Keyboard, Loader2, Mic, MicOff, Volume2 } from 'lucide-react';
+import { ArrowRight, Globe, Loader2, Mic, Volume2 } from 'lucide-react';
 import { speakText } from "@/components/utils/textToSpeech";
 import ExplainSheet from '@/components/practice/ExplainSheet';
 import AnswerFeedback from '@/components/practice/AnswerFeedback';
 import RunTopBar from '@/components/practice/RunTopBar';
-import { Button, Chip, CreamSheet, NavyTop } from '@/components/pathways/ui';
+import RunScreen, { NavyChip, SaidBox } from '@/components/practice/RunScreen';
+import usePracticeText from '@/components/practice/usePracticeText';
+import MicButton from '@/components/pathways/MicButton';
+import { Button } from '@/components/pathways/ui';
 import { stopReading } from '@/components/persona/useAutoRead';
 import { toast } from "sonner";
 import { ai } from '@/api/ai';
@@ -19,10 +22,11 @@ import { LANGUAGES } from '@/hooks/useLessonTranslation';
 import useAppLanguage from '@/hooks/useAppLanguage';
 import { PACK_ONLY, packText } from '@/lib/translationPack';
 
-// A civics question (The Road): the navy top says WHAT (label, the question,
-// "Hear it" and "In my language"); the cream sheet holds what you DO ("Say
-// it", "Type it", "I don't know, show me") and then the result: Correct /
-// Not correct (AnswerFeedback) with the official answers only.
+// A civics question (Amio v2, frame Speak): a navy screen with the question
+// (English, word for word), Hear it and In my language, the gold mic ("Tap to
+// answer", "Type instead") and "I don't know, show me"; the result is a
+// bottom panel (AnswerFeedback: Right! / Not quite) with the official answers
+// only.
 //
 // Grading and saving are unchanged: officeholder / capital questions are
 // graded on the device from the officeholders table (never the AI); answers
@@ -33,12 +37,10 @@ import { PACK_ONLY, packText } from '@/lib/translationPack';
 // A result that can't be graded (is_correct null) moves on with
 // onNext({ uncounted: true }) and no onComplete.
 //
-// `testMode` (Interview Day): one answer per question, no translation, no
-// Try again, no explanation, "I don't know" moves on as missed. `onClose`
-// adds the run's top bar (close, road progress, "4/10") to the navy part.
-// `embedded`: inside another page's padding (rounded instead of full width).
-export default function CivicsTestCard({ question, onComplete, onNext, testMode = false, index = 0, total = 0, onClose = null, embedded = false }) {
+// `onClose` adds the run's top bar (close, the step bar, "4/10").
+export default function CivicsTestCard({ question, onComplete, onNext, index = 0, total = 0, onClose = null }) {
   const [appLanguage] = useAppLanguage();
+  const { t } = usePracticeText();
   const [explainOpen, setExplainOpen] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [showTranslation, setShowTranslation] = useState(false);
@@ -58,7 +60,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, testMode 
   const [srReady, setSrReady] = useState(false);
   const { location } = useLearnerLocation();
 
-  const myLanguage = !testMode && appLanguage && appLanguage !== 'en'
+  const myLanguage = appLanguage && appLanguage !== 'en'
     ? LANGUAGES.find((l) => l.value === appLanguage)
     : null;
 
@@ -99,7 +101,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, testMode 
         return;
       }
       if (PACK_ONLY) {
-        setTranslation('Translation unavailable');
+        setTranslation(t('translation_unavailable'));
         return;
       }
       const prompt = `Translate the following Civics Question and Answer into ${myLanguage.label}.
@@ -114,7 +116,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, testMode 
       setTranslation(res);
     } catch (error) {
       console.error("Translation error", error);
-      setTranslation("Translation unavailable");
+      setTranslation(t('translation_unavailable'));
     } finally {
       setIsTranslating(false);
     }
@@ -199,7 +201,6 @@ export default function CivicsTestCard({ question, onComplete, onNext, testMode 
 
   const iDontKnow = () => {
     stopListening();
-    if (testMode) { finish(false); return; }
     setDontKnow(true);
   };
 
@@ -211,7 +212,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, testMode 
   };
 
   const startListening = () => {
-    if (!recognitionRef.current) { toast.error('Voice input is not supported in this browser'); return; }
+    if (!recognitionRef.current) { toast.error(t('cant_listen')); return; }
     stopReading();
     setInputMode('speak');
     setUserAnswer('');
@@ -228,183 +229,140 @@ export default function CivicsTestCard({ question, onComplete, onNext, testMode 
   const done = !!status;
   const translatedQuestion = translation ? translation.split('Answer:')[0].replace('Question:', '').trim() : '';
   const translatedAnswer = translation.includes('Answer:') ? translation.split('Answer:')[1].trim() : '';
-  const label = testMode ? 'Civics test' : ['Civics', question.category].filter(Boolean).join(' · ');
+
+  const resultButtons = (status === 'correct') ? (
+    <div className="flex flex-col items-start gap-2">
+      <Button variant="main" className="w-full" onClick={() => finish(true)}>
+        {t('next_question')} <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" />
+      </Button>
+      <Button variant="link" className="px-0" aria-expanded={explainOpen} onClick={() => setExplainOpen((v) => !v)}>{t('why')}</Button>
+    </div>
+  ) : status === 'not-correct' ? (
+    <div className="flex flex-col items-start gap-2">
+      <div className="grid w-full grid-cols-2 gap-3">
+        {!dontKnow && <Button variant="main" className="px-3" onClick={tryAgain}>{t('try_again')}</Button>}
+        <Button variant="second" className={dontKnow ? 'col-span-2' : ''} onClick={() => finish(false)}>{t('next_question')}</Button>
+      </div>
+      <Button variant="link" className="px-0" aria-expanded={explainOpen} onClick={() => setExplainOpen((v) => !v)}>{t('why')}</Button>
+    </div>
+  ) : selfCheckMode ? (
+    <div className="grid grid-cols-2 gap-3">
+      <Button variant="main" className="px-3" onClick={() => finish(true)}>{t('i_knew')}</Button>
+      <Button variant="second" onClick={() => finish(false)}>{t('i_missed')}</Button>
+    </div>
+  ) : (
+    <Button variant="main" className="w-full" onClick={() => finish(null)}>
+      {t('next_question')} <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" />
+    </Button>
+  );
+
+  const panel = done && (
+    <AnswerFeedback
+      status={status}
+      title={status === 'neutral' ? (selfCheckMode ? t('couldnt_check') : t('cant_check')) : undefined}
+      sub={status === 'correct' ? t('civics_right_sub') : status === 'not-correct' ? t('civics_close') : selfCheckMode ? t('compare') : null}
+      youSaid={dontKnow ? '' : userAnswer}
+      reason={dontKnow ? '' : verificationResult?.feedback}
+      accepted={accepted}
+      acceptedLabel={accepted.length > 1 && status !== 'correct' ? t('accepts_any') : t('accepts')}
+      onHearAnswer={() => speak(spokenAnswer)}
+      acceptedExtra={<OfficeholderNote answer={verificationResult?.officeholder || (selfCheckMode ? officeholder : null)} graded={!selfCheckMode} className="mt-3" />}
+    >
+      {translatedAnswer && showTranslation && <p lang={myLanguage?.value} dir="auto" className="text-base text-muted">{translatedAnswer}</p>}
+      {resultButtons}
+      {explainOpen && status !== 'neutral' && (
+        <ExplainSheet question={question.question} answer={spokenAnswer} aiFallback={!officeholder} />
+      )}
+    </AnswerFeedback>
+  );
 
   return (
-    <div className={embedded ? 'w-full max-w-2xl mx-auto' : ''}>
-      {/* NAVY TOP: the question */}
-      <NavyTop className={`pb-12 ${embedded ? 'rounded-card' : ''}`}>
-        <div className="mx-auto max-w-2xl space-y-4">
-          {onClose && <RunTopBar onClose={onClose} index={index} total={total} answered={done} />}
-          <p className="text-label text-on-navy">{label}</p>
-          <h2 className={`font-display leading-[1.08] transition-[font-size] ${done ? 'text-[1.875rem]' : 'text-[2.375rem] sm:text-[2.5rem]'}`}>
-            {question.question}
-          </h2>
-          <div className="flex flex-wrap gap-2">
-            <Chip onNavy onClick={() => speak(question.question)} aria-label="Hear the question" className={isPlaying ? 'bg-chip-navy' : ''}>
-              <Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" /> Hear it
-            </Chip>
-            {myLanguage && (
-              <Chip onNavy onClick={() => setShowTranslation((v) => !v)} aria-pressed={showTranslation}>
-                <Globe className="w-5 h-5 shrink-0" aria-hidden="true" /> In my language
-              </Chip>
-            )}
-          </div>
-          {showTranslation && myLanguage && (
-            isTranslating ? (
-              <p className="flex items-center gap-2 text-base text-on-navy"><Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> Translating…</p>
-            ) : translatedQuestion && (
-              <p lang={myLanguage.value} dir="auto" className="border-s-2 border-chip-navy ps-4 text-lg text-on-navy">{translatedQuestion}</p>
-            )
-          )}
-        </div>
-      </NavyTop>
+    <RunScreen
+      topBar={onClose && <RunTopBar onClose={onClose} index={index} total={total} answered={done} />}
+      label={question.category ? <><bdi>{t('civics_label')}</bdi> · <bdi lang="en">{question.category}</bdi></> : t('civics_label')}
+      panel={panel}
+    >
+      <h2 className={`font-display leading-[1.08] ${done ? 'text-[1.75rem]' : 'text-[2.25rem]'}`} lang="en" dir="ltr">
+        {question.question}
+      </h2>
+      <div className="flex flex-wrap gap-2">
+        <NavyChip onClick={() => speak(question.question)} pressed={isPlaying}>
+          <Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" /> {t('hear_it')}
+        </NavyChip>
+        {myLanguage && (
+          <NavyChip onClick={() => setShowTranslation((v) => !v)} pressed={showTranslation}>
+            <Globe className="w-5 h-5 shrink-0" aria-hidden="true" /> {t('in_my_language')}
+          </NavyChip>
+        )}
+      </div>
+      {showTranslation && myLanguage && (
+        isTranslating ? (
+          <p className="flex items-center gap-2 text-base text-on-navy"><Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> {t('translating')}</p>
+        ) : translatedQuestion && (
+          <p lang={myLanguage.value} dir="auto" className="border-s-2 border-navy-line ps-4 text-lg text-on-navy">{translatedQuestion}</p>
+        )
+      )}
 
-      {/* CREAM SHEET: answer, then the result */}
-      <CreamSheet className={embedded ? 'rounded-b-card' : 'min-h-[50vh]'}>
-        <div className="mx-auto max-w-2xl space-y-5 pb-6">
-          {!done && (
-            <>
-              <p className="text-base font-semibold text-navy">Answer out loud, in English</p>
-              {askedAgain && !userAnswer && <p role="status" className="rounded-card bg-tint px-4 py-3 text-base text-navy">Sure. Here’s the question again.</p>}
+      {!done && (
+        <div className="flex flex-col gap-4 pt-2">
+          <p className="text-base font-semibold text-on-navy" dir="auto">{t('answer_aloud')}</p>
+          {askedAgain && !userAnswer && <p role="status" className="rounded-card bg-navy-2 px-4 py-3 text-base" dir="auto">{t('asked_again')}</p>}
 
-              {inputMode === 'type' && (
-                <input
-                  placeholder="Type your answer here…"
-                  aria-label="Your answer"
-                  value={userAnswer}
-                  onChange={(e) => setUserAnswer(e.target.value)}
-                  onKeyDown={(e) => { if (e.key === 'Enter' && userAnswer.trim() && !verifying) checkAnswer(); }}
-                  className="w-full min-h-[56px] rounded-card border border-line bg-white px-4 text-lg text-navy placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-navy"
-                />
-              )}
-
-              {inputMode === 'speak' && (isListening || userAnswer) && (
-                <div aria-live="polite" className="rounded-card bg-white border border-line p-4">
-                  <p className="text-label text-muted">{isListening ? 'Listening…' : 'You said'}</p>
-                  <p className="mt-1 text-xl leading-snug text-navy min-h-[1.5em]">{userAnswer ? `“${userAnswer}”` : ''}</p>
-                </div>
-              )}
-
-              {/* One main action at a time */}
-              <div className="flex flex-col sm:flex-row gap-3">
-                {isListening ? (
-                  <Button variant="main" className="min-h-[60px] flex-1" onClick={stopListening}>
-                    <MicOff className="w-6 h-6" aria-hidden="true" /> Stop
-                  </Button>
-                ) : userAnswer.trim() ? (
-                  <Button variant="main" className="min-h-[60px] flex-1" onClick={checkAnswer} disabled={verifying}>
-                    {verifying && <Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" />}
-                    {verifying ? 'Checking…' : 'Check my answer'}
-                  </Button>
-                ) : srReady ? (
-                  <Button variant="main" className="min-h-[60px] flex-1" onClick={startListening}>
-                    <Mic className="w-6 h-6" aria-hidden="true" /> Say it
-                  </Button>
-                ) : null}
-                {!isListening && inputMode === 'speak' && (
-                  <Button variant="second" className="min-h-[60px] flex-1" onClick={() => { stopListening(); setInputMode('type'); }}>
-                    <Keyboard className="w-5 h-5" aria-hidden="true" /> Type it
-                  </Button>
-                )}
-                {!isListening && inputMode === 'type' && srReady && (
-                  <Button variant="second" className="min-h-[60px] flex-1" onClick={startListening}>
-                    <Mic className="w-5 h-5" aria-hidden="true" /> Say it instead
-                  </Button>
-                )}
-              </div>
-
-              <p className="text-[0.9375rem] text-muted">Answer only the civics question. Don&apos;t include personal information.</p>
-
-              <Button variant="link" className="px-0" onClick={iDontKnow} disabled={verifying}>
-                {testMode ? 'I don’t know' : 'I don’t know, show me'}
+          {inputMode === 'type' && (
+            <form className="flex flex-col gap-3" onSubmit={(e) => { e.preventDefault(); if (userAnswer.trim() && !verifying) checkAnswer(); }}>
+              <label htmlFor="civics-typed" className="text-base font-semibold" dir="auto">{t('type_answer')}</label>
+              <input
+                id="civics-typed"
+                lang="en"
+                dir="ltr"
+                autoComplete="off"
+                value={userAnswer}
+                onChange={(e) => setUserAnswer(e.target.value)}
+                className="w-full min-h-[3.5rem] rounded-button border border-line bg-white px-4 text-lg text-navy focus:outline-none focus:ring-2 focus:ring-white"
+              />
+              <Button variant="main" onNavy type="submit" className="w-full" disabled={!userAnswer.trim() || verifying}>
+                {verifying && <Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" />}
+                {verifying ? t('checking') : t('check_answer')}
               </Button>
-            </>
-          )}
-
-          {status === 'correct' && (
-            <AnswerFeedback
-              status="correct"
-              sub="You moved one step down the road."
-              youSaid={userAnswer}
-              accepted={accepted}
-              acceptedLabel="The officer accepts"
-              onHearAnswer={() => speak(spokenAnswer)}
-              acceptedExtra={<OfficeholderNote answer={verificationResult.officeholder} className="mt-3" />}
-            >
-              {translatedAnswer && showTranslation && <p lang={myLanguage?.value} dir="auto" className="text-base text-muted">{translatedAnswer}</p>}
-              <div className="flex flex-col items-start gap-2">
-                <Button variant="next" className="w-full min-h-[52px]" onClick={() => finish(true)}>
-                  Next question <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" />
-                </Button>
-                {!testMode && (
-                  <Button variant="link" className="px-0" aria-expanded={explainOpen} onClick={() => setExplainOpen((v) => !v)}>
-                    Why? Explain it simply
-                  </Button>
-                )}
-              </div>
-            </AnswerFeedback>
-          )}
-
-          {status === 'not-correct' && (
-            <AnswerFeedback
-              status="not-correct"
-              sub="Not yet, but you’re close."
-              youSaid={dontKnow ? '' : userAnswer}
-              reason={dontKnow ? '' : verificationResult?.feedback}
-              accepted={accepted}
-              acceptedLabel={accepted.length > 1 ? 'The officer accepts any one' : 'The officer accepts'}
-              onHearAnswer={() => speak(spokenAnswer)}
-              acceptedExtra={<OfficeholderNote answer={verificationResult?.officeholder} className="mt-3" />}
-            >
-              {translatedAnswer && showTranslation && <p lang={myLanguage?.value} dir="auto" className="text-base text-muted">{translatedAnswer}</p>}
-              <div className="flex flex-col items-start gap-2">
-                <div className="grid w-full grid-cols-2 gap-3">
-                  {!testMode && !dontKnow ? (
-                    <Button variant="next" className="min-h-[52px]" onClick={tryAgain}>Try again</Button>
-                  ) : null}
-                  <Button variant={!testMode && !dontKnow ? 'second' : 'next'} className={`min-h-[52px] ${!testMode && !dontKnow ? '' : 'col-span-2'}`} onClick={() => finish(false)}>
-                    Next question
-                  </Button>
-                </div>
-                {!testMode && (
-                  <Button variant="link" className="px-0" aria-expanded={explainOpen} onClick={() => setExplainOpen((v) => !v)}>
-                    Why? Explain it simply
-                  </Button>
-                )}
-              </div>
-            </AnswerFeedback>
-          )}
-
-          {status === 'neutral' && (
-            <AnswerFeedback
-              status="neutral"
-              title={selfCheckMode ? 'We couldn’t check your answer' : 'We can’t check this one yet'}
-              sub={selfCheckMode ? 'Compare it with the answers below. How did you do?' : null}
-              youSaid={userAnswer}
-              accepted={accepted}
-              acceptedLabel={accepted.length > 1 ? 'The officer accepts any one' : 'The officer accepts'}
-              onHearAnswer={() => speak(spokenAnswer)}
-              acceptedExtra={<OfficeholderNote answer={verificationResult?.officeholder || (selfCheckMode ? officeholder : null)} graded={!selfCheckMode} className="mt-3" />}
-            >
-              {selfCheckMode ? (
-                <div className="grid grid-cols-2 gap-3">
-                  <Button variant="next" className="min-h-[52px]" onClick={() => finish(true)}>I knew it</Button>
-                  <Button variant="second" className="min-h-[52px]" onClick={() => finish(false)}>I missed it</Button>
-                </div>
-              ) : (
-                <Button variant="next" className="w-full min-h-[52px]" onClick={() => finish(null)}>
-                  Next question <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" />
+              {srReady && (
+                <Button variant="link" onNavy className="self-center" onClick={startListening}>
+                  <Mic className="w-5 h-5" aria-hidden="true" /> {t('say_instead')}
                 </Button>
               )}
-            </AnswerFeedback>
+            </form>
           )}
 
-          {done && explainOpen && !testMode && (
-            <ExplainSheet question={question.question} answer={spokenAnswer} aiFallback={!officeholder} />
+          {inputMode === 'speak' && (isListening || userAnswer) && (
+            <SaidBox label={isListening ? t('listening') : t('you_said')}>{userAnswer ? `“${userAnswer}”` : ''}</SaidBox>
           )}
+
+          {inputMode === 'speak' && (userAnswer.trim() && !isListening ? (
+            <div className="flex flex-col gap-3">
+              <Button variant="main" onNavy className="w-full" onClick={checkAnswer} disabled={verifying}>
+                {verifying && <Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" />}
+                {verifying ? t('checking') : t('check_answer')}
+              </Button>
+              <Button variant="second" onNavy className="w-full" onClick={startListening} disabled={verifying}>
+                <Mic className="w-5 h-5" aria-hidden="true" /> {t('say_again')}
+              </Button>
+            </div>
+          ) : srReady ? (
+            <MicButton
+              tone="gold"
+              listening={isListening}
+              onStart={startListening}
+              onStop={stopListening}
+              label={t('tap_answer')}
+              listeningLabel={t('tap_stop')}
+              onTypeInstead={() => { stopListening(); setInputMode('type'); }}
+              typeInsteadLabel={t('type_instead')}
+            />
+          ) : null)}
+
+          <p className="text-base text-on-navy" dir="auto">{t('civics_private')}</p>
+          <Button variant="link" onNavy className="self-start px-0" onClick={iDontKnow} disabled={verifying}>{t('dont_know')}</Button>
         </div>
-      </CreamSheet>
-    </div>
+      )}
+    </RunScreen>
   );
 }

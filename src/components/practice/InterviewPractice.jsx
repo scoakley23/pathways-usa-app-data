@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Button, Card, Eyebrow, PrimaryButton, RaisedCard, RuledPaper, SecondaryButton, Tag } from '@/components/pathways/ui';
+import { Button, Card, Eyebrow, PrimaryButton, RaisedCard, SecondaryButton, Tag } from '@/components/pathways/ui';
 import AnswerFeedback from './AnswerFeedback';
 import { Link } from 'react-router-dom';
 import { Mic, Volume2, ArrowRight, Check, Loader2, ChevronDown, ChevronUp, FileText, Bot, BarChart3, Scale, X } from 'lucide-react';
@@ -27,6 +27,7 @@ import { shouldAskPreInterview } from '@/lib/pilotCheckIns';
 import useTranslatedLines from '@/components/persona/useTranslatedLines';
 import useAppLanguage, { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
 import { INTERVIEW_INTRO_LINES } from './interviewIntroStrings';
+import usePracticeText from './usePracticeText';
 
 // Long text is now spoken in chunks, so the fallback timeout must cover all of them.
 const speechTimeoutMs = (text) => {
@@ -49,6 +50,7 @@ const speechTimeoutMs = (text) => {
 // ones, graded like lessons (on the device first, then the AI for spoken
 // answers), with official answers only.
 export default function InterviewPractice({ onComplete, onNext, rehearsal = null, onClose = null, onBack = null, learnerName = '', civicsQuestions = null, day = null }) {
+  const { t: pt } = usePracticeText();
   const [questions, setQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isListening, setIsListening] = useState(false);
@@ -431,7 +433,7 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
         <button
           type="button"
           onClick={onClose}
-          aria-label="Close practice"
+          aria-label={pt('close')}
           className="w-11 h-11 rounded-full bg-white border border-line grid place-items-center text-navy hover:bg-tint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
         >
           <X className="w-5 h-5" aria-hidden="true" />
@@ -444,14 +446,14 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
   if (isLoadingQuestions) return padded(
     <RaisedCard padding="p-10" className="text-center text-navy">
       <Loader2 className="w-10 h-10 animate-spin mx-auto mb-4 text-navy" aria-hidden="true" />
-      <p className="font-semibold text-muted">Loading interview questions...</p>
+      <p className="font-semibold text-muted" dir="auto">{pt('loading_questions')}</p>
     </RaisedCard>
   );
 
   if (questions.length === 0) return padded(
     <RaisedCard padding="p-10" className="text-center text-navy">
-      <p className="text-muted mb-4">No interview questions found.</p>
-      <SecondaryButton onClick={() => window.location.reload()}>Reload</SecondaryButton>
+      <p className="text-muted mb-4" dir="auto">{pt('no_questions')}</p>
+      <SecondaryButton onClick={() => window.location.reload()}>{pt('reload')}</SecondaryButton>
     </RaisedCard>
   );
 
@@ -495,20 +497,21 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
   const current = questions[currentIndex];
   const understanding = isUnderstandingSection(current);
   const partIndex = INTERVIEW_PARTS.findIndex((p) => p.id === current.section);
-  const partLabel = INTERVIEW_PARTS[partIndex]?.label || current.section;
+  const partLabel = INTERVIEW_PARTS[partIndex] ? pt(`ipart_${current.section}`) : current.section;
 
   const statusText = {
-    speaking: 'The officer is speaking…',
-    listening: understanding ? 'Your turn: say in English what the officer is asking.' : 'Your turn: answer out loud, in English.',
-    thinking: 'Checking your answer…',
-    idle: feedback ? 'Here is how you did.' : 'Ready when you are.',
+    speaking: pt('officer_speaking'),
+    listening: understanding ? pt('your_turn_understand') : pt('your_turn'),
+    thinking: pt('checking_answer'),
+    idle: feedback ? pt('how_you_did') : pt('ready_when'),
   }[interviewerState];
 
   const nextLabel = currentIndex < questions.length - 1
-    ? <>Next question <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" /></>
+    ? <>{pt('next_question')} <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" /></>
     : rehearsal
-      ? <>Continue <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" /></>
-      : <><FileText className="w-5 h-5" aria-hidden="true" /> See the full report</>;
+      ? <>{pt('continue')} <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" /></>
+      : <><FileText className="w-5 h-5" aria-hidden="true" /> {pt('see_report')}</>;
+  const questionOf = pt('question_of', { n: currentIndex + 1, total: questions.length });
 
   // The practice call (frame R30Call): the part (no timer: no clocks anywhere), one dash per
   // question, the AI officer in a light room, the question with live
@@ -517,35 +520,35 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
   // unchanged.
   return (
     <CallFrame
-      title={day ? day.title : `Practice interview · Part ${partIndex + 1}: ${partLabel}`}
+      title={day ? day.title : pt('interview_title', { n: partIndex + 1, part: partLabel })}
       dashes={day ? { total: day.total, current: day.current, currentDone: false } : { total: questions.length, current: currentIndex, currentDone: !!feedback }}
-      dashLabel={day ? day.dashLabel : `Question ${currentIndex + 1} of ${questions.length}`}
+      dashLabel={day ? day.dashLabel : questionOf}
       speaking={interviewerState === 'speaking'}
       small={!!feedback}
       status={statusText}
       onClose={onClose}
-      closeLabel={day ? day.closeLabel : 'Close practice'}
+      closeLabel={day ? day.closeLabel : pt('close')}
     >
 
         {/* Questions about the learner's history: understanding only */}
         {understanding && (
           <Card padding="p-4" className="space-y-1.5">
-            <p className="text-base font-semibold">Don&apos;t answer this question. Say in English what the officer is asking.</p>
-            <p className="text-base text-muted">We explain what questions mean. How they apply to you is for a lawyer.</p>
-            <Link to="/lawyer-first" className="inline-flex min-h-tap items-center gap-2 font-semibold text-navy underline underline-offset-4">
-              <Scale className="w-5 h-5" aria-hidden="true" /> Talk to a lawyer first
+            <p className="text-base font-semibold" dir="auto">{pt('dont_answer')}</p>
+            <p className="text-base text-muted" dir="auto">{pt('for_lawyer')}</p>
+            <Link to="/lawyer-first" className="inline-flex min-h-tap items-center gap-2 font-semibold text-navy underline underline-offset-4" dir="auto">
+              <Scale className="w-5 h-5" aria-hidden="true" /> {pt('talk_lawyer')}
             </Link>
           </Card>
         )}
 
         {/* The question, with live captions */}
         <Card>
-          <p className="text-small font-semibold text-muted">Question {currentIndex + 1} of {questions.length}</p>
-          <h2 className={`mt-1 font-bold leading-snug ${feedback ? 'text-[1.375rem]' : 'text-question'}`}>{current.question}</h2>
-          {askedAgain && !userResponse && !isListening && <p className="mt-2 text-base text-navy" role="status">Sure. Here’s the question again.</p>}
+          <p className="text-small font-semibold text-muted" dir="auto">{questionOf}</p>
+          <h2 className={`mt-1 font-bold leading-snug ${feedback ? 'text-[1.375rem]' : 'text-question'}`} lang="en" dir="ltr">{current.question}</h2>
+          {askedAgain && !userResponse && !isListening && <p className="mt-2 text-base text-navy" role="status" dir="auto">{pt('asked_again')}</p>}
           {(isListening || userResponse) && (
             <p className="mt-2 text-base font-semibold text-denim break-words" aria-live="polite">
-              {isListening && !userResponse ? 'Listening…' : `You: “${userResponse}”`}
+              {isListening && !userResponse ? pt('listening') : pt('you_colon', { text: userResponse })}
             </p>
           )}
         </Card>
@@ -556,10 +559,10 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
               <div className="space-y-2">
                 <Button variant="main" className="w-full" onClick={analyzeResponse} disabled={isAnalyzing}>
                   {isAnalyzing ? <Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" /> : <Check className="w-5 h-5" aria-hidden="true" />}
-                  {isAnalyzing ? 'Checking…' : 'Check my answer'}
+                  {isAnalyzing ? pt('checking') : pt('check_answer')}
                 </Button>
                 <Button variant="second" className="w-full" onClick={() => { setTyping(false); toggleListening(); }} disabled={isAnalyzing}>
-                  <Mic className="w-5 h-5" aria-hidden="true" /> Say it again
+                  <Mic className="w-5 h-5" aria-hidden="true" /> {pt('say_again')}
                 </Button>
               </div>
             ) : (
@@ -570,16 +573,16 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
                   disabled={interviewerState === 'speaking'}
                   className="min-h-tap rounded-button border border-line bg-white px-4 text-base font-semibold text-navy hover:border-denim disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim"
                 >
-                  “Repeat, please”
+                  {pt('repeat_please')}
                 </button>
                 <MicButton
                   listening={isListening}
                   onStart={() => { setTyping(false); toggleListening(); }}
                   onStop={toggleListening}
-                  label="Answer out loud"
+                  label={pt('answer_out_loud')}
                   disabled={isAnalyzing}
                 />
-                {onClose ? <EndCallButton onClick={onClose} label={day ? day.endLabel : 'End call'} /> : <span className="w-14 shrink-0" aria-hidden="true" />}
+                {onClose ? <EndCallButton onClick={onClose} label={day ? day.endLabel : pt('end_call')} /> : <span className="w-14 shrink-0" aria-hidden="true" />}
               </div>
             )}
 
@@ -588,7 +591,7 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
                 onSubmit={(e) => { e.preventDefault(); if (typed.trim()) { responseRef.current = typed.trim(); setUserResponse(typed.trim()); setTyped(''); setTyping(false); } }}
                 className="space-y-2"
               >
-                <label htmlFor="interview-type" className="block text-small font-semibold">Type your answer in English</label>
+                <label htmlFor="interview-type" className="block text-small font-semibold" dir="auto">{pt('type_answer')}</label>
                 <div className="flex items-center gap-2">
                   <input
                     id="interview-type"
@@ -597,18 +600,18 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
                     autoFocus
                     className="flex-1 min-w-0 h-[52px] rounded-button border border-line bg-white px-4 text-base text-navy focus:outline-none focus:ring-2 focus:ring-denim"
                   />
-                  <Button variant="second" type="submit" disabled={!typed.trim()} className="shrink-0 min-h-[52px] px-5">Done</Button>
+                  <Button variant="second" type="submit" disabled={!typed.trim()} className="shrink-0 min-h-[52px] px-5">{pt('done')}</Button>
                 </div>
               </form>
             ) : !isListening && !userResponse && (
               <div className="text-center">
                 <button type="button" onClick={() => setTyping(true)} className="min-h-tap px-3 text-small font-semibold text-denim underline underline-offset-4 decoration-denim/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy rounded">
-                  Type instead
+                  {pt('type_instead')}
                 </button>
               </div>
             )}
             <div className="text-center">
-              <Button variant="link" onClick={handleSkip}>Skip this question</Button>
+              <Button variant="link" onClick={handleSkip}>{pt('skip_question')}</Button>
             </div>
           </>
         )}
@@ -617,11 +620,11 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
           <AnswerFeedback
             status={feedback.is_acceptable ? 'correct' : 'not-correct'}
             sub={understanding
-              ? (feedback.is_acceptable ? `You understood the question. ${feedback.overall_score}/100` : `Not yet, but you’re close. ${feedback.overall_score}/100`)
-              : (feedback.is_acceptable ? `This would pass in a real interview. ${feedback.overall_score}/100` : `Not yet, but you’re close. ${feedback.overall_score}/100`)}
+              ? pt(feedback.is_acceptable ? 'understood' : 'close_score', { score: feedback.overall_score })
+              : pt(feedback.is_acceptable ? 'would_pass' : 'close_score', { score: feedback.overall_score })}
             youSaid={userResponse}
           >
-            <FeedbackPanel feedback={feedback} understanding={understanding} />
+            <FeedbackPanel feedback={feedback} understanding={understanding} t={pt} />
             <Button variant="main" className="w-full" onClick={() => handleNext()}>{nextLabel}</Button>
           </AnswerFeedback>
         )}
@@ -635,55 +638,55 @@ const barColor = (s) => s >= 80 ? 'bg-correct' : s >= 60 ? 'bg-navy' : 'bg-not-y
 // The details under the poster: the three scores, the suggested wording on
 // ruled paper, and the full feedback behind a toggle. The verdict itself is
 // on the poster.
-function FeedbackPanel({ feedback, understanding = false }) {
+function FeedbackPanel({ feedback, understanding = false, t }) {
   const [expanded, setExpanded] = useState(false);
 
   return (
     <div className="w-full space-y-3 animate-in fade-in slide-in-from-bottom-2">
       {!feedback.civics && <div className="grid grid-cols-3 gap-2">
         {[
-          { label: understanding ? 'Understanding' : 'Content', score: feedback.content_score },
-          { label: 'Grammar', score: feedback.grammar_score },
-          { label: 'Fluency', score: feedback.fluency_score },
+          { label: understanding ? t('score_understanding') : t('score_content'), score: feedback.content_score },
+          { label: t('score_grammar'), score: feedback.grammar_score },
+          { label: t('score_fluency'), score: feedback.fluency_score },
         ].map(({ label, score }) => (
-          <div key={label} className="bg-white rounded-2xl p-3 border border-line shadow-raised text-center">
+          <div key={label} className="bg-white rounded-card p-3 border border-line text-center">
             <p className={`font-display text-[2.125rem] leading-none ${scoreColor(score)}`}>{score}</p>
-            <div className="w-full bg-tint rounded-full h-1.5 my-1.5">
-              <div className={`h-1.5 rounded-full ${barColor(score)}`} style={{ width: `${score}%` }} />
+            <div className="w-full bg-tint rounded-[3px] h-1.5 my-1.5">
+              <div className={`h-1.5 rounded-[3px] ${barColor(score)}`} style={{ width: `${score}%` }} />
             </div>
-            <p className="text-sm text-muted font-semibold">{label}</p>
+            <p className="text-sm text-muted font-semibold" dir="auto">{label}</p>
           </div>
         ))}
       </div>}
 
       {feedback.corrected_version && (
-        <RuledPaper>
-          <p className="text-[0.8125rem] font-semibold leading-[2.25rem] text-muted">{feedback.civics ? 'The officer accepts' : understanding ? 'What the question is asking' : 'A better way to say it'}</p>
-          <p className="font-medium text-[1.375rem] leading-[2.25rem]">“{feedback.corrected_version}”</p>
-        </RuledPaper>
+        <div className="rounded-card bg-white border border-line p-4">
+          <p className="text-[0.8125rem] font-semibold text-muted" dir="auto">{feedback.civics ? t('accepts') : understanding ? t('what_asking') : t('better_way')}</p>
+          <p className="mt-1 font-medium text-[1.25rem] leading-snug" lang="en" dir="ltr">“{feedback.corrected_version}”</p>
+        </div>
       )}
 
       <button
         type="button"
         onClick={() => setExpanded(!expanded)}
         aria-expanded={expanded}
-        className="w-full min-h-[48px] flex items-center justify-between bg-white border border-line hover:bg-tint px-4 py-3 rounded-2xl transition-colors text-base font-bold text-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
+        className="w-full min-h-[48px] flex items-center justify-between bg-white border border-line hover:bg-tint px-4 py-3 rounded-card transition-colors text-base font-bold text-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
       >
-        <span>Detailed feedback</span>
+        <span dir="auto">{t('detailed_feedback')}</span>
         {expanded ? <ChevronUp className="w-5 h-5" aria-hidden="true" /> : <ChevronDown className="w-5 h-5" aria-hidden="true" />}
       </button>
 
       {expanded && (
         <RaisedCard className="space-y-4 animate-in fade-in slide-in-from-top-2">
           {[
-            { title: understanding ? 'Understanding' : 'Content', text: feedback.content_feedback },
-            feedback.grammar_feedback && { title: 'Grammar', text: feedback.grammar_feedback },
-            feedback.fluency_feedback && { title: 'Fluency', text: feedback.fluency_feedback },
-            feedback.pronunciation_notes && { title: 'Pronunciation Notes', text: feedback.pronunciation_notes },
-            { title: 'Tips to Improve', text: feedback.improvement_tips },
+            { title: understanding ? t('score_understanding') : t('score_content'), text: feedback.content_feedback },
+            feedback.grammar_feedback && { title: t('score_grammar'), text: feedback.grammar_feedback },
+            feedback.fluency_feedback && { title: t('score_fluency'), text: feedback.fluency_feedback },
+            feedback.pronunciation_notes && { title: t('score_pronunciation'), text: feedback.pronunciation_notes },
+            { title: t('tips_improve'), text: feedback.improvement_tips },
           ].filter(Boolean).map(({ title, text }) => (
             <div key={title}>
-              <Eyebrow className="mb-1">{title}</Eyebrow>
+              <p className="mb-1 text-small font-semibold text-muted" dir="auto">{title}</p>
               <p className="text-base text-navy leading-relaxed">{text}</p>
             </div>
           ))}
@@ -716,7 +719,7 @@ function InterviewIntro({ questions, onStart, varyOfficer, onToggleVary }) {
           </div>
         </div>
 
-        <h2 className="text-[2rem] font-display font-normal leading-tight mt-5 mb-2">{t('title')}</h2>
+        <h1 className="text-[2rem] font-display leading-tight mt-5 mb-2" dir="auto">{t('title')}</h1>
         <p dir="auto" className="text-base text-muted leading-relaxed">{t('intro')}</p>
 
         <div className="grid grid-cols-2 gap-2 mt-5">

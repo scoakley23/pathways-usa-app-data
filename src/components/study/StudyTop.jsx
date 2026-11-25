@@ -1,39 +1,35 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import usePracticeText from '@/components/practice/usePracticeText';
 
-const TABS = [
-  { id: 'lessons', label: 'Lessons' },
-  { id: 'practice', label: 'Practice' },
-];
+const TABS = ['lessons', 'practice'];
 
-// The top of the Study page, on navy: the "Study" title, an optional action
-// on the right (the Practice tab's "2025 test" button) and the
-// Lessons | Practice switch (white pill for the open tab). `children` follow
-// (the Practice tab's suggestion).
+// The top of the Study page (Amio v2, on paper): the "Study" title, an
+// optional action on the end side (the Practice tab's "2025 test" button)
+// and the Lessons | Practice switch as two tabs like Course's (the open one
+// white with a navy border, the other pale). `children` follow.
 export default function StudyTop({ tab, action = null, children }) {
+  const { t } = usePracticeText();
   return (
-    <div className="mx-auto max-w-5xl space-y-5">
+    <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between gap-3">
-        <h1 className="font-display text-[1.875rem] sm:text-[2.125rem] leading-[1.1]">Study</h1>
+        <h1 className="font-display text-[2.25rem] leading-none tracking-tight" dir="auto">{t('study')}</h1>
         {action}
       </div>
-      <nav aria-label="Study">
-        <div className="inline-flex rounded-button bg-chip-navy p-1">
-          {TABS.map((t) => {
-            const active = t.id === tab;
-            return (
-              <Link
-                key={t.id}
-                to={`/study?tab=${t.id}`}
-                aria-current={active ? 'page' : undefined}
-                className={`min-h-tap inline-flex items-center rounded-button px-5 text-base font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white
-                  ${active ? 'bg-white text-navy' : 'text-on-navy hover:text-white'}`}
-              >
-                {t.label}
-              </Link>
-            );
-          })}
-        </div>
+      <nav aria-label={t('study')} className="grid grid-cols-2 gap-1.5">
+        {TABS.map((id) => {
+          const active = id === tab;
+          return (
+            <Link
+              key={id}
+              to={`/study?tab=${id}`}
+              aria-current={active ? 'page' : undefined}
+              className={`min-h-[3rem] grid place-items-center rounded-button px-2 text-base font-bold border-[2.5px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim focus-visible:ring-offset-2 ${active ? 'bg-white text-navy border-navy' : 'bg-line-soft text-navy border-line-soft hover:border-line'}`}
+            >
+              {t(`tab_${id}`)}
+            </Link>
+          );
+        })}
       </nav>
       {children}
     </div>

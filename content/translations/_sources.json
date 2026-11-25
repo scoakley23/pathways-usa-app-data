@@ -265,6 +265,12 @@
    ]
   },
   {
+   "text": "\"Have you ever…\" questions",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "\"Manifest Destiny\" was a belief in the 1800s that the United States should grow west to the Pacific Ocean. It also caused great harm to American Indians, who lost their land.",
    "from": [
     "ask-answers"
@@ -388,6 +394,18 @@
    "text": "(because of) the state’s population / (because) they have more people / (because) some states have more people",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "0 right. Keep going, {name}.",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "0 right. Keep going.",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -682,6 +700,12 @@
    "text": "A U.S. senator's term is six years.",
    "from": [
     "course-lessons"
+   ]
+  },
+  {
+   "text": "A better way to say it",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -1256,6 +1280,12 @@
    ]
   },
   {
+   "text": "All",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "All American citizens have fundamental rights protected by the Constitution and laws. Freedom of speech allows Americans to express opinions without government interference. Freedom of religion allows everyone to practice their faith or no faith. Freedom of the press ensures that journalists can report information without government censorship.\n\nCitizens also have the right to petition the government and assemble peacefully. The right to a fair trial protects against unjust punishment. Property rights allow citizens to own and use property. The right to vote ensures all eligible citizens can participate in elections. These rights apply equally to all citizens regardless of race, religion, gender, or background.\n\nMany countries do not protect these fundamental rights, making them particularly valuable in America. The Constitution guarantees these rights, but citizens must be vigilant in protecting them. The Supreme Court interprets what these rights mean in modern contexts. Throughout history, Americans have fought to expand these rights to all citizens.",
    "from": [
     "lessons"
@@ -1283,6 +1313,18 @@
    "text": "All units",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "All {n} pairs matched. Nice work, {name}.",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "All {n} pairs matched. Nice work.",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -1576,9 +1618,34 @@
    ]
   },
   {
+   "text": "Answer in a full sentence, in English.",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "Answer only the civics question. Don’t include personal information.",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "Answer out loud",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "Answer out loud or type",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Answer out loud, in English",
    "from": [
-    "checkpoints"
+    "checkpoints",
+    "practice"
    ]
   },
   {
@@ -1621,6 +1688,12 @@
    "text": "Appalachian Mountains",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "Applied before Oct 20, 2025? Choose 2008.",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -1864,6 +1937,7 @@
     "interview-day",
     "interview-when",
     "lesson-player",
+    "practice",
     "settings",
     "sign-in",
     "today-plan"
@@ -1873,6 +1947,12 @@
    "text": "Back to Interview",
    "from": [
     "interview-day"
+   ]
+  },
+  {
+   "text": "Back to Today",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -2235,6 +2315,12 @@
    ]
   },
   {
+   "text": "Can’t get it right? Hear it and check yourself",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Capital",
    "from": [
     "words"
@@ -2263,6 +2349,12 @@
    "from": [
     "key-words",
     "lessons"
+   ]
+  },
+  {
+   "text": "Card {n} of {total}",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -2308,7 +2400,8 @@
     "checkpoints",
     "interview-day",
     "lesson-player",
-    "n400-lessons"
+    "n400-lessons",
+    "practice"
    ]
   },
   {
@@ -2330,6 +2423,12 @@
    ]
   },
   {
+   "text": "Check my answer",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Check the names again before your interview.",
    "from": [
     "course-lessons"
@@ -2342,6 +2441,12 @@
    ]
   },
   {
+   "text": "Check your page",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Check-in questions",
    "from": [
     "pilot"
@@ -2350,7 +2455,14 @@
   {
    "text": "Checking your answer…",
    "from": [
-    "interview-day"
+    "interview-day",
+    "practice"
+   ]
+  },
+  {
+   "text": "Checking your reading…",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -2359,6 +2471,7 @@
     "checkpoints",
     "lesson-player",
     "n400-lessons",
+    "practice",
     "sign-in"
    ]
   },
@@ -2533,6 +2646,7 @@
     "interview-day",
     "interview-tab",
     "onboarding",
+    "practice",
     "today-plan"
    ]
   },
@@ -2540,6 +2654,18 @@
    "text": "Civics Test",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "Civics difficulty",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "Civics questions",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -2555,9 +2681,21 @@
    ]
   },
   {
+   "text": "Civics test version",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Civics video lessons and your representatives.",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "Civics · {n} of {total} lessons done",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -2645,6 +2783,12 @@
    ]
   },
   {
+   "text": "Close practice",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Close. One more try — you've got this.",
    "from": [
     "tutor"
@@ -2723,6 +2867,12 @@
    "text": "Communist or totalitarian groups",
    "from": [
     "n400-lessons"
+   ]
+  },
+  {
+   "text": "Compare it with the answers below. How did you do?",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -2938,6 +3088,18 @@
    ]
   },
   {
+   "text": "Content",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "Content {c} · Grammar {g} · Fluency {f}",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Content, grammar and fluency scores",
    "from": [
     "interview-intro"
@@ -2952,7 +3114,8 @@
     "interview-day",
     "lesson-player",
     "n400-lessons",
-    "onboarding"
+    "onboarding",
+    "practice"
    ]
   },
   {
@@ -2996,6 +3159,12 @@
    "text": "Couldn’t load the practice day. Please check your connection.",
    "from": [
     "interview-day"
+   ]
+  },
+  {
+   "text": "Couldn’t start this practice. Please try again.",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -3097,6 +3266,12 @@
    ]
   },
   {
+   "text": "Definition",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Delaware",
    "from": [
     "words"
@@ -3155,6 +3330,12 @@
    "text": "Description of the U.S. as a country built by people who came from all over the world",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "Detailed feedback",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -3296,6 +3477,12 @@
    ]
   },
   {
+   "text": "Did you write it correctly?",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Different officer voice each interview",
    "from": [
     "interview-intro"
@@ -3392,6 +3579,12 @@
    ]
   },
   {
+   "text": "Do you know what it means? Say it to yourself, then check.",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Do you owe any overdue taxes right now?",
    "from": [
     "n400"
@@ -3478,6 +3671,7 @@
     "n400-lessons",
     "onboarding",
     "pilot",
+    "practice",
     "talk",
     "today"
    ]
@@ -3505,6 +3699,12 @@
    "text": "Don’t answer the question. Tell me in English what the officer wants to know.",
    "from": [
     "n400-lessons"
+   ]
+  },
+  {
+   "text": "Don’t answer this question. Say in English what the officer is asking.",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -3638,6 +3838,12 @@
    ]
   },
   {
+   "text": "Each lesson ends with the exact questions the officer may ask. We go over them together.",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Each skill is one part of your interview.",
    "from": [
     "home"
@@ -3676,6 +3882,7 @@
   {
    "text": "Easy",
    "from": [
+    "practice",
     "today-plan"
    ]
   },
@@ -3737,7 +3944,8 @@
   {
    "text": "End call",
    "from": [
-    "interview-day"
+    "interview-day",
+    "practice"
    ]
   },
   {
@@ -3844,6 +4052,12 @@
    ]
   },
   {
+   "text": "Every round helps. Let’s go over these.",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Every state has 2 senators, so there are 100 in all.",
    "from": [
     "course-pictures"
@@ -3886,6 +4100,12 @@
    ]
   },
   {
+   "text": "Every word matches.",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Everyone answers question 22.a on the form: “Are you a male who lived in the United States at any time between your 18th and 26th birthdays?”",
    "from": [
     "n400-lessons"
@@ -3913,6 +4133,12 @@
    "text": "Executive branch",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "Explain it simply",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -4216,6 +4442,24 @@
    "text": "Flag Etiquette",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "Flashcards",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "Flip back",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "Fluency",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -4566,6 +4810,12 @@
    ]
   },
   {
+   "text": "From your practice, not this interview",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Fundamental Rights of Citizens",
    "from": [
     "lessons"
@@ -4678,6 +4928,7 @@
   {
    "text": "Getting there",
    "from": [
+    "practice",
     "today-plan"
    ]
   },
@@ -4697,6 +4948,30 @@
    "text": "Global war from 1939–1945; the U.S. entered after the attack on Pearl Harbor in 1941",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "Go back",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "Go over again",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "Go over these again",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "Go over this unit’s lessons again.",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -4814,6 +5089,12 @@
    ]
   },
   {
+   "text": "Grammar",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Grand Canyon",
    "from": [
     "key-words",
@@ -4890,6 +5171,12 @@
    ]
   },
   {
+   "text": "Hard",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Harriet Tubman escaped slavery and helped many others escape to freedom.",
    "from": [
     "course-pictures"
@@ -4899,6 +5186,12 @@
    "text": "Has",
    "from": [
     "words"
+   ]
+  },
+  {
+   "text": "Has a video",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -5276,7 +5569,8 @@
   {
    "text": "Hear it",
    "from": [
-    "ask-screen"
+    "ask-screen",
+    "practice"
    ]
   },
   {
@@ -5323,6 +5617,12 @@
    "text": "Here",
    "from": [
     "words"
+   ]
+  },
+  {
+   "text": "Here is how you did.",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -5700,6 +6000,12 @@
    ]
   },
   {
+   "text": "I don’t know, show me",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "I explain in {language}",
    "from": [
     "onboarding"
@@ -5721,6 +6027,18 @@
    "text": "I heard “{heard}”. Try again, or tap “I do”.",
    "from": [
     "interview-day"
+   ]
+  },
+  {
+   "text": "I knew it",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "I missed it",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -6055,7 +6373,14 @@
    "from": [
     "ask-screen",
     "lesson-player",
-    "n400-lessons"
+    "n400-lessons",
+    "practice"
+   ]
+  },
+  {
+   "text": "In progress",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -6803,6 +7128,18 @@
    ]
   },
   {
+   "text": "Lessons",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "Lessons are loading. Please check back shortly.",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Lessons can be in any of {n} languages. The interview is in English, so we practice your answers in English, one step at a time.",
    "from": [
     "home"
@@ -6950,6 +7287,12 @@
    ]
   },
   {
+   "text": "Listen and write",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Listen and write {n} sentences",
    "from": [
     "onboarding"
@@ -6980,6 +7323,12 @@
    ]
   },
   {
+   "text": "Listen, then read it once more.",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Listen, then type the sentence.",
    "from": [
     "lesson-player"
@@ -6989,6 +7338,18 @@
    "text": "Listen, then write the sentence.",
    "from": [
     "interview-day"
+   ]
+  },
+  {
+   "text": "Listen, then write what you hear.",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "Listening…",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -7021,6 +7382,18 @@
    "text": "Loading",
    "from": [
     "onboarding"
+   ]
+  },
+  {
+   "text": "Loading interview questions…",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "Loading lessons…",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -7247,15 +7620,39 @@
    ]
   },
   {
+   "text": "Match each word to what it means.",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Match the officer’s words to the form",
    "from": [
     "n400-lessons"
    ]
   },
   {
+   "text": "Matched",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Matched the officer’s words to the form",
    "from": [
     "n400-lessons"
+   ]
+  },
+  {
+   "text": "Matching",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "Matching · Words and meanings",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -7274,6 +7671,12 @@
    "text": "Me",
    "from": [
     "tabs"
+   ]
+  },
+  {
+   "text": "Medium",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -7371,6 +7774,12 @@
    "text": "Mock Interview",
    "from": [
     "interview-intro"
+   ]
+  },
+  {
+   "text": "Mock interview",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -7524,6 +7933,12 @@
    "text": "N-400 questions",
    "from": [
     "interview-day"
+   ]
+  },
+  {
+   "text": "N-400 questions about you",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -7945,6 +8360,18 @@
    ]
   },
   {
+   "text": "Next question",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "Next sentence",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Next · {skill}",
    "from": [
     "today"
@@ -7960,6 +8387,12 @@
    "text": "Nice work today. See you tomorrow.",
    "from": [
     "tutor"
+   ]
+  },
+  {
+   "text": "Nice work. Keep it going.",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -7999,9 +8432,21 @@
    ]
   },
   {
+   "text": "No interview questions found.",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "No language found. Try another name.",
    "from": [
     "onboarding"
+   ]
+  },
+  {
+   "text": "No lessons yet",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -8029,9 +8474,21 @@
    ]
   },
   {
+   "text": "No, I made a mistake",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "No, I'm studying on my own",
    "from": [
     "getting-started"
+   ]
+  },
+  {
+   "text": "No, try again",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -8053,8 +8510,15 @@
    ]
   },
   {
+   "text": "Not a pair. Try again.",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Not checked yet",
    "from": [
+    "practice",
     "today",
     "today-plan"
    ]
@@ -8088,7 +8552,8 @@
   {
    "text": "Not quite",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "practice"
    ]
   },
   {
@@ -8110,6 +8575,18 @@
    ]
   },
   {
+   "text": "Not started",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "Not sure which test you’ll take? Check uscis.gov.",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Not this time.",
    "from": [
     "interview-day"
@@ -8127,7 +8604,32 @@
     "checkpoints",
     "interview-day",
     "interview-tab",
-    "pilot"
+    "pilot",
+    "practice"
+   ]
+  },
+  {
+   "text": "Not yet, but you’re close.",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "Not yet, but you’re close. Check the marked words.",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "Not yet, but you’re close. {score}% · {n} of {total} words.",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "Not yet, but you’re close. {score}/100",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -8188,6 +8690,12 @@
    "text": "Nothing here yet. It opens as lessons are reviewed.",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "Nothing to practice here yet.",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -8373,6 +8881,24 @@
    ]
   },
   {
+   "text": "On the real test you need to read 1 of up to 3 sentences correctly.",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "On the real test you need to write 1 of up to 3 sentences correctly.",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "On the real test you need {need} right out of up to {of}.",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "On uscis.gov",
    "from": [
     "interview-tab"
@@ -8407,6 +8933,12 @@
    "text": "One more lesson",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "One more question you know.",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -8470,6 +9002,12 @@
    ]
   },
   {
+   "text": "Only your scores are saved. Nothing you said is kept.",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Only your steps and scores are saved. Nothing you said is kept.",
    "from": [
     "lesson-player",
@@ -8480,6 +9018,12 @@
    "text": "Open",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "Open the course",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -8575,7 +9119,8 @@
   {
    "text": "Passed",
    "from": [
-    "interview-day"
+    "interview-day",
+    "practice"
    ]
   },
   {
@@ -8705,9 +9250,21 @@
    ]
   },
   {
+   "text": "Pick a part. Ten cards, then we look at how it went.",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Pick the month",
    "from": [
     "interview-when"
+   ]
+  },
+  {
+   "text": "Pick up where you left off",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -8750,6 +9307,12 @@
    "text": "Play",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Play again",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -8798,7 +9361,14 @@
    "text": "Practice",
    "from": [
     "course",
+    "practice",
     "today-plan"
+   ]
+  },
+  {
+   "text": "Practice again",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -8814,6 +9384,12 @@
    ]
   },
   {
+   "text": "Practice in the N-400 guide",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Practice interview",
    "from": [
     "interview-tab"
@@ -8823,6 +9399,18 @@
    "text": "Practice interview questions",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "Practice interview report",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "Practice interview · Part {n}: {part}",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -8859,6 +9447,24 @@
    ]
   },
   {
+   "text": "Practice saying what each N-400 question asks.",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "Practice settings",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "Practice settings: {version} test",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Practice the day again",
    "from": [
     "interview-day"
@@ -8880,6 +9486,18 @@
    "text": "Practice this lesson again",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "Practice what each question asks, so you understand the officer. If \"yes\" might be true for you, talk to a lawyer first.",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "Practice what the swearing-in questions mean.",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -9037,6 +9655,12 @@
    ]
   },
   {
+   "text": "Pronunciation notes",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Proposed legislation that must pass both chambers and be signed by the President",
    "from": [
     "lessons"
@@ -9116,6 +9740,12 @@
    ]
   },
   {
+   "text": "Question by question",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Question {n}",
    "from": [
     "interview-day"
@@ -9124,7 +9754,8 @@
   {
    "text": "Question {n} of {total}",
    "from": [
-    "checkpoints"
+    "checkpoints",
+    "practice"
    ]
   },
   {
@@ -9199,6 +9830,12 @@
    "text": "Read 3 sentences out loud and write 3, from this section’s lessons.",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "Read a sentence aloud",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -9282,6 +9919,12 @@
    ]
   },
   {
+   "text": "Read the sentence out loud, in English",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Read this out loud, like you will for the officer.",
    "from": [
     "lesson-player"
@@ -9305,6 +9948,7 @@
     "interview-day",
     "interview-tab",
     "onboarding",
+    "practice",
     "today-plan"
    ]
   },
@@ -9321,10 +9965,23 @@
    ]
   },
   {
+   "text": "Reading · Read aloud",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "Reading · Read it aloud",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Ready",
    "from": [
     "course",
-    "interview-tab"
+    "interview-tab",
+    "practice"
    ]
   },
   {
@@ -9355,6 +10012,12 @@
    "text": "Ready to file?",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "Ready when you are.",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -9412,6 +10075,12 @@
    ]
   },
   {
+   "text": "Reload",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Removal or deportation proceedings",
    "from": [
     "n400-lessons"
@@ -9438,7 +10107,8 @@
   {
    "text": "Repeat, please",
    "from": [
-    "interview-day"
+    "interview-day",
+    "practice"
    ]
   },
   {
@@ -9604,7 +10274,8 @@
   {
    "text": "Right!",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "practice"
    ]
   },
   {
@@ -9659,6 +10330,12 @@
    "text": "Rosa Parks and Martin Luther King Jr. were leaders of the Civil Rights Movement",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "Round complete.",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -9748,6 +10425,12 @@
    "text": "Saved.",
    "from": [
     "my-tutor"
+   ]
+  },
+  {
+   "text": "Saved. Lesson complete.",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -10027,6 +10710,12 @@
    ]
   },
   {
+   "text": "Say it again",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Say it in English",
    "from": [
     "n400-lessons"
@@ -10132,6 +10821,12 @@
    "text": "Say it in two parts: LARJ-est.",
    "from": [
     "reading-tips"
+   ]
+  },
+  {
+   "text": "Say it instead",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -10261,9 +10956,21 @@
    ]
   },
   {
+   "text": "See the day",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "See the full list",
    "from": [
     "settings"
+   ]
+  },
+  {
+   "text": "See the full report",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -10470,6 +11177,12 @@
    ]
   },
   {
+   "text": "Show the definition",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Shown on your Me page.",
    "from": [
     "settings"
@@ -10564,7 +11277,8 @@
   {
    "text": "Skip",
    "from": [
-    "pilot"
+    "pilot",
+    "practice"
    ]
   },
   {
@@ -10585,6 +11299,12 @@
    "text": "Skip setup",
    "from": [
     "getting-started"
+   ]
+  },
+  {
+   "text": "Skip this question",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -10627,6 +11347,12 @@
    "text": "Small states wanted every state to have the same number.",
    "from": [
     "course-lessons"
+   ]
+  },
+  {
+   "text": "Small talk",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -10832,7 +11558,14 @@
     "course",
     "interview-tab",
     "onboarding",
+    "practice",
     "today-plan"
+   ]
+  },
+  {
+   "text": "Speaking · The officer’s questions",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -10865,6 +11598,7 @@
     "course",
     "home",
     "onboarding",
+    "practice",
     "today",
     "today-plan"
    ]
@@ -10879,6 +11613,7 @@
    "text": "Start here",
    "from": [
     "home",
+    "practice",
     "today",
     "today-plan"
    ]
@@ -11047,6 +11782,7 @@
   {
    "text": "Strong",
    "from": [
+    "practice",
     "today-plan"
    ]
   },
@@ -11057,9 +11793,22 @@
    ]
   },
   {
+   "text": "Study",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "Suggested for you",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Suggested next",
    "from": [
-    "course"
+    "course",
+    "practice"
    ]
   },
   {
@@ -11129,7 +11878,8 @@
    "from": [
     "checkpoints",
     "lesson-player",
-    "n400-lessons"
+    "n400-lessons",
+    "practice"
    ]
   },
   {
@@ -11154,6 +11904,12 @@
    "text": "Susan B. Anthony was a key leader in the fight that led to the 19th Amendment",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "Swearing in",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -11211,6 +11967,7 @@
     "interview-day",
     "interview-intro",
     "n400-lessons",
+    "practice",
     "talk"
    ]
   },
@@ -11237,14 +11994,16 @@
    "text": "Tap to answer",
    "from": [
     "interview-day",
-    "lesson-player"
+    "lesson-player",
+    "practice"
    ]
   },
   {
    "text": "Tap to stop",
    "from": [
     "interview-day",
-    "lesson-player"
+    "lesson-player",
+    "practice"
    ]
   },
   {
@@ -12748,9 +13507,33 @@
    ]
   },
   {
+   "text": "The officer accepts",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "The officer accepts any one",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "The officer asks",
    "from": [
     "checkpoints"
+   ]
+  },
+  {
+   "text": "The officer asks up to 10 questions from this list of 100. You pass with 6 correct.",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "The officer asks up to 20 questions from this list of 128. You pass with 12 correct.",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -12768,7 +13551,8 @@
   {
    "text": "The officer is speaking…",
    "from": [
-    "interview-day"
+    "interview-day",
+    "practice"
    ]
   },
   {
@@ -12924,7 +13708,14 @@
   {
    "text": "The sentence",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "practice"
+   ]
+  },
+  {
+   "text": "The sentence, word by word",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -13008,13 +13799,20 @@
   {
    "text": "The whole day",
    "from": [
-    "interview-tab"
+    "interview-tab",
+    "practice"
    ]
   },
   {
    "text": "The whole day · Part {n} of {total}: {part}",
    "from": [
     "interview-day"
+   ]
+  },
+  {
+   "text": "The whole interview as one practice call: the oath, your N-400 questions, reading, writing and civics. Nothing is saved.",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -13715,6 +14513,12 @@
    ]
   },
   {
+   "text": "This would pass in a real interview. {score}/100",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Thomas Jefferson",
    "from": [
     "course-titles",
@@ -13818,6 +14622,12 @@
    ]
   },
   {
+   "text": "Tips to improve",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Titles of nobility",
    "from": [
     "n400-lessons"
@@ -13896,6 +14706,12 @@
    ]
   },
   {
+   "text": "To review",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "To stay away from something on purpose.",
    "from": [
     "n400"
@@ -13911,6 +14727,7 @@
    "text": "Today",
    "from": [
     "home",
+    "practice",
     "tabs",
     "today",
     "today-plan"
@@ -14027,6 +14844,18 @@
    ]
   },
   {
+   "text": "Translating…",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "Translation unavailable",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Tribal Sovereignty",
    "from": [
     "key-words"
@@ -14060,7 +14889,8 @@
    "text": "Try again",
    "from": [
     "checkpoints",
-    "n400-lessons"
+    "n400-lessons",
+    "practice"
    ]
   },
   {
@@ -14142,7 +14972,20 @@
     "checkpoints",
     "interview-day",
     "lesson-player",
-    "n400-lessons"
+    "n400-lessons",
+    "practice"
+   ]
+  },
+  {
+   "text": "Type the sentence here…",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "Type the sentence in English",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -14155,7 +14998,8 @@
    "text": "Type your answer in English",
    "from": [
     "checkpoints",
-    "lesson-player"
+    "lesson-player",
+    "practice"
    ]
   },
   {
@@ -14291,6 +15135,12 @@
    ]
   },
   {
+   "text": "Understanding",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Understanding the Oath of Allegiance",
    "from": [
     "n400-lessons"
@@ -14415,6 +15265,18 @@
    "text": "Vocabulary",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "Vocabulary games",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "Voice",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -14657,7 +15519,8 @@
   {
    "text": "We can’t check this one yet",
    "from": [
-    "checkpoints"
+    "checkpoints",
+    "practice"
    ]
   },
   {
@@ -14691,6 +15554,12 @@
    ]
   },
   {
+   "text": "We couldn’t check your answer",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "We couldn’t find that code. Check it with your teacher.",
    "from": [
     "my-tutor"
@@ -14700,6 +15569,12 @@
    "text": "We didn't hear the words of this sentence. Read it slowly, one word at a time.",
    "from": [
     "reading-tips"
+   ]
+  },
+  {
+   "text": "We didn’t hear you. Check your microphone and try again.",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -14718,6 +15593,12 @@
    "text": "We elect a U.S. Senator for how many years?",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "We explain what questions mean. How they apply to you is for a lawyer.",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -14846,6 +15727,12 @@
    "text": "Well written!",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Were you able to read it correctly?",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -15431,7 +16318,8 @@
   {
    "text": "What the question is asking",
    "from": [
-    "n400-lessons"
+    "n400-lessons",
+    "practice"
    ]
   },
   {
@@ -16082,6 +16970,12 @@
    ]
   },
   {
+   "text": "Why? Explain it simply",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Willing to bear arms",
    "from": [
     "n400-lessons"
@@ -16130,15 +17024,33 @@
    ]
   },
   {
+   "text": "Word dictation",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Words from the official reading list",
    "from": [
     "lesson-player"
    ]
   },
   {
+   "text": "Words to check",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Words to know · tap to hear",
    "from": [
     "n400-lessons"
+   ]
+  },
+  {
+   "text": "Words we didn’t hear",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -16150,7 +17062,8 @@
   {
    "text": "Work on next",
    "from": [
-    "interview-day"
+    "interview-day",
+    "practice"
    ]
   },
   {
@@ -16228,6 +17141,12 @@
    ]
   },
   {
+   "text": "Worth going over again",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Would you be willing to carry weapons for the U.S. if the law requires it?",
    "from": [
     "n400"
@@ -16293,7 +17212,32 @@
     "interview-day",
     "interview-tab",
     "onboarding",
+    "practice",
     "today-plan"
+   ]
+  },
+  {
+   "text": "Writing · Flashcards",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "Writing · Listen and write",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "Writing · Vocabulary",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "Wrote it on paper? Show the sentence",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -16313,6 +17257,18 @@
    "text": "Yes! Just right.",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Yes, I got it",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "Yes, it matches",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -16507,13 +17463,20 @@
    "from": [
     "interview-day",
     "lesson-player",
-    "n400-lessons"
+    "n400-lessons",
+    "practice"
    ]
   },
   {
    "text": "You understood the question.",
    "from": [
     "n400-lessons"
+   ]
+  },
+  {
+   "text": "You understood the question. {score}/100",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -16531,7 +17494,8 @@
   {
    "text": "You wrote",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "practice"
    ]
   },
   {
@@ -16566,6 +17530,12 @@
    ]
   },
   {
+   "text": "You: “{text}”",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Young people who served in Vietnam pushed for the 26th Amendment",
    "from": [
     "key-words"
@@ -16578,9 +17548,33 @@
    ]
   },
   {
+   "text": "Your answer",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Your answer stays on this phone.",
    "from": [
     "onboarding"
+   ]
+  },
+  {
+   "text": "Your best so far",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "Your browser can’t listen",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "Your browser doesn’t support speech recognition. Please use Chrome, Edge, or Safari.",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -16799,6 +17793,12 @@
    ]
   },
   {
+   "text": "Your sentence",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Your state",
    "from": [
     "course-titles"
@@ -16832,6 +17832,18 @@
    "text": "Your turn.",
    "from": [
     "interview-day"
+   ]
+  },
+  {
+   "text": "Your turn: answer out loud, in English.",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "Your turn: say in English what the officer is asking.",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -17273,6 +18285,12 @@
    ]
   },
   {
+   "text": "answers ready",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "applied",
    "from": [
     "n400"
@@ -17557,6 +18575,7 @@
   {
    "text": "done",
    "from": [
+    "practice",
     "today"
    ]
   },
@@ -17846,6 +18865,12 @@
    "text": "misrepresentation",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "missed",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -18206,6 +19231,12 @@
    "text": "study the civics lessons — history, government, and your representatives",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "suggested next",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -18893,7 +19924,14 @@
     "course",
     "interview-tab",
     "lesson-player",
-    "n400-lessons"
+    "n400-lessons",
+    "practice"
+   ]
+  },
+  {
+   "text": "{n} of {total} answers passed.",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -18903,9 +19941,27 @@
    ]
   },
   {
+   "text": "{n} of {total} lessons",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "{n} of {total} matched",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "{n} of {total} questions",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "{n} of {total} right",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -18930,6 +19986,18 @@
    "text": "{n} questions to keep fresh",
    "from": [
     "today-plan"
+   ]
+  },
+  {
+   "text": "{n} right. Nice work, {name}.",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "{n} right. Nice work.",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -19005,6 +20073,12 @@
    ]
   },
   {
+   "text": "{score}% · {n} of {total} words read right.",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "{section} · 1 question",
    "from": [
     "checkpoints"
@@ -19044,6 +20118,12 @@
    "text": "{unit}: done!",
    "from": [
     "checkpoints"
+   ]
+  },
+  {
+   "text": "{version} test",
+   "from": [
+    "practice"
    ]
   },
   {
