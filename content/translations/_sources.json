@@ -393,7 +393,8 @@
   {
    "text": "1 day this week",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "today-plan"
    ]
   },
   {
@@ -6413,6 +6414,7 @@
   {
    "text": "Language",
    "from": [
+    "onboarding",
     "settings"
    ]
   },
@@ -13560,6 +13562,13 @@
    ]
   },
   {
+   "text": "Today’s goal is done.",
+   "from": [
+    "lesson-player",
+    "today-plan"
+   ]
+  },
+  {
    "text": "Today’s goal: 1 lesson",
    "from": [
     "today-plan"
@@ -18389,7 +18398,8 @@
   {
    "text": "{n} days this week",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "today-plan"
    ]
   },
   {

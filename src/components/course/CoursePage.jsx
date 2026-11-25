@@ -22,8 +22,8 @@ import { STOP_LOOK, StopIcon, stopHref, stopLabel, useCourseText, useJourney } f
 // - Speaking: each unit's Speak it! checkpoints and practice interview.
 // Each tab ends with its "Free practice" run(s), then "Practice" (the
 // Practice home, /study?tab=practice). Inactive tabs are the pale colour.
-// Nothing is locked: every stop opens. The winding road (JourneyPath.jsx)
-// stays in the code but isn't shown. No stars or badges. Reads only.
+// Nothing is locked: every stop opens. The old winding road (JourneyPath)
+// was removed in amio-v2/finishing. No stars or badges. Reads only.
 
 export const COURSE_TAB_KEY = 'pathways_course_tab';
 const PARTS = ['readwrite', 'civics', 'speaking'];

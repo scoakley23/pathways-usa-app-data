@@ -5,6 +5,9 @@ import { Button } from '@/components/pathways/ui';
 import { checkpointProgress } from '@/lib/dailyPlan';
 import { CHEST_SIZE } from '@/lib/checkpoints';
 import useToday, { useTodayText } from '@/components/today/useToday';
+import RedStop from '@/components/pathways/RedStop';
+import WeekSquares from '@/components/today/WeekSquares';
+import { goalMet } from '@/lib/todayView';
 
 // Done for today (Prompt 7; Amio v2 look like frame LessonDone): Amio's one
 // line, "Done for today!", lessons finished today and the kind streak (days
@@ -35,12 +38,18 @@ export default function DoneTodayPage() {
     <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-full bg-paper text-navy flex flex-col">
       <div className="flex-1 max-w-lg w-full mx-auto px-4 pt-8 pb-4 flex flex-col gap-5">
         <AmioSays mood="proud" size={72}>{sub}</AmioSays>
-        <h1 className="font-display text-[2.75rem] leading-none tracking-tight">{t('done_title')}</h1>
+        <h1 dir="auto" className="font-display text-[2.75rem] leading-none tracking-tight"><RedStop>{t('done_title')}</RedStop></h1>
         <div className="flex gap-2">
           <Stat className="bg-denim text-white" value={day.doneToday} label={t('lessons_today')} />
           <Stat className="bg-gold text-navy" value={day.streak.days} label={day.streak.days === 1 ? t('day_in_a_row') : t('days_in_a_row')} />
         </div>
         {day.streak.days > 0 && <p className="text-small text-muted">{t('rest_note')}</p>}
+        <WeekSquares
+          week={day.week}
+          goalMet={goalMet(day.goal, day.doneToday)}
+          label={day.week?.count === 1 ? t('days_week_1') : t('days_week_n', { n: day.week?.count ?? 0 })}
+          metLabel={t('goal_met')}
+        />
 
         {cp && (
           <section className="rounded-card bg-white border border-line p-5">

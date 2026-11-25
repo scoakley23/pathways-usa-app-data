@@ -10,6 +10,7 @@ export const COLORS = {
   red: TOKENS.red,
   amioRed: TOKENS['amio-red'],
   amioBlush: TOKENS['amio-blush'],
+  amioTint: TOKENS['amio-tint'],
   sky: TOKENS.sky,
   redText: TOKENS['red-text'],
   gold: TOKENS.gold,
@@ -27,4 +28,5 @@ export const COLORS = {
 };
 
 // Confetti (Amio v2): gold, sky, denim and navy. Never red: red is Amio only.
-export const CONFETTI_COLORS = [COLORS.gold, COLORS.sky, COLORS.denim, COLORS.navy];
+// Red means Amio or a celebration: confetti is a celebration.
+export const CONFETTI_COLORS = [COLORS.gold, COLORS.sky, COLORS.denim, COLORS.navy, COLORS.amioRed];
