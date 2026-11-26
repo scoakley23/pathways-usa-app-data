@@ -7,7 +7,7 @@
 //   translationSources.test.js fails if a screen translates a list that
 //   isn't here, so new text can't be forgotten.
 // - contentTexts(): the content the app translates (civics questions and
-//   answers, sentences, words, lessons and key words, the N-400 guide, the
+//   answers, sentences, words, the N-400 guide, the
 //   lawyer checklist, Ask Amio's privacy note), with the same strings the
 //   screens look up in the pack.
 import { HOME_STRINGS } from '@/components/home/homeStrings';
@@ -31,7 +31,7 @@ import { MY_TUTOR_LINES } from '@/components/partners/myTutorStrings';
 import { N400_LESSON_LINES } from '@/components/n400lesson/n400LessonStrings';
 import { N400_GUIDE_LINES } from '@/components/n400/n400GuideStrings';
 import { LAWYER_LINES } from '@/components/lawyer/lawyerStrings';
-import { DECK_LINES, LEARN_AMIO_LINES, LEARN_SCREEN_LINES, REP_LINES, TUTOR_STEP_LINES } from '@/components/lessons/learnStrings';
+import { LEARN_AMIO_LINES, LEARN_SCREEN_LINES, REP_LINES, TUTOR_STEP_LINES } from '@/components/lessons/learnStrings';
 import { UI_LINES as TUTOR_STEP_AMIO_LINES } from '@/components/persona/tutorStepLines';
 import { ERROR_PAGE_LINES, LESSON_STATUS_LINES, SETTINGS_PIECE_LINES } from '@/components/shell/leftoverStrings';
 import { ASK_HISTORY_LINES, NOTIFICATION_LINES, PROGRESS_LINES } from '@/components/progress/progressStrings';
@@ -50,8 +50,6 @@ import civics2008 from '../../content/base44-export/civics-questions-2008.json';
 import readingSentences from '../../content/base44-export/reading-sentences.json';
 import writingSentences from '../../content/base44-export/writing-sentences.json';
 import vocabularyWords from '../../content/base44-export/vocabulary-words.json';
-import lessons from '../../content/base44-export/lessons.json';
-import lessonFlashcards from '../../content/base44-export/lesson-flashcards.json';
 import askAnswers from '../../content/ask/answers.json';
 import { readingTipSources } from '@/lib/readingTips';
 import { storyTexts } from '@/lib/story';
@@ -100,7 +98,6 @@ export const STRING_SETS = [
   { id: 'tutor-steps', strings: TUTOR_STEP_LINES, usedIn: [['src/components/persona/TutorLesson.jsx', 'TUTOR_STEP_LINES']] },
   { id: 'tutor-steps-amio', strings: TUTOR_STEP_AMIO_LINES, usedIn: [['src/components/persona/TutorLesson.jsx', 'UI_LINES']] },
   { id: 'find-rep', strings: REP_LINES, usedIn: [['src/components/civics/RepresentativeFinder.jsx', 'REP_LINES'], ['src/components/civics/OfficeholderNote.jsx', 'REP_LINES']] },
-  { id: 'lesson-deck', strings: DECK_LINES, usedIn: [['src/components/lessons/useDeckText.js', 'DECK_LINES']] },
   { id: 'lawyer', strings: LAWYER_LINES, usedIn: [['src/components/lawyer/useLawyerText.js', 'LAWYER_LINES']] },
   { id: 'n400-guide', strings: N400_GUIDE_LINES, usedIn: [['src/components/n400/useN400GuideText.js', 'N400_GUIDE_LINES']] },
   { id: 'practice', strings: PRACTICE_LINES, usedIn: [['src/components/practice/usePracticeText.js', 'PRACTICE_LINES']] },
@@ -121,11 +118,6 @@ export function contentTexts() {
     ['civics-questions', texts(questions.flatMap((q) => [q.question, q.answer]))],
     ['sentences', texts([...readingSentences, ...writingSentences].map((s) => s.text))],
     ['words', texts(vocabularyWords.map((w) => w.word))],
-    ['lessons', texts(lessons.flatMap((l) => [
-      l.title, l.description, l.content,
-      ...(l.key_points || []).flatMap((k) => (typeof k === 'string' ? [k] : [k.text, k.definition])),
-    ]))],
-    ['key-words', texts(lessonFlashcards.flatMap((f) => [f.term, f.definition, f.example]))],
     ['n400', texts(N400_SECTIONS.flatMap((section) => (section.questions || []).flatMap((q) => [
       q.official, q.meaning,
       ...(q.words || []).flatMap((w) => [w.word, w.definition]),

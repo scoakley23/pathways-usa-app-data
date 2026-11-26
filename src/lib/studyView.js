@@ -1,4 +1,4 @@
-// The Study page (Lessons | Practice): pure helpers, no storage.
+// The Practice page: pure helpers, no storage.
 
 export const PRACTICE_PARTS = ['reading', 'writing', 'civics', 'speaking'];
 const LEVEL_RANK = { start_here: 0, getting_there: 1, strong: 2 };
@@ -21,22 +21,4 @@ export function suggestPart(levels) {
 export function partStatus(level) {
   if (level === 'strong') return 'ready';
   return LEVEL_RANK[level] !== undefined ? level : 'not_checked';
-}
-
-// The topics on the Lessons road, in order: each { name, lessons, doneCount,
-// state: 'done' | 'current' | 'later' }. Topics with no lessons are left out.
-// Done = every lesson finished; current = the topic of nextLesson() (it wins
-// over done, e.g. a finished lesson worth going over again).
-export function topicStates(topicNames = [], lessons = [], progress = [], next = null) {
-  const completed = new Set(progress.filter((p) => p.completed).map((p) => p.lesson_id));
-  return topicNames
-    .map((name) => {
-      const topicLessons = lessons.filter((l) => l.topic === name);
-      const doneCount = topicLessons.filter((l) => completed.has(l.id)).length;
-      let state = 'later';
-      if (next?.lesson?.topic === name) state = 'current';
-      else if (topicLessons.length > 0 && doneCount === topicLessons.length) state = 'done';
-      return { name, lessons: topicLessons, doneCount, state };
-    })
-    .filter((t) => t.lessons.length > 0);
 }

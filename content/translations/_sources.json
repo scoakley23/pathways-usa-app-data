@@ -247,39 +247,9 @@
  ],
  "texts": [
   {
-   "text": "\"Checks and balances\" means each branch of government can limit the other branches. This way, no one part of government becomes too powerful.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
-   "text": "\"Civic responsibility\" means the things citizens do to help their community and their government, like voting, serving on a jury and obeying the law.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
-   "text": "\"Due process\" means the government must follow fair rules before it takes away a person's freedom, money or property. For example, a person has the right to a fair trial.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
    "text": "\"Have you ever…\" questions",
    "from": [
     "practice"
-   ]
-  },
-  {
-   "text": "\"Manifest Destiny\" was a belief in the 1800s that the United States should grow west to the Pacific Ocean. It also caused great harm to American Indians, who lost their land.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
-   "text": "'The Star-Spangled Banner,' written in 1814, the official song of the United States",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -452,12 +422,6 @@
    ]
   },
   {
-   "text": "1 question from the {version} civics test, in English, with the official answers.",
-   "from": [
-    "lesson-deck"
-   ]
-  },
-  {
    "text": "1 question to bring back",
    "from": [
     "checkpoints"
@@ -494,17 +458,9 @@
    ]
   },
   {
-   "text": "13th Amendment",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
    "text": "14th Amendment",
    "from": [
-    "civics-questions",
-    "lessons"
+    "civics-questions"
    ]
   },
   {
@@ -514,34 +470,9 @@
    ]
   },
   {
-   "text": "15th Amendment",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
-   "text": "16th President who led the Union through the Civil War and issued the Emancipation Proclamation",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "17.a. Have you EVER engaged in prostitution, attempted to procure or import prostitutes or persons for the purpose of prostitution, or received any proceeds or money from prostitution? 17.b. Have you EVER manufactured, cultivated, produced, distributed, dispensed, sold, or smuggled (trafficked) any controlled substances, illegal drugs, narcotics, or drug paraphernalia in violation of any law or regulation of a U.S. state, the United States, or a foreign country? 17.c. Have you EVER been married to more than one person at the same time? 17.d. Have you EVER married someone in order to obtain an immigration benefit? 17.e. Have you EVER helped anyone to enter, or try to enter, the United States illegally? 17.f. Have you EVER gambled illegally or received income from illegal gambling? 17.g. Have you EVER failed to support your dependents (pay child support) or to pay alimony (court-ordered financial support after divorce or separation)? 17.h. Have you EVER made any misrepresentation to obtain any public benefit in the United States?",
    "from": [
     "n400"
-   ]
-  },
-  {
-   "text": "1773 protest against British taxes by colonists dumping tea into Boston Harbor",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "1773 protest where colonists dumped British tea into Boston Harbor",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -551,64 +482,9 @@
    ]
   },
   {
-   "text": "1803 acquisition of territory from France that doubled United States size",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "1830 law that forced Native Americans to relocate west of the Mississippi River",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "1846-1848 war resulting in U.S. acquisition of Southwest and California",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "1862 law providing free land to settlers who lived and farmed it",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "1863 decree declaring slaves in Confederate states free",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "1863 order by Lincoln declaring enslaved people in Confederate states to be free",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "1920 / After World War I / (With the) 19th Amendment",
    "from": [
     "civics-questions"
-   ]
-  },
-  {
-   "text": "1965 federal law that eliminated literacy tests and other barriers to voting",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "1965 federal law that eliminated literacy tests and other voting barriers",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "19th Amendment",
-   "from": [
-    "key-words",
-    "lessons"
    ]
   },
   {
@@ -630,22 +506,9 @@
    ]
   },
   {
-   "text": "22nd Amendment",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "26.a. Are you currently a member of the U.S. armed forces? 26.b. If you answered \"Yes\" to Item Number 26.a., are you scheduled to deploy outside the United States, including to a vessel, within the next 3 months? 26.c. If you answered \"Yes\" to Item Number 26.a., are you currently stationed outside the United States? 26.d. If you answered \"No\" to Item Number 26.a., are you a former U.S. military service member who is currently residing outside of the U.S.?",
    "from": [
     "n400"
-   ]
-  },
-  {
-   "text": "26th Amendment",
-   "from": [
-    "key-words",
-    "lessons"
    ]
   },
   {
@@ -679,12 +542,6 @@
    ]
   },
   {
-   "text": "50 States",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "50 states with two senators each make 100 senators.",
    "from": [
     "course-lessons"
@@ -709,12 +566,6 @@
    ]
   },
   {
-   "text": "8th Amendment",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "A 1-minute question at 3, 6 and 12 months.",
    "from": [
     "pilot"
@@ -736,12 +587,6 @@
    "text": "A President can serve only two terms. This rule is in the 22nd Amendment.",
    "from": [
     "course-lessons"
-   ]
-  },
-  {
-   "text": "A President can veto a bill they disagree with, sending it back to Congress. Congress can override a presidential veto with a two-thirds majority vote.",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -841,18 +686,6 @@
    ]
   },
   {
-   "text": "A governor is the leader of a state government. The governor is like the President, but for one state.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
-   "text": "A green card holder is a permanent resident who can apply for citizenship after 5 years",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "A group that acts like a military group but is not the official military.",
    "from": [
     "n400"
@@ -925,12 +758,6 @@
    ]
   },
   {
-   "text": "A massive canyon in Arizona carved by the Colorado River, a famous national park",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "A mayor who steals can be arrested and go to court like anyone else.",
    "from": [
     "course-lessons"
@@ -961,12 +788,6 @@
    ]
   },
   {
-   "text": "A non-citizen who has legal permission to live and work permanently in the U.S.",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "A note in the app when today’s lesson is waiting. No time to set, and no phone notifications. Saved on this phone.",
    "from": [
     "settings"
@@ -982,12 +803,6 @@
    "text": "A person who does not live mainly in the United States.",
    "from": [
     "n400"
-   ]
-  },
-  {
-   "text": "A person who is a legal member of a country and has full rights and responsibilities",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -1087,12 +902,6 @@
    ]
   },
   {
-   "text": "A system where citizens elect representatives to govern on their behalf",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "A term is the number of years a person serves in a job.",
    "from": [
     "course-lessons"
@@ -1147,18 +956,6 @@
    ]
   },
   {
-   "text": "Abolished slavery throughout the United States in 1865",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Abolished slavery throughout the United States, ratified in 1865",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "About 1 week to your interview month",
    "from": [
     "today"
@@ -1207,13 +1004,6 @@
    ]
   },
   {
-   "text": "Abraham Lincoln",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
    "text": "Abraham Lincoln is famous for many things. Name one.",
    "from": [
     "civics-questions"
@@ -1242,12 +1032,6 @@
    "text": "Access restricted",
    "from": [
     "error-pages"
-   ]
-  },
-  {
-   "text": "Active involvement of citizens in the government process through voting and civic engagement",
-   "from": [
-    "lessons"
    ]
   },
   {
@@ -1329,12 +1113,6 @@
    ]
   },
   {
-   "text": "After five years as a permanent resident, most immigrants can apply for naturalization",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "After the Civil War / During Reconstruction / (With the) 15th Amendment / 1870",
    "from": [
     "civics-questions"
@@ -1371,27 +1149,9 @@
    ]
   },
   {
-   "text": "Agreement where citizens accept responsibilities in exchange for rights and protection",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Agricultural heartland region including farming and manufacturing states",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Alaska",
    "from": [
     "words"
-   ]
-  },
-  {
-   "text": "Alaska and Hawaii were the last states added, both in 1959",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -1425,12 +1185,6 @@
    ]
   },
   {
-   "text": "All American citizens have fundamental rights protected by the Constitution and laws. Freedom of speech allows Americans to express opinions without government interference. Freedom of religion allows everyone to practice their faith or no faith. Freedom of the press ensures that journalists can report information without government censorship.\n\nCitizens also have the right to petition the government and assemble peacefully. The right to a fair trial protects against unjust punishment. Property rights allow citizens to own and use property. The right to vote ensures all eligible citizens can participate in elections. These rights apply equally to all citizens regardless of race, religion, gender, or background.\n\nMany countries do not protect these fundamental rights, making them particularly valuable in America. The Constitution guarantees these rights, but citizens must be vigilant in protecting them. The Supreme Court interprets what these rights mean in modern contexts. Throughout history, Americans have fought to expand these rights to all citizens.",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "All caught up",
    "from": [
     "learn-screens"
@@ -1440,12 +1194,6 @@
    "text": "All done for today",
    "from": [
     "today"
-   ]
-  },
-  {
-   "text": "All lessons",
-   "from": [
-    "lesson-deck"
    ]
   },
   {
@@ -1563,44 +1311,6 @@
    ]
   },
   {
-   "text": "Amendments and Constitutional Changes",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Amendments are formal changes to the Constitution and require approval by two-thirds of Congress and ratification by three-fourths of the states. The Constitution has been amended 27 times, showing how it adapts to changing times while maintaining core principles.\n\nThe Bill of Rights (First 10 amendments) protect fundamental freedoms. The 13th Amendment abolished slavery in 1865. The 14th Amendment, passed after the Civil War, guarantees equal protection and due process. The 15th Amendment prohibited voting discrimination based on race. The 19th Amendment granted women the right to vote in 1920. The 26th Amendment lowered the voting age to 18 in 1971.\n\nAmendments can also expand voting rights, change how government operates, and respond to historical events. The lengthy amendment process ensures that changes are carefully considered and broadly supported by the nation.",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "American Culture and Values",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "American Dream",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
-   "text": "American Flag",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
-   "text": "American Independence and the Revolutionary War",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "American Indians",
    "from": [
     "words"
@@ -1631,24 +1341,6 @@
    ]
   },
   {
-   "text": "American Symbols of Freedom and Democracy",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "American culture is diverse, reflecting the many people who have come from around the world. Certain values are widely cherished, including individualism, democracy, equality, and opportunity. Americans value freedom of speech, religion, and thought. Hard work and achievement are highly respected. The concept of 'the American Dream'—that anyone can succeed through hard work—is central to American identity.\n\nAmerican culture includes music, art, literature, and film that have influenced the world. Jazz, rock and roll, and hip-hop originated in America. Hollywood has produced films watched globally. American literature includes famous authors like Mark Twain and Ernest Hemingway. American food reflects diverse immigrant influences including Italian, Chinese, Mexican, and many other cuisines.\n\nHolidays like Independence Day (July 4th), Thanksgiving, and Memorial Day celebrate American values and history. The diversity of American culture makes it dynamic and constantly evolving. Americans celebrate their differences while working toward shared values. Understanding American culture helps explain the nation's history and contemporary society.",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "American independence began with growing tensions between the thirteen British colonies and the British government in the late 1700s. The colonists felt unfairly taxed without representation in Parliament, leading to the famous phrase 'no taxation without representation.' Key events leading to independence included the Boston Tea Party in 1773, where colonists dumped British tea into Boston Harbor to protest taxes.\n\nOn July 4, 1776, the Continental Congress in Philadelphia adopted the Declaration of Independence, written primarily by Thomas Jefferson. This document declared the colonies' separation from Britain and outlined fundamental rights to 'life, liberty, and the pursuit of happiness.' The Revolutionary War lasted from 1775 to 1783, with General George Washington commanding the Continental Army.\n\nKey battles included Lexington and Concord in 1775 and Yorktown in 1781. France provided crucial support to the Americans. The Treaty of Paris in 1783 officially recognized American independence. The war established the United States as a new nation committed to democracy and individual rights.",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "American innovation",
    "from": [
     "course-titles"
@@ -1673,27 +1365,9 @@
    ]
   },
   {
-   "text": "Americans can worship as Muslims, Christians, Jews, Hindus, or not at all",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "Americans celebrate Independence Day with fireworks and parades",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "Americans elect a President every four years.",
    "from": [
     "course-lessons"
-   ]
-  },
-  {
-   "text": "Americans file income tax returns each year, usually by April 15",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -1749,12 +1423,6 @@
    "text": "An act that breaks a law.",
    "from": [
     "n400"
-   ]
-  },
-  {
-   "text": "An amendment is a change or an addition to the Constitution. The Constitution has 27 amendments. The first ten are the Bill of Rights.",
-   "from": [
-    "ask-answers"
    ]
   },
   {
@@ -1818,12 +1486,6 @@
    ]
   },
   {
-   "text": "Answer mode",
-   "from": [
-    "lesson-deck"
-   ]
-  },
-  {
    "text": "Answer only the civics question. Don’t include personal information.",
    "from": [
     "practice"
@@ -1867,12 +1529,6 @@
    ]
   },
   {
-   "text": "Answer: {answer}",
-   "from": [
-    "lesson-deck"
-   ]
-  },
-  {
    "text": "Answered right again and again",
    "from": [
     "progress"
@@ -1903,12 +1559,6 @@
    ]
   },
   {
-   "text": "Appalachian Mountains",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "Applied before Oct 20, 2025? Choose 2008.",
    "from": [
     "practice"
@@ -1918,12 +1568,6 @@
    "text": "Apply on USCIS.gov",
    "from": [
     "home"
-   ]
-  },
-  {
-   "text": "Appointed by President, confirmed by Senate, serve lifetime appointments",
-   "from": [
-    "lessons"
    ]
   },
   {
@@ -2005,27 +1649,9 @@
    ]
   },
   {
-   "text": "Areas of land designated by government for Native Americans",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Areas of land set aside by the U.S. government for Native American tribes",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "Arrive early. You will go through a security check.",
    "from": [
     "interview-day"
-   ]
-  },
-  {
-   "text": "Articles of Confederation",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -2126,33 +1752,15 @@
    ]
   },
   {
-   "text": "At 555 feet tall, the Washington Monument was the world's tallest structure when completed",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "At any time in your whole life.",
    "from": [
     "n400"
    ]
   },
   {
-   "text": "At the interview, the officer asks out loud. Your answer doesn’t need to be word for word, only right in meaning.",
-   "from": [
-    "lesson-deck"
-   ]
-  },
-  {
    "text": "Atlantic (Ocean)",
    "from": [
     "civics-questions"
-   ]
-  },
-  {
-   "text": "Atlantic Ocean",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -2177,7 +1785,6 @@
     "interview-when",
     "lawyer",
     "learn-screens",
-    "lesson-deck",
     "lesson-player",
     "lesson-status",
     "n400-guide",
@@ -2221,25 +1828,6 @@
     "course",
     "lesson-player",
     "n400-lessons"
-   ]
-  },
-  {
-   "text": "Balanced Rights",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Balancing Rights and Responsibilities",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Bald Eagle",
-   "from": [
-    "key-words",
-    "lessons"
    ]
   },
   {
@@ -2288,12 +1876,6 @@
    "text": "Before he was President, Eisenhower was a general. What war was he in?",
    "from": [
     "civics-questions"
-   ]
-  },
-  {
-   "text": "Before the Civil Rights Act, many Southern states had segregated schools and lunch counters",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -2364,18 +1946,6 @@
    ]
   },
   {
-   "text": "Belief that American expansion westward was inevitable and justified",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Belief that anyone can achieve success through hard work and determination",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Benjamin Franklin helped write the Declaration of Independence. He was an inventor and a U.S. diplomat.",
    "from": [
     "course-lessons"
@@ -2394,12 +1964,6 @@
    ]
   },
   {
-   "text": "Best {n}%",
-   "from": [
-    "lesson-status"
-   ]
-  },
-  {
    "text": "Big states and small states have the same number of senators.",
    "from": [
     "course-lessons"
@@ -2409,19 +1973,6 @@
    "text": "Big states wanted more seats for states with more people.",
    "from": [
     "course-lessons"
-   ]
-  },
-  {
-   "text": "Bill of Rights",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
-   "text": "Bills and Laws",
-   "from": [
-    "lessons"
    ]
   },
   {
@@ -2437,22 +1988,9 @@
    ]
   },
   {
-   "text": "Blending of cultures from immigrants creating unique American identity",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Blue",
    "from": [
     "words"
-   ]
-  },
-  {
-   "text": "Boston Tea Party",
-   "from": [
-    "key-words",
-    "lessons"
    ]
   },
   {
@@ -2465,12 +2003,6 @@
    "text": "Both parts meet in the U.S. Capitol in Washington, D.C.",
    "from": [
     "course-lessons"
-   ]
-  },
-  {
-   "text": "Both the Senate and House of Representatives meet in the Capitol Building",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -2540,22 +2072,9 @@
    ]
   },
   {
-   "text": "Building where Congress meets to make federal laws",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "But for almost one hundred years after that, many Black Americans were still kept from voting by unfair rules and violence. The civil rights movement fought to change this.",
    "from": [
     "course-lessons"
-   ]
-  },
-  {
-   "text": "Cabinet",
-   "from": [
-    "key-words",
-    "lessons"
    ]
   },
   {
@@ -2571,21 +2090,9 @@
    ]
   },
   {
-   "text": "California has many more House members than Wyoming because it has more people",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "California has the most people.",
    "from": [
     "sentences"
-   ]
-  },
-  {
-   "text": "Called the 'Father of the Constitution' for his central role in drafting it",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -2635,18 +2142,6 @@
    ]
   },
   {
-   "text": "Capital Cities and Important Places",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Capital of the United States, home to Congress, President, and Supreme Court",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Capitalism",
    "from": [
     "course-lessons"
@@ -2656,13 +2151,6 @@
    "text": "Capitalism / Free market economy",
    "from": [
     "civics-questions"
-   ]
-  },
-  {
-   "text": "Capitol Building",
-   "from": [
-    "key-words",
-    "lessons"
    ]
   },
   {
@@ -2725,7 +2213,6 @@
    "from": [
     "checkpoints",
     "interview-day",
-    "lesson-deck",
     "lesson-player",
     "n400-guide",
     "n400-lessons",
@@ -2818,13 +2305,6 @@
    ]
   },
   {
-   "text": "Checks and Balances",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
    "text": "Checks and balances",
    "from": [
     "course-lessons"
@@ -2834,18 +2314,6 @@
    "text": "Chest done!",
    "from": [
     "checkpoints"
-   ]
-  },
-  {
-   "text": "Chief Justice",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "Chief executive of a state government, similar to the President at federal level",
-   "from": [
-    "lessons"
    ]
   },
   {
@@ -2876,12 +2344,6 @@
    "text": "Christopher Columbus was an explorer from Italy who sailed for Spain. He was European, not American Indian. He reached the Americas in 1492.",
    "from": [
     "course-pictures"
-   ]
-  },
-  {
-   "text": "Citizen",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -2976,24 +2438,6 @@
    ]
   },
   {
-   "text": "City and county governments providing services like police, fire, and infrastructure",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Civic Duty",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "Civic Responsibility",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Civic participation means taking part in your community and government.",
    "from": [
     "course-lessons"
@@ -3067,60 +2511,14 @@
    ]
   },
   {
-   "text": "Civics · {n} of {total} lessons done",
-   "from": [
-    "practice"
-   ]
-  },
-  {
    "text": "Civics, reading, writing, and the interview. Learn in your language, answer in English.",
    "from": [
     "home"
    ]
   },
   {
-   "text": "Civil Liberties",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
-   "text": "Civil Rights",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "Civil Rights Act of 1964",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
-   "text": "Civil Rights Movement",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "Civil Rights and Equal Protection",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Civil Rights leader known for nonviolent protest and his 'I Have a Dream' speech",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "Civil War",
    "from": [
-    "key-words",
-    "lessons",
     "words"
    ]
   },
@@ -3134,12 +2532,6 @@
    "text": "Civil rights and a new century",
    "from": [
     "course-titles"
-   ]
-  },
-  {
-   "text": "Civil rights are the rights guaranteed to all citizens regardless of race, color, religion, sex, or national origin. The 14th Amendment guarantees equal protection under the law and due process. The Civil Rights Act of 1964 prohibited discrimination in public places, employment, and education. The Voting Rights Act of 1965 eliminated barriers preventing minorities from voting.\n\nThe Fair Housing Act of 1968 prohibited housing discrimination. The Americans with Disabilities Act protects people with disabilities. Legal protections ensure that people cannot be denied services, jobs, or housing based on protected characteristics. These laws arose from the Civil Rights Movement of the 1950s and 1960s when African Americans fought for equal treatment.\n\nDespite legal protections, discrimination can still occur. People can file complaints with government agencies when they experience discrimination. The Justice Department enforces civil rights laws. Courts have consistently upheld the principle that all people deserve equal treatment. Civil rights remain important as society works to ensure equality and dignity for all Americans.",
-   "from": [
-    "lessons"
    ]
   },
   {
@@ -3181,12 +2573,6 @@
    ]
   },
   {
-   "text": "Cold War",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "Colonies to a nation",
    "from": [
     "course-titles"
@@ -3224,20 +2610,6 @@
    ]
   },
   {
-   "text": "Commander of Continental Army and first President of the United States",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
-   "text": "Common Good",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
    "text": "Communism",
    "from": [
     "civics-questions"
@@ -3262,28 +2634,10 @@
    ]
   },
   {
-   "text": "Conflict from 1775-1783 resulting in American independence",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Conflict from 1775-1783 resulting in American independence from Britain",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "Congress",
    "from": [
     "course-titles",
     "words"
-   ]
-  },
-  {
-   "text": "Congress (Senate and House) that makes federal laws",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -3305,12 +2659,6 @@
    ]
   },
   {
-   "text": "Congress and the Legislative Branch",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Congress can declare war and makes the federal budget.",
    "from": [
     "course-lessons"
@@ -3320,18 +2668,6 @@
    "text": "Congress can declare war.",
    "from": [
     "course-lessons"
-   ]
-  },
-  {
-   "text": "Congress can pass a law with two-thirds vote despite presidential veto",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Congress can reverse a presidential veto with a two-thirds vote in both chambers",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -3353,12 +2689,6 @@
    ]
   },
   {
-   "text": "Congress is the legislative branch of the U.S. government and is divided into two chambers: the Senate and the House of Representatives. The Senate has 100 members—two from each state, regardless of population. Senators serve six-year terms. The House has 435 members, with representation based on state population. House members serve two-year terms.\n\nCongress has the power to make federal laws, approve budgets, declare war, and ratify treaties. Bills must pass both chambers and be signed by the President to become law. Congress can override a presidential veto with a two-thirds vote in both chambers. Members of Congress represent the interests of their constituents and help bring federal resources to their districts.\n\nThe Speaker of the House leads the House, while the Vice President is the President of the Senate. Congressional committees handle specific areas like defense, healthcare, and finance. Congress meets in the Capitol Building in Washington, D.C. Regular elections ensure that representatives remain accountable to the people.",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Congress is the legislative branch of the federal government.",
    "from": [
     "course-lessons"
@@ -3374,12 +2704,6 @@
    "text": "Congress is the legislative branch. The President leads the executive branch. The courts are the judicial branch.",
    "from": [
     "course-lessons"
-   ]
-  },
-  {
-   "text": "Congress makes laws, the President enforces them, and courts interpret them",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -3413,12 +2737,6 @@
    ]
   },
   {
-   "text": "Congressional Committees",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Connected to, took part in, or helped.",
    "from": [
     "n400"
@@ -3428,43 +2746,6 @@
    "text": "Constitution",
    "from": [
     "n400"
-   ]
-  },
-  {
-   "text": "Constitutional Amendment",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Constitutional Convention",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
-   "text": "Constitutional amendment that abolished slavery in 1865",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Constitutional protection against unjust punishment and guarantee of due process",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Constitutional right of citizens to participate in elections and choose representatives",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Constitutional rights that have reasonable limits to protect community welfare",
-   "from": [
-    "lessons"
    ]
   },
   {
@@ -3543,18 +2824,6 @@
    ]
   },
   {
-   "text": "Core American values including speech, religion, thought, and individual rights",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Core values including equality, representation, and protection of rights",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Correct answer",
    "from": [
     "tutor-steps"
@@ -3582,12 +2851,6 @@
    "text": "Couldn’t load your review. Please check your connection.",
    "from": [
     "learn-screens"
-   ]
-  },
-  {
-   "text": "Couldn’t save your note.",
-   "from": [
-    "lesson-deck"
    ]
   },
   {
@@ -3627,12 +2890,6 @@
    ]
   },
   {
-   "text": "Courts can declare laws unconstitutional, checking legislative power",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Courts review and explain laws.",
    "from": [
     "course-lessons"
@@ -3658,21 +2915,9 @@
    ]
   },
   {
-   "text": "Cultural Diversity",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Current answer",
    "from": [
     "tutor-steps-amio"
-   ]
-  },
-  {
-   "text": "D-Day in 1944 was the Allied invasion of Normandy, France that turned the tide of WWII",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -3700,12 +2945,6 @@
    ]
   },
   {
-   "text": "Days celebrating American history and values like Independence Day and Thanksgiving",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Days in a row",
    "from": [
     "today-plan"
@@ -3720,9 +2959,7 @@
   {
    "text": "Declaration of Independence",
    "from": [
-    "civics-questions",
-    "key-words",
-    "lessons"
+    "civics-questions"
    ]
   },
   {
@@ -3774,31 +3011,6 @@
    ]
   },
   {
-   "text": "Democracy and Federal Government Structure",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Democratic Participation",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Democratic Principles",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Democratic Republic",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
    "text": "Democratic and Republican",
    "from": [
     "civics-questions"
@@ -3811,12 +3023,6 @@
    ]
   },
   {
-   "text": "Description of the U.S. as a country built by people who came from all over the world",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "Detailed feedback",
    "from": [
     "practice"
@@ -3826,12 +3032,6 @@
    "text": "Detained: held by the police or immigration officers and not free to leave.",
    "from": [
     "n400-lessons"
-   ]
-  },
-  {
-   "text": "Development of electricity, automobiles, and other inventions transforming society",
-   "from": [
-    "lessons"
    ]
   },
   {
@@ -3931,12 +3131,6 @@
    ]
   },
   {
-   "text": "Did you know it?",
-   "from": [
-    "lesson-deck"
-   ]
-  },
-  {
    "text": "Did you live in the United States at any time between your 18th and 26th birthdays?",
    "from": [
     "n400"
@@ -3979,12 +3173,6 @@
    ]
   },
   {
-   "text": "Directive issued by the President to direct government agencies and enforce laws",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Directory of nonprofit legal services, searchable by state and language.",
    "from": [
     "lawyer"
@@ -3997,57 +3185,9 @@
    ]
   },
   {
-   "text": "Discover how the American colonies gained independence from Great Britain",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Discover the rights that protect all Americans",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Dishonest, to trick someone.",
    "from": [
     "n400"
-   ]
-  },
-  {
-   "text": "Diverse indigenous societies with sophisticated governments and cultures predating European arrival",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Division of government into three branches with distinct powers",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Division of government into three branches: legislative, executive, and judicial",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "Division of power and responsibilities among federal, state, and local governments",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Division of power between national and state governments",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Division of power between the national government and state governments",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -4120,19 +3260,6 @@
    "text": "Do you understand the full Oath of Allegiance to the United States?",
    "from": [
     "n400"
-   ]
-  },
-  {
-   "text": "Document adopted July 4, 1776, declaring American independence from Britain",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
-   "text": "Document adopted on July 4, 1776 declaring the colonies' independence from Britain",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -4216,12 +3343,6 @@
    ]
   },
   {
-   "text": "Double Jeopardy",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "Draft",
    "from": [
     "course",
@@ -4262,25 +3383,6 @@
    ]
   },
   {
-   "text": "Due Process",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
-   "text": "Due Process and Justice",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Due process is the right to fair treatment in the legal system. The Constitution guarantees that government cannot take away life, liberty, or property without due process. This means following established legal procedures and laws. Due process protections ensure that a person cannot be arrested without cause or punished without a fair trial.\n\nCriminal due process includes the right to know the charges, the right to an attorney, the right to a fair trial, and protection against self-incrimination. The Fifth Amendment states that no person shall be deprived of life, liberty, or property without due process. The Sixth Amendment guarantees the right to a fair and speedy trial with a lawyer.\n\nInnocent until proven guilty is a fundamental principle. The burden of proof is on the government to prove guilt beyond reasonable doubt. People have the right to challenge evidence against them and to have a lawyer defend them. These protections apply even to people accused of serious crimes. The system isn't perfect, but these procedures help prevent innocent people from being wrongly punished.",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "During",
    "from": [
     "words"
@@ -4296,12 +3398,6 @@
    "text": "During the Cold War, what was the main concern of the United States?",
    "from": [
     "civics-questions"
-   ]
-  },
-  {
-   "text": "Duty of citizens to participate in and support their government and community",
-   "from": [
-    "lessons"
    ]
   },
   {
@@ -4326,18 +3422,6 @@
    "text": "Dwight Eisenhower, the 34th President.",
    "from": [
     "course-pictures"
-   ]
-  },
-  {
-   "text": "E Pluribus Unum",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "E Pluribus Unum appears on the Great Seal and on U.S. coins",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -4368,12 +3452,6 @@
    "text": "Each item links to the part of our N-400 guide that explains those questions. The guide tells you what the form asks. It does not tell you how to answer.",
    "from": [
     "lawyer"
-   ]
-  },
-  {
-   "text": "Each lesson ends with the exact questions the officer may ask. We go over them together.",
-   "from": [
-    "practice"
    ]
   },
   {
@@ -4426,12 +3504,6 @@
    ]
   },
   {
-   "text": "Education is mainly controlled by states, while national defense is federal",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "Elect",
    "from": [
     "words"
@@ -4459,13 +3531,6 @@
    "text": "Email reminders at 3, 6 and 12 months",
    "from": [
     "pilot"
-   ]
-  },
-  {
-   "text": "Emancipation Proclamation",
-   "from": [
-    "key-words",
-    "lessons"
    ]
   },
   {
@@ -4501,13 +3566,6 @@
    ]
   },
   {
-   "text": "Equal Protection",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
    "text": "Equal representation (for small states) / The Great Compromise (Connecticut Compromise)",
    "from": [
     "civics-questions"
@@ -4526,21 +3584,9 @@
    ]
   },
   {
-   "text": "European Colonization",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Even old, small, or dismissed cases can matter. A lawyer can check how your case affects your application.",
    "from": [
     "lawyer-checklist"
-   ]
-  },
-  {
-   "text": "Even the President must obey the law — no one is above it",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -4559,12 +3605,6 @@
    "text": "Ever said you were a U.S. citizen",
    "from": [
     "n400-lessons"
-   ]
-  },
-  {
-   "text": "Every U.S. President since John Adams has lived in the White House",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -4670,18 +3710,6 @@
    ]
   },
   {
-   "text": "Executive Branch",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "Executive Order",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Executive branch",
    "from": [
     "civics-questions"
@@ -4690,7 +3718,6 @@
   {
    "text": "Explain it simply",
    "from": [
-    "lesson-deck",
     "practice"
    ]
   },
@@ -4704,54 +3731,6 @@
    "text": "Explain with AI",
    "from": [
     "practice"
-   ]
-  },
-  {
-   "text": "Explore America's natural wonders and protected spaces",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Explore how courts interpret laws and protect constitutional rights",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Explore how individual rights and community responsibilities work together",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Explore the early history of America and the impact on Native peoples",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Explore the freedoms and rights that protect all Americans",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Explore the transformation of America through industrialization and progress",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "FDR served four terms, which led to the 22nd Amendment limiting future presidents to two",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "Fair treatment through established judicial procedures and laws",
-   "from": [
-    "lessons"
    ]
   },
   {
@@ -4785,33 +3764,9 @@
    ]
   },
   {
-   "text": "Federal Judges",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Federal and state powers",
    "from": [
     "course-titles"
-   ]
-  },
-  {
-   "text": "Federal judges serve until they die, retire, or are removed, ensuring independence",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "Federal law eliminating literacy tests and voting barriers for minorities",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Federal law prohibiting discrimination in public places, employment, and education",
-   "from": [
-    "lessons"
    ]
   },
   {
@@ -4821,34 +3776,9 @@
    ]
   },
   {
-   "text": "Federalism",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
-   "text": "Federalism in Practice",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Federally recognized tribes can establish their own laws and governments",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "Field office",
    "from": [
     "interview-when"
-   ]
-  },
-  {
-   "text": "Fifth Amendment",
-   "from": [
-    "lessons"
    ]
   },
   {
@@ -4945,7 +3875,6 @@
   {
    "text": "Finish",
    "from": [
-    "lesson-deck",
     "tutor-steps"
    ]
   },
@@ -4986,13 +3915,6 @@
    ]
   },
   {
-   "text": "First Amendment",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
    "text": "First Americans · independence · founders",
    "from": [
     "course-titles"
@@ -5002,18 +3924,6 @@
    "text": "First Secretary of the Treasury / One of the writers of the Federalist Papers / Helped establish the First Bank of the United States / Aide to General George Washington / Member of the Continental Congress",
    "from": [
     "civics-questions"
-   ]
-  },
-  {
-   "text": "First national park established in 1872 known for geysers and wildlife",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "First ten amendments protecting fundamental individual freedoms",
-   "from": [
-    "lessons"
    ]
   },
   {
@@ -5038,12 +3948,6 @@
    "text": "Flag Day is in June.",
    "from": [
     "sentences"
-   ]
-  },
-  {
-   "text": "Flag Etiquette",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -5125,28 +4029,9 @@
    ]
   },
   {
-   "text": "Forced migration of Native Americans westward in the 1830s resulting in thousands of deaths",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
-   "text": "Forced separation of people by race in public places, schools, and transportation",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "Forced to stay somewhere.",
    "from": [
     "n400"
-   ]
-  },
-  {
-   "text": "Formal change to the Constitution requiring two-thirds Congress approval and three-fourths state ratification",
-   "from": [
-    "lessons"
    ]
   },
   {
@@ -5180,12 +4065,6 @@
    ]
   },
   {
-   "text": "Founding Father and primary author of the Declaration of Independence",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "Four (4) years",
    "from": [
     "civics-questions"
@@ -5213,12 +4092,6 @@
    "text": "Four-year terms",
    "from": [
     "course-titles"
-   ]
-  },
-  {
-   "text": "Fourth Amendment",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -5303,12 +4176,6 @@
    ]
   },
   {
-   "text": "Free speech and the right to a fair trial are civil liberties protected by the Constitution",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "Free. We never record your voice or ask about your case.",
    "from": [
     "home"
@@ -5336,20 +4203,6 @@
    "text": "Freedom / Political liberty / Religious freedom / Economic opportunity / Escape persecution",
    "from": [
     "civics-questions"
-   ]
-  },
-  {
-   "text": "Freedom of Religion",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
-   "text": "Freedom of Speech",
-   "from": [
-    "key-words",
-    "lessons"
    ]
   },
   {
@@ -5395,12 +4248,6 @@
    ]
   },
   {
-   "text": "Freedom of speech means you can say what you think, and the government cannot punish you for your opinion. The First Amendment protects it.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
    "text": "Freedom of speech: you can say what you think, even if you disagree with the government.",
    "from": [
     "course-lessons"
@@ -5410,18 +4257,6 @@
    "text": "Freedom to petition the government: you can ask the government to change a law or fix a problem.",
    "from": [
     "course-lessons"
-   ]
-  },
-  {
-   "text": "Freedoms guaranteed by law that protect individuals from government overreach",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "From the Pilgrims to today, waves of immigrants have shaped American culture and identity",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -5443,33 +4278,9 @@
    ]
   },
   {
-   "text": "Fundamental Rights of Citizens",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Fundamental right of eligible citizens to participate in elections",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Fundamental rights and freedoms protected by the Constitution",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "General during World War II / President at the end of (during) the Korean War / 34th president of the United States / Signed the Federal-Aid Highway Act of 1956 (Created the Interstate System)",
    "from": [
     "civics-questions"
-   ]
-  },
-  {
-   "text": "General welfare and benefit of the whole community",
-   "from": [
-    "lessons"
    ]
   },
   {
@@ -5481,15 +4292,7 @@
   {
    "text": "George Washington",
    "from": [
-    "course-lessons",
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
-   "text": "George Washington commanded the Continental Army during the Revolutionary War",
-   "from": [
-    "key-words"
+    "course-lessons"
    ]
   },
   {
@@ -5502,12 +4305,6 @@
    "text": "George Washington is famous for many things. Name one.",
    "from": [
     "civics-questions"
-   ]
-  },
-  {
-   "text": "George Washington led the American forces to victory against the British",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -5573,45 +4370,9 @@
    ]
   },
   {
-   "text": "Global war from 1914–1918; the U.S. entered in 1917 to help the Allies",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "Global war from 1939–1945; the U.S. entered after the attack on Pearl Harbor in 1941",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "Go back",
    "from": [
     "practice"
-   ]
-  },
-  {
-   "text": "Go over again",
-   "from": [
-    "practice"
-   ]
-  },
-  {
-   "text": "Go over the questions any time to check what you know.",
-   "from": [
-    "lesson-deck"
-   ]
-  },
-  {
-   "text": "Go over them",
-   "from": [
-    "lesson-deck"
-   ]
-  },
-  {
-   "text": "Go over them again",
-   "from": [
-    "lesson-deck"
    ]
   },
   {
@@ -5755,41 +4516,13 @@
   {
    "text": "Governor",
    "from": [
-    "find-rep",
-    "lessons"
+    "find-rep"
    ]
   },
   {
    "text": "Grammar",
    "from": [
     "practice"
-   ]
-  },
-  {
-   "text": "Grand Canyon",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
-   "text": "Granted women the right to vote, ratified in 1920",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
-   "text": "Great Lakes",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
-   "text": "Great Seal",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -5805,13 +4538,6 @@
    ]
   },
   {
-   "text": "Group of department heads who advise the President and manage executive departments",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
    "text": "Groups and Violence",
    "from": [
     "n400-guide"
@@ -5824,27 +4550,9 @@
    ]
   },
   {
-   "text": "Groups focused on specific policy areas that draft and review legislation",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Groups that use violence",
    "from": [
     "n400-lessons"
-   ]
-  },
-  {
-   "text": "Guarantees equal protection and due process to all citizens",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Guarantees right to fair trial and legal representation",
-   "from": [
-    "lessons"
    ]
   },
   {
@@ -5876,12 +4584,6 @@
    "text": "Has",
    "from": [
     "words"
-   ]
-  },
-  {
-   "text": "Has a video",
-   "from": [
-    "practice"
    ]
   },
   {
@@ -6239,18 +4941,6 @@
    ]
   },
   {
-   "text": "Head of the Executive Branch, elected to four-year terms, limited to two terms",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "Head of the Executive Branch, elected to four-year terms, limited to two terms maximum",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Hear a sentence, then write it",
    "from": [
     "lesson-player"
@@ -6382,27 +5072,9 @@
    ]
   },
   {
-   "text": "Highest federal court with nine justices, has power of judicial review",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Hint",
    "from": [
     "lesson-player"
-   ]
-  },
-  {
-   "text": "Historic bell in Philadelphia symbolizing American independence",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Historic bell in Philadelphia that symbolizes American independence and freedom",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -6415,19 +5087,6 @@
    "text": "Holidays",
    "from": [
     "course-titles"
-   ]
-  },
-  {
-   "text": "Homestead Act",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "House of Representatives",
-   "from": [
-    "key-words",
-    "lessons"
    ]
   },
   {
@@ -6759,7 +5418,6 @@
   {
    "text": "I knew it",
    "from": [
-    "lesson-deck",
     "practice"
    ]
   },
@@ -6842,12 +5500,6 @@
    ]
   },
   {
-   "text": "If found not guilty, you cannot be tried again for the same crime",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "If the President can no longer serve, who becomes President?",
    "from": [
     "civics-questions"
@@ -6863,12 +5515,6 @@
    "text": "If the President dies or can no longer do the job, the Vice President becomes President.",
    "from": [
     "course-lessons"
-   ]
-  },
-  {
-   "text": "If the President vetoes a bill, Congress can still pass it with enough votes",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -6923,12 +5569,6 @@
    "text": "If you answered \"Yes,\" to Item Number 22.a., did you register for the Selective Service?",
    "from": [
     "n400"
-   ]
-  },
-  {
-   "text": "If you cannot afford a lawyer, the government must provide one for free",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -7020,13 +5660,6 @@
    "text": "Immigration history",
    "from": [
     "n400-guide"
-   ]
-  },
-  {
-   "text": "Impeachment",
-   "from": [
-    "key-words",
-    "lessons"
    ]
   },
   {
@@ -7141,12 +5774,6 @@
    ]
   },
   {
-   "text": "In Marbury v. Madison, the Supreme Court established the power of judicial review. The Supreme Court used judicial review to overturn segregation laws.",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "In Vietnam, communist North Vietnam fought to take over South Vietnam. The United States sent soldiers to help South Vietnam.",
    "from": [
     "course-lessons"
@@ -7164,12 +5791,6 @@
     "ask-screen",
     "lesson-player",
     "n400-lessons",
-    "practice"
-   ]
-  },
-  {
-   "text": "In progress",
-   "from": [
     "practice"
    ]
   },
@@ -7198,12 +5819,6 @@
    ]
   },
   {
-   "text": "In the U.S., the prosecution must prove guilt beyond a reasonable doubt",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "In the interview, you can always ask for help. Say each phrase out loud.",
    "from": [
     "n400-lessons"
@@ -7222,12 +5837,6 @@
    ]
   },
   {
-   "text": "Income Tax",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "Independence",
    "from": [
     "course-titles"
@@ -7236,7 +5845,6 @@
   {
    "text": "Independence Day",
    "from": [
-    "key-words",
     "words"
    ]
   },
@@ -7256,55 +5864,6 @@
    "text": "Independence Day, on July 4, celebrates U.S. independence from Britain. It is the country's birthday.",
    "from": [
     "course-lessons"
-   ]
-  },
-  {
-   "text": "Indian Removal Act",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "Individual Rights and Civil Liberties",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Individual rights and community responsibilities must be balanced for society to function well. Your right to speak freely is limited when it harms others, such as shouting false information that causes panic. Your right to privacy is limited when you're suspected of a crime. Your right to property is limited by zoning laws and environmental regulations.\n\nResponsibilities protect the common good and allow others to enjoy their rights. Traffic laws restrict individual freedom but protect everyone's safety. Public education is both a right and a responsibility—all children have the right to education, and society has responsibility to provide it. Environmental regulations restrict some business activities but protect everyone's health.\n\nCourts balance individual rights with community needs. The Constitution protects rights, but no right is absolute. A person can speak freely but cannot commit fraud. People can own guns but cannot use them to harm others. This balance is essential to democracy. Good citizens understand both their rights and their responsibilities to others.",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Individual rights protected by Constitution while respecting others' rights",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Industrial Revolution",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Industrial Revolution and Modern America",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Informed Voting",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Innocent Until Proven Guilty",
-   "from": [
-    "key-words",
-    "lessons"
    ]
   },
   {
@@ -7446,18 +6005,6 @@
    ]
   },
   {
-   "text": "It means the people have the power. They vote for leaders who make decisions for them. The United States is a republic, a representative democracy.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
-   "text": "It means we use our rights in a way that respects other people's rights. You have freedom of speech, and so does your neighbor.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
    "text": "It protects the basic rights of Americans and of people living in the United States.",
    "from": [
     "course-lessons"
@@ -7524,19 +6071,6 @@
    ]
   },
   {
-   "text": "James Madison",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
-   "text": "James Madison and Benjamin Franklin were key delegates at the Constitutional Convention",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "James Madison is called the Father of the Constitution.",
    "from": [
     "course-lessons"
@@ -7561,24 +6095,6 @@
    ]
   },
   {
-   "text": "Japanese attack on the U.S. naval base in Hawaii on December 7, 1941, causing the U.S. to enter WWII",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "Jefferson declared 'all men are created equal' in the Declaration",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "John Marshall was one of the most influential Chief Justices in U.S. history",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "Join",
    "from": [
     "my-tutor"
@@ -7588,19 +6104,6 @@
    "text": "Join with a code from your teacher",
    "from": [
     "my-tutor"
-   ]
-  },
-  {
-   "text": "Judicial Branch",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "Judicial Review",
-   "from": [
-    "key-words",
-    "lessons"
    ]
   },
   {
@@ -7631,19 +6134,6 @@
    "text": "June",
    "from": [
     "words"
-   ]
-  },
-  {
-   "text": "Jury Duty",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
-   "text": "Jury duty ensures that accused persons are judged by a group of their peers",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -7701,15 +6191,8 @@
    ]
   },
   {
-   "text": "Key point {n}",
-   "from": [
-    "lesson-deck"
-   ]
-  },
-  {
    "text": "Key words",
    "from": [
-    "lesson-deck",
     "tutor-steps"
    ]
   },
@@ -7738,12 +6221,6 @@
    ]
   },
   {
-   "text": "Labor Unions",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Language",
    "from": [
     "ask-screen",
@@ -7761,18 +6238,6 @@
    "text": "Latin for \"Out of many, one\"",
    "from": [
     "course-lessons"
-   ]
-  },
-  {
-   "text": "Latin for 'Out of many, one' — the original U.S. motto representing unity from diversity",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "Law banning discrimination based on race, color, religion, sex, or national origin",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -7797,7 +6262,6 @@
    "text": "Learn",
    "from": [
     "home",
-    "lesson-deck",
     "tutor-steps"
    ]
   },
@@ -7814,63 +6278,9 @@
    ]
   },
   {
-   "text": "Learn about Washington D.C. and other significant American cities",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Learn about iconic symbols representing American values",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Learn about the Civil War and the end of slavery in America",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Learn about the creation of the Constitution and the visionary leaders who shaped America",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Learn about the duties and responsibilities that maintain democracy",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Learn about the legal protections that ensure fair treatment in the justice system",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Learn civics",
    "from": [
     "learn-screens"
-   ]
-  },
-  {
-   "text": "Learn how Congress makes laws and represents the American people",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Learn how the three branches of government limit each other's power",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Learn how voting evolved and what voting rights mean in a democracy",
-   "from": [
-    "lessons"
    ]
   },
   {
@@ -7952,45 +6362,15 @@
    ]
   },
   {
-   "text": "Led by President, enforces laws and manages government",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "Left your military job or post without permission.",
    "from": [
     "n400"
    ]
   },
   {
-   "text": "Legal Precedent",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Legal guarantee that laws apply equally to all people without discrimination",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Legal help, classes and libraries",
    "from": [
     "lawyer"
-   ]
-  },
-  {
-   "text": "Legal principle that government must prove guilt beyond reasonable doubt",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Legislative Branch",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -8008,33 +6388,19 @@
   {
    "text": "Lesson done",
    "from": [
-    "learn-screens",
-    "lesson-deck"
+    "learn-screens"
    ]
   },
   {
    "text": "Lesson done.",
    "from": [
-    "lesson-deck",
     "lesson-player"
-   ]
-  },
-  {
-   "text": "Lesson navigation",
-   "from": [
-    "lesson-deck"
    ]
   },
   {
    "text": "Lesson progress",
    "from": [
     "lesson-status"
-   ]
-  },
-  {
-   "text": "Lesson video",
-   "from": [
-    "lesson-deck"
    ]
   },
   {
@@ -8064,14 +6430,7 @@
   {
    "text": "Lessons",
    "from": [
-    "practice",
     "progress"
-   ]
-  },
-  {
-   "text": "Lessons are loading. Please check back shortly.",
-   "from": [
-    "practice"
    ]
   },
   {
@@ -8135,13 +6494,6 @@
    ]
   },
   {
-   "text": "Liberty Bell",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
    "text": "Liberty and equality are ideas from the Declaration and the Constitution.",
    "from": [
     "course-lessons"
@@ -8166,12 +6518,6 @@
    ]
   },
   {
-   "text": "Lifetime Appointment",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "Light bulb / Automobile (cars, internal combustion engine) / Skyscrapers / Airplane / Assembly line / Landing on the moon / Integrated circuit (IC)",
    "from": [
     "civics-questions"
@@ -8184,27 +6530,9 @@
    ]
   },
   {
-   "text": "Limited Rights",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Limits the President to a maximum of two terms in office",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "Lincoln",
    "from": [
     "words"
-   ]
-  },
-  {
-   "text": "Lincoln Memorial",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -8235,12 +6563,6 @@
    "text": "Lincoln was the president during the Civil War.",
    "from": [
     "sentences"
-   ]
-  },
-  {
-   "text": "Lincoln's Gettysburg Address described government 'of the people, by the people, for the people'",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -8349,7 +6671,6 @@
   {
    "text": "Listening…",
    "from": [
-    "lesson-deck",
     "practice"
    ]
   },
@@ -8390,18 +6711,11 @@
    "text": "Loading",
    "from": [
     "ask-screen",
-    "lesson-deck",
     "onboarding"
    ]
   },
   {
    "text": "Loading interview questions…",
-   "from": [
-    "practice"
-   ]
-  },
-  {
-   "text": "Loading lessons…",
    "from": [
     "practice"
    ]
@@ -8419,21 +6733,9 @@
    ]
   },
   {
-   "text": "Local Government",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Long ago, the American colonies were ruled by Britain.",
    "from": [
     "course-lessons"
-   ]
-  },
-  {
-   "text": "Long before European arrival, Native Americans lived in North America for thousands of years, developing diverse civilizations, cultures, and governments. They had their own laws, trade systems, and societies. When Europeans arrived in the late 1400s, they were seeking new trade routes and resources.\n\nEuropean colonization had devastating effects on Native Americans. Diseases brought from Europe killed millions of Native Americans who had no immunity. Europeans took Native American lands and forced them onto smaller areas called reservations. Native Americans were often treated as inferior and had few legal rights. Many were forced to abandon their languages, religions, and cultures.\n\nDespite these hardships, Native American cultures survived and continue today. There are 574 federally recognized tribes in the United States. Native Americans have fought for justice and recognition. The Indian Removal Act of 1830 forced thousands of Native Americans west on the deadly Trail of Tears. Today, Native Americans advocate for sovereignty, cultural preservation, and justice for historical wrongs.",
-   "from": [
-    "lessons"
    ]
   },
   {
@@ -8449,18 +6751,6 @@
    ]
   },
   {
-   "text": "Los Angeles, Seattle, and San Francisco are on the Pacific Coast",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "Louisiana Purchase",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Louisiana Purchase · Civil War · Lincoln",
    "from": [
     "course-titles"
@@ -8473,39 +6763,9 @@
    ]
   },
   {
-   "text": "Lower chamber of Congress with 435 members based on state population, serving 2-year terms",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "Lower chamber of Congress with 435 members based on state population, serving two-year terms",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Lowered the voting age from 21 to 18, ratified in 1971",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "Lowered the voting age to 18 years old",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Lying to enter the U.S. or get benefits",
    "from": [
     "n400-lessons"
-   ]
-  },
-  {
-   "text": "MLK led the 1963 March on Washington where he gave his famous speech",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -8516,21 +6776,9 @@
    ]
   },
   {
-   "text": "Madison came prepared with the Virginia Plan, which formed the basis of the Constitution",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "Maine / New Hampshire / Vermont / New York / Pennsylvania / Ohio / Michigan / Minnesota / North Dakota / Montana / Idaho / Washington / Alaska",
    "from": [
     "civics-questions"
-   ]
-  },
-  {
-   "text": "Major mountain range running through the western United States",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -8544,24 +6792,6 @@
    "from": [
     "interview-when",
     "onboarding"
-   ]
-  },
-  {
-   "text": "Male citizens and residents must register with Selective Service at age 18",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "Manifest Destiny",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Manifest Destiny was the belief that American expansion across the continent was inevitable and justified. From the 1800s, Americans moved westward seeking land, opportunity, and resources. This expansion had profound effects on Native Americans and shaped the nation's geography.\n\nThe Louisiana Purchase in 1803 doubled the size of the United States. The Oregon Territory was acquired through negotiation with Britain. The Mexican-American War (1846-1848) resulted in the United States gaining the Southwest and California. The California Gold Rush of 1849 brought thousands of settlers westward seeking fortune.\n\nWestward expansion brought settlers into conflict with Native Americans, leading to wars and forced relocations. The Homestead Act of 1862 gave settlers free land in exchange for living and farming it. Railroads were built across the continent, connecting East and West. By 1890, the frontier was considered closed as settlement reached the Pacific. This expansion made the United States a continental power but came at great cost to Native Americans.",
-   "from": [
-    "lessons"
    ]
   },
   {
@@ -8586,12 +6816,6 @@
    "text": "Many documents influenced the U.S. Constitution. Name one.",
    "from": [
     "civics-questions"
-   ]
-  },
-  {
-   "text": "Many immigrants come to America in pursuit of the American Dream",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -8625,27 +6849,9 @@
    ]
   },
   {
-   "text": "Mark lesson complete",
-   "from": [
-    "lesson-deck"
-   ]
-  },
-  {
    "text": "Mark read",
    "from": [
     "notifications"
-   ]
-  },
-  {
-   "text": "Martin Luther King Jr.",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "Martin Luther King Jr. gave his 'I Have a Dream' speech at the Lincoln Memorial in 1963",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -8745,13 +6951,6 @@
    ]
   },
   {
-   "text": "Meeting of 55 delegates in Philadelphia in 1787 to draft the U.S. Constitution",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
    "text": "Meets",
    "from": [
     "words"
@@ -8788,12 +6987,6 @@
    ]
   },
   {
-   "text": "Mexican-American War",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Mexico",
    "from": [
     "words"
@@ -8806,12 +6999,6 @@
    ]
   },
   {
-   "text": "Midwest Region",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Military, police or armed groups",
    "from": [
     "n400-lessons"
@@ -8821,12 +7008,6 @@
    "text": "Missed a day? No problem. I’ll adjust the plan.",
    "from": [
     "today-plan"
-   ]
-  },
-  {
-   "text": "Mississippi River",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -8863,30 +7044,6 @@
    "text": "Month",
    "from": [
     "today"
-   ]
-  },
-  {
-   "text": "Monument in New York Harbor symbolizing freedom and hope",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Monument in New York Harbor symbolizing freedom and opportunity, gifted by France in 1886",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "Monument in Washington D.C. honoring President Abraham Lincoln",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "Monuments and Memorials",
-   "from": [
-    "lessons"
    ]
   },
   {
@@ -8963,12 +7120,6 @@
    ]
   },
   {
-   "text": "Mountain range running along the eastern United States",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "Moved from one place to another.",
    "from": [
     "n400"
@@ -8990,7 +7141,6 @@
   {
    "text": "My notes",
    "from": [
-    "lesson-deck",
     "lesson-player"
    ]
   },
@@ -9363,99 +7513,15 @@
    ]
   },
   {
-   "text": "Nation of Immigrants",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "National Anthem",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "National Holidays",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "National Parks",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "National bird of the United States, symbolizing strength, courage, and independence",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "National bird symbolizing strength, courage, and independence",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "National flag with 13 stripes (original colonies) and 50 stars (one per state)",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "National flag with 13 stripes and 50 stars representing the states",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "National holiday celebrated on the fourth Thursday of November, giving thanks for blessings",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "National holiday on July 4th celebrating the signing of the Declaration of Independence",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "National holidays include New Year's Day, Martin Luther King, Jr. Day, Presidents Day, Memorial Day, Juneteenth, Independence Day, Labor Day, Columbus Day, Veterans Day, Thanksgiving Day and Christmas Day.",
    "from": [
     "course-lessons"
    ]
   },
   {
-   "text": "Native American Civilizations",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Native Americans and European Colonization",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Natural",
    "from": [
     "settings-pieces"
-   ]
-  },
-  {
-   "text": "Natural Landmarks and National Parks",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Naturalization",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -9525,12 +7591,6 @@
    ]
   },
   {
-   "text": "New York, Miami, and Boston are on the Atlantic Coast",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "New citizens take the Oath of Allegiance at the end of naturalization.",
    "from": [
     "course-lessons"
@@ -9559,7 +7619,6 @@
    "from": [
     "checkpoints",
     "interview-day",
-    "lesson-deck",
     "lesson-player",
     "n400-guide",
     "n400-lessons"
@@ -9574,7 +7633,6 @@
   {
    "text": "Next card",
    "from": [
-    "lesson-deck",
     "n400-guide"
    ]
   },
@@ -9588,12 +7646,6 @@
    "text": "Next check: tomorrow",
    "from": [
     "learn-screens"
-   ]
-  },
-  {
-   "text": "Next lesson",
-   "from": [
-    "lesson-deck"
    ]
   },
   {
@@ -9688,12 +7740,6 @@
    ]
   },
   {
-   "text": "No lessons yet",
-   "from": [
-    "practice"
-   ]
-  },
-  {
    "text": "No lessons yet.",
    "from": [
     "lesson-status"
@@ -9772,12 +7818,6 @@
    ]
   },
   {
-   "text": "Northeast Region",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Not a pair. Try again.",
    "from": [
     "practice"
@@ -9852,8 +7892,7 @@
   {
    "text": "Not started",
    "from": [
-    "lesson-status",
-    "practice"
+    "lesson-status"
    ]
   },
   {
@@ -9880,7 +7919,6 @@
     "checkpoints",
     "interview-day",
     "interview-tab",
-    "lesson-deck",
     "pilot",
     "practice"
    ]
@@ -9913,12 +7951,6 @@
    "text": "Not yet. Almost there!",
    "from": [
     "checkpoints"
-   ]
-  },
-  {
-   "text": "Not yet. Here is the answer.",
-   "from": [
-    "lesson-deck"
    ]
   },
   {
@@ -10074,27 +8106,9 @@
    ]
   },
   {
-   "text": "Oath of loyalty to the United States and its flag, often recited in schools",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "Oath questions",
    "from": [
     "n400-guide"
-   ]
-  },
-  {
-   "text": "Obligation to serve on juries when called, ensuring fair trials",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Obligations of citizens to their country, such as voting, jury service, and paying taxes",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -10164,21 +8178,9 @@
    ]
   },
   {
-   "text": "Official symbol of the United States, featuring a bald eagle with an olive branch and arrows",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "Officially given a ticket or summons.",
    "from": [
     "n400"
-   ]
-  },
-  {
-   "text": "Old Faithful in Yellowstone is a famous geyser that erupts regularly",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -10292,12 +8294,6 @@
    ]
   },
   {
-   "text": "One of the two longest rivers in the U.S., running through the center of the country",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "One part is the Senate.",
    "from": [
     "course-lessons"
@@ -10376,12 +8372,6 @@
    ]
   },
   {
-   "text": "Only you see these.",
-   "from": [
-    "lesson-deck"
-   ]
-  },
-  {
    "text": "Only your scores are saved. Nothing you said is kept.",
    "from": [
     "practice"
@@ -10438,12 +8428,6 @@
    ]
   },
   {
-   "text": "Organizations of workers demanding better wages, hours, and working conditions",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Out loud, like the real interview.",
    "from": [
     "onboarding"
@@ -10453,12 +8437,6 @@
    "text": "Out of many, one / We all become one",
    "from": [
     "civics-questions"
-   ]
-  },
-  {
-   "text": "Over 600,000 soldiers died in the Civil War, making it the deadliest American conflict",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -10477,12 +8455,6 @@
    "text": "Pacific (Ocean)",
    "from": [
     "civics-questions"
-   ]
-  },
-  {
-   "text": "Pacific Ocean",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -10633,12 +8605,6 @@
    ]
   },
   {
-   "text": "Pearl Harbor",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "People",
    "from": [
     "words"
@@ -10666,24 +8632,6 @@
    "text": "People the law says you must support, like your children.",
    "from": [
     "n400"
-   ]
-  },
-  {
-   "text": "Period from 1890s-1920s of social and political reforms",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Period of political tension between the U.S. and Soviet Union from the 1940s to 1991",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "Permanent Resident",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -10726,12 +8674,6 @@
    "text": "Pick the month",
    "from": [
     "interview-when"
-   ]
-  },
-  {
-   "text": "Pick up where you left off",
-   "from": [
-    "practice"
    ]
   },
   {
@@ -10850,18 +8792,6 @@
    ]
   },
   {
-   "text": "Pledge of Allegiance",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "Police generally need a warrant to search your home under the Fourth Amendment",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "Polite and formal, like a USCIS officer. For learners who want realistic interview pressure.",
    "from": [
     "settings-pieces"
@@ -10871,12 +8801,6 @@
    "text": "Power is shared between the national government and the states.",
    "from": [
     "course-lessons"
-   ]
-  },
-  {
-   "text": "Power to declare laws unconstitutional if they violate the Constitution",
-   "from": [
-    "lessons"
    ]
   },
   {
@@ -10962,6 +8886,7 @@
    "from": [
     "checkpoints",
     "lesson-player",
+    "lesson-status",
     "n400-lessons"
    ]
   },
@@ -11082,8 +9007,6 @@
   {
    "text": "President",
    "from": [
-    "key-words",
-    "lessons",
     "words"
    ]
   },
@@ -11094,46 +9017,9 @@
    ]
   },
   {
-   "text": "President Andrew Jackson signed the Indian Removal Act in 1830",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "President Roosevelt called December 7, 1941 'a date which will live in infamy'",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "President Thomas Jefferson paid France $15 million for the land, from the Mississippi River to the Rocky Mountains.",
    "from": [
     "course-lessons"
-   ]
-  },
-  {
-   "text": "President who led the North and issued the Emancipation Proclamation",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "President's power to reject legislation passed by Congress",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Presidential Veto",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
-   "text": "Presidential Veto Override",
-   "from": [
-    "lessons"
    ]
   },
   {
@@ -11146,24 +9032,6 @@
    "text": "Presidents' Day is in February.",
    "from": [
     "sentences"
-   ]
-  },
-  {
-   "text": "Previous",
-   "from": [
-    "lesson-deck"
-   ]
-  },
-  {
-   "text": "Previous court decisions that guide how future cases are decided",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Primary architect of the Constitution, known as the 'Father of the Constitution'",
-   "from": [
-    "lessons"
    ]
   },
   {
@@ -11185,46 +9053,9 @@
    ]
   },
   {
-   "text": "Process of European settlement in America starting in late 1400s",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Process of state approval required for the Constitution to become the supreme law",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Process where Congress can formally charge a president or judge with wrongdoing",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Progress",
    "from": [
     "progress"
-   ]
-  },
-  {
-   "text": "Progressive Era",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Prohibited voting discrimination based on race, ratified in 1870",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
-   "text": "Prohibits cruel and unusual punishment and excessive bail",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -11240,64 +9071,9 @@
    ]
   },
   {
-   "text": "Proposed legislation that must pass both chambers and be signed by the President",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Protected areas preserving natural beauty and wildlife for public use",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Protection against being tried twice for the same crime, guaranteed by the 5th Amendment",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "Protects against self-incrimination and guarantees due process",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Protects against unreasonable searches and seizures by the government",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "Protects freedom of speech, religion, press, assembly, and petition",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
-   "text": "Protects the right of the people to keep and bear arms",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "Provide schooling and education / Provide protection (police) / Provide safety (fire departments) / Give a driver’s license / Approve zoning and land use",
    "from": [
     "civics-questions"
-   ]
-  },
-  {
-   "text": "Provides due process rights and protection against self-incrimination",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Public schools and fire departments exist for the common good",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -11327,8 +9103,7 @@
   {
    "text": "Question {n}",
    "from": [
-    "interview-day",
-    "lesson-deck"
+    "interview-day"
    ]
   },
   {
@@ -11381,12 +9156,6 @@
    ]
   },
   {
-   "text": "Questions on the test",
-   "from": [
-    "lesson-deck"
-   ]
-  },
-  {
    "text": "Questions you learned come back when it’s time to review them.",
    "from": [
     "learn-screens"
@@ -11416,13 +9185,6 @@
    "text": "Quick review of civics questions",
    "from": [
     "today"
-   ]
-  },
-  {
-   "text": "Ratification",
-   "from": [
-    "key-words",
-    "lessons"
    ]
   },
   {
@@ -11688,24 +9450,6 @@
    ]
   },
   {
-   "text": "Region including New York, Pennsylvania, and New England with historic cities and industry",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Region with mountains, deserts, and vast territories including Alaska and Hawaii",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Region with warm climate, agriculture, and distinct cultural heritage",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Registering for the Selective Service",
    "from": [
     "n400-lessons"
@@ -11815,37 +9559,6 @@
    ]
   },
   {
-   "text": "Reservations",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
-   "text": "Residence and office of the President of the United States",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Responsibilities of American Citizens",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Responsibility to learn about candidates and issues before voting",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Responsibility to pay taxes that fund government services and infrastructure",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Review chest",
    "from": [
     "checkpoints",
@@ -11871,13 +9584,6 @@
    ]
   },
   {
-   "text": "Revolutionary War",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
    "text": "Right",
    "from": [
     "checkpoints",
@@ -11892,45 +9598,8 @@
    ]
   },
   {
-   "text": "Right to Counsel",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "Right to Vote",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Right to a Fair Trial",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Right to express opinions and ideas without government interference",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Right to fair legal procedures and protection of rights under law",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Right to practice any faith or no faith without government interference",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Right!",
    "from": [
-    "lesson-deck",
     "lesson-player",
     "practice"
    ]
@@ -11966,45 +9635,15 @@
    ]
   },
   {
-   "text": "Rights that protect individuals from discrimination and guarantee equal treatment",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "Rocky Mountains",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "Roosevelt and World War II",
    "from": [
     "course-titles"
    ]
   },
   {
-   "text": "Rosa Parks and Martin Luther King Jr. were leaders of the Civil Rights Movement",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "Round complete.",
    "from": [
     "practice"
-   ]
-  },
-  {
-   "text": "Rule of Law",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "Rules for proper handling and display of the American flag",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -12050,7 +9689,6 @@
   {
    "text": "Save",
    "from": [
-    "lesson-deck",
     "my-tutor",
     "pilot",
     "settings",
@@ -12076,12 +9714,6 @@
    ]
   },
   {
-   "text": "Saved",
-   "from": [
-    "lesson-deck"
-   ]
-  },
-  {
    "text": "Saved only on this phone",
    "from": [
     "interview-when"
@@ -12101,12 +9733,6 @@
    ]
   },
   {
-   "text": "Saved. Lesson complete.",
-   "from": [
-    "practice"
-   ]
-  },
-  {
    "text": "Saving",
    "from": [
     "learn-screens"
@@ -12116,7 +9742,6 @@
    "text": "Saving…",
    "from": [
     "find-rep",
-    "lesson-deck",
     "lesson-player",
     "pilot"
    ]
@@ -12572,12 +10197,6 @@
    ]
   },
   {
-   "text": "Schools cannot be segregated because equal protection requires equal treatment",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "Score %",
    "from": [
     "progress"
@@ -12605,12 +10224,6 @@
    "text": "Second",
    "from": [
     "words"
-   ]
-  },
-  {
-   "text": "Second Amendment",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -12698,15 +10311,8 @@
    ]
   },
   {
-   "text": "Segregation",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "Selective Service",
    "from": [
-    "key-words",
     "n400"
    ]
   },
@@ -12739,19 +10345,6 @@
    "text": "Selling or moving weapons",
    "from": [
     "n400-lessons"
-   ]
-  },
-  {
-   "text": "Senate",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
-   "text": "Senate Confirmation",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -12845,13 +10438,6 @@
    ]
   },
   {
-   "text": "Separation of Powers",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
    "text": "September",
    "from": [
     "words"
@@ -12873,12 +10459,6 @@
    "text": "Serving in the U.S. armed forces",
    "from": [
     "n400-lessons"
-   ]
-  },
-  {
-   "text": "Serving on a jury is a civic duty that helps ensure fair trials",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -12950,12 +10530,6 @@
    ]
   },
   {
-   "text": "Show the answer",
-   "from": [
-    "lesson-deck"
-   ]
-  },
-  {
    "text": "Show the definition",
    "from": [
     "practice"
@@ -12972,7 +10546,6 @@
    "from": [
     "ask-screen",
     "interview-day",
-    "lesson-deck",
     "me",
     "sign-in"
    ]
@@ -13005,12 +10578,6 @@
    "text": "Sign in to review civics",
    "from": [
     "learn-screens"
-   ]
-  },
-  {
-   "text": "Sign in to save your progress.",
-   "from": [
-    "lesson-deck"
    ]
   },
   {
@@ -13077,12 +10644,6 @@
    "text": "Six years",
    "from": [
     "course-lessons"
-   ]
-  },
-  {
-   "text": "Sixth Amendment",
-   "from": [
-    "lessons"
    ]
   },
   {
@@ -13258,19 +10819,6 @@
    ]
   },
   {
-   "text": "Social Contract",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
-   "text": "Social movement in the 1950s–1960s to end racial segregation and discrimination",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "Sojourner Truth and Harriet Tubman were born into slavery and escaped. They spoke out for the rights of women and of Black Americans. Harriet Tubman also helped many enslaved people escape to freedom.",
    "from": [
     "course-lessons"
@@ -13346,12 +10894,6 @@
    ]
   },
   {
-   "text": "South Region",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Southern states left the United States, mainly to keep slavery. They called themselves the Confederacy. The North fought to keep the country together, called the Union.",
    "from": [
     "course-lessons"
@@ -13366,8 +10908,7 @@
   {
    "text": "Speak",
    "from": [
-    "home",
-    "lesson-deck"
+    "home"
    ]
   },
   {
@@ -13422,12 +10963,6 @@
    "text": "Speaking · The officer’s questions",
    "from": [
     "practice"
-   ]
-  },
-  {
-   "text": "Spectacular natural landmark in Arizona formed by the Colorado River",
-   "from": [
-    "lessons"
    ]
   },
   {
@@ -13515,12 +11050,6 @@
    ]
   },
   {
-   "text": "Start speaking",
-   "from": [
-    "lesson-deck"
-   ]
-  },
-  {
    "text": "Start the quick check",
    "from": [
     "home"
@@ -13576,39 +11105,15 @@
    ]
   },
   {
-   "text": "State Legislature",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "State and Local Government",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "State capital",
    "from": [
     "find-rep"
    ]
   },
   {
-   "text": "State governments follow a similar structure to the federal government with executive, legislative, and judicial branches. Each state has a Governor (executive), a state legislature (legislative), and state courts (judicial). State governments handle issues like education, public safety, transportation, and welfare within their borders.\n\nLocal governments include county, city, and township governments. A mayor typically leads a city government, while commissioners or supervisors run county governments. Local governments provide services like police, fire, water, sewer, and roads. Many decisions that directly affect daily life are made at the local level.\n\nThe relationship between federal, state, and local governments is defined by the Constitution and federal laws. States cannot contradict federal law, but they have freedom to govern on matters not reserved for the federal government. Citizens participate in all levels of government through voting and civic engagement. Local governments are often the most accessible to citizens and play a crucial role in American democracy.",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "State information",
    "from": [
     "find-rep"
-   ]
-  },
-  {
-   "text": "State lawmaking body, usually consisting of a state senate and house of representatives",
-   "from": [
-    "lessons"
    ]
   },
   {
@@ -13627,13 +11132,6 @@
    "text": "States with more people have more representatives in the House.",
    "from": [
     "course-lessons"
-   ]
-  },
-  {
-   "text": "Statue of Liberty",
-   "from": [
-    "key-words",
-    "lessons"
    ]
   },
   {
@@ -13663,16 +11161,9 @@
    ]
   },
   {
-   "text": "Step {n} of {total} · {step}",
-   "from": [
-    "lesson-deck"
-   ]
-  },
-  {
    "text": "Stop",
    "from": [
     "learn-screens",
-    "lesson-deck",
     "tutor-steps"
    ]
   },
@@ -13714,18 +11205,6 @@
    ]
   },
   {
-   "text": "Structures honoring important historical figures and events",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Study",
-   "from": [
-    "practice"
-   ]
-  },
-  {
    "text": "Suggested for you",
    "from": [
     "practice"
@@ -13734,8 +11213,7 @@
   {
    "text": "Suggested next",
    "from": [
-    "course",
-    "practice"
+    "course"
    ]
   },
   {
@@ -13759,27 +11237,13 @@
   {
    "text": "Supreme Court",
    "from": [
-    "civics-questions",
-    "key-words",
-    "lessons"
+    "civics-questions"
    ]
   },
   {
    "text": "Supreme Court / Federal Courts",
    "from": [
     "civics-questions"
-   ]
-  },
-  {
-   "text": "Supreme Court and federal courts that interpret laws",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "Supreme Court justices have lifetime appointments so they can rule without political pressure",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -13795,16 +11259,9 @@
    ]
   },
   {
-   "text": "Supreme Court nominees must be confirmed by a Senate vote",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "Sure. Here’s the question again.",
    "from": [
     "checkpoints",
-    "lesson-deck",
     "lesson-player",
     "n400-lessons",
     "practice",
@@ -13830,12 +11287,6 @@
    ]
   },
   {
-   "text": "Susan B. Anthony was a key leader in the fight that led to the 19th Amendment",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "Swearing in",
    "from": [
     "practice"
@@ -13845,30 +11296,6 @@
    "text": "Symbols and holidays",
    "from": [
     "course-titles"
-   ]
-  },
-  {
-   "text": "System requiring men 18–25 to register in case a military draft is needed",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "System where each branch of government can limit the power of the other branches",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "System where each branch of government limits the power of the other branches",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "System where power rests with the people who elect representatives to govern",
-   "from": [
-    "lessons"
    ]
   },
   {
@@ -13907,18 +11334,6 @@
    "from": [
     "ask-screen",
     "talk"
-   ]
-  },
-  {
-   "text": "Tall obelisk in Washington D.C. honoring the first President, George Washington",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "Tap Start speaking, then say your answer in English.",
-   "from": [
-    "lesson-deck"
    ]
   },
   {
@@ -13962,18 +11377,6 @@
    ]
   },
   {
-   "text": "Tax Obligation",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Tax paid to the federal and state government on earnings from work",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "Taxes",
    "from": [
     "words"
@@ -14001,12 +11404,6 @@
    "text": "Teach it back",
    "from": [
     "lesson-player"
-   ]
-  },
-  {
-   "text": "Technology Innovation",
-   "from": [
-    "lessons"
    ]
   },
   {
@@ -14090,14 +11487,7 @@
   {
    "text": "Thanksgiving",
    "from": [
-    "key-words",
     "words"
-   ]
-  },
-  {
-   "text": "Thanksgiving has been a national holiday since President Lincoln proclaimed it in 1863",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -14186,12 +11576,6 @@
    ]
   },
   {
-   "text": "The \"American Dream\" is the idea that anyone can have a good life through hard work. People use it to talk about hope and opportunity in the United States.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
    "text": "The 10th Amendment",
    "from": [
     "course-titles"
@@ -14210,39 +11594,9 @@
    ]
   },
   {
-   "text": "The 13th Amendment permanently ended slavery after the Civil War",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "The 14th Amendment guarantee that laws apply equally to all people",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "The 14th Amendment says people born in the United States are citizens. It also says states must give every person equal protection of the laws.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
-   "text": "The 15th Amendment gave African American men the right to vote after the Civil War",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "The 1800s",
    "from": [
     "course-titles"
-   ]
-  },
-  {
-   "text": "The 50 stars represent the 50 states; a new star was added when Hawaii joined in 1960",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -14258,12 +11612,6 @@
    ]
   },
   {
-   "text": "The American flag has 13 stripes and 50 stars. The stripes are for the 13 original colonies. The stars are for the 50 states.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
    "text": "The American flag is red, white and blue.",
    "from": [
     "course-lessons"
@@ -14276,21 +11624,9 @@
    ]
   },
   {
-   "text": "The Appalachian Trail stretches from Georgia to Maine through the Appalachian Mountains",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "The Articles of Confederation",
    "from": [
     "course-lessons"
-   ]
-  },
-  {
-   "text": "The Bald Eagle appears on the Great Seal and is protected by federal law",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -14301,33 +11637,15 @@
    ]
   },
   {
-   "text": "The Bill of Rights guarantees freedom of speech, religion, and the right to a fair trial",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "The Bill of Rights is the first ten amendments to the Constitution. It protects the basic rights of Americans, like freedom of speech and freedom of religion.",
    "from": [
     "ask-answers"
    ]
   },
   {
-   "text": "The Bill of Rights protects ten fundamental freedoms that are essential to American democracy. The First Amendment guarantees freedom of speech, religion, press, assembly, and petition. These freedoms allow Americans to express themselves and participate in democratic processes.\n\nThe Second Amendment protects the right to bear arms. The Third Amendment prevents quartering of soldiers in homes. The Fourth Amendment protects against unreasonable searches and seizures. The Fifth Amendment provides due process rights and prevents self-incrimination. The Sixth Amendment guarantees the right to a fair trial.\n\nThe Seventh Amendment provides for jury trials in civil cases, and the Eighth Amendment prohibits cruel and unusual punishment. The Ninth Amendment protects rights not specifically listed, and the Tenth Amendment reserves powers to the states or people. These rights apply equally to all citizens and cannot be taken away without legal process.",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "The Bill of Rights, kept today at the National Archives in Washington, D.C.",
    "from": [
     "course-pictures"
-   ]
-  },
-  {
-   "text": "The Boston Tea Party was a response to taxes imposed without colonial representation",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -14340,12 +11658,6 @@
    "text": "The Cabinet is a group of leaders who advise the President.",
    "from": [
     "course-lessons"
-   ]
-  },
-  {
-   "text": "The Cherokee Nation was forced to walk over 1,000 miles, and many died",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -14362,34 +11674,10 @@
    ]
   },
   {
-   "text": "The Civil Rights Act made it illegal to refuse service to someone based on their race",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "The Civil Rights Act of 1964 banned discrimination based on race, color, or religion",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "The Civil War",
    "from": [
     "civics-questions",
     "course-titles"
-   ]
-  },
-  {
-   "text": "The Civil War (1861-1865) was fought between the Union (North) and the Confederacy (South). The primary cause was disagreement over slavery. Southern states depended on slavery for their economy, while Northern states were moving toward free labor. When Abraham Lincoln was elected President in 1860, Southern states seceded from the Union.\n\nPresident Lincoln led the North in a war to preserve the Union and end slavery. The Emancipation Proclamation in 1863 declared slaves in Confederate states free, though it wasn't fully enforced until the North won the war. The 13th Amendment abolished slavery throughout the United States in 1865.\n\nThe Civil War killed over 600,000 soldiers and was the deadliest war in American history. General Ulysses S. Grant led the Union armies to victory. After the war, Reconstruction policies helped former slaves gain political power and education. The 14th and 15th Amendments provided equal protection and voting rights regardless of race. These changes fundamentally transformed American society.",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "The Civil War and Abolition of Slavery",
-   "from": [
-    "lessons"
    ]
   },
   {
@@ -14402,12 +11690,6 @@
    "text": "The Civil War had many important events. Name one.",
    "from": [
     "civics-questions"
-   ]
-  },
-  {
-   "text": "The Civil War was the war between the North and the South, from 1861 to 1865. It ended slavery in the United States.",
-   "from": [
-    "ask-answers"
    ]
   },
   {
@@ -14466,12 +11748,6 @@
    ]
   },
   {
-   "text": "The Constitution was ratified by nine states in 1788 and went into effect in 1789.",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "The Constitution was written in 1787.",
    "from": [
     "course-lessons"
@@ -14493,12 +11769,6 @@
    "text": "The Constitution's 16th Amendment lets Congress collect a federal income tax.",
    "from": [
     "course-lessons"
-   ]
-  },
-  {
-   "text": "The Constitutional Convention was the meeting in Philadelphia in 1787 where leaders wrote the U.S. Constitution.",
-   "from": [
-    "ask-answers"
    ]
   },
   {
@@ -14527,12 +11797,6 @@
    ]
   },
   {
-   "text": "The Declaration of Independence said the American colonies were free from Britain. It was adopted on July 4, 1776. Thomas Jefferson wrote it.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
    "text": "The Declaration of Independence was adopted on July 4, 1776.",
    "from": [
     "course-lessons"
@@ -14557,18 +11821,6 @@
    ]
   },
   {
-   "text": "The Emancipation Proclamation was a turning point that made the Civil War about ending slavery",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "The Executive Branch and the Presidency",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "The Federalist Papers",
    "from": [
     "course-lessons",
@@ -14588,33 +11840,9 @@
    ]
   },
   {
-   "text": "The First Amendment allows people to criticize the government without being arrested",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "The First Amendment protects freedom of speech, religion, the press, assembly, and the right to petition the government.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
    "text": "The Gettysburg Address",
    "from": [
     "course-lessons"
-   ]
-  },
-  {
-   "text": "The Grand Canyon is a very large, deep canyon in Arizona. The Colorado River made it over millions of years. It is a national park.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
-   "text": "The Grand Canyon is over a mile deep and was formed over millions of years",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -14633,18 +11861,6 @@
    "text": "The Great Depression",
    "from": [
     "course-titles"
-   ]
-  },
-  {
-   "text": "The Great Seal appears on the back of the one-dollar bill",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "The House impeaches and the Senate holds the trial to decide removal",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -14672,45 +11888,9 @@
    ]
   },
   {
-   "text": "The Industrial Revolution transformed America from a rural agricultural society to an urban industrial nation. Factories, railroads, and new technologies created enormous wealth and opportunities. Millions of immigrants came to America seeking jobs and better lives. Cities grew rapidly as people moved from farms to factories.\n\nIndustrialization created new social problems including poor working conditions, child labor, and urban poverty. Workers began organizing into unions to demand better wages, hours, and conditions. The Progressive Era (1890s-1920s) brought reforms including workplace safety laws, food safety regulations, and antitrust laws to prevent monopolies.\n\nTechnology advanced rapidly with the invention of electricity, automobiles, and airplanes. These innovations transformed daily life and commerce. The United States became an industrial power and eventually a global superpower. The 20th century saw America become a center of innovation, culture, and wealth. Industrial progress improved living standards for many Americans, though inequality and social problems persist.",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "The Industrial Revolution was the time when work moved from farms and hand tools to factories and machines. It changed how Americans lived and worked.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
-   "text": "The Judicial Branch and Supreme Court",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "The Judicial Branch consists of federal courts headed by the Supreme Court of the United States. The Supreme Court has nine justices, including the Chief Justice. Judges are appointed by the President and confirmed by the Senate. Federal judges serve lifetime appointments, ensuring independence from political pressure.\n\nThe Supreme Court is the highest court in the nation and has the power of judicial review—the ability to declare laws unconstitutional. Lower federal courts handle various cases, and there are state court systems as well. The court system ensures that justice is applied fairly and that the Constitution is upheld.\n\nThe Supreme Court hears cases that involve constitutional questions or disputes between states. Justices write opinions explaining their decisions, which set legal precedents. The Court balances individual rights with government authority. Nine justices must agree on decisions, promoting careful deliberation. The judicial system protects Americans from unjust laws and ensures equal protection under law.",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "The King of Britain",
    "from": [
     "course-lessons"
-   ]
-  },
-  {
-   "text": "The Legislative Branch passes laws that affect the entire nation",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "The Liberty Bell is displayed at Independence Hall in Philadelphia",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -14720,33 +11900,9 @@
    ]
   },
   {
-   "text": "The Mississippi River flows from Minnesota to the Gulf of Mexico",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "The National Anthem is played before major sporting events and national ceremonies",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "The Nation’s first motto was “E Pluribus Unum.” What does that mean?",
    "from": [
     "civics-questions"
-   ]
-  },
-  {
-   "text": "The Northeast is a region in the top right of the map, by the Atlantic Ocean. It includes states like New York, Pennsylvania and the New England states. New England is the six states in the far northeast: Maine, New Hampshire, Vermont, Massachusetts, Rhode Island and Connecticut.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
-   "text": "The Pledge of Allegiance ends with 'with liberty and justice for all'",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -14793,27 +11949,9 @@
    ]
   },
   {
-   "text": "The President commands the military and appoints cabinet members",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "The President is the Commander in Chief of the military.",
    "from": [
     "course-lessons"
-   ]
-  },
-  {
-   "text": "The President is the head of the Executive Branch and serves as commander-in-chief of the armed forces. The President is elected to four-year terms and can serve a maximum of two terms due to the 22nd Amendment. The President enforces federal laws, appoints federal judges and cabinet members, negotiates treaties, and proposes the federal budget to Congress.\n\nThe President's Cabinet consists of department heads who advise the President and manage specific areas of government like defense, state, treasury, and interior. The Executive Office of the President includes the White House staff and advisors who assist with daily operations and policy decisions.\n\nThe President can veto legislation passed by Congress, but Congress can override this veto with a two-thirds vote. Presidents issue executive orders to direct government agencies. The President also represents the United States in foreign relations and ceremonial matters. Elections every four years ensure that the President remains accountable to the people.",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "The President leads the executive branch. The President is elected for four years and can serve only two terms.",
-   "from": [
-    "ask-answers"
    ]
   },
   {
@@ -14853,45 +11991,9 @@
    ]
   },
   {
-   "text": "The President signs bills into law and is commander-in-chief of the military",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "The President vetoes laws, Congress overrides vetoes, and courts strike down unconstitutional acts",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "The President's power to reject legislation passed by Congress",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "The Revolution",
    "from": [
     "course-titles"
-   ]
-  },
-  {
-   "text": "The Rocky Mountains include peaks in Colorado, Montana, and Wyoming",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "The Second Amendment has been the subject of many Supreme Court decisions",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "The Secretary of State and Secretary of Defense are Cabinet members",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -14910,18 +12012,6 @@
    "text": "The Senate and the House of Representatives",
    "from": [
     "course-lessons"
-   ]
-  },
-  {
-   "text": "The Senate is one of the two parts of Congress. There are 100 senators, two from each state. A senator's term is six years.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
-   "text": "The Senate must approve presidential appointments to courts and Cabinet positions",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -14961,12 +12051,6 @@
    ]
   },
   {
-   "text": "The Statue of Liberty welcomed millions of immigrants arriving by ship",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "The Supreme Court",
    "from": [
     "course-lessons",
@@ -14977,12 +12061,6 @@
    "text": "The Supreme Court and the other federal courts are the judicial branch.",
    "from": [
     "course-lessons"
-   ]
-  },
-  {
-   "text": "The Supreme Court can declare laws unconstitutional",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -15004,30 +12082,6 @@
    ]
   },
   {
-   "text": "The Supreme Court is the highest court in the United States. It has nine seats. It can decide if a law goes against the Constitution.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
-   "text": "The Supreme Court's power to declare laws unconstitutional",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "The Supreme Court's rulings set legal precedents for all lower courts",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "The U.S. Constitution and the Founding Fathers",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "The U.S. Constitution is the supreme law of the land.",
    "from": [
     "course-lessons"
@@ -15046,21 +12100,9 @@
    ]
   },
   {
-   "text": "The U.S. Constitution was created in 1787 at the Constitutional Convention in Philadelphia. Fifty-five delegates from twelve states gathered to draft a document that would establish the framework for American government. The Constitution replaced the Articles of Confederation, which had proven too weak to effectively govern the new nation.\n\nKey Founding Fathers included George Washington, James Madison, Benjamin Franklin, and James Wilson. Madison is often called the \"Father of the Constitution\" because he came prepared with detailed plans for the government structure. Franklin, at 81 years old, was the oldest delegate and provided wisdom and compromise throughout the convention.\n\nThe Constitution established three branches of government with a system of checks and balances. It also protected individual rights through the Bill of Rights, added in 1791. The Constitution has been amended 27 times and remains the supreme law of the land. It was ratified by the states in 1788 and went into effect in 1789.",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "The U.S. Constitution was written in 1787.",
    "from": [
     "course-lessons"
-   ]
-  },
-  {
-   "text": "The U.S. is a democratic republic — citizens vote for senators and representatives",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -15106,24 +12148,6 @@
    ]
   },
   {
-   "text": "The United States has many powerful symbols that represent its values, history, and ideals. The American Flag features thirteen stripes representing the original colonies and stars representing each state. Red represents valor and bravery, white represents innocence and purity, and blue represents vigilance, perseverance, and justice.\n\nThe Bald Eagle, our national bird, symbolizes strength, courage, and independence. The Great Seal features an eagle holding an olive branch and arrows, symbolizing peace and defense. The Statue of Liberty, gifted by France in 1886, stands in New York Harbor welcoming immigrants and representing freedom and opportunity.\n\nThe Liberty Bell, located in Philadelphia, symbolizes American independence and freedom. The National Anthem, 'The Star-Spangled Banner,' written in 1814, is played before national events. These symbols unite Americans and remind us of shared values. Schools display the flag and recite the Pledge of Allegiance. Americans cherish these symbols as representations of their nation and its ideals.",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "The United States has many spectacular natural landmarks that showcase its geographic diversity. The Grand Canyon in Arizona is one of the world's most impressive geological formations. Niagara Falls on the border with Canada is a powerful waterfall. Yellowstone in Wyoming was the first national park and contains geysers and hot springs.\n\nThe Great Lakes are the world's largest freshwater lake system. The Rocky Mountains stretch across western states. The Mississippi River is the nation's longest river and was crucial to American history and commerce. The Appalachian Mountains run along the eastern United States. Yosemite National Park in California features granite cliffs and waterfalls.\n\nNational parks were established to protect America's natural heritage for future generations. The National Park Service manages these protected areas. Millions of Americans visit parks annually for recreation, education, and natural beauty. Parks support wildlife conservation and scientific research. Natural landmarks are sources of national pride and connection to the land. Protecting these areas is considered a responsibility to future generations.",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "The United States is a democratic republic, meaning power ultimately rests with the people who elect representatives to govern. Democracy is based on the principle that all people are equal and have a say in government decisions.\n\nA federal system divides power between the national government and state governments. This prevents any single authority from becoming too powerful. The national government handles matters affecting the whole country, while states handle local issues. This system allows for both unity and diversity across the nation.\n\nAmerica's democracy relies on free and fair elections, freedom of the press, separation of powers, and protection of individual rights. Citizens participate through voting, serving on juries, and engaging in civic activities. A healthy democracy requires informed citizens who understand their rights and responsibilities. The Constitution protects these democratic principles and can be amended only through a lengthy process.",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "The United States is a republic: the people vote for leaders, and those leaders make laws for them.",
    "from": [
     "course-lessons"
@@ -15133,18 +12157,6 @@
    "text": "The United States is between Canada to the north and Mexico to the south.",
    "from": [
     "course-lessons"
-   ]
-  },
-  {
-   "text": "The United States is made up of 50 states, each with its own government",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "The United States spans from the Atlantic Ocean on the east to the Pacific Ocean on the west. The country can be divided into major regions with distinct geography, climate, and characteristics. The Northeast includes states like New York and Massachusetts with historic cities and manufacturing. The South includes states with warm climates, agriculture, and a unique culture.\n\nThe Midwest includes agricultural states in the heartland. The West includes mountain ranges, deserts, and vast territories. The Pacific Northwest has forests and rainy climate. The Southwest has deserts and canyons. Alaska is the largest state by area, while Hawaii is the most isolated. The United States has diverse geography including the Rocky Mountains, the Mississippi River, the Grand Canyon, and Niagara Falls.\n\nGeography has influenced American history and development. Rivers provided transportation and power. Natural resources like coal, oil, and minerals supported industry. Mountains and natural barriers affected settlement patterns. Understanding American geography helps understand its history, economy, and diversity. Each region contributes uniquely to the nation.",
-   "from": [
-    "lessons"
    ]
   },
   {
@@ -15166,21 +12178,9 @@
    ]
   },
   {
-   "text": "The Voting Rights Act was passed during the Civil Rights Movement to protect African American voters",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "The White House is in Washington, D.C.",
    "from": [
     "sentences"
-   ]
-  },
-  {
-   "text": "The White House, Capitol Building, and Supreme Court are all in Washington D.C.",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -15190,21 +12190,9 @@
    ]
   },
   {
-   "text": "The belief that through hard work, anyone can achieve success and prosperity in the U.S.",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "The boxes stay empty. Tap What it asks to open that question in the guide, in plain words.",
    "from": [
     "n400-guide"
-   ]
-  },
-  {
-   "text": "The building in Washington, D.C. where Congress meets",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -15217,12 +12205,6 @@
    "text": "The capital of the United States is Washington, D.C. Congress, the President and the Supreme Court are there.",
    "from": [
     "course-lessons"
-   ]
-  },
-  {
-   "text": "The capital of the United States, home to all three branches of the federal government",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -15347,21 +12329,9 @@
    ]
   },
   {
-   "text": "The first U.S. national park, established in 1872, known for geysers and wildlife",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "The first airplane flight, by the Wright brothers, in 1903.",
    "from": [
     "course-pictures"
-   ]
-  },
-  {
-   "text": "The first governing document of the U.S., replaced by the Constitution because it was too weak",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -15380,18 +12350,6 @@
    "text": "The first question asks whether you have ever been part of, or connected to, a Communist or totalitarian party. The second asks whether you have ever supported any of the ideas in the list, or been part of a group that supported them.",
    "from": [
     "n400"
-   ]
-  },
-  {
-   "text": "The first ten amendments to the Constitution, protecting fundamental individual freedoms",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "The five Great Lakes are Superior, Michigan, Huron, Erie, and Ontario",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -15422,12 +12380,6 @@
    "text": "The flag is red, white, and blue.",
    "from": [
     "sentences"
-   ]
-  },
-  {
-   "text": "The flag should never touch the ground and is flown at half-staff to honor those who have died",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -15473,21 +12425,9 @@
    ]
   },
   {
-   "text": "The head of the Supreme Court and the federal judiciary",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "The highest court",
    "from": [
     "course-titles"
-   ]
-  },
-  {
-   "text": "The highest court in the U.S., with nine justices and final authority on constitutional questions",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -15497,21 +12437,9 @@
    ]
   },
   {
-   "text": "The idea that citizens give up some freedoms in exchange for government protection of rights",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "The judicial branch",
    "from": [
     "course-lessons"
-   ]
-  },
-  {
-   "text": "The legal process by which an immigrant becomes a U.S. citizen",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -15554,24 +12482,6 @@
    "text": "The oath, your N-400 questions, reading, writing and civics. Nothing is saved.",
    "from": [
     "interview-tab"
-   ]
-  },
-  {
-   "text": "The obligation of citizens to serve on a jury when called upon by a court",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "The ocean bordering the East Coast of the United States",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "The ocean bordering the West Coast of the United States",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -15637,12 +12547,6 @@
    ]
   },
   {
-   "text": "The official residence and primary workplace of the President of the United States",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "The order can be different at a real interview.",
    "from": [
     "interview-day"
@@ -15691,30 +12595,6 @@
    ]
   },
   {
-   "text": "The presumption that accused persons are innocent until the government proves guilt",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "The principle that everyone, including government officials, must follow the law",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "The process of formal state approval required for the Constitution to take effect",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "The process where Congress formally charges a president or official with wrongdoing",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "The pursuit of Happiness means the freedom to try to make a good life.",
    "from": [
     "course-lessons"
@@ -15739,39 +12619,9 @@
    ]
   },
   {
-   "text": "The right of Native American tribes to govern themselves as independent nations",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "The right to bear arms: the Second Amendment protects the right to have guns, following the law.",
    "from": [
     "course-lessons"
-   ]
-  },
-  {
-   "text": "The right to express opinions without government censorship or retaliation",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "The right to fair legal procedures before the government can take away life, liberty, or property",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "The right to have an attorney, even if you cannot afford one",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "The right to practice any religion, or no religion, without government interference",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -15825,18 +12675,6 @@
    ]
   },
   {
-   "text": "The shared benefit and welfare of the entire community",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "The space race between the U.S. and USSR was part of the Cold War",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "The special promise a person makes to the United States when becoming a citizen.",
    "from": [
     "n400"
@@ -15852,12 +12690,6 @@
    "text": "The supreme law",
    "from": [
     "course-titles"
-   ]
-  },
-  {
-   "text": "The system of checks and balances ensures that no single branch of government becomes too powerful. Each branch has powers to limit the other branches. The Legislative Branch can override the President's veto, refuse to pass the President's budget, and remove the President through impeachment. The Senate confirms judges and cabinet appointees.\n\nThe Executive Branch (President) can veto laws passed by Congress and appoints judges and cabinet members. The President enforces laws made by Congress. The Judicial Branch can declare laws unconstitutional and interpret how laws apply. The Senate must confirm judicial appointments, and Congress can propose amendments to overturn Supreme Court decisions.\n\nThis system prevents concentration of power and protects citizens' rights. The Founding Fathers deliberately created a government where each branch would compete and balance the others. Examples of checks and balances in action include Congress overriding a presidential veto, the Supreme Court declaring a law unconstitutional, or the Senate rejecting a presidential appointee. This design has kept America's government stable for over 230 years.",
-   "from": [
-    "lessons"
    ]
   },
   {
@@ -15946,12 +12778,6 @@
    ]
   },
   {
-   "text": "The world's largest freshwater lake system, located along the U.S.-Canada border",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "There are 100 U.S. senators.",
    "from": [
     "course-lessons"
@@ -15961,12 +12787,6 @@
    "text": "There are 538 electors. To become President, a candidate needs 270 of their votes.",
    "from": [
     "course-pictures"
-   ]
-  },
-  {
-   "text": "There are always exactly 100 senators, regardless of state population",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -16015,12 +12835,6 @@
    "text": "There were 13 original states. Name three.",
    "from": [
     "civics-questions"
-   ]
-  },
-  {
-   "text": "These are the exact questions the officer may ask.",
-   "from": [
-    "lesson-deck"
    ]
   },
   {
@@ -16282,168 +13096,6 @@
    ]
   },
   {
-   "text": "This lesson has no test questions to go over yet.",
-   "from": [
-    "lesson-deck"
-   ]
-  },
-  {
-   "text": "This lesson has no text yet.",
-   "from": [
-    "lesson-deck"
-   ]
-  },
-  {
-   "text": "This lesson is about Congress, the part of the government that writes laws. Congress has two parts: the Senate and the House of Representatives.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
-   "text": "This lesson is about Washington, D.C. and other important places. Each state also has its own capital city, where the state government works.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
-   "text": "This lesson is about fair treatment by the government and the courts. The Constitution protects the right to fair rules and a fair trial.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
-   "text": "This lesson is about famous natural places in the United States. Many are national parks, protected so everyone can visit them.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
-   "text": "This lesson is about how rights and responsibilities go together. Americans have rights, and they also have duties, like obeying the law.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
-   "text": "This lesson is about how the 13 colonies became an independent country. The colonists fought Britain in the Revolutionary War and won.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
-   "text": "This lesson is about how the Constitution can change. Changes are called amendments. Making one is hard, so the Constitution does not change often.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
-   "text": "This lesson is about how the Constitution was written in 1787 and the leaders who wrote it, like James Madison and George Washington.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
-   "text": "This lesson is about how the U.S. government is built. Power is shared between the federal government and the states, and among three branches.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
-   "text": "This lesson is about how the United States changed from a farming country to a country of factories, cities and new inventions.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
-   "text": "This lesson is about how the United States grew west across the continent in the 1800s, and how that changed the country and the people who already lived there.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
-   "text": "This lesson is about how the three branches share power. For example, the President can veto a bill, and Congress can still pass it with more votes.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
-   "text": "This lesson is about ideas many Americans share, like freedom, equality and hard work. People from many cultures live in the United States, and together they make American culture.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
-   "text": "This lesson is about important rights in the United States, like freedom of speech and freedom of religion. Many of them are in the Bill of Rights.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
-   "text": "This lesson is about laws that protect equal treatment. The civil rights movement fought to end racial discrimination.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
-   "text": "This lesson is about state and local government. States run things like schools, driver's licenses and police. Cities and towns have their own local leaders.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
-   "text": "This lesson is about symbols of the United States, like the flag and the national anthem. Each symbol stands for an idea, such as freedom or the states.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
-   "text": "This lesson is about the Civil War and the end of slavery. Abraham Lincoln was President. The Emancipation Proclamation freed slaves in the Confederate states.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
-   "text": "This lesson is about the President and the executive branch. The President signs bills into law, can veto bills and is Commander in Chief of the military.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
-   "text": "This lesson is about the courts, the judicial branch. The courts explain laws and decide disagreements about the law.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
-   "text": "This lesson is about the freedoms the Constitution protects for each person, like speech and religion, and how the government cannot take them away.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
-   "text": "This lesson is about the land of the United States and its regions. The civics test asks about oceans, rivers, borders and states, so a map helps.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
-   "text": "This lesson is about what citizens do to keep democracy strong, like voting, paying taxes and taking part in their community.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
-   "text": "This lesson is about who can vote and how that changed. Today, citizens who are 18 and older can vote in federal elections.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
-   "text": "This lesson is about who lived in America before the Europeans, and how colonization changed their lives. American Indians lost much of their land.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
    "text": "This lesson isn’t open yet.",
    "from": [
     "lesson-player",
@@ -16466,12 +13118,6 @@
    "text": "This may change soon. At your interview, name the person serving that day.",
    "from": [
     "tutor-steps-amio"
-   ]
-  },
-  {
-   "text": "This means the many American Indian nations that lived in America before Europeans came. Each had its own language, government and way of life.",
-   "from": [
-    "ask-answers"
    ]
   },
   {
@@ -16778,8 +13424,7 @@
   {
    "text": "Thomas Jefferson",
    "from": [
-    "course-titles",
-    "key-words"
+    "course-titles"
    ]
   },
   {
@@ -16795,21 +13440,9 @@
    ]
   },
   {
-   "text": "Thomas Jefferson wrote most of the Declaration of Independence",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "Thomas Jefferson wrote the Declaration of Independence.",
    "from": [
     "course-lessons"
-   ]
-  },
-  {
-   "text": "Thomas Jefferson wrote the Declaration stating that all men are created equal",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -17047,12 +13680,6 @@
    ]
   },
   {
-   "text": "Today, federally recognized tribes have sovereignty over their reservation lands",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "Today’s goal",
    "from": [
     "lesson-player"
@@ -17120,29 +13747,9 @@
    ]
   },
   {
-   "text": "Torturing a prisoner would violate the 8th Amendment",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "Trail of Tears",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
-   "text": "Transformation of America from agricultural to industrial economy",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Translating…",
    "from": [
     "lawyer",
-    "lesson-deck",
     "n400-guide",
     "practice"
    ]
@@ -17151,12 +13758,6 @@
    "text": "Translation unavailable",
    "from": [
     "practice"
-   ]
-  },
-  {
-   "text": "Tribal Sovereignty",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -17271,12 +13872,6 @@
    ]
   },
   {
-   "text": "Type",
-   "from": [
-    "lesson-deck"
-   ]
-  },
-  {
    "text": "Type in English",
    "from": [
     "interview-day"
@@ -17322,7 +13917,6 @@
    "text": "Type your answer in English",
    "from": [
     "checkpoints",
-    "lesson-deck",
     "lesson-player",
     "practice",
     "tutor-steps"
@@ -17338,18 +13932,6 @@
    "text": "Type your question",
    "from": [
     "ask-screen"
-   ]
-  },
-  {
-   "text": "U.S. Geography and Regions",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "U.S. citizens can vote, run for office, and hold a U.S. passport",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -17407,69 +13989,15 @@
    ]
   },
   {
-   "text": "Under the Articles, Congress had no power to levy taxes or enforce laws",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "Under the Constitution, Congress has the power to declare war.",
    "from": [
     "course-lessons"
    ]
   },
   {
-   "text": "Understand how state and local governments serve citizens",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Understand how the Constitution evolves through amendments and what they mean",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Understand the culture, values, and ideals that define America",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Understand the expansion of the United States across the continent",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Understand the geography and regions that make up the United States",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Understand the legal protections ensuring equality for all Americans",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Understand the principles that make America a democratic republic",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Understand the questions on the naturalization application — what they mean, key words, and how the officer might ask them.",
    "from": [
     "home"
-   ]
-  },
-  {
-   "text": "Understand the role and powers of the President and executive government",
-   "from": [
-    "lessons"
    ]
   },
   {
@@ -17510,6 +14038,12 @@
    ]
   },
   {
+   "text": "Unit {n} · {title}",
+   "from": [
+    "lesson-status"
+   ]
+  },
+  {
    "text": "Unit {unit} · N-400 lesson",
    "from": [
     "n400-lessons"
@@ -17537,18 +14071,6 @@
    "text": "Upbeat. Sets small goals and celebrates real progress without exaggerating.",
    "from": [
     "settings-pieces"
-   ]
-  },
-  {
-   "text": "Upper chamber of Congress with 100 members, two from each state serving six-year terms",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Upper chamber of Congress with 100 members, two from each state, serving 6-year terms",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -17582,12 +14104,6 @@
    ]
   },
   {
-   "text": "Values of Freedom",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "Very ready",
    "from": [
     "pilot"
@@ -17603,18 +14119,6 @@
    "text": "Veterans Day, in November, honors people who have served in the U.S. military.",
    "from": [
     "course-lessons"
-   ]
-  },
-  {
-   "text": "Veto Override",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "Video not available.",
-   "from": [
-    "lesson-deck"
    ]
   },
   {
@@ -17673,43 +14177,6 @@
    ]
   },
   {
-   "text": "Voting Rights",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Voting Rights Act",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
-   "text": "Voting Rights Act of 1965",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Voting Rights and Democratic Participation",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Voting is a fundamental right in American democracy, but it wasn't always available to everyone. Originally, only white male property owners could vote. Over time, voting rights have been expanded through amendments and legislation.\n\nThe 15th Amendment (1870) prohibited voting discrimination based on race. The 19th Amendment (1920) granted women the right to vote. The Voting Rights Act of 1965 eliminated literacy tests and other barriers used to prevent African Americans from voting. The 26th Amendment (1971) lowered the voting age to 18.\n\nToday, U.S. citizens who are at least 18 years old and meet residency requirements can vote. Voting is done through elections where citizens choose representatives and leaders. Regular elections ensure that government remains accountable to the people. Early voting and mail-in ballots make it easier for citizens to participate in democracy.",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Voting rights are the rights of citizens to vote in elections. Over time, amendments to the Constitution gave more citizens the right to vote.",
-   "from": [
-    "ask-answers"
-   ]
-  },
-  {
    "text": "Voting · freedoms · your promises",
    "from": [
     "course-titles"
@@ -17758,24 +14225,6 @@
    ]
   },
   {
-   "text": "War fought from 1775–1783 in which the American colonies won independence from Britain",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "War fought from 1861–1865 between the Union (North) and the Confederacy (South) over slavery",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
-   "text": "War from 1861-1865 between Union (North) and Confederacy (South) over slavery",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "War of 1812 / Mexican-American War / Civil War / Spanish-American War",
    "from": [
     "civics-questions"
@@ -17814,14 +14263,7 @@
   {
    "text": "Washington D.C.",
    "from": [
-    "key-words",
     "words"
-   ]
-  },
-  {
-   "text": "Washington Monument",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -17851,32 +14293,13 @@
   {
    "text": "Washington, D.C.",
    "from": [
-    "civics-questions",
-    "lessons"
-   ]
-  },
-  {
-   "text": "Washington, D.C. is the capital of the United States. Congress, the President and the Supreme Court all work there.",
-   "from": [
-    "ask-answers"
+    "civics-questions"
    ]
   },
   {
    "text": "Washington, D.C. is the capital.",
    "from": [
     "sentences"
-   ]
-  },
-  {
-   "text": "Washington, D.C., is the capital of the United States and home to the federal government. The city was designed by Pierre Charles L'Enfant with wide streets and organized layout. The Capitol Building houses Congress. The White House is the residence and office of the President. The Supreme Court Building is where the nation's highest court meets.\n\nWashington also features many monuments and memorials honoring American history. The Washington Monument is a tall obelisk honoring the first President. The Lincoln Memorial honors Abraham Lincoln. The Jefferson Memorial honors Thomas Jefferson. The World War II Memorial honors veterans. The Vietnam Veterans Memorial lists names of fallen soldiers.\n\nOther important cities include New York City, the largest city and a major financial center. Boston is historically significant and home to major universities. Philadelphia hosted the Constitutional Convention. Chicago is a major industrial and commercial center. Los Angeles is known for entertainment and technology. These cities represent different aspects of American history, culture, and economy.",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Watch",
-   "from": [
-    "lesson-deck"
    ]
   },
   {
@@ -17914,12 +14337,6 @@
    "from": [
     "checkpoints",
     "practice"
-   ]
-  },
-  {
-   "text": "We can’t check this one yet.",
-   "from": [
-    "lesson-deck"
    ]
   },
   {
@@ -18052,12 +14469,6 @@
    "text": "We never save your answers to the N-400.",
    "from": [
     "n400-guide"
-   ]
-  },
-  {
-   "text": "We obey traffic laws (a limit on freedom) in exchange for safer roads for everyone",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -18217,18 +14628,6 @@
    "text": "Were you living in the U.S. between your 18th and 26th birthdays?",
    "from": [
     "n400"
-   ]
-  },
-  {
-   "text": "West Region",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Westward Expansion and Manifest Destiny",
-   "from": [
-    "lessons"
    ]
   },
   {
@@ -19110,8 +15509,6 @@
   {
    "text": "White House",
    "from": [
-    "key-words",
-    "lessons",
     "words"
    ]
   },
@@ -19546,12 +15943,6 @@
    ]
   },
   {
-   "text": "With rights come responsibilities. Citizens have a duty to obey laws that apply equally to everyone. Paying taxes funds government services like schools, roads, defense, and welfare programs. Serving on juries when called ensures that trials are fair and justice is served by a group of peers.\n\nCitizens should vote in elections to ensure their voices are heard and that leaders remain accountable. Educating oneself about issues and candidates helps ensure informed voting. Citizens can volunteer in their communities and participate in civic organizations. Respecting the rights and property of others is essential for a functioning society.\n\nParents have responsibility to educate their children. Citizens should respect the environment for future generations. Many believe citizens also have responsibility to understand the Constitution and their rights. These responsibilities help maintain the strong democracy that protects everyone's rights. When citizens fulfill these responsibilities, government works more effectively and communities thrive.",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
    "text": "With your account",
    "from": [
     "settings"
@@ -19561,12 +15952,6 @@
    "text": "Women's rights",
    "from": [
     "course-titles"
-   ]
-  },
-  {
-   "text": "Woodrow Wilson led the U.S. into WWI and proposed the League of Nations",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -19643,12 +16028,6 @@
    ]
   },
   {
-   "text": "World War I",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "World War I / World War II / Korean War / Vietnam War / (Persian) Gulf War",
    "from": [
     "civics-questions"
@@ -19670,8 +16049,7 @@
    "text": "World War II",
    "from": [
     "civics-questions",
-    "course-titles",
-    "key-words"
+    "course-titles"
    ]
   },
   {
@@ -19690,18 +16068,6 @@
    "text": "World wars · civil rights · Sept. 11",
    "from": [
     "course-titles"
-   ]
-  },
-  {
-   "text": "World's largest freshwater lake system on the U.S.-Canada border",
-   "from": [
-    "lessons"
-   ]
-  },
-  {
-   "text": "Worth going over again",
-   "from": [
-    "practice"
    ]
   },
   {
@@ -19732,12 +16098,6 @@
    "text": "Write it",
    "from": [
     "lesson-player"
-   ]
-  },
-  {
-   "text": "Write it in your own words…",
-   "from": [
-    "lesson-deck"
    ]
   },
   {
@@ -19812,13 +16172,6 @@
    ]
   },
   {
-   "text": "Yellowstone",
-   "from": [
-    "key-words",
-    "lessons"
-   ]
-  },
-  {
    "text": "Yes",
    "from": [
     "n400-guide",
@@ -19883,12 +16236,6 @@
    "text": "You can change this anytime.",
    "from": [
     "onboarding"
-   ]
-  },
-  {
-   "text": "You can criticize government policies without fear of arrest due to freedom of speech",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -19979,12 +16326,6 @@
    "text": "You have started every civics question. Now the best practice is review: I’ll bring each question back when it’s time.",
    "from": [
     "learn-amio"
-   ]
-  },
-  {
-   "text": "You have the right to a lawyer and a fair trial under due process",
-   "from": [
-    "key-words"
    ]
   },
   {
@@ -20084,12 +16425,6 @@
    ]
   },
   {
-   "text": "You said: “{answer}”",
-   "from": [
-    "lesson-deck"
-   ]
-  },
-  {
    "text": "You understood the question.",
    "from": [
     "n400-lessons"
@@ -20158,12 +16493,6 @@
    ]
   },
   {
-   "text": "Young people who served in Vietnam pushed for the 26th Amendment",
-   "from": [
-    "key-words"
-   ]
-  },
-  {
    "text": "Your N-400 questions",
    "from": [
     "interview-day"
@@ -20190,7 +16519,6 @@
   {
    "text": "Your answer",
    "from": [
-    "lesson-deck",
     "practice",
     "tutor-steps"
    ]
@@ -20370,12 +16698,6 @@
    "text": "Your notes for this lesson",
    "from": [
     "lesson-player"
-   ]
-  },
-  {
-   "text": "Your own words help you remember.",
-   "from": [
-    "lesson-deck"
    ]
   },
   {
@@ -21315,7 +17637,6 @@
   {
    "text": "done",
    "from": [
-    "practice",
     "today"
    ]
   },
@@ -22025,12 +18346,6 @@
    "text": "study the civics lessons — history, government, and your representatives",
    "from": [
     "home"
-   ]
-  },
-  {
-   "text": "suggested next",
-   "from": [
-    "practice"
    ]
   },
   {
@@ -22778,12 +19093,6 @@
    ]
   },
   {
-   "text": "{label} · {n} of {total}",
-   "from": [
-    "lesson-deck"
-   ]
-  },
-  {
    "text": "{m} min",
    "from": [
     "today"
@@ -22879,12 +19188,6 @@
    ]
   },
   {
-   "text": "{n} of {total} lessons",
-   "from": [
-    "practice"
-   ]
-  },
-  {
    "text": "{n} of {total} matched",
    "from": [
     "practice"
@@ -22900,12 +19203,6 @@
    "text": "{n} of {total} questions passed",
    "from": [
     "progress"
-   ]
-  },
-  {
-   "text": "{n} of {total} questions right.",
-   "from": [
-    "lesson-deck"
    ]
   },
   {
@@ -22930,12 +19227,6 @@
    "text": "{n} questions across {s} sections",
    "from": [
     "interview-intro"
-   ]
-  },
-  {
-   "text": "{n} questions from the {version} civics test, in English, with the official answers.",
-   "from": [
-    "lesson-deck"
    ]
   },
   {

@@ -40,7 +40,7 @@ import UnitInterviewPage from './components/checkpoint/UnitInterviewPage';
 import LaunchScreen from '@/components/shell/LaunchScreen';
 import ReviewChestPage from './components/checkpoint/ReviewChestPage';
 
-// Lessons and Practice are tabs of Study now; their old addresses redirect.
+// The old /Lessons goes to Course; /Practice to Study's Practice (studyPath()).
 const STUDY_REDIRECTS = { Lessons: 'lessons', Practice: 'practice' };
 
 const { Pages, Layout, mainPage } = pagesConfig;
