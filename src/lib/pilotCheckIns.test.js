@@ -4,13 +4,13 @@ import {
   checkInQuestions, buildCheckIn, reminderPlan, reminderText, REMINDER_SUBJECT, REMINDER_BODY, FORBIDDEN_EMAIL_WORDS,
 } from '../../base44/shared/pilotCheckIns.js';
 
-const d = (s) => new Date(`${s}T12:00:00`);
+const d = (s) => new Date(`${s}T12:00:00Z`);
 const learner = (created, extra = {}) => ({ email: 'Test@Example.com', created_date: `${created}T10:00:00.000Z`, ...extra });
 
 describe('when a check-in is due', () => {
   it('adds months without spilling into the next month', () => {
-    expect(addMonths(d('2026-01-31'), 1).getDate()).toBe(28);
-    expect(addMonths(d('2026-05-15'), 3).getMonth()).toBe(7);
+    expect(addMonths(d('2026-01-31'), 1).getUTCDate()).toBe(28);
+    expect(addMonths(d('2026-05-15'), 3).getUTCMonth()).toBe(7);
   });
 
   it('opens 3, 6 and 12 months after sign-up, for 30 days', () => {
@@ -39,7 +39,7 @@ describe('when a check-in is due', () => {
   it('admins can pretend they signed up N months ago; others cannot', () => {
     const now = d('2026-11-02');
     const admin = learner('2026-10-01', { role: 'admin', pilot_test_months_ago: 3 });
-    expect(signupDate(admin, now).getMonth()).toBe(7);
+    expect(signupDate(admin, now).getUTCMonth()).toBe(7);
     expect(dueWindow(admin, now)).toBe('month_3');
     const user = learner('2026-10-01', { role: 'user', pilot_test_months_ago: 3 });
     expect(dueWindow(user, now)).toBeNull();

@@ -8,7 +8,6 @@ import { markOnboarded, nextStep, saveFiledAnswer, saveStage, loadStage } from '
 import { DEFAULT_PER_DAY } from '@/lib/dailyMinutes';
 import { today as todayApi } from '@/api/today';
 import { Button } from '@/components/pathways/ui';
-import NavyBanner from '@/components/pathways/NavyBanner';
 import LanguageStep, { nativeName } from '@/components/onboarding/LanguageStep';
 import HowAmioWorksStep from '@/components/onboarding/HowAmioWorksStep';
 import PlanStep from '@/components/onboarding/PlanStep';
@@ -54,11 +53,11 @@ function ChoiceButton({ selected, onClick, children, className = '' }) {
       onClick={onClick}
       aria-pressed={selected}
       className={`w-full min-h-[56px] rounded-card border-2 px-4 py-3 text-start text-lg font-bold text-navy flex items-center gap-3 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim focus-visible:ring-offset-2 ${
-        selected ? 'border-denim bg-tint' : 'border-line bg-white hover:border-denim'
+        selected ? 'border-navy bg-white' : 'border-line bg-white hover:border-navy'
       } ${className}`}
     >
       <span className="flex-1 min-w-0">{children}</span>
-      {selected && <Check className="w-5 h-5 shrink-0 text-denim" aria-hidden="true" />}
+      {selected && <Check className="w-5 h-5 shrink-0 text-navy" aria-hidden="true" />}
     </button>
   );
 }
@@ -176,14 +175,15 @@ export default function GettingStarted({ language, onLanguageChange, onDone }) {
     );
   }
 
-  // The partner program question, exactly as before.
+  // The partner program question, exactly as before (Amio v2 paper top in
+  // amio-v2/leftovers: the title and Skip, no navy banner).
   return (
     <div className="min-h-screen bg-paper">
-      <NavyBanner
-        title={label('title')}
-        right={<Button variant="link" onNavy onClick={finish}>{label('skip')}</Button>}
-      />
-      <div className="max-w-lg mx-auto px-4 py-5 flex flex-col gap-5 text-navy">
+      <div className="max-w-lg mx-auto px-4 pt-8 pb-5 flex flex-col gap-5 text-navy">
+      <div className="flex items-start justify-between gap-3">
+        <h1 className="font-display text-[1.75rem] leading-tight" dir="auto">{label('title')}</h1>
+        <Button variant="link" onClick={finish}>{label('skip')}</Button>
+      </div>
       {step === 'program' && (
         <>
           <TutorMessage
@@ -229,7 +229,7 @@ export default function GettingStarted({ language, onLanguageChange, onDone }) {
                   autoComplete="name"
                   aria-describedby="onboarding-program-name-help"
                   onChange={(e) => setLearnerName(e.target.value)}
-                  className="w-full min-h-[56px] rounded-2xl border-2 border-line bg-white px-4 text-lg font-bold text-navy focus:outline-none focus:border-denim focus:ring-2 focus:ring-denim/20"
+                  className="w-full min-h-[56px] rounded-button border-2 border-line bg-white px-4 text-lg font-bold text-navy focus:outline-none focus:border-denim focus:ring-2 focus:ring-denim/20"
                 />
               </div>
               {program.shareLearners && (

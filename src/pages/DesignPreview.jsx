@@ -1,24 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { X } from 'lucide-react';
 import { auth } from '@/api/auth';
 import PageNotFound from '@/lib/PageNotFound';
 import { Button, Card, Chip, Eyebrow } from '@/components/pathways/ui';
-import NavyBanner from '@/components/pathways/NavyBanner';
-import { StepBar, ProgressBar } from '@/components/pathways/StepBar';
-import { SuccessBanner, NotYetBanner } from '@/components/pathways/ResultBanner';
+import PageTop from '@/components/pathways/PageTop';
+import RedStop from '@/components/pathways/RedStop';
+import { StepBar } from '@/components/pathways/StepBar';
+import { RightPanel, NotQuitePanel } from '@/components/pathways/ResultBanner';
 import MicButton from '@/components/pathways/MicButton';
-import StarsPill from '@/components/pathways/StarsPill';
+import { NavyChip } from '@/components/practice/RunScreen';
 import BottomTabs from '@/components/pathways/BottomTabs';
 import { Amio, AmioSays, AMIO_MOODS } from '@/components/pathways/Amio';
 import { AmioIcon } from '@/components/pathways/icons';
 import { COLORS, HOVER } from '@/design/tokens';
 
-// /design-preview: the Pathways + Amio base pieces (Prompt 1) with fake data,
-// so they can be checked on a phone before the real screens use them.
+// /design-preview: the Amio v2 shared pieces (amio-v2/staff-screens) with
+// fake data, so they can be checked on a phone.
 // Admins only (anyone while running `npm run dev`). Saves nothing.
 
-const SWATCH_TEXT = { gold: 'text-navy', page: 'text-navy', tint: 'text-navy', mid: 'text-navy', line: 'text-navy', 'on-navy': 'text-navy', 'correct-bg': 'text-navy', 'not-yet-bg': 'text-navy', sky: 'text-navy', grass: 'text-navy', tree: 'text-navy', 'stop-speak': 'text-navy', 'stop-chest': 'text-navy', 'stop-chest-border': 'text-navy', white: 'text-navy' };
+// Navy or white text on a swatch, whichever reads better (by brightness).
+const swatchText = (hex) => {
+  const v = String(hex).replace('#', '');
+  if (v.length !== 6) return 'text-navy';
+  const [r, g, b] = [0, 2, 4].map((k) => parseInt(v.slice(k, k + 2), 16) / 255).map((c) => (c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4));
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b > 0.18 ? 'text-navy' : 'text-white';
+};
 
 function Section({ title, children }) {
   return (
@@ -44,19 +49,10 @@ export default function DesignPreview() {
 
   return (
     <div className="min-h-screen bg-paper text-navy pb-28">
-      <NavyBanner
-        left={(
-          <Link to="/" aria-label="Close" className="w-11 h-11 grid place-items-center rounded-full text-white hover:bg-chip-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
-            <X className="w-6 h-6" aria-hidden="true" />
-          </Link>
-        )}
-        title={`Step ${step} of 5 · Teach it back`}
-        subtitle="Design preview · fake data"
-        right={<StarsPill count={46} />}
-        extra={<StepBar total={5} current={step} />}
-      />
+      <main id="main">
+      <PageTop tag="Design preview · fake data" title="Amio v2 pieces" subtitle="The shared pieces as they look today, to check on a phone. Saves nothing." back />
 
-      <div className="max-w-lg mx-auto px-4 py-6 space-y-8">
+      <div className="max-w-lg mx-auto px-4 py-4 space-y-8">
         <Section title={`Amio · ${AMIO_MOODS.length} moods`}>
           <div className="grid grid-cols-4 gap-3">
             {AMIO_MOODS.map((mood) => (
@@ -74,109 +70,100 @@ export default function DesignPreview() {
               </div>
             ))}
           </div>
-          <div className="flex items-end gap-4">
-            {[24, 40, 96, 144].map((size) => <Amio key={size} size={size} />)}
-          </div>
           <div className="flex items-center gap-3 text-muted">
             <AmioIcon /> <span className="text-small">Tab icon (outline)</span>
           </div>
         </Section>
 
         <Section title="Amio says (one short line)">
-          <AmioSays mood="curious">What does the Constitution do?</AmioSays>
-          <AmioSays mood="kind">Not yet. Let's look again.</AmioSays>
-          <AmioSays mood="cheer" size={80}>You finished the lesson!</AmioSays>
+          <AmioSays mood="thinking">What does the Constitution do?</AmioSays>
+          <AmioSays mood="tryAgain">Not quite. Let’s look again.</AmioSays>
+          <AmioSays mood="cheering" size={80}>You finished the lesson!</AmioSays>
         </Section>
 
-        <Section title="Step bar">
-          <div className="flex flex-wrap gap-2">
-            {[1, 2, 3, 4, 5].map((n) => (
-              <Chip key={n} onClick={() => setStep(n)} aria-pressed={n === step}>Step {n}</Chip>
-            ))}
-          </div>
+        <Section title="Headlines">
+          <h2 className="font-display text-[1.75rem] leading-tight">Screen title · Bricolage 800</h2>
+          <p className="font-display text-[2rem] leading-tight"><RedStop>Lesson done.</RedStop></p>
+          <p className="text-base">Body text is Lexend at 16px. <span className="text-muted">Secondary text is muted.</span></p>
         </Section>
 
         <Section title="Buttons">
-          <Button variant="main" className="w-full">Start · +3 stars</Button>
+          <Button variant="main" className="w-full">Start</Button>
           <Button variant="second" className="w-full">Review 5 questions</Button>
           <div className="flex flex-wrap gap-3 items-center">
-            <Button variant="text-link">Hear it again</Button>
-            <Button variant="next">Next (older screens)</Button>
+            <Button variant="link">Hear it again</Button>
             <Button variant="main" disabled>Disabled</Button>
           </div>
-          <div className="bg-navy rounded-card p-4 flex flex-wrap gap-3">
-            <Button variant="main" onNavy>Main on navy</Button>
-            <Button variant="second" onNavy>Second on navy</Button>
-            <Button variant="link" onNavy>Link on navy</Button>
+          <div className="bg-navy rounded-card p-4 flex flex-col gap-3">
+            <Button variant="main" onNavy className="w-full">Main on navy (gold)</Button>
           </div>
         </Section>
 
-        <Section title="Chips and stars">
+        <Section title="Chips">
           <div className="flex flex-wrap gap-2">
             <Chip onClick={() => {}}>Hear it again</Chip>
             <Chip onClick={() => {}}>Hint</Chip>
-            <Chip onClick={() => {}}>In my language</Chip>
-            <Chip>Said in your language</Chip>
-            <StarsPill count={3} onNavy={false} />
-          </div>
-          <div className="bg-navy rounded-card p-4 flex flex-wrap gap-2">
-            <Chip onNavy>Section 2 · Congress</Chip>
-            <StarsPill count={46} />
+            <Chip onClick={() => {}} aria-pressed>In my language</Chip>
           </div>
         </Section>
 
-        <Section title="Progress">
-          <ProgressBar value={8} max={26} label="8 of 26 lessons" />
-          <div className="bg-navy rounded-card p-4 space-y-2">
-            <ProgressBar value={1} max={2} label="Today's goal: 1 of 2 lessons" onNavy />
-            <p className="text-small text-on-navy">Today’s goal: 2 lessons · 1 done</p>
-          </div>
-        </Section>
-
-        <Section title="Card">
-          <Card>
-            <p className="text-small text-muted">Congress · lesson 3 of 7 · 5 min</p>
-            <h2 className="text-title mt-1">How many senators?</h2>
-            <p className="text-body text-muted mt-2">Body text is Lexend 400 at 16px. Secondary text is muted.</p>
-            <p className="text-question font-bold mt-3">How many U.S. senators are there?</p>
-            <p className="text-celebrate font-extrabold mt-3">Lesson complete!</p>
-          </Card>
-        </Section>
-
-        <Section title="Microphone">
-          <Card className="flex justify-center">
+        <Section title="A speaking screen (navy)">
+          <div className="rounded-card bg-navy text-white p-4 flex flex-col gap-4">
+            <StepBar total={5} current={step} />
+            <div className="flex flex-wrap gap-2">
+              {[1, 2, 3, 4, 5].map((n) => (
+                <NavyChip key={n} onClick={() => setStep(n)} pressed={n === step}>Step {n}</NavyChip>
+              ))}
+            </div>
+            <p className="font-display text-[1.75rem] leading-tight" lang="en">How many U.S. senators are there?</p>
             <MicButton
+              tone="gold"
               listening={listening}
               onStart={() => setListening(true)}
               onStop={() => setListening(false)}
-              label="Hold and answer in English"
+              label="Tap to answer"
+              listeningLabel="Tap to stop"
               onTypeInstead={() => {}}
+              typeInsteadLabel="Type instead"
             />
-          </Card>
+          </div>
         </Section>
 
-        <Section title="Result banners">
-          <div className="rounded-card overflow-hidden border border-line">
-            <SuccessBanner title="Great teaching!" actionLabel="Next">
-              “There are one hundred.” <b>+1 star</b>
-            </SuccessBanner>
-          </div>
-          <div className="rounded-card overflow-hidden border border-line">
-            <NotYetBanner>You’ll see this one again tomorrow.</NotYetBanner>
-          </div>
+        <Section title="Result panels">
+          <RightPanel title="Right!" answer="One hundred (100)" actionLabel="Continue" onAction={() => {}} />
+          <NotQuitePanel
+            title="Not quite"
+            answerLine="The answer is:"
+            answer="One hundred (100)"
+            listenLabel="Listen"
+            actionLabel="Say it once more"
+            onAction={() => {}}
+            skipLabel="Skip for now"
+            onSkip={() => {}}
+            note="You’ll see this one again tomorrow."
+          />
+        </Section>
+
+        <Section title="Card">
+          <Card padding="p-4">
+            <p className="text-small text-muted">Congress · lesson 3 of 7</p>
+            <h3 className="text-lg font-bold mt-1">How many senators?</h3>
+            <p className="text-base text-muted mt-2">White card, 12px corners, a thin line border.</p>
+          </Card>
         </Section>
 
         <Section title="Colors">
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
             {Object.entries({ ...COLORS, ...HOVER }).map(([name, value]) => (
-              <div key={name} className={`rounded-xl border border-line p-3 min-h-[64px] flex flex-col justify-end ${SWATCH_TEXT[name] || 'text-white'}`} style={{ background: value }}>
-                <span className="text-small font-semibold">{name}</span>
-                <span className="text-xs">{value}</span>
+              <div key={name} className={`rounded-card border border-line p-3 min-h-[64px] flex flex-col justify-end ${swatchText(value)}`} style={{ background: value }}>
+                <span className="self-start rounded-[6px] bg-white px-1.5 text-small font-semibold text-navy">{name}</span>
+                <span className="self-start mt-1 rounded-[6px] bg-white px-1.5 text-small text-navy">{value}</span>
               </div>
             ))}
           </div>
         </Section>
       </div>
+      </main>
 
       <BottomTabs active="course" />
     </div>

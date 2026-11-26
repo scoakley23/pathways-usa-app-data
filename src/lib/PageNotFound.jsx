@@ -2,12 +2,21 @@ import { useLocation } from 'react-router-dom';
 import { auth } from '@/api/auth';
 import { useQuery } from '@tanstack/react-query';
 import { House } from 'lucide-react';
-import { Button, CreamSheet, NavyTop } from '@/components/pathways/ui';
+import { Button, Card } from '@/components/pathways/ui';
+import { Amio } from '@/components/pathways/Amio';
+import useTranslatedLines from '@/components/persona/useTranslatedLines';
+import useAppLanguage, { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
+import { ERROR_PAGE_LINES } from '@/components/shell/leftoverStrings';
 
-
-export default function PageNotFound({}) {
+// Page not found (Amio v2, amio-v2/leftovers): a paper page with Amio, the
+// title, the address that wasn't found and the way back to Today. Admins
+// also see a short note. Wording in ERROR_PAGE_LINES (pack set "error-pages").
+export default function PageNotFound() {
     const location = useLocation();
     const pageName = location.pathname.substring(1);
+    const [language] = useAppLanguage();
+    const tr = useTranslatedLines(ERROR_PAGE_LINES, language, { cacheKey: 'error_pages_v1' });
+    const t = (key) => (language !== 'en' && tr(key)) || ERROR_PAGE_LINES[key] || key;
 
     const { data: authData, isFetched } = useQuery({
         queryKey: ['user'],
@@ -20,35 +29,26 @@ export default function PageNotFound({}) {
             }
         }
     });
-    
-    // The Road: a navy top says where you are (404, Page Not Found); the
-    // cream sheet holds the message and the way home.
+
+    const [before, after = ''] = t('not_found_body').split('{page}');
     return (
-        <div className="min-h-screen bg-paper text-navy">
-            <NavyTop className="pb-14 pt-12">
-                <div className="mx-auto max-w-md space-y-2">
-                    <p className="text-label text-on-navy">404</p>
-                    <h1 className="font-display text-[2.125rem] leading-[1.1]">Page Not Found</h1>
-                </div>
-            </NavyTop>
-            <CreamSheet>
-                <div className="mx-auto max-w-md space-y-6 pb-8">
-                    <p className="text-lg text-muted leading-relaxed">
-                        The page <span className="font-semibold text-navy">&quot;{pageName}&quot;</span> could not be found in this application.
-                    </p>
-                    {isFetched && authData.isAuthenticated && authData.user?.role === 'admin' && (
-                        <div className="p-4 bg-white rounded-card border border-line space-y-1">
-                            <p className="text-base font-semibold">Admin Note</p>
-                            <p className="text-base text-muted leading-relaxed">
-                                This could mean that the AI hasn&apos;t implemented this page yet. Ask it to implement it in the chat.
-                            </p>
-                        </div>
-                    )}
-                    <Button variant="next" className="min-h-[52px]" onClick={() => { window.location.href = '/'; }}>
-                        <House className="w-5 h-5" aria-hidden="true" /> Go Home
-                    </Button>
-                </div>
-            </CreamSheet>
+        <div dir={RTL_LANGUAGES.includes(language) ? 'rtl' : 'ltr'} className="min-h-screen bg-paper text-navy">
+            <main id="main" className="mx-auto max-w-md px-4 pt-10 pb-8 flex flex-col gap-5">
+                <Amio mood="thinking" size={64} />
+                <h1 className="font-display text-[2rem] leading-tight" dir="auto">{t('not_found')}</h1>
+                <p className="text-lg text-muted leading-relaxed" dir="auto">
+                    {before}<bdi className="font-semibold text-navy">{pageName}</bdi>{after}
+                </p>
+                {isFetched && authData.isAuthenticated && authData.user?.role === 'admin' && (
+                    <Card padding="p-4" className="space-y-1">
+                        <p className="text-base font-semibold" dir="auto">{t('admin_note')}</p>
+                        <p className="text-base text-muted leading-relaxed" dir="auto">{t('admin_note_body')}</p>
+                    </Card>
+                )}
+                <Button variant="main" className="w-full" onClick={() => { window.location.href = '/'; }}>
+                    <House className="w-5 h-5" aria-hidden="true" /> {t('go_home')}
+                </Button>
+            </main>
         </div>
     );
 }

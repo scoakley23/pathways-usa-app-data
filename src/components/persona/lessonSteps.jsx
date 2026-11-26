@@ -5,13 +5,16 @@ import TutorMessage, { ListenButton } from './TutorMessage';
 import TeachingFeedback from './TeachingFeedback';
 import useSpeechCapture from './useSpeechCapture';
 import TopicArt from '@/components/art/TopicArt';
-import { Eyebrow, IndexCard, Poster, PrimaryButton, RaisedCard, posterTone } from '@/components/pathways/ui';
+import { Card as RaisedCard, Poster, PrimaryButton } from '@/components/pathways/ui';
+
+// A small plain label (was the all-caps Eyebrow).
+const Eyebrow = ({ className = '', children }) => <p className={`text-base font-semibold text-muted ${className}`} dir="auto">{children}</p>;
 import { speakText } from '@/components/utils/textToSpeech';
 import { wordDiff } from '@/components/utils/wordDiff';
 import { checkCivicsAnswer, officeholderCheck } from '@/components/civics/checkCivicsAnswer';
 import OfficeholderNote from '@/components/civics/OfficeholderNote';
 import useLearnerLocation from '@/components/civics/useLearnerLocation';
-import { FIND_REPRESENTATIVE_PATH, MAY_CHANGE_SOON, officeholderAnswerFor } from '@/lib/officeholderQuestions';
+import { FIND_REPRESENTATIVE_PATH, officeholderAnswerFor } from '@/lib/officeholderQuestions';
 import { evaluateInterviewAnswer, evaluateUnderstanding } from '@/components/practice/evaluateInterviewAnswer';
 import { checkDictation, splitOfficialAnswers } from '@/lib/practiceChecks';
 import { matchCivicsAnswer } from '@/lib/answerVariants';
@@ -20,34 +23,16 @@ import { isRepeatRequest } from '@/lib/repeatRequest';
 import { markKeyWords } from '@/lib/tutorLesson';
 import { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
 
-// Fixed lines inside lessons (English + hand-written Spanish).
-export const UI = {
-  showEnglish: { en: 'Here is the question and the answers the officer accepts. Listen and repeat.', es: 'Aquí está la pregunta y las respuestas que acepta el oficial. Escuche y repita.' },
-  speakPrompt: { en: 'Now answer out loud, in English.', es: 'Ahora conteste en voz alta, en inglés.' },
-  writePrompt: { en: 'Listen to the sentence. Then write it in English.', es: 'Escuche la oración. Luego escríbala en inglés.' },
-  readPrompt: { en: 'Read this sentence out loud, in English.', es: 'Lea esta oración en voz alta, en inglés.' },
-  interviewPrompt: { en: "Answer the officer's question in English.", es: 'Conteste la pregunta del oficial en inglés.' },
-  understandPrompt: { en: "Don't answer this question. Say in English what the officer is asking.", es: 'No conteste esta pregunta. Diga en inglés qué está preguntando el oficial.' },
-  keyWordsTip: { en: 'Use the key words from one of the accepted answers.', es: 'Use las palabras clave de una de las respuestas aceptadas.' },
-  correctIs: { en: 'The correct answer is:', es: 'La respuesta correcta es:' },
-  listenAgain: { en: 'Listen again and check these words:', es: 'Escuche otra vez y revise estas palabras:' },
-  readAgain: { en: 'Read these words again slowly:', es: 'Lea otra vez, despacio, estas palabras:' },
-  checkNext: { en: 'Thank you. On to the next one.', es: 'Gracias. Vamos a la siguiente.' },
-  currentAnswer: { en: 'Current answer', es: 'Respuesta actual' },
-  checkedOn: { en: 'Checked on official government websites on {date}', es: 'Revisado en sitios oficiales del gobierno el {date}' },
-  mayChangeSoon: { en: MAY_CHANGE_SOON, es: 'Esto puede cambiar pronto. En su entrevista, diga el nombre de la persona que tenga el cargo ese día.' },
-  findYours: { en: 'This answer depends on where you live. Use “Who Represents Me?” on the Learn page.', es: 'Esta respuesta depende de dónde vive. Use “Who Represents Me?” en la página Learn.' },
-  findButton: { en: 'Who Represents Me?', es: 'Who Represents Me?' },
-  notCounted: { en: "We can't check this one yet, so it isn't counted as right or wrong.", es: 'Todavía no podemos revisar esta, así que no cuenta como correcta ni incorrecta.' },
-  askedAgain: { en: 'Sure. Here’s the question again.', es: 'Claro. Aquí está la pregunta otra vez.' },
-  checkFailed: { en: "I couldn't check that answer. Please try again.", es: 'No pude revisar esa respuesta. Por favor, intente otra vez.' },
-};
+import { UI_LINES, UI_LINES_ES } from './tutorStepLines';
+
+export { UI_LINES, UI_LINES_ES };
+export const UI = Object.fromEntries(Object.keys(UI_LINES).map((k) => [k, { en: UI_LINES[k], es: UI_LINES_ES[k] }]));
 
 const isCheck = (step) => step.mode === 'check';
 
 // Big round microphone button with a soft halo. `onPoster`: white, for a
 // red or blue poster.
-function MicButton({ speech, busy, idleLabel = 'Tap and answer in English', onPoster = false }) {
+function MicButton({ speech, busy, idleLabel, onPoster = false, t }) {
   return (
     <div className="flex flex-col items-center mt-6">
       <div className="relative">
@@ -56,16 +41,16 @@ function MicButton({ speech, busy, idleLabel = 'Tap and answer in English', onPo
           type="button"
           onClick={speech.listening ? speech.stop : speech.start}
           disabled={busy}
-          aria-label={speech.listening ? 'Stop' : idleLabel}
-          className={`relative w-20 h-20 rounded-full grid place-items-center shadow-lift disabled:opacity-50 focus-visible:outline-none focus-visible:ring-4 ${onPoster ? 'bg-white text-navy focus-visible:ring-white/60' : 'bg-navy text-white focus-visible:ring-navy/30'}`}
+          aria-label={speech.listening ? t('stop') : (idleLabel || t('tap_answer'))}
+          className={`relative w-20 h-20 rounded-full grid place-items-center disabled:opacity-50 focus-visible:outline-none focus-visible:ring-4 ${onPoster ? 'bg-gold text-navy focus-visible:ring-white/60' : 'bg-navy text-white focus-visible:ring-navy/30'}`}
         >
-          {speech.listening ? <Square className={`w-7 h-7 ${onPoster ? 'fill-navy' : 'fill-white'}`} /> : <Mic className="w-8 h-8" />}
+          {speech.listening ? <Square className={`w-7 h-7 ${onPoster ? 'fill-navy' : 'fill-white'}`} aria-hidden="true" /> : <Mic className="w-8 h-8" aria-hidden="true" />}
         </button>
       </div>
-      <p className="mt-4 text-base font-semibold text-center" aria-live="polite">
-        {busy ? 'Checking…' : speech.listening ? 'Listening… tap to stop' : idleLabel}
+      <p className="mt-4 text-base font-semibold text-center" aria-live="polite" dir="auto">
+        {busy ? t('checking') : speech.listening ? t('listening') : (idleLabel || t('tap_answer'))}
       </p>
-      {speech.transcript && <p className={`mt-2 text-center ${onPoster ? '' : 'text-muted'}`}>“{speech.transcript}”</p>}
+      {speech.transcript && <p lang="en" dir="ltr" className={`mt-2 text-center ${onPoster ? '' : 'text-muted'}`}>“{speech.transcript}”</p>}
       {busy && <Loader2 className="w-5 h-5 animate-spin mt-2" />}
     </div>
   );
@@ -75,12 +60,12 @@ function CheckNext({ ctx }) {
   return <TutorMessage profile={ctx.profile} language={ctx.language} {...ctx.ui('checkNext')} />;
 }
 
-function QuestionCard({ ctx, eyebrow = 'The officer asks', text, children }) {
+function QuestionCard({ ctx, eyebrow, text, children }) {
   return (
     <RaisedCard className={`text-navy ${ctx.sizeClass}`}>
-      <Eyebrow className="mb-2">{eyebrow}</Eyebrow>
-      <p className="text-[1.375em] font-extrabold leading-snug mb-3">{text}</p>
-      <ListenButton text={text} language="en" />
+      <Eyebrow className="mb-2">{eyebrow || ctx.t('officer_asks')}</Eyebrow>
+      <p className="text-[1.375em] font-bold leading-snug mb-3" lang="en" dir="ltr">{text}</p>
+      <ListenButton text={text} language="en" label={ctx.t('listen_short')} />
       {children}
     </RaisedCard>
   );
@@ -91,10 +76,10 @@ function QuestionCard({ ctx, eyebrow = 'The officer asks', text, children }) {
 export function PartIntroStep({ step, ctx }) {
   return (
     <div className="space-y-4">
-      <div className="rounded-card bg-tint px-4 pt-4 pb-4">
+      <div className="rounded-card bg-white border-[1.5px] border-line px-4 pt-4 pb-4">
         <TopicArt name={step.art} />
-        <p className="text-[1.375em] font-extrabold mt-2 text-navy">{step.title.mine || step.title.en}</p>
-        {step.title.mine && <p className="text-muted">{step.title.en}</p>}
+        <p className="text-[1.375em] font-bold mt-2 text-navy" dir="auto">{step.title.mine || step.title.en}</p>
+        {step.title.mine && <p className="text-muted" lang="en" dir="ltr">{step.title.en}</p>}
       </div>
       <TutorMessage profile={ctx.profile} language={ctx.language} mine={step.text.mine} en={step.text.en} />
     </div>
@@ -106,7 +91,7 @@ export function ExplainStep({ step, ctx }) {
   return (
     <TutorMessage profile={ctx.profile} language={ctx.language} mine={step.text.mine} en={step.text.en}>
       {note && (
-        <p className="mt-3 text-sm font-semibold text-muted">
+        <p className="text-small font-semibold text-muted" dir="auto">
           {ctx.language !== 'en' && note.mine ? `${note.mine} · ${note.en}` : note.en}
         </p>
       )}
@@ -115,11 +100,11 @@ export function ExplainStep({ step, ctx }) {
           href={link.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-3 min-h-[44px] rounded-2xl bg-white text-navy border-2 border-navy px-4 font-bold inline-flex items-center gap-2 hover:bg-tint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2"
+          className="self-start min-h-[44px] rounded-button bg-white text-navy border-[1.5px] border-line px-4 font-semibold inline-flex items-center gap-2 hover:border-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2"
         >
           <Volume2 className="w-5 h-5" aria-hidden="true" /> {link.label}
           <ExternalLink className="w-4 h-4" aria-hidden="true" />
-          <span className="sr-only">(opens in a new tab)</span>
+          <span className="sr-only">{ctx.t('new_tab')}</span>
         </a>
       )}
     </TutorMessage>
@@ -133,21 +118,21 @@ function NowAnswer({ now, ctx }) {
   if (!now) return null;
   const t = (key) => { const v = ctx.ui(key); return ctx.language === 'es' && v.mine ? v.mine : v.en; };
   return (
-    <div className="mt-4 rounded-2xl bg-tint p-4">
+    <div className="mt-4 rounded-card bg-line-soft p-4">
       {now.kind === 'current' && (
         <>
           <Eyebrow className="mb-1">{t('currentAnswer')}</Eyebrow>
-          {now.accepted.length > 0 && <p className="text-[1.25em] font-extrabold">{now.accepted.join(' · ')}</p>}
+          {now.accepted.length > 0 && <p className="text-[1.25em] font-bold" lang="en" dir="ltr">{now.accepted.join(' · ')}</p>}
           {now.accepted.length > 0 && <ListenButton text={now.accepted.join('. ')} language="en" />}
           {now.message && <p className="mt-2">{now.message}</p>}
           {now.mayChangeSoon && <p className="font-semibold mt-2">{t('mayChangeSoon')}</p>}
-          <p className="text-sm text-muted mt-2">{t('checkedOn').replace('{date}', now.checkedOn)}.</p>
+          <p className="text-small text-muted mt-2" dir="auto">{t('checkedOn').replace('{date}', now.checkedOn)}.</p>
         </>
       )}
       {now.kind === 'find' && (
         <>
           <p className="font-semibold">{t('findYours')}</p>
-          <Link to={FIND_REPRESENTATIVE_PATH} className="mt-3 min-h-[44px] rounded-2xl bg-navy text-white px-4 font-bold inline-flex items-center hover:bg-navy-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2">
+          <Link to={FIND_REPRESENTATIVE_PATH} className="mt-3 min-h-[44px] rounded-button bg-navy text-white px-4 font-bold inline-flex items-center hover:bg-navy-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2">
             {t('findButton')}
           </Link>
         </>
@@ -172,16 +157,16 @@ export function ShowEnglishStep({ step, ctx }) {
   const words = keyWords.map((k) => k.en);
   const translated = keyWords.filter((k) => k.translation && k.translation.trim().toLowerCase() !== k.en.trim().toLowerCase());
   const dir = RTL_LANGUAGES.includes(ctx.language) ? 'rtl' : 'ltr';
-  const Card = ctx.posters ? IndexCard : RaisedCard;
+  const Card = RaisedCard;
   return (
     <div className="space-y-4">
       <TutorMessage profile={ctx.profile} language={ctx.language} {...ctx.ui('showEnglish')} />
       <Card className={`text-navy ${ctx.sizeClass}`}>
-        <Eyebrow className="mb-2">The officer asks</Eyebrow>
-        <p className="text-[1.375em] font-extrabold leading-snug mb-3"><Marked text={step.question.question} words={words} /></p>
+        <Eyebrow className="mb-2">{ctx.t('officer_asks')}</Eyebrow>
+        <p className="text-[1.375em] font-bold leading-snug mb-3" lang="en" dir="ltr"><Marked text={step.question.question} words={words} /></p>
         <ListenButton text={step.question.question} language="en" />
-        <Eyebrow className="mt-5 mb-2">Accepted answers</Eyebrow>
-        <ul className="space-y-1 mb-3">
+        <Eyebrow className="mt-5 mb-2">{ctx.t('accepted')}</Eyebrow>
+        <ul className="space-y-1 mb-3" lang="en" dir="ltr">
           {accepted.map((a) => <li key={a} className="font-bold"><Marked text={a} words={words} /></li>)}
         </ul>
         <ListenButton text={accepted.join('. ')} language="en" />
@@ -189,7 +174,7 @@ export function ShowEnglishStep({ step, ctx }) {
       </Card>
       {translated.length > 0 && (
         <RaisedCard className={`text-navy ${ctx.sizeClass}`}>
-          <Eyebrow className="mb-3">{ctx.language === 'es' ? 'Palabras clave · Key words' : 'Key words'}</Eyebrow>
+          <Eyebrow className="mb-3">{ctx.t('key_words')}</Eyebrow>
           <ul className="divide-y divide-line">
             {translated.map((k) => (
               <li key={k.en} className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 py-2.5">
@@ -272,46 +257,45 @@ export function SpeakingStep({ step, ctx, state, setState }) {
       {state.askedAgain && !state.answered && <TutorMessage profile={ctx.profile} language={ctx.language} {...ctx.ui('askedAgain')} />}
       {ctx.posters ? (
         <Poster
-          tone={posterTone(Math.max(0, ctx.posterIndex))}
           className={`-mx-4 sm:mx-0 sm:rounded-card ${ctx.sizeClass}`}
-          label={`Practice · ${ctx.posterIndex + 1} of ${ctx.posterTotal}`}
+          label={ctx.t('practice_of', { n: ctx.posterIndex + 1, total: ctx.posterTotal })}
           question={question.question}
           questionAs="p"
         >
           <ListenButton text={question.question} language="en" />
           {!state.answered && (speech.supported ? (
-            <MicButton speech={speech} busy={checking} onPoster />
+            <MicButton speech={speech} busy={checking} onPoster t={ctx.t} />
           ) : (
             <form className="flex gap-2 mt-5" onSubmit={(e) => { e.preventDefault(); evaluate(typed, true); }}>
               <input
                 value={typed}
                 onChange={(e) => setTyped(e.target.value)}
-                placeholder="Type your answer in English"
-                aria-label="Your answer"
+                placeholder={ctx.t('type_answer')}
+                aria-label={ctx.t('your_answer')}
                 className="flex-1 min-w-0 min-h-[48px] rounded-[10px] bg-white px-4 text-base text-navy placeholder:text-muted"
               />
-              <button type="submit" className="min-h-[48px] rounded-button bg-white text-navy px-5 font-semibold hover:bg-tint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent">Check</button>
+              <button type="submit" className="min-h-[48px] rounded-button bg-white text-navy px-5 font-semibold hover:bg-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent">{ctx.t('check')}</button>
             </form>
           ))}
-          {state.heard && <p className="mt-4">You said: <span className="font-medium">“{state.heard}”</span></p>}
+          {state.heard && <p className="mt-4"><span dir="auto">{ctx.t('you_said')}</span> <span className="font-medium" lang="en" dir="ltr">“{state.heard}”</span></p>}
         </Poster>
       ) : (
         <QuestionCard ctx={ctx} text={question.question}>
           {!state.answered && (speech.supported ? (
-            <MicButton speech={speech} busy={checking} />
+            <MicButton speech={speech} busy={checking} t={ctx.t} />
           ) : (
             <form className="flex gap-2 mt-5" onSubmit={(e) => { e.preventDefault(); evaluate(typed, true); }}>
               <input
                 value={typed}
                 onChange={(e) => setTyped(e.target.value)}
-                placeholder="Type your answer in English"
-                aria-label="Your answer"
-                className="flex-1 min-w-0 min-h-[44px] rounded-2xl border border-line px-4 text-base"
+                placeholder={ctx.t('type_answer')}
+                aria-label={ctx.t('your_answer')}
+                className="flex-1 min-w-0 min-h-[44px] rounded-button border border-line px-4 text-base"
               />
-              <PrimaryButton type="submit">Check</PrimaryButton>
+              <PrimaryButton type="submit">{ctx.t('check')}</PrimaryButton>
             </form>
           ))}
-          {state.heard && <p className="mt-4 text-muted">You said: <span className="font-medium">“{state.heard}”</span></p>}
+          {state.heard && <p className="mt-4 text-muted"><span dir="auto">{ctx.t('you_said')}</span> <span className="font-medium" lang="en" dir="ltr">“{state.heard}”</span></p>}
         </QuestionCard>
       )}
 
@@ -324,6 +308,7 @@ export function SpeakingStep({ step, ctx, state, setState }) {
       {state.answered && (isCheck(step) || state.result?.isCorrect === null ? <CheckNext ctx={ctx} /> : (
         <>
           <TeachingFeedback
+          t={ctx.t}
             profile={ctx.profile}
             language={ctx.language}
             line={ctx.line}
@@ -375,36 +360,37 @@ export function WritingStep({ step, ctx, state, setState }) {
           <button
             type="button"
             onClick={say}
-            aria-label="Play the sentence"
+            aria-label={ctx.t('play_sentence')}
             className="w-16 h-16 shrink-0 rounded-full bg-navy text-white grid place-items-center shadow-lift focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-navy/40"
           >
             <Volume2 className="w-7 h-7" />
           </button>
-          <p className="font-semibold">Play the sentence. You can play it again.</p>
+          <p className="font-semibold" dir="auto">{ctx.t('play_again')}</p>
         </div>
         {!state.answered && (
           <form className="space-y-3 mt-5" onSubmit={check}>
             <input
               value={typed}
               onChange={(e) => setTyped(e.target.value)}
-              placeholder="Write what you hear"
-              aria-label="Write what you hear"
+              placeholder={ctx.t('write_hear')}
+              aria-label={ctx.t('write_hear')}
               autoCapitalize="sentences"
-              className="w-full min-h-[48px] rounded-2xl border border-line px-4 text-base"
+              className="w-full min-h-[48px] rounded-button border border-line px-4 text-base"
             />
-            <PrimaryButton type="submit" className="w-full">Check</PrimaryButton>
+            <PrimaryButton type="submit" className="w-full">{ctx.t('check')}</PrimaryButton>
           </form>
         )}
         {state.answered && !isCheck(step) && <WordChips words={state.result.words} />}
       </RaisedCard>
       {state.answered && (isCheck(step) ? <CheckNext ctx={ctx} /> : (
         <TeachingFeedback
+          t={ctx.t}
           profile={ctx.profile}
           language={ctx.language}
           line={ctx.line}
           isCorrect={state.result.isCorrect}
           tipText={state.result.tip}
-          acceptLabel="The sentence"
+          acceptLabel={ctx.t('the_sentence')}
           accepted={[step.sentence]}
           shown={state.shown}
           onTryAgain={() => { setTyped(''); setState({}); }}
@@ -432,21 +418,22 @@ export function ReadingStep({ step, ctx, state, setState }) {
     <div className="space-y-4">
       <TutorMessage profile={ctx.profile} language={ctx.language} {...ctx.ui('readPrompt')} expression="listening" />
       <RaisedCard className={`text-navy ${ctx.sizeClass}`}>
-        <Eyebrow className="mb-2">Read out loud</Eyebrow>
+        <Eyebrow className="mb-2">{ctx.t('read_out_loud')}</Eyebrow>
         <p className="text-[1.375em] font-extrabold leading-snug">{step.sentence}</p>
-        {!state.answered && (speech.supported ? <MicButton speech={speech} idleLabel="Tap and read out loud" /> : (
-          <p className="mt-4 text-muted">Reading needs a browser with speech recognition, like Chrome or Safari. You can skip this part.</p>
+        {!state.answered && (speech.supported ? <MicButton speech={speech} idleLabel={ctx.t('tap_read')} t={ctx.t} /> : (
+          <p className="mt-4 text-muted" dir="auto">{ctx.t('reading_needs')}</p>
         ))}
         {state.answered && !isCheck(step) && <WordChips words={state.result.words} />}
       </RaisedCard>
       {state.answered && (isCheck(step) ? <CheckNext ctx={ctx} /> : (
         <TeachingFeedback
+          t={ctx.t}
           profile={ctx.profile}
           language={ctx.language}
           line={ctx.line}
           isCorrect={state.result.isCorrect}
           tipText={state.result.tip}
-          acceptLabel="The sentence"
+          acceptLabel={ctx.t('the_sentence')}
           accepted={[step.sentence]}
           shown={state.shown}
           onTryAgain={() => { speech.reset(); setState({}); }}
@@ -494,19 +481,20 @@ export function InterviewStep({ step, ctx, state, setState }) {
       {state.askedAgain && !state.answered && <TutorMessage profile={ctx.profile} language={ctx.language} {...ctx.ui('askedAgain')} />}
       <QuestionCard ctx={ctx} text={step.question.question}>
         {!state.answered && (speech.supported ? <MicButton speech={speech} busy={checking} /> : (
-          <p className="mt-4 text-muted">Speaking needs a browser with speech recognition, like Chrome or Safari. You can skip this part.</p>
+          <p className="mt-4 text-muted" dir="auto">{ctx.t('speaking_needs')}</p>
         ))}
-        {state.heard && <p className="mt-4 text-muted">You said: <span className="font-medium">“{state.heard}”</span></p>}
+        {state.heard && <p className="mt-4 text-muted"><span dir="auto">{ctx.t('you_said')}</span> <span className="font-medium" lang="en" dir="ltr">“{state.heard}”</span></p>}
       </QuestionCard>
       {failed && <TutorMessage profile={ctx.profile} language={ctx.language} {...ctx.ui('checkFailed')} />}
       {state.answered && (isCheck(step) ? <CheckNext ctx={ctx} /> : (
         <TeachingFeedback
+          t={ctx.t}
           profile={ctx.profile}
           language={ctx.language}
           line={ctx.line}
           isCorrect={state.result.isCorrect}
           tipText={{ en: state.result.tip }}
-          acceptLabel={step.understand ? 'What the question is asking' : 'A good answer'}
+          acceptLabel={step.understand ? ctx.t('what_asking') : ctx.t('good_answer')}
           accepted={state.result.better ? [state.result.better] : []}
           shown={state.shown}
           onTryAgain={() => { speech.reset(); setState({}); }}
@@ -530,7 +518,7 @@ export function CheckStep({ step, ctx, state, setState }) {
   return (
     <div className="space-y-4">
       <TutorMessage profile={ctx.profile} language={ctx.language} mine={step.prompt.mine} en={step.prompt.en} />
-      <div className={`grid gap-2 ${ctx.sizeClass}`} role="group" aria-label="Choose one answer">
+      <div className={`grid gap-2 ${ctx.sizeClass}`} role="group" aria-label={ctx.t('choose_one')}>
         {step.options.map((o) => {
           const isRight = state.answered && o === step.correct;
           const isWrongChoice = state.answered && o === state.choice && o !== step.correct;
@@ -540,11 +528,11 @@ export function CheckStep({ step, ctx, state, setState }) {
               type="button"
               onClick={() => choose(o)}
               aria-pressed={state.choice === o}
-              className={`min-h-[52px] rounded-2xl border-2 px-4 py-2 text-left font-bold inline-flex items-center justify-between gap-2 text-navy transition-colors ${
+              className={`min-h-[52px] rounded-card border-2 px-4 py-2 text-start font-bold inline-flex items-center justify-between gap-2 text-navy transition-colors ${
                 isRight ? 'border-correct bg-correct-bg' : isWrongChoice ? 'border-not-yet bg-not-yet-bg' : 'border-line bg-white hover:border-navy'
               }`}
             >
-              {o} {isRight && <Check className="w-5 h-5 text-correct shrink-0" aria-label="Correct answer" />}
+              {o} {isRight && <Check className="w-5 h-5 text-correct shrink-0" aria-label={ctx.t('correct_answer')} />}
             </button>
           );
         })}

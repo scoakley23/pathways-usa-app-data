@@ -3,26 +3,31 @@ import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { X } from 'lucide-react';
 import useTextSize from './useTextSize';
 import useTutorLines from './useTutorLines';
-import { STEPS, UI } from './lessonSteps';
-import { PrimaryButton, QuietButton, SegmentedProgress, Tag } from '@/components/pathways/ui';
-import { canContinue, nextPartIndex, progressLabel } from '@/lib/tutorLesson';
+import { STEPS } from './lessonSteps';
+import { UI_LINES, UI_LINES_ES } from './tutorStepLines';
+import useTranslatedLines from './useTranslatedLines';
+import { Button, SegmentedProgress } from '@/components/pathways/ui';
+import { canContinue, nextPartIndex } from '@/lib/tutorLesson';
+import { TUTOR_STEP_LINES } from '@/components/lessons/learnStrings';
+import { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
 
-// Colored tag shown above each step, by step type.
-function stepTag(step, lesson) {
+// The small label above each step, by step type (`t` = TUTOR_STEP_LINES).
+function stepTag(step, lesson, t) {
   if (step.type === 'part-intro') {
     const parts = lesson.steps.filter((s) => s.type === 'part-intro');
-    return { tone: 'navy', label: `Part ${parts.indexOf(step) + 1} of ${parts.length}` };
+    return t('part_of', { n: parts.indexOf(step) + 1, total: parts.length });
   }
-  if (step.mode === 'check') return { tone: 'teal', label: `Quick check · ${{ civics: 'Civics', reading: 'Reading', writing: 'Writing', speaking: 'Speaking' }[step.part] || 'Practice'}` };
-  return {
-    explain: { tone: 'blue', label: 'Learn' },
-    'show-english': { tone: 'blue', label: 'Learn · English' },
-    'practice-speaking': { tone: 'red', label: 'Practice · Speak' },
-    'practice-writing': { tone: 'red', label: 'Practice · Write' },
-    'practice-reading': { tone: 'red', label: 'Practice · Read' },
-    'practice-interview': { tone: 'red', label: 'Practice · Interview' },
-    'check-understanding': { tone: 'teal', label: 'Quick check' },
+  if (step.mode === 'check') return t('quick_check_part', { part: t(`part_${['civics', 'reading', 'writing', 'speaking'].includes(step.part) ? step.part : 'practice'}`) });
+  const key = {
+    explain: 'tag_learn',
+    'show-english': 'tag_learn_english',
+    'practice-speaking': 'tag_speak',
+    'practice-writing': 'tag_write',
+    'practice-reading': 'tag_read',
+    'practice-interview': 'tag_interview',
+    'check-understanding': 'quick_check',
   }[step.type];
+  return key ? t(key) : null;
 }
 
 // One step at a time: progress at the top, one big Continue button at the
@@ -44,16 +49,21 @@ export default function TutorLesson({ lesson, profile, language = 'en', language
   const step = steps[index];
   const state = states[index] || {};
   const setState = (s) => setStates((prev) => ({ ...prev, [index]: s }));
-  const ui = (key) => ({ en: UI[key].en, mine: language === 'es' ? UI[key].es : null });
+  // Screen words and Amio's fixed lines (pack; Amio's Spanish by hand).
+  const words = useTranslatedLines(TUTOR_STEP_LINES, language, { cacheKey: 'tutor_steps_v1' });
+  const amioLines = useTranslatedLines(UI_LINES, language, { cacheKey: 'tutor_steps_amio_v1', handWritten: { es: UI_LINES_ES } });
+  const t = (key, vars = {}) => Object.entries(vars).reduce((out, [k, v]) => out.split(`{${k}}`).join(String(v)), (language !== 'en' && words(key)) || TUTOR_STEP_LINES[key] || key);
+  const ui = (key) => ({ en: UI_LINES[key], mine: language !== 'en' ? amioLines(key) || null : null });
   // Lessons with `posters` (/learn, /review) show each civics question on a
   // full-bleed poster; posterIndex/posterTotal count those cards.
   const speakingSteps = lesson.posters ? steps.filter((s) => s.type === 'practice-speaking') : [];
-  const ctx = { profile, language, languageName, line, ui, sizeClass, posters: !!lesson.posters, posterIndex: speakingSteps.indexOf(step), posterTotal: speakingSteps.length };
+  const ctx = { profile, language, languageName, line, ui, t, sizeClass, posters: !!lesson.posters, posterIndex: speakingSteps.indexOf(step), posterTotal: speakingSteps.length };
   const Extra = extraSteps?.[step.type];
   const Step = Extra || STEPS[step.type];
   const ready = Extra ? (!Extra.needsAnswer || !!(state.answered || state.shown)) : canContinue(step, state);
   const isLast = index === steps.length - 1;
-  const tag = Extra?.tag || stepTag(step, lesson);
+  const tag = Extra?.tag?.label || stepTag(step, lesson, t);
+  const stepOf = t('step_of', { n: index + 1, total: steps.length });
 
   const goTo = (i, nextSkipped = skipped) => {
     if (i >= steps.length) {
@@ -70,22 +80,21 @@ export default function TutorLesson({ lesson, profile, language = 'en', language
   };
 
   return (
-    <div className="max-w-xl mx-auto text-navy">
-      <div className="flex items-center justify-between mb-3">
+    <div dir={RTL_LANGUAGES.includes(language) ? 'rtl' : 'ltr'} className="max-w-lg mx-auto text-navy">
+      <div className="flex items-center gap-3 mb-3">
         {onExit ? (
           <button
             type="button"
             onClick={onExit}
-            aria-label="Leave lesson"
-            className="w-11 h-11 rounded-xl bg-white border border-line grid place-items-center hover:bg-tint"
+            aria-label={t('leave')}
+            className="w-11 h-11 shrink-0 rounded-full grid place-items-center text-navy hover:bg-line-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim"
           >
-            <X className="w-5 h-5" />
+            <X className="w-6 h-6" aria-hidden="true" />
           </button>
-        ) : <span className="w-11" />}
-        <span className="text-sm font-bold text-muted">{progressLabel(index, steps.length)}</span>
-        <span className="w-11" />
+        ) : <span className="w-11 shrink-0" />}
+        <div className="flex-1 min-w-0"><SegmentedProgress current={index} total={steps.length} label={stepOf} /></div>
+        <span className="shrink-0 text-small font-semibold text-muted tabular-nums" dir="auto">{index + 1}/{steps.length}</span>
       </div>
-      <SegmentedProgress current={index} total={steps.length} label={progressLabel(index, steps.length)} />
 
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
@@ -94,20 +103,20 @@ export default function TutorLesson({ lesson, profile, language = 'en', language
           animate={{ opacity: 1, x: 0 }}
           exit={reduceMotion ? { opacity: 0 } : { opacity: 0, x: -24 }}
           transition={{ duration: 0.2, ease: 'easeOut' }}
-          className="pt-5 pb-4"
+          className="pt-3 pb-4"
         >
-          {tag && <Tag tone={tag.tone}>{tag.label}</Tag>}
-          <h1 className="font-display text-[2.25rem] leading-tight mt-3 mb-4">{lesson.title}</h1>
+          {tag && <p className="text-base font-semibold text-muted" dir="auto">{tag}</p>}
+          <h1 className="font-display text-[1.75rem] leading-tight mt-1 mb-4" dir="auto">{lesson.title}</h1>
           <Step step={step} ctx={ctx} state={state} setState={setState} />
         </motion.div>
       </AnimatePresence>
 
-      <div className="sticky bottom-0 -mx-4 px-4 pt-6 pb-4 bg-gradient-to-t from-paper via-paper to-transparent">
-        <PrimaryButton large className="w-full" onClick={() => goTo(index + 1)} disabled={!ready}>
-          {step.type === 'part-intro' ? 'Start' : isLast ? 'Finish' : 'Continue'}
-        </PrimaryButton>
+      <div className="sticky bottom-0 -mx-4 px-4 pt-6 pb-4 bg-paper">
+        <Button variant="main" className="w-full" onClick={() => goTo(index + 1)} disabled={!ready}>
+          {step.type === 'part-intro' ? t('start') : isLast ? t('finish') : t('continue')}
+        </Button>
         {step.type === 'part-intro' && lesson.skippableParts && (
-          <QuietButton className="w-full mt-2" onClick={skipPart}>Skip this part</QuietButton>
+          <Button variant="second" className="w-full mt-2" onClick={skipPart}>{t('skip_part')}</Button>
         )}
       </div>
     </div>

@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Check, Loader2, RotateCcw, CalendarCheck } from 'lucide-react';
+import { ArrowLeft, Check, Loader2, RotateCcw, CalendarCheck } from 'lucide-react';
 import { toast } from 'sonner';
 import { review } from '@/api/review';
 import { content } from '@/api/content';
@@ -12,45 +12,21 @@ import useTutorProfile from '@/components/persona/useTutorProfile';
 import OfficeholderNote from '@/components/civics/OfficeholderNote';
 import useLearnerLocation from '@/components/civics/useLearnerLocation';
 import { languageNameFor } from '@/components/persona/languageName';
-import { Eyebrow, PrimaryButton, RaisedCard, Tag } from '@/components/pathways/ui';
-import useAppLanguage from '@/hooks/useAppLanguage';
+import { Button, Card, MAIN_LINK } from '@/components/pathways/ui';
+import useLearnText from '@/components/lessons/useLearnText';
 import { splitOfficialAnswers } from '@/lib/practiceChecks';
 import { officeholderAnswerFor } from '@/lib/officeholderQuestions';
 import { awardBadges } from '@/lib/awardBadges';
 
-const linkClass = 'min-h-[52px] w-full rounded-2xl font-bold text-lg inline-flex items-center justify-center px-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2';
-
-const say = (t, language) => ({ en: t.en, mine: language === 'es' ? t.es : null });
-
-const LINES = {
-  intro: (n) => ({
-    en: `Let's check ${n === 1 ? '1 question' : `${n} questions`} you learned before. Answer each one out loud, in English. I'll show you how you did at the end.`,
-    es: `Vamos a repasar ${n === 1 ? '1 pregunta' : `${n} preguntas`} que aprendió antes. Conteste cada una en voz alta, en inglés. Al final le muestro cómo le fue.`,
-  }),
-  nothingDue: {
-    en: "Nothing to review today. That's fine: steady practice works best. You can learn a new question instead.",
-    es: 'Hoy no hay nada que repasar. Está bien: practicar con calma funciona mejor. Puede aprender una pregunta nueva.',
-  },
-  done: (right, total) => ({
-    en: right === total
-      ? `Well done. You answered all ${total} correctly. I'll space them out a little more next time.`
-      : `Thank you. You answered ${right} of ${total} correctly. Look at the answers below; we'll practice the others again soon.`,
-    es: right === total
-      ? `Muy bien. Contestó bien las ${total}. La próxima vez se las preguntaré con más tiempo entre repasos.`
-      : `Gracias. Contestó bien ${right} de ${total}. Mire las respuestas abajo; pronto practicaremos las otras otra vez.`,
-  }),
-};
-
-const whenLabel = (days) => (days <= 0 ? 'Again soon' : days === 1 ? 'Next check: tomorrow' : `Next check: in ${days} days`);
+const secondLink = 'min-h-tap w-full inline-flex items-center justify-center rounded-button border-[1.5px] border-line bg-white px-5 text-base font-semibold text-navy hover:border-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim';
 
 function SignInMessage() {
+  const { t } = useLearnText();
   return (
-    <div className="flex flex-col items-center justify-center min-h-[50vh] text-center space-y-4 px-4">
-      <div className="w-20 h-20 rounded-card bg-tint flex items-center justify-center" aria-hidden="true">
-        <CalendarCheck className="w-10 h-10 text-navy" />
-      </div>
-      <h2 className="text-[1.75rem] font-display font-normal text-navy">Sign in to review civics</h2>
-      <p className="text-base text-muted">Questions you learned come back when it&apos;s time to review them.</p>
+    <div className="flex flex-col items-center justify-center min-h-[50vh] text-center gap-3 px-4 text-navy">
+      <CalendarCheck className="w-10 h-10" aria-hidden="true" />
+      <h1 className="font-display text-[1.75rem] leading-tight" dir="auto">{t('sign_in_review')}</h1>
+      <p className="text-base text-muted" dir="auto">{t('sign_in_review_sub')}</p>
     </div>
   );
 }
@@ -61,7 +37,8 @@ function SignInMessage() {
 export default function ReviewCivics() {
   const { profile, loaded } = useTutorProfile();
   const { location: learnerLocation } = useLearnerLocation();
-  const [language] = useAppLanguage();
+  const { t, amio, language, rtl } = useLearnText();
+  const whenLabel = (days) => (days <= 0 ? t('again_soon') : days === 1 ? t('next_tomorrow') : t('next_days', { n: days }));
   const [user, setUser] = useState(undefined);
   const [due, setDue] = useState(null); // [{ entry, question }]
   const [nextDate, setNextDate] = useState(null);
@@ -85,7 +62,7 @@ export default function ReviewCivics() {
       setDue(entries.map((entry) => ({ entry, question: byId.get(entry.questionId) })));
       setNextDate(next);
     } catch (e) {
-      toast.error("Couldn't load your review. Please check your connection.");
+      toast.error(t('load_review_error'));
       setDue([]);
     }
   }, [user]);
@@ -115,7 +92,7 @@ export default function ReviewCivics() {
       for (const { entry, next, correct } of outcome) if (next) await review.commit(entry, next, correct, now);
       awardBadges();
     } catch (e) {
-      toast.error("Couldn't save your progress. Please check your connection.");
+      toast.error(t('save_error'));
     } finally {
       setSaving(false);
     }
@@ -143,74 +120,79 @@ export default function ReviewCivics() {
   const graded = results.filter((r) => !r.ungraded).length;
 
   return (
-    <div className="max-w-xl mx-auto space-y-5 text-navy">
-      <div className="rounded-card bg-tint px-4 pt-4 pb-5">
+    <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-full bg-paper text-navy">
+    <div className="max-w-lg mx-auto px-4 pt-4 pb-8 flex flex-col gap-5">
+      <div className="flex items-start gap-2">
+        <Link to="/" aria-label={t('back')} className="w-11 h-11 shrink-0 -ms-2 grid place-items-center rounded-full text-navy hover:bg-line-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim">
+          <ArrowLeft className="w-6 h-6 rtl:rotate-180" aria-hidden="true" />
+        </Link>
+        <div className="min-w-0 pt-1">
+          <p className="text-base font-semibold text-muted" dir="auto">{stage === 'done' ? t('your_results') : due.length ? t('to_review', { n: due.length }) : t('caught_up')}</p>
+          <h1 className="font-display text-[1.75rem] leading-tight" dir="auto">{t('review_title')}</h1>
+        </div>
+      </div>
+      <div className="rounded-card bg-white border-[1.5px] border-line px-4 pt-4 pb-2">
         <TopicArt name={art} />
-        <Tag tone="teal" className="mt-2">
-          {stage === 'done' ? 'Your results' : due.length ? `${due.length} to review` : 'All caught up'}
-        </Tag>
-        <h1 className="font-display text-[2.25rem] leading-tight mt-3">Review civics</h1>
       </div>
 
       {stage === 'intro' && due.length > 0 && (
         <>
-          <TutorMessage profile={profile} language={language} {...say(LINES.intro(due.length), language)} />
-          <PrimaryButton large className="w-full" onClick={() => { setStage('lesson'); window.scrollTo({ top: 0 }); }}>
-            Start
-          </PrimaryButton>
-          <p className="text-sm text-muted">We save only your scores and when to review. Your voice and your answers are not saved.</p>
-          <Link to="/" className={`${linkClass} text-base min-h-[44px] hover:bg-tint`}>Not now</Link>
+          <TutorMessage profile={profile} language={language} {...amio(due.length === 1 ? 'review_intro_one' : 'review_intro_many', { n: due.length })} />
+          <Button variant="main" className="w-full" onClick={() => { setStage('lesson'); window.scrollTo({ top: 0 }); }}>
+            {t('start')}
+          </Button>
+          <p className="text-small text-muted" dir="auto">{t('privacy')}</p>
+          <Link to="/" className={secondLink}>{t('not_now')}</Link>
         </>
       )}
 
       {stage === 'intro' && due.length === 0 && (
         <>
-          <TutorMessage profile={profile} language={language} {...say(LINES.nothingDue, language)} />
+          <TutorMessage profile={profile} language={language} {...amio('nothing_due')} />
           {nextDate && (
-            <p className="text-base text-muted">
-              Your next review: {nextDate.toLocaleDateString(language === 'en' ? 'en-US' : language, { weekday: 'long', month: 'long', day: 'numeric' })}.
+            <p className="text-base text-muted" dir="auto">
+              {t('next_review', { date: nextDate.toLocaleDateString(language === 'en' ? 'en-US' : language, { weekday: 'long', month: 'long', day: 'numeric' }) })}
             </p>
           )}
-          <Link to="/learn" className={`${linkClass} bg-navy text-white hover:bg-navy-deep`}>Learn a new question</Link>
-          <Link to="/" className={`${linkClass} text-base min-h-[44px] hover:bg-tint`}>Back to Today</Link>
+          <Link to="/learn" className={`${MAIN_LINK} w-full text-lg`}>{t('learn_new')}</Link>
+          <Link to="/" className={secondLink}>{t('back_today')}</Link>
         </>
       )}
 
       {stage === 'done' && (
         <>
-          <TutorMessage profile={profile} language={language} {...say(LINES.done(right, graded), language)} expression={right > 0 ? 'proud' : 'default'} />
-          <ul className="space-y-3">
+          <TutorMessage profile={profile} language={language} {...amio(right === graded ? 'review_all_right' : 'review_some_right', { right, total: graded })} />
+          <ul className="flex flex-col gap-2 list-none m-0 p-0">
             {results.map(({ question, correct, ungraded, heard, next }) => {
               const officeholder = officeholderAnswerFor(question, learnerLocation);
               return (
               <li key={question.id}>
-                <RaisedCard>
-                  {ungraded ? (
-                    <Tag tone="navy">Not counted</Tag>
-                  ) : (
-                  <Tag tone={correct ? 'green' : 'red'}>
-                    {correct ? <><Check className="w-4 h-4" aria-hidden="true" /> Correct</> : <><RotateCcw className="w-4 h-4" aria-hidden="true" /> Practice again</>}
-                  </Tag>
-                  )}
-                  <p className="text-lg font-extrabold leading-snug mt-3">{question.question}</p>
-                  {heard && <p className="mt-2 text-muted">You said: <span className="font-medium">“{heard}”</span></p>}
-                  <Eyebrow className="mt-4 mb-2">Accepted answers</Eyebrow>
-                  <ul className="space-y-1">
-                    {(officeholder ? officeholder.accepted : splitOfficialAnswers(question.answer)).map((a) => <li key={a} className="font-bold">{a}</li>)}
+                <Card padding="p-4" className={correct && !ungraded ? 'border-[2.5px] border-gold' : ''}>
+                  <p className={`inline-flex items-center gap-1.5 rounded-button px-3 py-1 text-small font-semibold ${ungraded ? 'bg-line-soft text-navy' : correct ? 'bg-gold text-navy' : 'border-[1.5px] border-line text-navy'}`} dir="auto">
+                    {ungraded ? t('not_counted') : correct
+                      ? <><Check className="w-4 h-4" strokeWidth={3} aria-hidden="true" /> {t('correct')}</>
+                      : <><RotateCcw className="w-4 h-4" aria-hidden="true" /> {t('practice_again')}</>}
+                  </p>
+                  <p className="text-lg font-bold leading-snug mt-3" lang="en" dir="ltr">{question.question}</p>
+                  {heard && <p className="mt-2 text-muted"><span dir="auto">{t('you_said')}</span> <span className="font-medium" lang="en" dir="ltr">“{heard}”</span></p>}
+                  <h2 className="mt-4 mb-2 text-base font-bold" dir="auto">{t('accepted')}</h2>
+                  <ul className="space-y-1 list-none m-0 p-0" lang="en" dir="ltr">
+                    {(officeholder ? officeholder.accepted : splitOfficialAnswers(question.answer)).map((a) => <li key={a} className="font-semibold">{a}</li>)}
                   </ul>
                   <OfficeholderNote answer={officeholder} graded={false} className="mt-2" />
-                  {next && <p className="text-sm text-muted mt-3">{whenLabel(next.days)}</p>}
-                </RaisedCard>
+                  {next && <p className="text-small text-muted mt-3" dir="auto">{whenLabel(next.days)}</p>}
+                </Card>
               </li>
               );
             })}
           </ul>
-          <Link to="/" aria-disabled={saving} className={`${linkClass} bg-navy text-white hover:bg-navy-deep ${saving ? 'pointer-events-none opacity-60' : ''}`}>
-            {saving ? <Loader2 className="w-5 h-5 animate-spin" aria-label="Saving" /> : 'Back to Today'}
+          <Link to="/" aria-disabled={saving} className={`${MAIN_LINK} w-full text-lg ${saving ? 'pointer-events-none opacity-60' : ''}`}>
+            {saving ? <Loader2 className="w-5 h-5 animate-spin" aria-label={t('saving')} /> : t('back_today')}
           </Link>
-          <Link to="/learn" className={`${linkClass} text-base min-h-[44px] hover:bg-tint`}>Learn a new question</Link>
+          <Link to="/learn" className={secondLink}>{t('learn_new')}</Link>
         </>
       )}
+    </div>
     </div>
   );
 }

@@ -14,10 +14,11 @@ export type AmioMood =
   | "hello" | "listening" | "thinking" | "speaking"
   | "cheering" | "proud" | "tryAgain" | "waiting";
 
-// Website / app languages with their own mark. Any other language shows the dot ("en").
+// Website / app languages with their own mark. English is a tilde, the same
+// shape as Spanish. Any other language shows the dot ("other").
 export type AmioLang =
   | "en" | "es" | "vi" | "ht" | "zh" | "ar" | "ko" | "ru"
-  | "uk" | "pt" | "fr" | "hi" | "pa" | "bn" | "ur" | "fa";
+  | "uk" | "pt" | "fr" | "hi" | "pa" | "bn" | "ur" | "fa" | "other";
 
 const RED = "#F0503C";
 const NAVY = "#1E2B45";
@@ -96,6 +97,7 @@ function Face({ mood }: { mood: AmioMood }) {
 function Mark({ lang, color }: { lang: AmioLang; color: string }) {
   const st = { fill: "none", stroke: color, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
   switch (lang) {
+    case "en":                                                                                  // English: a tilde, like Spanish
     case "es": return <path d="M42 -2 Q52 -16 62 -6 T82 -6" {...st} strokeWidth={8} />;           // tilde ñ
     case "vi": return <path d="M50 2 L62 -10 L74 2" {...st} strokeWidth={8} />;                     // circumflex ê
     case "ht": return <path d="M52 -12 L70 4" {...st} strokeWidth={8} />;                           // grave ò
@@ -111,7 +113,7 @@ function Mark({ lang, color }: { lang: AmioLang; color: string }) {
     case "bn": return <><circle cx="62" cy="-18" r="6" fill={color} /><circle cx="62" cy="-2" r="6" fill={color} /></>; // visarga
     case "ur": return <><circle cx="62" cy="-18" r="5.5" fill={color} /><circle cx="52" cy="-2" r="5.5" fill={color} /><circle cx="72" cy="-2" r="5.5" fill={color} /></>;
     case "fa": return <path d="M72 -14 Q56 -16 56 -7 Q56 0 68 0 L75 -6" {...st} strokeWidth={7} />; // hamza
-    default:   return <circle cx="62" cy="-6" r="7" fill={color} />;                              // English and fallback: dot
+    default:   return <circle cx="62" cy="-6" r="7" fill={color} />;                              // languages without their own mark ("other"): dot
   }
 }
 

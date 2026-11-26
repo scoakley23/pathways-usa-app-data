@@ -31,6 +31,16 @@ describe('Amio v2 shapes and type', () => {
     expect(pills).toEqual([]);
   });
 
+  // shadcn's shared pieces are used on learner screens too (amio-v2/leftovers):
+  // the button, badge and switch keep 12px-family corners, never a pill.
+  it('keeps the shared button, badge and switch free of pills', () => {
+    for (const f of ['components/ui/button.jsx', 'components/ui/badge.jsx', 'components/ui/switch.jsx']) {
+      const src = fs.readFileSync(path.join(ROOT, f), 'utf8');
+      const pills = classStrings(src).filter((c) => /(^|\s)rounded-full(\s|$)/.test(c) && !/(^|\s)(h-11 w-11|w-11 h-11)(\s|$)/.test(c));
+      expect(pills, f).toEqual([]);
+    }
+  });
+
   it('has no uppercase text on learner screens', () => {
     const caps = files.filter((f) => /(^|[\s"'`])uppercase(?![\w-])/.test(fs.readFileSync(path.join(ROOT, f), 'utf8')));
     expect(caps).toEqual([]);

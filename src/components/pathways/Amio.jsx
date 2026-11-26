@@ -11,7 +11,8 @@ import useAppLanguage from '@/hooks/useAppLanguage';
 //   (the older names still work: happy, wave → hello; curious → thinking;
 //   listen → listening; kind → tryAgain; cheer → cheering)
 // The language mark above the head follows the learner's app language
-// (16 marks, a dot for every other language; `lang` overrides it), is navy on
+// (16 marks; English, the default, is a tilde like the tab icon; a dot for
+// every other language; `lang` overrides it), is navy on
 // light backgrounds and white with `onNavy`, and is hidden below 32px.
 // Arabic, Urdu and Persian (and Dari) flip the tail.
 // title: set only when Amio carries meaning ("Amio · AI tutor"); otherwise
@@ -23,7 +24,8 @@ export const AMIO_MOODS = ['hello', 'listening', 'thinking', 'speaking', 'cheeri
 const OLD_MOODS = { happy: 'hello', wave: 'hello', curious: 'thinking', listen: 'listening', kind: 'tryAgain', cheer: 'cheering' };
 export const amioMood = (mood) => (AMIO_MOODS.includes(mood) ? mood : OLD_MOODS[mood] || 'hello');
 
-// Languages with their own mark (Amio.tsx). Any other language shows the dot ("en").
+// Languages with their own mark (Amio.tsx; English is a tilde here). Any
+// other language shows the dot ("other").
 export const AMIO_LANGS = ['en', 'es', 'vi', 'ht', 'zh', 'ar', 'ko', 'ru', 'uk', 'pt', 'fr', 'hi', 'pa', 'bn', 'ur', 'fa'];
 const RTL = ['ar', 'ur', 'fa'];
 const SAME_MARK = { prs: 'fa' }; // Dari is written like Persian
@@ -31,7 +33,7 @@ const SAME_MARK = { prs: 'fa' }; // Dari is written like Persian
 export function amioLang(appLanguage) {
   const code = String(appLanguage || 'en').toLowerCase();
   const short = SAME_MARK[code] || code.split('-')[0];
-  return AMIO_LANGS.includes(short) ? short : 'en';
+  return AMIO_LANGS.includes(short) ? short : 'other'; // 'other' = the dot
 }
 
 const RED = COLORS.amioRed;
@@ -113,6 +115,7 @@ function Face({ mood }) {
 function Mark({ lang, color }) {
   const st = { fill: 'none', stroke: color, strokeLinecap: 'round', strokeLinejoin: 'round' };
   switch (lang) {
+    case 'en': // English (the default): a tilde, like the tab icon
     case 'es': return <path d="M42 -2 Q52 -16 62 -6 T82 -6" {...st} strokeWidth={8} />; // tilde ñ
     case 'vi': return <path d="M50 2 L62 -10 L74 2" {...st} strokeWidth={8} />; // circumflex ê
     case 'ht': return <path d="M52 -12 L70 4" {...st} strokeWidth={8} />; // grave ò
@@ -128,7 +131,7 @@ function Mark({ lang, color }) {
     case 'bn': return <><circle cx="62" cy="-18" r="6" fill={color} /><circle cx="62" cy="-2" r="6" fill={color} /></>; // visarga
     case 'ur': return <><circle cx="62" cy="-18" r="5.5" fill={color} /><circle cx="52" cy="-2" r="5.5" fill={color} /><circle cx="72" cy="-2" r="5.5" fill={color} /></>;
     case 'fa': return <path d="M72 -14 Q56 -16 56 -7 Q56 0 68 0 L75 -6" {...st} strokeWidth={7} />; // hamza
-    default: return <circle cx="62" cy="-6" r="7" fill={color} />; // English and fallback: dot
+    default: return <circle cx="62" cy="-6" r="7" fill={color} />; // languages without their own mark: dot
   }
 }
 

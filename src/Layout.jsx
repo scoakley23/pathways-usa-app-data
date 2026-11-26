@@ -22,7 +22,7 @@ import { Toaster } from "sonner";
 // Full-screen course screens: lessons, Speak it!, Read and write, Unit
 // complete, the unit practice interview and the review chest.
 const CHECKPOINT_SCREEN = /^\/(course\/(lesson|n400|speak|readwrite)\/|course\/unit\/[^/]+\/(done|interview)\/?$|review-chest\/?$)/i;
-const FOCUS_ROUTES = ['/quick-check', '/tutor-demo', '/learn', '/review'];
+const FOCUS_ROUTES = ['/quick-check', '/learn', '/review'];
 
 // Pages drawn as split screens (a navy top and a cream sheet, full width):
 // they bring their own padding. Home (/) is one too: Today, or the splash.

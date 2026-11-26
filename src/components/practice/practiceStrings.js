@@ -149,6 +149,10 @@ export const PRACTICE_LINES = {
   matched: 'Matched',
   // Explain it simply
   explain: 'Explain it simply',
+  explain_ai: 'Explain with AI',
+  ai_explanation: 'AI explanation',
+  ai_thinking: 'Thinking…',
+  ai_failed: 'Sorry, I couldn’t explain this right now.',
   // Round complete
   round_complete: 'Round complete.',
   round_right: '{n} right. Nice work.',

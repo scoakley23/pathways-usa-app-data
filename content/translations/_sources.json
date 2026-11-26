@@ -397,6 +397,12 @@
    ]
   },
   {
+   "text": "(opens in a new tab)",
+   "from": [
+    "tutor-steps"
+   ]
+  },
+  {
    "text": "0 right. Keep going, {name}.",
    "from": [
     "practice"
@@ -440,6 +446,18 @@
    ]
   },
   {
+   "text": "1 new question",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
+   "text": "1 question from the {version} civics test, in English, with the official answers.",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
    "text": "1 question to bring back",
    "from": [
     "checkpoints"
@@ -461,6 +479,12 @@
    "text": "1-minute question: how is it going?",
    "from": [
     "pilot"
+   ]
+  },
+  {
+   "text": "10",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -625,6 +649,12 @@
    ]
   },
   {
+   "text": "27",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "30.a. Do you now have, or did you EVER have, a hereditary title or an order of nobility in any foreign country? 30.b. If you answered \"Yes,\" to Item Number 30.a., are you willing to give up any inherited titles or orders of nobility, (list titles), that you have in a foreign country at your naturalization ceremony?",
    "from": [
     "n400"
@@ -640,6 +670,12 @@
    "text": "5.a. Have you EVER been a member of, involved in, or in any way associated with any Communist or totalitarian party anywhere in the world? 5.b. Have you EVER advocated (supported and promoted) any of the following, or been a member of, involved in, or in any way associated with any group anywhere in the world that advocated any of the following: Opposition to all organized government; World communism; The establishment in the United States of a totalitarian dictatorship; The overthrow by force or violence or other unconstitutional means of the Government of the United States or all forms of law; The unlawful assaulting or killing of any officer or officers of the Government of the United States or of any other organized government because of their official character; The unlawful damage, injury, or destruction of property; or Sabotage?",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "50",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -793,6 +829,18 @@
    ]
   },
   {
+   "text": "A free market",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "A good answer",
+   "from": [
+    "tutor-steps"
+   ]
+  },
+  {
    "text": "A governor is the leader of a state government. The governor is like the President, but for one state.",
    "from": [
     "ask-answers"
@@ -853,6 +901,18 @@
    ]
   },
   {
+   "text": "A kingdom",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "A law can go against the Constitution.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "A long trip can break your \"continuous residence.\" A lawyer can tell you what it means for your case.",
    "from": [
     "lawyer-checklist"
@@ -868,6 +928,12 @@
    "text": "A massive canyon in Arizona carved by the Colorado River, a famous national park",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "A mayor who steals can be arrested and go to court like anyone else.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -973,6 +1039,12 @@
    ]
   },
   {
+   "text": "A republic",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "A senator’s term is six years.",
    "from": [
     "course-lessons"
@@ -1030,6 +1102,12 @@
    "text": "A trip where you left and returned within 24 hours (one day).",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "AI explanation",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -1148,6 +1226,19 @@
    ]
   },
   {
+   "text": "Accepted answers",
+   "from": [
+    "learn-screens",
+    "tutor-steps"
+   ]
+  },
+  {
+   "text": "Access restricted",
+   "from": [
+    "error-pages"
+   ]
+  },
+  {
    "text": "Active involvement of citizens in the government process through voting and civic engagement",
    "from": [
     "lessons"
@@ -1193,6 +1284,12 @@
    "text": "Admin",
    "from": [
     "settings"
+   ]
+  },
+  {
+   "text": "Admin note",
+   "from": [
+    "error-pages"
    ]
   },
   {
@@ -1262,6 +1359,12 @@
    ]
   },
   {
+   "text": "Again soon",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
    "text": "Agreement where citizens accept responsibilities in exchange for rights and protection",
    "from": [
     "lessons"
@@ -1322,15 +1425,39 @@
    ]
   },
   {
+   "text": "All caught up",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
    "text": "All done for today",
    "from": [
     "today"
    ]
   },
   {
+   "text": "All lessons",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
+   "text": "All people are equal",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "All practice",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "All started",
+   "from": [
+    "learn-screens"
    ]
   },
   {
@@ -1522,6 +1649,12 @@
    ]
   },
   {
+   "text": "Americans and people living in the United States",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Americans can serve their country in many ways: vote, pay taxes, obey the law, serve in the military, run for office or work for the government.",
    "from": [
     "course-lessons"
@@ -1558,6 +1691,12 @@
    ]
   },
   {
+   "text": "Amio explains in your app language. You can change this any time.",
+   "from": [
+    "settings-pieces"
+   ]
+  },
+  {
    "text": "Amio explains, in your language",
    "from": [
     "lesson-player"
@@ -1576,9 +1715,16 @@
    ]
   },
   {
+   "text": "Amio teaches each question first, then you practice it.",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
    "text": "Amio · AI tutor",
    "from": [
-    "home"
+    "home",
+    "learn-screens"
    ]
   },
   {
@@ -1660,6 +1806,12 @@
    ]
   },
   {
+   "text": "Answer mode",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
    "text": "Answer only the civics question. Don’t include personal information.",
    "from": [
     "practice"
@@ -1691,9 +1843,21 @@
    ]
   },
   {
+   "text": "Answer the officer's question in English.",
+   "from": [
+    "tutor-steps-amio"
+   ]
+  },
+  {
    "text": "Answer {n} easy questions",
    "from": [
     "onboarding"
+   ]
+  },
+  {
+   "text": "Answer: {answer}",
+   "from": [
+    "lesson-deck"
    ]
   },
   {
@@ -1962,6 +2126,12 @@
    ]
   },
   {
+   "text": "At the interview, the officer asks out loud. Your answer doesn’t need to be word for word, only right in meaning.",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
    "text": "Atlantic (Ocean)",
    "from": [
     "civics-questions"
@@ -1994,7 +2164,10 @@
     "interview-day",
     "interview-when",
     "lawyer",
+    "learn-screens",
+    "lesson-deck",
     "lesson-player",
+    "lesson-status",
     "n400-guide",
     "practice",
     "progress",
@@ -2012,6 +2185,7 @@
   {
    "text": "Back to Today",
    "from": [
+    "learn-screens",
     "practice"
    ]
   },
@@ -2202,6 +2376,18 @@
    ]
   },
   {
+   "text": "Best available (recommended)",
+   "from": [
+    "settings-pieces"
+   ]
+  },
+  {
+   "text": "Best {n}%",
+   "from": [
+    "lesson-status"
+   ]
+  },
+  {
    "text": "Big states and small states have the same number of senators.",
    "from": [
     "course-lessons"
@@ -2324,6 +2510,18 @@
    ]
   },
   {
+   "text": "British soldiers",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "British soldiers even stayed in their homes.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "British soldiers stayed in Americans' houses, and the colonists did not have self-government.",
    "from": [
     "course-lessons"
@@ -2399,6 +2597,7 @@
   {
    "text": "Cancel",
    "from": [
+    "find-rep",
     "my-tutor",
     "onboarding",
     "settings"
@@ -2419,6 +2618,7 @@
   {
    "text": "Capital",
    "from": [
+    "find-rep",
     "words"
    ]
   },
@@ -2432,6 +2632,12 @@
    "text": "Capital of the United States, home to Congress, President, and Supreme Court",
    "from": [
     "lessons"
+   ]
+  },
+  {
+   "text": "Capitalism",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -2485,6 +2691,18 @@
    ]
   },
   {
+   "text": "Changing the Constitution is easy.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Changing the Constitution is hard on purpose.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Changing the Constitution is hard on purpose. Most of Congress and most of the states must agree.",
    "from": [
     "course-lessons"
@@ -2495,10 +2713,12 @@
    "from": [
     "checkpoints",
     "interview-day",
+    "lesson-deck",
     "lesson-player",
     "n400-guide",
     "n400-lessons",
-    "practice"
+    "practice",
+    "tutor-steps"
    ]
   },
   {
@@ -2526,6 +2746,12 @@
    ]
   },
   {
+   "text": "Check that you signed in with the right account",
+   "from": [
+    "error-pages"
+   ]
+  },
+  {
    "text": "Check the names again before your interview.",
    "from": [
     "course-lessons"
@@ -2550,6 +2776,12 @@
    ]
   },
   {
+   "text": "Checked on official government websites on {date}",
+   "from": [
+    "tutor-steps-amio"
+   ]
+  },
+  {
    "text": "Checking your answer…",
    "from": [
     "interview-day",
@@ -2569,7 +2801,8 @@
     "lesson-player",
     "n400-lessons",
     "practice",
-    "sign-in"
+    "sign-in",
+    "tutor-steps"
    ]
   },
   {
@@ -2577,6 +2810,12 @@
    "from": [
     "key-words",
     "lessons"
+   ]
+  },
+  {
+   "text": "Checks and balances",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -2613,6 +2852,12 @@
    "text": "Choose a state",
    "from": [
     "pilot"
+   ]
+  },
+  {
+   "text": "Choose one answer",
+   "from": [
+    "tutor-steps"
    ]
   },
   {
@@ -2751,7 +2996,8 @@
     "interview-tab",
     "onboarding",
     "practice",
-    "today-plan"
+    "today-plan",
+    "tutor-steps"
    ]
   },
   {
@@ -2908,6 +3154,12 @@
    "text": "Close. One more try — you've got this.",
    "from": [
     "tutor"
+   ]
+  },
+  {
+   "text": "Coach",
+   "from": [
+    "settings-pieces"
    ]
   },
   {
@@ -3137,6 +3389,12 @@
    ]
   },
   {
+   "text": "Congress writes laws, the President can veto them, and the courts can decide a law goes against the Constitution.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Congress writes the laws for the whole country.",
    "from": [
     "course-lessons"
@@ -3204,6 +3462,12 @@
    ]
   },
   {
+   "text": "Contact the app’s team for access",
+   "from": [
+    "error-pages"
+   ]
+  },
+  {
    "text": "Contact us",
    "from": [
     "settings"
@@ -3237,7 +3501,8 @@
     "lesson-player",
     "n400-lessons",
     "onboarding",
-    "practice"
+    "practice",
+    "tutor-steps"
    ]
   },
   {
@@ -3278,6 +3543,12 @@
    ]
   },
   {
+   "text": "Correct answer",
+   "from": [
+    "tutor-steps"
+   ]
+  },
+  {
    "text": "Correct.",
    "from": [
     "tutor"
@@ -3287,6 +3558,30 @@
    "text": "Couldn’t load the practice day. Please check your connection.",
    "from": [
     "interview-day"
+   ]
+  },
+  {
+   "text": "Couldn’t load your lesson. Please check your connection.",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
+   "text": "Couldn’t load your review. Please check your connection.",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
+   "text": "Couldn’t save your note.",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
+   "text": "Couldn’t save your progress. Please check your connection.",
+   "from": [
+    "learn-screens"
    ]
   },
   {
@@ -3354,6 +3649,12 @@
    "text": "Cultural Diversity",
    "from": [
     "lessons"
+   ]
+  },
+  {
+   "text": "Current answer",
+   "from": [
+    "tutor-steps-amio"
    ]
   },
   {
@@ -3612,6 +3913,12 @@
    ]
   },
   {
+   "text": "Did you know it?",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
    "text": "Did you live in the United States at any time between your 18th and 26th birthdays?",
    "from": [
     "n400"
@@ -3823,6 +4130,12 @@
    ]
   },
   {
+   "text": "Don't answer this question. Say in English what the officer is asking.",
+   "from": [
+    "tutor-steps-amio"
+   ]
+  },
+  {
    "text": "Don't ask me again",
    "from": [
     "pilot"
@@ -4010,6 +4323,12 @@
    ]
   },
   {
+   "text": "Each branch can check the others. This is called checks and balances.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Each branch has its own job, so no one branch has all the power.",
    "from": [
     "course-lessons"
@@ -4133,9 +4452,22 @@
    ]
   },
   {
+   "text": "English",
+   "from": [
+    "learn-screens",
+    "settings-pieces"
+   ]
+  },
+  {
    "text": "English only, like the real interview",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Enter your zip code to find your senators, representative, governor and state capital. Your answers will be used during civics practice.",
+   "from": [
+    "find-rep"
    ]
   },
   {
@@ -4328,6 +4660,7 @@
   {
    "text": "Explain it simply",
    "from": [
+    "lesson-deck",
     "practice"
    ]
   },
@@ -4335,6 +4668,12 @@
    "text": "Explain it to Amio in English",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Explain with AI",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -4555,10 +4894,29 @@
    ]
   },
   {
+   "text": "Find my representative",
+   "from": [
+    "find-rep"
+   ]
+  },
+  {
    "text": "Find out",
    "from": [
     "interview-tab",
     "settings"
+   ]
+  },
+  {
+   "text": "Finding your congressional district…",
+   "from": [
+    "find-rep"
+   ]
+  },
+  {
+   "text": "Finish",
+   "from": [
+    "lesson-deck",
+    "tutor-steps"
    ]
   },
   {
@@ -4571,6 +4929,12 @@
    "text": "Finish “{title}” first. Stops open one at a time, in order.",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "Finished",
+   "from": [
+    "lesson-status"
    ]
   },
   {
@@ -4678,6 +5042,12 @@
   },
   {
    "text": "For example, Congress writes laws, the President can veto them, and the courts can decide a law goes against the Constitution.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "For example, the President must pay taxes like everyone else.",
    "from": [
     "course-lessons"
    ]
@@ -4927,6 +5297,12 @@
    ]
   },
   {
+   "text": "Freedom",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Freedom / Political liberty / Religious freedom / Economic opportunity / Escape persecution",
    "from": [
     "civics-questions"
@@ -5061,8 +5437,15 @@
    ]
   },
   {
+   "text": "Gentle and encouraging. Explains things twice, in different words, if needed.",
+   "from": [
+    "settings-pieces"
+   ]
+  },
+  {
    "text": "George Washington",
    "from": [
+    "course-lessons",
     "key-words",
     "lessons"
    ]
@@ -5178,6 +5561,24 @@
    ]
   },
   {
+   "text": "Go over the questions any time to check what you know.",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
+   "text": "Go over them",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
+   "text": "Go over them again",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
    "text": "Go over these again",
    "from": [
     "practice"
@@ -5187,6 +5588,12 @@
    "text": "Go over this unit’s lessons again.",
    "from": [
     "practice"
+   ]
+  },
+  {
+   "text": "Go to Today",
+   "from": [
+    "error-pages"
    ]
   },
   {
@@ -5292,6 +5699,18 @@
    ]
   },
   {
+   "text": "Good work. You learned 1 new question. I’ll ask you again in a few days, so it stays in your memory.",
+   "from": [
+    "learn-amio"
+   ]
+  },
+  {
+   "text": "Good work. You learned {n} new questions. I’ll ask you again in a few days, so they stay in your memory.",
+   "from": [
+    "learn-amio"
+   ]
+  },
+  {
    "text": "Got it",
    "from": [
     "onboarding"
@@ -5300,6 +5719,7 @@
   {
    "text": "Governor",
    "from": [
+    "find-rep",
     "lessons"
    ]
   },
@@ -5396,6 +5816,12 @@
    "from": [
     "course",
     "n400-guide"
+   ]
+  },
+  {
+   "text": "Half and half",
+   "from": [
+    "settings-pieces"
    ]
   },
   {
@@ -5854,6 +6280,12 @@
    ]
   },
   {
+   "text": "Here is the question and the answers the officer accepts. Listen and repeat.",
+   "from": [
+    "tutor-steps-amio"
+   ]
+  },
+  {
    "text": "Here is what the officer may ask about this part of the form.",
    "from": [
     "n400-lessons"
@@ -5899,6 +6331,12 @@
    "text": "Hide",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "High taxes",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -6091,7 +6529,8 @@
   {
    "text": "How many amendments does the Constitution have?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -6162,6 +6601,12 @@
    ]
   },
   {
+   "text": "How much English?",
+   "from": [
+    "settings-pieces"
+   ]
+  },
+  {
    "text": "How old do citizens have to be to vote for President?",
    "from": [
     "civics-questions"
@@ -6183,6 +6628,12 @@
    "text": "How ready do you feel for your interview?",
    "from": [
     "pilot"
+   ]
+  },
+  {
+   "text": "How should Amio talk?",
+   "from": [
+    "settings-pieces"
    ]
   },
   {
@@ -6213,6 +6664,12 @@
    "text": "I can’t give legal advice. A free legal helper can look at your situation.",
    "from": [
     "lawyer"
+   ]
+  },
+  {
+   "text": "I couldn't check that answer. Please try again.",
+   "from": [
+    "tutor-steps-amio"
    ]
   },
   {
@@ -6266,6 +6723,7 @@
   {
    "text": "I knew it",
    "from": [
+    "lesson-deck",
     "practice"
    ]
   },
@@ -6477,6 +6935,12 @@
    "text": "If you still can't find the dates, you can ask CBP for your official travel record with a FOIA request. It takes a long time, so try the other ways first.",
    "from": [
     "n400-lessons"
+   ]
+  },
+  {
+   "text": "If you think this is a mistake, you can:",
+   "from": [
+    "error-pages"
    ]
   },
   {
@@ -6886,6 +7350,12 @@
    ]
   },
   {
+   "text": "It is also a constitution-based federal republic.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "It is also a constitution-based federal republic: the Constitution is the highest law, and power is shared between the national government and the states.",
    "from": [
     "course-lessons"
@@ -6905,6 +7375,12 @@
   },
   {
    "text": "It lasted about ten years, until World War II.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It means the people govern themselves.",
    "from": [
     "course-lessons"
    ]
@@ -6941,6 +7417,12 @@
   },
   {
    "text": "It says that many people and many states become one country.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It says what each part of the government can do.",
    "from": [
     "course-lessons"
    ]
@@ -7159,6 +7641,19 @@
    ]
   },
   {
+   "text": "Key point {n}",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
+   "text": "Key words",
+   "from": [
+    "lesson-deck",
+    "tutor-steps"
+   ]
+  },
+  {
    "text": "Killing an important person on purpose.",
    "from": [
     "n400"
@@ -7215,6 +7710,18 @@
    ]
   },
   {
+   "text": "Leaders and the government must obey the law too. No one is above the law.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Leaders do not have to obey the law.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Leadership; telling what work to do.",
    "from": [
     "n400"
@@ -7223,13 +7730,21 @@
   {
    "text": "Learn",
    "from": [
-    "home"
+    "home",
+    "lesson-deck",
+    "tutor-steps"
    ]
   },
   {
    "text": "Learn 2 new civics questions",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "Learn a new question",
+   "from": [
+    "learn-screens"
    ]
   },
   {
@@ -7269,6 +7784,12 @@
    ]
   },
   {
+   "text": "Learn civics",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
    "text": "Learn how Congress makes laws and represents the American people",
    "from": [
     "lessons"
@@ -7299,6 +7820,12 @@
    ]
   },
   {
+   "text": "Learn more questions",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
    "text": "Learn to understand each question on the form, the way the officer may ask it.",
    "from": [
     "n400-lessons"
@@ -7317,6 +7844,12 @@
    ]
   },
   {
+   "text": "Learn · English",
+   "from": [
+    "tutor-steps"
+   ]
+  },
+  {
    "text": "Learned what the questions mean",
    "from": [
     "n400-lessons"
@@ -7326,6 +7859,12 @@
    "text": "Learning and practicing how to do something.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "Leave lesson",
+   "from": [
+    "tutor-steps"
    ]
   },
   {
@@ -7401,9 +7940,35 @@
    ]
   },
   {
+   "text": "Lesson done",
+   "from": [
+    "learn-screens",
+    "lesson-deck"
+   ]
+  },
+  {
    "text": "Lesson done.",
    "from": [
+    "lesson-deck",
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Lesson navigation",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
+   "text": "Lesson progress",
+   "from": [
+    "lesson-status"
+   ]
+  },
+  {
+   "text": "Lesson video",
+   "from": [
+    "lesson-deck"
    ]
   },
   {
@@ -7462,6 +8027,18 @@
    ]
   },
   {
+   "text": "Let’s check 1 question you learned before. Answer it out loud, in English. I’ll show you how you did at the end.",
+   "from": [
+    "learn-amio"
+   ]
+  },
+  {
+   "text": "Let’s check {n} questions you learned before. Answer each one out loud, in English. I’ll show you how you did at the end.",
+   "from": [
+    "learn-amio"
+   ]
+  },
+  {
    "text": "Let’s get you ready, one part at a time.",
    "from": [
     "interview-tab"
@@ -7499,7 +8076,19 @@
    ]
   },
   {
+   "text": "Liberty and equality are ideas from the Declaration and the Constitution.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Liberty means freedom.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Life, Liberty",
    "from": [
     "course-lessons"
    ]
@@ -7520,6 +8109,12 @@
    "text": "Light bulb / Automobile (cars, internal combustion engine) / Skyscrapers / Airplane / Assembly line / Landing on the moon / Integrated circuit (IC)",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "Like the officer",
+   "from": [
+    "settings-pieces"
    ]
   },
   {
@@ -7592,10 +8187,19 @@
    "text": "Listen",
    "from": [
     "ask-history",
+    "learn-screens",
     "lesson-player",
     "n400-guide",
     "n400-lessons",
-    "today-plan"
+    "settings-pieces",
+    "today-plan",
+    "tutor-steps"
+   ]
+  },
+  {
+   "text": "Listen again and check these words:",
+   "from": [
+    "tutor-steps-amio"
    ]
   },
   {
@@ -7617,6 +8221,12 @@
    ]
   },
   {
+   "text": "Listen in English",
+   "from": [
+    "settings-pieces"
+   ]
+  },
+  {
    "text": "Listen to official audio and practice typing exactly what you hear.",
    "from": [
     "home"
@@ -7626,6 +8236,12 @@
    "text": "Listen to the national anthem, “The Star-Spangled Banner.”",
    "from": [
     "course-pictures"
+   ]
+  },
+  {
+   "text": "Listen to the sentence. Then write it in English.",
+   "from": [
+    "tutor-steps-amio"
    ]
   },
   {
@@ -7667,6 +8283,7 @@
   {
    "text": "Listening…",
    "from": [
+    "lesson-deck",
     "practice"
    ]
   },
@@ -7687,7 +8304,8 @@
    "from": [
     "ask-screen",
     "lesson-player",
-    "n400-lessons"
+    "n400-lessons",
+    "tutor-steps"
    ]
   },
   {
@@ -7706,6 +8324,7 @@
    "text": "Loading",
    "from": [
     "ask-screen",
+    "lesson-deck",
     "onboarding"
    ]
   },
@@ -7880,6 +8499,12 @@
    ]
   },
   {
+   "text": "Many Americans wanted it to say clearly which rights the government can never take away.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Many banks closed, and millions of families lost their jobs, homes and savings. People waited in long lines for free food, called bread lines.",
    "from": [
     "course-lessons"
@@ -7931,6 +8556,12 @@
    "text": "Mark as not done",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "Mark lesson complete",
+   "from": [
+    "lesson-deck"
    ]
   },
   {
@@ -8027,6 +8658,12 @@
    "text": "Maybe",
    "from": [
     "pilot"
+   ]
+  },
+  {
+   "text": "Mayor: {name}",
+   "from": [
+    "find-rep"
    ]
   },
   {
@@ -8224,9 +8861,33 @@
    ]
   },
   {
+   "text": "Most of Congress and most of the states must agree.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Most of the time, the government does not decide this for you. That is a free market.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Most people can apply on their own. But if any of these are true for you, talk to a lawyer or accredited representative before you file. Filing with one of these issues can cause serious problems, including more than a denied application. You do not need to tell this app anything.",
    "from": [
     "lawyer"
+   ]
+  },
+  {
+   "text": "Mostly English",
+   "from": [
+    "settings-pieces"
+   ]
+  },
+  {
+   "text": "Mostly my language",
+   "from": [
+    "settings-pieces"
    ]
   },
   {
@@ -8258,6 +8919,12 @@
    "from": [
     "getting-started",
     "pilot"
+   ]
+  },
+  {
+   "text": "My notes",
+   "from": [
+    "lesson-deck"
    ]
   },
   {
@@ -8617,6 +9284,12 @@
    ]
   },
   {
+   "text": "Natural",
+   "from": [
+    "settings-pieces"
+   ]
+  },
+  {
    "text": "Natural Landmarks and National Parks",
    "from": [
     "lessons"
@@ -8729,6 +9402,7 @@
    "from": [
     "checkpoints",
     "interview-day",
+    "lesson-deck",
     "lesson-player",
     "n400-guide",
     "n400-lessons"
@@ -8743,7 +9417,26 @@
   {
    "text": "Next card",
    "from": [
+    "lesson-deck",
     "n400-guide"
+   ]
+  },
+  {
+   "text": "Next check: in {n} days",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
+   "text": "Next check: tomorrow",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
+   "text": "Next lesson",
+   "from": [
+    "lesson-deck"
    ]
   },
   {
@@ -8844,6 +9537,12 @@
    ]
   },
   {
+   "text": "No lessons yet.",
+   "from": [
+    "lesson-status"
+   ]
+  },
+  {
    "text": "No notifications yet",
    "from": [
     "notifications"
@@ -8857,6 +9556,12 @@
   },
   {
    "text": "No one is above the law. For example, the President must pay taxes like everyone else. A mayor who steals can be arrested and go to court like anyone else.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "No other law can go against it.",
    "from": [
     "course-lessons"
    ]
@@ -8930,6 +9635,12 @@
    ]
   },
   {
+   "text": "Not counted",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
    "text": "Not filed yet",
    "from": [
     "interview-when",
@@ -8945,6 +9656,7 @@
   {
    "text": "Not now",
    "from": [
+    "learn-screens",
     "pilot",
     "today"
    ]
@@ -8983,6 +9695,7 @@
   {
    "text": "Not started",
    "from": [
+    "lesson-status",
     "practice"
    ]
   },
@@ -9010,6 +9723,7 @@
     "checkpoints",
     "interview-day",
     "interview-tab",
+    "lesson-deck",
     "pilot",
     "practice"
    ]
@@ -9042,6 +9756,12 @@
    "text": "Not yet. Almost there!",
    "from": [
     "checkpoints"
+   ]
+  },
+  {
+   "text": "Not yet. Here is the answer.",
+   "from": [
+    "lesson-deck"
    ]
   },
   {
@@ -9105,6 +9825,12 @@
    ]
   },
   {
+   "text": "Nothing to review today. That’s fine: steady practice works best. You can learn a new question instead.",
+   "from": [
+    "learn-amio"
+   ]
+  },
+  {
    "text": "Nothing yet. Your practice shows here.",
    "from": [
     "progress"
@@ -9134,6 +9860,12 @@
    "from": [
     "civics-questions",
     "words"
+   ]
+  },
+  {
+   "text": "Now answer out loud, in English.",
+   "from": [
+    "tutor-steps-amio"
    ]
   },
   {
@@ -9294,6 +10026,12 @@
    ]
   },
   {
+   "text": "On July 4, 1776, the Declaration of Independence said the colonies were free from Britain.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "On July 4, 1776, the Declaration of Independence said the colonies were free from Britain. We remember this day on Independence Day.",
    "from": [
     "course-lessons"
@@ -9433,6 +10171,12 @@
    ]
   },
   {
+   "text": "Only leaders",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Only on this phone",
    "from": [
     "settings"
@@ -9440,6 +10184,12 @@
   },
   {
    "text": "Only one city",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Only the President",
    "from": [
     "course-lessons"
    ]
@@ -9454,6 +10204,12 @@
    "text": "Only the words, to check your answer.",
    "from": [
     "onboarding"
+   ]
+  },
+  {
+   "text": "Only you see these.",
+   "from": [
+    "lesson-deck"
    ]
   },
   {
@@ -9543,6 +10299,12 @@
    ]
   },
   {
+   "text": "Over time, the colonists became angry. Britain made them pay high taxes, but they had no vote in Britain’s government.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Pacific (Ocean)",
    "from": [
     "civics-questions"
@@ -9552,6 +10314,12 @@
    "text": "Pacific Ocean",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "Page not found",
+   "from": [
+    "error-pages"
    ]
   },
   {
@@ -9611,7 +10379,8 @@
   {
    "text": "Part {n} of {total}",
    "from": [
-    "interview-day"
+    "interview-day",
+    "tutor-steps"
    ]
   },
   {
@@ -9704,6 +10473,12 @@
    "text": "People",
    "from": [
     "words"
+   ]
+  },
+  {
+   "text": "People and businesses can own things and decide what to make, buy and sell.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -9845,9 +10620,22 @@
    ]
   },
   {
+   "text": "Play sample",
+   "from": [
+    "settings-pieces"
+   ]
+  },
+  {
    "text": "Play the sentence",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "tutor-steps"
+   ]
+  },
+  {
+   "text": "Play the sentence. You can play it again.",
+   "from": [
+    "tutor-steps"
    ]
   },
   {
@@ -9857,9 +10645,21 @@
    ]
   },
   {
+   "text": "Playing…",
+   "from": [
+    "settings-pieces"
+   ]
+  },
+  {
    "text": "Please don't share dates, case numbers or details. Programs you study with can't see this.",
    "from": [
     "pilot"
+   ]
+  },
+  {
+   "text": "Please enter a 5-digit zip code.",
+   "from": [
+    "find-rep"
    ]
   },
   {
@@ -9881,6 +10681,18 @@
    ]
   },
   {
+   "text": "Polite and formal, like a USCIS officer. For learners who want realistic interview pressure.",
+   "from": [
+    "settings-pieces"
+   ]
+  },
+  {
+   "text": "Power is shared between the national government and the states.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Power to declare laws unconstitutional if they violate the Constitution",
    "from": [
     "lessons"
@@ -9892,12 +10704,14 @@
     "course",
     "practice",
     "progress",
-    "today-plan"
+    "today-plan",
+    "tutor-steps"
    ]
   },
   {
    "text": "Practice again",
    "from": [
+    "learn-screens",
     "practice"
    ]
   },
@@ -10043,6 +10857,36 @@
    ]
   },
   {
+   "text": "Practice · Interview",
+   "from": [
+    "tutor-steps"
+   ]
+  },
+  {
+   "text": "Practice · Read",
+   "from": [
+    "tutor-steps"
+   ]
+  },
+  {
+   "text": "Practice · Speak",
+   "from": [
+    "tutor-steps"
+   ]
+  },
+  {
+   "text": "Practice · Write",
+   "from": [
+    "tutor-steps"
+   ]
+  },
+  {
+   "text": "Practice · {n} of {total}",
+   "from": [
+    "tutor-steps"
+   ]
+  },
+  {
    "text": "Practiced",
    "from": [
     "progress"
@@ -10121,6 +10965,12 @@
    "text": "Presidents' Day is in February.",
    "from": [
     "sentences"
+   ]
+  },
+  {
+   "text": "Previous",
+   "from": [
+    "lesson-deck"
    ]
   },
   {
@@ -10296,7 +11146,8 @@
   {
    "text": "Question {n}",
    "from": [
-    "interview-day"
+    "interview-day",
+    "lesson-deck"
    ]
   },
   {
@@ -10349,10 +11200,35 @@
    ]
   },
   {
+   "text": "Questions on the test",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
+   "text": "Questions you learned come back when it’s time to review them.",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
    "text": "Quick check",
    "from": [
     "lesson-player",
-    "today"
+    "today",
+    "tutor-steps"
+   ]
+  },
+  {
+   "text": "Quick check · {part}",
+   "from": [
+    "tutor-steps"
+   ]
+  },
+  {
+   "text": "Quick check: in 3 days.",
+   "from": [
+    "learn-screens"
    ]
   },
   {
@@ -10462,6 +11338,12 @@
    ]
   },
   {
+   "text": "Read out loud",
+   "from": [
+    "tutor-steps"
+   ]
+  },
+  {
    "text": "Read sentences aloud and type what you hear.",
    "from": [
     "home"
@@ -10480,9 +11362,21 @@
    ]
   },
   {
+   "text": "Read these words again slowly:",
+   "from": [
+    "tutor-steps-amio"
+   ]
+  },
+  {
    "text": "Read this out loud, like you will for the officer.",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Read this sentence out loud, in English.",
+   "from": [
+    "tutor-steps-amio"
    ]
   },
   {
@@ -10504,7 +11398,8 @@
     "interview-tab",
     "onboarding",
     "practice",
-    "today-plan"
+    "today-plan",
+    "tutor-steps"
    ]
   },
   {
@@ -10517,6 +11412,12 @@
    "text": "Reading and writing",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "Reading needs a browser with speech recognition, like Chrome or Safari. You can skip this part.",
+   "from": [
+    "tutor-steps"
    ]
   },
   {
@@ -10771,6 +11672,12 @@
    ]
   },
   {
+   "text": "Review civics",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
    "text": "Reviews laws / Explains laws / Resolves disputes (disagreements) about the law / Decides if a law goes against the (U.S.) Constitution",
    "from": [
     "civics-questions"
@@ -10787,6 +11694,7 @@
    "text": "Right",
    "from": [
     "checkpoints",
+    "learn-screens",
     "words"
    ]
   },
@@ -10835,6 +11743,7 @@
   {
    "text": "Right!",
    "from": [
+    "lesson-deck",
     "lesson-player",
     "practice"
    ]
@@ -10954,9 +11863,11 @@
   {
    "text": "Save",
    "from": [
+    "lesson-deck",
     "my-tutor",
     "pilot",
-    "settings"
+    "settings",
+    "settings-pieces"
    ]
   },
   {
@@ -10969,6 +11880,12 @@
    "text": "Save state",
    "from": [
     "pilot"
+   ]
+  },
+  {
+   "text": "Saved",
+   "from": [
+    "lesson-deck"
    ]
   },
   {
@@ -10996,8 +11913,16 @@
    ]
   },
   {
+   "text": "Saving",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
    "text": "Saving…",
    "from": [
+    "find-rep",
+    "lesson-deck",
     "pilot"
    ]
   },
@@ -11464,9 +12389,21 @@
    ]
   },
   {
+   "text": "Search",
+   "from": [
+    "find-rep"
+   ]
+  },
+  {
    "text": "Search {n}+ languages",
    "from": [
     "onboarding"
+   ]
+  },
+  {
+   "text": "Searching",
+   "from": [
+    "find-rep"
    ]
   },
   {
@@ -11589,6 +12526,12 @@
    "text": "Selective Service and military",
    "from": [
     "n400-guide"
+   ]
+  },
+  {
+   "text": "Self-government",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -11776,6 +12719,12 @@
    ]
   },
   {
+   "text": "Short sentences. No small talk. Only what the learner needs.",
+   "from": [
+    "settings-pieces"
+   ]
+  },
+  {
    "text": "Short terms mean representatives face voters often, so they follow what the public thinks.",
    "from": [
     "course-lessons"
@@ -11800,6 +12749,18 @@
    ]
   },
   {
+   "text": "Show me",
+   "from": [
+    "tutor-steps"
+   ]
+  },
+  {
+   "text": "Show the answer",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
    "text": "Show the definition",
    "from": [
     "practice"
@@ -11816,6 +12777,7 @@
    "from": [
     "ask-screen",
     "interview-day",
+    "lesson-deck",
     "me",
     "sign-in"
    ]
@@ -11833,9 +12795,27 @@
    ]
   },
   {
+   "text": "Sign in to learn civics",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
    "text": "Sign in to practice the whole interview, start to finish.",
    "from": [
     "interview-day"
+   ]
+  },
+  {
+   "text": "Sign in to review civics",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
+   "text": "Sign in to save your progress.",
+   "from": [
+    "lesson-deck"
    ]
   },
   {
@@ -11848,6 +12828,12 @@
    "text": "Sign out",
    "from": [
     "settings"
+   ]
+  },
+  {
+   "text": "Sign out and sign in again",
+   "from": [
+    "error-pages"
    ]
   },
   {
@@ -11922,13 +12908,20 @@
    "from": [
     "lesson-player",
     "n400-lessons",
-    "onboarding"
+    "onboarding",
+    "settings-pieces"
    ]
   },
   {
    "text": "Skip setup",
    "from": [
     "getting-started"
+   ]
+  },
+  {
+   "text": "Skip this part",
+   "from": [
+    "tutor-steps"
    ]
   },
   {
@@ -11992,7 +12985,19 @@
    ]
   },
   {
+   "text": "So in 1791, ten amendments were added to the Constitution.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "So in 1791, ten amendments were added to the Constitution. These first ten amendments are called the Bill of Rights.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "So no one pays taxes",
    "from": [
     "course-lessons"
    ]
@@ -12004,6 +13009,12 @@
    ]
   },
   {
+   "text": "So one part does not become too powerful",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "So one part does not become too powerful / Checks and balances / Separation of powers",
    "from": [
     "civics-questions"
@@ -12011,6 +13022,12 @@
   },
   {
    "text": "So states with more people have more representatives in the House.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "So the President can make every law",
    "from": [
     "course-lessons"
    ]
@@ -12110,6 +13127,12 @@
    ]
   },
   {
+   "text": "Sorry, I couldn’t explain this right now.",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Sorry, your message couldn't be sent. Please try again later.",
    "from": [
     "talk"
@@ -12148,7 +13171,8 @@
   {
    "text": "Speak",
    "from": [
-    "home"
+    "home",
+    "lesson-deck"
    ]
   },
   {
@@ -12189,7 +13213,14 @@
     "interview-tab",
     "onboarding",
     "practice",
-    "today-plan"
+    "today-plan",
+    "tutor-steps"
+   ]
+  },
+  {
+   "text": "Speaking needs a browser with speech recognition, like Chrome or Safari. You can skip this part.",
+   "from": [
+    "tutor-steps"
    ]
   },
   {
@@ -12202,6 +13233,12 @@
    "text": "Spectacular natural landmark in Arizona formed by the Colorado River",
    "from": [
     "lessons"
+   ]
+  },
+  {
+   "text": "Speed",
+   "from": [
+    "settings-pieces"
    ]
   },
   {
@@ -12227,10 +13264,12 @@
    "from": [
     "course",
     "home",
+    "learn-screens",
     "onboarding",
     "practice",
     "today",
-    "today-plan"
+    "today-plan",
+    "tutor-steps"
    ]
   },
   {
@@ -12281,6 +13320,12 @@
    ]
   },
   {
+   "text": "Start speaking",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
    "text": "Start the quick check",
    "from": [
     "home"
@@ -12324,6 +13369,12 @@
    ]
   },
   {
+   "text": "Started",
+   "from": [
+    "lesson-status"
+   ]
+  },
+  {
    "text": "State",
    "from": [
     "words"
@@ -12342,9 +13393,21 @@
    ]
   },
   {
+   "text": "State capital",
+   "from": [
+    "find-rep"
+   ]
+  },
+  {
    "text": "State governments follow a similar structure to the federal government with executive, legislative, and judicial branches. Each state has a Governor (executive), a state legislature (legislative), and state courts (judicial). State governments handle issues like education, public safety, transportation, and welfare within their borders.\n\nLocal governments include county, city, and township governments. A mayor typically leads a city government, while commissioners or supervisors run county governments. Local governments provide services like police, fire, water, sewer, and roads. Many decisions that directly affect daily life are made at the local level.\n\nThe relationship between federal, state, and local governments is defined by the Constitution and federal laws. States cannot contradict federal law, but they have freedom to govern on matters not reserved for the federal government. Citizens participate in all levels of government through voting and civic engagement. Local governments are often the most accessible to citizens and play a crucial role in American democracy.",
    "from": [
     "lessons"
+   ]
+  },
+  {
+   "text": "State information",
+   "from": [
+    "find-rep"
    ]
   },
   {
@@ -12400,7 +13463,22 @@
   {
    "text": "Step {n} of {total}",
    "from": [
-    "onboarding"
+    "onboarding",
+    "tutor-steps"
+   ]
+  },
+  {
+   "text": "Step {n} of {total} · {step}",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
+   "text": "Stop",
+   "from": [
+    "learn-screens",
+    "lesson-deck",
+    "tutor-steps"
    ]
   },
   {
@@ -12419,6 +13497,18 @@
    "text": "Stop {n} of 5 · {name}",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "Straight to the point",
+   "from": [
+    "settings-pieces"
+   ]
+  },
+  {
+   "text": "Street address",
+   "from": [
+    "find-rep"
    ]
   },
   {
@@ -12519,9 +13609,11 @@
    "text": "Sure. Here’s the question again.",
    "from": [
     "checkpoints",
+    "lesson-deck",
     "lesson-player",
     "n400-lessons",
-    "practice"
+    "practice",
+    "tutor-steps-amio"
    ]
   },
   {
@@ -12626,6 +13718,24 @@
    "text": "Tall obelisk in Washington D.C. honoring the first President, George Washington",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "Tap Start speaking, then say your answer in English.",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
+   "text": "Tap and answer in English",
+   "from": [
+    "tutor-steps"
+   ]
+  },
+  {
+   "text": "Tap and read out loud",
+   "from": [
+    "tutor-steps"
    ]
   },
   {
@@ -12759,9 +13869,21 @@
    ]
   },
   {
+   "text": "Thank you. On to the next one.",
+   "from": [
+    "tutor-steps-amio"
+   ]
+  },
+  {
    "text": "Thank you. That answer is acceptable.",
    "from": [
     "tutor"
+   ]
+  },
+  {
+   "text": "Thank you. You answered {right} of {total} correctly. Look at the answers below; we’ll practice the others again soon.",
+   "from": [
+    "learn-amio"
    ]
   },
   {
@@ -12965,6 +14087,12 @@
    ]
   },
   {
+   "text": "The Articles of Confederation",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The Bald Eagle appears on the Great Seal and is protected by federal law",
    "from": [
     "key-words"
@@ -12973,6 +14101,7 @@
   {
    "text": "The Bill of Rights",
    "from": [
+    "course-lessons",
     "course-titles"
    ]
   },
@@ -13027,6 +14156,7 @@
   {
    "text": "The Chief Justice",
    "from": [
+    "course-lessons",
     "course-titles"
    ]
   },
@@ -13100,11 +14230,24 @@
   {
    "text": "The Constitution",
    "from": [
+    "course-lessons",
     "course-titles"
    ]
   },
   {
+   "text": "The Constitution forms the government.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The Constitution has 27 amendments.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The Constitution is the highest law, and power is shared between the national government and the states.",
    "from": [
     "course-lessons"
    ]
@@ -13134,6 +14277,12 @@
    ]
   },
   {
+   "text": "The Constitution was written in 1787.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The Constitution was written in 1787. Many Americans wanted it to say clearly which rights the government can never take away.",
    "from": [
     "course-lessons"
@@ -13158,6 +14307,18 @@
    ]
   },
   {
+   "text": "The Declaration also says all people are created equal and have rights that no one can take away.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The Declaration and the Constitution share big ideas.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The Declaration and the Constitution share big ideas: equality, liberty, natural rights, limited government and self-government.",
    "from": [
     "course-lessons"
@@ -13166,6 +14327,7 @@
   {
    "text": "The Declaration of Independence",
    "from": [
+    "course-lessons",
     "course-titles"
    ]
   },
@@ -13194,6 +14356,12 @@
    ]
   },
   {
+   "text": "The Emancipation Proclamation",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The Emancipation Proclamation was a turning point that made the Civil War about ending slavery",
    "from": [
     "key-words"
@@ -13208,6 +14376,7 @@
   {
    "text": "The Federalist Papers",
    "from": [
+    "course-lessons",
     "course-titles"
    ]
   },
@@ -13233,6 +14402,12 @@
    "text": "The First Amendment protects freedom of speech, religion, the press, assembly, and the right to petition the government.",
    "from": [
     "ask-answers"
+   ]
+  },
+  {
+   "text": "The Gettysburg Address",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -13323,6 +14498,12 @@
    "text": "The Judicial Branch consists of federal courts headed by the Supreme Court of the United States. The Supreme Court has nine justices, including the Chief Justice. Judges are appointed by the President and confirmed by the Senate. Federal judges serve lifetime appointments, ensuring independence from political pressure.\n\nThe Supreme Court is the highest court in the nation and has the power of judicial review—the ability to declare laws unconstitutional. Lower federal courts handle various cases, and there are state court systems as well. The court system ensures that justice is applied fairly and that the Constitution is upheld.\n\nThe Supreme Court hears cases that involve constitutional questions or disputes between states. Justices write opinions explaining their decisions, which set legal precedents. The Court balances individual rights with government authority. Nine justices must agree on decisions, promoting careful deliberation. The judicial system protects Americans from unjust laws and ensures equal protection under law.",
    "from": [
     "lessons"
+   ]
+  },
+  {
+   "text": "The King of Britain",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -13652,6 +14833,12 @@
    ]
   },
   {
+   "text": "The U.S. Constitution is the supreme law of the land.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The U.S. Constitution is the supreme law of the land. No other law can go against it.",
    "from": [
     "course-lessons"
@@ -13868,6 +15055,18 @@
    ]
   },
   {
+   "text": "The colonists had a vote in Britain’s government.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The correct answer is:",
+   "from": [
+    "tutor-steps-amio"
+   ]
+  },
+  {
    "text": "The country a person comes from.",
    "from": [
     "n400"
@@ -13883,6 +15082,12 @@
    "text": "The courts",
    "from": [
     "course-titles"
+   ]
+  },
+  {
+   "text": "The economic system of the United States is capitalism, also called a free market economy.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -14043,7 +15248,19 @@
    ]
   },
   {
+   "text": "The government gets its power from the people.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The government gets its power from the people. This is called the consent of the governed.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The government has three branches so one part does not become too powerful.",
    "from": [
     "course-lessons"
    ]
@@ -14177,7 +15394,8 @@
   {
    "text": "The officer asks",
    "from": [
-    "checkpoints"
+    "checkpoints",
+    "tutor-steps"
    ]
   },
   {
@@ -14261,6 +15479,12 @@
   },
   {
    "text": "The people who wrote the Constitution learned from older documents, like the Declaration of Independence, the Articles of Confederation and the Federalist Papers.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The people who wrote the Constitution learned from older documents.",
    "from": [
     "course-lessons"
    ]
@@ -14362,6 +15586,18 @@
    ]
   },
   {
+   "text": "The rule of law",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The rule of law means everyone must follow the law.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The rule of law means everyone must follow the law. Leaders and the government must obey the law too.",
    "from": [
     "course-lessons"
@@ -14383,7 +15619,8 @@
    "text": "The sentence",
    "from": [
     "lesson-player",
-    "practice"
+    "practice",
+    "tutor-steps"
    ]
   },
   {
@@ -14586,6 +15823,12 @@
    ]
   },
   {
+   "text": "These are the exact questions the officer may ask.",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
    "text": "These are the same promises you make in the Oath of Allegiance at your naturalization ceremony.",
    "from": [
     "n400-lessons"
@@ -14593,6 +15836,12 @@
   },
   {
    "text": "These are your state’s two senators today.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "These first ten amendments are called the Bill of Rights.",
    "from": [
     "course-lessons"
    ]
@@ -14676,6 +15925,12 @@
    ]
   },
   {
+   "text": "They are equality, liberty, natural rights, limited government and self-government.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "They came for many reasons: freedom, religious freedom, economic opportunity, or to escape persecution.",
    "from": [
     "course-lessons"
@@ -14701,6 +15956,12 @@
   },
   {
    "text": "They helped people understand the Constitution.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "They learned from the Declaration of Independence, the Articles of Confederation and the Federalist Papers.",
    "from": [
     "course-lessons"
    ]
@@ -14760,13 +16021,49 @@
    ]
   },
   {
+   "text": "Think of a supermarket: stores choose what to sell and what price to ask, and you choose what to buy.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Think of a supermarket: stores choose what to sell and what price to ask, and you choose what to buy. Most of the time, the government does not decide this for you. That is a free market.",
    "from": [
     "course-lessons"
    ]
   },
   {
+   "text": "Thinking…",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "This answer depends on where you live. Use “Who Represents Me?” on the Learn page.",
+   "from": [
+    "tutor-steps-amio"
+   ]
+  },
+  {
+   "text": "This is also called a representative democracy.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "This is also called a representative democracy. “Representative” means the leaders speak and act for the people who elected them.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "This is called self-government.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "This is called the consent of the governed.",
    "from": [
     "course-lessons"
    ]
@@ -14787,6 +16084,18 @@
    "text": "This is what the paper form looks like. It stays blank: we never fill it in or keep answers.",
    "from": [
     "n400-guide"
+   ]
+  },
+  {
+   "text": "This lesson has no test questions to go over yet.",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
+   "text": "This lesson has no text yet.",
+   "from": [
+    "lesson-deck"
    ]
   },
   {
@@ -14953,9 +16262,27 @@
    ]
   },
   {
+   "text": "This list was last checked on {date}. Officials can change; check usa.gov.",
+   "from": [
+    "find-rep"
+   ]
+  },
+  {
+   "text": "This may change soon. At your interview, name the person serving that day.",
+   "from": [
+    "tutor-steps-amio"
+   ]
+  },
+  {
    "text": "This means the many American Indian nations that lived in America before Europeans came. Each had its own language, government and way of life.",
    "from": [
     "ask-answers"
+   ]
+  },
+  {
+   "text": "This one isn’t counted as right or wrong.",
+   "from": [
+    "find-rep"
    ]
   },
   {
@@ -14968,6 +16295,12 @@
    "text": "This page is for practice only. It can’t tell you how to answer about your own life or whether you can apply.",
    "from": [
     "interview-day"
+   ]
+  },
+  {
+   "text": "This page may not be built yet.",
+   "from": [
+    "error-pages"
    ]
   },
   {
@@ -15199,6 +16532,12 @@
    ]
   },
   {
+   "text": "This seat is empty right now",
+   "from": [
+    "find-rep"
+   ]
+  },
+  {
    "text": "This stop isn’t ready yet.",
    "from": [
     "checkpoints"
@@ -15233,6 +16572,12 @@
    "text": "This would pass in a real interview. {score}/100",
    "from": [
     "practice"
+   ]
+  },
+  {
+   "text": "This zip code spans more than one congressional district. Please enter your street address so we can find your exact representative.",
+   "from": [
+    "find-rep"
    ]
   },
   {
@@ -15307,6 +16652,24 @@
    "text": "Tip: for the second question, two short words are enough, like “liberty” and “equality.”",
    "from": [
     "course-lessons"
+   ]
+  },
+  {
+   "text": "Tip: if asked for two important ideas, two short words are enough, like “liberty” and “equality.”",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Tip: if asked to name one document, “the Declaration of Independence” is the easiest to remember.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Tip: practice slower first, then at 1.0× like the real interview.",
+   "from": [
+    "settings-pieces"
    ]
   },
   {
@@ -15453,6 +16816,18 @@
    ]
   },
   {
+   "text": "Today we’ll learn 1 new civics question. First I’ll explain it. Then you’ll see the question in English and answer it out loud.",
+   "from": [
+    "learn-amio"
+   ]
+  },
+  {
+   "text": "Today we’ll learn {n} new civics questions. First I’ll explain each one. Then you’ll see the question in English and answer it out loud.",
+   "from": [
+    "learn-amio"
+   ]
+  },
+  {
    "text": "Today you’ll be able to answer",
    "from": [
     "lesson-player"
@@ -15526,6 +16901,12 @@
    ]
   },
   {
+   "text": "Today’s questions",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
    "text": "Tomorrow",
    "from": [
     "today-plan"
@@ -15566,6 +16947,7 @@
    "text": "Translating…",
    "from": [
     "lawyer",
+    "lesson-deck",
     "n400-guide",
     "practice"
    ]
@@ -15611,7 +16993,8 @@
    "from": [
     "checkpoints",
     "n400-lessons",
-    "practice"
+    "practice",
+    "tutor-steps"
    ]
   },
   {
@@ -15693,6 +17076,12 @@
    ]
   },
   {
+   "text": "Type",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
    "text": "Type in English",
    "from": [
     "interview-day"
@@ -15738,8 +17127,10 @@
    "text": "Type your answer in English",
    "from": [
     "checkpoints",
+    "lesson-deck",
     "lesson-player",
-    "practice"
+    "practice",
+    "tutor-steps"
    ]
   },
   {
@@ -15770,6 +17161,18 @@
    "text": "U.S. diplomat / oldest member of the Constitutional Convention / first Postmaster General of the United States / writer of “Poor Richard’s Almanac” / started the first free libraries",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "U.S. representative · District {district}",
+   "from": [
+    "find-rep"
+   ]
+  },
+  {
+   "text": "U.S. senators",
+   "from": [
+    "find-rep"
    ]
   },
   {
@@ -15936,6 +17339,12 @@
    ]
   },
   {
+   "text": "Upbeat. Sets small goals and celebrates real progress without exaggerating.",
+   "from": [
+    "settings-pieces"
+   ]
+  },
+  {
    "text": "Upper chamber of Congress with 100 members, two from each state serving six-year terms",
    "from": [
     "lessons"
@@ -15951,6 +17360,12 @@
    "text": "Use a different email",
    "from": [
     "sign-in"
+   ]
+  },
+  {
+   "text": "Use the key words from one of the accepted answers.",
+   "from": [
+    "tutor-steps-amio"
    ]
   },
   {
@@ -16002,6 +17417,12 @@
    ]
   },
   {
+   "text": "Video not available.",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
    "text": "View",
    "from": [
     "n400-guide"
@@ -16022,7 +17443,8 @@
   {
    "text": "Voice",
    "from": [
-    "practice"
+    "practice",
+    "settings-pieces"
    ]
   },
   {
@@ -16165,6 +17587,12 @@
    ]
   },
   {
+   "text": "Warm and patient",
+   "from": [
+    "settings-pieces"
+   ]
+  },
+  {
    "text": "Wars in the Middle East",
    "from": [
     "course-titles"
@@ -16251,6 +17679,12 @@
    ]
   },
   {
+   "text": "Watch",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
    "text": "Watch again",
    "from": [
     "lesson-player"
@@ -16260,6 +17694,12 @@
    "text": "We",
    "from": [
     "words"
+   ]
+  },
+  {
+   "text": "We can't check this one yet, so it isn't counted as right or wrong.",
+   "from": [
+    "tutor-steps-amio"
    ]
   },
   {
@@ -16273,6 +17713,12 @@
    "from": [
     "checkpoints",
     "practice"
+   ]
+  },
+  {
+   "text": "We can’t check this one yet.",
+   "from": [
+    "lesson-deck"
    ]
   },
   {
@@ -16315,6 +17761,24 @@
    "text": "We couldn’t find that code. Check it with your teacher.",
    "from": [
     "my-tutor"
+   ]
+  },
+  {
+   "text": "We couldn’t find this zip code in our list. Please enter your street address so we can find your representative.",
+   "from": [
+    "find-rep"
+   ]
+  },
+  {
+   "text": "We couldn’t find “{page}”.",
+   "from": [
+    "error-pages"
+   ]
+  },
+  {
+   "text": "We couldn’t save this. Please try again.",
+   "from": [
+    "find-rep"
    ]
   },
   {
@@ -16396,6 +17860,12 @@
    ]
   },
   {
+   "text": "We remember this day on Independence Day.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "We reply within 3-5 business days.",
    "from": [
     "talk-reply"
@@ -16405,6 +17875,12 @@
    "text": "We save only your four levels. Your answers and your voice are not saved.",
    "from": [
     "onboarding"
+   ]
+  },
+  {
+   "text": "We save only your scores and when to review. Your voice and your answers are not saved.",
+   "from": [
+    "learn-screens"
    ]
   },
   {
@@ -16423,6 +17899,7 @@
    "text": "We the People",
    "from": [
     "civics-questions",
+    "course-lessons",
     "course-titles"
    ]
   },
@@ -16473,6 +17950,12 @@
    "text": "Welcome.",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "Well done. You answered all {total} correctly. I’ll space them out a little more next time.",
+   "from": [
+    "learn-amio"
    ]
   },
   {
@@ -16584,6 +18067,18 @@
    ]
   },
   {
+   "text": "What are the first ten amendments called?",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "What are the first words of the Constitution?",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "What are the three branches of government?",
    "from": [
     "ask-screen"
@@ -16671,6 +18166,12 @@
    "text": "What did Susan B. Anthony do?",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "What did many colonists come to America for?",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -16773,7 +18274,8 @@
   {
    "text": "What founding document said the American colonies were free from Britain?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -16847,6 +18349,12 @@
    "text": "What is freedom of religion?",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "What is it called when each branch can check the others?",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -16926,13 +18434,15 @@
   {
    "text": "What is the economic system of the United States?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
    "text": "What is the form of government of the United States?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -16998,7 +18508,8 @@
   {
    "text": "What is the supreme law of the land?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -17087,10 +18598,17 @@
    ]
   },
   {
+   "text": "What the officer would accept",
+   "from": [
+    "tutor-steps"
+   ]
+  },
+  {
    "text": "What the question is asking",
    "from": [
     "n400-lessons",
-    "practice"
+    "practice",
+    "tutor-steps"
    ]
   },
   {
@@ -17323,6 +18841,18 @@
    ]
   },
   {
+   "text": "Where you are in each civics topic.",
+   "from": [
+    "lesson-status"
+   ]
+  },
+  {
+   "text": "Where you live",
+   "from": [
+    "find-rep"
+   ]
+  },
+  {
    "text": "Which branch is Congress?",
    "from": [
     "course-lessons"
@@ -17338,6 +18868,12 @@
    "text": "Which language do you speak best?",
    "from": [
     "onboarding"
+   ]
+  },
+  {
+   "text": "Which one is a document that influenced the Constitution?",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -17375,7 +18911,9 @@
   {
    "text": "Who Represents Me?",
    "from": [
-    "lesson-player"
+    "find-rep",
+    "lesson-player",
+    "tutor-steps-amio"
    ]
   },
   {
@@ -17530,6 +19068,12 @@
    ]
   },
   {
+   "text": "Who led the meeting that wrote the Constitution?",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Who lived here first?",
    "from": [
     "sentences"
@@ -17636,6 +19180,18 @@
    "text": "Who wrote the Declaration of Independence?",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "Whose rights does the Bill of Rights protect?",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Why are there three branches of government?",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -17972,6 +19528,12 @@
    ]
   },
   {
+   "text": "Write it in your own words…",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
    "text": "Write one of up to {n} sentences.",
    "from": [
     "interview-day"
@@ -17987,6 +19549,12 @@
    "text": "Write to the Pathways USA team. We can help with the app and with studying.",
    "from": [
     "talk"
+   ]
+  },
+  {
+   "text": "Write what you hear",
+   "from": [
+    "tutor-steps"
    ]
   },
   {
@@ -18008,7 +19576,8 @@
     "interview-tab",
     "onboarding",
     "practice",
-    "today-plan"
+    "today-plan",
+    "tutor-steps"
    ]
   },
   {
@@ -18083,6 +19652,12 @@
    "text": "You are here",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "You are not registered to use this app. Please contact the app’s team to ask for access.",
+   "from": [
+    "error-pages"
    ]
   },
   {
@@ -18194,6 +19769,12 @@
    ]
   },
   {
+   "text": "You have started every civics question. Now the best practice is review: I’ll bring each question back when it’s time.",
+   "from": [
+    "learn-amio"
+   ]
+  },
+  {
    "text": "You have the right to a lawyer and a fair trial under due process",
    "from": [
     "key-words"
@@ -18222,6 +19803,12 @@
    "text": "You learn what the questions mean. You never answer them here, and nothing about you is asked or saved.",
    "from": [
     "n400-lessons"
+   ]
+  },
+  {
+   "text": "You learned",
+   "from": [
+    "learn-screens"
    ]
   },
   {
@@ -18284,7 +19871,15 @@
   {
    "text": "You said:",
    "from": [
-    "n400-guide"
+    "learn-screens",
+    "n400-guide",
+    "tutor-steps"
+   ]
+  },
+  {
+   "text": "You said: “{answer}”",
+   "from": [
+    "lesson-deck"
    ]
   },
   {
@@ -18374,9 +19969,23 @@
    ]
   },
   {
+   "text": "Your address is used only for this lookup and is never saved.",
+   "from": [
+    "find-rep"
+   ]
+  },
+  {
+   "text": "Your address is used only for this search. We don’t save it.",
+   "from": [
+    "find-rep"
+   ]
+  },
+  {
    "text": "Your answer",
    "from": [
-    "practice"
+    "lesson-deck",
+    "practice",
+    "tutor-steps"
    ]
   },
   {
@@ -18401,6 +20010,12 @@
    "text": "Your browser doesn’t support speech recognition. Please use Chrome, Edge, or Safari.",
    "from": [
     "practice"
+   ]
+  },
+  {
+   "text": "Your browser has few voices. For the most natural voices, try Microsoft Edge or Google Chrome, or add voices in your phone’s speech settings.",
+   "from": [
+    "settings-pieces"
    ]
   },
   {
@@ -18533,6 +20148,18 @@
    ]
   },
   {
+   "text": "Your next review: {date}.",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
+   "text": "Your own words help you remember.",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
    "text": "Your path",
    "from": [
     "home"
@@ -18610,6 +20237,7 @@
   {
    "text": "Your results",
    "from": [
+    "learn-screens",
     "onboarding"
    ]
   },
@@ -18650,6 +20278,12 @@
    ]
   },
   {
+   "text": "Your state and district are saved. Your address was not.",
+   "from": [
+    "find-rep"
+   ]
+  },
+  {
    "text": "Your state’s senators today",
    "from": [
     "lesson-player"
@@ -18659,6 +20293,12 @@
    "text": "Your story stays yours",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "Your street address (for example, 123 Main St)",
+   "from": [
+    "find-rep"
    ]
   },
   {
@@ -18728,6 +20368,12 @@
    ]
   },
   {
+   "text": "Your zip code",
+   "from": [
+    "find-rep"
+   ]
+  },
+  {
    "text": "You’ll be able to answer:",
    "from": [
     "course"
@@ -18755,6 +20401,12 @@
    "text": "You’ve got it.",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Zip code",
+   "from": [
+    "find-rep"
    ]
   },
   {
@@ -20739,6 +22391,12 @@
    ]
   },
   {
+   "text": "{label} · {n} of {total}",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
    "text": "{m} min",
    "from": [
     "today"
@@ -20800,6 +22458,12 @@
    ]
   },
   {
+   "text": "{n} new questions",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
    "text": "{n} of 5 done",
    "from": [
     "home"
@@ -20852,6 +22516,12 @@
    ]
   },
   {
+   "text": "{n} of {total} questions right.",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
    "text": "{n} of {total} right",
    "from": [
     "practice"
@@ -20873,6 +22543,12 @@
    "text": "{n} questions across {s} sections",
    "from": [
     "interview-intro"
+   ]
+  },
+  {
+   "text": "{n} questions from the {version} civics test, in English, with the official answers.",
+   "from": [
+    "lesson-deck"
    ]
   },
   {
@@ -20942,9 +22618,27 @@
    ]
   },
   {
+   "text": "{n} to review",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
    "text": "{n}% match",
    "from": [
     "n400-guide"
+   ]
+  },
+  {
+   "text": "{place} does not have a governor",
+   "from": [
+    "find-rep"
+   ]
+  },
+  {
+   "text": "{place} has no U.S. senators",
+   "from": [
+    "find-rep"
    ]
   },
   {
@@ -21014,6 +22708,12 @@
    ]
   },
   {
+   "text": "{title} in the U.S. House (non-voting)",
+   "from": [
+    "find-rep"
+   ]
+  },
+  {
    "text": "{title}: {done} of {total} questions",
    "from": [
     "me"
@@ -21058,6 +22758,18 @@
   },
   {
    "text": "“Life, Liberty, and the pursuit of Happiness” are words from the Declaration of Independence.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "“Life, Liberty, and the pursuit of Happiness” are words from which document?",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "“Representative” means the leaders speak and act for the people who elected them.",
    "from": [
     "course-lessons"
    ]
