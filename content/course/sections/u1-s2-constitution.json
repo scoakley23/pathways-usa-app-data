@@ -83,10 +83,23 @@
               "say": "The U.S. Constitution is the supreme law of the land.",
               "picture": {
                 "drawing": "sharedPower"
+              },
+              "help": {
+                "simpler": "The Constitution is the most important law in the United States.",
+                "example": "“Supreme” means highest. The Constitution is the top rule that all other rules must follow.",
+                "why": "The test asks: What is the supreme law of the land? The answer is the Constitution."
               }
             },
             {
-              "say": "No other law can go against it."
+              "say": "No other law can go against it.",
+              "picture": {
+                "drawing": "sharedPower"
+              },
+              "help": {
+                "simpler": "If a law disagrees with the Constitution, the Constitution wins.",
+                "example": "A state cannot make a law that takes away a right the Constitution protects.",
+                "why": "This keeps every law in the country in line with the Constitution."
+              }
             },
             {
               "check": {
@@ -99,24 +112,40 @@
               "say": "The Constitution forms the government.",
               "picture": {
                 "drawing": "threeBranches"
+              },
+              "help": {
+                "simpler": "The Constitution sets up the government. It says what parts the government has.",
+                "example": "It creates three branches: Congress, the President and the courts.",
+                "why": "“Forms the government” is one answer to the test question about what the Constitution does."
               }
             },
             {
-              "say": "It says what each part of the government can do."
+              "say": "It says what each part of the government can do.",
+              "picture": {
+                "drawing": "threeBranches"
+              },
+              "help": {
+                "simpler": "The Constitution gives each part of the government its own jobs and limits.",
+                "example": "Congress makes laws. The President carries out laws. The courts explain laws.",
+                "why": "“Defines powers of government” is another answer to what the Constitution does."
+              }
             },
             {
-              "say": "It also protects the rights of the people."
+              "say": "It also protects the rights of the people.",
+              "help": {
+                "simpler": "The Constitution keeps people’s rights safe.",
+                "example": "It protects rights like freedom of speech and freedom of religion.",
+                "why": "“Protects the rights of the people” is another answer to what the Constitution does."
+              }
             },
             {
               "check": {
-                "kind": "pick",
-                "prompt": "What is the supreme law of the land?",
-                "choices": [
-                  "The Constitution",
-                  "The Declaration of Independence",
-                  "The Federalist Papers"
-                ],
-                "answer": 0
+                "kind": "tap",
+                "prompt": "Tap the supreme law of the land.",
+                "picture": {
+                  "drawing": "documentsToConstitution"
+                },
+                "answer": "constitution"
               }
             }
           ]
@@ -178,13 +207,32 @@
               "picture": {
                 "drawing": "powerFromPeople",
                 "focus": "people"
+              },
+              "help": {
+                "simpler": "The first three words of the Constitution are “We the People.”",
+                "example": "The words tell us who made the Constitution: the people of the United States, not a king.",
+                "why": "The test asks what “We the People” means."
               }
             },
             {
-              "say": "It means the people govern themselves."
+              "say": "It means the people govern themselves.",
+              "picture": {
+                "drawing": "powerFromPeople",
+                "focus": "people"
+              },
+              "help": {
+                "simpler": "The people are in charge of their own country.",
+                "example": "People vote for their leaders, and they can choose new leaders in the next election.",
+                "why": "This idea is at the heart of the Constitution."
+              }
             },
             {
-              "say": "This is called self-government."
+              "say": "This is called self-government.",
+              "help": {
+                "simpler": "“Self-government” means people rule themselves.",
+                "example": "When citizens vote for a mayor, a governor or a President, that is self-government.",
+                "why": "“Self-government” is one answer to what “We the People” means."
+              }
             },
             {
               "check": {
@@ -202,16 +250,29 @@
               "say": "The government gets its power from the people.",
               "picture": {
                 "drawing": "powerFromPeople"
+              },
+              "help": {
+                "simpler": "The government has power only because the people agree to give it.",
+                "example": "Leaders get their jobs because people vote for them.",
+                "why": "This shows that the people, not the leaders, are the source of power."
               }
             },
             {
-              "say": "This is called the consent of the governed."
+              "say": "This is called the consent of the governed.",
+              "help": {
+                "simpler": "“Consent” means agreement. “The governed” means the people. So: the people agree to be governed.",
+                "example": "When people vote in an election, they give their consent to the leaders they choose.",
+                "why": "“Consent of the governed” is another answer to what “We the People” means."
+              }
             },
             {
               "check": {
-                "kind": "tf",
-                "statement": "The government gets its power from the people.",
-                "answer": true
+                "kind": "tap",
+                "prompt": "Who gives the government its power? Tap them.",
+                "picture": {
+                  "drawing": "powerFromPeople"
+                },
+                "answer": "people"
               }
             }
           ]
@@ -270,10 +331,24 @@
               "picture": {
                 "drawing": "amendments",
                 "focus": "all"
+              },
+              "help": {
+                "simpler": "An amendment is a change or an addition to the Constitution.",
+                "example": "One amendment gave women the right to vote.",
+                "why": "The test asks how changes are made to the Constitution. The answer is amendments."
               }
             },
             {
-              "say": "The Constitution has 27 amendments."
+              "say": "The Constitution has 27 amendments.",
+              "picture": {
+                "drawing": "amendments",
+                "focus": "all"
+              },
+              "help": {
+                "simpler": "The Constitution has been changed 27 times.",
+                "example": "The first ten amendments, added in 1791, are the Bill of Rights.",
+                "why": "The test asks how many amendments the Constitution has. The answer is 27."
+              }
             },
             {
               "check": {
@@ -288,10 +363,20 @@
               }
             },
             {
-              "say": "Changing the Constitution is hard on purpose."
+              "say": "Changing the Constitution is hard on purpose.",
+              "help": {
+                "simpler": "It is not easy to change the Constitution. That was planned.",
+                "example": "Many ideas for amendments never pass. Only 27 have ever passed.",
+                "why": "Because it is hard to change, the most important rules stay the same over time."
+              }
             },
             {
-              "say": "Most of Congress and most of the states must agree."
+              "say": "Most of Congress and most of the states must agree.",
+              "help": {
+                "simpler": "Many people must agree: a large part of Congress and a large part of the states.",
+                "example": "Usually two-thirds of Congress votes for it. Then three-fourths of the states must agree.",
+                "why": "This way, one group alone cannot change the Constitution."
+              }
             },
             {
               "check": {
@@ -369,6 +454,11 @@
               "say": "The people who wrote the Constitution learned from older documents.",
               "picture": {
                 "drawing": "documentsToConstitution"
+              },
+              "help": {
+                "simpler": "The writers of the Constitution used ideas from documents written before.",
+                "example": "Like a cook who learns from older recipes, they kept the best ideas.",
+                "why": "The test asks you to name one document that influenced the Constitution."
               }
             },
             {
@@ -376,10 +466,23 @@
               "picture": {
                 "drawing": "documentsToConstitution",
                 "focus": "constitution"
+              },
+              "help": {
+                "simpler": "Three of these older documents are the Declaration, the Articles of Confederation and the Federalist Papers.",
+                "example": "The Articles of Confederation were the country’s first plan of government, before the Constitution.",
+                "why": "Any one of these is a correct answer to the test question. You only need to name one."
               }
             },
             {
-              "say": "George Washington led the meeting that wrote the Constitution in 1787."
+              "say": "George Washington led the meeting that wrote the Constitution in 1787.",
+              "picture": {
+                "photo": "constitutional-convention.jpg"
+              },
+              "help": {
+                "simpler": "In 1787, leaders met in Philadelphia to write the Constitution. George Washington led the meeting.",
+                "example": "This meeting is called the Constitutional Convention.",
+                "why": "George Washington later became the first President. He is in other test questions too."
+              }
             },
             {
               "check": {
@@ -394,10 +497,20 @@
               }
             },
             {
-              "say": "The Declaration and the Constitution share big ideas."
+              "say": "The Declaration and the Constitution share big ideas.",
+              "help": {
+                "simpler": "Both documents are built on the same important ideas.",
+                "example": "One idea, equality, means every person should be treated the same under the law.",
+                "why": "The test asks you to name two of these ideas."
+              }
             },
             {
-              "say": "They are equality, liberty, natural rights, limited government and self-government."
+              "say": "They are equality, liberty, natural rights, limited government and self-government.",
+              "help": {
+                "simpler": "Equality, liberty, natural rights, limited government and self-government are the big ideas.",
+                "example": "Limited government means the government has limits. It cannot do whatever it wants.",
+                "why": "Name any two of these on the test, for example “liberty” and “equality.”"
+              }
             },
             {
               "check": {
@@ -411,10 +524,20 @@
               "picture": {
                 "drawing": "documentsToConstitution",
                 "focus": "declaration"
+              },
+              "help": {
+                "simpler": "If the officer asks for one document, you can say “the Declaration of Independence.”",
+                "example": "Officer: “Name one document that influenced the Constitution.” You: “The Declaration of Independence.”",
+                "why": "You already know this document from other lessons, so it is easy to remember."
               }
             },
             {
-              "say": "Tip: if asked for two important ideas, two short words are enough, like “liberty” and “equality.”"
+              "say": "Tip: if asked for two important ideas, two short words are enough, like “liberty” and “equality.”",
+              "help": {
+                "simpler": "For two important ideas, you can just say “liberty and equality.”",
+                "example": "Officer: “Name two important ideas from the Declaration and the Constitution.” You: “Liberty and equality.”",
+                "why": "Short answers are fine on the test, as long as they are correct."
+              }
             },
             {
               "check": {

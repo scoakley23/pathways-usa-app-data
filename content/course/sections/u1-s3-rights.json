@@ -80,10 +80,20 @@
           "storyStatus": "draft",
           "story": [
             {
-              "say": "The Constitution was written in 1787."
+              "say": "The Constitution was written in 1787.",
+              "help": {
+                "simpler": "The Constitution was written in the year 1787.",
+                "example": "That was four years after the war with Britain ended.",
+                "why": "Knowing this date helps you understand why the Bill of Rights came later."
+              }
             },
             {
-              "say": "Many Americans wanted it to say clearly which rights the government can never take away."
+              "say": "Many Americans wanted it to say clearly which rights the government can never take away.",
+              "help": {
+                "simpler": "Many people wanted the Constitution to list the rights the government must always respect.",
+                "example": "They wanted it to say clearly that people can speak freely and choose their own religion.",
+                "why": "This is why the Bill of Rights was added."
+              }
             },
             {
               "check": {
@@ -97,31 +107,49 @@
               "picture": {
                 "drawing": "amendments",
                 "focus": "first10"
+              },
+              "help": {
+                "simpler": "In 1791, ten changes were added to the Constitution.",
+                "example": "These ten amendments were added together, four years after the Constitution was written.",
+                "why": "These first ten amendments have a special name: the Bill of Rights."
               }
             },
             {
               "say": "These first ten amendments are called the Bill of Rights.",
               "picture": {
                 "photo": "bill-of-rights.jpg"
+              },
+              "help": {
+                "simpler": "The first ten amendments are called the Bill of Rights.",
+                "example": "Today you can see the Bill of Rights at the National Archives in Washington, D.C.",
+                "why": "The Bill of Rights is one of the most important parts of the Constitution."
               }
             },
             {
               "check": {
-                "kind": "pick",
-                "prompt": "What are the first ten amendments called?",
-                "choices": [
-                  "The Bill of Rights",
-                  "The Declaration of Independence",
-                  "The Federalist Papers"
-                ],
-                "answer": 0
+                "kind": "tap",
+                "prompt": "Tap the Bill of Rights.",
+                "picture": {
+                  "drawing": "amendments"
+                },
+                "answer": "first10"
               }
             },
             {
-              "say": "It protects the basic rights of Americans and of people living in the United States."
+              "say": "It protects the basic rights of Americans and of people living in the United States.",
+              "help": {
+                "simpler": "The Bill of Rights keeps the basic rights of everyone in the country safe.",
+                "example": "It protects people who live in the United States, not only citizens.",
+                "why": "The test asks what the Bill of Rights protects: the basic rights of Americans and of people living here."
+              }
             },
             {
-              "say": "Freedom of speech and freedom of religion are two of these rights."
+              "say": "Freedom of speech and freedom of religion are two of these rights.",
+              "help": {
+                "simpler": "You can say what you think, and you can practice any religion, or no religion.",
+                "example": "You can disagree with the government in public without being punished for it.",
+                "why": "These two rights are well-known examples from the First Amendment."
+              }
             },
             {
               "check": {
@@ -201,10 +229,20 @@
           "storyStatus": "draft",
           "story": [
             {
-              "say": "The rule of law means everyone must follow the law."
+              "say": "The rule of law means everyone must follow the law.",
+              "help": {
+                "simpler": "Everyone has to follow the law.",
+                "example": "Drivers must stop at a red light, whether they are rich or poor, famous or not.",
+                "why": "The test asks: What is the rule of law? “Everyone must follow the law” is one answer."
+              }
             },
             {
-              "say": "Leaders and the government must obey the law too. No one is above the law."
+              "say": "Leaders and the government must obey the law too. No one is above the law.",
+              "help": {
+                "simpler": "Even leaders and the government must follow the law. No one is special.",
+                "example": "If a leader breaks the law, they can be taken to court too.",
+                "why": "“Leaders must obey the law” and “No one is above the law” are also correct answers."
+              }
             },
             {
               "check": {
@@ -214,15 +252,30 @@
               }
             },
             {
-              "say": "For example, the President must pay taxes like everyone else."
+              "say": "For example, the President must pay taxes like everyone else.",
+              "help": {
+                "simpler": "The President pays taxes, just like you.",
+                "example": "The President follows the same tax laws as everyone else.",
+                "why": "This example shows that the rule of law applies to everyone, even the highest leader."
+              }
             },
             {
-              "say": "A mayor who steals can be arrested and go to court like anyone else."
+              "say": "A mayor who steals can be arrested and go to court like anyone else.",
+              "help": {
+                "simpler": "If a mayor steals, police can arrest the mayor, like anyone else.",
+                "example": "A judge decides the case, using the same laws used for everyone.",
+                "why": "This example shows that leaders are not above the law."
+              }
             },
             {
               "say": "The government has three branches so one part does not become too powerful.",
               "picture": {
                 "drawing": "threeBranches"
+              },
+              "help": {
+                "simpler": "The government is split into three parts so no one part has all the power.",
+                "example": "Congress makes laws, the President carries out laws, and the courts explain laws.",
+                "why": "The test asks why there are three branches. “So one part does not become too powerful” is one answer."
               }
             },
             {
@@ -241,12 +294,32 @@
               "say": "Each branch can check the others. This is called checks and balances.",
               "picture": {
                 "drawing": "checksBalances"
+              },
+              "help": {
+                "simpler": "Each part of the government can stop or limit the other parts.",
+                "example": "It is like a team where each player watches the others to keep the game fair.",
+                "why": "“Checks and balances” is another answer to why there are three branches."
               }
             },
             {
               "say": "Congress writes laws, the President can veto them, and the courts can decide a law goes against the Constitution.",
               "picture": {
                 "drawing": "checksBalances"
+              },
+              "help": {
+                "simpler": "Each branch has a way to stop the others from doing too much.",
+                "example": "If Congress passes a law the President does not like, the President can say no. That is a veto.",
+                "why": "These examples show checks and balances at work."
+              }
+            },
+            {
+              "check": {
+                "kind": "tap",
+                "prompt": "Tap the branch that can veto a law.",
+                "picture": {
+                  "drawing": "checksBalances"
+                },
+                "answer": "president"
               }
             },
             {
@@ -330,10 +403,20 @@
               "say": "The United States is a republic: the people vote for leaders, and those leaders make laws for them.",
               "picture": {
                 "drawing": "powerFromPeople"
+              },
+              "help": {
+                "simpler": "In the United States, people choose leaders, and the leaders make the laws.",
+                "example": "You vote for a member of Congress. That person votes on laws for you.",
+                "why": "The test asks about the form of government. “Republic” is one answer."
               }
             },
             {
-              "say": "This is also called a representative democracy."
+              "say": "This is also called a representative democracy.",
+              "help": {
+                "simpler": "This is another name for the same idea: people choose leaders to represent them.",
+                "example": "A representative speaks for the people in their area.",
+                "why": "“Representative democracy” is another correct answer."
+              }
             },
             {
               "check": {
@@ -352,29 +435,52 @@
               "picture": {
                 "drawing": "powerFromPeople",
                 "focus": "leaders"
+              },
+              "help": {
+                "simpler": "Leaders work for the people who voted for them.",
+                "example": "If many people in your area want a new law, your representative can speak for them in Congress.",
+                "why": "This explains what the word “representative” means."
+              }
+            },
+            {
+              "check": {
+                "kind": "tap",
+                "prompt": "In a republic, who makes the laws? Tap them.",
+                "picture": {
+                  "drawing": "powerFromPeople"
+                },
+                "answer": "leaders"
               }
             },
             {
               "say": "It is also a constitution-based federal republic.",
               "picture": {
                 "drawing": "sharedPower"
+              },
+              "help": {
+                "simpler": "This is a long name. It means the Constitution is the top law, and power is shared.",
+                "example": "Constitution-based: built on the Constitution. Federal: power is shared with the states.",
+                "why": "“Constitution-based federal republic” is the third correct answer about the form of government."
               }
             },
             {
-              "say": "The Constitution is the highest law, and power is shared between the national government and the states."
-            },
-            {
-              "check": {
-                "kind": "tf",
-                "statement": "Power is shared between the national government and the states.",
-                "answer": true
+              "say": "The Constitution is the highest law, and power is shared between the national government and the states.",
+              "picture": {
+                "drawing": "sharedPower"
+              },
+              "help": {
+                "simpler": "The national government and the states each have their own powers.",
+                "example": "The national government prints money. States give out driver’s licenses.",
+                "why": "Sharing power keeps any one government from becoming too strong."
               }
             },
             {
-              "say": "The economic system of the United States is capitalism, also called a free market economy."
-            },
-            {
-              "say": "People and businesses can own things and decide what to make, buy and sell."
+              "say": "The economic system of the United States is capitalism, also called a free market economy.",
+              "help": {
+                "simpler": "The U.S. economy is capitalism. Another name is a free market economy.",
+                "example": "Most businesses are owned by people, not by the government.",
+                "why": "The test asks about the economic system. “Capitalism” and “free market economy” are both correct."
+              }
             },
             {
               "check": {
@@ -389,10 +495,31 @@
               }
             },
             {
-              "say": "Think of a supermarket: stores choose what to sell and what price to ask, and you choose what to buy."
+              "say": "People and businesses can own things and decide what to make, buy and sell.",
+              "help": {
+                "simpler": "People can own homes and businesses, and choose what to make, buy and sell.",
+                "example": "Someone can open a restaurant and decide what food to sell.",
+                "why": "Owning things and choosing freely are at the heart of a free market."
+              }
             },
             {
-              "say": "Most of the time, the government does not decide this for you. That is a free market."
+              "say": "Think of a supermarket: stores choose what to sell and what price to ask, and you choose what to buy.",
+              "picture": {
+                "photo": "grocery-store.jpg"
+              },
+              "help": {
+                "simpler": "Stores choose what they sell and the price. You choose what to buy.",
+                "example": "If one store asks too much for apples, you can buy them at another store.",
+                "why": "This everyday example shows how a free market works."
+              }
+            },
+            {
+              "say": "Most of the time, the government does not decide this for you. That is a free market.",
+              "help": {
+                "simpler": "Most of the time, buyers and sellers decide, not the government.",
+                "example": "The government still makes some rules, like food safety rules, but it does not run the stores.",
+                "why": "This is what a free market economy means, one answer on the test."
+              }
             }
           ]
         },

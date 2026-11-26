@@ -165,7 +165,7 @@ export default function LessonPlayer() {
     header = { title: t('step_of', { n: stepIndex + 1, name: t(`step_${step}`) }), subtitle: lessonTitle, step: stepIndex + 1 };
     const k = `${lesson.id}-${step}`;
     const common = { t, onDone: finishStep };
-    if (step === 'listen') body = <ListenStep key={k} {...common} lesson={lesson} language={language} showDrafts={showDrafts} />;
+    if (step === 'listen') body = <ListenStep key={k} {...common} lesson={lesson} language={language} showDrafts={showDrafts} userEmail={user?.email || null} />;
     if (step === 'teachBack') body = <QuestionStep key={k} {...common} kind="teach" question={teachQ} hint={hint} language={language} savesReview={coursePlay.saves} onMiss={missed} />;
     if (step === 'readIt') body = <ReadItStep key={k} {...common} lesson={lesson} />;
     if (step === 'writeIt') body = <WriteItStep key={k} {...common} lesson={lesson} level={writeLevel} onWritten={written} />;

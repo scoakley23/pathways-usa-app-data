@@ -26,8 +26,41 @@ function Frame({ viewBox, title, children }) {
 // other parts fade.
 const dim = (focus, key) => (focus && focus !== key ? { opacity: 0.3 } : undefined);
 
+// The parts a learner can tap in a tap-the-picture story check, with their
+// English names (said in the feedback and to screen readers).
+export const DRAWING_PARTS = {
+  threeBranches: { legislative: 'The legislative branch (Congress)', executive: 'The executive branch (the President)', judicial: 'The judicial branch (the courts)' },
+  amendments: { first10: 'Amendments 1 to 10: the Bill of Rights', later: 'Amendments 11 to 27' },
+  powerFromPeople: { people: 'We the People', leaders: 'The leaders' },
+  checksBalances: { congress: 'Congress', president: 'The President', courts: 'The courts' },
+  documentsToConstitution: { declaration: 'The Declaration of Independence', articles: 'The Articles of Confederation', federalist: 'The Federalist Papers', constitution: 'The Constitution' },
+  sharedPower: { national: 'The national government', states: 'The states' },
+};
+
+// One part of a drawing: it fades when another part is lit (`focus`). In a
+// tap-the-picture check (`pick` = { onPick, disabled }) it is a button.
+function Part({ id, focus, pick, drawing, children }) {
+  const style = dim(focus, id);
+  if (!pick) return <g style={style}>{children}</g>;
+  const choose = () => { if (!pick.disabled) pick.onPick(id); };
+  return (
+    <g
+      role="button"
+      tabIndex={pick.disabled ? -1 : 0}
+      aria-label={DRAWING_PARTS[drawing]?.[id] || id}
+      aria-disabled={pick.disabled || undefined}
+      onClick={choose}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); choose(); } }}
+      style={style}
+      className={`${pick.disabled ? '' : 'cursor-pointer'} focus:outline-none focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-denim`}
+    >
+      {children}
+    </g>
+  );
+}
+
 // The three branches and what each one does.
-function ThreeBranches({ focus } = {}) {
+function ThreeBranches({ focus, pick } = {}) {
   const cols = [
     { x: 10, key: 'legislative', name: 'Legislative', who: 'Congress', what: 'makes laws' },
     { x: 125, key: 'executive', name: 'Executive', who: 'President', what: 'carries out laws' },
@@ -38,13 +71,13 @@ function ThreeBranches({ focus } = {}) {
       <Box x={10} y={8} w={330} h={36} className="fill-navy stroke-navy" />
       <T x={175} y={31} className="fill-white">Federal government</T>
       {cols.map((c) => (
-        <g key={c.name} style={dim(focus, c.key)}>
+        <Part key={c.name} id={c.key} focus={focus} pick={pick} drawing="threeBranches">
           <line x1={c.x + 50} y1={44} x2={c.x + 50} y2={62} className="stroke-mid" strokeWidth="3" />
           <Box x={c.x} y={62} w={100} h={118} className="fill-white stroke-denim" />
           <T x={c.x + 50} y={86} className="fill-denim" size={13}>{c.name}</T>
           <T x={c.x + 50} y={118} size={16} weight={700}>{c.who}</T>
           <T x={c.x + 50} y={150} className="fill-muted" size={12} weight={400}>{c.what}</T>
-        </g>
+        </Part>
       ))}
     </Frame>
   );
@@ -431,87 +464,90 @@ const arrowPath = (x1, y1, x2, y2) => {
   const h = (t) => `${(x2 - 8 * Math.cos(a + t)).toFixed(1)} ${(y2 - 8 * Math.sin(a + t)).toFixed(1)}`;
   return `M${x1} ${y1} L${x2} ${y2} M${h(0.6)} L${x2} ${y2} L${h(-0.6)}`;
 };
-const Arrow = ({ d }) => <path d={d} className="stroke-mid" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />;
+const Arrow = ({ d }) => <path d={d} className="stroke-denim" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />;
 
 // The Constitution and its 27 amendments; the first 10 are the Bill of Rights.
-function Amendments({ focus } = {}) {
+function Amendments({ focus, pick } = {}) {
   const first = Array.from({ length: 10 }, (_, i) => i + 1);
   const later = Array.from({ length: 17 }, (_, i) => i + 11);
   const tile = (n, x, y, on) => (
     <g key={n}>
-      <rect x={x} y={y} width={20} height={22} rx={4} className={on ? 'fill-navy stroke-navy' : 'fill-white stroke-denim'} strokeWidth="2" />
-      <T x={x + 10} y={y + 16} size={12} weight={700} className={on ? 'fill-white' : 'fill-navy'}>{n}</T>
+      <rect x={x} y={y} width={20} height={22} rx={4} className={on ? 'fill-gold stroke-navy' : 'fill-sky-soft stroke-denim'} strokeWidth="2" />
+      <T x={x + 10} y={y + 16} size={12} weight={700}>{n}</T>
     </g>
   );
+  const lit = focus === 'all' ? undefined : focus;
   return (
     <Frame viewBox="0 0 350 172" title="The Constitution has 27 amendments. The first 10 amendments, added in 1791, are the Bill of Rights.">
       <Box x={4} y={8} w={108} h={156} className="fill-navy stroke-navy" />
       <T x={58} y={78} size={14} weight={700} className="fill-white">Constitution</T>
       <T x={58} y={100} size={13} weight={400} className="fill-white">1787</T>
       <T x={235} y={22} size={15} weight={700}>27 amendments</T>
-      <g>
-        <rect x={120} y={32} width={228} height={66} rx={8} className="fill-tint" />
+      <Part id="first10" focus={lit} pick={pick} drawing="amendments">
+        <rect x={120} y={32} width={228} height={66} rx={8} className="fill-gold-soft" />
         {first.map((n, i) => tile(n, 124 + i * 22, 38, true))}
         <T x={234} y={88} size={12} weight={700}>Bill of Rights · 1791</T>
-      </g>
-      <g style={focus === 'first10' ? { opacity: 0.3 } : undefined}>
+      </Part>
+      <Part id="later" focus={lit} pick={pick} drawing="amendments">
+        <rect x={120} y={104} width={228} height={62} rx={8} className="fill-white" />
         {later.slice(0, 9).map((n, i) => tile(n, 124 + i * 22, 110, false))}
         {later.slice(9).map((n, i) => tile(n, 124 + i * 22, 138, false))}
-      </g>
+      </Part>
     </Frame>
   );
 }
 
 // We the People: the people vote for leaders, and the leaders make laws for
 // the people. The government's power comes from the people.
-function PowerFromPeople({ focus } = {}) {
+function PowerFromPeople({ focus, pick } = {}) {
   return (
     <Frame viewBox="0 0 350 200" title="We the People: the people vote for leaders, and the leaders make laws for the people. The government gets its power from the people.">
-      <g style={dim(focus, 'people')}>
-        <Box x={4} y={56} w={140} h={88} className="fill-white stroke-denim" />
+      <Part id="people" focus={focus} pick={pick} drawing="powerFromPeople">
+        <Box x={4} y={56} w={140} h={88} className="fill-sky-soft stroke-denim" />
         {[34, 56, 78, 100, 122].map((cx) => <Person key={cx} cx={cx} cy={76} />)}
         <T x={74} y={124} size={14} weight={700}>We the People</T>
         <Arrow d="M74 50 C 74 16, 276 16, 276 46 m-6 -8 l6 8 l6 -8" />
         <T x={175} y={22} size={13} weight={600} className="fill-muted">vote for</T>
-      </g>
-      <g style={dim(focus, 'leaders')}>
+      </Part>
+      <Part id="leaders" focus={focus} pick={pick} drawing="powerFromPeople">
         <Box x={206} y={56} w={140} h={88} className="fill-navy stroke-navy" />
-        <T x={276} y={96} size={14} weight={700} className="fill-white">Leaders</T>
-        <T x={276} y={118} size={12} weight={400} className="fill-white">speak for the people</T>
+        <circle cx={276} cy={80} r={7} className="fill-gold" />
+        <T x={276} y={108} size={14} weight={700} className="fill-white">Leaders</T>
+        <T x={276} y={128} size={12} weight={400} className="fill-white">speak for the people</T>
         <Arrow d="M276 150 C 276 186, 74 186, 74 154 m-6 8 l6 -8 l6 8" />
         <T x={175} y={192} size={13} weight={600} className="fill-muted">make laws for</T>
-      </g>
+      </Part>
     </Frame>
   );
 }
 
 // Checks and balances: each branch can check the others.
-function ChecksBalances({ focus } = {}) {
+function ChecksBalances({ focus, pick } = {}) {
   const boxes = [
-    { key: 'congress', x: 4, y: 8, w: 160, who: 'Congress', what: ['writes laws'] },
-    { key: 'president', x: 186, y: 8, w: 160, who: 'President', what: ['can veto a law'] },
-    { key: 'courts', x: 55, y: 152, w: 240, who: 'Courts', what: ['can decide a law goes', 'against the Constitution'] },
+    { key: 'congress', x: 4, y: 8, w: 160, fill: 'fill-sky-soft', who: 'Congress', what: ['writes laws'] },
+    { key: 'president', x: 186, y: 8, w: 160, fill: 'fill-gold-soft', who: 'President', what: ['can veto a law'] },
+    { key: 'courts', x: 55, y: 152, w: 240, fill: 'fill-denim-soft', who: 'Courts', what: ['can decide a law goes', 'against the Constitution'] },
   ];
   return (
     <Frame viewBox="0 0 350 232" title="Checks and balances: Congress writes laws, the President can veto a law, and the courts can decide a law goes against the Constitution. Each branch checks the others.">
-      <path d="M84 74 L175 152 M266 74 L175 152 M164 41 L186 41" className="stroke-mid" strokeWidth="3" fill="none" />
-      <rect x={95} y={100} width={160} height={28} rx={8} className="fill-tint" />
+      <path d="M84 74 L175 152 M266 74 L175 152 M164 41 L186 41" className="stroke-denim" strokeWidth="3" fill="none" />
+      <rect x={95} y={100} width={160} height={28} rx={8} className="fill-gold" />
       <T x={175} y={119} size={12} weight={700}>Each checks the others</T>
       {boxes.map((b) => (
-        <g key={b.key} style={dim(focus, b.key)}>
-          <Box x={b.x} y={b.y} w={b.w} h={b.what.length > 1 ? 74 : 66} className="fill-white stroke-denim" />
+        <Part key={b.key} id={b.key} focus={focus} pick={pick} drawing="checksBalances">
+          <Box x={b.x} y={b.y} w={b.w} h={b.what.length > 1 ? 74 : 66} className={`${b.fill} stroke-denim`} />
           <T x={b.x + b.w / 2} y={b.y + 26} size={15} weight={700}>{b.who}</T>
           {b.what.map((line, i) => (
-            <T key={line} x={b.x + b.w / 2} y={b.y + 48 + i * 17} size={12} weight={400} className="fill-muted">{line}</T>
+            <T key={line} x={b.x + b.w / 2} y={b.y + 48 + i * 17} size={12} weight={400}>{line}</T>
           ))}
-        </g>
+        </Part>
       ))}
     </Frame>
   );
 }
 
 // Older documents the writers of the Constitution learned from.
-function DocumentsToConstitution({ focus } = {}) {
+function DocumentsToConstitution({ focus, pick } = {}) {
   const docs = [
     { key: 'declaration', x: 4, toX: 120, lines: ['Declaration of', 'Independence'] },
     { key: 'articles', x: 120, toX: 175, lines: ['Articles of', 'Confederation'] },
@@ -520,42 +556,43 @@ function DocumentsToConstitution({ focus } = {}) {
   return (
     <Frame viewBox="0 0 350 220" title="The writers of the Constitution learned from older documents: the Declaration of Independence, the Articles of Confederation and the Federalist Papers. The Constitution was written in 1787.">
       {docs.map((d) => (
-        <g key={d.key} style={dim(focus, d.key)}>
-          <Box x={d.x} y={8} w={110} h={72} className="fill-white stroke-denim" />
+        <Part key={d.key} id={d.key} focus={focus} pick={pick} drawing="documentsToConstitution">
+          <Box x={d.x} y={8} w={110} h={72} className="fill-gold-soft stroke-denim" />
           <T x={d.x + 55} y={40} size={13} weight={700}>{d.lines[0]}</T>
           <T x={d.x + 55} y={60} size={13} weight={700}>{d.lines[1]}</T>
           <Arrow d={arrowPath(d.x + 55, 86, d.toX, 134)} />
-        </g>
+        </Part>
       ))}
-      <g style={dim(focus, 'constitution')}>
+      <Part id="constitution" focus={focus} pick={pick} drawing="documentsToConstitution">
         <Box x={75} y={140} w={200} h={72} className="fill-navy stroke-navy" />
         <T x={175} y={172} size={15} weight={700} className="fill-white">Constitution</T>
         <T x={175} y={194} size={13} weight={400} className="fill-white">1787</T>
-      </g>
+      </Part>
     </Frame>
   );
 }
 
 // A federal republic: the Constitution is the highest law, and power is
 // shared between the national government and the states.
-function SharedPower({ focus } = {}) {
+function SharedPower({ focus, pick } = {}) {
   const sides = [
-    { key: 'national', x: 4, lines: ['National', 'government'] },
-    { key: 'states', x: 186, lines: ['The', 'states'] },
+    { key: 'national', x: 4, fill: 'fill-sky-soft', lines: ['National', 'government'] },
+    { key: 'states', x: 186, fill: 'fill-gold-soft', lines: ['The', 'states'] },
   ];
   return (
     <Frame viewBox="0 0 350 200" title="The Constitution is the highest law. Power is shared between the national government and the states.">
       <Box x={75} y={8} w={200} h={56} className="fill-navy stroke-navy" />
       <T x={175} y={32} size={15} weight={700} className="fill-white">Constitution</T>
       <T x={175} y={52} size={12} weight={400} className="fill-white">the highest law</T>
-      <path d="M130 64 L84 110 M220 64 L266 110" className="stroke-mid" strokeWidth="3" fill="none" />
-      <T x={175} y={98} size={13} weight={600} className="fill-muted">power is shared</T>
+      <path d="M130 64 L84 110 M220 64 L266 110" className="stroke-denim" strokeWidth="3" fill="none" />
+      <rect x={113} y={80} width={124} height={26} rx={8} className="fill-gold" />
+      <T x={175} y={98} size={12} weight={700}>power is shared</T>
       {sides.map((s) => (
-        <g key={s.key} style={dim(focus, s.key)}>
-          <Box x={s.x} y={110} w={160} h={82} className="fill-white stroke-denim" />
-          <T x={s.x + 80} y={146} size={15} weight={700}>{s.lines[0]}</T>
-          <T x={s.x + 80} y={168} size={15} weight={700}>{s.lines[1]}</T>
-        </g>
+        <Part key={s.key} id={s.key} focus={focus} pick={pick} drawing="sharedPower">
+          <Box x={s.x} y={114} w={160} h={78} className={`${s.fill} stroke-denim`} />
+          <T x={s.x + 80} y={148} size={15} weight={700}>{s.lines[0]}</T>
+          <T x={s.x + 80} y={170} size={15} weight={700}>{s.lines[1]}</T>
+        </Part>
       ))}
     </Frame>
   );
@@ -591,7 +628,7 @@ export const DRAWING_FOCUS = {
   seatsByPopulation: ['senators', 'house'],
   stateDistricts: ['state', 'district'],
   greatCompromise: ['big', 'small', 'both'],
-  amendments: ['first10', 'all'],
+  amendments: ['first10', 'later', 'all'],
   powerFromPeople: ['people', 'leaders'],
   checksBalances: ['congress', 'president', 'courts'],
   documentsToConstitution: ['declaration', 'articles', 'federalist', 'constitution'],

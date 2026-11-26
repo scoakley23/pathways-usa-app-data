@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { UNITS } from './course';
-import { MAX_SAY, storyFor, storyPicture, storyProblems, storyTexts } from './story';
-import { DRAWING_FOCUS } from '@/components/course/drawings';
+import { HELP_KINDS, MAX_SAY, storyFor, storyPicture, storyProblems, storyTexts, wordsInLine } from './story';
+import { DRAWING_FOCUS, DRAWING_PARTS } from '@/components/course/drawings';
 import officeholders from '../data/officeholders.json';
 
 // Every name in the official list (national and every state/district).
@@ -20,7 +20,7 @@ const congress = UNITS.flatMap((u) => u.sections).find((s) => s.id === 'u2-s2');
 
 describe('stories (Listen as a short video)', () => {
   it('have no problems: short lines, real pictures, a check every few scenes, no officeholder names', () => {
-    expect(storyProblems(UNITS, { focusFor: DRAWING_FOCUS, officeholderNames: allNames(officeholders) })).toEqual([]);
+    expect(storyProblems(UNITS, { focusFor: DRAWING_FOCUS, tapParts: DRAWING_PARTS, officeholderNames: allNames(officeholders) })).toEqual([]);
   });
 
   it('the Congress trial: every lesson has a reviewed story', () => {
@@ -36,6 +36,59 @@ describe('stories (Listen as a short video)', () => {
     expect(story('u2-s2-l6')[0].picture).toEqual({ drawing: 'stateDistricts', focus: 'state' });
     expect(story('u2-s2-l7').some((x) => x.picture?.focus === 'district')).toBe(true);
     expect(story('u2-s2-l8').some((x) => x.picture?.drawing === 'greatCompromise')).toBe(true);
+  });
+
+  it('Unit 1: draft stories, help for every scene, and tap-the-picture checks', () => {
+    const lessons = UNITS.find((u) => u.id === 'u1').sections.flatMap((sec) => sec.lessons);
+    expect(lessons).toHaveLength(9);
+    let taps = 0;
+    for (const l of lessons) {
+      const story = l.steps.listen.story;
+      expect(l.steps.listen.storyStatus, l.id).toBe('draft');
+      for (const item of story.filter((x) => x.say)) {
+        for (const k of HELP_KINDS) expect(item.help?.[k], `${l.id}: ${item.say}`).toBeTruthy();
+      }
+      if (story.some((x) => x.check?.kind === 'tap')) taps++;
+    }
+    expect(taps).toBeGreaterThanOrEqual(6);
+  });
+
+  it('help lines and tap checks go into the translation sources', () => {
+    const texts = storyTexts([
+      { say: 'Line', help: { simpler: 'A', example: 'B', why: 'C' } },
+      { check: { kind: 'tap', prompt: 'Tap it.', picture: { drawing: 'checksBalances' }, answer: 'president' } },
+    ]);
+    expect(texts).toEqual(['Line', 'A', 'B', 'C', 'Tap it.']);
+  });
+
+  it('finds the lesson\'s new words in a line, with simple plurals', () => {
+    const words = [{ word: 'colony' }, { word: 'amendment' }, { word: 'Bill of Rights' }, { word: 'self-government' }];
+    expect(wordsInLine('Long ago, the American colonies were ruled by Britain.', words).map((w) => w.word)).toEqual(['colony']);
+    expect(wordsInLine('The Constitution has 27 amendments.', words).map((w) => w.word)).toEqual(['amendment']);
+    expect(wordsInLine('These are called the Bill of Rights.', words).map((w) => w.word)).toEqual(['Bill of Rights']);
+    expect(wordsInLine('This is called self-government.', words).map((w) => w.word)).toEqual(['self-government']);
+    expect(wordsInLine('Nothing here.', words)).toEqual([]);
+  });
+
+  it('catches a bad tap check and bad help', () => {
+    const bad = [{ sections: [{ lessons: [{ id: 'x', steps: { listen: { storyStatus: 'draft', story: [
+      { say: 'One', help: { simpler: 'a'.repeat(MAX_SAY + 1), joke: 'no' } },
+      { check: { kind: 'tap', prompt: 'Tap', picture: { drawing: 'checksBalances' }, answer: 'moon' } },
+      { say: 'Two' },
+      { say: 'Three' },
+      { check: { kind: 'tap', prompt: 'Tap', picture: { drawing: 'electorsMap' }, answer: 'x' } },
+    ] } } }] }] }];
+    const problems = storyProblems(bad, { focusFor: DRAWING_FOCUS, tapParts: DRAWING_PARTS });
+    expect(problems.some((p) => p.includes('help.simpler is too long'))).toBe(true);
+    expect(problems.some((p) => p.includes('unknown help "joke"'))).toBe(true);
+    expect(problems.some((p) => p.includes('no part "moon" to tap'))).toBe(true);
+    expect(problems.some((p) => p.includes('needs a drawing with parts to tap'))).toBe(true);
+  });
+
+  it('every tappable part is a real part of its drawing', () => {
+    for (const [drawing, parts] of Object.entries(DRAWING_PARTS)) {
+      for (const part of Object.keys(parts)) expect(DRAWING_FOCUS[drawing], drawing).toContain(part);
+    }
   });
 
   it('a draft story shows to admins only; learners keep the facts', () => {
