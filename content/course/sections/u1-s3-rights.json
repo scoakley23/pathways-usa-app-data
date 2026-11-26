@@ -39,6 +39,13 @@
       "title": "Speak it!"
     },
     {
+      "id": "u1-s3-n400-p8-1",
+      "type": "n400",
+      "title": "N-400 card: Trips outside the U.S.",
+      "section": "time-outside-us",
+      "card": 1
+    },
+    {
       "id": "u1-n400",
       "type": "n400",
       "title": "N-400: Time outside the U.S.",
@@ -75,8 +82,21 @@
             {
               "word": "freedom of speech",
               "meaning": "the right to say what you think"
+            },
+            {
+              "word": "First Amendment",
+              "meaning": "the amendment that protects freedom of speech, religion, the press, assembly and petition",
+              "status": "draft"
             }
           ],
+          "video": {
+            "youtubeId": "kbwsF-A2sTg",
+            "title": "Civil Rights & Liberties: Crash Course Government & Politics #23",
+            "source": "CrashCourse (YouTube)",
+            "license": "Standard YouTube license: embedding is allowed by YouTube's terms, but the video is not licensed to Pathways. Check before marking reviewed.",
+            "status": "draft",
+            "note": "From the old Lessons tab (Base44 Lesson \"Individual Rights and Civil Liberties\"). Before reviewing: watch it all; check it matches the 2025 answers, has no flags, seals, eagles or Statue of Liberty, and the English is easy enough."
+          },
           "storyStatus": "draft",
           "story": [
             {
@@ -397,6 +417,14 @@
               "meaning": "when people and businesses, not the government, decide what to make, sell and buy"
             }
           ],
+          "video": {
+            "youtubeId": "lrk4oY7UxpQ",
+            "title": "Introduction: Crash Course U.S. Government and Politics",
+            "source": "CrashCourse (YouTube)",
+            "license": "Standard YouTube license: embedding is allowed by YouTube's terms, but the video is not licensed to Pathways. Check before marking reviewed.",
+            "status": "draft",
+            "note": "From the old Lessons tab (Base44 Lesson \"Democracy and Federal Government Structure\"). Before reviewing: watch it all; check it matches the 2025 answers, has no flags, seals, eagles or Statue of Liberty, and the English is easy enough."
+          },
           "storyStatus": "draft",
           "story": [
             {

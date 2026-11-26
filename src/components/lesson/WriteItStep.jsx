@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Volume2 } from 'lucide-react';
 import { AmioSays } from '@/components/pathways/Amio';
-import { SuccessBanner } from '@/components/pathways/ResultBanner';
+import { RightPanel } from '@/components/pathways/ResultBanner';
 import { Button } from '@/components/pathways/ui';
 import { speakText } from '@/components/utils/textToSpeech';
 import { checkWriting, wordBank } from '@/lib/lessonPlayer';
@@ -97,10 +97,18 @@ export default function WriteItStep({ lesson, level = 1, t, onWritten, onDone })
         </div>
       </div>
       {result?.isCorrect ? (
-        <SuccessBanner title={t('well_written')} actionLabel={t('next')} onAction={() => onDone('right')} className="sticky bottom-0">
-          {result.fixes.includes('capital') && <span className="block">{t('fix_capital')}</span>}
-          {result.fixes.includes('period') && <span className="block">{t('fix_period')}</span>}
-        </SuccessBanner>
+        <RightPanel
+          title={t('well_written')}
+          actionLabel={t('next')}
+          onAction={() => onDone('right')}
+          className="sticky bottom-0"
+          note={result.fixes.includes('capital') || result.fixes.includes('period') ? (
+            <>
+              {result.fixes.includes('capital') && <span className="block">{t('fix_capital')}</span>}
+              {result.fixes.includes('period') && <span className="block">{t('fix_period')}</span>}
+            </>
+          ) : null}
+        />
       ) : (
         <div className="sticky bottom-0 bg-paper px-4 pt-2 pb-6 max-w-lg w-full mx-auto">
           <Button variant="main" className="w-full" disabled={!written.trim()} onClick={check}>{t('check')}</Button>

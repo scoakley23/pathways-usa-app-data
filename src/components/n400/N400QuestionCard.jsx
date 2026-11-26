@@ -7,6 +7,7 @@ import { speakText } from '@/components/utils/textToSpeech';
 import { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
 import SayItBack from './SayItBack';
 import useN400Translation from './useN400Translation';
+import { lawyerIf } from '@/lib/n400View';
 
 // One N-400 question card (frame R30N400Card): "On the form" (the form's
 // wording, word for word), "Said in your language" (the plain meaning from
@@ -129,13 +130,13 @@ export default function N400QuestionCard({ sectionId, question, isAdmin, languag
         </Card>
       )}
 
-      {/* If "yes" might be true for you */}
+      {/* If "yes" (or, on the Oath promises, "no") might be true for you */}
       <Link
         to="/lawyer-first"
         className="block rounded-card border-[2.5px] border-not-yet bg-white p-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-not-yet focus-visible:ring-offset-2"
       >
         <span className="text-base leading-snug text-navy" dir="auto">
-          <strong className="text-not-yet">{t('if_yes')}</strong> {t('if_yes_rest')}{' '}
+          <strong className="text-not-yet">{t(lawyerIf(question) === 'no' ? 'if_no' : 'if_yes')}</strong> {t('if_yes_rest')}{' '}
           <ArrowRight className="inline w-4 h-4 rtl:rotate-180" aria-hidden="true" />
         </span>
       </Link>

@@ -154,6 +154,8 @@ export default function LessonPlayer() {
           week={doneInfo.week}
           nextTitle={nextTitle}
           saves={coursePlay.saves}
+          lesson={{ id: lesson.id, title: lesson.title }}
+          user={user}
           t={t}
           onDoneForToday={() => navigate('/done-today')}
           onKeepGoing={nextLessonId ? () => navigate(`/course/lesson/${nextLessonId}`) : null}

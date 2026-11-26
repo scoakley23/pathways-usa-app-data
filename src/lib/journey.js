@@ -13,11 +13,15 @@
 // - The unit practice interview, N-400 lessons and review stops are always
 //   "open". A stop type that isn't built yet is "soon". An N-400
 //   lesson stop (`lessonId`, content/n400/lessons.json) shows only when that
-//   lesson may be seen (reviewed, or drafts for admins).
+//   lesson may be seen (reviewed, or drafts for admins). An N-400 card stop
+//   (`section` + `card`) opens that card in the guide and shows only while
+//   the card may be seen (approved, or drafts for admins); never done.
 import { UNITS, sectionQuestionIds, showDraftLessons } from '@/lib/course';
 import { OFFICEHOLDER_QUESTIONS } from '@/lib/officeholderQuestions';
 import { checkpointStars } from '@/lib/checkpoints';
 import { N400_LESSON_IDS, findN400Lesson, n400LessonVisible } from '@/lib/n400Lessons';
+import { n400CardFor } from '@/lib/n400View';
+import { N400_SECTIONS } from '@/components/n400/n400Content';
 
 // Stops the suggestion walks through (the course order), and extra stops
 // that are always open. Anything else is "soon".
@@ -37,8 +41,12 @@ export function visibleSection(section, { showDrafts = false } = {}) {
   const stops = lessons.length
     ? (section.stops || [])
       .filter((s) => (s.type === 'lesson' ? ids.has(s.lessonId) : true))
-      .filter((s) => s.type !== 'n400' || !s.lessonId || n400LessonVisible(findN400Lesson(s.lessonId), showDrafts))
-      .map((s) => ({ ...s, lesson: s.type === 'lesson' ? byId[s.lessonId] : null }))
+      .filter((s) => s.type !== 'n400' || (s.lessonId ? n400LessonVisible(findN400Lesson(s.lessonId), showDrafts) : !!n400CardFor(s, N400_SECTIONS, showDrafts)))
+      .map((s) => ({
+        ...s,
+        lesson: s.type === 'lesson' ? byId[s.lessonId] : null,
+        ...(s.type === 'n400' && !s.lessonId ? { guideCard: n400CardFor(s, N400_SECTIONS, showDrafts) } : {}),
+      }))
     : [];
   return { ...section, lessons, stops };
 }

@@ -8,6 +8,7 @@ import { STEPS, rightOf } from '@/lib/lessonPlayer';
 import RedStop from '@/components/pathways/RedStop';
 import WeekSquares from '@/components/today/WeekSquares';
 import { goalMet } from '@/lib/todayView';
+import LessonNotes from '@/components/lesson/LessonNotes';
 
 // Lesson start (frame R32Lesson; no stars shown, Amio v2) and Lesson done
 // (Amio v2 frame LessonDone).
@@ -76,7 +77,7 @@ function Tile({ className, label, value, note }) {
   );
 }
 
-export function LessonDone({ results, goal, saves, t, know, week, nextTitle, onDoneForToday, onKeepGoing }) {
+export function LessonDone({ results, goal, saves, t, know, week, nextTitle, onDoneForToday, onKeepGoing, lesson, user }) {
   useEffect(() => {
     confetti({ particleCount: 90, spread: 70, origin: { y: 0.3 }, colors: CONFETTI_COLORS, disableForReducedMotion: true });
   }, []);
@@ -110,6 +111,7 @@ export function LessonDone({ results, goal, saves, t, know, week, nextTitle, onD
           </section>
         )}
         <p className="text-small text-muted">{saves ? t('saved_note') : t('practice_note')}</p>
+        {lesson && <LessonNotes lesson={lesson} user={user} t={t} />}
       </div>
       <div className="sticky bottom-0 bg-paper px-4 pt-2 pb-6 flex flex-col items-center gap-2 max-w-lg w-full mx-auto">
         <Button variant="main" className="w-full" onClick={onDoneForToday}>{t('done_for_today')}</Button>

@@ -32,6 +32,13 @@
       "title": "Speak it!"
     },
     {
+      "id": "u7-s3-n400-p9-35",
+      "type": "n400",
+      "title": "N-400 card: Willing to bear arms",
+      "section": "oath-questions",
+      "card": 6
+    },
+    {
       "id": "u7-n400",
       "type": "n400",
       "title": "N-400: Oath questions",
@@ -67,6 +74,11 @@
             {
               "word": "honor",
               "meaning": "to show respect for someone"
+            },
+            {
+              "word": "Independence Day",
+              "meaning": "July 4, the day the Declaration of Independence was adopted",
+              "status": "draft"
             }
           ]
         },
@@ -119,6 +131,11 @@
             {
               "word": "national holiday",
               "meaning": "a day the whole country celebrates"
+            },
+            {
+              "word": "Thanksgiving",
+              "meaning": "a national holiday on the fourth Thursday of November",
+              "status": "draft"
             }
           ]
         },

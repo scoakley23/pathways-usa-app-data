@@ -19,7 +19,7 @@ Course content is 2025-only for now.
 - `lesson`: `"lessonId"` (a lesson in this file)
 - `readwrite`: `"fromLessons"` (the lessons whose sentences it uses)
 - `speakit`: the section's questions, out loud (nothing extra)
-- `n400`: `"lessonId"` = an N-400 lesson in `content/n400/lessons.json` (one at the end of each unit, just before the practice interview)
+- `n400`: `"lessonId"` = an N-400 lesson in `content/n400/lessons.json` (one at the end of each unit, just before the practice interview), **or** `"section"` + `"card"` = one card of the N-400 guide (`src/components/n400/n400Content.js`: the section id, and the card's number from 1 among the approved cards). A card stop goes after the section's Speak it! (or just before the unit's N-400 lesson, to read first), is optional and always open, never done, and is hidden while its card isn't approved. `src/lib/n400Stops.test.js` checks each one points to an approved card with no draft before it. Titles: "N-400 card: {short name}".
 - `review`, `practiceInterview`: used by later prompts
 
 **A lesson:**
@@ -41,6 +41,8 @@ Course content is 2025-only for now.
 ```
 
 - **`listen.story`** (optional, the story player): scenes `{ "say": "...", "picture": { "drawing": "congressNumbers", "focus": "senate" } }` (or `{ "photo": file }` / `{ "officeholder": "speaker" }`), and a check at least every 3 scenes: `{ "check": { "kind": "tf", "statement": "...", "answer": true } }` or `{ "check": { "kind": "pick", "prompt": "...", "choices": ["a", "b", "c"], "answer": 0 } }`. `listen.storyStatus` is `draft` until reviewed; learners see the facts list until then. Lines stay short (≤ 140 characters) and never name a current officeholder.
+- **`listen.video`** (optional): a short video in English, shown on the Listen step and loaded only when the learner taps Play (from `youtube-nocookie.com`). `{ "youtubeId": "<11 characters>", "title": "<the video's own title>", "source": "<channel> (YouTube)", "license": "<what lets us show it>", "status": "draft", "checkedOn": "YYYY-MM-DD", "note": "<for the reviewer>" }`. Learners see only `"reviewed"` videos; admins see drafts, marked "Draft video". A reviewed video needs `checkedOn`. Only official or properly licensed videos, with no flags, seals, eagles or Statue of Liberty (brand rules); a person watches the whole video, checks it against the 2025 answers and that the English is easy enough, before changing `status`. The 19 videos from the old Lessons tab are drafts: they are third-party videos under YouTube's standard license.
+- **`listen.newWords[].status`** (optional): a word added after its lesson was reviewed is `"draft"` until a person checks it; learners don't see draft words (admins do, marked). A word with no status is reviewed with its lesson. Each word appears once per lesson.
 - **`questionIds`**: 1–2 official 2025 questions, by their **database id** (the
   `id` in `content/base44-export/civics-questions-2025.json`, the same id as
   Supabase's `civics_questions`). The test checks that each one's wording and

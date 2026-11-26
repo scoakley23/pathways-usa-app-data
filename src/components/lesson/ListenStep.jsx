@@ -9,6 +9,8 @@ import { LANGUAGES } from '@/lib/languages';
 import { picturesFor } from '@/lib/lessonPictures';
 import { HELP_KINDS, storyFor } from '@/lib/story';
 import StoryListen from '@/components/lesson/StoryListen';
+import LessonVideo from '@/components/lesson/LessonVideo';
+import { videoFor, shownWords } from '@/lib/lessonVideo';
 
 // Step 1 · Listen (frame R33Listen): Amio's facts in the learner's language
 // ("Said in your language", "In English" to switch), the lesson's pictures,
@@ -55,11 +57,13 @@ export default function ListenStep({ lesson, language, t, onDone, showDrafts = f
   const story = storyFor(lesson, { showDrafts });
   const [storyDone, setStoryDone] = useState(false);
   const [english, setEnglish] = useState(false);
-  const { facts, newWords } = lesson.steps.listen;
+  const { facts } = lesson.steps.listen;
+  const newWords = shownWords(lesson.steps.listen, { showDrafts });
+  const video = videoFor(lesson, { showDrafts });
   const translated = language !== 'en' && mine && facts.every((_, i) => mine[`f${i}`]);
   const showMine = translated && !english;
   const fact = (f, i) => (showMine ? mine[`f${i}`] : f);
-  const meaning = (w, i) => (language !== 'en' && !english && mine?.[`m${i}`]) || w.meaning;
+  const meaning = (w) => (language !== 'en' && !english && mine?.[`m${w.index}`]) || w.meaning;
 
   // A reviewed story (or a draft, for admins) replaces the facts list; the
   // new words follow it.
@@ -89,10 +93,12 @@ export default function ListenStep({ lesson, language, t, onDone, showDrafts = f
 
         {!story && <LessonPictures lessonId={lesson.id} caption={(p, i) => (language !== 'en' && !english && mine?.[`c${i}`]) || p.caption} />}
 
+        {video && <LessonVideo video={video} t={t} />}
+
         {newWords.length > 0 && (
           <section className="flex flex-col gap-2">
             <h2 className="text-small font-semibold text-muted">{t('new_words')}</h2>
-            {newWords.map((w, i) => (
+            {newWords.map((w) => (
               <button
                 key={w.word}
                 type="button"
@@ -102,7 +108,8 @@ export default function ListenStep({ lesson, language, t, onDone, showDrafts = f
               >
                 <span className="min-w-0">
                   <span className="block text-lg font-bold text-navy" lang="en" dir="ltr">{w.word}</span>
-                  <span className="block text-base text-muted" dir="auto">{meaning(w, i)}</span>
+                  <span className="block text-base text-muted" dir="auto">{meaning(w)}</span>
+                  {w.draft && <span className="mt-1 inline-block rounded-button bg-tint px-2 py-0.5 text-small font-semibold text-navy">{t('word_draft')}</span>}
                 </span>
                 <Volume2 className="w-6 h-6 shrink-0 text-denim" aria-hidden="true" />
               </button>

@@ -5,6 +5,7 @@
 // machine with VITE_SHOW_DRAFT_LESSONS=true. The screens come in Prompts 5-8.
 import outline from '../../content/course/units.json';
 import exported2025 from '../../content/base44-export/civics-questions-2025.json';
+import { videoProblems } from './lessonVideo';
 
 const sectionFiles = import.meta.glob('../../content/course/sections/*.json', { eager: true, import: 'default' });
 
@@ -101,6 +102,12 @@ export function courseProblems(units, { questions, explanations, reading, writin
         if (!explanations[listen.explanationKey]) problems.push(`${at}: listen.explanationKey has no explanation in content/explanations/en.json`);
         if (!Array.isArray(listen.facts)) problems.push(`${at}: listen.facts must be a list`);
         if (!Array.isArray(listen.newWords) || listen.newWords.some((w) => !w?.word || !w?.meaning)) problems.push(`${at}: listen.newWords must be { word, meaning } items`);
+        for (const w of listen.newWords || []) {
+          if (w?.status !== undefined && !LESSON_STATUSES.includes(w.status)) problems.push(`${at}: new word "${w.word}" status must be "draft" or "reviewed"`);
+        }
+        const words = (listen.newWords || []).map((w) => String(w?.word || '').toLowerCase());
+        if (new Set(words).size !== words.length) problems.push(`${at}: a new word is listed twice`);
+        problems.push(...videoProblems(listen.video, at));
         for (const step of ['teachBack', 'officer']) {
           const qid = steps[step]?.questionId;
           if (!l.questionIds?.includes(qid)) problems.push(`${at}: ${step}.questionId must be one of the lesson's questionIds`);

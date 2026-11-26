@@ -88,6 +88,14 @@ export function createLessonsApi({ provider = DATA_PROVIDER, base44: b44 = base4
     extra: (row) => ({ ...row, created_date: row.created_date ?? row.updated_at, updated_date: row.updated_date ?? row.updated_at }),
   });
 
+  // A learner deletes one of their own notes (an old lesson's note shown
+  // under a Course lesson).
+  notes.remove = async (id) => {
+    const user = await auth.me();
+    if (!onSupabase) return b44.entities.LessonNotes.delete(id);
+    return run(sb().from('lesson_notes').delete().eq('id', id).eq('user_id', user.id));
+  };
+
   return { lessonProgress: progress, lessonNotes: notes };
 }
 

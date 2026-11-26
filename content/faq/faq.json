@@ -4,20 +4,20 @@
     {
       "id": "free",
       "status": "draft",
-      "q": "Is Pathways free?",
-      "a": "Yes. Pathways is free practice for the U.S. citizenship test: civics, reading, writing, speaking and the N-400."
+      "q": "Is Amio free?",
+      "a": "Yes. Amio is free practice for the U.S. citizenship test: civics, reading, writing, speaking and the N-400."
     },
     {
       "id": "uscis",
       "status": "draft",
-      "q": "Is Pathways part of USCIS or the government?",
-      "a": "No. Pathways is not affiliated with USCIS or the government. The civics questions and answers come from the official USCIS lists."
+      "q": "Is Amio part of USCIS or the government?",
+      "a": "No. Amio, from Pathways USA, is not affiliated with USCIS or the government, and it is not legal advice. The civics questions and answers come from the official USCIS lists."
     },
     {
       "id": "legal",
       "status": "draft",
-      "q": "Can Pathways tell me how to answer the N-400 questions about me?",
-      "a": "No. Pathways is not legal advice. We teach what each N-400 question means and how the officer may ask it. If yes might be true for you, talk to a lawyer first."
+      "q": "Can Amio tell me how to answer the N-400 questions about me?",
+      "a": "No. Amio is not legal advice. We teach what each N-400 question means and how the officer may ask it. If yes might be true for you, talk to a lawyer first. Find help in Interview, then Ask a lawyer."
     },
     {
       "id": "amio",
@@ -29,7 +29,7 @@
       "id": "voice",
       "status": "draft",
       "q": "Do you record my voice?",
-      "a": "No. Your phone turns what you say into text. Only your scores are saved, never your voice or what you said."
+      "a": "No. Your voice is never recorded or saved. Your phone's browser turns what you say into text. In practice, only your scores are saved. Questions you ask Amio are saved as text, and only you can see them."
     },
     {
       "id": "order",
@@ -41,13 +41,13 @@
       "id": "program",
       "status": "draft",
       "q": "Can my class or program see my answers?",
-      "a": "No. If you join a program with its code, it sees your name and counts, like lessons done. Never your answers or your questions to Amio."
+      "a": "No. A program you join sees the name you gave (or your email) and counts, like lessons done. Never your answers, your notes or your questions to Amio."
     },
     {
       "id": "delete",
       "status": "draft",
       "q": "How do I delete my data?",
-      "a": "Go to Settings, then Delete all my data. It erases everything, on our side and on this phone."
+      "a": "Go to Me, then Settings, then Delete all my data. It erases your saved data and clears this phone. Messages you sent with Contact us stay in our inbox until you ask us to delete them."
     }
   ]
 }
