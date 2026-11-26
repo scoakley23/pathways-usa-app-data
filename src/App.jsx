@@ -11,7 +11,6 @@ import SignInScreen from '@/components/auth/SignInScreen';
 import SessionNotice from '@/components/auth/SessionNotice';
 import N400Guide from './pages/N400Guide';
 import LawyerPage from './pages/LawyerPage';
-import TutorDemo from './pages/TutorDemo';
 import DesignPreview from './pages/DesignPreview';
 import QuickCheck from './pages/QuickCheck';
 import LearnCivics from './pages/LearnCivics';
@@ -229,11 +228,6 @@ const AuthenticatedApp = () => {
       <Route path="interview-day" element={
         <LayoutWrapper currentPageName="InterviewDay">
           <InterviewDay />
-        </LayoutWrapper>
-      } />
-      <Route path="tutor-demo" element={
-        <LayoutWrapper currentPageName="TutorDemo">
-          <TutorDemo />
         </LayoutWrapper>
       } />
       {/* Admins only (and local dev): the Pathways + Amio base pieces with fake data. */}

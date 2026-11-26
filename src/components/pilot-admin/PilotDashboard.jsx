@@ -4,7 +4,7 @@ import { pilotApi } from '@/api/pilot';
 import { auth } from '@/api/auth';
 import PageTop from '@/components/pathways/PageTop';
 import PageNotFound from '@/lib/PageNotFound';
-import { RaisedCard, SecondaryButton, Eyebrow, CreamSheet } from '@/components/pathways/ui';
+import { RaisedCard, SecondaryButton, Eyebrow } from '@/components/pathways/ui';
 import { Switch } from '@/components/ui/switch';
 import { LANGUAGES } from '@/hooks/useLessonTranslation';
 import { US_STATES, PROGRAM_BASELINE } from '@/config/pilot';
@@ -116,10 +116,9 @@ export default function PilotDashboard() {
   };
 
   return (
-    <div>
+    <div className="min-h-full bg-paper text-navy">
       <PageTop tag="Admin" title="Pilot dashboard" subtitle="One row per learner, by a random pilot ID. No emails or names are on this page or in the CSV." />
-      <CreamSheet>
-      <div className="max-w-5xl mx-auto space-y-6 pb-12 text-navy">
+      <div className="max-w-5xl mx-auto space-y-6 px-4 pt-3 pb-12 text-navy">
 
 
       <RaisedCard className="flex flex-col sm:flex-row sm:flex-wrap sm:items-end gap-4">
@@ -210,7 +209,7 @@ export default function PilotDashboard() {
                 <Stat key={kind} title={`${WINDOW_LABELS[kind]} check-in answered`} value={share(r.count, r.of)} definition={`Answered, of learners whose ${WINDOW_LABELS[kind]} check-in has opened.`} />
               ))}
             </div>
-            <RaisedCard className="overflow-x-auto">
+            <RaisedCard className="overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim" tabIndex={0} role="region" aria-label="Milestones: first said Yes">
               <table className="w-full min-w-[480px] text-left text-base">
                 <caption className="text-left text-lg font-bold pb-2">Milestones: first said Yes</caption>
                 <thead>
@@ -257,7 +256,6 @@ export default function PilotDashboard() {
         </>
       )}
       </div>
-      </CreamSheet>
     </div>
   );
 }
