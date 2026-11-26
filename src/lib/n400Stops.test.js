@@ -59,9 +59,9 @@ describe('N-400 card stops', () => {
 });
 
 describe('which answer means "talk to a lawyer first"', () => {
-  it('is "no" on the Oath promises and "yes" everywhere else', () => {
+  it('is "no" on items 16, 22.b and the Oath promises, "yes" everywhere else', () => {
     const noCards = N400_SECTIONS.flatMap((s) => s.questions).filter((q) => lawyerIf(q) === 'no').map((q) => q.id);
-    expect(noCards).toEqual(['p9-31', 'p9-32', 'p9-34', 'p9-35', 'p9-36', 'p9-37']);
+    expect(noCards).toEqual(['p9-16', 'p9-22b', 'p9-31', 'p9-32', 'p9-34', 'p9-35', 'p9-36', 'p9-37']);
     for (const q of N400_SECTIONS.flatMap((s) => s.questions)) expect([undefined, 'no']).toContain(q.lawyerIf);
   });
 });

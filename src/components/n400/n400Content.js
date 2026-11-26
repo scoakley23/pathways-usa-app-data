@@ -4,8 +4,8 @@
 // "meaning" text is based on the form's own wording and does not tell a
 // learner how to answer.
 // `lawyerIf`: which answer means "talk to a lawyer first" on the card:
-// 'yes' (the default) or 'no' (the Oath promises, where the expected answer
-// is yes).
+// 'yes' (the default) or 'no' (items 16, 22.b and the Oath promises, where
+// the expected answer is yes).
 
 export const N400_SECTIONS = [
   {
@@ -331,6 +331,8 @@ export const N400_SECTIONS = [
         id: 'p9-16',
         label: '16',
         status: 'approved',
+        // The answer that needs a lawyer here is “no”, not “yes”.
+        lawyerIf: 'no',
         official:
           'If you received a suspended sentence, were placed on probation, or were paroled, have you completed your suspended sentence, probation, or parole?',
         meaning:
@@ -475,6 +477,8 @@ export const N400_SECTIONS = [
         id: 'p9-22b',
         label: '22.b',
         status: 'approved',
+        // The answer that needs a lawyer here is “no”, not “yes”.
+        lawyerIf: 'no',
         official: 'If you answered "Yes," to Item Number 22.a., did you register for the Selective Service?',
         meaning:
           'This question asks whether you signed up with the Selective Service. The form says it is only asked if you answered "Yes" to the question before it.',
