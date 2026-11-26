@@ -124,7 +124,7 @@
             {
               "say": "On July 4, 1776, the Declaration of Independence said the colonies were free from Britain.",
               "picture": {
-                "photo": "declaration-of-independence.jpg"
+                "photo": "signing-declaration.jpg"
               },
               "help": {
                 "simpler": "On July 4, 1776, the colonies said: we are free from Britain. They wrote it in the Declaration of Independence.",
@@ -134,6 +134,9 @@
             },
             {
               "say": "We remember this day on Independence Day.",
+              "picture": {
+                "photo": "declaration-of-independence.jpg"
+              },
               "help": {
                 "simpler": "Every year on July 4, Americans remember the day the Declaration was adopted.",
                 "example": "Many people celebrate with fireworks, parades and family picnics.",
