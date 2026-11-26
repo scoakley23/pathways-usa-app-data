@@ -1021,6 +1021,12 @@
    ]
   },
   {
+   "text": "A short lesson on what these N-400 questions mean and how the officer may ask them. You never answer them here.",
+   "from": [
+    "course"
+   ]
+  },
+  {
    "text": "A small armed group that uses surprise attacks.",
    "from": [
     "n400"
@@ -1482,6 +1488,12 @@
    "text": "Always call before you go.",
    "from": [
     "lawyer"
+   ]
+  },
+  {
+   "text": "Always tell the truth. If you’re not sure how any of these questions applies to you, talk to a lawyer before you file.",
+   "from": [
+    "n400-lessons"
    ]
   },
   {
@@ -6816,9 +6828,27 @@
    ]
   },
   {
+   "text": "If “no” might be true for you,",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
+   "text": "If “no” might be true for you, talk to a lawyer first.",
+   "from": [
+    "course"
+   ]
+  },
+  {
    "text": "If “yes” might be true for you,",
    "from": [
     "n400-guide"
+   ]
+  },
+  {
+   "text": "If “yes” might be true for you, talk to a lawyer first.",
+   "from": [
+    "course"
    ]
   },
   {
@@ -8765,6 +8795,96 @@
    ]
   },
   {
+   "text": "N-400 card: Claiming to be a U.S. citizen",
+   "from": [
+    "course-titles"
+   ]
+  },
+  {
+   "text": "N-400 card: Communist or totalitarian parties",
+   "from": [
+    "course-titles"
+   ]
+  },
+  {
+   "text": "N-400 card: Crimes and arrests",
+   "from": [
+    "course-titles"
+   ]
+  },
+  {
+   "text": "N-400 card: Leaving to avoid the draft",
+   "from": [
+    "course-titles"
+   ]
+  },
+  {
+   "text": "N-400 card: Living in the U.S. between 18 and 26",
+   "from": [
+    "course-titles"
+   ]
+  },
+  {
+   "text": "N-400 card: Overdue taxes",
+   "from": [
+    "course-titles"
+   ]
+  },
+  {
+   "text": "N-400 card: Registering for the Selective Service",
+   "from": [
+    "course-titles"
+   ]
+  },
+  {
+   "text": "N-400 card: Registering to vote or voting",
+   "from": [
+    "course-titles"
+   ]
+  },
+  {
+   "text": "N-400 card: Removal or deportation proceedings",
+   "from": [
+    "course-titles"
+   ]
+  },
+  {
+   "text": "N-400 card: Supporting the Constitution",
+   "from": [
+    "course-titles"
+   ]
+  },
+  {
+   "text": "N-400 card: Titles of nobility",
+   "from": [
+    "course-titles"
+   ]
+  },
+  {
+   "text": "N-400 card: Trips outside the U.S.",
+   "from": [
+    "course-titles"
+   ]
+  },
+  {
+   "text": "N-400 card: Understanding the Oath of Allegiance",
+   "from": [
+    "course-titles"
+   ]
+  },
+  {
+   "text": "N-400 card: Willing to bear arms",
+   "from": [
+    "course-titles"
+   ]
+  },
+  {
+   "text": "N-400 card: Willing to take the full Oath",
+   "from": [
+    "course-titles"
+   ]
+  },
+  {
    "text": "N-400 guide",
    "from": [
     "interview-tab"
@@ -10027,12 +10147,6 @@
    ]
   },
   {
-   "text": "Open this card in the N-400 guide.",
-   "from": [
-    "course"
-   ]
-  },
-  {
    "text": "Opens uscis.gov",
    "from": [
     "interview-tab"
@@ -11153,6 +11267,12 @@
    "text": "Read this sentence out loud.",
    "from": [
     "interview-day"
+   ]
+  },
+  {
+   "text": "Read what this N-400 question means and how the officer may ask it. You don’t answer it here.",
+   "from": [
+    "course"
    ]
   },
   {

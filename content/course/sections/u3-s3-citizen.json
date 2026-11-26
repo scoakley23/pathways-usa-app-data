@@ -32,6 +32,20 @@
       "title": "Speak it!"
     },
     {
+      "id": "u3-s3-n400-p9-34",
+      "type": "n400",
+      "title": "N-400 card: Willing to take the full Oath",
+      "section": "oath-questions",
+      "card": 5
+    },
+    {
+      "id": "u3-s3-n400-p9-5",
+      "type": "n400",
+      "title": "N-400 card: Communist or totalitarian parties",
+      "section": "groups-violence",
+      "card": 1
+    },
+    {
       "id": "u3-n400",
       "type": "n400",
       "title": "N-400: Groups and violence",

@@ -5634,6 +5634,8 @@ var N400_SECTIONS = [
         id: "p9-31",
         label: "31",
         status: "approved",
+        // The answer that needs a lawyer here is “no”, not “yes”.
+        lawyerIf: "no",
         official: "Do you support the Constitution and form of Government of the United States?",
         meaning: "This question asks whether you support the U.S. Constitution and the way the United States is governed.",
         words: [
@@ -5649,6 +5651,8 @@ var N400_SECTIONS = [
         id: "p9-32",
         label: "32",
         status: "approved",
+        // The answer that needs a lawyer here is “no”, not “yes”.
+        lawyerIf: "no",
         official: "Do you understand the full Oath of Allegiance to the United States (see Part 16. Oath of Allegiance)?",
         meaning: "This question asks whether you understand the full Oath of Allegiance — the promise a person makes when becoming a U.S. citizen.",
         words: [
@@ -5677,6 +5681,8 @@ var N400_SECTIONS = [
         id: "p9-34",
         label: "34",
         status: "approved",
+        // The answer that needs a lawyer here is “no”, not “yes”.
+        lawyerIf: "no",
         official: "Are you willing to take the full Oath of Allegiance to the United States?",
         meaning: "This question asks whether you are ready and able to say the whole Oath of Allegiance.",
         words: [
@@ -5691,6 +5697,8 @@ var N400_SECTIONS = [
         id: "p9-35",
         label: "35",
         status: "approved",
+        // The answer that needs a lawyer here is “no”, not “yes”.
+        lawyerIf: "no",
         official: "If the law requires it, are you willing to bear arms (carry weapons) on behalf of the United States?",
         meaning: "This question asks whether you are willing to carry weapons for the United States if the law ever requires it.",
         words: [
@@ -5707,6 +5715,8 @@ var N400_SECTIONS = [
         id: "p9-36",
         label: "36",
         status: "approved",
+        // The answer that needs a lawyer here is “no”, not “yes”.
+        lawyerIf: "no",
         official: "If the law requires it, are you willing to perform noncombatant services (do something that does not include fighting in a war) in the U.S. armed forces?",
         meaning: "This question asks whether you are willing to do work for the U.S. military that does not include fighting, if the law ever requires it.",
         words: [
@@ -5721,6 +5731,8 @@ var N400_SECTIONS = [
         id: "p9-37",
         label: "37",
         status: "approved",
+        // The answer that needs a lawyer here is “no”, not “yes”.
+        lawyerIf: "no",
         official: "If the law requires it, are you willing to perform work of national importance under civilian direction (do non-military work that the U.S. Government says is important to the country)?",
         meaning: "This question asks whether you are willing to do non-military work that is important for the country, if the law ever requires it. Civilian direction means the work is led by people who are not in the military.",
         words: [

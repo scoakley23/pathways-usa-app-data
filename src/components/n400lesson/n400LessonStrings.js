@@ -67,6 +67,8 @@ export const N400_LESSON_LINES = {
   did_help: 'Practiced asking for help',
   skipped: 'Skipped for now',
   amio_truth: 'Always tell the truth. If “yes” might be true for you, talk to a lawyer before you file.',
+  // The Oath questions, where some answers that need a lawyer are “no”.
+  amio_truth_mixed: 'Always tell the truth. If you’re not sure how any of these questions applies to you, talk to a lawyer before you file.',
   lawyer: 'Talk to a lawyer first',
   done_for_today: 'Done for today',
   back_to_road: 'Back to the road',

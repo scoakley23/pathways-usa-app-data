@@ -44,6 +44,13 @@
       "id": "u1-s2-speak",
       "type": "speakit",
       "title": "Speak it!"
+    },
+    {
+      "id": "u1-s2-n400-p9-31",
+      "type": "n400",
+      "title": "N-400 card: Supporting the Constitution",
+      "section": "oath-questions",
+      "card": 2
     }
   ],
   "lessons": [

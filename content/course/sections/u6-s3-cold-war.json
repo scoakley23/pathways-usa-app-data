@@ -30,6 +30,13 @@
       "id": "u6-s3-speak",
       "type": "speakit",
       "title": "Speak it!"
+    },
+    {
+      "id": "u6-s3-n400-p9-23",
+      "type": "n400",
+      "title": "N-400 card: Leaving to avoid the draft",
+      "section": "selective-service-military",
+      "card": 3
     }
   ],
   "lessons": [
