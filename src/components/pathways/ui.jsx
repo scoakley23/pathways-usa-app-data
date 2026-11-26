@@ -184,25 +184,7 @@ export function Card({ className = '', padding = 'p-5', children, ...props }) {
 export const RaisedCard = Card;
 
 export function Eyebrow({ className = '', children }) {
-  return <p className={`text-label text-muted ${className}`}>{children}</p>;
-}
-
-// --- The split screen ----------------------------------------------------
-// Every main screen is split: a navy top says WHAT this is (title, question,
-// where you are); a cream sheet with 28px top corners below holds what you DO.
-
-export function NavyTop({ as: Tag = 'section', className = '', children, ...props }) {
-  return <Tag className={`bg-navy text-white px-4 pt-6 pb-10 sm:px-8 ${className}`} {...props}>{children}</Tag>;
-}
-
-// The cream sheet. It overlaps the navy top by its corner radius so the
-// corners show; `flush` turns that off.
-export function CreamSheet({ as: Tag = 'section', flush = false, className = '', children, ...props }) {
-  return (
-    <Tag className={`relative bg-paper text-navy rounded-t-card px-4 pt-6 pb-8 sm:px-8 ${flush ? '' : '-mt-7'} ${className}`} {...props}>
-      {children}
-    </Tag>
-  );
+  return <p className={`text-base font-semibold text-muted ${className}`} dir="auto">{children}</p>;
 }
 
 // --- Logo --------------------------------------------------------------

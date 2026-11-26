@@ -10,7 +10,6 @@ import PartnersTab from '@/components/admin/PartnersTab';
 import ExplanationTools from '@/components/admin/ExplanationTools';
 import PilotAdminTool from '@/components/admin/PilotAdminTool';
 import PageTop from '@/components/pathways/PageTop';
-import { CreamSheet } from '@/components/pathways/ui';
 import { Link } from 'react-router-dom';
 
 export default function Admin() {
@@ -45,29 +44,28 @@ export default function Admin() {
         <div className="w-20 h-20 rounded-card bg-not-yet-bg flex items-center justify-center" aria-hidden="true">
           <AlertCircle className="w-10 h-10 text-not-yet" />
         </div>
-        <h2 className="text-[1.75rem] font-display font-normal text-navy">Access Denied</h2>
+        <h1 className="text-[1.75rem] font-display text-navy">Access denied</h1>
         <p className="text-base text-muted">You do not have permission to view this page.</p>
       </div>
     );
   }
 
   return (
-    <div>
+    <div className="min-h-full bg-paper text-navy">
       <PageTop
         title="Admin Dashboard"
         subtitle="Manage all practice content — sentences, civics questions, vocabulary words — Resource Hub places and partner programs."
       >
         <div className="flex flex-wrap gap-2">
-          <Link to="/tutor-demo" className="inline-flex items-center justify-center min-h-[44px] rounded-full border-2 border-chip-navy px-5 text-base font-semibold text-white hover:bg-chip-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
-            Tutor demo
+          <Link to="/design-preview" className="inline-flex items-center justify-center min-h-[44px] rounded-button border-[1.5px] border-line bg-white px-4 text-base font-semibold text-navy hover:border-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim">
+            Design preview
           </Link>
         </div>
       </PageTop>
-      <CreamSheet>
-      <div className="max-w-5xl mx-auto space-y-6 pb-8">
+      <div className="max-w-5xl mx-auto space-y-6 px-4 pt-3 pb-8">
 
       <Tabs defaultValue="sentences">
-        <TabsList className="grid w-full grid-cols-5 max-w-2xl">
+        <TabsList className="flex w-full max-w-2xl justify-start overflow-x-auto">
           <TabsTrigger value="sentences" className="flex items-center gap-1.5 px-1 text-sm sm:text-base">
             <FileText className="w-4 h-4 hidden sm:block" aria-hidden="true" /> Sentences
           </TabsTrigger>
@@ -105,7 +103,6 @@ export default function Admin() {
 
       <PilotAdminTool currentUser={currentUser} />
       </div>
-      </CreamSheet>
     </div>
   );
 }
