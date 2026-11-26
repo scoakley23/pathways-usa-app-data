@@ -3,13 +3,13 @@
 // and a language without a translation still goes to the AI.
 import { describe, it, expect, vi } from 'vitest';
 import FILE from '../../content/ask/answers.json';
-import lessons from '../../content/base44-export/lessons.json';
+import { UNITS, findLesson } from './course';
 import civics2025 from '../../content/base44-export/civics-questions-2025.json';
 import officeholders from '../data/officeholders.json';
 import { ASK_SCREEN_LINES } from './askTutor';
 import { lessonSuggestions, STARTER_SUGGESTIONS, INTERVIEW_SUGGESTIONS } from './askSuggestions';
 import { splitOfficialAnswers } from './practiceChecks';
-import { findAnswer, preparedAnswer, reviewedAnswers, normalizeQuestion } from './askAnswers';
+import { findAnswer, preparedAnswer, reviewedAnswers, normalizeQuestion, courseAnswer } from './askAnswers';
 
 const BY_QUESTION = new Map(FILE.answers.map((a) => [normalizeQuestion(a.question), a]));
 
@@ -31,13 +31,31 @@ describe('content/ask/answers.json', () => {
     }
   });
 
-  it('every question a lesson can suggest has an answer', () => {
+  it('every question a Course lesson can suggest has an answer from its reviewed content', async () => {
     const missing = [];
-    for (const lesson of lessons) {
-      const progress = [{ lesson_id: lesson.id, last_attempt_date: '2026-11-01' }];
-      for (const q of lessonSuggestions(progress, lessons)) if (!BY_QUESTION.has(normalizeQuestion(q))) missing.push(q);
+    for (const lesson of UNITS.flatMap((u) => u.sections.flatMap((sec) => sec.lessons || []))) {
+      if (lesson.status !== 'reviewed') continue;
+      const progress = [{ lesson_id: lesson.id, completed_at: '2026-11-01' }];
+      const suggestions = lessonSuggestions(progress, (id) => findLesson(id)?.lesson);
+      if (!suggestions.length) missing.push(lesson.id);
+      for (const q of suggestions) {
+        const a = await courseAnswer(q, 'en');
+        if (!a?.en) missing.push(q.question);
+        expect(q.parts.every((p) => typeof p === 'string' && p.length > 0)).toBe(true);
+      }
     }
     expect(missing).toEqual([]);
+  });
+
+  it('a Course answer in another language comes only from the pack, whole or not at all', async () => {
+    const q = { id: 'course_x_term', question: 'What does "veto" mean?', lead: 'veto: ', parts: ['when the President says no to a bill'] };
+    expect(await courseAnswer(q, 'es', { translate: async () => 'cuando el Presidente dice que no' })).toEqual({ en: 'veto: when the President says no to a bill', mine: 'veto: cuando el Presidente dice que no', id: 'course_x_term' });
+    expect(await courseAnswer(q, 'es', { translate: async () => null })).toBeNull();
+    expect(await courseAnswer({ ...q, parts: ['a', 'b'] }, 'es', { translate: async (l, p) => (p === 'a' ? 'A' : null) })).toBeNull();
+  });
+
+  it('no prepared answer is left for the old Lessons tab', () => {
+    expect(FILE.answers.filter((a) => a.id.startsWith('lesson_'))).toEqual([]);
   });
 
   it('quoted civics answers are official, word for word', () => {

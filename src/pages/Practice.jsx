@@ -442,7 +442,7 @@ export default function Practice() {
     return (
       <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-full bg-paper text-navy">
         <div className="mx-auto max-w-lg px-4 pt-6 pb-8 flex flex-col gap-5">
-          <StudyTop tab="practice" action={testButton} />
+          <StudyTop action={testButton} />
           <AmioSays mood="hello" size={56}>{t('amio_practice')}</AmioSays>
 
           {/* Suggested for you */}
