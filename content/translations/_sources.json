@@ -4232,6 +4232,18 @@
    ]
   },
   {
+   "text": "Draft video",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "Draft word",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "Draft, pending review",
    "from": [
     "n400-guide"
@@ -5416,6 +5428,12 @@
    "text": "From your practice, not this interview",
    "from": [
     "practice"
+   ]
+  },
+  {
+   "text": "From {source}",
+   "from": [
+    "lesson-player"
    ]
   },
   {
@@ -7598,6 +7616,12 @@
    ]
   },
   {
+   "text": "July 4, the day the Declaration of Independence was adopted",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "June",
    "from": [
     "words"
@@ -7725,6 +7749,12 @@
    "text": "Largest",
    "from": [
     "words"
+   ]
+  },
+  {
+   "text": "Latin for \"Out of many, one\"",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -10765,9 +10795,21 @@
    ]
   },
   {
+   "text": "Play video",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "Playing…",
    "from": [
     "settings-pieces"
+   ]
+  },
+  {
+   "text": "Plays from YouTube. YouTube can see that you watched it.",
+   "from": [
+    "lesson-player"
    ]
   },
   {
@@ -17811,6 +17853,12 @@
    ]
   },
   {
+   "text": "Watch a video (in English)",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "Watch again",
    "from": [
     "lesson-player"
@@ -20542,6 +20590,18 @@
    ]
   },
   {
+   "text": "a 1773 protest where colonists threw British tea into Boston Harbor",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a U.S. Navy base in Hawaii that Japan attacked on December 7, 1941",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "a big, fast road between cities",
    "from": [
     "course-lessons"
@@ -20680,6 +20740,12 @@
    ]
   },
   {
+   "text": "a national holiday on the fourth Thursday of November",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "a new idea or invention",
    "from": [
     "course-lessons"
@@ -20759,6 +20825,12 @@
   },
   {
    "text": "a plan for how to spend money",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "a promise of loyalty to the flag and the United States",
    "from": [
     "course-lessons"
    ]
@@ -21419,9 +21491,21 @@
    ]
   },
   {
+   "text": "keeping people apart because of their race",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "labor camp",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "land set aside for American Indian tribes",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -21498,6 +21582,12 @@
   },
   {
    "text": "money people once had to pay to vote",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "money you pay the government from what you earn",
    "from": [
     "course-lessons"
    ]
@@ -21815,9 +21905,21 @@
    ]
   },
   {
+   "text": "serving on a jury when a court calls you",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "sets up the government / defines the government / protects basic rights of Americans",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "sharing power between the national government and the states",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -21929,6 +22031,12 @@
    ]
   },
   {
+   "text": "the 1787 meeting in Philadelphia where the Constitution was written",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "the Bill of Rights",
    "from": [
     "civics-questions"
@@ -22007,13 +22115,61 @@
    ]
   },
   {
+   "text": "the amendment that ended slavery",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "the amendment that gave women the right to vote",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "the amendment that limits a President to two terms",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "the amendment that made 18 the voting age",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "the amendment that protects freedom of speech, religion, the press, assembly and petition",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "the amendment that says race cannot stop a citizen from voting",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "the branch that carries out the laws",
    "from": [
     "course-lessons"
    ]
   },
   {
+   "text": "the branch that makes the laws",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "the branch with the courts",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "the building in Washington, D.C., where Congress meets",
    "from": [
     "course-lessons"
    ]
@@ -22067,6 +22223,12 @@
    ]
   },
   {
+   "text": "the home and office of the President",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "the leader of a state",
    "from": [
     "course-lessons"
@@ -22092,6 +22254,12 @@
   },
   {
    "text": "the leader of the Supreme Court",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "the list where men 18 to 25 register in case of a draft",
    "from": [
     "course-lessons"
    ]
@@ -22145,6 +22313,12 @@
    ]
   },
   {
+   "text": "the right to follow any religion, or no religion",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "the right to say what you think",
    "from": [
     "course-lessons"
@@ -22164,6 +22338,18 @@
   },
   {
    "text": "the top lawyer of the federal government",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "the war from 1775 to 1783 that won independence from Britain",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "the work in the 1950s and 1960s to end segregation and discrimination",
    "from": [
     "course-lessons"
    ]
@@ -22194,6 +22380,12 @@
   },
   {
    "text": "to accept and approve something",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "to approve officially",
    "from": [
     "course-lessons"
    ]
@@ -22445,6 +22637,18 @@
    ]
   },
   {
+   "text": "when Congress passes a bill again after a veto, with two-thirds of both parts",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "when courts decide if a law goes against the Constitution",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "when people and businesses, not the government, decide what to make, sell and buy",
    "from": [
     "course-lessons"
@@ -22458,6 +22662,12 @@
   },
   {
    "text": "when the President says no to a bill",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "when the Senate votes yes on a person the President chose",
    "from": [
     "course-lessons"
    ]

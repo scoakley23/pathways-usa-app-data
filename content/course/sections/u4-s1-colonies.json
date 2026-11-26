@@ -58,8 +58,21 @@
             {
               "word": "European",
               "meaning": "a person from Europe"
+            },
+            {
+              "word": "reservation",
+              "meaning": "land set aside for American Indian tribes",
+              "status": "draft"
             }
-          ]
+          ],
+          "video": {
+            "youtubeId": "TTYOQ05oDOI",
+            "title": "The Natives and the English - Crash Course US History #3",
+            "source": "CrashCourse (YouTube)",
+            "license": "Standard YouTube license: embedding is allowed by YouTube's terms, but the video is not licensed to Pathways. Check before marking reviewed.",
+            "status": "draft",
+            "note": "From the old Lessons tab (Base44 Lesson \"Native Americans and European Colonization\"). Before reviewing: watch it all; check it matches the 2025 answers, has no flags, seals, eagles or Statue of Liberty, and the English is easy enough."
+          }
         },
         "teachBack": {
           "questionId": "6ad16ecf6a9c603911f9de60"
