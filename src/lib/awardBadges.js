@@ -1,10 +1,10 @@
 import { progress as progressApi } from '@/api/progress';
 import { auth } from '@/api/auth';
-import { toast } from 'sonner';
-import { badgeName, mergeBadges, newBadges } from './badges';
+import { mergeBadges, newBadges } from './badges';
 
 // Check the signed-in learner's saved progress and points, save any badges
-// just earned to User.badges, and say so with one quiet toast each.
+// just earned to User.badges. Badges are hidden from learners (Amio v2), so
+// nothing is shown: no toast (amio-v2/one-tap-me). The data and counts stay.
 // `run` = a finished practice run's outcomes (Full Marks); leave it out
 // elsewhere. Never throws: a failed check just waits for the next one.
 export async function awardBadges({ run = null } = {}) {
@@ -17,7 +17,6 @@ export async function awardBadges({ run = null } = {}) {
     const added = newBadges({ owned, progressRows, points: user.points || 0, run });
     if (!added.length) return [];
     await auth.updateMe({ badges: mergeBadges(owned, added) });
-    for (const id of added) toast.success(`New badge: ${badgeName(id)}`);
     return added;
   } catch (e) {
     console.error('Badge check failed', e);
