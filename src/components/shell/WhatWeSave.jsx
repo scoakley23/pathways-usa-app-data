@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Eyebrow } from '@/components/pathways/ui';
+import { Card } from '@/components/pathways/ui';
 
 // "What we save" on Settings (frame R30Settings): the short version, then the
 // full list in plain words. Keep it in step with CLAUDE.md "Where learner
@@ -24,7 +24,7 @@ export default function WhatWeSave({ t = (k) => WHAT_WE_SAVE_LINES[k] }) {
   const list = (prefix, n) => Array.from({ length: n }, (_, i) => t(`${prefix}_${i + 1}`));
   return (
     <Card id="what-we-save" className="scroll-mt-20">
-      <Eyebrow>{t('title')}</Eyebrow>
+      <p className="text-lg font-bold text-navy" dir="auto">{t('title')}</p>
       <p className="mt-2 text-base text-navy leading-relaxed">
         {t('short_saved')} <strong>{t('short_never_lead')}</strong> {t('short_never')}
       </p>

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Button } from "@/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { Calendar as CalendarIcon } from 'lucide-react';
 import { format, differenceInDays, parseISO } from 'date-fns';
 import { cn } from "@/lib/utils";
+import useProgressText from './useProgressText';
 
 // The learner's target date lives only on this device. It is never sent to
 // Base44 or the AI.
@@ -20,6 +20,7 @@ function loadDate() {
 }
 
 export default function TestDateTracker() {
+  const { t, date: fmt } = useProgressText();
   const [date, setDate] = useState(loadDate);
 
   const handleSelect = (newDate) => {
@@ -38,29 +39,27 @@ export default function TestDateTracker() {
   const daysLeft = date ? differenceInDays(date, new Date()) : null;
 
   return (
-    <div className="rounded-card bg-white border border-line p-4 space-y-3 sm:min-w-[280px]">
+    <div className="rounded-card bg-white border-[1.5px] border-line p-4 space-y-3 text-navy">
+      <h2 className="text-lg font-bold" dir="auto">{t('date_title')}</h2>
       <div className="flex flex-wrap items-center gap-3">
         {date && (
-          <div className="flex-1 min-w-[120px]">
-            <p className="text-xs text-muted font-bold">Time Remaining</p>
-            <p className={`text-2xl font-extrabold ${daysLeft < 30 ? 'text-not-yet' : 'text-navy'}`}>
-              {daysLeft > 0 ? `${daysLeft} Days` : daysLeft === 0 ? 'Today!' : 'Passed'}
-            </p>
-          </div>
+          <p className="flex-1 min-w-[120px] font-display text-[1.75rem] leading-none" dir="auto">
+            {daysLeft > 1 ? t('date_left', { n: daysLeft }) : daysLeft === 1 ? t('date_left_one') : daysLeft === 0 ? t('date_today') : t('date_passed')}
+          </p>
         )}
 
         <Popover>
           <PopoverTrigger asChild>
-            <Button
-              variant={"outline"}
+            <button
+              type="button"
               className={cn(
-                "w-full sm:w-auto flex-1 justify-start text-left font-semibold",
+                "w-full sm:w-auto flex-1 min-h-tap rounded-button border-[1.5px] border-line bg-white px-4 inline-flex items-center gap-2 text-start text-base font-semibold text-navy hover:border-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim",
                 !date && "text-muted"
               )}
             >
-              <CalendarIcon className="h-4 w-4" aria-hidden="true" />
-              {date ? format(date, "PPP") : <span>Set Test Date</span>}
-            </Button>
+              <CalendarIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+              {date ? fmt(date, { year: 'numeric', month: 'long', day: 'numeric' }) : <span dir="auto">{t('date_set')}</span>}
+            </button>
           </PopoverTrigger>
           <PopoverContent className="w-auto p-0" align="end">
             <Calendar
@@ -72,7 +71,7 @@ export default function TestDateTracker() {
           </PopoverContent>
         </Popover>
       </div>
-      <p className="text-sm text-muted">Your date stays on this phone. We don't save it.</p>
+      <p className="text-small text-muted" dir="auto">{t('date_note')}</p>
     </div>
   );
 }

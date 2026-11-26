@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Check, Loader2 } from 'lucide-react';
-import { RaisedCard, PrimaryButton, QuietButton, Eyebrow } from '@/components/pathways/ui';
+import { Button, Card } from '@/components/pathways/ui';
 import { checkInQuestions, buildCheckIn, choicesFor } from '@/lib/pilotCheckIns';
 import usePilotText from './pilotStrings';
 import { saveCheckIn } from './checkInData';
@@ -36,11 +36,11 @@ export default function CheckInForm({ kind, rows = [], user, language = 'en', on
   };
 
   return (
-    <RaisedCard padding="p-5 sm:p-8" className="max-w-2xl w-full mx-auto">
+    <Card padding="p-5" className="max-w-lg w-full mx-auto text-navy">
       <form onSubmit={save} className="space-y-7" aria-labelledby="checkin-title">
         <div className="space-y-3">
-          <Eyebrow>{t('eyebrow')}</Eyebrow>
-          <h1 id="checkin-title" className="font-display text-[2.25rem] leading-tight text-navy">{t('checkin_title')}</h1>
+          <p className="text-base font-semibold text-muted" dir="auto">{t('eyebrow')}</p>
+          <h1 id="checkin-title" className="font-display text-[1.75rem] leading-tight text-navy" dir="auto">{t('checkin_title')}</h1>
           <p className="text-base text-muted">{t('small_print')}</p>
         </div>
 
@@ -88,14 +88,14 @@ export default function CheckInForm({ kind, rows = [], user, language = 'en', on
 
         {error && <p role="alert" className="text-base font-semibold text-not-yet">{t('error')}</p>}
 
-        <div className="flex flex-col-reverse sm:flex-row sm:justify-end gap-2">
-          <QuietButton onClick={onNotNow} disabled={saving} className="w-full sm:w-auto">{t('not_now')}</QuietButton>
-          <PrimaryButton type="submit" disabled={saving} large className="w-full sm:w-auto">
+        <div className="flex flex-col gap-2">
+          <Button variant="main" type="submit" disabled={saving} className="w-full">
             {saving && <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />}
             {saving ? t('saving') : t('save')}
-          </PrimaryButton>
+          </Button>
+          <Button variant="second" onClick={onNotNow} disabled={saving} className="w-full">{t('not_now')}</Button>
         </div>
       </form>
-    </RaisedCard>
+    </Card>
   );
 }

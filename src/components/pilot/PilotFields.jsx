@@ -6,10 +6,10 @@ import { PREFER_NOT } from '@/lib/pilot';
 // Shared fields for the "Help us improve Amio" screen and the Profile
 // card. Every choice can be tapped again to clear it.
 
-const CHIP = 'min-h-11 rounded-2xl border-2 px-4 py-2 text-left text-base font-semibold inline-flex items-center gap-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2';
-const chipTone = (selected) => (selected ? 'border-navy bg-tint text-navy' : 'border-line bg-white text-navy hover:border-navy/50');
+const CHIP = 'min-h-11 rounded-2xl border-2 px-4 py-2 text-start text-base font-semibold inline-flex items-center gap-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2';
+const chipTone = (selected) => (selected ? 'border-navy bg-white text-navy' : 'border-line bg-white text-navy hover:border-navy');
 const LABEL = 'text-lg font-bold text-navy';
-const FIELD = 'w-full min-h-11 rounded-xl border-2 border-line bg-white px-3 text-base text-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy';
+const FIELD = 'w-full min-h-11 rounded-button border-2 border-line bg-white px-3 text-base text-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy';
 
 export function Choice({ selected, onClick, children, className = '' }) {
   return (

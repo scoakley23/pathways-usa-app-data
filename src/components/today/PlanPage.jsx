@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
-import NavyBanner from '@/components/pathways/NavyBanner';
 import { AmioSays } from '@/components/pathways/Amio';
 import { Button } from '@/components/pathways/ui';
 import { today as todayApi } from '@/api/today';
@@ -12,7 +11,9 @@ import { minutesForPerDay } from '@/lib/dailyMinutes';
 import { useJourney } from '@/components/course/courseShared';
 import { useTodayText } from '@/components/today/useToday';
 
-// Your plan (Prompt 7, frame R33Plan): the interview month (device only, "I
+// Your plan (Prompt 7, frame R33Plan; Amio v2 in amio-v2/one-tap-me: a paper
+// page with Back and the title, months as 12px chips (open = navy), the
+// paces as white cards (open = navy border, Recommended = a gold tag)): the interview month (device only, "I
 // don't know yet" allowed) and lessons per day (1 easy / 2 steady / 3 fast,
 // each "about 5 / 10 / 15 min a day", src/lib/dailyMinutes.js), each with the
 // "Ready by" month from the lessons left in the whole course at 6 study days
@@ -50,19 +51,17 @@ export default function PlanPage() {
     navigate('/');
   };
 
-  const chip = (active) => `min-h-tap rounded-2xl border px-4 text-base font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim ${active ? 'bg-denim border-denim text-white' : 'bg-white border-line text-navy hover:border-denim'}`;
+  const chip = (active) => `min-h-tap rounded-button border-[1.5px] px-4 text-base font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim ${active ? 'bg-navy border-navy text-white' : 'bg-white border-line text-navy hover:border-navy'}`;
 
   return (
-    <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-full bg-paper flex flex-col">
-      <NavyBanner
-        title={t('plan_title')}
-        left={(
-          <button type="button" onClick={() => navigate(-1)} aria-label={t('back')} className="w-11 h-11 grid place-items-center rounded-full text-white hover:bg-chip-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+    <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-full bg-paper text-navy flex flex-col">
+      <div className="flex-1 max-w-lg w-full mx-auto px-4 pt-4 pb-5 flex flex-col gap-5">
+        <div className="flex items-start gap-2">
+          <button type="button" onClick={() => navigate(-1)} aria-label={t('back')} className="w-11 h-11 shrink-0 -ms-2 grid place-items-center rounded-full text-navy hover:bg-line-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim">
             <ArrowLeft className="w-6 h-6 rtl:rotate-180" aria-hidden="true" />
           </button>
-        )}
-      />
-      <div className="flex-1 max-w-lg w-full mx-auto px-4 py-5 flex flex-col gap-5">
+          <h1 className="min-w-0 pt-1 font-display text-[1.75rem] leading-tight" dir="auto">{t('plan_title')}</h1>
+        </div>
         <section className="flex flex-col gap-2" aria-labelledby="plan-when">
           <h2 id="plan-when" className="text-lg font-bold text-navy">{t('plan_when')}</h2>
           <p className="text-base text-muted">{t('plan_when_sub')}</p>
@@ -91,15 +90,15 @@ export default function PlanPage() {
                   role="radio"
                   aria-checked={on}
                   onClick={() => setPerDay(p.perDay)}
-                  className={`flex items-center gap-4 rounded-card border-2 px-4 py-4 text-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim ${on ? 'border-denim bg-tint' : 'border-line bg-white hover:border-denim'}`}
+                  className={`flex items-center gap-4 rounded-card border-[2.5px] bg-white px-4 py-4 text-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim ${on ? 'border-navy' : 'border-line hover:border-navy'}`}
                 >
-                  <span className="text-[2.125rem] font-extrabold text-denim w-8 text-center shrink-0" aria-hidden="true">{p.perDay}</span>
+                  <span className="font-display text-[2.125rem] text-navy w-8 text-center shrink-0" aria-hidden="true">{p.perDay}</span>
                   <span className="flex-1 min-w-0">
+                    {p.perDay === recommended && <span className="mb-1 inline-block rounded-button bg-gold px-3 py-1 text-small font-semibold text-navy">{t('recommended')}</span>}
                     <span className="block text-lg font-bold text-navy">{t(`pace_${p.id}`)} · {p.perDay === 1 ? t('pace_lessons_1') : t('pace_lessons_n', { n: p.perDay })}</span>
                     <span className="block text-base text-navy">{t('pace_minutes', { n: minutesForPerDay(p.perDay) })}</span>
                     <span className="block text-base text-muted">{t('ready_by', { month: fmt(ready, { month: 'long', year: ready.getFullYear() !== now.getFullYear() ? 'numeric' : undefined }) })}</span>
                   </span>
-                  {p.perDay === recommended && <span className="shrink-0 rounded-button bg-denim px-3 py-1 text-small font-semibold text-white">{t('recommended')}</span>}
                 </button>
               );
             })}

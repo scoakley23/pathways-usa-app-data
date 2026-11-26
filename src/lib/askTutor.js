@@ -54,6 +54,13 @@ export const ASK_SCREEN_LINES = {
   q_how_long: 'How long is the interview?',
   q_dont_understand: "What if I don't understand the officer?",
   q_what_happens: 'What happens at the interview?',
+  back: 'Back',
+  read_more: 'Read more',
+  show_less: 'Show less',
+  sign_in_line: 'Sign in to ask me questions.',
+  sign_in: 'Sign in',
+  loading: 'Loading',
+  language: 'Language',
 };
 export const ASK_SCREEN_LINES_ES = {
   title: 'Pregúntele a Amio',
@@ -86,6 +93,13 @@ export const ASK_SCREEN_LINES_ES = {
   q_how_long: '¿Cuánto dura la entrevista?',
   q_dont_understand: '¿Qué pasa si no entiendo al oficial?',
   q_what_happens: '¿Qué pasa en la entrevista?',
+  back: 'Volver',
+  read_more: 'Leer más',
+  show_less: 'Ver menos',
+  sign_in_line: 'Inicie sesión para hacerme preguntas.',
+  sign_in: 'Iniciar sesión',
+  loading: 'Cargando',
+  language: 'Idioma',
 };
 export const ASK_SCREEN_CACHE_KEY = 'ask_screen_v2';
 

@@ -10,8 +10,7 @@ import { createPageUrl } from '@/utils';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { LANGUAGES } from '@/hooks/useLessonTranslation';
 import { getSavedLanguage, RTL_LANGUAGES } from '@/hooks/useAppLanguage';
-import { Button, Chip, Eyebrow } from '@/components/pathways/ui';
-import NavyBanner from '@/components/pathways/NavyBanner';
+import { Button, Chip, MAIN_LINK } from '@/components/pathways/ui';
 import MicButton from '@/components/pathways/MicButton';
 import { Amio, AmioSays } from '@/components/pathways/Amio';
 import { stopReading } from '@/components/persona/useAutoRead';
@@ -154,7 +153,7 @@ function Suggestion({ children, onClick, lang }) {
       onClick={onClick}
       lang={lang}
       dir="auto"
-      className="w-full min-h-[56px] rounded-card border border-line bg-white px-4 py-3 text-start text-base font-semibold text-navy flex items-center gap-3 hover:border-denim focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim"
+      className="w-full min-h-[56px] rounded-card border-[1.5px] border-line bg-white px-4 py-3 text-start text-base font-semibold text-navy flex items-center gap-3 hover:border-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim"
     >
       <span className="flex-1 min-w-0">{children}</span>
       <ChevronRight className="w-5 h-5 shrink-0 text-muted rtl:rotate-180" aria-hidden="true" />
@@ -325,15 +324,15 @@ export default function StudyBuddy() {
   const starters = STARTER_SUGGESTIONS;
 
   if (user === undefined) {
-    return <div className="min-h-[60vh] grid place-items-center"><Loader2 className="w-8 h-8 animate-spin text-navy" aria-label="Loading" /></div>;
+    return <div className="min-h-[60vh] grid place-items-center"><Loader2 className="w-8 h-8 animate-spin text-navy" aria-label={t('loading')} /></div>;
   }
   if (user === null) {
     return (
-      <div>
-        <NavyBanner title={t('title')} subtitle={t('subtitle')} />
-        <div className="max-w-lg mx-auto px-4 py-8 text-center space-y-4">
-          <AmioSays mood="wave">Sign in to ask me questions.</AmioSays>
-          <Button variant="main" className="w-full" onClick={() => auth.goToSignIn()}>Sign in</Button>
+      <div dir={dir} className="min-h-full bg-paper text-navy">
+        <div className="max-w-lg mx-auto px-4 pt-6 pb-8 flex flex-col gap-4">
+          <h1 className="font-display text-[1.75rem] leading-tight" dir="auto">{t('title')}</h1>
+          <AmioSays mood="wave">{t('sign_in_line')}</AmioSays>
+          <Button variant="main" className="w-full" onClick={() => auth.goToSignIn()}>{t('sign_in')}</Button>
         </div>
       </div>
     );
@@ -341,39 +340,37 @@ export default function StudyBuddy() {
 
   const reply = asked?.reply;
   return (
-    <div dir={dir}>
-      <NavyBanner
-        title={t('title')}
-        subtitle={t('subtitle')}
-        left={(
-          <button type="button" onClick={back} aria-label="Back" className="w-11 h-11 grid place-items-center rounded-full text-white hover:bg-chip-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+    <div dir={dir} className="min-h-full bg-paper text-navy">
+      <div className="max-w-lg mx-auto px-4 pt-4 pb-10 space-y-5">
+        <div className="flex items-start gap-2">
+          <button type="button" onClick={back} aria-label={t('back')} className="w-11 h-11 shrink-0 -ms-2 grid place-items-center rounded-full text-navy hover:bg-line-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim">
             <ArrowLeft className="w-6 h-6 rtl:rotate-180" aria-hidden="true" />
           </button>
-        )}
-        right={(
+          <div className="min-w-0 flex-1 pt-1">
+            <h1 className="font-display text-[1.75rem] leading-tight" dir="auto">{t('title')}</h1>
+            <p className="text-base text-muted" dir="auto">{t('subtitle')}</p>
+          </div>
           <Link
             to={createPageUrl('StudyHistory')}
-            className="min-h-11 rounded-button bg-chip-navy px-4 inline-flex items-center gap-1.5 text-small font-semibold text-white hover:bg-navy-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="shrink-0 min-h-11 rounded-button border-[1.5px] border-line bg-white px-3 inline-flex items-center gap-1.5 text-small font-semibold text-navy hover:border-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim"
           >
-            <History className="w-4 h-4" aria-hidden="true" /> {t('history')}
+            <History className="w-4 h-4" aria-hidden="true" /> <span dir="auto">{t('history')}</span>
           </Link>
-        )}
-      />
+        </div>
 
-      <div className="max-w-lg mx-auto px-4 pt-5 pb-10 space-y-5">
         {/* Privacy, wherever learners can talk to Amio */}
         <div className="text-center">
-          <p className="text-small leading-snug text-muted">{privacyShort}</p>
+          <p className="text-small leading-snug text-muted" dir="auto">{privacyShort}</p>
           <button
             type="button"
             onClick={() => setPrivacyMore((v) => !v)}
             aria-expanded={privacyMore}
             className="inline-flex items-center gap-0.5 min-h-11 px-2 text-small font-semibold text-navy underline underline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy rounded"
           >
-            {privacyMore ? 'Show less' : 'Read more'}
+            {privacyMore ? t('show_less') : t('read_more')}
             <ChevronDown className={`w-3.5 h-3.5 transition-transform ${privacyMore ? 'rotate-180' : ''}`} aria-hidden="true" />
           </button>
-          {privacyMore && <p className="mt-1 text-small leading-snug text-muted text-start rounded-card bg-tint p-3">{privacyNote}</p>}
+          {privacyMore && <p className="mt-1 text-small leading-snug text-muted text-start rounded-card bg-white border border-line p-3" dir="auto">{privacyNote}</p>}
         </div>
 
         {asked ? (
@@ -381,8 +378,8 @@ export default function StudyBuddy() {
             {/* The one question, and Amio's one reply */}
             <div className="flex justify-end ps-10">
               <div className="min-w-0">
-                <p className="text-small font-semibold text-muted text-end mb-1">{t('you_asked')}</p>
-                <p className="rounded-card rounded-se-[4px] bg-denim text-white px-4 py-3 text-base leading-snug break-words">{asked.question}</p>
+                <p className="text-small font-semibold text-muted text-end mb-1" dir="auto">{t('you_asked')}</p>
+                <p className="rounded-card rounded-se-[4px] bg-navy text-white px-4 py-3 text-base leading-snug break-words" dir="auto">{asked.question}</p>
               </div>
             </div>
             <div aria-live="polite">
@@ -404,7 +401,7 @@ export default function StudyBuddy() {
                   action={(
                     <Link
                       to="/lawyer-first"
-                      className="mt-3 min-h-[48px] w-full rounded-button bg-denim text-white hover:bg-denim-deep px-4 py-2 text-base font-bold inline-flex items-center justify-center gap-2 text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2"
+                      className={`mt-3 w-full px-4 gap-2 text-base text-center ${MAIN_LINK}`}
                     >
                       <Scale className="w-5 h-5 shrink-0" aria-hidden="true" /> {askLine('lawyerLink') || ASK_LINES.lawyerLink}
                     </Link>
@@ -425,18 +422,18 @@ export default function StudyBuddy() {
             <AmioSays mood="curious" size={72}>{t('prompt')}</AmioSays>
 
             <section className="space-y-2">
-              <Eyebrow>{suggestionsFromLessons ? t('from_lessons') : t('to_start')}</Eyebrow>
+              <h2 className="text-lg font-bold" dir="auto">{suggestionsFromLessons ? t('from_lessons') : t('to_start')}</h2>
               {suggestionsFromLessons
                 ? fromLessons.map((q) => <Suggestion key={q} lang="en" onClick={() => ask(q)}>{q}</Suggestion>)
                 : starters.map((key) => <Suggestion key={key} onClick={() => ask(t(key), { answerId: key })}>{t(key)}</Suggestion>)}
             </section>
 
             <section className="space-y-2">
-              <Eyebrow>{t('about_interview')}</Eyebrow>
+              <h2 className="text-lg font-bold" dir="auto">{t('about_interview')}</h2>
               {INTERVIEW_SUGGESTIONS.map((key) => <Suggestion key={key} onClick={() => ask(t(key), { answerId: key })}>{t(key)}</Suggestion>)}
             </section>
 
-            <p className="text-small text-muted">{t('own_case')}</p>
+            <p className="text-small text-muted" dir="auto">{t('own_case')}</p>
 
             {/* Ask out loud (the biggest button), or type instead */}
             <div className="pt-2 space-y-3">
@@ -477,9 +474,9 @@ export default function StudyBuddy() {
           <div className="flex items-center gap-2 flex-wrap">
             <span className="text-small font-semibold text-muted">{t('chat_language')}</span>
             <Select value={language} onValueChange={setLanguage}>
-              <SelectTrigger className="w-auto min-h-11 h-11 rounded-button bg-white border-line text-navy text-small font-semibold gap-1.5 px-3" aria-label="Amio explains in">
+              <SelectTrigger className="w-auto min-h-11 h-11 rounded-button bg-white border-line text-navy text-small font-semibold gap-1.5 px-3" aria-label={t('chat_language')}>
                 <Globe className="w-4 h-4 shrink-0" aria-hidden="true" />
-                <SelectValue placeholder="Language" />
+                <SelectValue placeholder={t('language')} />
               </SelectTrigger>
               <SelectContent>
                 {LANGUAGES.map((lang) => <SelectItem key={lang.value} value={lang.value}>{lang.label}</SelectItem>)}
@@ -489,7 +486,7 @@ export default function StudyBuddy() {
           <button
             type="button"
             onClick={() => setTalkOpen(true)}
-            className="min-h-11 px-1 text-navy text-base font-semibold inline-flex items-center gap-2 underline underline-offset-4 decoration-navy/40 hover:decoration-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy rounded"
+            className="min-h-11 px-1 text-denim text-base font-semibold inline-flex items-center gap-2 underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy rounded"
           >
             <Users className="w-5 h-5" aria-hidden="true" /> {t('talk_to_person')}
           </button>

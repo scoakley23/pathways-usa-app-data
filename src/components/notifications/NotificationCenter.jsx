@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { notifications as notificationsApi } from '@/api/notifications';
 import { Bell, Check, Trash2, AlertCircle } from 'lucide-react';
-import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
@@ -10,7 +9,9 @@ import {
 } from "@/components/ui/sheet";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { toast } from "sonner";
-import { formatDistanceToNow } from 'date-fns';
+import useTranslatedLines from '@/components/persona/useTranslatedLines';
+import useAppLanguage, { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
+import { NOTIFICATION_LINES } from '@/components/progress/progressStrings';
 import { Link } from 'react-router-dom';
 
 // The notifications panel. It has no button of its own: the Notifications
@@ -92,37 +93,43 @@ export default function NotificationCenter({ userEmail, open = false, onOpenChan
     }
   };
 
+  const [language] = useAppLanguage();
+  const tr = useTranslatedLines(NOTIFICATION_LINES, language, { cacheKey: 'notifications_v1' });
+  const t = (key) => (language !== 'en' && tr(key)) || NOTIFICATION_LINES[key] || key;
+  const locale = language === 'en' ? 'en-US' : language;
+  const when = (d) => {
+    try { return new Date(d).toLocaleDateString(locale, { month: 'short', day: 'numeric' }); } catch (e) { return ''; }
+  };
   const requestPushPermission = async () => {
       if (typeof Notification === 'undefined') return;
       const result = await Notification.requestPermission();
       setPermission(result);
       if (result === 'granted') {
-          toast.success("Notifications enabled!");
-          new Notification("Test Notification", { body: "You will now receive alerts here." });
+          toast.success(t('push_done'));
       }
   };
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
-      <SheetContent className="w-[92vw] max-w-[380px] sm:w-[380px] flex flex-col bg-paper border-line">
-        <SheetHeader className="flex flex-row items-center justify-between gap-2 space-y-0 mb-4 pe-8">
-          <SheetTitle className="text-title font-bold text-navy">Notifications</SheetTitle>
+      <SheetContent side="bottom" dir={RTL_LANGUAGES.includes(language) ? 'rtl' : 'ltr'} className="max-h-[85vh] flex flex-col rounded-t-sheet bg-paper border-line px-4 pt-6 pb-6">
+        <SheetHeader className="flex flex-row items-center justify-between gap-2 space-y-0 mb-4 pe-10">
+          <SheetTitle className="font-display text-[1.625rem] leading-tight text-navy text-start" dir="auto">{t('title')}</SheetTitle>
           {unreadCount > 0 && (
-              <Button variant="ghost" size="sm" onClick={markAllRead}>
-                  Mark all read
-              </Button>
+              <button type="button" onClick={markAllRead} className="min-h-tap px-2 text-base font-semibold text-denim underline underline-offset-4 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim" dir="auto">
+                  {t('mark_all')}
+              </button>
           )}
         </SheetHeader>
         
         {permission !== 'granted' && (
-            <div className="bg-tint p-3 rounded-2xl mb-4 flex items-center justify-between gap-2">
-                <div className="flex items-center text-sm font-semibold text-navy">
-                    <AlertCircle className="w-4 h-4 me-2 shrink-0" aria-hidden="true" />
-                    <span>Enable push notifications?</span>
+            <div className="bg-white border-[1.5px] border-line p-3 rounded-card mb-4 flex items-center justify-between gap-2">
+                <div className="flex items-center text-base font-semibold text-navy">
+                    <AlertCircle className="w-5 h-5 me-2 shrink-0" aria-hidden="true" />
+                    <span dir="auto">{t('push_ask')}</span>
                 </div>
-                <Button size="sm" variant="outline" className="shrink-0" onClick={requestPushPermission}>
-                    Enable
-                </Button>
+                <button type="button" className="shrink-0 min-h-tap rounded-button border-[1.5px] border-line bg-white px-4 text-base font-semibold text-navy hover:border-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim" onClick={requestPushPermission}>
+                    {t('push_on')}
+                </button>
             </div>
         )}
 
@@ -130,43 +137,44 @@ export default function NotificationCenter({ userEmail, open = false, onOpenChan
             {notifications.length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-40 text-muted">
                     <Bell className="w-8 h-8 mb-2 opacity-40" aria-hidden="true" />
-                    <p className="text-base">No notifications yet</p>
+                    <p className="text-base" dir="auto">{t('empty')}</p>
                 </div>
             ) : (
                 <div className="space-y-2">
                     {notifications.map(n => (
                         <div 
                             key={n.id} 
-                            className={`relative group p-4 rounded-card border transition-colors ${n.read ? 'bg-white border-line' : 'bg-white border-denim'}`}
+                            className={`relative group p-4 rounded-card border-[1.5px] bg-white ${n.read ? 'border-line' : 'border-navy'}`}
                         >
                             <div className="flex justify-between items-start gap-2 mb-1">
-                                <h4 className="text-base font-bold text-navy flex items-center gap-2">
-                                    {!n.read && <span className="w-2 h-2 rounded-full bg-denim shrink-0" aria-hidden="true" />}
-                                    {n.title}
-                                </h4>
-                                <div className="flex items-center gap-1 -mt-2 -mr-2 md:opacity-0 md:group-hover:opacity-100 focus-within:opacity-100 transition-opacity">
+                                <h3 className="text-base font-bold text-navy flex items-center gap-2">
+                                    {!n.read && <span className="w-2.5 h-2.5 rounded-full bg-gold shrink-0" aria-hidden="true" />}
+                                    <span dir="auto">{n.title}</span>
+                                    {!n.read && <span className="sr-only">, {t('unread')}</span>}
+                                </h3>
+                                <div className="flex items-center gap-1 -mt-2 -me-2 md:opacity-0 md:group-hover:opacity-100 focus-within:opacity-100 transition-opacity">
                                     {!n.read && (
-                                        <button onClick={() => markAsRead(n.id)} className="w-11 h-11 flex items-center justify-center hover:bg-tint rounded-xl text-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim" title="Mark read" aria-label="Mark read">
-                                            <Check className="w-4 h-4" />
+                                        <button onClick={() => markAsRead(n.id)} className="w-11 h-11 flex items-center justify-center hover:bg-tint rounded-button text-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim" title={t('mark_read')} aria-label={t('mark_read')}>
+                                            <Check className="w-5 h-5" aria-hidden="true" />
                                         </button>
                                     )}
-                                    <button onClick={(e) => deleteNotification(n.id, e)} className="w-11 h-11 flex items-center justify-center hover:bg-tint rounded-xl text-not-yet focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim" title="Delete" aria-label="Delete">
-                                        <Trash2 className="w-4 h-4" />
+                                    <button onClick={(e) => deleteNotification(n.id, e)} className="w-11 h-11 flex items-center justify-center hover:bg-tint rounded-button text-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim" title={t('remove')} aria-label={t('remove')}>
+                                        <Trash2 className="w-5 h-5" aria-hidden="true" />
                                     </button>
                                 </div>
                             </div>
-                            <p className="text-base text-muted mb-2 line-clamp-2">{n.message}</p>
+                            <p className="text-base text-muted mb-2 line-clamp-2" dir="auto">{n.message}</p>
                             <div className="flex items-center justify-between gap-2">
                                 <span className="text-small text-muted">
-                                    {n.created_date ? formatDistanceToNow(new Date(n.created_date), { addSuffix: true }) : 'Just now'}
+                                    {n.created_date ? when(n.created_date) : t('just_now')}
                                 </span>
                                 {n.link && (
                                     <Link 
                                         to={n.link} 
                                         onClick={() => { setIsOpen(false); markAsRead(n.id); }}
-                                        className="inline-flex items-center min-h-[44px] text-sm font-bold text-navy underline underline-offset-4 decoration-denim/40 hover:decoration-denim"
+                                        className="inline-flex items-center min-h-[44px] text-base font-semibold text-denim underline underline-offset-4"
                                     >
-                                        View Details
+                                        {t('open')}
                                     </Link>
                                 )}
                             </div>

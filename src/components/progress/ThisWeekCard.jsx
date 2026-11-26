@@ -10,6 +10,7 @@ import { dayIndex } from '@/lib/studyPlan';
 import { loadPlanSettings } from '@/lib/planSettings';
 import { practiceDaysThisWeek, weekCircles, weeksToInterview } from '@/lib/todayView';
 import useToday from '@/components/today/useToday';
+import useProgressText from './useProgressText';
 import { goalMet } from '@/lib/todayView';
 
 // On Progress (The Road): two number cards (2025 civics questions ready,
@@ -23,6 +24,7 @@ export default function ThisWeekCard({ language = 'en' }) {
   const met = goalMet(day.goal, day.doneToday);
   const today = useMemo(() => new Date(), []);
   const { t } = useTodayText(language);
+  const { t: pt } = useProgressText();
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -74,16 +76,16 @@ export default function ThisWeekCard({ language = 'en' }) {
   return (
     <div className="space-y-4 text-navy">
       {/* Two numbers: civics questions ready, days practiced this week */}
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-2 gap-2">
         <Card padding="p-4">
-          <p className="text-label text-muted">Civics ready</p>
+          <p className="text-base font-semibold" dir="auto">{pt('civics_ready')}</p>
           <p className="mt-2"><span className={number}>{data.ready}</span><span className="text-lg text-muted">/{data.civicsTotal || 128}</span></p>
-          <p className="mt-1 text-sm text-muted">2025 civics questions</p>
+          <p className="mt-1 text-small text-muted" dir="auto">{pt('civics_sub')}</p>
         </Card>
         <Card padding="p-4">
-          <p className="text-label text-muted">{t('this_week')}</p>
+          <p className="text-base font-semibold" dir="auto">{t('this_week')}</p>
           <p className="mt-2"><span className={number}>{daysCount}</span><span className="text-lg text-muted">/7</span></p>
-          <p className="mt-1 text-sm text-muted">Days practiced</p>
+          <p className="mt-1 text-small text-muted" dir="auto">{pt('days_practiced')}</p>
         </Card>
       </div>
 
