@@ -1,6 +1,6 @@
 # FAQ review (Settings → Questions and answers)
 
-**Status: draft for the owner's review.** Every entry in `content/faq/faq.json` is still `"status": "draft"`, and this review changes none of them. Learners see an entry only after you set it to `reviewed` (`reviewedFaq()` in `src/lib/faq.js`). Until then the row stays hidden in Settings.
+**Status: draft for the owner's review.** **Applied on 2026-11-26:** the wording for the six "Change" rows is now in `content/faq/faq.json`. Every entry is still `draft`; tick each box below after reading it, then set it to `reviewed` yourself. Learners see an entry only after you set it to `reviewed` (`reviewedFaq()` in `src/lib/faq.js`). Until then the row stays hidden in Settings.
 
 - Checked on: 2026-11-26.
 - Rules checked against (CLAUDE.md):
@@ -88,4 +88,4 @@ No entry needs to be removed.
 
 ---
 
-**When you've decided:** tell me which rows to apply and I'll change the wording in `content/faq/faq.json` in a separate commit. The statuses stay `draft`. Only you set an entry to `reviewed`, after reading it in the app. The FAQ text is English-only in Settings today.
+**Next:** only you set an entry to `reviewed`, after reading it in the app. The FAQ text is English-only in Settings today.
