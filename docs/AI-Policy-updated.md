@@ -40,6 +40,8 @@ Some civics answers change over time (the current President, Vice President, Spe
 ## Lesson Explanations
 Lessons explain each civics question in the learner's language before practice. These explanations are written in advance, not generated while the learner studies. Pathways USA uses AI to draft them; the AI writes only the explanation and key words, never the official question or answers, which are copied from the official list. A person reviews every explanation before learners can see it, and an automated check blocks any explanation whose answers differ from the official list. Until an explanation has been reviewed, learners see "Explanation coming soon."
 
+Some course lessons can also show a short video in English from YouTube. A person reviews each video before learners can see it. Nothing is sent to YouTube until the learner taps "Play video"; then the video plays from YouTube's privacy-enhanced address (youtube-nocookie.com), and YouTube can see that the video was watched from the learner's browser, as with any web video. The app sends no account or learner information with it.
+
 ## Quick Check, Study Plan, and Target Date
 **Quick check:** a short check of civics, reading, writing, and speaking. Answers are scored as described above and not saved. Only one level per skill ("Strong", "Getting there", or "Start here") and the date are saved to the learner's account, to build the study plan.
 

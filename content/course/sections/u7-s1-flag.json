@@ -57,8 +57,21 @@
             {
               "word": "represent",
               "meaning": "to stand for something"
+            },
+            {
+              "word": "Pledge of Allegiance",
+              "meaning": "a promise of loyalty to the flag and the United States",
+              "status": "draft"
             }
-          ]
+          ],
+          "video": {
+            "youtubeId": "tjTWgTcW9nI",
+            "title": "Symbols & Ceremonies of America - Citizens Rule on the Learning Videos Channel",
+            "source": "Lumina Learning (YouTube)",
+            "license": "Standard YouTube license: embedding is allowed by YouTube's terms, but the video is not licensed to Pathways. Check before marking reviewed.",
+            "status": "draft",
+            "note": "From the old Lessons tab (Base44 Lesson \"American Symbols of Freedom and Democracy\"). Before reviewing: watch it all; check it matches the 2025 answers, has no flags, seals, eagles or Statue of Liberty, and the English is easy enough."
+          }
         },
         "teachBack": {
           "questionId": "6ad16ecf6a9c603911f9de90"
@@ -114,6 +127,11 @@
             {
               "word": "anthem",
               "meaning": "a country's official song"
+            },
+            {
+              "word": "E Pluribus Unum",
+              "meaning": "Latin for \"Out of many, one\"",
+              "status": "draft"
             }
           ]
         },

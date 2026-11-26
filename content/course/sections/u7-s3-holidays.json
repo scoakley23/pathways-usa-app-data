@@ -67,6 +67,11 @@
             {
               "word": "honor",
               "meaning": "to show respect for someone"
+            },
+            {
+              "word": "Independence Day",
+              "meaning": "July 4, the day the Declaration of Independence was adopted",
+              "status": "draft"
             }
           ]
         },
@@ -119,6 +124,11 @@
             {
               "word": "national holiday",
               "meaning": "a day the whole country celebrates"
+            },
+            {
+              "word": "Thanksgiving",
+              "meaning": "a national holiday on the fourth Thursday of November",
+              "status": "draft"
             }
           ]
         },

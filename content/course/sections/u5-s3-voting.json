@@ -72,6 +72,11 @@
             {
               "word": "civil rights",
               "meaning": "the rights every citizen should have"
+            },
+            {
+              "word": "15th Amendment",
+              "meaning": "the amendment that says race cannot stop a citizen from voting",
+              "status": "draft"
             }
           ]
         },
@@ -127,6 +132,11 @@
             {
               "word": "movement",
               "meaning": "a group of people working together for a change"
+            },
+            {
+              "word": "19th Amendment",
+              "meaning": "the amendment that gave women the right to vote",
+              "status": "draft"
             }
           ]
         },

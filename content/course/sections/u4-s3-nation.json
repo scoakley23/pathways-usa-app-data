@@ -78,6 +78,11 @@
             {
               "word": "founding document",
               "meaning": "an important paper written when the country began"
+            },
+            {
+              "word": "Constitutional Convention",
+              "meaning": "the 1787 meeting in Philadelphia where the Constitution was written",
+              "status": "draft"
             }
           ]
         },
@@ -129,6 +134,11 @@
             {
               "word": "support",
               "meaning": "to be for something and help it"
+            },
+            {
+              "word": "ratify",
+              "meaning": "to approve officially",
+              "status": "draft"
             }
           ]
         },

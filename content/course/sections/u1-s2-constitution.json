@@ -76,7 +76,15 @@
               "word": "protect",
               "meaning": "to keep safe"
             }
-          ]
+          ],
+          "video": {
+            "youtubeId": "bO7FQsCcbD8",
+            "title": "The Constitution, the Articles, and Federalism: Crash Course US History #8",
+            "source": "CrashCourse (YouTube)",
+            "license": "Standard YouTube license: embedding is allowed by YouTube's terms, but the video is not licensed to Pathways. Check before marking reviewed.",
+            "status": "draft",
+            "note": "From the old Lessons tab (Base44 Lesson \"The U.S. Constitution and the Founding Fathers\"). Before reviewing: watch it all; check it matches the 2025 answers, has no flags, seals, eagles or Statue of Liberty, and the English is easy enough."
+          }
         },
         "teachBack": {
           "questionId": "6ad16ecf6a9c603911f9de18"
@@ -175,7 +183,15 @@
               "word": "amendment",
               "meaning": "a change or addition to the Constitution"
             }
-          ]
+          ],
+          "video": {
+            "youtubeId": "bO7Ho0vejfs",
+            "title": "Amending the Constitution",
+            "source": "Untold History (YouTube)",
+            "license": "Standard YouTube license: embedding is allowed by YouTube's terms, but the video is not licensed to Pathways. Check before marking reviewed.",
+            "status": "draft",
+            "note": "From the old Lessons tab (Base44 Lesson \"Amendments and Constitutional Changes\"). Before reviewing: watch it all; check it matches the 2025 answers, has no flags, seals, eagles or Statue of Liberty, and the English is easy enough."
+          }
         },
         "teachBack": {
           "questionId": "6ad16ecf6a9c603911f9de1b"
