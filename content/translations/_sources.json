@@ -1148,6 +1148,12 @@
    ]
   },
   {
+   "text": "Access restricted",
+   "from": [
+    "error-pages"
+   ]
+  },
+  {
    "text": "Active involvement of citizens in the government process through voting and civic engagement",
    "from": [
     "lessons"
@@ -1193,6 +1199,12 @@
    "text": "Admin",
    "from": [
     "settings"
+   ]
+  },
+  {
+   "text": "Admin note",
+   "from": [
+    "error-pages"
    ]
   },
   {
@@ -1555,6 +1567,12 @@
    "text": "Amio explains in",
    "from": [
     "ask-screen"
+   ]
+  },
+  {
+   "text": "Amio explains in your app language. You can change this any time.",
+   "from": [
+    "settings-pieces"
    ]
   },
   {
@@ -1995,6 +2013,7 @@
     "interview-when",
     "lawyer",
     "lesson-player",
+    "lesson-status",
     "n400-guide",
     "practice",
     "progress",
@@ -2199,6 +2218,18 @@
    "text": "Benjamin Franklin is famous for many things. Name one.",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "Best available (recommended)",
+   "from": [
+    "settings-pieces"
+   ]
+  },
+  {
+   "text": "Best {n}%",
+   "from": [
+    "lesson-status"
    ]
   },
   {
@@ -2523,6 +2554,12 @@
    "text": "Check my answer",
    "from": [
     "practice"
+   ]
+  },
+  {
+   "text": "Check that you signed in with the right account",
+   "from": [
+    "error-pages"
    ]
   },
   {
@@ -2911,6 +2948,12 @@
    ]
   },
   {
+   "text": "Coach",
+   "from": [
+    "settings-pieces"
+   ]
+  },
+  {
    "text": "Code",
    "from": [
     "onboarding"
@@ -3201,6 +3244,12 @@
    "text": "Contact form coming soon.",
    "from": [
     "talk"
+   ]
+  },
+  {
+   "text": "Contact the app’s team for access",
+   "from": [
+    "error-pages"
    ]
   },
   {
@@ -4133,6 +4182,12 @@
    ]
   },
   {
+   "text": "English",
+   "from": [
+    "settings-pieces"
+   ]
+  },
+  {
    "text": "English only, like the real interview",
    "from": [
     "lesson-player"
@@ -4571,6 +4626,12 @@
    "text": "Finish “{title}” first. Stops open one at a time, in order.",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "Finished",
+   "from": [
+    "lesson-status"
    ]
   },
   {
@@ -5061,6 +5122,12 @@
    ]
   },
   {
+   "text": "Gentle and encouraging. Explains things twice, in different words, if needed.",
+   "from": [
+    "settings-pieces"
+   ]
+  },
+  {
    "text": "George Washington",
    "from": [
     "key-words",
@@ -5187,6 +5254,12 @@
    "text": "Go over this unit’s lessons again.",
    "from": [
     "practice"
+   ]
+  },
+  {
+   "text": "Go to Today",
+   "from": [
+    "error-pages"
    ]
   },
   {
@@ -5396,6 +5469,12 @@
    "from": [
     "course",
     "n400-guide"
+   ]
+  },
+  {
+   "text": "Half and half",
+   "from": [
+    "settings-pieces"
    ]
   },
   {
@@ -6162,6 +6241,12 @@
    ]
   },
   {
+   "text": "How much English?",
+   "from": [
+    "settings-pieces"
+   ]
+  },
+  {
    "text": "How old do citizens have to be to vote for President?",
    "from": [
     "civics-questions"
@@ -6183,6 +6268,12 @@
    "text": "How ready do you feel for your interview?",
    "from": [
     "pilot"
+   ]
+  },
+  {
+   "text": "How should Amio talk?",
+   "from": [
+    "settings-pieces"
    ]
   },
   {
@@ -6477,6 +6568,12 @@
    "text": "If you still can't find the dates, you can ask CBP for your official travel record with a FOIA request. It takes a long time, so try the other ways first.",
    "from": [
     "n400-lessons"
+   ]
+  },
+  {
+   "text": "If you think this is a mistake, you can:",
+   "from": [
+    "error-pages"
    ]
   },
   {
@@ -7407,6 +7504,12 @@
    ]
   },
   {
+   "text": "Lesson progress",
+   "from": [
+    "lesson-status"
+   ]
+  },
+  {
    "text": "Lesson {n}",
    "from": [
     "course"
@@ -7523,6 +7626,12 @@
    ]
   },
   {
+   "text": "Like the officer",
+   "from": [
+    "settings-pieces"
+   ]
+  },
+  {
    "text": "Limited Rights",
    "from": [
     "lessons"
@@ -7595,6 +7704,7 @@
     "lesson-player",
     "n400-guide",
     "n400-lessons",
+    "settings-pieces",
     "today-plan"
    ]
   },
@@ -7614,6 +7724,12 @@
    "text": "Listen and write · {n} of {total}",
    "from": [
     "checkpoints"
+   ]
+  },
+  {
+   "text": "Listen in English",
+   "from": [
+    "settings-pieces"
    ]
   },
   {
@@ -8230,6 +8346,18 @@
    ]
   },
   {
+   "text": "Mostly English",
+   "from": [
+    "settings-pieces"
+   ]
+  },
+  {
+   "text": "Mostly my language",
+   "from": [
+    "settings-pieces"
+   ]
+  },
+  {
    "text": "Motto and anthem",
    "from": [
     "course-titles"
@@ -8617,6 +8745,12 @@
    ]
   },
   {
+   "text": "Natural",
+   "from": [
+    "settings-pieces"
+   ]
+  },
+  {
    "text": "Natural Landmarks and National Parks",
    "from": [
     "lessons"
@@ -8844,6 +8978,12 @@
    ]
   },
   {
+   "text": "No lessons yet.",
+   "from": [
+    "lesson-status"
+   ]
+  },
+  {
    "text": "No notifications yet",
    "from": [
     "notifications"
@@ -8983,6 +9123,7 @@
   {
    "text": "Not started",
    "from": [
+    "lesson-status",
     "practice"
    ]
   },
@@ -9555,6 +9696,12 @@
    ]
   },
   {
+   "text": "Page not found",
+   "from": [
+    "error-pages"
+   ]
+  },
+  {
    "text": "Part 8",
    "from": [
     "n400-guide"
@@ -9845,6 +9992,12 @@
    ]
   },
   {
+   "text": "Play sample",
+   "from": [
+    "settings-pieces"
+   ]
+  },
+  {
    "text": "Play the sentence",
    "from": [
     "lesson-player"
@@ -9854,6 +10007,12 @@
    "text": "Play this again",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Playing…",
+   "from": [
+    "settings-pieces"
    ]
   },
   {
@@ -9878,6 +10037,12 @@
    "text": "Police generally need a warrant to search your home under the Fourth Amendment",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "Polite and formal, like a USCIS officer. For learners who want realistic interview pressure.",
+   "from": [
+    "settings-pieces"
    ]
   },
   {
@@ -10956,7 +11121,8 @@
    "from": [
     "my-tutor",
     "pilot",
-    "settings"
+    "settings",
+    "settings-pieces"
    ]
   },
   {
@@ -11776,6 +11942,12 @@
    ]
   },
   {
+   "text": "Short sentences. No small talk. Only what the learner needs.",
+   "from": [
+    "settings-pieces"
+   ]
+  },
+  {
    "text": "Short terms mean representatives face voters often, so they follow what the public thinks.",
    "from": [
     "course-lessons"
@@ -11851,6 +12023,12 @@
    ]
   },
   {
+   "text": "Sign out and sign in again",
+   "from": [
+    "error-pages"
+   ]
+  },
+  {
    "text": "Signed someone up.",
    "from": [
     "n400"
@@ -11922,7 +12100,8 @@
    "from": [
     "lesson-player",
     "n400-lessons",
-    "onboarding"
+    "onboarding",
+    "settings-pieces"
    ]
   },
   {
@@ -12205,6 +12384,12 @@
    ]
   },
   {
+   "text": "Speed",
+   "from": [
+    "settings-pieces"
+   ]
+  },
+  {
    "text": "Spot the word",
    "from": [
     "n400-lessons"
@@ -12324,6 +12509,12 @@
    ]
   },
   {
+   "text": "Started",
+   "from": [
+    "lesson-status"
+   ]
+  },
+  {
    "text": "State",
    "from": [
     "words"
@@ -12419,6 +12610,12 @@
    "text": "Stop {n} of 5 · {name}",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "Straight to the point",
+   "from": [
+    "settings-pieces"
    ]
   },
   {
@@ -14971,6 +15168,12 @@
    ]
   },
   {
+   "text": "This page may not be built yet.",
+   "from": [
+    "error-pages"
+   ]
+  },
+  {
    "text": "This part of the form asks you to write down every trip you took outside the United States during the required time period. Start with your most recent trip. Then go back in time. Do not write down day trips — trips where you left and came back within 24 hours. If any trip lasted more than 6 months, the Instructions list evidence you can provide.",
    "from": [
     "n400"
@@ -15307,6 +15510,12 @@
    "text": "Tip: for the second question, two short words are enough, like “liberty” and “equality.”",
    "from": [
     "course-lessons"
+   ]
+  },
+  {
+   "text": "Tip: practice slower first, then at 1.0× like the real interview.",
+   "from": [
+    "settings-pieces"
    ]
   },
   {
@@ -15936,6 +16145,12 @@
    ]
   },
   {
+   "text": "Upbeat. Sets small goals and celebrates real progress without exaggerating.",
+   "from": [
+    "settings-pieces"
+   ]
+  },
+  {
    "text": "Upper chamber of Congress with 100 members, two from each state serving six-year terms",
    "from": [
     "lessons"
@@ -16022,7 +16237,8 @@
   {
    "text": "Voice",
    "from": [
-    "practice"
+    "practice",
+    "settings-pieces"
    ]
   },
   {
@@ -16162,6 +16378,12 @@
    "text": "War of 1812 / Mexican-American War / Civil War / Spanish-American War",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "Warm and patient",
+   "from": [
+    "settings-pieces"
    ]
   },
   {
@@ -16315,6 +16537,12 @@
    "text": "We couldn’t find that code. Check it with your teacher.",
    "from": [
     "my-tutor"
+   ]
+  },
+  {
+   "text": "We couldn’t find “{page}”.",
+   "from": [
+    "error-pages"
    ]
   },
   {
@@ -17323,6 +17551,12 @@
    ]
   },
   {
+   "text": "Where you are in each civics topic.",
+   "from": [
+    "lesson-status"
+   ]
+  },
+  {
    "text": "Which branch is Congress?",
    "from": [
     "course-lessons"
@@ -18086,6 +18320,12 @@
    ]
   },
   {
+   "text": "You are not registered to use this app. Please contact the app’s team to ask for access.",
+   "from": [
+    "error-pages"
+   ]
+  },
+  {
    "text": "You asked",
    "from": [
     "ask-screen"
@@ -18401,6 +18641,12 @@
    "text": "Your browser doesn’t support speech recognition. Please use Chrome, Edge, or Safari.",
    "from": [
     "practice"
+   ]
+  },
+  {
+   "text": "Your browser has few voices. For the most natural voices, try Microsoft Edge or Google Chrome, or add voices in your phone’s speech settings.",
+   "from": [
+    "settings-pieces"
    ]
   },
   {

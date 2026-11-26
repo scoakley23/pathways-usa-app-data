@@ -3,7 +3,6 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { ArrowLeft, X } from 'lucide-react';
 import { auth, AUTH_PROVIDER } from '@/api/auth';
 import { CODE_LENGTH, cleanCode, safeNext } from '@/api/supabaseAuth';
-import NavyBanner from '@/components/pathways/NavyBanner';
 import { Button, Card } from '@/components/pathways/ui';
 import LanguageSelector from '@/components/lessons/LanguageSelector';
 import useTranslatedLines from '@/components/persona/useTranslatedLines';
@@ -100,20 +99,22 @@ export default function SignInScreen() {
 
   return (
     <div dir={dir} className="min-h-screen bg-paper text-navy font-sans flex flex-col">
-      <NavyBanner
-        title={step === 'email' ? t('title') : t('checkTitle')}
-        subtitle="from Pathways USA"
-        left={(
-          <Link to="/" aria-label={t('back')} className="min-w-tap min-h-tap inline-flex items-center justify-center rounded-full text-white hover:bg-chip-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
-            <ArrowLeft className="w-6 h-6 rtl:rotate-180" strokeWidth={2} aria-hidden="true" />
-          </Link>
-        )}
-        right={<LanguageSelector language={language} onLanguageChange={setLanguage} compact onNavy />}
-      />
+      {/* Amio v2 (amio-v2/leftovers): a paper top with Back, the title and
+          "from Pathways USA", and the language picker. */}
+      <div className="w-full max-w-md mx-auto px-4 pt-4 flex items-start gap-2">
+        <Link to="/" aria-label={t('back')} className="w-11 h-11 shrink-0 -ms-2 inline-flex items-center justify-center rounded-full text-navy hover:bg-line-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim">
+          <ArrowLeft className="w-6 h-6 rtl:rotate-180" strokeWidth={2} aria-hidden="true" />
+        </Link>
+        <div className="min-w-0 flex-1 pt-1">
+          <h1 className="font-display text-[1.75rem] leading-tight" dir="auto">{step === 'email' ? t('title') : t('checkTitle')}</h1>
+          <p className="text-base text-muted">from Pathways USA</p>
+        </div>
+        <LanguageSelector language={language} onLanguageChange={setLanguage} compact />
+      </div>
 
       <main id="main" className="flex-1 w-full max-w-md mx-auto px-4 py-6 flex flex-col gap-4">
         {expired && step === 'email' && (
-          <p role="status" className="rounded-card bg-tint px-4 py-3 text-base text-navy">{t('expiredNote')}</p>
+          <p role="status" className="rounded-card bg-white border-[1.5px] border-line px-4 py-3 text-base text-navy">{t('expiredNote')}</p>
         )}
 
         <Card className="flex flex-col gap-4">
