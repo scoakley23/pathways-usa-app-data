@@ -1,6 +1,6 @@
 # AI policy check: gaps between the policy and the code
 
-**Status: draft for the owner's review.** Nothing here has been approved, and `docs/AI-Policy-updated.md` has not been edited.
+**Status: draft for the owner's review.** **Applied on 2026-11-26** (at the owner's request): rows 1–19 are now in `docs/AI-Policy-updated.md` (row 6 as the "Plan changes" replacement, row 19 included). Row 20 needed no policy edit. The tick boxes below are still for the owner.
 
 - Checked on: 2026-11-26, against `standalone` at `c7f48cf`.
 - Policy version checked: "Updated November 20, 2026" (`docs/AI-Policy-updated.md`).
