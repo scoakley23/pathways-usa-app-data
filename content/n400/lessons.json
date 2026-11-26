@@ -66,7 +66,7 @@
       "section": "time-outside-us",
       "unitId": "u1",
       "title": "N-400: Time outside the U.S.",
-      "status": "draft",
+      "status": "reviewed",
       "context": [
         "Before your interview, make a list of every trip outside the United States: where you went, the day you left and the day you came back.",
         "If you don't remember the dates, look at photos from your trips, the stamps in your passport, flight confirmation emails, bank or card statements, and frequent flyer accounts.",
@@ -456,7 +456,7 @@
       "section": "selective-service-military",
       "unitId": "u6",
       "title": "N-400: Selective Service and the military",
-      "status": "draft",
+      "status": "reviewed",
       "context": [
         "Everyone answers question 22.a on the form: “Are you a male who lived in the United States at any time between your 18th and 26th birthdays?”",
         "Question 22.b is only for people who answered “Yes” to 22.a. So if you are not a man, 22.b doesn't apply to you.",
