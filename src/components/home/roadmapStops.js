@@ -15,7 +15,7 @@ export const ROADMAP_STOPS = [
     desc: 'study the civics lessons — history, government, and your representatives',
     short: 'Civics video lessons and your representatives.',
     path: 'Lessons',
-    href: '/study?tab=lessons',
+    href: '/course',
   },
   {
     id: 3,

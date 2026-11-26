@@ -7,9 +7,7 @@
 import { INTERVIEW_PARTS, WORK_ON_NEXT } from '@/lib/interviewReadiness';
 
 export const PRACTICE_LINES = {
-  // Study: Lessons | Practice
-  study: 'Study',
-  tab_lessons: 'Lessons',
+  // The Practice page's title
   tab_practice: 'Practice',
   // The Practice home
   amio_practice: 'Pick a part. Ten cards, then we look at how it went.',
@@ -172,25 +170,6 @@ export const PRACTICE_LINES = {
   amio_round_kind: 'Every round helps. Let’s go over these.',
   n_of_right: '{n} of {total} right',
   n_of: '{n} of {total}',
-  // The Lessons tab
-  lessons_intro: 'Each lesson ends with the exact questions the officer may ask. We go over them together.',
-  loading_lessons: 'Loading lessons…',
-  civics_done: 'Civics · {n} of {total} lessons done',
-  topic_lessons: '{n} of {total} lessons',
-  topic_done_sr: 'done',
-  topic_here_sr: 'suggested next',
-  suggested_next: 'Suggested next',
-  next_start: 'Start here',
-  next_continue: 'Pick up where you left off',
-  next_review: 'Worth going over again',
-  status_review: 'Go over again',
-  status_done: 'Done',
-  status_progress: 'In progress',
-  status_new: 'Not started',
-  has_video: 'Has a video',
-  no_lessons: 'No lessons yet',
-  no_lessons_body: 'Lessons are loading. Please check back shortly.',
-  lesson_saved: 'Saved. Lesson complete.',
   // The practice interview (call and report)
   officer_speaking: 'The officer is speaking…',
   your_turn_understand: 'Your turn: say in English what the officer is asking.',

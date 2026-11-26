@@ -41,3 +41,16 @@ export async function preparedAnswer({ id = null, text = '', language = 'en', tr
   const mine = await translate(language, entry.answer);
   return mine ? { en: entry.answer, mine, id: entry.id } : null;
 }
+
+// The answer to a Course lesson suggestion (askSuggestions.js): reviewed
+// course content, so no AI. `en` = lead + the English parts; `mine` = the
+// same from the translation pack, or null when the pack is missing any part
+// (then the question goes to the AI, as with any suggestion).
+export async function courseAnswer(suggestion, language = 'en', { translate = packText } = {}) {
+  if (!suggestion?.parts?.length) return null;
+  const en = `${suggestion.lead || ''}${suggestion.parts.join(' ')}`;
+  if (!language || language === 'en') return { en, mine: null, id: suggestion.id };
+  const parts = await Promise.all(suggestion.parts.map((p) => translate(language, p)));
+  if (parts.some((p) => !p)) return null;
+  return { en, mine: `${suggestion.lead || ''}${parts.join(' ')}`, id: suggestion.id };
+}
