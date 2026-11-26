@@ -11,6 +11,22 @@ import { shouldShowPilotIntro, isCheckInSnoozed, snoozeCheckIn } from '@/lib/pil
 import { loadPlanSettings } from '@/lib/planSettings';
 import { useAuth } from '@/lib/AuthContext';
 import useAppLanguage, { isRTL } from '@/hooks/useAppLanguage';
+import { endGuest, isGuest } from '@/lib/guestMode';
+import useOnboardingText from '@/components/onboarding/useOnboardingText';
+import { Button } from '@/components/pathways/ui';
+
+// Guests (Welcome's Start, no account): one card at the top of Today saying
+// nothing is saved yet, with Sign in.
+function GuestCard() {
+  const { t } = useOnboardingText();
+  return (
+    <section className="rounded-card bg-white border border-line p-5 flex flex-col gap-3">
+      <h2 className="text-lg font-bold" dir="auto">{t('guest_title')}</h2>
+      <p className="text-base text-muted" dir="auto">{t('guest_body')}</p>
+      <Button variant="second" className="w-full" onClick={() => auth.goToSignIn('/')}>{t('sign_in')}</Button>
+    </section>
+  );
+}
 
 // Set once the learner answers or skips "Help us improve Amio", so the
 // screen doesn't come back before Layout reloads the account.
@@ -57,6 +73,9 @@ export default function Home({ cachedUser }) {
 
   // Signed in, Home has the full width (Layout leaves out its padding), so
   // screens other than Today bring their own.
+  // Signing in ends guest mode.
+  useEffect(() => { if (learner) endGuest(); }, [learner]);
+
   const padded = 'container mx-auto px-4 pt-6 pb-8 max-w-5xl';
 
   // Signed in but the account is still loading: wait rather than flash Welcome.
@@ -90,6 +109,15 @@ export default function Home({ cachedUser }) {
             <CheckInCard language={language} onOpen={() => setCheckInView('form')} onNotNow={notNow} onNever={never} />
           )}
         />
+      </div>
+    );
+  }
+
+  // Guests (Welcome's Start, src/lib/guestMode.js): Today, nothing saved.
+  if (!isAuthenticated && isGuest()) {
+    return (
+      <div dir={rtl ? 'rtl' : 'ltr'}>
+        <TodayPage user={null} sheetTop={<GuestCard />} />
       </div>
     );
   }

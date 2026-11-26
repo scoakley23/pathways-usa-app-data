@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { auth } from '@/api/auth';
+import { startGuest } from '@/lib/guestMode';
 import { Amio } from '@/components/pathways/Amio';
 import { Button, MAIN_PRESS } from '@/components/pathways/ui';
 import { rememberProgramCode } from '@/lib/programLink';
@@ -10,8 +12,9 @@ import { hasPickedLanguage, languageFromPhone, phoneLanguages } from '@/lib/welc
 import WelcomeLanguageSheet from '@/components/onboarding/WelcomeLanguageSheet';
 
 // Welcome (Amio v2, frame OnboardWelcome): what signed-out visitors see on
-// Home. "Hi, I'm Amio." with hellos in a few languages, Start (signs them in,
-// then first open and the quick check) and "I have a code from my tutor",
+// Home. "Hi, I'm Amio." with hellos in a few languages, Start (guest mode, no
+// account: first open and the quick check; src/lib/guestMode.js), "I already
+// have an account · Sign in", and "I have a code from my tutor",
 // which keeps a partner program's code on the device (like a /?program=CODE
 // link) through the sign-in, so the program question starts with it picked.
 // Nothing else is asked or saved here.
@@ -42,7 +45,9 @@ export default function WelcomeScreen() {
   const [code, setCode] = useState('');
   const [bad, setBad] = useState(false);
 
-  const start = () => auth.goToSignIn(NEXT);
+  const navigate = useNavigate();
+  const start = () => { startGuest(); navigate(NEXT); };
+  const signIn = () => auth.goToSignIn('/');
   const useCode = (e) => {
     e.preventDefault();
     if (!rememberProgramCode(code)) { setBad(true); return; }
@@ -71,6 +76,7 @@ export default function WelcomeScreen() {
             >
               {t('start')}
             </button>
+            <button type="button" onClick={signIn} className="self-center min-h-tap px-2 text-[0.9375rem] text-white underline underline-offset-4 decoration-white/60 hover:decoration-white rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white" dir="auto">{t('have_account')}</button>
             <button type="button" onClick={() => setCodeOpen(true)} className="self-center min-h-tap px-2 text-[0.9375rem] text-sky underline underline-offset-4 decoration-sky/60 hover:decoration-sky rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">{t('have_code')}</button>
           </>
         ) : (

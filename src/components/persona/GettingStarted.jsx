@@ -15,6 +15,7 @@ import useOnboardingText from '@/components/onboarding/useOnboardingText';
 import { LANGUAGES } from '@/lib/languages';
 import { Checkbox } from '@/components/ui/checkbox';
 import { listPartners, joinProgram } from '@/lib/partners';
+import { isGuest } from '@/lib/guestMode';
 import { loadPendingProgram, clearPendingProgram } from '@/lib/programLink';
 import { MAX_NAME_LENGTH } from '@/lib/partners';
 
@@ -90,6 +91,8 @@ export default function GettingStarted({ language, onLanguageChange, onDone }) {
   // partner's link (?program=CODE) picks theirs.
   useEffect(() => {
     let active = true;
+    // Guests (no account) skip the program question: joining needs an account.
+    if (isGuest()) return undefined;
     listPartners()
       .then((list) => {
         if (!active) return;
