@@ -6,7 +6,7 @@ import { N400_GUIDE_LINES } from './n400GuideStrings';
 // when missing). `t(key, vars)` fills {placeholders}.
 export default function useN400GuideText() {
   const [language] = useAppLanguage();
-  const tr = useTranslatedLines(N400_GUIDE_LINES, language, { cacheKey: 'n400_guide_v1' });
+  const tr = useTranslatedLines(N400_GUIDE_LINES, language, { cacheKey: 'n400_guide_v2' });
   const t = (key, vars = {}) => {
     let s = (language !== 'en' && tr(key)) || N400_GUIDE_LINES[key] || key;
     for (const [k, v] of Object.entries(vars)) s = s.split(`{${k}}`).join(String(v));

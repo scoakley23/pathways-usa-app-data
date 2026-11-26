@@ -32,6 +32,13 @@
       "title": "Speak it!"
     },
     {
+      "id": "u7-s3-n400-p9-35",
+      "type": "n400",
+      "title": "N-400 card: Willing to bear arms",
+      "section": "oath-questions",
+      "card": 6
+    },
+    {
       "id": "u7-n400",
       "type": "n400",
       "title": "N-400: Oath questions",

@@ -30,6 +30,13 @@
       "id": "u7-s1-speak",
       "type": "speakit",
       "title": "Speak it!"
+    },
+    {
+      "id": "u7-s1-n400-p9-32",
+      "type": "n400",
+      "title": "N-400 card: Understanding the Oath of Allegiance",
+      "section": "oath-questions",
+      "card": 3
     }
   ],
   "lessons": [
