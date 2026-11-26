@@ -90,6 +90,14 @@ describe('lesson notes on Supabase', () => {
     const { lessonNotes } = setup();
     await expect(lessonNotes.save({ id: 'n2' }, { content: 'x' })).rejects.toBeTruthy();
   });
+
+  it('remove() deletes only the learner\'s own note', async () => {
+    const { lessonNotes, sb } = setup();
+    await lessonNotes.remove('n2');
+    expect(sb.tables.lesson_notes.map((n) => n.id)).toContain('n2');
+    await lessonNotes.remove('n1');
+    expect(sb.tables.lesson_notes.map((n) => n.id)).toEqual(['n2']);
+  });
 });
 
 describe('the columns match the Step 1 tables', () => {
@@ -104,6 +112,7 @@ describe('Base44 (switch off) makes the same calls as before', () => {
   const entity = () => ({
     filter: vi.fn(async () => [{ id: 'b1', lesson_id: 'l1' }]), count: vi.fn(async () => 2),
     update: vi.fn(async (id, d) => ({ id, ...d })), create: vi.fn(async (d) => ({ id: 'new', ...d })),
+    delete: vi.fn(async () => ({})),
   });
   const setup44 = () => {
     const entities = { LessonProgress: entity(), LessonNotes: entity() };
@@ -126,5 +135,7 @@ describe('Base44 (switch off) makes the same calls as before', () => {
     expect(entities.LessonNotes.update).toHaveBeenCalledWith('b1', { content: 'x' });
     await lessonNotes.save(null, { lesson_id: 'l2', content: 'y' });
     expect(entities.LessonNotes.create).toHaveBeenCalledWith({ lesson_id: 'l2', content: 'y' });
+    await lessonNotes.remove('b1');
+    expect(entities.LessonNotes.delete).toHaveBeenCalledWith('b1');
   });
 });

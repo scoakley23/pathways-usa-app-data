@@ -1,0 +1,130 @@
+{
+  "note": "The old Lessons tab (Base44 Lesson records, content/base44-export/lessons.json) and the Course lesson each one now points to. Used to show a learner's old notes under that Course lesson and to send old lesson links to it. Content only: never changes saved data.",
+  "lessons": {
+    "699db0a1297afea4b73d1045": {
+      "title": "American Symbols of Freedom and Democracy",
+      "topic": "Geography and Symbols",
+      "courseLessonId": "u7-s1-l1"
+    },
+    "699db0a1297afea4b73d1046": {
+      "title": "U.S. Geography and Regions",
+      "topic": "Geography and Symbols",
+      "courseLessonId": "u7-s2-l1"
+    },
+    "699db0a1297afea4b73d1047": {
+      "title": "Natural Landmarks and National Parks",
+      "topic": "Geography and Symbols",
+      "courseLessonId": "u7-s2-l1"
+    },
+    "699db0a1297afea4b73d1048": {
+      "title": "Capital Cities and Important Places",
+      "topic": "Geography and Symbols",
+      "courseLessonId": "u7-s2-l1"
+    },
+    "699db0a1297afea4b73d1049": {
+      "title": "American Culture and Values",
+      "topic": "Geography and Symbols",
+      "courseLessonId": "u7-s3-l2"
+    },
+    "699db0a1297afea4b73d1031": {
+      "title": "The U.S. Constitution and the Founding Fathers",
+      "topic": "Principles of American Democracy",
+      "courseLessonId": "u1-s2-l1"
+    },
+    "699db0a1297afea4b73d1032": {
+      "title": "Amendments and Constitutional Changes",
+      "topic": "Principles of American Democracy",
+      "courseLessonId": "u1-s2-l3"
+    },
+    "699db0a1297afea4b73d1033": {
+      "title": "Individual Rights and Civil Liberties",
+      "topic": "Principles of American Democracy",
+      "courseLessonId": "u1-s3-l1"
+    },
+    "699db0a1297afea4b73d1034": {
+      "title": "Voting Rights and Democratic Participation",
+      "topic": "Principles of American Democracy",
+      "courseLessonId": "u3-s1-l2"
+    },
+    "699db0a1297afea4b73d1035": {
+      "title": "Democracy and Federal Government Structure",
+      "topic": "Principles of American Democracy",
+      "courseLessonId": "u1-s3-l3"
+    },
+    "699db0a1297afea4b73d103b": {
+      "title": "Fundamental Rights of Citizens",
+      "topic": "Rights and Responsibilities",
+      "courseLessonId": "u3-s1-l1"
+    },
+    "699db0a1297afea4b73d103c": {
+      "title": "Responsibilities of American Citizens",
+      "topic": "Rights and Responsibilities",
+      "courseLessonId": "u3-s2-l1"
+    },
+    "699db0a1297afea4b73d103d": {
+      "title": "Civil Rights and Equal Protection",
+      "topic": "Rights and Responsibilities",
+      "courseLessonId": "u6-s4-l1"
+    },
+    "699db0a1297afea4b73d103e": {
+      "title": "Balancing Rights and Responsibilities",
+      "topic": "Rights and Responsibilities",
+      "courseLessonId": "u3-s2-l1"
+    },
+    "699db0a1297afea4b73d103f": {
+      "title": "Due Process and Justice",
+      "topic": "Rights and Responsibilities",
+      "courseLessonId": "u1-s3-l2"
+    },
+    "699db0a1297afea4b73d1036": {
+      "title": "Congress and the Legislative Branch",
+      "topic": "System of Government",
+      "courseLessonId": "u2-s2-l1"
+    },
+    "699db0a1297afea4b73d1037": {
+      "title": "The Executive Branch and the Presidency",
+      "topic": "System of Government",
+      "courseLessonId": "u2-s3-l5"
+    },
+    "699db0a1297afea4b73d1038": {
+      "title": "The Judicial Branch and Supreme Court",
+      "topic": "System of Government",
+      "courseLessonId": "u2-s4-l1"
+    },
+    "699db0a1297afea4b73d1039": {
+      "title": "Checks and Balances",
+      "topic": "System of Government",
+      "courseLessonId": "u2-s1-l1"
+    },
+    "699db0a1297afea4b73d103a": {
+      "title": "State and Local Government",
+      "topic": "System of Government",
+      "courseLessonId": "u2-s5-l1"
+    },
+    "699db0a1297afea4b73d1040": {
+      "title": "Native Americans and European Colonization",
+      "topic": "U.S. History",
+      "courseLessonId": "u4-s1-l1"
+    },
+    "699db0a1297afea4b73d1041": {
+      "title": "American Independence and the Revolutionary War",
+      "topic": "U.S. History",
+      "courseLessonId": "u4-s2-l3"
+    },
+    "699db0a1297afea4b73d1042": {
+      "title": "The Civil War and Abolition of Slavery",
+      "topic": "U.S. History",
+      "courseLessonId": "u5-s2-l2"
+    },
+    "699db0a1297afea4b73d1043": {
+      "title": "Westward Expansion and Manifest Destiny",
+      "topic": "U.S. History",
+      "courseLessonId": "u5-s1-l1"
+    },
+    "699db0a1297afea4b73d1044": {
+      "title": "Industrial Revolution and Modern America",
+      "topic": "U.S. History",
+      "courseLessonId": "u6-s4-l4"
+    }
+  }
+}

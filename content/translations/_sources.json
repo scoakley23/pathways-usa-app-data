@@ -3768,6 +3768,12 @@
    ]
   },
   {
+   "text": "Delete this note",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "Democracy and Federal Government Structure",
    "from": [
     "lessons"
@@ -8984,7 +8990,8 @@
   {
    "text": "My notes",
    "from": [
-    "lesson-deck"
+    "lesson-deck",
+    "lesson-player"
    ]
   },
   {
@@ -10363,6 +10370,12 @@
    ]
   },
   {
+   "text": "Only you can see your notes. They are never sent to Amio.",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "Only you see these.",
    "from": [
     "lesson-deck"
@@ -10392,6 +10405,12 @@
    "text": "Open the course",
    "from": [
     "practice"
+   ]
+  },
+  {
+   "text": "Opening your notes…",
+   "from": [
+    "lesson-player"
    ]
   },
   {
@@ -12045,6 +12064,12 @@
    ]
   },
   {
+   "text": "Save notes",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "Save state",
    "from": [
     "pilot"
@@ -12071,6 +12096,7 @@
   {
    "text": "Saved.",
    "from": [
+    "lesson-player",
     "my-tutor"
    ]
   },
@@ -12091,6 +12117,7 @@
    "from": [
     "find-rep",
     "lesson-deck",
+    "lesson-player",
     "pilot"
    ]
   },
@@ -17950,6 +17977,12 @@
    ]
   },
   {
+   "text": "We couldn’t save that. Please try again.",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
    "text": "We couldn’t save this. Please try again.",
    "from": [
     "find-rep"
@@ -20325,6 +20358,18 @@
    "text": "Your next review: {date}.",
    "from": [
     "learn-screens"
+   ]
+  },
+  {
+   "text": "Your note from the older lesson “{title}”",
+   "from": [
+    "lesson-player"
+   ]
+  },
+  {
+   "text": "Your notes for this lesson",
+   "from": [
+    "lesson-player"
    ]
   },
   {
