@@ -17,7 +17,7 @@ import { N400_LESSON_LINES } from '@/components/n400lesson/n400LessonStrings';
 // Reads only. Hidden while no lesson is open yet.
 export default function N400LessonsCard() {
   const [language] = useAppLanguage();
-  const tr = useTranslatedLines(N400_LESSON_LINES, language, { cacheKey: 'n400_lesson_v1' });
+  const tr = useTranslatedLines(N400_LESSON_LINES, language, { cacheKey: 'n400_lesson_v2' });
   const t = (key, vars = {}) => {
     let s = (language !== 'en' && tr(key)) || N400_LESSON_LINES[key] || key;
     for (const [k, v] of Object.entries(vars)) s = s.split(`{${k}}`).join(String(v));

@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import {
-  PROCESSING_TIMES, FILED_KEY, OFFICE_KEY, NOT_FILED, estimateRange, hasRealOffices, loadInterviewChoice,
+  PROCESSING_TIMES, FILED_KEY, OFFICE_KEY, NOT_FILED, estimateRange, hasRealOffices, isCheckedOffice, loadInterviewChoice,
   officeById, processingProblems, recentMonths, saveInterviewChoice, visibleOffices, USCIS_PROCESSING_URL,
 } from './interviewEstimate';
 
@@ -24,6 +24,24 @@ describe('the hand-checked processing times file', () => {
     expect(processingProblems({ ...base, offices: [{ id: 'sample-y', name: 'Sample Y', state: '--', min_months: 6, max_months: 9, sample: true }] }).length).toBeGreaterThan(0);
     expect(processingProblems({ ...base, checked_on: '2026-11-20', offices: [{ id: 'a', name: 'A', state: 'TX', min_months: 9, max_months: 6, sample: false }] }).length).toBeGreaterThan(0);
     expect(processingProblems({ ...base, checked_on: '2026-11-20', offices: [{ id: 'a', name: 'A', state: 'TX', min_months: 6, max_months: 9, sample: false }] })).toEqual([]);
+  });
+
+  it('never shows an office waiting for the owner\'s check to learners', () => {
+    for (const o of visibleOffices(PROCESSING_TIMES)) expect(o.needs_owner_check, o.id).toBeUndefined();
+  });
+
+  it('checks offices waiting for the owner: real, copied_on, and no checked_on needed yet', () => {
+    const base = { source_url: USCIS_PROCESSING_URL, checked_on: null };
+    const waiting = { id: 'city-st', name: 'City ST', state: 'ST', min_months: 6, max_months: 9, sample: false, needs_owner_check: true, copied_on: '2026-11-26' };
+    expect(processingProblems({ ...base, offices: [waiting] })).toEqual([]);
+    const { copied_on: _omit, ...noDate } = waiting;
+    expect(processingProblems({ ...base, offices: [noDate] }).join(' ')).toMatch(/copied_on/);
+    expect(processingProblems({ ...base, offices: [{ ...waiting, needs_owner_check: false }] }).join(' ')).toMatch(/must be true/);
+    expect(processingProblems({ ...base, offices: [{ ...waiting, id: 'sample-z', name: 'Z (sample, not real)', sample: true }] }).join(' ')).toMatch(/must be real/);
+    const checked = { id: 'a', name: 'A', state: 'TX', min_months: 6, max_months: 9, sample: false };
+    expect(processingProblems({ ...base, checked_on: '2026-11-26', offices: [{ ...checked, copied_on: '2026-11-26' }] }).join(' ')).toMatch(/copied_on is only/);
+    // Once a checked office is in, the file needs checked_on again.
+    expect(processingProblems({ ...base, offices: [waiting, checked] })).toContain('real offices but no checked_on date (YYYY-MM-DD)');
   });
 
   it('is bundled, never fetched: no code asks USCIS for it', () => {
@@ -58,6 +76,18 @@ describe('the estimate', () => {
     expect(officeById('sample-a', data)).toBeNull();
     expect(officeById('sample-a', data, { showSamples: true })).not.toBeNull();
     expect(hasRealOffices({ offices: [{ ...office, sample: true }] })).toBe(false);
+  });
+
+  it('hides an office waiting for the owner\'s check from learners, even when its id is saved', () => {
+    const waiting = { ...office, id: 'waiting', needs_owner_check: true, copied_on: '2026-11-26' };
+    const data = { offices: [waiting] };
+    expect(visibleOffices(data)).toEqual([]);
+    expect(officeById('waiting', data)).toBeNull();
+    expect(estimateRange(officeById('waiting', data), '2026-10')).toBeNull();
+    expect(hasRealOffices(data)).toBe(false); // learners keep "Coming soon"
+    expect(officeById('waiting', data, { showSamples: true })).toBe(waiting); // admins and dev
+    expect(isCheckedOffice(waiting)).toBe(false);
+    expect(isCheckedOffice(office)).toBe(true);
   });
 
   it('lists recent months, newest first', () => {

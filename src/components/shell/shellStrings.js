@@ -149,4 +149,6 @@ export const WHEN_LINES = {
   coming_soon_title: 'Coming soon',
   coming_soon_body: 'We’re still checking the times for each field office. For now, look up your office on the USCIS website.',
   sample_note: 'Sample offices: shown to admins only.',
+  needs_check: 'needs check',
+  needs_check_note: 'Offices marked “needs check”: copied from USCIS but not checked yet. Shown to admins only until checked.',
 };

@@ -91,9 +91,9 @@ describe('stars, saving and visibility', () => {
 
   it('the road: a draft N-400 stop is hidden from learners, open (never blocking) for admins', () => {
     const learner = journeyStops(visibleCourse(UNITS, { showDrafts: false }));
-    expect(learner.some((s) => s.type === 'n400')).toBe(N400_LESSONS.some((l) => l.status === 'reviewed'));
+    expect(learner.some((s) => s.type === 'n400' && s.lessonId)).toBe(N400_LESSONS.some((l) => l.status === 'reviewed'));
     const admin = journeyStops(visibleCourse(UNITS, { showDrafts: true }));
-    const n400 = admin.filter((s) => s.type === 'n400');
+    const n400 = admin.filter((s) => s.type === 'n400' && s.lessonId);
     expect(n400).toHaveLength(7);
     expect(n400.every((s) => s.state !== 'current')).toBe(true);
   });

@@ -15,7 +15,7 @@ import pictures from '../../content/course/pictures.json';
 import officeholderPhotos from '../data/officeholderPhotos.json';
 import { getNational } from '@/lib/officeholders';
 
-export const DRAWING_IDS = ['threeBranches', 'termLengths', 'congressNumbers', 'electoralCollege', 'supremeCourt', 'electorsMap', 'civilWarMap', 'warsTimeline', 'coldWar', 'billToLaw', 'seatsByPopulation', 'stateDistricts', 'greatCompromise'];
+export const DRAWING_IDS = ['threeBranches', 'termLengths', 'congressNumbers', 'electoralCollege', 'supremeCourt', 'electorsMap', 'civilWarMap', 'warsTimeline', 'coldWar', 'billToLaw', 'seatsByPopulation', 'stateDistricts', 'greatCompromise', 'amendments', 'powerFromPeople', 'checksBalances', 'documentsToConstitution', 'sharedPower'];
 export const OFFICES = ['president', 'vicePresident', 'speaker', 'chiefJustice'];
 export const OFFICE_TITLES = {
   president: 'President of the United States',

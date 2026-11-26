@@ -19,7 +19,7 @@ Course content is 2025-only for now.
 - `lesson`: `"lessonId"` (a lesson in this file)
 - `readwrite`: `"fromLessons"` (the lessons whose sentences it uses)
 - `speakit`: the section's questions, out loud (nothing extra)
-- `n400`: `"lessonId"` = an N-400 lesson in `content/n400/lessons.json` (one at the end of each unit, just before the practice interview)
+- `n400`: `"lessonId"` = an N-400 lesson in `content/n400/lessons.json` (one at the end of each unit, just before the practice interview), **or** `"section"` + `"card"` = one card of the N-400 guide (`src/components/n400/n400Content.js`: the section id, and the card's number from 1 among the approved cards). A card stop goes after the section's Speak it! (or just before the unit's N-400 lesson, to read first), is optional and always open, never done, and is hidden while its card isn't approved. `src/lib/n400Stops.test.js` checks each one points to an approved card with no draft before it. Titles: "N-400 card: {short name}".
 - `review`, `practiceInterview`: used by later prompts
 
 **A lesson:**

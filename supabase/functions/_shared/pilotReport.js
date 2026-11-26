@@ -16,17 +16,19 @@ const toDate = (v) => {
   const d = v ? new Date(v) : null;
   return d && !Number.isNaN(d.getTime()) ? d : null;
 };
-const dayIndex = (from, to) => Math.floor((Date.UTC(to.getFullYear(), to.getMonth(), to.getDate()) - Date.UTC(from.getFullYear(), from.getMonth(), from.getDate())) / DAY);
+// Day and week math is in UTC, so the numbers don't depend on the machine's
+// timezone (the server runs in UTC; tests run anywhere).
+const dayIndex = (from, to) => Math.floor((Date.UTC(to.getUTCFullYear(), to.getUTCMonth(), to.getUTCDate()) - Date.UTC(from.getUTCFullYear(), from.getUTCMonth(), from.getUTCDate())) / DAY);
 const parseYmd = (s) => {
   const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(s || ''));
-  return m ? new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3])) : null;
+  return m ? new Date(Date.UTC(Number(m[1]), Number(m[2]) - 1, Number(m[3]))) : null;
 };
 const numeric = (v) => (['1', '2', '3', '4', '5'].includes(String(v)) ? Number(v) : null);
 const byCreated = (rows) => [...rows].sort((a, b) => String(a.created_date || '').localeCompare(String(b.created_date || '')));
 
-// ISO-8601 week, e.g. "2026-W44".
+// ISO-8601 week of the UTC day, e.g. "2026-W44".
 export function isoWeek(date) {
-  const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+  const d = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
   const day = d.getUTCDay() || 7;
   d.setUTCDate(d.getUTCDate() + 4 - day);
   const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));

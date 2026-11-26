@@ -25,22 +25,4 @@ export function StepBar({ total, current, label, className = '' }) {
   );
 }
 
-// ProgressBar: denim on a tint track (on the page), or gold on chip-navy
-// (`onNavy`). `value` and `max` are numbers; `label` is read aloud.
-export function ProgressBar({ value = 0, max = 100, label, onNavy = false, className = '' }) {
-  const pct = max > 0 ? Math.min(100, Math.max(0, (value / max) * 100)) : 0;
-  return (
-    <div
-      role="progressbar"
-      aria-valuemin={0}
-      aria-valuemax={max}
-      aria-valuenow={value}
-      aria-label={label}
-      className={`h-2 rounded-full overflow-hidden ${onNavy ? 'bg-chip-navy' : 'bg-tint'} ${className}`}
-    >
-      <div className={`h-full rounded-full transition-[width] motion-reduce:transition-none ${onNavy ? 'bg-gold' : 'bg-denim'}`} style={{ width: `${pct}%` }} />
-    </div>
-  );
-}
-
 export default StepBar;

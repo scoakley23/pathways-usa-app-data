@@ -7,6 +7,7 @@ import { coursePlay } from '@/api/coursePlay';
 import { n400Progress } from '@/api/interview';
 import { UNITS } from '@/lib/course';
 import { canSeeDrafts } from '@/lib/journey';
+import { lawyerIf } from '@/lib/n400View';
 import { CONFETTI_COLORS } from '@/lib/theme';
 import {
   N400_LESSON_STEPS, N400_RULES, findN400Lesson, lessonSection, n400LessonVisible, n400StarsFor, questionName,
@@ -73,7 +74,11 @@ function Start({ lesson, section, results, t, onStart }) {
   );
 }
 
-function Done({ title, results, t, saves, onDoneForToday, onBack }) {
+// The finish's truth line: "If yes might be true…" unless some of the
+// section's cards expect a yes (the Oath promises, `lawyerIf: 'no'`).
+const truthLine = (section) => ((section?.questions || []).some((q) => lawyerIf(q) === 'no') ? 'amio_truth_mixed' : 'amio_truth');
+
+function Done({ title, results, t, saves, onDoneForToday, onBack, truthKey = 'amio_truth' }) {
   const stars = n400StarsFor(results);
   useEffect(() => {
     if (stars > 0) confetti({ particleCount: 90, spread: 70, origin: { y: 0.3 }, colors: CONFETTI_COLORS, disableForReducedMotion: true });
@@ -102,7 +107,7 @@ function Done({ title, results, t, saves, onDoneForToday, onBack }) {
             );
           })}
         </ul>
-        <AmioSays mood="kind" size={56}>{t('amio_truth')}</AmioSays>
+        <AmioSays mood="kind" size={56}>{t(truthKey)}</AmioSays>
         <Link to="/lawyer-first" className="min-h-main inline-flex items-center justify-center gap-2 rounded-button border-2 border-not-yet bg-white px-4 text-base font-bold text-navy hover:bg-tint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim">
           <Scale className="w-5 h-5" aria-hidden="true" />{t('lawyer')}
         </Link>
@@ -120,7 +125,7 @@ export default function N400LessonPage() {
   const { lessonId } = useParams();
   const navigate = useNavigate();
   const [language] = useAppLanguage();
-  const tr = useTranslatedLines(N400_LESSON_LINES, language, { cacheKey: 'n400_lesson_v1' });
+  const tr = useTranslatedLines(N400_LESSON_LINES, language, { cacheKey: 'n400_lesson_v2' });
   const t = (key, vars = {}) => {
     let s = (language !== 'en' && tr(key)) || N400_LESSON_LINES[key] || key;
     for (const [k, v] of Object.entries(vars)) s = s.split(`{${k}}`).join(String(v));
@@ -185,7 +190,7 @@ export default function N400LessonPage() {
   if (phase === 'done') {
     return (
       <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-screen bg-paper">
-        <Done title={title} results={results} t={t} saves={coursePlay.saves} onDoneForToday={() => navigate('/done-today')} onBack={back} />
+        <Done title={title} truthKey={truthLine(section)} results={results} t={t} saves={coursePlay.saves} onDoneForToday={() => navigate('/done-today')} onBack={back} />
       </div>
     );
   }
