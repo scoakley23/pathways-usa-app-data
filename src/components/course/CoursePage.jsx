@@ -6,6 +6,7 @@ import { Amio } from '@/components/pathways/Amio';
 import { Sheet, SheetContent, SheetDescription, SheetTitle } from '@/components/ui/sheet';
 import { questionText } from '@/lib/course';
 import { usesYourState } from '@/lib/journey';
+import { lawyerIf } from '@/lib/n400View';
 import TopicList, { StopRow } from '@/components/course/TopicList';
 import useReadinessData from '@/components/shell/useReadinessData';
 import { STOP_LOOK, StopIcon, stopHref, stopLabel, useCourseText, useJourney } from '@/components/course/courseShared';
@@ -114,6 +115,13 @@ function LessonPreview({ stop, unit, lessonNumber, t, onStart }) {
   );
 }
 
+// The stop sheet's line: N-400 lessons and N-400 guide cards each have their own.
+function stopBodyKey(stop) {
+  if (stop.type === 'practiceInterview') return 'interview_body';
+  if (stop.type === 'n400') return stop.lessonId ? 'n400_lesson_body' : 'n400_body';
+  return `${stop.type}_body`;
+}
+
 function StopNote({ stop, t, onClose, onGo }) {
   const href = stopHref(stop);
   const playable = stop.state !== 'soon' && href;
@@ -126,8 +134,13 @@ function StopNote({ stop, t, onClose, onGo }) {
         <SheetTitle className="text-title font-bold text-navy break-words">{stopLabel(stop, t)}</SheetTitle>
       </div>
       <SheetDescription className="text-base text-navy">
-        {playable ? t(`${stop.type === 'practiceInterview' ? 'interview' : stop.type}_body`) : t('soon_body')}
+        {playable ? t(stopBodyKey(stop)) : t('soon_body')}
       </SheetDescription>
+      {playable && stop.type === 'n400' && !stop.lessonId && (
+        <p className="rounded-card border-[2.5px] border-not-yet bg-white p-4 text-base font-semibold text-navy">
+          {t(lawyerIf(stop.guideCard) === 'no' ? 'n400_lawyer_no' : 'n400_lawyer_yes')}
+        </p>
+      )}
       {playable
         ? <Button variant="main" className="w-full" onClick={() => onGo(href)}>{stop.state === 'done' ? t('stop_again') : t('stop_go')}</Button>
         : <Button variant="second" className="w-full" onClick={onClose}>{t('ok')}</Button>}

@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Check, Volume2, X } from 'lucide-react';
 import { AmioSays } from '@/components/pathways/Amio';
 import MicButton from '@/components/pathways/MicButton';
-import { NotYetBanner, SuccessBanner } from '@/components/pathways/ResultBanner';
+import { NotQuitePanel, RightPanel } from '@/components/pathways/ResultBanner';
 import { Button } from '@/components/pathways/ui';
 import Officer from '@/components/interview/Officer';
 import useSpeechCapture from '@/components/persona/useSpeechCapture';
@@ -177,12 +177,10 @@ function TapItems({ items, t, amioLine, renderTop, choiceLabel, isRight, rightIn
         </ul>
       </div>
       {answered && ok && (
-        <SuccessBanner title={t('right')} actionLabel={t('next')} onAction={next} className="sticky bottom-0" />
+        <RightPanel title={t('right')} actionLabel={t('next')} onAction={next} className="sticky bottom-0" />
       )}
       {answered && !ok && (
-        <NotYetBanner title={t('not_yet')} actionLabel={t('next')} onAction={next} className="sticky bottom-0">
-          <span lang="en" dir="ltr">{choiceLabel(item.choices[rightIndex(item)])}</span>
-        </NotYetBanner>
+        <NotQuitePanel title={t('not_yet')} answerLine={choiceLabel(item.choices[rightIndex(item)])} actionLabel={t('next')} onAction={next} className="sticky bottom-0" />
       )}
     </div>
   );
@@ -332,12 +330,10 @@ export function SayWhatItAsks({ lesson, t, onDone }) {
         </div>
       </div>
       {mode === 'right' && (
-        <SuccessBanner title={t('understood')} actionLabel={t('next')} onAction={() => next('right')} className="sticky bottom-0" />
+        <RightPanel title={t('understood')} actionLabel={t('next')} onAction={() => next('right')} className="sticky bottom-0" />
       )}
       {mode === 'wrong' && (
-        <NotYetBanner title={t('not_understood')} actionLabel={t('try_again')} onAction={reset} className="sticky bottom-0">
-          {t('answered_instead')}
-        </NotYetBanner>
+        <NotQuitePanel title={t('not_understood')} note={t('answered_instead')} actionLabel={t('try_again')} onAction={reset} className="sticky bottom-0" />
       )}
     </div>
   );
@@ -399,8 +395,8 @@ export function AskForHelp({ lesson, language, t, onDone }) {
           )}
         </div>
       </div>
-      {mode === 'right' && <SuccessBanner title={t('said_it')} actionLabel={t('next')} onAction={next} className="sticky bottom-0" />}
-      {mode === 'wrong' && <NotYetBanner title={t('not_understood')} actionLabel={t('try_again')} onAction={reset} className="sticky bottom-0">{t('not_that_phrase')}</NotYetBanner>}
+      {mode === 'right' && <RightPanel title={t('said_it')} actionLabel={t('next')} onAction={next} className="sticky bottom-0" />}
+      {mode === 'wrong' && <NotQuitePanel title={t('not_understood')} note={t('not_that_phrase')} actionLabel={t('try_again')} onAction={reset} className="sticky bottom-0" />}
     </div>
   );
 }

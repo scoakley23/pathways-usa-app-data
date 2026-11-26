@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { Button, PrimaryButton, SecondaryButton, QuietButton, PillButton } from './ui.jsx';
+import { Button, PrimaryButton, SecondaryButton, QuietButton } from './ui.jsx';
 
 // The built CSS lists `.min-h-tap` after `.min-h-main`, so a button with both
 // would be 44px. Main buttons must carry only `min-h-main` (56px, style guide);
@@ -28,7 +28,7 @@ describe('button heights', () => {
   });
 
   it('older button names keep the 44px tap height', () => {
-    for (const Component of [PrimaryButton, SecondaryButton, QuietButton, PillButton]) {
+    for (const Component of [PrimaryButton, SecondaryButton, QuietButton]) {
       const classes = classesOf(React.createElement(Component, null, 'Go'));
       expect(classes).toContain('min-h-tap');
       expect(classes).not.toContain('min-h-main');

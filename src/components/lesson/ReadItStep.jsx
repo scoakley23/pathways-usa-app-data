@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { AmioSays } from '@/components/pathways/Amio';
 import MicButton from '@/components/pathways/MicButton';
-import { SuccessBanner } from '@/components/pathways/ResultBanner';
+import { RightPanel } from '@/components/pathways/ResultBanner';
 import { Button } from '@/components/pathways/ui';
 import useSpeechCapture from '@/components/persona/useSpeechCapture';
 import { readingWords } from '@/lib/lessonPlayer';
@@ -99,7 +99,7 @@ export default function ReadItStep({ lesson, t, onDone }) {
         </div>
       </div>
       {mode === 'right' && (
-        <SuccessBanner title={t('well_read')} actionLabel={t('next')} onAction={() => onDone('right')} className="sticky bottom-0" />
+        <RightPanel title={t('well_read')} actionLabel={t('next')} onAction={() => onDone('right')} className="sticky bottom-0" />
       )}
     </div>
   );

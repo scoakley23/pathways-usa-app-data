@@ -55,6 +55,8 @@ export const N400_GUIDE_LINES = {
   officer_might: 'The officer might say',
   if_yes: 'If “yes” might be true for you,',
   if_yes_rest: 'talk to a lawyer first, before you file.',
+  // Cards whose expected answer is yes (the Oath promises, `lawyerIf: 'no'`).
+  if_no: 'If “no” might be true for you,',
   card_footer: 'We explain what questions mean. How they apply to you is for a lawyer. We never save your answers to the N-400.',
   // Say it back
   say_title: 'Say it back',

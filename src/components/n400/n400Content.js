@@ -3,6 +3,9 @@
 // back to 'draft' to hide it from learners while it is being reviewed.
 // "meaning" text is based on the form's own wording and does not tell a
 // learner how to answer.
+// `lawyerIf`: which answer means "talk to a lawyer first" on the card:
+// 'yes' (the default) or 'no' (items 16, 22.b and the Oath promises, where
+// the expected answer is yes).
 
 export const N400_SECTIONS = [
   {
@@ -328,6 +331,8 @@ export const N400_SECTIONS = [
         id: 'p9-16',
         label: '16',
         status: 'approved',
+        // The answer that needs a lawyer here is “no”, not “yes”.
+        lawyerIf: 'no',
         official:
           'If you received a suspended sentence, were placed on probation, or were paroled, have you completed your suspended sentence, probation, or parole?',
         meaning:
@@ -472,6 +477,8 @@ export const N400_SECTIONS = [
         id: 'p9-22b',
         label: '22.b',
         status: 'approved',
+        // The answer that needs a lawyer here is “no”, not “yes”.
+        lawyerIf: 'no',
         official: 'If you answered "Yes," to Item Number 22.a., did you register for the Selective Service?',
         meaning:
           'This question asks whether you signed up with the Selective Service. The form says it is only asked if you answered "Yes" to the question before it.',
@@ -629,6 +636,8 @@ export const N400_SECTIONS = [
         id: 'p9-31',
         label: '31',
         status: 'approved',
+        // The answer that needs a lawyer here is “no”, not “yes”.
+        lawyerIf: 'no',
         official: 'Do you support the Constitution and form of Government of the United States?',
         meaning:
           'This question asks whether you support the U.S. Constitution and the way the United States is governed.',
@@ -645,6 +654,8 @@ export const N400_SECTIONS = [
         id: 'p9-32',
         label: '32',
         status: 'approved',
+        // The answer that needs a lawyer here is “no”, not “yes”.
+        lawyerIf: 'no',
         official: 'Do you understand the full Oath of Allegiance to the United States (see Part 16. Oath of Allegiance)?',
         meaning:
           'This question asks whether you understand the full Oath of Allegiance — the promise a person makes when becoming a U.S. citizen.',
@@ -676,6 +687,8 @@ export const N400_SECTIONS = [
         id: 'p9-34',
         label: '34',
         status: 'approved',
+        // The answer that needs a lawyer here is “no”, not “yes”.
+        lawyerIf: 'no',
         official: 'Are you willing to take the full Oath of Allegiance to the United States?',
         meaning: 'This question asks whether you are ready and able to say the whole Oath of Allegiance.',
         words: [
@@ -690,6 +703,8 @@ export const N400_SECTIONS = [
         id: 'p9-35',
         label: '35',
         status: 'approved',
+        // The answer that needs a lawyer here is “no”, not “yes”.
+        lawyerIf: 'no',
         official: 'If the law requires it, are you willing to bear arms (carry weapons) on behalf of the United States?',
         meaning:
           'This question asks whether you are willing to carry weapons for the United States if the law ever requires it.',
@@ -707,6 +722,8 @@ export const N400_SECTIONS = [
         id: 'p9-36',
         label: '36',
         status: 'approved',
+        // The answer that needs a lawyer here is “no”, not “yes”.
+        lawyerIf: 'no',
         official:
           'If the law requires it, are you willing to perform noncombatant services (do something that does not include fighting in a war) in the U.S. armed forces?',
         meaning:
@@ -723,6 +740,8 @@ export const N400_SECTIONS = [
         id: 'p9-37',
         label: '37',
         status: 'approved',
+        // The answer that needs a lawyer here is “no”, not “yes”.
+        lawyerIf: 'no',
         official:
           'If the law requires it, are you willing to perform work of national importance under civilian direction (do non-military work that the U.S. Government says is important to the country)?',
         meaning:

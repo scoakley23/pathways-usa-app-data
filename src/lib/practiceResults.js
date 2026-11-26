@@ -51,20 +51,3 @@ export function roadFraction(index = 0, total = 0, answered = false) {
 export function countedOutcomes(items = [], results = []) {
   return items.map((_, i) => results[i]).filter((r) => r !== undefined);
 }
-
-// "8 right. Nice work, Ana." (or "Nice work." without a first name); with
-// nothing right yet, "0 right. Keep going, Ana."
-export function roundTitle(right, name = '') {
-  const words = right > 0 ? 'Nice work' : 'Keep going';
-  return `${right} right. ${words}${name ? `, ${name}` : ''}.`;
-}
-
-// The real test's rule for a round, shown on "Round complete". Reading and
-// writing: up to 3 sentences, 1 correct passes (SENTENCE_TRIES in
-// interviewDay.js); civics: passRule(version).
-export function roundRule(kind, version) {
-  if (kind === 'reading') return 'On the real test you need to read 1 of up to 3 sentences correctly.';
-  if (kind === 'writing') return 'On the real test you need to write 1 of up to 3 sentences correctly.';
-  const rule = passRule(version);
-  return `On the real test you need ${rule.need} right out of up to ${rule.of}.`;
-}

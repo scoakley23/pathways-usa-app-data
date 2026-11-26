@@ -9,6 +9,9 @@ import explanations from '../../content/explanations/en.json';
 import readingList from '../../content/vocab/reading-vocabulary.json';
 import writingList from '../../content/vocab/writing-vocabulary.json';
 
+// A section's last stop, not counting optional N-400 guide cards after Speak it!.
+const lastMain = (s) => s.stops.filter((st) => !(st.type === 'n400' && !st.lessonId)).at(-1);
+
 // Question ids are the database ids (the same in the Base44 export and in
 // Supabase's civics_questions). Each must be a 2025 question whose wording
 // and answers match content/civics/questions-2025.json word for word.
@@ -80,7 +83,7 @@ describe('the course files (content/course/)', () => {
     expect(unit2.sections.map((s) => s.title)).toEqual(['The three branches', 'Congress', 'The President', 'The courts', 'States and local government']);
     for (const s of unit2.sections) {
       expect(s.stops.length, s.id).toBeGreaterThan(2);
-      expect(s.stops.at(-1).type === 'speakit' || s.stops.at(-1).type === 'practiceInterview', s.id).toBe(true);
+      expect(lastMain(s).type === 'speakit' || lastMain(s).type === 'practiceInterview', s.id).toBe(true);
       expect(s.lessons.every((l) => ['draft', 'reviewed'].includes(l.status)), s.id).toBe(true);
     }
     const congress = unit2.sections.find((s) => s.title === 'Congress');
@@ -97,7 +100,7 @@ describe('the course files (content/course/)', () => {
     const lessons = unit1.sections.flatMap((s) => s.lessons);
     expect(lessons).toHaveLength(9);
     expect(lessons.every((l) => ['draft', 'reviewed'].includes(l.status))).toBe(true);
-    for (const s of unit1.sections) expect(s.stops.at(-1).type === 'speakit' || s.stops.at(-1).type === 'practiceInterview', s.id).toBe(true);
+    for (const s of unit1.sections) expect(lastMain(s).type === 'speakit' || lastMain(s).type === 'practiceInterview', s.id).toBe(true);
     expect(unit1.sections.at(-1).stops.at(-1).type).toBe('practiceInterview');
   });
 

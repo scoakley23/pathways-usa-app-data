@@ -30,6 +30,13 @@
       "id": "u3-s2-speak",
       "type": "speakit",
       "title": "Speak it!"
+    },
+    {
+      "id": "u3-s2-n400-p9-22b",
+      "type": "n400",
+      "title": "N-400 card: Registering for the Selective Service",
+      "section": "selective-service-military",
+      "card": 2
     }
   ],
   "lessons": [

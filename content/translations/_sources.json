@@ -446,6 +446,12 @@
    ]
   },
   {
+   "text": "10",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "10.a. Were you EVER a part of any group, or did you EVER help any group, unit, or organization that used a weapon against any person, or threatened to do so? 10.b. If you answered \"Yes\" to Item Number 10.a., when you were part of this group, or when you helped this group, did you ever use a weapon against another person? 10.c. If you answered \"Yes\" to Item Number 10.a., when you were part of this group, or when you helped this group, did you ever threaten another person that you would use a weapon against that person?",
    "from": [
     "n400"
@@ -506,6 +512,12 @@
    ]
   },
   {
+   "text": "27",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "30.a. Do you now have, or did you EVER have, a hereditary title or an order of nobility in any foreign country? 30.b. If you answered \"Yes,\" to Item Number 30.a., are you willing to give up any inherited titles or orders of nobility, (list titles), that you have in a foreign country at your naturalization ceremony?",
    "from": [
     "n400"
@@ -521,6 +533,12 @@
    "text": "5.a. Have you EVER been a member of, involved in, or in any way associated with any Communist or totalitarian party anywhere in the world? 5.b. Have you EVER advocated (supported and promoted) any of the following, or been a member of, involved in, or in any way associated with any group anywhere in the world that advocated any of the following: Opposition to all organized government; World communism; The establishment in the United States of a totalitarian dictatorship; The overthrow by force or violence or other unconstitutional means of the Government of the United States or all forms of law; The unlawful assaulting or killing of any officer or officers of the Government of the United States or of any other organized government because of their official character; The unlawful damage, injury, or destruction of property; or Sabotage?",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "50",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -656,6 +674,12 @@
    ]
   },
   {
+   "text": "A free market",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "A good answer",
    "from": [
     "tutor-steps"
@@ -710,6 +734,18 @@
    ]
   },
   {
+   "text": "A kingdom",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "A law can go against the Constitution.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "A long trip can break your \"continuous residence.\" A lawyer can tell you what it means for your case.",
    "from": [
     "lawyer-checklist"
@@ -719,6 +755,12 @@
    "text": "A map of the Middle East. Kuwait is next to Iraq, and Afghanistan is farther east.",
    "from": [
     "course-pictures"
+   ]
+  },
+  {
+   "text": "A mayor who steals can be arrested and go to court like anyone else.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -812,6 +854,12 @@
    ]
   },
   {
+   "text": "A republic",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "A senator’s term is six years.",
    "from": [
     "course-lessons"
@@ -833,6 +881,12 @@
    "text": "A short email asking a 1-minute question. Off unless you turn it on.",
    "from": [
     "pilot"
+   ]
+  },
+  {
+   "text": "A short lesson on what these N-400 questions mean and how the officer may ask them. You never answer them here.",
+   "from": [
+    "course"
    ]
   },
   {
@@ -1143,6 +1197,12 @@
    ]
   },
   {
+   "text": "All people are equal",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "All practice",
    "from": [
     "course"
@@ -1233,6 +1293,12 @@
    ]
   },
   {
+   "text": "Always tell the truth. If you’re not sure how any of these questions applies to you, talk to a lawyer before you file.",
+   "from": [
+    "n400-lessons"
+   ]
+  },
+  {
    "text": "Always tell the truth. If “yes” might be true for you, talk to a lawyer before you file.",
    "from": [
     "n400-lessons"
@@ -1282,6 +1348,12 @@
   },
   {
    "text": "American innovations include the light bulb, the automobile, the airplane, skyscrapers and the assembly line.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Americans and people living in the United States",
    "from": [
     "course-lessons"
    ]
@@ -1982,6 +2054,18 @@
    ]
   },
   {
+   "text": "British soldiers",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "British soldiers even stayed in their homes.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "British soldiers stayed in Americans' houses, and the colonists did not have self-government.",
    "from": [
     "course-lessons"
@@ -2058,6 +2142,12 @@
    ]
   },
   {
+   "text": "Capitalism",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Capitalism / Free market economy",
    "from": [
     "civics-questions"
@@ -2098,6 +2188,18 @@
    "text": "Changing the Constitution",
    "from": [
     "course-titles"
+   ]
+  },
+  {
+   "text": "Changing the Constitution is easy.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Changing the Constitution is hard on purpose.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -2200,6 +2302,12 @@
     "practice",
     "sign-in",
     "tutor-steps"
+   ]
+  },
+  {
+   "text": "Checks and balances",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -2614,6 +2722,12 @@
    "text": "Congress meets in Washington, D.C.",
    "from": [
     "sentences"
+   ]
+  },
+  {
+   "text": "Congress writes laws, the President can veto them, and the courts can decide a law goes against the Constitution.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -3323,6 +3437,12 @@
    ]
   },
   {
+   "text": "Each branch can check the others. This is called checks and balances.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Each branch has its own job, so no one branch has all the power.",
    "from": [
     "course-lessons"
@@ -3861,6 +3981,12 @@
    ]
   },
   {
+   "text": "For example, the President must pay taxes like everyone else.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "For more than two hundred years, people from Africa were taken from their homes and sold as slaves in America.",
    "from": [
     "course-lessons"
@@ -4068,6 +4194,12 @@
    ]
   },
   {
+   "text": "Freedom",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Freedom / Political liberty / Religious freedom / Economic opportunity / Escape persecution",
    "from": [
     "civics-questions"
@@ -4155,6 +4287,12 @@
    "text": "Gentle and encouraging. Explains things twice, in different words, if needed.",
    "from": [
     "settings-pieces"
+   ]
+  },
+  {
+   "text": "George Washington",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -4922,6 +5060,12 @@
    ]
   },
   {
+   "text": "High taxes",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "High taxes / Taxation without representation / British soldiers stayed in Americans’ houses (boarding, quartering) / They did not have self-government / Boston Massacre / Boston Tea Party (Tea Act) / Stamp Act / Sugar Act / Townshend Acts / Intolerable (Coercive) Acts",
    "from": [
     "civics-questions"
@@ -5080,7 +5224,8 @@
   {
    "text": "How many amendments does the Constitution have?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -5475,9 +5620,27 @@
    ]
   },
   {
+   "text": "If “no” might be true for you,",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
+   "text": "If “no” might be true for you, talk to a lawyer first.",
+   "from": [
+    "course"
+   ]
+  },
+  {
    "text": "If “yes” might be true for you,",
    "from": [
     "n400-guide"
+   ]
+  },
+  {
+   "text": "If “yes” might be true for you, talk to a lawyer first.",
+   "from": [
+    "course"
    ]
   },
   {
@@ -5800,6 +5963,12 @@
    ]
   },
   {
+   "text": "It is also a constitution-based federal republic.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "It is also a constitution-based federal republic: the Constitution is the highest law, and power is shared between the national government and the states.",
    "from": [
     "course-lessons"
@@ -5824,6 +5993,12 @@
    ]
   },
   {
+   "text": "It means the people govern themselves.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "It means the people govern themselves. This is called self-government.",
    "from": [
     "course-lessons"
@@ -5843,6 +6018,12 @@
   },
   {
    "text": "It says that many people and many states become one country.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It says what each part of the government can do.",
    "from": [
     "course-lessons"
    ]
@@ -6055,6 +6236,18 @@
   },
   {
    "text": "Latin for \"Out of many, one\"",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Leaders and the government must obey the law too. No one is above the law.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Leaders do not have to obey the law.",
    "from": [
     "course-lessons"
    ]
@@ -6301,7 +6494,19 @@
    ]
   },
   {
+   "text": "Liberty and equality are ideas from the Declaration and the Constitution.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Liberty means freedom.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Life, Liberty",
    "from": [
     "course-lessons"
    ]
@@ -6590,6 +6795,12 @@
    ]
   },
   {
+   "text": "Many Americans wanted it to say clearly which rights the government can never take away.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Many banks closed, and millions of families lost their jobs, homes and savings. People waited in long lines for free food, called bread lines.",
    "from": [
     "course-lessons"
@@ -6873,6 +7084,18 @@
    ]
   },
   {
+   "text": "Most of Congress and most of the states must agree.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Most of the time, the government does not decide this for you. That is a free market.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Most people can apply on their own. But if any of these are true for you, talk to a lawyer or accredited representative before you file. Filing with one of these issues can cause serious problems, including more than a denied application. You do not need to tell this app anything.",
    "from": [
     "lawyer"
@@ -6944,6 +7167,96 @@
    "text": "N-400 Question Guide",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "N-400 card: Claiming to be a U.S. citizen",
+   "from": [
+    "course-titles"
+   ]
+  },
+  {
+   "text": "N-400 card: Communist or totalitarian parties",
+   "from": [
+    "course-titles"
+   ]
+  },
+  {
+   "text": "N-400 card: Crimes and arrests",
+   "from": [
+    "course-titles"
+   ]
+  },
+  {
+   "text": "N-400 card: Leaving to avoid the draft",
+   "from": [
+    "course-titles"
+   ]
+  },
+  {
+   "text": "N-400 card: Living in the U.S. between 18 and 26",
+   "from": [
+    "course-titles"
+   ]
+  },
+  {
+   "text": "N-400 card: Overdue taxes",
+   "from": [
+    "course-titles"
+   ]
+  },
+  {
+   "text": "N-400 card: Registering for the Selective Service",
+   "from": [
+    "course-titles"
+   ]
+  },
+  {
+   "text": "N-400 card: Registering to vote or voting",
+   "from": [
+    "course-titles"
+   ]
+  },
+  {
+   "text": "N-400 card: Removal or deportation proceedings",
+   "from": [
+    "course-titles"
+   ]
+  },
+  {
+   "text": "N-400 card: Supporting the Constitution",
+   "from": [
+    "course-titles"
+   ]
+  },
+  {
+   "text": "N-400 card: Titles of nobility",
+   "from": [
+    "course-titles"
+   ]
+  },
+  {
+   "text": "N-400 card: Trips outside the U.S.",
+   "from": [
+    "course-titles"
+   ]
+  },
+  {
+   "text": "N-400 card: Understanding the Oath of Allegiance",
+   "from": [
+    "course-titles"
+   ]
+  },
+  {
+   "text": "N-400 card: Willing to bear arms",
+   "from": [
+    "course-titles"
+   ]
+  },
+  {
+   "text": "N-400 card: Willing to take the full Oath",
+   "from": [
+    "course-titles"
    ]
   },
   {
@@ -7451,6 +7764,12 @@
    ]
   },
   {
+   "text": "No other law can go against it.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "No practice yet",
    "from": [
     "today-plan"
@@ -7829,6 +8148,12 @@
    ]
   },
   {
+   "text": "Offices marked “needs check”: copied from USCIS but not checked yet. Shown to admins only until checked.",
+   "from": [
+    "interview-when"
+   ]
+  },
+  {
    "text": "Official U.S. Department of Justice list of organizations and representatives accredited to give immigration legal help.",
    "from": [
     "lawyer"
@@ -7863,6 +8188,12 @@
    "from": [
     "settings",
     "words"
+   ]
+  },
+  {
+   "text": "On July 4, 1776, the Declaration of Independence said the colonies were free from Britain.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -7999,6 +8330,12 @@
    ]
   },
   {
+   "text": "Only leaders",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Only on this phone",
    "from": [
     "settings"
@@ -8006,6 +8343,12 @@
   },
   {
    "text": "Only one city",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Only the President",
    "from": [
     "course-lessons"
    ]
@@ -8055,12 +8398,6 @@
    ]
   },
   {
-   "text": "Open this card in the N-400 guide.",
-   "from": [
-    "course"
-   ]
-  },
-  {
    "text": "Opening your notes…",
    "from": [
     "lesson-player"
@@ -8104,6 +8441,12 @@
   },
   {
    "text": "Over time, the colonists became angry. Britain made them pay high taxes, but they had no vote in Britain's government. British soldiers even stayed in their homes.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Over time, the colonists became angry. Britain made them pay high taxes, but they had no vote in Britain’s government.",
    "from": [
     "course-lessons"
    ]
@@ -8265,6 +8608,12 @@
    "text": "People",
    "from": [
     "words"
+   ]
+  },
+  {
+   "text": "People and businesses can own things and decide what to make, buy and sell.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -8446,6 +8795,12 @@
    "text": "Polite and formal, like a USCIS officer. For learners who want realistic interview pressure.",
    "from": [
     "settings-pieces"
+   ]
+  },
+  {
+   "text": "Power is shared between the national government and the states.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -8971,6 +9326,12 @@
    "text": "Read this sentence out loud.",
    "from": [
     "interview-day"
+   ]
+  },
+  {
+   "text": "Read what this N-400 question means and how the officer may ask it. You don’t answer it here.",
+   "from": [
+    "course"
    ]
   },
   {
@@ -9969,6 +10330,12 @@
    ]
   },
   {
+   "text": "Self-government",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Self-government / Popular sovereignty / Consent of the governed / People should govern themselves / (Example of) social contract",
    "from": [
     "civics-questions"
@@ -10374,7 +10741,19 @@
    ]
   },
   {
+   "text": "So in 1791, ten amendments were added to the Constitution.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "So in 1791, ten amendments were added to the Constitution. These first ten amendments are called the Bill of Rights.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "So no one pays taxes",
    "from": [
     "course-lessons"
    ]
@@ -10386,6 +10765,12 @@
    ]
   },
   {
+   "text": "So one part does not become too powerful",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "So one part does not become too powerful / Checks and balances / Separation of powers",
    "from": [
     "civics-questions"
@@ -10393,6 +10778,12 @@
   },
   {
    "text": "So states with more people have more representatives in the House.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "So the President can make every law",
    "from": [
     "course-lessons"
    ]
@@ -11233,8 +11624,15 @@
    ]
   },
   {
+   "text": "The Articles of Confederation",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The Bill of Rights",
    "from": [
+    "course-lessons",
     "course-titles"
    ]
   },
@@ -11265,6 +11663,7 @@
   {
    "text": "The Chief Justice",
    "from": [
+    "course-lessons",
     "course-titles"
    ]
   },
@@ -11308,11 +11707,24 @@
   {
    "text": "The Constitution",
    "from": [
+    "course-lessons",
     "course-titles"
    ]
   },
   {
+   "text": "The Constitution forms the government.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The Constitution has 27 amendments.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The Constitution is the highest law, and power is shared between the national government and the states.",
    "from": [
     "course-lessons"
    ]
@@ -11336,6 +11748,12 @@
    ]
   },
   {
+   "text": "The Constitution was written in 1787.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The Constitution was written in 1787. Many Americans wanted it to say clearly which rights the government can never take away.",
    "from": [
     "course-lessons"
@@ -11354,6 +11772,18 @@
    ]
   },
   {
+   "text": "The Declaration also says all people are created equal and have rights that no one can take away.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The Declaration and the Constitution share big ideas.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The Declaration and the Constitution share big ideas: equality, liberty, natural rights, limited government and self-government.",
    "from": [
     "course-lessons"
@@ -11362,6 +11792,7 @@
   {
    "text": "The Declaration of Independence",
    "from": [
+    "course-lessons",
     "course-titles"
    ]
   },
@@ -11384,8 +11815,15 @@
    ]
   },
   {
+   "text": "The Emancipation Proclamation",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The Federalist Papers",
    "from": [
+    "course-lessons",
     "course-titles"
    ]
   },
@@ -11397,6 +11835,12 @@
   },
   {
    "text": "The Federalist Papers were essays written to support passing the Constitution.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The Gettysburg Address",
    "from": [
     "course-lessons"
    ]
@@ -11441,6 +11885,12 @@
    "text": "The House of Representatives has how many voting members?",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "The King of Britain",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -11632,6 +12082,12 @@
    ]
   },
   {
+   "text": "The U.S. Constitution is the supreme law of the land.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The U.S. Constitution is the supreme law of the land. No other law can go against it.",
    "from": [
     "course-lessons"
@@ -11776,6 +12232,12 @@
    ]
   },
   {
+   "text": "The colonists had a vote in Britain’s government.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The correct answer is:",
    "from": [
     "tutor-steps-amio"
@@ -11797,6 +12259,12 @@
    "text": "The courts",
    "from": [
     "course-titles"
+   ]
+  },
+  {
+   "text": "The economic system of the United States is capitalism, also called a free market economy.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -11927,7 +12395,19 @@
    ]
   },
   {
+   "text": "The government gets its power from the people.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The government gets its power from the people. This is called the consent of the governed.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The government has three branches so one part does not become too powerful.",
    "from": [
     "course-lessons"
    ]
@@ -12103,6 +12583,12 @@
    ]
   },
   {
+   "text": "The people who wrote the Constitution learned from older documents.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The president lives in the White House.",
    "from": [
     "sentences"
@@ -12140,6 +12626,18 @@
   },
   {
    "text": "The rule keeps a president from becoming too powerful.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The rule of law",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The rule of law means everyone must follow the law.",
    "from": [
     "course-lessons"
    ]
@@ -12352,6 +12850,12 @@
    ]
   },
   {
+   "text": "These first ten amendments are called the Bill of Rights.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "These lessons are being reviewed. They will appear here soon.",
    "from": [
     "course"
@@ -12430,6 +12934,12 @@
    ]
   },
   {
+   "text": "They are equality, liberty, natural rights, limited government and self-government.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "They came for many reasons: freedom, religious freedom, economic opportunity, or to escape persecution.",
    "from": [
     "course-lessons"
@@ -12455,6 +12965,12 @@
   },
   {
    "text": "They helped people understand the Constitution.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "They learned from the Declaration of Independence, the Articles of Confederation and the Federalist Papers.",
    "from": [
     "course-lessons"
    ]
@@ -12514,6 +13030,12 @@
    ]
   },
   {
+   "text": "Think of a supermarket: stores choose what to sell and what price to ask, and you choose what to buy.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Think of a supermarket: stores choose what to sell and what price to ask, and you choose what to buy. Most of the time, the government does not decide this for you. That is a free market.",
    "from": [
     "course-lessons"
@@ -12532,7 +13054,25 @@
    ]
   },
   {
+   "text": "This is also called a representative democracy.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "This is also called a representative democracy. “Representative” means the leaders speak and act for the people who elected them.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "This is called self-government.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "This is called the consent of the governed.",
    "from": [
     "course-lessons"
    ]
@@ -12938,6 +13478,18 @@
   },
   {
    "text": "Tip: for the second question, two short words are enough, like “liberty” and “equality.”",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Tip: if asked for two important ideas, two short words are enough, like “liberty” and “equality.”",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Tip: if asked to name one document, “the Declaration of Independence” is the easiest to remember.",
    "from": [
     "course-lessons"
    ]
@@ -13926,6 +14478,12 @@
    ]
   },
   {
+   "text": "We remember this day on Independence Day.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "We reply within 3-5 business days.",
    "from": [
     "talk-reply"
@@ -13959,6 +14517,7 @@
    "text": "We the People",
    "from": [
     "civics-questions",
+    "course-lessons",
     "course-titles"
    ]
   },
@@ -14114,6 +14673,18 @@
    ]
   },
   {
+   "text": "What are the first ten amendments called?",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "What are the first words of the Constitution?",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "What are the three branches of government?",
    "from": [
     "ask-screen"
@@ -14201,6 +14772,12 @@
    "text": "What did Susan B. Anthony do?",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "What did many colonists come to America for?",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -14303,7 +14880,8 @@
   {
    "text": "What founding document said the American colonies were free from Britain?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -14377,6 +14955,12 @@
    "text": "What is freedom of religion?",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "What is it called when each branch can check the others?",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -14456,13 +15040,15 @@
   {
    "text": "What is the economic system of the United States?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
    "text": "What is the form of government of the United States?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -14528,7 +15114,8 @@
   {
    "text": "What is the supreme law of the land?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -14890,6 +15477,12 @@
    ]
   },
   {
+   "text": "Which one is a document that influenced the Constitution?",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Which state do you live in?",
    "from": [
     "pilot"
@@ -15079,6 +15672,12 @@
    ]
   },
   {
+   "text": "Who led the meeting that wrote the Constitution?",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Who lived here first?",
    "from": [
     "sentences"
@@ -15185,6 +15784,18 @@
    "text": "Who wrote the Declaration of Independence?",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "Whose rights does the Bill of Rights protect?",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Why are there three branches of government?",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -17366,6 +17977,12 @@
    ]
   },
   {
+   "text": "needs check",
+   "from": [
+    "interview-when"
+   ]
+  },
+  {
    "text": "new",
    "from": [
     "notifications"
@@ -18819,6 +19436,18 @@
   },
   {
    "text": "“Life, Liberty, and the pursuit of Happiness” are words from the Declaration of Independence.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "“Life, Liberty, and the pursuit of Happiness” are words from which document?",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "“Representative” means the leaders speak and act for the people who elected them.",
    "from": [
     "course-lessons"
    ]

@@ -45,13 +45,13 @@ describe('N-400 lessons (content/n400/lessons.json)', () => {
     for (const name of Object.values(data.questionNames)) expect(name).not.toMatch(/^(yes|no)\b/i);
   });
 
-  it('the review notes: Before you start cards, and five lessons reviewed', () => {
+  it('the review notes: Before you start cards, and all seven lessons reviewed', () => {
     const byId = Object.fromEntries(N400_LESSONS.map((l) => [l.id, l]));
     for (const id of ['n400-time-outside-us', 'n400-immigration-history', 'n400-oath-questions', 'n400-selective-service-military']) expect(byId[id].context?.length, id).toBeGreaterThan(0);
     expect(byId['n400-selective-service-military'].context.join(' ')).toMatch(/Everyone answers question 22\.a/);
     expect(byId['n400-selective-service-military'].questionNotes['p9-22b']).toMatch(/Only for men/);
     expect(byId['n400-time-outside-us'].context.join(' ')).toMatch(/https:\/\/i94\.cbp\.dhs\.gov/);
-    expect(N400_LESSONS.filter((l) => l.status === 'reviewed').map((l) => l.id).sort()).toEqual(['n400-citizenship-voting-taxes', 'n400-crimes-offenses', 'n400-groups-violence', 'n400-immigration-history', 'n400-oath-questions']);
+    expect(N400_LESSONS.filter((l) => l.status === 'reviewed').map((l) => l.id).sort()).toEqual(['n400-citizenship-voting-taxes', 'n400-crimes-offenses', 'n400-groups-violence', 'n400-immigration-history', 'n400-oath-questions', 'n400-selective-service-military', 'n400-time-outside-us']);
   });
 
   it('a Before you start card never says how to answer', () => {
@@ -91,9 +91,9 @@ describe('stars, saving and visibility', () => {
 
   it('the road: a draft N-400 stop is hidden from learners, open (never blocking) for admins', () => {
     const learner = journeyStops(visibleCourse(UNITS, { showDrafts: false }));
-    expect(learner.some((s) => s.type === 'n400')).toBe(N400_LESSONS.some((l) => l.status === 'reviewed'));
+    expect(learner.some((s) => s.type === 'n400' && s.lessonId)).toBe(N400_LESSONS.some((l) => l.status === 'reviewed'));
     const admin = journeyStops(visibleCourse(UNITS, { showDrafts: true }));
-    const n400 = admin.filter((s) => s.type === 'n400');
+    const n400 = admin.filter((s) => s.type === 'n400' && s.lessonId);
     expect(n400).toHaveLength(7);
     expect(n400.every((s) => s.state !== 'current')).toBe(true);
   });

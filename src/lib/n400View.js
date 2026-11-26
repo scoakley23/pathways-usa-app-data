@@ -25,3 +25,16 @@ export function sectionStates(sections = [], completedIds = []) {
   const { section } = nextSection(sections, completedIds);
   return sections.map((s) => (completedIds.includes(s.id) ? 'done' : s.id === section?.id ? 'current' : 'later'));
 }
+
+// The guide card an `n400` course stop opens ({ type: 'n400', section, card },
+// card counted from 1 among the cards this learner sees), or null when that
+// section or card can't be seen (a draft for learners, or missing).
+export function n400CardFor(stop, sections = [], isAdmin = false) {
+  const section = sections.find((s) => s.id === stop?.section);
+  if (!section || (!isAdmin && section.status !== 'approved')) return null;
+  const n = Number(stop.card) || 1;
+  return visibleCards(section, isAdmin)[n - 1] || null;
+}
+
+// Which answer means "talk to a lawyer first" on a card: 'yes' or 'no'.
+export const lawyerIf = (question) => (question?.lawyerIf === 'no' ? 'no' : 'yes');
