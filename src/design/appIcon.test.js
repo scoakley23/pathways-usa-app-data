@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { appIconSvg, ICON_FILES, ICON_SHAPES } from './appIcon.jsx';
+import { COLORS } from '@/lib/theme';
 
 // The app icon must be today's Amio. If this fails after Amio changes, run
 // `npm run icons` and commit public/icons/ and scripts/icons/icons.lock.json.
@@ -38,5 +39,13 @@ describe('app icon', () => {
     for (const src of used) expect(fs.existsSync(path.join(ROOT, 'public', src)), src).toBe(true);
     expect(html).toContain('rel="apple-touch-icon" sizes="180x180" href="/icons/amio-180.png"');
     expect(manifest.icons.some((icon) => icon.purpose === 'maskable')).toBe(true);
+  });
+
+  it('uses the token colours for the toolbar and the install splash', () => {
+    const html = read('index.html').toString();
+    const manifest = JSON.parse(read('public/manifest.json'));
+    expect(html).toContain(`<meta name="theme-color" content="${COLORS.navy}" />`);
+    expect(manifest.theme_color).toBe(COLORS.navy);
+    expect(manifest.background_color).toBe(COLORS.paper);
   });
 });
