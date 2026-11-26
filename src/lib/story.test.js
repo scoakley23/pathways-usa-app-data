@@ -53,6 +53,26 @@ describe('stories (Listen as a short video)', () => {
     expect(taps).toBeGreaterThanOrEqual(6);
   });
 
+  it('Unit 2: help for every scene; new stories are drafts, Congress stays reviewed', () => {
+    const sections = UNITS.find((u) => u.id === 'u2').sections;
+    let taps = 0;
+    for (const sec of sections) {
+      for (const l of sec.lessons) {
+        const story = l.steps.listen.story;
+        expect(story?.length, l.id).toBeGreaterThan(3);
+        expect(l.steps.listen.storyStatus, l.id).toBe(sec.id === 'u2-s2' ? 'reviewed' : 'draft');
+        for (const item of story.filter((x) => x.say)) {
+          for (const k of HELP_KINDS) expect(item.help?.[k], `${l.id}: ${item.say}`).toBeTruthy();
+        }
+        if (story.some((x) => x.check?.kind === 'tap')) taps++;
+      }
+    }
+    expect(taps).toBeGreaterThanOrEqual(8);
+    const yourState = sections.find((sec) => sec.id === 'u2-s5').lessons.find((l) => l.id === 'u2-s5-l3');
+    expect(yourState.steps.listen.story.some((x) => x.picture?.yourState)).toBe(true);
+    expect(storyPicture({ yourState: true })).toEqual({ kind: 'yourState' });
+  });
+
   it('help lines and tap checks go into the translation sources', () => {
     const texts = storyTexts([
       { say: 'Line', help: { simpler: 'A', example: 'B', why: 'C' } },

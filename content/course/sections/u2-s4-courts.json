@@ -86,7 +86,66 @@
             "license": "Standard YouTube license: embedding is allowed by YouTube's terms, but the video is not licensed to Pathways. Check before marking reviewed.",
             "status": "draft",
             "note": "From the old Lessons tab (Base44 Lesson \"The Judicial Branch and Supreme Court\"). Before reviewing: watch it all; check it matches the 2025 answers, has no flags, seals, eagles or Statue of Liberty, and the English is easy enough."
-          }
+          },
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "The Supreme Court is the highest court in the United States.",
+              "picture": {
+                "photo": "supreme-court-building.jpg"
+              },
+              "help": {
+                "simpler": "No court is higher than the Supreme Court.",
+                "example": "The Supreme Court works in this building in Washington, D.C.",
+                "why": "The test asks for the highest court. The answer is the Supreme Court."
+              }
+            },
+            {
+              "say": "It is at the top of the judicial branch.",
+              "picture": {
+                "drawing": "courtsLevels",
+                "focus": "supreme"
+              },
+              "help": {
+                "simpler": "The Supreme Court is above all the other federal courts.",
+                "example": "Think of steps: the other federal courts are below, the Supreme Court is at the top.",
+                "why": "Knowing it is at the top helps you remember “highest court.”"
+              }
+            },
+            {
+              "check": {
+                "kind": "tap",
+                "prompt": "Tap the highest court.",
+                "picture": {
+                  "drawing": "courtsLevels"
+                },
+                "answer": "supreme"
+              }
+            },
+            {
+              "say": "The Supreme Court and the other federal courts are the judicial branch.",
+              "picture": {
+                "drawing": "courtsLevels"
+              },
+              "help": {
+                "simpler": "All the federal courts together make up the judicial branch.",
+                "example": "There are federal courts in every state, and the Supreme Court in Washington, D.C.",
+                "why": "The test asks for one part of the judicial branch: the Supreme Court or the federal courts."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "What is the highest court in the United States?",
+                "choices": [
+                  "The Supreme Court",
+                  "Congress",
+                  "The Cabinet"
+                ],
+                "answer": 0
+              }
+            }
+          ]
         },
         "teachBack": {
           "questionId": "6ad16ecf6a9c603911f9de4a"
@@ -152,6 +211,75 @@
               "meaning": "when the Senate votes yes on a person the President chose",
               "status": "draft"
             }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "Courts review and explain laws.",
+              "picture": {
+                "drawing": "courtsLevels"
+              },
+              "help": {
+                "simpler": "Courts look closely at laws and say what they mean.",
+                "example": "If people read a law in two different ways, a court explains what it means.",
+                "why": "“Reviews laws” and “Explains laws” are answers about what the judicial branch does."
+              }
+            },
+            {
+              "say": "They decide disagreements about the law.",
+              "picture": {
+                "drawing": "courtsLevels",
+                "focus": "federal"
+              },
+              "help": {
+                "simpler": "When people disagree about the law, a court decides.",
+                "example": "Two businesses argue about a contract. A court decides who is right under the law.",
+                "why": "“Resolves disputes about the law” is another answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "Courts explain laws.",
+                "answer": true
+              }
+            },
+            {
+              "say": "Courts also decide if a law goes against the Constitution.",
+              "picture": {
+                "drawing": "checksBalances",
+                "focus": "courts"
+              },
+              "help": {
+                "simpler": "A court can say a law breaks the Constitution. Then the law cannot be used.",
+                "example": "This is how the courts check Congress and the President.",
+                "why": "“Decides if a law goes against the Constitution” is another answer on the test."
+              }
+            },
+            {
+              "say": "The President appoints federal judges.",
+              "picture": {
+                "drawing": "presidentPowers",
+                "focus": "judges"
+              },
+              "help": {
+                "simpler": "The President chooses federal judges.",
+                "example": "The Senate votes to agree before a judge starts the job.",
+                "why": "The test asks who appoints federal judges. The answer is the President."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Who appoints federal judges?",
+                "choices": [
+                  "The President",
+                  "The governor",
+                  "The voters"
+                ],
+                "answer": 0
+              }
+            }
           ]
         },
         "teachBack": {
@@ -208,6 +336,62 @@
               "word": "seat",
               "meaning": "a place for one member"
             }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "The Supreme Court has nine seats.",
+              "picture": {
+                "drawing": "supremeCourt"
+              },
+              "help": {
+                "simpler": "Nine justices sit on the Supreme Court.",
+                "example": "A justice is a judge on the Supreme Court.",
+                "why": "The test asks how many seats are on the Supreme Court. The answer is nine."
+              }
+            },
+            {
+              "say": "Each seat is for one justice.",
+              "picture": {
+                "drawing": "supremeCourt"
+              },
+              "help": {
+                "simpler": "A “seat” is a place for one justice.",
+                "example": "When a justice retires, the President chooses someone new for that seat.",
+                "why": "Nine seats means nine justices."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "How many seats are on the Supreme Court?",
+                "choices": [
+                  "Nine",
+                  "Five",
+                  "Twelve"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "Usually five justices are needed to decide a case.",
+              "picture": {
+                "drawing": "supremeCourt",
+                "focus": "majority"
+              },
+              "help": {
+                "simpler": "A case is decided when at least five of the nine agree.",
+                "example": "If five justices agree and four disagree, the five decide the case.",
+                "why": "The test asks how many justices are usually needed to decide a case. The answer is five."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "Usually five justices are needed to decide a case.",
+                "answer": true
+              }
+            }
           ]
         },
         "teachBack": {
@@ -261,6 +445,66 @@
               "word": "independent",
               "meaning": "free to decide without pressure"
             }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "Supreme Court justices serve for life.",
+              "picture": {
+                "photo": "supreme-court-building.jpg"
+              },
+              "help": {
+                "simpler": "Once a justice joins the Supreme Court, there is no end date.",
+                "example": "A justice can serve for many years, sometimes 30 years or more.",
+                "why": "The test asks how long justices serve. The answer is for life."
+              }
+            },
+            {
+              "say": "A justice can stay until they choose to retire.",
+              "help": {
+                "simpler": "They keep the job until they decide to stop.",
+                "example": "“Retire” means to stop working, often when someone is older.",
+                "why": "“Until retirement” is another answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "Supreme Court justices serve for four years.",
+                "answer": false
+              }
+            },
+            {
+              "say": "Serving for life helps them stay independent of politics.",
+              "picture": {
+                "drawing": "supremeCourt"
+              },
+              "help": {
+                "simpler": "They do not have to worry about losing their job, so they can decide freely.",
+                "example": "A justice does not need to win an election, so they can make decisions many people dislike.",
+                "why": "The test asks why justices serve for life. “To be independent of politics” is one answer."
+              }
+            },
+            {
+              "say": "They can decide cases without worrying about the next election.",
+              "help": {
+                "simpler": "Justices do not run for office, so elections do not change their decisions.",
+                "example": "A justice can say what the law means, even if many people disagree.",
+                "why": "“To limit outside political influence” is the other answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Why do Supreme Court justices serve for life?",
+                "choices": [
+                  "To be independent of politics",
+                  "To earn more money",
+                  "To make new laws"
+                ],
+                "answer": 0
+              }
+            }
           ]
         },
         "teachBack": {
@@ -309,6 +553,55 @@
             {
               "word": "Chief Justice",
               "meaning": "the leader of the Supreme Court"
+            }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "The Chief Justice leads the Supreme Court.",
+              "picture": {
+                "drawing": "supremeCourt",
+                "focus": "chief"
+              },
+              "help": {
+                "simpler": "The Chief Justice is the head of the Supreme Court.",
+                "example": "In the picture, the Chief Justice sits in the middle.",
+                "why": "The test asks for the name of the Chief Justice now."
+              }
+            },
+            {
+              "say": "This is the Chief Justice today.",
+              "picture": {
+                "officeholder": "chiefJustice"
+              },
+              "help": {
+                "simpler": "The name under the picture is the Chief Justice now.",
+                "example": "Officer: “Who is the Chief Justice now?” You say the name shown here.",
+                "why": "Use the name from this official list for the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "The Chief Justice leads the Supreme Court.",
+                "answer": true
+              }
+            },
+            {
+              "say": "This name can change, so the app looks it up on an official list.",
+              "help": {
+                "simpler": "A new Chief Justice is chosen when the last one leaves the job.",
+                "example": "The President chooses a new Chief Justice, and the Senate agrees.",
+                "why": "This way you always learn the right name."
+              }
+            },
+            {
+              "say": "Check the name again before your interview.",
+              "help": {
+                "simpler": "Look at the name one more time close to your interview day.",
+                "example": "It does not change often, but it is good to check.",
+                "why": "You want to give the name of the Chief Justice on your interview day."
+              }
             }
           ]
         },

@@ -8,6 +8,7 @@ import { hasVoice, speakText, stopSpeaking } from '@/components/utils/textToSpee
 import { resolvePicture } from '@/lib/lessonPictures';
 import { storyPicture, wordsInLine } from '@/lib/story';
 import { senatorsFor } from '@/lib/senatorPhotos';
+import { getOfficialsFor } from '@/lib/officeholders';
 import useLearnerLocation from '@/components/civics/useLearnerLocation';
 
 // The story player (Listen as a short "video", src/lib/story.js): one idea
@@ -62,10 +63,47 @@ export function YourSenators({ t }) {
   );
 }
 
+// The capital and governor (D.C.: mayor) of the state saved in Who
+// Represents Me?; names from the official list, on the device. Nothing saved.
+export function YourState({ t }) {
+  const { location, loaded } = useLearnerLocation();
+  if (!loaded) return <div className="min-h-[120px] rounded-card bg-white border border-line" />;
+  const o = location?.state ? getOfficialsFor({ state: location.state }) : null;
+  if (!o) {
+    return (
+      <section className="rounded-card bg-white border border-line p-5 flex flex-col gap-2">
+        <p className="text-base text-navy">{t('story_pick_state_capital')}</p>
+        <a href="/learn#find-representative" className="self-start min-h-tap inline-flex items-center text-base font-semibold text-denim underline underline-offset-4">{t('story_find_state')}</a>
+      </section>
+    );
+  }
+  const leader = o.governor ? { label: t('story_governor'), name: o.governor.name } : o.mayor ? { label: t('story_mayor'), name: o.mayor.name } : null;
+  return (
+    <section className="rounded-card bg-sky-soft border-2 border-sky p-4 flex flex-col gap-3">
+      <p className="text-small font-semibold text-navy">{t('story_your_state', { state: o.place })}</p>
+      <div className="grid grid-cols-2 gap-3">
+        <div className="rounded-card bg-white p-3 flex flex-col gap-1">
+          <span className="text-small font-semibold text-muted">{t('story_capital')}</span>
+          <span className="text-lg font-bold text-navy break-words" lang="en">{o.capital?.name}</span>
+        </div>
+        {leader && (
+          <div className="rounded-card bg-gold-soft p-3 flex flex-col gap-1">
+            <span className="text-small font-semibold text-muted">{leader.label}</span>
+            <span className="text-lg font-bold text-navy break-words" lang="en">{leader.name}</span>
+          </div>
+        )}
+      </div>
+      {!o.governor && o.mayor && <p className="text-small text-navy">{t('story_dc_no_governor')}</p>}
+      <p className="text-small text-navy">{t('story_names_change')}</p>
+    </section>
+  );
+}
+
 function ScenePicture({ picture, t, pick }) {
   const p = storyPicture(picture);
   if (!p) return null;
   if (p.kind === 'senators') return <YourSenators t={t} />;
+  if (p.kind === 'yourState') return <YourState t={t} />;
   if (p.kind === 'drawing') {
     const Drawing = DRAWINGS[p.drawing];
     return Drawing ? <div className="rounded-card bg-sky-soft border-2 border-sky p-3"><div className="rounded-card bg-white p-3"><Drawing focus={p.focus} pick={pick} /></div></div> : null;

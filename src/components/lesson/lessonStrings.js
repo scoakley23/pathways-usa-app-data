@@ -151,4 +151,11 @@ export const LESSON_LINES = {
   story_help_person: 'Talk to a person',
   story_help_close: 'Back to the story',
   story_tap_picture: 'Tap the picture.',
+  story_your_state: 'Your state: {state}',
+  story_capital: 'Capital',
+  story_governor: 'Governor',
+  story_mayor: 'Mayor',
+  story_dc_no_governor: 'D.C. has a mayor, not a governor.',
+  story_names_change: 'Names can change after elections. Check them again before your interview.',
+  story_pick_state_capital: 'Pick your state in Who Represents Me? to see its capital and governor here.',
 };

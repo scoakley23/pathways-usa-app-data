@@ -11,7 +11,8 @@
 // { officeholder } (the name always from src/data/officeholders.json) or
 // { senators: true } (the learner's two senators from the state saved in
 // Who Represents Me?, names from the official list, photos from
-// src/lib/senatorPhotos.js).
+// src/lib/senatorPhotos.js) or { yourState: true } (the capital and governor
+// of the state saved in Who Represents Me?, names from the official list).
 // check: { kind: 'tf', statement, answer: true|false },
 //        { kind: 'pick', prompt, choices: [3], answer: index } or
 //        { kind: 'tap', prompt, picture: { drawing }, answer: part }
@@ -54,6 +55,7 @@ export function storyPicture(picture) {
   if (picture.photo) return { kind: 'photo', file: picture.photo, alt: '' };
   if (picture.officeholder) return { kind: 'officeholder', office: picture.officeholder };
   if (picture.senators) return { kind: 'senators' };
+  if (picture.yourState) return { kind: 'yourState' };
   return null;
 }
 
@@ -129,7 +131,7 @@ export function storyProblems(units, { focusFor = {}, tapParts = {}, officeholde
           if (!PHOTO_SOURCES[p.photo]) problems.push(`${w}: ${p.photo} is not in pictures.json`);
         } else if (p.officeholder) {
           if (!OFFICES.includes(p.officeholder)) problems.push(`${w}: unknown office "${p.officeholder}"`);
-        } else if (p.senators !== true) problems.push(`${w}: unknown picture`);
+        } else if (p.senators !== true && p.yourState !== true) problems.push(`${w}: unknown picture`);
       }
     });
     if (scenes < 3) problems.push(`${at}: needs at least 3 scenes`);
