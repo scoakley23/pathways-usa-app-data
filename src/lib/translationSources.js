@@ -31,6 +31,8 @@ import { MY_TUTOR_LINES } from '@/components/partners/myTutorStrings';
 import { N400_LESSON_LINES } from '@/components/n400lesson/n400LessonStrings';
 import { N400_GUIDE_LINES } from '@/components/n400/n400GuideStrings';
 import { LAWYER_LINES } from '@/components/lawyer/lawyerStrings';
+import { DECK_LINES, LEARN_AMIO_LINES, LEARN_SCREEN_LINES, REP_LINES, TUTOR_STEP_LINES } from '@/components/lessons/learnStrings';
+import { UI_LINES as TUTOR_STEP_AMIO_LINES } from '@/components/persona/tutorStepLines';
 import { ERROR_PAGE_LINES, LESSON_STATUS_LINES, SETTINGS_PIECE_LINES } from '@/components/shell/leftoverStrings';
 import { ASK_HISTORY_LINES, NOTIFICATION_LINES, PROGRESS_LINES } from '@/components/progress/progressStrings';
 import { HELP_PHRASES, N400_LESSONS, N400_QUESTION_NAMES } from '@/lib/n400Lessons';
@@ -93,6 +95,12 @@ export const STRING_SETS = [
   { id: 'lesson-status', strings: LESSON_STATUS_LINES, usedIn: [['src/pages/Dashboard.jsx', 'LESSON_STATUS_LINES']] },
   { id: 'settings-pieces', strings: SETTINGS_PIECE_LINES, usedIn: [['src/components/persona/TutorSetup.jsx', 'SETTINGS_PIECE_LINES'], ['src/components/utils/VoiceSettings.jsx', 'SETTINGS_PIECE_LINES']] },
   { id: 'error-pages', strings: ERROR_PAGE_LINES, usedIn: [['src/lib/PageNotFound.jsx', 'ERROR_PAGE_LINES'], ['src/components/UserNotRegisteredError.jsx', 'ERROR_PAGE_LINES']] },
+  { id: 'learn-amio', strings: LEARN_AMIO_LINES, usedIn: [['src/components/lessons/useLearnText.js', 'LEARN_AMIO_LINES']] },
+  { id: 'learn-screens', strings: LEARN_SCREEN_LINES, usedIn: [['src/components/lessons/useLearnText.js', 'LEARN_SCREEN_LINES']] },
+  { id: 'tutor-steps', strings: TUTOR_STEP_LINES, usedIn: [['src/components/persona/TutorLesson.jsx', 'TUTOR_STEP_LINES']] },
+  { id: 'tutor-steps-amio', strings: TUTOR_STEP_AMIO_LINES, usedIn: [['src/components/persona/TutorLesson.jsx', 'UI_LINES']] },
+  { id: 'find-rep', strings: REP_LINES, usedIn: [['src/components/civics/RepresentativeFinder.jsx', 'REP_LINES'], ['src/components/civics/OfficeholderNote.jsx', 'REP_LINES']] },
+  { id: 'lesson-deck', strings: DECK_LINES, usedIn: [['src/components/lessons/useDeckText.js', 'DECK_LINES']] },
   { id: 'lawyer', strings: LAWYER_LINES, usedIn: [['src/components/lawyer/useLawyerText.js', 'LAWYER_LINES']] },
   { id: 'n400-guide', strings: N400_GUIDE_LINES, usedIn: [['src/components/n400/useN400GuideText.js', 'N400_GUIDE_LINES']] },
   { id: 'practice', strings: PRACTICE_LINES, usedIn: [['src/components/practice/usePracticeText.js', 'PRACTICE_LINES']] },

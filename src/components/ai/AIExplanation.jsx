@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { PillButton } from '@/components/pathways/ui';
+import { Chip } from '@/components/pathways/ui';
+import usePracticeText from '@/components/practice/usePracticeText';
 import { Sparkles, Loader2, ChevronDown, ChevronUp } from 'lucide-react';
 import { ai, isAiLimit } from '@/api/ai';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function AIExplanation({ question, answer }) {
+  const { t } = usePracticeText();
   const [explanation, setExplanation] = useState(null);
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -26,7 +28,7 @@ export default function AIExplanation({ question, answer }) {
       setExplanation(text);
     } catch (error) {
       console.error("Error fetching explanation:", error);
-      setExplanation(isAiLimit(error) ? error.message : "Sorry, I couldn't generate an explanation right now.");
+      setExplanation(isAiLimit(error) ? error.message : t('ai_failed'));
     } finally {
       setLoading(false);
     }
@@ -35,19 +37,19 @@ export default function AIExplanation({ question, answer }) {
   return (
     <div className="mt-4 w-full">
       {!isOpen && !explanation ? (
-        <PillButton onClick={getExplanation}>
+        <Chip onClick={getExplanation}>
             <Sparkles className="w-5 h-5 shrink-0" aria-hidden="true" />
-            Explain with AI
-        </PillButton>
+            {t('explain_ai')}
+        </Chip>
       ) : (
-        <div className="bg-tint rounded-2xl overflow-hidden transition-all text-left">
+        <div className="bg-line-soft rounded-card overflow-hidden transition-all text-start">
             <button 
                 type="button"
                 onClick={() => setIsOpen(!isOpen)}
                 aria-expanded={isOpen}
-                className="w-full min-h-[44px] flex items-center justify-between px-4 py-3 text-sm font-bold text-navy rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
+                className="w-full min-h-[44px] flex items-center justify-between px-4 py-3 text-base font-bold text-navy rounded-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
             >
-                <span className="flex items-center gap-2"><Sparkles className="w-4 h-4" aria-hidden="true" /> AI Explanation</span>
+                <span className="flex items-center gap-2"><Sparkles className="w-4 h-4" aria-hidden="true" /> <span dir="auto">{t('ai_explanation')}</span></span>
                 {isOpen ? <ChevronUp className="w-5 h-5" aria-hidden="true" /> : <ChevronDown className="w-5 h-5" aria-hidden="true" />}
             </button>
             
@@ -61,10 +63,10 @@ export default function AIExplanation({ question, answer }) {
                     >
                         {loading ? (
                             <div className="flex items-center gap-2 text-muted text-sm py-1">
-                                <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> Thinking...
+                                <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> {t('ai_thinking')}
                             </div>
                         ) : (
-                            <p className="text-base text-navy leading-relaxed">
+                            <p className="text-base text-navy leading-relaxed" dir="auto">
                                 {explanation}
                             </p>
                         )}

@@ -397,6 +397,12 @@
    ]
   },
   {
+   "text": "(opens in a new tab)",
+   "from": [
+    "tutor-steps"
+   ]
+  },
+  {
    "text": "0 right. Keep going, {name}.",
    "from": [
     "practice"
@@ -437,6 +443,18 @@
    "text": "1 more lesson to reach Speak it!",
    "from": [
     "today-plan"
+   ]
+  },
+  {
+   "text": "1 new question",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
+   "text": "1 question from the {version} civics test, in English, with the official answers.",
+   "from": [
+    "lesson-deck"
    ]
   },
   {
@@ -793,6 +811,12 @@
    ]
   },
   {
+   "text": "A good answer",
+   "from": [
+    "tutor-steps"
+   ]
+  },
+  {
    "text": "A governor is the leader of a state government. The governor is like the President, but for one state.",
    "from": [
     "ask-answers"
@@ -1033,6 +1057,12 @@
    ]
   },
   {
+   "text": "AI explanation",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "AI policy",
    "from": [
     "settings"
@@ -1145,6 +1175,13 @@
    "text": "Abraham Lincoln, the 16th President, in 1863, the year of the Emancipation Proclamation.",
    "from": [
     "course-pictures"
+   ]
+  },
+  {
+   "text": "Accepted answers",
+   "from": [
+    "learn-screens",
+    "tutor-steps"
    ]
   },
   {
@@ -1274,6 +1311,12 @@
    ]
   },
   {
+   "text": "Again soon",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
    "text": "Agreement where citizens accept responsibilities in exchange for rights and protection",
    "from": [
     "lessons"
@@ -1334,15 +1377,33 @@
    ]
   },
   {
+   "text": "All caught up",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
    "text": "All done for today",
    "from": [
     "today"
    ]
   },
   {
+   "text": "All lessons",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
    "text": "All practice",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "All started",
+   "from": [
+    "learn-screens"
    ]
   },
   {
@@ -1594,9 +1655,16 @@
    ]
   },
   {
+   "text": "Amio teaches each question first, then you practice it.",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
    "text": "Amio · AI tutor",
    "from": [
-    "home"
+    "home",
+    "learn-screens"
    ]
   },
   {
@@ -1678,6 +1746,12 @@
    ]
   },
   {
+   "text": "Answer mode",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
    "text": "Answer only the civics question. Don’t include personal information.",
    "from": [
     "practice"
@@ -1709,9 +1783,21 @@
    ]
   },
   {
+   "text": "Answer the officer's question in English.",
+   "from": [
+    "tutor-steps-amio"
+   ]
+  },
+  {
    "text": "Answer {n} easy questions",
    "from": [
     "onboarding"
+   ]
+  },
+  {
+   "text": "Answer: {answer}",
+   "from": [
+    "lesson-deck"
    ]
   },
   {
@@ -1980,6 +2066,12 @@
    ]
   },
   {
+   "text": "At the interview, the officer asks out loud. Your answer doesn’t need to be word for word, only right in meaning.",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
    "text": "Atlantic (Ocean)",
    "from": [
     "civics-questions"
@@ -2012,6 +2104,8 @@
     "interview-day",
     "interview-when",
     "lawyer",
+    "learn-screens",
+    "lesson-deck",
     "lesson-player",
     "lesson-status",
     "n400-guide",
@@ -2031,6 +2125,7 @@
   {
    "text": "Back to Today",
    "from": [
+    "learn-screens",
     "practice"
    ]
   },
@@ -2430,6 +2525,7 @@
   {
    "text": "Cancel",
    "from": [
+    "find-rep",
     "my-tutor",
     "onboarding",
     "settings"
@@ -2450,6 +2546,7 @@
   {
    "text": "Capital",
    "from": [
+    "find-rep",
     "words"
    ]
   },
@@ -2526,10 +2623,12 @@
    "from": [
     "checkpoints",
     "interview-day",
+    "lesson-deck",
     "lesson-player",
     "n400-guide",
     "n400-lessons",
-    "practice"
+    "practice",
+    "tutor-steps"
    ]
   },
   {
@@ -2587,6 +2686,12 @@
    ]
   },
   {
+   "text": "Checked on official government websites on {date}",
+   "from": [
+    "tutor-steps-amio"
+   ]
+  },
+  {
    "text": "Checking your answer…",
    "from": [
     "interview-day",
@@ -2606,7 +2711,8 @@
     "lesson-player",
     "n400-lessons",
     "practice",
-    "sign-in"
+    "sign-in",
+    "tutor-steps"
    ]
   },
   {
@@ -2650,6 +2756,12 @@
    "text": "Choose a state",
    "from": [
     "pilot"
+   ]
+  },
+  {
+   "text": "Choose one answer",
+   "from": [
+    "tutor-steps"
    ]
   },
   {
@@ -2788,7 +2900,8 @@
     "interview-tab",
     "onboarding",
     "practice",
-    "today-plan"
+    "today-plan",
+    "tutor-steps"
    ]
   },
   {
@@ -3286,7 +3399,8 @@
     "lesson-player",
     "n400-lessons",
     "onboarding",
-    "practice"
+    "practice",
+    "tutor-steps"
    ]
   },
   {
@@ -3327,6 +3441,12 @@
    ]
   },
   {
+   "text": "Correct answer",
+   "from": [
+    "tutor-steps"
+   ]
+  },
+  {
    "text": "Correct.",
    "from": [
     "tutor"
@@ -3336,6 +3456,30 @@
    "text": "Couldn’t load the practice day. Please check your connection.",
    "from": [
     "interview-day"
+   ]
+  },
+  {
+   "text": "Couldn’t load your lesson. Please check your connection.",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
+   "text": "Couldn’t load your review. Please check your connection.",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
+   "text": "Couldn’t save your note.",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
+   "text": "Couldn’t save your progress. Please check your connection.",
+   "from": [
+    "learn-screens"
    ]
   },
   {
@@ -3403,6 +3547,12 @@
    "text": "Cultural Diversity",
    "from": [
     "lessons"
+   ]
+  },
+  {
+   "text": "Current answer",
+   "from": [
+    "tutor-steps-amio"
    ]
   },
   {
@@ -3661,6 +3811,12 @@
    ]
   },
   {
+   "text": "Did you know it?",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
    "text": "Did you live in the United States at any time between your 18th and 26th birthdays?",
    "from": [
     "n400"
@@ -3869,6 +4025,12 @@
    "text": "Dollar bill",
    "from": [
     "words"
+   ]
+  },
+  {
+   "text": "Don't answer this question. Say in English what the officer is asking.",
+   "from": [
+    "tutor-steps-amio"
    ]
   },
   {
@@ -4184,6 +4346,7 @@
   {
    "text": "English",
    "from": [
+    "learn-screens",
     "settings-pieces"
    ]
   },
@@ -4191,6 +4354,12 @@
    "text": "English only, like the real interview",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Enter your zip code to find your senators, representative, governor and state capital. Your answers will be used during civics practice.",
+   "from": [
+    "find-rep"
    ]
   },
   {
@@ -4383,6 +4552,7 @@
   {
    "text": "Explain it simply",
    "from": [
+    "lesson-deck",
     "practice"
    ]
   },
@@ -4390,6 +4560,12 @@
    "text": "Explain it to Amio in English",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Explain with AI",
+   "from": [
+    "practice"
    ]
   },
   {
@@ -4610,10 +4786,29 @@
    ]
   },
   {
+   "text": "Find my representative",
+   "from": [
+    "find-rep"
+   ]
+  },
+  {
    "text": "Find out",
    "from": [
     "interview-tab",
     "settings"
+   ]
+  },
+  {
+   "text": "Finding your congressional district…",
+   "from": [
+    "find-rep"
+   ]
+  },
+  {
+   "text": "Finish",
+   "from": [
+    "lesson-deck",
+    "tutor-steps"
    ]
   },
   {
@@ -5245,6 +5440,24 @@
    ]
   },
   {
+   "text": "Go over the questions any time to check what you know.",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
+   "text": "Go over them",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
+   "text": "Go over them again",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
    "text": "Go over these again",
    "from": [
     "practice"
@@ -5365,6 +5578,18 @@
    ]
   },
   {
+   "text": "Good work. You learned 1 new question. I’ll ask you again in a few days, so it stays in your memory.",
+   "from": [
+    "learn-amio"
+   ]
+  },
+  {
+   "text": "Good work. You learned {n} new questions. I’ll ask you again in a few days, so they stay in your memory.",
+   "from": [
+    "learn-amio"
+   ]
+  },
+  {
    "text": "Got it",
    "from": [
     "onboarding"
@@ -5373,6 +5598,7 @@
   {
    "text": "Governor",
    "from": [
+    "find-rep",
     "lessons"
    ]
   },
@@ -5933,6 +6159,12 @@
    ]
   },
   {
+   "text": "Here is the question and the answers the officer accepts. Listen and repeat.",
+   "from": [
+    "tutor-steps-amio"
+   ]
+  },
+  {
    "text": "Here is what the officer may ask about this part of the form.",
    "from": [
     "n400-lessons"
@@ -6307,6 +6539,12 @@
    ]
   },
   {
+   "text": "I couldn't check that answer. Please try again.",
+   "from": [
+    "tutor-steps-amio"
+   ]
+  },
+  {
    "text": "I do",
    "from": [
     "interview-day"
@@ -6357,6 +6595,7 @@
   {
    "text": "I knew it",
    "from": [
+    "lesson-deck",
     "practice"
    ]
   },
@@ -7256,6 +7495,19 @@
    ]
   },
   {
+   "text": "Key point {n}",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
+   "text": "Key words",
+   "from": [
+    "lesson-deck",
+    "tutor-steps"
+   ]
+  },
+  {
    "text": "Killing an important person on purpose.",
    "from": [
     "n400"
@@ -7320,13 +7572,21 @@
   {
    "text": "Learn",
    "from": [
-    "home"
+    "home",
+    "lesson-deck",
+    "tutor-steps"
    ]
   },
   {
    "text": "Learn 2 new civics questions",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "Learn a new question",
+   "from": [
+    "learn-screens"
    ]
   },
   {
@@ -7366,6 +7626,12 @@
    ]
   },
   {
+   "text": "Learn civics",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
    "text": "Learn how Congress makes laws and represents the American people",
    "from": [
     "lessons"
@@ -7396,6 +7662,12 @@
    ]
   },
   {
+   "text": "Learn more questions",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
    "text": "Learn to understand each question on the form, the way the officer may ask it.",
    "from": [
     "n400-lessons"
@@ -7414,6 +7686,12 @@
    ]
   },
   {
+   "text": "Learn · English",
+   "from": [
+    "tutor-steps"
+   ]
+  },
+  {
    "text": "Learned what the questions mean",
    "from": [
     "n400-lessons"
@@ -7423,6 +7701,12 @@
    "text": "Learning and practicing how to do something.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "Leave lesson",
+   "from": [
+    "tutor-steps"
    ]
   },
   {
@@ -7498,15 +7782,35 @@
    ]
   },
   {
+   "text": "Lesson done",
+   "from": [
+    "learn-screens",
+    "lesson-deck"
+   ]
+  },
+  {
    "text": "Lesson done.",
    "from": [
+    "lesson-deck",
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Lesson navigation",
+   "from": [
+    "lesson-deck"
    ]
   },
   {
    "text": "Lesson progress",
    "from": [
     "lesson-status"
+   ]
+  },
+  {
+   "text": "Lesson video",
+   "from": [
+    "lesson-deck"
    ]
   },
   {
@@ -7562,6 +7866,18 @@
    "text": "Lessons today",
    "from": [
     "today-plan"
+   ]
+  },
+  {
+   "text": "Let’s check 1 question you learned before. Answer it out loud, in English. I’ll show you how you did at the end.",
+   "from": [
+    "learn-amio"
+   ]
+  },
+  {
+   "text": "Let’s check {n} questions you learned before. Answer each one out loud, in English. I’ll show you how you did at the end.",
+   "from": [
+    "learn-amio"
    ]
   },
   {
@@ -7701,11 +8017,19 @@
    "text": "Listen",
    "from": [
     "ask-history",
+    "learn-screens",
     "lesson-player",
     "n400-guide",
     "n400-lessons",
     "settings-pieces",
-    "today-plan"
+    "today-plan",
+    "tutor-steps"
+   ]
+  },
+  {
+   "text": "Listen again and check these words:",
+   "from": [
+    "tutor-steps-amio"
    ]
   },
   {
@@ -7742,6 +8066,12 @@
    "text": "Listen to the national anthem, “The Star-Spangled Banner.”",
    "from": [
     "course-pictures"
+   ]
+  },
+  {
+   "text": "Listen to the sentence. Then write it in English.",
+   "from": [
+    "tutor-steps-amio"
    ]
   },
   {
@@ -7783,6 +8113,7 @@
   {
    "text": "Listening…",
    "from": [
+    "lesson-deck",
     "practice"
    ]
   },
@@ -7803,7 +8134,8 @@
    "from": [
     "ask-screen",
     "lesson-player",
-    "n400-lessons"
+    "n400-lessons",
+    "tutor-steps"
    ]
   },
   {
@@ -7822,6 +8154,7 @@
    "text": "Loading",
    "from": [
     "ask-screen",
+    "lesson-deck",
     "onboarding"
    ]
   },
@@ -8050,6 +8383,12 @@
    ]
   },
   {
+   "text": "Mark lesson complete",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
    "text": "Mark read",
    "from": [
     "notifications"
@@ -8143,6 +8482,12 @@
    "text": "Maybe",
    "from": [
     "pilot"
+   ]
+  },
+  {
+   "text": "Mayor: {name}",
+   "from": [
+    "find-rep"
    ]
   },
   {
@@ -8386,6 +8731,12 @@
    "from": [
     "getting-started",
     "pilot"
+   ]
+  },
+  {
+   "text": "My notes",
+   "from": [
+    "lesson-deck"
    ]
   },
   {
@@ -8863,6 +9214,7 @@
    "from": [
     "checkpoints",
     "interview-day",
+    "lesson-deck",
     "lesson-player",
     "n400-guide",
     "n400-lessons"
@@ -8877,7 +9229,26 @@
   {
    "text": "Next card",
    "from": [
+    "lesson-deck",
     "n400-guide"
+   ]
+  },
+  {
+   "text": "Next check: in {n} days",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
+   "text": "Next check: tomorrow",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
+   "text": "Next lesson",
+   "from": [
+    "lesson-deck"
    ]
   },
   {
@@ -9070,6 +9441,12 @@
    ]
   },
   {
+   "text": "Not counted",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
    "text": "Not filed yet",
    "from": [
     "interview-when",
@@ -9085,6 +9462,7 @@
   {
    "text": "Not now",
    "from": [
+    "learn-screens",
     "pilot",
     "today"
    ]
@@ -9151,6 +9529,7 @@
     "checkpoints",
     "interview-day",
     "interview-tab",
+    "lesson-deck",
     "pilot",
     "practice"
    ]
@@ -9183,6 +9562,12 @@
    "text": "Not yet. Almost there!",
    "from": [
     "checkpoints"
+   ]
+  },
+  {
+   "text": "Not yet. Here is the answer.",
+   "from": [
+    "lesson-deck"
    ]
   },
   {
@@ -9246,6 +9631,12 @@
    ]
   },
   {
+   "text": "Nothing to review today. That’s fine: steady practice works best. You can learn a new question instead.",
+   "from": [
+    "learn-amio"
+   ]
+  },
+  {
    "text": "Nothing yet. Your practice shows here.",
    "from": [
     "progress"
@@ -9275,6 +9666,12 @@
    "from": [
     "civics-questions",
     "words"
+   ]
+  },
+  {
+   "text": "Now answer out loud, in English.",
+   "from": [
+    "tutor-steps-amio"
    ]
   },
   {
@@ -9598,6 +9995,12 @@
    ]
   },
   {
+   "text": "Only you see these.",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
    "text": "Only your scores are saved. Nothing you said is kept.",
    "from": [
     "practice"
@@ -9758,7 +10161,8 @@
   {
    "text": "Part {n} of {total}",
    "from": [
-    "interview-day"
+    "interview-day",
+    "tutor-steps"
    ]
   },
   {
@@ -10000,7 +10404,14 @@
   {
    "text": "Play the sentence",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "tutor-steps"
+   ]
+  },
+  {
+   "text": "Play the sentence. You can play it again.",
+   "from": [
+    "tutor-steps"
    ]
   },
   {
@@ -10019,6 +10430,12 @@
    "text": "Please don't share dates, case numbers or details. Programs you study with can't see this.",
    "from": [
     "pilot"
+   ]
+  },
+  {
+   "text": "Please enter a 5-digit zip code.",
+   "from": [
+    "find-rep"
    ]
   },
   {
@@ -10057,12 +10474,14 @@
     "course",
     "practice",
     "progress",
-    "today-plan"
+    "today-plan",
+    "tutor-steps"
    ]
   },
   {
    "text": "Practice again",
    "from": [
+    "learn-screens",
     "practice"
    ]
   },
@@ -10208,6 +10627,36 @@
    ]
   },
   {
+   "text": "Practice · Interview",
+   "from": [
+    "tutor-steps"
+   ]
+  },
+  {
+   "text": "Practice · Read",
+   "from": [
+    "tutor-steps"
+   ]
+  },
+  {
+   "text": "Practice · Speak",
+   "from": [
+    "tutor-steps"
+   ]
+  },
+  {
+   "text": "Practice · Write",
+   "from": [
+    "tutor-steps"
+   ]
+  },
+  {
+   "text": "Practice · {n} of {total}",
+   "from": [
+    "tutor-steps"
+   ]
+  },
+  {
    "text": "Practiced",
    "from": [
     "progress"
@@ -10286,6 +10735,12 @@
    "text": "Presidents' Day is in February.",
    "from": [
     "sentences"
+   ]
+  },
+  {
+   "text": "Previous",
+   "from": [
+    "lesson-deck"
    ]
   },
   {
@@ -10461,7 +10916,8 @@
   {
    "text": "Question {n}",
    "from": [
-    "interview-day"
+    "interview-day",
+    "lesson-deck"
    ]
   },
   {
@@ -10514,10 +10970,35 @@
    ]
   },
   {
+   "text": "Questions on the test",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
+   "text": "Questions you learned come back when it’s time to review them.",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
    "text": "Quick check",
    "from": [
     "lesson-player",
-    "today"
+    "today",
+    "tutor-steps"
+   ]
+  },
+  {
+   "text": "Quick check · {part}",
+   "from": [
+    "tutor-steps"
+   ]
+  },
+  {
+   "text": "Quick check: in 3 days.",
+   "from": [
+    "learn-screens"
    ]
   },
   {
@@ -10627,6 +11108,12 @@
    ]
   },
   {
+   "text": "Read out loud",
+   "from": [
+    "tutor-steps"
+   ]
+  },
+  {
    "text": "Read sentences aloud and type what you hear.",
    "from": [
     "home"
@@ -10645,9 +11132,21 @@
    ]
   },
   {
+   "text": "Read these words again slowly:",
+   "from": [
+    "tutor-steps-amio"
+   ]
+  },
+  {
    "text": "Read this out loud, like you will for the officer.",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Read this sentence out loud, in English.",
+   "from": [
+    "tutor-steps-amio"
    ]
   },
   {
@@ -10669,7 +11168,8 @@
     "interview-tab",
     "onboarding",
     "practice",
-    "today-plan"
+    "today-plan",
+    "tutor-steps"
    ]
   },
   {
@@ -10682,6 +11182,12 @@
    "text": "Reading and writing",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "Reading needs a browser with speech recognition, like Chrome or Safari. You can skip this part.",
+   "from": [
+    "tutor-steps"
    ]
   },
   {
@@ -10936,6 +11442,12 @@
    ]
   },
   {
+   "text": "Review civics",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
    "text": "Reviews laws / Explains laws / Resolves disputes (disagreements) about the law / Decides if a law goes against the (U.S.) Constitution",
    "from": [
     "civics-questions"
@@ -10952,6 +11464,7 @@
    "text": "Right",
    "from": [
     "checkpoints",
+    "learn-screens",
     "words"
    ]
   },
@@ -11000,6 +11513,7 @@
   {
    "text": "Right!",
    "from": [
+    "lesson-deck",
     "lesson-player",
     "practice"
    ]
@@ -11119,6 +11633,7 @@
   {
    "text": "Save",
    "from": [
+    "lesson-deck",
     "my-tutor",
     "pilot",
     "settings",
@@ -11135,6 +11650,12 @@
    "text": "Save state",
    "from": [
     "pilot"
+   ]
+  },
+  {
+   "text": "Saved",
+   "from": [
+    "lesson-deck"
    ]
   },
   {
@@ -11162,8 +11683,16 @@
    ]
   },
   {
+   "text": "Saving",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
    "text": "Saving…",
    "from": [
+    "find-rep",
+    "lesson-deck",
     "pilot"
    ]
   },
@@ -11630,9 +12159,21 @@
    ]
   },
   {
+   "text": "Search",
+   "from": [
+    "find-rep"
+   ]
+  },
+  {
    "text": "Search {n}+ languages",
    "from": [
     "onboarding"
+   ]
+  },
+  {
+   "text": "Searching",
+   "from": [
+    "find-rep"
    ]
   },
   {
@@ -11972,6 +12513,18 @@
    ]
   },
   {
+   "text": "Show me",
+   "from": [
+    "tutor-steps"
+   ]
+  },
+  {
+   "text": "Show the answer",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
    "text": "Show the definition",
    "from": [
     "practice"
@@ -11988,6 +12541,7 @@
    "from": [
     "ask-screen",
     "interview-day",
+    "lesson-deck",
     "me",
     "sign-in"
    ]
@@ -12005,9 +12559,27 @@
    ]
   },
   {
+   "text": "Sign in to learn civics",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
    "text": "Sign in to practice the whole interview, start to finish.",
    "from": [
     "interview-day"
+   ]
+  },
+  {
+   "text": "Sign in to review civics",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
+   "text": "Sign in to save your progress.",
+   "from": [
+    "lesson-deck"
    ]
   },
   {
@@ -12108,6 +12680,12 @@
    "text": "Skip setup",
    "from": [
     "getting-started"
+   ]
+  },
+  {
+   "text": "Skip this part",
+   "from": [
+    "tutor-steps"
    ]
   },
   {
@@ -12289,6 +12867,12 @@
    ]
   },
   {
+   "text": "Sorry, I couldn’t explain this right now.",
+   "from": [
+    "practice"
+   ]
+  },
+  {
    "text": "Sorry, your message couldn't be sent. Please try again later.",
    "from": [
     "talk"
@@ -12327,7 +12911,8 @@
   {
    "text": "Speak",
    "from": [
-    "home"
+    "home",
+    "lesson-deck"
    ]
   },
   {
@@ -12368,7 +12953,14 @@
     "interview-tab",
     "onboarding",
     "practice",
-    "today-plan"
+    "today-plan",
+    "tutor-steps"
+   ]
+  },
+  {
+   "text": "Speaking needs a browser with speech recognition, like Chrome or Safari. You can skip this part.",
+   "from": [
+    "tutor-steps"
    ]
   },
   {
@@ -12412,10 +13004,12 @@
    "from": [
     "course",
     "home",
+    "learn-screens",
     "onboarding",
     "practice",
     "today",
-    "today-plan"
+    "today-plan",
+    "tutor-steps"
    ]
   },
   {
@@ -12463,6 +13057,12 @@
    "text": "Start quick check",
    "from": [
     "onboarding"
+   ]
+  },
+  {
+   "text": "Start speaking",
+   "from": [
+    "lesson-deck"
    ]
   },
   {
@@ -12533,9 +13133,21 @@
    ]
   },
   {
+   "text": "State capital",
+   "from": [
+    "find-rep"
+   ]
+  },
+  {
    "text": "State governments follow a similar structure to the federal government with executive, legislative, and judicial branches. Each state has a Governor (executive), a state legislature (legislative), and state courts (judicial). State governments handle issues like education, public safety, transportation, and welfare within their borders.\n\nLocal governments include county, city, and township governments. A mayor typically leads a city government, while commissioners or supervisors run county governments. Local governments provide services like police, fire, water, sewer, and roads. Many decisions that directly affect daily life are made at the local level.\n\nThe relationship between federal, state, and local governments is defined by the Constitution and federal laws. States cannot contradict federal law, but they have freedom to govern on matters not reserved for the federal government. Citizens participate in all levels of government through voting and civic engagement. Local governments are often the most accessible to citizens and play a crucial role in American democracy.",
    "from": [
     "lessons"
+   ]
+  },
+  {
+   "text": "State information",
+   "from": [
+    "find-rep"
    ]
   },
   {
@@ -12591,7 +13203,22 @@
   {
    "text": "Step {n} of {total}",
    "from": [
-    "onboarding"
+    "onboarding",
+    "tutor-steps"
+   ]
+  },
+  {
+   "text": "Step {n} of {total} · {step}",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
+   "text": "Stop",
+   "from": [
+    "learn-screens",
+    "lesson-deck",
+    "tutor-steps"
    ]
   },
   {
@@ -12616,6 +13243,12 @@
    "text": "Straight to the point",
    "from": [
     "settings-pieces"
+   ]
+  },
+  {
+   "text": "Street address",
+   "from": [
+    "find-rep"
    ]
   },
   {
@@ -12716,9 +13349,11 @@
    "text": "Sure. Here’s the question again.",
    "from": [
     "checkpoints",
+    "lesson-deck",
     "lesson-player",
     "n400-lessons",
-    "practice"
+    "practice",
+    "tutor-steps-amio"
    ]
   },
   {
@@ -12823,6 +13458,24 @@
    "text": "Tall obelisk in Washington D.C. honoring the first President, George Washington",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "Tap Start speaking, then say your answer in English.",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
+   "text": "Tap and answer in English",
+   "from": [
+    "tutor-steps"
+   ]
+  },
+  {
+   "text": "Tap and read out loud",
+   "from": [
+    "tutor-steps"
    ]
   },
   {
@@ -12956,9 +13609,21 @@
    ]
   },
   {
+   "text": "Thank you. On to the next one.",
+   "from": [
+    "tutor-steps-amio"
+   ]
+  },
+  {
    "text": "Thank you. That answer is acceptable.",
    "from": [
     "tutor"
+   ]
+  },
+  {
+   "text": "Thank you. You answered {right} of {total} correctly. Look at the answers below; we’ll practice the others again soon.",
+   "from": [
+    "learn-amio"
    ]
   },
   {
@@ -14065,6 +14730,12 @@
    ]
   },
   {
+   "text": "The correct answer is:",
+   "from": [
+    "tutor-steps-amio"
+   ]
+  },
+  {
    "text": "The country a person comes from.",
    "from": [
     "n400"
@@ -14374,7 +15045,8 @@
   {
    "text": "The officer asks",
    "from": [
-    "checkpoints"
+    "checkpoints",
+    "tutor-steps"
    ]
   },
   {
@@ -14580,7 +15252,8 @@
    "text": "The sentence",
    "from": [
     "lesson-player",
-    "practice"
+    "practice",
+    "tutor-steps"
    ]
   },
   {
@@ -14783,6 +15456,12 @@
    ]
   },
   {
+   "text": "These are the exact questions the officer may ask.",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
    "text": "These are the same promises you make in the Oath of Allegiance at your naturalization ceremony.",
    "from": [
     "n400-lessons"
@@ -14963,6 +15642,18 @@
    ]
   },
   {
+   "text": "Thinking…",
+   "from": [
+    "practice"
+   ]
+  },
+  {
+   "text": "This answer depends on where you live. Use “Who Represents Me?” on the Learn page.",
+   "from": [
+    "tutor-steps-amio"
+   ]
+  },
+  {
    "text": "This is also called a representative democracy. “Representative” means the leaders speak and act for the people who elected them.",
    "from": [
     "course-lessons"
@@ -14984,6 +15675,18 @@
    "text": "This is what the paper form looks like. It stays blank: we never fill it in or keep answers.",
    "from": [
     "n400-guide"
+   ]
+  },
+  {
+   "text": "This lesson has no test questions to go over yet.",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
+   "text": "This lesson has no text yet.",
+   "from": [
+    "lesson-deck"
    ]
   },
   {
@@ -15150,9 +15853,27 @@
    ]
   },
   {
+   "text": "This list was last checked on {date}. Officials can change; check usa.gov.",
+   "from": [
+    "find-rep"
+   ]
+  },
+  {
+   "text": "This may change soon. At your interview, name the person serving that day.",
+   "from": [
+    "tutor-steps-amio"
+   ]
+  },
+  {
    "text": "This means the many American Indian nations that lived in America before Europeans came. Each had its own language, government and way of life.",
    "from": [
     "ask-answers"
+   ]
+  },
+  {
+   "text": "This one isn’t counted as right or wrong.",
+   "from": [
+    "find-rep"
    ]
   },
   {
@@ -15402,6 +16123,12 @@
    ]
   },
   {
+   "text": "This seat is empty right now",
+   "from": [
+    "find-rep"
+   ]
+  },
+  {
    "text": "This stop isn’t ready yet.",
    "from": [
     "checkpoints"
@@ -15436,6 +16163,12 @@
    "text": "This would pass in a real interview. {score}/100",
    "from": [
     "practice"
+   ]
+  },
+  {
+   "text": "This zip code spans more than one congressional district. Please enter your street address so we can find your exact representative.",
+   "from": [
+    "find-rep"
    ]
   },
   {
@@ -15662,6 +16395,18 @@
    ]
   },
   {
+   "text": "Today we’ll learn 1 new civics question. First I’ll explain it. Then you’ll see the question in English and answer it out loud.",
+   "from": [
+    "learn-amio"
+   ]
+  },
+  {
+   "text": "Today we’ll learn {n} new civics questions. First I’ll explain each one. Then you’ll see the question in English and answer it out loud.",
+   "from": [
+    "learn-amio"
+   ]
+  },
+  {
    "text": "Today you’ll be able to answer",
    "from": [
     "lesson-player"
@@ -15735,6 +16480,12 @@
    ]
   },
   {
+   "text": "Today’s questions",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
    "text": "Tomorrow",
    "from": [
     "today-plan"
@@ -15775,6 +16526,7 @@
    "text": "Translating…",
    "from": [
     "lawyer",
+    "lesson-deck",
     "n400-guide",
     "practice"
    ]
@@ -15820,7 +16572,8 @@
    "from": [
     "checkpoints",
     "n400-lessons",
-    "practice"
+    "practice",
+    "tutor-steps"
    ]
   },
   {
@@ -15902,6 +16655,12 @@
    ]
   },
   {
+   "text": "Type",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
    "text": "Type in English",
    "from": [
     "interview-day"
@@ -15947,8 +16706,10 @@
    "text": "Type your answer in English",
    "from": [
     "checkpoints",
+    "lesson-deck",
     "lesson-player",
-    "practice"
+    "practice",
+    "tutor-steps"
    ]
   },
   {
@@ -15979,6 +16740,18 @@
    "text": "U.S. diplomat / oldest member of the Constitutional Convention / first Postmaster General of the United States / writer of “Poor Richard’s Almanac” / started the first free libraries",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "U.S. representative · District {district}",
+   "from": [
+    "find-rep"
+   ]
+  },
+  {
+   "text": "U.S. senators",
+   "from": [
+    "find-rep"
    ]
   },
   {
@@ -16169,6 +16942,12 @@
    ]
   },
   {
+   "text": "Use the key words from one of the accepted answers.",
+   "from": [
+    "tutor-steps-amio"
+   ]
+  },
+  {
    "text": "Use this in my plan",
    "from": [
     "interview-when"
@@ -16214,6 +16993,12 @@
    "text": "Veto Override",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "Video not available.",
+   "from": [
+    "lesson-deck"
    ]
   },
   {
@@ -16473,6 +17258,12 @@
    ]
   },
   {
+   "text": "Watch",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
    "text": "Watch again",
    "from": [
     "lesson-player"
@@ -16482,6 +17273,12 @@
    "text": "We",
    "from": [
     "words"
+   ]
+  },
+  {
+   "text": "We can't check this one yet, so it isn't counted as right or wrong.",
+   "from": [
+    "tutor-steps-amio"
    ]
   },
   {
@@ -16495,6 +17292,12 @@
    "from": [
     "checkpoints",
     "practice"
+   ]
+  },
+  {
+   "text": "We can’t check this one yet.",
+   "from": [
+    "lesson-deck"
    ]
   },
   {
@@ -16540,9 +17343,21 @@
    ]
   },
   {
+   "text": "We couldn’t find this zip code in our list. Please enter your street address so we can find your representative.",
+   "from": [
+    "find-rep"
+   ]
+  },
+  {
    "text": "We couldn’t find “{page}”.",
    "from": [
     "error-pages"
+   ]
+  },
+  {
+   "text": "We couldn’t save this. Please try again.",
+   "from": [
+    "find-rep"
    ]
   },
   {
@@ -16636,6 +17451,12 @@
    ]
   },
   {
+   "text": "We save only your scores and when to review. Your voice and your answers are not saved.",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
    "text": "We sent a 6-digit code to {name}.",
    "from": [
     "sign-in"
@@ -16701,6 +17522,12 @@
    "text": "Welcome.",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "Well done. You answered all {total} correctly. I’ll space them out a little more next time.",
+   "from": [
+    "learn-amio"
    ]
   },
   {
@@ -17315,10 +18142,17 @@
    ]
   },
   {
+   "text": "What the officer would accept",
+   "from": [
+    "tutor-steps"
+   ]
+  },
+  {
    "text": "What the question is asking",
    "from": [
     "n400-lessons",
-    "practice"
+    "practice",
+    "tutor-steps"
    ]
   },
   {
@@ -17557,6 +18391,12 @@
    ]
   },
   {
+   "text": "Where you live",
+   "from": [
+    "find-rep"
+   ]
+  },
+  {
    "text": "Which branch is Congress?",
    "from": [
     "course-lessons"
@@ -17609,7 +18449,9 @@
   {
    "text": "Who Represents Me?",
    "from": [
-    "lesson-player"
+    "find-rep",
+    "lesson-player",
+    "tutor-steps-amio"
    ]
   },
   {
@@ -18206,6 +19048,12 @@
    ]
   },
   {
+   "text": "Write it in your own words…",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
    "text": "Write one of up to {n} sentences.",
    "from": [
     "interview-day"
@@ -18221,6 +19069,12 @@
    "text": "Write to the Pathways USA team. We can help with the app and with studying.",
    "from": [
     "talk"
+   ]
+  },
+  {
+   "text": "Write what you hear",
+   "from": [
+    "tutor-steps"
    ]
   },
   {
@@ -18242,7 +19096,8 @@
     "interview-tab",
     "onboarding",
     "practice",
-    "today-plan"
+    "today-plan",
+    "tutor-steps"
    ]
   },
   {
@@ -18434,6 +19289,12 @@
    ]
   },
   {
+   "text": "You have started every civics question. Now the best practice is review: I’ll bring each question back when it’s time.",
+   "from": [
+    "learn-amio"
+   ]
+  },
+  {
    "text": "You have the right to a lawyer and a fair trial under due process",
    "from": [
     "key-words"
@@ -18462,6 +19323,12 @@
    "text": "You learn what the questions mean. You never answer them here, and nothing about you is asked or saved.",
    "from": [
     "n400-lessons"
+   ]
+  },
+  {
+   "text": "You learned",
+   "from": [
+    "learn-screens"
    ]
   },
   {
@@ -18524,7 +19391,15 @@
   {
    "text": "You said:",
    "from": [
-    "n400-guide"
+    "learn-screens",
+    "n400-guide",
+    "tutor-steps"
+   ]
+  },
+  {
+   "text": "You said: “{answer}”",
+   "from": [
+    "lesson-deck"
    ]
   },
   {
@@ -18614,9 +19489,23 @@
    ]
   },
   {
+   "text": "Your address is used only for this lookup and is never saved.",
+   "from": [
+    "find-rep"
+   ]
+  },
+  {
+   "text": "Your address is used only for this search. We don’t save it.",
+   "from": [
+    "find-rep"
+   ]
+  },
+  {
    "text": "Your answer",
    "from": [
-    "practice"
+    "lesson-deck",
+    "practice",
+    "tutor-steps"
    ]
   },
   {
@@ -18779,6 +19668,18 @@
    ]
   },
   {
+   "text": "Your next review: {date}.",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
+   "text": "Your own words help you remember.",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
    "text": "Your path",
    "from": [
     "home"
@@ -18856,6 +19757,7 @@
   {
    "text": "Your results",
    "from": [
+    "learn-screens",
     "onboarding"
    ]
   },
@@ -18896,6 +19798,12 @@
    ]
   },
   {
+   "text": "Your state and district are saved. Your address was not.",
+   "from": [
+    "find-rep"
+   ]
+  },
+  {
    "text": "Your state’s senators today",
    "from": [
     "lesson-player"
@@ -18905,6 +19813,12 @@
    "text": "Your story stays yours",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "Your street address (for example, 123 Main St)",
+   "from": [
+    "find-rep"
    ]
   },
   {
@@ -18974,6 +19888,12 @@
    ]
   },
   {
+   "text": "Your zip code",
+   "from": [
+    "find-rep"
+   ]
+  },
+  {
    "text": "You’ll be able to answer:",
    "from": [
     "course"
@@ -19001,6 +19921,12 @@
    "text": "You’ve got it.",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Zip code",
+   "from": [
+    "find-rep"
    ]
   },
   {
@@ -20985,6 +21911,12 @@
    ]
   },
   {
+   "text": "{label} · {n} of {total}",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
    "text": "{m} min",
    "from": [
     "today"
@@ -21046,6 +21978,12 @@
    ]
   },
   {
+   "text": "{n} new questions",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
    "text": "{n} of 5 done",
    "from": [
     "home"
@@ -21098,6 +22036,12 @@
    ]
   },
   {
+   "text": "{n} of {total} questions right.",
+   "from": [
+    "lesson-deck"
+   ]
+  },
+  {
    "text": "{n} of {total} right",
    "from": [
     "practice"
@@ -21119,6 +22063,12 @@
    "text": "{n} questions across {s} sections",
    "from": [
     "interview-intro"
+   ]
+  },
+  {
+   "text": "{n} questions from the {version} civics test, in English, with the official answers.",
+   "from": [
+    "lesson-deck"
    ]
   },
   {
@@ -21188,9 +22138,27 @@
    ]
   },
   {
+   "text": "{n} to review",
+   "from": [
+    "learn-screens"
+   ]
+  },
+  {
    "text": "{n}% match",
    "from": [
     "n400-guide"
+   ]
+  },
+  {
+   "text": "{place} does not have a governor",
+   "from": [
+    "find-rep"
+   ]
+  },
+  {
+   "text": "{place} has no U.S. senators",
+   "from": [
+    "find-rep"
    ]
   },
   {
@@ -21257,6 +22225,12 @@
    "text": "{section}: read it in the N-400 guide",
    "from": [
     "lawyer"
+   ]
+  },
+  {
+   "text": "{title} in the U.S. House (non-voting)",
+   "from": [
+    "find-rep"
    ]
   },
   {

@@ -253,8 +253,8 @@ const POSTER_BG = { red: 'bg-navy', blue: 'bg-navy' };
 
 // Buttons on a navy poster: solid white, or an outline.
 const POSTER_BTN = 'min-h-[48px] rounded-button px-5 inline-flex items-center justify-center gap-2 text-base font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent disabled:opacity-50 disabled:cursor-not-allowed';
-export const posterSolid = `${POSTER_BTN} bg-white text-navy hover:bg-paper`;
-export const posterOutline = `${POSTER_BTN} border-2 border-chip-navy text-white hover:bg-chip-navy`;
+export const posterSolid = `${POSTER_BTN} bg-gold text-navy hover:brightness-95`;
+export const posterOutline = `${POSTER_BTN} border border-navy-line text-white hover:bg-navy-2`;
 // Small tools on a poster (Listen, Translate) and quiet text links
 // ("Type it instead"), shared by every practice card.
 export const posterTool = 'min-h-11 rounded-button bg-chip-navy px-4 inline-flex items-center gap-2 text-base font-semibold text-white hover:bg-chip-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white';
@@ -304,11 +304,10 @@ export function RuledPaper({ as: Tag = 'div', className = '', children, ...props
 // `children` holds the controls.
 export function Poster({ tone = 'red', label, question, answer, progress, questionAs: Q = 'h2', className = '', children, ...props }) {
   return (
-    <section className={`relative ${POSTER_BG[tone] || POSTER_BG.red} text-white px-5 py-8 sm:px-8 sm:py-10 ${className}`} {...props}>
-      <PathwaysMark size={36} className="absolute end-5 top-6 sm:end-8 sm:top-8" />
-      {label && <p className="pe-12 text-label text-on-navy">{label}</p>}
-      {progress && <div className="mt-3 pe-12"><PosterProgress index={progress.index} total={progress.total} /></div>}
-      {question && <Q className="mt-4 font-display text-[2.375rem] leading-[1.1] sm:text-[2.5rem]">{question}</Q>}
+    <section className={`relative rounded-card ${POSTER_BG[tone] || POSTER_BG.red} text-white px-5 py-6 sm:px-8 sm:py-8 ${className}`} {...props}>
+      {label && <p className="text-base font-semibold text-on-navy" dir="auto">{label}</p>}
+      {progress && <div className="mt-3"><PosterProgress index={progress.index} total={progress.total} /></div>}
+      {question && <Q className="mt-4 font-display text-[2rem] leading-[1.1] sm:text-[2.25rem]" lang="en" dir="ltr">{question}</Q>}
       {answer && <p className="mt-5 font-display text-2xl leading-snug sm:text-3xl">{answer}</p>}
       {children && <div className="mt-6">{children}</div>}
     </section>
