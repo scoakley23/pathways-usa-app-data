@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Check, Keyboard, Loader2, Mic, MicOff, RotateCcw } from 'lucide-react';
-import { ExplainSimplyButton, Poster, posterOutline as outlineWhite, posterSolid as solidWhite, posterTone } from '@/components/pathways/ui';
+import { ExplainSimplyButton, Poster, posterOutline as outlineWhite, posterSolid as solidWhite } from '@/components/pathways/ui';
+import useDeckText from './useDeckText';
 import { checkCivicsAnswer, officeholderCheck } from '@/components/civics/checkCivicsAnswer';
 import OfficeholderNote from '@/components/civics/OfficeholderNote';
 import useLearnerLocation from '@/components/civics/useLearnerLocation';
@@ -27,8 +28,8 @@ export function officialAnswerText(question, location = null) {
 
 const SR = typeof window !== 'undefined' ? window.SpeechRecognition || window.webkitSpeechRecognition : null;
 
-// "Go over them": one official question per full-bleed poster, alternating
-// red and blue. Answers are checked on the device first (matchCivicsAnswer());
+// "Go over them": one official question per navy card (Amio v2: 12px
+// corners, gold main buttons, wording in DECK_LINES). Answers are checked on the device first (matchCivicsAnswer());
 // a spoken answer that doesn't match goes to checkCivicsAnswer() (AI, the
 // official answer is never rewritten); typed answers never leave the device. Officeholder and capital questions are graded from
 // the officeholders table only (never the AI); one that can't be graded is
@@ -36,7 +37,8 @@ const SR = typeof window !== 'undefined' ? window.SpeechRecognition || window.we
 // simply" shows the reviewed explanation (content/explanations), nothing
 // AI-written. What the learner says or types stays in memory.
 // onFinish({ correct, total }) runs after the last card.
-export default function PosterRun({ questions, language = 'en', tutorName = 'Amio', label = 'Go over them', onFinish }) {
+export default function PosterRun({ questions, language = 'en', label, onFinish }) {
+  const { t } = useDeckText();
   const [index, setIndex] = useState(0);
   const [mode, setMode] = useState('speak');
   const [answer, setAnswer] = useState('');
@@ -68,7 +70,6 @@ export default function PosterRun({ questions, language = 'en', tutorName = 'Ami
   const q = questions[index];
   const total = questions.length;
   if (!q) return null;
-  const tone = posterTone(index);
   const dir = RTL_LANGUAGES.includes(language) ? 'rtl' : 'ltr';
 
   const stopMic = () => { if (listening) { try { recRef.current?.stop(); } catch (e) { /* ignore */ } } };
@@ -135,84 +136,86 @@ export default function PosterRun({ questions, language = 'en', tutorName = 'Ami
   return (
     <div className="space-y-0">
       <Poster
-        tone={tone}
-        className="-mx-4 sm:mx-0 sm:rounded-card min-h-[420px]"
-        label={`${label} · ${index + 1} of ${total}`}
+        className="min-h-[420px]"
+        label={t('run_label', { label: label || t('step_review'), n: index + 1, total })}
         question={cleanQuestionText(q.question)}
-        answer={result ? `Answer: ${officialAnswerText(q, location)}` : null}
+        answer={result ? t('answer', { answer: officialAnswerText(q, location) }) : null}
         progress={{ index, total, results: outcomes }}
       >
         {!result ? (
           <div className="space-y-4">
-            {askedAgain && !answer && <p role="status" className="text-lg">Sure. Here’s the question again.</p>}
-            <div className="flex gap-2" role="group" aria-label="Answer mode">
+            {askedAgain && !answer && <p role="status" className="text-lg" dir="auto">{t('asked_again')}</p>}
+            <div className="flex gap-2" role="group" aria-label={t('answer_mode')}>
               {SR && (
                 <button type="button" aria-pressed={mode === 'speak'} onClick={() => setMode('speak')} className={mode === 'speak' ? solidWhite : outlineWhite}>
-                  <Mic className="w-5 h-5" aria-hidden="true" /> Speak
+                  <Mic className="w-5 h-5" aria-hidden="true" /> {t('speak')}
                 </button>
               )}
               <button type="button" aria-pressed={mode === 'type'} onClick={() => { stopMic(); setMode('type'); }} className={mode === 'type' ? solidWhite : outlineWhite}>
-                <Keyboard className="w-5 h-5" aria-hidden="true" /> Type
+                <Keyboard className="w-5 h-5" aria-hidden="true" /> {t('type')}
               </button>
             </div>
             {mode === 'speak' ? (
               <>
-                <p className="min-h-[56px] rounded-[10px] bg-white/10 border border-white/60 p-3 text-lg" aria-live="polite">
-                  {answer || (listening ? 'Listening…' : 'Tap Start speaking, then say your answer in English.')}
+                <p className="min-h-[56px] rounded-card bg-navy-2 p-3 text-lg" aria-live="polite" dir="auto">
+                  {answer || (listening ? t('listening') : t('tap_start'))}
                 </p>
                 <button type="button" onClick={toggleMic} className={outlineWhite}>
                   {listening ? <MicOff className="w-5 h-5" aria-hidden="true" /> : <Mic className="w-5 h-5" aria-hidden="true" />}
-                  {listening ? 'Stop' : 'Start speaking'}
+                  {listening ? t('stop') : t('start_speaking')}
                 </button>
               </>
             ) : (
               <>
-                <label htmlFor={`poster-answer-${index}`} className="sr-only">Your answer</label>
+                <label htmlFor={`poster-answer-${index}`} className="sr-only">{t('your_answer')}</label>
                 <input
                   id={`poster-answer-${index}`}
                   value={answer}
                   onChange={(e) => setAnswer(e.target.value)}
                   onKeyDown={(e) => { if (e.key === 'Enter') check(); }}
-                  placeholder="Type your answer in English"
-                  className="w-full min-h-[52px] rounded-[10px] bg-white px-4 text-lg text-navy placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
+                  placeholder={t('type_answer')}
+                  lang="en"
+                  dir="ltr"
+                  className="w-full min-h-[52px] rounded-button bg-white px-4 text-lg text-navy placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
                 />
               </>
             )}
             <div className="flex flex-wrap gap-2">
               <button type="button" onClick={check} disabled={!answer.trim() || checking} className={solidWhite}>
                 {checking ? <Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" /> : <Check className="w-5 h-5" aria-hidden="true" />}
-                Check
+                {t('check')}
               </button>
               <button type="button" onClick={() => { stopMic(); setResult({ selfCheck: true }); }} className={outlineWhite}>
-                Show the answer
+                {t('show_answer')}
               </button>
             </div>
           </div>
         ) : (
           <div className="space-y-4" aria-live="polite">
             {result.selfCheck ? (
-              <p className="text-lg font-semibold">Did you know it?</p>
+              <p className="text-lg font-semibold" dir="auto">{t('did_you_know')}</p>
             ) : (
-              <p className="text-2xl font-bold">
-                {result.isCorrect === null ? 'We can’t check this one yet.' : result.isCorrect ? 'Right.' : 'Not yet. Here is the answer.'}
+              <p className={`inline-flex items-center gap-2 rounded-card px-4 py-2 text-xl font-bold ${result.isCorrect ? 'bg-gold text-navy' : 'bg-navy-2 text-white'}`} dir="auto">
+                {result.isCorrect && <Check className="w-5 h-5" strokeWidth={3} aria-hidden="true" />}
+                {result.isCorrect === null ? t('cant_check') : result.isCorrect ? t('right') : t('not_yet')}
               </p>
             )}
-            {answer && <p className="text-base">You said: “{answer}”</p>}
+            {answer && <p className="text-base" dir="auto">{t('you_said', { answer })}</p>}
             {result.officeholder
               ? <OfficeholderNote answer={result.officeholder} onPoster />
               : officeholder && <OfficeholderNote answer={officeholder} graded={false} onPoster />}
             <div className="flex flex-wrap gap-2">
               {result.selfCheck ? (
                 <>
-                  <button type="button" onClick={() => next(true)} className={solidWhite}><Check className="w-5 h-5" aria-hidden="true" /> I knew it</button>
-                  <button type="button" onClick={() => next(false)} className={outlineWhite}><RotateCcw className="w-5 h-5" aria-hidden="true" /> Not yet</button>
+                  <button type="button" onClick={() => next(true)} className={solidWhite}><Check className="w-5 h-5" aria-hidden="true" /> {t('knew_it')}</button>
+                  <button type="button" onClick={() => next(false)} className={outlineWhite}><RotateCcw className="w-5 h-5" aria-hidden="true" /> {t('not_yet_short')}</button>
                 </>
               ) : (
                 <button type="button" onClick={() => next(result.isCorrect)} className={solidWhite}>
-                  {index + 1 < total ? 'Next card' : 'Finish'} <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" />
+                  {index + 1 < total ? t('next_card') : t('finish')} <ArrowRight className="w-5 h-5 rtl:rotate-180" aria-hidden="true" />
                 </button>
               )}
-              <ExplainSimplyButton onPoster aria-expanded={explainOpen} onClick={() => setExplainOpen((v) => !v)} />
+              <ExplainSimplyButton onPoster aria-expanded={explainOpen} onClick={() => setExplainOpen((v) => !v)}>{t('explain_simply')}</ExplainSimplyButton>
             </div>
           </div>
         )}
@@ -220,11 +223,10 @@ export default function PosterRun({ questions, language = 'en', tutorName = 'Ami
 
       {/* "Explain it simply": a white sheet under the poster */}
       {result && explainOpen && (
-        <div className="-mx-4 sm:mx-0 sm:mt-2 sm:rounded-card bg-white border border-line p-5 text-navy space-y-2">
+        <div className="mt-2 rounded-card bg-white border-[1.5px] border-line p-4 text-navy space-y-2">
           {explanation.text.mine && <p dir={dir} className="text-lg leading-relaxed whitespace-pre-line">{explanation.text.mine}</p>}
-          {explanation.text.en && <p className={`leading-relaxed whitespace-pre-line ${explanation.text.mine ? 'text-muted' : 'text-lg'}`}>{explanation.text.en}</p>}
+          {explanation.text.en && <p lang="en" dir="ltr" className={`leading-relaxed whitespace-pre-line ${explanation.text.mine ? 'text-muted' : 'text-lg'}`}>{explanation.text.en}</p>}
           {explanation.note && <p className="text-sm text-muted">{explanation.note.mine || explanation.note.en}</p>}
-          <p className="font-medium text-lg text-muted">— {tutorName}</p>
         </div>
       )}
     </div>

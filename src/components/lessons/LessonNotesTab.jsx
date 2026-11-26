@@ -2,12 +2,14 @@ import React, { useState, useEffect, useRef } from 'react';
 import { lessonNotes as lessonNotesApi } from '@/api/lessons';
 import { Save, Loader2, CheckCircle } from 'lucide-react';
 import { toast } from "sonner";
-import { PillButton, RuledPaper } from '@/components/pathways/ui';
+import { Button } from '@/components/pathways/ui';
+import useDeckText from './useDeckText';
 
-// The learner's notes for a lesson, on ruled paper (their own page). Saved
+// The learner's notes for a lesson (Amio v2: a white card). Saved
 // to LessonNotes, which only the learner can read; never sent to the AI.
 // Amio's line here is a fixed tip, not a reply to what they wrote.
-export default function LessonNotesTab({ lesson, userEmail, tutorName = 'Amio' }) {
+export default function LessonNotesTab({ lesson, userEmail }) {
+  const { t } = useDeckText();
   const [content, setContent] = useState('');
   const [noteId, setNoteId] = useState(null);
   const [isSaving, setIsSaving] = useState(false);
@@ -63,7 +65,7 @@ export default function LessonNotesTab({ lesson, userEmail, tutorName = 'Amio' }
       }
       setLastSaved(new Date());
     } catch (e) {
-      toast.error('Failed to save note');
+      toast.error(t('notes_failed'));
     } finally {
       setIsSaving(false);
     }
@@ -71,36 +73,37 @@ export default function LessonNotesTab({ lesson, userEmail, tutorName = 'Amio' }
 
   if (loading) return (
     <div className="flex items-center justify-center p-12">
-      <Loader2 className="w-6 h-6 animate-spin text-navy" />
+      <Loader2 className="w-6 h-6 animate-spin text-navy" aria-hidden="true" />
     </div>
   );
 
   return (
-    <RuledPaper className="pb-4">
-      <div className="flex items-center justify-between gap-3 flex-wrap">
-        <label htmlFor="lesson-notes" className="text-[0.8125rem] font-semibold leading-[2.25rem] text-muted">
-          My notes
+    <div className="rounded-card bg-white border-[1.5px] border-line p-4 text-navy">
+      <div className="flex items-center justify-between gap-3 flex-wrap mb-2">
+        <label htmlFor="lesson-notes" className="text-lg font-bold" dir="auto">
+          {t('notes_title')}
         </label>
         <span className="flex items-center gap-2" aria-live="polite">
-          {isSaving && <span className="text-sm font-semibold text-muted flex items-center gap-1"><Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> Saving…</span>}
-          {!isSaving && lastSaved && <span className="text-sm font-semibold text-navy flex items-center gap-1"><CheckCircle className="w-4 h-4" aria-hidden="true" /> Saved</span>}
+          {isSaving && <span className="text-sm font-semibold text-muted flex items-center gap-1"><Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> {t('notes_saving')}</span>}
+          {!isSaving && lastSaved && <span className="text-sm font-semibold text-navy flex items-center gap-1"><CheckCircle className="w-4 h-4 text-correct" aria-hidden="true" /> {t('notes_saved')}</span>}
         </span>
       </div>
       <textarea
         id="lesson-notes"
         value={content}
         onChange={handleChange}
-        placeholder="Write it in your own words…"
-        rows={7}
-        className="block w-full resize-y bg-transparent text-[1.1875rem] leading-[2.25rem] text-navy placeholder:text-muted focus:outline-none"
+        placeholder={t('notes_placeholder')}
+        rows={6}
+        dir="auto"
+        className="block w-full resize-y rounded-button border border-line bg-paper p-3 text-lg leading-relaxed text-navy placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-denim"
       />
-      <p className="mt-1 text-lg font-medium leading-snug text-muted">Your own words help you remember. — {tutorName}</p>
+      <p className="mt-2 text-base text-muted" dir="auto">{t('notes_tip')}</p>
       <div className="mt-3 flex items-center justify-between gap-3">
-        <span className="text-[0.9375rem] text-muted">Only you see these.</span>
-        <PillButton onClick={() => saveNote()} disabled={isSaving}>
-          <Save className="w-4 h-4" aria-hidden="true" /> Save
-        </PillButton>
+        <span className="text-small text-muted" dir="auto">{t('notes_only_you')}</span>
+        <Button variant="second" onClick={() => saveNote()} disabled={isSaving}>
+          <Save className="w-4 h-4" aria-hidden="true" /> {t('notes_save')}
+        </Button>
       </div>
-    </RuledPaper>
+    </div>
   );
 }
