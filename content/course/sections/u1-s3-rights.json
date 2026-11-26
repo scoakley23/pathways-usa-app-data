@@ -246,8 +246,7 @@
             {
               "say": "Congress writes laws, the President can veto them, and the courts can decide a law goes against the Constitution.",
               "picture": {
-                "drawing": "checksBalances",
-                "focus": "courts"
+                "drawing": "checksBalances"
               }
             },
             {
