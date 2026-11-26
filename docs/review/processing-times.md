@@ -68,11 +68,17 @@ and at the top of the file:
 
 USCIS updates these times about once a month. The README asks for a monthly check, like the officeholder list. Each month: open the page, update the months that changed, and set `checked_on`.
 
-## Optional: an "unchecked" state (code change, not done)
+## Two ways in: checked by you, or "needs check"
 
-Today an office is either a sample (hidden from learners, named "(sample, not real)") or real (shown). There is no way to load real USCIS numbers that wait for your check without showing them. If you'd like one, a small change would add `"needs_owner_check": true`:
-- `visibleOffices()` in `src/lib/interviewEstimate.js` would hide those entries from learners (admins and dev would still see them);
-- `processingProblems()` would allow them without `checked_on`;
-- the test would cover both.
+Every office in the file is one of three kinds:
 
-Say the word and I'll list the files for that change first.
+| Office | Learners | Admins and dev | Needs |
+|---|---|---|---|
+| `"sample": true` (made up) | hidden | shown | "(sample, not real)" in the name |
+| `"needs_owner_check": true` (real USCIS numbers, not checked yet) | hidden | shown, marked "needs check" | `"sample": false` and its own `copied_on` date |
+| neither (checked by you) | shown | shown | the file's `checked_on` |
+
+- **You copy the numbers yourself:** add them as checked offices (no flag) and set `checked_on`.
+- **Someone else copies them** (a helper, or me if the page becomes readable): they go in with `"needs_owner_check": true` and `"copied_on": "YYYY-MM-DD"`. You can see them on `/interview/when` as an admin. To approve one: compare it with the USCIS page, fix the months if needed, delete `needs_owner_check` and `copied_on`, and set the file's `checked_on`.
+
+Learners keep seeing "Coming soon" until at least one office has been approved. Details in `content/uscis/README.md`; the rules are in `processingProblems()` and `isCheckedOffice()` (`src/lib/interviewEstimate.js`) and checked by `npm test`.
