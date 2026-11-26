@@ -80,9 +80,12 @@
             },
             {
               "say": "Over time, the colonists became angry. Britain made them pay high taxes, but they had no vote in Britain’s government.",
+              "picture": {
+                "photo": "stamp-act-denounced.jpg"
+              },
               "help": {
                 "simpler": "Britain took tax money from the colonists, but the colonists had no say in the rules.",
-                "example": "Imagine paying a new tax on your tea, and you never got a vote on it.",
+                "example": "In 1765, Britain taxed newspapers and other papers in the colonies. The colonists never got a vote on it.",
                 "why": "“No taxation without representation” was a big reason the colonists wanted to be free."
               }
             },
