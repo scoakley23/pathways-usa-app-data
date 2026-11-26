@@ -44,6 +44,13 @@
       "id": "u1-s2-speak",
       "type": "speakit",
       "title": "Speak it!"
+    },
+    {
+      "id": "u1-s2-n400-p9-31",
+      "type": "n400",
+      "title": "N-400 card: Supporting the Constitution",
+      "section": "oath-questions",
+      "card": 2
     }
   ],
   "lessons": [
@@ -84,7 +91,50 @@
             "license": "Standard YouTube license: embedding is allowed by YouTube's terms, but the video is not licensed to Pathways. Check before marking reviewed.",
             "status": "draft",
             "note": "From the old Lessons tab (Base44 Lesson \"The U.S. Constitution and the Founding Fathers\"). Before reviewing: watch it all; check it matches the 2025 answers, has no flags, seals, eagles or Statue of Liberty, and the English is easy enough."
-          }
+          },
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "The U.S. Constitution is the supreme law of the land.",
+              "picture": {
+                "drawing": "sharedPower"
+              }
+            },
+            {
+              "say": "No other law can go against it."
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "A law can go against the Constitution.",
+                "answer": false
+              }
+            },
+            {
+              "say": "The Constitution forms the government.",
+              "picture": {
+                "drawing": "threeBranches"
+              }
+            },
+            {
+              "say": "It says what each part of the government can do."
+            },
+            {
+              "say": "It also protects the rights of the people."
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "What is the supreme law of the land?",
+                "choices": [
+                  "The Constitution",
+                  "The Declaration of Independence",
+                  "The Federalist Papers"
+                ],
+                "answer": 0
+              }
+            }
+          ]
         },
         "teachBack": {
           "questionId": "6ad16ecf6a9c603911f9de18"
@@ -134,6 +184,50 @@
             {
               "word": "consent",
               "meaning": "saying yes; agreeing"
+            }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "The Constitution starts with the words “We the People.”",
+              "picture": {
+                "drawing": "powerFromPeople",
+                "focus": "people"
+              }
+            },
+            {
+              "say": "It means the people govern themselves."
+            },
+            {
+              "say": "This is called self-government."
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "What are the first words of the Constitution?",
+                "choices": [
+                  "We the People",
+                  "Life, Liberty",
+                  "All people are equal"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "The government gets its power from the people.",
+              "picture": {
+                "drawing": "powerFromPeople"
+              }
+            },
+            {
+              "say": "This is called the consent of the governed."
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "The government gets its power from the people.",
+                "answer": true
+              }
             }
           ]
         },
@@ -191,7 +285,45 @@
             "license": "Standard YouTube license: embedding is allowed by YouTube's terms, but the video is not licensed to Pathways. Check before marking reviewed.",
             "status": "draft",
             "note": "From the old Lessons tab (Base44 Lesson \"Amendments and Constitutional Changes\"). Before reviewing: watch it all; check it matches the 2025 answers, has no flags, seals, eagles or Statue of Liberty, and the English is easy enough."
-          }
+          },
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "A change to the Constitution is called an amendment.",
+              "picture": {
+                "drawing": "amendments",
+                "focus": "all"
+              }
+            },
+            {
+              "say": "The Constitution has 27 amendments."
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "How many amendments does the Constitution have?",
+                "choices": [
+                  "27",
+                  "10",
+                  "50"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "Changing the Constitution is hard on purpose."
+            },
+            {
+              "say": "Most of Congress and most of the states must agree."
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "Changing the Constitution is easy.",
+                "answer": false
+              }
+            }
+          ]
         },
         "teachBack": {
           "questionId": "6ad16ecf6a9c603911f9de1b"
@@ -252,6 +384,72 @@
             {
               "word": "limited government",
               "meaning": "a government whose power has limits"
+            }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "The people who wrote the Constitution learned from older documents.",
+              "picture": {
+                "drawing": "documentsToConstitution"
+              }
+            },
+            {
+              "say": "They learned from the Declaration of Independence, the Articles of Confederation and the Federalist Papers.",
+              "picture": {
+                "drawing": "documentsToConstitution",
+                "focus": "constitution"
+              }
+            },
+            {
+              "say": "George Washington led the meeting that wrote the Constitution in 1787."
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Who led the meeting that wrote the Constitution?",
+                "choices": [
+                  "George Washington",
+                  "The King of Britain",
+                  "The Chief Justice"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "The Declaration and the Constitution share big ideas."
+            },
+            {
+              "say": "They are equality, liberty, natural rights, limited government and self-government."
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "Liberty and equality are ideas from the Declaration and the Constitution.",
+                "answer": true
+              }
+            },
+            {
+              "say": "Tip: if asked to name one document, “the Declaration of Independence” is the easiest to remember.",
+              "picture": {
+                "drawing": "documentsToConstitution",
+                "focus": "declaration"
+              }
+            },
+            {
+              "say": "Tip: if asked for two important ideas, two short words are enough, like “liberty” and “equality.”"
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Which one is a document that influenced the Constitution?",
+                "choices": [
+                  "The Declaration of Independence",
+                  "The Emancipation Proclamation",
+                  "The Gettysburg Address"
+                ],
+                "answer": 0
+              }
             }
           ]
         },

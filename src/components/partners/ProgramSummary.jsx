@@ -1,5 +1,5 @@
 import React from 'react';
-import { RaisedCard, SkillDot, SKILL_LABEL } from '@/components/pathways/ui';
+import { RaisedCard, SKILL_LABEL } from '@/components/pathways/ui';
 import { LEVELS as LEVEL_TEXT } from '@/lib/pretest';
 import { SKILLS, LEVELS } from '@/lib/partners';
 
@@ -48,7 +48,7 @@ export function ProgramTotals({ totals }) {
             <tbody>
               {SKILLS.map((s) => (
                 <tr key={s} className="border-t border-line">
-                  <th scope="row" className="py-2 pe-3 text-left font-semibold"><span className="inline-flex items-center gap-2"><SkillDot skill={s} /> {SKILL_LABEL[s]}</span></th>
+                  <th scope="row" className="py-2 pe-3 text-left font-semibold"><span className="inline-flex items-center gap-2"><SkillDot /> {SKILL_LABEL[s]}</span></th>
                   {LEVELS.map((l) => <td key={l} className="py-2 px-2 text-right font-display text-xl">{totals.levels[s][l]}</td>)}
                 </tr>
               ))}
@@ -78,7 +78,7 @@ export function SharedLearners({ learners }) {
                   <ul className="flex flex-wrap gap-x-4 gap-y-1 text-sm">
                     {SKILLS.map((s) => (
                       <li key={s} className="inline-flex items-center gap-1.5">
-                        <SkillDot skill={s} /> {SKILL_LABEL[s]}: <span className="font-semibold">{l.levels[s] ? LEVEL_TEXT[l.levels[s]].label : 'Not checked'}</span>
+                        <SkillDot /> {SKILL_LABEL[s]}: <span className="font-semibold">{l.levels[s] ? LEVEL_TEXT[l.levels[s]].label : 'Not checked'}</span>
                       </li>
                     ))}
                   </ul>
@@ -97,4 +97,9 @@ export function SharedLearners({ learners }) {
       </RaisedCard>
     </section>
   );
+}
+
+// A small navy dot beside a skill name.
+function SkillDot() {
+  return <span className="inline-block w-2.5 h-2.5 rounded-full shrink-0 bg-navy" aria-hidden="true" />;
 }

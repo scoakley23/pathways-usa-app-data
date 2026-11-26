@@ -39,6 +39,13 @@
       "title": "Speak it!"
     },
     {
+      "id": "u1-s3-n400-p8-1",
+      "type": "n400",
+      "title": "N-400 card: Trips outside the U.S.",
+      "section": "time-outside-us",
+      "card": 1
+    },
+    {
       "id": "u1-n400",
       "type": "n400",
       "title": "N-400: Time outside the U.S.",
@@ -89,7 +96,66 @@
             "license": "Standard YouTube license: embedding is allowed by YouTube's terms, but the video is not licensed to Pathways. Check before marking reviewed.",
             "status": "draft",
             "note": "From the old Lessons tab (Base44 Lesson \"Individual Rights and Civil Liberties\"). Before reviewing: watch it all; check it matches the 2025 answers, has no flags, seals, eagles or Statue of Liberty, and the English is easy enough."
-          }
+          },
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "The Constitution was written in 1787."
+            },
+            {
+              "say": "Many Americans wanted it to say clearly which rights the government can never take away."
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "The Constitution was written in 1787.",
+                "answer": true
+              }
+            },
+            {
+              "say": "So in 1791, ten amendments were added to the Constitution.",
+              "picture": {
+                "drawing": "amendments",
+                "focus": "first10"
+              }
+            },
+            {
+              "say": "These first ten amendments are called the Bill of Rights.",
+              "picture": {
+                "photo": "bill-of-rights.jpg"
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "What are the first ten amendments called?",
+                "choices": [
+                  "The Bill of Rights",
+                  "The Declaration of Independence",
+                  "The Federalist Papers"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "It protects the basic rights of Americans and of people living in the United States."
+            },
+            {
+              "say": "Freedom of speech and freedom of religion are two of these rights."
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Whose rights does the Bill of Rights protect?",
+                "choices": [
+                  "Americans and people living in the United States",
+                  "Only leaders",
+                  "Only the President"
+                ],
+                "answer": 0
+              }
+            }
+          ]
         },
         "teachBack": {
           "questionId": "6ad16ecf6a9c603911f9de1c"
@@ -150,6 +216,70 @@
             {
               "word": "separation of powers",
               "meaning": "the power of government is split into parts"
+            }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "The rule of law means everyone must follow the law."
+            },
+            {
+              "say": "Leaders and the government must obey the law too. No one is above the law."
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "Leaders do not have to obey the law.",
+                "answer": false
+              }
+            },
+            {
+              "say": "For example, the President must pay taxes like everyone else."
+            },
+            {
+              "say": "A mayor who steals can be arrested and go to court like anyone else."
+            },
+            {
+              "say": "The government has three branches so one part does not become too powerful.",
+              "picture": {
+                "drawing": "threeBranches"
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Why are there three branches of government?",
+                "choices": [
+                  "So one part does not become too powerful",
+                  "So the President can make every law",
+                  "So no one pays taxes"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "Each branch can check the others. This is called checks and balances.",
+              "picture": {
+                "drawing": "checksBalances"
+              }
+            },
+            {
+              "say": "Congress writes laws, the President can veto them, and the courts can decide a law goes against the Constitution.",
+              "picture": {
+                "drawing": "checksBalances"
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "What is it called when each branch can check the others?",
+                "choices": [
+                  "Checks and balances",
+                  "The rule of law",
+                  "Self-government"
+                ],
+                "answer": 0
+              }
             }
           ]
         },
@@ -221,7 +351,78 @@
             "license": "Standard YouTube license: embedding is allowed by YouTube's terms, but the video is not licensed to Pathways. Check before marking reviewed.",
             "status": "draft",
             "note": "From the old Lessons tab (Base44 Lesson \"Democracy and Federal Government Structure\"). Before reviewing: watch it all; check it matches the 2025 answers, has no flags, seals, eagles or Statue of Liberty, and the English is easy enough."
-          }
+          },
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "The United States is a republic: the people vote for leaders, and those leaders make laws for them.",
+              "picture": {
+                "drawing": "powerFromPeople"
+              }
+            },
+            {
+              "say": "This is also called a representative democracy."
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "What is the form of government of the United States?",
+                "choices": [
+                  "A republic",
+                  "A kingdom",
+                  "A free market"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "“Representative” means the leaders speak and act for the people who elected them.",
+              "picture": {
+                "drawing": "powerFromPeople",
+                "focus": "leaders"
+              }
+            },
+            {
+              "say": "It is also a constitution-based federal republic.",
+              "picture": {
+                "drawing": "sharedPower"
+              }
+            },
+            {
+              "say": "The Constitution is the highest law, and power is shared between the national government and the states."
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "Power is shared between the national government and the states.",
+                "answer": true
+              }
+            },
+            {
+              "say": "The economic system of the United States is capitalism, also called a free market economy."
+            },
+            {
+              "say": "People and businesses can own things and decide what to make, buy and sell."
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "What is the economic system of the United States?",
+                "choices": [
+                  "Capitalism",
+                  "A kingdom",
+                  "Self-government"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "Think of a supermarket: stores choose what to sell and what price to ask, and you choose what to buy."
+            },
+            {
+              "say": "Most of the time, the government does not decide this for you. That is a free market."
+            }
+          ]
         },
         "teachBack": {
           "questionId": "6ad16ecf6a9c603911f9de17"

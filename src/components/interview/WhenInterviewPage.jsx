@@ -24,7 +24,8 @@ import { WHEN_LINES } from '@/components/shell/shellStrings';
 // content/uscis/ (never fetched). Always "Estimate only. Not legal advice."
 // and the official USCIS processing times link. While no real office has
 // been checked yet, learners see "Coming soon" and the link instead of an
-// empty picker; admins (and dev) also see the sample offices.
+// empty picker; admins (and dev) also see the sample offices and real ones
+// still waiting for the owner's check (marked "needs check").
 
 const ym = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
 
@@ -113,12 +114,13 @@ export default function WhenInterviewPage() {
                 <dd>
                   <select id="when-office" value={office?.id || ''} onChange={(e) => update({ officeId: e.target.value || null })} className={select}>
                     <option value="">{t('pick_office')}</option>
-                    {offices.map((o) => <option key={o.id} value={o.id}>{o.name}{o.state && o.state !== '--' ? `, ${o.state}` : ''}</option>)}
+                    {offices.map((o) => <option key={o.id} value={o.id}>{o.name}{o.state && o.state !== '--' ? `, ${o.state}` : ''}{o.needs_owner_check ? ` (${t('needs_check')})` : ''}</option>)}
                   </select>
                 </dd>
               </div>
             </dl>
             {offices.some((o) => o.sample) && <p className="text-small text-muted">{t('sample_note')}</p>}
+            {offices.some((o) => o.needs_owner_check) && <p className="text-small text-muted">{t('needs_check_note')}</p>}
 
             {range ? (
               <section className="rounded-card bg-sky p-5 flex flex-col gap-2" aria-live="polite">

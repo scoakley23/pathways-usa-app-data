@@ -1,8 +1,4 @@
 import React from 'react';
-import { posterTone, POSTER_SCHEME } from '@/lib/posterTone';
-import { COLORS } from '@/lib/theme';
-
-export { posterTone, POSTER_SCHEME };
 
 // Pathways "The Road" building blocks (docs/redesign/road-style-guide.md).
 // Use these and the Tailwind tokens (navy, cream, sand, star, ink, correct,
@@ -27,38 +23,6 @@ const DOT = {
   correct: 'bg-correct', notCorrect: 'bg-not-yet',
 };
 
-// Skills no longer have their own colors: every skill is navy (solid) or
-// sand (light). The maps stay so older callers keep working.
-export const SKILL_TONE = {
-  civics: 'navy',
-  reading: 'navy',
-  writing: 'navy',
-  speaking: 'navy',
-  n400: 'navy',
-};
-export const SKILL_BG = {
-  civics: 'bg-tint',
-  reading: 'bg-tint',
-  writing: 'bg-tint',
-  speaking: 'bg-tint',
-  n400: 'bg-tint',
-};
-// Solid fill, for tabs, strips and tiles.
-export const SKILL_COLOR = {
-  civics: 'bg-navy',
-  reading: 'bg-navy',
-  writing: 'bg-navy',
-  speaking: 'bg-navy',
-  n400: 'bg-navy',
-};
-// Text on the solid fill.
-export const SKILL_ON = {
-  civics: 'text-white',
-  reading: 'text-white',
-  writing: 'text-white',
-  speaking: 'text-white',
-  n400: 'text-white',
-};
 export const SKILL_LABEL = {
   civics: 'Civics',
   reading: 'Reading',
@@ -66,15 +30,6 @@ export const SKILL_LABEL = {
   speaking: 'Speaking',
   n400: 'Form N-400',
 };
-
-// Small colored dot for a skill, for lists where a full tag is too loud.
-export function SkillDot({ skill, className = '' }) {
-  return <span className={`inline-block w-2.5 h-2.5 rounded-full shrink-0 ${DOT[SKILL_TONE[skill]] || DOT.navy} ${className}`} aria-hidden="true" />;
-}
-
-export function SkillTag({ skill, className = '' }) {
-  return <Tag tone={SKILL_TONE[skill]} className={className}>{SKILL_LABEL[skill]}</Tag>;
-}
 
 export function Tag({ tone = 'navy', children, className = '' }) {
   return (
@@ -173,10 +128,6 @@ export function Chip({ onNavy = false, className = '', children, ...props }) {
   return <button type="button" className={`min-h-tap rounded-button font-semibold inline-flex items-center justify-center gap-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 px-4 text-base ${look} ${onNavy ? 'focus-visible:ring-white focus-visible:ring-offset-navy' : 'focus-visible:ring-navy'} ${className}`} {...props}>{children}</button>;
 }
 
-export function PillButton({ className = '', ...props }) {
-  return <button type="button" className={`${BTN_BASE} rounded-button bg-tint text-navy hover:bg-line px-4 text-base focus-visible:ring-navy ${className}`} {...props} />;
-}
-
 // White card: 20px corners, a thin line border, no shadow.
 export function Card({ className = '', padding = 'p-5', children, ...props }) {
   return <div className={`rounded-card bg-white border border-line ${padding} ${className}`} {...props}>{children}</div>;
@@ -187,63 +138,10 @@ export function Eyebrow({ className = '', children }) {
   return <p className={`text-base font-semibold text-muted ${className}`} dir="auto">{children}</p>;
 }
 
-// --- Logo --------------------------------------------------------------
-
-// "Merging roads": a long road and a shorter side road merge and bend toward
-// one dot. Geometry from docs/redesign/assets/pathways-mark*.svg. Only the
-// lesson posters show it now, all white (Amio v2: red is Amio only, and the
-// header and Welcome show Amio; the old PathwaysLockup and the red dot are
-// gone). At 24px and below it uses the heavier small geometry. Decorative
-// unless `label` is given.
-const MARK_ROADS = 'M18 108C30 86 44 72 62 64M102 90C90 86 76 76 62 64M62 64C74 56 79 44 73 32';
-
-export function PathwaysMark({ size = 40, label, className = '' }) {
-  const small = size <= 24;
-  const stroke = small ? 14 : 12;
-  const r = small ? 13 : 12;
-  const a11y = label ? { role: 'img', 'aria-label': label } : { 'aria-hidden': true, focusable: 'false' };
-  return (
-    <svg viewBox="0 0 120 120" width={size} height={size} className={`shrink-0 ${className}`} {...a11y}>
-      <path d={MARK_ROADS} fill="none" stroke={COLORS.white} strokeWidth={stroke} strokeLinecap="round" />
-      <circle cx="70" cy="20" r={r} fill={COLORS.white} />
-    </svg>
-  );
-}
-
-// --- Cards, posters, folder ----------------------------------------------
-
-// White index card. `tab`: a navy label above the card (`tabSkill` is kept
-// for older callers). `rule`: a thin navy top rule.
-export function IndexCard({ tab, tabSkill = 'n400', rule = false, padding = 'p-5', className = '', children, ...props }) {
-  return (
-    <div className={className} {...props}>
-      {tab && (
-        <span className={`ms-4 inline-block rounded-t-lg px-3 py-1 text-sm font-semibold ${SKILL_COLOR[tabSkill] || SKILL_COLOR.n400} ${SKILL_ON[tabSkill] || SKILL_ON.n400}`}>
-          {tab}
-        </span>
-      )}
-      <div className={`relative overflow-hidden rounded-card bg-white border border-line ${padding}`}>
-        {rule && <span className="absolute inset-x-0 top-0 h-1 bg-navy" aria-hidden="true" />}
-        {children}
-      </div>
-    </div>
-  );
-}
-
-// Posters are navy whatever their tone (no alternating colors any more).
-const POSTER_BG = { red: 'bg-navy', blue: 'bg-navy' };
-
 // Buttons on a navy poster: solid white, or an outline.
 const POSTER_BTN = 'min-h-[48px] rounded-button px-5 inline-flex items-center justify-center gap-2 text-base font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent disabled:opacity-50 disabled:cursor-not-allowed';
 export const posterSolid = `${POSTER_BTN} bg-gold text-navy hover:brightness-95`;
 export const posterOutline = `${POSTER_BTN} border border-navy-line text-white hover:bg-navy-2`;
-// Small tools on a poster (Listen, Translate) and quiet text links
-// ("Type it instead"), shared by every practice card.
-export const posterTool = 'min-h-11 rounded-button bg-chip-navy px-4 inline-flex items-center gap-2 text-base font-semibold text-white hover:bg-chip-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white';
-export const posterLink = 'min-h-11 inline-flex items-center gap-2 text-base font-semibold text-white underline underline-offset-4 decoration-white/60 hover:decoration-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded';
-// The one big white action button on a poster (microphone, play).
-export const posterBigButton = 'relative w-[104px] h-[104px] rounded-full bg-white text-navy grid place-items-center disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60';
-
 // Quiet progress on a poster run: one thin white segment per card, filled
 // up to the current card. No stars, colors or text (the label carries
 // "2 of 6"); results show only on the end-of-run summary. Hidden for long runs.
@@ -280,44 +178,18 @@ export function RuledPaper({ as: Tag = 'div', className = '', children, ...props
   );
 }
 
-// Full-bleed test/practice poster: white text on navy. `tone` is kept for
-// older callers (posterTone) but every poster is navy. `answer` shows in
+// Full-bleed test/practice poster: white text on navy. `answer` shows in
 // Lexend 700; `progress` ({ index, total }) adds a thin progress line;
 // `children` holds the controls.
-export function Poster({ tone = 'red', label, question, answer, progress, questionAs: Q = 'h2', className = '', children, ...props }) {
+export function Poster({ label, question, answer, progress, questionAs: Q = 'h2', className = '', children, ...props }) {
   return (
-    <section className={`relative rounded-card ${POSTER_BG[tone] || POSTER_BG.red} text-white px-5 py-6 sm:px-8 sm:py-8 ${className}`} {...props}>
+    <section className={`relative rounded-card bg-navy text-white px-5 py-6 sm:px-8 sm:py-8 ${className}`} {...props}>
       {label && <p className="text-base font-semibold text-on-navy" dir="auto">{label}</p>}
       {progress && <div className="mt-3"><PosterProgress index={progress.index} total={progress.total} /></div>}
       {question && <Q className="mt-4 font-display text-[2rem] leading-[1.1] sm:text-[2.25rem]" lang="en" dir="ltr">{question}</Q>}
       {answer && <p className="mt-5 font-display text-2xl leading-snug sm:text-3xl">{answer}</p>}
       {children && <div className="mt-6">{children}</div>}
     </section>
-  );
-}
-
-// N-400 folder: a sand panel with navy section tabs (no manila or section
-// colors any more). `tabs`: a row of FolderTab buttons on top.
-export function Folder({ tabs, className = '', children, ...props }) {
-  return (
-    <div className={className} {...props}>
-      {tabs && <div className="flex items-end gap-1.5 overflow-x-auto px-2">{tabs}</div>}
-      <div className="rounded-card bg-tint p-3 text-navy sm:p-6">{children}</div>
-    </div>
-  );
-}
-
-// A section tab on the folder. `tone` is kept for older callers. The active
-// tab joins the folder.
-// eslint-disable-next-line no-unused-vars
-export function FolderTab({ tone = 'navy', active = false, className = '', ...props }) {
-  return (
-    <button
-      type="button"
-      aria-current={active ? 'true' : undefined}
-      className={`min-h-tap shrink-0 whitespace-nowrap rounded-t-lg border-t-4 border-navy px-3 text-base font-semibold text-navy transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy ${active ? 'bg-tint' : 'bg-paper hover:bg-tint'} ${className}`}
-      {...props}
-    />
   );
 }
 

@@ -46,6 +46,13 @@
       "title": "Speak it!"
     },
     {
+      "id": "u4-s3-n400-p9-15",
+      "type": "n400",
+      "title": "N-400 card: Crimes and arrests",
+      "section": "crimes-offenses",
+      "card": 1
+    },
+    {
       "id": "u4-n400",
       "type": "n400",
       "title": "N-400: Crimes and offenses",
