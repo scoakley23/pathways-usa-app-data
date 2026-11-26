@@ -418,6 +418,149 @@ function GreatCompromise({ focus } = {}) {
   );
 }
 
+// A simple person (head and body) for the drawings below.
+const Person = ({ cx, cy, className = 'fill-denim' }) => (
+  <g>
+    <circle cx={cx} cy={cy} r={5} className={className} />
+    <rect x={cx - 6} y={cy + 6} width={12} height={10} rx={4} className={className} />
+  </g>
+);
+// A straight line from (x1, y1) to (x2, y2) with an arrowhead at the end.
+const arrowPath = (x1, y1, x2, y2) => {
+  const a = Math.atan2(y2 - y1, x2 - x1);
+  const h = (t) => `${(x2 - 8 * Math.cos(a + t)).toFixed(1)} ${(y2 - 8 * Math.sin(a + t)).toFixed(1)}`;
+  return `M${x1} ${y1} L${x2} ${y2} M${h(0.6)} L${x2} ${y2} L${h(-0.6)}`;
+};
+const Arrow = ({ d }) => <path d={d} className="stroke-mid" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />;
+
+// The Constitution and its 27 amendments; the first 10 are the Bill of Rights.
+function Amendments({ focus } = {}) {
+  const first = Array.from({ length: 10 }, (_, i) => i + 1);
+  const later = Array.from({ length: 17 }, (_, i) => i + 11);
+  const tile = (n, x, y, on) => (
+    <g key={n}>
+      <rect x={x} y={y} width={20} height={22} rx={4} className={on ? 'fill-navy stroke-navy' : 'fill-white stroke-denim'} strokeWidth="2" />
+      <T x={x + 10} y={y + 16} size={12} weight={700} className={on ? 'fill-white' : 'fill-navy'}>{n}</T>
+    </g>
+  );
+  return (
+    <Frame viewBox="0 0 350 172" title="The Constitution has 27 amendments. The first 10 amendments, added in 1791, are the Bill of Rights.">
+      <Box x={4} y={8} w={108} h={156} className="fill-navy stroke-navy" />
+      <T x={58} y={78} size={14} weight={700} className="fill-white">Constitution</T>
+      <T x={58} y={100} size={13} weight={400} className="fill-white">1787</T>
+      <T x={235} y={22} size={15} weight={700}>27 amendments</T>
+      <g>
+        <rect x={120} y={32} width={228} height={66} rx={8} className="fill-tint" />
+        {first.map((n, i) => tile(n, 124 + i * 22, 38, true))}
+        <T x={234} y={88} size={12} weight={700}>Bill of Rights · 1791</T>
+      </g>
+      <g style={focus === 'first10' ? { opacity: 0.3 } : undefined}>
+        {later.slice(0, 9).map((n, i) => tile(n, 124 + i * 22, 110, false))}
+        {later.slice(9).map((n, i) => tile(n, 124 + i * 22, 138, false))}
+      </g>
+    </Frame>
+  );
+}
+
+// We the People: the people vote for leaders, and the leaders make laws for
+// the people. The government's power comes from the people.
+function PowerFromPeople({ focus } = {}) {
+  return (
+    <Frame viewBox="0 0 350 200" title="We the People: the people vote for leaders, and the leaders make laws for the people. The government gets its power from the people.">
+      <g style={dim(focus, 'people')}>
+        <Box x={4} y={56} w={140} h={88} className="fill-white stroke-denim" />
+        {[34, 56, 78, 100, 122].map((cx) => <Person key={cx} cx={cx} cy={76} />)}
+        <T x={74} y={124} size={14} weight={700}>We the People</T>
+        <Arrow d="M74 50 C 74 16, 276 16, 276 46 m-6 -8 l6 8 l6 -8" />
+        <T x={175} y={22} size={13} weight={600} className="fill-muted">vote for</T>
+      </g>
+      <g style={dim(focus, 'leaders')}>
+        <Box x={206} y={56} w={140} h={88} className="fill-navy stroke-navy" />
+        <T x={276} y={96} size={14} weight={700} className="fill-white">Leaders</T>
+        <T x={276} y={118} size={12} weight={400} className="fill-white">speak for the people</T>
+        <Arrow d="M276 150 C 276 186, 74 186, 74 154 m-6 8 l6 -8 l6 8" />
+        <T x={175} y={192} size={13} weight={600} className="fill-muted">make laws for</T>
+      </g>
+    </Frame>
+  );
+}
+
+// Checks and balances: each branch can check the others.
+function ChecksBalances({ focus } = {}) {
+  const boxes = [
+    { key: 'congress', x: 4, y: 8, w: 160, who: 'Congress', what: ['writes laws'] },
+    { key: 'president', x: 186, y: 8, w: 160, who: 'President', what: ['can veto a law'] },
+    { key: 'courts', x: 55, y: 152, w: 240, who: 'Courts', what: ['can decide a law goes', 'against the Constitution'] },
+  ];
+  return (
+    <Frame viewBox="0 0 350 232" title="Checks and balances: Congress writes laws, the President can veto a law, and the courts can decide a law goes against the Constitution. Each branch checks the others.">
+      <path d="M84 74 L175 152 M266 74 L175 152 M164 41 L186 41" className="stroke-mid" strokeWidth="3" fill="none" />
+      <rect x={95} y={100} width={160} height={28} rx={8} className="fill-tint" />
+      <T x={175} y={119} size={12} weight={700}>Each checks the others</T>
+      {boxes.map((b) => (
+        <g key={b.key} style={dim(focus, b.key)}>
+          <Box x={b.x} y={b.y} w={b.w} h={b.what.length > 1 ? 74 : 66} className="fill-white stroke-denim" />
+          <T x={b.x + b.w / 2} y={b.y + 26} size={15} weight={700}>{b.who}</T>
+          {b.what.map((line, i) => (
+            <T key={line} x={b.x + b.w / 2} y={b.y + 48 + i * 17} size={12} weight={400} className="fill-muted">{line}</T>
+          ))}
+        </g>
+      ))}
+    </Frame>
+  );
+}
+
+// Older documents the writers of the Constitution learned from.
+function DocumentsToConstitution({ focus } = {}) {
+  const docs = [
+    { key: 'declaration', x: 4, toX: 120, lines: ['Declaration of', 'Independence'] },
+    { key: 'articles', x: 120, toX: 175, lines: ['Articles of', 'Confederation'] },
+    { key: 'federalist', x: 236, toX: 230, lines: ['Federalist', 'Papers'] },
+  ];
+  return (
+    <Frame viewBox="0 0 350 220" title="The writers of the Constitution learned from older documents: the Declaration of Independence, the Articles of Confederation and the Federalist Papers. The Constitution was written in 1787.">
+      {docs.map((d) => (
+        <g key={d.key} style={dim(focus, d.key)}>
+          <Box x={d.x} y={8} w={110} h={72} className="fill-white stroke-denim" />
+          <T x={d.x + 55} y={40} size={13} weight={700}>{d.lines[0]}</T>
+          <T x={d.x + 55} y={60} size={13} weight={700}>{d.lines[1]}</T>
+          <Arrow d={arrowPath(d.x + 55, 86, d.toX, 134)} />
+        </g>
+      ))}
+      <g style={dim(focus, 'constitution')}>
+        <Box x={75} y={140} w={200} h={72} className="fill-navy stroke-navy" />
+        <T x={175} y={172} size={15} weight={700} className="fill-white">Constitution</T>
+        <T x={175} y={194} size={13} weight={400} className="fill-white">1787</T>
+      </g>
+    </Frame>
+  );
+}
+
+// A federal republic: the Constitution is the highest law, and power is
+// shared between the national government and the states.
+function SharedPower({ focus } = {}) {
+  const sides = [
+    { key: 'national', x: 4, lines: ['National', 'government'] },
+    { key: 'states', x: 186, lines: ['The', 'states'] },
+  ];
+  return (
+    <Frame viewBox="0 0 350 200" title="The Constitution is the highest law. Power is shared between the national government and the states.">
+      <Box x={75} y={8} w={200} h={56} className="fill-navy stroke-navy" />
+      <T x={175} y={32} size={15} weight={700} className="fill-white">Constitution</T>
+      <T x={175} y={52} size={12} weight={400} className="fill-white">the highest law</T>
+      <path d="M130 64 L84 110 M220 64 L266 110" className="stroke-mid" strokeWidth="3" fill="none" />
+      <T x={175} y={98} size={13} weight={600} className="fill-muted">power is shared</T>
+      {sides.map((s) => (
+        <g key={s.key} style={dim(focus, s.key)}>
+          <Box x={s.x} y={110} w={160} h={82} className="fill-white stroke-denim" />
+          <T x={s.x + 80} y={146} size={15} weight={700}>{s.lines[0]}</T>
+          <T x={s.x + 80} y={168} size={15} weight={700}>{s.lines[1]}</T>
+        </g>
+      ))}
+    </Frame>
+  );
+}
+
 export const DRAWINGS = {
   threeBranches: ThreeBranches,
   termLengths: TermLengths,
@@ -432,6 +575,11 @@ export const DRAWINGS = {
   seatsByPopulation: SeatsByPopulation,
   stateDistricts: StateDistricts,
   greatCompromise: GreatCompromise,
+  amendments: Amendments,
+  powerFromPeople: PowerFromPeople,
+  checksBalances: ChecksBalances,
+  documentsToConstitution: DocumentsToConstitution,
+  sharedPower: SharedPower,
 };
 
 // The parts each drawing can light up (story scenes' `focus`).
@@ -443,4 +591,9 @@ export const DRAWING_FOCUS = {
   seatsByPopulation: ['senators', 'house'],
   stateDistricts: ['state', 'district'],
   greatCompromise: ['big', 'small', 'both'],
+  amendments: ['first10', 'all'],
+  powerFromPeople: ['people', 'leaders'],
+  checksBalances: ['congress', 'president', 'courts'],
+  documentsToConstitution: ['declaration', 'articles', 'federalist', 'constitution'],
+  sharedPower: ['national', 'states'],
 };

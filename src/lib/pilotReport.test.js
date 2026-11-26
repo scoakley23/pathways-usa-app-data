@@ -3,7 +3,7 @@ import {
   isoWeek, learnerSummary, pilotMetrics, formatCount, formatShare, toCsv, CSV_COLUMNS,
 } from '../../base44/shared/pilotReport.js';
 
-const d = (s) => new Date(`${s}T12:00:00`);
+const d = (s) => new Date(`${s}T12:00:00Z`);
 const NOW = d('2026-11-30');
 const user = (extra = {}) => ({
   id: 'u1', email: 'test.learner@example.com', full_name: 'Test Learner', pilot_id: 'p-1',
