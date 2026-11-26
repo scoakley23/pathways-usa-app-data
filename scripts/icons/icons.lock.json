@@ -1,0 +1,16 @@
+{
+  "shapes": {
+    "any": "2b276bfbf7f13ab8f36b30874f2897dfb17aa2a2782c3ce83565e6dfaa639855",
+    "square": "d0502add8f03b8c8690345b6f9110a5890cb48a2d646eb452b911b6e63d3943e",
+    "maskable": "d701d92cee6897b8bfff3e078c5d5daf2bb58f2657992b6140cc7cab122fc44b"
+  },
+  "files": {
+    "amio.svg": "2b276bfbf7f13ab8f36b30874f2897dfb17aa2a2782c3ce83565e6dfaa639855",
+    "amio-16.png": "118a88b584851a58284f331e22e7727af93b4b5a6cbf1d84c8ad7070c255b008",
+    "amio-32.png": "33aa67ab101948b2ef4779a2b0dc3a7f7f41fa9480172a068431e36ab14fe7df",
+    "amio-180.png": "9d2916c8d34314b9ba1a59322683eb3b2e1eed0af742eca02b2f11d0af9c74d4",
+    "amio-192.png": "3089d007f0149c0267b60c62a191ad7296101feaef0843de8ed1fee13e6df833",
+    "amio-512.png": "7ec62d1c1a179b19a326b9341e97a4bf00ebcb97a5f403d33866a9fa2d65402e",
+    "amio-512-maskable.png": "a93f5ebe16d383a63fbb33629f2f1668209da71ba7ef4f882f08f1d9b140093c"
+  }
+}
