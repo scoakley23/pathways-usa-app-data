@@ -18,13 +18,15 @@ const DAY = 24 * 60 * 60 * 1000;
 
 export const MILESTONES = ['filed', 'interviewed', 'passed_tests', 'oath', 'registered_to_vote'];
 
+// In UTC, so the windows don't depend on the machine's timezone (the server
+// decides reminder emails in UTC; the device agrees with it).
 export function addMonths(date, months) {
   const d = new Date(date);
-  const day = d.getDate();
-  d.setDate(1);
-  d.setMonth(d.getMonth() + months);
-  const last = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate();
-  d.setDate(Math.min(day, last));
+  const day = d.getUTCDate();
+  d.setUTCDate(1);
+  d.setUTCMonth(d.getUTCMonth() + months);
+  const last = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 0)).getUTCDate();
+  d.setUTCDate(Math.min(day, last));
   return d;
 }
 
@@ -45,7 +47,7 @@ export function dueWindow(user, now = new Date()) {
   const t = new Date(now).getTime();
   for (const w of WINDOWS) {
     const opens = addMonths(start, w.months);
-    opens.setHours(0, 0, 0, 0);
+    opens.setUTCHours(0, 0, 0, 0);
     if (t >= opens.getTime() && t < opens.getTime() + OPEN_DAYS * DAY) return w.kind;
   }
   return null;
