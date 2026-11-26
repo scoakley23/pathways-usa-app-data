@@ -4,14 +4,16 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { TrendingUp, Loader2 } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 import { COLORS } from '@/lib/theme';
+import useProgressText from './useProgressText';
 
 // Chart colors match the pw tokens (recharts needs raw values).
 const NAVY = COLORS.navy;
-const RED = COLORS.notYet; // low scores (star red is never used for results)
+const SECOND = COLORS.denim; // the second line (lessons): denim, dashed
 const LINE = COLORS.line;
 const MUTED = COLORS.muted;
 
 export default function ProgressChart({ userEmail }) {
+  const { t, locale } = useProgressText();
   const [chartData, setChartData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -97,15 +99,13 @@ export default function ProgressChart({ userEmail }) {
       <Card>
         <CardHeader className="p-5 sm:p-6">
           <CardTitle className="flex items-center gap-3">
-            <span className="w-10 h-10 rounded-2xl bg-tint text-navy grid place-items-center shrink-0">
-              <TrendingUp className="w-5 h-5" aria-hidden="true" />
-            </span>
-            Improvement Over Time
+  <TrendingUp className="w-6 h-6 shrink-0" aria-hidden="true" />
+            <span dir="auto">{t('chart')}</span>
           </CardTitle>
         </CardHeader>
         <CardContent className="p-5 pt-0 sm:p-6 sm:pt-0">
-          <div className="text-center py-8 px-4 text-base text-muted bg-tint rounded-2xl">
-            Complete lessons and take quizzes to see your progress over time.
+          <div className="text-center py-8 px-4 text-base text-muted bg-line-soft rounded-card" dir="auto">
+            {t('chart_empty')}
           </div>
         </CardContent>
       </Card>
@@ -116,10 +116,8 @@ export default function ProgressChart({ userEmail }) {
     <Card>
       <CardHeader className="p-5 sm:p-6">
         <CardTitle className="flex items-center gap-3">
-          <span className="w-10 h-10 rounded-2xl bg-tint text-navy grid place-items-center shrink-0">
-            <TrendingUp className="w-5 h-5" aria-hidden="true" />
-          </span>
-          Improvement Over Time
+          <TrendingUp className="w-6 h-6 shrink-0" aria-hidden="true" />
+          <span dir="auto">{t('chart')}</span>
         </CardTitle>
       </CardHeader>
       <CardContent className="p-3 pt-0 sm:p-6 sm:pt-0">
@@ -139,7 +137,7 @@ export default function ProgressChart({ userEmail }) {
                 tickLine={false}
                 axisLine={{ stroke: LINE }}
                 domain={[0, 100]}
-                label={{ value: 'Quiz Score %', angle: -90, position: 'insideLeft', style: { fontSize: '0.75rem', fill: NAVY, fontWeight: 700 } }}
+                label={{ value: t('chart_score_axis'), angle: -90, position: 'insideLeft', style: { fontSize: '0.75rem', fill: NAVY, fontWeight: 700 } }}
               />
               <YAxis
                 yAxisId="right"
@@ -148,13 +146,13 @@ export default function ProgressChart({ userEmail }) {
                 tickLine={false}
                 axisLine={{ stroke: LINE }}
                 allowDecimals={false}
-                label={{ value: 'Lessons', angle: 90, position: 'insideRight', style: { fontSize: '0.75rem', fill: NAVY, fontWeight: 700 } }}
+                label={{ value: t('chart_lessons_axis'), angle: 90, position: 'insideRight', style: { fontSize: '0.75rem', fill: NAVY, fontWeight: 700 } }}
               />
               <Tooltip
                 contentStyle={{
                   backgroundColor: COLORS.white,
                   border: `1px solid ${LINE}`,
-                  borderRadius: '16px',
+                  borderRadius: '12px',
                   fontSize: '0.875rem',
                   color: NAVY
                 }}
@@ -166,7 +164,7 @@ export default function ProgressChart({ userEmail }) {
                 yAxisId="left"
                 type="monotone"
                 dataKey="quizScore"
-                name="Avg Quiz Score"
+                name={t('chart_score')}
                 stroke={NAVY}
                 strokeWidth={2.5}
                 dot={{ r: 4, fill: NAVY, strokeWidth: 2, stroke: COLORS.white }}
@@ -176,11 +174,11 @@ export default function ProgressChart({ userEmail }) {
                 yAxisId="right"
                 type="monotone"
                 dataKey="lessonsCompleted"
-                name="Lessons Completed"
-                stroke={RED}
+                name={t('chart_lessons')}
+                stroke={SECOND}
                 strokeWidth={2.5}
                 strokeDasharray="6 4"
-                dot={{ r: 4, fill: RED, strokeWidth: 2, stroke: COLORS.white }}
+                dot={{ r: 4, fill: SECOND, strokeWidth: 2, stroke: COLORS.white }}
                 activeDot={{ r: 6 }}
               />
             </LineChart>

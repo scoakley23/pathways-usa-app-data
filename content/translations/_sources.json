@@ -415,6 +415,12 @@
    ]
   },
   {
+   "text": "1 day left",
+   "from": [
+    "progress"
+   ]
+  },
+  {
    "text": "1 day this week",
    "from": [
     "lesson-player",
@@ -585,6 +591,12 @@
    "text": "2008 test",
    "from": [
     "interview-day"
+   ]
+  },
+  {
+   "text": "2025 civics questions",
+   "from": [
+    "progress"
    ]
   },
   {
@@ -766,6 +778,12 @@
    "text": "A court-ordered period of supervision instead of, or after, jail time.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "A day you practiced",
+   "from": [
+    "progress"
    ]
   },
   {
@@ -1133,6 +1151,12 @@
    "text": "Active involvement of citizens in the government process through voting and civic engagement",
    "from": [
     "lessons"
+   ]
+  },
+  {
+   "text": "Activity for {date}",
+   "from": [
+    "progress"
    ]
   },
   {
@@ -1673,6 +1697,12 @@
    ]
   },
   {
+   "text": "Answered right again and again",
+   "from": [
+    "progress"
+   ]
+  },
+  {
    "text": "Answers change. Check uscis.gov for the current answer.",
    "from": [
     "civics-questions"
@@ -1837,6 +1867,7 @@
   {
    "text": "Ask Amio",
    "from": [
+    "ask-history",
     "ask-screen"
    ]
   },
@@ -1844,6 +1875,12 @@
    "text": "Ask Amio a question",
    "from": [
     "me"
+   ]
+  },
+  {
+   "text": "Ask Amio about your lessons or the interview. Your questions show up here.",
+   "from": [
+    "ask-history"
    ]
   },
   {
@@ -1943,8 +1980,16 @@
    ]
   },
   {
+   "text": "Average quiz score",
+   "from": [
+    "progress"
+   ]
+  },
+  {
    "text": "Back",
    "from": [
+    "ask-history",
+    "ask-screen",
     "course",
     "interview-day",
     "interview-when",
@@ -1952,6 +1997,7 @@
     "lesson-player",
     "n400-guide",
     "practice",
+    "progress",
     "settings",
     "sign-in",
     "today-plan"
@@ -2008,6 +2054,12 @@
    "from": [
     "key-words",
     "lessons"
+   ]
+  },
+  {
+   "text": "Based on what you have mastered (goal: 100).",
+   "from": [
+    "progress"
    ]
   },
   {
@@ -2715,6 +2767,12 @@
    ]
   },
   {
+   "text": "Civics question",
+   "from": [
+    "progress"
+   ]
+  },
+  {
    "text": "Civics questions",
    "from": [
     "practice"
@@ -2730,6 +2788,12 @@
    "text": "Civics questions and accepted answers come word for word from the official USCIS lists for the 2008 and 2025 tests. Reading and writing practice uses the official USCIS vocabulary lists. Your tutor can explain an answer, but never changes it.",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "Civics ready",
+   "from": [
+    "progress"
    ]
   },
   {
@@ -3335,6 +3399,12 @@
    ]
   },
   {
+   "text": "Days practiced",
+   "from": [
+    "progress"
+   ]
+  },
+  {
    "text": "Declaration of Independence",
    "from": [
     "civics-questions",
@@ -3370,6 +3440,12 @@
    "text": "Delaware was the first state.",
    "from": [
     "sentences"
+   ]
+  },
+  {
+   "text": "Delete",
+   "from": [
+    "notifications"
    ]
   },
   {
@@ -4154,6 +4230,12 @@
    ]
   },
   {
+   "text": "Every day you practice counts.",
+   "from": [
+    "progress"
+   ]
+  },
+  {
    "text": "Every part is ready. Keep practicing!",
    "from": [
     "interview-tab"
@@ -4477,6 +4559,12 @@
    "from": [
     "interview-tab",
     "settings"
+   ]
+  },
+  {
+   "text": "Finish lessons and quizzes to see your progress over time.",
+   "from": [
+    "progress"
    ]
   },
   {
@@ -6436,6 +6524,12 @@
    ]
   },
   {
+   "text": "Improvement over time",
+   "from": [
+    "progress"
+   ]
+  },
+  {
    "text": "In",
    "from": [
     "words"
@@ -7035,6 +7129,12 @@
    ]
   },
   {
+   "text": "Just now",
+   "from": [
+    "notifications"
+   ]
+  },
+  {
    "text": "Justices serve for life",
    "from": [
     "course-titles"
@@ -7044,6 +7144,12 @@
    "text": "Keep going",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "Keep practicing",
+   "from": [
+    "progress"
    ]
   },
   {
@@ -7085,6 +7191,7 @@
   {
    "text": "Language",
    "from": [
+    "ask-screen",
     "onboarding",
     "settings"
    ]
@@ -7326,7 +7433,8 @@
   {
    "text": "Lessons",
    "from": [
-    "practice"
+    "practice",
+    "progress"
    ]
   },
   {
@@ -7339,6 +7447,12 @@
    "text": "Lessons can be in any of {n} languages. The interview is in English, so we practice your answers in English, one step at a time.",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "Lessons finished",
+   "from": [
+    "progress"
    ]
   },
   {
@@ -7477,6 +7591,7 @@
   {
    "text": "Listen",
    "from": [
+    "ask-history",
     "lesson-player",
     "n400-guide",
     "n400-lessons",
@@ -7590,6 +7705,7 @@
   {
    "text": "Loading",
    "from": [
+    "ask-screen",
     "onboarding"
    ]
   },
@@ -7603,6 +7719,18 @@
    "text": "Loading lessons…",
    "from": [
     "practice"
+   ]
+  },
+  {
+   "text": "Loading progress…",
+   "from": [
+    "progress"
+   ]
+  },
+  {
+   "text": "Loading your questions…",
+   "from": [
+    "ask-history"
    ]
   },
   {
@@ -7788,6 +7916,12 @@
    ]
   },
   {
+   "text": "Mark all read",
+   "from": [
+    "notifications"
+   ]
+  },
+  {
    "text": "Mark as done",
    "from": [
     "today"
@@ -7797,6 +7931,12 @@
    "text": "Mark as not done",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "Mark read",
+   "from": [
+    "notifications"
    ]
   },
   {
@@ -7833,6 +7973,12 @@
    "text": "Master the official reading and writing vocabulary lists.",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "Mastered",
+   "from": [
+    "progress"
    ]
   },
   {
@@ -8668,6 +8814,12 @@
    ]
   },
   {
+   "text": "No activity on this day.",
+   "from": [
+    "progress"
+   ]
+  },
+  {
    "text": "No hints in a checkpoint. You can ask the officer to repeat, just like on the real day.",
    "from": [
     "checkpoints"
@@ -8692,6 +8844,12 @@
    ]
   },
   {
+   "text": "No notifications yet",
+   "from": [
+    "notifications"
+   ]
+  },
+  {
    "text": "No one is above the law",
    "from": [
     "course-titles"
@@ -8707,6 +8865,12 @@
    "text": "No practice yet",
    "from": [
     "today-plan"
+   ]
+  },
+  {
+   "text": "No questions yet",
+   "from": [
+    "ask-history"
    ]
   },
   {
@@ -8941,6 +9105,12 @@
    ]
   },
   {
+   "text": "Nothing yet. Your practice shows here.",
+   "from": [
+    "progress"
+   ]
+  },
+  {
    "text": "Nothing you see or tap here is saved. Pathways is not a law office. This page explains when to get legal help; it is not legal advice about your situation.",
    "from": [
     "lawyer"
@@ -8949,7 +9119,14 @@
   {
    "text": "Notifications",
    "from": [
+    "notifications",
     "settings"
+   ]
+  },
+  {
+   "text": "Notifications are on.",
+   "from": [
+    "notifications"
    ]
   },
   {
@@ -9295,6 +9472,7 @@
   {
    "text": "Open",
    "from": [
+    "notifications",
     "today"
    ]
   },
@@ -9452,7 +9630,8 @@
    "text": "Passed",
    "from": [
     "interview-day",
-    "practice"
+    "practice",
+    "progress"
    ]
   },
   {
@@ -9465,6 +9644,12 @@
    "text": "Past immigration problems can change what USCIS looks for in your new application.",
    "from": [
     "lawyer-checklist"
+   ]
+  },
+  {
+   "text": "Past session",
+   "from": [
+    "progress"
    ]
   },
   {
@@ -9706,6 +9891,7 @@
    "from": [
     "course",
     "practice",
+    "progress",
     "today-plan"
    ]
   },
@@ -9719,6 +9905,12 @@
    "text": "Practice again: it’s in your review chest",
    "from": [
     "checkpoints"
+   ]
+  },
+  {
+   "text": "Practice calendar",
+   "from": [
+    "progress"
    ]
   },
   {
@@ -9851,6 +10043,12 @@
    ]
   },
   {
+   "text": "Practiced",
+   "from": [
+    "progress"
+   ]
+  },
+  {
    "text": "Practiced asking for help",
    "from": [
     "n400-lessons"
@@ -9971,6 +10169,12 @@
    "text": "Process where Congress can formally charge a president or judge with wrongdoing",
    "from": [
     "lessons"
+   ]
+  },
+  {
+   "text": "Progress",
+   "from": [
+    "progress"
    ]
   },
   {
@@ -10234,6 +10438,12 @@
    ]
   },
   {
+   "text": "Read more",
+   "from": [
+    "ask-screen"
+   ]
+  },
+  {
    "text": "Read official sentences aloud and get instant feedback on pronunciation.",
    "from": [
     "home"
@@ -10369,6 +10579,12 @@
    "text": "Real-time AI evaluation",
    "from": [
     "interview-intro"
+   ]
+  },
+  {
+   "text": "Recent activity",
+   "from": [
+    "progress"
    ]
   },
   {
@@ -11242,6 +11458,12 @@
    ]
   },
   {
+   "text": "Score %",
+   "from": [
+    "progress"
+   ]
+  },
+  {
    "text": "Search {n}+ languages",
    "from": [
     "onboarding"
@@ -11467,9 +11689,21 @@
    ]
   },
   {
+   "text": "Sentence",
+   "from": [
+    "progress"
+   ]
+  },
+  {
    "text": "Sentence {n} of up to {total}",
    "from": [
     "interview-day"
+   ]
+  },
+  {
+   "text": "Sentences, words and questions",
+   "from": [
+    "progress"
    ]
   },
   {
@@ -11522,6 +11756,12 @@
    ]
   },
   {
+   "text": "Set your test date",
+   "from": [
+    "progress"
+   ]
+  },
+  {
    "text": "Settings",
    "from": [
     "me",
@@ -11554,6 +11794,12 @@
    ]
   },
   {
+   "text": "Show less",
+   "from": [
+    "ask-screen"
+   ]
+  },
+  {
    "text": "Show the definition",
    "from": [
     "practice"
@@ -11568,6 +11814,7 @@
   {
    "text": "Sign in",
    "from": [
+    "ask-screen",
     "interview-day",
     "me",
     "sign-in"
@@ -11577,6 +11824,12 @@
    "text": "Sign in again",
    "from": [
     "sign-in"
+   ]
+  },
+  {
+   "text": "Sign in to ask me questions.",
+   "from": [
+    "ask-screen"
    ]
   },
   {
@@ -12485,6 +12738,12 @@
    "text": "Terrorists attacked the United States.",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "Test preparedness",
+   "from": [
+    "progress"
    ]
   },
   {
@@ -14049,6 +14308,12 @@
    ]
   },
   {
+   "text": "The questions you asked, with Amio’s answers.",
+   "from": [
+    "ask-history"
+   ]
+  },
+  {
    "text": "The quick check isn’t ready yet. Please try again later.",
    "from": [
     "onboarding"
@@ -14954,6 +15219,7 @@
   {
    "text": "This week",
    "from": [
+    "progress",
     "today"
    ]
   },
@@ -15180,6 +15446,7 @@
    "from": [
     "home",
     "practice",
+    "progress",
     "tabs",
     "today",
     "today-plan"
@@ -15369,6 +15636,18 @@
    "text": "Trying to destroy a whole group of people because of their race, religion, or nationality.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "Turn on",
+   "from": [
+    "notifications"
+   ]
+  },
+  {
+   "text": "Turn on phone notifications?",
+   "from": [
+    "notifications"
    ]
   },
   {
@@ -16857,6 +17136,12 @@
    ]
   },
   {
+   "text": "What you have practiced and how your skills are growing.",
+   "from": [
+    "progress"
+   ]
+  },
+  {
    "text": "When did all men get the right to vote?",
    "from": [
     "civics-questions"
@@ -17522,6 +17807,12 @@
    ]
   },
   {
+   "text": "Word",
+   "from": [
+    "progress"
+   ]
+  },
+  {
    "text": "Word dictation",
    "from": [
     "practice"
@@ -18131,6 +18422,12 @@
    ]
   },
   {
+   "text": "Your date stays on this phone. We don’t save it.",
+   "from": [
+    "progress"
+   ]
+  },
+  {
    "text": "Your filing month and field office, if you used “When’s my interview?”. On this device only: never saved to your account or sent anywhere.",
    "from": [
     "settings"
@@ -18261,6 +18558,12 @@
    ]
   },
   {
+   "text": "Your practice interviews",
+   "from": [
+    "progress"
+   ]
+  },
+  {
    "text": "Your practice: which questions, sentences and lessons you got right, and your scores. Mock interview scores only, never what you said.",
    "from": [
     "settings"
@@ -18288,6 +18591,7 @@
   {
    "text": "Your questions to Amio",
    "from": [
+    "ask-history",
     "settings"
    ]
   },
@@ -18355,6 +18659,12 @@
    "text": "Your story stays yours",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "Your test date",
+   "from": [
+    "progress"
    ]
   },
   {
@@ -19433,6 +19743,12 @@
    ]
   },
   {
+   "text": "new",
+   "from": [
+    "notifications"
+   ]
+  },
+  {
    "text": "noncombatant",
    "from": [
     "n400"
@@ -20453,6 +20769,12 @@
    ]
   },
   {
+   "text": "{n} days left",
+   "from": [
+    "progress"
+   ]
+  },
+  {
    "text": "{n} days this week",
    "from": [
     "lesson-player",
@@ -20521,6 +20843,12 @@
    "text": "{n} of {total} questions",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "{n} of {total} questions passed",
+   "from": [
+    "progress"
    ]
   },
   {
