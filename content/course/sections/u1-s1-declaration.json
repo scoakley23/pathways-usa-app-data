@@ -64,6 +64,64 @@
               "word": "independence",
               "meaning": "being free from another country's control"
             }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "Long ago, the American colonies were ruled by Britain.",
+              "picture": {
+                "photo": "colonies-1775.jpg"
+              }
+            },
+            {
+              "say": "Over time, the colonists became angry. Britain made them pay high taxes, but they had no vote in Britain’s government."
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "The colonists had a vote in Britain’s government.",
+                "answer": false
+              }
+            },
+            {
+              "say": "British soldiers even stayed in their homes."
+            },
+            {
+              "say": "Many colonists had come to America for freedom, including religious freedom. They wanted to govern themselves."
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "What did many colonists come to America for?",
+                "choices": [
+                  "Freedom",
+                  "High taxes",
+                  "British soldiers"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "On July 4, 1776, the Declaration of Independence said the colonies were free from Britain."
+            },
+            {
+              "say": "We remember this day on Independence Day."
+            },
+            {
+              "say": "The Declaration also says all people are created equal and have rights that no one can take away."
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "What founding document said the American colonies were free from Britain?",
+                "choices": [
+                  "The Declaration of Independence",
+                  "The Bill of Rights",
+                  "The Federalist Papers"
+                ],
+                "answer": 0
+              }
+            }
           ]
         },
         "teachBack": {
@@ -114,6 +172,41 @@
             {
               "word": "pursuit",
               "meaning": "trying to reach something"
+            }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "“Life, Liberty, and the pursuit of Happiness” are words from the Declaration of Independence.",
+              "picture": {
+                "drawing": "documentsToConstitution",
+                "focus": "declaration"
+              }
+            },
+            {
+              "say": "Liberty means freedom."
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "Liberty means freedom.",
+                "answer": true
+              }
+            },
+            {
+              "say": "The pursuit of Happiness means the freedom to try to make a good life."
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "“Life, Liberty, and the pursuit of Happiness” are words from which document?",
+                "choices": [
+                  "The Declaration of Independence",
+                  "The Bill of Rights",
+                  "The Articles of Confederation"
+                ],
+                "answer": 0
+              }
             }
           ]
         },
