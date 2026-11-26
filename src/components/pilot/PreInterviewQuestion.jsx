@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { RaisedCard, PrimaryButton, QuietButton, Eyebrow } from '@/components/pathways/ui';
+import { Button, Card } from '@/components/pathways/ui';
 import useAppLanguage from '@/hooks/useAppLanguage';
 import { skipPreInterview } from '@/lib/pilot';
 import usePilotText from './pilotStrings';
@@ -25,17 +25,17 @@ export default function PreInterviewQuestion({ email, onDone }) {
   };
 
   return (
-    <RaisedCard padding="p-5 sm:p-8" className="max-w-2xl w-full mx-auto space-y-6">
-      <div className="space-y-3">
-        <Eyebrow>{t('eyebrow')}</Eyebrow>
-        <h2 className="font-display text-[2rem] leading-tight text-navy">{t('pre_title')}</h2>
-        <p className="text-base text-muted">{t('small_print')}</p>
+    <Card padding="p-5" className="max-w-lg w-full mx-auto space-y-5 text-navy">
+      <div className="space-y-2">
+        <p className="text-base font-semibold text-muted" dir="auto">{t('eyebrow')}</p>
+        <h1 className="font-display text-[1.75rem] leading-tight" dir="auto">{t('pre_title')}</h1>
+        <p className="text-base text-muted" dir="auto">{t('small_print')}</p>
       </div>
       <ReadinessQuestion label={t('ready_label')} value={confidence} onChange={setConfidence} t={t} />
-      <div className="flex flex-col-reverse sm:flex-row sm:justify-end gap-2">
-        <QuietButton onClick={() => finish(false)} className="w-full sm:w-auto">{t('skip')}</QuietButton>
-        <PrimaryButton large onClick={() => finish(true)} className="w-full sm:w-auto">{t('save')}</PrimaryButton>
+      <div className="flex flex-col gap-2">
+        <Button variant="main" onClick={() => finish(true)} className="w-full">{t('save')}</Button>
+        <Button variant="second" onClick={() => finish(false)} className="w-full">{t('skip')}</Button>
       </div>
-    </RaisedCard>
+    </Card>
   );
 }

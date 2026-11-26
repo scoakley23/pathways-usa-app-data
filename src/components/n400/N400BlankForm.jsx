@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import { tabFor, SECTION_BORDER, SECTION_SOLID } from './N400Folder';
+import { tabFor } from './n400Tabs';
+import useN400GuideText from './useN400GuideText';
 
 // "See the form": what the paper N-400 looks like for the parts the guide
 // covers, always BLANK. The form's words come verbatim from n400Content.js
 // (approved items only, as in the guide); the boxes stay empty and nothing is
 // typed, picked or saved. "What it asks" opens that section in the guide.
 // No example people and no example answers anywhere.
-const YES_NO = ['Yes', 'No'];
-const TRIP_COLUMNS = ['Date you left', 'Date you returned', 'Countries you traveled to'];
 
 export default function N400BlankForm({ sections, isAdmin = false, onOpenSection }) {
+  const { t } = useN400GuideText();
+  const YES_NO = [t('yes'), t('no')];
+  const TRIP_COLUMNS = [t('trip_left'), t('trip_returned'), t('trip_countries')];
   const [activeId, setActiveId] = useState(sections[0]?.id);
   const section = sections.find((s) => s.id === activeId) || sections[0];
   const items = isAdmin ? section.questions : section.questions.filter((q) => q.status === 'approved');
@@ -19,9 +21,8 @@ export default function N400BlankForm({ sections, isAdmin = false, onOpenSection
 
   return (
     <div className="space-y-5 text-navy">
-      <div role="group" aria-label="Part of the form" className="flex flex-wrap gap-2">
+      <div role="group" aria-label={t('form_part')} className="flex flex-wrap gap-2">
         {sections.map((s) => {
-          const tone = tabFor(s).tone;
           const on = s.id === section.id;
           return (
             <button
@@ -29,25 +30,25 @@ export default function N400BlankForm({ sections, isAdmin = false, onOpenSection
               type="button"
               aria-pressed={on}
               onClick={() => setActiveId(s.id)}
-              className={`min-h-11 rounded-button border-2 px-4 text-[0.9375rem] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2 ${SECTION_BORDER[tone]} ${on ? SECTION_SOLID[tone] : 'bg-white text-navy hover:bg-tint'}`}
+              className={`min-h-11 rounded-button border-[1.5px] px-4 text-base font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim focus-visible:ring-offset-2 ${on ? 'bg-navy border-navy text-white' : 'bg-white border-line text-navy hover:border-navy'}`}
             >
-              {tabFor(s).label}
+              <span dir="auto">{t(`tab_${s.id}`) || tabFor(s).label}</span>
             </button>
           );
         })}
       </div>
 
       {/* One blank page of the form */}
-      <section aria-label={`Blank form: ${section.title}`} className="rounded-[4px] bg-white border p-4 sm:p-6 border-line space-y-4">
+      <section aria-label={t('form_blank_label', { title: section.title })} className="rounded-card bg-white border p-4 sm:p-6 border-line space-y-4">
         <div className="flex flex-wrap items-baseline justify-between gap-2 border-b-2 border-navy pb-2">
-          <h2 className="text-base sm:text-lg font-bold">{section.partLabel} · {section.title}</h2>
-          <span className="text-sm text-muted">BLANK · NOTHING IS SAVED</span>
+          <h2 className="text-base sm:text-lg font-bold" lang="en" dir="ltr">{section.partLabel} · {section.title}</h2>
+          <span className="text-small text-muted" dir="auto">{t('form_blank')}</span>
         </div>
         {items.length === 0 ? (
-          <p className="font-sans text-base text-muted">This part of the guide is still being prepared.</p>
+          <p className="font-sans text-base text-muted" dir="auto">{t('form_preparing')}</p>
         ) : items.map((q) => (
           <div key={q.id} className="space-y-3 border-b border-dashed border-line pb-4 last:border-0 last:pb-0">
-            <p className="text-base sm:text-lg leading-relaxed"><span className="font-bold">{q.label}.</span> {q.official}</p>
+            <p className="text-base sm:text-lg leading-relaxed" lang="en" dir="ltr"><span className="font-bold">{q.label}.</span> {q.official}</p>
             <div className="flex flex-wrap items-center justify-between gap-3">
               {isTrips ? (
                 <div className="w-full overflow-x-auto" aria-hidden="true">
@@ -66,9 +67,9 @@ export default function N400BlankForm({ sections, isAdmin = false, onOpenSection
               <button
                 type="button"
                 onClick={() => onOpenSection(section.id)}
-                className="font-sans min-h-11 rounded-button bg-tint px-4 text-[0.9375rem] font-semibold inline-flex items-center gap-1.5 hover:bg-line focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
+                className="font-sans min-h-11 rounded-button bg-line-soft px-4 text-base font-semibold inline-flex items-center gap-1.5 hover:bg-line focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
               >
-                What it asks <ArrowRight className="w-4 h-4 rtl:rotate-180" aria-hidden="true" />
+                <span dir="auto">{t('what_asks')}</span> <ArrowRight className="w-4 h-4 rtl:rotate-180" aria-hidden="true" />
               </button>
             </div>
           </div>
@@ -76,10 +77,10 @@ export default function N400BlankForm({ sections, isAdmin = false, onOpenSection
       </section>
 
       <div className="space-y-2 text-base leading-relaxed">
-        <p>The boxes stay empty. Tap <span className="font-semibold">What it asks</span> to open that question in the guide, in plain words.</p>
-        <p className="text-muted">The other parts of the form ask about you, your home, your family and your work. How to answer about your own life is a question for a lawyer.</p>
+        <p dir="auto">{t('form_help')}</p>
+        <p className="text-muted" dir="auto">{t('form_other')}</p>
         <Link to="/lawyer-first" className="inline-flex min-h-11 items-center font-semibold underline underline-offset-4 decoration-navy/40 hover:decoration-navy">
-          Talk to a lawyer first
+          <span dir="auto">{t('lawyer_title')}</span>
         </Link>
       </div>
     </div>

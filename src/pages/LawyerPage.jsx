@@ -1,16 +1,16 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, ExternalLink, AlertTriangle, Scale, Lock, Loader2, ArrowUpRight, Phone } from 'lucide-react';
-import NavyBanner from '@/components/pathways/NavyBanner';
-import { Button, Card, RaisedCard } from '@/components/pathways/ui';
+import { Button, Card } from '@/components/pathways/ui';
 import { AmioSays } from '@/components/pathways/Amio';
-import useAppLanguage, { isRTL } from '@/hooks/useAppLanguage';
+import useLawyerText from '@/components/lawyer/useLawyerText';
 import useLawyerChecklistTranslation from '@/hooks/useLawyerChecklistTranslation';
 import { LAWYER_CHECKLIST_ITEMS, LEGAL_HELP_LINKS } from '@/components/lawyer/lawyerChecklist';
 import { N400_SECTIONS } from '@/components/n400/n400Content';
 import ResourceFinder from '@/components/resources/ResourceFinder';
 
-// Two screens under Me, one file:
+// Two screens under Me, one file (Amio v2: paper pages with Back and the
+// title; wording in src/components/lawyer/lawyerStrings.js):
 // - /resources, "Free help near you" (frame R30Help): the curated directory
 //   of legal help, classes, libraries and USCIS offices (ResourceFinder: the
 //   map stays where it was), "Always call before you go", and a card to "Talk
@@ -25,8 +25,7 @@ export default function LawyerPage({ cachedUser }) {
   const navigate = useNavigate();
   const lawyerScreen = location.pathname.toLowerCase() === '/lawyer-first';
   const isAdmin = cachedUser?.role === 'admin';
-  const [language] = useAppLanguage();
-  const rtl = isRTL(language);
+  const { t, language, rtl } = useLawyerText();
   const { translation, isTranslating } = useLawyerChecklistTranslation(language);
   const hasTranslation = language && language !== 'en' && translation?.length > 0;
   // The guide section each item points at, in the learner's language when we
@@ -34,170 +33,148 @@ export default function LawyerPage({ cachedUser }) {
   const guideTitleFor = (item, i) =>
     (hasTranslation && translation[i]?.section) ||
     N400_SECTIONS.find((s) => s.id === item.guideSectionId)?.title ||
-    'the N-400 guide';
+    t('the_guide');
 
-  const back = (
-    <button
-      type="button"
-      onClick={() => (window.history.length > 1 ? navigate(-1) : navigate('/me'))}
-      aria-label="Back"
-      className="w-11 h-11 grid place-items-center rounded-full text-white hover:bg-chip-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-    >
-      <ArrowLeft className="w-6 h-6 rtl:rotate-180" aria-hidden="true" />
-    </button>
+  const top = (title, sub) => (
+    <div className="flex items-start gap-2">
+      <button
+        type="button"
+        onClick={() => (window.history.length > 1 ? navigate(-1) : navigate('/me'))}
+        aria-label={t('back')}
+        className="w-11 h-11 shrink-0 -ms-2 grid place-items-center rounded-full text-navy hover:bg-line-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim"
+      >
+        <ArrowLeft className="w-6 h-6 rtl:rotate-180" aria-hidden="true" />
+      </button>
+      <div className="min-w-0 pt-1">
+        <h1 className="font-display text-[1.75rem] leading-tight" dir="auto">{title}</h1>
+        <p className="text-base text-muted" dir="auto">{sub}</p>
+      </div>
+    </div>
   );
 
   if (!lawyerScreen) {
     return (
-      <div dir={rtl ? 'rtl' : 'ltr'}>
-        <NavyBanner title="Free help near you" subtitle="Legal help, classes and libraries" left={back} />
-        <div className="mx-auto max-w-5xl px-4 py-5 space-y-5 pb-8">
+      <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-full bg-paper text-navy">
+        <div className="mx-auto max-w-5xl px-4 pt-4 pb-8 flex flex-col gap-5">
+          {top(t('help_title'), t('help_sub'))}
           <ResourceFinder />
-          <Card padding="p-4" className="flex items-center gap-3 bg-tint border-tint">
+          <Card padding="p-4" className="flex items-center gap-3 bg-line-soft border-line-soft">
             <Phone className="w-5 h-5 shrink-0 text-navy" aria-hidden="true" />
-            <p className="text-base font-semibold text-navy">Always call before you go.</p>
+            <p className="text-base font-semibold text-navy" dir="auto">{t('call_first')}</p>
           </Card>
           <Link
             to="/lawyer-first"
-            className="block rounded-card bg-white border-2 border-not-yet p-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-not-yet focus-visible:ring-offset-2"
+            className="block rounded-card bg-white border-[2.5px] border-not-yet p-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2"
           >
             <span className="flex items-start gap-3">
               <Scale className="w-6 h-6 shrink-0 text-not-yet" aria-hidden="true" />
               <span className="min-w-0 flex-1">
-                <span className="block text-lg font-bold text-navy">Talk to a lawyer first</span>
-                <span className="mt-1 block text-base text-muted">Before you file, see when to get legal help.</span>
+                <span className="block text-lg font-bold text-navy" dir="auto">{t('lawyer_title')}</span>
+                <span className="mt-1 block text-base text-muted" dir="auto">{t('lawyer_card_body')}</span>
               </span>
               <ArrowRight className="w-5 h-5 shrink-0 mt-1 text-muted rtl:rotate-180" aria-hidden="true" />
             </span>
           </Link>
-          <p className="text-base leading-relaxed text-muted">
-            This page helps you find help. It is not legal advice about your situation. Nothing you read or search
-            here, including your location, is saved or shared.
-          </p>
+          <p className="text-base leading-relaxed text-muted" dir="auto">{t('help_note')}</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div dir={rtl ? 'rtl' : 'ltr'}>
-      <NavyBanner title="Talk to a lawyer first" subtitle="Before you file, if any of these might be true" left={back} />
-      <div className="mx-auto max-w-lg px-4 py-5 space-y-5 pb-8">
+    <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-full bg-paper text-navy">
+      <div className="mx-auto max-w-lg px-4 pt-4 pb-8 flex flex-col gap-5">
+        {top(t('lawyer_title'), t('lawyer_sub'))}
+        <AmioSays mood="kind" size={56}>{t('amio_lawyer')}</AmioSays>
 
-      <RaisedCard id="lawyer-first" className="space-y-3 scroll-mt-24 border-2 border-not-yet">
-        <div className="flex items-center gap-3">
-          <div className="w-11 h-11 rounded-full grid place-items-center bg-not-yet-bg text-not-yet shrink-0">
-            <Scale className="w-5 h-5" aria-hidden="true" />
+        <Card id="lawyer-first" padding="p-4" className="scroll-mt-24 border-[2.5px] border-not-yet">
+          <div className="flex items-start gap-3">
+            <Scale className="w-6 h-6 shrink-0 text-not-yet" aria-hidden="true" />
+            <p className="text-base leading-relaxed" dir="auto">{t('lawyer_intro')}</p>
           </div>
-          <h2 className="text-lg font-bold text-navy">Talk to a lawyer first</h2>
-        </div>
-        <p className="text-base text-navy leading-relaxed">
-          Most people can apply on their own. But if <strong>any</strong> of these are true for you, talk to a
-          lawyer or accredited representative <strong>before</strong> you file. Filing with one of these issues
-          can cause serious problems, including more than a denied application. You do not need to tell this
-          app anything.
-        </p>
-      </RaisedCard>
+        </Card>
 
-      <RaisedCard padding="p-4 sm:p-6" className="space-y-4">
-        <div className="flex flex-wrap items-center justify-between gap-2 px-1">
-          <h2 className="text-lg font-bold text-navy">If any of these is true for you</h2>
-          {isTranslating && (
-            <p className="flex items-center gap-2 text-sm text-muted">
-              <Loader2 className="w-4 h-4 animate-spin" /> Translating…
-            </p>
-          )}
-        </div>
-        <ul className="space-y-3">
-          {LAWYER_CHECKLIST_ITEMS.map((item, i) => (
-            <li key={item.id} className="flex items-start gap-3 rounded-2xl bg-tint p-4">
-              <span
-                className="w-8 h-8 rounded-full bg-white text-navy text-sm font-extrabold grid place-items-center shrink-0"
-                aria-hidden="true"
-              >
-                {i + 1}
-              </span>
-              <div className="min-w-0 space-y-1">
-                <p className="text-base font-bold text-navy leading-snug">
-                  {hasTranslation && translation[i] ? translation[i].text : item.text}
-                </p>
-                <p className="text-base text-muted leading-relaxed">
-                  {hasTranslation && translation[i] ? translation[i].explanation : item.explanation}
-                </p>
-                {item.guideSectionId && (
-                  <Link
-                    to={`/n400-guide?section=${item.guideSectionId}`}
-                    className="inline-flex items-center gap-1.5 min-h-11 text-sm font-bold text-navy underline underline-offset-4 decoration-navy/40 hover:decoration-navy rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
-                  >
-                    <span>{guideTitleFor(item, i)} — read it in the N-400 guide</span>
-                    <ArrowUpRight className="w-4 h-4 shrink-0 rtl:-scale-x-100" aria-hidden="true" />
-                  </Link>
-                )}
-              </div>
-            </li>
-          ))}
-        </ul>
-        <p className="text-base text-muted leading-relaxed px-1">
-          Each item links to the part of our N-400 guide that explains those questions. The guide tells you what
-          the form asks — it does not tell you how to answer.
-        </p>
-        {hasTranslation && (
-          <p className="text-sm text-muted">
-            Machine translation. If anything is unclear, ask a person you trust or a lawyer.
-          </p>
-        )}
-        {isAdmin && (
-          <div className="rounded-2xl bg-tint px-4 py-3 text-sm flex items-center gap-2 text-muted">
-            <Lock className="w-4 h-4 shrink-0" />
-            This list is a draft pending legal review — do not publish changes without the owner's sign-off.
+        <section aria-labelledby="if-any" className="flex flex-col gap-3">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <h2 id="if-any" className="text-lg font-bold" dir="auto">{t('if_any')}</h2>
+            {isTranslating && (
+              <p className="flex items-center gap-2 text-base text-muted" dir="auto">
+                <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> {t('translating')}
+              </p>
+            )}
           </div>
-        )}
-      </RaisedCard>
-
-      <section className="rounded-card bg-white border border-line text-navy p-5 md:p-6 space-y-4">
-        <h2 className="text-lg font-bold">Find free or low-cost legal help</h2>
-        <ul className="space-y-3">
-          {LEGAL_HELP_LINKS.map((link) => (
-            <li key={link.url}>
-              <a
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-start gap-3 rounded-2xl bg-tint text-navy p-4 min-h-[44px] hover:bg-line transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2"
-              >
-                <span className="min-w-0 flex-1 space-y-1">
-                  <span className="block text-base font-bold group-hover:underline">{link.label}</span>
-                  <span className="block text-sm text-muted">{link.description}</span>
+          <ul className="flex flex-col gap-2 list-none m-0 p-0">
+            {LAWYER_CHECKLIST_ITEMS.map((item, i) => (
+              <li key={item.id} className="flex items-start gap-3 rounded-card bg-white border-[1.5px] border-line p-4">
+                <span className="w-8 h-8 rounded-full bg-line-soft text-navy text-base font-bold grid place-items-center shrink-0" aria-hidden="true">
+                  {i + 1}
                 </span>
-                <ExternalLink className="w-5 h-5 shrink-0 mt-0.5" aria-hidden="true" />
-              </a>
-            </li>
-          ))}
-        </ul>
-      </section>
+                <div className="min-w-0 space-y-1">
+                  <p className="text-base font-bold leading-snug" dir="auto">
+                    {hasTranslation && translation[i] ? translation[i].text : item.text}
+                  </p>
+                  <p className="text-base text-muted leading-relaxed" dir="auto">
+                    {hasTranslation && translation[i] ? translation[i].explanation : item.explanation}
+                  </p>
+                  {item.guideSectionId && (
+                    <Link
+                      to={`/n400-guide?section=${item.guideSectionId}`}
+                      className="inline-flex items-center gap-1.5 min-h-11 text-base font-semibold text-denim underline underline-offset-4 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim"
+                    >
+                      <span dir="auto">{t('read_in_guide', { section: guideTitleFor(item, i) })}</span>
+                      <ArrowUpRight className="w-4 h-4 shrink-0 rtl:-scale-x-100" aria-hidden="true" />
+                    </Link>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ul>
+          <p className="text-base text-muted leading-relaxed" dir="auto">{t('guide_note')}</p>
+          {hasTranslation && <p className="text-small text-muted" dir="auto">{t('machine_note')}</p>}
+          {isAdmin && (
+            <div className="rounded-card bg-line-soft px-4 py-3 text-small flex items-center gap-2 text-muted">
+              <Lock className="w-4 h-4 shrink-0" aria-hidden="true" />
+              <span dir="auto">{t('admin_draft')}</span>
+            </div>
+          )}
+        </section>
 
-      <div className="rounded-card bg-not-yet-bg border-2 border-not-yet p-5 space-y-3">
-        <div className="flex items-center gap-3">
-          <AlertTriangle className="w-6 h-6 text-not-yet shrink-0" aria-hidden="true" />
-          <h2 className="text-lg font-bold text-not-yet">Who can legally help you</h2>
-        </div>
-        <p className="text-base text-navy leading-relaxed">
-          Only lawyers and DOJ-accredited representatives can give immigration legal advice. Notarios and
-          &ldquo;immigration consultants&rdquo; cannot.
-        </p>
-      </div>
+        <section aria-labelledby="free-help" className="rounded-card bg-white border-[1.5px] border-line p-4 flex flex-col gap-3">
+          <h2 id="free-help" className="text-lg font-bold" dir="auto">{t('free_help')}</h2>
+          <ul className="flex flex-col gap-2 list-none m-0 p-0">
+            {LEGAL_HELP_LINKS.map((link, i) => (
+              <li key={link.url}>
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-start gap-3 rounded-card bg-paper p-4 min-h-[44px] hover:bg-line-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim focus-visible:ring-offset-2"
+                >
+                  <span className="min-w-0 flex-1 space-y-1">
+                    <span className="block text-base font-bold group-hover:underline" lang="en" dir="ltr">{link.label}</span>
+                    <span className="block text-base text-muted" dir="auto">{t(`link_${i}`)}</span>
+                    <span className="sr-only"> ({t('opens_outside')})</span>
+                  </span>
+                  <ExternalLink className="w-5 h-5 shrink-0 mt-0.5" aria-hidden="true" />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
 
+        <Card padding="p-4" className="border-[2.5px] border-not-yet flex flex-col gap-2">
+          <div className="flex items-center gap-3">
+            <AlertTriangle className="w-6 h-6 text-not-yet shrink-0" aria-hidden="true" />
+            <h2 className="text-lg font-bold" dir="auto">{t('who_can')}</h2>
+          </div>
+          <p className="text-base leading-relaxed" dir="auto">{t('who_can_body')}</p>
+        </Card>
 
-      <AmioSays mood="kind">I can&apos;t give legal advice. A free legal helper can look at your situation.</AmioSays>
+        <p className="text-base leading-relaxed text-muted" dir="auto">{t('nothing_saved')}</p>
 
-      <p className="text-base leading-relaxed text-muted">
-        Nothing you see or tap here is saved. Pathways is not a law office. This page explains when to get legal
-        help; it is not legal advice about your situation.
-      </p>
-
-      <Button variant="main" className="w-full" onClick={() => navigate('/resources')}>
-        Find free legal help near me
-      </Button>
+        <Button variant="main" className="w-full" onClick={() => navigate('/resources')}>
+          <span dir="auto">{t('find_near_me')}</span>
+        </Button>
       </div>
     </div>
   );

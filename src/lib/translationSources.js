@@ -29,6 +29,8 @@ import { CHECKPOINT_LINES } from '@/components/checkpoint/checkpointStrings';
 import { ONBOARDING_LINES } from '@/components/onboarding/onboardingStrings';
 import { MY_TUTOR_LINES } from '@/components/partners/myTutorStrings';
 import { N400_LESSON_LINES } from '@/components/n400lesson/n400LessonStrings';
+import { N400_GUIDE_LINES } from '@/components/n400/n400GuideStrings';
+import { LAWYER_LINES } from '@/components/lawyer/lawyerStrings';
 import { HELP_PHRASES, N400_LESSONS, N400_QUESTION_NAMES } from '@/lib/n400Lessons';
 import { courseTitleTexts } from '@/lib/courseTitles';
 import { TODAY_LINES } from '@/components/today/todayLines';
@@ -83,6 +85,8 @@ export const STRING_SETS = [
   { id: 'checkpoints', strings: CHECKPOINT_LINES, usedIn: [['src/components/checkpoint/checkpointParts.jsx', 'CHECKPOINT_LINES']] },
   { id: 'n400-lessons', strings: N400_LESSON_LINES, usedIn: [['src/components/n400lesson/N400LessonPage.jsx', 'N400_LESSON_LINES'], ['src/components/n400lesson/N400LessonsCard.jsx', 'N400_LESSON_LINES']] },
   { id: 'today-plan', strings: TODAY_LINES, usedIn: [['src/components/today/useToday.js', 'TODAY_LINES']] },
+  { id: 'lawyer', strings: LAWYER_LINES, usedIn: [['src/components/lawyer/useLawyerText.js', 'LAWYER_LINES']] },
+  { id: 'n400-guide', strings: N400_GUIDE_LINES, usedIn: [['src/components/n400/useN400GuideText.js', 'N400_GUIDE_LINES']] },
   { id: 'practice', strings: PRACTICE_LINES, usedIn: [['src/components/practice/usePracticeText.js', 'PRACTICE_LINES']] },
   { id: 'interview-day', strings: INTERVIEW_DAY_LINES, usedIn: [['src/components/interview-day/useDayText.js', 'INTERVIEW_DAY_LINES']] },
   { id: 'interview-intro', strings: INTERVIEW_INTRO_LINES, usedIn: [['src/components/practice/InterviewPractice.jsx', 'INTERVIEW_INTRO_LINES']] },
