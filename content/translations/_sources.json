@@ -10097,6 +10097,12 @@
    ]
   },
   {
+   "text": "Offices marked “needs check”: copied from USCIS but not checked yet. Shown to admins only until checked.",
+   "from": [
+    "interview-when"
+   ]
+  },
+  {
    "text": "Official U.S. Department of Justice list of organizations and representatives accredited to give immigration legal help.",
    "from": [
     "lawyer"
@@ -21512,6 +21518,12 @@
    "text": "naturalization ceremony",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "needs check",
+   "from": [
+    "interview-when"
    ]
   },
   {
