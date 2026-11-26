@@ -31,6 +31,7 @@ import { MY_TUTOR_LINES } from '@/components/partners/myTutorStrings';
 import { N400_LESSON_LINES } from '@/components/n400lesson/n400LessonStrings';
 import { N400_GUIDE_LINES } from '@/components/n400/n400GuideStrings';
 import { LAWYER_LINES } from '@/components/lawyer/lawyerStrings';
+import { ERROR_PAGE_LINES, LESSON_STATUS_LINES, SETTINGS_PIECE_LINES } from '@/components/shell/leftoverStrings';
 import { ASK_HISTORY_LINES, NOTIFICATION_LINES, PROGRESS_LINES } from '@/components/progress/progressStrings';
 import { HELP_PHRASES, N400_LESSONS, N400_QUESTION_NAMES } from '@/lib/n400Lessons';
 import { courseTitleTexts } from '@/lib/courseTitles';
@@ -89,6 +90,9 @@ export const STRING_SETS = [
   { id: 'notifications', strings: NOTIFICATION_LINES, usedIn: [['src/components/notifications/NotificationCenter.jsx', 'NOTIFICATION_LINES']] },
   { id: 'ask-history', strings: ASK_HISTORY_LINES, usedIn: [['src/pages/StudyHistory.jsx', 'ASK_HISTORY_LINES']] },
   { id: 'progress', strings: PROGRESS_LINES, usedIn: [['src/components/progress/useProgressText.js', 'PROGRESS_LINES']] },
+  { id: 'lesson-status', strings: LESSON_STATUS_LINES, usedIn: [['src/pages/Dashboard.jsx', 'LESSON_STATUS_LINES']] },
+  { id: 'settings-pieces', strings: SETTINGS_PIECE_LINES, usedIn: [['src/components/persona/TutorSetup.jsx', 'SETTINGS_PIECE_LINES'], ['src/components/utils/VoiceSettings.jsx', 'SETTINGS_PIECE_LINES']] },
+  { id: 'error-pages', strings: ERROR_PAGE_LINES, usedIn: [['src/lib/PageNotFound.jsx', 'ERROR_PAGE_LINES'], ['src/components/UserNotRegisteredError.jsx', 'ERROR_PAGE_LINES']] },
   { id: 'lawyer', strings: LAWYER_LINES, usedIn: [['src/components/lawyer/useLawyerText.js', 'LAWYER_LINES']] },
   { id: 'n400-guide', strings: N400_GUIDE_LINES, usedIn: [['src/components/n400/useN400GuideText.js', 'N400_GUIDE_LINES']] },
   { id: 'practice', strings: PRACTICE_LINES, usedIn: [['src/components/practice/usePracticeText.js', 'PRACTICE_LINES']] },

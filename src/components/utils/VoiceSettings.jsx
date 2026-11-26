@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Volume2, Play } from 'lucide-react';
 import { Button } from "@/components/ui/button";
-import { PillButton } from '@/components/pathways/ui';
+import { Button as PwButton } from '@/components/pathways/ui';
+import useTranslatedLines from '@/components/persona/useTranslatedLines';
+import useAppLanguage from '@/hooks/useAppLanguage';
+import { SETTINGS_PIECE_LINES } from '@/components/shell/leftoverStrings';
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
@@ -42,6 +45,10 @@ export default function VoiceSettings() {
     saveVoiceSettings({ rate: next });
   };
 
+  const [language] = useAppLanguage();
+  const tr = useTranslatedLines(SETTINGS_PIECE_LINES, language, { cacheKey: 'settings_pieces_v1' });
+  const t = (key) => (language !== 'en' && tr(key)) || SETTINGS_PIECE_LINES[key] || key;
+
   const playSample = () => {
     stopSpeaking();
     setPlayingSample(true);
@@ -57,28 +64,26 @@ export default function VoiceSettings() {
       onOpenChange={(isOpen) => { setOpen(isOpen); if (!isOpen) stopSpeaking(); }}
     >
       <PopoverTrigger asChild>
-        <Button variant="outline" className="gap-2 rounded-full min-h-[44px] border-line text-navy font-bold">
-          <Volume2 className="w-4 h-4" aria-hidden="true" /> Voice
+        <Button variant="outline" className="gap-2 min-h-[44px] border-[1.5px] border-line bg-white text-navy font-semibold hover:border-navy hover:bg-white">
+          <Volume2 className="w-4 h-4" aria-hidden="true" /> {t('voice')}
         </Button>
       </PopoverTrigger>
-      <PopoverContent align="center" className="w-80 max-w-[calc(100vw-2rem)] space-y-5 rounded-card border-line shadow-lift p-5 text-navy">
+      <PopoverContent align="center" className="w-80 max-w-[calc(100vw-2rem)] space-y-5 rounded-card border-line bg-paper shadow-float p-5 text-navy">
         <div>
-          <p className="text-base font-bold mb-2">Voice</p>
+          <p className="text-base font-bold mb-2" dir="auto">{t('voice')}</p>
           {voicesLoaded && voices.length === 0 ? (
-            <p className="text-sm text-muted leading-relaxed">
-              Your browser has limited voices. For the most natural voices, try Microsoft Edge or Google Chrome, or install enhanced voices in your device's speech settings.
-            </p>
+            <p className="text-small text-muted leading-relaxed" dir="auto">{t('voice_limited')}</p>
           ) : (
             <Select value={voiceName || 'best'} onValueChange={handleVoiceChange}>
-              <SelectTrigger aria-label="Voice"><SelectValue /></SelectTrigger>
+              <SelectTrigger aria-label={t('voice')} className="bg-white"><SelectValue /></SelectTrigger>
               <SelectContent>
-                <SelectItem value="best">Best available (recommended)</SelectItem>
+                <SelectItem value="best">{t('voice_best')}</SelectItem>
                 {voices.map((v) => (
                   <SelectItem key={v.name} value={v.name}>
                     <span className="flex items-center gap-2">
                       <span className="truncate">{v.name}</span>
                       {rankVoice(v) >= 3 && (
-                        <span className="text-small font-bold bg-correct-bg text-correct rounded-button px-1.5 shrink-0">Natural</span>
+                        <span className="text-small font-bold bg-correct-bg text-correct rounded-button px-1.5 shrink-0">{t('voice_natural')}</span>
                       )}
                       <span className="text-xs text-muted">{v.lang}</span>
                     </span>
@@ -91,8 +96,8 @@ export default function VoiceSettings() {
 
         <div>
           <div className="flex items-center justify-between mb-2">
-            <p className="text-base font-bold">Speed</p>
-            <span className="text-sm font-bold text-navy tabular-nums bg-tint rounded-button px-2.5 py-0.5">{rate.toFixed(2)}×</span>
+            <p className="text-base font-bold" dir="auto">{t('speed')}</p>
+            <span className="text-small font-bold text-navy tabular-nums bg-white border border-line rounded-button px-2.5 py-0.5">{rate.toFixed(2)}×</span>
           </div>
           <Slider
             value={[rate]}
@@ -100,21 +105,15 @@ export default function VoiceSettings() {
             max={1.3}
             step={0.05}
             onValueChange={handleRateChange}
-            aria-label="Speed"
+            aria-label={t('speed')}
           />
-          <p className="text-sm text-muted mt-2 leading-snug">
-            Tip: practice at slower speeds first, then at 1.0× like the real interview.
-          </p>
+          <p className="text-small text-muted mt-2 leading-snug" dir="auto">{t('speed_tip')}</p>
         </div>
 
-        <PillButton
-          className="w-full"
-          onClick={playSample}
-          disabled={playingSample}
-        >
+        <PwButton variant="second" className="w-full" onClick={playSample} disabled={playingSample}>
           <Play className="w-4 h-4" aria-hidden="true" />
-          {playingSample ? 'Playing…' : 'Play sample'}
-        </PillButton>
+          {playingSample ? t('playing') : t('play_sample')}
+        </PwButton>
       </PopoverContent>
     </Popover>
   );

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Loader2, Volume2 } from 'lucide-react';
-import { PrimaryButton, QuietButton } from '@/components/pathways/ui';
+import { Button } from '@/components/pathways/ui';
+import { SETTINGS_PIECE_LINES } from '@/components/shell/leftoverStrings';
 import useTranslatedLines from './useTranslatedLines';
 import useAppLanguage, { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
 import { speakText } from '@/components/utils/textToSpeech';
@@ -20,8 +21,8 @@ function OptionButton({ selected, onClick, children, className = '' }) {
       type="button"
       onClick={onClick}
       aria-pressed={selected}
-      className={`min-h-[44px] rounded-2xl border-2 px-4 py-3 text-left text-navy transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2 ${
-        selected ? 'border-navy bg-tint' : 'bg-white border-line hover:border-muted'
+      className={`min-h-[44px] rounded-card border-2 px-4 py-3 text-start text-navy transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2 ${
+        selected ? 'border-navy bg-white' : 'bg-white border-line hover:border-navy'
       } ${className}`}
     >
       {children}
@@ -34,18 +35,20 @@ function ListenButton({ text, language, label }) {
     <button
       type="button"
       onClick={() => speakText(text, language)}
-      className="min-h-[44px] -ml-3 inline-flex items-center gap-2 rounded-2xl px-3 text-base font-bold text-navy hover:bg-tint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
+      className="min-h-[44px] -ms-3 inline-flex items-center gap-2 rounded-button px-3 text-base font-semibold text-denim hover:bg-line-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
     >
-      <Volume2 className="w-5 h-5" /> {label}
+      <Volume2 className="w-5 h-5" aria-hidden="true" /> <span dir="auto">{label}</span>
     </button>
   );
 }
 
 // "Your tutor" screen: tone, English mix, and a preview line. The tutor is
 // always Amio, so there is no name to pick. Used in Settings.
-export default function TutorSetup({ initialProfile, onSave, onSkip, saveLabel = 'Save', saving = false }) {
+export default function TutorSetup({ initialProfile, onSave, onSkip, saveLabel, saving = false }) {
   const [draft, setDraft] = useState(() => normalizeTutorProfile(initialProfile));
   const [language] = useAppLanguage();
+  const trPiece = useTranslatedLines(SETTINGS_PIECE_LINES, language, { cacheKey: 'settings_pieces_v1' });
+  const t = (key) => (language !== 'en' && trPiece(key)) || SETTINGS_PIECE_LINES[key] || key;
   const translate = useTranslatedLines(LINES, language, {
     cacheKey: 'tutor_lines_v2',
     handWritten: { es: FIXED_LINES_ES },
@@ -66,18 +69,18 @@ export default function TutorSetup({ initialProfile, onSave, onSkip, saveLabel =
   return (
     <div className="space-y-6 text-base text-navy">
       {/* Preview */}
-      <div className="rounded-card bg-tint p-4">
+      <div className="rounded-card bg-line-soft p-4">
         <div className="space-y-2">
           {mineLines && (
-            <div className="rounded-2xl rounded-tl-sm bg-white border border-line p-3">
+            <div className="rounded-card rounded-ss-[4px] bg-white border border-line p-3">
               <p dir={RTL_LANGUAGES.includes(language) ? 'rtl' : 'ltr'}>{mineLines.join(' ')}</p>
-              <ListenButton text={mineLines.join(' ')} language={language} label="Listen" />
+              <ListenButton text={mineLines.join(' ')} language={language} label={t('listen')} />
             </div>
           )}
-          <div className={`rounded-2xl p-3 ${mineLines ? 'bg-white/60' : 'rounded-tl-sm bg-white border border-line'}`}>
-            {mineLines && <p className="text-sm font-semibold text-muted">English</p>}
-            <p>{englishLines.join(' ')}</p>
-            <ListenButton text={sayInEnglish} language="en" label={mineLines ? 'Listen in English' : 'Listen'} />
+          <div className={`rounded-card p-3 ${mineLines ? 'bg-white/60' : 'rounded-ss-[4px] bg-white border border-line'}`}>
+            {mineLines && <p className="text-small font-semibold text-muted" dir="auto">{t('english')}</p>}
+            <p lang="en" dir="ltr">{englishLines.join(' ')}</p>
+            <ListenButton text={sayInEnglish} language="en" label={mineLines ? t('listen_english') : t('listen')} />
           </div>
           <p className="font-medium text-lg text-muted">— {profile.name}</p>
         </div>
@@ -85,12 +88,12 @@ export default function TutorSetup({ initialProfile, onSave, onSkip, saveLabel =
 
       {/* Tone */}
       <fieldset className="space-y-2">
-        <legend className="font-bold mb-2">How should your tutor talk?</legend>
+        <legend className="font-bold mb-2" dir="auto">{t('how_talk')}</legend>
         <div className="grid gap-2">
-          {Object.entries(TUTOR_TONES).map(([id, t]) => (
+          {Object.keys(TUTOR_TONES).map((id) => (
             <OptionButton key={id} selected={profile.tone === id} onClick={() => set('tone', id)}>
-              <span className="block font-semibold">{t.label}</span>
-              <span className="block text-sm text-muted">{t.description}</span>
+              <span className="block font-semibold" dir="auto">{t(`tone_${id}`)}</span>
+              <span className="block text-small text-muted" dir="auto">{t(`tone_${id}_sub`)}</span>
             </OptionButton>
           ))}
         </div>
@@ -99,27 +102,23 @@ export default function TutorSetup({ initialProfile, onSave, onSkip, saveLabel =
       {/* English mix */}
       {language !== 'en' && (
         <fieldset className="space-y-2">
-          <legend className="font-bold mb-2">How much English?</legend>
+          <legend className="font-bold mb-2" dir="auto">{t('how_much_english')}</legend>
           <div className="grid gap-2">
-            {Object.entries(ENGLISH_MIX).map(([id, m]) => (
+            {Object.keys(ENGLISH_MIX).map((id) => (
               <OptionButton key={id} selected={profile.english_mix === id} onClick={() => set('english_mix', id)}>
-                <span className="font-semibold">{m.label}</span>
+                <span className="font-semibold" dir="auto">{t(`mix_${id}`)}</span>
               </OptionButton>
             ))}
           </div>
-          <p className="text-sm text-muted">Your tutor explains in your app language. You can change this any time.</p>
+          <p className="text-small text-muted" dir="auto">{t('mix_note')}</p>
         </fieldset>
       )}
 
-      <div className="flex flex-col-reverse sm:flex-row gap-2 sm:justify-end">
-        {onSkip && (
-          <QuietButton onClick={onSkip}>
-            Skip for now
-          </QuietButton>
-        )}
-        <PrimaryButton disabled={saving} onClick={() => onSave(profile)}>
-          {saving && <Loader2 className="w-4 h-4 animate-spin" />} {saveLabel}
-        </PrimaryButton>
+      <div className="flex flex-col gap-2">
+        <Button variant="main" className="w-full" disabled={saving} onClick={() => onSave(profile)}>
+          {saving && <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />} {saveLabel || t('save')}
+        </Button>
+        {onSkip && <Button variant="second" className="w-full" onClick={onSkip}>{t('skip')}</Button>}
       </div>
     </div>
   );
