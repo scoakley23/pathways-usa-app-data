@@ -409,6 +409,12 @@
    ]
   },
   {
+   "text": "1 card",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
    "text": "1 day this week",
    "from": [
     "lesson-player",
@@ -1376,6 +1382,12 @@
    ]
   },
   {
+   "text": "Always call before you go.",
+   "from": [
+    "lawyer"
+   ]
+  },
+  {
    "text": "Always tell the truth. If “yes” might be true for you, talk to a lawyer before you file.",
    "from": [
     "n400-lessons"
@@ -1936,7 +1948,9 @@
     "course",
     "interview-day",
     "interview-when",
+    "lawyer",
     "lesson-player",
+    "n400-guide",
     "practice",
     "settings",
     "sign-in",
@@ -1960,6 +1974,12 @@
    "from": [
     "checkpoints",
     "today-plan"
+   ]
+  },
+  {
+   "text": "Back to the N-400 guide",
+   "from": [
+    "n400-guide"
    ]
   },
   {
@@ -2048,6 +2068,18 @@
    "text": "Before you file, check \"Talk to a lawyer first\" — some situations need a lawyer or accredited representative before you apply.",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "Before you file, if any of these might be true",
+   "from": [
+    "lawyer"
+   ]
+  },
+  {
+   "text": "Before you file, see when to get legal help.",
+   "from": [
+    "lawyer"
    ]
   },
   {
@@ -2140,6 +2172,18 @@
    "text": "Bills and Laws",
    "from": [
     "lessons"
+   ]
+  },
+  {
+   "text": "Blank form: {title}",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
+   "text": "Blank · nothing is saved",
+   "from": [
+    "n400-guide"
    ]
   },
   {
@@ -2400,6 +2444,7 @@
     "checkpoints",
     "interview-day",
     "lesson-player",
+    "n400-guide",
     "n400-lessons",
     "practice"
    ]
@@ -2611,7 +2656,14 @@
   {
    "text": "Citizenship, Voting, and Taxes",
    "from": [
-    "lawyer-checklist"
+    "lawyer-checklist",
+    "n400-guide"
+   ]
+  },
+  {
+   "text": "Citizenship, voting, and taxes",
+   "from": [
+    "n400-guide"
    ]
   },
   {
@@ -2835,6 +2887,12 @@
    "from": [
     "course",
     "interview-when"
+   ]
+  },
+  {
+   "text": "Coming soon. This section is still being prepared.",
+   "from": [
+    "n400-guide"
    ]
   },
   {
@@ -3131,6 +3189,12 @@
    ]
   },
   {
+   "text": "Continue: {section}",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
    "text": "Continue: {step}",
    "from": [
     "lesson-player",
@@ -3168,6 +3232,12 @@
    ]
   },
   {
+   "text": "Countries you traveled to",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
    "text": "Course",
    "from": [
     "tabs"
@@ -3200,13 +3270,20 @@
   {
    "text": "Crimes and Offenses",
    "from": [
-    "lawyer-checklist"
+    "lawyer-checklist",
+    "n400-guide"
    ]
   },
   {
    "text": "Crimes and arrests",
    "from": [
     "n400-lessons"
+   ]
+  },
+  {
+   "text": "Crimes and offenses",
+   "from": [
+    "n400-guide"
    ]
   },
   {
@@ -3225,6 +3302,18 @@
    "text": "Daily reminder",
    "from": [
     "settings"
+   ]
+  },
+  {
+   "text": "Date you left",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
+   "text": "Date you returned",
+   "from": [
+    "n400-guide"
    ]
   },
   {
@@ -3495,6 +3584,12 @@
    ]
   },
   {
+   "text": "Directory of nonprofit legal services, searchable by state and language.",
+   "from": [
+    "lawyer"
+   ]
+  },
+  {
    "text": "Discharged for not being a citizen",
    "from": [
     "n400-lessons"
@@ -3724,6 +3819,7 @@
    "from": [
     "course",
     "lesson-player",
+    "n400-guide",
     "n400-lessons",
     "today-plan"
    ]
@@ -3732,6 +3828,12 @@
    "text": "Draft story",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Draft, pending review",
+   "from": [
+    "n400-guide"
    ]
   },
   {
@@ -3835,6 +3937,12 @@
    "text": "Each branch has its own job, so no one branch has all the power.",
    "from": [
     "course-lessons"
+   ]
+  },
+  {
+   "text": "Each item links to the part of our N-400 guide that explains those questions. The guide tells you what the form asks. It does not tell you how to answer.",
+   "from": [
+    "lawyer"
    ]
   },
   {
@@ -4341,6 +4449,18 @@
    ]
   },
   {
+   "text": "Find free legal help near me",
+   "from": [
+    "lawyer"
+   ]
+  },
+  {
+   "text": "Find free or low-cost legal help",
+   "from": [
+    "lawyer"
+   ]
+  },
+  {
    "text": "Find help near you",
    "from": [
     "interview-day"
@@ -4652,7 +4772,14 @@
   {
    "text": "Free help near you",
    "from": [
+    "lawyer",
     "me"
+   ]
+  },
+  {
+   "text": "Free online tool that helps you complete your application and connects you to legal help.",
+   "from": [
+    "lawyer"
    ]
   },
   {
@@ -5141,6 +5268,18 @@
    ]
   },
   {
+   "text": "Groups and Violence",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
+   "text": "Groups and violence",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
    "text": "Groups focused on specific policy areas that draft and review legislation",
    "from": [
     "lessons"
@@ -5167,7 +5306,8 @@
   {
    "text": "Guide",
    "from": [
-    "course"
+    "course",
+    "n400-guide"
    ]
   },
   {
@@ -5982,6 +6122,12 @@
    ]
   },
   {
+   "text": "I can’t give legal advice. A free legal helper can look at your situation.",
+   "from": [
+    "lawyer"
+   ]
+  },
+  {
    "text": "I do",
    "from": [
     "interview-day"
@@ -6048,6 +6194,12 @@
    ]
   },
   {
+   "text": "I read this section",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
    "text": "I sent my N-400",
    "from": [
     "getting-started"
@@ -6087,6 +6239,18 @@
    "text": "If a religious or moral reason means you could not make one of these promises, talk to a lawyer before you file.",
    "from": [
     "n400-lessons"
+   ]
+  },
+  {
+   "text": "If any answer might not be “no,” get free legal help before you file.",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
+   "text": "If any of these is true for you",
+   "from": [
+    "lawyer"
    ]
   },
   {
@@ -6228,6 +6392,12 @@
    ]
   },
   {
+   "text": "If “yes” might be true for you,",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
    "text": "Illegal drugs; drugs that are legal only with a doctor’s prescription.",
    "from": [
     "n400"
@@ -6236,7 +6406,14 @@
   {
    "text": "Immigration History",
    "from": [
-    "lawyer-checklist"
+    "lawyer-checklist",
+    "n400-guide"
+   ]
+  },
+  {
+   "text": "Immigration history",
+   "from": [
+    "n400-guide"
    ]
   },
   {
@@ -6347,6 +6524,7 @@
    "from": [
     "ask-screen",
     "lesson-player",
+    "n400-guide",
     "n400-lessons"
    ]
   },
@@ -7020,6 +7198,18 @@
    ]
   },
   {
+   "text": "Learn to understand each question the way the officer may ask it. You never answer here.",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
+   "text": "Learn what each question means. {cards} cards · {sections} sections. This is not legal advice.",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
    "text": "Learned what the questions mean",
    "from": [
     "n400-lessons"
@@ -7071,6 +7261,12 @@
    "text": "Legal guarantee that laws apply equally to all people without discrimination",
    "from": [
     "lessons"
+   ]
+  },
+  {
+   "text": "Legal help, classes and libraries",
+   "from": [
+    "lawyer"
    ]
   },
   {
@@ -7282,6 +7478,7 @@
    "text": "Listen",
    "from": [
     "lesson-player",
+    "n400-guide",
     "n400-lessons",
     "today-plan"
    ]
@@ -7314,6 +7511,12 @@
    "text": "Listen to the national anthem, “The Star-Spangled Banner.”",
    "from": [
     "course-pictures"
+   ]
+  },
+  {
+   "text": "Listen to this",
+   "from": [
+    "n400-guide"
    ]
   },
   {
@@ -7350,6 +7553,12 @@
    "text": "Listening…",
    "from": [
     "practice"
+   ]
+  },
+  {
+   "text": "Listening… say the words, then tap “Stop and check.”",
+   "from": [
+    "n400-guide"
    ]
   },
   {
@@ -7484,6 +7693,13 @@
    "text": "MLK led the 1963 March on Washington where he gave his famous speech",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "Machine translation. If anything is unclear, ask a person you trust or a lawyer.",
+   "from": [
+    "lawyer",
+    "n400-guide"
    ]
   },
   {
@@ -7862,6 +8078,12 @@
    ]
   },
   {
+   "text": "Most people can apply on their own. But if any of these are true for you, talk to a lawyer or accredited representative before you file. Filing with one of these issues can cause serious problems, including more than a denied application. You do not need to tell this app anything.",
+   "from": [
+    "lawyer"
+   ]
+  },
+  {
    "text": "Motto and anthem",
    "from": [
     "course-titles"
@@ -7927,6 +8149,12 @@
    "text": "N-400 lessons",
    "from": [
     "n400-lessons"
+   ]
+  },
+  {
+   "text": "N-400 lessons with Amio",
+   "from": [
+    "n400-guide"
    ]
   },
   {
@@ -8273,6 +8501,12 @@
    ]
   },
   {
+   "text": "Never type your own answers here.",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
    "text": "New Hampshire / Massachusetts / Rhode Island / Connecticut / New York / New Jersey / Pennsylvania / Delaware / Maryland / Virginia / North Carolina / South Carolina / Georgia",
    "from": [
     "civics-questions"
@@ -8350,6 +8584,7 @@
     "checkpoints",
     "interview-day",
     "lesson-player",
+    "n400-guide",
     "n400-lessons"
    ]
   },
@@ -8357,6 +8592,12 @@
    "text": "Next N-400 lesson",
    "from": [
     "interview-tab"
+   ]
+  },
+  {
+   "text": "Next card",
+   "from": [
+    "n400-guide"
    ]
   },
   {
@@ -8416,6 +8657,7 @@
   {
    "text": "No",
    "from": [
+    "n400-guide",
     "pilot"
    ]
   },
@@ -8699,6 +8941,12 @@
    ]
   },
   {
+   "text": "Nothing you see or tap here is saved. Pathways is not a law office. This page explains when to get legal help; it is not legal advice about your situation.",
+   "from": [
+    "lawyer"
+   ]
+  },
+  {
    "text": "Notifications",
    "from": [
     "settings"
@@ -8736,6 +8984,12 @@
    ]
   },
   {
+   "text": "Oath Questions",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
    "text": "Oath Requirements",
    "from": [
     "interview-intro"
@@ -8757,6 +9011,12 @@
    "text": "Oath of loyalty to the United States and its flag, often recited in schools",
    "from": [
     "key-words"
+   ]
+  },
+  {
+   "text": "Oath questions",
+   "from": [
+    "n400-guide"
    ]
   },
   {
@@ -8805,6 +9065,12 @@
    "text": "Officer speaks questions aloud",
    "from": [
     "interview-intro"
+   ]
+  },
+  {
+   "text": "Official U.S. Department of Justice list of organizations and representatives accredited to give immigration legal help.",
+   "from": [
+    "lawyer"
    ]
   },
   {
@@ -8878,6 +9144,12 @@
    "text": "On the form",
    "from": [
     "n400-lessons"
+   ]
+  },
+  {
+   "text": "On the form · item {label}",
+   "from": [
+    "n400-guide"
    ]
   },
   {
@@ -8975,6 +9247,12 @@
    "text": "Only for men who answered “Yes” to 22.a",
    "from": [
     "n400-lessons"
+   ]
+  },
+  {
+   "text": "Only lawyers and DOJ-accredited representatives can give immigration legal advice. Notarios and “immigration consultants” cannot.",
+   "from": [
+    "lawyer"
    ]
   },
   {
@@ -9099,6 +9377,60 @@
    ]
   },
   {
+   "text": "Part 8",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
+   "text": "Part 8 of Form N-400",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
+   "text": "Part 9 of Form N-400, Items 1-4",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
+   "text": "Part 9 of Form N-400, Items 15-19",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
+   "text": "Part 9 of Form N-400, Items 20-21",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
+   "text": "Part 9 of Form N-400, Items 22-29",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
+   "text": "Part 9 of Form N-400, Items 30-37",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
+   "text": "Part 9 of Form N-400, Items 5-14",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
+   "text": "Part of the form",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
    "text": "Part {n} of {total}",
    "from": [
     "interview-day"
@@ -9145,6 +9477,12 @@
    "text": "Pathways is not part of USCIS or the U.S. government.",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "Pathways is not part of USCIS or the government.",
+   "from": [
+    "n400-guide"
    ]
   },
   {
@@ -9265,6 +9603,12 @@
    "text": "Pick up where you left off",
    "from": [
     "practice"
+   ]
+  },
+  {
+   "text": "Pick what to practice, tap the mic, and repeat it out loud. You get a match score. Nothing is saved.",
+   "from": [
+    "n400-guide"
    ]
   },
   {
@@ -9823,6 +10167,7 @@
   {
    "text": "Read",
    "from": [
+    "n400-guide",
     "today-plan"
    ]
   },
@@ -10355,6 +10700,7 @@
    "from": [
     "ask-screen",
     "lesson-player",
+    "n400-guide",
     "n400-lessons",
     "reading-tips"
    ]
@@ -10716,6 +11062,12 @@
    ]
   },
   {
+   "text": "Say it back",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
    "text": "Say it in English",
    "from": [
     "n400-lessons"
@@ -10926,9 +11278,21 @@
    ]
   },
   {
+   "text": "Section {n} · Card {card} of {total}",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
    "text": "Section {n}: {title}",
    "from": [
     "course"
+   ]
+  },
+  {
+   "text": "Sections",
+   "from": [
+    "n400-guide"
    ]
   },
   {
@@ -10962,6 +11326,12 @@
    ]
   },
   {
+   "text": "See the form",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
    "text": "See the full list",
    "from": [
     "settings"
@@ -10989,7 +11359,14 @@
   {
    "text": "Selective Service and Military",
    "from": [
-    "lawyer-checklist"
+    "lawyer-checklist",
+    "n400-guide"
+   ]
+  },
+  {
+   "text": "Selective Service and military",
+   "from": [
+    "n400-guide"
    ]
   },
   {
@@ -11688,6 +12065,12 @@
    ]
   },
   {
+   "text": "Start: {section}",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
    "text": "State",
    "from": [
     "words"
@@ -11765,6 +12148,12 @@
    "text": "Step {n} of {total}",
    "from": [
     "onboarding"
+   ]
+  },
+  {
+   "text": "Stop and check",
+   "from": [
+    "n400-guide"
    ]
   },
   {
@@ -11966,6 +12355,8 @@
     "ask",
     "interview-day",
     "interview-intro",
+    "lawyer",
+    "n400-guide",
     "n400-lessons",
     "practice",
     "talk"
@@ -13164,6 +13555,12 @@
    ]
   },
   {
+   "text": "The boxes stay empty. Tap What it asks to open that question in the guide, in plain words.",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
    "text": "The building in Washington, D.C. where Congress meets",
    "from": [
     "key-words"
@@ -13562,6 +13959,12 @@
    ]
   },
   {
+   "text": "The officer might say",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
    "text": "The official residence and primary workplace of the President of the United States",
    "from": [
     "key-words"
@@ -13577,6 +13980,12 @@
    "text": "The other part is the House of Representatives.",
    "from": [
     "course-lessons"
+   ]
+  },
+  {
+   "text": "The other parts of the form ask about you, your home, your family and your work. How to answer about your own life is a question for a lawyer.",
+   "from": [
+    "n400-guide"
    ]
   },
   {
@@ -13791,6 +14200,12 @@
    ]
   },
   {
+   "text": "The whole card in your language",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
    "text": "The whole country",
    "from": [
     "course-lessons"
@@ -13813,6 +14228,12 @@
    "text": "The whole interview as one practice call: the oath, your N-400 questions, reading, writing and civics. Nothing is saved.",
    "from": [
     "practice"
+   ]
+  },
+  {
+   "text": "The whole question",
+   "from": [
+    "n400-guide"
    ]
   },
   {
@@ -14098,6 +14519,12 @@
    ]
   },
   {
+   "text": "This is what the paper form looks like. It stays blank: we never fill it in or keep answers.",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
    "text": "This lesson is about Congress, the part of the government that writes laws. Congress has two parts: the Senate and the House of Representatives.",
    "from": [
     "ask-answers"
@@ -14255,9 +14682,21 @@
    ]
   },
   {
+   "text": "This list is a draft pending legal review. Do not publish changes without the owner’s sign-off.",
+   "from": [
+    "lawyer"
+   ]
+  },
+  {
    "text": "This means the many American Indian nations that lived in America before Europeans came. Each had its own language, government and way of life.",
    "from": [
     "ask-answers"
+   ]
+  },
+  {
+   "text": "This page helps you find help. It is not legal advice about your situation. Nothing you read or search here, including your location, is saved or shared.",
+   "from": [
+    "lawyer"
    ]
   },
   {
@@ -14270,6 +14709,12 @@
    "text": "This part of the form asks you to write down every trip you took outside the United States during the required time period. Start with your most recent trip. Then go back in time. Do not write down day trips — trips where you left and came back within 24 hours. If any trip lasted more than 6 months, the Instructions list evidence you can provide.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "This part of the guide is still being prepared.",
+   "from": [
+    "n400-guide"
    ]
   },
   {
@@ -14483,6 +14928,12 @@
    ]
   },
   {
+   "text": "This score is for pronunciation practice only. It is not saved, and it is not part of your answers.",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
    "text": "This stop isn’t ready yet.",
    "from": [
     "checkpoints"
@@ -14564,7 +15015,8 @@
   {
    "text": "Time Outside the U.S.",
    "from": [
-    "lawyer-checklist"
+    "lawyer-checklist",
+    "n400-guide"
    ]
   },
   {
@@ -14846,6 +15298,8 @@
   {
    "text": "Translating…",
    "from": [
+    "lawyer",
+    "n400-guide",
     "practice"
    ]
   },
@@ -14972,8 +15426,15 @@
     "checkpoints",
     "interview-day",
     "lesson-player",
+    "n400-guide",
     "n400-lessons",
     "practice"
+   ]
+  },
+  {
+   "text": "Type it in English",
+   "from": [
+    "n400-guide"
    ]
   },
   {
@@ -15262,6 +15723,12 @@
    ]
   },
   {
+   "text": "View",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
    "text": "Vocabulary",
    "from": [
     "home"
@@ -15277,6 +15744,12 @@
    "text": "Voice",
    "from": [
     "practice"
+   ]
+  },
+  {
+   "text": "Voice input is not supported in this browser",
+   "from": [
+    "n400-guide"
    ]
   },
   {
@@ -15602,6 +16075,12 @@
    ]
   },
   {
+   "text": "We explain what questions mean. How they apply to you is for a lawyer. We never save your answers to the N-400.",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
    "text": "We have 100 senators.",
    "from": [
     "sentences"
@@ -15617,6 +16096,12 @@
    "text": "We never record your voice or save your answers to the N-400. Your interview date stays on this phone.",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "We never save your answers to the N-400.",
+   "from": [
+    "n400-guide"
    ]
   },
   {
@@ -16244,8 +16729,15 @@
    ]
   },
   {
+   "text": "What it asks",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
    "text": "What it means",
    "from": [
+    "n400-guide",
     "n400-lessons"
    ]
   },
@@ -16605,6 +17097,12 @@
    "text": "Who appoints federal judges?",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "Who can legally help you",
+   "from": [
+    "lawyer"
    ]
   },
   {
@@ -17042,6 +17540,12 @@
    ]
   },
   {
+   "text": "Words to know",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
    "text": "Words to know · tap to hear",
    "from": [
     "n400-lessons"
@@ -17250,6 +17754,7 @@
   {
    "text": "Yes",
    "from": [
+    "n400-guide",
     "pilot"
    ]
   },
@@ -17411,6 +17916,18 @@
    ]
   },
   {
+   "text": "You learn what each question means.",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
+   "text": "You learn what each question means. You never answer here.",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
    "text": "You learn what the questions mean. You never answer them here, and nothing about you is asked or saved.",
    "from": [
     "n400-lessons"
@@ -17459,12 +17976,24 @@
    ]
   },
   {
+   "text": "You read this section",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
    "text": "You said",
    "from": [
     "interview-day",
     "lesson-player",
     "n400-lessons",
     "practice"
+   ]
+  },
+  {
+   "text": "You said:",
+   "from": [
+    "n400-guide"
    ]
   },
   {
@@ -17545,6 +18074,12 @@
    "text": "Your N-400 questions",
    "from": [
     "interview-day"
+   ]
+  },
+  {
+   "text": "Your N-400, explained",
+   "from": [
+    "n400-guide"
    ]
   },
   {
@@ -18964,6 +19499,12 @@
    ]
   },
   {
+   "text": "opens outside the app",
+   "from": [
+    "lawyer"
+   ]
+  },
+  {
    "text": "order of nobility",
    "from": [
     "n400"
@@ -19069,6 +19610,12 @@
    "text": "public benefit",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "read",
+   "from": [
+    "n400-guide"
    ]
   },
   {
@@ -19264,6 +19811,12 @@
    ]
   },
   {
+   "text": "talk to a lawyer first, before you file.",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
    "text": "tax return",
    "from": [
     "n400"
@@ -19297,6 +19850,12 @@
    "text": "the Louisiana Territory / Louisiana",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "the N-400 guide",
+   "from": [
+    "lawyer"
    ]
   },
   {
@@ -19888,6 +20447,12 @@
    ]
   },
   {
+   "text": "{n} cards",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
    "text": "{n} days this week",
    "from": [
     "lesson-player",
@@ -19962,6 +20527,12 @@
    "text": "{n} of {total} right",
    "from": [
     "practice"
+   ]
+  },
+  {
+   "text": "{n} of {total} sections read",
+   "from": [
+    "n400-guide"
    ]
   },
   {
@@ -20043,6 +20614,12 @@
    ]
   },
   {
+   "text": "{n}% match",
+   "from": [
+    "n400-guide"
+   ]
+  },
+  {
    "text": "{program} confirmed you.",
    "from": [
     "my-tutor"
@@ -20100,6 +20677,12 @@
    "text": "{section}, out loud!",
    "from": [
     "checkpoints"
+   ]
+  },
+  {
+   "text": "{section}: read it in the N-400 guide",
+   "from": [
+    "lawyer"
    ]
   },
   {

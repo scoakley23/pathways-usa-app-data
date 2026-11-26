@@ -13,7 +13,7 @@ export default function ReadyToFile() {
   const btn = 'min-h-[48px] rounded-button font-semibold text-base inline-flex items-center justify-center gap-2 px-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2';
   return (
     <section id="ready-to-file" aria-labelledby="ready-title" className="scroll-mt-24 text-navy rounded-card bg-white border border-line p-5 sm:p-6 space-y-3">
-      <p className="text-label text-muted">When you’re ready</p>
+      
       <h2 id="ready-title" className="font-display text-[1.375rem] leading-tight">{t('ready_title')}</h2>
       <p className="text-base text-muted max-w-xl">{t('ready_body')}</p>
       <p className="text-base">
@@ -22,10 +22,10 @@ export default function ReadyToFile() {
         </Link>
       </p>
       <div className="flex flex-col sm:flex-row gap-3 pt-1">
-        <a href="https://www.uscis.gov/citizenship/apply-for-naturalization" target="_blank" rel="noopener noreferrer" className={`${btn} bg-navy text-white hover:bg-navy-deep`}>
+        <a href="https://www.uscis.gov/citizenship/apply-for-naturalization" target="_blank" rel="noopener noreferrer" className={`${btn} bg-navy text-white hover:bg-navy-deep`} dir="auto">
           <FileText className="w-5 h-5" aria-hidden="true" /> {t('btn_apply')}
         </a>
-        <a href="https://egov.uscis.gov/casestatus/landing.do" target="_blank" rel="noopener noreferrer" className={`${btn} border-2 border-navy text-navy hover:bg-tint`}>
+        <a href="https://egov.uscis.gov/casestatus/landing.do" target="_blank" rel="noopener noreferrer" className={`${btn} bg-white border-[1.5px] border-line text-navy hover:border-navy`} dir="auto">
           <Search className="w-5 h-5" aria-hidden="true" /> {t('btn_case')}
         </a>
       </div>
