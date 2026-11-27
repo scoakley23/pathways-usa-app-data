@@ -895,7 +895,7 @@
               "meaning": "at this time"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "This is the President of the United States today.",
@@ -938,8 +938,15 @@
               "say": "Check the names again before your interview.",
               "help": {
                 "simpler": "Look at the names one more time close to your interview day.",
-                "example": "If there was an election, a name may be different.",
+                "example": "After an election, or if a leader leaves the job, a name may be different.",
                 "why": "You want to give the names of the leaders serving on your interview day."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "You should check the names again before your interview.",
+                "answer": true
               }
             }
           ]
