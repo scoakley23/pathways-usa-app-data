@@ -65,7 +65,7 @@ export default function InterviewReport({ results, onRestart, onClose, onBack })
           civicsTotal: civics2025.length || 128,
           sessions,
         });
-      } catch (e) {
+      } catch {
         if (active) setOther({ levels: {}, civicsMastered: 0, civicsTotal: 128, sessions: [] });
       }
     })();

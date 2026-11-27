@@ -20,7 +20,7 @@ export default function OathPart({ t, onDone, onStop }) {
     setSpeaking(true);
     speakText(OFFICER_LINES.oath, 'en', { onEnd: () => setSpeaking(false) });
   };
-  useEffect(() => { say(); return () => stopSpeaking(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { say(); return () => stopSpeaking(); }, []);
 
   return (
     <DayFrame part="oath" t={t} speaking={speaking} status={speaking ? t('status_speaking') : t('status_turn')} onStop={onStop}>

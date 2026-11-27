@@ -76,7 +76,7 @@ export default function Partner() {
       const updated = await setMemberStatus(code, member, status);
       setMembers((list) => list.map((m) => (m.id === member.id ? { ...m, ...updated, since: m.since } : m)));
       programSummaryFor(code).then(setSummary).catch(() => {});
-    } catch (e) {
+    } catch {
       toast.error('Something went wrong. Please try again.');
     } finally {
       setBusyId(null);

@@ -30,7 +30,7 @@ import { AskForHelp, ListenN400, SameQuestion, SayWhatItAsks, SpotWord } from '@
 
 const ICONS = { listen: BookOpen, same: Users, spot: FileSearch, say: MessageCircle, help: Hand };
 
-function Start({ lesson, section, results, t, onStart }) {
+function Start({ section, results, t, onStart }) {
   const at = N400_LESSON_STEPS.findIndex((s) => !results[s]);
   return (
     <div className="flex flex-col min-h-full">

@@ -22,12 +22,12 @@ const isAppStorageKey = (key) =>
 function clearDeviceData() {
   try {
     Object.keys(localStorage).filter(isAppStorageKey).forEach((key) => localStorage.removeItem(key));
-  } catch (e) {
+  } catch {
     // Storage blocked: nothing to clear.
   }
 }
 
-export default function DeleteMyData({ userEmail }) {
+export default function DeleteMyData() {
   const [deleting, setDeleting] = useState(false);
   const [progress, setProgress] = useState('');
 

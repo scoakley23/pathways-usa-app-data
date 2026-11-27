@@ -35,7 +35,7 @@ export default function StudyHistory() {
     const d = new Date(log.created_at || log.created_date);
     try {
       return `${d.toLocaleDateString(locale, { year: 'numeric', month: 'short', day: 'numeric' })} · ${d.toLocaleTimeString(locale, { hour: 'numeric', minute: '2-digit' })}`;
-    } catch (e) {
+    } catch {
       return d.toLocaleDateString();
     }
   };

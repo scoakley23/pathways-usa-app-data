@@ -28,7 +28,7 @@ export default function CivicsPart({ t, items, version, onDone, onStop }) {
     setSpeaking(true);
     speakText(question.question, 'en', { onEnd: () => setSpeaking(false) });
   };
-  useEffect(() => { ask(); return () => stopSpeaking(); }, [i]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { ask(); return () => stopSpeaking(); }, [i]);
 
   const grade = async (text, { typed = false } = {}) => {
     const answer = (text || '').trim();

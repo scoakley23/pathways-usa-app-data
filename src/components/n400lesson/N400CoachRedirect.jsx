@@ -14,14 +14,14 @@ export default function N400CoachRedirect() {
     let active = true;
     (async () => {
       let user = null;
-      try { user = await auth.me(); } catch (e) { user = null; }
+      try { user = await auth.me(); } catch { user = null; }
       const drafts = canSeeDrafts(user);
       const open = N400_LESSONS.filter((l) => n400LessonVisible(l, drafts));
       const asked = n400LessonForSection(new URLSearchParams(window.location.search).get('section'));
       let target = asked && open.includes(asked) ? asked : null;
       if (!target && open.length) {
         let done = {};
-        if (user) { try { done = (await courseProgress.load(N400_LESSON_IDS)).lessons; } catch (e) { done = {}; } }
+        if (user) { try { done = (await courseProgress.load(N400_LESSON_IDS)).lessons; } catch { done = {}; } }
         target = open.find((l) => !(done[l.id]?.completed || done[l.id]?.completed_at)) || open[0];
       }
       if (active) navigate(target ? `/course/n400/${target.id}` : '/n400-guide', { replace: true });

@@ -31,6 +31,7 @@ import { MY_TUTOR_LINES } from '@/components/partners/myTutorStrings';
 import { N400_LESSON_LINES } from '@/components/n400lesson/n400LessonStrings';
 import { N400_GUIDE_LINES } from '@/components/n400/n400GuideStrings';
 import { LAWYER_LINES } from '@/components/lawyer/lawyerStrings';
+import { RESOURCE_LINES } from '@/components/resources/resourceStrings';
 import { LEARN_AMIO_LINES, LEARN_SCREEN_LINES, REP_LINES, TUTOR_STEP_LINES } from '@/components/lessons/learnStrings';
 import { UI_LINES as TUTOR_STEP_AMIO_LINES } from '@/components/persona/tutorStepLines';
 import { ERROR_PAGE_LINES, LESSON_STATUS_LINES, SETTINGS_PIECE_LINES } from '@/components/shell/leftoverStrings';
@@ -99,6 +100,7 @@ export const STRING_SETS = [
   { id: 'tutor-steps-amio', strings: TUTOR_STEP_AMIO_LINES, usedIn: [['src/components/persona/TutorLesson.jsx', 'UI_LINES']] },
   { id: 'find-rep', strings: REP_LINES, usedIn: [['src/components/civics/RepresentativeFinder.jsx', 'REP_LINES'], ['src/components/civics/OfficeholderNote.jsx', 'REP_LINES']] },
   { id: 'lawyer', strings: LAWYER_LINES, usedIn: [['src/components/lawyer/useLawyerText.js', 'LAWYER_LINES']] },
+  { id: 'resource-finder', strings: RESOURCE_LINES, usedIn: [['src/components/resources/useResourceText.js', 'RESOURCE_LINES']] },
   { id: 'n400-guide', strings: N400_GUIDE_LINES, usedIn: [['src/components/n400/useN400GuideText.js', 'N400_GUIDE_LINES']] },
   { id: 'practice', strings: PRACTICE_LINES, usedIn: [['src/components/practice/usePracticeText.js', 'PRACTICE_LINES']] },
   { id: 'interview-day', strings: INTERVIEW_DAY_LINES, usedIn: [['src/components/interview-day/useDayText.js', 'INTERVIEW_DAY_LINES']] },

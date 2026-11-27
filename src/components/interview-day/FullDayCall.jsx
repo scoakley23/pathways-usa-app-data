@@ -44,7 +44,7 @@ export default function FullDayCall({ version, t, onStop }) {
       onStop();
     });
     return () => { alive = false; stopSpeaking(); };
-  }, [version, round]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [version, round]);
 
   const finish = (skill, ok) => {
     stopSpeaking();

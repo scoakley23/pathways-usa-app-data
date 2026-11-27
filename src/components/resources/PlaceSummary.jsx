@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { Navigation, Phone, Globe, Bookmark, BookmarkCheck } from 'lucide-react';
 import { Tag } from '@/components/pathways/ui';
 import {
-  categoryById, placeServices, formatDistance, fullAddress, directionsUrl, telHref, safeWebsite, safeLogoUrl, isPoBoxOnly,
+  categoryById, placeServices, fullAddress, directionsUrl, telHref, safeWebsite, safeLogoUrl, isPoBoxOnly,
 } from '@/lib/resourceHub';
 import useSavedPlaces from '@/components/resources/useSavedPlaces';
+import useResourceText from '@/components/resources/useResourceText';
 
 // Text colors use ! so Leaflet's popup link color can't override them.
 const LINK_BTN =
@@ -12,11 +13,11 @@ const LINK_BTN =
 
 // One tag per service the place offers, main category first.
 export function ServiceTags({ r }) {
+  const { category } = useResourceText();
   return (
     <div className="flex flex-wrap gap-2">
       {placeServices(r).map((s) => {
-        const c = categoryById(s);
-        return <Tag key={s} tone={c.tone}>{c.label}</Tag>;
+        return <Tag key={s} tone={categoryById(s).tone}>{category(s)}</Tag>;
       })}
     </div>
   );
@@ -25,6 +26,7 @@ export function ServiceTags({ r }) {
 // Save to (or remove from) the learner's own list. Signed-in learners only.
 export function SaveButton({ r }) {
   const { canSave, isSaved, toggleSaved, isSaving } = useSavedPlaces();
+  const { t } = useResourceText();
   if (!canSave || !r?.id) return null;
   const saved = isSaved(r.id);
   const Icon = saved ? BookmarkCheck : Bookmark;
@@ -32,34 +34,35 @@ export function SaveButton({ r }) {
     <button
       type="button"
       aria-pressed={saved}
-      aria-label={saved ? `Saved: ${r.name}. Tap to remove from your saved places` : `Save ${r.name} to your saved places`}
+      aria-label={saved ? t('saved_label', { name: r.name }) : t('save_label', { name: r.name })}
       disabled={isSaving}
       onClick={(e) => { e.stopPropagation(); toggleSaved(r.id); }}
       className={`${LINK_BTN} border-2 border-navy disabled:opacity-60 ${saved ? 'bg-tint !text-navy hover:bg-line' : 'bg-white !text-navy hover:bg-tint'}`}
     >
-      <Icon className="w-5 h-5" aria-hidden="true" /> {saved ? 'Saved' : 'Save'}
+      <Icon className="w-5 h-5" aria-hidden="true" /> {saved ? t('saved') : t('save')}
     </button>
   );
 }
 
 export function PlaceActions({ r }) {
+  const { t } = useResourceText();
   const tel = telHref(r.phone);
   const site = safeWebsite(r.website);
   return (
     <div className="flex flex-wrap gap-2">
       {!isPoBoxOnly(r.address) && (
         <a href={directionsUrl(r)} target="_blank" rel="noopener noreferrer" className={`${LINK_BTN} bg-navy !text-white hover:bg-navy-deep`}>
-          <Navigation className="w-5 h-5" aria-hidden="true" /> Directions
+          <Navigation className="w-5 h-5" aria-hidden="true" /> {t('directions')}
         </a>
       )}
       {tel && (
         <a href={tel} className={`${LINK_BTN} bg-white !text-navy border-2 border-navy hover:bg-tint`}>
-          <Phone className="w-5 h-5" aria-hidden="true" /> Call
+          <Phone className="w-5 h-5" aria-hidden="true" /> {t('call')}
         </a>
       )}
       {site && (
         <a href={site} target="_blank" rel="noopener noreferrer" className={`${LINK_BTN} bg-white !text-navy border-2 border-navy hover:bg-tint`}>
-          <Globe className="w-5 h-5" aria-hidden="true" /> Website
+          <Globe className="w-5 h-5" aria-hidden="true" /> {t('website')}
         </a>
       )}
       <SaveButton r={r} />
@@ -87,16 +90,17 @@ function Logo({ r }) {
 
 // Summary shown when a learner taps a pin on the map.
 export function PlaceSummary({ r }) {
+  const { t, distance } = useResourceText();
   return (
     <div className="space-y-2 font-sans text-navy min-w-[220px] max-w-[260px]">
       <div className="flex items-start justify-between gap-3">
         <Logo r={r} />
-        <span className="text-sm font-bold text-muted whitespace-nowrap">{formatDistance(r.distance)}</span>
+        <span className="text-sm font-bold text-muted whitespace-nowrap">{distance(r.distance)}</span>
       </div>
       <p className="text-base font-extrabold leading-snug !m-0">{r.name}</p>
       <ServiceTags r={r} />
       {fullAddress(r) && <p className="text-sm !m-0">{fullAddress(r)}</p>}
-      {r.hours && <p className="text-sm text-muted !m-0">Hours: {r.hours}</p>}
+      {r.hours && <p className="text-sm text-muted !m-0">{t('hours', { hours: r.hours })}</p>}
       <PlaceActions r={r} />
     </div>
   );

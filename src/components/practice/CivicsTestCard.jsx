@@ -65,7 +65,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, index = 0
     : null;
 
   const stopListening = () => {
-    if (recognitionRef.current) { try { recognitionRef.current.stop(); } catch (e) { /* already stopped */ } }
+    if (recognitionRef.current) { try { recognitionRef.current.stop(); } catch { /* already stopped */ } }
   };
 
   // Reset when the question changes
@@ -87,7 +87,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, index = 0
   // Translate the question (and answer) into the app language when asked
   useEffect(() => {
     if (showTranslation && myLanguage && !translation) fetchTranslation();
-  }, [showTranslation, question]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [showTranslation, question]);
 
   const fetchTranslation = async () => {
     if (!question || !myLanguage) return;
@@ -216,7 +216,7 @@ export default function CivicsTestCard({ question, onComplete, onNext, index = 0
     stopReading();
     setInputMode('speak');
     setUserAnswer('');
-    try { recognitionRef.current.start(); } catch (e) { /* already started */ }
+    try { recognitionRef.current.start(); } catch { /* already started */ }
   };
 
   // The official answers (never AI-written).

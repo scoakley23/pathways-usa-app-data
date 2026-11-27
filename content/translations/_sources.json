@@ -2868,6 +2868,12 @@
    ]
   },
   {
+   "text": "Call",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
    "text": "Can",
    "from": [
     "words"
@@ -2930,6 +2936,12 @@
    "text": "Card {n} of {total}",
    "from": [
     "practice"
+   ]
+  },
+  {
+   "text": "Case likely done by {month}",
+   "from": [
+    "today-plan"
    ]
   },
   {
@@ -3222,6 +3234,12 @@
    ]
   },
   {
+   "text": "Citizenship classes",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
    "text": "Citizenship tutor",
    "from": [
     "onboarding"
@@ -3341,7 +3359,14 @@
    "text": "Close",
    "from": [
     "checkpoints",
+    "resource-finder",
     "sign-in"
+   ]
+  },
+  {
+   "text": "Close full-screen map",
+   "from": [
+    "resource-finder"
    ]
   },
   {
@@ -3355,6 +3380,12 @@
    "text": "Close practice",
    "from": [
     "practice"
+   ]
+  },
+  {
+   "text": "Close summary",
+   "from": [
+    "resource-finder"
    ]
   },
   {
@@ -3754,6 +3785,12 @@
    ]
   },
   {
+   "text": "Cost varies",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
    "text": "Couldn’t load the practice day. Please check your connection.",
    "from": [
     "interview-day"
@@ -4124,6 +4161,12 @@
    "text": "Different officer voice each interview",
    "from": [
     "interview-intro"
+   ]
+  },
+  {
+   "text": "Directions",
+   "from": [
+    "resource-finder"
    ]
   },
   {
@@ -4628,9 +4671,21 @@
    ]
   },
   {
+   "text": "English classes",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
    "text": "English only, like the real interview",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "English, citizenship, and adult education classes near you. Call 877-389-6874 for help.",
+   "from": [
+    "resource-finder"
    ]
   },
   {
@@ -5027,7 +5082,8 @@
   {
    "text": "Find help near you",
    "from": [
-    "interview-day"
+    "interview-day",
+    "resource-finder"
    ]
   },
   {
@@ -5370,6 +5426,7 @@
   {
    "text": "Free",
    "from": [
+    "resource-finder",
     "words"
    ]
   },
@@ -5377,6 +5434,12 @@
    "text": "Free U.S. citizenship test practice",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "Free and low-cost nonprofit immigration legal services, by state and language.",
+   "from": [
+    "resource-finder"
    ]
   },
   {
@@ -5390,6 +5453,18 @@
    "from": [
     "lawyer",
     "me"
+   ]
+  },
+  {
+   "text": "Free legal help",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
+   "text": "Free legal help, English and citizenship classes, and USCIS offices. Your location is used only on this screen to sort places by distance. It is not saved or shared.",
+   "from": [
+    "resource-finder"
    ]
   },
   {
@@ -5864,6 +5939,12 @@
    "text": "Green = read clearly · keep going",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Group of places (tap to zoom)",
+   "from": [
+    "resource-finder"
    ]
   },
   {
@@ -6512,7 +6593,20 @@
   {
    "text": "Hide",
    "from": [
-    "course"
+    "course",
+    "resource-finder"
+   ]
+  },
+  {
+   "text": "Hide list",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
+   "text": "Hide map",
+   "from": [
+    "resource-finder"
    ]
   },
   {
@@ -6543,6 +6637,12 @@
    "text": "Holidays",
    "from": [
     "course-titles"
+   ]
+  },
+  {
+   "text": "Hours: {hours}",
+   "from": [
+    "resource-finder"
    ]
   },
   {
@@ -8241,9 +8341,21 @@
    ]
   },
   {
+   "text": "Languages: {languages}",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
    "text": "Largest",
    "from": [
     "words"
+   ]
+  },
+  {
+   "text": "Last checked {date}",
+   "from": [
+    "resource-finder"
    ]
   },
   {
@@ -8434,6 +8546,12 @@
    ]
   },
   {
+   "text": "Less than 0.1 mi",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
    "text": "Lesson complete!",
    "from": [
     "n400-lessons"
@@ -8581,6 +8699,12 @@
    "text": "Liberty means freedom.",
    "from": [
     "course-lessons"
+   ]
+  },
+  {
+   "text": "Libraries",
+   "from": [
+    "resource-finder"
    ]
   },
   {
@@ -8817,6 +8941,12 @@
    ]
   },
   {
+   "text": "Loading places…",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
    "text": "Loading progress…",
    "from": [
     "progress"
@@ -8898,6 +9028,12 @@
    "text": "Louisiana Territory / Louisiana",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "Low cost",
+   "from": [
+    "resource-finder"
    ]
   },
   {
@@ -9014,6 +9150,24 @@
    "text": "Many workers pay taxes from each paycheck.",
    "from": [
     "course-lessons"
+   ]
+  },
+  {
+   "text": "Map key",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
+   "text": "Map of places near you",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
+   "text": "Map pin shows the ZIP code area, not the exact building.",
+   "from": [
+    "resource-finder"
    ]
   },
   {
@@ -9277,6 +9431,12 @@
   },
   {
    "text": "Most N-400s at this office are finished between {from} and {to}. Your interview usually comes before that.",
+   "from": [
+    "interview-when"
+   ]
+  },
+  {
+   "text": "Most N-400s at this office are finished by {month}. Your interview usually comes before that.",
    "from": [
     "interview-when"
    ]
@@ -10077,6 +10237,12 @@
    ]
   },
   {
+   "text": "No places found here yet.",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
    "text": "No practice yet",
    "from": [
     "today-plan"
@@ -10861,6 +11027,12 @@
    ]
   },
   {
+   "text": "Open the map full screen",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
    "text": "Opening your notes…",
    "from": [
     "lesson-player"
@@ -10891,15 +11063,33 @@
    ]
   },
   {
+   "text": "Other help",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
    "text": "Other leaders read his words and helped make changes.",
    "from": [
     "course-lessons"
    ]
   },
   {
+   "text": "Our map doesn’t list every place yet. These sites have more.",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
    "text": "Out loud, like the real interview.",
    "from": [
     "onboarding"
+   ]
+  },
+  {
+   "text": "Out of date: last checked more than 60 days ago. Learners see “Coming soon” until the times are checked again.",
+   "from": [
+    "interview-when"
    ]
   },
   {
@@ -11047,6 +11237,12 @@
    "text": "Past the deadline for payment.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "Pathways USA does not run or endorse these places. Hours and services change, so call before you go. For legal advice, see only a lawyer or a DOJ-accredited representative, never a notario.",
+   "from": [
+    "resource-finder"
    ]
   },
   {
@@ -11369,6 +11565,12 @@
    ]
   },
   {
+   "text": "Please type a 5-digit ZIP code.",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
    "text": "Polite and formal, like a USCIS officer. For learners who want realistic interview pressure.",
    "from": [
     "settings-pieces"
@@ -11682,6 +11884,12 @@
    "text": "Provide schooling and education / Provide protection (police) / Provide safety (fire departments) / Give a driver’s license / Approve zoning and land use",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "Public libraries near you. Many have free English classes, computers, and citizenship books.",
+   "from": [
+    "resource-finder"
    ]
   },
   {
@@ -12371,6 +12579,7 @@
    "from": [
     "my-tutor",
     "pilot",
+    "resource-finder",
     "settings",
     "settings-pieces"
    ]
@@ -12394,6 +12603,18 @@
    ]
   },
   {
+   "text": "Save {name} to your saved places",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
+   "text": "Saved",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
    "text": "Saved only on this phone",
    "from": [
     "interview-when"
@@ -12410,6 +12631,12 @@
    "from": [
     "lesson-player",
     "my-tutor"
+   ]
+  },
+  {
+   "text": "Saved: {name}. Tap to remove from your saved places",
+   "from": [
+    "resource-finder"
    ]
   },
   {
@@ -12909,7 +13136,26 @@
   {
    "text": "Search",
    "from": [
-    "find-rep"
+    "find-rep",
+    "resource-finder"
+   ]
+  },
+  {
+   "text": "Search by ZIP code",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
+   "text": "Search national directories",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
+   "text": "Search this area",
+   "from": [
+    "resource-finder"
    ]
   },
   {
@@ -13276,15 +13522,45 @@
    ]
   },
   {
+   "text": "Show",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
+   "text": "Show ({count})",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
    "text": "Show less",
    "from": [
     "ask-screen"
    ]
   },
   {
+   "text": "Show list ({count})",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
+   "text": "Show map",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
    "text": "Show me",
    "from": [
     "tutor-steps"
+   ]
+  },
+  {
+   "text": "Show more ({count} more)",
+   "from": [
+    "resource-finder"
    ]
   },
   {
@@ -13739,6 +14015,7 @@
     "getting-started",
     "my-tutor",
     "pilot",
+    "resource-finder",
     "sign-in"
    ]
   },
@@ -16436,6 +16713,12 @@
    ]
   },
   {
+   "text": "The official USCIS office list. Go only when you have an appointment notice.",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
    "text": "The one-dollar bill is the bill people use most.",
    "from": [
     "course-lessons"
@@ -19008,6 +19291,12 @@
    ]
   },
   {
+   "text": "Try a bigger distance, more categories, or move the map and search that area. You can also search the national directories below.",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
    "text": "Try again",
    "from": [
     "checkpoints",
@@ -19236,7 +19525,19 @@
    ]
   },
   {
+   "text": "USCIS offices",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
    "text": "USCIS says {min} to {max} months at this office, counted from the day they received your form.",
+   "from": [
+    "interview-when"
+   ]
+  },
+  {
+   "text": "USCIS says {months} months at this office, counted from the day they received your form.",
    "from": [
     "interview-when"
    ]
@@ -19354,6 +19655,12 @@
    "text": "Use a different email",
    "from": [
     "sign-in"
+   ]
+  },
+  {
+   "text": "Use my location",
+   "from": [
+    "resource-finder"
    ]
   },
   {
@@ -19774,6 +20081,18 @@
    ]
   },
   {
+   "text": "We couldn’t get your location. You can type your ZIP code instead.",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
+   "text": "We couldn’t load the list of places. Please try again later.",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
    "text": "We couldn’t save that. Please try again.",
    "from": [
     "lesson-player"
@@ -19795,6 +20114,12 @@
    "text": "We didn’t hear you. Check your microphone and try again.",
    "from": [
     "practice"
+   ]
+  },
+  {
+   "text": "We don’t know that ZIP code. Please check it, or try a nearby one.",
+   "from": [
+    "resource-finder"
    ]
   },
   {
@@ -19929,6 +20254,12 @@
    "text": "Weapons or military training",
    "from": [
     "n400-lessons"
+   ]
+  },
+  {
+   "text": "Website",
+   "from": [
+    "resource-finder"
    ]
   },
   {
@@ -20886,6 +21217,12 @@
    ]
   },
   {
+   "text": "Where these places come from: the U.S. Department of Justice list of recognized legal-help organizations, the National Literacy Directory, and the list of USCIS field offices. A person checks each place before it is added.",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
    "text": "Where you are in each civics topic.",
    "from": [
     "lesson-status"
@@ -21469,6 +21806,12 @@
    "text": "With your account",
    "from": [
     "settings"
+   ]
+  },
+  {
+   "text": "Within",
+   "from": [
+    "resource-finder"
    ]
   },
   {
@@ -22251,6 +22594,12 @@
    ]
   },
   {
+   "text": "Your browser can’t share your location. Type your ZIP code instead.",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
    "text": "Your browser doesn’t support speech recognition. Please use Chrome, Edge, or Safari.",
    "from": [
     "practice"
@@ -22504,6 +22853,12 @@
    ]
   },
   {
+   "text": "Your saved places",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
    "text": "Your scores are high. Want to use a bit more English?",
    "from": [
     "today"
@@ -22675,6 +23030,18 @@
    "text": "You’ve got it.",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "ZIP code",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
+   "text": "ZIP {zip}",
+   "from": [
+    "resource-finder"
    ]
   },
   {
@@ -23794,6 +24161,12 @@
    ]
   },
   {
+   "text": "or ZIP code",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
    "text": "order of nobility",
    "from": [
     "n400"
@@ -24190,6 +24563,12 @@
    ]
   },
   {
+   "text": "the U.S.",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
    "text": "the United States / the flag",
    "from": [
     "civics-questions"
@@ -24457,6 +24836,12 @@
    "text": "thing of value",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "this map area",
+   "from": [
+    "resource-finder"
    ]
   },
   {
@@ -24796,6 +25181,12 @@
    ]
   },
   {
+   "text": "your location",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
    "text": "your voice, your interview date, your address, or anything about your case.",
    "from": [
     "settings"
@@ -24805,6 +25196,36 @@
    "text": "{correct} of {total}",
    "from": [
     "checkpoints"
+   ]
+  },
+  {
+   "text": "{count} place on the map. Tap a dot to see a place, or use your location or ZIP code to see the closest ones first.",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
+   "text": "{count} place within {miles} miles of {place}",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
+   "text": "{count} places on the map. Tap a dot to see a place, or use your location or ZIP code to see the closest ones first.",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
+   "text": "{count} places within {miles} miles of {place}",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
+   "text": "{count} places · {place}",
+   "from": [
+    "resource-finder"
    ]
   },
   {
@@ -24823,6 +25244,18 @@
    "text": "{greeting}. {line}",
    "from": [
     "today-plan"
+   ]
+  },
+  {
+   "text": "{miles} mi",
+   "from": [
+    "resource-finder"
+   ]
+  },
+  {
+   "text": "{miles} miles",
+   "from": [
+    "resource-finder"
    ]
   },
   {

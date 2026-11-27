@@ -24,7 +24,7 @@ export default function PilotSettingsCard({ user }) {
     setReminders(on);
     try {
       await auth.updateMe(reminderSettings(on, language));
-    } catch (e) {
+    } catch {
       setReminders(!on);
       toast.error(t('error'));
     }
@@ -34,7 +34,7 @@ export default function PilotSettingsCard({ user }) {
     setCheckIns(on);
     try {
       await auth.updateMe({ checkins_stopped: !on });
-    } catch (e) {
+    } catch {
       setCheckIns(!on);
       toast.error(t('error'));
     }
@@ -46,7 +46,7 @@ export default function PilotSettingsCard({ user }) {
     try {
       await auth.updateMe(buildProfileAnswers({ state }));
       toast.success(t('saved'));
-    } catch (err) {
+    } catch {
       toast.error(t('error'));
     } finally {
       setSaving(false);

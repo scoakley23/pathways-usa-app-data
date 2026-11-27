@@ -13,6 +13,7 @@ import 'leaflet.markercluster/dist/MarkerCluster.css';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { PIN_COLORS } from '@/lib/resourceHub';
 import { COLORS } from '@/lib/theme';
+import useResourceText from '@/components/resources/useResourceText';
 
 // Map for the Resource Hub. Loaded lazily (React.lazy) so the map libraries
 // are only downloaded on this page. The map picture comes from OpenFreeMap
@@ -174,6 +175,7 @@ function OriginMarker({ origin }) {
 // learner drags or zooms the map themselves.
 function ViewControl({ origin, places, onSearchArea, programmatic }) {
   const map = useMap();
+  const { t } = useResourceText();
   const [moved, setMoved] = useState(false);
   const buttonRef = useRef(null);
   useEffect(() => {
@@ -224,7 +226,7 @@ function ViewControl({ origin, places, onSearchArea, programmatic }) {
         }}
         className="pointer-events-auto min-h-[44px] rounded-button bg-white px-5 text-base font-bold text-navy shadow-lift border border-line inline-flex items-center gap-2 hover:bg-tint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy"
       >
-        <Search className="w-5 h-5" aria-hidden="true" /> Search this area
+        <Search className="w-5 h-5" aria-hidden="true" /> {t('search_area')}
       </button>
     </div>
   );

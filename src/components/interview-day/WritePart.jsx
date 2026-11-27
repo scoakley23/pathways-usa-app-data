@@ -24,7 +24,7 @@ export default function WritePart({ t, items, onDone, onStop }) {
     const text = withPrompt ? `${OFFICER_LINES.write} ${sentence}` : sentence;
     speakText(text, 'en', { onEnd: () => setSpeaking(false) });
   };
-  useEffect(() => { say(true); return () => stopSpeaking(); }, [i]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { say(true); return () => stopSpeaking(); }, [i]);
 
   const check = (e) => {
     e.preventDefault();
