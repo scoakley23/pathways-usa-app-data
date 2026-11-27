@@ -3,37 +3,37 @@
   "items": [
     {
       "id": "free",
-      "status": "draft",
+      "status": "reviewed",
       "q": "Is Amio free?",
       "a": "Yes. Amio is free practice for the U.S. citizenship test: civics, reading, writing, speaking and the N-400."
     },
     {
       "id": "uscis",
-      "status": "draft",
+      "status": "reviewed",
       "q": "Is Amio part of USCIS or the government?",
       "a": "No. Amio, from Pathways USA, is not affiliated with USCIS or the government, and it is not legal advice. The civics questions and answers come from the official USCIS lists."
     },
     {
       "id": "legal",
-      "status": "draft",
+      "status": "reviewed",
       "q": "Can Amio tell me how to answer the N-400 questions about me?",
-      "a": "No. Amio is not legal advice. We teach what each N-400 question means and how the officer may ask it. If yes might be true for you, talk to a lawyer first. Find help in Interview, then Ask a lawyer."
+      "a": "No. Amio is not legal advice. We teach what each N-400 question means and how the officer may ask it. If “yes” might be true for you, talk to a lawyer first. Find help in Interview, then Ask a lawyer."
     },
     {
       "id": "amio",
-      "status": "draft",
+      "status": "reviewed",
       "q": "Who is Amio?",
       "a": "Amio is your AI tutor, not a real person. Amio explains in your language. You answer, read and write in English, like at the interview."
     },
     {
       "id": "voice",
-      "status": "draft",
+      "status": "reviewed",
       "q": "Do you record my voice?",
-      "a": "No. Your voice is never recorded or saved. Your phone's browser turns what you say into text. In practice, only your scores are saved. Questions you ask Amio are saved as text, and only you can see them."
+      "a": "No. Your voice is never recorded or saved. Your phone's browser turns what you say into text. When you practice, only your scores are saved. Questions you ask Amio are saved as text, and only you can see them."
     },
     {
       "id": "order",
-      "status": "draft",
+      "status": "reviewed",
       "q": "Do I have to do the lessons in order?",
       "a": "No. You can open any topic and any lesson. The quick check only suggests where to start."
     },
