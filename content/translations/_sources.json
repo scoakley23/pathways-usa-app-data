@@ -1101,7 +1101,7 @@
    ]
   },
   {
-   "text": "A note in the app when today’s lesson is waiting. No time to set, and no phone notifications. Saved on this phone.",
+   "text": "A note in the app when today’s lesson is waiting. No time to set. If you allow phone notifications, it also shows while the app is open. Saved on this phone.",
    "from": [
     "settings"
    ]
@@ -26592,6 +26592,12 @@
    "text": "Your notes for this lesson",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Your notifications in the app, like the daily lesson reminder. Only you can see them.",
+   "from": [
+    "settings"
    ]
   },
   {
