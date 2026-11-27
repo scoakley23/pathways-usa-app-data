@@ -72,6 +72,7 @@ export default function QuickCheck() {
     setLevels(result);
     setStage('results');
     window.scrollTo({ top: 0 });
+    if (!user) return; // guest: shown, not saved
     setSaving(true);
     try {
       await auth.updateMe({ skill_levels: toSavedLevels(result) });
@@ -135,7 +136,7 @@ export default function QuickCheck() {
             </div>
           </section>
         )}
-        <AmioSays mood="proud" size={56}>{t('qc_saved')}</AmioSays>
+        <AmioSays mood="proud" size={56}>{t(user ? 'qc_saved' : 'qc_guest')}</AmioSays>
       </div>
       <div className="sticky bottom-0 bg-paper px-4 pt-2 pb-6 max-w-lg w-full mx-auto flex flex-col items-center gap-2">
         <Button variant="main" className="w-full" onClick={next} disabled={saving}>
