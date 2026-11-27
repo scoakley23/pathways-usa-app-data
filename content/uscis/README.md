@@ -30,11 +30,12 @@ USCIS updates these times about once a month. **If `checked_on` is more than 60 
    If your browser won't run it, open the browser console on the USCIS page instead (F12 → Console) and paste the text of `scripts/uscis/copy-n400-times.console.js`.
 
 ### Each month
-1. Open https://egov.uscis.gov/processing-times/ in your browser and click the bookmark.
-2. A panel opens and goes through every N-400 field office, one every 3 seconds (about 5 minutes for 90). It asks USCIS only what the page itself asks when you click through it, and sends nothing anywhere else. You can use another tab meanwhile.
-3. When it says Done, spot-check two or three offices against the USCIS page (pick the office the normal way). Rows marked "Check" couldn't be read.
-4. Click **Copy result** and send it to your developer (or save it as a `.json` file).
-5. The developer runs `npm run uscis:apply -- result.json` (add `--dry-run` to only see the changes). It keeps every office id, takes the months exactly as USCIS shows them, lists changed, new and no-longer-listed offices, and sets `checked_on` to the day you ran the helper. It refuses to write if anything was marked "Check", if a number isn't whole or half months, or if USCIS no longer lists an office (re-run with `--remove-missing` after you've checked). Then `npm test`, a pull request into `standalone`, and you merge it on to `main` as usual.
+1. Open https://egov.uscis.gov/processing-times in your browser and click the bookmark. A panel opens.
+2. **Show it once:** on the page, pick Form "N-400", the form category and **any one** field office, then click "Get processing time" (if an office was already picked, pick a different one). The page is a Next.js app whose request code changes whenever USCIS updates the site, so the helper watches this one request to learn how the page asks.
+3. It then goes through every N-400 field office the same way, one every 3 seconds (about 5 minutes for 90), asking only the page's own address, and sends nothing anywhere else. It never copies your cookies. You can use another tab meanwhile.
+4. When it says Done, spot-check two or three offices against the USCIS page (pick the office the normal way). Rows marked "Check" couldn't be read.
+5. Click **Copy result** and send it to your developer (or save it as a `.json` file).
+6. The developer runs `npm run uscis:apply -- result.json` (add `--dry-run` to only see the changes). It keeps every office id, takes the months exactly as USCIS shows them, lists changed, new and no-longer-listed offices, and sets `checked_on` to the day you ran the helper. It refuses to write if anything was marked "Check", if a number isn't whole or half months, or if USCIS no longer lists an office (re-run with `--remove-missing` after you've checked). Then `npm test`, a pull request into `standalone`, and you merge it on to `main` as usual.
 
 If the panel says **Stopped at …**, USCIS's page answered something the helper didn't expect (for example after a redesign). Copy the box, send it to your developer, and use the sheet below this month.
 

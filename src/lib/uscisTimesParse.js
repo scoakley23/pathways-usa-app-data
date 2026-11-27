@@ -7,9 +7,13 @@
 // The app never runs this against USCIS: learners' devices only read the
 // bundled content/uscis/n400-processing-times.json.
 //
-// USCIS's data format isn't documented, so these look for shapes instead of
-// fixed field names, and say plainly when they can't tell (the bookmark then
-// stops and shows what it saw, for the owner to send to a developer).
+// The page (a Next.js app, seen Nov 26, 2026) asks for its data with
+// "server actions": POSTs to the page's own address whose action code changes
+// whenever USCIS updates the site. So the helper learns from one real request
+// the owner makes by hand, then repeats it for each office. USCIS's data
+// format isn't documented, so these look for shapes instead of fixed field
+// names, and say plainly when they can't tell (the bookmark then stops and
+// shows what it saw, for the owner to send to a developer).
 
 /** Every plain object inside a JSON value, depth first. */
 export function objectsIn(value, out = []) {
@@ -48,37 +52,52 @@ export const sameOffice = (a, b) => {
 };
 
 /**
- * The field offices in a USCIS "offices" answer: objects with a code and a
- * "City ST" description. Returns [{ code, label, name, state }], or [] when
- * nothing looks like an office.
+ * The data in a Next.js server-action reply (what the USCIS page gets back):
+ * lines like `0:{…}` and `1:{"data":{…}}`. Returns every line that is JSON,
+ * as an array. Plain JSON text works too.
  */
-export function findOffices(json) {
-  const seen = new Set();
+export function parseRsc(text) {
+  const t = String(text || '').trim();
+  try { return [JSON.parse(t)]; } catch { /* not plain JSON: read it line by line */ }
   const out = [];
-  for (const o of objectsIn(json)) {
-    const entries = Object.entries(o).filter(([, v]) => typeof v === 'string');
-    const code = entries.find(([k, v]) => /code|id$/i.test(k) && /^[A-Z0-9]{2,6}$/.test(v));
-    const label = entries.find(([k, v]) => /desc|name|label/i.test(k) && splitOfficeName(v));
-    if (!code || !label || seen.has(code[1])) continue;
-    seen.add(code[1]);
-    out.push({ code: code[1], label: label[1], ...splitOfficeName(label[1]) });
+  for (const line of t.split('\n')) {
+    const m = /^[0-9a-zA-Z]+:(.*)$/.exec(line);
+    if (!m) continue;
+    try { out.push(JSON.parse(m[1])); } catch { /* not JSON (a module reference or text) */ }
   }
   return out;
 }
 
 /**
- * The N-400 form subtype codes in a USCIS "form types" answer (the page asks
- * for times per form, office and subtype). Returns the distinct codes found
- * under a key that names a form type or subtype.
+ * Learns the office list from one real example. `args` is what the page sent
+ * when the owner asked for ONE office's time (e.g. ["N-400", "160A", "BOS"]);
+ * `json` is an earlier reply that listed the offices. Finds the office the
+ * owner picked (an object holding one of `args` plus a "City ST" name),
+ * learns which fields hold the code and the name, and reads every office the
+ * same way. Returns { offices: [{ code, label, name, state }], codeIndex }
+ * (where the office code sits in `args`), or null.
  */
-export function findSubtypes(json) {
-  const codes = new Set();
+export function officesFromExample(json, args) {
+  const wanted = (Array.isArray(args) ? args : []).filter((a) => typeof a === 'string');
   for (const o of objectsIn(json)) {
-    for (const [k, v] of Object.entries(o)) {
-      if (typeof v === 'string' && /form_?type|sub_?type|subtype_?code|form_?key/i.test(k) && /^[0-9A-Z][0-9A-Z-]{1,20}$/.test(v) && v !== 'N-400') codes.add(v);
+    const strings = Object.entries(o).filter(([, v]) => typeof v === 'string');
+    const code = strings.find(([, v]) => wanted.includes(v));
+    const label = strings.find(([k, v]) => k !== code?.[0] && splitOfficeName(v));
+    if (!code || !label) continue;
+    const [codeKey] = code;
+    const [labelKey] = label;
+    const seen = new Set();
+    const offices = [];
+    for (const x of objectsIn(json)) {
+      const c = x[codeKey];
+      const l = x[labelKey];
+      if (typeof c !== 'string' || typeof l !== 'string' || !splitOfficeName(l) || seen.has(c)) continue;
+      seen.add(c);
+      offices.push({ code: c, label: l, ...splitOfficeName(l) });
     }
+    return { offices, codeIndex: args.indexOf(code[1]) };
   }
-  return [...codes];
+  return null;
 }
 
 const WITHIN = /within\s+(\d+(?:\.\d+)?)\s+months?/i;

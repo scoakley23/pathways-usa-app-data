@@ -2,13 +2,15 @@ import { describe, it, expect } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import {
-  findMonths, findOffices, findSubtypes, officeId, okMonths, sameOffice, splitOfficeName,
+  findMonths, officeId, officesFromExample, okMonths, parseRsc, sameOffice, splitOfficeName,
 } from './uscisTimesParse';
 import { isUscisMonths } from './interviewEstimate';
 import { buildBundle, bookmarkFor, OUT_BOOKMARK, OUT_CONSOLE } from '../../scripts/uscis/build-bookmarklet.mjs';
 
-// All USCIS answers below are made up: the real format isn't documented, so
-// these are the shapes the helper is written to find.
+// The form-type reply below is the one the owner copied from the real page
+// (Nov 26, 2026). The office and time replies are made up: their real shape
+// isn't known yet, so these are the shapes the helper is written to find.
+const REAL_FORM_REPLY = '0:{"a":"$@1","q":"","i":false,"b":"t6rfNxRVe-eJO4kiWpr_q"}\n1:{"data":{"items":[{"formKey":"160A","formType":"160A","formTypeDescriptionEn":"Application for Naturalization","formTypeDescriptionEs":"Solicitud de Naturalización"}],"errorMessage":null},"status":200,"actionErrorMessage":null,"actionErrorData":null}';
 
 describe('reading USCIS answers', () => {
   it('splits "City ST" office names and makes the app\'s ids', () => {
@@ -20,18 +22,29 @@ describe('reading USCIS answers', () => {
     expect(sameOffice({ name: 'Portland', state: 'OR' }, { name: 'Portland', state: 'ME' })).toBe(false);
   });
 
-  it('finds the offices and the N-400 subtype', () => {
-    const offices = { data: { form_offices: { offices: [
-      { office_code: 'CHI', office_description: 'Chicago IL' },
-      { office_code: 'CHI', office_description: 'Chicago IL' },
-      { office_code: 'NBC', office_description: 'National Benefits Center' },
-      { office_code: 'POM', office_description: 'Portland ME' },
-    ] } } };
-    expect(findOffices(offices)).toEqual([
-      { code: 'CHI', label: 'Chicago IL', name: 'Chicago', state: 'IL' },
-      { code: 'POM', label: 'Portland ME', name: 'Portland', state: 'ME' },
-    ]);
-    expect(findSubtypes({ data: { form_types: [{ form_name: 'N-400', form_type: '111A-NATZ' }] } })).toEqual(['111A-NATZ']);
+  it('reads the page\'s Next.js replies', () => {
+    const parsed = parseRsc(REAL_FORM_REPLY);
+    expect(parsed).toHaveLength(2);
+    expect(parsed[1].data.items[0].formKey).toBe('160A');
+    expect(parseRsc('{"a":1}')).toEqual([{ a: 1 }]);
+    expect(parseRsc('2:I["x"]\nnot a line')).toEqual([]);
+  });
+
+  it('learns the office list from the one office the owner picked', () => {
+    const reply = [{ data: { items: [
+      { officeCode: 'BOS', officeDescription: 'Boston MA' },
+      { officeCode: 'CHI', officeDescription: 'Chicago IL' },
+      { officeCode: 'CHI', officeDescription: 'Chicago IL' },
+      { officeCode: 'NBC', officeDescription: 'National Benefits Center' },
+    ] } }];
+    expect(officesFromExample(reply, ['N-400', '160A', 'BOS'])).toEqual({
+      codeIndex: 2,
+      offices: [
+        { code: 'BOS', label: 'Boston MA', name: 'Boston', state: 'MA' },
+        { code: 'CHI', label: 'Chicago IL', name: 'Chicago', state: 'IL' },
+      ],
+    });
+    expect(officesFromExample(parseRsc(REAL_FORM_REPLY), ['N-400', '160A', 'BOS'])).toBeNull(); // the form list isn't an office list
   });
 
   it('takes the months exactly as USCIS shows them, or says it can\'t tell', () => {
@@ -47,61 +60,80 @@ describe('reading USCIS answers', () => {
   });
 });
 
-// A tiny stand-in for the browser page, enough for the helper's panel.
-function fakePage(answers) {
+// A tiny stand-in for the browser page and its Next.js server actions.
+const OFFICES = Array.from({ length: 12 }, (_, i) => ({ officeCode: `F${i}`, officeDescription: `Fake City ${i} TX` }));
+const reply = (body) => {
+  const args = JSON.parse(body);
+  if (args.length === 1) return REAL_FORM_REPLY;
+  if (args.length === 2) return `0:{"a":"$@1"}\n1:${JSON.stringify({ data: { items: OFFICES } })}`;
+  const i = Number(String(args[2]).slice(1));
+  return `0:{"a":"$@1"}\n1:${JSON.stringify({ data: { processingTime: { range: [{ value: 10 + i / 2, unit: 'Months' }] } } })}`;
+};
+const response = (text) => ({ ok: true, status: 200, text: async () => text, clone: () => response(text) });
+
+function fakePage({ click = true } = {}) {
   const made = [];
   const node = (tag) => {
-    const n = { tag, style: {}, children: [], textContent: '', value: '', disabled: false, append: (...c) => n.children.push(...c), remove() {}, scrollIntoView() {}, select() {} };
+    const n = { tag, style: {}, textContent: '', value: '', disabled: false, append() {}, remove() {}, scrollIntoView() {}, select() {} };
     made.push(n);
     return n;
   };
   const asked = [];
+  const window = {
+    fetch: async (url, init) => { asked.push({ url, init }); return response(reply(init.body)); },
+  };
   const env = {
+    window,
     document: { createElement: node, getElementById: () => null, body: { append() {} }, execCommand() {} },
-    location: { hostname: 'egov.uscis.gov' },
+    location: { hostname: 'egov.uscis.gov', href: 'https://egov.uscis.gov/processing-times' },
     alert: (m) => { throw new Error(`alert: ${m}`); },
     navigator: { clipboard: { writeText: async () => {} } },
-    setTimeout: (fn) => fn(),
-    fetch: async (url) => {
-      asked.push(url);
-      const body = answers(url);
-      return { ok: body !== undefined, status: body === undefined ? 404 : 200, text: async () => JSON.stringify(body ?? {}) };
-    },
+    setTimeout: (fn) => setTimeout(fn, 0),
+    URL,
   };
-  const run = async () => {
+  return async () => {
     const source = buildBundle().replace(/copyN400Times\(\);\n\}\)\(\);\n$/, 'return copyN400Times();\n})();\n');
     // eslint-disable-next-line no-new-func
-    await new Function(...Object.keys(env), `return ${source.replace(/^\/\/.*\n\(function/, '(function')}`)(...Object.values(env));
+    const running = new Function(...Object.keys(env), `return ${source.replace(/^\/\/.*\n\(function/, '(function')}`)(...Object.values(env));
+    if (click) {
+      // The owner picks N-400, the category and Fake City 3, then "Get processing time".
+      const headers = { 'Next-Action': 'abc123', Accept: 'text/x-component', Cookie: 'secret' };
+      for (const args of [['N-400'], ['N-400', '160A'], ['N-400', '160A', 'F3']]) {
+        await window.fetch('', { method: 'POST', headers, body: JSON.stringify(args) });
+      }
+    }
+    await running;
     const out = made.find((n) => n.tag === 'textarea');
-    return { result: JSON.parse(out.value), asked };
+    return { result: JSON.parse(out.value), asked, window };
   };
-  return run;
 }
 
 describe('the helper (run against a fake USCIS page)', () => {
-  const answers = (url) => {
-    if (url.endsWith('formtypes/N-400')) return { data: { form_types: [{ form_type: '111A-NATZ' }] } };
-    if (url.endsWith('formoffices/N-400/111A-NATZ')) {
-      return { data: { offices: Array.from({ length: 12 }, (_, i) => ({ office_code: `F${i}`, office_description: `Fake City ${i} TX` })) } };
-    }
-    const m = /processingtime\/N-400\/F(\d+)\/111A-NATZ$/.exec(url);
-    if (m) return { data: { text: `80% of cases are completed within ${10 + Number(m[1]) / 2} months` } };
-    return undefined;
-  };
-
-  it('asks only the USCIS page\'s own addresses and returns every office', async () => {
-    const { result, asked } = await fakePage(answers)();
-    expect(asked.every((u) => u.startsWith('/processing-times/api/'))).toBe(true);
+  it('learns from the owner\'s one click, then asks the same way for every office', async () => {
+    const { result, asked } = await fakePage()();
     expect(result.tool).toBe('pathways-copy-n400-times');
     expect(result.offices).toHaveLength(12);
     expect(result.offices[1]).toMatchObject({ name: 'Fake City 1', state: 'TX', months: 10.5, problem: null });
-    expect(result.read_on).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    const own = asked.slice(3);
+    expect(own).toHaveLength(12);
+    for (const a of own) {
+      expect(a.url).toBe('https://egov.uscis.gov/processing-times'); // the page's own address only
+      expect(a.init.headers['Next-Action']).toBe('abc123');
+      expect(a.init.headers.Cookie).toBeUndefined(); // never copies cookies
+    }
+    expect(JSON.parse(own[5].init.body)).toEqual(['N-400', '160A', 'F5']);
   });
 
-  it('stops and shows what it saw when USCIS answers something unexpected', async () => {
-    const { result } = await fakePage((url) => (url.endsWith('formtypes/N-400') ? { nothing: 'here' } : undefined))();
-    expect(result.stopped_at).toBe('form N-400');
-    expect(result.detail).toMatch(/Expected one N-400 type/);
+  it('stops and says what to do when the owner never asks for an office', async () => {
+    const { result } = await fakePage({ click: false })();
+    expect(result.stopped_at).toBe('watching');
+    expect(result.detail).toMatch(/Get processing time/);
+  });
+
+  it('gives the page its own fetch back once it has learned', async () => {
+    const page = fakePage();
+    const { window } = await page();
+    expect(window.fetch.name).not.toBe('watchedFetch');
   });
 });
 
