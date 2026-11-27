@@ -9755,6 +9755,12 @@
    ]
   },
   {
+   "text": "Keys:",
+   "from": [
+    "desktop-keys"
+   ]
+  },
+  {
    "text": "Killing an important person on purpose.",
    "from": [
     "n400"
@@ -27387,6 +27393,12 @@
    ]
   },
   {
+   "text": "answer",
+   "from": [
+    "desktop-keys"
+   ]
+  },
+  {
    "text": "answers ready",
    "from": [
     "practice"
@@ -27546,6 +27558,12 @@
    "text": "claimed",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "close",
+   "from": [
+    "desktop-keys"
    ]
   },
   {
@@ -27849,6 +27867,12 @@
    ]
   },
   {
+   "text": "hear it again",
+   "from": [
+    "desktop-keys"
+   ]
+  },
+  {
    "text": "hereditary",
    "from": [
     "n400"
@@ -27858,6 +27882,12 @@
    "text": "hijacking",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "hint",
+   "from": [
+    "desktop-keys"
    ]
   },
   {
@@ -28104,6 +28134,12 @@
    "text": "or ZIP code",
    "from": [
     "resource-finder"
+   ]
+  },
+  {
+   "text": "or press Space",
+   "from": [
+    "desktop-keys"
    ]
   },
   {

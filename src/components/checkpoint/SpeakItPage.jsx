@@ -12,6 +12,8 @@ import { isRepeatRequest } from '@/lib/repeatRequest';
 import { checkpoints as checkpointsApi } from '@/api/checkpoints';
 import { passMark, speakItQuestions, speakItScore, unitFinishedBy } from '@/lib/checkpoints';
 import { CheckpointHeader, ProgressDots, RingMic, useCheckpointText } from '@/components/checkpoint/checkpointParts';
+import Stage, { KeyHints } from '@/components/pathways/Stage';
+import useShortcuts from '@/components/pathways/useShortcuts';
 
 // Speak it! (Prompt 8, frames R33SpeakIntro, R33SpeakAsk, R33SpeakResult):
 // 6 of the section's questions (picked each try) out loud, no hints. The only help is "Could you
@@ -44,48 +46,56 @@ function Ask({ question, index, total, results, t, onAnswer, onClose }) {
   const speech = useSpeechCapture((transcript) => grade(transcript));
 
   useEffect(() => { speakText(question.question, 'en'); }, [question.question]);
+  // Desktop keys (vision C): R = repeat; Space is the mic's, Esc the header's close.
+  useShortcuts({ r: () => speakText(question.question, 'en') });
 
   return (
     <div className="min-h-screen bg-paper flex flex-col">
       <CheckpointHeader title={t('question_of', { n: index + 1, total })} onClose={onClose} closeLabel={t('close')}>
         <ProgressDots total={total} results={results} current={index} label={t('progress_label', { n: index + 1, total })} />
       </CheckpointHeader>
-      <div className="flex-1 max-w-lg w-full mx-auto px-4 py-5 flex flex-col items-center gap-4">
-        <section className="w-full rounded-card bg-navy px-5 py-6 text-center text-white">
-          <p className="inline-flex items-center gap-2 text-base text-on-navy"><Volume2 className="w-5 h-5" aria-hidden="true" />{t('officer_asks')}</p>
-          <p className="mt-2 text-question font-bold leading-snug" lang="en" dir="ltr">{question.question}</p>
-        </section>
-        <button type="button" onClick={() => speakText(question.question, 'en')} className="min-h-tap rounded-button border border-line bg-white px-5 text-base font-semibold text-navy hover:border-denim focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim">
-          {t('repeat_please')}
-        </button>
-        <p className="text-base text-muted text-center">{t('no_hints')}</p>
-
-        <div className="mt-auto w-full flex flex-col items-center gap-3 pt-8">
-          {checking && <p className="text-base text-muted" role="status">{t('checking')}</p>}
-          {!checking && askedAgain && <p className="text-base text-navy text-center" role="status">{t('asked_again')}</p>}
-          {!checking && !typing && (
-            <>
-              {speech.listening && speech.transcript && <p className="text-base text-navy text-center" lang="en" dir="ltr">“{speech.transcript}”</p>}
-              <RingMic
-                listening={speech.listening}
-                onStart={speech.start}
-                onStop={speech.stop}
-                label={t('answer_in_english')}
-                listeningLabel={t('listening')}
-                onTypeInstead={() => setTyping(true)}
-                typeInsteadLabel={t('type_instead')}
-                disabled={!speech.supported}
-              />
-            </>
+      <div className="flex-1 max-w-lg lg:max-w-6xl w-full mx-auto px-4 lg:px-10 py-5 lg:py-10 flex flex-col">
+        <Stage
+          className="flex-1"
+          side={(
+            <div className="mt-auto lg:mt-0 w-full flex flex-col items-center gap-3 pt-8 lg:pt-0">
+              {checking && <p className="text-base text-muted" role="status">{t('checking')}</p>}
+              {!checking && askedAgain && <p className="text-base text-navy text-center" role="status">{t('asked_again')}</p>}
+              {!checking && !typing && (
+                <>
+                  {speech.listening && speech.transcript && <p className="text-base text-navy text-center" lang="en" dir="ltr">“{speech.transcript}”</p>}
+                  <RingMic
+                    listening={speech.listening}
+                    onStart={speech.start}
+                    onStop={speech.stop}
+                    label={t('answer_in_english')}
+                    listeningLabel={t('listening')}
+                    onTypeInstead={() => setTyping(true)}
+                    typeInsteadLabel={t('type_instead')}
+                    disabled={!speech.supported}
+                  />
+                </>
+              )}
+              {!checking && typing && (
+                <form className="w-full flex flex-col gap-3" onSubmit={(e) => { e.preventDefault(); grade(typed, true); }}>
+                  <label htmlFor="speak-typed" className="text-base font-semibold text-navy">{t('type_answer')}</label>
+                  <input id="speak-typed" lang="en" dir="ltr" autoComplete="off" value={typed} onChange={(e) => setTyped(e.target.value)} className="min-h-[52px] rounded-2xl border border-line bg-white px-4 text-lg text-navy focus:outline-none focus:ring-2 focus:ring-denim" />
+                  <Button variant="main" type="submit" className="w-full" disabled={!typed.trim()}>{t('check')}</Button>
+                </form>
+              )}
+            </div>
           )}
-          {!checking && typing && (
-            <form className="w-full flex flex-col gap-3" onSubmit={(e) => { e.preventDefault(); grade(typed, true); }}>
-              <label htmlFor="speak-typed" className="text-base font-semibold text-navy">{t('type_answer')}</label>
-              <input id="speak-typed" lang="en" dir="ltr" autoComplete="off" value={typed} onChange={(e) => setTyped(e.target.value)} className="min-h-[52px] rounded-2xl border border-line bg-white px-4 text-lg text-navy focus:outline-none focus:ring-2 focus:ring-denim" />
-              <Button variant="main" type="submit" className="w-full" disabled={!typed.trim()}>{t('check')}</Button>
-            </form>
-          )}
-        </div>
+        >
+          <section className="w-full rounded-card bg-navy px-5 py-6 lg:px-10 lg:py-12 text-center lg:text-start text-white">
+            <p className="inline-flex items-center gap-2 text-base text-on-navy"><Volume2 className="w-5 h-5" aria-hidden="true" />{t('officer_asks')}</p>
+            <p className="mt-2 text-question lg:font-display lg:text-[3.5rem] lg:leading-[1.02] font-bold leading-snug" lang="en" dir="ltr">{question.question}</p>
+          </section>
+          <button type="button" onClick={() => speakText(question.question, 'en')} className="self-center lg:self-start min-h-tap rounded-button border border-line bg-white px-5 text-base font-semibold text-navy hover:border-denim focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-denim">
+            {t('repeat_please')}
+          </button>
+          <p className="text-base text-muted text-center lg:text-start">{t('no_hints')}</p>
+          <KeyHints keys={['space', 'r', 'escape']} onNavy={false} />
+        </Stage>
       </div>
     </div>
   );

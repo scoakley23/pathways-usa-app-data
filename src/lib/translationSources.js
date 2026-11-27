@@ -39,6 +39,7 @@ import { ASK_HISTORY_LINES, NOTIFICATION_LINES, PROGRESS_LINES } from '@/compone
 import { HELP_PHRASES, N400_LESSONS, N400_QUESTION_NAMES } from '@/lib/n400Lessons';
 import { courseTitleTexts } from '@/lib/courseTitles';
 import { TODAY_LINES } from '@/components/today/todayLines';
+import { KEY_LINES } from '@/components/pathways/keyStrings';
 import { UNITS } from '@/lib/course';
 import coursePictures from '../../content/course/pictures.json';
 import { GETTING_STARTED_LINES } from '@/components/persona/gettingStartedStrings';
@@ -88,6 +89,7 @@ export const STRING_SETS = [
   { id: 'checkpoints', strings: CHECKPOINT_LINES, usedIn: [['src/components/checkpoint/checkpointParts.jsx', 'CHECKPOINT_LINES']] },
   { id: 'n400-lessons', strings: N400_LESSON_LINES, usedIn: [['src/components/n400lesson/N400LessonPage.jsx', 'N400_LESSON_LINES'], ['src/components/n400lesson/N400LessonsCard.jsx', 'N400_LESSON_LINES']] },
   { id: 'today-plan', strings: TODAY_LINES, usedIn: [['src/components/today/useToday.js', 'TODAY_LINES']] },
+  { id: 'desktop-keys', strings: KEY_LINES, usedIn: [['src/components/pathways/keyStrings.js', 'KEY_LINES']] },
   { id: 'notifications', strings: NOTIFICATION_LINES, usedIn: [['src/components/notifications/NotificationCenter.jsx', 'NOTIFICATION_LINES']] },
   { id: 'ask-history', strings: ASK_HISTORY_LINES, usedIn: [['src/pages/StudyHistory.jsx', 'ASK_HISTORY_LINES']] },
   { id: 'progress', strings: PROGRESS_LINES, usedIn: [['src/components/progress/useProgressText.js', 'PROGRESS_LINES']] },

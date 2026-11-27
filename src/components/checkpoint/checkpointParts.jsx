@@ -1,6 +1,7 @@
 import React from 'react';
 import { Check, X } from 'lucide-react';
 import MicButton from '@/components/pathways/MicButton';
+import useShortcuts from '@/components/pathways/useShortcuts';
 import useTranslatedLines from '@/components/persona/useTranslatedLines';
 import useAppLanguage, { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
 import { CHECKPOINT_LINES } from '@/components/checkpoint/checkpointStrings';
@@ -22,6 +23,8 @@ export function useCheckpointText() {
 /** A close button and title on a colored bar (gold for Speak it!, navy otherwise). */
 export function CheckpointHeader({ title, subtitle, onClose, closeLabel, tone = 'gold', children }) {
   const gold = tone === 'gold';
+  // Esc closes, like the X (desktop keys, vision C).
+  useShortcuts({ escape: onClose }, !!onClose);
   return (
     <header className={`${gold ? 'bg-gold text-navy' : 'bg-navy text-white'} px-4 pt-5 pb-4 flex flex-col gap-3`}>
       <div className="flex items-center gap-2">

@@ -54,6 +54,9 @@ export const SCREENS = [
   { id: 'lawyer', path: '/lawyer-first' },
   { id: 'practice', path: '/study?tab=practice' },
   { id: 'practice-civics', path: '/study?tab=practice&mode=civics' },
+  { id: 'practice-reading', path: '/study?tab=practice&mode=reading' },
+  { id: 'speak-it', path: '/course/speak/u1-s1', clicks: [/^I’m ready$/] },
+  { id: 'review-chest', path: '/review-chest' },
   { id: 'lesson', path: '/course/lesson/u1-s1-l1' },
   { id: 'interview-day', path: '/interview-day' },
 ];
@@ -80,6 +83,8 @@ const PROFILE = {
   checkins_stopped: true,
   skill_levels: { civics: 'getting_there', reading: 'strong', writing: 'getting_there', speaking: 'start_here', date: '2026-11-01' },
 };
+const yesterday = new Date(Date.now() - 864e5).toISOString().slice(0, 10);
+const REVIEW_ITEMS = ['6ad16ecf6a9c603911f9de1f', '6ad16ecf6a9c603911f9de1e'].map((id) => ({ question_id: id, box: 1, next_due: yesterday }));
 const b64 = (o) => Buffer.from(JSON.stringify(o)).toString('base64url');
 const FAKE_JWT = `${b64({ alg: 'HS256', typ: 'JWT' })}.${b64({ sub: USER.id, role: 'authenticated', exp: NOW + 3600 * 24 })}.fake`;
 const SESSION = {
@@ -91,6 +96,29 @@ const SESSION = {
   user: USER,
 };
 
+// Public content comes from the repo's own export files (the same rows the
+// Supabase migration loads), so practice screens have real questions.
+const readExport = (name) => JSON.parse(fs.readFileSync(path.join(ROOT, 'content/base44-export', name), 'utf8'));
+const CONTENT = {
+  civics_questions: () => [...readExport('civics-questions-2025.json'), ...readExport('civics-questions-2008.json')],
+  reading_sentences: () => readExport('reading-sentences.json'),
+  writing_sentences: () => readExport('writing-sentences.json'),
+  vocabulary_words: () => readExport('vocabulary-words.json'),
+  interview_questions: () => readExport('interview-questions.json'),
+};
+
+// PostgREST filters the app uses for content: col=eq.value, offset, limit.
+function contentRows(table, params) {
+  let rows = CONTENT[table]();
+  for (const [key, value] of params) {
+    if (['select', 'order', 'offset', 'limit'].includes(key) || !value.startsWith('eq.')) continue;
+    rows = rows.filter((r) => String(r[key]) === value.slice(3));
+  }
+  const offset = Number(params.get('offset') || 0);
+  const limit = params.has('limit') ? Number(params.get('limit')) : rows.length;
+  return rows.slice(offset, offset + limit);
+}
+
 async function answerFakeSupabase(route) {
   const req = route.request();
   const url = new URL(req.url());
@@ -99,7 +127,14 @@ async function answerFakeSupabase(route) {
   if (url.pathname.startsWith('/auth/v1/user')) return json(USER);
   if (url.pathname.startsWith('/auth/v1/')) return json({});
   if (url.pathname === '/rest/v1/profiles') return json(wantsObject ? PROFILE : [PROFILE]);
+  // Two questions due for review, so the Review chest shows the Teach it back screen.
+  if (url.pathname === '/rest/v1/review_items' && !wantsObject) return json(REVIEW_ITEMS);
   if (url.pathname.startsWith('/rest/v1/rpc/')) return json([]);
+  const table = url.pathname.replace('/rest/v1/', '');
+  if (CONTENT[table]) {
+    const rows = contentRows(table, url.searchParams);
+    return route.fulfill({ status: 200, contentType: 'application/json', headers: { 'content-range': `0-${Math.max(rows.length - 1, 0)}/*` }, body: JSON.stringify(rows) });
+  }
   if (url.pathname.startsWith('/rest/v1/')) {
     if (req.method() === 'HEAD') return route.fulfill({ status: 200, headers: { 'content-range': '*/0' }, body: '' });
     return json(wantsObject ? null : []);
@@ -168,6 +203,12 @@ async function main() {
         page.on('pageerror', (e) => errors.push(String(e.message || e).slice(0, 160)));
         await page.goto(base + screen.path, { waitUntil: 'networkidle' }).catch(() => {});
         await page.waitForTimeout(600);
+        // Some screens need a tap or two to reach the part to check (English
+        // button names; Arabic has no translation pack yet, so they match).
+        for (const name of screen.clicks || []) {
+          await page.getByRole('button', { name }).first().click({ timeout: 5000 }).catch(() => {});
+          await page.waitForTimeout(500);
+        }
 
         const name = `${screen.id}-${lang}-${width}.png`;
         await page.screenshot({ path: path.join(OUT, name), fullPage: true });

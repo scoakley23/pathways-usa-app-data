@@ -1,17 +1,19 @@
 import React from 'react';
+import Stage from '@/components/pathways/Stage';
 
 // A practice run's screen (Amio v2, frame Speak): navy, full screen, with the
 // top bar, what is being practiced, the question or sentence and the answer
 // controls; the result comes in as a bottom panel (`panel`, AnswerFeedback),
-// never a full screen and never red.
-export default function RunScreen({ topBar, label, panel = null, children }) {
+// never a full screen and never red. `side` (the answer controls) stands on
+// the right on desktop (the stage, vision C); on phones it follows `children`.
+export default function RunScreen({ topBar, label, panel = null, side = null, children }) {
   return (
     <div className="min-h-screen bg-navy text-white flex flex-col">
-      <div className="flex-1 px-4 pt-5 pb-6">
-        <div className="mx-auto max-w-lg flex flex-col gap-4">
+      <div className="flex-1 px-4 lg:px-10 pt-5 lg:pt-8 pb-6">
+        <div className={`mx-auto max-w-lg flex flex-col gap-4 ${side !== null ? 'lg:max-w-6xl' : ''}`}>
           {topBar}
           {label && <h1 className="font-sans text-base font-semibold text-on-navy" dir="auto">{label}</h1>}
-          {children}
+          {side !== null ? <Stage side={side}>{children}</Stage> : children}
         </div>
       </div>
       {panel}

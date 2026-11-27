@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Volume2 } from 'lucide-react';
 import { AmioSays } from '@/components/pathways/Amio';
 import MicButton from '@/components/pathways/MicButton';
+import Stage, { KeyHints } from '@/components/pathways/Stage';
+import useShortcuts from '@/components/pathways/useShortcuts';
 import { RightPanel } from '@/components/pathways/ResultBanner';
 import { Button } from '@/components/pathways/ui';
 import Officer from '@/components/interview/Officer';
@@ -99,54 +101,10 @@ export default function QuestionStep({ kind, question, hint, language, t, savesR
   const accepted = acceptedAnswers(question, graded);
   const chip = 'min-h-tap rounded-button border border-navy-line px-4 text-base font-semibold text-white hover:border-sky focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white';
   const amioLine = answered ? t(lineKey) : kind === 'teach' ? t('forgot') : null;
-  const amioMood = mode === 'right' ? 'cheering' : mode === 'wrong' ? 'tryAgain' : speech.listening ? 'listening' : 'hello';
-
-  return (
-    <div className="flex flex-col flex-1 min-h-full bg-navy text-white">
-      <div className="flex-1 px-4 py-5 flex flex-col gap-5 max-w-lg w-full mx-auto">
-        {kind === 'officer' && (
-          <div className="flex items-center gap-3">
-            <Officer size={answered ? 64 : 96} />
-            <div className="min-w-0">
-              <p className="text-small text-on-navy">{t('officer_label')}</p>
-              <p className="text-small text-on-navy">{t('english_only')}</p>
-            </div>
-          </div>
-        )}
-        {amioLine && <AmioSays mood={amioMood} size={56} onNavy>{amioLine}</AmioSays>}
-        {kind === 'teach' && !answered && <p dir="auto" className="text-base text-on-navy">{t('speak_amio')}</p>}
-
-        <p className={`font-display leading-[1.08] tracking-tight ${answered ? 'text-[1.75rem] text-sky' : 'text-[2.25rem] text-white'}`} lang="en" dir="ltr">{question.question}</p>
-        {showMine && mine && !answered && <p className="text-base text-sky" dir="auto" lang={language}>{mine}</p>}
-
-        {mode === 'ask' && (
-          <div className="flex flex-wrap gap-2">
-            {kind === 'teach' ? (
-              <>
-                <button type="button" className={`${chip} inline-flex items-center gap-2`} onClick={() => speakText(question.question, 'en')}>
-                  <Volume2 className="w-5 h-5" aria-hidden="true" />{t('hear_again')}
-                </button>
-                {hint && <button type="button" className={chip} aria-expanded={showHint} onClick={() => setShowHint((v) => !v)}>{t('hint')}</button>}
-                {mine && <button type="button" className={chip} aria-pressed={showMine} onClick={() => setShowMine((v) => !v)}>{t('in_my_language')}</button>}
-              </>
-            ) : (
-              <button type="button" className={chip} onClick={() => speakText(question.question, 'en')}>{t('repeat_please')}</button>
-            )}
-          </div>
-        )}
-        {mode === 'ask' && showHint && hint && <p className="rounded-card bg-navy-2 px-4 py-3 text-base text-white" dir="auto">{hint}</p>}
-
-        {answered && (
-          <section className="rounded-card bg-navy-2 px-4 py-4">
-            <p className="text-small text-on-navy">{t('you_said')}</p>
-            <p className="mt-1 font-display text-[1.75rem] leading-tight text-white">
-              {mode === 'wrong' && said ? <SaidWithMisses said={said} accepted={accepted} /> : <span lang="en" dir="ltr">“{said || '—'}”</span>}
-            </p>
-          </section>
-        )}
-
-        {!answered && (
-          <div className="mt-auto w-full flex flex-col items-center gap-3 pt-4">
+  // The answer controls: the mic, typing, or "can't check". On desktop they
+  // stand on the right of the stage (vision C).
+  const micBlock = (
+          <div className="mt-auto lg:mt-0 w-full flex flex-col items-center gap-3 pt-4 lg:pt-0">
             {mode === 'checking' && <p className="text-base text-on-navy" role="status">{t('checking')}</p>}
             {mode === 'ask' && askedAgain && <p className="text-base text-white text-center" role="status">{t('asked_again')}</p>}
             {mode === 'ask' && !typing && (
@@ -179,7 +137,62 @@ export default function QuestionStep({ kind, question, hint, language, t, savesR
               </div>
             )}
           </div>
+  );
+  // Desktop keys (vision C): R = hear it again, H = hint (Teach it back);
+  // Space is the mic's and Esc the header's close.
+  useShortcuts({
+    r: () => speakText(question.question, 'en'),
+    h: kind === 'teach' && hint ? () => setShowHint((v) => !v) : undefined,
+  }, mode === 'ask');
+  const amioMood = mode === 'right' ? 'cheering' : mode === 'wrong' ? 'tryAgain' : speech.listening ? 'listening' : 'hello';
+
+  return (
+    <div className="flex flex-col flex-1 min-h-full bg-navy text-white">
+      <div className="flex-1 px-4 lg:px-10 py-5 lg:py-10 flex flex-col max-w-lg lg:max-w-6xl w-full mx-auto">
+      <Stage className="flex-1" side={!answered && micBlock}>
+        {kind === 'officer' && (
+          <div className="flex items-center gap-3">
+            <Officer size={answered ? 64 : 96} />
+            <div className="min-w-0">
+              <p className="text-small text-on-navy">{t('officer_label')}</p>
+              <p className="text-small text-on-navy">{t('english_only')}</p>
+            </div>
+          </div>
         )}
+        {amioLine && <AmioSays mood={amioMood} size={56} onNavy>{amioLine}</AmioSays>}
+        {kind === 'teach' && !answered && <p dir="auto" className="text-base text-on-navy">{t('speak_amio')}</p>}
+
+        <p className={`font-display leading-[1.08] tracking-tight ${answered ? 'text-[1.75rem] lg:text-[2.5rem] text-sky' : 'text-[2.25rem] lg:text-[4rem] lg:leading-[1.02] text-white'}`} lang="en" dir="ltr">{question.question}</p>
+        {showMine && mine && !answered && <p className="text-base text-sky" dir="auto" lang={language}>{mine}</p>}
+
+        {mode === 'ask' && (
+          <div className="flex flex-wrap gap-2">
+            {kind === 'teach' ? (
+              <>
+                <button type="button" className={`${chip} inline-flex items-center gap-2`} onClick={() => speakText(question.question, 'en')}>
+                  <Volume2 className="w-5 h-5" aria-hidden="true" />{t('hear_again')}
+                </button>
+                {hint && <button type="button" className={chip} aria-expanded={showHint} onClick={() => setShowHint((v) => !v)}>{t('hint')}</button>}
+                {mine && <button type="button" className={chip} aria-pressed={showMine} onClick={() => setShowMine((v) => !v)}>{t('in_my_language')}</button>}
+              </>
+            ) : (
+              <button type="button" className={chip} onClick={() => speakText(question.question, 'en')}>{t('repeat_please')}</button>
+            )}
+          </div>
+        )}
+        {mode === 'ask' && showHint && hint && <p className="rounded-card bg-navy-2 px-4 py-3 text-base text-white" dir="auto">{hint}</p>}
+
+        {answered && (
+          <section className="rounded-card bg-navy-2 px-4 py-4">
+            <p className="text-small text-on-navy">{t('you_said')}</p>
+            <p className="mt-1 font-display text-[1.75rem] leading-tight text-white">
+              {mode === 'wrong' && said ? <SaidWithMisses said={said} accepted={accepted} /> : <span lang="en" dir="ltr">“{said || '—'}”</span>}
+            </p>
+          </section>
+        )}
+
+        {mode === 'ask' && <KeyHints keys={kind === 'teach' ? ['space', 'r', ...(hint ? ['h'] : []), 'escape'] : ['space', 'r', 'escape']} />}
+      </Stage>
       </div>
       {mode === 'right' && (
         <RightPanel title={t('right')} answer={accepted[0] || null} actionLabel={t('continue')} onAction={() => onDone('right')} className="sticky bottom-0" />
