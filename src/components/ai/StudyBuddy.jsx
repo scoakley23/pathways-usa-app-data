@@ -77,7 +77,7 @@ function usePrivacyNote(language, texts = PRIVACY_NOTE, cacheKey = PRIVACY_NOTE_
       try {
         const cached = localStorage.getItem(cacheKey + language);
         if (cached) { setNote(cached); return; }
-      } catch (e) {
+      } catch {
         // ignore
       }
       const langName = LANGUAGES.find((l) => l.value === language)?.label || language;
@@ -88,7 +88,7 @@ function usePrivacyNote(language, texts = PRIVACY_NOTE, cacheKey = PRIVACY_NOTE_
         setNote(res.trim());
         try {
           localStorage.setItem(cacheKey + language, res.trim());
-        } catch (e) {
+        } catch {
           // ignore
         }
       }).catch(() => {
@@ -237,7 +237,7 @@ export default function StudyBuddy() {
         answer = { type: 'answer', en: prepared.en, mine: prepared.mine };
         setAsked({ question: typed, reply: { kind: 'answer', en: prepared.en, mine: prepared.mine, language: askedIn } });
       }
-    } catch (error) {
+    } catch {
       answer = null; // fall back to asking the AI
     }
 
@@ -286,7 +286,7 @@ export default function StudyBuddy() {
   // Asking out loud: the browser turns speech into text in Amio's language
   // (nothing is recorded); when the learner stops, the words are asked.
   const stopListening = () => {
-    try { recognitionRef.current?.stop(); } catch (e) { /* already stopped */ }
+    try { recognitionRef.current?.stop(); } catch { /* already stopped */ }
   };
   const startListening = () => {
     const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -313,7 +313,7 @@ export default function StudyBuddy() {
       if (words) ask(words);
     };
     recognitionRef.current = rec;
-    try { rec.start(); } catch (e) { setListening(false); }
+    try { rec.start(); } catch { setListening(false); }
   };
   // Stop listening when leaving the screen.
   useEffect(() => () => stopListening(), []);

@@ -27,7 +27,7 @@ const loadVoices = () => new Promise((resolve) => {
   const finish = () => {
     if (settled) return;
     settled = true;
-    try { window.speechSynthesis.removeEventListener('voiceschanged', handleChanged); } catch (e) { /* ignore */ }
+    try { window.speechSynthesis.removeEventListener('voiceschanged', handleChanged); } catch { /* ignore */ }
     resolve(window.speechSynthesis.getVoices());
   };
   const handleChanged = () => finish();
@@ -78,7 +78,7 @@ export function getVoiceSettings() {
         rate: typeof parsed.rate === 'number' ? parsed.rate : 0.9,
       };
     }
-  } catch (e) { /* ignore */ }
+  } catch { /* ignore */ }
   return { voiceName: null, rate: 0.9 };
 }
 
@@ -86,13 +86,13 @@ export function saveVoiceSettings(settings = {}) {
   const next = { ...getVoiceSettings(), ...settings };
   try {
     localStorage.setItem(SETTINGS_KEY, JSON.stringify(next));
-  } catch (e) { /* ignore */ }
+  } catch { /* ignore */ }
   return next;
 }
 
 // ---- Speaking --------------------------------------------------------------
 
-let currentUtterance = null; // keep a reference so Chrome doesn't GC it mid-speech
+let _currentUtterance = null; // keep a reference so Chrome doesn't GC it mid-speech
 let chunkQueue = [];
 let cancelled = false;
 let sequenceId = 0;
@@ -101,9 +101,9 @@ export function stopSpeaking() {
   cancelled = true;
   sequenceId += 1;
   chunkQueue = [];
-  currentUtterance = null;
+  _currentUtterance = null;
   if (window.speechSynthesis) {
-    try { window.speechSynthesis.cancel(); } catch (e) { /* ignore */ }
+    try { window.speechSynthesis.cancel(); } catch { /* ignore */ }
   }
 }
 
@@ -184,13 +184,13 @@ export async function speakText(text, language = 'en', { onStart, onEnd, voiceNa
       if (isStale()) return;
       const next = chunkQueue.shift();
       if (next) { speakChunk(next, false); return; }
-      currentUtterance = null;
+      _currentUtterance = null;
       if (onEnd) onEnd();
     };
     utterance.onend = advance;
     utterance.onerror = advance;
 
-    currentUtterance = utterance; // prevents garbage collection that stops onend in Chrome
+    _currentUtterance = utterance; // prevents garbage collection that stops onend in Chrome
     window.speechSynthesis.speak(utterance);
   };
 

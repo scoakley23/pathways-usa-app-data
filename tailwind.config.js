@@ -229,7 +229,7 @@ module.exports = {
 		// The shadcn CSS variables, generated from the tokens (no hex in CSS).
 		plugin(({ addBase }) => {
 			addBase({
-				':root': { ...vars(SHADCN), '--radius': px(RADIUS.button), '--rule': COLORS.line },
+				':root': { ...vars(SHADCN), '--radius': px(RADIUS.button) },
 				'.dark': vars(SHADCN_DARK),
 			});
 		}),

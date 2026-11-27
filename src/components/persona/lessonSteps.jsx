@@ -239,7 +239,7 @@ export function SpeakingStep({ step, ctx, state, setState }) {
         outcome: { correct: isCorrect },
         result: { isCorrect, right: { en: r.what_was_right_en, mine: r.what_was_right_mine }, tip: { en: r.tip_en, mine: r.tip_mine } },
       });
-    } catch (e) {
+    } catch {
       const isCorrect = local();
       setState({ answered: true, heard: answer, outcome: { correct: isCorrect }, result: { isCorrect, tip: isCorrect ? null : ctx.ui('keyWordsTip') } });
     } finally {
@@ -340,7 +340,7 @@ function WordChips({ words }) {
 export function WritingStep({ step, ctx, state, setState }) {
   const [typed, setTyped] = useState('');
   const say = () => speakText(step.sentence, 'en');
-  useEffect(() => { say(); }, [step.sentence]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { say(); }, [step.sentence]);
 
   const check = (e) => {
     e.preventDefault();
@@ -467,7 +467,7 @@ export function InterviewStep({ step, ctx, state, setState }) {
         : await evaluateInterviewAnswer(step.question, transcript);
       const score = Number(r?.overall_score) || 0;
       setState({ answered: true, heard: transcript, outcome: { score }, result: { isCorrect: !!r.is_acceptable, better: r.corrected_version, tip: r.improvement_tips } });
-    } catch (e) {
+    } catch {
       setFailed(true);
     } finally {
       setChecking(false);

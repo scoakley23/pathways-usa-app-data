@@ -215,7 +215,7 @@ export default function GettingStarted({ language, onLanguageChange, onDone }) {
                   await joinProgram(program.code, { name: learnerName, share });
                   clearPendingProgram();
                   go();
-                } catch (err) {
+                } catch {
                   setJoinError(true);
                 } finally {
                   setJoining(false);

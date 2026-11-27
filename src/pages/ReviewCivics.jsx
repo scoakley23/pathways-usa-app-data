@@ -61,7 +61,7 @@ export default function ReviewCivics() {
       const [entries, next] = await Promise.all([review.due({ knownIds }), review.nextDue({ knownIds })]);
       setDue(entries.map((entry) => ({ entry, question: byId.get(entry.questionId) })));
       setNextDate(next);
-    } catch (e) {
+    } catch {
       toast.error(t('load_review_error'));
       setDue([]);
     }
@@ -91,7 +91,7 @@ export default function ReviewCivics() {
     try {
       for (const { entry, next, correct } of outcome) if (next) await review.commit(entry, next, correct, now);
       awardBadges();
-    } catch (e) {
+    } catch {
       toast.error(t('save_error'));
     } finally {
       setSaving(false);
