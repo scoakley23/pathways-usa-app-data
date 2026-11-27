@@ -2219,7 +2219,8 @@
    "text": "Amio · AI tutor",
    "from": [
     "home",
-    "learn-screens"
+    "learn-screens",
+    "today-plan"
    ]
   },
   {
@@ -2683,7 +2684,8 @@
   {
    "text": "Ask Amio a question",
    "from": [
-    "me"
+    "me",
+    "today-plan"
    ]
   },
   {
@@ -22322,7 +22324,8 @@
    "text": "This week",
    "from": [
     "progress",
-    "today"
+    "today",
+    "today-plan"
    ]
   },
   {
