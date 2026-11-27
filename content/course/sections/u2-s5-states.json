@@ -330,7 +330,7 @@
               "meaning": "the leader of a state"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "Every state has a capital city and a governor.",
@@ -381,8 +381,20 @@
               "say": "Check the names again before your interview.",
               "help": {
                 "simpler": "Governors can change after elections. Check again close to your interview.",
-                "example": "If there was an election, a name may be different.",
+                "example": "After an election, or if a leader leaves the job, a name may be different.",
                 "why": "You want to give the governor serving on your interview day."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Who leads a state government?",
+                "choices": [
+                  "The governor",
+                  "The mayor",
+                  "The Chief Justice"
+                ],
+                "answer": 0
               }
             }
           ]
