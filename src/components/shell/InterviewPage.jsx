@@ -76,9 +76,9 @@ export default function InterviewPage() {
   return (
     <div dir={RTL_LANGUAGES.includes(language) ? 'rtl' : 'ltr'} className="min-h-full bg-paper text-navy">
       <section className="bg-navy text-white" aria-labelledby="ready-title">
-        <div className="max-w-lg mx-auto px-4 pt-6 pb-6 flex flex-col gap-4">
+        <div className="max-w-lg lg:max-w-6xl mx-auto px-4 lg:px-10 pt-6 lg:pt-10 pb-6 lg:pb-10 flex flex-col gap-4 lg:grid lg:grid-cols-2 lg:gap-x-12 lg:gap-y-6 lg:items-center">
           <h1 id="ready-title" className="sr-only">{t('title')}</h1>
-          {amio && <AmioSays mood="hello" size={56} onNavy>{amio}</AmioSays>}
+          {amio && <div className="lg:col-span-2 lg:max-w-xl"><AmioSays mood="hello" size={56} onNavy>{amio}</AmioSays></div>}
           <div>
             <p className="font-display text-[4rem] leading-none tracking-tight tabular-nums">{data ? t('n_of_total', { n: readyCount, total }) : ' '}</p>
             <p className="mt-1 text-lg text-sky">{t('parts_ready')}</p>
@@ -101,15 +101,16 @@ export default function InterviewPage() {
           <button
             type="button"
             onClick={() => setChoose(true)}
-            className={`w-full min-h-main mb-[5px] rounded-button bg-gold px-6 text-lg font-extrabold text-navy ${MAIN_PRESS} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-navy`}
+            className={`w-full lg:col-start-2 min-h-main mb-[5px] rounded-button bg-gold px-6 text-lg font-extrabold text-navy ${MAIN_PRESS} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-navy`}
           >
             {t('start')}
           </button>
         </div>
       </section>
 
-      <div className="max-w-lg mx-auto px-4 py-5 flex flex-col gap-4">
-        <div className="grid grid-cols-2 gap-2">
+      <div className="max-w-lg lg:max-w-6xl mx-auto px-4 lg:px-10 py-5 lg:py-8 flex flex-col gap-4 lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start">
+        <div className="flex flex-col gap-4">
+        <div className="grid grid-cols-2 gap-2 lg:gap-3">
           <Tile to="/interview/when" icon={CalendarDays} title={t('tile_when')} sub={when} className="bg-sky text-navy" />
           <Tile to="/n400-guide" icon={FileText} title={t('tile_n400')} sub={t('tile_n400_sub')} className="bg-gold text-navy" />
           <Tile to="/lawyer-first" icon={Scale} title={t('tile_lawyer')} sub={t('tile_lawyer_sub')} className="bg-denim text-white" />
@@ -127,6 +128,7 @@ export default function InterviewPage() {
               {t(`link_${l.id}`)}
             </Link>
           ))}
+        </div>
         </div>
 
         <N400LessonsCard />

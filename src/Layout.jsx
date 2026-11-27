@@ -4,6 +4,7 @@ import { auth } from '@/api/auth';
 import { profile } from '@/api/profile';
 import NotificationCenter, { OPEN_NOTIFICATIONS_EVENT } from '@/components/notifications/NotificationCenter';
 import BottomTabs, { TABS } from '@/components/pathways/BottomTabs';
+import SideNav from '@/components/pathways/SideNav';
 import { Amio } from '@/components/pathways/Amio';
 import useAppLanguage from '@/hooks/useAppLanguage';
 import useTranslatedLines from '@/components/persona/useTranslatedLines';
@@ -111,55 +112,37 @@ export default function Layout({ children }) {
   const headerless = isHeaderless(location.pathname);
 
   return (
-    <div className="min-h-screen bg-paper font-sans text-navy">
+    <div className={`min-h-screen bg-paper font-sans text-navy ${showTabs ? 'lg:ps-[232px]' : ''}`}>
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:start-3 focus:z-[60] focus:rounded-2xl focus:bg-navy focus:text-white focus:font-bold focus:px-4 focus:py-3"
       >
         Skip to main content
       </a>
-      {/* A slim navy header: Amio alone (no wordmark; its name is "Amio") and,
-          on desktop, the four tabs. No language button: the language is in
-          Settings. On phones there is no header on first open and on the four
-          tabs (HEADERLESS in src/lib/shellRoutes.js); desktop keeps it for the
-          tabs. Everything else lives in the tabs: Me has Ask Amio, Free help,
-          Progress and Settings (Notifications, Partner, Admin, Sign out). */}
-      {!practiceRun && <nav aria-label="Site" className={`sticky top-0 z-50 w-full bg-navy text-white ${headerless ? 'hidden lg:block' : ''}`}>
+      {/* A slim navy header with Amio alone (no wordmark; its name is
+          "Amio"). No language button: the language is in Settings. On phones
+          there is no header on first open and on the four tabs (HEADERLESS in
+          src/lib/shellRoutes.js). On desktop (lg, 1024px+) the side menu
+          (SideNav) replaces it wherever the tabs show. Everything else lives
+          in the tabs: Me has Ask Amio, Free help, Progress and Settings
+          (Notifications, Partner, Admin, Sign out). */}
+      {!practiceRun && <nav aria-label="Site" className={`sticky top-0 z-50 w-full bg-navy text-white ${headerless ? 'hidden' : ''} ${showTabs ? 'lg:hidden' : headerless ? 'lg:block' : ''}`}>
         <div className="container mx-auto px-4 h-14 lg:h-[72px] max-w-5xl flex items-center justify-between gap-3">
           {splash ? <span /> : (
             <Link to="/" aria-label="Amio" className="shrink-0 flex items-center min-h-11 min-w-11 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
               <Amio size={36} onNavy />
             </Link>
           )}
-
-          {/* Desktop: the four tabs */}
-          {!focusMode && (
-            <div className="hidden lg:flex items-center gap-1">
-              {TABS.map((tab) => {
-                const active = tab.id === activeTab;
-                const Icon = tab.icon;
-                return (
-                  <Link
-                    key={tab.id}
-                    to={tab.path}
-                    aria-current={active ? 'page' : undefined}
-                    className={`relative text-base font-semibold whitespace-nowrap transition-colors inline-flex items-center gap-2 px-4 min-h-11 rounded-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-navy
-                      ${active ? 'bg-white text-navy' : 'text-on-navy hover:text-white hover:bg-chip-navy'}`}
-                  >
-                    <Icon className="w-5 h-5" /> {tabLabels[tab.id] || tab.label}
-                    {tab.id === 'me' && unread > 0 && (
-                      <span className="min-w-6 h-6 px-1.5 rounded-button bg-denim text-white text-xs font-bold grid place-items-center">
-                        {unread}<span className="sr-only"> unread notifications</span>
-                      </span>
-                    )}
-                  </Link>
-                );
-              })}
-            </div>
-          )}
-
         </div>
       </nav>}
+      {showTabs && (
+        <SideNav
+          active={activeTab}
+          labels={tabLabels}
+          badges={{ me: unread }}
+          className="hidden lg:flex"
+        />
+      )}
       {user && (
         <NotificationCenter
           userEmail={user.email}

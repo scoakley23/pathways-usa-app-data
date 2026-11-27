@@ -2219,7 +2219,8 @@
    "text": "Amio · AI tutor",
    "from": [
     "home",
-    "learn-screens"
+    "learn-screens",
+    "today-plan"
    ]
   },
   {
@@ -2683,7 +2684,8 @@
   {
    "text": "Ask Amio a question",
    "from": [
-    "me"
+    "me",
+    "today-plan"
    ]
   },
   {
@@ -9750,6 +9752,12 @@
    "text": "Key words",
    "from": [
     "tutor-steps"
+   ]
+  },
+  {
+   "text": "Keys:",
+   "from": [
+    "desktop-keys"
    ]
   },
   {
@@ -18891,7 +18899,7 @@
    ]
   },
   {
-   "text": "The civics test in this app is part of naturalizing.",
+   "text": "The civics test you practice here is part of naturalizing.",
    "from": [
     "course-lessons"
    ]
@@ -22322,7 +22330,8 @@
    "text": "This week",
    "from": [
     "progress",
-    "today"
+    "today",
+    "today-plan"
    ]
   },
   {
@@ -27384,6 +27393,12 @@
    ]
   },
   {
+   "text": "answer",
+   "from": [
+    "desktop-keys"
+   ]
+  },
+  {
    "text": "answers ready",
    "from": [
     "practice"
@@ -27543,6 +27558,12 @@
    "text": "claimed",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "close",
+   "from": [
+    "desktop-keys"
    ]
   },
   {
@@ -27846,6 +27867,12 @@
    ]
   },
   {
+   "text": "hear it again",
+   "from": [
+    "desktop-keys"
+   ]
+  },
+  {
    "text": "hereditary",
    "from": [
     "n400"
@@ -27855,6 +27882,12 @@
    "text": "hijacking",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "hint",
+   "from": [
+    "desktop-keys"
    ]
   },
   {
@@ -28101,6 +28134,12 @@
    "text": "or ZIP code",
    "from": [
     "resource-finder"
+   ]
+  },
+  {
+   "text": "or press Space",
+   "from": [
+    "desktop-keys"
    ]
   },
   {

@@ -5,6 +5,8 @@ import ExplainSheet from '@/components/practice/ExplainSheet';
 import AnswerFeedback from '@/components/practice/AnswerFeedback';
 import RunTopBar from '@/components/practice/RunTopBar';
 import RunScreen, { NavyChip, SaidBox } from '@/components/practice/RunScreen';
+import { KeyHints } from '@/components/pathways/Stage';
+import useShortcuts from '@/components/pathways/useShortcuts';
 import usePracticeText from '@/components/practice/usePracticeText';
 import MicButton from '@/components/pathways/MicButton';
 import { Button } from '@/components/pathways/ui';
@@ -227,6 +229,8 @@ export default function CivicsTestCard({ question, onComplete, onNext, index = 0
     : verificationResult ? (verificationResult.is_correct === null ? 'neutral' : verificationResult.is_correct ? 'correct' : 'not-correct')
       : selfCheckMode ? 'neutral' : null;
   const done = !!status;
+  // Desktop keys (vision C): R = hear it again; Space is the mic's, Esc the top bar's close.
+  useShortcuts({ r: () => speak(question.question) }, !done);
   const translatedQuestion = translation ? translation.split('Answer:')[0].replace('Question:', '').trim() : '';
   const translatedAnswer = translation.includes('Answer:') ? translation.split('Answer:')[1].trim() : '';
 
@@ -276,36 +280,10 @@ export default function CivicsTestCard({ question, onComplete, onNext, index = 0
     </AnswerFeedback>
   );
 
-  return (
-    <RunScreen
-      topBar={onClose && <RunTopBar onClose={onClose} index={index} total={total} answered={done} />}
-      label={question.category ? <><bdi>{t('civics_label')}</bdi> · <bdi lang="en">{question.category}</bdi></> : t('civics_label')}
-      panel={panel}
-    >
-      <h2 className={`font-display leading-[1.08] ${done ? 'text-[1.75rem]' : 'text-[2.25rem]'}`} lang="en" dir="ltr">
-        {question.question}
-      </h2>
-      <div className="flex flex-wrap gap-2">
-        <NavyChip onClick={() => speak(question.question)} pressed={isPlaying}>
-          <Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" /> {t('hear_it')}
-        </NavyChip>
-        {myLanguage && (
-          <NavyChip onClick={() => setShowTranslation((v) => !v)} pressed={showTranslation}>
-            <Globe className="w-5 h-5 shrink-0" aria-hidden="true" /> {t('in_my_language')}
-          </NavyChip>
-        )}
-      </div>
-      {showTranslation && myLanguage && (
-        isTranslating ? (
-          <p className="flex items-center gap-2 text-base text-on-navy"><Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> {t('translating')}</p>
-        ) : translatedQuestion && (
-          <p lang={myLanguage.value} dir="auto" className="border-s-2 border-navy-line ps-4 text-lg text-on-navy">{translatedQuestion}</p>
-        )
-      )}
-
-      {!done && (
+  // The answer controls; on desktop they stand on the right (vision C).
+  const answerControls = (
         <div className="flex flex-col gap-4 pt-2">
-          <p className="text-base font-semibold text-on-navy" dir="auto">{t('answer_aloud')}</p>
+          <p className="text-base font-semibold text-on-navy lg:text-center" dir="auto">{t('answer_aloud')}</p>
           {askedAgain && !userAnswer && <p role="status" className="rounded-card bg-navy-2 px-4 py-3 text-base" dir="auto">{t('asked_again')}</p>}
 
           {inputMode === 'type' && (
@@ -362,7 +340,37 @@ export default function CivicsTestCard({ question, onComplete, onNext, index = 0
           <p className="text-base text-on-navy" dir="auto">{t('civics_private')}</p>
           <Button variant="link" onNavy className="self-start px-0" onClick={iDontKnow} disabled={verifying}>{t('dont_know')}</Button>
         </div>
+  );
+
+  return (
+    <RunScreen
+      topBar={onClose && <RunTopBar onClose={onClose} index={index} total={total} answered={done} />}
+      label={question.category ? <><bdi>{t('civics_label')}</bdi> · <bdi lang="en">{question.category}</bdi></> : t('civics_label')}
+      panel={panel}
+      side={done ? false : answerControls}
+    >
+      <h2 className={`font-display leading-[1.08] ${done ? 'text-[1.75rem] lg:text-[2.5rem]' : 'text-[2.25rem] lg:text-[3.75rem] lg:leading-[1.02]'}`} lang="en" dir="ltr">
+        {question.question}
+      </h2>
+      <div className="flex flex-wrap gap-2">
+        <NavyChip onClick={() => speak(question.question)} pressed={isPlaying}>
+          <Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" /> {t('hear_it')}
+        </NavyChip>
+        {myLanguage && (
+          <NavyChip onClick={() => setShowTranslation((v) => !v)} pressed={showTranslation}>
+            <Globe className="w-5 h-5 shrink-0" aria-hidden="true" /> {t('in_my_language')}
+          </NavyChip>
+        )}
+      </div>
+      {showTranslation && myLanguage && (
+        isTranslating ? (
+          <p className="flex items-center gap-2 text-base text-on-navy"><Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> {t('translating')}</p>
+        ) : translatedQuestion && (
+          <p lang={myLanguage.value} dir="auto" className="border-s-2 border-navy-line ps-4 text-lg text-on-navy">{translatedQuestion}</p>
+        )
       )}
+
+      {!done && <KeyHints keys={['space', 'r', 'escape']} />}
     </RunScreen>
   );
 }

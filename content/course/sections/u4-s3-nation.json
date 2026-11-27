@@ -91,7 +91,7 @@
               "meaning": "the 1787 meeting in Philadelphia where the Constitution was written"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "The U.S. Constitution was written in 1787.",
@@ -235,7 +235,7 @@
               "meaning": "to approve officially"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "After the Constitution was written, the states had to agree to it.",
@@ -372,7 +372,7 @@
               "meaning": "a person who works with other countries for their country"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "George Washington is called the Father of Our Country.",
@@ -526,7 +526,7 @@
               "meaning": "a person who helps a leader"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "Alexander Hamilton was the first Secretary of the Treasury.",
