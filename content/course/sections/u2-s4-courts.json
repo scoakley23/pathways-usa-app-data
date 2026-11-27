@@ -558,7 +558,7 @@
               "meaning": "the leader of the Supreme Court"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "The Chief Justice leads the Supreme Court.",
@@ -585,9 +585,14 @@
             },
             {
               "check": {
-                "kind": "tf",
-                "statement": "The Chief Justice leads the Supreme Court.",
-                "answer": true
+                "kind": "pick",
+                "prompt": "Who leads the Supreme Court?",
+                "choices": [
+                  "The Chief Justice",
+                  "The Speaker of the House",
+                  "The Vice President"
+                ],
+                "answer": 0
               }
             },
             {
