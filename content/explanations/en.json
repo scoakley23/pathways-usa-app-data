@@ -2393,8 +2393,8 @@
     "answers": [
       "The Star-Spangled Banner"
     ],
-    "status": "draft",
-    "explanation": "A national anthem is the official song of a country. The U.S. national anthem is \"The Star-Spangled Banner.\" Francis Scott Key wrote the words in 1814, during the War of 1812, after he saw the American flag still flying over a fort after a battle. People usually stand when the song is played. You can listen to the song with the \"Listen\" link below this explanation.",
+    "status": "reviewed",
+    "explanation": "A national anthem is the official song of a country. The U.S. national anthem is \"The Star-Spangled Banner.\" Francis Scott Key wrote the words in 1814, during the War of 1812, after he saw the American flag still flying over a fort after a battle. People usually stand when the song is played. You can watch and listen to the song in the video below.",
     "keyWords": [
       {
         "en": "national anthem",
@@ -2405,9 +2405,13 @@
         "translation": "Star-Spangled Banner"
       }
     ],
-    "link": {
-      "url": "https://www.loc.gov/item/ihas.100010509/",
-      "label": "Listen to the song (Library of Congress)"
+    "video": {
+      "youtubeId": "vPKp29Luryc",
+      "title": "Star Spangled Banner with Lyrics, Vocals, and Beautiful Photos",
+      "source": "Musicplay (YouTube)",
+      "license": "Standard YouTube license: shown as a YouTube embed, which YouTube's terms allow; not licensed to Pathways.",
+      "status": "reviewed",
+      "checkedOn": "2026-11-27"
     }
   },
   "What is the purpose of the 10th Amendment?": {
