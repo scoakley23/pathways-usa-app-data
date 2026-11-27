@@ -386,7 +386,7 @@
               "meaning": "an agreement where each side gets part of what it wants"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "The Electoral College decides who is elected President.",
@@ -405,6 +405,9 @@
                 "simpler": "Your vote helps pick your state’s electors.",
                 "example": "If most people in your state vote for one candidate, that candidate’s electors usually win.",
                 "why": "This explains how a citizen’s vote counts for President."
+              },
+              "picture": {
+                "photo": "election-day-1944.jpg"
               }
             },
             {
@@ -487,6 +490,18 @@
                 "simpler": "The writers of the Constitution mixed two ideas: a vote of the people and a choice by Congress.",
                 "example": "Some wanted the people to choose. Others wanted Congress to choose. This was the middle way.",
                 "why": "This compromise is the other answer on the test about the Electoral College."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "The Electoral College is a compromise between what?",
+                "choices": [
+                  "A vote of the people and a choice by Congress",
+                  "The President and the courts",
+                  "The states and Britain"
+                ],
+                "answer": 0
               }
             }
           ]
