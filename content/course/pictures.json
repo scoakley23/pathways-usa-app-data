@@ -64,6 +64,34 @@
       "commons": "Official Presidential portrait of Thomas Jefferson (by Rembrandt Peale, 1800).jpg",
       "author": "Rembrandt Peale"
     },
+    "washington.jpg": {
+      "credit": "Painting: Gilbert Stuart, 1803 · Clark Art Institute",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg",
+      "commons": "Gilbert Stuart Williamstown Portrait of George Washington.jpg",
+      "author": "Gilbert Stuart"
+    },
+    "franklin.jpg": {
+      "credit": "Painting: Joseph-Siffred Duplessis, about 1785 · National Portrait Gallery, Smithsonian",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:Joseph_Siffrein_Duplessis_-_Benjamin_Franklin_-_Google_Art_Project.jpg",
+      "commons": "Joseph Siffrein Duplessis - Benjamin Franklin - Google Art Project.jpg",
+      "author": "Joseph-Siffred Duplessis"
+    },
+    "madison.jpg": {
+      "credit": "Painting: John Vanderlyn, 1816 · White House Historical Association",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:James_Madison.jpg",
+      "commons": "James Madison.jpg",
+      "author": "John Vanderlyn"
+    },
+    "hamilton.jpg": {
+      "credit": "Painting: John Trumbull, 1806",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:Alexander_Hamilton_portrait_by_John_Trumbull_1806.jpg",
+      "commons": "Alexander Hamilton portrait by John Trumbull 1806.jpg",
+      "author": "John Trumbull"
+    },
     "king.jpg": {
       "credit": "Photo: Dick DeMarsico, 1964 · Library of Congress",
       "license": "Public domain",

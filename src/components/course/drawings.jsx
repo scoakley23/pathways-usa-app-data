@@ -48,6 +48,11 @@ export const DRAWING_PARTS = {
   waysToServe: { vote: 'Vote', taxes: 'Pay taxes', law: 'Obey the law', military: 'Serve in the military', office: 'Run for office', government: 'Work for the government' },
   waysToCitizenship: { born: 'Born in the United States', naturalize: 'Naturalize', derive: 'Derive citizenship' },
   oathPromises: { loyalty: 'Give up loyalty to other countries', defend: 'Defend the Constitution', obey: 'Obey the laws of the United States', serve: 'Serve the nation if needed' },
+  reasonsToCome: { freedom: 'Freedom', religion: 'Religious freedom', opportunity: 'Economic opportunity', persecution: 'Escape persecution' },
+  roadToIndependence: { taxes: 'New taxes, 1760s', teaParty: 'The Boston Tea Party, 1773', declaration: 'The Declaration of Independence, July 4, 1776' },
+  revolutionTimeline: { bunkerHill: 'The Battle of Bunker Hill', delaware: 'Washington crosses the Delaware', valleyForge: 'Valley Forge', yorktown: 'The British surrender at Yorktown' },
+  publius: { madison: 'James Madison', hamilton: 'Alexander Hamilton', jay: 'John Jay' },
+  dollarBills: { one: 'The one-dollar bill: George Washington', ten: 'The ten-dollar bill: Alexander Hamilton' },
 };
 
 // One part of a drawing: it fades when another part is lit (`focus`). In a
@@ -883,6 +888,125 @@ function OathPromises({ focus, pick } = {}) {
   );
 }
 
+// Unit 4. Why people came to the American colonies.
+function ReasonsToCome({ focus, pick } = {}) {
+  const tiles = [
+    { key: 'freedom', lines: ['Freedom'] },
+    { key: 'religion', lines: ['Religious', 'freedom'] },
+    { key: 'opportunity', lines: ['Economic', 'opportunity'] },
+    { key: 'persecution', lines: ['Escape', 'persecution'] },
+  ];
+  return (
+    <Frame viewBox="0 0 350 228" title="Why people came to the American colonies: freedom, religious freedom, economic opportunity, or to escape persecution">
+      <Box x={4} y={6} w={342} h={40} className="fill-navy stroke-navy" />
+      <T x={175} y={31} size={14} weight={700} className="fill-white">Why people came to the colonies</T>
+      {tiles.map((t, i) => (
+        <Part key={t.key} id={t.key} focus={focus} pick={pick} drawing="reasonsToCome">
+          <LabelTile x={i % 2 ? 180 : 4} y={56 + Math.floor(i / 2) * 86} w={166} h={78} fill={SOFT[i % 3]} lines={t.lines} />
+        </Part>
+      ))}
+    </Frame>
+  );
+}
+
+// Unit 4. The road to independence: new taxes, the Boston Tea Party, the
+// Declaration of Independence.
+function RoadToIndependence({ focus, pick } = {}) {
+  const rows = [
+    { key: 'taxes', when: '1760s', head: 'New taxes', sub: 'the Stamp Act, a tax on tea' },
+    { key: 'teaParty', when: '1773', head: 'Boston Tea Party', sub: 'tea thrown into the harbor' },
+    { key: 'declaration', when: '1776', head: 'Declaration of Independence', sub: 'adopted on July 4, 1776' },
+  ];
+  return (
+    <Frame viewBox="0 0 350 214" title="The road to independence: new taxes in the 1760s, like the Stamp Act and a tax on tea; the Boston Tea Party in 1773; the Declaration of Independence, adopted on July 4, 1776">
+      {rows.map((r, i) => (
+        <Part key={r.key} id={r.key} focus={focus} pick={pick} drawing="roadToIndependence">
+          <Box x={4} y={6 + i * 72} w={342} h={58} className={`${i === 2 ? 'fill-gold' : SOFT[i % 3]} stroke-denim`} />
+          <rect x={12} y={19 + i * 72} width={66} height={32} rx={8} className="fill-navy" />
+          <T x={45} y={40 + i * 72} size={13} weight={700} className="fill-white">{r.when}</T>
+          <T x={88} y={30 + i * 72} anchor="start" size={14} weight={700}>{r.head}</T>
+          <T x={88} y={50 + i * 72} anchor="start" size={12} weight={400}>{r.sub}</T>
+          {i < 2 && <Arrow d={arrowPath(45, 54 + i * 72, 45, 76 + i * 72)} />}
+        </Part>
+      ))}
+    </Frame>
+  );
+}
+
+// Unit 4. Four events of the American Revolution, in order.
+function RevolutionTimeline({ focus, pick } = {}) {
+  const rows = [
+    { key: 'bunkerHill', text: 'Battle of Bunker Hill' },
+    { key: 'delaware', text: 'Washington crosses the Delaware' },
+    { key: 'valleyForge', text: 'Valley Forge' },
+    { key: 'yorktown', text: 'The British surrender at Yorktown' },
+  ];
+  return (
+    <Frame viewBox="0 0 350 268" title="The American Revolution, led by George Washington and the Continental Army: the Battle of Bunker Hill, Washington crossing the Delaware, Valley Forge, and the British surrender at Yorktown">
+      <Box x={4} y={6} w={342} h={40} className="fill-navy stroke-navy" />
+      <T x={175} y={31} size={14} weight={700} className="fill-white">The Revolutionary War</T>
+      {rows.map((r, i) => (
+        <Part key={r.key} id={r.key} focus={focus} pick={pick} drawing="revolutionTimeline">
+          <Box x={4} y={56 + i * 52} w={342} h={44} className={`${i === 3 ? 'fill-gold' : SOFT[i % 3]} stroke-denim`} />
+          <circle cx={30} cy={78 + i * 52} r={14} className="fill-navy" />
+          <T x={30} y={83 + i * 52} size={13} weight={700} className="fill-white">{i + 1}</T>
+          <T x={54} y={83 + i * 52} anchor="start" size={14} weight={700}>{r.text}</T>
+        </Part>
+      ))}
+    </Frame>
+  );
+}
+
+// Unit 4. The three writers of the Federalist Papers, under one name.
+function Publius({ focus, pick } = {}) {
+  const writers = [
+    { key: 'madison', x: 4, lines: ['James', 'Madison'] },
+    { key: 'hamilton', x: 120, lines: ['Alexander', 'Hamilton'] },
+    { key: 'jay', x: 236, lines: ['John', 'Jay'] },
+  ];
+  return (
+    <Frame viewBox="0 0 350 214" title="James Madison, Alexander Hamilton and John Jay wrote the Federalist Papers under one name: Publius">
+      {writers.map((w, i) => (
+        <Part key={w.key} id={w.key} focus={focus} pick={pick} drawing="publius">
+          <Box x={w.x} y={6} w={110} h={112} className={`${SOFT[i % 3]} stroke-denim`} />
+          <Person cx={w.x + 55} cy={28} />
+          <T x={w.x + 55} y={78} size={14} weight={700}>{w.lines[0]}</T>
+          <T x={w.x + 55} y={98} size={14} weight={700}>{w.lines[1]}</T>
+          <Arrow d={arrowPath(w.x + 55, 124, 175, 146)} />
+        </Part>
+      ))}
+      <Box x={75} y={150} w={200} h={58} className="fill-navy stroke-navy" />
+      <T x={175} y={176} size={15} weight={700} className="fill-white">“Publius”</T>
+      <T x={175} y={196} size={12} weight={400} className="fill-white">The Federalist Papers</T>
+    </Frame>
+  );
+}
+
+// Unit 4. Who is on the one-dollar and ten-dollar bills (plain bills: no
+// seals, no portraits).
+function DollarBills({ focus, pick } = {}) {
+  const bills = [
+    { key: 'one', y: 6, n: '1', name: 'George Washington', fill: 'fill-sky-soft' },
+    { key: 'ten', y: 112, n: '10', name: 'Alexander Hamilton', fill: 'fill-gold-soft' },
+  ];
+  return (
+    <Frame viewBox="0 0 350 214" title="George Washington is on the one-dollar bill. Alexander Hamilton is on the ten-dollar bill.">
+      {bills.map((b) => (
+        <Part key={b.key} id={b.key} focus={focus} pick={pick} drawing="dollarBills">
+          <Box x={4} y={b.y} w={342} h={96} className={`${b.fill} stroke-denim`} />
+          <rect x={12} y={b.y + 8} width={326} height={80} rx={6} className="fill-none stroke-denim" strokeWidth="1.5" />
+          <T x={34} y={b.y + 34} size={18} weight={800}>{b.n}</T>
+          <T x={316} y={b.y + 80} size={18} weight={800}>{b.n}</T>
+          <ellipse cx={92} cy={b.y + 48} rx={28} ry={34} className="fill-white stroke-denim" strokeWidth="2" />
+          <Person cx={92} cy={b.y + 38} />
+          <T x={136} y={b.y + 44} anchor="start" size={14} weight={700}>{b.n === '1' ? 'One dollar' : 'Ten dollars'}</T>
+          <T x={136} y={b.y + 66} anchor="start" size={13} weight={600}>{b.name}</T>
+        </Part>
+      ))}
+    </Frame>
+  );
+}
+
 export const DRAWINGS = {
   threeBranches: ThreeBranches,
   termLengths: TermLengths,
@@ -913,6 +1037,11 @@ export const DRAWINGS = {
   waysToServe: WaysToServe,
   waysToCitizenship: WaysToCitizenship,
   oathPromises: OathPromises,
+  reasonsToCome: ReasonsToCome,
+  roadToIndependence: RoadToIndependence,
+  revolutionTimeline: RevolutionTimeline,
+  publius: Publius,
+  dollarBills: DollarBills,
 };
 
 // The parts each drawing can light up (story scenes' `focus`).
@@ -941,4 +1070,9 @@ export const DRAWING_FOCUS = {
   waysToServe: ['vote', 'taxes', 'law', 'military', 'office', 'government'],
   waysToCitizenship: ['born', 'naturalize', 'derive'],
   oathPromises: ['loyalty', 'defend', 'obey', 'serve'],
+  reasonsToCome: ['freedom', 'religion', 'opportunity', 'persecution'],
+  roadToIndependence: ['taxes', 'teaParty', 'declaration'],
+  revolutionTimeline: ['bunkerHill', 'delaware', 'valleyForge', 'yorktown'],
+  publius: ['madison', 'hamilton', 'jay'],
+  dollarBills: ['one', 'ten'],
 };
