@@ -78,7 +78,7 @@
               "meaning": "the right to follow any religion, or no religion"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "Some rights belong to everyone living in the United States, not only to citizens.",
@@ -186,7 +186,7 @@
                 "focus": "arms"
               },
               "help": {
-                "simpler": "People may own guns, as long as they follow the law.",
+                "simpler": "“Bear arms” means to have and carry guns. People may own guns if they follow the law.",
                 "example": "There are laws about who may buy a gun and where guns may be carried.",
                 "why": "“The right to bear arms” is another right you can name."
               }
