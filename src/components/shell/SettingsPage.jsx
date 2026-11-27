@@ -35,6 +35,8 @@ import { reviewedFaq } from '@/lib/faq';
 //   · Contact us · Help us improve Amio
 //   What we save · AI policy · Delete all my data (navy, never red)
 //   More: history, notifications, partner (staff), admin (admins) · Sign out
+//   then the public line (Free practice · not USCIS · not legal advice), which
+//   is only here, on Welcome and on Sign in.
 // Every setting from the old Settings and Me pages is here; saving is the
 // same as before. #program, #delete-data, #what-we-save and #settings (from
 // old addresses) open and scroll to that row.
@@ -330,6 +332,8 @@ export default function SettingsPage() {
             <ButtonRow label={t('sign_out')} onClick={() => auth.signOut()} />
           </Group>
         )}
+
+        <p dir="auto" className="pt-2 text-small text-center text-muted">{t('disclaimer')}</p>
       </div>
 
       {user && <TalkToPerson open={talkOpen} onOpenChange={setTalkOpen} userEmail={user.email} language={language} />}
