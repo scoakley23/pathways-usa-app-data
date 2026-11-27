@@ -1,13 +1,14 @@
 # N-400 processing times: status
 
-**Status (2026-11-27):** the app is ready for real offices; the file still has only the two sample offices, so learners see "Coming soon". The owner copies the numbers by hand from https://egov.uscis.gov/processing-times/ in their own browser; how to do it (and the monthly check) is in `content/uscis/README.md`.
+**Status (2026-11-27):** 90 real field offices are in `content/uscis/n400-processing-times.json`, read by the owner on uscis.gov on 2026-11-26 (`checked_on`). The two samples are gone. **Learners stop seeing the times after 2027-01-25** (60 days) unless the owner checks them again. The owner copies the numbers by hand from https://egov.uscis.gov/processing-times/ in their own browser; how to do it (and the monthly check) is in `content/uscis/README.md`.
 
 ## Decisions (2026-11-27, owner)
 - **One number from USCIS** ("80% of cases are completed within N months"): `min_months` = `max_months` = N, and the app says "finished **by** {month}" (When's my interview?, Today's "Case likely done by {month}", Settings).
+- **Half months are kept, never rounded** (44 of the 90 offices show one, e.g. Chicago 14.5). The filing month counts from its middle, so 14.5 months lands on the last day of the 14th month; the screen quotes USCIS exactly ("USCIS says 14.5 months").
+- **Imperial CA**: the sheet's number column said 15 but the copied sentence said 15.5; the owner confirmed 15.5.
+- **Office list**: the owner's sheet dropped Saint Albans VT and added Burlington VT, Cranbury NJ, Helena MT, Montgomery AL and Wichita KS.
 - **Old numbers are hidden**: after 60 days without a check (`checked_on`), learners see "Coming soon" again; admins see "Out of date".
-- **No scraping.** The USCIS processing-times page and its data addresses answer automated requests with a Cloudflare block (HTTP 403, seen on 2026-11-26 and again on 2026-11-27). We don't work around that. An automatic update is allowed only through an official USCIS data source (to check: developer.uscis.gov); until one exists, the check stays by hand.
+- **No scraping.** The USCIS processing-times page and its data addresses answer automated requests with a Cloudflare block (HTTP 403, seen on 2026-11-26 and again on 2026-11-27). We don't work around that. An automatic update is allowed only through an official USCIS data source (none found on 2026-11-27); until one exists, the check stays by hand.
 
-## Fill-in sheet for the owner
-`docs/review/n400-field-offices.xlsx`: 86 field offices (names from memory, to check against the USCIS list), the 8 busiest marked "Start here", yellow columns to fill in, a "Problem?" column that flags what `npm test` would reject, and a Summary sheet. Only rows marked Checked = "Yes" go into the app.
-
-Or, one line per office: `Office (as USCIS writes it) | what USCIS shows, word for word | date you read it`, e.g. `Houston TX | 80% within 7 months | 2026-11-27`.
+## The sheet
+`docs/review/n400-field-offices.xlsx` is the owner's filled-in sheet (90 offices, one row each: the sentence from USCIS word for word, the months, the date read, Checked). Use it for the next monthly check.
