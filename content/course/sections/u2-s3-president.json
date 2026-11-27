@@ -791,7 +791,7 @@
               "meaning": "the top lawyer of the federal government"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "Each Cabinet member leads one part of the executive branch.",
@@ -800,8 +800,8 @@
                 "focus": "cabinet"
               },
               "help": {
-                "simpler": "Every Cabinet member is in charge of one department.",
-                "example": "The Secretary of Education leads the Department of Education.",
+                "simpler": "Most Cabinet members are in charge of one department.",
+                "example": "The Secretary of Agriculture leads the Department of Agriculture.",
                 "why": "Their job titles are the answers to the test question about Cabinet positions."
               }
             },
