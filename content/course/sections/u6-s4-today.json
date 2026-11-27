@@ -106,7 +106,96 @@
             "license": "Standard YouTube license: shown as a YouTube embed, which YouTube's terms allow; not licensed to Pathways.",
             "status": "reviewed",
             "checkedOn": "2026-11-27"
-          }
+          },
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "The civil rights movement fought to end racial discrimination.",
+              "picture": {
+                "photo": "march-on-washington.jpg"
+              },
+              "help": {
+                "simpler": "Many people worked together so all races would be treated fairly.",
+                "example": "This photo shows marchers in Washington, D.C., in 1963.",
+                "why": "The test asks what the civil rights movement did."
+              }
+            },
+            {
+              "say": "Racial discrimination means treating people unfairly because of their race.",
+              "picture": {
+                "photo": "march-on-washington.jpg"
+              },
+              "help": {
+                "simpler": "Discrimination is unfair treatment because of who someone is.",
+                "example": "Segregation kept people of different races apart, by law.",
+                "why": "This word is part of the test answer."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "What did the civil rights movement do?",
+                "choices": [
+                  "Fought to end racial discrimination",
+                  "Ended the Cold War",
+                  "Built the Interstate highways"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "Martin Luther King, Jr. was a leader of the movement.",
+              "picture": {
+                "photo": "king.jpg"
+              },
+              "help": {
+                "simpler": "King was one of the most famous civil rights leaders.",
+                "example": "He led peaceful marches and gave speeches.",
+                "why": "“Fought for civil rights” is an answer on the test."
+              }
+            },
+            {
+              "say": "He worked for equality for all Americans.",
+              "picture": {
+                "photo": "king.jpg"
+              },
+              "help": {
+                "simpler": "He wanted everyone to have the same rights.",
+                "example": "Equality means everyone is treated the same.",
+                "why": "“Worked for equality for all Americans” is an answer."
+              }
+            },
+            {
+              "say": "He hoped people would “not be judged by the color of their skin, but by the content of their character.”",
+              "picture": {
+                "photo": "march-on-washington.jpg"
+              },
+              "help": {
+                "simpler": "He hoped people would be judged by who they are, not their skin color.",
+                "example": "He said this in a famous speech in Washington in 1963.",
+                "why": "These words are an answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "Martin Luther King, Jr. worked for equality for all Americans.",
+                "answer": true
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Martin Luther King, Jr. is famous for many things. Name one.",
+                "choices": [
+                  "Fought for civil rights",
+                  "First President of the United States",
+                  "Wrote the Federalist Papers"
+                ],
+                "answer": 0
+              }
+            }
+          ]
         },
         "teachBack": {
           "questionId": "6ad16ecf6a9c603911f9de86"
@@ -158,6 +247,101 @@
             {
               "word": "attack",
               "meaning": "to start fighting against someone"
+            }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "On September 11, 2001, terrorists attacked the United States.",
+              "picture": {
+                "drawing": "sept11Places"
+              },
+              "help": {
+                "simpler": "On that day, the country was attacked by terrorists.",
+                "example": "A terrorist uses violence against people to scare them.",
+                "why": "The test asks what happened on September 11, 2001."
+              }
+            },
+            {
+              "say": "They took over planes.",
+              "help": {
+                "simpler": "The terrorists took control of passenger planes.",
+                "example": "They took over four planes that day.",
+                "why": "This is part of the answer on the test."
+              }
+            },
+            {
+              "say": "Two planes crashed into the World Trade Center in New York City.",
+              "picture": {
+                "drawing": "sept11Places",
+                "focus": "newYork"
+              },
+              "help": {
+                "simpler": "Two planes hit the World Trade Center towers.",
+                "example": "The World Trade Center was in New York City.",
+                "why": "This is one of the answers on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "The September 11 attacks happened in 2001.",
+                "answer": true
+              }
+            },
+            {
+              "say": "One plane crashed into the Pentagon, in Virginia.",
+              "picture": {
+                "drawing": "sept11Places",
+                "focus": "pentagon"
+              },
+              "help": {
+                "simpler": "One plane hit the Pentagon.",
+                "example": "The Pentagon is the building of the Department of Defense.",
+                "why": "This is another answer on the test."
+              }
+            },
+            {
+              "say": "One plane crashed in a field in Pennsylvania.",
+              "picture": {
+                "drawing": "sept11Places",
+                "focus": "pennsylvania"
+              },
+              "help": {
+                "simpler": "The last plane came down in a field.",
+                "example": "It crashed in Pennsylvania, not at its target.",
+                "why": "This is another answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "tap",
+                "prompt": "Tap the place where the Pentagon is.",
+                "picture": {
+                  "drawing": "sept11Places"
+                },
+                "answer": "pentagon"
+              }
+            },
+            {
+              "say": "Almost 3,000 people died.",
+              "help": {
+                "simpler": "It was one of the saddest days in American history.",
+                "example": "Every year on September 11, Americans remember the people who died.",
+                "why": "It is why this day is on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "What major event happened on September 11, 2001?",
+                "choices": [
+                  "Terrorists attacked the United States",
+                  "The Cold War ended",
+                  "The stock market crashed"
+                ],
+                "answer": 0
+              }
             }
           ]
         },
@@ -217,6 +401,124 @@
               "word": "conflict",
               "meaning": "a fight or war"
             }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "In 1990, Iraq invaded its small neighbor, Kuwait.",
+              "picture": {
+                "photo": "middle-east.jpg"
+              },
+              "help": {
+                "simpler": "Iraq’s army went into Kuwait to take it over.",
+                "example": "Kuwait is a small country next to Iraq.",
+                "why": "This led to the Persian Gulf War."
+              }
+            },
+            {
+              "say": "In 1991, the United States led many countries in the Persian Gulf War.",
+              "picture": {
+                "drawing": "middleEastWars",
+                "focus": "gulf"
+              },
+              "help": {
+                "simpler": "The United States and many other countries fought together.",
+                "example": "The Persian Gulf is the sea near Iraq and Kuwait.",
+                "why": "The test asks why the U.S. entered this war."
+              }
+            },
+            {
+              "say": "The war forced the Iraqi military out of Kuwait.",
+              "picture": {
+                "drawing": "middleEastWars",
+                "focus": "gulf"
+              },
+              "help": {
+                "simpler": "The war made Iraq’s army leave Kuwait.",
+                "example": "To force means to make someone do something.",
+                "why": "“To force the Iraqi military from Kuwait” is the test answer."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Why did the United States enter the Persian Gulf War?",
+                "choices": [
+                  "To force the Iraqi military from Kuwait",
+                  "To stop the spread of communism",
+                  "Because Germany attacked U.S. ships"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "On September 11, 2001, terrorists from a group called al-Qaeda attacked the United States.",
+              "picture": {
+                "drawing": "sept11Places"
+              },
+              "help": {
+                "simpler": "A terrorist group called al-Qaeda planned the attacks.",
+                "example": "You learned about September 11 in the last lesson.",
+                "why": "It explains why the next wars began."
+              }
+            },
+            {
+              "say": "Their leaders were hiding in Afghanistan.",
+              "picture": {
+                "photo": "middle-east.jpg"
+              },
+              "help": {
+                "simpler": "The leaders of al-Qaeda were in Afghanistan.",
+                "example": "Afghanistan is a country farther east than Iraq.",
+                "why": "This is why the U.S. went to war in Afghanistan."
+              }
+            },
+            {
+              "say": "So the United States began a war in Afghanistan in 2001. This was part of the War on Terror.",
+              "picture": {
+                "drawing": "middleEastWars",
+                "focus": "afghanistan"
+              },
+              "help": {
+                "simpler": "The U.S. went to war in Afghanistan after the attacks.",
+                "example": "The War on Terror means the fight against terrorist groups.",
+                "why": "“War in Afghanistan” and “War on Terror” are answers."
+              }
+            },
+            {
+              "check": {
+                "kind": "tap",
+                "prompt": "Tap the war that began in 2001.",
+                "picture": {
+                  "drawing": "middleEastWars"
+                },
+                "answer": "afghanistan"
+              }
+            },
+            {
+              "say": "In 2003, the United States also went to war in Iraq.",
+              "picture": {
+                "drawing": "middleEastWars",
+                "focus": "iraq"
+              },
+              "help": {
+                "simpler": "Two years later, the U.S. went to war in Iraq too.",
+                "example": "This was a different war from the Persian Gulf War.",
+                "why": "“War in Iraq” is another answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Name one U.S. military conflict after the September 11, 2001 attacks.",
+                "choices": [
+                  "War in Afghanistan",
+                  "Korean War",
+                  "Persian Gulf War"
+                ],
+                "answer": 0
+              }
+            }
           ]
         },
         "teachBack": {
@@ -268,6 +570,87 @@
             {
               "word": "invention",
               "meaning": "something made for the first time"
+            }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "An innovation is a new idea or invention.",
+              "picture": {
+                "drawing": "innovations"
+              },
+              "help": {
+                "simpler": "An innovation is something new that people make or think of.",
+                "example": "An invention is a new thing someone makes.",
+                "why": "The test asks you to name one American innovation."
+              }
+            },
+            {
+              "say": "American innovations include the light bulb and the automobile.",
+              "picture": {
+                "drawing": "innovations",
+                "focus": "lightBulb"
+              },
+              "help": {
+                "simpler": "The light bulb and the car are American innovations.",
+                "example": "An automobile is a car.",
+                "why": "“Light bulb” and “automobile” are answers on the test."
+              }
+            },
+            {
+              "say": "The airplane is an American innovation too.",
+              "picture": {
+                "photo": "first-flight.jpg"
+              },
+              "help": {
+                "simpler": "Americans made the first airplane flight.",
+                "example": "The Wright brothers flew it in 1903.",
+                "why": "“Airplane” is an answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Name one example of an American innovation.",
+                "choices": [
+                  "Airplane",
+                  "Pyramids",
+                  "Printing press"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "So are skyscrapers and the assembly line.",
+              "picture": {
+                "photo": "assembly-line.jpg"
+              },
+              "help": {
+                "simpler": "Very tall buildings and the assembly line are American too.",
+                "example": "On an assembly line, each worker adds one part as the product moves along.",
+                "why": "“Skyscrapers” and “assembly line” are answers on the test."
+              }
+            },
+            {
+              "say": "In 1969, Americans were the first people to land on the moon.",
+              "picture": {
+                "photo": "moon-landing.jpg"
+              },
+              "help": {
+                "simpler": "Americans were the first people to walk on the moon.",
+                "example": "They flew there in a spaceship called Apollo 11.",
+                "why": "“Landing on the moon” is an answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "tap",
+                "prompt": "Tap the innovation from 1969.",
+                "picture": {
+                  "drawing": "innovations"
+                },
+                "answer": "moon"
+              }
             }
           ]
         },

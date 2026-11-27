@@ -127,6 +127,11 @@ export const TUTOR_STEP_LINES = {
   officer_accepts: 'What the officer would accept',
   try_again: 'Try again',
   show_me: 'Show me',
+  video_heading: 'Watch a video (in English)',
+  video_play: 'Play video',
+  video_from: 'From {source}',
+  video_note: 'Plays from YouTube. YouTube can see that you watched it.',
+  video_draft: 'Draft video',
 };
 
 // Who Represents Me? (RepresentativeFinder.jsx, on /learn). Names, places

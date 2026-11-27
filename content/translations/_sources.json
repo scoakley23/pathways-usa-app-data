@@ -494,6 +494,12 @@
    ]
   },
   {
+   "text": "1917, 1941, 1950, the 1960s, 1991: all start with 19.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "1920",
    "from": [
     "course-lessons"
@@ -545,6 +551,12 @@
    "text": "30.a. Do you now have, or did you EVER have, a hereditary title or an order of nobility in any foreign country? 30.b. If you answered \"Yes,\" to Item Number 30.a., are you willing to give up any inherited titles or orders of nobility, (list titles), that you have in a foreign country at your naturalization ceremony?",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "34th President of the United States",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -824,6 +836,12 @@
    ]
   },
   {
+   "text": "A depression is a long time when businesses close and many people have no work.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "A depression is a long time when businesses close and many people have no work. The Great Depression was the longest economic recession in modern history.",
    "from": [
     "course-lessons"
@@ -843,6 +861,12 @@
   },
   {
    "text": "A free market",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "A general is a high leader in the army.",
    "from": [
     "course-lessons"
    ]
@@ -902,15 +926,34 @@
    ]
   },
   {
+   "text": "A holiday to celebrate workers",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "A holiday to honor people in the (U.S.) military / A holiday to honor people who have served (in the U.S. military)",
    "from": [
     "civics-questions"
    ]
   },
   {
+   "text": "A holiday to honor people who have served in the military",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "A holiday to honor soldiers who died in military service",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "A holiday to honor veterans",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -950,6 +993,12 @@
    ]
   },
   {
+   "text": "A king rules the people",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "A kingdom",
    "from": [
     "course-lessons"
@@ -957,6 +1006,12 @@
   },
   {
    "text": "A law can go against the Constitution.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "A law passed by Congress",
    "from": [
     "course-lessons"
    ]
@@ -1016,6 +1071,12 @@
    ]
   },
   {
+   "text": "A motto is a short saying that tells what a group believes.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "A neighborhood clean-up group is a community group.",
    "from": [
     "course-lessons"
@@ -1031,6 +1092,12 @@
    "text": "A new nation",
    "from": [
     "course-titles"
+   ]
+  },
+  {
+   "text": "A nickname is a short, friendly name.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -1130,6 +1197,12 @@
    ]
   },
   {
+   "text": "A recession is a time when the economy shrinks.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "A representative elected in November faces the next election two years later.",
    "from": [
     "course-lessons"
@@ -1149,6 +1222,12 @@
   },
   {
    "text": "A revolution is a big change in who rules a country.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "A rival is someone you compete against.",
    "from": [
     "course-lessons"
    ]
@@ -1292,6 +1371,18 @@
    ]
   },
   {
+   "text": "A terrorist group called al-Qaeda planned the attacks.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "A terrorist uses violence against people to scare them.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "A third way is deriving citizenship, under conditions set by Congress, for example from a parent.",
    "from": [
     "course-lessons"
@@ -1322,13 +1413,31 @@
    ]
   },
   {
+   "text": "A veteran is someone who served in the military.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "A veto is the President’s “no.”",
    "from": [
     "course-lessons"
    ]
   },
   {
+   "text": "A war in Europe",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "A war started in 1812, while Madison was President.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "A “hot” war has fighting. This one did not, between them.",
    "from": [
     "course-lessons"
    ]
@@ -1528,6 +1637,12 @@
    ]
   },
   {
+   "text": "Afghanistan is a country farther east than Iraq.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Africans",
    "from": [
     "course-lessons"
@@ -1570,6 +1685,12 @@
    ]
   },
   {
+   "text": "After World War II, the United States and the Soviet Union became rivals.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "After World War II, the United States and the Soviet Union became rivals. This was called the Cold War.",
    "from": [
     "course-lessons"
@@ -1577,6 +1698,12 @@
   },
   {
    "text": "After a veto, the bill does not become law, unless two-thirds of both parts of Congress vote for it again.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "After him, the 22nd Amendment limited Presidents to two terms.",
    "from": [
     "course-lessons"
    ]
@@ -1648,6 +1775,12 @@
    ]
   },
   {
+   "text": "After the war, Eisenhower was elected President.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "After the war, the 13th Amendment ended slavery in the whole country.",
    "from": [
     "course-lessons"
@@ -1667,6 +1800,12 @@
   },
   {
    "text": "Age",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Airplane",
    "from": [
     "course-lessons"
    ]
@@ -1746,12 +1885,6 @@
    ]
   },
   {
-   "text": "All people are equal",
-   "from": [
-    "course-lessons"
-   ]
-  },
-  {
    "text": "All people pay to fund the federal government.",
    "from": [
     "course-lessons"
@@ -1782,6 +1915,12 @@
    ]
   },
   {
+   "text": "All three branches of government are in Washington, D.C.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "All three used the same name instead of their own names.",
    "from": [
     "course-lessons"
@@ -1803,6 +1942,12 @@
    "text": "All {n} pairs matched. Nice work.",
    "from": [
     "practice"
+   ]
+  },
+  {
+   "text": "Allies are countries that work together.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -1839,6 +1984,12 @@
    "text": "Already filed",
    "from": [
     "interview-when"
+   ]
+  },
+  {
+   "text": "Also accepted on the test: New Jersey, near New York City, and on the Hudson River.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -1887,6 +2038,12 @@
    "text": "Amendments / The amendment process",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "America the Beautiful",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -1945,7 +2102,19 @@
    ]
   },
   {
+   "text": "American innovations include the light bulb and the automobile.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "American innovations include the light bulb, the automobile, the airplane, skyscrapers and the assembly line.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "American soldiers went to Vietnam to help the South.",
    "from": [
     "course-lessons"
    ]
@@ -1982,6 +2151,18 @@
   },
   {
    "text": "Americans in the North fought Americans in the South.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Americans made the first airplane flight.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Americans were the first people to walk on the moon.",
    "from": [
     "course-lessons"
    ]
@@ -2060,9 +2241,21 @@
    ]
   },
   {
+   "text": "An anthem is a country’s official song.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "An armed group that fights against a government.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "An automobile is a car.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -2079,6 +2272,18 @@
   },
   {
    "text": "An innovation is a new idea or invention.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "An innovation is something new that people make or think of.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "An invention is a new thing someone makes.",
    "from": [
     "course-lessons"
    ]
@@ -2111,6 +2316,12 @@
    "text": "And",
    "from": [
     "words"
+   ]
+  },
+  {
+   "text": "And Veterans Day, Thanksgiving Day and Christmas Day.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -2259,7 +2470,31 @@
    ]
   },
   {
+   "text": "Any of these answers is right.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Any of these is a right answer too.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Any of these is a right answer.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Any one of the four names is right on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Any one of these five is a right answer.",
    "from": [
     "course-lessons"
    ]
@@ -2272,6 +2507,12 @@
   },
   {
    "text": "Any one of these is a correct answer to the test question. You only need to name one.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Any one of these is a right answer on the test.",
    "from": [
     "course-lessons"
    ]
@@ -2639,6 +2880,18 @@
    ]
   },
   {
+   "text": "Because Germany attacked U.S. ships",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Because Japan attacked Pearl Harbor",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Because it is hard to change, the most important rules stay the same over time.",
    "from": [
     "course-lessons"
@@ -2646,6 +2899,24 @@
   },
   {
    "text": "Because of Lincoln, the country stayed one country.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Because there are 13 states",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Because there were 13 Presidents",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Because there were 13 original colonies",
    "from": [
     "course-lessons"
    ]
@@ -2845,6 +3116,12 @@
    ]
   },
   {
+   "text": "Both built weapons and helped other countries with money.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Both countries had nuclear weapons, so people also feared a nuclear war.",
    "from": [
     "course-lessons"
@@ -2876,6 +3153,18 @@
   },
   {
    "text": "Both senators from your state speak for everyone in your state.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Both sides had very powerful bombs. People were afraid of a nuclear war.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Both wars were about stopping communism from spreading.",
    "from": [
     "course-lessons"
    ]
@@ -2977,6 +3266,12 @@
    ]
   },
   {
+   "text": "Built the Interstate highways",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Bunker Hill was an early battle, near Boston.",
    "from": [
     "course-lessons"
@@ -3053,6 +3348,12 @@
    "text": "Canada",
    "from": [
     "words"
+   ]
+  },
+  {
+   "text": "Canada is above the United States. Mexico is below.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -3646,7 +3947,8 @@
   {
    "text": "Communism",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -3796,6 +4098,12 @@
    ]
   },
   {
+   "text": "Congress makes laws. The President leads. The courts decide cases.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Congress makes the laws that everyone in the country must follow.",
    "from": [
     "course-lessons"
@@ -3845,6 +4153,12 @@
   },
   {
    "text": "Congress writes the laws for the whole country.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Congress, the President and the Supreme Court are all there.",
    "from": [
     "course-lessons"
    ]
@@ -3991,6 +4305,12 @@
    ]
   },
   {
+   "text": "Count them: 50 states, 50 stars.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Countries you traveled to",
    "from": [
     "n400-guide"
@@ -4071,6 +4391,12 @@
   },
   {
    "text": "D.C. is not a state, but it gets 3 electors.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "D.C. means District of Columbia.",
    "from": [
     "course-lessons"
    ]
@@ -4352,6 +4678,12 @@
    ]
   },
   {
+   "text": "Discrimination is unfair treatment because of who someone is.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Discrimination means treating people unfairly because of who they are.",
    "from": [
     "course-lessons"
@@ -4552,7 +4884,8 @@
   {
    "text": "Draft video",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "tutor-steps"
    ]
   },
   {
@@ -4586,9 +4919,16 @@
    ]
   },
   {
+   "text": "During the Cold War, the United States tried to stop communism from spreading to more countries.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "During the Cold War, what was one main concern of the United States?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -4606,17 +4946,31 @@
   {
    "text": "Dwight Eisenhower",
    "from": [
+    "course-lessons",
     "course-titles"
    ]
   },
   {
    "text": "Dwight Eisenhower is famous for many things. Name one.",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Dwight Eisenhower was a general during World War II.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
    "text": "Dwight Eisenhower was a general during World War II. He led the Allied armies in Europe.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Dwight Eisenhower was a general in World War II.",
    "from": [
     "course-lessons"
    ]
@@ -4688,6 +5042,12 @@
    ]
   },
   {
+   "text": "Each side tried to be stronger and get more friends.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Each skill is one part of your interview.",
    "from": [
     "home"
@@ -4697,6 +5057,12 @@
    "text": "Each square is a state. The number is how many electors it has. States with more people have more electors.",
    "from": [
     "course-pictures"
+   ]
+  },
+  {
+   "text": "Each star stands for one state.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -4754,6 +5120,12 @@
    ]
   },
   {
+   "text": "Each stripe stands for one of the first 13 colonies.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Early release from prison with rules you must follow.",
    "from": [
     "n400"
@@ -4776,6 +5148,12 @@
    "text": "Edit name",
    "from": [
     "settings"
+   ]
+  },
+  {
+   "text": "Eisenhower was a top army leader in World War II.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -4852,7 +5230,19 @@
    ]
   },
   {
+   "text": "Ended the Cold War",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Ended the War of 1812",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "England",
    "from": [
     "course-lessons"
    ]
@@ -4916,6 +5306,12 @@
    "text": "Equality / Liberty / Social contract / Natural rights / Limited government / Self-government",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "Equality means everyone is treated the same.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -5111,6 +5507,12 @@
    ]
   },
   {
+   "text": "Every year on September 11, Americans remember the people who died.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Everyone answers question 22.a on the form: “Are you a male who lived in the United States at any time between your 18th and 26th birthdays?”",
    "from": [
     "n400-lessons"
@@ -5189,6 +5591,12 @@
    ]
   },
   {
+   "text": "Families may not have enough money for food or rent.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Families were often split up when people were sold.",
    "from": [
     "course-lessons"
@@ -5251,6 +5659,12 @@
   },
   {
    "text": "Fifteen million dollars was a very large amount of money then.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Fifty states, one United States.",
    "from": [
     "course-lessons"
    ]
@@ -5408,6 +5822,12 @@
    ]
   },
   {
+   "text": "First President of the United States",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "First Secretary of the Treasury",
    "from": [
     "course-lessons"
@@ -5429,6 +5849,12 @@
    "text": "Five (5)",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "Five wars: two World Wars, Korea, Vietnam and the Gulf War.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -5493,6 +5919,12 @@
   },
   {
    "text": "For example, the President must pay taxes like everyone else.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "For example: Independence Day, Thanksgiving Day and Christmas Day.",
    "from": [
     "course-lessons"
    ]
@@ -5576,6 +6008,12 @@
    ]
   },
   {
+   "text": "Fought for civil rights",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Fought for civil rights / Worked for equality for all Americans / Worked to ensure that people would “not be judged by the color of their skin, but by the content of their character”",
    "from": [
     "civics-questions"
@@ -5584,7 +6022,8 @@
   {
    "text": "Fought to end racial discrimination",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -5612,9 +6051,21 @@
    ]
   },
   {
+   "text": "Four holidays in the first part of the year.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Four hundred thirty-five (435)",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "Four more holidays, from June to October.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -5642,6 +6093,12 @@
    ]
   },
   {
+   "text": "France and Belgium saw some of the biggest battles.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "France needed money for its wars in Europe, so it agreed to sell.",
    "from": [
     "course-lessons"
@@ -5660,9 +6117,21 @@
    ]
   },
   {
+   "text": "Franklin Roosevelt",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Franklin Roosevelt in 1933, the year he became President.",
    "from": [
     "course-pictures"
+   ]
+  },
+  {
+   "text": "Franklin Roosevelt was President during the Great Depression and World War II.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -5894,7 +6363,8 @@
   {
    "text": "From {source}",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "tutor-steps"
    ]
   },
   {
@@ -5907,6 +6377,12 @@
    "text": "General during World War II / President at the end of (during) the Korean War / 34th president of the United States / Signed the Federal-Aid Highway Act of 1956 (Created the Interstate System)",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "General, President, highways: three ways to remember him.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -5983,7 +6459,19 @@
    ]
   },
   {
+   "text": "Germany attacked American ships, so the United States joined the war.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Germany, Italy and Japan in World War II",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Germany, Italy and Japan, called the Axis Powers, attacked other countries.",
    "from": [
     "course-lessons"
    ]
@@ -6269,6 +6757,12 @@
    ]
   },
   {
+   "text": "Halloween",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Hamilton helped George Washington during the war.",
    "from": [
     "course-lessons"
@@ -6300,6 +6794,12 @@
   },
   {
    "text": "Hamilton wrote many of these essays, with Madison and Jay.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Happiness",
    "from": [
     "course-lessons"
    ]
@@ -6647,7 +7147,19 @@
    ]
   },
   {
+   "text": "He became President in 1933, during the Depression.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "He became the 34th President and was President at the end of the Korean War.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "He became the 34th President.",
    "from": [
     "course-lessons"
    ]
@@ -6677,7 +7189,25 @@
    ]
   },
   {
+   "text": "He hoped people would be judged by who they are, not their skin color.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "He hoped people would “not be judged by the color of their skin, but by the content of their character.”",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "He led peaceful marches and gave speeches.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "He led the Allied armies in Europe.",
    "from": [
     "course-lessons"
    ]
@@ -6707,6 +7237,12 @@
    ]
   },
   {
+   "text": "He said this in a famous speech in Washington in 1963.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "He saved the Union: he kept the country together.",
    "from": [
     "course-lessons"
@@ -6719,7 +7255,25 @@
    ]
   },
   {
+   "text": "He started the big highways that cross the country.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "He started the first free public libraries and was the first Postmaster General.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "He wanted everyone to have the same rights.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "He was President at the end of the Korean War.",
    "from": [
     "course-lessons"
    ]
@@ -6755,7 +7309,25 @@
    ]
   },
   {
+   "text": "He was elected four times, more than any other President.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "He was in charge of the Allied armies in Europe.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "He was one of the writers of the Federalist Papers.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "He was the 34th person to be President.",
    "from": [
     "course-lessons"
    ]
@@ -6768,6 +7340,18 @@
   },
   {
    "text": "He was the third President of the United States.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "He won in 1932, 1936, 1940 and 1944.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "He worked for equality for all Americans.",
    "from": [
     "course-lessons"
    ]
@@ -6943,6 +7527,12 @@
   },
   {
    "text": "His birthday is in February, near Presidents’ Day.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "His nickname was “Ike.”",
    "from": [
     "course-lessons"
    ]
@@ -7230,6 +7820,12 @@
    "text": "How you got your green card matters. If you are not sure it was proper, ask a lawyer first.",
    "from": [
     "lawyer-checklist"
+   ]
+  },
+  {
+   "text": "Hungry people stood in line to get free food.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -7576,6 +8172,12 @@
    ]
   },
   {
+   "text": "If the year starts with 19, it is in the 1900s.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "If there was an election, a name may be different.",
    "from": [
     "course-lessons"
@@ -7621,6 +8223,12 @@
    "text": "If you don’t understand, you can say:",
    "from": [
     "interview-day"
+   ]
+  },
+  {
+   "text": "If you forget, remember the Cold War story.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -7835,7 +8443,19 @@
    ]
   },
   {
+   "text": "In 1929, the prices on the stock market fell very fast.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "In 1941, Congress declared war after the attack on Pearl Harbor.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "In 1950, communist North Korea invaded South Korea.",
    "from": [
     "course-lessons"
    ]
@@ -7859,7 +8479,25 @@
    ]
   },
   {
+   "text": "In 1990, Iraq invaded its small neighbor, Kuwait.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "In 1990, Iraq invaded its small neighbor, Kuwait. In 1991, the United States led many countries in the Persian Gulf War to force the Iraqi military out of Kuwait.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "In 1991, the United States helped make Iraq leave Kuwait.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "In 1991, the United States led many countries in the Persian Gulf War.",
    "from": [
     "course-lessons"
    ]
@@ -7898,13 +8536,43 @@
    ]
   },
   {
+   "text": "In Vietnam, communist North Vietnam fought to take over South Vietnam.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "In Vietnam, communist North Vietnam fought to take over South Vietnam. The United States sent soldiers to help South Vietnam.",
    "from": [
     "course-lessons"
    ]
   },
   {
+   "text": "In World War II, the United States fought Germany, Italy and Japan.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "In a depression, many people lose their jobs for a long time.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "In a republic, who makes the laws? Tap them.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "In communism, the government makes most choices for people.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "In communism, the government owns the businesses.",
    "from": [
     "course-lessons"
    ]
@@ -7985,6 +8653,12 @@
    ]
   },
   {
+   "text": "In the United States, people own farms, factories and stores.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "In the interview, you can always ask for help. Say each phrase out loud.",
    "from": [
     "n400-lessons"
@@ -8027,6 +8701,12 @@
    ]
   },
   {
+   "text": "Independence Day is a holiday on the fourth of July.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Independence Day is a national holiday. It reminds Americans when the country said it was free.",
    "from": [
     "course-lessons"
@@ -8039,6 +8719,12 @@
    ]
   },
   {
+   "text": "Independence Day is on July 4.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Independence Day, on July 4, celebrates U.S. independence from Britain. It is the country's birthday.",
    "from": [
     "course-lessons"
@@ -8046,6 +8732,12 @@
   },
   {
    "text": "Independence means being free to rule yourselves.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Interstate highways go from one state to another.",
    "from": [
     "course-lessons"
    ]
@@ -8075,7 +8767,19 @@
    ]
   },
   {
+   "text": "Invade means to enter a country with an army.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Inventor",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Iraq’s army went into Kuwait to take it over.",
    "from": [
     "course-lessons"
    ]
@@ -8117,6 +8821,12 @@
    ]
   },
   {
+   "text": "It can help you remember him.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "It can say approved, continued (USCIS needs more papers, or you need to take a test again), or denied.",
    "from": [
     "interview-day"
@@ -8129,7 +8839,25 @@
    ]
   },
   {
+   "text": "It celebrates U.S. independence from Britain.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It connects the Depression to the next lesson.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "It connects to Jefferson: he doubled the size of the country.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It crashed in Pennsylvania, not at its target.",
    "from": [
     "course-lessons"
    ]
@@ -8165,6 +8893,30 @@
    ]
   },
   {
+   "text": "It ended around the time of World War II.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It explains the meaning of the motto.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It explains the name.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It explains what communism means.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "It explains who was enslaved in America.",
    "from": [
     "course-lessons"
@@ -8177,13 +8929,37 @@
    ]
   },
   {
+   "text": "It explains why he was famous before he was President.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "It explains why she is a leader of the movement.",
    "from": [
     "course-lessons"
    ]
   },
   {
+   "text": "It explains why the U.S. was worried about it.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It explains why the capital is important.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "It explains why the fight for voting rights went on.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It explains why the next wars began.",
    "from": [
     "course-lessons"
    ]
@@ -8225,7 +9001,31 @@
    ]
   },
   {
+   "text": "It helped some countries stay free of communism.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "It helps you picture how big the purchase was.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It helps you picture the Great Depression.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It helps you picture the capital.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It helps you picture where the country is.",
    "from": [
     "course-lessons"
    ]
@@ -8243,7 +9043,25 @@
    ]
   },
   {
+   "text": "It helps you remember the name.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "It helps you remember why Gettysburg is famous.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It helps you remember why there are 13 stripes.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It helps you say the motto out loud.",
    "from": [
     "course-lessons"
    ]
@@ -8256,6 +9074,18 @@
   },
   {
    "text": "It helps you understand why slavery was so wrong.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It honors people who have served in the U.S. military.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It honors soldiers who died in military service.",
    "from": [
     "course-lessons"
    ]
@@ -8279,6 +9109,12 @@
    ]
   },
   {
+   "text": "It is a song about the American flag.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "It is also a constitution-based federal republic.",
    "from": [
     "course-lessons"
@@ -8297,6 +9133,12 @@
    ]
   },
   {
+   "text": "It is always on a Monday.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "It is an easy way to remember the answer on the test.",
    "from": [
     "course-lessons"
@@ -8304,6 +9146,12 @@
   },
   {
    "text": "It is at the top of the judicial branch.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It is called “cold” because the two countries never fought each other directly in a big war.",
    "from": [
     "course-lessons"
    ]
@@ -8327,7 +9175,19 @@
    ]
   },
   {
+   "text": "It is in Washington, D.C.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "It is like a team where each player watches the others to keep the game fair.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It is near New York City.",
    "from": [
     "course-lessons"
    ]
@@ -8345,6 +9205,12 @@
    ]
   },
   {
+   "text": "It is on November 11.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "It is one of the first ten amendments, added in 1791.",
    "from": [
     "course-lessons"
@@ -8357,7 +9223,25 @@
    ]
   },
   {
+   "text": "It is the country’s birthday.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "It is the last event on the timeline.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It is why this day is on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It joined the Allied Powers: England, France, Italy and Russia.",
    "from": [
     "course-lessons"
    ]
@@ -8370,6 +9254,12 @@
   },
   {
    "text": "It lasted from 1861 to 1865.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It lasted from about 1947 to 1991.",
    "from": [
     "course-lessons"
    ]
@@ -8388,6 +9278,12 @@
   },
   {
    "text": "It means the people govern themselves. This is called self-government.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It means “Out of many, one.”",
    "from": [
     "course-lessons"
    ]
@@ -8459,6 +9355,18 @@
    ]
   },
   {
+   "text": "It shows how hard the Depression was.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It shows how they were rivals without a big war.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "It shows that a law on paper is not always followed.",
    "from": [
     "course-lessons"
@@ -8501,7 +9409,25 @@
    ]
   },
   {
+   "text": "It was fought in Europe, Asia, Africa and on the oceans.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "It was one of the biggest battles of the war.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It was one of the saddest days in American history.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It was the longest time of bad economy in modern times.",
    "from": [
     "course-lessons"
    ]
@@ -8598,6 +9524,18 @@
    ]
   },
   {
+   "text": "Japan attacked Pearl Harbor",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Japan attacked a U.S. Navy base in Hawaii. Then the U.S. joined the war.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Japan, Germany, and Italy",
    "from": [
     "civics-questions"
@@ -8667,6 +9605,12 @@
    "text": "July 4",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "July 4 is when the country celebrates its birthday.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -8773,6 +9717,12 @@
    ]
   },
   {
+   "text": "King was one of the most famous civil rights leaders.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Knowing 538 helps you understand the number needed to win.",
    "from": [
     "course-lessons"
@@ -8786,6 +9736,12 @@
   },
   {
    "text": "Knowing the First Amendment helps you remember most of these rights.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Knowing the colors helps you picture the flag.",
    "from": [
     "course-lessons"
    ]
@@ -8827,6 +9783,30 @@
    ]
   },
   {
+   "text": "Korea and Vietnam are two of the five wars.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Korea and Vietnam: same answer, to stop communism from spreading.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Korean War",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Kuwait is a small country next to Iraq.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Labor Day",
    "from": [
     "words"
@@ -8836,6 +9816,18 @@
    "text": "Labor Day is in September.",
    "from": [
     "sentences"
+   ]
+  },
+  {
+   "text": "Labor Day, in September, honors workers.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Land of the free",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -8908,6 +9900,12 @@
   },
   {
    "text": "Leaders change over time, so the app checks an official list.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Leaders choose for the people",
    "from": [
     "course-lessons"
    ]
@@ -9227,12 +10225,6 @@
   },
   {
    "text": "Life means the right to live. Liberty means freedom. The pursuit of Happiness means trying to build a good life.",
-   "from": [
-    "course-lessons"
-   ]
-  },
-  {
-   "text": "Life, Liberty",
    "from": [
     "course-lessons"
    ]
@@ -9641,6 +10633,12 @@
    ]
   },
   {
+   "text": "Many Americans served there in the 1960s.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Many Americans wanted it to say clearly which rights the government can never take away.",
    "from": [
     "course-lessons"
@@ -9648,6 +10646,12 @@
   },
   {
    "text": "Many banks closed, and millions of families lost their jobs, homes and savings. People waited in long lines for free food, called bread lines.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Many banks closed. Millions of families lost their jobs, homes and savings.",
    "from": [
     "course-lessons"
    ]
@@ -9677,6 +10681,24 @@
    ]
   },
   {
+   "text": "Many offices and schools close on these days.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Many other countries helped too.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Many people call it “the Fourth of July.”",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Many people came to America to be free and to pray in their own way. They wanted to make their own rules.",
    "from": [
     "course-lessons"
@@ -9701,7 +10723,25 @@
    ]
   },
   {
+   "text": "Many people watch fireworks and have picnics.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Many people worked together for equal rights.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Many people worked together so all races would be treated fairly.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Many things come together to make one.",
    "from": [
     "course-lessons"
    ]
@@ -9775,7 +10815,8 @@
   {
    "text": "Martin Luther King, Jr. is famous for many things. Name one.",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -9785,7 +10826,19 @@
    ]
   },
   {
+   "text": "Martin Luther King, Jr. was a leader of the movement.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Martin Luther King, Jr. was a leader of the movement. He worked for equality for all Americans.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Martin Luther King, Jr. worked for equality for all Americans.",
    "from": [
     "course-lessons"
    ]
@@ -9887,8 +10940,15 @@
    ]
   },
   {
+   "text": "Memorial Day is a holiday at the end of May.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Memorial Day is in May.",
    "from": [
+    "course-lessons",
     "sentences"
    ]
   },
@@ -9931,6 +10991,7 @@
   {
    "text": "Mexico",
    "from": [
+    "course-lessons",
     "words"
    ]
   },
@@ -10039,6 +11100,12 @@
   },
   {
    "text": "Most of Congress and most of the states must agree.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Most of the fighting in World War I was in Europe.",
    "from": [
     "course-lessons"
    ]
@@ -10332,7 +11399,8 @@
   {
    "text": "Name one U.S. military conflict after the September 11, 2001 attacks.",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -10350,7 +11418,8 @@
   {
    "text": "Name one example of an American innovation.",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -10433,6 +11502,12 @@
    ]
   },
   {
+   "text": "Name one thing the Constitution does.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Name one thing the U.S. Constitution does.",
    "from": [
     "civics-questions"
@@ -10448,7 +11523,8 @@
   {
    "text": "Name one war fought by the United States in the 1900s.",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -10507,6 +11583,18 @@
    ]
   },
   {
+   "text": "Names the state capitals",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "National holidays are special days for the whole country.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "National holidays include New Year's Day, Martin Luther King, Jr. Day, Presidents Day, Memorial Day, Juneteenth, Independence Day, Labor Day, Columbus Day, Veterans Day, Thanksgiving Day and Christmas Day.",
    "from": [
     "course-lessons"
@@ -10516,6 +11604,12 @@
    "text": "Natural",
    "from": [
     "settings-pieces"
+   ]
+  },
+  {
+   "text": "Natural rights are rights every person is born with, like life and liberty.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -10591,6 +11685,12 @@
    ]
   },
   {
+   "text": "New Year’s Day is January 1.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "New York (Harbor) / Liberty Island / [Also acceptable are New Jersey, near New York City, and on the Hudson (River).]",
    "from": [
     "civics-questions"
@@ -10605,6 +11705,7 @@
   {
    "text": "New York City",
    "from": [
+    "course-lessons",
     "words"
    ]
   },
@@ -10612,6 +11713,12 @@
    "text": "New York City was the first capital.",
    "from": [
     "sentences"
+   ]
+  },
+  {
+   "text": "New York Harbor",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -10824,6 +11931,12 @@
    ]
   },
   {
+   "text": "No other President was elected more than twice.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "No other law can go against it.",
    "from": [
     "course-lessons"
@@ -10881,6 +11994,24 @@
    "text": "North",
    "from": [
     "words"
+   ]
+  },
+  {
+   "text": "North Korea’s army went into South Korea to take it over.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "North Vietnam wanted to rule South Vietnam too.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "North is up on a map. South is down.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -11130,6 +12261,12 @@
    ]
   },
   {
+   "text": "Now a President can serve only two terms.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Now answer out loud, in English.",
    "from": [
     "tutor-steps-amio"
@@ -11139,6 +12276,12 @@
    "text": "Now, at this time.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "Nuclear weapons can destroy a whole city.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -11341,7 +12484,19 @@
    ]
   },
   {
+   "text": "On Memorial Day, Americans remember soldiers who died.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "On September 11, 2001, terrorists attacked the United States.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "On September 11, 2001, terrorists from a group called al-Qaeda attacked the United States.",
    "from": [
     "course-lessons"
    ]
@@ -11353,9 +12508,21 @@
    ]
   },
   {
+   "text": "On an assembly line, each worker adds one part as the product moves along.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "On or after October 20, 2025",
    "from": [
     "getting-started"
+   ]
+  },
+  {
+   "text": "On that day, the country was attacked by terrorists.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -11386,6 +12553,12 @@
    "text": "On the real test you need {need} right out of up to {of}.",
    "from": [
     "practice"
+   ]
+  },
+  {
+   "text": "On this day, Americans remember becoming free from Britain.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -11426,15 +12599,15 @@
    ]
   },
   {
-   "text": "One hundred (100)",
+   "text": "One for each state",
    "from": [
-    "civics-questions"
+    "course-lessons"
    ]
   },
   {
-   "text": "One idea, equality, means every person should be treated the same under the law.",
+   "text": "One hundred (100)",
    "from": [
-    "course-lessons"
+    "civics-questions"
    ]
   },
   {
@@ -11474,6 +12647,24 @@
    ]
   },
   {
+   "text": "One plane crashed in a field in Pennsylvania.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "One plane crashed into the Pentagon, in Virginia.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "One plane hit the Pentagon.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "One question, English only",
    "from": [
     "lesson-player"
@@ -11504,6 +12695,24 @@
    ]
   },
   {
+   "text": "One star for each President",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "One star for each state",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "One star for each war",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "One way is being born in the United States, under the conditions in the 14th Amendment.",
    "from": [
     "course-lessons"
@@ -11511,6 +12720,12 @@
   },
   {
    "text": "Only Congress can officially say the country is at war.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Only Congress can officially start a war for the country.",
    "from": [
     "course-lessons"
    ]
@@ -11695,6 +12910,12 @@
    "text": "Out of date: last checked more than 60 days ago. Learners see “Coming soon” until the times are checked again.",
    "from": [
     "interview-when"
+   ]
+  },
+  {
+   "text": "Out of many, one",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -11899,6 +13120,12 @@
    ]
   },
   {
+   "text": "Pearl Harbor is a harbor in Hawaii.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "People",
    "from": [
     "words"
@@ -11912,6 +13139,12 @@
   },
   {
    "text": "People call him its “father” because he helped create it.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "People called him “Ike” for short.",
    "from": [
     "course-lessons"
    ]
@@ -11971,6 +13204,12 @@
    ]
   },
   {
+   "text": "People cannot choose freely what to make or buy.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "People from Africa were sold in America as slaves.",
    "from": [
     "course-lessons"
@@ -11978,6 +13217,12 @@
   },
   {
    "text": "People from Africa, and their children, were enslaved.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "People from many places make one country together.",
    "from": [
     "course-lessons"
    ]
@@ -11995,6 +13240,12 @@
    ]
   },
   {
+   "text": "People lost their money when banks closed.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "People may own guns, as long as they follow the law.",
    "from": [
     "course-lessons"
@@ -12007,6 +13258,12 @@
    ]
   },
   {
+   "text": "People sing it at sports games and big events.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "People the law says you must support, like your children.",
    "from": [
     "n400"
@@ -12014,6 +13271,12 @@
   },
   {
    "text": "People vote for their leaders, and they can choose new leaders in the next election.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "People waited in long lines for free food, called bread lines.",
    "from": [
     "course-lessons"
    ]
@@ -12037,9 +13300,21 @@
    ]
   },
   {
+   "text": "Persian Gulf War",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Personal Information",
    "from": [
     "interview-intro"
+   ]
+  },
+  {
+   "text": "Philadelphia",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -12064,6 +13339,12 @@
    "text": "Pick the month",
    "from": [
     "interview-when"
+   ]
+  },
+  {
+   "text": "Pick three holidays you know well.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -12154,7 +13435,8 @@
   {
    "text": "Play video",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "tutor-steps"
    ]
   },
   {
@@ -12166,7 +13448,8 @@
   {
    "text": "Plays from YouTube. YouTube can see that you watched it.",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "tutor-steps"
    ]
   },
   {
@@ -12492,6 +13775,12 @@
    ]
   },
   {
+   "text": "Printing press",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Private: your teacher or class can't see this. Don't share your immigration status, A-number, case details, or address.",
    "from": [
     "privacy-note"
@@ -12513,6 +13802,12 @@
    "text": "Pronunciation notes",
    "from": [
     "practice"
+   ]
+  },
+  {
+   "text": "Protects the rights of the people",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -12543,6 +13838,12 @@
    "text": "Put your tongue between your teeth for \"th\": \"the\".",
    "from": [
     "reading-tips"
+   ]
+  },
+  {
+   "text": "Pyramids",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -12658,6 +13959,12 @@
   },
   {
    "text": "Racial discrimination is unfair treatment because of race.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Racial discrimination means treating people unfairly because of their race.",
    "from": [
     "course-lessons"
    ]
@@ -12991,6 +14298,12 @@
    ]
   },
   {
+   "text": "Remember him with three things: a general, the President when the Korean War ended, and the highways.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Remember three things: writer, third President, Louisiana Purchase.",
    "from": [
     "course-lessons"
@@ -13031,6 +14344,12 @@
    "from": [
     "interview-day",
     "practice"
+   ]
+  },
+  {
+   "text": "Represent means to stand for something.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -13188,6 +14507,12 @@
    ]
   },
   {
+   "text": "Roosevelt led the country through two very hard times.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Round complete.",
    "from": [
     "practice"
@@ -13308,6 +14633,12 @@
    "text": "Saving",
    "from": [
     "learn-screens"
+   ]
+  },
+  {
+   "text": "Savings are money you keep for later.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -13733,6 +15064,12 @@
    ]
   },
   {
+   "text": "Say it slowly, in four parts: ee, PLOOR-ih-bus, OO-num.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Say the \"ts\" at the end: \"rights\".",
    "from": [
     "reading-tips"
@@ -13929,6 +15266,12 @@
    "text": "See the full report",
    "from": [
     "practice"
+   ]
+  },
+  {
+   "text": "Segregation kept people of different races apart, by law.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -14140,6 +15483,12 @@
    "text": "Set your test date",
    "from": [
     "progress"
+   ]
+  },
+  {
+   "text": "Sets the price of food",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -14461,6 +15810,7 @@
   {
    "text": "Slavery",
    "from": [
+    "course-lessons",
     "course-titles"
    ]
   },
@@ -14526,6 +15876,12 @@
   },
   {
    "text": "So are helping with a campaign and contacting your elected officials.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "So are skyscrapers and the assembly line.",
    "from": [
     "course-lessons"
    ]
@@ -14639,6 +15995,12 @@
    ]
   },
   {
+   "text": "Soldiers from the U.S., England and other countries served under him.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Some are things people do every day, like obeying the law.",
    "from": [
     "course-lessons"
@@ -14664,6 +16026,12 @@
   },
   {
    "text": "Some jobs only the national government can do.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Some of the ships carried people who were not soldiers.",
    "from": [
     "course-lessons"
    ]
@@ -15370,6 +16738,12 @@
    ]
   },
   {
+   "text": "Tap the Axis Powers.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Tap the Bill of Rights.",
    "from": [
     "course-lessons"
@@ -15412,6 +16786,18 @@
    ]
   },
   {
+   "text": "Tap the communist country.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Tap the country to the north.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Tap the document that said the colonies were free from Britain.",
    "from": [
     "course-lessons"
@@ -15442,7 +16828,25 @@
    ]
   },
   {
+   "text": "Tap the innovation from 1969.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Tap the legislative branch.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Tap the month of Memorial Day.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Tap the month with Independence Day.",
    "from": [
     "course-lessons"
    ]
@@ -15454,9 +16858,21 @@
    ]
   },
   {
+   "text": "Tap the part that has one for each state.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Tap the picture.",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Tap the place where the Pentagon is.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -15496,6 +16912,12 @@
    ]
   },
   {
+   "text": "Tap the roads Eisenhower helped build.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Tap the step where the President signs the bill.",
    "from": [
     "course-lessons"
@@ -15509,6 +16931,18 @@
   },
   {
    "text": "Tap the term that is not allowed.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Tap the war that began in 1950.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Tap the war that began in 2001.",
    "from": [
     "course-lessons"
    ]
@@ -15554,6 +16988,18 @@
    ]
   },
   {
+   "text": "Tap when the Great Depression started.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Tap where the Statue of Liberty is.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Task {n} of {t} · Today",
    "from": [
     "today"
@@ -15568,6 +17014,7 @@
   {
    "text": "Taxes",
    "from": [
+    "course-lessons",
     "words"
    ]
   },
@@ -15633,6 +17080,12 @@
   },
   {
    "text": "Term 1, then a break, then Term 2. There is no Term 3.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Terrorists attacked the United States",
    "from": [
     "course-lessons"
    ]
@@ -15704,6 +17157,18 @@
    ]
   },
   {
+   "text": "Thanksgiving Day",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Thanksgiving is a day to give thanks, in November.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Thanksgiving is in November.",
    "from": [
     "sentences"
@@ -15747,6 +17212,12 @@
   },
   {
    "text": "That is three times as long as a representative’s term.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "That makes eleven national holidays.",
    "from": [
     "course-lessons"
    ]
@@ -15885,6 +17356,12 @@
    ]
   },
   {
+   "text": "The 1900s means the years 1900 to 1999.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The 19th Amendment",
    "from": [
     "course-lessons"
@@ -15906,6 +17383,18 @@
    "text": "The AI officer asks you real interview questions out loud and checks your answers.",
    "from": [
     "interview-intro"
+   ]
+  },
+  {
+   "text": "The Allied Powers, including England, France and Russia, fought against them.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The Allies fought against the Axis.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -15939,6 +17428,12 @@
    ]
   },
   {
+   "text": "The American flag: 50 stars, one for each state, and 13 stripes for the 13 original colonies.",
+   "from": [
+    "course-pictures"
+   ]
+  },
+  {
    "text": "The Americans fought the American Revolution, also called the Revolutionary War, to win independence from Britain.",
    "from": [
     "course-lessons"
@@ -15964,6 +17459,12 @@
   },
   {
    "text": "The Attorney General is a Cabinet-level position.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The Axis Powers were Germany, Italy and Japan.",
    "from": [
     "course-lessons"
    ]
@@ -16102,6 +17603,12 @@
    "text": "The Cold War",
    "from": [
     "course-titles"
+   ]
+  },
+  {
+   "text": "The Cold War ended",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -16368,7 +17875,14 @@
   {
    "text": "The Great Depression",
    "from": [
+    "course-lessons",
     "course-titles"
+   ]
+  },
+  {
+   "text": "The Great Depression was the longest economic recession in modern history.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -16409,6 +17923,24 @@
   },
   {
    "text": "The Korean War",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The Korean War and the Vietnam War were fought to stop communism.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The Korean War ended while Eisenhower was President.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The Korean War, in 1950, and the Vietnam War, in the 1960s, were fought to stop communism.",
    "from": [
     "course-lessons"
    ]
@@ -16469,6 +18001,30 @@
   },
   {
    "text": "The Oath is a set of promises.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The Pentagon is the building of the Department of Defense.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The Persian Gulf War is the last of the five.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The Persian Gulf War, in 1991, forced Iraq out of Kuwait.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The Persian Gulf is the sea near Iraq and Kuwait.",
    "from": [
     "course-lessons"
    ]
@@ -16619,6 +18175,12 @@
    ]
   },
   {
+   "text": "The President lives and works in the White House.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The President lives in the White House.",
    "from": [
     "sentences"
@@ -16751,6 +18313,30 @@
    ]
   },
   {
+   "text": "The September 11 attacks happened in 2001.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The Soviet Union",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The Soviet Union had a communist government.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The Soviet Union was communist.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The Soviet Union was communist. Under communism, the government owns the farms, factories and stores, and decides what people make and buy. People have little freedom to choose.",
    "from": [
     "course-lessons"
@@ -16807,11 +18393,30 @@
   {
    "text": "The Star-Spangled Banner",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
    "text": "The Statue of Liberty is in New York Harbor, on Liberty Island, near New York City.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The Statue of Liberty is in New York Harbor, on Liberty Island.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The Statue of Liberty stands on Liberty Island, in New York Harbor, near New York City.",
+   "from": [
+    "course-pictures"
+   ]
+  },
+  {
+   "text": "The Statue of Liberty stands on a small island in New York Harbor.",
    "from": [
     "course-lessons"
    ]
@@ -16890,6 +18495,12 @@
    ]
   },
   {
+   "text": "The U.S. did not want more countries to become communist.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The U.S. economy is capitalism. Another name is a free market economy.",
    "from": [
     "course-lessons"
@@ -16899,6 +18510,12 @@
    "text": "The U.S. system that keeps a list of men who could be called to serve in the military if the country needs them.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "The U.S. went to war in Afghanistan after the attacks.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -16932,6 +18549,12 @@
    ]
   },
   {
+   "text": "The United States and many other countries fought together.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The United States and the flag",
    "from": [
     "course-lessons"
@@ -16950,13 +18573,43 @@
    ]
   },
   {
+   "text": "The United States did not want communism to reach more countries.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The United States entered World War II after Japan attacked Pearl Harbor, in Hawaii, in 1941.",
    "from": [
     "course-lessons"
    ]
   },
   {
+   "text": "The United States entered the Korean War to help South Korea.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The United States entered the war after Japan attacked Pearl Harbor, in Hawaii, in 1941.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The United States fought five wars in the 1900s that are on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The United States fought five wars in the 1900s that are on the test: World War I, World War II, the Korean War, the Vietnam War and the Persian Gulf War.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The United States fought on the same side as these countries.",
    "from": [
     "course-lessons"
    ]
@@ -16980,6 +18633,18 @@
    ]
   },
   {
+   "text": "The United States helped South Korea fight back.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The United States is a democracy.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The United States is a republic: the people vote for leaders, and those leaders make laws for them.",
    "from": [
     "course-lessons"
@@ -16987,6 +18652,18 @@
   },
   {
    "text": "The United States is between Canada to the north and Mexico to the south.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The United States joined in 1917 because Germany attacked U.S. ships.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The United States sent soldiers to help South Vietnam.",
    "from": [
     "course-lessons"
    ]
@@ -17005,6 +18682,12 @@
   },
   {
    "text": "The United States was worried about communism spreading to other countries.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The United States was worried about communism spreading.",
    "from": [
     "course-lessons"
    ]
@@ -17040,9 +18723,39 @@
    ]
   },
   {
+   "text": "The War on Terror means the fight against terrorist groups.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The White House is in Washington, D.C.",
    "from": [
     "sentences"
+   ]
+  },
+  {
+   "text": "The White House is the President’s home and office.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The World Trade Center was in New York City.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The Wright brothers flew it in 1903.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The airplane is an American innovation too.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -17082,6 +18795,12 @@
    ]
   },
   {
+   "text": "The big letters show which part to say strongly.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The boxes stay empty. Tap What it asks to open that question in the guide, in plain words.",
    "from": [
     "n400-guide"
@@ -17103,6 +18822,12 @@
    "text": "The capital and the Statue of Liberty",
    "from": [
     "course-titles"
+   ]
+  },
+  {
+   "text": "The capital of the United States is Washington, D.C.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -17221,6 +18946,12 @@
    ]
   },
   {
+   "text": "The country has national holidays all through the year.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The country kept growing. In 1867, it bought Alaska, which is now the largest state.",
    "from": [
     "course-lessons"
@@ -17234,6 +18965,18 @@
   },
   {
    "text": "The country was together again.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The country’s birthday",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The country’s official song is “The Star-Spangled Banner.”",
    "from": [
     "course-lessons"
    ]
@@ -17336,6 +19079,12 @@
    ]
   },
   {
+   "text": "The fighting stopped in 1953.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The finish line. Take the Oath.",
    "from": [
     "home"
@@ -17361,6 +19110,12 @@
   },
   {
    "text": "The first attack of the war was at Fort Sumter.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The first day of the year",
    "from": [
     "course-lessons"
    ]
@@ -17438,6 +19193,12 @@
    ]
   },
   {
+   "text": "The flag has three colors: red, white and blue.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The flag is red, white, and blue.",
    "from": [
     "sentences"
@@ -17453,6 +19214,18 @@
    "text": "The form you send to the government about your income and taxes.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "The government decides what factories make.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The government decides what people make and buy. People have little freedom to choose.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -17486,12 +19259,6 @@
    ]
   },
   {
-   "text": "The government is split into three parts so no one part has all the power.",
-   "from": [
-    "course-lessons"
-   ]
-  },
-  {
    "text": "The government still makes some rules, like food safety rules, but it does not run the stores.",
    "from": [
     "course-lessons"
@@ -17511,6 +19278,12 @@
   },
   {
    "text": "The governor leads the state government.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The hard times went on for about ten years.",
    "from": [
     "course-lessons"
    ]
@@ -17546,6 +19319,12 @@
    ]
   },
   {
+   "text": "The last plane came down in a field.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The law changed, but many Black Americans still could not vote.",
    "from": [
     "course-lessons"
@@ -17570,7 +19349,31 @@
    ]
   },
   {
+   "text": "The leaders of al-Qaeda were in Afghanistan.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The legislative branch",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The light bulb and the car are American innovations.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The long rivalry was called the Cold War.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The longest economic recession in modern history",
    "from": [
     "course-lessons"
    ]
@@ -17618,6 +19421,12 @@
    ]
   },
   {
+   "text": "The national anthem is “The Star-Spangled Banner.”",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The national anthem is “The Star-Spangled Banner.” It is a song about the American flag.",
    "from": [
     "course-lessons"
@@ -17648,6 +19457,12 @@
    ]
   },
   {
+   "text": "The nation’s first motto was “E Pluribus Unum.”",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The new Constitution needed a yes from the states.",
    "from": [
     "course-lessons"
@@ -17655,6 +19470,12 @@
   },
   {
    "text": "The new President takes the oath of office, often on the same day.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The number of stars is the same as the number of states.",
    "from": [
     "course-lessons"
    ]
@@ -17812,6 +19633,12 @@
    ]
   },
   {
+   "text": "The power is split into three parts. This is called separation of powers.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The president lives in the White House.",
    "from": [
     "sentences"
@@ -17904,6 +19731,12 @@
    ]
   },
   {
+   "text": "The song is about the flag. A banner is a flag.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The special promise a person makes to the United States when becoming a citizen.",
    "from": [
     "n400"
@@ -17916,9 +19749,51 @@
    ]
   },
   {
+   "text": "The statue is close to New York City.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The stock market crash of 1929",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The stock market crashed",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The stock market is where people buy and sell parts of companies.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The stripes are red and white. The stars are white on blue.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The stripes remember where the country started.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The supreme law",
    "from": [
     "course-titles"
+   ]
+  },
+  {
+   "text": "The terrorists took control of passenger planes.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -17953,6 +19828,12 @@
   },
   {
    "text": "The test asks for one way Americans can serve their country.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The test asks for the capital of the United States.",
    "from": [
     "course-lessons"
    ]
@@ -18066,13 +19947,49 @@
    ]
   },
   {
+   "text": "The test asks the name of the national anthem.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The test asks two questions about the flag.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The test asks what Independence Day is.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The test asks what Memorial Day is.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The test asks what U.S. war ended slavery.",
    "from": [
     "course-lessons"
    ]
   },
   {
+   "text": "The test asks what Veterans Day is.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The test asks what founding document was written in 1787.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The test asks what happened on September 11, 2001.",
    "from": [
     "course-lessons"
    ]
@@ -18108,6 +20025,12 @@
    ]
   },
   {
+   "text": "The test asks what the civil rights movement did.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The test asks what war the Americans fought to win independence.",
    "from": [
     "course-lessons"
@@ -18115,6 +20038,12 @@
   },
   {
    "text": "The test asks what we show loyalty to: the United States and the flag.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The test asks what “E Pluribus Unum” means.",
    "from": [
     "course-lessons"
    ]
@@ -18133,6 +20062,12 @@
   },
   {
    "text": "The test asks when the Declaration was adopted: July 4, 1776.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The test asks when the Great Depression started.",
    "from": [
     "course-lessons"
    ]
@@ -18210,6 +20145,12 @@
    ]
   },
   {
+   "text": "The test asks who the U.S.’s main rival was in the Cold War.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The test asks who the governor of your state is now.",
    "from": [
     "course-lessons"
@@ -18217,6 +20158,12 @@
   },
   {
    "text": "The test asks who vetoes bills. The answer is the President.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The test asks who was President during both.",
    "from": [
     "course-lessons"
    ]
@@ -18264,6 +20211,30 @@
    ]
   },
   {
+   "text": "The test asks why the U.S. entered the Korean War.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The test asks why the U.S. entered the Vietnam War.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The test asks why the U.S. entered this war.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The test asks why the United States entered World War I.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The test asks why there are three branches. “So one part does not become too powerful” is one answer.",
    "from": [
     "course-lessons"
@@ -18283,6 +20254,12 @@
   },
   {
    "text": "The test asks you to name one American Indian tribe.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The test asks you to name one American innovation.",
    "from": [
     "course-lessons"
    ]
@@ -18348,7 +20325,19 @@
    ]
   },
   {
+   "text": "The test asks you to name one thing he is famous for.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The test asks you to name one war of the 1800s.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The test asks you to name one war of the 1900s.",
    "from": [
     "course-lessons"
    ]
@@ -18367,6 +20356,18 @@
   },
   {
    "text": "The test asks you to name the war between the North and the South.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The test asks you to name three national holidays.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The test asks you to name three of them.",
    "from": [
     "course-lessons"
    ]
@@ -18450,6 +20451,12 @@
    ]
   },
   {
+   "text": "The two countries competed against each other.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The two groups are the Senate and the House of Representatives.",
    "from": [
     "course-lessons"
@@ -18481,6 +20488,18 @@
   },
   {
    "text": "The war began in 1861, when Southern forces attacked Fort Sumter, a U.S. fort in South Carolina.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The war forced the Iraqi military out of Kuwait.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The war made Iraq’s army leave Kuwait.",
    "from": [
     "course-lessons"
    ]
@@ -18541,6 +20560,12 @@
    ]
   },
   {
+   "text": "The words are in Latin, an old language.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The words tell us who made the Constitution: the people of the United States, not a king.",
    "from": [
     "course-lessons"
@@ -18583,6 +20608,18 @@
    ]
   },
   {
+   "text": "Their leaders were hiding in Afghanistan.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Then Juneteenth, Independence Day, Labor Day and Columbus Day.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "There are 100 U.S. senators.",
    "from": [
     "course-lessons"
@@ -18590,6 +20627,12 @@
   },
   {
    "text": "There are 435 voting members in the House.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "There are 50 states, so there are 50 stars.",
    "from": [
     "course-lessons"
    ]
@@ -18608,6 +20651,12 @@
   },
   {
    "text": "There are federal courts in every state, and the Supreme Court in Washington, D.C.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "There are five wars from the 1900s to know for the test.",
    "from": [
     "course-lessons"
    ]
@@ -18674,6 +20723,12 @@
   },
   {
    "text": "There was a presidential election in 2024. The next one is in 2028.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "There was no big war between them, so it was “cold.”",
    "from": [
     "course-lessons"
    ]
@@ -18907,7 +20962,25 @@
    ]
   },
   {
+   "text": "These words are an answer on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "They also promise to serve in the military or help the nation if needed.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "They are World War I, World War II, the Korean War, the Vietnam War and the Persian Gulf War.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "They are created equal",
    "from": [
     "course-lessons"
    ]
@@ -18949,6 +21022,12 @@
    ]
   },
   {
+   "text": "They competed with weapons, money and ideas.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "They crossed at night and won a battle at Trenton.",
    "from": [
     "course-lessons"
@@ -18985,6 +21064,12 @@
    ]
   },
   {
+   "text": "They flew there in a spaceship called Apollo 11.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "They fought because Britain would not let them govern themselves.",
    "from": [
     "course-lessons"
@@ -18998,6 +21083,18 @@
   },
   {
    "text": "They helped people understand the Constitution.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "They include New Year’s Day, Martin Luther King, Jr. Day, Presidents Day and Memorial Day.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "They invaded other countries to take land.",
    "from": [
     "course-lessons"
    ]
@@ -19022,6 +21119,18 @@
   },
   {
    "text": "They meant: no taxes unless we have a voice in the government.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "They must obey Britain",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "They must pay taxes",
    "from": [
     "course-lessons"
    ]
@@ -19082,6 +21191,18 @@
   },
   {
    "text": "They signed the essays with one name: Publius.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "They took over four planes that day.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "They took over planes.",
    "from": [
     "course-lessons"
    ]
@@ -19303,6 +21424,12 @@
    ]
   },
   {
+   "text": "This helps you tell the 1900s from the 1800s.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "This helps you understand the two-term rule clearly.",
    "from": [
     "course-lessons"
@@ -19387,6 +21514,18 @@
    ]
   },
   {
+   "text": "This is one of Congress’s powers.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "This is one of the answers on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "This is one of the most famous things Jefferson did.",
    "from": [
     "course-lessons"
@@ -19412,6 +21551,12 @@
   },
   {
    "text": "This is one way the people control the government.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "This is part of the answer on the test.",
    "from": [
     "course-lessons"
    ]
@@ -19447,6 +21592,12 @@
    ]
   },
   {
+   "text": "This is the American flag.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "This is the Chief Justice today.",
    "from": [
     "course-lessons"
@@ -19477,7 +21628,37 @@
    ]
   },
   {
+   "text": "This is the answer on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "This is the answer to both questions in this lesson.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "This is the difference between a senator and a representative.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "This is the first of the five wars.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "This is the flag of the United States.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "This is the idea behind both wars in this lesson.",
    "from": [
     "course-lessons"
    ]
@@ -19490,6 +21671,12 @@
   },
   {
    "text": "This is the main reason the war started.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "This is the story of the Vietnam War.",
    "from": [
     "course-lessons"
    ]
@@ -19561,6 +21748,12 @@
    ]
   },
   {
+   "text": "This is why the U.S. went to war in Afghanistan.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "This is why the United States wanted the land.",
    "from": [
     "course-lessons"
@@ -19598,6 +21791,18 @@
   },
   {
    "text": "This keeps representatives close to the people they serve.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "This led to the Persian Gulf War.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "This lesson answers why the U.S. entered the war.",
    "from": [
     "course-lessons"
    ]
@@ -19707,6 +21912,24 @@
   },
   {
    "text": "This photo of Lincoln was taken in 1863, during the war.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "This photo shows Liberty Island from the air. A harbor is a place where ships can stay near land.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "This photo shows a bread line in New York City, about 1932.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "This photo shows marchers in Washington, D.C., in 1963.",
    "from": [
     "course-lessons"
    ]
@@ -19952,6 +22175,12 @@
    ]
   },
   {
+   "text": "This started the Korean War.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "This stop isn’t ready yet.",
    "from": [
     "checkpoints"
@@ -19967,6 +22196,18 @@
    "text": "This time, no hints and no help. Answer out loud, like the real interview.",
    "from": [
     "checkpoints"
+   ]
+  },
+  {
+   "text": "This was a different war from the Persian Gulf War.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "This was called the Cold War.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -20026,6 +22267,18 @@
   },
   {
    "text": "This word comes up again in American history.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "This word helps with the Great Depression questions.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "This word is part of the test answer.",
    "from": [
     "course-lessons"
    ]
@@ -20105,6 +22358,12 @@
    ]
   },
   {
+   "text": "Three more holidays at the end of the year.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Three of these older documents are the Declaration, the Articles of Confederation and the Federalist Papers.",
    "from": [
     "course-lessons"
@@ -20121,6 +22380,12 @@
    "text": "Tip:",
    "from": [
     "reading-tips"
+   ]
+  },
+  {
+   "text": "Tip: both questions have the same answer: to stop the spread of communism.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -20256,7 +22521,31 @@
    ]
   },
   {
+   "text": "To declare war means to say officially that a war has begun.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "To earn more money",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "To end slavery",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "To force Iraq out of Kuwait",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "To force means to make someone do something.",
    "from": [
     "course-lessons"
    ]
@@ -20264,7 +22553,8 @@
   {
    "text": "To force the Iraqi military from Kuwait",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -20277,6 +22567,12 @@
    "text": "To get started",
    "from": [
     "ask-screen"
+   ]
+  },
+  {
+   "text": "To honor means to show respect.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -20322,6 +22618,12 @@
    ]
   },
   {
+   "text": "To spread means to move to more places.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "To stay away from something on purpose.",
    "from": [
     "n400"
@@ -20330,7 +22632,8 @@
   {
    "text": "To stop the spread of communism",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -20633,6 +22936,18 @@
    ]
   },
   {
+   "text": "Two planes crashed into the World Trade Center in New York City.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Two planes hit the World Trade Center towers.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Two senators for each of the 50 states makes 100.",
    "from": [
     "course-lessons"
@@ -20645,7 +22960,19 @@
    ]
   },
   {
+   "text": "Two terms of four years is eight years.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Two years",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Two years later, the U.S. went to war in Iraq too.",
    "from": [
     "course-lessons"
    ]
@@ -20774,7 +23101,31 @@
    ]
   },
   {
+   "text": "Under communism, people have a lot of freedom.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Under communism, the government makes the choices, not the people.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Under communism, the government owns and controls almost everything, and people have little freedom. During the Cold War, the United States tried to stop communism from spreading to more countries.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Under communism, the government owns and controls almost everything. People have little freedom.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Under communism, the government owns the farms, factories and stores.",
    "from": [
     "course-lessons"
    ]
@@ -20937,15 +23288,45 @@
    ]
   },
   {
+   "text": "Valentine’s Day",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Very ready",
    "from": [
     "pilot"
    ]
   },
   {
+   "text": "Very tall buildings and the assembly line are American too.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Veterans Day and national holidays",
    "from": [
     "course-titles"
+   ]
+  },
+  {
+   "text": "Veterans Day is a holiday in November.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Veterans Day is in November.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Veterans Day thanks everyone who served in the military.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -20956,6 +23337,12 @@
   },
   {
    "text": "Veto means saying no to it.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Vietnam is a country in Southeast Asia.",
    "from": [
     "course-lessons"
    ]
@@ -21024,6 +23411,12 @@
   },
   {
    "text": "Voters can elect them again when the term ends.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Voters chose Roosevelt as President four times.",
    "from": [
     "course-lessons"
    ]
@@ -21104,6 +23497,12 @@
    "text": "Want more? Review {n} questions",
    "from": [
     "today-plan"
+   ]
+  },
+  {
+   "text": "War in Afghanistan",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -21205,7 +23604,8 @@
   {
    "text": "Washington, D.C.",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -21221,9 +23621,16 @@
    ]
   },
   {
+   "text": "Washington, D.C. is the city where the national government is.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Watch a video (in English)",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "tutor-steps"
    ]
   },
   {
@@ -21459,7 +23866,6 @@
    "text": "We the People",
    "from": [
     "civics-questions",
-    "course-lessons",
     "course-titles"
    ]
   },
@@ -21622,12 +24028,6 @@
    ]
   },
   {
-   "text": "What are the first words of the Constitution?",
-   "from": [
-    "course-lessons"
-   ]
-  },
-  {
    "text": "What are the three branches of government?",
    "from": [
     "ask-screen"
@@ -21763,7 +24163,8 @@
   {
    "text": "What did the civil rights movement do?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -21798,6 +24199,12 @@
    ]
   },
   {
+   "text": "What does liberty mean?",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "What does the Bill of Rights protect?",
    "from": [
     "civics-questions"
@@ -21808,6 +24215,12 @@
    "from": [
     "ask-screen",
     "civics-questions"
+   ]
+  },
+  {
+   "text": "What does the Declaration say about all people?",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -21827,6 +24240,18 @@
    "text": "What does the judicial branch do?",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "What does “E Pluribus Unum” mean?",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "What does “We the People” mean?",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -21895,19 +24320,22 @@
   {
    "text": "What is Independence Day?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
    "text": "What is Memorial Day?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
    "text": "What is Veterans Day?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -21987,6 +24415,7 @@
    "text": "What is the capital of the United States?",
    "from": [
     "civics-questions",
+    "course-lessons",
     "sentences"
    ]
   },
@@ -22056,7 +24485,8 @@
   {
    "text": "What is the name of the national anthem?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -22113,6 +24543,12 @@
    "text": "What major event happened on September 11, 2001, in the United States?",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "What major event happened on September 11, 2001?",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -22200,7 +24636,8 @@
   {
    "text": "What was the Great Depression?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -22240,6 +24677,12 @@
    ]
   },
   {
+   "text": "When a new state joined, a new star was added.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "When a term ends, people vote again. The same person can win again.",
    "from": [
     "course-lessons"
@@ -22268,7 +24711,8 @@
   {
    "text": "When did the Great Depression start?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -22456,7 +24900,8 @@
   {
    "text": "Where is the Statue of Liberty?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -22527,6 +24972,12 @@
   },
   {
    "text": "Which one is a document that influenced the Constitution?",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Which one is a national U.S. holiday?",
    "from": [
     "course-lessons"
    ]
@@ -22704,6 +25155,12 @@
    ]
   },
   {
+   "text": "Who has the power to declare war?",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Who is Commander in Chief of the U.S. military?",
    "from": [
     "civics-questions",
@@ -22853,7 +25310,8 @@
   {
    "text": "Who was President during the Great Depression and World War II?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -22871,7 +25329,8 @@
   {
    "text": "Who was the United States’ main rival during the Cold War?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -22915,31 +25374,36 @@
   {
    "text": "Why did the United States enter World War I?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
    "text": "Why did the United States enter World War II?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
    "text": "Why did the United States enter the Korean War?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
    "text": "Why did the United States enter the Persian Gulf War?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
    "text": "Why did the United States enter the Vietnam War?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -22987,13 +25451,15 @@
   {
    "text": "Why does the flag have 13 stripes?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
    "text": "Why does the flag have 50 stars?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -23191,6 +25657,12 @@
    ]
   },
   {
+   "text": "World War I was fought mostly in Europe.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "World War I was fought mostly in Europe. The United States joined in 1917 because Germany attacked U.S. ships. It joined the Allied Powers: England, France, Italy and Russia.",
    "from": [
     "course-lessons"
@@ -23200,11 +25672,30 @@
    "text": "World War II",
    "from": [
     "civics-questions",
+    "course-lessons",
     "course-titles"
    ]
   },
   {
    "text": "World War II (the United States joined in 1941) was fought against Germany, Italy and Japan. The Korean War (1950) and the Vietnam War (the 1960s) were fought to stop communism. The Persian Gulf War (1991) forced Iraq out of Kuwait.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "World War II is one of the five wars.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "World War II was a very big war in many parts of the world.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "World War II was fought against Germany, Italy and Japan. The United States joined in 1941.",
    "from": [
     "course-lessons"
    ]
@@ -23335,7 +25826,19 @@
    ]
   },
   {
+   "text": "Wrote the Federalist Papers",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Wyoming and California each have two senators.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Yankee Doodle",
    "from": [
     "course-lessons"
    ]
@@ -23469,6 +25972,12 @@
   },
   {
    "text": "You can say your opinion out loud, even about the government.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "You can see it on government buildings and at schools.",
    "from": [
     "course-lessons"
    ]
@@ -23625,6 +26134,24 @@
    ]
   },
   {
+   "text": "You learned about September 11 in the last lesson.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "You learned about the 13 colonies in Unit 4.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "You learned about the 22nd Amendment in Unit 2.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "You need the word “bill” for two test questions.",
    "from": [
     "course-lessons"
@@ -23646,6 +26173,12 @@
    "text": "You need {need} of {total} to pass. Try it again when you’re ready.",
    "from": [
     "checkpoints"
+   ]
+  },
+  {
+   "text": "You only need to name one of them on the test.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -23771,6 +26304,18 @@
    "text": "You were signed out. Sign in again to keep going.",
    "from": [
     "sign-in"
+   ]
+  },
+  {
+   "text": "You will learn about communism in the Cold War lessons.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "You will learn more about World War II in the next section.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -26879,6 +29424,12 @@
    ]
   },
   {
+   "text": "“13 original colonies” is an answer on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "“16th President” is an answer about Lincoln on the test.",
    "from": [
     "course-lessons"
@@ -26892,6 +29443,18 @@
   },
   {
    "text": "“1920”, “after World War I” and “19th Amendment” are answers.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "“34th President” is an answer on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "“A holiday to celebrate U.S. independence” is an answer.",
    "from": [
     "course-lessons"
    ]
@@ -26916,6 +29479,12 @@
   },
   {
    "text": "“Aide to General George Washington” is an answer on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "“Airplane” is an answer on the test.",
    "from": [
     "course-lessons"
    ]
@@ -26963,6 +29532,12 @@
    ]
   },
   {
+   "text": "“Because there are 50 states” is also an answer.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "“Boston Tea Party” is an answer on the test.",
    "from": [
     "course-lessons"
@@ -26999,6 +29574,18 @@
    ]
   },
   {
+   "text": "“Communism” is an answer on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "“Communism” is one main concern on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "“Consent of the governed” is another answer to what “We the People” means.",
    "from": [
     "course-lessons"
@@ -27030,7 +29617,7 @@
    ]
   },
   {
-   "text": "“Declaration” means an official statement. “Independence” means being free from someone else’s control.",
+   "text": "“Declaration” means an important statement made in public. “Independence” means being free from another country’s control.",
    "from": [
     "course-lessons"
    ]
@@ -27144,6 +29731,12 @@
    ]
   },
   {
+   "text": "“Fought for civil rights” is an answer on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "“Fourth President” is another answer about Madison.",
    "from": [
     "course-lessons"
@@ -27187,6 +29780,12 @@
   },
   {
    "text": "“Freedom” and “religious freedom” are both answers on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "“General during World War II” is an answer on the test.",
    "from": [
     "course-lessons"
    ]
@@ -27258,6 +29857,12 @@
    ]
   },
   {
+   "text": "“Landing on the moon” is an answer on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "“Leaders must obey the law” and “No one is above the law” are also correct answers.",
    "from": [
     "course-lessons"
@@ -27288,6 +29893,18 @@
    ]
   },
   {
+   "text": "“Light bulb” and “automobile” are answers on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "“Longest economic recession in modern history” is the test answer.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "“Loyalty” means being faithful and true to someone or something.",
    "from": [
     "course-lessons"
@@ -27312,13 +29929,49 @@
    ]
   },
   {
+   "text": "“New York Harbor” and “Liberty Island” are answers on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "“No taxation without representation” was a big reason the colonists wanted to be free.",
    "from": [
     "course-lessons"
    ]
   },
   {
+   "text": "“Nuclear war” is another main concern on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "“One of the writers of the Federalist Papers” is an answer.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "“One star for each state” is an answer on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "“Out of many, one” is the answer on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "“Pearl Harbor” is an answer on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "“President at the end of the Korean War” is an answer.",
    "from": [
     "course-lessons"
    ]
@@ -27426,13 +30079,31 @@
    ]
   },
   {
+   "text": "“Signed the Federal-Aid Highway Act” is an answer on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "“Signs bills into law” and “Vetoes bills” are both answers for a power of the President.",
    "from": [
     "course-lessons"
    ]
   },
   {
+   "text": "“Skyscrapers” and “assembly line” are answers on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "“Sojourner Truth” is an answer on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "“Soviet Union”, “USSR” or “Russia” is the test answer.",
    "from": [
     "course-lessons"
    ]
@@ -27474,6 +30145,18 @@
    ]
   },
   {
+   "text": "“The Star-Spangled Banner” is a song about the flag.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "“The country’s birthday” is an answer on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "“The right to bear arms” is another right you can name.",
    "from": [
     "course-lessons"
@@ -27504,6 +30187,12 @@
    ]
   },
   {
+   "text": "“To force the Iraqi military from Kuwait” is the test answer.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "“To keep the president from becoming too powerful” is the other answer on the test.",
    "from": [
     "course-lessons"
@@ -27511,6 +30200,24 @@
   },
   {
    "text": "“To limit outside political influence” is the other answer on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "“To oppose the Axis Powers” is an answer on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "“To support the Allied Powers” is an answer on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "“To support the Allied Powers” is another answer on the test.",
    "from": [
     "course-lessons"
    ]
@@ -27534,7 +30241,31 @@
    ]
   },
   {
+   "text": "“War in Afghanistan” and “War on Terror” are answers.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "“War in Iraq” is another answer on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "“Washington crossing the Delaware” is an answer on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "“We all become one” is another answer.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "“Worked for equality for all Americans” is an answer.",
    "from": [
     "course-lessons"
    ]

@@ -34,6 +34,12 @@ only when every box below is true.
 - [ ] An optional `link` (`{ "url", "label" }`, e.g. a Listen link) goes to an
   official https site (.gov, .mil or .si.edu) and the label is in the file's
   language.
+- [ ] An optional `video` (a YouTube video, in the lesson-video shape:
+  `{ youtubeId, title, source, license, status, checkedOn }`, see
+  `src/lib/lessonVideo.js`) is shown only when its own `status` is
+  `"reviewed"`. Mark it reviewed, with `checkedOn`, only after a person has
+  watched all of it and checked it against the official answer and the brand
+  rules. It loads from youtube-nocookie.com only after the learner taps Play.
 - [ ] Translations (not `en.json`) read naturally, like a teacher wrote them,
   and use the polite form of "you" (Spanish: "usted").
 
