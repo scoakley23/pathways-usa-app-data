@@ -115,12 +115,11 @@
             {
               "say": "The Statue of Liberty is in New York Harbor, on Liberty Island.",
               "picture": {
-                "drawing": "whereIsIt",
-                "focus": "newYork"
+                "photo": "statue-of-liberty.jpg"
               },
               "help": {
                 "simpler": "The Statue of Liberty stands on a small island in New York Harbor.",
-                "example": "A harbor is a place where ships can stay near land.",
+                "example": "This photo shows Liberty Island from the air. A harbor is a place where ships can stay near land.",
                 "why": "“New York Harbor” and “Liberty Island” are answers on the test."
               }
             },

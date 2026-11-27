@@ -920,12 +920,6 @@
    ]
   },
   {
-   "text": "A harbor is a place where ships can stay near land.",
-   "from": [
-    "course-lessons"
-   ]
-  },
-  {
    "text": "A holiday to celebrate U.S. independence (from Britain) / The country’s birthday",
    "from": [
     "civics-questions"
@@ -18385,6 +18379,12 @@
    ]
   },
   {
+   "text": "The Statue of Liberty stands on Liberty Island, in New York Harbor, near New York City.",
+   "from": [
+    "course-pictures"
+   ]
+  },
+  {
    "text": "The Statue of Liberty stands on a small island in New York Harbor.",
    "from": [
     "course-lessons"
@@ -21863,6 +21863,12 @@
   },
   {
    "text": "This photo of Lincoln was taken in 1863, during the war.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "This photo shows Liberty Island from the air. A harbor is a place where ships can stay near land.",
    "from": [
     "course-lessons"
    ]
