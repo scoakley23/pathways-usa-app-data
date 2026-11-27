@@ -10,6 +10,7 @@
    ```
    - `id`: lowercase letters, numbers and dashes; never change it once learners may have picked it (it's stored on their device).
    - `min_months` / `max_months`: whole months, as USCIS shows them. They mean the case is usually **finished** in that time, counted from when USCIS received the form. The interview usually comes before that.
+   - **USCIS shows one number** (e.g. "80% of cases are completed within 7 months"): put it in both (`"min_months": 7, "max_months": 7`). The app then says "finished **by** {month}" instead of "between … and …".
 3. Set `checked_on` to the day you checked (`YYYY-MM-DD`).
 
 ### When someone else copies the numbers (needs your check)
@@ -19,6 +20,16 @@ Numbers copied by someone other than the owner (a helper, or a script) go in wit
 ```
 Learners never see these offices (admins and dev do, marked "needs check" on `/interview/when`), and they don't need the file's `checked_on`. To approve one: compare it with the USCIS page, fix the months if needed, **delete both** `needs_owner_check` and `copied_on`, and set the file's `checked_on` to the day you checked. Learners keep seeing "Coming soon" until at least one office is approved.
 4. Delete the two `sample` entries once real offices are in (they're never shown to learners anyway).
+
+## Every month (about 10 minutes)
+USCIS updates these times about once a month. **If `checked_on` is more than 60 days old, learners see "Coming soon" again instead of old numbers** (`isStale()`, `STALE_DAYS` in `src/lib/interviewEstimate.js`); admins see "Out of date" on `/interview/when`.
+1. Open https://egov.uscis.gov/processing-times/ in your own browser. Form **N-400**, then each office in the file, one at a time.
+2. Compare the months with the file. Change any that moved (one number → both `min_months` and `max_months`).
+3. A new office you want: add it (see step 2 above). An office USCIS no longer lists: leave it until you've decided; never reuse its `id`.
+4. Set `checked_on` to today, even if nothing changed.
+5. Run `npm test`, open a pull request into `standalone`, and merge it on to `main` as usual.
+
+The app never asks USCIS for these numbers. An automatic update is only allowed through an official USCIS data source (for example an API from developer.uscis.gov), never by reading the website with a script; until one exists, this check stays by hand.
 
 `npm test` fails (`src/lib/interviewEstimate.test.js`) if a real office has no sensible months, if there are real offices but no `checked_on`, or if a sample entry isn't marked `"sample": true` with "(sample, not real)" in its name, or if an office waiting for your check isn't real, has no `copied_on`, or has `needs_owner_check` set to anything but `true` (`copied_on` is allowed only on those).
 
