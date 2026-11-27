@@ -8,7 +8,7 @@
       "16th president of the United States",
       "Delivered the Gettysburg Address"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "Abraham Lincoln was the 16th president of the United States. He led the country during the Civil War, from 1861 to 1865. In 1863 he signed the Emancipation Proclamation, which freed slaves in the Confederate states. That same year he gave the Gettysburg Address, a short and famous speech. He worked to save, or preserve, the Union.",
     "keyWords": [
       {
@@ -38,8 +38,8 @@
       "Aide to General George Washington",
       "Member of the Continental Congress"
     ],
-    "status": "draft",
-    "explanation": "Alexander Hamilton was one of the Founding Fathers. During the Revolutionary War, he worked as an aide to General George Washington. He was the first Secretary of the Treasury, in charge of the country's money. He helped start the First Bank of the United States. With James Madison and John Jay, he wrote the Federalist Papers to support the new Constitution.",
+    "status": "reviewed",
+    "explanation": "Alexander Hamilton was one of the Founding Fathers. During the Revolutionary War, he worked as an aide to General George Washington. He was the first Secretary of the Treasury, in charge of the country's money, and he helped start the First Bank of the United States. With James Madison and John Jay, he wrote the Federalist Papers to support the new Constitution. He was also a member of the Continental Congress.",
     "keyWords": [
       {
         "en": "Secretary of the Treasury",
@@ -68,7 +68,7 @@
       "Inventor",
       "U.S. diplomat"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "Benjamin Franklin was one of the most famous early Americans. He was an inventor and a writer. He helped write the Declaration of Independence in 1776. He was a U.S. diplomat in France and helped get support for the American Revolution. He was also the first Postmaster General, in charge of the mail, and he founded the first free public libraries.",
     "keyWords": [
       {
@@ -95,7 +95,7 @@
       "Communism",
       "Nuclear war"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The Cold War lasted from about 1947 to 1991. It was a long conflict between the United States and the Soviet Union, but the two countries did not fight each other directly.\n\n• Communism: Communism is a system where the government controls the economy and owns most property, and one political party holds all the power. The United States worried that communism would spread to more countries.\n• Nuclear war: Both countries built many nuclear weapons. People feared a war that could destroy whole cities.\n\nYou only need to name one.",
     "keyWords": [
       {
@@ -124,7 +124,7 @@
       "34th president of the United States",
       "Signed the Federal-Aid Highway Act of 1956 (Created the Interstate System)"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "Dwight Eisenhower was an important general during World War II. He led the Allied forces in Europe. Later, he became the 34th president of the United States, from 1953 to 1961. He was president when the fighting in the Korean War ended in 1953. In 1956 he signed a law that created the Interstate System of highways.",
     "keyWords": [
       {
@@ -153,7 +153,7 @@
       "General of the Continental Army",
       "President of the Constitutional Convention"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "George Washington was the general of the Continental Army during the Revolutionary War. After the war, he led the Constitutional Convention in 1787, where the Constitution was written. In 1789 he became the first president of the United States. Because of his important role in creating the nation, people call him the \"Father of Our Country.\"",
     "keyWords": [
       {
@@ -180,7 +180,7 @@
       "Amendments",
       "The amendment process"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The Constitution can be changed, but it is not easy. A change or addition to the Constitution is called an amendment. Usually, two-thirds of both houses of Congress must approve an amendment. Then three-fourths of the states must approve it too. This is called the amendment process.",
     "keyWords": [
       {
@@ -208,8 +208,8 @@
       "Naturalize",
       "Derive citizenship (under conditions set by Congress)"
     ],
-    "status": "draft",
-    "explanation": "There are three general ways to become a U.S. citizen. Most people born in the United States are citizens, under the conditions set by the 14th Amendment. Other people can naturalize, which means they apply and complete a legal process to become citizens. Some children derive citizenship from a parent, under conditions set by Congress. This is general information only; for your own situation, talk to a lawyer.",
+    "status": "reviewed",
+    "explanation": "There are three general ways to become a U.S. citizen. People born in the United States are citizens, under the conditions set by the 14th Amendment. Other people can naturalize, which means they apply and complete a legal process to become citizens. Some children derive citizenship from a parent, under conditions set by Congress. This is general information only; for your own situation, talk to a lawyer.",
     "keyWords": [
       {
         "en": "citizens",
@@ -236,7 +236,7 @@
       "Lifetime appointment",
       "(Until) retirement"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "Supreme Court justices do not have a fixed term. They have a lifetime appointment, so they can serve for life. Many justices serve until retirement or until they die. This rule helps judges make decisions without worrying about losing their jobs.",
     "keyWords": [
       {
@@ -262,8 +262,8 @@
     "answers": [
       "Six (6) years"
     ],
-    "status": "draft",
-    "explanation": "A U.S. senator is elected for a term of six years. A term is the length of time a person serves in office. Senators can be elected again many times. Elections are staggered: about one-third of the Senate is elected every two years.",
+    "status": "reviewed",
+    "explanation": "A U.S. senator is elected for a term of six years. A term is the length of time a person serves in office. Senators can be elected again many times. Senate elections happen at different times: about one-third of the Senate is elected every two years.",
     "keyWords": [
       {
         "en": "term",
