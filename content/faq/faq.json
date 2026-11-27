@@ -3,21 +3,21 @@
   "items": [
     {
       "id": "free",
-      "status": "draft",
+      "status": "reviewed",
       "q": "Is Amio free?",
       "a": "Yes. Amio is free practice for the U.S. citizenship test: civics, reading, writing, speaking and the N-400."
     },
     {
       "id": "uscis",
-      "status": "draft",
+      "status": "reviewed",
       "q": "Is Amio part of USCIS or the government?",
       "a": "No. Amio, from Pathways USA, is not affiliated with USCIS or the government, and it is not legal advice. The civics questions and answers come from the official USCIS lists."
     },
     {
       "id": "legal",
-      "status": "draft",
+      "status": "reviewed",
       "q": "Can Amio tell me how to answer the N-400 questions about me?",
-      "a": "No. Amio is not legal advice. We teach what each N-400 question means and how the officer may ask it. If yes might be true for you, talk to a lawyer first. Find help in Interview, then Ask a lawyer."
+      "a": "No. Amio is not legal advice. We teach what each N-400 question means and how the officer may ask it. If “yes” might be true for you, talk to a lawyer first. Find help in Interview, then Ask a lawyer."
     },
     {
       "id": "amio",
