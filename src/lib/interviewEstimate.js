@@ -6,6 +6,8 @@
 // ever fetched from USCIS. The months are when USCIS usually FINISHES an
 // N-400 at that office, not the interview date; the interview usually comes
 // before that. Always shown with "Estimate only. Not legal advice."
+// Learners see the times only while the file's checked_on is at most
+// STALE_DAYS old; after that they see "Coming soon" again (isStale()).
 import TIMES from '../../content/uscis/n400-processing-times.json';
 
 export { TIMES as PROCESSING_TIMES };
@@ -37,12 +39,30 @@ export function saveInterviewChoice({ officeId, filed }) {
  */
 export const isCheckedOffice = (o) => !!o && !o.sample && o.needs_owner_check !== true;
 
+/** How long a hand check stays good. After this, learners see "Coming soon". */
+export const STALE_DAYS = 60;
+const DAY_MS = 24 * 60 * 60 * 1000;
+
 /**
- * Offices a learner may pick: real, checked ones only. `showSamples` (admins
- * and dev) also shows the sample offices and real ones still waiting for the
- * owner's check (`needs_owner_check: true`).
+ * True when the file's `checked_on` is missing or more than STALE_DAYS old,
+ * so learners never see old numbers if a monthly check is missed.
  */
-export function visibleOffices(data = TIMES, { showSamples = false } = {}) {
+export function isStale(data = TIMES, today = new Date()) {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(data?.checked_on || '');
+  if (!m) return true;
+  const checked = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]), 12);
+  const now = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 12);
+  return (now - checked) / DAY_MS > STALE_DAYS;
+}
+
+/**
+ * Offices a learner may pick: real, checked ones only, and none while the
+ * file is out of date (isStale()). `showSamples` (admins and dev) also shows
+ * the sample offices, real ones still waiting for the owner's check
+ * (`needs_owner_check: true`) and out-of-date ones.
+ */
+export function visibleOffices(data = TIMES, { showSamples = false, today = new Date() } = {}) {
+  if (!showSamples && isStale(data, today)) return [];
   return (data.offices || [])
     .filter((o) => showSamples || isCheckedOffice(o))
     .sort((a, b) => `${a.state} ${a.name}`.localeCompare(`${b.state} ${b.name}`));
@@ -56,13 +76,17 @@ export function officeById(id, data = TIMES, opts = {}) {
 
 const addMonths = (y, m, n) => new Date(y, m - 1 + n, 15, 12);
 
-/** { from, to } (dates mid-month) when the case is usually finished, or null. */
+/**
+ * { from, to, min, max, single } (dates mid-month) when the case is usually
+ * finished, or null. `single`: USCIS shows one number (min = max), so the
+ * screens say "by {month}" instead of "between … and …".
+ */
 export function estimateRange(office, filed) {
   const m = MONTH.exec(filed || '');
   if (!office || !m) return null;
   const y = Number(m[1]);
   const mo = Number(m[2]);
-  return { from: addMonths(y, mo, office.min_months), to: addMonths(y, mo, office.max_months), min: office.min_months, max: office.max_months };
+  return { from: addMonths(y, mo, office.min_months), to: addMonths(y, mo, office.max_months), min: office.min_months, max: office.max_months, single: office.min_months === office.max_months };
 }
 
 /** Today's "Case likely done" range from the saved answers, or null. */

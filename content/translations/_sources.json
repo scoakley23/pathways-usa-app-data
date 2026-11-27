@@ -2659,6 +2659,12 @@
    ]
   },
   {
+   "text": "Case likely done by {month}",
+   "from": [
+    "today-plan"
+   ]
+  },
+  {
    "text": "Case likely done {from} – {to}",
    "from": [
     "today-plan"
@@ -8590,6 +8596,12 @@
    ]
   },
   {
+   "text": "Most N-400s at this office are finished by {month}. Your interview usually comes before that.",
+   "from": [
+    "interview-when"
+   ]
+  },
+  {
    "text": "Most businesses are owned by people, not by the government.",
    "from": [
     "course-lessons"
@@ -10171,6 +10183,12 @@
    "text": "Out loud, like the real interview.",
    "from": [
     "onboarding"
+   ]
+  },
+  {
+   "text": "Out of date: last checked more than 60 days ago. Learners see “Coming soon” until the times are checked again.",
+   "from": [
+    "interview-when"
    ]
   },
   {
@@ -17969,6 +17987,12 @@
   },
   {
    "text": "USCIS says {min} to {max} months at this office, counted from the day they received your form.",
+   "from": [
+    "interview-when"
+   ]
+  },
+  {
+   "text": "USCIS says {months} months at this office, counted from the day they received your form.",
    "from": [
     "interview-when"
    ]
