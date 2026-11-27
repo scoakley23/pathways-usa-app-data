@@ -87,7 +87,7 @@
             "status": "reviewed",
             "checkedOn": "2026-11-26"
           },
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "The Supreme Court is the highest court in the United States.",
@@ -125,7 +125,7 @@
             {
               "say": "The Supreme Court and the other federal courts are the judicial branch.",
               "picture": {
-                "drawing": "courtsLevels"
+                "photo": "courtroom.jpg"
               },
               "help": {
                 "simpler": "All the federal courts together make up the judicial branch.",
@@ -136,9 +136,9 @@
             {
               "check": {
                 "kind": "pick",
-                "prompt": "What is the highest court in the United States?",
+                "prompt": "Which one is part of the judicial branch?",
                 "choices": [
-                  "The Supreme Court",
+                  "The federal courts",
                   "Congress",
                   "The Cabinet"
                 ],
@@ -210,7 +210,7 @@
               "meaning": "when the Senate votes yes on a person the President chose"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "Courts review and explain laws.",
@@ -250,7 +250,7 @@
               },
               "help": {
                 "simpler": "A court can say a law breaks the Constitution. Then the law cannot be used.",
-                "example": "This is how the courts check Congress and the President.",
+                "example": "This is called judicial review. It is how the courts check Congress and the President.",
                 "why": "“Decides if a law goes against the Constitution” is another answer on the test."
               }
             },
@@ -262,7 +262,7 @@
               },
               "help": {
                 "simpler": "The President chooses federal judges.",
-                "example": "The Senate votes to agree before a judge starts the job.",
+                "example": "The Senate must confirm, or agree, before a judge starts the job.",
                 "why": "The test asks who appoints federal judges. The answer is the President."
               }
             },
@@ -335,7 +335,7 @@
               "meaning": "a place for one member"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "The Supreme Court has nine seats.",
@@ -355,7 +355,7 @@
               },
               "help": {
                 "simpler": "A “seat” is a place for one justice.",
-                "example": "When a justice retires, the President chooses someone new for that seat.",
+                "example": "When a seat opens, the President chooses someone new, and the Senate must agree.",
                 "why": "Nine seats means nine justices."
               }
             },
@@ -385,9 +385,14 @@
             },
             {
               "check": {
-                "kind": "tf",
-                "statement": "Usually five justices are needed to decide a case.",
-                "answer": true
+                "kind": "pick",
+                "prompt": "How many justices are usually needed to decide a case?",
+                "choices": [
+                  "Five",
+                  "Nine",
+                  "Two"
+                ],
+                "answer": 0
               }
             }
           ]
@@ -444,7 +449,7 @@
               "meaning": "free to decide without pressure"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "Supreme Court justices serve for life.",
@@ -498,7 +503,7 @@
                 "choices": [
                   "To be independent of politics",
                   "To earn more money",
-                  "To make new laws"
+                  "To handle local issues"
                 ],
                 "answer": 0
               }
@@ -544,7 +549,7 @@
           "explanationKey": "Who is the Chief Justice of the United States now?",
           "facts": [
             "The Chief Justice leads the Supreme Court.",
-            "These names change after elections, so Pathways looks them up on an official list.",
+            "This name changes only when a Chief Justice leaves the job, so Pathways looks it up on an official list.",
             "Check the names again before your interview."
           ],
           "newWords": [
@@ -553,7 +558,7 @@
               "meaning": "the leader of the Supreme Court"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "The Chief Justice leads the Supreme Court.",
@@ -580,9 +585,14 @@
             },
             {
               "check": {
-                "kind": "tf",
-                "statement": "The Chief Justice leads the Supreme Court.",
-                "answer": true
+                "kind": "pick",
+                "prompt": "Who leads the Supreme Court?",
+                "choices": [
+                  "The Chief Justice",
+                  "The Speaker of the House",
+                  "The Vice President"
+                ],
+                "answer": 0
               }
             },
             {
