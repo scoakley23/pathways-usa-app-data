@@ -36,13 +36,13 @@ PDF; never guess them. While the file is empty (`[]`) or incomplete, Vía gets
 the questions without numbers or stars and is not asked to give numbers.
 `npm test` fails if a filled-in file doesn't number all 128 questions 1–128
 exactly once, repeats a question, or doesn't mark exactly 20 as 65/20. The same
-checks run on `numbers-2025.draft.json`.
+checks run on any `numbers-2025*.json` draft put beside it.
 
-### Draft waiting for the owner's check (Nov 27, 2026)
+### Where the numbers come from (live since Nov 27, 2026)
 
-`numbers-2025.draft.json` holds all 128 numbers and the 20 65/20 marks. It is
-**not used by the app**: only `numbers-2025.json` is read, and it stays `[]`
-until the owner checks the draft.
+`numbers-2025.json` holds all 128 numbers and the 20 65/20 marks, so Ask Amio
+gets the numbered list with stars. The owner checked it against the PDF on
+Nov 27, 2026.
 
 - Source: USCIS, "128 Civics Questions and Answers (2025 version)", form
   M-1778 (09/25),
@@ -56,6 +56,7 @@ until the owner checks the draft.
 - 65/20 questions (asterisk in the PDF): 2, 7, 12, 20, 30, 36, 38, 39, 44, 52,
   61, 66, 74, 78, 86, 94, 113, 115, 121, 126.
 
-To make it live after checking: replace the contents of `numbers-2025.json`
-with the draft's, delete the draft, update this section, then run
-`npm run ai:server` (the Supabase AI bundle includes this file) and `npm test`.
+When USCIS publishes a new version: put the new numbers in
+`numbers-2025.draft.json` first, have a person check it, then copy it over
+this file, delete the draft, and run `npm run ai:server` (the Supabase AI
+bundle includes this file) and `npm test`.
