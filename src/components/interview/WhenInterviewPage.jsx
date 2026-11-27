@@ -59,6 +59,7 @@ export default function WhenInterviewPage() {
   const range = filed ? estimateRange(office, choice.filed) : null;
 
   const monthName = (d, withYear = true) => d.toLocaleDateString(locale, withYear ? { month: 'long', year: 'numeric' } : { month: 'long' });
+  const num = (n) => { try { return new Intl.NumberFormat(locale).format(n); } catch { return String(n); } };
   const rangeText = (r) => {
     if (r.single) return monthName(r.to);
     try { return new Intl.DateTimeFormat(locale, { month: 'long', year: 'numeric' }).formatRange(r.from, r.to); } catch { return `${monthName(r.from)} – ${monthName(r.to)}`; }
@@ -133,8 +134,8 @@ export default function WhenInterviewPage() {
                   ? t('most_finished_by', { month: monthName(range.to) })
                   : t('most_finished', { from: monthName(range.from), to: monthName(range.to) })}</p>
                 <p className="text-base">{range.single
-                  ? t('uscis_months_one', { months: range.max })
-                  : t('uscis_months', { min: range.min, max: range.max })}</p>
+                  ? t('uscis_months_one', { months: num(range.max) })
+                  : t('uscis_months', { min: num(range.min), max: num(range.max) })}</p>
               </section>
             ) : (
               <p className="text-base text-muted">{t('pick_both')}</p>

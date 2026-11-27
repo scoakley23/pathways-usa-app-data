@@ -74,7 +74,19 @@ export function officeById(id, data = TIMES, opts = {}) {
   return visibleOffices(data, opts).find((o) => o.id === id) || null;
 }
 
-const addMonths = (y, m, n) => new Date(y, m - 1 + n, 15, 12);
+/** A month count USCIS may show: whole or half months (14.5), never rounded. */
+export const isUscisMonths = (n) => typeof n === 'number' && Number.isInteger(n * 2) && n >= 1 && n <= 60;
+
+// The filing day isn't known, so the filing month counts from its middle
+// (the 15th). Whole months land mid-month; a half month lands on the last
+// day of the month (middle + half a month), so 14.5 months from October 2026
+// is the end of December 2027. Nothing is rounded.
+const addMonths = (y, m, n) => {
+  const whole = Math.floor(n);
+  return n === whole
+    ? new Date(y, m - 1 + whole, 15, 12)
+    : new Date(y, m + whole, 0, 12); // day 0 of the next month = the last day
+};
 
 /**
  * { from, to, min, max, single } (dates mid-month) when the case is usually
@@ -128,8 +140,8 @@ export function processingProblems(data = TIMES) {
     } else if ('copied_on' in o) {
       out.push(`${name}: copied_on is only for offices waiting for the owner's check; use the file's checked_on`);
     }
-    const ok = Number.isInteger(o.min_months) && Number.isInteger(o.max_months) && o.min_months > 0 && o.max_months >= o.min_months && o.max_months <= 60;
-    if (!ok) out.push(`${name}: min_months / max_months must be whole months, 1–60, max ≥ min`);
+    const ok = isUscisMonths(o.min_months) && isUscisMonths(o.max_months) && o.max_months >= o.min_months;
+    if (!ok) out.push(`${name}: min_months / max_months must be whole or half months (e.g. 14.5), 1–60, max ≥ min`);
   }
   return out;
 }

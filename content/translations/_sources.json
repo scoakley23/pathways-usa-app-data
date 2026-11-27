@@ -974,6 +974,12 @@
    ]
   },
   {
+   "text": "A king rules the people",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "A kingdom",
    "from": [
     "course-lessons"
@@ -1845,12 +1851,6 @@
    "text": "All done for today",
    "from": [
     "today"
-   ]
-  },
-  {
-   "text": "All people are equal",
-   "from": [
-    "course-lessons"
    ]
   },
   {
@@ -6630,6 +6630,12 @@
    ]
   },
   {
+   "text": "Happiness",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Hard",
    "from": [
     "practice"
@@ -9592,6 +9598,12 @@
    ]
   },
   {
+   "text": "Leaders choose for the people",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Leaders do not have to obey the law.",
    "from": [
     "course-lessons"
@@ -9906,12 +9918,6 @@
   },
   {
    "text": "Life means the right to live. Liberty means freedom. The pursuit of Happiness means trying to build a good life.",
-   "from": [
-    "course-lessons"
-   ]
-  },
-  {
-   "text": "Life, Liberty",
    "from": [
     "course-lessons"
    ]
@@ -11158,6 +11164,12 @@
    ]
   },
   {
+   "text": "Name one thing the Constitution does.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Name one thing the U.S. Constitution does.",
    "from": [
     "civics-questions"
@@ -11233,6 +11245,12 @@
    ]
   },
   {
+   "text": "Names the state capitals",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "National holidays include New Year's Day, Martin Luther King, Jr. Day, Presidents Day, Memorial Day, Juneteenth, Independence Day, Labor Day, Columbus Day, Veterans Day, Thanksgiving Day and Christmas Day.",
    "from": [
     "course-lessons"
@@ -11242,6 +11260,12 @@
    "text": "Natural",
    "from": [
     "settings-pieces"
+   ]
+  },
+  {
+   "text": "Natural rights are rights every person is born with, like life and liberty.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -12203,12 +12227,6 @@
    "text": "One hundred (100)",
    "from": [
     "civics-questions"
-   ]
-  },
-  {
-   "text": "One idea, equality, means every person should be treated the same under the law.",
-   "from": [
-    "course-lessons"
    ]
   },
   {
@@ -13355,6 +13373,12 @@
    "text": "Pronunciation notes",
    "from": [
     "practice"
+   ]
+  },
+  {
+   "text": "Protects the rights of the people",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -15021,6 +15045,12 @@
    ]
   },
   {
+   "text": "Sets the price of food",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Settings",
    "from": [
     "me",
@@ -16513,6 +16543,7 @@
   {
    "text": "Taxes",
    "from": [
+    "course-lessons",
     "words"
    ]
   },
@@ -18660,12 +18691,6 @@
    ]
   },
   {
-   "text": "The government is split into three parts so no one part has all the power.",
-   "from": [
-    "course-lessons"
-   ]
-  },
-  {
    "text": "The government still makes some rules, like food safety rules, but it does not run the stores.",
    "from": [
     "course-lessons"
@@ -19017,6 +19042,12 @@
   },
   {
    "text": "The picture shows the name from that list.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The power is split into three parts. This is called separation of powers.",
    "from": [
     "course-lessons"
    ]
@@ -20267,6 +20298,12 @@
    ]
   },
   {
+   "text": "They are created equal",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "They are equality, liberty, natural rights, limited government and self-government.",
    "from": [
     "course-lessons"
@@ -20394,6 +20431,18 @@
   },
   {
    "text": "They meant: no taxes unless we have a voice in the government.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "They must obey Britain",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "They must pay taxes",
    "from": [
     "course-lessons"
    ]
@@ -23062,7 +23111,6 @@
    "text": "We the People",
    "from": [
     "civics-questions",
-    "course-lessons",
     "course-titles"
    ]
   },
@@ -23222,12 +23270,6 @@
    "text": "What are the colors of the flag?",
    "from": [
     "sentences"
-   ]
-  },
-  {
-   "text": "What are the first words of the Constitution?",
-   "from": [
-    "course-lessons"
    ]
   },
   {
@@ -23402,6 +23444,12 @@
    ]
   },
   {
+   "text": "What does liberty mean?",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "What does the Bill of Rights protect?",
    "from": [
     "civics-questions"
@@ -23412,6 +23460,12 @@
    "from": [
     "ask-screen",
     "civics-questions"
+   ]
+  },
+  {
+   "text": "What does the Declaration say about all people?",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -23431,6 +23485,12 @@
    "text": "What does the judicial branch do?",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "What does “We the People” mean?",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -28734,7 +28794,7 @@
    ]
   },
   {
-   "text": "“Declaration” means an official statement. “Independence” means being free from someone else’s control.",
+   "text": "“Declaration” means an important statement made in public. “Independence” means being free from another country’s control.",
    "from": [
     "course-lessons"
    ]
