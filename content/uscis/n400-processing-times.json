@@ -51,7 +51,7 @@
     { "id": "saint-louis-mo", "name": "Saint Louis", "state": "MO", "min_months": 13.5, "max_months": 13.5, "sample": false },
     { "id": "helena-mt", "name": "Helena", "state": "MT", "min_months": 13, "max_months": 13, "sample": false },
     { "id": "charlotte-nc", "name": "Charlotte", "state": "NC", "min_months": 13.5, "max_months": 13.5, "sample": false },
-    { "id": "raleigh-durham-nc", "name": "Raleigh-Durham", "state": "NC", "min_months": 15, "max_months": 15, "sample": false },
+    { "id": "raleigh-nc", "name": "Raleigh", "state": "NC", "min_months": 15, "max_months": 15, "sample": false },
     { "id": "omaha-ne", "name": "Omaha", "state": "NE", "min_months": 15.5, "max_months": 15.5, "sample": false },
     { "id": "manchester-nh", "name": "Manchester", "state": "NH", "min_months": 12, "max_months": 12, "sample": false },
     { "id": "cranbury-nj", "name": "Cranbury", "state": "NJ", "min_months": 11.5, "max_months": 11.5, "sample": false },

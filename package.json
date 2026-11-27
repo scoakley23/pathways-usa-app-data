@@ -18,6 +18,8 @@
     "evals:civics": "vite-node --config scripts/evals/vite.config.mjs scripts/evals/civics-grading/run.mjs --",
     "evals:civics:cases": "node scripts/evals/civics-grading/write-cases-md.mjs",
     "email:texts": "node scripts/supabase/build-reminder-texts.mjs",
+    "uscis:bookmarklet": "node scripts/uscis/build-bookmarklet.mjs",
+    "uscis:apply": "node scripts/uscis/apply-times.mjs",
     "icons": "vite-node --config scripts/evals/vite.config.mjs scripts/icons/build-app-icons.mjs"
   },
   "dependencies": {
