@@ -83,7 +83,7 @@
               "meaning": "a 1773 protest where colonists threw British tea into Boston Harbor"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "In the 1760s, Britain had spent a lot of money on wars. It wanted the colonists to help pay.",
@@ -248,7 +248,7 @@
               "meaning": "one of the people who started the country"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "Thomas Jefferson wrote the Declaration of Independence.",
@@ -419,7 +419,7 @@
             "status": "reviewed",
             "checkedOn": "2026-11-27"
           },
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "To win independence from Britain, the Americans fought a war: the American Revolution.",
