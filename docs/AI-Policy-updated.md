@@ -47,9 +47,11 @@ When a lesson is done, the learner can write their own notes for it ("My notes")
 
 **Tutor settings:** the tutor's tone and English mix are saved to the learner's account. The tutor is always Amio, a drawn character, so there is no name or picture to choose (an old saved name is ignored). Learners could once use their own photo as the tutor picture, kept only in that device's browser storage; the app now deletes any such photo from the device when it loads ("Delete my data" also clears it). An old picture choice may remain in the account's tutor settings but is no longer shown or used.
 
-**Course progress, stars and badges:** the app saves each course lesson's steps done and a lesson score (0 to 3 stars), the checkpoints passed (how many right, never what was said), and when each test question comes back for review. Learners no longer see stars or badges on their screens, but stars, badges and points are still calculated and saved, so partner programs (as counts) and the pilot (as counts by a random id) keep working. "Delete my data" removes them.
+**Course progress, stars and badges:** the app saves each course lesson's steps done and a lesson score (0 to 3 stars), the checkpoints passed (how many right, never what was said), and when each test question comes back for review. Learners no longer see stars or badges on their screens, but stars, badges and points are still calculated and saved, so partner programs (as counts) and the pilot (as counts by a random id) keep working. "Delete my data" removes them. No message about a new badge is shown.
 
 **Target date and study plan:** the learner's interview or target date is saved **only on their own device** (browser storage), never to Pathways USA's database or the AI. The daily plan is calculated on the device from the learner's saved levels and progress. Daily checkmarks and visit dates are also kept only on the device. If the learner uses a new device, the app asks for the date again.
+
+**Trying Amio without an account:** a learner can tap Start and use the app without signing in. Nothing they do is saved to an account: the quick check results are shown, not saved, and the app keeps only a note on the device that they are trying it out, which is removed when they sign in or delete their data. AI help needs an account, so nothing a guest says or types reaches the AI.
 
 **Getting started:** before the first quick check, the app shows four short screens.
 1. **Your language:** which language the learner speaks best. Saved on the device (and, once a day, with the activity date for pilot counts).
@@ -63,7 +65,9 @@ The tutor is always Amio, so there is no name to choose. Getting started never a
 
 **Reading aloud:** in onboarding, the quick check, and lessons, the tutor's messages are read aloud using the device's built-in voices. Nothing is recorded and no audio is sent anywhere. Learners can turn this off; the setting is saved on the device.
 
-**Check-ins:** the app may suggest a shorter plan after missed days, more practice for a skill that has been hard, a short re-check every two weeks, or more English when scores are high. These are shown in the app only (no email or text messages) and are based on progress the app already saves.
+**Reminders and notifications:** if the learner hasn't practiced yet that day, the app adds a reminder to their notifications ("Your lesson for today is ready"). Notifications are saved with the learner's account and only they can see them. Learners can turn the daily reminder off in Settings; that choice is kept on the device. If a learner allows phone notifications, the browser shows new ones while the app is open; Pathways USA does not use a push service and sends no test notification. Reminders are not emails or text messages, and nothing in them is sent to the AI.
+
+**Plan changes:** if a learner misses a day, the plan simply continues; nothing is lost and a missed day never counts against them. All of this is worked out from progress the app already saves.
 
 ## AI Mock Interviews
 The mock interview feature lets learners practice with an AI-simulated USCIS officer. Learners answer out loud. As with other speech practice, the learner's browser converts speech to text using its built-in speech recognition service (see Speech Input and Voice Data above). Pathways USA never receives or stores audio.
@@ -115,7 +119,7 @@ Signed-in learners can tap "Save" on a place to keep it in "Your saved places" a
 The list of places is written and checked by the Pathways team from public sources (such as the USCIS office list, the U.S. Department of Justice list of recognized organizations, and the National Literacy Directory's public class listings). The AI does not find, write, or recommend places. Pathways USA does not run or endorse these places, and the page reminds learners that only lawyers and DOJ-accredited representatives can give immigration legal advice.
 
 ## Partner Programs
-Some learners study with a class or program that works with Pathways USA (a "partner program"). In Getting started, and later on their Profile, a learner may say which partner program they study with, or that they study on their own. This is optional. A partner's link can pick the program in advance; the program's code waits in the browser's storage until the learner answers.
+Some learners study with a class or program that works with Pathways USA (a "partner program"). In Getting started, and later in Settings (My tutor), a learner may say which partner program they study with, or that they study on their own. This is optional. A partner's link can pick the program in advance; the program's code waits in the browser's storage until the learner answers.
 
 **What is saved:** which program the learner picked, whether the program has confirmed them, an optional name the learner gives so the program knows it's them (a name only; anything that looks like an email address or a number is dropped), and, only where the program allows it, whether the learner chose to share their own progress. This record is linked to the learner's account.
 
@@ -136,7 +140,7 @@ Pathways USA asks learners a few optional questions to learn whether the app hel
 
 **Deletion:** "Delete all my data" erases check-in answers, activity dates and these profile fields.
 
-**How the check-ins work:** a 3-, 6- or 12-month check-in shows as a card on the learner's Today page for 30 days; a missed one is not asked later. The learner can put it off ("Not now") or stop all check-ins ("Don't ask me again", which also stops reminder emails) and turn them back on in Profile. Milestones already answered "Yes" are not asked again. A learner whose interview is scheduled is also asked once, before a practice mock interview, how ready they feel (not again for 30 days).
+**How the check-ins work:** a 3-, 6- or 12-month check-in shows as a card on the learner's Today page for 30 days; a missed one is not asked later. The learner can put it off ("Not now") or stop all check-ins ("Don't ask me again", which also stops reminder emails) and turn them back on in Settings (Help us improve Amio). Milestones already answered "Yes" are not asked again. A learner whose interview is scheduled is also asked once, before a practice mock interview, how ready they feel (not again for 30 days).
 
 **Reminder emails, in detail:** an administrator sends due reminders from the Admin page. Each learner gets at most one email per check-in, and only if they turned reminders on. Pathways keeps an administrator-only record of which reminder was sent to which email address and when, so no one gets two; learners and partner staff cannot see it. While reminders are on, the account also keeps the learner's app language so the email can be in that language; the fixed email text comes from the app's translations prepared ahead of time (English otherwise), and no AI is used. The emails are sent through the email service Resend.
 
