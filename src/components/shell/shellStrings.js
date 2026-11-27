@@ -84,6 +84,8 @@ export const SETTINGS_LINES = {
   delete_data: 'Delete all my data',
   more: 'More',
   sign_out: 'Sign out',
+  // The public line, shown here and on Welcome and Sign in (not on every page).
+  disclaimer: 'Free practice. Not affiliated with or endorsed by USCIS. This app does not provide legal advice.',
   ...Object.fromEntries(SETTINGS_LINKS.map((l) => [`link_${l.id}`, l.label])),
   ...Object.fromEntries(Object.entries(WHAT_WE_SAVE_LINES).map(([k, v]) => [`wws_${k}`, v])),
 };
