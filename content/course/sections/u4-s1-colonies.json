@@ -71,7 +71,107 @@
             "license": "Standard YouTube license: shown as a YouTube embed, which YouTube's terms allow; not licensed to Pathways.",
             "status": "reviewed",
             "checkedOn": "2026-11-27"
-          }
+          },
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "American Indians, also called Native Americans, lived in America for thousands of years.",
+              "picture": {
+                "photo": "navajo-woman.jpg"
+              },
+              "help": {
+                "simpler": "The first people in America were American Indians.",
+                "example": "Both names are right: American Indians or Native Americans.",
+                "why": "The test asks who lived in America before the Europeans arrived."
+              }
+            },
+            {
+              "say": "They lived here long before the Europeans arrived.",
+              "picture": {
+                "photo": "hopi-man.jpg"
+              },
+              "help": {
+                "simpler": "American Indians were here first. Europeans came much later.",
+                "example": "Europeans are people from countries like Spain, Britain and France.",
+                "why": "“American Indians” or “Native Americans” is the answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Who lived in America before the Europeans arrived?",
+                "choices": [
+                  "American Indians",
+                  "The British",
+                  "The colonists"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "In 1492, Christopher Columbus, an explorer from Italy, sailed from Spain and reached the Americas.",
+              "picture": {
+                "photo": "columbus.jpg"
+              },
+              "help": {
+                "simpler": "Columbus was a European explorer. He reached the Americas in 1492.",
+                "example": "He was born in Italy, but the king and queen of Spain paid for his trip.",
+                "why": "It helps you remember that Europeans came after American Indians."
+              }
+            },
+            {
+              "say": "After that, many more Europeans came.",
+              "picture": {
+                "photo": "columbus.jpg"
+              },
+              "help": {
+                "simpler": "Columbus came first. Then many other Europeans followed.",
+                "example": "People came from Spain, Britain, France and other countries.",
+                "why": "This is how the time of the colonies began."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "Christopher Columbus was an American Indian.",
+                "answer": false
+              }
+            },
+            {
+              "say": "There are many American Indian tribes, like the Cherokee, Navajo, Sioux, Apache and Hopi.",
+              "picture": {
+                "photo": "hopi-man.jpg"
+              },
+              "help": {
+                "simpler": "A tribe is a group of American Indian people with a shared history.",
+                "example": "The Navajo and the Hopi are two tribes in the Southwest.",
+                "why": "The test asks you to name one American Indian tribe."
+              }
+            },
+            {
+              "say": "Many tribes still live in the United States today.",
+              "picture": {
+                "photo": "navajo-woman.jpg"
+              },
+              "help": {
+                "simpler": "American Indian tribes are part of the country today, too.",
+                "example": "Some tribes live on reservations: land that belongs to the tribe.",
+                "why": "Any one tribe on the official list is a right answer."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Name one American Indian tribe in the United States.",
+                "choices": [
+                  "Navajo",
+                  "Boston",
+                  "Virginia"
+                ],
+                "answer": 0
+              }
+            }
+          ]
         },
         "teachBack": {
           "questionId": "6ad16ecf6a9c603911f9de60"
@@ -127,6 +227,117 @@
             {
               "word": "persecution",
               "meaning": "cruel treatment, often for your religion or ideas"
+            }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "A colony is a place ruled by a country far away.",
+              "picture": {
+                "photo": "colonies-1775.jpg"
+              },
+              "help": {
+                "simpler": "A colony belongs to another country across the sea.",
+                "example": "The American colonies were ruled from Britain, far across the ocean.",
+                "why": "Knowing this word helps with many history questions."
+              }
+            },
+            {
+              "say": "The American colonies were towns, farms and cities along the Atlantic coast, ruled by Britain.",
+              "picture": {
+                "photo": "colonies-1775.jpg"
+              },
+              "help": {
+                "simpler": "The colonies were on the east side of America, by the ocean.",
+                "example": "Boston and Philadelphia were cities in the colonies.",
+                "why": "Later, these colonies became the United States."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "The American colonies were ruled by Britain.",
+                "answer": true
+              }
+            },
+            {
+              "say": "People came from Europe to live in the colonies. They came for many reasons.",
+              "picture": {
+                "drawing": "reasonsToCome"
+              },
+              "help": {
+                "simpler": "Colonists were people from Europe who lived in the colonies.",
+                "example": "Families crossed the ocean by ship to start a new life.",
+                "why": "The test asks you to name one reason the colonists came."
+              }
+            },
+            {
+              "say": "Some came for freedom, or for religious freedom.",
+              "picture": {
+                "drawing": "reasonsToCome",
+                "focus": "religion"
+              },
+              "help": {
+                "simpler": "Some people wanted to pray in their own way, without fear.",
+                "example": "Religious freedom means you can follow any religion, or none.",
+                "why": "“Freedom” and “religious freedom” are both answers on the test."
+              }
+            },
+            {
+              "say": "Some came for economic opportunity, or to escape persecution.",
+              "picture": {
+                "drawing": "reasonsToCome",
+                "focus": "opportunity"
+              },
+              "help": {
+                "simpler": "Some wanted better work. Some wanted to get away from unfair treatment.",
+                "example": "Economic opportunity: a chance to own land, work and earn money.",
+                "why": "“Economic opportunity” and “escape persecution” are answers too."
+              }
+            },
+            {
+              "check": {
+                "kind": "tap",
+                "prompt": "Tap the reason that means a chance to work and earn money.",
+                "picture": {
+                  "drawing": "reasonsToCome"
+                },
+                "answer": "opportunity"
+              }
+            },
+            {
+              "say": "There were 13 colonies. They became the 13 original states.",
+              "picture": {
+                "photo": "colonies-1775.jpg"
+              },
+              "help": {
+                "simpler": "The 13 colonies became the first 13 states.",
+                "example": "Today there are 50 states. The first 13 were the colonies.",
+                "why": "The test asks you to name five of the 13 original states."
+              }
+            },
+            {
+              "say": "Virginia, New York, Massachusetts, Pennsylvania and Georgia were five of them.",
+              "picture": {
+                "photo": "colonies-1775.jpg"
+              },
+              "help": {
+                "simpler": "These five are easy to remember. They were all colonies.",
+                "example": "Georgia was in the south. Massachusetts was in the north.",
+                "why": "You can name these five on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Which one was one of the 13 original states?",
+                "choices": [
+                  "Virginia",
+                  "Texas",
+                  "California"
+                ],
+                "answer": 0
+              }
             }
           ]
         },

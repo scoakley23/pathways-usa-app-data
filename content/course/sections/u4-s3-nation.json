@@ -90,6 +90,95 @@
               "word": "Constitutional Convention",
               "meaning": "the 1787 meeting in Philadelphia where the Constitution was written"
             }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "The U.S. Constitution was written in 1787.",
+              "picture": {
+                "photo": "constitutional-convention.jpg"
+              },
+              "help": {
+                "simpler": "The Constitution was written in the year 1787.",
+                "example": "The Declaration came first, in 1776. The Constitution came 11 years later.",
+                "why": "The test asks what founding document was written in 1787."
+              }
+            },
+            {
+              "say": "It was written at a meeting called the Constitutional Convention.",
+              "picture": {
+                "photo": "constitutional-convention.jpg"
+              },
+              "help": {
+                "simpler": "Leaders from the states met to write the Constitution.",
+                "example": "A convention is a big meeting with a purpose.",
+                "why": "This is where the founding document was written."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "What founding document was written in 1787?",
+                "choices": [
+                  "The Constitution",
+                  "The Declaration of Independence",
+                  "The Federalist Papers"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "James Madison is called the Father of the Constitution.",
+              "picture": {
+                "photo": "madison.jpg"
+              },
+              "help": {
+                "simpler": "Madison did a lot of the work to plan and write the Constitution.",
+                "example": "People call him its “father” because he helped create it.",
+                "why": "“Father of the Constitution” is an answer on the test."
+              }
+            },
+            {
+              "say": "Later, he was the fourth President of the United States.",
+              "picture": {
+                "photo": "madison.jpg"
+              },
+              "help": {
+                "simpler": "Three Presidents came before Madison. He was number four.",
+                "example": "Jefferson was the third President. Madison came next.",
+                "why": "“Fourth President” is another answer about Madison."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "James Madison was the fourth President.",
+                "answer": true
+              }
+            },
+            {
+              "say": "He was President during the War of 1812.",
+              "picture": {
+                "photo": "madison.jpg"
+              },
+              "help": {
+                "simpler": "A war started in 1812, while Madison was President.",
+                "example": "The War of 1812 was fought against Britain.",
+                "why": "“President during the War of 1812” is an answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "James Madison is famous for many things. Name one.",
+                "choices": [
+                  "Father of the Constitution",
+                  "Father of Our Country",
+                  "First Secretary of the Treasury"
+                ],
+                "answer": 0
+              }
+            }
           ]
         },
         "teachBack": {
@@ -145,6 +234,91 @@
               "word": "ratify",
               "meaning": "to approve officially"
             }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "After the Constitution was written, the states had to agree to it.",
+              "picture": {
+                "drawing": "documentsToConstitution",
+                "focus": "constitution"
+              },
+              "help": {
+                "simpler": "The new Constitution needed a yes from the states.",
+                "example": "To ratify means to approve it officially.",
+                "why": "This is why the Federalist Papers were written."
+              }
+            },
+            {
+              "say": "The Federalist Papers were essays written to support passing the Constitution.",
+              "picture": {
+                "drawing": "documentsToConstitution",
+                "focus": "federalist"
+              },
+              "help": {
+                "simpler": "Writers asked people to say yes to the Constitution.",
+                "example": "An essay is a short piece of writing that explains an idea.",
+                "why": "“They supported passing the Constitution” is an answer on the test."
+              }
+            },
+            {
+              "say": "They helped people understand the Constitution.",
+              "picture": {
+                "drawing": "documentsToConstitution",
+                "focus": "federalist"
+              },
+              "help": {
+                "simpler": "The essays explained what the Constitution meant.",
+                "example": "They were printed in newspapers for people to read.",
+                "why": "“They helped people understand the Constitution” is an answer too."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Why were the Federalist Papers important?",
+                "choices": [
+                  "They helped people understand the Constitution.",
+                  "They declared independence from Britain.",
+                  "They ended the Revolutionary War."
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "James Madison, Alexander Hamilton and John Jay wrote them.",
+              "picture": {
+                "drawing": "publius"
+              },
+              "help": {
+                "simpler": "Three men wrote the Federalist Papers together.",
+                "example": "Madison, Hamilton and Jay: three writers.",
+                "why": "The test asks you to name one of the writers."
+              }
+            },
+            {
+              "say": "They signed the essays with one name: Publius.",
+              "picture": {
+                "drawing": "publius"
+              },
+              "help": {
+                "simpler": "All three used the same name instead of their own names.",
+                "example": "Publius is also a right answer for “one of the writers.”",
+                "why": "Any one of the four names is right on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Name one of the writers of the Federalist Papers.",
+                "choices": [
+                  "John Jay",
+                  "Thomas Jefferson",
+                  "Benjamin Franklin"
+                ],
+                "answer": 0
+              }
+            }
           ]
         },
         "teachBack": {
@@ -196,6 +370,106 @@
             {
               "word": "diplomat",
               "meaning": "a person who works with other countries for their country"
+            }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "George Washington is called the Father of Our Country.",
+              "picture": {
+                "photo": "washington.jpg"
+              },
+              "help": {
+                "simpler": "Washington was so important that people call him the country’s father.",
+                "example": "He helped start the United States.",
+                "why": "“Father of Our Country” is an answer on the test."
+              }
+            },
+            {
+              "say": "He led the Continental Army in the Revolutionary War.",
+              "picture": {
+                "drawing": "revolutionTimeline"
+              },
+              "help": {
+                "simpler": "Washington was the general of the American army.",
+                "example": "He led the army from the start of the war to the end.",
+                "why": "“General of the Continental Army” is an answer on the test."
+              }
+            },
+            {
+              "say": "Later, he was the first President of the United States.",
+              "picture": {
+                "photo": "washington.jpg"
+              },
+              "help": {
+                "simpler": "Washington was the very first President.",
+                "example": "Every President since has followed him.",
+                "why": "“First President” is an answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "George Washington is famous for many things. Name one.",
+                "choices": [
+                  "Father of Our Country",
+                  "Father of the Constitution",
+                  "Inventor"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "Benjamin Franklin helped write the Declaration of Independence.",
+              "picture": {
+                "photo": "signing-declaration.jpg"
+              },
+              "help": {
+                "simpler": "Franklin worked with Jefferson on the Declaration.",
+                "example": "Jefferson wrote it. Franklin was one of the helpers.",
+                "why": "“Helped write the Declaration” is an answer about Franklin."
+              }
+            },
+            {
+              "say": "He was an inventor, and a U.S. diplomat.",
+              "picture": {
+                "photo": "franklin.jpg"
+              },
+              "help": {
+                "simpler": "He made new things, and he worked with other countries for the U.S.",
+                "example": "An inventor makes new things. A diplomat speaks for a country abroad.",
+                "why": "“Inventor” and “U.S. diplomat” are answers on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "Benjamin Franklin was the first President.",
+                "answer": false
+              }
+            },
+            {
+              "say": "He started the first free public libraries and was the first Postmaster General.",
+              "picture": {
+                "photo": "franklin.jpg"
+              },
+              "help": {
+                "simpler": "He helped people borrow books for free, and he ran the mail.",
+                "example": "The Postmaster General leads the country’s mail service.",
+                "why": "Both are answers on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Benjamin Franklin is famous for many things. Name one.",
+                "choices": [
+                  "U.S. diplomat",
+                  "Father of Our Country",
+                  "Third President"
+                ],
+                "answer": 0
+              }
             }
           ]
         },
@@ -250,6 +524,107 @@
             {
               "word": "aide",
               "meaning": "a person who helps a leader"
+            }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "Alexander Hamilton was the first Secretary of the Treasury.",
+              "picture": {
+                "photo": "hamilton.jpg"
+              },
+              "help": {
+                "simpler": "Hamilton was the first leader of the country’s money office.",
+                "example": "The Treasury takes care of the government’s money.",
+                "why": "“First Secretary of the Treasury” is an answer on the test."
+              }
+            },
+            {
+              "say": "He helped start the First Bank of the United States.",
+              "picture": {
+                "photo": "hamilton.jpg"
+              },
+              "help": {
+                "simpler": "Hamilton helped create the country’s first national bank.",
+                "example": "A bank keeps money safe and lends it.",
+                "why": "“Helped establish the First Bank” is an answer on the test."
+              }
+            },
+            {
+              "say": "He was one of the writers of the Federalist Papers.",
+              "picture": {
+                "drawing": "publius",
+                "focus": "hamilton"
+              },
+              "help": {
+                "simpler": "Hamilton wrote many of these essays, with Madison and Jay.",
+                "example": "The essays explained the Constitution.",
+                "why": "“One of the writers of the Federalist Papers” is an answer."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Alexander Hamilton is famous for many things. Name one.",
+                "choices": [
+                  "First Secretary of the Treasury",
+                  "First President",
+                  "Wrote the Declaration of Independence"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "During the Revolutionary War, he was an aide to General George Washington.",
+              "picture": {
+                "photo": "washington.jpg"
+              },
+              "help": {
+                "simpler": "Hamilton worked closely with Washington during the war.",
+                "example": "An aide is a helper who works for a leader.",
+                "why": "“Aide to General George Washington” is an answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "Hamilton helped George Washington during the war.",
+                "answer": true
+              }
+            },
+            {
+              "say": "George Washington is on the one-dollar bill.",
+              "picture": {
+                "drawing": "dollarBills",
+                "focus": "one"
+              },
+              "help": {
+                "simpler": "Look at a one-dollar bill: that is Washington.",
+                "example": "The one-dollar bill is the bill people use most.",
+                "why": "This helps you remember who Washington is."
+              }
+            },
+            {
+              "say": "Alexander Hamilton is on the ten-dollar bill.",
+              "picture": {
+                "drawing": "dollarBills",
+                "focus": "ten"
+              },
+              "help": {
+                "simpler": "Look at a ten-dollar bill: that is Hamilton.",
+                "example": "Hamilton is on the money he helped organize.",
+                "why": "This helps you remember who Hamilton is."
+              }
+            },
+            {
+              "check": {
+                "kind": "tap",
+                "prompt": "Tap the bill with Alexander Hamilton.",
+                "picture": {
+                  "drawing": "dollarBills"
+                },
+                "answer": "ten"
+              }
             }
           ]
         },

@@ -82,6 +82,123 @@
               "word": "Boston Tea Party",
               "meaning": "a 1773 protest where colonists threw British tea into Boston Harbor"
             }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "In the 1760s, Britain had spent a lot of money on wars. It wanted the colonists to help pay.",
+              "picture": {
+                "drawing": "roadToIndependence",
+                "focus": "taxes"
+              },
+              "help": {
+                "simpler": "Britain needed money, so it asked the colonies to pay more.",
+                "example": "Wars cost money for soldiers, ships and supplies.",
+                "why": "This is where the road to independence starts."
+              }
+            },
+            {
+              "say": "Britain added new taxes, like the Stamp Act on paper and a tax on tea.",
+              "picture": {
+                "photo": "stamp-act-denounced.jpg"
+              },
+              "help": {
+                "simpler": "Colonists had to pay extra money on paper and on tea.",
+                "example": "The Stamp Act taxed newspapers and other printed paper.",
+                "why": "“High taxes” and “Stamp Act” are answers on the test."
+              }
+            },
+            {
+              "say": "The colonists had no one to speak for them in Britain’s government.",
+              "picture": {
+                "photo": "stamp-act-denounced.jpg"
+              },
+              "help": {
+                "simpler": "Britain made the taxes, but the colonists had no vote there.",
+                "example": "No one from the colonies sat in Britain’s Parliament.",
+                "why": "This is why the colonists said the taxes were unfair."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "The colonists had people to speak for them in Britain’s government.",
+                "answer": false
+              }
+            },
+            {
+              "say": "They said: “No taxation without representation.”",
+              "picture": {
+                "drawing": "roadToIndependence",
+                "focus": "taxes"
+              },
+              "help": {
+                "simpler": "They meant: no taxes unless we have a voice in the government.",
+                "example": "Representation means someone speaks and votes for you.",
+                "why": "“Taxation without representation” is an answer on the test."
+              }
+            },
+            {
+              "say": "In 1773, colonists in Boston threw British tea into the harbor to protest. This was the Boston Tea Party.",
+              "picture": {
+                "drawing": "roadToIndependence",
+                "focus": "teaParty"
+              },
+              "help": {
+                "simpler": "Colonists threw tea into the sea to show they were angry about the tax.",
+                "example": "A protest is a way to show you do not agree.",
+                "why": "“Boston Tea Party” is an answer on the test."
+              }
+            },
+            {
+              "say": "British soldiers stayed in Americans’ houses.",
+              "help": {
+                "simpler": "Families had to let British soldiers live in their homes.",
+                "example": "Imagine soldiers you did not invite sleeping in your house.",
+                "why": "This is another answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "tap",
+                "prompt": "Tap the protest in Boston in 1773.",
+                "picture": {
+                  "drawing": "roadToIndependence"
+                },
+                "answer": "teaParty"
+              }
+            },
+            {
+              "say": "And the colonists did not have self-government.",
+              "help": {
+                "simpler": "The colonists could not govern themselves. Britain decided for them.",
+                "example": "Self-government: people choose their own leaders and laws.",
+                "why": "“They did not have self-government” is an answer on the test."
+              }
+            },
+            {
+              "say": "The Declaration of Independence was adopted on July 4, 1776.",
+              "picture": {
+                "photo": "signing-declaration.jpg"
+              },
+              "help": {
+                "simpler": "On July 4, 1776, the colonies said they were free from Britain.",
+                "example": "Adopted means it was officially accepted.",
+                "why": "The test asks when the Declaration was adopted: July 4, 1776."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "When was the Declaration of Independence adopted?",
+                "choices": [
+                  "July 4, 1776",
+                  "July 4, 1787",
+                  "July 4, 1773"
+                ],
+                "answer": 0
+              }
+            }
           ]
         },
         "teachBack": {
@@ -129,6 +246,106 @@
             {
               "word": "founder",
               "meaning": "one of the people who started the country"
+            }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "Thomas Jefferson wrote the Declaration of Independence.",
+              "picture": {
+                "photo": "jefferson.jpg"
+              },
+              "help": {
+                "simpler": "Jefferson is the writer of the Declaration.",
+                "example": "Other leaders read his words and helped make changes.",
+                "why": "The test asks who wrote the Declaration of Independence."
+              }
+            },
+            {
+              "say": "This is the Declaration of Independence. Jefferson wrote it.",
+              "picture": {
+                "photo": "declaration-of-independence.jpg"
+              },
+              "help": {
+                "simpler": "These are the words Jefferson wrote.",
+                "example": "It was adopted on July 4, 1776.",
+                "why": "“Writer of the Declaration of Independence” is one thing he is famous for."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Who wrote the Declaration of Independence?",
+                "choices": [
+                  "Thomas Jefferson",
+                  "George Washington",
+                  "James Madison"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "He was the third President of the United States.",
+              "picture": {
+                "photo": "jefferson.jpg"
+              },
+              "help": {
+                "simpler": "Two Presidents came before Jefferson. He was number three.",
+                "example": "George Washington was the first President.",
+                "why": "“Third President” is another answer on the test."
+              }
+            },
+            {
+              "say": "As President, he made the Louisiana Purchase: a huge area of land in the West.",
+              "picture": {
+                "photo": "louisiana-purchase.jpg"
+              },
+              "help": {
+                "simpler": "The United States bought a very large piece of land.",
+                "example": "It went from the Mississippi River to the Rocky Mountains.",
+                "why": "This is one of the most famous things Jefferson did."
+              }
+            },
+            {
+              "say": "The Louisiana Purchase doubled the size of the United States.",
+              "picture": {
+                "photo": "louisiana-purchase.jpg"
+              },
+              "help": {
+                "simpler": "After the purchase, the country was two times as big.",
+                "example": "Doubled means it became two times bigger.",
+                "why": "“Doubled the size of the United States” is an answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "Thomas Jefferson was the first President.",
+                "answer": false
+              }
+            },
+            {
+              "say": "Jefferson is famous for the Declaration, for being President, and for the Louisiana Purchase.",
+              "picture": {
+                "photo": "jefferson.jpg"
+              },
+              "help": {
+                "simpler": "Remember three things: writer, third President, Louisiana Purchase.",
+                "example": "Any one of these is enough on the test.",
+                "why": "The test asks you to name one thing Jefferson is famous for."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Thomas Jefferson is famous for many things. Name one.",
+                "choices": [
+                  "Doubled the size of the United States",
+                  "Father of the Constitution",
+                  "First Postmaster General"
+                ],
+                "answer": 0
+              }
             }
           ]
         },
@@ -201,7 +418,128 @@
             "license": "Standard YouTube license: shown as a YouTube embed, which YouTube's terms allow; not licensed to Pathways.",
             "status": "reviewed",
             "checkedOn": "2026-11-27"
-          }
+          },
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "To win independence from Britain, the Americans fought a war: the American Revolution.",
+              "picture": {
+                "drawing": "revolutionTimeline"
+              },
+              "help": {
+                "simpler": "Americans fought Britain to become a free country.",
+                "example": "Independence means being free to rule yourselves.",
+                "why": "The test asks what war the Americans fought to win independence."
+              }
+            },
+            {
+              "say": "It is also called the Revolutionary War.",
+              "picture": {
+                "drawing": "revolutionTimeline"
+              },
+              "help": {
+                "simpler": "Two names, one war: the American Revolution, the Revolutionary War.",
+                "example": "A revolution is a big change in who rules a country.",
+                "why": "Both names are right answers on the test."
+              }
+            },
+            {
+              "say": "They fought because Britain would not let them govern themselves.",
+              "help": {
+                "simpler": "The colonists wanted to make their own decisions.",
+                "example": "They wanted to choose their own leaders and laws.",
+                "why": "This connects the war to the reasons for independence."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "What war did the Americans fight to win independence from Britain?",
+                "choices": [
+                  "The Revolutionary War",
+                  "The Civil War",
+                  "World War I"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "George Washington led the Continental Army.",
+              "picture": {
+                "photo": "washington.jpg"
+              },
+              "help": {
+                "simpler": "Washington was the general of the American army.",
+                "example": "The Continental Army was the army of the colonies.",
+                "why": "“General of the Continental Army” is an answer about Washington."
+              }
+            },
+            {
+              "say": "One important event was the Battle of Bunker Hill.",
+              "picture": {
+                "drawing": "revolutionTimeline",
+                "focus": "bunkerHill"
+              },
+              "help": {
+                "simpler": "Bunker Hill was an early battle, near Boston.",
+                "example": "A battle is one fight in a war.",
+                "why": "“Bunker Hill” is an answer on the test."
+              }
+            },
+            {
+              "say": "Another was when Washington crossed the Delaware River with his army.",
+              "picture": {
+                "drawing": "revolutionTimeline",
+                "focus": "delaware"
+              },
+              "help": {
+                "simpler": "Washington took his army across a river in winter.",
+                "example": "They crossed at night and won a battle at Trenton.",
+                "why": "“Washington crossing the Delaware” is an answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "George Washington led the Continental Army.",
+                "answer": true
+              }
+            },
+            {
+              "say": "Another was Valley Forge, where the army camped through a hard winter.",
+              "picture": {
+                "drawing": "revolutionTimeline",
+                "focus": "valleyForge"
+              },
+              "help": {
+                "simpler": "The army stayed at Valley Forge in the cold and kept going.",
+                "example": "An encampment is a camp where an army lives for a while.",
+                "why": "“Valley Forge” is an answer on the test."
+              }
+            },
+            {
+              "say": "And at Yorktown, the British army surrendered.",
+              "picture": {
+                "drawing": "revolutionTimeline",
+                "focus": "yorktown"
+              },
+              "help": {
+                "simpler": "At Yorktown, the British army gave up.",
+                "example": "Surrender means to stop fighting and accept you lost.",
+                "why": "“British surrender at Yorktown” is an answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "tap",
+                "prompt": "Tap the event where the British surrendered.",
+                "picture": {
+                  "drawing": "revolutionTimeline"
+                },
+                "answer": "yorktown"
+              }
+            }
+          ]
         },
         "teachBack": {
           "questionId": "6ad16ecf6a9c603911f9de62"
