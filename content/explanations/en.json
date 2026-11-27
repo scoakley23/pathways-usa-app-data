@@ -2763,7 +2763,7 @@
       "Citizens of the United States",
       "U.S. citizens"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "Some rights and duties belong only to U.S. citizens. Only citizens can vote in federal elections, such as the election for President. Only citizens can run for federal office, like Congress. Only citizens can serve on a jury in a court.",
     "keyWords": [
       {
@@ -2790,7 +2790,7 @@
       "Citizens of their state",
       "People of their state"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "A U.S. senator works in the Senate, which is part of Congress. Each state has two senators. A senator represents all the people of their state, not just one city or area. Senators speak and vote for the people of their whole state.",
     "keyWords": [
       {
@@ -2815,7 +2815,7 @@
       "People from their (congressional) district",
       "People in their district"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The House of Representatives is part of Congress. Each state is divided into areas called congressional districts. Each member of the House represents the people in one district. States with more people have more districts, so they have more representatives.",
     "keyWords": [
       {
@@ -2837,7 +2837,7 @@
     "answers": [
       "Citizens from their state"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "U.S. senators are elected by the citizens of their state. Every voter in the state can vote for senators. A senator serves a six-year term. Since 1913, the 17th Amendment has given voters the power to elect senators directly.",
     "keyWords": [
       {
@@ -2859,7 +2859,7 @@
     "answers": [
       "Citizens from their (congressional) district"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "Members of the House of Representatives are elected by the citizens of their congressional district. Voters choose one representative for their district. Representatives serve two-year terms. Elections for the House happen every two years.",
     "keyWords": [
       {
@@ -2881,8 +2881,8 @@
     "answers": [
       "The President (of the United States)"
     ],
-    "status": "draft",
-    "explanation": "The Commander in Chief is the leader of all the U.S. armed forces. The Constitution gives this role to the President. This means the military is led by a person elected by the people. The military does not lead itself.",
+    "status": "reviewed",
+    "explanation": "The Commander in Chief is the leader of all the U.S. armed forces. The Constitution gives this role to the President. This means the military is led by a person elected by the people. This keeps the military under the control of elected leaders.",
     "keyWords": [
       {
         "en": "Commander in Chief",
@@ -2903,8 +2903,8 @@
     "answers": [
       "Answers vary by where you live."
     ],
-    "status": "draft",
-    "explanation": "Every state has two U.S. senators who work in Congress in Washington, D.C. Senators serve six-year terms, and they are elected at different times. The answer depends on the state where you live. Before your interview, find the names of your state's senators. You can use the app's \"Find My Representative\" tool.",
+    "status": "reviewed",
+    "explanation": "Every state has two U.S. senators who work in Congress in Washington, D.C. The answer depends on the state where you live. If you live in Washington, D.C., or a U.S. territory, you have no U.S. senators. Before your interview, find the names of your state's senators. You can use the app's \"Who Represents Me?\" tool.",
     "keyWords": [
       {
         "en": "senators",
@@ -2925,7 +2925,7 @@
     "answers": [
       "Answers change. Check uscis.gov for the current answer."
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The Chief Justice is the head of the Supreme Court, the highest court in the United States. The President chooses the Chief Justice, and the Senate must approve. The person in this job can change over time. Before your interview, check uscis.gov for the current name.",
     "keyWords": [
       {
@@ -2947,8 +2947,8 @@
     "answers": [
       "Answers vary by where you live."
     ],
-    "status": "draft",
-    "explanation": "The governor is the leader of a state government, much like the President leads the national government. Each state elects its own governor. The answer depends on the state where you live. Before your interview, find the name of your state's governor now. You can use the app's \"Find My Representative\" tool.",
+    "status": "reviewed",
+    "explanation": "The governor is the leader of a state government, much like the President leads the national government. Each state elects its own governor. The answer depends on the state where you live. Before your interview, find the name of your state's governor now. You can use the app's \"Who Represents Me?\" tool.",
     "keyWords": [
       {
         "en": "governor",
@@ -2970,7 +2970,7 @@
       "American Indians",
       "Native Americans"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "People lived in America for thousands of years before Europeans came. These people are called American Indians or Native Americans. There were many different tribes and nations, each with its own language and culture. Many tribes still live in the United States today.",
     "keyWords": [
       {
