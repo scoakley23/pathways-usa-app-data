@@ -433,7 +433,7 @@
             "status": "reviewed",
             "checkedOn": "2026-11-26"
           },
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "The United States is a republic: the people vote for leaders, and those leaders make laws for them.",
@@ -452,6 +452,9 @@
                 "simpler": "This is another name for the same idea: people choose leaders to represent them.",
                 "example": "A representative speaks for the people in their area.",
                 "why": "“Representative democracy” is another correct answer."
+              },
+              "picture": {
+                "photo": "us-capitol.jpg"
               }
             },
             {
@@ -536,6 +539,9 @@
                 "simpler": "People can own homes and businesses, and choose what to make, buy and sell.",
                 "example": "Someone can open a restaurant and decide what food to sell.",
                 "why": "Owning things and choosing freely are at the heart of a free market."
+              },
+              "picture": {
+                "photo": "small-business.jpg"
               }
             },
             {
@@ -555,6 +561,13 @@
                 "simpler": "Most of the time, buyers and sellers decide, not the government.",
                 "example": "The government still makes some rules, like food safety rules, but it does not run the stores.",
                 "why": "This is what a free market economy means, one answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "In a free market, the government decides what every store sells.",
+                "answer": false
               }
             }
           ]
