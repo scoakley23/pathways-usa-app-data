@@ -288,6 +288,20 @@
       "source": "https://commons.wikimedia.org/wiki/File:Ford_assembly_line_-_1913.jpg",
       "commons": "Ford assembly line - 1913.jpg",
       "author": "Unknown (U.S. National Archives)"
+    },
+    "us-flag.jpg": {
+      "credit": "The flag of the United States, drawn to the rules in U.S. Code, Title 4 · Wikimedia Commons",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:Flag_of_the_United_States.svg",
+      "commons": "Flag of the United States.svg",
+      "author": "U.S. government design (4 U.S.C. § 1); SVG by Wikimedia Commons contributors"
+    },
+    "fireworks.jpg": {
+      "credit": "Fourth of July fireworks behind the Washington Monument, 1986 · SSgt. Lono Kollars, U.S. Department of Defense",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:Fourth_of_July_fireworks_behind_the_Washington_Monument,_1986.jpg",
+      "commons": "Fourth of July fireworks behind the Washington Monument, 1986.jpg",
+      "author": "SSgt. Lono Kollars (U.S. Department of Defense)"
     }
   },
   "lessons": {
@@ -529,6 +543,14 @@
         "file": "star-spangled-banner.mp3",
         "title": "“The Star-Spangled Banner”",
         "caption": "Listen to the national anthem, “The Star-Spangled Banner.”"
+      }
+    ],
+    "u7-s1-l1": [
+      {
+        "kind": "photo",
+        "file": "us-flag.jpg",
+        "alt": "The flag of the United States: 13 red and white stripes, and 50 white stars on a blue square",
+        "caption": "The American flag: 50 stars, one for each state, and 13 stripes for the 13 original colonies."
       }
     ]
   },

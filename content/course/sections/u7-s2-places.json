@@ -63,7 +63,123 @@
             "license": "Standard YouTube license: shown as a YouTube embed, which YouTube's terms allow; not licensed to Pathways.",
             "status": "reviewed",
             "checkedOn": "2026-11-27"
-          }
+          },
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "The capital of the United States is Washington, D.C.",
+              "picture": {
+                "drawing": "whereIsIt",
+                "focus": "dc"
+              },
+              "help": {
+                "simpler": "Washington, D.C. is the city where the national government is.",
+                "example": "D.C. means District of Columbia.",
+                "why": "The test asks for the capital of the United States."
+              }
+            },
+            {
+              "say": "Congress, the President and the Supreme Court are all there.",
+              "picture": {
+                "drawing": "threeBranches"
+              },
+              "help": {
+                "simpler": "All three branches of government are in Washington, D.C.",
+                "example": "Congress makes laws. The President leads. The courts decide cases.",
+                "why": "It explains why the capital is important."
+              }
+            },
+            {
+              "say": "The President lives and works in the White House.",
+              "picture": {
+                "photo": "white-house.jpg"
+              },
+              "help": {
+                "simpler": "The White House is the President’s home and office.",
+                "example": "It is in Washington, D.C.",
+                "why": "It helps you picture the capital."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "What is the capital of the United States?",
+                "choices": [
+                  "Washington, D.C.",
+                  "New York City",
+                  "Philadelphia"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "The Statue of Liberty is in New York Harbor, on Liberty Island.",
+              "picture": {
+                "drawing": "whereIsIt",
+                "focus": "newYork"
+              },
+              "help": {
+                "simpler": "The Statue of Liberty stands on a small island in New York Harbor.",
+                "example": "A harbor is a place where ships can stay near land.",
+                "why": "“New York Harbor” and “Liberty Island” are answers on the test."
+              }
+            },
+            {
+              "say": "It is near New York City.",
+              "picture": {
+                "drawing": "whereIsIt",
+                "focus": "newYork"
+              },
+              "help": {
+                "simpler": "The statue is close to New York City.",
+                "example": "Also accepted on the test: New Jersey, near New York City, and on the Hudson River.",
+                "why": "Any of these answers is right."
+              }
+            },
+            {
+              "check": {
+                "kind": "tap",
+                "prompt": "Tap where the Statue of Liberty is.",
+                "picture": {
+                  "drawing": "whereIsIt"
+                },
+                "answer": "newYork"
+              }
+            },
+            {
+              "say": "The United States is between Canada to the north and Mexico to the south.",
+              "picture": {
+                "drawing": "whereIsIt"
+              },
+              "help": {
+                "simpler": "Canada is above the United States. Mexico is below.",
+                "example": "North is up on a map. South is down.",
+                "why": "It helps you picture where the country is."
+              }
+            },
+            {
+              "check": {
+                "kind": "tap",
+                "prompt": "Tap the country to the north.",
+                "picture": {
+                  "drawing": "whereIsIt"
+                },
+                "answer": "canada"
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Where is the Statue of Liberty?",
+                "choices": [
+                  "New York Harbor",
+                  "Washington, D.C.",
+                  "Mexico"
+                ],
+                "answer": 0
+              }
+            }
+          ]
         },
         "teachBack": {
           "questionId": "6ad16ecf6a9c603911f9de8d"
