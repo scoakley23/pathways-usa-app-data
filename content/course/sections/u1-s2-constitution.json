@@ -92,7 +92,7 @@
             "status": "reviewed",
             "checkedOn": "2026-11-26"
           },
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "The U.S. Constitution is the supreme law of the land.",
@@ -151,6 +151,18 @@
                 "simpler": "The Constitution keeps people’s rights safe.",
                 "example": "It protects rights like freedom of speech and freedom of religion.",
                 "why": "“Protects the rights of the people” is another answer to what the Constitution does."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Name one thing the Constitution does.",
+                "choices": [
+                  "Protects the rights of the people",
+                  "Sets the price of food",
+                  "Names the state capitals"
+                ],
+                "answer": 0
               }
             },
             {
@@ -215,7 +227,7 @@
               "meaning": "saying yes; agreeing"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "The Constitution starts with the words “We the People.”",
@@ -252,11 +264,11 @@
             {
               "check": {
                 "kind": "pick",
-                "prompt": "What are the first words of the Constitution?",
+                "prompt": "What does “We the People” mean?",
                 "choices": [
-                  "We the People",
-                  "Life, Liberty",
-                  "All people are equal"
+                  "Self-government",
+                  "A king rules the people",
+                  "Leaders choose for the people"
                 ],
                 "answer": 0
               }

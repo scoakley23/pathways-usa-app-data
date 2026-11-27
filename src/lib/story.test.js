@@ -16,6 +16,16 @@ function allNames(node, out = []) {
   return out;
 }
 
+// Stories the owner approved in the story review (content/stories-review, Nov 27, 2026).
+// Only these may be "reviewed" in Units 1–3 outside Congress; every other one stays a draft.
+const OWNER_REVIEWED = new Set([
+  'u1-s1-l1',
+  'u1-s1-l2',
+  'u1-s2-l1',
+  'u1-s2-l2',
+]);
+const expectedStatus = (id) => (OWNER_REVIEWED.has(id) ? 'reviewed' : 'draft');
+
 const congress = UNITS.flatMap((u) => u.sections).find((s) => s.id === 'u2-s2');
 
 describe('stories (Listen as a short video)', () => {
@@ -38,13 +48,13 @@ describe('stories (Listen as a short video)', () => {
     expect(story('u2-s2-l8').some((x) => x.picture?.drawing === 'greatCompromise')).toBe(true);
   });
 
-  it('Unit 1: draft stories, help for every scene, and tap-the-picture checks', () => {
+  it('Unit 1: draft stories (until the owner approves them), help for every scene, and tap-the-picture checks', () => {
     const lessons = UNITS.find((u) => u.id === 'u1').sections.flatMap((sec) => sec.lessons);
     expect(lessons).toHaveLength(9);
     let taps = 0;
     for (const l of lessons) {
       const story = l.steps.listen.story;
-      expect(l.steps.listen.storyStatus, l.id).toBe('draft');
+      expect(l.steps.listen.storyStatus, l.id).toBe(expectedStatus(l.id));
       for (const item of story.filter((x) => x.say)) {
         for (const k of HELP_KINDS) expect(item.help?.[k], `${l.id}: ${item.say}`).toBeTruthy();
       }
@@ -60,7 +70,7 @@ describe('stories (Listen as a short video)', () => {
       for (const l of sec.lessons) {
         const story = l.steps.listen.story;
         expect(story?.length, l.id).toBeGreaterThan(3);
-        expect(l.steps.listen.storyStatus, l.id).toBe(sec.id === 'u2-s2' ? 'reviewed' : 'draft');
+        expect(l.steps.listen.storyStatus, l.id).toBe(sec.id === 'u2-s2' ? 'reviewed' : expectedStatus(l.id));
         for (const item of story.filter((x) => x.say)) {
           for (const k of HELP_KINDS) expect(item.help?.[k], `${l.id}: ${item.say}`).toBeTruthy();
         }
@@ -73,13 +83,13 @@ describe('stories (Listen as a short video)', () => {
     expect(storyPicture({ yourState: true })).toEqual({ kind: 'yourState' });
   });
 
-  it('Unit 3: draft stories, help for every scene, tap checks, and a lawyer line on Becoming a citizen', () => {
+  it('Unit 3: draft stories (until the owner approves them), help for every scene, tap checks, and a lawyer line on Becoming a citizen', () => {
     const lessons = UNITS.find((u) => u.id === 'u3').sections.flatMap((sec) => sec.lessons);
     expect(lessons).toHaveLength(6);
     let taps = 0;
     for (const l of lessons) {
       const story = l.steps.listen.story;
-      expect(l.steps.listen.storyStatus, l.id).toBe('draft');
+      expect(l.steps.listen.storyStatus, l.id).toBe(expectedStatus(l.id));
       for (const item of story.filter((x) => x.say)) {
         for (const k of HELP_KINDS) expect(item.help?.[k], `${l.id}: ${item.say}`).toBeTruthy();
       }
