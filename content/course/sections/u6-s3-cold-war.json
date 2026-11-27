@@ -71,6 +71,153 @@
               "word": "nuclear",
               "meaning": "about very powerful bombs"
             }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "After World War II, the United States and the Soviet Union became rivals.",
+              "picture": {
+                "drawing": "coldWar"
+              },
+              "help": {
+                "simpler": "The two countries competed against each other.",
+                "example": "A rival is someone you compete against.",
+                "why": "The test asks who the U.S.’s main rival was in the Cold War."
+              }
+            },
+            {
+              "say": "This was called the Cold War.",
+              "picture": {
+                "drawing": "coldWar"
+              },
+              "help": {
+                "simpler": "The long rivalry was called the Cold War.",
+                "example": "It lasted from about 1947 to 1991.",
+                "why": "“Soviet Union”, “USSR” or “Russia” is the test answer."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Who was the United States’ main rival during the Cold War?",
+                "choices": [
+                  "The Soviet Union",
+                  "Mexico",
+                  "England"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "It is called “cold” because the two countries never fought each other directly in a big war.",
+              "picture": {
+                "drawing": "coldWar"
+              },
+              "help": {
+                "simpler": "There was no big war between them, so it was “cold.”",
+                "example": "A “hot” war has fighting. This one did not, between them.",
+                "why": "It explains the name."
+              }
+            },
+            {
+              "say": "They competed with weapons, money and ideas.",
+              "picture": {
+                "drawing": "coldWar"
+              },
+              "help": {
+                "simpler": "Each side tried to be stronger and get more friends.",
+                "example": "Both built weapons and helped other countries with money.",
+                "why": "It shows how they were rivals without a big war."
+              }
+            },
+            {
+              "say": "The Soviet Union was communist.",
+              "picture": {
+                "drawing": "coldWar",
+                "focus": "soviet"
+              },
+              "help": {
+                "simpler": "The Soviet Union had a communist government.",
+                "example": "The United States is a democracy.",
+                "why": "“Communism” is an answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "tap",
+                "prompt": "Tap the communist country.",
+                "picture": {
+                  "drawing": "coldWar"
+                },
+                "answer": "soviet"
+              }
+            },
+            {
+              "say": "Under communism, the government owns the farms, factories and stores.",
+              "picture": {
+                "drawing": "coldWar",
+                "focus": "soviet"
+              },
+              "help": {
+                "simpler": "In communism, the government owns the businesses.",
+                "example": "In the United States, people own farms, factories and stores.",
+                "why": "It explains what communism means."
+              }
+            },
+            {
+              "say": "The government decides what people make and buy. People have little freedom to choose.",
+              "picture": {
+                "drawing": "coldWar",
+                "focus": "soviet"
+              },
+              "help": {
+                "simpler": "Under communism, the government makes the choices, not the people.",
+                "example": "The government decides what factories make.",
+                "why": "It explains why the U.S. was worried about it."
+              }
+            },
+            {
+              "say": "The United States was worried about communism spreading to other countries.",
+              "picture": {
+                "drawing": "coldWar",
+                "focus": "us"
+              },
+              "help": {
+                "simpler": "The U.S. did not want more countries to become communist.",
+                "example": "It helped some countries stay free of communism.",
+                "why": "“Communism” is one main concern on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "The United States was worried about communism spreading.",
+                "answer": true
+              }
+            },
+            {
+              "say": "Both countries had nuclear weapons, so people also feared a nuclear war.",
+              "picture": {
+                "drawing": "coldWar"
+              },
+              "help": {
+                "simpler": "Both sides had very powerful bombs. People were afraid of a nuclear war.",
+                "example": "Nuclear weapons can destroy a whole city.",
+                "why": "“Nuclear war” is another main concern on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "During the Cold War, what was one main concern of the United States?",
+                "choices": [
+                  "Communism",
+                  "The Great Depression",
+                  "Slavery"
+                ],
+                "answer": 0
+              }
+            }
           ]
         },
         "teachBack": {
@@ -121,6 +268,133 @@
             {
               "word": "spread",
               "meaning": "to move to more places"
+            }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "Under communism, the government owns and controls almost everything. People have little freedom.",
+              "picture": {
+                "drawing": "coldWar",
+                "focus": "soviet"
+              },
+              "help": {
+                "simpler": "In communism, the government makes most choices for people.",
+                "example": "People cannot choose freely what to make or buy.",
+                "why": "This is the idea behind both wars in this lesson."
+              }
+            },
+            {
+              "say": "During the Cold War, the United States tried to stop communism from spreading to more countries.",
+              "picture": {
+                "drawing": "coldWar",
+                "focus": "us"
+              },
+              "help": {
+                "simpler": "The United States did not want communism to reach more countries.",
+                "example": "To spread means to move to more places.",
+                "why": "This is the answer to both questions in this lesson."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "Under communism, people have a lot of freedom.",
+                "answer": false
+              }
+            },
+            {
+              "say": "In 1950, communist North Korea invaded South Korea.",
+              "picture": {
+                "drawing": "northSouth",
+                "focus": "korea"
+              },
+              "help": {
+                "simpler": "North Korea’s army went into South Korea to take it over.",
+                "example": "Invade means to enter a country with an army.",
+                "why": "This started the Korean War."
+              }
+            },
+            {
+              "say": "The United States entered the Korean War to help South Korea.",
+              "picture": {
+                "drawing": "northSouth",
+                "focus": "korea"
+              },
+              "help": {
+                "simpler": "The United States helped South Korea fight back.",
+                "example": "Many other countries helped too.",
+                "why": "The test asks why the U.S. entered the Korean War."
+              }
+            },
+            {
+              "say": "In Vietnam, communist North Vietnam fought to take over South Vietnam.",
+              "picture": {
+                "drawing": "northSouth",
+                "focus": "vietnam"
+              },
+              "help": {
+                "simpler": "North Vietnam wanted to rule South Vietnam too.",
+                "example": "Vietnam is a country in Southeast Asia.",
+                "why": "This is the story of the Vietnam War."
+              }
+            },
+            {
+              "check": {
+                "kind": "tap",
+                "prompt": "Tap the war that began in 1950.",
+                "picture": {
+                  "drawing": "northSouth"
+                },
+                "answer": "korea"
+              }
+            },
+            {
+              "say": "The United States sent soldiers to help South Vietnam.",
+              "picture": {
+                "drawing": "northSouth",
+                "focus": "vietnam"
+              },
+              "help": {
+                "simpler": "American soldiers went to Vietnam to help the South.",
+                "example": "Many Americans served there in the 1960s.",
+                "why": "The test asks why the U.S. entered the Vietnam War."
+              }
+            },
+            {
+              "say": "Tip: both questions have the same answer: to stop the spread of communism.",
+              "picture": {
+                "drawing": "northSouth"
+              },
+              "help": {
+                "simpler": "Korea and Vietnam: same answer, to stop communism from spreading.",
+                "example": "If you forget, remember the Cold War story.",
+                "why": "It is fine to give the same answer twice."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Why did the United States enter the Korean War?",
+                "choices": [
+                  "To stop the spread of communism",
+                  "Because Japan attacked Pearl Harbor",
+                  "To force Iraq out of Kuwait"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Why did the United States enter the Vietnam War?",
+                "choices": [
+                  "To stop the spread of communism",
+                  "Because Germany attacked U.S. ships",
+                  "To end slavery"
+                ],
+                "answer": 0
+              }
             }
           ]
         },

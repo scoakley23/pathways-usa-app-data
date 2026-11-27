@@ -63,6 +63,125 @@
               "word": "Pearl Harbor",
               "meaning": "a U.S. Navy base in Hawaii that Japan attacked on December 7, 1941"
             }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "World War II was fought around the world from 1939 to 1945.",
+              "picture": {
+                "drawing": "worldWar2Sides"
+              },
+              "help": {
+                "simpler": "World War II was a very big war in many parts of the world.",
+                "example": "It was fought in Europe, Asia, Africa and on the oceans.",
+                "why": "This lesson answers why the U.S. entered the war."
+              }
+            },
+            {
+              "say": "Germany, Italy and Japan, called the Axis Powers, attacked other countries.",
+              "picture": {
+                "drawing": "worldWar2Sides",
+                "focus": "axis"
+              },
+              "help": {
+                "simpler": "The Axis Powers were Germany, Italy and Japan.",
+                "example": "They invaded other countries to take land.",
+                "why": "“To oppose the Axis Powers” is an answer on the test."
+              }
+            },
+            {
+              "say": "The Allied Powers, including England, France and Russia, fought against them.",
+              "picture": {
+                "drawing": "worldWar2Sides",
+                "focus": "allies"
+              },
+              "help": {
+                "simpler": "The Allies fought against the Axis.",
+                "example": "Allies are countries that work together.",
+                "why": "“To support the Allied Powers” is an answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "tap",
+                "prompt": "Tap the Axis Powers.",
+                "picture": {
+                  "drawing": "worldWar2Sides"
+                },
+                "answer": "axis"
+              }
+            },
+            {
+              "say": "The United States entered the war after Japan attacked Pearl Harbor, in Hawaii, in 1941.",
+              "picture": {
+                "drawing": "worldWar2Sides",
+                "focus": "allies"
+              },
+              "help": {
+                "simpler": "Japan attacked a U.S. Navy base in Hawaii. Then the U.S. joined the war.",
+                "example": "Pearl Harbor is a harbor in Hawaii.",
+                "why": "“Pearl Harbor” is an answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Why did the United States enter World War II?",
+                "choices": [
+                  "Japan attacked Pearl Harbor",
+                  "To force Iraq out of Kuwait",
+                  "The stock market crashed"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "Franklin Roosevelt was President during the Great Depression and World War II.",
+              "picture": {
+                "photo": "roosevelt.jpg"
+              },
+              "help": {
+                "simpler": "Roosevelt led the country through two very hard times.",
+                "example": "He became President in 1933, during the Depression.",
+                "why": "The test asks who was President during both."
+              }
+            },
+            {
+              "say": "He was elected four times, more than any other President.",
+              "picture": {
+                "drawing": "fourElections",
+                "focus": "roosevelt"
+              },
+              "help": {
+                "simpler": "Voters chose Roosevelt as President four times.",
+                "example": "He won in 1932, 1936, 1940 and 1944.",
+                "why": "No other President was elected more than twice."
+              }
+            },
+            {
+              "say": "After him, the 22nd Amendment limited Presidents to two terms.",
+              "picture": {
+                "drawing": "fourElections",
+                "focus": "limit"
+              },
+              "help": {
+                "simpler": "Now a President can serve only two terms.",
+                "example": "Two terms of four years is eight years.",
+                "why": "You learned about the 22nd Amendment in Unit 2."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Who was President during the Great Depression and World War II?",
+                "choices": [
+                  "Franklin Roosevelt",
+                  "Abraham Lincoln",
+                  "Dwight Eisenhower"
+                ],
+                "answer": 0
+              }
+            }
           ]
         },
         "teachBack": {
@@ -116,6 +235,118 @@
             {
               "word": "highway",
               "meaning": "a big, fast road between cities"
+            }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "Dwight Eisenhower was a general during World War II.",
+              "picture": {
+                "photo": "eisenhower.jpg"
+              },
+              "help": {
+                "simpler": "Eisenhower was a top army leader in World War II.",
+                "example": "A general is a high leader in the army.",
+                "why": "“General during World War II” is an answer on the test."
+              }
+            },
+            {
+              "say": "He led the Allied armies in Europe.",
+              "picture": {
+                "drawing": "ikeThree",
+                "focus": "general"
+              },
+              "help": {
+                "simpler": "He was in charge of the Allied armies in Europe.",
+                "example": "Soldiers from the U.S., England and other countries served under him.",
+                "why": "It explains why he was famous before he was President."
+              }
+            },
+            {
+              "say": "He became the 34th President.",
+              "picture": {
+                "photo": "eisenhower.jpg"
+              },
+              "help": {
+                "simpler": "After the war, Eisenhower was elected President.",
+                "example": "He was the 34th person to be President.",
+                "why": "“34th President” is an answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "Dwight Eisenhower was a general in World War II.",
+                "answer": true
+              }
+            },
+            {
+              "say": "He was President at the end of the Korean War.",
+              "picture": {
+                "drawing": "ikeThree",
+                "focus": "korea"
+              },
+              "help": {
+                "simpler": "The Korean War ended while Eisenhower was President.",
+                "example": "The fighting stopped in 1953.",
+                "why": "“President at the end of the Korean War” is an answer."
+              }
+            },
+            {
+              "say": "He signed the law that built the Interstate highways across the country.",
+              "picture": {
+                "drawing": "ikeThree",
+                "focus": "highways"
+              },
+              "help": {
+                "simpler": "He started the big highways that cross the country.",
+                "example": "Interstate highways go from one state to another.",
+                "why": "“Signed the Federal-Aid Highway Act” is an answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "tap",
+                "prompt": "Tap the roads Eisenhower helped build.",
+                "picture": {
+                  "drawing": "ikeThree"
+                },
+                "answer": "highways"
+              }
+            },
+            {
+              "say": "Remember him with three things: a general, the President when the Korean War ended, and the highways.",
+              "picture": {
+                "drawing": "ikeThree"
+              },
+              "help": {
+                "simpler": "General, President, highways: three ways to remember him.",
+                "example": "Any one of these is a right answer on the test.",
+                "why": "The test asks you to name one thing he is famous for."
+              }
+            },
+            {
+              "say": "His nickname was “Ike.”",
+              "picture": {
+                "photo": "eisenhower.jpg"
+              },
+              "help": {
+                "simpler": "People called him “Ike” for short.",
+                "example": "A nickname is a short, friendly name.",
+                "why": "It can help you remember him."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Dwight Eisenhower is famous for many things. Name one.",
+                "choices": [
+                  "34th President of the United States",
+                  "First President of the United States",
+                  "Father of the Constitution"
+                ],
+                "answer": 0
+              }
             }
           ]
         },
