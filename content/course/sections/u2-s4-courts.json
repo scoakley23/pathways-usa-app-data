@@ -558,7 +558,7 @@
               "meaning": "the leader of the Supreme Court"
             }
           ],
-          "storyStatus": "reviewed",
+          "storyStatus": "draft",
           "story": [
             {
               "say": "The Chief Justice leads the Supreme Court.",
@@ -585,12 +585,9 @@
             },
             {
               "check": {
-                "kind": "tap",
-                "prompt": "Tap the Chief Justice.",
-                "picture": {
-                  "drawing": "supremeCourt"
-                },
-                "answer": "chief"
+                "kind": "tf",
+                "statement": "The Chief Justice leads the Supreme Court.",
+                "answer": true
               }
             },
             {
