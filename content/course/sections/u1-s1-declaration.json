@@ -228,7 +228,7 @@
               "meaning": "trying to reach something"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "“Life, Liberty, and the pursuit of Happiness” are words from the Declaration of Independence.",
@@ -251,9 +251,14 @@
             },
             {
               "check": {
-                "kind": "tf",
-                "statement": "Liberty means freedom.",
-                "answer": true
+                "kind": "pick",
+                "prompt": "What does liberty mean?",
+                "choices": [
+                  "Freedom",
+                  "Happiness",
+                  "Taxes"
+                ],
+                "answer": 0
               }
             },
             {

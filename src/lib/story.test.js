@@ -20,6 +20,7 @@ function allNames(node, out = []) {
 // Only these may be "reviewed" in Units 1–3 outside Congress; every other one stays a draft.
 const OWNER_REVIEWED = new Set([
   'u1-s1-l1',
+  'u1-s1-l2',
 ]);
 const expectedStatus = (id) => (OWNER_REVIEWED.has(id) ? 'reviewed' : 'draft');
 
