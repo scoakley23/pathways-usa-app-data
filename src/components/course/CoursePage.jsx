@@ -7,6 +7,7 @@ import { Sheet, SheetContent, SheetDescription, SheetTitle } from '@/components/
 import { questionText } from '@/lib/course';
 import { usesYourState } from '@/lib/journey';
 import { lawyerIf } from '@/lib/n400View';
+import CourseRoad from '@/components/course/CourseRoad';
 import TopicList, { StopRow } from '@/components/course/TopicList';
 import useReadinessData from '@/components/shell/useReadinessData';
 import { STOP_LOOK, StopIcon, stopHref, stopLabel, useCourseText, useJourney } from '@/components/course/courseShared';
@@ -164,11 +165,16 @@ export default function CoursePage() {
   const openUnit = useMemo(() => (open ? journey.course.find((u) => u.id === open.unitId) : null), [open, journey.course]);
   const lessonNumber = (unit, lessonId) => unit.sections.flatMap((s) => s.lessons).findIndex((l) => l.id === lessonId) + 1;
   const isLesson = open && openUnit && open.type === 'lesson';
+  // The road (desktop): open that topic in the list and bring it into view.
+  const pickTopic = (unitId) => {
+    setExpanded(unitId);
+    requestAnimationFrame(() => document.getElementById(`topic-${unitId}-title`)?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+  };
 
   return (
     <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-full bg-paper text-navy">
-      <div className="max-w-lg mx-auto px-4 pt-6 pb-8 flex flex-col gap-5">
-        <div role="tablist" aria-label={t('parts_label')} className="grid grid-cols-3 gap-1.5">
+      <div className="max-w-lg lg:max-w-6xl mx-auto px-4 lg:px-10 pt-6 lg:pt-10 pb-8 flex flex-col gap-5">
+        <div role="tablist" aria-label={t('parts_label')} className="grid grid-cols-3 gap-1.5 lg:max-w-xl">
           {PARTS.map((p) => {
             const on = p === tab;
             return (
@@ -196,6 +202,10 @@ export default function CoursePage() {
             )}
           </div>
           {tab !== 'civics' && <p className="text-base text-muted">{tab === 'speaking' ? t('speaking_sub') : t('rw_sub')}</p>}
+
+          {!journey.loading && tab === 'civics' && (
+            <CourseRoad journey={journey} masteredIds={readiness?.masteredIds || null} t={t} onPick={pickTopic} />
+          )}
 
           {!journey.loading && (tab === 'civics'
             ? (
