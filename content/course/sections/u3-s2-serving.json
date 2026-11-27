@@ -235,7 +235,7 @@
               "meaning": "the list where men 18 to 25 register in case of a draft for the military. All men must put their name in case the United States goes to war."
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "Paying federal taxes is required by law.",
@@ -299,7 +299,7 @@
               "say": "It is required by law.",
               "help": {
                 "simpler": "The law says men in this age group must register.",
-                "example": "Registering means giving your name and address to the Selective Service.",
+                "example": "If you’re not sure how this applies to you, talk to a lawyer first.",
                 "why": "“Required by law” is one answer on the test."
               }
             },
@@ -313,9 +313,14 @@
             },
             {
               "check": {
-                "kind": "tf",
-                "statement": "Registering for the Selective Service is required by law.",
-                "answer": true
+                "kind": "pick",
+                "prompt": "Name one reason men register for the Selective Service.",
+                "choices": [
+                  "It makes a draft fair, if needed",
+                  "It lowers your taxes",
+                  "It lets you skip jury duty"
+                ],
+                "answer": 0
               }
             }
           ]
