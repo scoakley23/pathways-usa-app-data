@@ -84,17 +84,16 @@
             },
             {
               "word": "federalism",
-              "meaning": "sharing power between the national government and the states",
-              "status": "draft"
+              "meaning": "sharing power between the national government and the states"
             }
           ],
           "video": {
-            "youtubeId": "_sQNz2liUuY",
-            "title": "Levels of Government - Federal, State, and Local Explained",
-            "source": "Miacademy & MiaPrep Learning Channel (YouTube)",
-            "license": "Standard YouTube license: embedding is allowed by YouTube's terms, but the video is not licensed to Pathways. Check before marking reviewed.",
-            "status": "draft",
-            "note": "From the old Lessons tab (Base44 Lesson \"State and Local Government\"). Before reviewing: watch it all; check it matches the 2025 answers, has no flags, seals, eagles or Statue of Liberty, and the English is easy enough."
+            "youtubeId": "VRDRNDtx9j4",
+            "title": "Federal and State Powers",
+            "source": "Untold History (YouTube)",
+            "license": "Standard YouTube license: shown as a YouTube embed, which YouTube's terms allow; not licensed to Pathways.",
+            "status": "reviewed",
+            "checkedOn": "2026-11-27"
           },
           "storyStatus": "draft",
           "story": [
