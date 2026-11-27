@@ -35,4 +35,27 @@ stars from the official USCIS "2025 Civics Test 128 Questions and Answers"
 PDF; never guess them. While the file is empty (`[]`) or incomplete, Vía gets
 the questions without numbers or stars and is not asked to give numbers.
 `npm test` fails if a filled-in file doesn't number all 128 questions 1–128
-exactly once.
+exactly once, repeats a question, or doesn't mark exactly 20 as 65/20. The same
+checks run on `numbers-2025.draft.json`.
+
+### Draft waiting for the owner's check (Nov 27, 2026)
+
+`numbers-2025.draft.json` holds all 128 numbers and the 20 65/20 marks. It is
+**not used by the app**: only `numbers-2025.json` is read, and it stays `[]`
+until the owner checks the draft.
+
+- Source: USCIS, "128 Civics Questions and Answers (2025 version)", form
+  M-1778 (09/25),
+  https://www.uscis.gov/sites/default/files/document/questions-and-answers/2025-Civics-Test-128-Questions-and-Answers.pdf
+  (downloaded Nov 27, 2026; PDF last modified Sep 26, 2025; SHA-256
+  `f280608c0fb6dc1eba344b4746a7ba52d02fe411fba30cedd4371819f0abe11c`).
+- How it was made: the PDF text was extracted with `pdftotext`, each numbered
+  question read with its asterisk, and matched to `questions-2025.json` by
+  exact wording. All 128 matched word for word; none were left over on
+  either side.
+- 65/20 questions (asterisk in the PDF): 2, 7, 12, 20, 30, 36, 38, 39, 44, 52,
+  61, 66, 74, 78, 86, 94, 113, 115, 121, 126.
+
+To make it live after checking: replace the contents of `numbers-2025.json`
+with the draft's, delete the draft, update this section, then run
+`npm run ai:server` (the Supabase AI bundle includes this file) and `npm test`.
