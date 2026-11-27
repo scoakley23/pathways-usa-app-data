@@ -476,9 +476,27 @@
    ]
   },
   {
+   "text": "1776",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "1787",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "1870",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "1920",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -728,6 +746,18 @@
    ]
   },
   {
+   "text": "A child born to an enslaved mother was enslaved too.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "A civil war is a war between people of the same country.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "A colony belongs to another country across the sea.",
    "from": [
     "course-lessons"
@@ -801,6 +831,12 @@
   },
   {
    "text": "A family might have to give soldiers a place to sleep, even if they did not want to.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "A fort is a strong building where soldiers stay.",
    "from": [
     "course-lessons"
    ]
@@ -1055,6 +1091,12 @@
    "text": "A political system that does not allow opposing parties or viewpoints.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "A port is a place where ships load and unload goods.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -1382,9 +1424,22 @@
    ]
   },
   {
+   "text": "Abraham Lincoln",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Abraham Lincoln is famous for many things. Name one.",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Abraham Lincoln was the 16th President.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -1473,6 +1528,12 @@
    ]
   },
   {
+   "text": "Africans",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Africans / People from Africa",
    "from": [
     "civics-questions"
@@ -1482,6 +1543,24 @@
    "text": "Africans / people from Africa",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "Africans and their children were enslaved because of the color of their skin.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "After 1870, every Black American could vote freely.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "After Appomattox, the war was over.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -1512,6 +1591,18 @@
    "text": "After the Civil War / During Reconstruction / (With the) 15th Amendment / 1870",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "After the Civil War, new amendments were added to the Constitution.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "After the Civil War, slavery was over in the United States.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -1557,15 +1648,52 @@
    ]
   },
   {
+   "text": "After the war, the 13th Amendment ended slavery in the whole country.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "After the war, the Constitution was changed three times.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Again soon",
    "from": [
     "learn-screens"
    ]
   },
   {
+   "text": "Age",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Alaska",
    "from": [
+    "course-lessons",
     "words"
+   ]
+  },
+  {
+   "text": "Alaska is far in the north, next to Canada.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Alaska is more than twice as big as Texas.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Alaska is now the largest state.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -1853,6 +1981,12 @@
    ]
   },
   {
+   "text": "Americans in the North fought Americans in the South.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Amio explains in",
    "from": [
     "ask-screen"
@@ -1905,6 +2039,12 @@
    "text": "An act that breaks a law.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "An address is a speech.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -2113,7 +2253,19 @@
    ]
   },
   {
+   "text": "Anthony worked her whole life so women could vote.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Any one of the four names is right on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Any one of these four is a right answer on the test.",
    "from": [
     "course-lessons"
    ]
@@ -2410,6 +2562,12 @@
    ]
   },
   {
+   "text": "Back then, most women were not allowed to vote.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Back to Interview",
    "from": [
     "interview-day"
@@ -2482,6 +2640,12 @@
   },
   {
    "text": "Because it is hard to change, the most important rules stay the same over time.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Because of Lincoln, the country stayed one country.",
    "from": [
     "course-lessons"
    ]
@@ -2820,6 +2984,12 @@
   },
   {
    "text": "But for almost one hundred years after that, many Black Americans were still kept from voting by unfair rules and violence. The civil rights movement fought to change this.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "But for almost one hundred years after that, many Black Americans were still kept from voting.",
    "from": [
     "course-lessons"
    ]
@@ -4182,6 +4352,12 @@
    ]
   },
   {
+   "text": "Discrimination means treating people unfairly because of who they are.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Dishonest, to trick someone.",
    "from": [
     "n400"
@@ -4633,6 +4809,12 @@
    ]
   },
   {
+   "text": "Elizabeth Cady Stanton led the fight too.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Email",
    "from": [
     "sign-in"
@@ -4651,6 +4833,12 @@
    ]
   },
   {
+   "text": "Emancipation means being made free. A proclamation is an official announcement.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Encouraged others to do something.",
    "from": [
     "n400"
@@ -4661,6 +4849,12 @@
    "from": [
     "interview-day",
     "practice"
+   ]
+  },
+  {
+   "text": "Ended the War of 1812",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -4686,6 +4880,24 @@
    "text": "English, citizenship, and adult education classes near you. Call 877-389-6874 for help.",
    "from": [
     "resource-finder"
+   ]
+  },
+  {
+   "text": "Enslaved people could be bought and sold. They had no freedom.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Enslaved people could not choose their work, their home or where to go.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Enslaved people were paid for their work.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -4977,6 +5189,18 @@
    ]
   },
   {
+   "text": "Families were often split up when people were sold.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Farmers sent their crops down the river to New Orleans.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Fast",
    "from": [
     "today-plan"
@@ -5017,6 +5241,18 @@
    "text": "Field office",
    "from": [
     "interview-when"
+   ]
+  },
+  {
+   "text": "Fifteen Presidents came before Lincoln. He was number 16.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Fifteen million dollars was a very large amount of money then.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -5238,6 +5474,12 @@
    ]
   },
   {
+   "text": "For a very long time, Africans were taken from their families.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "For example, Congress writes laws, the President can veto them, and the courts can decide a law goes against the Constitution.",
    "from": [
     "course-lessons"
@@ -5257,6 +5499,12 @@
   },
   {
    "text": "For more than two hundred years, people from Africa were taken from their homes and sold as slaves in America.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "For more than two hundred years, people from Africa were taken from their homes.",
    "from": [
     "course-lessons"
    ]
@@ -5394,6 +5642,24 @@
    ]
   },
   {
+   "text": "France needed money for its wars in Europe, so it agreed to sell.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "France sold the Louisiana Territory because it needed money.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "France was fighting wars and needed money.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Franklin Roosevelt in 1933, the year he became President.",
    "from": [
     "course-pictures"
@@ -5518,6 +5784,12 @@
    ]
   },
   {
+   "text": "Freed the slaves",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Freed the slaves (Emancipation Proclamation) / Saved (or preserved) the Union / Led the United States during the Civil War / 16th president of the United States / Delivered the Gettysburg Address",
    "from": [
     "civics-questions"
@@ -5623,6 +5895,12 @@
    "text": "From {source}",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Gave women the right to vote",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -5740,6 +6018,12 @@
    "from": [
     "practice",
     "today-plan"
+   ]
+  },
+  {
+   "text": "Gettysburg is a town in Pennsylvania.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -6030,6 +6314,18 @@
    "text": "Harriet Tubman escaped slavery and helped many others escape to freedom.",
    "from": [
     "course-pictures"
+   ]
+  },
+  {
+   "text": "Harriet Tubman was also born into slavery and escaped.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Harriet Tubman was enslaved, then got away to freedom.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -6393,6 +6689,12 @@
    ]
   },
   {
+   "text": "He led the United States during the Civil War.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "He led the army from the start of the war to the end.",
    "from": [
     "course-lessons"
@@ -6400,6 +6702,12 @@
   },
   {
    "text": "He made new things, and he worked with other countries for the U.S.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "He saved the Union: he kept the country together.",
    "from": [
     "course-lessons"
    ]
@@ -6448,6 +6756,12 @@
   },
   {
    "text": "He was one of the writers of the Federalist Papers.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "He was the leader of the North, the Union.",
    "from": [
     "course-lessons"
    ]
@@ -6625,6 +6939,12 @@
    "text": "Hint",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "His birthday is in February, near Presidents’ Day.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -7280,6 +7600,12 @@
    ]
   },
   {
+   "text": "If you are born here or naturalize here, you are a citizen.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "If you don't remember the dates, look at photos from your trips, the stamps in your passport, flight confirmation emails, bank or card statements, and frequent flyer accounts.",
    "from": [
     "n400-lessons"
@@ -7443,7 +7769,19 @@
    ]
   },
   {
+   "text": "In 1803, the United States bought the Louisiana Territory from France.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "In 1803, the United States bought the Louisiana Territory from France. It doubled the size of the country.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "In 1863, Lincoln made the Emancipation Proclamation.",
    "from": [
     "course-lessons"
    ]
@@ -7461,6 +7799,18 @@
    ]
   },
   {
+   "text": "In 1863, the Union won the Battle of Gettysburg, in Pennsylvania.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "In 1865, the Southern general Robert E. Lee surrendered at Appomattox, Virginia.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "In 1865, the Southern general Robert E. Lee surrendered at Appomattox, Virginia. This ended the war.",
    "from": [
     "course-lessons"
@@ -7468,6 +7818,12 @@
   },
   {
    "text": "In 1870, the 15th Amendment said a man could not be kept from voting because of his race.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "In 1870, voting rules could not keep men out because of race.",
    "from": [
     "course-lessons"
    ]
@@ -7515,7 +7871,19 @@
    ]
   },
   {
+   "text": "In America, slavery was based on race.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "In America, slavery was based on race. Africans and their children were enslaved because of the color of their skin. This is racial discrimination.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "In America, slavery was based on…",
    "from": [
     "course-lessons"
    ]
@@ -7743,6 +8111,12 @@
    ]
   },
   {
+   "text": "It can help you remember Lincoln.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "It can say approved, continued (USCIS needs more papers, or you need to take a test again), or denied.",
    "from": [
     "interview-day"
@@ -7752,6 +8126,12 @@
    "text": "It can take a minute. Check your spam folder too.",
    "from": [
     "sign-in"
+   ]
+  },
+  {
+   "text": "It connects to Jefferson: he doubled the size of the country.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -7785,7 +8165,37 @@
    ]
   },
   {
+   "text": "It explains who was enslaved in America.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It explains why Tubman is so well known.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It explains why she is a leader of the movement.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It explains why the fight for voting rights went on.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "It forms the government and says what each part of the government can do.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It freed the slaves in the Confederate states.",
    "from": [
     "course-lessons"
    ]
@@ -7815,7 +8225,37 @@
    ]
   },
   {
+   "text": "It helps you picture how big the purchase was.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It helps you remember how the country grew.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "It helps you remember that Europeans came after American Indians.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It helps you remember why Gettysburg is famous.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It helps you understand who was taken and sold.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It helps you understand why slavery was so wrong.",
    "from": [
     "course-lessons"
    ]
@@ -7830,6 +8270,12 @@
    "text": "It is OK to ask. You can say: \"Can you repeat that, please?\" or \"Can you say that another way?\" Don't answer a question until you understand it.",
    "from": [
     "ask-answers"
+   ]
+  },
+  {
+   "text": "It is a holiday at the end of May.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -7864,6 +8310,12 @@
   },
   {
    "text": "It is called “cold” because the two countries never fought each other directly in a big war. They competed with weapons, money and ideas.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It is fine to give the same answer twice.",
    "from": [
     "course-lessons"
    ]
@@ -7905,7 +8357,19 @@
    ]
   },
   {
+   "text": "It is the last event on the timeline.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "It lasted about ten years, until World War II.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It lasted from 1861 to 1865.",
    "from": [
     "course-lessons"
    ]
@@ -7953,6 +8417,12 @@
    ]
   },
   {
+   "text": "It said enslaved people in the Southern states were free.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "It says America is free from British control. / It says all people are created equal. / It identifies inherent rights. / It identifies individual freedoms.",
    "from": [
     "civics-questions"
@@ -7983,6 +8453,30 @@
    ]
   },
   {
+   "text": "It shows how fast the young country grew.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It shows that a law on paper is not always followed.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It shows the country kept growing after 1803.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It started in 1861 and ended in 1865.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "It started with the stock market crash of 1929, called the Great Crash.",
    "from": [
     "course-lessons"
@@ -8002,6 +8496,12 @@
   },
   {
    "text": "It was adopted on July 4, 1776.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It was one of the biggest battles of the war.",
    "from": [
     "course-lessons"
    ]
@@ -8111,6 +8611,12 @@
   },
   {
    "text": "Jefferson is the writer of the Declaration.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Jefferson was President. He made the deal with France.",
    "from": [
     "course-lessons"
    ]
@@ -8366,6 +8872,18 @@
   },
   {
    "text": "Later, he was the fourth President of the United States.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Later, the 13th Amendment ended slavery in the whole country.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Later, the United States bought Alaska too.",
    "from": [
     "course-lessons"
    ]
@@ -8756,6 +9274,12 @@
    ]
   },
   {
+   "text": "Lincoln also gave a famous speech: the Gettysburg Address.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Lincoln also gave the Gettysburg Address. His birthday is in February, near Presidents' Day.",
    "from": [
     "course-lessons"
@@ -8768,9 +9292,45 @@
    ]
   },
   {
+   "text": "Lincoln gave a short, famous speech at Gettysburg.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Lincoln gave the Gettysburg Address.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Lincoln is famous for saving the Union.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Lincoln made an official announcement in 1863.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Lincoln was President during the Civil War.",
    "from": [
     "sentences"
+   ]
+  },
+  {
+   "text": "Lincoln was President for the whole war.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Lincoln was born in February.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -9141,6 +9701,18 @@
    ]
   },
   {
+   "text": "Many people worked together for equal rights.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Many thousands of soldiers fought at Gettysburg.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Many tribes still live in the United States today.",
    "from": [
     "course-lessons"
@@ -9204,6 +9776,12 @@
    "text": "Martin Luther King, Jr. is famous for many things. Name one.",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "Martin Luther King, Jr. was a leader of the civil rights movement.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -9312,6 +9890,12 @@
    "text": "Memorial Day is in May.",
    "from": [
     "sentences"
+   ]
+  },
+  {
+   "text": "Memorial Day remembers soldiers who died for the country.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -9772,7 +10356,8 @@
   {
    "text": "Name one leader of the women’s rights movement in the 1800s.",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -9856,7 +10441,8 @@
   {
    "text": "Name one war fought by the United States in the 1800s.",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -9868,7 +10454,8 @@
   {
    "text": "Name the U.S. war between the North and the South.",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -9933,6 +10520,12 @@
   },
   {
    "text": "Naturalize",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Naturalize means to become a citizen after applying.",
    "from": [
     "course-lessons"
    ]
@@ -10615,6 +11208,12 @@
    ]
   },
   {
+   "text": "Of all 50 states, Alaska has the most land.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Off",
    "from": [
     "settings"
@@ -10942,6 +11541,12 @@
   },
   {
    "text": "Only leaders",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Only men could vote in most states.",
    "from": [
     "course-lessons"
    ]
@@ -11366,6 +11971,18 @@
    ]
   },
   {
+   "text": "People from Africa were sold in America as slaves.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "People from Africa, and their children, were enslaved.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "People in big cities and small towns have the same two senators.",
    "from": [
     "course-lessons"
@@ -11397,6 +12014,12 @@
   },
   {
    "text": "People vote for their leaders, and they can choose new leaders in the next election.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "People were treated as property, like things to sell.",
    "from": [
     "course-lessons"
    ]
@@ -11821,6 +12444,12 @@
    ]
   },
   {
+   "text": "President Thomas Jefferson paid France $15 million for the land.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Presidents' Day",
    "from": [
     "words"
@@ -11830,6 +12459,12 @@
    "text": "Presidents' Day is in February.",
    "from": [
     "sentences"
+   ]
+  },
+  {
+   "text": "Presidents’ Day is a holiday in February.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -12007,6 +12642,24 @@
    "text": "Quick review of civics questions",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "Race",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Race means a group of people seen as having the same skin color or roots.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Racial discrimination is unfair treatment because of race.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -12311,6 +12964,12 @@
    "text": "Released from a job or service.",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "Religion",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -12624,6 +13283,12 @@
    "text": "Saved only on this phone · Checked by hand on {date}",
    "from": [
     "interview-when"
+   ]
+  },
+  {
+   "text": "Saved the Union",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -13310,6 +13975,12 @@
    ]
   },
   {
+   "text": "Selling the land gave France money for its army.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Senate and House (of Representatives)",
    "from": [
     "civics-questions"
@@ -13492,6 +14163,54 @@
    ]
   },
   {
+   "text": "She and Anthony worked together for many years.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "She became a famous speaker.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "She escaped to the North.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "She gave speeches and wrote about women’s rights.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "She gave speeches for equal rights for women and Black Americans.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "She helped many enslaved people escape to the North.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "She spoke out for the rights of women and of Black Americans.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "She spoke out for women and Black Americans, and helped many enslaved people escape to freedom.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Short answers are fine on the test, as long as they are correct.",
    "from": [
     "course-lessons"
@@ -13664,6 +14383,12 @@
    ]
   },
   {
+   "text": "Since 1920, women can vote.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Since you became a lawful permanent resident, have you called yourself a \"nonresident alien\" on a Federal, state, or local tax return or decided not to file a tax return because you considered yourself to be a nonresident?",
    "from": [
     "n400"
@@ -13743,6 +14468,12 @@
    "text": "Slavery and the Civil War",
    "from": [
     "course-titles"
+   ]
+  },
+  {
+   "text": "Slavery means people are owned by other people and forced to work without pay.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -13878,7 +14609,31 @@
    ]
   },
   {
+   "text": "So “1870”, “after the Civil War” and “the 15th Amendment” all answer: When did all men get the right to vote?",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Sojourner Truth and Harriet Tubman were born into slavery and escaped. They spoke out for the rights of women and of Black Americans. Harriet Tubman also helped many enslaved people escape to freedom.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Sojourner Truth spoke out for the rights of women.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Sojourner Truth was born into slavery and escaped.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Sojourner Truth was enslaved, then got away to freedom.",
    "from": [
     "course-lessons"
    ]
@@ -13927,6 +14682,12 @@
   },
   {
    "text": "Some people wanted to pray in their own way, without fear.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Some places made Black Americans pass hard tests or pay to vote.",
    "from": [
     "course-lessons"
    ]
@@ -14062,7 +14823,19 @@
    ]
   },
   {
+   "text": "Southern states left the United States, mainly to keep slavery. They called themselves the Confederacy.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Southern states left the United States, mainly to keep slavery. They called themselves the Confederacy. The North fought to keep the country together, called the Union.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Southern states left the country because they wanted to keep slavery.",
    "from": [
     "course-lessons"
    ]
@@ -14155,6 +14928,12 @@
    "text": "Stand up, raise your right hand, and say “I do.”",
    "from": [
     "interview-day"
+   ]
+  },
+  {
+   "text": "Stanton was another leader for women’s rights.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -14497,6 +15276,12 @@
    ]
   },
   {
+   "text": "Susan B. Anthony",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Susan B. Anthony / Elizabeth Cady Stanton / Sojourner Truth / Harriet Tubman / Lucretia Mott / Lucy Stone",
    "from": [
     "civics-questions"
@@ -14511,6 +15296,7 @@
   {
    "text": "Susan B. Anthony led the fight for women’s right to vote.",
    "from": [
+    "course-lessons",
     "course-pictures"
    ]
   },
@@ -14602,6 +15388,18 @@
    ]
   },
   {
+   "text": "Tap the amendment about who is a citizen.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Tap the amendment that gave women the right to vote.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Tap the bill with Alexander Hamilton.",
    "from": [
     "course-lessons"
@@ -14621,6 +15419,12 @@
   },
   {
    "text": "Tap the document with the words “Life, Liberty, and the pursuit of Happiness.”",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Tap the event that ended the war.",
    "from": [
     "course-lessons"
    ]
@@ -14705,6 +15509,12 @@
   },
   {
    "text": "Tap the term that is not allowed.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Tap the war that was fought from 1861 to 1865.",
    "from": [
     "course-lessons"
    ]
@@ -15033,6 +15843,24 @@
    ]
   },
   {
+   "text": "The 13th Amendment ended slavery.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The 14th Amendment",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The 14th Amendment said that all persons born or naturalized in the United States are citizens.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The 14th Amendment, from 1868, says this.",
    "from": [
     "course-lessons"
@@ -15048,6 +15876,30 @@
    "text": "The 1800s",
    "from": [
     "course-titles"
+   ]
+  },
+  {
+   "text": "The 1800s means the years 1800 to 1899.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The 19th Amendment",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The 19th Amendment changed the Constitution so women could vote.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The 1st Amendment",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -15211,6 +16063,12 @@
    ]
   },
   {
+   "text": "The Civil War began at Fort Sumter.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The Civil War ended slavery in the United States.",
    "from": [
     "course-lessons"
@@ -15223,6 +16081,18 @@
    ]
   },
   {
+   "text": "The Civil War was fought from 1861 to 1865.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The Civil War was the war between the North and the South.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The Civil War was the war between the North and the South. It lasted from 1861 to 1865.",
    "from": [
     "course-lessons"
@@ -15232,6 +16102,18 @@
    "text": "The Cold War",
    "from": [
     "course-titles"
+   ]
+  },
+  {
+   "text": "The Confederacy",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The Confederacy was the group of Southern states that left.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -15460,6 +16342,12 @@
    ]
   },
   {
+   "text": "The French",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The Gettysburg Address",
    "from": [
     "course-lessons"
@@ -15520,7 +16408,19 @@
    ]
   },
   {
+   "text": "The Korean War",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The Louisiana Purchase doubled the size of the United States.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The Louisiana Purchase doubled the size of the country.",
    "from": [
     "course-lessons"
    ]
@@ -15532,6 +16432,12 @@
    ]
   },
   {
+   "text": "The Louisiana Territory",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The Nation’s first motto was “E Pluribus Unum.” What does that mean?",
    "from": [
     "civics-questions"
@@ -15539,6 +16445,24 @@
   },
   {
    "text": "The Navajo and the Hopi are two tribes in the Southwest.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The North fought to keep the country together. It was called the Union.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The North wanted one country, not two.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The North won a big battle at Gettysburg.",
    "from": [
     "course-lessons"
    ]
@@ -15767,6 +16691,12 @@
    ]
   },
   {
+   "text": "The Rocky Mountains are big mountains in the West.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The Secretary of Education leads the Department of Education.",
    "from": [
     "course-lessons"
@@ -15972,9 +16902,27 @@
    ]
   },
   {
+   "text": "The Union",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The Union means the United States.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The Union was in the North. The Confederacy was in the South. The war began at Fort Sumter, in South Carolina.",
    "from": [
     "course-pictures"
+   ]
+  },
+  {
+   "text": "The Union was the United States: the North, during the war.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -15985,6 +16933,12 @@
   },
   {
    "text": "The United States and the flag",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The United States bought a very large area of land from France.",
    "from": [
     "course-lessons"
    ]
@@ -16003,6 +16957,12 @@
   },
   {
    "text": "The United States fought five wars in the 1900s that are on the test: World War I, World War II, the Korean War, the Vietnam War and the Persian Gulf War.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The United States fought several wars in the 1800s.",
    "from": [
     "course-lessons"
    ]
@@ -16027,6 +16987,12 @@
   },
   {
    "text": "The United States is between Canada to the north and Mexico to the south.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The United States wanted the port of New Orleans, on the Mississippi River, for trade.",
    "from": [
     "course-lessons"
    ]
@@ -16057,6 +17023,12 @@
   },
   {
    "text": "The Vice President works closely with the President.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The War of 1812",
    "from": [
     "course-lessons"
    ]
@@ -16099,6 +17071,12 @@
   },
   {
    "text": "The army stayed at Valley Forge in the cold and kept going.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The battle lasted three days.",
    "from": [
     "course-lessons"
    ]
@@ -16152,6 +17130,12 @@
    ]
   },
   {
+   "text": "The civil rights movement fought to change this.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The civil rights movement fought to end racial discrimination.",
    "from": [
     "course-lessons"
@@ -16160,6 +17144,7 @@
   {
    "text": "The colonies",
    "from": [
+    "course-lessons",
     "course-titles"
    ]
   },
@@ -16237,6 +17222,18 @@
   },
   {
    "text": "The country kept growing. In 1867, it bought Alaska, which is now the largest state.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The country kept growing. In 1867, it bought Alaska.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The country was together again.",
    "from": [
     "course-lessons"
    ]
@@ -16360,6 +17357,12 @@
    "text": "The first airplane flight, by the Wright brothers, in 1903.",
    "from": [
     "course-pictures"
+   ]
+  },
+  {
+   "text": "The first attack of the war was at Fort Sumter.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -16531,6 +17534,24 @@
    ]
   },
   {
+   "text": "The land was in the middle of today’s country.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The land went from the Mississippi River to the Rocky Mountains.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The law changed, but many Black Americans still could not vote.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The law says men in this age group must register.",
    "from": [
     "course-lessons"
@@ -16538,6 +17559,12 @@
   },
   {
    "text": "The law says people must pay federal taxes.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The leader of the Southern army gave up at Appomattox.",
    "from": [
     "course-lessons"
    ]
@@ -17039,6 +18066,12 @@
    ]
   },
   {
+   "text": "The test asks what U.S. war ended slavery.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The test asks what founding document was written in 1787.",
    "from": [
     "course-lessons"
@@ -17051,6 +18084,12 @@
    ]
   },
   {
+   "text": "The test asks what territory the U.S. bought from France in 1803.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The test asks what the Bill of Rights protects: the basic rights of Americans and of people living here.",
    "from": [
     "course-lessons"
@@ -17058,6 +18097,12 @@
   },
   {
    "text": "The test asks what the Cabinet does. The answer: it advises the President.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The test asks what the Emancipation Proclamation did.",
    "from": [
     "course-lessons"
    ]
@@ -17081,7 +18126,19 @@
    ]
   },
   {
+   "text": "The test asks when all men got the right to vote.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The test asks when the Declaration was adopted: July 4, 1776.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The test asks which amendment says this: the 14th.",
    "from": [
     "course-lessons"
    ]
@@ -17291,6 +18348,12 @@
    ]
   },
   {
+   "text": "The test asks you to name one war of the 1800s.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The test asks you to name the three branches.",
    "from": [
     "course-lessons"
@@ -17298,6 +18361,12 @@
   },
   {
    "text": "The test asks you to name the two parts of Congress.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The test asks you to name the war between the North and the South.",
    "from": [
     "course-lessons"
    ]
@@ -17417,6 +18486,12 @@
    ]
   },
   {
+   "text": "The war went on for about four years.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The way a country is organized and run.",
    "from": [
     "n400"
@@ -17491,6 +18566,12 @@
   },
   {
    "text": "The writers of the Constitution used ideas from documents written before.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The years help you put the events in order.",
    "from": [
     "course-lessons"
    ]
@@ -17628,6 +18709,12 @@
    ]
   },
   {
+   "text": "There were four big wars in the 1800s.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "These are more answers for how Americans serve their country.",
    "from": [
     "course-lessons"
@@ -17689,6 +18776,12 @@
   },
   {
    "text": "These five are easy to remember. They were all colonies.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "These four wars were all in the 1800s.",
    "from": [
     "course-lessons"
    ]
@@ -18024,7 +19117,37 @@
    ]
   },
   {
+   "text": "They were brought to America and sold as slaves.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "They were carried across the ocean on ships.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "They were kept from voting by unfair rules and violence.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "They were printed in newspapers for people to read.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "They were sold to work on farms and in homes.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "They were the War of 1812, the Mexican-American War, the Civil War and the Spanish-American War.",
    "from": [
     "course-lessons"
    ]
@@ -18115,6 +19238,12 @@
   },
   {
    "text": "This connects the war to the reasons for independence.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "This ended the war.",
    "from": [
     "course-lessons"
    ]
@@ -18288,7 +19417,19 @@
    ]
   },
   {
+   "text": "This is part of the history of slavery in America.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "This is part of why representatives have short terms.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "This is racial discrimination: treating people unfairly because of their race.",
    "from": [
     "course-lessons"
    ]
@@ -18348,6 +19489,12 @@
    ]
   },
   {
+   "text": "This is the main reason the war started.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "This is what a free market economy means, one answer on the test.",
    "from": [
     "course-lessons"
@@ -18373,6 +19520,12 @@
   },
   {
    "text": "This is where the story of the United States begins: the colonies later chose to be free.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "This is why France said yes.",
    "from": [
     "course-lessons"
    ]
@@ -18408,7 +19561,19 @@
    ]
   },
   {
+   "text": "This is why the United States wanted the land.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "This is why the colonists said the taxes were unfair.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "This is why the women’s rights movement began.",
    "from": [
     "course-lessons"
    ]
@@ -18433,6 +19598,12 @@
   },
   {
    "text": "This keeps representatives close to the people they serve.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "This lesson helps you answer two test questions about slavery.",
    "from": [
     "course-lessons"
    ]
@@ -18532,6 +19703,12 @@
    "text": "This phone has no voice for your language, so I will speak in English. Your language will still be on the screen.",
    "from": [
     "getting-started"
+   ]
+  },
+  {
+   "text": "This photo of Lincoln was taken in 1863, during the war.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -18793,6 +19970,12 @@
    ]
   },
   {
+   "text": "This was called the Louisiana Purchase.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "This way you always learn the right name.",
    "from": [
     "course-lessons"
@@ -18833,6 +20016,18 @@
    "text": "This week's practice starts today",
    "from": [
     "today"
+   ]
+  },
+  {
+   "text": "This went on until the 1960s.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "This word comes up again in American history.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -18887,6 +20082,12 @@
   },
   {
    "text": "Three Presidents came before Madison. He was number four.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Three answers, one question: 1870, after the Civil War, the 15th Amendment.",
    "from": [
     "course-lessons"
    ]
@@ -18984,6 +20185,12 @@
   },
   {
    "text": "Tip: “Freed the slaves” is a correct answer to both questions in this lesson. It is fine to give the same answer twice.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Tip: “Freed the slaves” is a right answer to both questions in this lesson.",
    "from": [
     "course-lessons"
    ]
@@ -19106,6 +20313,12 @@
    "text": "To review",
    "from": [
     "practice"
+   ]
+  },
+  {
+   "text": "To speak out means to say in public what you believe.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -19330,6 +20543,12 @@
    ]
   },
   {
+   "text": "Tubman went back many times to lead others to freedom.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Turn on",
    "from": [
     "notifications"
@@ -19391,6 +20610,12 @@
   },
   {
    "text": "Two names, one war: the American Revolution, the Revolutionary War.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Two of these amendments are on the test.",
    "from": [
     "course-lessons"
    ]
@@ -19567,6 +20792,12 @@
    ]
   },
   {
+   "text": "Under slavery, people had no freedom and were not paid for work.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Under the Constitution, Congress has the power to declare war.",
    "from": [
     "course-lessons"
@@ -19588,6 +20819,12 @@
    "text": "Understanding the Oath of Allegiance",
    "from": [
     "n400-lessons"
+   ]
+  },
+  {
+   "text": "Unfair rules and attacks stopped people from voting.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -20356,7 +21593,8 @@
   {
    "text": "What U.S. war ended slavery?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -20506,7 +21744,20 @@
   {
    "text": "What did the Emancipation Proclamation do?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "What did the Proclamation do? What is Lincoln famous for? Freed the slaves.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "What did the Southern states that left call themselves?",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -20606,7 +21857,8 @@
   {
    "text": "What group of people was taken and sold as slaves?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -20908,7 +22160,8 @@
   {
    "text": "What territory did the United States buy from France in 1803?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -21001,13 +22254,15 @@
   {
    "text": "When did all men get the right to vote?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
    "text": "When did all women get the right to vote?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -21232,6 +22487,12 @@
    "text": "Where you live",
    "from": [
     "find-rep"
+   ]
+  },
+  {
+   "text": "Which amendment says all persons born or naturalized in the United States are citizens?",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -21593,6 +22854,12 @@
    "text": "Who was President during the Great Depression and World War II?",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "Who was enslaved depended on the color of their skin.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -22171,6 +23438,12 @@
    ]
   },
   {
+   "text": "You can give the same answer to both questions.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "You can name these five on the test.",
    "from": [
     "course-lessons"
@@ -22376,6 +23649,12 @@
    ]
   },
   {
+   "text": "You only need to say one of them.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "You owe child support",
    "from": [
     "lawyer-checklist"
@@ -22492,6 +23771,18 @@
    "text": "You were signed out. Sign in again to keep going.",
    "from": [
     "sign-in"
+   ]
+  },
+  {
+   "text": "You will learn more about civil rights in Unit 6.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "You will see Memorial Day again in the lesson on holidays.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -25582,6 +26873,24 @@
    ]
   },
   {
+   "text": "“16th President” is an answer about Lincoln on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "“1870” and “15th Amendment” are answers on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "“1920”, “after World War I” and “19th Amendment” are answers.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "“A male citizen of any race can vote” is one answer on the test.",
    "from": [
     "course-lessons"
@@ -25589,6 +26898,12 @@
   },
   {
    "text": "“Advise” means to give ideas and help someone decide.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "“Africans” or “people from Africa” is the answer on the test.",
    "from": [
     "course-lessons"
    ]
@@ -25619,6 +26934,12 @@
   },
   {
    "text": "“Appoints federal judges” is another power of the President on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "“Battle of Gettysburg” is an answer on the test.",
    "from": [
     "course-lessons"
    ]
@@ -25727,6 +27048,12 @@
    ]
   },
   {
+   "text": "“Delivered the Gettysburg Address” is an answer on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "“Derive citizenship” is the third answer on the test.",
    "from": [
     "course-lessons"
@@ -25746,6 +27073,12 @@
   },
   {
    "text": "“Economic opportunity” and “escape persecution” are answers too.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "“Elizabeth Cady Stanton” is an answer on the test.",
    "from": [
     "course-lessons"
    ]
@@ -25799,7 +27132,19 @@
    ]
   },
   {
+   "text": "“Fort Sumter” is an answer on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "“Fourth President” is another answer about Madison.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "“Freed the slaves” is the answer on the test.",
    "from": [
     "course-lessons"
    ]
@@ -25865,6 +27210,12 @@
    ]
   },
   {
+   "text": "“Harriet Tubman” is an answer on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "“Help with a campaign” and “Give an elected official your opinion” are more answers.",
    "from": [
     "course-lessons"
@@ -25902,6 +27253,12 @@
   },
   {
    "text": "“Leaders must obey the law” and “No one is above the law” are also correct answers.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "“Led the United States during the Civil War” is an answer.",
    "from": [
     "course-lessons"
    ]
@@ -26039,6 +27396,12 @@
    ]
   },
   {
+   "text": "“Saved the Union” is an answer on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "“Self-government” is one answer to what “We the People” means.",
    "from": [
     "course-lessons"
@@ -26063,7 +27426,25 @@
    ]
   },
   {
+   "text": "“Sojourner Truth” is an answer on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "“Supreme” means highest. The Constitution is the top rule that all other rules must follow.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "“Surrender at Appomattox” is an answer on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "“Susan B. Anthony” is an answer on the test.",
    "from": [
     "course-lessons"
    ]

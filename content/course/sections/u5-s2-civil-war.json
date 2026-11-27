@@ -70,6 +70,119 @@
               "word": "discrimination",
               "meaning": "treating people unfairly because of who they are"
             }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "Slavery means people are owned by other people and forced to work without pay.",
+              "help": {
+                "simpler": "Under slavery, people had no freedom and were not paid for work.",
+                "example": "Enslaved people could not choose their work, their home or where to go.",
+                "why": "This lesson helps you answer two test questions about slavery."
+              }
+            },
+            {
+              "say": "Enslaved people could be bought and sold. They had no freedom.",
+              "help": {
+                "simpler": "People were treated as property, like things to sell.",
+                "example": "Families were often split up when people were sold.",
+                "why": "It helps you understand why slavery was so wrong."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "Enslaved people were paid for their work.",
+                "answer": false
+              }
+            },
+            {
+              "say": "In America, slavery was based on race.",
+              "help": {
+                "simpler": "Who was enslaved depended on the color of their skin.",
+                "example": "Race means a group of people seen as having the same skin color or roots.",
+                "why": "This is part of the history of slavery in America."
+              }
+            },
+            {
+              "say": "Africans and their children were enslaved because of the color of their skin.",
+              "help": {
+                "simpler": "People from Africa, and their children, were enslaved.",
+                "example": "A child born to an enslaved mother was enslaved too.",
+                "why": "It explains who was enslaved in America."
+              }
+            },
+            {
+              "say": "This is racial discrimination: treating people unfairly because of their race.",
+              "help": {
+                "simpler": "Discrimination means treating people unfairly because of who they are.",
+                "example": "Racial discrimination is unfair treatment because of race.",
+                "why": "This word comes up again in American history."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "In America, slavery was based on…",
+                "choices": [
+                  "Race",
+                  "Religion",
+                  "Age"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "For more than two hundred years, people from Africa were taken from their homes.",
+              "help": {
+                "simpler": "For a very long time, Africans were taken from their families.",
+                "example": "They were carried across the ocean on ships.",
+                "why": "It helps you understand who was taken and sold."
+              }
+            },
+            {
+              "say": "They were brought to America and sold as slaves.",
+              "help": {
+                "simpler": "People from Africa were sold in America as slaves.",
+                "example": "They were sold to work on farms and in homes.",
+                "why": "“Africans” or “people from Africa” is the answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "What group of people was taken and sold as slaves?",
+                "choices": [
+                  "Africans",
+                  "The British",
+                  "The French"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "The Civil War ended slavery in the United States.",
+              "picture": {
+                "drawing": "civilWarMap"
+              },
+              "help": {
+                "simpler": "After the Civil War, slavery was over in the United States.",
+                "example": "After the war, the 13th Amendment ended slavery in the whole country.",
+                "why": "The test asks what U.S. war ended slavery."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "What U.S. war ended slavery?",
+                "choices": [
+                  "The Civil War",
+                  "The Revolutionary War",
+                  "The War of 1812"
+                ],
+                "answer": 0
+              }
+            }
           ]
         },
         "teachBack": {
@@ -133,7 +246,165 @@
             "license": "Standard YouTube license: shown as a YouTube embed, which YouTube's terms allow; not licensed to Pathways.",
             "status": "reviewed",
             "checkedOn": "2026-11-27"
-          }
+          },
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "The Civil War was the war between the North and the South.",
+              "picture": {
+                "drawing": "civilWarMap"
+              },
+              "help": {
+                "simpler": "Americans in the North fought Americans in the South.",
+                "example": "A civil war is a war between people of the same country.",
+                "why": "The test asks you to name the war between the North and the South."
+              }
+            },
+            {
+              "say": "It lasted from 1861 to 1865.",
+              "picture": {
+                "drawing": "civilWarEvents"
+              },
+              "help": {
+                "simpler": "The war went on for about four years.",
+                "example": "It started in 1861 and ended in 1865.",
+                "why": "The years help you put the events in order."
+              }
+            },
+            {
+              "say": "Southern states left the United States, mainly to keep slavery. They called themselves the Confederacy.",
+              "picture": {
+                "drawing": "civilWarMap",
+                "focus": "confederacy"
+              },
+              "help": {
+                "simpler": "Southern states left the country because they wanted to keep slavery.",
+                "example": "The Confederacy was the group of Southern states that left.",
+                "why": "This is the main reason the war started."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "What did the Southern states that left call themselves?",
+                "choices": [
+                  "The Confederacy",
+                  "The Union",
+                  "The colonies"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "The North fought to keep the country together. It was called the Union.",
+              "picture": {
+                "drawing": "civilWarMap",
+                "focus": "union"
+              },
+              "help": {
+                "simpler": "The Union was the United States: the North, during the war.",
+                "example": "The North wanted one country, not two.",
+                "why": "Lincoln is famous for saving the Union."
+              }
+            },
+            {
+              "say": "The war began in 1861, when Southern forces attacked Fort Sumter, a U.S. fort in South Carolina.",
+              "picture": {
+                "drawing": "civilWarEvents",
+                "focus": "fortSumter"
+              },
+              "help": {
+                "simpler": "The first attack of the war was at Fort Sumter.",
+                "example": "A fort is a strong building where soldiers stay.",
+                "why": "“Fort Sumter” is an answer on the test."
+              }
+            },
+            {
+              "say": "In 1863, the Union won the Battle of Gettysburg, in Pennsylvania.",
+              "picture": {
+                "drawing": "civilWarEvents",
+                "focus": "gettysburg"
+              },
+              "help": {
+                "simpler": "The North won a big battle at Gettysburg.",
+                "example": "Gettysburg is a town in Pennsylvania.",
+                "why": "“Battle of Gettysburg” is an answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "The Civil War began at Fort Sumter.",
+                "answer": true
+              }
+            },
+            {
+              "say": "It was one of the biggest battles of the war.",
+              "picture": {
+                "drawing": "civilWarEvents",
+                "focus": "gettysburg"
+              },
+              "help": {
+                "simpler": "Many thousands of soldiers fought at Gettysburg.",
+                "example": "The battle lasted three days.",
+                "why": "It helps you remember why Gettysburg is famous."
+              }
+            },
+            {
+              "say": "In 1865, the Southern general Robert E. Lee surrendered at Appomattox, Virginia.",
+              "picture": {
+                "drawing": "civilWarEvents",
+                "focus": "appomattox"
+              },
+              "help": {
+                "simpler": "The leader of the Southern army gave up at Appomattox.",
+                "example": "Surrender means to stop fighting and accept you lost.",
+                "why": "“Surrender at Appomattox” is an answer on the test."
+              }
+            },
+            {
+              "say": "This ended the war.",
+              "picture": {
+                "drawing": "civilWarEvents",
+                "focus": "appomattox"
+              },
+              "help": {
+                "simpler": "After Appomattox, the war was over.",
+                "example": "The country was together again.",
+                "why": "It is the last event on the timeline."
+              }
+            },
+            {
+              "check": {
+                "kind": "tap",
+                "prompt": "Tap the event that ended the war.",
+                "picture": {
+                  "drawing": "civilWarEvents"
+                },
+                "answer": "appomattox"
+              }
+            },
+            {
+              "say": "After the war, Americans began a day to honor soldiers who died. Today it is called Memorial Day.",
+              "help": {
+                "simpler": "Memorial Day remembers soldiers who died for the country.",
+                "example": "It is a holiday at the end of May.",
+                "why": "You will see Memorial Day again in the lesson on holidays."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Name the U.S. war between the North and the South.",
+                "choices": [
+                  "The Civil War",
+                  "The War of 1812",
+                  "The Revolutionary War"
+                ],
+                "answer": 0
+              }
+            }
+          ]
         },
         "teachBack": {
           "questionId": "6ad16ecf6a9c603911f9de72"
@@ -193,6 +464,139 @@
             {
               "word": "13th Amendment",
               "meaning": "the amendment that ended slavery"
+            }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "Abraham Lincoln was the 16th President.",
+              "picture": {
+                "photo": "lincoln.jpg"
+              },
+              "help": {
+                "simpler": "Fifteen Presidents came before Lincoln. He was number 16.",
+                "example": "This photo of Lincoln was taken in 1863, during the war.",
+                "why": "“16th President” is an answer about Lincoln on the test."
+              }
+            },
+            {
+              "say": "He led the United States during the Civil War.",
+              "picture": {
+                "drawing": "civilWarMap"
+              },
+              "help": {
+                "simpler": "Lincoln was President for the whole war.",
+                "example": "He was the leader of the North, the Union.",
+                "why": "“Led the United States during the Civil War” is an answer."
+              }
+            },
+            {
+              "say": "He saved the Union: he kept the country together.",
+              "picture": {
+                "drawing": "civilWarMap",
+                "focus": "union"
+              },
+              "help": {
+                "simpler": "Because of Lincoln, the country stayed one country.",
+                "example": "The Union means the United States.",
+                "why": "“Saved the Union” is an answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Abraham Lincoln is famous for many things. Name one.",
+                "choices": [
+                  "Saved the Union",
+                  "First President",
+                  "Wrote the Declaration of Independence"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "In 1863, Lincoln made the Emancipation Proclamation.",
+              "picture": {
+                "drawing": "civilWarEvents",
+                "focus": "emancipation"
+              },
+              "help": {
+                "simpler": "Lincoln made an official announcement in 1863.",
+                "example": "Emancipation means being made free. A proclamation is an official announcement.",
+                "why": "The test asks what the Emancipation Proclamation did."
+              }
+            },
+            {
+              "say": "It freed the slaves in the Confederate states.",
+              "picture": {
+                "drawing": "civilWarEvents",
+                "focus": "emancipation"
+              },
+              "help": {
+                "simpler": "It said enslaved people in the Southern states were free.",
+                "example": "Later, the 13th Amendment ended slavery in the whole country.",
+                "why": "“Freed the slaves” is the answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "What did the Emancipation Proclamation do?",
+                "choices": [
+                  "Freed the slaves",
+                  "Ended the War of 1812",
+                  "Gave women the right to vote"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "Lincoln also gave a famous speech: the Gettysburg Address.",
+              "picture": {
+                "drawing": "civilWarEvents",
+                "focus": "gettysburg"
+              },
+              "help": {
+                "simpler": "Lincoln gave a short, famous speech at Gettysburg.",
+                "example": "An address is a speech.",
+                "why": "“Delivered the Gettysburg Address” is an answer on the test."
+              }
+            },
+            {
+              "say": "His birthday is in February, near Presidents’ Day.",
+              "picture": {
+                "photo": "lincoln.jpg"
+              },
+              "help": {
+                "simpler": "Lincoln was born in February.",
+                "example": "Presidents’ Day is a holiday in February.",
+                "why": "It can help you remember Lincoln."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "Lincoln gave the Gettysburg Address.",
+                "answer": true
+              }
+            },
+            {
+              "say": "Tip: “Freed the slaves” is a right answer to both questions in this lesson.",
+              "picture": {
+                "photo": "lincoln.jpg"
+              },
+              "help": {
+                "simpler": "You can give the same answer to both questions.",
+                "example": "What did the Proclamation do? What is Lincoln famous for? Freed the slaves.",
+                "why": "It is fine to give the same answer twice."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "Abraham Lincoln was the 16th President.",
+                "answer": true
+              }
             }
           ]
         },

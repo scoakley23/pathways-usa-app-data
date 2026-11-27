@@ -65,7 +65,161 @@
             "license": "Standard YouTube license: shown as a YouTube embed, which YouTube's terms allow; not licensed to Pathways.",
             "status": "reviewed",
             "checkedOn": "2026-11-27"
-          }
+          },
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "In 1803, the United States bought the Louisiana Territory from France.",
+              "picture": {
+                "photo": "louisiana-purchase.jpg"
+              },
+              "help": {
+                "simpler": "The United States bought a very large area of land from France.",
+                "example": "This was called the Louisiana Purchase.",
+                "why": "The test asks what territory the U.S. bought from France in 1803."
+              }
+            },
+            {
+              "say": "The Louisiana Purchase doubled the size of the country.",
+              "picture": {
+                "drawing": "growingCountry",
+                "focus": "louisiana"
+              },
+              "help": {
+                "simpler": "After the purchase, the country was two times as big.",
+                "example": "Doubled means it became two times bigger.",
+                "why": "It shows how fast the young country grew."
+              }
+            },
+            {
+              "say": "The United States wanted the port of New Orleans, on the Mississippi River, for trade.",
+              "picture": {
+                "photo": "louisiana-purchase.jpg"
+              },
+              "help": {
+                "simpler": "A port is a place where ships load and unload goods.",
+                "example": "Farmers sent their crops down the river to New Orleans.",
+                "why": "This is why the United States wanted the land."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "What territory did the United States buy from France in 1803?",
+                "choices": [
+                  "The Louisiana Territory",
+                  "Alaska",
+                  "Texas"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "France needed money for its wars in Europe, so it agreed to sell.",
+              "help": {
+                "simpler": "France was fighting wars and needed money.",
+                "example": "Selling the land gave France money for its army.",
+                "why": "This is why France said yes."
+              }
+            },
+            {
+              "say": "President Thomas Jefferson paid France $15 million for the land.",
+              "picture": {
+                "photo": "jefferson.jpg"
+              },
+              "help": {
+                "simpler": "Jefferson was President. He made the deal with France.",
+                "example": "Fifteen million dollars was a very large amount of money then.",
+                "why": "It connects to Jefferson: he doubled the size of the country."
+              }
+            },
+            {
+              "say": "The land went from the Mississippi River to the Rocky Mountains.",
+              "picture": {
+                "photo": "louisiana-purchase.jpg"
+              },
+              "help": {
+                "simpler": "The land was in the middle of today’s country.",
+                "example": "The Rocky Mountains are big mountains in the West.",
+                "why": "It helps you picture how big the purchase was."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "France sold the Louisiana Territory because it needed money.",
+                "answer": true
+              }
+            },
+            {
+              "say": "The United States fought several wars in the 1800s.",
+              "picture": {
+                "drawing": "wars1800s"
+              },
+              "help": {
+                "simpler": "There were four big wars in the 1800s.",
+                "example": "The 1800s means the years 1800 to 1899.",
+                "why": "The test asks you to name one war of the 1800s."
+              }
+            },
+            {
+              "say": "They were the War of 1812, the Mexican-American War, the Civil War and the Spanish-American War.",
+              "picture": {
+                "drawing": "wars1800s"
+              },
+              "help": {
+                "simpler": "These four wars were all in the 1800s.",
+                "example": "The Civil War was fought from 1861 to 1865.",
+                "why": "Any one of these four is a right answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "tap",
+                "prompt": "Tap the war that was fought from 1861 to 1865.",
+                "picture": {
+                  "drawing": "wars1800s"
+                },
+                "answer": "civil"
+              }
+            },
+            {
+              "say": "The country kept growing. In 1867, it bought Alaska.",
+              "picture": {
+                "drawing": "growingCountry",
+                "focus": "alaska"
+              },
+              "help": {
+                "simpler": "Later, the United States bought Alaska too.",
+                "example": "Alaska is far in the north, next to Canada.",
+                "why": "It shows the country kept growing after 1803."
+              }
+            },
+            {
+              "say": "Alaska is now the largest state.",
+              "picture": {
+                "drawing": "growingCountry",
+                "focus": "alaska"
+              },
+              "help": {
+                "simpler": "Of all 50 states, Alaska has the most land.",
+                "example": "Alaska is more than twice as big as Texas.",
+                "why": "It helps you remember how the country grew."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Name one war fought by the United States in the 1800s.",
+                "choices": [
+                  "The War of 1812",
+                  "World War I",
+                  "The Korean War"
+                ],
+                "answer": 0
+              }
+            }
+          ]
         },
         "teachBack": {
           "questionId": "6ad16ecf6a9c603911f9de70"
