@@ -3,6 +3,8 @@ import { Volume2, Check, ArrowRight, AlertCircle, Loader2, RotateCcw } from 'luc
 import { Button } from '@/components/pathways/ui';
 import MicButton from '@/components/pathways/MicButton';
 import RunScreen, { NavyChip, SaidBox } from '@/components/practice/RunScreen';
+import { KeyHints } from '@/components/pathways/Stage';
+import useShortcuts from '@/components/pathways/useShortcuts';
 import usePracticeText from '@/components/practice/usePracticeText';
 import AnswerFeedback from '@/components/practice/AnswerFeedback';
 import RunTopBar from '@/components/practice/RunTopBar';
@@ -231,20 +233,8 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext, inde
     </AnswerFeedback>
   ) : null;
 
-  return (
-    <RunScreen
-      topBar={onClose && <RunTopBar onClose={onClose} index={index} total={total} answered={!!analysis && passed} />}
-      label={t('reading_label')}
-      panel={panel}
-    >
-      <h2 className={`font-display leading-[1.1] ${showResult ? 'text-[1.75rem]' : 'text-[2.25rem]'}`} lang="en" dir="ltr">{sentence.text}</h2>
-      <div>
-        <NavyChip onClick={() => speakText(sentence.text, 'en')}>
-          <Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" /> {t('hear_it')}
-        </NavyChip>
-      </div>
-
-      {status === 'unsupported' ? (
+  // The answer controls; on desktop they stand on the right (vision C).
+  const readControls = (status === 'unsupported' ? (
         <div className="flex flex-col gap-3 pt-2">
           <p className="flex items-center gap-2 text-lg font-semibold" dir="auto"><AlertCircle className="w-5 h-5 text-gold" aria-hidden="true" /> {t('cant_listen')}</p>
           <p className="text-base text-on-navy" dir="auto">{t('cant_listen_body')}</p>
@@ -266,7 +256,7 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext, inde
         </div>
       ) : !showResult && (
         <div className="flex flex-col gap-4 pt-2">
-          <p className="text-base font-semibold text-on-navy" dir="auto">{t('read_aloud')}</p>
+          <p className="text-base font-semibold text-on-navy lg:text-center" dir="auto">{t('read_aloud')}</p>
           {(isListening || spokenText) && (
             <SaidBox label={isListening ? t('listening') : t('you_said')}>{spokenText ? `“${spokenText}”` : ''}</SaidBox>
           )}
@@ -297,7 +287,25 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext, inde
             <Button variant="link" onNavy className="self-start px-0" onClick={handleShowAnswer}>{t('hear_and_check')}</Button>
           )}
         </div>
-      )}
+      ));
+  // Desktop keys (vision C): R = hear it again; Space is the mic's, Esc the top bar's close.
+  useShortcuts({ r: () => speakText(sentence.text, 'en') }, !showResult);
+
+  return (
+    <RunScreen
+      topBar={onClose && <RunTopBar onClose={onClose} index={index} total={total} answered={!!analysis && passed} />}
+      label={t('reading_label')}
+      panel={panel}
+      side={readControls || false}
+    >
+      <h2 className={`font-display leading-[1.1] ${showResult ? 'text-[1.75rem] lg:text-[2.5rem]' : 'text-[2.25rem] lg:text-[3.75rem] lg:leading-[1.05]'}`} lang="en" dir="ltr">{sentence.text}</h2>
+      <div>
+        <NavyChip onClick={() => speakText(sentence.text, 'en')}>
+          <Volume2 className="w-5 h-5 shrink-0" aria-hidden="true" /> {t('hear_it')}
+        </NavyChip>
+      </div>
+
+      {!showResult && status !== 'unsupported' && status !== 'manual' && <KeyHints keys={['space', 'r', 'escape']} />}
     </RunScreen>
   );
 }

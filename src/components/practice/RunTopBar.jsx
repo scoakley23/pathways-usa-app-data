@@ -1,6 +1,7 @@
 import React from 'react';
 import { X } from 'lucide-react';
 import usePracticeText from './usePracticeText';
+import useShortcuts from '@/components/pathways/useShortcuts';
 
 // The top of a practice run on navy (Amio v2): a 44px close button, the step
 // bar (one segment per card: done gold, the current one white, the rest
@@ -9,6 +10,8 @@ import usePracticeText from './usePracticeText';
 export default function RunTopBar({ onClose, index = 0, total = 0, answered = false }) {
   const { t } = usePracticeText();
   const done = Math.min(total, index + (answered ? 1 : 0));
+  // Esc closes, like the X (desktop keys, vision C).
+  useShortcuts({ escape: onClose }, !!onClose);
   return (
     <div className="flex items-center gap-3">
       <button

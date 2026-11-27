@@ -8,7 +8,9 @@ import Officer from '@/components/interview/Officer';
 // not a real person", with a short status line ("The officer is speaking…").
 // The mock interview and the whole-day rehearsal (Interview Day) both use it;
 // what goes under it (question, captions, mic, results) is `children`.
-// No timer: no clocks anywhere.
+// No timer: no clocks anywhere. On desktop (vision C) the officer's side
+// stays on the left and the question and mic stand on the right; there is
+// no Esc key here, so a practice interview never ends by accident.
 export default function CallFrame({
   title,
   dashes = { total: 0, current: 0, currentDone: false },
@@ -24,7 +26,8 @@ export default function CallFrame({
 }) {
   return (
     <div className={`text-navy ${fullScreen ? 'min-h-screen bg-paper' : 'w-full'}`}>
-      <div className={`mx-auto max-w-lg space-y-4 ${fullScreen ? 'px-4 pt-5 pb-10' : ''}`}>
+      <div className={`mx-auto max-w-lg flex flex-col gap-4 ${fullScreen ? 'px-4 pt-5 pb-10 lg:max-w-6xl lg:px-10 lg:pt-8 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] lg:gap-x-14 lg:items-start' : ''}`}>
+        <div className={`flex flex-col gap-4 ${fullScreen ? 'lg:sticky lg:top-8' : ''}`}>
         <div className="flex items-center gap-3">
           {onClose && (
             <button
@@ -54,8 +57,9 @@ export default function CallFrame({
           <p className="text-small font-semibold text-muted">{officerLabel}</p>
           {status && <p className="text-base font-semibold text-navy" aria-live="polite" dir="auto">{status}</p>}
         </div>
+        </div>
 
-        {children}
+        <div className="flex flex-col gap-4 min-w-0">{children}</div>
       </div>
     </div>
   );

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Mic, Square } from 'lucide-react';
 import { stopReading } from '@/components/persona/useAutoRead';
+import useShortcuts from '@/components/pathways/useShortcuts';
+import { useKeyText } from '@/components/pathways/keyStrings';
 
 // The microphone on speaking screens (frame R33Teach): the biggest button,
 // round denim with a navy lip, a short label under it, and a small "Type
@@ -9,6 +11,9 @@ import { stopReading } from '@/components/persona/useAutoRead';
 // stops first, so the mic doesn't hear the app.
 // `tone="gold"` (Amio v2, frame Speak) is the speaking screens' mic on navy:
 // gold with a navy-deep outline and lip, white label, sky "Type instead".
+// On desktop (desktop vision C) the gold mic is bigger, and Space presses
+// it (start or stop) unless `spaceKey` is false; "or press Space" shows
+// under it on desktop only.
 export default function MicButton({
   listening = false,
   onStart,
@@ -19,8 +24,10 @@ export default function MicButton({
   typeInsteadLabel = 'Type instead',
   disabled = false,
   tone = 'denim',
+  spaceKey = true,
   className = '',
 }) {
+  const keyText = useKeyText();
   const gold = tone === 'gold';
   const press = () => {
     if (listening) {
@@ -31,6 +38,7 @@ export default function MicButton({
     onStart?.();
   };
   const text = listening ? listeningLabel : label;
+  useShortcuts({ space: press }, spaceKey && !disabled);
   return (
     <div className={`flex flex-col items-center gap-2 ${className}`}>
       <button
@@ -40,14 +48,17 @@ export default function MicButton({
         aria-pressed={listening}
         aria-label={text}
         className={gold
-          ? `w-24 h-24 mb-1.5 rounded-full grid place-items-center text-navy border-[2.5px] border-navy-deep shadow-lip active:translate-y-[5px] active:shadow-none motion-reduce:active:translate-y-0 motion-reduce:active:shadow-lip transition disabled:opacity-40 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60 ${listening ? 'bg-white ring-4 ring-gold motion-safe:animate-pulse' : 'bg-gold'}`
+          ? `w-24 h-24 lg:w-36 lg:h-36 mb-1.5 rounded-full grid place-items-center text-navy border-[2.5px] border-navy-deep shadow-lip active:translate-y-[5px] active:shadow-none motion-reduce:active:translate-y-0 motion-reduce:active:shadow-lip transition disabled:opacity-40 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60 ${listening ? 'bg-white ring-4 ring-gold motion-safe:animate-pulse' : 'bg-gold'}`
           : `w-24 h-24 mb-1.5 rounded-full grid place-items-center text-white shadow-[0_6px_0_theme(colors.navy)] active:translate-y-1 active:shadow-[0_2px_0_theme(colors.navy)] motion-reduce:active:translate-y-0 transition disabled:opacity-40 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-denim/40 ${listening ? 'bg-navy ring-4 ring-gold motion-safe:animate-pulse' : 'bg-denim hover:bg-denim-deep'}`}
       >
         {listening
-          ? <Square className={`w-9 h-9 ${gold ? 'fill-navy' : 'fill-white'}`} strokeWidth={2} aria-hidden="true" />
-          : <Mic className="w-10 h-10" strokeWidth={2} aria-hidden="true" />}
+          ? <Square className={`w-9 h-9 ${gold ? 'lg:w-12 lg:h-12' : ''} ${gold ? 'fill-navy' : 'fill-white'}`} strokeWidth={2} aria-hidden="true" />
+          : <Mic className={`w-10 h-10 ${gold ? 'lg:w-14 lg:h-14' : ''}`} strokeWidth={2} aria-hidden="true" />}
       </button>
-      <span className={gold ? 'text-[1.25rem] font-bold text-white text-center' : 'text-[0.9375rem] font-semibold text-navy text-center'} aria-hidden="true">{text}</span>
+      <span className={gold ? 'text-[1.25rem] lg:text-[1.5rem] font-bold text-white text-center' : 'text-[0.9375rem] font-semibold text-navy text-center'} aria-hidden="true">{text}</span>
+      {spaceKey && !disabled && (
+        <span className={`hidden lg:block text-small ${gold ? 'text-on-navy' : 'text-muted'}`} dir="auto">{keyText('or_press_space')}</span>
+      )}
       {onTypeInstead && (
         <button
           type="button"

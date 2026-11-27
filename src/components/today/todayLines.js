@@ -68,6 +68,10 @@ export const TODAY_LINES = {
   start_plan: 'Start my plan',
   save_plan: 'Save my plan',
   back: 'Back',
+  // Today on desktop: Amio's column (desktop vision A)
+  desk_amio_label: 'Amio · AI tutor',
+  desk_ask: 'Ask Amio a question',
+  desk_this_week: 'This week',
   // Done for today (R30Done)
   done_title: 'Done for today!',
   days_week_1: '1 day this week',

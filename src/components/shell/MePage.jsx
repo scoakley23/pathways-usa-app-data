@@ -188,7 +188,7 @@ export default function MePage() {
   return (
     <div dir={dir} className="min-h-full bg-paper text-navy">
       <section className="bg-navy text-white" aria-labelledby="me-title">
-        <div className="max-w-lg mx-auto px-4 pt-6 pb-6">
+        <div className="max-w-lg lg:max-w-6xl mx-auto px-4 lg:px-10 pt-6 lg:pt-10 pb-6 lg:pb-10">
           {/* The number and "of 128 civics questions" share one line (frame Me):
               the settings button sits in the corner so the line has the full width. */}
           <div className="relative">
@@ -205,10 +205,12 @@ export default function MePage() {
         </div>
       </section>
 
-      <div className="max-w-lg mx-auto px-4 py-5 flex flex-col gap-5">
+      {/* Desktop (lg): the topics on the left, three to a row, and the links
+          on the right. */}
+      <div className="max-w-lg lg:max-w-6xl mx-auto px-4 lg:px-10 py-5 lg:py-8 flex flex-col gap-5 lg:grid lg:grid-cols-[minmax(0,1fr)_20rem] lg:gap-8 lg:items-start">
         {blocks.length > 0 && (
           <section aria-label={t('topics')}>
-            <ul className="grid grid-cols-2 gap-2 list-none m-0 p-0">
+            <ul className="grid grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-3 list-none m-0 p-0">
               {blocks.map((b) => <TopicBlock key={b.id} block={b} t={t} rtl={dir === 'rtl'} />)}
             </ul>
           </section>

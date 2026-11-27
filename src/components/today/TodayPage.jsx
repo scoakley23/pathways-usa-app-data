@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Package, ChevronRight } from 'lucide-react';
+import { Package, ChevronRight, MessageCircle } from 'lucide-react';
 import { Amio, AmioSays } from '@/components/pathways/Amio';
 import { Button, MAIN_PRESS } from '@/components/pathways/ui';
-import { firstName, timeOfDay } from '@/lib/todayView';
+import { firstName, goalMet, timeOfDay } from '@/lib/todayView';
+import WeekSquares from '@/components/today/WeekSquares';
 import { amioLineKey } from '@/lib/dailyPlan';
 import { readinessTiles } from '@/lib/interviewReadiness';
 import { coursePlay } from '@/api/coursePlay';
@@ -72,7 +73,8 @@ function Tile({ tile, t, today }) {
 export default function TodayPage({ user, sheetTop, quickCheckFirst = false }) {
   const navigate = useNavigate();
   const { t, rtl, language } = useTodayText();
-  const day = useToday();
+  // withStreak: this week's days for Amio's column on desktop.
+  const day = useToday({ withStreak: true });
   const readiness = useReadinessData();
   const name = firstName(user);
   const greeting = name ? t(`good_${timeOfDay(new Date())}`, { name }) : t('welcome');
@@ -86,11 +88,17 @@ export default function TodayPage({ user, sheetTop, quickCheckFirst = false }) {
   const order = ['reading', 'writing', 'civics', 'speaking'];
   const shown = order.map((id) => tiles.find((x) => x.id === id)).filter(Boolean);
 
+  const amioLine = t('amio_greeting', { greeting, line: t(line.key, line.vars) });
+
+  // Phones: one column (frame Today). Desktop (lg, desktop vision A): the
+  // plan on the left, wider, with the four tiles in one row, and Amio's
+  // column on the right (Amio's line, Ask Amio, this week's days).
   return (
     <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-full bg-paper text-navy">
-      <div className="max-w-lg mx-auto px-4 pt-6 pb-8 flex flex-col gap-4">
-        <h1 className="sr-only" dir="auto">{greeting}</h1>
-        <AmioSays mood="hello" size={64}>{t('amio_greeting', { greeting, line: t(line.key, line.vars) })}</AmioSays>
+      <div className="max-w-lg lg:max-w-6xl mx-auto px-4 lg:px-10 pt-6 lg:pt-12 pb-8 lg:grid lg:grid-cols-[minmax(0,1fr)_20rem] lg:gap-10 lg:items-start">
+      <div className="flex flex-col gap-4 lg:gap-5 min-w-0">
+        <h1 className="sr-only lg:not-sr-only font-display text-[2.75rem] leading-tight tracking-tight" dir="auto">{greeting}</h1>
+        <div className="lg:hidden"><AmioSays mood="hello" size={64}>{amioLine}</AmioSays></div>
         {!day.loading && <GoalBar goal={day.goal} done={day.doneToday} t={t} saves={coursePlay.saves} />}
 
         {sheetTop}
@@ -99,23 +107,25 @@ export default function TodayPage({ user, sheetTop, quickCheckFirst = false }) {
           <section className="rounded-card bg-white border border-line p-5 flex flex-col gap-3">
             <h2 className="text-lg font-bold">{t('quick_check_title')}</h2>
             <p className="text-base text-muted">{t('quick_check_body')}</p>
-            <Button variant="main" className="w-full" onClick={() => navigate('/quick-check')}>{t('quick_check')}</Button>
+            <Button variant="main" className="w-full lg:w-auto lg:self-start lg:px-10" onClick={() => navigate('/quick-check')}>{t('quick_check')}</Button>
           </section>
         )}
 
         {!day.loading && lesson && (
-          <section className="rounded-card bg-navy text-white p-5 flex flex-col gap-3">
-            <p className="text-base font-semibold text-sky" dir="auto">
-              {t('lesson_of', { section: lesson.section.title, n: lesson.number, of: lesson.of })}
-              {lesson.lesson.status === 'draft' && ` · ${t('draft')}`}
-            </p>
-            <h2 className="font-display text-[2.25rem] leading-[1.05] tracking-tight" dir="auto">{lesson.lesson.title}</h2>
-            {caseRange && <p className="text-base text-on-navy">{caseRange.single ? t('case_likely_by', { month: monthName(caseRange.to) }) : t('case_likely', { from: monthName(caseRange.from), to: monthName(caseRange.to) })}</p>}
+          <section className="rounded-card bg-navy text-white p-5 lg:p-8 flex flex-col gap-3 lg:grid lg:grid-cols-[minmax(0,1fr)_15rem] lg:items-end lg:gap-8">
+            <div className="flex flex-col gap-3 min-w-0">
+              <p className="text-base font-semibold text-sky" dir="auto">
+                {t('lesson_of', { section: lesson.section.title, n: lesson.number, of: lesson.of })}
+                {lesson.lesson.status === 'draft' && ` · ${t('draft')}`}
+              </p>
+              <h2 className="font-display text-[2.25rem] lg:text-[3.25rem] leading-[1.05] tracking-tight" dir="auto">{lesson.lesson.title}</h2>
+              {caseRange && <p className="text-base text-on-navy">{caseRange.single ? t('case_likely_by', { month: monthName(caseRange.to) }) : t('case_likely', { from: monthName(caseRange.from), to: monthName(caseRange.to) })}</p>}
+            </div>
             {!quickCheckFirst && (
               <button
                 type="button"
                 onClick={() => navigate(`/course/lesson/${lesson.lesson.id}`)}
-                className={`mt-2 w-full min-h-main mb-[5px] rounded-button bg-gold px-6 text-lg font-extrabold text-navy ${MAIN_PRESS} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-navy`}
+                className={`mt-2 lg:mt-0 w-full min-h-main mb-[5px] rounded-button bg-gold px-6 text-lg font-extrabold text-navy ${MAIN_PRESS} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-navy`}
               >
                 {t('start')}
               </button>
@@ -135,7 +145,7 @@ export default function TodayPage({ user, sheetTop, quickCheckFirst = false }) {
         )}
 
         {readiness && (
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-3">
             {shown.map((tile) => <Tile key={tile.id} tile={tile} t={t} today={!!lesson && tile.id === 'civics'} />)}
           </div>
         )}
@@ -155,6 +165,27 @@ export default function TodayPage({ user, sheetTop, quickCheckFirst = false }) {
           </span>
           <ChevronRight className="w-5 h-5 text-muted rtl:rotate-180" aria-hidden="true" />
         </Link>
+      </div>
+
+      {/* Desktop only: Amio at your side. */}
+      <aside aria-label={t('desk_amio_label')} className="hidden lg:flex flex-col gap-5 rounded-card bg-white border border-line p-6 sticky top-8">
+        <AmioSays mood="hello" size={88}>{amioLine}</AmioSays>
+        <p className="text-small text-muted">{t('desk_amio_label')}</p>
+        <Link to="/ask" className="min-h-tap inline-flex items-center justify-center gap-2 rounded-button border-[1.5px] border-navy bg-white px-4 text-base font-bold text-navy hover:bg-line-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2">
+          <MessageCircle className="w-5 h-5" strokeWidth={2} aria-hidden="true" />{t('desk_ask')}
+        </Link>
+        {day.week && (
+          <div className="flex flex-col gap-2 border-t border-line-soft pt-4">
+            <h2 className="text-base font-bold">{t('desk_this_week')}</h2>
+            <WeekSquares
+              week={day.week}
+              goalMet={goalMet(day.goal, day.doneToday)}
+              label={day.week.count === 1 ? t('days_week_1') : t('days_week_n', { n: day.week.count })}
+              metLabel={t('goal_met')}
+            />
+          </div>
+        )}
+      </aside>
       </div>
     </div>
   );
