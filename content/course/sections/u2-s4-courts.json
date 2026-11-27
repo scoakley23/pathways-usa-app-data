@@ -449,7 +449,7 @@
               "meaning": "free to decide without pressure"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "Supreme Court justices serve for life.",
@@ -503,7 +503,7 @@
                 "choices": [
                   "To be independent of politics",
                   "To earn more money",
-                  "To make new laws"
+                  "To handle local issues"
                 ],
                 "answer": 0
               }
