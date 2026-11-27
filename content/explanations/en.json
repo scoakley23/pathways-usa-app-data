@@ -1440,7 +1440,7 @@
       "Economic opportunity",
       "Escape persecution"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "Colonists were people from Europe who came to live in America in the 1600s and 1700s. Many wanted freedom, including the freedom to practice their religion. Some wanted to escape persecution, which means being treated badly because of who they are or what they believe. Others came for economic opportunity, like land and work. You can name any one reason from the official list.",
     "keyWords": [
       {
@@ -1468,7 +1468,7 @@
       "Cabinet",
       "Federal departments and agencies"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The executive branch carries out the laws of the country. The president leads it. The Cabinet is a group of top advisers who help the president. Federal departments and agencies do the daily work of the government. You can name any one of these parts.",
     "keyWords": [
       {
@@ -1494,7 +1494,7 @@
     "answers": [
       "Declaration of Independence"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The words “Life, Liberty, and the pursuit of Happiness” are in the Declaration of Independence. Thomas Jefferson wrote most of this document, and it was adopted on July 4, 1776. These words describe rights that all people have. “Pursuit” means trying to reach something.",
     "keyWords": [
       {
@@ -1523,8 +1523,8 @@
       "Any citizen can vote. (Women and men can vote.)",
       "A male citizen of any race (can vote)."
     ],
-    "status": "draft",
-    "explanation": "Over time, four amendments made voting open to more citizens. The 15th Amendment (1870) says a male citizen of any race can vote. The 19th Amendment (1920) gave women the right to vote. The 24th Amendment (1964) ended poll taxes, so you do not have to pay to vote. The 26th Amendment (1971) lets citizens 18 and older vote.",
+    "status": "reviewed",
+    "explanation": "Over time, four amendments made voting open to more citizens. The 15th Amendment (1870) says a male citizen of any race can vote. The 19th Amendment (1920) gave women the right to vote. The 24th Amendment (1964) ended poll taxes in federal elections, so you do not have to pay to vote. The 26th Amendment (1971) lets citizens 18 and older vote.",
     "keyWords": [
       {
         "en": "amendments",
@@ -1555,7 +1555,7 @@
       "Checks and balances",
       "Separation of powers"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The government has three branches so that no one part becomes too powerful. This is called separation of powers. Each branch can also limit the other branches. This is called checks and balances. For example, the president can veto a law, and the courts can decide that a law goes against the Constitution.",
     "keyWords": [
       {
@@ -1593,7 +1593,7 @@
       "South Carolina",
       "Georgia"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The 13 original states were the 13 British colonies that declared independence in 1776. They were all along the Atlantic coast, in the eastern part of the country. Some are in the North, like New York and Massachusetts. Others are in the South, like Virginia and Georgia. You need to name five of them.",
     "keyWords": [
       {
@@ -1624,7 +1624,7 @@
       "Founded the University of Virginia",
       "Writer of the Virginia Statute on Religious Freedom"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "Thomas Jefferson was one of the Founding Fathers. He was the main writer of the Declaration of Independence in 1776. He was the first Secretary of State and the third president of the United States. As president, he bought the Louisiana Territory from France in 1803, which doubled the size of the country. You can name any one fact from the official list.",
     "keyWords": [
       {
@@ -1650,7 +1650,7 @@
     "answers": [
       "The Civil War"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The Civil War (1861–1865) ended slavery in the United States. Slavery was one of the main causes of the war between the North and the South. During the war, President Lincoln issued the Emancipation Proclamation. In 1865, the 13th Amendment ended slavery in the whole country.",
     "keyWords": [
       {
@@ -1672,8 +1672,8 @@
     "answers": [
       "14th Amendment"
     ],
-    "status": "draft",
-    "explanation": "The 14th Amendment was added to the Constitution in 1868, after the Civil War. It says that people born in the United States, or naturalized here, are U.S. citizens. “Naturalized” means a person became a citizen through the legal process, like the one you are studying for. The amendment also promises all citizens equal protection of the laws.",
+    "status": "reviewed",
+    "explanation": "The 14th Amendment was added to the Constitution in 1868, after the Civil War. It says that people born in the United States, or naturalized here, are U.S. citizens. “Naturalized” means a person became a citizen through the legal process. The amendment also promises all citizens equal protection of the laws.",
     "keyWords": [
       {
         "en": "amendment",
@@ -1702,7 +1702,7 @@
     "answers": [
       "Senate and House (of Representatives)"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "Congress is the legislative branch, which makes federal laws. It has two parts: the Senate and the House of Representatives. The Senate has 100 senators, two from each state. The House has 435 voting members, and states with more people have more of them. A bill must pass both parts before it can become a law.",
     "keyWords": [
       {
