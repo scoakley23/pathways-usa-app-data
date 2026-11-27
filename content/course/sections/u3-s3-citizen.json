@@ -83,7 +83,7 @@
               "meaning": "to get something from someone else, like a parent"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "There are three ways to become a U.S. citizen.",
@@ -116,7 +116,7 @@
               },
               "help": {
                 "simpler": "Naturalizing means becoming a citizen after being born somewhere else.",
-                "example": "The civics test in this app is part of naturalizing.",
+                "example": "The civics test you practice here is part of naturalizing.",
                 "why": "“Naturalize” is another answer on the test."
               }
             },
