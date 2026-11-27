@@ -53,6 +53,11 @@ export const DRAWING_PARTS = {
   revolutionTimeline: { bunkerHill: 'The Battle of Bunker Hill', delaware: 'Washington crosses the Delaware', valleyForge: 'Valley Forge', yorktown: 'The British surrender at Yorktown' },
   publius: { madison: 'James Madison', hamilton: 'Alexander Hamilton', jay: 'John Jay' },
   dollarBills: { one: 'The one-dollar bill: George Washington', ten: 'The ten-dollar bill: Alexander Hamilton' },
+  civilWarMap: { union: 'The Union (North)', confederacy: 'The Confederacy (South)', border: 'Border states' },
+  growingCountry: { louisiana: 'The Louisiana Territory, 1803', alaska: 'Alaska, 1867' },
+  wars1800s: { war1812: 'The War of 1812', mexican: 'The Mexican-American War', civil: 'The Civil War', spanish: 'The Spanish-American War' },
+  civilWarEvents: { fortSumter: 'Fort Sumter, 1861', emancipation: 'The Emancipation Proclamation, 1863', gettysburg: 'The Battle of Gettysburg, 1863', appomattox: 'The surrender at Appomattox, 1865' },
+  reconstructionAmendments: { thirteenth: 'The 13th Amendment: ended slavery', fourteenth: 'The 14th Amendment: citizens', fifteenth: 'The 15th Amendment: voting, 1870' },
 };
 
 // One part of a drawing: it fades when another part is lit (`focus`). In a
@@ -254,7 +259,7 @@ const BORDER = ['DE', 'MD', 'KY', 'MO', 'WV'];
 const UNION = ['ME', 'NH', 'VT', 'MA', 'RI', 'CT', 'NY', 'NJ', 'PA', 'OH', 'IN', 'IL', 'MI', 'WI', 'MN', 'IA', 'KS', 'CA', 'OR', 'DC'];
 export const CIVIL_WAR_SIDES = { union: UNION, confederacy: CONFEDERACY, border: BORDER };
 
-function CivilWarMap() {
+function CivilWarMap({ focus, pick } = {}) {
   const x0 = 2;
   const y0 = 2;
   const style = (c) => {
@@ -272,10 +277,18 @@ function CivilWarMap() {
   ];
   return (
     <Frame viewBox="0 0 354 360" title="A map of the states during the Civil War. The Union in the North; the Confederacy in the South: South Carolina, Mississippi, Florida, Alabama, Georgia, Louisiana, Texas, Virginia, Arkansas, North Carolina and Tennessee; border states with slavery that stayed in the Union: Delaware, Maryland, Kentucky, Missouri and West Virginia. The war began at Fort Sumter, South Carolina.">
-      {Object.keys(STATE_TILES).map((c) => {
+      {Object.keys(STATE_TILES).filter((c) => !UNION.includes(c) && !CONFEDERACY.includes(c) && !BORDER.includes(c)).map((c) => {
         const st = style(c);
-        return <Tile key={c} code={c} x0={x0} y0={y0} fill={st.fill} text={st.text} />;
+        return <g key={c} style={focus ? { opacity: 0.3 } : undefined}><Tile code={c} x0={x0} y0={y0} fill={st.fill} text={st.text} /></g>;
       })}
+      {Object.entries(CIVIL_WAR_SIDES).map(([side, codes]) => (
+        <Part key={side} id={side} focus={focus} pick={pick} drawing="civilWarMap">
+          {codes.map((c) => {
+            const st = style(c);
+            return <Tile key={c} code={c} x0={x0} y0={y0} fill={st.fill} text={st.text} />;
+          })}
+        </Part>
+      ))}
       <circle cx={sx + TILE - 4} cy={sy + TILE - 4} r={7} className="fill-white stroke-navy" strokeWidth="3" />
       <path d={`M${sx + TILE + 2} ${sy + TILE + 2} L${sx + STEP + 6} ${sy + STEP + 8}`} className="stroke-navy" strokeWidth="2" />
       <T x={sx + STEP + 8} y={sy + STEP + 20} anchor="start" size={12} weight={700}>Fort Sumter</T>
@@ -1007,6 +1020,91 @@ function DollarBills({ focus, pick } = {}) {
   );
 }
 
+// Unit 5. Rows with a navy tag on the left (a year or a number), a headline
+// and a short line under it; one tappable part per row.
+function TagRows({ drawing, title, header, rows, focus, pick, rowH = 58 }) {
+  const top = header ? 56 : 6;
+  return (
+    <Frame viewBox={`0 0 350 ${top + rows.length * (rowH + 8)}`} title={title}>
+      {header && <Box x={4} y={6} w={342} h={40} className="fill-navy stroke-navy" />}
+      {header && <T x={175} y={31} size={14} weight={700} className="fill-white">{header}</T>}
+      {rows.map((r, i) => {
+        const y = top + i * (rowH + 8);
+        return (
+          <Part key={r.key} id={r.key} focus={focus} pick={pick} drawing={drawing}>
+            <Box x={4} y={y} w={342} h={rowH} className={`${r.gold ? 'fill-gold' : SOFT[i % 3]} stroke-denim`} />
+            <rect x={12} y={y + (rowH - 32) / 2} width={66} height={32} rx={8} className="fill-navy" />
+            <T x={45} y={y + rowH / 2 + 5} size={13} weight={700} className="fill-white">{r.tag}</T>
+            <T x={88} y={y + (r.sub ? rowH / 2 - 4 : rowH / 2 + 5)} anchor="start" size={14} weight={700}>{r.head}</T>
+            {r.sub && <T x={88} y={y + rowH / 2 + 15} anchor="start" size={12} weight={400}>{r.sub}</T>}
+          </Part>
+        );
+      })}
+    </Frame>
+  );
+}
+
+// Unit 5. The country grows: the Louisiana Territory (1803) and Alaska (1867).
+function GrowingCountry({ focus, pick } = {}) {
+  return (
+    <TagRows
+      drawing="growingCountry" focus={focus} pick={pick} header="The country grows"
+      title="The country grows: in 1803 the United States bought the Louisiana Territory from France, and the country doubled in size. In 1867 it bought Alaska, now the largest state."
+      rows={[
+        { key: 'louisiana', tag: '1803', head: 'Louisiana Territory', sub: 'bought from France: the country doubled' },
+        { key: 'alaska', tag: '1867', head: 'Alaska', sub: 'bought: now the largest state' },
+      ]}
+    />
+  );
+}
+
+// Unit 5. Four wars the United States fought in the 1800s.
+function Wars1800s({ focus, pick } = {}) {
+  return (
+    <TagRows
+      drawing="wars1800s" focus={focus} pick={pick} header="Wars of the 1800s" rowH={44}
+      title="Wars the United States fought in the 1800s: the War of 1812, the Mexican-American War, the Civil War (1861 to 1865) and the Spanish-American War"
+      rows={[
+        { key: 'war1812', tag: '1', head: 'War of 1812' },
+        { key: 'mexican', tag: '2', head: 'Mexican-American War' },
+        { key: 'civil', tag: '3', head: 'Civil War · 1861–1865' },
+        { key: 'spanish', tag: '4', head: 'Spanish-American War' },
+      ]}
+    />
+  );
+}
+
+// Unit 5. Important events of the Civil War, in order.
+function CivilWarEvents({ focus, pick } = {}) {
+  return (
+    <TagRows
+      drawing="civilWarEvents" focus={focus} pick={pick} header="The Civil War · 1861–1865"
+      title="Events of the Civil War: Fort Sumter in 1861, where the war began; the Emancipation Proclamation in 1863; the Battle of Gettysburg in 1863, a Union win; and Lee's surrender at Appomattox in 1865, which ended the war"
+      rows={[
+        { key: 'fortSumter', tag: '1861', head: 'Fort Sumter', sub: 'the war begins' },
+        { key: 'emancipation', tag: '1863', head: 'Emancipation Proclamation', sub: 'freed the slaves in the Confederate states' },
+        { key: 'gettysburg', tag: '1863', head: 'Battle of Gettysburg', sub: 'a big Union win in Pennsylvania' },
+        { key: 'appomattox', tag: '1865', head: 'Appomattox', sub: 'Lee surrenders: the war ends', gold: true },
+      ]}
+    />
+  );
+}
+
+// Unit 5. The amendments added after the Civil War.
+function ReconstructionAmendments({ focus, pick } = {}) {
+  return (
+    <TagRows
+      drawing="reconstructionAmendments" focus={focus} pick={pick} header="After the Civil War"
+      title="Amendments after the Civil War: the 13th ended slavery; the 14th says all persons born or naturalized in the United States are citizens; the 15th, in 1870, says a man cannot be kept from voting because of his race"
+      rows={[
+        { key: 'thirteenth', tag: '13th', head: 'Ended slavery' },
+        { key: 'fourteenth', tag: '14th', head: 'Citizens', sub: 'all persons born or naturalized here' },
+        { key: 'fifteenth', tag: '15th', head: 'Voting · 1870', sub: 'no ban because of a man’s race' },
+      ]}
+    />
+  );
+}
+
 export const DRAWINGS = {
   threeBranches: ThreeBranches,
   termLengths: TermLengths,
@@ -1042,6 +1140,10 @@ export const DRAWINGS = {
   revolutionTimeline: RevolutionTimeline,
   publius: Publius,
   dollarBills: DollarBills,
+  growingCountry: GrowingCountry,
+  wars1800s: Wars1800s,
+  civilWarEvents: CivilWarEvents,
+  reconstructionAmendments: ReconstructionAmendments,
 };
 
 // The parts each drawing can light up (story scenes' `focus`).
@@ -1075,4 +1177,9 @@ export const DRAWING_FOCUS = {
   revolutionTimeline: ['bunkerHill', 'delaware', 'valleyForge', 'yorktown'],
   publius: ['madison', 'hamilton', 'jay'],
   dollarBills: ['one', 'ten'],
+  civilWarMap: ['union', 'confederacy', 'border'],
+  growingCountry: ['louisiana', 'alaska'],
+  wars1800s: ['war1812', 'mexican', 'civil', 'spanish'],
+  civilWarEvents: ['fortSumter', 'emancipation', 'gettysburg', 'appomattox'],
+  reconstructionAmendments: ['thirteenth', 'fourteenth', 'fifteenth'],
 };
