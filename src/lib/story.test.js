@@ -73,6 +73,23 @@ describe('stories (Listen as a short video)', () => {
     expect(storyPicture({ yourState: true })).toEqual({ kind: 'yourState' });
   });
 
+  it('Unit 3: draft stories, help for every scene, tap checks, and a lawyer line on Becoming a citizen', () => {
+    const lessons = UNITS.find((u) => u.id === 'u3').sections.flatMap((sec) => sec.lessons);
+    expect(lessons).toHaveLength(6);
+    let taps = 0;
+    for (const l of lessons) {
+      const story = l.steps.listen.story;
+      expect(l.steps.listen.storyStatus, l.id).toBe('draft');
+      for (const item of story.filter((x) => x.say)) {
+        for (const k of HELP_KINDS) expect(item.help?.[k], `${l.id}: ${item.say}`).toBeTruthy();
+      }
+      if (story.some((x) => x.check?.kind === 'tap')) taps++;
+    }
+    expect(taps).toBeGreaterThanOrEqual(5);
+    const citizen = lessons.find((l) => l.id === 'u3-s3-l1').steps.listen.story;
+    expect(citizen.some((x) => x.say?.includes('talk to a lawyer first'))).toBe(true);
+  });
+
   it('help lines and tap checks go into the translation sources', () => {
     const texts = storyTexts([
       { say: 'Line', help: { simpler: 'A', example: 'B', why: 'C' } },

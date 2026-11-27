@@ -82,6 +82,97 @@
               "word": "derive",
               "meaning": "to get something from someone else, like a parent"
             }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "There are three ways to become a U.S. citizen.",
+              "picture": {
+                "drawing": "waysToCitizenship"
+              },
+              "help": {
+                "simpler": "People can become citizens in three different ways.",
+                "example": "The three ways are: being born here, naturalizing and deriving citizenship.",
+                "why": "The test asks how people can become U.S. citizens."
+              }
+            },
+            {
+              "say": "One way is being born in the United States, under the conditions in the 14th Amendment.",
+              "picture": {
+                "drawing": "waysToCitizenship",
+                "focus": "born"
+              },
+              "help": {
+                "simpler": "Most people born in the United States are citizens from birth.",
+                "example": "The 14th Amendment, from 1868, says this.",
+                "why": "“Be born in the United States” is one answer on the test."
+              }
+            },
+            {
+              "say": "Another way is to naturalize: apply, pass the interview and test, and take the Oath.",
+              "picture": {
+                "drawing": "waysToCitizenship",
+                "focus": "naturalize"
+              },
+              "help": {
+                "simpler": "Naturalizing means becoming a citizen after being born somewhere else.",
+                "example": "The civics test in this app is part of naturalizing.",
+                "why": "“Naturalize” is another answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "tap",
+                "prompt": "Tap the way that includes an interview and a test.",
+                "picture": {
+                  "drawing": "waysToCitizenship"
+                },
+                "answer": "naturalize"
+              }
+            },
+            {
+              "say": "A third way is deriving citizenship, under conditions set by Congress, for example from a parent.",
+              "picture": {
+                "drawing": "waysToCitizenship",
+                "focus": "derive"
+              },
+              "help": {
+                "simpler": "Some people get citizenship through a parent, under rules made by Congress.",
+                "example": "For example, some children become citizens when a parent naturalizes.",
+                "why": "“Derive citizenship” is the third answer on the test."
+              }
+            },
+            {
+              "say": "Which way fits a person depends on their own story.",
+              "help": {
+                "simpler": "Everyone’s situation is different.",
+                "example": "Two people from the same country may have different paths.",
+                "why": "This app explains the test. It cannot tell you which way fits you."
+              }
+            },
+            {
+              "say": "For questions about your own case, talk to a lawyer first.",
+              "picture": {
+                "drawing": "waysToCitizenship"
+              },
+              "help": {
+                "simpler": "A lawyer can look at your own situation.",
+                "example": "Free or low-cost legal help is listed in Free help near you.",
+                "why": "Only a lawyer or an accredited representative should give advice about your case."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "How can people become U.S. citizens? Pick one way.",
+                "choices": [
+                  "Naturalize",
+                  "Pay taxes",
+                  "Vote"
+                ],
+                "answer": 0
+              }
+            }
           ]
         },
         "teachBack": {
@@ -138,6 +229,104 @@
             {
               "word": "loyalty",
               "meaning": "staying true to someone or something"
+            }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "New citizens take the Oath of Allegiance at the end of naturalization.",
+              "picture": {
+                "photo": "naturalization-ceremony.jpg"
+              },
+              "help": {
+                "simpler": "At a ceremony, new citizens say the Oath of Allegiance out loud.",
+                "example": "This photo shows people taking the Oath at a ceremony in 1979.",
+                "why": "The test asks you to name two promises from the Oath."
+              }
+            },
+            {
+              "say": "In the Oath, they make promises to the United States.",
+              "picture": {
+                "drawing": "oathPromises"
+              },
+              "help": {
+                "simpler": "The Oath is a set of promises.",
+                "example": "Four of the promises are in the picture.",
+                "why": "You need to name two of them on the test."
+              }
+            },
+            {
+              "say": "They promise to give up loyalty to other countries.",
+              "picture": {
+                "drawing": "oathPromises",
+                "focus": "loyalty"
+              },
+              "help": {
+                "simpler": "They promise that their loyalty now belongs to the United States.",
+                "example": "“Loyalty” means being faithful and true to someone or something.",
+                "why": "“Give up loyalty to other countries” is one answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "In the Oath, new citizens promise to give up loyalty to other countries.",
+                "answer": true
+              }
+            },
+            {
+              "say": "They promise to defend the Constitution and obey the laws of the United States.",
+              "picture": {
+                "drawing": "oathPromises",
+                "focus": "defend"
+              },
+              "help": {
+                "simpler": "They promise to protect the Constitution and follow U.S. laws.",
+                "example": "Obeying the law means following the rules, like everyone else.",
+                "why": "“Defend the Constitution” and “Obey the laws of the United States” are two answers."
+              }
+            },
+            {
+              "check": {
+                "kind": "tap",
+                "prompt": "Tap the promise about the Constitution.",
+                "picture": {
+                  "drawing": "oathPromises"
+                },
+                "answer": "defend"
+              }
+            },
+            {
+              "say": "They also promise to serve in the military or help the nation if needed.",
+              "picture": {
+                "drawing": "oathPromises",
+                "focus": "serve"
+              },
+              "help": {
+                "simpler": "If the country needs help, they promise to serve.",
+                "example": "Helping could mean military service or important work for the nation.",
+                "why": "“Serve in the military (if needed)” and “Serve the nation (if needed)” are more answers."
+              }
+            },
+            {
+              "say": "When we say the Pledge of Allegiance, we show loyalty to the United States and the flag.",
+              "help": {
+                "simpler": "The Pledge is a short promise of loyalty that many people say.",
+                "example": "Students in many schools say the Pledge in the morning.",
+                "why": "The test asks what we show loyalty to: the United States and the flag."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "What do we show loyalty to when we say the Pledge of Allegiance?",
+                "choices": [
+                  "The United States and the flag",
+                  "Another country",
+                  "A political party"
+                ],
+                "answer": 0
+              }
             }
           ]
         },

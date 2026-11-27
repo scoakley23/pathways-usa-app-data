@@ -86,7 +86,141 @@
             "license": "Standard YouTube license: embedding is allowed by YouTube's terms, but the video is not licensed to Pathways. Check before marking reviewed.",
             "status": "draft",
             "note": "From the old Lessons tab (Base44 Lesson \"Fundamental Rights of Citizens\"). Before reviewing: watch it all; check it matches the 2025 answers, has no flags, seals, eagles or Statue of Liberty, and the English is easy enough."
-          }
+          },
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "Some rights belong to everyone living in the United States, not only to citizens.",
+              "picture": {
+                "drawing": "everyoneRights"
+              },
+              "help": {
+                "simpler": "These rights are for everyone living here, citizens or not.",
+                "example": "A person who just moved to the United States has these rights too.",
+                "why": "The test asks you to name three rights of everyone living in the United States."
+              }
+            },
+            {
+              "say": "Most of these rights come from the First Amendment.",
+              "picture": {
+                "photo": "bill-of-rights.jpg"
+              },
+              "help": {
+                "simpler": "The First Amendment is the first amendment in the Bill of Rights.",
+                "example": "It protects speech, religion, the press, meeting in groups and asking the government for change.",
+                "why": "Knowing the First Amendment helps you remember most of these rights."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "These rights are only for U.S. citizens.",
+                "answer": false
+              }
+            },
+            {
+              "say": "Freedom of expression: you can share your ideas in many ways, like writing, art or speaking.",
+              "picture": {
+                "drawing": "everyoneRights",
+                "focus": "expression"
+              },
+              "help": {
+                "simpler": "You can show what you think in many ways.",
+                "example": "You can write a story, paint a picture or sing a song about your ideas.",
+                "why": "“Freedom of expression” is one right you can name on the test."
+              }
+            },
+            {
+              "say": "Freedom of speech: you can say what you think, even if you disagree with the government.",
+              "picture": {
+                "drawing": "everyoneRights",
+                "focus": "speech"
+              },
+              "help": {
+                "simpler": "You can say your opinion out loud, even about the government.",
+                "example": "You can tell a reporter you think a new law is unfair.",
+                "why": "“Freedom of speech” is another right you can name."
+              }
+            },
+            {
+              "say": "Freedom of assembly: you can meet together with other people in a peaceful group.",
+              "picture": {
+                "drawing": "everyoneRights",
+                "focus": "assembly"
+              },
+              "help": {
+                "simpler": "People can gather together peacefully.",
+                "example": "Neighbors can meet in a park to talk about a problem in their town.",
+                "why": "“Freedom of assembly” is another right you can name."
+              }
+            },
+            {
+              "check": {
+                "kind": "tap",
+                "prompt": "Tap the right to meet together in a peaceful group.",
+                "picture": {
+                  "drawing": "everyoneRights"
+                },
+                "answer": "assembly"
+              }
+            },
+            {
+              "say": "Freedom to petition the government: you can ask the government to change a law or fix a problem.",
+              "picture": {
+                "drawing": "everyoneRights",
+                "focus": "petition"
+              },
+              "help": {
+                "simpler": "You can ask the government for a change.",
+                "example": "People can sign a letter asking the city to fix a dangerous road.",
+                "why": "“Freedom to petition the government” is another right you can name."
+              }
+            },
+            {
+              "say": "Freedom of religion: you can practice any religion, or no religion at all.",
+              "picture": {
+                "drawing": "everyoneRights",
+                "focus": "religion"
+              },
+              "help": {
+                "simpler": "You can choose your religion, or have none.",
+                "example": "People can pray at a church, mosque, temple or synagogue, or not pray at all.",
+                "why": "“Freedom of religion” is another right you can name."
+              }
+            },
+            {
+              "say": "The right to bear arms: the Second Amendment protects the right to have guns, following the law.",
+              "picture": {
+                "drawing": "everyoneRights",
+                "focus": "arms"
+              },
+              "help": {
+                "simpler": "People may own guns, as long as they follow the law.",
+                "example": "There are laws about who may buy a gun and where guns may be carried.",
+                "why": "“The right to bear arms” is another right you can name."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Which one is a right of everyone living in the United States?",
+                "choices": [
+                  "Freedom of religion",
+                  "Voting in federal elections",
+                  "Serving on a jury"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "For the test, you need to name three.",
+              "help": {
+                "simpler": "The officer asks for three rights. Say three of them.",
+                "example": "You could say: “Freedom of speech, freedom of religion and freedom of assembly.”",
+                "why": "Practice saying three together so they come easily."
+              }
+            }
+          ]
         },
         "teachBack": {
           "questionId": "6ad16ecf6a9c603911f9de57"
@@ -159,7 +293,111 @@
             "license": "Standard YouTube license: embedding is allowed by YouTube's terms, but the video is not licensed to Pathways. Check before marking reviewed.",
             "status": "draft",
             "note": "From the old Lessons tab (Base44 Lesson \"Voting Rights and Democratic Participation\"). Before reviewing: watch it all; check it matches the 2025 answers, has no flags, seals, eagles or Statue of Liberty, and the English is easy enough."
-          }
+          },
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "Only U.S. citizens can vote in federal elections, run for federal office and serve on a jury.",
+              "picture": {
+                "drawing": "citizensOnly"
+              },
+              "help": {
+                "simpler": "These three things are only for U.S. citizens.",
+                "example": "Voting for President, running for Congress and serving on a jury are for citizens only.",
+                "why": "The test asks who can do these three things. The answer is U.S. citizens."
+              }
+            },
+            {
+              "check": {
+                "kind": "tap",
+                "prompt": "Tap the one that happens in a courtroom.",
+                "picture": {
+                  "drawing": "citizensOnly"
+                },
+                "answer": "jury"
+              }
+            },
+            {
+              "say": "Four amendments to the Constitution are about who can vote.",
+              "picture": {
+                "drawing": "votingAmendments"
+              },
+              "help": {
+                "simpler": "Four changes to the Constitution say who can vote.",
+                "example": "Over time, these amendments let more people vote.",
+                "why": "The test asks you to describe one of them."
+              }
+            },
+            {
+              "say": "One says a male citizen of any race can vote.",
+              "picture": {
+                "drawing": "votingAmendments",
+                "focus": "race"
+              },
+              "help": {
+                "simpler": "This amendment said race cannot stop a male citizen from voting.",
+                "example": "This is the 15th Amendment, from 1870, after the Civil War.",
+                "why": "“A male citizen of any race can vote” is one answer on the test."
+              }
+            },
+            {
+              "say": "One says women can vote.",
+              "picture": {
+                "photo": "suffrage-parade-1913.jpg"
+              },
+              "help": {
+                "simpler": "Women got the right to vote in every state.",
+                "example": "This is the 19th Amendment, from 1920. The photo shows a march for women’s right to vote in 1913.",
+                "why": "“Any citizen can vote. Women and men can vote” is another answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Who can vote in federal elections?",
+                "choices": [
+                  "U.S. citizens",
+                  "Anyone who lives in the United States",
+                  "Only people born in the United States"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "One says no one has to pay a tax to vote.",
+              "picture": {
+                "drawing": "votingAmendments",
+                "focus": "pollTax"
+              },
+              "help": {
+                "simpler": "No one can be charged money to vote.",
+                "example": "Some places once charged a “poll tax.” The 24th Amendment ended that in 1964.",
+                "why": "“You don’t have to pay a poll tax to vote” is another answer on the test."
+              }
+            },
+            {
+              "say": "And one says citizens 18 and older can vote.",
+              "picture": {
+                "drawing": "votingAmendments",
+                "focus": "age18"
+              },
+              "help": {
+                "simpler": "Citizens can vote from age 18.",
+                "example": "Before the 26th Amendment in 1971, many states made voters wait until 21.",
+                "why": "“Citizens eighteen and older can vote” is another answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "tap",
+                "prompt": "Tap the amendment about citizens 18 and older.",
+                "picture": {
+                  "drawing": "votingAmendments"
+                },
+                "answer": "age18"
+              }
+            }
+          ]
         },
         "teachBack": {
           "questionId": "6ad16ecf6a9c603911f9de56"

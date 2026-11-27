@@ -42,6 +42,12 @@ export const DRAWING_PARTS = {
   executiveBranch: { president: 'The President', vicePresident: 'The Vice President', cabinet: 'The Cabinet', departments: 'Federal departments and agencies' },
   courtsLevels: { supreme: 'The Supreme Court', federal: 'Other federal courts' },
   federalStatePowers: { federal: 'Powers only for the federal government', states: 'Powers only for the states', tenth: 'The 10th Amendment' },
+  everyoneRights: { expression: 'Freedom of expression', speech: 'Freedom of speech', assembly: 'Freedom of assembly', petition: 'Freedom to petition the government', religion: 'Freedom of religion', arms: 'The right to bear arms' },
+  votingAmendments: { race: 'A male citizen of any race can vote', women: 'Women can vote', pollTax: 'No one has to pay a tax to vote', age18: 'Citizens 18 and older can vote' },
+  citizensOnly: { vote: 'Vote in federal elections', office: 'Run for federal office', jury: 'Serve on a jury' },
+  waysToServe: { vote: 'Vote', taxes: 'Pay taxes', law: 'Obey the law', military: 'Serve in the military', office: 'Run for office', government: 'Work for the government' },
+  waysToCitizenship: { born: 'Born in the United States', naturalize: 'Naturalize', derive: 'Derive citizenship' },
+  oathPromises: { loyalty: 'Give up loyalty to other countries', defend: 'Defend the Constitution', obey: 'Obey the laws of the United States', serve: 'Serve the nation if needed' },
 };
 
 // One part of a drawing: it fades when another part is lit (`focus`). In a
@@ -738,6 +744,145 @@ function FederalStatePowers({ focus, pick } = {}) {
   );
 }
 
+// A box with a bold first line and smaller lines under it (Unit 3 drawings).
+function LabelTile({ x, y, w, h, fill = 'fill-white', lines }) {
+  const [head, ...rest] = lines;
+  const total = 20 + rest.length * 17;
+  const top = y + (h - total) / 2 + 14;
+  return (
+    <g>
+      <Box x={x} y={y} w={w} h={h} className={`${fill} stroke-denim`} />
+      <T x={x + w / 2} y={top} size={14} weight={700}>{head}</T>
+      {rest.map((line, i) => <T key={line} x={x + w / 2} y={top + 20 + i * 17} size={12} weight={400}>{line}</T>)}
+    </g>
+  );
+}
+const SOFT = ['fill-sky-soft', 'fill-gold-soft', 'fill-denim-soft'];
+
+// Rights of everyone living in the United States.
+function EveryoneRights({ focus, pick } = {}) {
+  const tiles = [
+    { key: 'expression', lines: ['Expression', 'ideas in many ways'] },
+    { key: 'speech', lines: ['Speech', 'say what you think'] },
+    { key: 'assembly', lines: ['Assembly', 'meet in a peaceful group'] },
+    { key: 'petition', lines: ['Petition', 'ask the government'] },
+    { key: 'religion', lines: ['Religion', 'any religion, or none'] },
+    { key: 'arms', lines: ['Bear arms', '2nd Amendment'] },
+  ];
+  return (
+    <Frame viewBox="0 0 350 244" title="Rights of everyone living in the United States: freedom of expression, of speech, of assembly, to petition the government and of religion, and the right to bear arms">
+      {tiles.map((t, i) => (
+        <Part key={t.key} id={t.key} focus={focus} pick={pick} drawing="everyoneRights">
+          <LabelTile x={i % 2 ? 180 : 4} y={6 + Math.floor(i / 2) * 80} w={166} h={72} fill={SOFT[i % 3]} lines={t.lines} />
+        </Part>
+      ))}
+    </Frame>
+  );
+}
+
+// The four amendments about who can vote.
+function VotingAmendments({ focus, pick } = {}) {
+  const rows = [
+    { key: 'race', n: '15th', text: 'A male citizen of any race' },
+    { key: 'women', n: '19th', text: 'Women can vote' },
+    { key: 'pollTax', n: '24th', text: 'No tax to vote (no poll tax)' },
+    { key: 'age18', n: '26th', text: 'Citizens 18 and older' },
+  ];
+  return (
+    <Frame viewBox="0 0 350 228" title="Four amendments about who can vote: the 15th, a male citizen of any race; the 19th, women; the 24th, no poll tax; the 26th, citizens 18 and older">
+      {rows.map((r, i) => (
+        <Part key={r.key} id={r.key} focus={focus} pick={pick} drawing="votingAmendments">
+          <Box x={4} y={6 + i * 56} w={342} h={48} className={`${SOFT[i % 3]} stroke-denim`} />
+          <rect x={12} y={14 + i * 56} width={62} height={32} rx={8} className="fill-navy" />
+          <T x={43} y={35 + i * 56} size={13} weight={700} className="fill-white">{r.n}</T>
+          <T x={86} y={35 + i * 56} anchor="start" size={14} weight={700}>{r.text}</T>
+        </Part>
+      ))}
+    </Frame>
+  );
+}
+
+// What only U.S. citizens can do.
+function CitizensOnly({ focus, pick } = {}) {
+  const tiles = [
+    { key: 'vote', x: 4, lines: ['Vote', 'in federal', 'elections'] },
+    { key: 'office', x: 120, lines: ['Run', 'for federal', 'office'] },
+    { key: 'jury', x: 236, lines: ['Serve', 'on a jury'] },
+  ];
+  return (
+    <Frame viewBox="0 0 350 172" title="Only U.S. citizens can vote in federal elections, run for federal office and serve on a jury">
+      <Box x={4} y={6} w={342} h={40} className="fill-navy stroke-navy" />
+      <T x={175} y={31} size={14} weight={700} className="fill-white">Only U.S. citizens can</T>
+      {tiles.map((t, i) => (
+        <Part key={t.key} id={t.key} focus={focus} pick={pick} drawing="citizensOnly">
+          <LabelTile x={t.x} y={56} w={110} h={110} fill={SOFT[i % 3]} lines={t.lines} />
+        </Part>
+      ))}
+    </Frame>
+  );
+}
+
+// Ways Americans can serve their country.
+function WaysToServe({ focus, pick } = {}) {
+  const tiles = [
+    { key: 'vote', lines: ['Vote'] },
+    { key: 'taxes', lines: ['Pay', 'taxes'] },
+    { key: 'law', lines: ['Obey', 'the law'] },
+    { key: 'military', lines: ['Serve in', 'the military'] },
+    { key: 'office', lines: ['Run', 'for office'] },
+    { key: 'government', lines: ['Work for', 'the government'] },
+  ];
+  return (
+    <Frame viewBox="0 0 350 196" title="Ways to serve the country: vote, pay taxes, obey the law, serve in the military, run for office, work for the government">
+      {tiles.map((t, i) => (
+        <Part key={t.key} id={t.key} focus={focus} pick={pick} drawing="waysToServe">
+          <LabelTile x={4 + (i % 3) * 116} y={6 + Math.floor(i / 3) * 96} w={110} h={88} fill={SOFT[i % 3]} lines={t.lines} />
+        </Part>
+      ))}
+    </Frame>
+  );
+}
+
+// The three ways to become a U.S. citizen (no advice about anyone's case).
+function WaysToCitizenship({ focus, pick } = {}) {
+  const cols = [
+    { key: 'born', x: 4, lines: ['Born', 'in the U.S.', '14th Amendment'] },
+    { key: 'naturalize', x: 120, lines: ['Naturalize', 'apply, interview', 'and test, Oath'] },
+    { key: 'derive', x: 236, lines: ['Derive', 'for example,', 'from a parent'] },
+  ];
+  return (
+    <Frame viewBox="0 0 350 216" title="Three ways to become a U.S. citizen: be born in the United States, under the 14th Amendment; naturalize; or derive citizenship, for example from a parent. For your own case, talk to a lawyer first.">
+      {cols.map((c, i) => (
+        <Part key={c.key} id={c.key} focus={focus} pick={pick} drawing="waysToCitizenship">
+          <LabelTile x={c.x} y={6} w={110} h={130} fill={SOFT[i % 3]} lines={c.lines} />
+        </Part>
+      ))}
+      <rect x={4} y={148} width={342} height={60} rx={10} className="fill-gold" />
+      <T x={175} y={172} size={14} weight={700}>Your own case?</T>
+      <T x={175} y={194} size={13} weight={600}>Talk to a lawyer first.</T>
+    </Frame>
+  );
+}
+
+// Promises in the Oath of Allegiance.
+function OathPromises({ focus, pick } = {}) {
+  const tiles = [
+    { key: 'loyalty', lines: ['Give up loyalty', 'to other countries'] },
+    { key: 'defend', lines: ['Defend', 'the Constitution'] },
+    { key: 'obey', lines: ['Obey the laws', 'of the United States'] },
+    { key: 'serve', lines: ['Serve the nation', 'if needed'] },
+  ];
+  return (
+    <Frame viewBox="0 0 350 216" title="Promises in the Oath of Allegiance: give up loyalty to other countries, defend the Constitution, obey the laws of the United States, and serve the nation if needed">
+      {tiles.map((t, i) => (
+        <Part key={t.key} id={t.key} focus={focus} pick={pick} drawing="oathPromises">
+          <LabelTile x={i % 2 ? 180 : 4} y={6 + Math.floor(i / 2) * 106} w={166} h={98} fill={SOFT[i % 3]} lines={t.lines} />
+        </Part>
+      ))}
+    </Frame>
+  );
+}
+
 export const DRAWINGS = {
   threeBranches: ThreeBranches,
   termLengths: TermLengths,
@@ -762,6 +907,12 @@ export const DRAWINGS = {
   executiveBranch: ExecutiveBranch,
   courtsLevels: CourtsLevels,
   federalStatePowers: FederalStatePowers,
+  everyoneRights: EveryoneRights,
+  votingAmendments: VotingAmendments,
+  citizensOnly: CitizensOnly,
+  waysToServe: WaysToServe,
+  waysToCitizenship: WaysToCitizenship,
+  oathPromises: OathPromises,
 };
 
 // The parts each drawing can light up (story scenes' `focus`).
@@ -784,4 +935,10 @@ export const DRAWING_FOCUS = {
   courtsLevels: ['supreme', 'federal'],
   federalStatePowers: ['federal', 'states', 'tenth'],
   supremeCourt: ['chief', 'majority'],
+  everyoneRights: ['expression', 'speech', 'assembly', 'petition', 'religion', 'arms'],
+  votingAmendments: ['race', 'women', 'pollTax', 'age18'],
+  citizensOnly: ['vote', 'office', 'jury'],
+  waysToServe: ['vote', 'taxes', 'law', 'military', 'office', 'government'],
+  waysToCitizenship: ['born', 'naturalize', 'derive'],
+  oathPromises: ['loyalty', 'defend', 'obey', 'serve'],
 };
