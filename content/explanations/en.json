@@ -1733,8 +1733,8 @@
       "Freedom of religion",
       "The right to bear arms"
     ],
-    "status": "draft",
-    "explanation": "Some rights belong to everyone living in the United States, not only to citizens. Most of these rights come from the First Amendment.\n\n• Freedom of expression: You can share your ideas in many ways, like writing, art, or speaking.\n• Freedom of speech: You can say what you think, even if you disagree with the government.\n• Freedom of assembly: You can meet together with other people in a peaceful group.\n• Freedom to petition the government: You can ask the government to change a law or fix a problem.\n• Freedom of religion: You can practice any religion, or no religion at all.\n• The right to bear arms: The Second Amendment protects the right to have guns, following the law.\n\nYou need to name three.",
+    "status": "reviewed",
+    "explanation": "Some rights belong to everyone living in the United States, not only to citizens. Most of these rights come from the First Amendment.\n\n• Freedom of expression: You can share your ideas in many ways, like writing, art, or speaking.\n• Freedom of speech: You can say what you think, even if you disagree with the government.\n• Freedom of assembly: You can meet together with other people in a peaceful group.\n• Freedom to petition the government: You can ask the government to change a law or fix a problem.\n• Freedom of religion: You can practice any religion, or no religion at all.\n• The right to bear arms: The Second Amendment protects the right to keep and carry guns. Laws set rules about who may have a gun.\n\nYou need to name three.",
     "keyWords": [
       {
         "en": "rights",
@@ -1784,7 +1784,7 @@
       "Director of National Intelligence",
       "United States Trade Representative"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The Cabinet is a group of top leaders who advise the president. Most of them lead a federal department, like the Secretary of State or the Secretary of the Treasury. The Attorney General leads the Department of Justice. The vice president is also part of the Cabinet. You need to name two positions from the official list.",
     "keyWords": [
       {
@@ -1823,7 +1823,7 @@
       "Support or oppose an issue or policy",
       "Write to a newspaper"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "Civic participation means taking part in the life of your community and your country. Voting is one important way to participate. People also join community groups, help with campaigns, or run for office. You can also contact elected officials to share your opinion on an issue. You need to name two examples from the official list.",
     "keyWords": [
       {
@@ -1852,7 +1852,7 @@
       "Freed slaves in the Confederate states",
       "Freed slaves in most Southern states"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "President Abraham Lincoln issued the Emancipation Proclamation on January 1, 1863, during the Civil War. “Emancipation” means being made free. The proclamation freed the slaves in the Confederate states, which were fighting against the Union. Later, in 1865, the 13th Amendment ended slavery in the whole country.",
     "keyWords": [
       {
@@ -1878,7 +1878,7 @@
     "answers": [
       "Fought to end racial discrimination"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The civil rights movement was a large effort by many Americans, mostly in the 1950s and 1960s. Black Americans and their supporters worked to end racial discrimination, which means treating people unfairly because of their race. They held peaceful marches, protests, and boycotts. Dr. Martin Luther King, Jr. was one of its most famous leaders. The movement helped bring new laws, such as the Civil Rights Act of 1964.",
     "keyWords": [
       {
@@ -1901,7 +1901,7 @@
       "The United States",
       "The flag"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The Pledge of Allegiance is a short promise of loyalty. People often say it while standing and facing the flag, with the right hand over the heart. When you say it, you show loyalty to the United States and to the flag. You can give either of these two answers.",
     "keyWords": [
       {
@@ -1924,7 +1924,7 @@
       "(The basic) rights of Americans",
       "(The basic) rights of people living in the United States"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The Bill of Rights is the name for the first ten amendments (changes) to the Constitution. It was added in 1791. It protects the basic rights of Americans and of people living in the United States. Examples are freedom of speech, freedom of religion, and the right to a fair trial.",
     "keyWords": [
       {
@@ -1950,8 +1950,8 @@
     "answers": [
       "Advises the President (of the United States)"
     ],
-    "status": "draft",
-    "explanation": "The Cabinet is a group of top leaders in the executive branch. Most of them lead big government departments, such as the Department of State or the Department of Defense. The President chooses them, and the Senate must approve most of them. The Cabinet's job is to advise the President, which means to give the President advice and information.",
+    "status": "reviewed",
+    "explanation": "The Cabinet is a group of top leaders in the executive branch. Most of them lead big government departments, such as the Department of State or the Department of the Treasury. The President chooses them, and the Senate must approve most of them. The Cabinet's job is to advise the President, which means to give the President advice and information.",
     "keyWords": [
       {
         "en": "Cabinet",
@@ -1975,7 +1975,7 @@
       "Resolves disputes (disagreements) about the law",
       "Decides if a law goes against the (U.S.) Constitution"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The judicial branch is the part of government made up of the courts. Judges review and explain laws. They also resolve disputes, or disagreements, about the law. The courts can decide if a law goes against the Constitution. You can give any one of these accepted answers.",
     "keyWords": [
       {
@@ -2001,7 +2001,7 @@
     "answers": [
       "Declaration of Independence"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "In the 1700s, the American colonies were ruled by Britain. The colonists were unhappy with British laws and taxes. On July 4, 1776, leaders approved the Declaration of Independence. This document said the colonies were free from Britain. Thomas Jefferson was its main writer.",
     "keyWords": [
       {
@@ -2027,7 +2027,7 @@
     "answers": [
       "(U.S.) Constitution"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "In 1787, leaders from the states met in Philadelphia at the Constitutional Convention. There they wrote the U.S. Constitution. It created the plan for the national government and its three branches. The Constitution is still the supreme law of the land today.",
     "keyWords": [
       {
@@ -2050,8 +2050,8 @@
       "Africans",
       "People from Africa"
     ],
-    "status": "draft",
-    "explanation": "For more than 200 years, people from Africa were taken from their homes by force. They were brought to America on ships and sold as slaves. Enslaved people had to work without pay and had no freedom. Slavery in the United States ended in 1865 with the 13th Amendment.",
+    "status": "reviewed",
+    "explanation": "Starting in the 1600s, people from Africa were taken from their homes by force. They were brought to America on ships and sold as slaves. Enslaved people had to work without pay and had no freedom. Slavery in the United States ended in 1865 with the 13th Amendment.",
     "keyWords": [
       {
         "en": "slaves",
@@ -2077,7 +2077,7 @@
       "A holiday to celebrate U.S. independence (from Britain)",
       "The country’s birthday"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "Independence Day is on July 4. It is a holiday to celebrate U.S. independence from Britain. On July 4, 1776, the Declaration of Independence was approved. That is why people call it the country's birthday. Many Americans celebrate with parades, family meals, and fireworks.",
     "keyWords": [
       {
@@ -2103,7 +2103,7 @@
     "answers": [
       "A holiday to honor soldiers who died in military service"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "Memorial Day is a national holiday on the last Monday in May. It is a day to honor soldiers who died in military service. Many people visit cemeteries and place flags or flowers on graves. Do not confuse it with Veterans Day, which honors all people who have served.",
     "keyWords": [
       {
@@ -2130,7 +2130,7 @@
       "A holiday to honor people in the (U.S.) military",
       "A holiday to honor people who have served (in the U.S. military)"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "Veterans Day is a national holiday on November 11. It honors people who have served in the U.S. military. A veteran is a person who served in the Army, Navy, Air Force, or another military service. Unlike Memorial Day, it honors all who served, both living and dead.",
     "keyWords": [
       {
@@ -2157,7 +2157,7 @@
       "Supreme Court",
       "Federal Courts"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The judicial branch is the system of courts. The Supreme Court is the highest court in the country. Below it are the other federal courts, which hear cases about federal law. You can name either the Supreme Court or the federal courts.",
     "keyWords": [
       {
@@ -2184,7 +2184,7 @@
       "Run for office",
       "Work for local, state, or federal government"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "There are many ways to serve, or help, your country. Some are duties for everyone, like paying taxes and obeying the law. Citizens can also vote and run for office. People can serve in the military or work for local, state, or federal government. You can give any one of these accepted answers.",
     "keyWords": [
       {
@@ -2214,7 +2214,7 @@
     "answers": [
       "Washington, D.C."
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The capital of the United States is Washington, D.C. \"D.C.\" means District of Columbia. It is not part of any state. The President, Congress, and the Supreme Court all work in Washington, D.C.",
     "keyWords": [
       {
@@ -2232,7 +2232,7 @@
     "answers": [
       "Answers vary by where you live."
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "Each of the 50 states has its own capital city. The capital is where the state government works, including the governor and the state legislature. The answer depends on the state where you live. Find your own state's capital before your interview. The capital is not always the biggest city in the state.",
     "keyWords": [
       {
@@ -2255,7 +2255,7 @@
       "Capitalism",
       "Free market economy"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The economic system of the United States is capitalism, also called a free market economy. In this system, people and private companies own most businesses. They decide what to make and sell, and prices are set mostly by buyers and sellers. You can give either answer.",
     "keyWords": [
       {
@@ -2279,7 +2279,7 @@
       "Constitution-based federal republic",
       "Representative democracy"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The United States is a republic. In a republic, the people elect representatives to make decisions and laws for them. That is why it is also called a representative democracy. It is a federal republic based on the Constitution, so power is shared between the national government and the states. You can give any one of these accepted answers.",
     "keyWords": [
       {
@@ -2305,7 +2305,7 @@
     "answers": [
       "Supreme Court"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The Supreme Court is the highest court in the United States. It is part of the judicial branch. Its decisions are final, and other courts must follow them. Today the Supreme Court has nine justices, or judges.",
     "keyWords": [
       {
@@ -2323,7 +2323,7 @@
     "answers": [
       "Answers change. Check uscis.gov for the current answer."
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The President is the head of the executive branch and leads the national government. Americans elect the President every four years. The person in this office can change after an election. Before your interview, check uscis.gov for the current answer and learn the name.",
     "keyWords": [
       {
@@ -2345,7 +2345,7 @@
     "answers": [
       "Answers change. Check uscis.gov for the current answer."
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The Speaker of the House leads the House of Representatives. The members of the House choose the Speaker by voting. The Speaker is second in line to become President, after the Vice President. The person in this role can change, so check uscis.gov for the current answer before your interview.",
     "keyWords": [
       {
@@ -2367,7 +2367,7 @@
     "answers": [
       "Answers change. Check uscis.gov for the current answer."
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The Vice President works with the President in the executive branch. If the President can no longer serve, the Vice President becomes President. The Vice President is also the President of the Senate. The person in this office can change after an election, so check uscis.gov for the current answer before your interview.",
     "keyWords": [
       {
@@ -2411,7 +2411,7 @@
     "answers": [
       "(It states that the) powers not given to the federal government belong to the states or to the people."
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The 10th Amendment is part of the Bill of Rights. It says that powers not given to the federal government belong to the states or to the people. This limits the power of the national government. For example, states make many of their own rules about schools and driver's licenses.",
     "keyWords": [
       {
@@ -2440,7 +2440,7 @@
       "Government must obey the law.",
       "No one is above the law."
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The rule of law means that everyone must follow the law. This includes regular people, leaders, and the government itself. No one is above the law, not even the President. You can give any one of these accepted answers.",
     "keyWords": [
       {
@@ -2466,8 +2466,8 @@
     "answers": [
       "(U.S.) Constitution"
     ],
-    "status": "draft",
-    "explanation": "The supreme law of the land is the U.S. Constitution. \"Supreme\" means highest. No other law in the country can go against it. All levels of government, federal, state, and local, must follow the Constitution.",
+    "status": "reviewed",
+    "explanation": "The supreme law of the land is the U.S. Constitution. \"Supreme\" means highest. No other law in the country can go against it. All levels of government (federal, state, and local) must follow the Constitution.",
     "keyWords": [
       {
         "en": "supreme law of the land",
@@ -2487,7 +2487,7 @@
       "Terrorists took over a plane and crashed into the Pentagon in Arlington, Virginia",
       "Terrorists took over a plane originally aimed at Washington, D.C., and crashed in a field in Pennsylvania"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "On September 11, 2001, terrorists attacked the United States and took over four passenger planes. Two planes crashed into the World Trade Center in New York City, and one crashed into the Pentagon in Arlington, Virginia. The fourth plane was aimed at Washington, D.C., but crashed in a field in Pennsylvania. Almost 3,000 people died. You can give any one of the accepted answers.",
     "keyWords": [
       {
@@ -2515,7 +2515,7 @@
       "(U.S. or national) legislature",
       "Legislative branch"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "Congress is the legislative branch of the federal government. Its main job is to write laws. Congress has two parts: the Senate and the House of Representatives. A bill must pass both parts before it goes to the President. You can say Congress, the legislature, or the legislative branch.",
     "keyWords": [
       {
@@ -2542,8 +2542,8 @@
       "Louisiana Territory",
       "Louisiana"
     ],
-    "status": "draft",
-    "explanation": "In 1803, the United States bought the Louisiana Territory from France. This is called the Louisiana Purchase. Thomas Jefferson was President at the time. The land was very large, between the Mississippi River and the Rocky Mountains. It almost doubled the size of the country.",
+    "status": "reviewed",
+    "explanation": "In 1803, the United States bought the Louisiana Territory from France. This is called the Louisiana Purchase. Thomas Jefferson was President at the time. The land was very large, between the Mississippi River and the Rocky Mountains. It doubled the size of the country.",
     "keyWords": [
       {
         "en": "territory",
@@ -2570,7 +2570,7 @@
       "The (American) Revolutionary War",
       "War for (American) Independence"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The American colonies fought a war against Britain to win their independence. This war is called the American Revolution or the Revolutionary War. It began in 1775 and ended in 1783. George Washington led the American army. You can give any one of these accepted names.",
     "keyWords": [
       {
@@ -2596,7 +2596,7 @@
     "answers": [
       "Longest economic recession in modern history"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The Great Depression was the longest economic recession in modern history. It began in 1929, when the stock market crashed. Many banks and businesses closed, and millions of people lost their jobs. It lasted through the 1930s. President Franklin Roosevelt created many programs to help people during this time.",
     "keyWords": [
       {
@@ -2621,7 +2621,7 @@
       "(With the) 15th Amendment",
       "1870"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "Before the Civil War, most Black men could not vote. After the war, during a time called Reconstruction, the country added the 15th Amendment to the Constitution. It was ratified in 1870. It said that a man could not be denied the right to vote because of his race. You can give any one of these accepted answers.",
     "keyWords": [
       {
@@ -2649,7 +2649,7 @@
       "After World War I",
       "(With the) 19th Amendment"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "For a long time, women in most of the country could not vote. Women and their supporters worked for many years to change this. In 1920, after World War I, the 19th Amendment was added to the Constitution. It gave women across the country the right to vote. You can give any one of these accepted answers.",
     "keyWords": [
       {
@@ -2676,7 +2676,7 @@
       "The Great Crash (1929)",
       "Stock market crash of 1929"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The Great Depression was a time of serious economic trouble in the United States and the world. It began in 1929, when prices on the stock market fell very quickly. This event is called the Great Crash, or the stock market crash of 1929. After the crash, many banks and businesses closed, and millions of people lost their jobs.",
     "keyWords": [
       {
@@ -2698,7 +2698,7 @@
     "answers": [
       "July 4, 1776"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The Declaration of Independence was adopted on July 4, 1776. On that day, leaders of the 13 colonies approved the document and said they were free from British rule. This is why Americans celebrate Independence Day every year on July 4. It is a national holiday.",
     "keyWords": [
       {
@@ -2717,8 +2717,8 @@
       "New York (Harbor)",
       "Liberty Island [Also acceptable are New Jersey, near New York City, and on the Hudson (River).]"
     ],
-    "status": "draft",
-    "explanation": "The Statue of Liberty stands on Liberty Island in New York Harbor. France gave the statue to the United States as a gift, and it was opened in 1886. For many immigrants arriving by ship, it was one of the first things they saw in America. Today it is a symbol of freedom and welcome.",
+    "status": "reviewed",
+    "explanation": "The Statue of Liberty stands on Liberty Island in New York Harbor. France gave the statue to the United States as a gift, and it was dedicated in 1886. For many immigrants arriving by ship, it was one of the first things they saw in America. Today it is a symbol of freedom and welcome.",
     "keyWords": [
       {
         "en": "Statue of Liberty",
@@ -2739,7 +2739,7 @@
     "answers": [
       "The President (of the United States)"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "Federal judges work in the national court system, including the Supreme Court. The President chooses and appoints them. Then the Senate must approve the President's choice. Federal judges can serve for life, so this is an important decision.",
     "keyWords": [
       {
@@ -2763,7 +2763,7 @@
       "Citizens of the United States",
       "U.S. citizens"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "Some rights and duties belong only to U.S. citizens. Only citizens can vote in federal elections, such as the election for President. Only citizens can run for federal office, like Congress. Only citizens can serve on a jury in a court.",
     "keyWords": [
       {
@@ -2790,7 +2790,7 @@
       "Citizens of their state",
       "People of their state"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "A U.S. senator works in the Senate, which is part of Congress. Each state has two senators. A senator represents all the people of their state, not just one city or area. Senators speak and vote for the people of their whole state.",
     "keyWords": [
       {
@@ -2815,7 +2815,7 @@
       "People from their (congressional) district",
       "People in their district"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The House of Representatives is part of Congress. Each state is divided into areas called congressional districts. Each member of the House represents the people in one district. States with more people have more districts, so they have more representatives.",
     "keyWords": [
       {
@@ -2837,7 +2837,7 @@
     "answers": [
       "Citizens from their state"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "U.S. senators are elected by the citizens of their state. Every voter in the state can vote for senators. A senator serves a six-year term. Since 1913, the 17th Amendment has given voters the power to elect senators directly.",
     "keyWords": [
       {
@@ -2859,7 +2859,7 @@
     "answers": [
       "Citizens from their (congressional) district"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "Members of the House of Representatives are elected by the citizens of their congressional district. Voters choose one representative for their district. Representatives serve two-year terms. Elections for the House happen every two years.",
     "keyWords": [
       {
@@ -2881,8 +2881,8 @@
     "answers": [
       "The President (of the United States)"
     ],
-    "status": "draft",
-    "explanation": "The Commander in Chief is the leader of all the U.S. armed forces. The Constitution gives this role to the President. This means the military is led by a person elected by the people. The military does not lead itself.",
+    "status": "reviewed",
+    "explanation": "The Commander in Chief is the leader of all the U.S. armed forces. The Constitution gives this role to the President. This means the military is led by a person elected by the people. This keeps the military under the control of elected leaders.",
     "keyWords": [
       {
         "en": "Commander in Chief",
@@ -2903,8 +2903,8 @@
     "answers": [
       "Answers vary by where you live."
     ],
-    "status": "draft",
-    "explanation": "Every state has two U.S. senators who work in Congress in Washington, D.C. Senators serve six-year terms, and they are elected at different times. The answer depends on the state where you live. Before your interview, find the names of your state's senators. You can use the app's \"Find My Representative\" tool.",
+    "status": "reviewed",
+    "explanation": "Every state has two U.S. senators who work in Congress in Washington, D.C. The answer depends on the state where you live. If you live in Washington, D.C., or a U.S. territory, you have no U.S. senators. Before your interview, find the names of your state's senators. You can use the app's \"Who Represents Me?\" tool.",
     "keyWords": [
       {
         "en": "senators",
@@ -2925,7 +2925,7 @@
     "answers": [
       "Answers change. Check uscis.gov for the current answer."
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The Chief Justice is the head of the Supreme Court, the highest court in the United States. The President chooses the Chief Justice, and the Senate must approve. The person in this job can change over time. Before your interview, check uscis.gov for the current name.",
     "keyWords": [
       {
@@ -2947,8 +2947,8 @@
     "answers": [
       "Answers vary by where you live."
     ],
-    "status": "draft",
-    "explanation": "The governor is the leader of a state government, much like the President leads the national government. Each state elects its own governor. The answer depends on the state where you live. Before your interview, find the name of your state's governor now. You can use the app's \"Find My Representative\" tool.",
+    "status": "reviewed",
+    "explanation": "The governor is the leader of a state government, much like the President leads the national government. Each state elects its own governor. The answer depends on the state where you live. Before your interview, find the name of your state's governor now. You can use the app's \"Who Represents Me?\" tool.",
     "keyWords": [
       {
         "en": "governor",
@@ -2970,7 +2970,7 @@
       "American Indians",
       "Native Americans"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "People lived in America for thousands of years before Europeans came. These people are called American Indians or Native Americans. There were many different tribes and nations, each with its own language and culture. Many tribes still live in the United States today.",
     "keyWords": [
       {
@@ -2992,7 +2992,7 @@
     "answers": [
       "The President (of the United States)"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "A bill is an idea for a new law. First, Congress must pass the bill. Then the President signs it, and it becomes a law. This is one way the branches of government work together.",
     "keyWords": [
       {
@@ -3018,7 +3018,7 @@
     "answers": [
       "The President (of the United States)"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "To veto means to say no to a bill. The President can veto a bill that Congress has passed. Then the bill does not become a law. Congress can still pass it if two-thirds of both the House and the Senate vote for it again. This is part of the system of checks and balances.",
     "keyWords": [
       {
@@ -3040,7 +3040,7 @@
     "answers": [
       "(Franklin) Roosevelt"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "Franklin Delano Roosevelt was President during the Great Depression and most of World War II. He was elected four times, more than any other President. He started programs called the New Deal to help people find work. He died in 1945, shortly before the war ended.",
     "keyWords": [
       {
@@ -3064,7 +3064,7 @@
       "USSR",
       "Russia"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The Cold War was a long conflict after World War II, from about 1947 to 1991. The main rival of the United States was the Soviet Union, also called the USSR. Russia was the largest part of the Soviet Union. The two countries competed for power and influence around the world, but they did not fight each other directly.",
     "keyWords": [
       {
@@ -3086,7 +3086,7 @@
     "answers": [
       "(Thomas) Jefferson"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "Thomas Jefferson wrote the Declaration of Independence in 1776. A small group of leaders asked him to write the first draft. Jefferson later became the third President of the United States. His words \"all men are created equal\" are some of the most famous in American history.",
     "keyWords": [
       {
@@ -3110,7 +3110,7 @@
       "To support the Allied Powers (England, France, Italy, and Russia)",
       "To oppose the Central Powers (Germany, Austria-Hungary, the Ottoman Empire, and Bulgaria)"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "World War I began in Europe in 1914, and the United States joined in 1917. One reason was that Germany attacked U.S. ships, including ships with civilians. The United States joined to support the Allied Powers, such as England, France, Italy, and Russia, and to oppose the Central Powers, led by Germany. You can give any one of these accepted answers.",
     "keyWords": [
       {
@@ -3139,7 +3139,7 @@
       "To support the Allied Powers (England, France, and Russia)",
       "To oppose the Axis Powers (Germany, Italy, and Japan)"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "On December 7, 1941, Japan attacked Pearl Harbor, a U.S. Navy base in Hawaii. The next day, the United States declared war on Japan. The United States then fought to support the Allied Powers, such as England, France, and Russia, and to oppose the Axis Powers: Germany, Italy, and Japan. You can give any one of these accepted answers.",
     "keyWords": [
       {
@@ -3165,7 +3165,7 @@
     "answers": [
       "To stop the spread of communism"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The Korean War lasted from 1950 to 1953. North Korea, which had a communist government, invaded South Korea. The United States joined the war to stop the spread of communism. This was part of the larger Cold War.",
     "keyWords": [
       {
@@ -3187,7 +3187,7 @@
     "answers": [
       "To force the Iraqi military from Kuwait"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "In 1990, the military of Iraq invaded Kuwait, a small country next to it. In 1991, the United States and many other countries fought to force the Iraqi military out of Kuwait. This was the Persian Gulf War. The war was short, and Kuwait became free again.",
     "keyWords": [
       {
@@ -3213,7 +3213,7 @@
     "answers": [
       "To stop the spread of communism"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "Vietnam was divided into a communist North and a non-communist South. The United States entered the Vietnam War to stop the spread of communism. Many American soldiers fought there, mostly in the 1960s and early 1970s. Like the Korean War, it was part of the Cold War.",
     "keyWords": [
       {
@@ -3235,7 +3235,7 @@
     "answers": [
       "To more closely follow public opinion"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "Representatives serve two-year terms, and senators serve six-year terms. Because representatives face elections more often, they must pay close attention to what voters think. This helps the House more closely follow public opinion. The longer Senate terms give senators more time to think about long-term issues.",
     "keyWords": [
       {
@@ -3258,7 +3258,7 @@
       "Equal representation (for small states)",
       "The Great Compromise (Connecticut Compromise)"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "When the Constitution was written, large states and small states disagreed about how many votes each state should have in Congress. They made an agreement called the Great Compromise, or Connecticut Compromise. In the House, states with more people get more members. In the Senate, every state gets two senators, so small states have equal representation.",
     "keyWords": [
       {
@@ -3281,7 +3281,7 @@
       "(Because there were) 13 original colonies",
       "(Because the stripes) represent the original colonies"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The American flag has 13 red and white stripes. The stripes represent the 13 original colonies. These colonies declared independence from Great Britain in 1776. They became the first 13 states.",
     "keyWords": [
       {
@@ -3305,7 +3305,7 @@
       "(Because) each star represents a state",
       "(Because there are) 50 states"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The American flag has 50 white stars on a blue background. Each star represents one state. There are 50 states, so there are 50 stars. When a new state joined, a star was added; the last change was in 1960, after Hawaii became a state.",
     "keyWords": [
       {
@@ -3330,7 +3330,7 @@
       "Required by the (U.S.) Constitution (16th Amendment)",
       "Civic duty"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "Federal taxes pay for the work of the national government, such as the military, roads, and many services. Paying them is required by law. The 16th Amendment to the Constitution allows the federal government to collect income tax. All people pay their share, and it is also seen as a civic duty.",
     "keyWords": [
       {
@@ -3359,7 +3359,7 @@
       "It identifies inherent rights.",
       "It identifies individual freedoms."
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The Declaration of Independence said that the American colonies were free from British control. It also said that all people are created equal. It names rights that people are born with, such as life, liberty, and the pursuit of happiness. These ideas about individual freedoms are still important in the United States today.",
     "keyWords": [
       {
@@ -3386,7 +3386,7 @@
       "It decides who is elected president.",
       "It provides a compromise between the popular election of the president and congressional selection."
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "Americans do not vote for the President directly. Each state has a number of electors, and their votes decide who is elected President. A candidate needs a majority of the electoral votes, 270 out of 538, to win. The Founders created this system as a compromise between election by the people and selection by Congress.",
     "keyWords": [
       {
@@ -3413,7 +3413,7 @@
       "They helped people understand the (U.S.) Constitution.",
       "They supported passing the (U.S.) Constitution."
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The Federalist Papers were 85 essays written in 1787 and 1788. Their authors were James Madison, Alexander Hamilton, and John Jay. The essays helped people understand the new Constitution. They also supported passing, or approving, the Constitution.",
     "keyWords": [
       {
