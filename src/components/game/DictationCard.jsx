@@ -47,7 +47,7 @@ export default function DictationCard({ sentence, onComplete, onNext, index = 0,
   // The translation shows only after the check (it would give the answer away).
   useEffect(() => {
     if (feedback && showTranslation && myLanguage && !translation) fetchTranslation();
-  }, [feedback, showTranslation]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [feedback, showTranslation]);
 
   const fetchTranslation = async () => {
     if (!sentence || !myLanguage) return;

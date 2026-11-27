@@ -155,7 +155,7 @@ export default function StoryListen({ story, language, mine, words = [], userEma
       onEnd: () => { timer.current = setTimeout(() => go(i + 1), NEXT_DELAY); },
     });
     return () => { clearTimeout(timer.current); };
-  }, [i, playing, voice, sceneText, sceneLang, isCheck]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [i, playing, voice, sceneText, sceneLang, isCheck]);
 
   useEffect(() => () => { clearTimeout(timer.current); stopSpeaking(); }, []);
 

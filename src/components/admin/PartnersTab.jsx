@@ -50,7 +50,7 @@ export default function PartnersTab() {
       setEditing(null);
       await load();
       toast.success('Saved.');
-    } catch (err) {
+    } catch {
       toast.error("Couldn't save. Please try again.");
     } finally {
       setSaving(false);

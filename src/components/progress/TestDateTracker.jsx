@@ -14,7 +14,7 @@ function loadDate() {
   try {
     const raw = localStorage.getItem(TARGET_DATE_KEY);
     return raw ? parseISO(raw) : null;
-  } catch (e) {
+  } catch {
     return null;
   }
 }
@@ -31,7 +31,7 @@ export default function TestDateTracker() {
       } else {
         localStorage.removeItem(TARGET_DATE_KEY);
       }
-    } catch (e) {
+    } catch {
       // Storage blocked (private mode, etc.): the date works for this visit only.
     }
   };

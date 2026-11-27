@@ -76,7 +76,7 @@ export default function QuickCheck() {
     setSaving(true);
     try {
       await auth.updateMe({ skill_levels: toSavedLevels(result) });
-    } catch (e) {
+    } catch {
       toast.error("Couldn't save your results. Please check your connection.");
     } finally {
       setSaving(false);

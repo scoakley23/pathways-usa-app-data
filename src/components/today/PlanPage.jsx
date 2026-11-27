@@ -46,7 +46,7 @@ export default function PlanPage() {
   const save = async () => {
     setBusy(true);
     savePlanChoice(month && month !== 'unknown' ? { mode: 'date', month } : { mode: 'unknown' }, now);
-    try { await todayApi.setLessonsPerDay(choice); } catch (e) { /* kept on screen; try again */ }
+    try { await todayApi.setLessonsPerDay(choice); } catch { /* kept on screen; try again */ }
     setBusy(false);
     navigate('/');
   };

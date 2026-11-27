@@ -72,7 +72,7 @@ export default function ProgramCard({ user }) {
   };
   const run = async (fn) => {
     setSaving(true);
-    try { await fn(); clearPendingProgram(); toast.success(t('saved')); } catch (err) { toast.error(t('error')); } finally { setSaving(false); }
+    try { await fn(); clearPendingProgram(); toast.success(t('saved')); } catch { toast.error(t('error')); } finally { setSaving(false); }
   };
   const save = (e) => {
     e.preventDefault();

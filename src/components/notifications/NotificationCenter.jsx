@@ -26,7 +26,7 @@ export default function NotificationCenter({ userEmail, open = false, onOpenChan
   const [unreadCount, setUnreadCount] = useState(0);
   const isOpen = open;
   const setIsOpen = (value) => onOpenChange?.(value);
-  useEffect(() => { onUnreadChange?.(unreadCount); }, [unreadCount]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { onUnreadChange?.(unreadCount); }, [unreadCount]);
   const [permission, setPermission] = useState(
     typeof Notification !== 'undefined' ? Notification.permission : 'denied'
   );
@@ -98,7 +98,7 @@ export default function NotificationCenter({ userEmail, open = false, onOpenChan
   const t = (key) => (language !== 'en' && tr(key)) || NOTIFICATION_LINES[key] || key;
   const locale = language === 'en' ? 'en-US' : language;
   const when = (d) => {
-    try { return new Date(d).toLocaleDateString(locale, { month: 'short', day: 'numeric' }); } catch (e) { return ''; }
+    try { return new Date(d).toLocaleDateString(locale, { month: 'short', day: 'numeric' }); } catch { return ''; }
   };
   const requestPushPermission = async () => {
       if (typeof Notification === 'undefined') return;

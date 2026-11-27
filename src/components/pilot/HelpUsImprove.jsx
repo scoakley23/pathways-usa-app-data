@@ -33,7 +33,7 @@ export default function HelpUsImprove({ user, language = 'en', onDone }) {
       }
       await auth.updateMe(answers ? answers.profile : { pilot_intro_seen: true });
       onDone?.();
-    } catch (e) {
+    } catch {
       setError(true);
       setSaving(false);
     }
