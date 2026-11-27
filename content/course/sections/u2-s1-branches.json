@@ -75,7 +75,7 @@
             "status": "reviewed",
             "checkedOn": "2026-11-26"
           },
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "The federal government has three branches: legislative, executive and judicial.",
@@ -91,8 +91,7 @@
             {
               "say": "Congress is the legislative branch.",
               "picture": {
-                "drawing": "threeBranches",
-                "focus": "legislative"
+                "photo": "us-capitol.jpg"
               },
               "help": {
                 "simpler": "Congress is the part of the government that makes laws.",
@@ -113,8 +112,7 @@
             {
               "say": "The President leads the executive branch.",
               "picture": {
-                "drawing": "threeBranches",
-                "focus": "executive"
+                "photo": "white-house.jpg"
               },
               "help": {
                 "simpler": "The President is in charge of the executive branch.",
@@ -125,8 +123,7 @@
             {
               "say": "The courts are the judicial branch.",
               "picture": {
-                "drawing": "threeBranches",
-                "focus": "judicial"
+                "photo": "supreme-court-building.jpg"
               },
               "help": {
                 "simpler": "The courts, including the Supreme Court, make up the judicial branch.",
@@ -154,7 +151,7 @@
               "help": {
                 "simpler": "Each part does a different job. No part can do everything.",
                 "example": "Congress makes laws, the President carries them out, and the courts explain them.",
-                "why": "This is the idea of checks and balances from Unit 1."
+                "why": "This is the idea of separation of powers from Unit 1."
               }
             },
             {
