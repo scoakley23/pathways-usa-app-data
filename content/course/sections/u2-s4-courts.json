@@ -210,7 +210,7 @@
               "meaning": "when the Senate votes yes on a person the President chose"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "Courts review and explain laws.",
@@ -250,7 +250,7 @@
               },
               "help": {
                 "simpler": "A court can say a law breaks the Constitution. Then the law cannot be used.",
-                "example": "This is how the courts check Congress and the President.",
+                "example": "This is called judicial review. It is how the courts check Congress and the President.",
                 "why": "“Decides if a law goes against the Constitution” is another answer on the test."
               }
             },
@@ -262,7 +262,7 @@
               },
               "help": {
                 "simpler": "The President chooses federal judges.",
-                "example": "The Senate votes to agree before a judge starts the job.",
+                "example": "The Senate must confirm, or agree, before a judge starts the job.",
                 "why": "The test asks who appoints federal judges. The answer is the President."
               }
             },
