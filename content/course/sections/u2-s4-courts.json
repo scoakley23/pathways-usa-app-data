@@ -549,7 +549,7 @@
           "explanationKey": "Who is the Chief Justice of the United States now?",
           "facts": [
             "The Chief Justice leads the Supreme Court.",
-            "These names change after elections, so Pathways looks them up on an official list.",
+            "This name changes only when a Chief Justice leaves the job, so Pathways looks it up on an official list.",
             "Check the names again before your interview."
           ],
           "newWords": [
@@ -558,7 +558,7 @@
               "meaning": "the leader of the Supreme Court"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "The Chief Justice leads the Supreme Court.",
@@ -585,9 +585,12 @@
             },
             {
               "check": {
-                "kind": "tf",
-                "statement": "The Chief Justice leads the Supreme Court.",
-                "answer": true
+                "kind": "tap",
+                "prompt": "Tap the Chief Justice.",
+                "picture": {
+                  "drawing": "supremeCourt"
+                },
+                "answer": "chief"
               }
             },
             {
