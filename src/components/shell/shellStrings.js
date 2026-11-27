@@ -59,7 +59,7 @@ export const SETTINGS_LINES = {
   cancel: 'Cancel',
   language: 'Language',
   reminder: 'Daily reminder',
-  reminder_help: 'A note in the app when today’s lesson is waiting. No time to set, and no phone notifications. Saved on this phone.',
+  reminder_help: 'A note in the app when today’s lesson is waiting. No time to set. If you allow phone notifications, it also shows while the app is open. Saved on this phone.',
   on: 'On',
   off: 'Off',
   your_interview: 'Your interview',
