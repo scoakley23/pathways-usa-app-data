@@ -162,7 +162,6 @@ export default function ClassScreen() {
         )}
         {phase === 'done' && <Done t={t} total={questions.length} onAgain={start} onTopics={() => setPhase('pick')} />}
       </div>
-      <p className="px-4 pb-5 text-small text-center text-muted" dir="auto">{t('footer')}</p>
     </div>
   );
 }

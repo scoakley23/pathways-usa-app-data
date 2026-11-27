@@ -29,7 +29,6 @@ export const CLASS_LINES = {
   again: 'Another round',
   other_topic: 'Choose another topic',
   close: 'Close',
-  footer: 'Free practice · Not affiliated with USCIS · Not legal advice',
   keys: 'Keys: R read aloud · A show or hide the answer · N next · Esc topics',
 };
 
