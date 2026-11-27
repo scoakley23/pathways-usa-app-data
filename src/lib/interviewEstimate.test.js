@@ -2,8 +2,8 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import {
-  PROCESSING_TIMES, FILED_KEY, OFFICE_KEY, NOT_FILED, estimateRange, hasRealOffices, isCheckedOffice, loadInterviewChoice,
-  officeById, processingProblems, recentMonths, saveInterviewChoice, visibleOffices, USCIS_PROCESSING_URL,
+  PROCESSING_TIMES, STALE_DAYS, FILED_KEY, OFFICE_KEY, NOT_FILED, estimateRange, hasRealOffices, isCheckedOffice, loadInterviewChoice,
+  isStale, officeById, processingProblems, recentMonths, saveInterviewChoice, visibleOffices, USCIS_PROCESSING_URL,
 } from './interviewEstimate';
 
 describe('the hand-checked processing times file', () => {
@@ -70,12 +70,31 @@ describe('the estimate', () => {
     expect(estimateRange(office, 'October')).toBeNull();
   });
 
+  it('says "by" when USCIS shows one number (min = max)', () => {
+    expect(estimateRange(office, '2026-10').single).toBe(false);
+    const r = estimateRange({ ...office, min_months: 7, max_months: 7 }, '2026-10');
+    expect(r.single).toBe(true);
+    expect([r.to.getFullYear(), r.to.getMonth() + 1]).toEqual([2027, 5]);
+  });
+
   it('finds offices by id, hiding samples from learners', () => {
-    const data = { offices: [office, { ...office, id: 'sample-a', sample: true }] };
-    expect(officeById('x', data)).toBe(office);
+    const today = new Date(2026, 10, 27);
+    const data = { checked_on: '2026-11-20', offices: [office, { ...office, id: 'sample-a', sample: true }] };
+    expect(officeById('x', data, { today })).toBe(office);
     expect(officeById('sample-a', data)).toBeNull();
     expect(officeById('sample-a', data, { showSamples: true })).not.toBeNull();
     expect(hasRealOffices({ offices: [{ ...office, sample: true }] })).toBe(false);
+  });
+
+  it(`shows learners nothing once the hand check is over ${STALE_DAYS} days old`, () => {
+    const data = { checked_on: '2026-10-01', offices: [office] };
+    expect(isStale(data, new Date(2026, 10, 30))).toBe(false); // 60 days
+    expect(isStale(data, new Date(2026, 11, 1))).toBe(true); // 61 days
+    expect(isStale({ offices: [office] })).toBe(true); // no date
+    expect(visibleOffices(data, { today: new Date(2026, 10, 30) })).toEqual([office]);
+    expect(visibleOffices(data, { today: new Date(2026, 11, 1) })).toEqual([]); // learners: "Coming soon"
+    expect(officeById('x', data, { today: new Date(2026, 11, 1) })).toBeNull();
+    expect(visibleOffices(data, { today: new Date(2026, 11, 1), showSamples: true })).toEqual([office]); // admins and dev
   });
 
   it('hides an office waiting for the owner\'s check from learners, even when its id is saved', () => {

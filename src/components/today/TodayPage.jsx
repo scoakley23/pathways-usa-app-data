@@ -110,7 +110,7 @@ export default function TodayPage({ user, sheetTop, quickCheckFirst = false }) {
               {lesson.lesson.status === 'draft' && ` · ${t('draft')}`}
             </p>
             <h2 className="font-display text-[2.25rem] leading-[1.05] tracking-tight" dir="auto">{lesson.lesson.title}</h2>
-            {caseRange && <p className="text-base text-on-navy">{t('case_likely', { from: monthName(caseRange.from), to: monthName(caseRange.to) })}</p>}
+            {caseRange && <p className="text-base text-on-navy">{caseRange.single ? t('case_likely_by', { month: monthName(caseRange.to) }) : t('case_likely', { from: monthName(caseRange.from), to: monthName(caseRange.to) })}</p>}
             {!quickCheckFirst && (
               <button
                 type="button"

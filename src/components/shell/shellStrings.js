@@ -134,7 +134,9 @@ export const WHEN_LINES = {
   field_office: 'Field office',
   pick_office: 'Pick your field office',
   most_finished: 'Most N-400s at this office are finished between {from} and {to}. Your interview usually comes before that.',
+  most_finished_by: 'Most N-400s at this office are finished by {month}. Your interview usually comes before that.',
   uscis_months: 'USCIS says {min} to {max} months at this office, counted from the day they received your form.',
+  uscis_months_one: 'USCIS says {months} months at this office, counted from the day they received your form.',
   pick_both: 'Pick your filing month and field office to see an estimate.',
   ready_by: 'Your plan: ready by {month}.',
   ready_by_amio: 'You’ll be ready by {month}.',
@@ -151,4 +153,5 @@ export const WHEN_LINES = {
   sample_note: 'Sample offices: shown to admins only.',
   needs_check: 'needs check',
   needs_check_note: 'Offices marked “needs check”: copied from USCIS but not checked yet. Shown to admins only until checked.',
+  out_of_date_note: 'Out of date: last checked more than 60 days ago. Learners see “Coming soon” until the times are checked again.',
 };
