@@ -2515,7 +2515,7 @@
       "(U.S. or national) legislature",
       "Legislative branch"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "Congress is the legislative branch of the federal government. Its main job is to write laws. Congress has two parts: the Senate and the House of Representatives. A bill must pass both parts before it goes to the President. You can say Congress, the legislature, or the legislative branch.",
     "keyWords": [
       {
@@ -2542,8 +2542,8 @@
       "Louisiana Territory",
       "Louisiana"
     ],
-    "status": "draft",
-    "explanation": "In 1803, the United States bought the Louisiana Territory from France. This is called the Louisiana Purchase. Thomas Jefferson was President at the time. The land was very large, between the Mississippi River and the Rocky Mountains. It almost doubled the size of the country.",
+    "status": "reviewed",
+    "explanation": "In 1803, the United States bought the Louisiana Territory from France. This is called the Louisiana Purchase. Thomas Jefferson was President at the time. The land was very large, between the Mississippi River and the Rocky Mountains. It doubled the size of the country.",
     "keyWords": [
       {
         "en": "territory",
@@ -2570,7 +2570,7 @@
       "The (American) Revolutionary War",
       "War for (American) Independence"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The American colonies fought a war against Britain to win their independence. This war is called the American Revolution or the Revolutionary War. It began in 1775 and ended in 1783. George Washington led the American army. You can give any one of these accepted names.",
     "keyWords": [
       {
@@ -2596,7 +2596,7 @@
     "answers": [
       "Longest economic recession in modern history"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The Great Depression was the longest economic recession in modern history. It began in 1929, when the stock market crashed. Many banks and businesses closed, and millions of people lost their jobs. It lasted through the 1930s. President Franklin Roosevelt created many programs to help people during this time.",
     "keyWords": [
       {
@@ -2621,7 +2621,7 @@
       "(With the) 15th Amendment",
       "1870"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "Before the Civil War, most Black men could not vote. After the war, during a time called Reconstruction, the country added the 15th Amendment to the Constitution. It was ratified in 1870. It said that a man could not be denied the right to vote because of his race. You can give any one of these accepted answers.",
     "keyWords": [
       {
@@ -2649,7 +2649,7 @@
       "After World War I",
       "(With the) 19th Amendment"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "For a long time, women in most of the country could not vote. Women and their supporters worked for many years to change this. In 1920, after World War I, the 19th Amendment was added to the Constitution. It gave women across the country the right to vote. You can give any one of these accepted answers.",
     "keyWords": [
       {
@@ -2676,7 +2676,7 @@
       "The Great Crash (1929)",
       "Stock market crash of 1929"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The Great Depression was a time of serious economic trouble in the United States and the world. It began in 1929, when prices on the stock market fell very quickly. This event is called the Great Crash, or the stock market crash of 1929. After the crash, many banks and businesses closed, and millions of people lost their jobs.",
     "keyWords": [
       {
@@ -2698,7 +2698,7 @@
     "answers": [
       "July 4, 1776"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The Declaration of Independence was adopted on July 4, 1776. On that day, leaders of the 13 colonies approved the document and said they were free from British rule. This is why Americans celebrate Independence Day every year on July 4. It is a national holiday.",
     "keyWords": [
       {
@@ -2717,8 +2717,8 @@
       "New York (Harbor)",
       "Liberty Island [Also acceptable are New Jersey, near New York City, and on the Hudson (River).]"
     ],
-    "status": "draft",
-    "explanation": "The Statue of Liberty stands on Liberty Island in New York Harbor. France gave the statue to the United States as a gift, and it was opened in 1886. For many immigrants arriving by ship, it was one of the first things they saw in America. Today it is a symbol of freedom and welcome.",
+    "status": "reviewed",
+    "explanation": "The Statue of Liberty stands on Liberty Island in New York Harbor. France gave the statue to the United States as a gift, and it was dedicated in 1886. For many immigrants arriving by ship, it was one of the first things they saw in America. Today it is a symbol of freedom and welcome.",
     "keyWords": [
       {
         "en": "Statue of Liberty",
@@ -2739,7 +2739,7 @@
     "answers": [
       "The President (of the United States)"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "Federal judges work in the national court system, including the Supreme Court. The President chooses and appoints them. Then the Senate must approve the President's choice. Federal judges can serve for life, so this is an important decision.",
     "keyWords": [
       {
