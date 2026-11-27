@@ -21,19 +21,19 @@
     },
     {
       "id": "amio",
-      "status": "draft",
+      "status": "reviewed",
       "q": "Who is Amio?",
       "a": "Amio is your AI tutor, not a real person. Amio explains in your language. You answer, read and write in English, like at the interview."
     },
     {
       "id": "voice",
-      "status": "draft",
+      "status": "reviewed",
       "q": "Do you record my voice?",
-      "a": "No. Your voice is never recorded or saved. Your phone's browser turns what you say into text. In practice, only your scores are saved. Questions you ask Amio are saved as text, and only you can see them."
+      "a": "No. Your voice is never recorded or saved. Your phone's browser turns what you say into text. When you practice, only your scores are saved. Questions you ask Amio are saved as text, and only you can see them."
     },
     {
       "id": "order",
-      "status": "draft",
+      "status": "reviewed",
       "q": "Do I have to do the lessons in order?",
       "a": "No. You can open any topic and any lesson. The quick check only suggests where to start."
     },
