@@ -31,7 +31,7 @@ older who have been permanent residents for 20 years or more. Each entry:
 ```
 
 `question` must match `questions-2025.json` word for word. Copy the numbers and
-stars from the official USCIS "2025 Civics Test 128 Questions and Answers"
+stars from the official USCIS "128 Civics Questions and Answers (2025 version)"
 PDF; never guess them. While the file is empty (`[]`) or incomplete, Amio gets
 the questions without numbers or stars and is not asked to give numbers.
 `npm test` fails if a filled-in file doesn't number all 128 questions 1–128
