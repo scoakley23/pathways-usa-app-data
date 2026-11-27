@@ -6661,6 +6661,12 @@
    ]
   },
   {
+   "text": "I already have an account · Sign in",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "I ask in English. You answer out loud.",
    "from": [
     "lesson-player"
@@ -9939,6 +9945,12 @@
    ]
   },
   {
+   "text": "Nothing is saved yet. Sign in to keep your results.",
+   "from": [
+    "onboarding"
+   ]
+  },
+  {
    "text": "Nothing to practice here yet.",
    "from": [
     "practice"
@@ -10895,7 +10907,8 @@
    "from": [
     "checkpoints",
     "lesson-player",
-    "n400-lessons"
+    "n400-lessons",
+    "onboarding"
    ]
   },
   {
@@ -12899,6 +12912,7 @@
     "interview-day",
     "lesson-deck",
     "me",
+    "onboarding",
     "sign-in"
    ]
   },
@@ -12912,6 +12926,12 @@
    "text": "Sign in to ask me questions.",
    "from": [
     "ask-screen"
+   ]
+  },
+  {
+   "text": "Sign in to keep your progress.",
+   "from": [
+    "onboarding"
    ]
   },
   {
