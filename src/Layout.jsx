@@ -30,7 +30,6 @@ const SPLIT_ROUTES = ['/quick-check', '/plan', '/done-today', '/me', '/settings'
 
 // The four tab names, translated like other screen text (Spanish by hand).
 const TAB_LINES = Object.fromEntries(TABS.map((tab) => [tab.id, tab.label]));
-const FOOTER_LINES = { footer: 'Free practice · Not affiliated with USCIS · Not legal advice' };
 const TAB_LINES_ES = { today: 'Hoy', course: 'Curso', interview: 'Entrevista', me: 'Yo' };
 
 // The account whose profile was checked in this app load (one lookup, not one
@@ -47,8 +46,6 @@ export default function Layout({ children }) {
   const [language] = useAppLanguage();
   const tabLine = useTranslatedLines(TAB_LINES, language, { cacheKey: 'tabs_v1', handWritten: { es: TAB_LINES_ES } });
   const tabLabels = language === 'en' ? {} : Object.fromEntries(TABS.map((tab) => [tab.id, tabLine(tab.id) || tab.label]));
-  const footerLine = useTranslatedLines(FOOTER_LINES, language, { cacheKey: 'footer_v1' });
-  const footer = (language !== 'en' && footerLine('footer')) || FOOTER_LINES.footer;
   // The signed-out splash on Home shows the big stacked logo, so the header
   // leaves its small one out there.
   const splash = location.pathname === '/' && !isLoadingAuth && !isAuthenticated;
@@ -180,11 +177,10 @@ export default function Layout({ children }) {
         </AutoReadContext.Provider>
       </main>
 
-      {/* One small muted line at the end of every page, once (Welcome, the
-          splash, has it on its own navy screen). Not fixed to the screen. */}
-      {!practiceRun && !splash && <footer className={showTabs ? 'pb-24 lg:pb-0' : ''}>
-        <p dir="auto" className="container mx-auto px-4 pt-8 pb-6 max-w-5xl text-small text-center text-muted">{footer}</p>
-      </footer>}
+      {/* No footer line on every page: the public line ("Free practice. Not
+          affiliated with or endorsed by USCIS…") is only on Welcome, Sign in
+          and Settings. This spacer keeps page ends clear of the tab bar. */}
+      {!practiceRun && !splash && <div aria-hidden="true" className={showTabs ? 'h-28 lg:h-8' : 'h-8'} />}
 
       {showTabs && (
         <BottomTabs

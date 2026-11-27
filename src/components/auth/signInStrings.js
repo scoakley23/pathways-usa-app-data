@@ -29,7 +29,7 @@ export const SIGN_IN_STRINGS = {
   too_many: 'Too many tries. Wait a minute, then try again.',
   network: "We couldn't reach Amio. Check your internet and try again.",
   unknown: 'Something went wrong. Please try again.',
-  footer: 'Free practice · Not affiliated with USCIS · Not legal advice',
+  footer: 'Free practice. Not affiliated with or endorsed by USCIS. This app does not provide legal advice.',
   // The small notice when a login ends by itself (SessionNotice).
   signedOutNotice: 'You were signed out.',
   signInAgain: 'Sign in again',
