@@ -77,7 +77,6 @@ export const STRING_SETS = [
     usedIn: [['src/components/persona/TutorSetup.jsx', 'LINES'], ['src/components/persona/useTutorLines.js', 'LINES']],
   },
   { id: 'tabs', strings: Object.fromEntries(TABS.map((tab) => [tab.id, tab.label])), usedIn: [['src/Layout.jsx', 'TAB_LINES']] },
-  { id: 'footer', strings: { footer: 'Free practice · Not affiliated with USCIS · Not legal advice' }, usedIn: [['src/Layout.jsx', 'FOOTER_LINES']] },
   { id: 'me', strings: ME_LINES, usedIn: [['src/components/shell/MePage.jsx', 'LINES']] },
   { id: 'settings', strings: SETTINGS_LINES, usedIn: [['src/components/shell/SettingsPage.jsx', 'LINES']] },
   { id: 'interview-tab', strings: INTERVIEW_LINES, usedIn: [['src/components/shell/InterviewPage.jsx', 'LINES']] },

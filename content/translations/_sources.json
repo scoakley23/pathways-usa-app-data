@@ -6235,10 +6235,10 @@
    ]
   },
   {
-   "text": "Free practice · Not affiliated with USCIS · Not legal advice",
+   "text": "Free practice. Not affiliated with or endorsed by USCIS. This app does not provide legal advice.",
    "from": [
-    "footer",
     "onboarding",
+    "settings",
     "sign-in"
    ]
   },
