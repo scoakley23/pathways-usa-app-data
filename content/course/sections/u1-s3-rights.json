@@ -245,7 +245,7 @@
               "meaning": "the power of government is split into parts"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "The rule of law means everyone must follow the law.",
@@ -261,6 +261,9 @@
                 "simpler": "Even leaders and the government must follow the law. No one is special.",
                 "example": "If a leader breaks the law, they can be taken to court too.",
                 "why": "“Leaders must obey the law” and “No one is above the law” are also correct answers."
+              },
+              "picture": {
+                "photo": "us-capitol.jpg"
               }
             },
             {
@@ -276,6 +279,9 @@
                 "simpler": "The President pays taxes, just like you.",
                 "example": "The President follows the same tax laws as everyone else.",
                 "why": "This example shows that the rule of law applies to everyone, even the highest leader."
+              },
+              "picture": {
+                "photo": "white-house.jpg"
               }
             },
             {
@@ -284,6 +290,9 @@
                 "simpler": "If a mayor steals, police can arrest the mayor, like anyone else.",
                 "example": "A judge decides the case, using the same laws used for everyone.",
                 "why": "This example shows that leaders are not above the law."
+              },
+              "picture": {
+                "photo": "courtroom.jpg"
               }
             },
             {
@@ -292,7 +301,7 @@
                 "drawing": "threeBranches"
               },
               "help": {
-                "simpler": "The government is split into three parts so no one part has all the power.",
+                "simpler": "The power is split into three parts. This is called separation of powers.",
                 "example": "Congress makes laws, the President carries out laws, and the courts explain laws.",
                 "why": "The test asks why there are three branches. “So one part does not become too powerful” is one answer."
               }
