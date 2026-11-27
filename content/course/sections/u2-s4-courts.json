@@ -335,7 +335,7 @@
               "meaning": "a place for one member"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "The Supreme Court has nine seats.",
@@ -355,7 +355,7 @@
               },
               "help": {
                 "simpler": "A “seat” is a place for one justice.",
-                "example": "When a justice retires, the President chooses someone new for that seat.",
+                "example": "When a seat opens, the President chooses someone new, and the Senate must agree.",
                 "why": "Nine seats means nine justices."
               }
             },
@@ -385,9 +385,14 @@
             },
             {
               "check": {
-                "kind": "tf",
-                "statement": "Usually five justices are needed to decide a case.",
-                "answer": true
+                "kind": "pick",
+                "prompt": "How many justices are usually needed to decide a case?",
+                "choices": [
+                  "Five",
+                  "Nine",
+                  "Two"
+                ],
+                "answer": 0
               }
             }
           ]
