@@ -1733,8 +1733,8 @@
       "Freedom of religion",
       "The right to bear arms"
     ],
-    "status": "draft",
-    "explanation": "Some rights belong to everyone living in the United States, not only to citizens. Most of these rights come from the First Amendment.\n\n• Freedom of expression: You can share your ideas in many ways, like writing, art, or speaking.\n• Freedom of speech: You can say what you think, even if you disagree with the government.\n• Freedom of assembly: You can meet together with other people in a peaceful group.\n• Freedom to petition the government: You can ask the government to change a law or fix a problem.\n• Freedom of religion: You can practice any religion, or no religion at all.\n• The right to bear arms: The Second Amendment protects the right to have guns, following the law.\n\nYou need to name three.",
+    "status": "reviewed",
+    "explanation": "Some rights belong to everyone living in the United States, not only to citizens. Most of these rights come from the First Amendment.\n\n• Freedom of expression: You can share your ideas in many ways, like writing, art, or speaking.\n• Freedom of speech: You can say what you think, even if you disagree with the government.\n• Freedom of assembly: You can meet together with other people in a peaceful group.\n• Freedom to petition the government: You can ask the government to change a law or fix a problem.\n• Freedom of religion: You can practice any religion, or no religion at all.\n• The right to bear arms: The Second Amendment protects the right to keep and carry guns. Laws set rules about who may have a gun.\n\nYou need to name three.",
     "keyWords": [
       {
         "en": "rights",
@@ -1784,7 +1784,7 @@
       "Director of National Intelligence",
       "United States Trade Representative"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The Cabinet is a group of top leaders who advise the president. Most of them lead a federal department, like the Secretary of State or the Secretary of the Treasury. The Attorney General leads the Department of Justice. The vice president is also part of the Cabinet. You need to name two positions from the official list.",
     "keyWords": [
       {
@@ -1823,7 +1823,7 @@
       "Support or oppose an issue or policy",
       "Write to a newspaper"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "Civic participation means taking part in the life of your community and your country. Voting is one important way to participate. People also join community groups, help with campaigns, or run for office. You can also contact elected officials to share your opinion on an issue. You need to name two examples from the official list.",
     "keyWords": [
       {
@@ -1852,7 +1852,7 @@
       "Freed slaves in the Confederate states",
       "Freed slaves in most Southern states"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "President Abraham Lincoln issued the Emancipation Proclamation on January 1, 1863, during the Civil War. “Emancipation” means being made free. The proclamation freed the slaves in the Confederate states, which were fighting against the Union. Later, in 1865, the 13th Amendment ended slavery in the whole country.",
     "keyWords": [
       {
@@ -1878,7 +1878,7 @@
     "answers": [
       "Fought to end racial discrimination"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The civil rights movement was a large effort by many Americans, mostly in the 1950s and 1960s. Black Americans and their supporters worked to end racial discrimination, which means treating people unfairly because of their race. They held peaceful marches, protests, and boycotts. Dr. Martin Luther King, Jr. was one of its most famous leaders. The movement helped bring new laws, such as the Civil Rights Act of 1964.",
     "keyWords": [
       {
@@ -1901,7 +1901,7 @@
       "The United States",
       "The flag"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The Pledge of Allegiance is a short promise of loyalty. People often say it while standing and facing the flag, with the right hand over the heart. When you say it, you show loyalty to the United States and to the flag. You can give either of these two answers.",
     "keyWords": [
       {
@@ -1924,7 +1924,7 @@
       "(The basic) rights of Americans",
       "(The basic) rights of people living in the United States"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The Bill of Rights is the name for the first ten amendments (changes) to the Constitution. It was added in 1791. It protects the basic rights of Americans and of people living in the United States. Examples are freedom of speech, freedom of religion, and the right to a fair trial.",
     "keyWords": [
       {
@@ -1950,8 +1950,8 @@
     "answers": [
       "Advises the President (of the United States)"
     ],
-    "status": "draft",
-    "explanation": "The Cabinet is a group of top leaders in the executive branch. Most of them lead big government departments, such as the Department of State or the Department of Defense. The President chooses them, and the Senate must approve most of them. The Cabinet's job is to advise the President, which means to give the President advice and information.",
+    "status": "reviewed",
+    "explanation": "The Cabinet is a group of top leaders in the executive branch. Most of them lead big government departments, such as the Department of State or the Department of the Treasury. The President chooses them, and the Senate must approve most of them. The Cabinet's job is to advise the President, which means to give the President advice and information.",
     "keyWords": [
       {
         "en": "Cabinet",
@@ -1975,7 +1975,7 @@
       "Resolves disputes (disagreements) about the law",
       "Decides if a law goes against the (U.S.) Constitution"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The judicial branch is the part of government made up of the courts. Judges review and explain laws. They also resolve disputes, or disagreements, about the law. The courts can decide if a law goes against the Constitution. You can give any one of these accepted answers.",
     "keyWords": [
       {
@@ -2001,7 +2001,7 @@
     "answers": [
       "Declaration of Independence"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "In the 1700s, the American colonies were ruled by Britain. The colonists were unhappy with British laws and taxes. On July 4, 1776, leaders approved the Declaration of Independence. This document said the colonies were free from Britain. Thomas Jefferson was its main writer.",
     "keyWords": [
       {
