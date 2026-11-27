@@ -87,7 +87,7 @@
             "status": "reviewed",
             "checkedOn": "2026-11-26"
           },
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "The Supreme Court is the highest court in the United States.",
@@ -125,7 +125,7 @@
             {
               "say": "The Supreme Court and the other federal courts are the judicial branch.",
               "picture": {
-                "drawing": "courtsLevels"
+                "photo": "courtroom.jpg"
               },
               "help": {
                 "simpler": "All the federal courts together make up the judicial branch.",
@@ -136,9 +136,9 @@
             {
               "check": {
                 "kind": "pick",
-                "prompt": "What is the highest court in the United States?",
+                "prompt": "Which one is part of the judicial branch?",
                 "choices": [
-                  "The Supreme Court",
+                  "The federal courts",
                   "Congress",
                   "The Cabinet"
                 ],
