@@ -50,6 +50,8 @@ const OWNER_REVIEWED = new Set([
   'u3-s1-l2',
   'u3-s2-l1',
   'u3-s2-l2',
+  'u3-s3-l1',
+  'u3-s3-l2',
   'u4-s1-l1',
   'u4-s1-l2',
   'u4-s2-l1',
