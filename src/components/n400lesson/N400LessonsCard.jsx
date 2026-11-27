@@ -30,9 +30,9 @@ export default function N400LessonsCard() {
     let active = true;
     (async () => {
       let user = null;
-      try { user = await auth.me(); } catch (e) { user = null; }
+      try { user = await auth.me(); } catch { user = null; }
       let done = {};
-      if (user) { try { done = (await courseProgress.load(N400_LESSON_IDS)).lessons; } catch (e) { done = {}; } }
+      if (user) { try { done = (await courseProgress.load(N400_LESSON_IDS)).lessons; } catch { done = {}; } }
       if (active) setState({ drafts: canSeeDrafts(user), done });
     })();
     return () => { active = false; };

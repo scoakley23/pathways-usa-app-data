@@ -80,7 +80,7 @@ export default function Practice() {
       setMode('menu');
       setResults([]);
     }
-  }, [urlMode]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [urlMode]);
 
   const loadUser = async () => {
       try {
@@ -125,7 +125,7 @@ export default function Practice() {
       // Not something a link can start (or a reload mid-vocabulary): back to the hub.
       setSearchParams(practiceParams(), { replace: true });
     }
-  }, [currentUser]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [currentUser]);
 
   // Seed Reading Data if empty
   useEffect(() => {
@@ -171,7 +171,7 @@ export default function Practice() {
     const checked = mode !== 'vocabulary' || vocabSubMode === 'dictation';
     const run = checked ? Array.from({ length: content.length }, (_, i) => results[i]) : null;
     savesRef.current.then(() => awardBadges({ run }));
-  }, [sessionComplete]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [sessionComplete]);
 
   // Interview Practice Mode
   // The mock interview (The Road): full width, its own top bar; it ends on
@@ -195,7 +195,7 @@ export default function Practice() {
     );
   }
 
-  const getSRSContent = async (items, type, options = {}) => {
+  const getSRSContent = async (items, type) => {
     if (!currentUser) return items.sort(() => 0.5 - Math.random()).slice(0, 10);
     
     try {
@@ -513,7 +513,7 @@ export default function Practice() {
             <div className="mx-auto max-w-lg space-y-5 py-4 text-navy">
               <div className="space-y-2">
                 <label className={label} htmlFor="civics-version" dir="auto">{t('civics_version')}</label>
-                <Select value={civicsVersion} onValueChange={(v) => { setCivicsVersion(v); try { localStorage.setItem('civicsVersion', v); } catch (e) { /* storage blocked */ } }}>
+                <Select value={civicsVersion} onValueChange={(v) => { setCivicsVersion(v); try { localStorage.setItem('civicsVersion', v); } catch { /* storage blocked */ } }}>
                   <SelectTrigger id="civics-version" className="h-auto min-h-11 text-start bg-white">
                     <SelectValue />
                   </SelectTrigger>

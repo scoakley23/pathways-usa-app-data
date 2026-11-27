@@ -60,6 +60,169 @@
               "word": "Allied Powers",
               "meaning": "the countries on the U.S. side in a world war"
             }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "The United States fought five wars in the 1900s that are on the test.",
+              "picture": {
+                "drawing": "warsTimeline"
+              },
+              "help": {
+                "simpler": "There are five wars from the 1900s to know for the test.",
+                "example": "The 1900s means the years 1900 to 1999.",
+                "why": "The test asks you to name one war of the 1900s."
+              }
+            },
+            {
+              "say": "They are World War I, World War II, the Korean War, the Vietnam War and the Persian Gulf War.",
+              "picture": {
+                "drawing": "warsTimeline"
+              },
+              "help": {
+                "simpler": "Five wars: two World Wars, Korea, Vietnam and the Gulf War.",
+                "example": "You only need to name one of them on the test.",
+                "why": "Any one of these five is a right answer."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Name one war fought by the United States in the 1900s.",
+                "choices": [
+                  "World War I",
+                  "The Civil War",
+                  "The War of 1812"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "World War I was fought mostly in Europe.",
+              "picture": {
+                "drawing": "warsTimeline",
+                "focus": "ww1"
+              },
+              "help": {
+                "simpler": "Most of the fighting in World War I was in Europe.",
+                "example": "France and Belgium saw some of the biggest battles.",
+                "why": "This is the first of the five wars."
+              }
+            },
+            {
+              "say": "The United States joined in 1917 because Germany attacked U.S. ships.",
+              "picture": {
+                "drawing": "warsTimeline",
+                "focus": "ww1"
+              },
+              "help": {
+                "simpler": "Germany attacked American ships, so the United States joined the war.",
+                "example": "Some of the ships carried people who were not soldiers.",
+                "why": "The test asks why the United States entered World War I."
+              }
+            },
+            {
+              "say": "It joined the Allied Powers: England, France, Italy and Russia.",
+              "picture": {
+                "drawing": "warsTimeline",
+                "focus": "ww1"
+              },
+              "help": {
+                "simpler": "The United States fought on the same side as these countries.",
+                "example": "Allies are countries that work together.",
+                "why": "“To support the Allied Powers” is another answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Why did the United States enter World War I?",
+                "choices": [
+                  "Because Germany attacked U.S. ships",
+                  "Because Japan attacked Pearl Harbor",
+                  "To stop the spread of communism"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "World War II was fought against Germany, Italy and Japan. The United States joined in 1941.",
+              "picture": {
+                "drawing": "warsTimeline",
+                "focus": "ww2"
+              },
+              "help": {
+                "simpler": "In World War II, the United States fought Germany, Italy and Japan.",
+                "example": "You will learn more about World War II in the next section.",
+                "why": "World War II is one of the five wars."
+              }
+            },
+            {
+              "say": "The Korean War, in 1950, and the Vietnam War, in the 1960s, were fought to stop communism.",
+              "picture": {
+                "drawing": "warsTimeline",
+                "focus": "korea"
+              },
+              "help": {
+                "simpler": "Both wars were about stopping communism from spreading.",
+                "example": "You will learn about communism in the Cold War lessons.",
+                "why": "Korea and Vietnam are two of the five wars."
+              }
+            },
+            {
+              "say": "The Persian Gulf War, in 1991, forced Iraq out of Kuwait.",
+              "picture": {
+                "drawing": "warsTimeline",
+                "focus": "gulf"
+              },
+              "help": {
+                "simpler": "In 1991, the United States helped make Iraq leave Kuwait.",
+                "example": "Kuwait is a small country next to Iraq.",
+                "why": "The Persian Gulf War is the last of the five."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "The Korean War and the Vietnam War were fought to stop communism.",
+                "answer": true
+              }
+            },
+            {
+              "say": "Tip: the years of all five wars start with 19, so they belong to the 1900s.",
+              "picture": {
+                "drawing": "warsTimeline"
+              },
+              "help": {
+                "simpler": "If the year starts with 19, it is in the 1900s.",
+                "example": "1917, 1941, 1950, the 1960s, 1991: all start with 19.",
+                "why": "This helps you tell the 1900s from the 1800s."
+              }
+            },
+            {
+              "say": "Under the Constitution, Congress has the power to declare war.",
+              "picture": {
+                "drawing": "threeBranches",
+                "focus": "legislative"
+              },
+              "help": {
+                "simpler": "Only Congress can officially start a war for the country.",
+                "example": "To declare war means to say officially that a war has begun.",
+                "why": "This is one of Congress’s powers."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Who has the power to declare war?",
+                "choices": [
+                  "Congress",
+                  "The President",
+                  "The Supreme Court"
+                ],
+                "answer": 0
+              }
+            }
           ]
         },
         "teachBack": {
@@ -116,6 +279,112 @@
             {
               "word": "stock market",
               "meaning": "where people buy and sell parts of companies"
+            }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "A depression is a long time when businesses close and many people have no work.",
+              "picture": {
+                "photo": "migrant-mother.jpg"
+              },
+              "help": {
+                "simpler": "In a depression, many people lose their jobs for a long time.",
+                "example": "Families may not have enough money for food or rent.",
+                "why": "This word helps with the Great Depression questions."
+              }
+            },
+            {
+              "say": "The Great Depression was the longest economic recession in modern history.",
+              "picture": {
+                "drawing": "depressionTimeline"
+              },
+              "help": {
+                "simpler": "It was the longest time of bad economy in modern times.",
+                "example": "A recession is a time when the economy shrinks.",
+                "why": "“Longest economic recession in modern history” is the test answer."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "What was the Great Depression?",
+                "choices": [
+                  "The longest economic recession in modern history",
+                  "A war in Europe",
+                  "A law passed by Congress"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "It started with the stock market crash of 1929, called the Great Crash.",
+              "picture": {
+                "drawing": "depressionTimeline",
+                "focus": "crash"
+              },
+              "help": {
+                "simpler": "In 1929, the prices on the stock market fell very fast.",
+                "example": "The stock market is where people buy and sell parts of companies.",
+                "why": "The test asks when the Great Depression started."
+              }
+            },
+            {
+              "say": "Many banks closed. Millions of families lost their jobs, homes and savings.",
+              "picture": {
+                "drawing": "depressionTimeline",
+                "focus": "hardTimes"
+              },
+              "help": {
+                "simpler": "People lost their money when banks closed.",
+                "example": "Savings are money you keep for later.",
+                "why": "It shows how hard the Depression was."
+              }
+            },
+            {
+              "say": "People waited in long lines for free food, called bread lines.",
+              "picture": {
+                "photo": "bread-line.jpg"
+              },
+              "help": {
+                "simpler": "Hungry people stood in line to get free food.",
+                "example": "This photo shows a bread line in New York City, about 1932.",
+                "why": "It helps you picture the Great Depression."
+              }
+            },
+            {
+              "check": {
+                "kind": "tap",
+                "prompt": "Tap when the Great Depression started.",
+                "picture": {
+                  "drawing": "depressionTimeline"
+                },
+                "answer": "crash"
+              }
+            },
+            {
+              "say": "It lasted about ten years, until World War II.",
+              "picture": {
+                "drawing": "depressionTimeline",
+                "focus": "ww2"
+              },
+              "help": {
+                "simpler": "The hard times went on for about ten years.",
+                "example": "It ended around the time of World War II.",
+                "why": "It connects the Depression to the next lesson."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "When did the Great Depression start?",
+                "choices": [
+                  "The stock market crash of 1929",
+                  "World War II",
+                  "The Civil War"
+                ],
+                "answer": 0
+              }
             }
           ]
         },

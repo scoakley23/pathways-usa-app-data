@@ -35,7 +35,7 @@ export default function SayItBack({ targets }) {
     return () => {
       try {
         recognitionRef.current?.stop();
-      } catch (e) {
+      } catch {
         // ignore
       }
     };
@@ -56,7 +56,7 @@ export default function SayItBack({ targets }) {
     if (isListening) {
       try {
         recognitionRef.current.stop();
-      } catch (e) {
+      } catch {
         // ignore
       }
     } else {
@@ -64,7 +64,7 @@ export default function SayItBack({ targets }) {
       setResult(null);
       try {
         recognitionRef.current.start();
-      } catch (e) {
+      } catch {
         // ignore restart race
       }
     }

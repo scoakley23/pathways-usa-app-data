@@ -61,7 +61,7 @@ export default function LearnCivics() {
         progressApi.list({ contentType: 'civics_question', limit: 1000 }),
       ]);
       setPicked(pickNextToLearn(questions, progress, count));
-    } catch (e) {
+    } catch {
       toast.error(t('load_error'));
       setPicked([]);
     }
@@ -105,7 +105,7 @@ export default function LearnCivics() {
         await review.afterLearn(question.id, correct, { email: user.email });
       }
       awardBadges();
-    } catch (e) {
+    } catch {
       toast.error(t('save_error'));
     } finally {
       setSaving(false);

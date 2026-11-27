@@ -1,84 +1,16 @@
-# N-400 processing times: fill-in sheet for the owner
+# N-400 processing times: status
 
-**Status: no real offices yet.** `content/uscis/n400-processing-times.json` is unchanged: only the two sample offices, `checked_on: null`. Learners still see "Coming soon" and the USCIS link on "When's my interview?" (`/interview/when`).
+**Status (2026-11-27):** 90 real field offices are in `content/uscis/n400-processing-times.json`, read by the owner on uscis.gov on 2026-11-26 (`checked_on`). The two samples are gone. **Learners stop seeing the times after 2027-01-25** (60 days) unless the owner checks them again. The owner copies the numbers by hand from https://egov.uscis.gov/processing-times/ in their own browser; how to do it (and the monthly check) is in `content/uscis/README.md`.
 
-## Why there are no numbers here
+## Decisions (2026-11-27, owner)
+- **One number from USCIS** ("80% of cases are completed within N months"): `min_months` = `max_months` = N, and the app says "finished **by** {month}" (When's my interview?, Today's "Case likely done by {month}", Settings).
+- **Half months are kept, never rounded** (44 of the 90 offices show one, e.g. Chicago 14.5). The filing month counts from its middle, so 14.5 months lands on the last day of the 14th month; the screen quotes USCIS exactly ("USCIS says 14.5 months").
+- **Imperial CA**: the sheet's number column said 15 but the copied sentence said 15.5; the owner confirmed 15.5.
+- **Office list**: the owner's sheet dropped Saint Albans VT and added Burlington VT, Cranbury NJ, Helena MT, Montgomery AL and Wichita KS.
+- **Old numbers are hidden**: after 60 days without a check (`checked_on`), learners see "Coming soon" again; admins see "Out of date".
+- **No servers, no working around blocks.** The USCIS processing-times page and its data addresses answer automated requests from servers with a Cloudflare block (HTTP 403, seen on 2026-11-26 and 2026-11-27). We don't work around that. No official USCIS data feed was found (2026-11-27).
+- **The owner's browser helper** (decided 2026-11-27, because the hand copy took over an hour): a bookmark the owner clicks on the USCIS page, once a month, one office every 3 seconds; it asks only what the page itself asks and sends nothing elsewhere. The owner spot-checks the result; `npm run uscis:apply` updates the file through a PR. **First real run (2026-11-26)** stopped at once: the page is now a Next.js app with no `/api/` addresses (the first version had guessed them). The owner copied the page's real request from the browser's Network tab (a server action, `["N-400"]` → `formKey "160A"`), and the helper now learns from one office the owner picks by hand, then repeats that request for each office. **Second run (2026-11-26)** learned nothing: the owner then copied the office and time replies. The office list comes from `["N-400", "160A"]` (`officeCode` / `officeDescription`, 90 offices, the same as the file except "Raleigh NC", so `raleigh-durham-nc` became `raleigh-nc` before any learner could save it). The time comes from `["N-400", "160A", "BOS"]` as `range: [18, 15.5]` months while the page shows 15.5, so the helper takes the last number in the range and requires it to be the smallest (`findMonths()`); this rule rests on Boston only, so the first full run is compared with the owner's hand-checked numbers from Nov 26 by `npm run uscis:apply -- … --dry-run`. The reply also has "Last Updated: November 20, 2026" (kept in the result as `uscis_updated`). **Third run not tried yet.** The owner should also check the egov.uscis.gov website policies. Steps in `content/uscis/README.md`.
+- **Monthly reminder**: the 20th of each month, 8:13 AM Eastern, into the owner's session.
 
-On 2026-11-26 I tried to read the official page from this session (read-only, once each). USCIS blocked every request with a Cloudflare "Attention Required" page (HTTP 403):
-
-| URL | Result |
-|---|---|
-| `https://egov.uscis.gov/processing-times/` | 403, Cloudflare "Attention Required" |
-| `https://egov.uscis.gov/processing-times/api/forms` | 403 |
-| `https://egov.uscis.gov/processing-times/api/formoffices/N-400/` | 403 |
-| `https://www.uscis.gov/n-400` | 403 |
-| The same page through a second web-reading tool | 403 |
-
-I did not try to get around the block. The numbers have to be copied by a person in a normal browser, which is also what `content/uscis/README.md` asks for. **The app never asks USCIS live.** It only reads the bundled JSON file.
-
-## How to fill it in (about 20–40 minutes)
-
-1. Open https://egov.uscis.gov/processing-times/ in your browser.
-2. Form: **N-400 | Application for Naturalization**. Category: **Field office**.
-3. For each field office in the list, write down the time USCIS shows ("80% of cases are completed within…" or the range shown). Round to **whole months**, as USCIS shows them:
-   - `min_months` = the lower number (if USCIS shows one number only, ask me how you want to handle it; don't guess).
-   - `max_months` = the upper number.
-4. Fill in the table below. You don't need every office on the first pass; start with the offices your pilot learners use.
-5. Send me the filled table (or paste the rows into the JSON yourself with the snippet below). I'll then:
-   - add the offices with `"sample": false`, and set the file's `checked_on` to the day **you** checked;
-   - delete the two sample offices;
-   - run `npm test` (`interviewEstimate.test.js` checks months and the date) and `npm run lint`, and open a PR for you to look at in the app before it merges.
-
-**IDs:** lowercase letters, numbers and dashes, the city then the state, e.g. `city-st`. Once learners can pick an office, its id must never change, because it is stored on their phones.
-
-## Fill-in table
-
-Copy each office name exactly as USCIS writes it. Tick "Checked" only when you have compared the row with the USCIS page yourself.
-
-| Checked | id | Name (as on USCIS) | State | min_months | max_months | Seen on USCIS (date) |
-|---|---|---|---|---|---|---|
-| [ ] | | | | | | |
-| [ ] | | | | | | |
-| [ ] | | | | | | |
-| [ ] | | | | | | |
-| [ ] | | | | | | |
-| [ ] | | | | | | |
-| [ ] | | | | | | |
-| [ ] | | | | | | |
-| [ ] | | | | | | |
-| [ ] | | | | | | |
-
-Source URL for every row: `https://egov.uscis.gov/processing-times/` (already the file's `source_url`).
-
-## JSON shape (for each checked row)
-
-```json
-{ "id": "city-st", "name": "City ST", "state": "ST", "min_months": 0, "max_months": 0, "sample": false }
-```
-
-and at the top of the file:
-
-```json
-"checked_on": "YYYY-MM-DD"
-```
-
-`npm test` fails if a real office has months that don't make sense (`min_months` > `max_months`, not whole numbers), if real offices exist without `checked_on`, or if an entry looks like a sample but isn't marked `"sample": true`.
-
-## Keeping it current
-
-USCIS updates these times about once a month. The README asks for a monthly check, like the officeholder list. Each month: open the page, update the months that changed, and set `checked_on`.
-
-## Two ways in: checked by you, or "needs check"
-
-Every office in the file is one of three kinds:
-
-| Office | Learners | Admins and dev | Needs |
-|---|---|---|---|
-| `"sample": true` (made up) | hidden | shown | "(sample, not real)" in the name |
-| `"needs_owner_check": true` (real USCIS numbers, not checked yet) | hidden | shown, marked "needs check" | `"sample": false` and its own `copied_on` date |
-| neither (checked by you) | shown | shown | the file's `checked_on` |
-
-- **You copy the numbers yourself:** add them as checked offices (no flag) and set `checked_on`.
-- **Someone else copies them** (a helper, or me if the page becomes readable): they go in with `"needs_owner_check": true` and `"copied_on": "YYYY-MM-DD"`. You can see them on `/interview/when` as an admin. To approve one: compare it with the USCIS page, fix the months if needed, delete `needs_owner_check` and `copied_on`, and set the file's `checked_on`.
-
-Learners keep seeing "Coming soon" until at least one office has been approved. Details in `content/uscis/README.md`; the rules are in `processingProblems()` and `isCheckedOffice()` (`src/lib/interviewEstimate.js`) and checked by `npm test`.
+## The sheet
+`docs/review/n400-field-offices.xlsx` is the owner's filled-in sheet (90 offices, one row each: the sentence from USCIS word for word, the months, the date read, Checked). Use it for the next monthly check.

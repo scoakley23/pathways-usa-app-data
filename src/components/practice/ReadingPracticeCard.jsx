@@ -60,7 +60,7 @@ export default function ReadingPracticeCard({ sentence, onComplete, onNext, inde
         // Auto-stop after 10 seconds of silence — generous for beginners pausing between words
         silenceTimeoutRef.current = setTimeout(() => {
           if (recognitionRef.current) {
-            try { recognitionRef.current.stop(); } catch (e) {}
+            try { recognitionRef.current.stop(); } catch {}
           }
         }, 10000);
       };

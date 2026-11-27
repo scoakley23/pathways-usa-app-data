@@ -11,7 +11,7 @@ import { UNITS } from '@/lib/course';
 import { lessonsLeft, readyBy } from '@/lib/dailyPlan';
 import { savePlanChoice } from '@/lib/planSettings';
 import {
-  NOT_FILED, PROCESSING_TIMES, USCIS_PROCESSING_URL, estimateRange, loadInterviewChoice, officeById,
+  NOT_FILED, PROCESSING_TIMES, USCIS_PROCESSING_URL, estimateRange, isStale, loadInterviewChoice, officeById,
   canSeeSampleOffices, recentMonths, saveInterviewChoice, visibleOffices,
 } from '@/lib/interviewEstimate';
 import { WHEN_LINES } from '@/components/shell/shellStrings';
@@ -20,12 +20,14 @@ import { WHEN_LINES } from '@/components/shell/shellStrings';
 // Not filed yet: the "ready by" month from the learner's plan. Already filed:
 // the filing month and field office (both on this device only, never sent
 // anywhere; src/lib/interviewEstimate.js) give "Most N-400s at this office are
-// finished between … and …", from the hand-checked USCIS times bundled in
+// finished between … and …" (or "by …" when USCIS shows one number), from the hand-checked USCIS times bundled in
 // content/uscis/ (never fetched). Always "Estimate only. Not legal advice."
 // and the official USCIS processing times link. While no real office has
 // been checked yet, learners see "Coming soon" and the link instead of an
 // empty picker; admins (and dev) also see the sample offices and real ones
-// still waiting for the owner's check (marked "needs check").
+// still waiting for the owner's check (marked "needs check"). Once the hand
+// check is more than 60 days old, learners see "Coming soon" again and admins
+// see an "out of date" note (isStale()).
 
 const ym = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
 
@@ -57,7 +59,9 @@ export default function WhenInterviewPage() {
   const range = filed ? estimateRange(office, choice.filed) : null;
 
   const monthName = (d, withYear = true) => d.toLocaleDateString(locale, withYear ? { month: 'long', year: 'numeric' } : { month: 'long' });
+  const num = (n) => { try { return new Intl.NumberFormat(locale).format(n); } catch { return String(n); } };
   const rangeText = (r) => {
+    if (r.single) return monthName(r.to);
     try { return new Intl.DateTimeFormat(locale, { month: 'long', year: 'numeric' }).formatRange(r.from, r.to); } catch { return `${monthName(r.from)} – ${monthName(r.to)}`; }
   };
 
@@ -121,12 +125,17 @@ export default function WhenInterviewPage() {
             </dl>
             {offices.some((o) => o.sample) && <p className="text-small text-muted">{t('sample_note')}</p>}
             {offices.some((o) => o.needs_owner_check) && <p className="text-small text-muted">{t('needs_check_note')}</p>}
+            {showSamples && offices.some((o) => !o.sample) && isStale(PROCESSING_TIMES) && <p className="text-small text-muted">{t('out_of_date_note')}</p>}
 
             {range ? (
               <section className="rounded-card bg-sky p-5 flex flex-col gap-2" aria-live="polite">
                 <p className="font-display text-[2.25rem] leading-[1.05] tracking-tight">{rangeText(range)}</p>
-                <p className="text-base">{t('most_finished', { from: monthName(range.from), to: monthName(range.to) })}</p>
-                <p className="text-base">{t('uscis_months', { min: range.min, max: range.max })}</p>
+                <p className="text-base">{range.single
+                  ? t('most_finished_by', { month: monthName(range.to) })
+                  : t('most_finished', { from: monthName(range.from), to: monthName(range.to) })}</p>
+                <p className="text-base">{range.single
+                  ? t('uscis_months_one', { months: num(range.max) })
+                  : t('uscis_months', { min: num(range.min), max: num(range.max) })}</p>
               </section>
             ) : (
               <p className="text-base text-muted">{t('pick_both')}</p>

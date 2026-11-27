@@ -5,13 +5,15 @@ import { ArrowLeft } from 'lucide-react';
 import POLICY from '../../../docs/AI-Policy-updated.md?raw';
 
 // Settings → AI policy (/settings/ai-policy): docs/AI-Policy-updated.md,
-// bundled with the app (no network), in English. The review box at the top
-// of the file (the status line and "What changed…", which say to remove them
-// before publishing) is left out.
+// bundled with the app (no network), in English. Between the title and the
+// first section only the "*Updated …*" line is shown; anything else there (a
+// review box or notes for the owner) is left out.
 export function publicPolicy(md) {
   const start = md.indexOf('\n## ');
   const title = (md.match(/^# .*$/m) || ['# AI Policy'])[0];
-  return start === -1 ? md : `${title}\n${md.slice(start)}`;
+  if (start === -1) return md;
+  const updated = md.slice(0, start).match(/^\*Updated .*\*$/m);
+  return `${title}\n${updated ? `\n${updated[0]}\n` : ''}${md.slice(start)}`;
 }
 
 const TEXT = publicPolicy(POLICY);

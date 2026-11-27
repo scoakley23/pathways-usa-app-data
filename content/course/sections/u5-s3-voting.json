@@ -91,6 +91,124 @@
               "word": "15th Amendment",
               "meaning": "the amendment that says race cannot stop a citizen from voting"
             }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "After the Civil War, new amendments were added to the Constitution.",
+              "picture": {
+                "drawing": "reconstructionAmendments"
+              },
+              "help": {
+                "simpler": "After the war, the Constitution was changed three times.",
+                "example": "The 13th Amendment ended slavery.",
+                "why": "Two of these amendments are on the test."
+              }
+            },
+            {
+              "say": "The 14th Amendment said that all persons born or naturalized in the United States are citizens.",
+              "picture": {
+                "drawing": "reconstructionAmendments",
+                "focus": "fourteenth"
+              },
+              "help": {
+                "simpler": "If you are born here or naturalize here, you are a citizen.",
+                "example": "Naturalize means to become a citizen after applying.",
+                "why": "The test asks which amendment says this: the 14th."
+              }
+            },
+            {
+              "check": {
+                "kind": "tap",
+                "prompt": "Tap the amendment about who is a citizen.",
+                "picture": {
+                  "drawing": "reconstructionAmendments"
+                },
+                "answer": "fourteenth"
+              }
+            },
+            {
+              "say": "In 1870, the 15th Amendment said a man could not be kept from voting because of his race.",
+              "picture": {
+                "drawing": "reconstructionAmendments",
+                "focus": "fifteenth"
+              },
+              "help": {
+                "simpler": "In 1870, voting rules could not keep men out because of race.",
+                "example": "Race means a group of people seen as having the same skin color or roots.",
+                "why": "“1870” and “15th Amendment” are answers on the test."
+              }
+            },
+            {
+              "say": "So “1870”, “after the Civil War” and “the 15th Amendment” all answer: When did all men get the right to vote?",
+              "picture": {
+                "drawing": "votingAmendments",
+                "focus": "race"
+              },
+              "help": {
+                "simpler": "Three answers, one question: 1870, after the Civil War, the 15th Amendment.",
+                "example": "You only need to say one of them.",
+                "why": "The test asks when all men got the right to vote."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "When did all men get the right to vote?",
+                "choices": [
+                  "1870",
+                  "1920",
+                  "1776"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "But for almost one hundred years after that, many Black Americans were still kept from voting.",
+              "help": {
+                "simpler": "The law changed, but many Black Americans still could not vote.",
+                "example": "This went on until the 1960s.",
+                "why": "It shows that a law on paper is not always followed."
+              }
+            },
+            {
+              "say": "They were kept from voting by unfair rules and violence.",
+              "help": {
+                "simpler": "Unfair rules and attacks stopped people from voting.",
+                "example": "Some places made Black Americans pass hard tests or pay to vote.",
+                "why": "It explains why the fight for voting rights went on."
+              }
+            },
+            {
+              "say": "The civil rights movement fought to change this.",
+              "picture": {
+                "photo": "king.jpg"
+              },
+              "help": {
+                "simpler": "Many people worked together for equal rights.",
+                "example": "Martin Luther King, Jr. was a leader of the civil rights movement.",
+                "why": "You will learn more about civil rights in Unit 6."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "After 1870, every Black American could vote freely.",
+                "answer": false
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Which amendment says all persons born or naturalized in the United States are citizens?",
+                "choices": [
+                  "The 14th Amendment",
+                  "The 19th Amendment",
+                  "The 1st Amendment"
+                ],
+                "answer": 0
+              }
+            }
           ]
         },
         "teachBack": {
@@ -149,6 +267,139 @@
             {
               "word": "19th Amendment",
               "meaning": "the amendment that gave women the right to vote"
+            }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "In the 1800s, women could not vote in most of the country.",
+              "picture": {
+                "photo": "anthony.jpg"
+              },
+              "help": {
+                "simpler": "Back then, most women were not allowed to vote.",
+                "example": "Only men could vote in most states.",
+                "why": "This is why the women’s rights movement began."
+              }
+            },
+            {
+              "say": "Susan B. Anthony led the fight for women’s right to vote.",
+              "picture": {
+                "photo": "anthony.jpg"
+              },
+              "help": {
+                "simpler": "Anthony worked her whole life so women could vote.",
+                "example": "She gave speeches and wrote about women’s rights.",
+                "why": "“Susan B. Anthony” is an answer on the test."
+              }
+            },
+            {
+              "say": "Elizabeth Cady Stanton led the fight too.",
+              "picture": {
+                "photo": "stanton.jpg"
+              },
+              "help": {
+                "simpler": "Stanton was another leader for women’s rights.",
+                "example": "She and Anthony worked together for many years.",
+                "why": "“Elizabeth Cady Stanton” is an answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Name one leader of the women’s rights movement in the 1800s.",
+                "choices": [
+                  "Susan B. Anthony",
+                  "Abraham Lincoln",
+                  "Thomas Jefferson"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "Sojourner Truth was born into slavery and escaped.",
+              "picture": {
+                "photo": "truth.jpg"
+              },
+              "help": {
+                "simpler": "Sojourner Truth was enslaved, then got away to freedom.",
+                "example": "She became a famous speaker.",
+                "why": "“Sojourner Truth” is an answer on the test."
+              }
+            },
+            {
+              "say": "She spoke out for the rights of women and of Black Americans.",
+              "picture": {
+                "photo": "truth.jpg"
+              },
+              "help": {
+                "simpler": "She gave speeches for equal rights for women and Black Americans.",
+                "example": "To speak out means to say in public what you believe.",
+                "why": "It explains why she is a leader of the movement."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "Sojourner Truth spoke out for the rights of women.",
+                "answer": true
+              }
+            },
+            {
+              "say": "Harriet Tubman was also born into slavery and escaped.",
+              "picture": {
+                "photo": "tubman.jpg"
+              },
+              "help": {
+                "simpler": "Harriet Tubman was enslaved, then got away to freedom.",
+                "example": "She escaped to the North.",
+                "why": "“Harriet Tubman” is an answer on the test."
+              }
+            },
+            {
+              "say": "She spoke out for women and Black Americans, and helped many enslaved people escape to freedom.",
+              "picture": {
+                "photo": "tubman.jpg"
+              },
+              "help": {
+                "simpler": "Tubman went back many times to lead others to freedom.",
+                "example": "She helped many enslaved people escape to the North.",
+                "why": "It explains why Tubman is so well known."
+              }
+            },
+            {
+              "say": "In 1920, after World War I, the 19th Amendment gave women the right to vote.",
+              "picture": {
+                "drawing": "votingAmendments",
+                "focus": "women"
+              },
+              "help": {
+                "simpler": "Since 1920, women can vote.",
+                "example": "The 19th Amendment changed the Constitution so women could vote.",
+                "why": "“1920”, “after World War I” and “19th Amendment” are answers."
+              }
+            },
+            {
+              "check": {
+                "kind": "tap",
+                "prompt": "Tap the amendment that gave women the right to vote.",
+                "picture": {
+                  "drawing": "votingAmendments"
+                },
+                "answer": "women"
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "When did all women get the right to vote?",
+                "choices": [
+                  "1920",
+                  "1870",
+                  "1776"
+                ],
+                "answer": 0
+              }
             }
           ]
         },
