@@ -8,7 +8,7 @@
       "16th president of the United States",
       "Delivered the Gettysburg Address"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "Abraham Lincoln was the 16th president of the United States. He led the country during the Civil War, from 1861 to 1865. In 1863 he signed the Emancipation Proclamation, which freed slaves in the Confederate states. That same year he gave the Gettysburg Address, a short and famous speech. He worked to save, or preserve, the Union.",
     "keyWords": [
       {
@@ -38,8 +38,8 @@
       "Aide to General George Washington",
       "Member of the Continental Congress"
     ],
-    "status": "draft",
-    "explanation": "Alexander Hamilton was one of the Founding Fathers. During the Revolutionary War, he worked as an aide to General George Washington. He was the first Secretary of the Treasury, in charge of the country's money. He helped start the First Bank of the United States. With James Madison and John Jay, he wrote the Federalist Papers to support the new Constitution.",
+    "status": "reviewed",
+    "explanation": "Alexander Hamilton was one of the Founding Fathers. During the Revolutionary War, he worked as an aide to General George Washington. He was the first Secretary of the Treasury, in charge of the country's money, and he helped start the First Bank of the United States. With James Madison and John Jay, he wrote the Federalist Papers to support the new Constitution. He was also a member of the Continental Congress.",
     "keyWords": [
       {
         "en": "Secretary of the Treasury",
@@ -68,7 +68,7 @@
       "Inventor",
       "U.S. diplomat"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "Benjamin Franklin was one of the most famous early Americans. He was an inventor and a writer. He helped write the Declaration of Independence in 1776. He was a U.S. diplomat in France and helped get support for the American Revolution. He was also the first Postmaster General, in charge of the mail, and he founded the first free public libraries.",
     "keyWords": [
       {
@@ -95,7 +95,7 @@
       "Communism",
       "Nuclear war"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The Cold War lasted from about 1947 to 1991. It was a long conflict between the United States and the Soviet Union, but the two countries did not fight each other directly.\n\n• Communism: Communism is a system where the government controls the economy and owns most property, and one political party holds all the power. The United States worried that communism would spread to more countries.\n• Nuclear war: Both countries built many nuclear weapons. People feared a war that could destroy whole cities.\n\nYou only need to name one.",
     "keyWords": [
       {
@@ -124,7 +124,7 @@
       "34th president of the United States",
       "Signed the Federal-Aid Highway Act of 1956 (Created the Interstate System)"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "Dwight Eisenhower was an important general during World War II. He led the Allied forces in Europe. Later, he became the 34th president of the United States, from 1953 to 1961. He was president when the fighting in the Korean War ended in 1953. In 1956 he signed a law that created the Interstate System of highways.",
     "keyWords": [
       {
@@ -153,7 +153,7 @@
       "General of the Continental Army",
       "President of the Constitutional Convention"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "George Washington was the general of the Continental Army during the Revolutionary War. After the war, he led the Constitutional Convention in 1787, where the Constitution was written. In 1789 he became the first president of the United States. Because of his important role in creating the nation, people call him the \"Father of Our Country.\"",
     "keyWords": [
       {
@@ -180,7 +180,7 @@
       "Amendments",
       "The amendment process"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The Constitution can be changed, but it is not easy. A change or addition to the Constitution is called an amendment. Usually, two-thirds of both houses of Congress must approve an amendment. Then three-fourths of the states must approve it too. This is called the amendment process.",
     "keyWords": [
       {
@@ -208,8 +208,8 @@
       "Naturalize",
       "Derive citizenship (under conditions set by Congress)"
     ],
-    "status": "draft",
-    "explanation": "There are three general ways to become a U.S. citizen. Most people born in the United States are citizens, under the conditions set by the 14th Amendment. Other people can naturalize, which means they apply and complete a legal process to become citizens. Some children derive citizenship from a parent, under conditions set by Congress. This is general information only; for your own situation, talk to a lawyer.",
+    "status": "reviewed",
+    "explanation": "There are three general ways to become a U.S. citizen. People born in the United States are citizens, under the conditions set by the 14th Amendment. Other people can naturalize, which means they apply and complete a legal process to become citizens. Some children derive citizenship from a parent, under conditions set by Congress. This is general information only; for your own situation, talk to a lawyer.",
     "keyWords": [
       {
         "en": "citizens",
@@ -236,7 +236,7 @@
       "Lifetime appointment",
       "(Until) retirement"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "Supreme Court justices do not have a fixed term. They have a lifetime appointment, so they can serve for life. Many justices serve until retirement or until they die. This rule helps judges make decisions without worrying about losing their jobs.",
     "keyWords": [
       {
@@ -262,8 +262,8 @@
     "answers": [
       "Six (6) years"
     ],
-    "status": "draft",
-    "explanation": "A U.S. senator is elected for a term of six years. A term is the length of time a person serves in office. Senators can be elected again many times. Elections are staggered: about one-third of the Senate is elected every two years.",
+    "status": "reviewed",
+    "explanation": "A U.S. senator is elected for a term of six years. A term is the length of time a person serves in office. Senators can be elected again many times. Senate elections happen at different times: about one-third of the Senate is elected every two years.",
     "keyWords": [
       {
         "en": "term",
@@ -284,7 +284,7 @@
     "answers": [
       "Two (2) years"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "A member of the House of Representatives serves a term of two years. A term is the length of time a person serves in office. Elections for the House happen every two years, in even-numbered years. All 435 voting seats are up for election at the same time. Representatives can be elected again many times.",
     "keyWords": [
       {
@@ -310,8 +310,8 @@
     "answers": [
       "Five (5)"
     ],
-    "status": "draft",
-    "explanation": "The Supreme Court has nine justices. To decide a case, a majority must agree. A majority of nine is five. So usually five justices are needed to decide a case. The justices who agree write the opinion of the Court.",
+    "status": "reviewed",
+    "explanation": "The Supreme Court has nine justices. To decide a case, a majority must agree. A majority of nine is five. So usually five justices are needed to decide a case. One of the justices who agree writes the opinion of the Court.",
     "keyWords": [
       {
         "en": "Supreme Court justices",
@@ -332,7 +332,7 @@
     "answers": [
       "One hundred (100)"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "There are 100 U.S. senators. Each of the 50 states has two senators. Big states and small states have the same number of senators. This gives every state an equal voice in the Senate.",
     "keyWords": [
       {
@@ -350,7 +350,7 @@
     "answers": [
       "Twenty-seven (27)"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "An amendment is a change or addition to the Constitution. The U.S. Constitution has 27 amendments. The first ten amendments are called the Bill of Rights, and they were added in 1791. The most recent amendment, the 27th, was added in 1992.",
     "keyWords": [
       {
@@ -372,7 +372,7 @@
     "answers": [
       "Nine (9)"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The Supreme Court has nine seats. One seat is for the Chief Justice, and the other eight are for associate justices. The Constitution does not set this number; Congress does. The number has been nine since 1869.",
     "keyWords": [
       {
@@ -394,7 +394,7 @@
     "answers": [
       "Two (2)"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "Each state has two senators. It does not matter how many people live in the state. This gives small states and big states an equal voice in the Senate. With 50 states, there are 100 senators in total.",
     "keyWords": [
       {
@@ -416,7 +416,7 @@
     "answers": [
       "Four hundred thirty-five (435)"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The House of Representatives has 435 voting members. The number of representatives for each state depends on its population. States with more people have more representatives. Every state has at least one. There are also a few delegates from places like Washington, D.C., but they cannot vote on final passage of laws.",
     "keyWords": [
       {
@@ -438,7 +438,7 @@
     "answers": [
       "The Vice President (of the United States)"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "If the president dies, resigns, or can no longer serve, the Vice President becomes president. This is the first step in the line of succession. The Constitution and the 25th Amendment explain this rule. It makes sure the country always has a leader.",
     "keyWords": [
       {
@@ -462,7 +462,7 @@
       "Civic duty",
       "Makes the draft fair, if needed"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The Selective Service is a system that keeps a list of men who could be called to the military in an emergency. The law requires most men age 18 through 25 who live in the United States to register. Registering is also a civic duty. If the country ever needs a draft, the list helps make it fair. This is general information; if you have questions about your own situation, talk to a lawyer.",
     "keyWords": [
       {
@@ -495,7 +495,7 @@
       "President during the War of 1812",
       "One of the writers of the Federalist Papers"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "James Madison is called the \"Father of the Constitution\" because he did so much to plan and write it. With Alexander Hamilton and John Jay, he wrote the Federalist Papers to support the Constitution. Later, he became the fourth president of the United States. He was president during the War of 1812, a war with Britain.",
     "keyWords": [
       {
@@ -528,7 +528,7 @@
       "Mayflower Compact",
       "Iroquois Great Law of Peace"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The writers of the Constitution learned from many earlier documents and ideas. Here are the documents on the official list.\n\n• Declaration of Independence: Written in 1776, it said the colonies were free from Britain and that all people have basic rights.\n• Articles of Confederation: This was the first plan for the national government. It made the national government too weak.\n• Federalist Papers: These were essays from 1787 and 1788 that explained the Constitution and asked people to support it.\n• Anti-Federalist Papers: These were essays by people who worried the new national government would be too strong. Their ideas helped lead to the Bill of Rights.\n• Virginia Declaration of Rights: Written in 1776 by George Mason, it listed rights like freedom of the press and freedom of religion.\n• Fundamental Orders of Connecticut: Written in 1639, it was one of the first written plans for government in America.\n• Mayflower Compact: In 1620, the Pilgrims signed this agreement to make fair laws and govern themselves.\n• Iroquois Great Law of Peace: This was the constitution of the Iroquois (Haudenosaunee) nations. It joined several nations together in peace.\n\nYou only need to name one.",
     "keyWords": [
       {
@@ -556,7 +556,7 @@
       "Worked for equality for all Americans",
       "Worked to ensure that people would “not be judged by the color of their skin, but by the content of their character”"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "Martin Luther King, Jr. was a leader of the civil rights movement in the 1950s and 1960s. He fought for civil rights and worked for equality for all Americans. He used peaceful protest, not violence. In a famous speech in 1963, he said he hoped people would \"not be judged by the color of their skin, but by the content of their character.\"",
     "keyWords": [
       {
@@ -607,7 +607,7 @@
       "Tuscarora",
       "For a complete list of tribes, please visit bia.gov."
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "American Indians, also called Native Americans, lived in North America long before Europeans arrived. Each tribe has its own history, culture, and government. The pronunciation is in parentheses.\n\n• Apache (uh-PATCH-ee): They traditionally live in the Southwest, in Arizona and New Mexico.\n• Blackfeet (BLACK-feet): They live in Montana, near Glacier National Park.\n• Cayuga (kay-YOO-guh): They come from New York and are one of the Six Nations of the Iroquois.\n• Cherokee (CHAIR-uh-kee): They first lived in the Southeast. Today many live in Oklahoma and North Carolina.\n• Cheyenne (shy-AN): They lived on the Great Plains. Today many live in Montana and Oklahoma.\n• Chippewa (CHIP-uh-wah): Also called Ojibwe, they live around the Great Lakes, in states like Minnesota and Michigan.\n• Choctaw (CHOCK-taw): They first lived in Mississippi. Today many live in Oklahoma and Mississippi.\n• Creek (KREEK): Also called Muscogee, they first lived in Georgia and Alabama. Today many live in Oklahoma.\n• Crow (KROH): They live in southern Montana.\n• Hopi (HOH-pee): They live in northern Arizona, in very old villages on high, flat hills called mesas.\n• Huron (HYOOR-on): Also called Wendat, they lived around the Great Lakes.\n• Inupiat (ih-NOO-pee-at): They live in northern Alaska, in a very cold region.\n• Lakota (luh-KOH-tuh): They are part of the Sioux and live on the Great Plains, mostly in South Dakota.\n• Mohawk (MOH-hawk): They live in New York and are one of the Six Nations of the Iroquois.\n• Mohegan (moh-HEE-gun): They live in Connecticut.\n• Navajo (NAV-uh-hoh): They have the largest reservation in the country, in Arizona, New Mexico, and Utah.\n• Oneida (oh-NY-duh): They live in New York and Wisconsin and are one of the Six Nations of the Iroquois.\n• Onondaga (on-un-DAW-guh): They live in central New York and are one of the Six Nations of the Iroquois.\n• Pueblo (PWEB-loh): These are many communities in New Mexico known for their old adobe villages.\n• Seminole (SEM-ih-nohl): They live in Florida and Oklahoma.\n• Seneca (SEN-ih-kuh): They live in western New York and are one of the Six Nations of the Iroquois.\n• Shawnee (shaw-NEE): They first lived in the Ohio River Valley. Today many live in Oklahoma.\n• Sioux (SOO): This is a large group of nations on the Great Plains, including the Lakota and Dakota.\n• Teton (TEE-ton): The Teton Sioux is another name for the Lakota people of the Great Plains.\n• Tuscarora (tusk-uh-ROR-uh): They first lived in North Carolina. They moved north and joined the Iroquois in the 1700s.\n\nYou only need to name one. You can see the full list of tribes at bia.gov.",
     "keyWords": [
       {
@@ -617,10 +617,6 @@
       {
         "en": "tribe",
         "translation": "tribe"
-      },
-      {
-        "en": "bia.gov",
-        "translation": "bia.gov"
       }
     ]
   },
@@ -631,7 +627,7 @@
       "War in Afghanistan",
       "War in Iraq"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "On September 11, 2001, terrorists attacked the United States and killed almost 3,000 people. After the attacks, the United States began the Global War on Terror. In 2001, U.S. forces went to Afghanistan. In 2003, the War in Iraq began. You can name any one of these conflicts.",
     "keyWords": [
       {
@@ -667,7 +663,7 @@
       "Landing on the moon",
       "Integrated circuit (IC)"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "An innovation is a new idea, invention, or way of doing something. Americans created many important innovations.\n\n• Light bulb: In 1879, Thomas Edison made a light bulb that worked well and lasted a long time.\n• Automobile: Cars run on an engine that burns fuel. Henry Ford made cars cheap enough for many families.\n• Skyscrapers: These are very tall buildings. The first ones were built in Chicago and New York in the late 1800s.\n• Airplane: In 1903, the Wright brothers flew the first airplane in North Carolina.\n• Assembly line: In 1913, Henry Ford used a moving line where each worker did one job. This made cars faster and cheaper to build.\n• Landing on the moon: In 1969, American astronauts were the first people to walk on the moon.\n• Integrated circuit: This is a very small computer chip, invented in the late 1950s. It is inside computers and phones today.\n\nYou only need to name one.",
     "keyWords": [
       {
@@ -702,8 +698,8 @@
       "Lucretia Mott",
       "Lucy Stone"
     ],
-    "status": "draft",
-    "explanation": "In the 1800s, women in the United States could not vote and had fewer rights than men. These women worked to change this. Women won the right to vote in 1920.\n\n• Susan B. Anthony: She worked for many years for women's right to vote. She was arrested for voting in 1872.\n• Elizabeth Cady Stanton: In 1848, she helped lead the first big meeting about women's rights in Seneca Falls, New York.\n• Sojourner Truth: She was born enslaved and later became free. She gave famous speeches against slavery and for women's rights.\n• Harriet Tubman: She escaped slavery and helped many enslaved people escape to freedom. She also supported women's right to vote.\n• Lucretia Mott: She worked to end slavery and helped organize the 1848 meeting in Seneca Falls.\n• Lucy Stone: She was a famous speaker for women's rights and against slavery. She kept her own last name after she married.\n\nYou only need to name one.",
+    "status": "reviewed",
+    "explanation": "In the 1800s, most women in the United States could not vote and had fewer rights than men. These women worked to change this. Women won the right to vote in 1920.\n\n• Susan B. Anthony: She worked for many years for women's right to vote. She was arrested for voting in 1872.\n• Elizabeth Cady Stanton: In 1848, she helped lead the first big meeting about women's rights in Seneca Falls, New York.\n• Sojourner Truth: She was born enslaved and later became free. She gave famous speeches against slavery and for women's rights.\n• Harriet Tubman: She escaped slavery and helped many enslaved people escape to freedom. She also supported women's right to vote.\n• Lucretia Mott: She worked to end slavery and helped organize the 1848 meeting in Seneca Falls.\n• Lucy Stone: She was a famous speaker for women's rights and against slavery. She kept her own last name after she married.\n\nYou only need to name one.",
     "keyWords": [
       {
         "en": "rights movement",
@@ -730,7 +726,7 @@
       "Declares war",
       "Makes the federal budget"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "Congress is the legislative branch of the federal government. It has two parts: the Senate and the House of Representatives. Its main job is to write laws. Congress also has the power to declare war. It makes the federal budget, which decides how the government spends money.",
     "keyWords": [
       {
@@ -765,7 +761,7 @@
       "Chief diplomat",
       "Appoints federal judges"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The president leads the executive branch, which enforces laws. The president can sign bills into law or veto them, which means saying no. The president is the Commander in Chief of the military. As chief diplomat, the president works with other countries. The president also appoints federal judges, and the Senate must approve them.",
     "keyWords": [
       {
@@ -800,7 +796,7 @@
       "Make treaties",
       "Set foreign policy"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "The Constitution divides power between the federal (national) government and the states. Some powers belong only to the federal government. For example, only the federal government can print paper money and mint coins. Only it can declare war, create an army, and make treaties with other countries. This way, the country speaks with one voice to the world.",
     "keyWords": [
       {
@@ -834,7 +830,7 @@
       "Give a driver’s license",
       "Approve zoning and land use"
     ],
-    "status": "draft",
+    "status": "reviewed",
     "explanation": "Under the Constitution, some powers belong to the states, not the federal government. States provide schooling and education. They provide protection with police and safety with fire departments. States give driver's licenses. They also approve zoning and land use, which means deciding how land can be used.",
     "keyWords": [
       {
