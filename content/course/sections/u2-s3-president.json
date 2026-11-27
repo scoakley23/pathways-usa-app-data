@@ -252,7 +252,7 @@
               "meaning": "the leader of all the armed forces"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "The President has important powers.",
@@ -292,7 +292,7 @@
               },
               "help": {
                 "simpler": "The President is the top leader of the U.S. military.",
-                "example": "The Army, Navy, Air Force and Marines all answer to the President.",
+                "example": "Every part of the U.S. military, like the Army and the Navy, answers to the President.",
                 "why": "The test asks who is Commander in Chief. The answer is the President."
               }
             },
