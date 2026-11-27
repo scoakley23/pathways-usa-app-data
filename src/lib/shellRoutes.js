@@ -26,6 +26,7 @@ const TAB_FOR_PATH = {
   '/interview': 'interview',
   '/interview/when': 'interview',
   '/interview-day': 'interview',
+  '/class': 'interview',
   '/n400-guide': 'interview',
   '/n400-coach': 'interview',
   '/me': 'me',
@@ -56,6 +57,8 @@ export const INTERVIEW_LINKS = [
   { id: 'n400', label: 'N-400 guide', body: 'What each question on the form means and how the officer may say it.', path: '/n400-guide' },
   // The old N-400 coach address now opens the learner's next N-400 lesson.
   { id: 'coach', label: 'Next N-400 lesson', body: 'Learn to understand the officer’s N-400 questions.', path: '/n400-coach' },
+  // The Class screen (desktop vision D): civics questions on a big screen for a class.
+  { id: 'class', label: 'Class screen', body: 'Show civics questions on a big screen for your class.', path: '/class' },
 ];
 
 // What Me lists under the path and topics (Amio v2, frame Me): Ask Amio, Free

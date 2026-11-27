@@ -57,6 +57,8 @@ export const COURSE_LINES = {
   part_civics: 'Civics',
   part_speaking: 'Speaking',
   questions_of: '{n} of {total} questions',
+  // Desktop: the whole road (vision B)
+  road_title: 'Your whole road',
   lesson_of_title: 'Lesson {n} of {total} · {title}',
   continue: 'Continue',
   see_all: 'See everything in this topic',

@@ -84,7 +84,7 @@ function TopicCard({ unit, journey, masteredIds, t, expanded, onToggle, onOpen }
     <section className={`rounded-card px-4 py-4 flex flex-col gap-3 ${look}`} aria-labelledby={`${panel}-title`}>
       <div className="flex items-start gap-3">
         <div className="flex-1 min-w-0">
-          <h2 id={`${panel}-title`} dir="auto" className="text-[1.375rem] font-bold leading-tight break-words">{unit.title}</h2>
+          <h2 id={`${panel}-title`} dir="auto" className="text-[1.375rem] font-bold leading-tight break-words scroll-mt-20">{unit.title}</h2>
           {currentLine && <p dir="auto" className="mt-1 text-base break-words">{currentLine}</p>}
           {questions && questions.total > 0 && <p className={`mt-1 text-small ${tone === 'sky' ? 'text-navy' : subText}`}>{t('questions_of', { n: questions.done, total: questions.total })}</p>}
           {state === 'empty' && <p className={`mt-1 text-small ${subText}`}>{t('being_reviewed')}</p>}
@@ -138,8 +138,9 @@ function TopicCard({ unit, journey, masteredIds, t, expanded, onToggle, onOpen }
 }
 
 export default function TopicList({ journey, masteredIds, t, expandedId, onToggle, onOpen }) {
+  // Desktop: two topics to a row under the whole road (vision B).
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 lg:grid lg:grid-cols-2 lg:gap-3 lg:items-start">
       {journey.course.map((u) => (
         <TopicCard
           key={u.id}

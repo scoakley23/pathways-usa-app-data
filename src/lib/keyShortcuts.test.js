@@ -9,6 +9,8 @@ describe('shortcutFor', () => {
     expect(shortcutFor({ key: 'r', target: on('BODY') })).toBe('r');
     expect(shortcutFor({ key: 'H', target: on('DIV') })).toBe('h');
     expect(shortcutFor({ key: 'Escape', target: on('BODY') })).toBe('escape');
+    expect(shortcutFor({ key: 'n', target: on('BODY') })).toBe('n');
+    expect(shortcutFor({ key: 'A', target: on('BODY') })).toBe('a');
     expect(shortcutFor({ key: 'x', target: on('BODY') })).toBe(null);
   });
 

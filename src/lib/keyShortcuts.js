@@ -12,7 +12,8 @@
 const TYPING = new Set(['INPUT', 'TEXTAREA', 'SELECT']);
 const PRESSABLE = new Set(['BUTTON', 'A', 'SUMMARY']);
 
-export const SHORTCUT_KEYS = { ' ': 'space', Spacebar: 'space', r: 'r', R: 'r', h: 'h', H: 'h', Escape: 'escape', Esc: 'escape' };
+// A and N are the Class screen's (show the answer, next question).
+export const SHORTCUT_KEYS = { ' ': 'space', Spacebar: 'space', r: 'r', R: 'r', h: 'h', H: 'h', a: 'a', A: 'a', n: 'n', N: 'n', Escape: 'escape', Esc: 'escape' };
 
 export function shortcutFor(event = {}, { dialogOpen = false } = {}) {
   const name = SHORTCUT_KEYS[event.key];
