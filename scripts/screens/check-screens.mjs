@@ -57,6 +57,8 @@ export const SCREENS = [
   { id: 'practice-reading', path: '/study?tab=practice&mode=reading' },
   { id: 'speak-it', path: '/course/speak/u1-s1', clicks: [/^I’m ready$/] },
   { id: 'review-chest', path: '/review-chest' },
+  { id: 'class', path: '/class', signedIn: false },
+  { id: 'class-round', path: '/class', clicks: [/^Start$/, /^Show answer$/] },
   { id: 'lesson', path: '/course/lesson/u1-s1-l1' },
   { id: 'interview-day', path: '/interview-day' },
 ];

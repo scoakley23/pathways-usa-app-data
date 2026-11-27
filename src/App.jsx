@@ -18,6 +18,7 @@ import ReviewCivics from './pages/ReviewCivics';
 import N400CoachRedirect from './components/n400lesson/N400CoachRedirect';
 import N400LessonPage from './components/n400lesson/N400LessonPage';
 import InterviewDay from './pages/InterviewDay';
+import ClassScreen from '@/components/class/ClassScreen';
 import PilotDashboard from './components/pilot-admin/PilotDashboard';
 import Study from './pages/Study';
 import StudyRedirect from './components/study/StudyRedirect';
@@ -228,6 +229,12 @@ const AuthenticatedApp = () => {
       <Route path="interview-day" element={
         <LayoutWrapper currentPageName="InterviewDay">
           <InterviewDay />
+        </LayoutWrapper>
+      } />
+      {/* The Class screen (desktop vision D): saves nothing, no sign-in needed. */}
+      <Route path="class" element={
+        <LayoutWrapper currentPageName="Class">
+          <ClassScreen />
         </LayoutWrapper>
       } />
       {/* Admins only (and local dev): the Pathways + Amio base pieces with fake data. */}
