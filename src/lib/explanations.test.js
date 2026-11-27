@@ -66,7 +66,7 @@ describe('selectExplanation', () => {
 
   it('uses the learner language when it is reviewed', () => {
     expect(selectExplanation(Q1, 'es', tables)).toEqual({
-      text: 'Texto en español.', keyWords: tables.es[Q1].keyWords, link: null, source: 'mine', comingSoon: false, englishText: 'English text.',
+      text: 'Texto en español.', keyWords: tables.es[Q1].keyWords, link: null, video: null, source: 'mine', comingSoon: false, englishText: 'English text.',
     });
     expect(selectExplanation(Q1, 'en', tables)).toMatchObject({ text: 'English text.', source: 'mine', comingSoon: false });
   });
@@ -82,7 +82,7 @@ describe('selectExplanation', () => {
 
   it('returns nothing when English is not reviewed', () => {
     const t = { en: { [Q1]: entry('draft', 'Draft.') }, es: { [Q1]: entry('draft', 'Borrador.') } };
-    expect(selectExplanation(Q1, 'es', t)).toEqual({ text: null, keyWords: [], link: null, source: null, comingSoon: false, englishText: null });
+    expect(selectExplanation(Q1, 'es', t)).toEqual({ text: null, keyWords: [], link: null, video: null, source: null, comingSoon: false, englishText: null });
     expect(selectExplanation(Q1, 'en', t).source).toBe(null);
     expect(selectExplanation('Unknown?', 'en', tables).source).toBe(null);
   });
@@ -155,5 +155,39 @@ describe('links and current answers', () => {
     expect(lesson.steps[1].now.kind).toBe('current');
     expect(lesson.steps[1].now.accepted).toEqual([OFFICEHOLDERS.places.Ohio.governor.name]);
     expect(buildLearnLesson([q], 'en', lookup).steps[1].now.kind).toBe('find');
+  });
+});
+
+describe('videos', () => {
+  const VIDEO = { youtubeId: 'vPKp29Luryc', title: 'A song', source: 'Someone (YouTube)', license: 'Standard YouTube license', status: 'reviewed', checkedOn: '2026-11-27' };
+
+  it('checks an explanation video like a lesson video', () => {
+    expect(findExplanationProblems({ en: { [Q1]: entry('draft', 'x', { video: VIDEO }) } }, OFFICIAL)).toEqual([]);
+    expect(findExplanationProblems({ en: { [Q1]: entry('draft', 'x', { video: { ...VIDEO, youtubeId: 'bad' } }) } }, OFFICIAL)).toHaveLength(1);
+    expect(findExplanationProblems({ en: { [Q1]: entry('draft', 'x', { video: { ...VIDEO, checkedOn: undefined } }) } }, OFFICIAL)).toHaveLength(1);
+  });
+
+  it('shows only a reviewed video, from the learner language or English', () => {
+    const tables = { en: { [Q1]: entry('reviewed', 'E.', { video: VIDEO }) }, es: { [Q1]: entry('reviewed', 'S.') } };
+    expect(selectExplanation(Q1, 'en', tables).video).toEqual(VIDEO);
+    expect(selectExplanation(Q1, 'es', tables).video).toEqual(VIDEO);
+    expect(selectExplanation(Q1, 'fr', tables).video).toEqual(VIDEO);
+    const draftVideo = { en: { [Q1]: entry('reviewed', 'E.', { video: { ...VIDEO, status: 'draft' } }) } };
+    expect(selectExplanation(Q1, 'en', draftVideo).video).toBeNull();
+    const draftEntry = { en: { [Q1]: entry('draft', 'E.', { video: VIDEO }) } };
+    expect(selectExplanation(Q1, 'en', draftEntry).video).toBeNull();
+  });
+
+  it('passes the video to the explain step', () => {
+    const lookup = () => ({ text: 'T.', keyWords: [], link: null, video: VIDEO, source: 'english', comingSoon: false, englishText: 'T.' });
+    const q = { id: 'a', version: '2025', question: Q1, answer: '(U.S.) Constitution' };
+    expect(buildLearnLesson([q], 'en', lookup).steps[0].video).toEqual(VIDEO);
+  });
+
+  it('the national anthem has its reviewed video and no link', () => {
+    const anthem = EXPLANATIONS.en['What is the name of the national anthem?'];
+    expect(anthem.status).toBe('reviewed');
+    expect(anthem.video.youtubeId).toBe('vPKp29Luryc');
+    expect(anthem.link).toBeUndefined();
   });
 });

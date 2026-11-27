@@ -24,6 +24,7 @@ import { markKeyWords } from '@/lib/tutorLesson';
 import { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
 
 import { UI_LINES, UI_LINES_ES } from './tutorStepLines';
+import LessonVideo from '@/components/lesson/LessonVideo';
 
 export { UI_LINES, UI_LINES_ES };
 export const UI = Object.fromEntries(Object.keys(UI_LINES).map((k) => [k, { en: UI_LINES[k], es: UI_LINES_ES[k] }]));
@@ -87,7 +88,7 @@ export function PartIntroStep({ step, ctx }) {
 }
 
 export function ExplainStep({ step, ctx }) {
-  const { note, link } = step;
+  const { note, link, video } = step;
   return (
     <TutorMessage profile={ctx.profile} language={ctx.language} mine={step.text.mine} en={step.text.en}>
       {note && (
@@ -107,6 +108,7 @@ export function ExplainStep({ step, ctx }) {
           <span className="sr-only">{ctx.t('new_tab')}</span>
         </a>
       )}
+      {video && <LessonVideo video={video} t={ctx.t} />}
     </TutorMessage>
   );
 }

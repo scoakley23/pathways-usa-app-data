@@ -4552,7 +4552,8 @@
   {
    "text": "Draft video",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "tutor-steps"
    ]
   },
   {
@@ -5894,7 +5895,8 @@
   {
    "text": "From {source}",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "tutor-steps"
    ]
   },
   {
@@ -12154,7 +12156,8 @@
   {
    "text": "Play video",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "tutor-steps"
    ]
   },
   {
@@ -12166,7 +12169,8 @@
   {
    "text": "Plays from YouTube. YouTube can see that you watched it.",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "tutor-steps"
    ]
   },
   {
@@ -21223,7 +21227,8 @@
   {
    "text": "Watch a video (in English)",
    "from": [
-    "lesson-player"
+    "lesson-player",
+    "tutor-steps"
    ]
   },
   {

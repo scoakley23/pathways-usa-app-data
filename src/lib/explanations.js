@@ -1,14 +1,17 @@
 import { splitOfficialAnswers } from './practiceChecks';
 import { currentAnswerFor } from './currentAnswers';
+import { videoProblems } from './lessonVideo';
 
 // Lesson explanations for the civics questions (Prompt 7: teach first, then
 // practice). They are CONTENT files, reviewed by a person, not generated live:
 //   content/explanations/<lang>.json = { "<official question>": {
 //     question, answers, status: 'draft' | 'reviewed', explanation,
-//     keyWords: [{ en, translation }], link?: { url, label } } }
+//     keyWords: [{ en, translation }], link?: { url, label }, video? } }
 // `explanation` may use line breaks: an intro, then one "• answer: ..." line
 // per accepted answer (list questions). `link` is an optional Listen/Learn
-// more link to an official site (see LINK_HOSTS).
+// more link to an official site (see LINK_HOSTS). `video` is an optional
+// YouTube video in the lesson-video shape (src/lib/lessonVideo.js); only a
+// reviewed video is shown, and it loads only after the learner taps Play.
 // Only "reviewed" entries are shown. See content/explanations/REVIEW.md.
 const files = import.meta.glob('../../content/explanations/*.json', { eager: true, import: 'default' });
 
@@ -23,6 +26,7 @@ export const COMING_SOON = { en: 'Explanation coming soon.', es: 'Explicación d
 export const TRANSLATION_SOON = { en: 'Translation coming soon.', es: 'Traducción disponible pronto.' };
 
 const reviewed = (entry) => (entry && entry.status === 'reviewed' && entry.explanation ? entry : null);
+const shownVideo = (entry) => (entry?.video?.status === 'reviewed' ? entry.video : null);
 
 // Optional links may only point to official sites over https.
 export const isAllowedLink = (url) => {
@@ -34,7 +38,7 @@ export const isAllowedLink = (url) => {
   }
 };
 
-// Pure selection rule. Returns { text, keyWords, link, source, comingSoon, englishText }:
+// Pure selection rule. Returns { text, keyWords, link, video, source, comingSoon, englishText }:
 // - the learner's language entry, only if reviewed (source 'mine');
 // - else the reviewed English entry (source 'english'), with comingSoon=true
 //   for non-English learners ("Translation coming soon.");
@@ -44,9 +48,9 @@ export function selectExplanation(questionText, language = 'en', tables = EXPLAN
   const english = reviewed(tables.en?.[questionText]);
   const mine = reviewed(tables[language]?.[questionText]);
   const englishText = english ? english.explanation : null;
-  if (mine) return { text: mine.explanation, keyWords: mine.keyWords || [], link: mine.link || english?.link || null, source: 'mine', comingSoon: false, englishText };
-  if (english) return { text: english.explanation, keyWords: english.keyWords || [], link: english.link || null, source: 'english', comingSoon: language !== 'en', englishText };
-  return { text: null, keyWords: [], link: null, source: null, comingSoon: false, englishText: null };
+  if (mine) return { text: mine.explanation, keyWords: mine.keyWords || [], link: mine.link || english?.link || null, video: shownVideo(mine) || shownVideo(english), source: 'mine', comingSoon: false, englishText };
+  if (english) return { text: english.explanation, keyWords: english.keyWords || [], link: english.link || null, video: shownVideo(english), source: 'english', comingSoon: language !== 'en', englishText };
+  return { text: null, keyWords: [], link: null, video: null, source: null, comingSoon: false, englishText: null };
 }
 
 export function getExplanation(questionText, language = 'en') {
@@ -89,7 +93,7 @@ export function buildLearnLesson(questions, language = 'en', lookup = getExplana
   for (const q of questions) {
     const explanation = lookup(q.question, language);
     const { text, note } = explainText(explanation, language);
-    steps.push({ type: 'explain', text, note, link: explanation.link || null, questionId: q.id });
+    steps.push({ type: 'explain', text, note, link: explanation.link || null, video: explanation.video || null, questionId: q.id });
     steps.push({ type: 'show-english', question: q, keyWords: explanation.keyWords, now: currentAnswerFor(q, { location }), questionId: q.id });
     steps.push({ type: 'practice-speaking', question: q, questionId: q.id });
   }
@@ -117,6 +121,7 @@ export function findExplanationProblems(tables, officialQuestions) {
         if (!entry.link || !isAllowedLink(entry.link.url)) problems.push(`${where}: link.url must be an https link to a .gov, .mil or .si.edu site`);
         if (!entry.link?.label || typeof entry.link.label !== 'string') problems.push(`${where}: link.label is missing`);
       }
+      if (entry.video !== undefined) problems.push(...videoProblems(entry.video, where));
       const source = `${q.question} ${expected.join(' ')}`.toLowerCase();
       for (const k of entry.keyWords || []) {
         if (!k || !k.en || !source.includes(String(k.en).toLowerCase())) {
