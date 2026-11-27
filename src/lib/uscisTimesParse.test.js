@@ -2,14 +2,16 @@ import { describe, it, expect } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import {
-  findMonths, officeId, officesFromExample, okMonths, parseRsc, sameOffice, splitOfficeName,
+  findMonths, findUpdated, officeId, officesFromExample, okMonths, parseRsc, sameOffice, splitOfficeName,
 } from './uscisTimesParse';
 import { isUscisMonths } from './interviewEstimate';
 import { buildBundle, bookmarkFor, OUT_BOOKMARK, OUT_CONSOLE } from '../../scripts/uscis/build-bookmarklet.mjs';
 
-// The form-type reply below is the one the owner copied from the real page
-// (Nov 26, 2026). The office and time replies are made up: their real shape
-// isn't known yet, so these are the shapes the helper is written to find.
+// REAL_* replies are what the owner copied from the real page on Nov 26, 2026
+// (public processing times, nothing personal; the time reply is shortened).
+// The fake page's offices and months are made up.
+const REAL_OFFICES_REPLY = '0:{"a":"$@1","q":"","i":false,"b":"t6rfNxRVe-eJO4kiWpr_q"}\n1:{"data":{"items":[{"officeCode":"AGA","officeDescription":"Agana GU"},{"officeCode":"BOS","officeDescription":"Boston MA"},{"officeCode":"STA","officeDescription":"Burlington VT"},{"officeCode":"SPM","officeDescription":"Minneapolis-St. Paul MN"},{"officeCode":"RAL","officeDescription":"Raleigh NC"}],"errorMessage":null},"status":200,"actionErrorMessage":null,"actionErrorData":null}';
+const REAL_BOSTON_REPLY = '0:{"a":"$@1","q":"","i":false,"b":"t6rfNxRVe-eJO4kiWpr_q"}\n1:{"data":{"data":{"processingTime":{"range":[{"unit":"Months","value":18,"unitEn":"Months","unitEs":"Meses"},{"unit":"Months","value":15.5,"unitEn":"Months","unitEs":"Meses"}],"completionMonth":"Processing Time Data from May 2026 to October 2026","formName":"N-400","officeCode":"BOS","pilotForm":true,"publicationDate":"Last Updated: November 20, 2026","subtypes":[{"suppressed":false,"range":[{"unit":"Months","value":18,"unitEn":"Months","unitEs":"Meses"},{"unit":"Months","value":15.5,"unitEn":"Months","unitEs":"Meses"}],"completionMonth":"Thu, 01 Oct 2026 00:00:00 GMT","formType":"160A","publicationDate":"November 20, 2026","serviceRequestDate":"June 04, 2025"}]}},"errorMessage":null},"status":200,"actionErrorMessage":null,"actionErrorData":null}';
 const REAL_FORM_REPLY = '0:{"a":"$@1","q":"","i":false,"b":"t6rfNxRVe-eJO4kiWpr_q"}\n1:{"data":{"items":[{"formKey":"160A","formType":"160A","formTypeDescriptionEn":"Application for Naturalization","formTypeDescriptionEs":"Solicitud de Naturalización"}],"errorMessage":null},"status":200,"actionErrorMessage":null,"actionErrorData":null}';
 
 describe('reading USCIS answers', () => {
@@ -45,13 +47,21 @@ describe('reading USCIS answers', () => {
       ],
     });
     expect(officesFromExample(parseRsc(REAL_FORM_REPLY), ['N-400', '160A', 'BOS'])).toBeNull(); // the form list isn't an office list
+    const real = officesFromExample(parseRsc(REAL_OFFICES_REPLY), ['N-400', '160A', 'BOS']);
+    expect(real.codeIndex).toBe(2);
+    expect(real.offices.map((o) => `${o.code} ${o.name}|${o.state}`)).toEqual(['AGA Agana|GU', 'BOS Boston|MA', 'STA Burlington|VT', 'SPM Minneapolis-St. Paul|MN', 'RAL Raleigh|NC']);
   });
 
-  it('takes the months exactly as USCIS shows them, or says it can\'t tell', () => {
-    expect(findMonths({ note: '80% of cases are completed within 14.5 months' })).toEqual({ months: 14.5, text: '80% of cases are completed within 14.5 months' });
-    expect(findMonths({ data: { subtypes: [{ range: [{ value: 13, unit: 'Months' }] }] } })).toEqual({ months: 13, text: null });
-    expect(findMonths({ a: 'within 12 months', b: 'within 13 months' }).problem).toMatch(/more than one/);
-    expect(findMonths({ range: [{ value: 12, unit: 'Months' }, { value: 15, unit: 'Months' }] }).problem).toMatch(/more than one/);
+  it('takes the number the page shows: the last in the range (Boston: 18 / 15.5 → 15.5)', () => {
+    const boston = parseRsc(REAL_BOSTON_REPLY);
+    expect(findMonths(boston)).toEqual({ months: 15.5, range: [18, 15.5], text: null });
+    expect(findUpdated(boston)).toBe('November 20, 2026');
+    const range = (r) => [{ processingTime: { range: r.map((value) => ({ unit: 'Months', value })) } }];
+    expect(findMonths(range([14]))).toMatchObject({ months: 14 });
+    expect(findMonths(range([12, 15])).problem).toMatch(/not the smallest/);
+    expect(findMonths([{ a: { range: [{ unit: 'Months', value: 18 }, { unit: 'Months', value: 15.5 }] }, b: { range: [{ unit: 'Months', value: 17 }, { unit: 'Months', value: 15.5 }] } }]).problem).toMatch(/different ranges/);
+    expect(findMonths([{ subtypes: [{ suppressed: true, range: [{ unit: 'Months', value: 12 }] }] }]).problem).toMatch(/suppressed/);
+    expect(findMonths({ note: '80% of cases are completed within 14.5 months' })).toMatchObject({ months: 14.5 });
     expect(findMonths({ range: [{ value: 40, unit: 'Days' }] }).problem).toBe('no months found');
   });
 
@@ -67,7 +77,7 @@ const reply = (body) => {
   if (args.length === 1) return REAL_FORM_REPLY;
   if (args.length === 2) return `0:{"a":"$@1"}\n1:${JSON.stringify({ data: { items: OFFICES } })}`;
   const i = Number(String(args[2]).slice(1));
-  return `0:{"a":"$@1"}\n1:${JSON.stringify({ data: { processingTime: { range: [{ value: 10 + i / 2, unit: 'Months' }] } } })}`;
+  return REAL_BOSTON_REPLY.replace(/"value":15\.5/g, `"value":${10 + i / 2}`);
 };
 const response = (text) => ({ ok: true, status: 200, text: async () => text, clone: () => response(text) });
 
@@ -113,7 +123,8 @@ describe('the helper (run against a fake USCIS page)', () => {
     const { result, asked } = await fakePage()();
     expect(result.tool).toBe('pathways-copy-n400-times');
     expect(result.offices).toHaveLength(12);
-    expect(result.offices[1]).toMatchObject({ name: 'Fake City 1', state: 'TX', months: 10.5, problem: null });
+    expect(result.offices[1]).toMatchObject({ name: 'Fake City 1', state: 'TX', months: 10.5, range: [18, 10.5], problem: null });
+    expect(result.uscis_updated).toBe('November 20, 2026');
     const own = asked.slice(3);
     expect(own).toHaveLength(12);
     for (const a of own) {

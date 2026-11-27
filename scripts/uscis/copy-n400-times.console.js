@@ -105,27 +105,45 @@ function officesFromExample(json, args) {
 const WITHIN = /within\s+(\d+(?:\.\d+)?)\s+months?/i;
 
 /**
- * The months in one office's USCIS answer. Prefers the sentence USCIS shows
- * ("80% of cases are completed within 14.5 months"); otherwise numbers marked
- * as months ({ value: 14.5, unit: 'Months' }). Returns
- * { months, text } when there is exactly one answer, else { problem, seen }.
+ * The months in one office's USCIS reply. The page (Nov 26, 2026) gets
+ * `range: [{ unit: "Months", value: 18 }, { unit: "Months", value: 15.5 }]`
+ * (twice: under processingTime and under the N-400 subtype) and SHOWS the last
+ * value, "80% of cases are completed within 15.5 Months", which is also the
+ * smallest. Rules: every range in the reply must be the same; the shown
+ * number is the last one and must be the smallest; a "suppressed" office has
+ * no time. Older shapes: a "within N months" sentence. Returns
+ * { months, range, text } or { problem, seen }.
  */
 function findMonths(json) {
-  const sentences = [...new Set(stringsIn(json).filter((s) => WITHIN.test(s)).map((s) => s.trim()))];
-  const fromText = [...new Set(sentences.map((s) => Number(WITHIN.exec(s)[1])))];
-  if (fromText.length === 1) return { months: fromText[0], text: sentences[0] };
-  if (fromText.length > 1) return { problem: 'more than one "within N months" sentence', seen: sentences };
-
-  const values = [];
+  const ranges = [];
+  let suppressed = false;
   for (const o of objectsIn(json)) {
-    const unit = Object.entries(o).find(([k, v]) => /unit/i.test(k) && typeof v === 'string');
-    const value = Object.entries(o).find(([k, v]) => /value|time|range/i.test(k) && (typeof v === 'number' || /^\d+(\.\d+)?$/.test(String(v))));
-    if (unit && /month/i.test(unit[1]) && value) values.push(Number(value[1]));
+    if (o.suppressed === true) suppressed = true;
+    for (const [k, v] of Object.entries(o)) {
+      if (!/range/i.test(k) || !Array.isArray(v) || !v.length) continue;
+      const months = v.filter((x) => x && /month/i.test(String(x.unit ?? x.unitEn ?? '')) && x.value !== null && x.value !== '' && !Number.isNaN(Number(x.value)));
+      if (months.length === v.length) ranges.push(months.map((x) => Number(x.value)));
+    }
   }
-  const distinct = [...new Set(values)];
-  if (distinct.length === 1) return { months: distinct[0], text: null };
-  if (distinct.length > 1) return { problem: 'more than one number of months', seen: distinct };
+  if (suppressed) return { problem: 'USCIS shows no time for this office ("suppressed")', seen: [] };
+  if (ranges.length) {
+    if (ranges.some((r) => JSON.stringify(r) !== JSON.stringify(ranges[0]))) return { problem: 'the reply has different ranges', seen: ranges };
+    const range = ranges[0];
+    const shown = range[range.length - 1];
+    if (shown !== Math.min(...range)) return { problem: 'the last number in the range is not the smallest', seen: range };
+    return { months: shown, range, text: null };
+  }
+  const sentences = [...new Set(stringsIn(json).filter((x) => WITHIN.test(x)).map((x) => x.trim()))];
+  const fromText = [...new Set(sentences.map((x) => Number(WITHIN.exec(x)[1])))];
+  if (fromText.length === 1) return { months: fromText[0], range: null, text: sentences[0] };
+  if (fromText.length > 1) return { problem: 'more than one "within N months" sentence', seen: sentences };
   return { problem: 'no months found', seen: [] };
+}
+
+/** "Last Updated: November 20, 2026" from a USCIS reply, or null. */
+function findUpdated(json) {
+  const hit = stringsIn(json).find((x) => /^last updated:/i.test(x.trim()));
+  return hit ? hit.trim().replace(/^last updated:\s*/i, '') : null;
 }
 
 /** Whole or half months, 1–60: what the app accepts (same rule as isUscisMonths()). */
@@ -147,7 +165,7 @@ const okMonths = (n) => typeof n === 'number' && Number.isInteger(n * 2) && n >=
 // shows a table to spot-check and copy.
 //
 // The functions objectsIn, stringsIn, splitOfficeName, parseRsc,
-// officesFromExample, findMonths and okMonths come from
+// officesFromExample, findMonths, findUpdated and okMonths come from
 // src/lib/uscisTimesParse.js; scripts/uscis/build-bookmarklet.mjs puts both
 // files together (npm run uscis:bookmarklet). When something doesn't look as
 // expected the helper stops and shows what it saw: paste that to a developer.
@@ -229,7 +247,11 @@ async function copyN400Times() {
     copyBtn.disabled = false;
   };
 
-  stopBtn.onclick = () => { stopped = true; unwatch(); say('Stopped. Nothing was copied.'); };
+  stopBtn.onclick = () => {
+    if (stopped) return;
+    if (!learned && seen.length) { stopWith('watching (Stop pressed)', 'Stopped by hand while watching.'); return; }
+    stopped = true; unwatch(); say('Stopped. Nothing was copied.');
+  };
   closeBtn.onclick = () => { stopped = true; unwatch(); panel.remove(); };
   copyBtn.onclick = async () => {
     try { await navigator.clipboard.writeText(out.value); } catch { out.select(); document.execCommand('copy'); }
@@ -277,9 +299,10 @@ async function copyN400Times() {
 
   // ---- 2. Every office, slowly, the same way the page asked ----
   const { ask, args, offices, codeIndex } = learned;
-  row(['Office', 'USCIS shows', 'Months', ''], true);
+  row(['Office', 'USCIS range', 'Shown', ''], true);
   const results = [];
   let errorsInARow = 0;
+  let updated = findUpdated(parseRsc(ask.text));
   for (let i = 0; i < offices.length; i += 1) {
     if (stopped) return;
     const o = offices[i];
@@ -293,18 +316,20 @@ async function copyN400Times() {
       const res = await pageFetch(ask.url, { method: 'POST', headers: ask.headers, body: JSON.stringify(mine), credentials: 'same-origin' });
       const text = await res.text();
       if (!res.ok) throw new Error(`HTTP ${res.status}: ${text.slice(0, 200)}`);
-      const found = findMonths(parseRsc(text));
+      const parsed = parseRsc(text);
+      const found = findMonths(parsed);
+      updated = updated || findUpdated(parsed);
       errorsInARow = 0;
       r = found.problem
-        ? { ...o, months: null, text: null, problem: `${found.problem}: ${JSON.stringify(found.seen).slice(0, 200)}` }
-        : { ...o, months: found.months, text: found.text, problem: okMonths(found.months) ? null : `unexpected months: ${found.months}` };
+        ? { ...o, months: null, range: null, text: null, problem: `${found.problem}: ${JSON.stringify(found.seen).slice(0, 200)}` }
+        : { ...o, months: found.months, range: found.range, text: found.text, problem: okMonths(found.months) ? null : `unexpected months: ${found.months}` };
     } catch (e) {
       errorsInARow += 1;
       if (errorsInARow >= MAX_ERRORS_IN_A_ROW) return stopWith(`office ${o.label}`, `${MAX_ERRORS_IN_A_ROW} errors in a row. Last: ${e.message}`);
-      r = { ...o, months: null, text: null, problem: `could not read (${e.message})` };
+      r = { ...o, months: null, range: null, text: null, problem: `could not read (${e.message})` };
     }
     results.push(r);
-    const tr = row([r.label, r.text || '', r.months == null ? '' : String(r.months), r.problem ? 'Check' : '']);
+    const tr = row([r.label, r.range ? r.range.join(' / ') : (r.text || ''), r.months == null ? '' : String(r.months), r.problem ? 'Check' : '']);
     if (r.problem) tr.style.background = '#fff4c2';
   }
 
@@ -312,9 +337,9 @@ async function copyN400Times() {
   const d = new Date();
   const readOn = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
   out.value = JSON.stringify({
-    tool: 'pathways-copy-n400-times', version: 2, form: 'N-400', read_on: readOn,
+    tool: 'pathways-copy-n400-times', version: 3, form: 'N-400', read_on: readOn, uscis_updated: updated,
     source_url: 'https://egov.uscis.gov/processing-times/',
-    offices: results.map(({ code, label, name, state, months, text, problem }) => ({ code, label, name, state, months, text, problem })),
+    offices: results.map(({ code, label, name, state, months, range, text, problem }) => ({ code, label, name, state, months, range, text, problem })),
   }, null, 1);
   copyBtn.disabled = false;
   const problems = results.filter((x) => x.problem).length;

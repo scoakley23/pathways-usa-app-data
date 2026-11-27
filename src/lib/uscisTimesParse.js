@@ -103,27 +103,45 @@ export function officesFromExample(json, args) {
 const WITHIN = /within\s+(\d+(?:\.\d+)?)\s+months?/i;
 
 /**
- * The months in one office's USCIS answer. Prefers the sentence USCIS shows
- * ("80% of cases are completed within 14.5 months"); otherwise numbers marked
- * as months ({ value: 14.5, unit: 'Months' }). Returns
- * { months, text } when there is exactly one answer, else { problem, seen }.
+ * The months in one office's USCIS reply. The page (Nov 26, 2026) gets
+ * `range: [{ unit: "Months", value: 18 }, { unit: "Months", value: 15.5 }]`
+ * (twice: under processingTime and under the N-400 subtype) and SHOWS the last
+ * value, "80% of cases are completed within 15.5 Months", which is also the
+ * smallest. Rules: every range in the reply must be the same; the shown
+ * number is the last one and must be the smallest; a "suppressed" office has
+ * no time. Older shapes: a "within N months" sentence. Returns
+ * { months, range, text } or { problem, seen }.
  */
 export function findMonths(json) {
-  const sentences = [...new Set(stringsIn(json).filter((s) => WITHIN.test(s)).map((s) => s.trim()))];
-  const fromText = [...new Set(sentences.map((s) => Number(WITHIN.exec(s)[1])))];
-  if (fromText.length === 1) return { months: fromText[0], text: sentences[0] };
-  if (fromText.length > 1) return { problem: 'more than one "within N months" sentence', seen: sentences };
-
-  const values = [];
+  const ranges = [];
+  let suppressed = false;
   for (const o of objectsIn(json)) {
-    const unit = Object.entries(o).find(([k, v]) => /unit/i.test(k) && typeof v === 'string');
-    const value = Object.entries(o).find(([k, v]) => /value|time|range/i.test(k) && (typeof v === 'number' || /^\d+(\.\d+)?$/.test(String(v))));
-    if (unit && /month/i.test(unit[1]) && value) values.push(Number(value[1]));
+    if (o.suppressed === true) suppressed = true;
+    for (const [k, v] of Object.entries(o)) {
+      if (!/range/i.test(k) || !Array.isArray(v) || !v.length) continue;
+      const months = v.filter((x) => x && /month/i.test(String(x.unit ?? x.unitEn ?? '')) && x.value !== null && x.value !== '' && !Number.isNaN(Number(x.value)));
+      if (months.length === v.length) ranges.push(months.map((x) => Number(x.value)));
+    }
   }
-  const distinct = [...new Set(values)];
-  if (distinct.length === 1) return { months: distinct[0], text: null };
-  if (distinct.length > 1) return { problem: 'more than one number of months', seen: distinct };
+  if (suppressed) return { problem: 'USCIS shows no time for this office ("suppressed")', seen: [] };
+  if (ranges.length) {
+    if (ranges.some((r) => JSON.stringify(r) !== JSON.stringify(ranges[0]))) return { problem: 'the reply has different ranges', seen: ranges };
+    const range = ranges[0];
+    const shown = range[range.length - 1];
+    if (shown !== Math.min(...range)) return { problem: 'the last number in the range is not the smallest', seen: range };
+    return { months: shown, range, text: null };
+  }
+  const sentences = [...new Set(stringsIn(json).filter((x) => WITHIN.test(x)).map((x) => x.trim()))];
+  const fromText = [...new Set(sentences.map((x) => Number(WITHIN.exec(x)[1])))];
+  if (fromText.length === 1) return { months: fromText[0], range: null, text: sentences[0] };
+  if (fromText.length > 1) return { problem: 'more than one "within N months" sentence', seen: sentences };
   return { problem: 'no months found', seen: [] };
+}
+
+/** "Last Updated: November 20, 2026" from a USCIS reply, or null. */
+export function findUpdated(json) {
+  const hit = stringsIn(json).find((x) => /^last updated:/i.test(x.trim()));
+  return hit ? hit.trim().replace(/^last updated:\s*/i, '') : null;
 }
 
 /** Whole or half months, 1–60: what the app accepts (same rule as isUscisMonths()). */
