@@ -211,7 +211,15 @@
                 "why": "Practice saying three together so they come easily."
               }
             }
-          ]
+          ],
+          "video": {
+            "youtubeId": "wwEZOj5VKSg",
+            "title": "The Constitution: Our Bill of Rights | 5-Minute Videos",
+            "source": "PragerU (YouTube)",
+            "license": "Standard YouTube license: shown as a YouTube embed, which YouTube’s terms allow; not licensed to Pathways.",
+            "status": "draft",
+            "note": "Picked by the owner on 2026-11-27 for Rights of everyone, which had no video after the TED-Ed video was rejected. Before review: watch it in full and check it against this lesson’s question and its 2025 answers (rights of everyone living in the U.S.), the brand rules (no flags, seals, eagles or the Statue of Liberty on screen) and that the English is easy enough."
+          }
         },
         "teachBack": {
           "questionId": "6ad16ecf6a9c603911f9de57"
