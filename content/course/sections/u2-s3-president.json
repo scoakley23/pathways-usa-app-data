@@ -670,7 +670,7 @@
             "status": "reviewed",
             "checkedOn": "2026-11-26"
           },
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "The executive branch has many parts.",
@@ -690,7 +690,7 @@
               },
               "help": {
                 "simpler": "These are the main parts of the executive branch.",
-                "example": "The Department of Education and the Department of Agriculture are two federal departments.",
+                "example": "The Department of Agriculture and the Department of the Treasury are two federal departments.",
                 "why": "“President,” “Cabinet” and “federal departments and agencies” are all answers on the test."
               }
             },
