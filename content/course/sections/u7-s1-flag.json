@@ -78,7 +78,7 @@
             "status": "reviewed",
             "checkedOn": "2026-11-27"
           },
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "This is the American flag.",
@@ -251,7 +251,7 @@
               "meaning": "Latin for \"Out of many, one\""
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "The nation’s first motto was “E Pluribus Unum.”",
