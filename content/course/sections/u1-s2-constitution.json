@@ -227,7 +227,7 @@
               "meaning": "saying yes; agreeing"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "The Constitution starts with the words “We the People.”",
@@ -264,11 +264,11 @@
             {
               "check": {
                 "kind": "pick",
-                "prompt": "What are the first words of the Constitution?",
+                "prompt": "What does “We the People” mean?",
                 "choices": [
-                  "We the People",
-                  "Life, Liberty",
-                  "All people are equal"
+                  "Self-government",
+                  "A king rules the people",
+                  "Leaders choose for the people"
                 ],
                 "answer": 0
               }
