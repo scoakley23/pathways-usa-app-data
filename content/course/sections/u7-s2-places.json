@@ -64,7 +64,7 @@
             "status": "reviewed",
             "checkedOn": "2026-11-27"
           },
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "The capital of the United States is Washington, D.C.",

@@ -72,7 +72,7 @@
             "status": "reviewed",
             "checkedOn": "2026-11-27"
           },
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "American Indians, also called Native Americans, lived in America for thousands of years.",
@@ -229,7 +229,7 @@
               "meaning": "cruel treatment, often for your religion or ideas"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "A colony is a place ruled by a country far away.",
