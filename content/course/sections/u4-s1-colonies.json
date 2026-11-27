@@ -61,17 +61,16 @@
             },
             {
               "word": "reservation",
-              "meaning": "land set aside for American Indian tribes",
-              "status": "draft"
+              "meaning": "land set aside for American Indian tribes"
             }
           ],
           "video": {
             "youtubeId": "TTYOQ05oDOI",
             "title": "The Natives and the English - Crash Course US History #3",
             "source": "CrashCourse (YouTube)",
-            "license": "Standard YouTube license: embedding is allowed by YouTube's terms, but the video is not licensed to Pathways. Check before marking reviewed.",
-            "status": "draft",
-            "note": "From the old Lessons tab (Base44 Lesson \"Native Americans and European Colonization\"). Before reviewing: watch it all; check it matches the 2025 answers, has no flags, seals, eagles or Statue of Liberty, and the English is easy enough."
+            "license": "Standard YouTube license: shown as a YouTube embed, which YouTube's terms allow; not licensed to Pathways.",
+            "status": "reviewed",
+            "checkedOn": "2026-11-27"
           }
         },
         "teachBack": {
