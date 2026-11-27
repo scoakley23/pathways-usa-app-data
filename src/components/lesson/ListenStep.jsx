@@ -7,7 +7,7 @@ import { speakText } from '@/components/utils/textToSpeech';
 import { translateStrings } from '@/lib/translateStrings';
 import { LANGUAGES } from '@/lib/languages';
 import { picturesFor } from '@/lib/lessonPictures';
-import { storyFor } from '@/lib/story';
+import { HELP_KINDS, storyFor } from '@/lib/story';
 import StoryListen from '@/components/lesson/StoryListen';
 import LessonVideo from '@/components/lesson/LessonVideo';
 import { videoFor, shownWords } from '@/lib/lessonVideo';
@@ -26,6 +26,7 @@ export function useLessonTranslation(lesson, language) {
     picturesFor(lesson.id).forEach((p, i) => { if (p.caption) s[`c${i}`] = p.caption; });
     (lesson.steps.listen.story || []).forEach((item, i) => {
       if (item.say) s[`s${i}`] = item.say;
+      HELP_KINDS.forEach((k) => { if (item.help?.[k]) s[`h${i}_${k}`] = item.help[k]; });
       if (item.check) {
         s[`k${i}`] = item.check.statement || item.check.prompt;
         (item.check.choices || []).forEach((c, j) => { s[`k${i}_${j}`] = c; });
@@ -41,7 +42,7 @@ export function useLessonTranslation(lesson, language) {
     const langName = LANGUAGES.find((l) => l.value === language)?.label || language;
     translateStrings({
       language,
-      storageKey: `pathways_course_v2_${lesson.id}_${language}`,
+      storageKey: `pathways_course_v3_${lesson.id}_${language}`,
       strings,
       buildPrompt: (part) => `Translate every value in this JSON into ${langName}, in short, plain sentences for adults studying for the U.S. citizenship test. Keep names, numbers and dates exactly. Keep the keys. Return a JSON object with the same keys.\n\n${JSON.stringify(part, null, 2)}`,
       onPartial: (sofar) => { if (active) setMine(sofar); },
@@ -51,7 +52,7 @@ export function useLessonTranslation(lesson, language) {
   return mine;
 }
 
-export default function ListenStep({ lesson, language, t, onDone, showDrafts = false }) {
+export default function ListenStep({ lesson, language, t, onDone, showDrafts = false, userEmail = null }) {
   const mine = useLessonTranslation(lesson, language);
   const story = storyFor(lesson, { showDrafts });
   const [storyDone, setStoryDone] = useState(false);
@@ -66,7 +67,7 @@ export default function ListenStep({ lesson, language, t, onDone, showDrafts = f
 
   // A reviewed story (or a draft, for admins) replaces the facts list; the
   // new words follow it.
-  if (story && !storyDone) return <StoryListen story={story} language={language} mine={mine} t={t} onEnd={() => setStoryDone(true)} />;
+  if (story && !storyDone) return <StoryListen story={story} language={language} mine={mine} words={newWords} userEmail={userEmail} t={t} onEnd={() => setStoryDone(true)} />;
 
   return (
     <div className="flex flex-col min-h-full">

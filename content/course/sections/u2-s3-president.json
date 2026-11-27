@@ -98,6 +98,98 @@
               "word": "22nd Amendment",
               "meaning": "the amendment that limits a President to two terms"
             }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "Americans elect a President every four years.",
+              "picture": {
+                "photo": "white-house.jpg"
+              },
+              "help": {
+                "simpler": "Every four years, people vote for President.",
+                "example": "There was a presidential election in 2024. The next one is in 2028.",
+                "why": "The test asks how many years a President is elected for. The answer is four."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "The President is elected for six years.",
+                "answer": false
+              }
+            },
+            {
+              "say": "A President can serve only two terms.",
+              "picture": {
+                "drawing": "twoTerms"
+              },
+              "help": {
+                "simpler": "One person can be President for two terms at most. That is eight years.",
+                "example": "A President who has won two elections cannot run a third time.",
+                "why": "The test asks why a President can serve only two terms."
+              }
+            },
+            {
+              "say": "This rule is in the 22nd Amendment.",
+              "picture": {
+                "drawing": "twoTerms"
+              },
+              "help": {
+                "simpler": "The two-term rule was added to the Constitution as the 22nd Amendment.",
+                "example": "Franklin Roosevelt was elected four times. After that, the 22nd Amendment set the limit.",
+                "why": "“Because of the 22nd Amendment” is one answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "tap",
+                "prompt": "Tap the term that is not allowed.",
+                "picture": {
+                  "drawing": "twoTerms"
+                },
+                "answer": "third"
+              }
+            },
+            {
+              "say": "The two terms do not have to be back to back.",
+              "help": {
+                "simpler": "A President can serve one term, stop, and later serve a second term.",
+                "example": "Grover Cleveland served one term, lost, and then won again four years later.",
+                "why": "Either way, the limit is still two terms."
+              }
+            },
+            {
+              "say": "A President can serve one term, lose an election, and win again later. That is still two terms.",
+              "picture": {
+                "drawing": "twoTerms"
+              },
+              "help": {
+                "simpler": "Losing in between does not reset the count. Two terms is the most.",
+                "example": "Term 1, then a break, then Term 2. There is no Term 3.",
+                "why": "This helps you understand the two-term rule clearly."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "How many terms can a President serve?",
+                "choices": [
+                  "Two",
+                  "One",
+                  "Three"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "The rule keeps a president from becoming too powerful.",
+              "help": {
+                "simpler": "If one person led for too long, they could gain too much power.",
+                "example": "A limit makes sure new leaders come in over time.",
+                "why": "“To keep the president from becoming too powerful” is the other answer on the test."
+              }
+            }
           ]
         },
         "teachBack": {
@@ -151,6 +243,85 @@
             {
               "word": "Commander in Chief",
               "meaning": "the leader of all the armed forces"
+            }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "The President has important powers.",
+              "picture": {
+                "drawing": "presidentPowers"
+              },
+              "help": {
+                "simpler": "The Constitution gives the President certain jobs.",
+                "example": "Four of them are in the picture.",
+                "why": "The test asks you to name one power of the President."
+              }
+            },
+            {
+              "say": "The President signs bills into law and can veto bills.",
+              "picture": {
+                "drawing": "presidentPowers",
+                "focus": "sign"
+              },
+              "help": {
+                "simpler": "The President says yes to a bill by signing it, or no by vetoing it.",
+                "example": "Congress sends a bill. The President signs it, and it becomes a law.",
+                "why": "“Signs bills into law” and “Vetoes bills” are both answers for a power of the President."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "The President can veto bills.",
+                "answer": true
+              }
+            },
+            {
+              "say": "The President is the Commander in Chief of the military.",
+              "picture": {
+                "drawing": "presidentPowers",
+                "focus": "military"
+              },
+              "help": {
+                "simpler": "The President is the top leader of the U.S. military.",
+                "example": "The Army, Navy, Air Force and Marines all answer to the President.",
+                "why": "The test asks who is Commander in Chief. The answer is the President."
+              }
+            },
+            {
+              "check": {
+                "kind": "tap",
+                "prompt": "Tap the power that leads the military.",
+                "picture": {
+                  "drawing": "presidentPowers"
+                },
+                "answer": "military"
+              }
+            },
+            {
+              "say": "The President also appoints federal judges.",
+              "picture": {
+                "drawing": "presidentPowers",
+                "focus": "judges"
+              },
+              "help": {
+                "simpler": "The President chooses people to be federal judges.",
+                "example": "The Senate must also agree before a judge takes the job.",
+                "why": "“Appoints federal judges” is another power of the President on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Who is Commander in Chief of the U.S. military?",
+                "choices": [
+                  "The President",
+                  "The Speaker of the House",
+                  "The Chief Justice"
+                ],
+                "answer": 0
+              }
             }
           ]
         },
@@ -207,6 +378,110 @@
               "word": "compromise",
               "meaning": "an agreement where each side gets part of what it wants"
             }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "The Electoral College decides who is elected President.",
+              "picture": {
+                "drawing": "electoralCollege"
+              },
+              "help": {
+                "simpler": "A group called the Electoral College chooses the President.",
+                "example": "It is not a school. Here, “college” means a group of people.",
+                "why": "The test asks why the Electoral College is important. “It decides who is elected president” is one answer."
+              }
+            },
+            {
+              "say": "When you vote for President, you are really choosing your state’s electors.",
+              "help": {
+                "simpler": "Your vote helps pick your state’s electors.",
+                "example": "If most people in your state vote for one candidate, that candidate’s electors usually win.",
+                "why": "This explains how a citizen’s vote counts for President."
+              }
+            },
+            {
+              "say": "Electors are people who vote for President for their state.",
+              "picture": {
+                "drawing": "electorsMap"
+              },
+              "help": {
+                "simpler": "Electors cast the official votes for President.",
+                "example": "After the election in November, the electors meet and vote in December.",
+                "why": "The word “elector” helps you understand the Electoral College."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "What decides who is elected President?",
+                "choices": [
+                  "The Electoral College",
+                  "The Supreme Court",
+                  "The Cabinet"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "Each state gets as many electors as its members of Congress: two senators plus its representatives.",
+              "picture": {
+                "drawing": "electorsMap"
+              },
+              "help": {
+                "simpler": "A state’s electors = its senators + its representatives.",
+                "example": "A state with 2 senators and 8 representatives has 10 electors.",
+                "why": "This is why bigger states have more electors."
+              }
+            },
+            {
+              "say": "Washington, D.C. gets 3. There are 538 electors in all.",
+              "picture": {
+                "drawing": "electoralCollege"
+              },
+              "help": {
+                "simpler": "D.C. is not a state, but it gets 3 electors.",
+                "example": "435 representatives + 100 senators + 3 for D.C. = 538.",
+                "why": "Knowing 538 helps you understand the number needed to win."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "There are 538 electors in all.",
+                "answer": true
+              }
+            },
+            {
+              "say": "In most states, the candidate with the most votes wins all of that state’s electors.",
+              "picture": {
+                "drawing": "electorsMap"
+              },
+              "help": {
+                "simpler": "In most states, the winner takes all the electors.",
+                "example": "Two states, Maine and Nebraska, can split their electors.",
+                "why": "This is why candidates try to win whole states."
+              }
+            },
+            {
+              "say": "To become President, a candidate needs 270 electoral votes.",
+              "picture": {
+                "drawing": "electoralCollege"
+              },
+              "help": {
+                "simpler": "A candidate needs 270 of the 538 votes. That is more than half.",
+                "example": "270 is just over half of 538.",
+                "why": "The candidate with 270 or more electoral votes becomes President."
+              }
+            },
+            {
+              "say": "The Electoral College is a compromise between a vote of the people and a choice by Congress.",
+              "help": {
+                "simpler": "The writers of the Constitution mixed two ideas: a vote of the people and a choice by Congress.",
+                "example": "Some wanted the people to choose. Others wanted Congress to choose. This was the middle way.",
+                "why": "This compromise is the other answer on the test about the Electoral College."
+              }
+            }
           ]
         },
         "teachBack": {
@@ -251,6 +526,66 @@
             {
               "word": "Vice President",
               "meaning": "the person who becomes President if the President can no longer serve"
+            }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "Sometimes a President cannot finish the job.",
+              "picture": {
+                "drawing": "executiveBranch",
+                "focus": "president"
+              },
+              "help": {
+                "simpler": "A President might die, or become too sick to do the job.",
+                "example": "This has happened several times in American history.",
+                "why": "The country always needs a President, so there is a plan."
+              }
+            },
+            {
+              "say": "If the President dies or can no longer do the job, the Vice President becomes President.",
+              "picture": {
+                "drawing": "executiveBranch",
+                "focus": "vicePresident"
+              },
+              "help": {
+                "simpler": "If the President cannot do the job, the Vice President takes over.",
+                "example": "In 1963, President Kennedy died. Vice President Johnson became President that same day.",
+                "why": "The test asks who becomes President if the President can no longer serve. The answer is the Vice President."
+              }
+            },
+            {
+              "check": {
+                "kind": "tap",
+                "prompt": "Who becomes President if the President can no longer serve? Tap them.",
+                "picture": {
+                  "drawing": "executiveBranch"
+                },
+                "answer": "vicePresident"
+              }
+            },
+            {
+              "say": "This way, the country always has a President.",
+              "picture": {
+                "photo": "white-house.jpg"
+              },
+              "help": {
+                "simpler": "The change happens right away, so the job is never empty.",
+                "example": "The new President takes the oath of office, often on the same day.",
+                "why": "This rule keeps the government working."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "If the President can no longer serve, who becomes President?",
+                "choices": [
+                  "The Vice President",
+                  "The Speaker of the House",
+                  "The Chief Justice"
+                ],
+                "answer": 0
+              }
             }
           ]
         },
@@ -312,7 +647,77 @@
             "license": "Standard YouTube license: shown as a YouTube embed, which YouTube's terms allow; not licensed to Pathways.",
             "status": "reviewed",
             "checkedOn": "2026-11-26"
-          }
+          },
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "The executive branch has many parts.",
+              "picture": {
+                "drawing": "executiveBranch"
+              },
+              "help": {
+                "simpler": "The executive branch is bigger than just the President.",
+                "example": "It has the President, the Cabinet and many departments and agencies.",
+                "why": "The test asks you to name one part of the executive branch."
+              }
+            },
+            {
+              "say": "It includes the President, the Cabinet, and federal departments and agencies.",
+              "picture": {
+                "drawing": "executiveBranch"
+              },
+              "help": {
+                "simpler": "These are the main parts of the executive branch.",
+                "example": "The Department of Education and the Department of Agriculture are two federal departments.",
+                "why": "“President,” “Cabinet” and “federal departments and agencies” are all answers on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "tap",
+                "prompt": "Tap the Cabinet.",
+                "picture": {
+                  "drawing": "executiveBranch"
+                },
+                "answer": "cabinet"
+              }
+            },
+            {
+              "say": "The Cabinet is a group of leaders who advise the President.",
+              "picture": {
+                "drawing": "executiveBranch",
+                "focus": "cabinet"
+              },
+              "help": {
+                "simpler": "The Cabinet gives the President advice.",
+                "example": "“Advise” means to give ideas and help someone decide.",
+                "why": "The test asks what the Cabinet does. The answer: it advises the President."
+              }
+            },
+            {
+              "say": "The Cabinet helps the President make decisions.",
+              "picture": {
+                "photo": "lincoln-cabinet.jpg"
+              },
+              "help": {
+                "simpler": "Cabinet members share what they know, and the President decides.",
+                "example": "This picture shows President Lincoln meeting with his Cabinet in 1862.",
+                "why": "Remember: the Cabinet advises the President."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "What does the President’s Cabinet do?",
+                "choices": [
+                  "It advises the President",
+                  "It writes the laws",
+                  "It decides court cases"
+                ],
+                "answer": 0
+              }
+            }
+          ]
         },
         "teachBack": {
           "questionId": "6ad16ecf6a9c603911f9de44"
@@ -363,6 +768,60 @@
               "word": "Attorney General",
               "meaning": "the top lawyer of the federal government"
             }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "Each Cabinet member leads one part of the executive branch.",
+              "picture": {
+                "drawing": "executiveBranch",
+                "focus": "cabinet"
+              },
+              "help": {
+                "simpler": "Every Cabinet member is in charge of one department.",
+                "example": "The Secretary of Education leads the Department of Education.",
+                "why": "Their job titles are the answers to the test question about Cabinet positions."
+              }
+            },
+            {
+              "say": "Two Cabinet-level positions are the Secretary of State and the Attorney General.",
+              "picture": {
+                "drawing": "executiveBranch",
+                "focus": "cabinet"
+              },
+              "help": {
+                "simpler": "Secretary of State and Attorney General are two jobs in the Cabinet.",
+                "example": "The Secretary of State works with other countries. The Attorney General leads the Department of Justice.",
+                "why": "The test asks you to name two Cabinet-level positions."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "The Attorney General is a Cabinet-level position.",
+                "answer": true
+              }
+            },
+            {
+              "say": "Say them together: the Secretary of State and the Attorney General.",
+              "help": {
+                "simpler": "Practice saying the two titles out loud.",
+                "example": "Officer: “Name two Cabinet-level positions.” You: “Secretary of State and Attorney General.”",
+                "why": "Saying them out loud helps you remember them on the day."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Which one is a Cabinet-level position?",
+                "choices": [
+                  "The Attorney General",
+                  "The Speaker of the House",
+                  "The Chief Justice"
+                ],
+                "answer": 0
+              }
+            }
           ]
         },
         "teachBack": {
@@ -412,6 +871,54 @@
             {
               "word": "now",
               "meaning": "at this time"
+            }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "This is the President of the United States today.",
+              "picture": {
+                "officeholder": "president"
+              },
+              "help": {
+                "simpler": "The name under the picture is the President now.",
+                "example": "Officer: “What is the name of the President now?” You say the name shown here.",
+                "why": "The test asks for the name of the President now."
+              }
+            },
+            {
+              "say": "This is the Vice President today.",
+              "picture": {
+                "officeholder": "vicePresident"
+              },
+              "help": {
+                "simpler": "The name under the picture is the Vice President now.",
+                "example": "The Vice President works closely with the President.",
+                "why": "The test asks for the name of the Vice President now."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "The President and Vice President can change after an election.",
+                "answer": true
+              }
+            },
+            {
+              "say": "These names change after elections, so the app looks them up on an official list.",
+              "help": {
+                "simpler": "Leaders change over time, so the app checks an official list.",
+                "example": "There is an election for President every four years.",
+                "why": "This way you always learn the right names."
+              }
+            },
+            {
+              "say": "Check the names again before your interview.",
+              "help": {
+                "simpler": "Look at the names one more time close to your interview day.",
+                "example": "If there was an election, a name may be different.",
+                "why": "You want to give the names of the leaders serving on your interview day."
+              }
             }
           ]
         },

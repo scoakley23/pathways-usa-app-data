@@ -81,7 +81,93 @@
             "license": "Standard YouTube license: shown as a YouTube embed, which YouTube's terms allow; not licensed to Pathways.",
             "status": "reviewed",
             "checkedOn": "2026-11-26"
-          }
+          },
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "Americans can serve their country in many ways.",
+              "picture": {
+                "drawing": "waysToServe"
+              },
+              "help": {
+                "simpler": "There are many ways to help your country.",
+                "example": "Some are things people do every day, like obeying the law.",
+                "why": "The test asks for one way Americans can serve their country."
+              }
+            },
+            {
+              "say": "They can vote, pay taxes and obey the law.",
+              "picture": {
+                "drawing": "waysToServe"
+              },
+              "help": {
+                "simpler": "Voting, paying taxes and following the law all help the country.",
+                "example": "Taxes help pay for roads, schools and the military.",
+                "why": "Any one of these is an answer on the test."
+              }
+            },
+            {
+              "say": "They can serve in the military, run for office or work for the government.",
+              "picture": {
+                "drawing": "waysToServe",
+                "focus": "military"
+              },
+              "help": {
+                "simpler": "Some people serve by joining the military, running for office or working for the government.",
+                "example": "A park ranger works for the government.",
+                "why": "These are more answers for how Americans serve their country."
+              }
+            },
+            {
+              "check": {
+                "kind": "tap",
+                "prompt": "Tap the way to serve that means following the rules.",
+                "picture": {
+                  "drawing": "waysToServe"
+                },
+                "answer": "law"
+              }
+            },
+            {
+              "say": "Civic participation means taking part in your community and government.",
+              "help": {
+                "simpler": "“Civic participation” means getting involved.",
+                "example": "Going to a town meeting is civic participation.",
+                "why": "The test asks for two examples of civic participation."
+              }
+            },
+            {
+              "say": "Voting and joining a community group are civic participation.",
+              "picture": {
+                "photo": "election-day-1944.jpg"
+              },
+              "help": {
+                "simpler": "Voting is taking part. So is joining a group that helps your community.",
+                "example": "A neighborhood clean-up group is a community group.",
+                "why": "“Vote” and “Join a community group” are two answers on the test."
+              }
+            },
+            {
+              "say": "So are helping with a campaign and contacting your elected officials.",
+              "help": {
+                "simpler": "Helping someone run for office, or telling leaders your opinion, also counts.",
+                "example": "You can call or write to your representative about an issue you care about.",
+                "why": "“Help with a campaign” and “Give an elected official your opinion” are more answers."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Which one is an example of civic participation?",
+                "choices": [
+                  "Joining a community group",
+                  "Watching a movie",
+                  "Buying groceries"
+                ],
+                "answer": 0
+              }
+            }
+          ]
         },
         "teachBack": {
           "questionId": "6ad16ecf6a9c603911f9de5c"
@@ -147,6 +233,90 @@
             {
               "word": "Selective Service",
               "meaning": "the list where men 18 to 25 register in case of a draft for the military. All men must put their name in case the United States goes to war."
+            }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "Paying federal taxes is required by law.",
+              "help": {
+                "simpler": "The law says people must pay federal taxes.",
+                "example": "Many workers pay taxes from each paycheck.",
+                "why": "“Required by law” is one answer to why paying federal taxes is important."
+              }
+            },
+            {
+              "say": "All people pay to fund the federal government.",
+              "help": {
+                "simpler": "Tax money pays for the government’s work.",
+                "example": "Taxes help pay for national parks, the military and highways.",
+                "why": "“All people pay to fund the federal government” is another answer."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "Paying federal taxes is required by law.",
+                "answer": true
+              }
+            },
+            {
+              "say": "The Constitution’s 16th Amendment lets Congress collect a federal income tax.",
+              "picture": {
+                "drawing": "amendments",
+                "focus": "later"
+              },
+              "help": {
+                "simpler": "The 16th Amendment allows a tax on income, the money people earn.",
+                "example": "It was added to the Constitution in 1913.",
+                "why": "“Required by the Constitution (16th Amendment)” is another answer on the test."
+              }
+            },
+            {
+              "say": "Men age 18 through 25 register for the Selective Service.",
+              "picture": {
+                "photo": "draft-registration-1917.jpg"
+              },
+              "help": {
+                "simpler": "Young men from age 18 through 25 sign up with the Selective Service.",
+                "example": "This picture shows men who had just registered in 1917, during World War I.",
+                "why": "The test asks you to name one reason this registration is important."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Who registers for the Selective Service?",
+                "choices": [
+                  "Men age 18 through 25",
+                  "Everyone over 65",
+                  "Only people in the military"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "It is required by law.",
+              "help": {
+                "simpler": "The law says men in this age group must register.",
+                "example": "Registering means giving your name and address to the Selective Service.",
+                "why": "“Required by law” is one answer on the test."
+              }
+            },
+            {
+              "say": "And it makes a draft fair, if one is ever needed.",
+              "help": {
+                "simpler": "If the country ever needs more soldiers, a draft would choose fairly from the list.",
+                "example": "“Draft” means the government calls people to serve in the military.",
+                "why": "“Makes the draft fair, if needed” is another answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "Registering for the Selective Service is required by law.",
+                "answer": true
+              }
             }
           ]
         },
