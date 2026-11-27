@@ -95,7 +95,7 @@
             "status": "reviewed",
             "checkedOn": "2026-11-27"
           },
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "Some powers belong only to the federal government.",
@@ -134,12 +134,11 @@
             {
               "say": "Some powers belong only to the states.",
               "picture": {
-                "drawing": "federalStatePowers",
-                "focus": "states"
+                "photo": "state-capitol.jpg"
               },
               "help": {
                 "simpler": "Some jobs are done by each state, not by the national government.",
-                "example": "Each state sets up its own public schools.",
+                "example": "Sharing power between the nation and the states is called federalism.",
                 "why": "The test asks you to name one power only for the states."
               }
             },
