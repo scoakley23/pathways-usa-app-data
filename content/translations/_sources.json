@@ -926,15 +926,34 @@
    ]
   },
   {
+   "text": "A holiday to celebrate workers",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "A holiday to honor people in the (U.S.) military / A holiday to honor people who have served (in the U.S. military)",
    "from": [
     "civics-questions"
    ]
   },
   {
+   "text": "A holiday to honor people who have served in the military",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "A holiday to honor soldiers who died in military service",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "A holiday to honor veterans",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -1049,6 +1068,12 @@
    "text": "A mother and her children in 1936, during the Great Depression. Many families had no work and little food.",
    "from": [
     "course-pictures"
+   ]
+  },
+  {
+   "text": "A motto is a short saying that tells what a group believes.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -1385,6 +1410,12 @@
    "text": "A trip where you left and returned within 24 hours (one day).",
    "from": [
     "n400"
+   ]
+  },
+  {
+   "text": "A veteran is someone who served in the military.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -1884,6 +1915,12 @@
    ]
   },
   {
+   "text": "All three branches of government are in Washington, D.C.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "All three used the same name instead of their own names.",
    "from": [
     "course-lessons"
@@ -1950,6 +1987,12 @@
    ]
   },
   {
+   "text": "Also accepted on the test: New Jersey, near New York City, and on the Hudson River.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Also accepted:",
    "from": [
     "lesson-player"
@@ -1995,6 +2038,12 @@
    "text": "Amendments / The amendment process",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "America the Beautiful",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -2192,6 +2241,12 @@
    ]
   },
   {
+   "text": "An anthem is a country’s official song.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "An armed group that fights against a government.",
    "from": [
     "n400"
@@ -2261,6 +2316,12 @@
    "text": "And",
    "from": [
     "words"
+   ]
+  },
+  {
+   "text": "And Veterans Day, Thanksgiving Day and Christmas Day.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -2404,6 +2465,24 @@
   },
   {
    "text": "Anthony worked her whole life so women could vote.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Any of these answers is right.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Any of these is a right answer too.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Any of these is a right answer.",
    "from": [
     "course-lessons"
    ]
@@ -2820,6 +2899,24 @@
   },
   {
    "text": "Because of Lincoln, the country stayed one country.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Because there are 13 states",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Because there were 13 Presidents",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Because there were 13 original colonies",
    "from": [
     "course-lessons"
    ]
@@ -3251,6 +3348,12 @@
    "text": "Canada",
    "from": [
     "words"
+   ]
+  },
+  {
+   "text": "Canada is above the United States. Mexico is below.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -3995,6 +4098,12 @@
    ]
   },
   {
+   "text": "Congress makes laws. The President leads. The courts decide cases.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Congress makes the laws that everyone in the country must follow.",
    "from": [
     "course-lessons"
@@ -4044,6 +4153,12 @@
   },
   {
    "text": "Congress writes the laws for the whole country.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Congress, the President and the Supreme Court are all there.",
    "from": [
     "course-lessons"
    ]
@@ -4190,6 +4305,12 @@
    ]
   },
   {
+   "text": "Count them: 50 states, 50 stars.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Countries you traveled to",
    "from": [
     "n400-guide"
@@ -4270,6 +4391,12 @@
   },
   {
    "text": "D.C. is not a state, but it gets 3 electors.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "D.C. means District of Columbia.",
    "from": [
     "course-lessons"
    ]
@@ -4933,6 +5060,12 @@
    ]
   },
   {
+   "text": "Each star stands for one state.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Each state gets as many electors as it has members of Congress: its two senators plus its representatives. Washington, D.C. gets 3. There are 538 electors in all.",
    "from": [
     "course-lessons"
@@ -4982,6 +5115,12 @@
   },
   {
    "text": "Each state sets up its own public schools.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Each stripe stands for one of the first 13 colonies.",
    "from": [
     "course-lessons"
    ]
@@ -5525,6 +5664,12 @@
    ]
   },
   {
+   "text": "Fifty states, one United States.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Fifty/50",
    "from": [
     "words"
@@ -5779,6 +5924,12 @@
    ]
   },
   {
+   "text": "For example: Independence Day, Thanksgiving Day and Christmas Day.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "For more than two hundred years, people from Africa were taken from their homes and sold as slaves in America.",
    "from": [
     "course-lessons"
@@ -5900,9 +6051,21 @@
    ]
   },
   {
+   "text": "Four holidays in the first part of the year.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Four hundred thirty-five (435)",
    "from": [
     "civics-questions"
+   ]
+  },
+  {
+   "text": "Four more holidays, from June to October.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -6591,6 +6754,12 @@
    "text": "Half and half",
    "from": [
     "settings-pieces"
+   ]
+  },
+  {
+   "text": "Halloween",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -8532,6 +8701,12 @@
    ]
   },
   {
+   "text": "Independence Day is a holiday on the fourth of July.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Independence Day is a national holiday. It reminds Americans when the country said it was free.",
    "from": [
     "course-lessons"
@@ -8541,6 +8716,12 @@
    "text": "Independence Day is in July.",
    "from": [
     "sentences"
+   ]
+  },
+  {
+   "text": "Independence Day is on July 4.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -8658,6 +8839,12 @@
    ]
   },
   {
+   "text": "It celebrates U.S. independence from Britain.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "It connects the Depression to the next lesson.",
    "from": [
     "course-lessons"
@@ -8712,6 +8899,12 @@
    ]
   },
   {
+   "text": "It explains the meaning of the motto.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "It explains the name.",
    "from": [
     "course-lessons"
@@ -8749,6 +8942,12 @@
   },
   {
    "text": "It explains why the U.S. was worried about it.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It explains why the capital is important.",
    "from": [
     "course-lessons"
    ]
@@ -8820,6 +9019,18 @@
    ]
   },
   {
+   "text": "It helps you picture the capital.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It helps you picture where the country is.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "It helps you remember how the country grew.",
    "from": [
     "course-lessons"
@@ -8832,7 +9043,25 @@
    ]
   },
   {
+   "text": "It helps you remember the name.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "It helps you remember why Gettysburg is famous.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It helps you remember why there are 13 stripes.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It helps you say the motto out loud.",
    "from": [
     "course-lessons"
    ]
@@ -8845,6 +9074,18 @@
   },
   {
    "text": "It helps you understand why slavery was so wrong.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It honors people who have served in the U.S. military.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It honors soldiers who died in military service.",
    "from": [
     "course-lessons"
    ]
@@ -8868,6 +9109,12 @@
    ]
   },
   {
+   "text": "It is a song about the American flag.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "It is also a constitution-based federal republic.",
    "from": [
     "course-lessons"
@@ -8881,6 +9128,12 @@
   },
   {
    "text": "It is also called the Revolutionary War.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It is always on a Monday.",
    "from": [
     "course-lessons"
    ]
@@ -8922,7 +9175,19 @@
    ]
   },
   {
+   "text": "It is in Washington, D.C.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "It is like a team where each player watches the others to keep the game fair.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It is near New York City.",
    "from": [
     "course-lessons"
    ]
@@ -8940,6 +9205,12 @@
    ]
   },
   {
+   "text": "It is on November 11.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "It is one of the first ten amendments, added in 1791.",
    "from": [
     "course-lessons"
@@ -8947,6 +9218,12 @@
   },
   {
    "text": "It is required by law.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It is the country’s birthday.",
    "from": [
     "course-lessons"
    ]
@@ -9001,6 +9278,12 @@
   },
   {
    "text": "It means the people govern themselves. This is called self-government.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "It means “Out of many, one.”",
    "from": [
     "course-lessons"
    ]
@@ -9325,6 +9608,12 @@
    ]
   },
   {
+   "text": "July 4 is when the country celebrates its birthday.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "July 4, 1773",
    "from": [
     "course-lessons"
@@ -9452,6 +9741,12 @@
    ]
   },
   {
+   "text": "Knowing the colors helps you picture the flag.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Knowing the three branches helps you answer many questions on the test.",
    "from": [
     "course-lessons"
@@ -9521,6 +9816,18 @@
    "text": "Labor Day is in September.",
    "from": [
     "sentences"
+   ]
+  },
+  {
+   "text": "Labor Day, in September, honors workers.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Land of the free",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -10374,7 +10681,19 @@
    ]
   },
   {
+   "text": "Many offices and schools close on these days.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Many other countries helped too.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Many people call it “the Fourth of July.”",
    "from": [
     "course-lessons"
    ]
@@ -10404,6 +10723,12 @@
    ]
   },
   {
+   "text": "Many people watch fireworks and have picnics.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Many people worked together for equal rights.",
    "from": [
     "course-lessons"
@@ -10411,6 +10736,12 @@
   },
   {
    "text": "Many people worked together so all races would be treated fairly.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Many things come together to make one.",
    "from": [
     "course-lessons"
    ]
@@ -10609,8 +10940,15 @@
    ]
   },
   {
+   "text": "Memorial Day is a holiday at the end of May.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Memorial Day is in May.",
    "from": [
+    "course-lessons",
     "sentences"
    ]
   },
@@ -11251,6 +11589,12 @@
    ]
   },
   {
+   "text": "National holidays are special days for the whole country.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "National holidays include New Year's Day, Martin Luther King, Jr. Day, Presidents Day, Memorial Day, Juneteenth, Independence Day, Labor Day, Columbus Day, Veterans Day, Thanksgiving Day and Christmas Day.",
    "from": [
     "course-lessons"
@@ -11341,6 +11685,12 @@
    ]
   },
   {
+   "text": "New Year’s Day is January 1.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "New York (Harbor) / Liberty Island / [Also acceptable are New Jersey, near New York City, and on the Hudson (River).]",
    "from": [
     "civics-questions"
@@ -11355,6 +11705,7 @@
   {
    "text": "New York City",
    "from": [
+    "course-lessons",
     "words"
    ]
   },
@@ -11362,6 +11713,12 @@
    "text": "New York City was the first capital.",
    "from": [
     "sentences"
+   ]
+  },
+  {
+   "text": "New York Harbor",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -11647,6 +12004,12 @@
   },
   {
    "text": "North Vietnam wanted to rule South Vietnam too.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "North is up on a map. South is down.",
    "from": [
     "course-lessons"
    ]
@@ -12121,6 +12484,12 @@
    ]
   },
   {
+   "text": "On Memorial Day, Americans remember soldiers who died.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "On September 11, 2001, terrorists attacked the United States.",
    "from": [
     "course-lessons"
@@ -12187,6 +12556,12 @@
    ]
   },
   {
+   "text": "On this day, Americans remember becoming free from Britain.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "On uscis.gov",
    "from": [
     "interview-tab"
@@ -12219,6 +12594,12 @@
   },
   {
    "text": "One branch has all the power.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "One for each state",
    "from": [
     "course-lessons"
    ]
@@ -12311,6 +12692,24 @@
    "text": "One small word can change the question. What does it mean here?",
    "from": [
     "n400-lessons"
+   ]
+  },
+  {
+   "text": "One star for each President",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "One star for each state",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "One star for each war",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -12511,6 +12910,12 @@
    "text": "Out of date: last checked more than 60 days ago. Learners see “Coming soon” until the times are checked again.",
    "from": [
     "interview-when"
+   ]
+  },
+  {
+   "text": "Out of many, one",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -12817,6 +13222,12 @@
    ]
   },
   {
+   "text": "People from many places make one country together.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "People in big cities and small towns have the same two senators.",
    "from": [
     "course-lessons"
@@ -12842,6 +13253,12 @@
   },
   {
    "text": "People often just call it “the House.”",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "People sing it at sports games and big events.",
    "from": [
     "course-lessons"
    ]
@@ -12895,6 +13312,12 @@
    ]
   },
   {
+   "text": "Philadelphia",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Phrases that help in the room",
    "from": [
     "n400-lessons"
@@ -12916,6 +13339,12 @@
    "text": "Pick the month",
    "from": [
     "interview-when"
+   ]
+  },
+  {
+   "text": "Pick three holidays you know well.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -13918,6 +14347,12 @@
    ]
   },
   {
+   "text": "Represent means to stand for something.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Representation means someone speaks and votes for you.",
    "from": [
     "course-lessons"
@@ -14626,6 +15061,12 @@
    "text": "Say it once more",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Say it slowly, in four parts: ee, PLOOR-ih-bus, OO-num.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -16351,6 +16792,12 @@
    ]
   },
   {
+   "text": "Tap the country to the north.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Tap the document that said the colonies were free from Britain.",
    "from": [
     "course-lessons"
@@ -16393,7 +16840,25 @@
    ]
   },
   {
+   "text": "Tap the month of Memorial Day.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Tap the month with Independence Day.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Tap the one that happens in a courtroom.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Tap the part that has one for each state.",
    "from": [
     "course-lessons"
    ]
@@ -16524,6 +16989,12 @@
   },
   {
    "text": "Tap when the Great Depression started.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Tap where the Statue of Liberty is.",
    "from": [
     "course-lessons"
    ]
@@ -16686,6 +17157,18 @@
    ]
   },
   {
+   "text": "Thanksgiving Day",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Thanksgiving is a day to give thanks, in November.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Thanksgiving is in November.",
    "from": [
     "sentences"
@@ -16729,6 +17212,12 @@
   },
   {
    "text": "That is three times as long as a representative’s term.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "That makes eleven national holidays.",
    "from": [
     "course-lessons"
    ]
@@ -16936,6 +17425,12 @@
    "text": "The American flag is red, white and blue.",
    "from": [
     "course-lessons"
+   ]
+  },
+  {
+   "text": "The American flag: 50 stars, one for each state, and 13 stripes for the 13 original colonies.",
+   "from": [
+    "course-pictures"
    ]
   },
   {
@@ -17680,6 +18175,12 @@
    ]
   },
   {
+   "text": "The President lives and works in the White House.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The President lives in the White House.",
    "from": [
     "sentences"
@@ -17892,11 +18393,30 @@
   {
    "text": "The Star-Spangled Banner",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
    "text": "The Statue of Liberty is in New York Harbor, on Liberty Island, near New York City.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The Statue of Liberty is in New York Harbor, on Liberty Island.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The Statue of Liberty stands on Liberty Island, in New York Harbor, near New York City.",
+   "from": [
+    "course-pictures"
+   ]
+  },
+  {
+   "text": "The Statue of Liberty stands on a small island in New York Harbor.",
    "from": [
     "course-lessons"
    ]
@@ -18215,6 +18735,12 @@
    ]
   },
   {
+   "text": "The White House is the President’s home and office.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The World Trade Center was in New York City.",
    "from": [
     "course-lessons"
@@ -18269,6 +18795,12 @@
    ]
   },
   {
+   "text": "The big letters show which part to say strongly.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The boxes stay empty. Tap What it asks to open that question in the guide, in plain words.",
    "from": [
     "n400-guide"
@@ -18290,6 +18822,12 @@
    "text": "The capital and the Statue of Liberty",
    "from": [
     "course-titles"
+   ]
+  },
+  {
+   "text": "The capital of the United States is Washington, D.C.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -18408,6 +18946,12 @@
    ]
   },
   {
+   "text": "The country has national holidays all through the year.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The country kept growing. In 1867, it bought Alaska, which is now the largest state.",
    "from": [
     "course-lessons"
@@ -18421,6 +18965,18 @@
   },
   {
    "text": "The country was together again.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The country’s birthday",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The country’s official song is “The Star-Spangled Banner.”",
    "from": [
     "course-lessons"
    ]
@@ -18559,6 +19115,12 @@
    ]
   },
   {
+   "text": "The first day of the year",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The first part is called the Senate. Its members are senators.",
    "from": [
     "course-lessons"
@@ -18628,6 +19190,12 @@
    "text": "The flag has red and white stripes.",
    "from": [
     "sentences"
+   ]
+  },
+  {
+   "text": "The flag has three colors: red, white and blue.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -18853,6 +19421,12 @@
    ]
   },
   {
+   "text": "The national anthem is “The Star-Spangled Banner.”",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The national anthem is “The Star-Spangled Banner.” It is a song about the American flag.",
    "from": [
     "course-lessons"
@@ -18883,6 +19457,12 @@
    ]
   },
   {
+   "text": "The nation’s first motto was “E Pluribus Unum.”",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The new Constitution needed a yes from the states.",
    "from": [
     "course-lessons"
@@ -18890,6 +19470,12 @@
   },
   {
    "text": "The new President takes the oath of office, often on the same day.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The number of stars is the same as the number of states.",
    "from": [
     "course-lessons"
    ]
@@ -19145,6 +19731,12 @@
    ]
   },
   {
+   "text": "The song is about the flag. A banner is a flag.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The special promise a person makes to the United States when becoming a citizen.",
    "from": [
     "n400"
@@ -19152,6 +19744,12 @@
   },
   {
    "text": "The states and the cities",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The statue is close to New York City.",
    "from": [
     "course-lessons"
    ]
@@ -19170,6 +19768,18 @@
   },
   {
    "text": "The stock market is where people buy and sell parts of companies.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The stripes are red and white. The stars are white on blue.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The stripes remember where the country started.",
    "from": [
     "course-lessons"
    ]
@@ -19218,6 +19828,12 @@
   },
   {
    "text": "The test asks for one way Americans can serve their country.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The test asks for the capital of the United States.",
    "from": [
     "course-lessons"
    ]
@@ -19331,7 +19947,37 @@
    ]
   },
   {
+   "text": "The test asks the name of the national anthem.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The test asks two questions about the flag.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The test asks what Independence Day is.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The test asks what Memorial Day is.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The test asks what U.S. war ended slavery.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The test asks what Veterans Day is.",
    "from": [
     "course-lessons"
    ]
@@ -19392,6 +20038,12 @@
   },
   {
    "text": "The test asks what we show loyalty to: the United States and the flag.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The test asks what “E Pluribus Unum” means.",
    "from": [
     "course-lessons"
    ]
@@ -19709,6 +20361,18 @@
    ]
   },
   {
+   "text": "The test asks you to name three national holidays.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "The test asks you to name three of them.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The test asks you to name three rights of everyone living in the United States.",
    "from": [
     "course-lessons"
@@ -19896,6 +20560,12 @@
    ]
   },
   {
+   "text": "The words are in Latin, an old language.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "The words tell us who made the Constitution: the people of the United States, not a king.",
    "from": [
     "course-lessons"
@@ -19944,6 +20614,12 @@
    ]
   },
   {
+   "text": "Then Juneteenth, Independence Day, Labor Day and Columbus Day.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "There are 100 U.S. senators.",
    "from": [
     "course-lessons"
@@ -19951,6 +20627,12 @@
   },
   {
    "text": "There are 435 voting members in the House.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "There are 50 states, so there are 50 stars.",
    "from": [
     "course-lessons"
    ]
@@ -20401,6 +21083,12 @@
   },
   {
    "text": "They helped people understand the Constitution.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "They include New Year’s Day, Martin Luther King, Jr. Day, Presidents Day and Memorial Day.",
    "from": [
     "course-lessons"
    ]
@@ -20904,6 +21592,12 @@
    ]
   },
   {
+   "text": "This is the American flag.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "This is the Chief Justice today.",
    "from": [
     "course-lessons"
@@ -20934,6 +21628,12 @@
    ]
   },
   {
+   "text": "This is the answer on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "This is the answer to both questions in this lesson.",
    "from": [
     "course-lessons"
@@ -20947,6 +21647,12 @@
   },
   {
    "text": "This is the first of the five wars.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "This is the flag of the United States.",
    "from": [
     "course-lessons"
    ]
@@ -21206,6 +21912,12 @@
   },
   {
    "text": "This photo of Lincoln was taken in 1863, during the war.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "This photo shows Liberty Island from the air. A harbor is a place where ships can stay near land.",
    "from": [
     "course-lessons"
    ]
@@ -21646,6 +22358,12 @@
    ]
   },
   {
+   "text": "Three more holidays at the end of the year.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Three of these older documents are the Declaration, the Articles of Confederation and the Federalist Papers.",
    "from": [
     "course-lessons"
@@ -21849,6 +22567,12 @@
    "text": "To get started",
    "from": [
     "ask-screen"
+   ]
+  },
+  {
+   "text": "To honor means to show respect.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -22564,6 +23288,12 @@
    ]
   },
   {
+   "text": "Valentine’s Day",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Very ready",
    "from": [
     "pilot"
@@ -22579,6 +23309,24 @@
    "text": "Veterans Day and national holidays",
    "from": [
     "course-titles"
+   ]
+  },
+  {
+   "text": "Veterans Day is a holiday in November.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Veterans Day is in November.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Veterans Day thanks everyone who served in the military.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -22856,7 +23604,8 @@
   {
    "text": "Washington, D.C.",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -22869,6 +23618,12 @@
    "text": "Washington, D.C. is the capital.",
    "from": [
     "sentences"
+   ]
+  },
+  {
+   "text": "Washington, D.C. is the city where the national government is.",
+   "from": [
+    "course-lessons"
    ]
   },
   {
@@ -23488,6 +24243,12 @@
    ]
   },
   {
+   "text": "What does “E Pluribus Unum” mean?",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "What does “We the People” mean?",
    "from": [
     "course-lessons"
@@ -23559,19 +24320,22 @@
   {
    "text": "What is Independence Day?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
    "text": "What is Memorial Day?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
    "text": "What is Veterans Day?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -23651,6 +24415,7 @@
    "text": "What is the capital of the United States?",
    "from": [
     "civics-questions",
+    "course-lessons",
     "sentences"
    ]
   },
@@ -23720,7 +24485,8 @@
   {
    "text": "What is the name of the national anthem?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -23906,6 +24672,12 @@
   },
   {
    "text": "When a justice retires, the President chooses someone new for that seat.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "When a new state joined, a new star was added.",
    "from": [
     "course-lessons"
    ]
@@ -24128,7 +24900,8 @@
   {
    "text": "Where is the Statue of Liberty?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -24199,6 +24972,12 @@
   },
   {
    "text": "Which one is a document that influenced the Constitution?",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "Which one is a national U.S. holiday?",
    "from": [
     "course-lessons"
    ]
@@ -24672,13 +25451,15 @@
   {
    "text": "Why does the flag have 13 stripes?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
    "text": "Why does the flag have 50 stars?",
    "from": [
-    "civics-questions"
+    "civics-questions",
+    "course-lessons"
    ]
   },
   {
@@ -25057,6 +25838,12 @@
    ]
   },
   {
+   "text": "Yankee Doodle",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "Yes",
    "from": [
     "n400-guide",
@@ -25185,6 +25972,12 @@
   },
   {
    "text": "You can say your opinion out loud, even about the government.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "You can see it on government buildings and at schools.",
    "from": [
     "course-lessons"
    ]
@@ -25342,6 +26135,12 @@
   },
   {
    "text": "You learned about September 11 in the last lesson.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "You learned about the 13 colonies in Unit 4.",
    "from": [
     "course-lessons"
    ]
@@ -28619,6 +29418,12 @@
    ]
   },
   {
+   "text": "“13 original colonies” is an answer on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "“16th President” is an answer about Lincoln on the test.",
    "from": [
     "course-lessons"
@@ -28638,6 +29443,12 @@
   },
   {
    "text": "“34th President” is an answer on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "“A holiday to celebrate U.S. independence” is an answer.",
    "from": [
     "course-lessons"
    ]
@@ -28710,6 +29521,12 @@
   },
   {
    "text": "“Because of the 22nd Amendment” is one answer on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "“Because there are 50 states” is also an answer.",
    "from": [
     "course-lessons"
    ]
@@ -29106,6 +29923,12 @@
    ]
   },
   {
+   "text": "“New York Harbor” and “Liberty Island” are answers on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "“No taxation without representation” was a big reason the colonists wanted to be free.",
    "from": [
     "course-lessons"
@@ -29119,6 +29942,18 @@
   },
   {
    "text": "“One of the writers of the Federalist Papers” is an answer.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "“One star for each state” is an answer on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "“Out of many, one” is the answer on the test.",
    "from": [
     "course-lessons"
    ]
@@ -29304,6 +30139,18 @@
    ]
   },
   {
+   "text": "“The Star-Spangled Banner” is a song about the flag.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "“The country’s birthday” is an answer on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
    "text": "“The right to bear arms” is another right you can name.",
    "from": [
     "course-lessons"
@@ -29401,6 +30248,12 @@
   },
   {
    "text": "“Washington crossing the Delaware” is an answer on the test.",
+   "from": [
+    "course-lessons"
+   ]
+  },
+  {
+   "text": "“We all become one” is another answer.",
    "from": [
     "course-lessons"
    ]

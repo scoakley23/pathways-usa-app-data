@@ -67,6 +67,10 @@ export const DRAWING_PARTS = {
   sept11Places: { newYork: 'New York City: the World Trade Center', pentagon: 'Virginia: the Pentagon', pennsylvania: 'Pennsylvania: a field' },
   middleEastWars: { gulf: 'The Persian Gulf War, 1991', afghanistan: 'The war in Afghanistan, 2001', iraq: 'The war in Iraq, 2003' },
   innovations: { lightBulb: 'Light bulb', automobile: 'Automobile', airplane: 'Airplane', skyscrapers: 'Skyscrapers', assemblyLine: 'Assembly line', moon: 'Landing on the moon' },
+  starsAndStripes: { stars: '50 stars: one for each state', stripes: '13 stripes: the 13 original colonies' },
+  outOfMany: { many: 'Many people and states', one: 'One country' },
+  whereIsIt: { canada: 'Canada, to the north', newYork: 'New York Harbor', dc: 'Washington, D.C.', mexico: 'Mexico, to the south' },
+  holidayCalendar: { jan: 'January: New Year’s Day, Martin Luther King, Jr. Day', feb: 'February: Presidents Day', may: 'May: Memorial Day', jun: 'June: Juneteenth', jul: 'July: Independence Day', sep: 'September: Labor Day', oct: 'October: Columbus Day', nov: 'November: Veterans Day, Thanksgiving Day', dec: 'December: Christmas Day' },
 };
 
 // One part of a drawing: it fades when another part is lit (`focus`). In a
@@ -1286,6 +1290,128 @@ function Innovations({ focus, pick } = {}) {
   );
 }
 
+// Unit 7. Counting the flag's stars and stripes (a counting picture, not a
+// flag: the flag itself is the public-domain image us-flag.jpg).
+const starPath = (cx, cy, r) => {
+  const pts = [];
+  for (let i = 0; i < 10; i += 1) {
+    const a = -Math.PI / 2 + (i * Math.PI) / 5;
+    const rr = i % 2 ? r * 0.45 : r;
+    pts.push(`${(cx + rr * Math.cos(a)).toFixed(1)} ${(cy + rr * Math.sin(a)).toFixed(1)}`);
+  }
+  return `M${pts.join(' L')} Z`;
+};
+function StarsAndStripes({ focus, pick } = {}) {
+  return (
+    <Frame viewBox="0 0 350 176" title="Counting the flag: 50 stars, one for each state, and 13 stripes, one for each of the 13 original colonies">
+      <Part id="stars" focus={focus} pick={pick} drawing="starsAndStripes">
+        <Box x={4} y={6} w={168} h={164} className="fill-sky-soft stroke-denim" />
+        {Array.from({ length: 50 }, (_, i) => (
+          <path key={i} d={starPath(22 + (i % 10) * 14.5, 24 + Math.floor(i / 10) * 15, 5.5)} className="fill-gold stroke-navy" strokeWidth="0.8" />
+        ))}
+        <T x={88} y={124} size={15} weight={700}>50 stars</T>
+        <T x={88} y={146} size={12} weight={400}>one for each state</T>
+      </Part>
+      <Part id="stripes" focus={focus} pick={pick} drawing="starsAndStripes">
+        <Box x={178} y={6} w={168} h={164} className="fill-gold-soft stroke-denim" />
+        {Array.from({ length: 13 }, (_, i) => (
+          <rect key={i} x={194} y={18 + i * 6.6} width={136} height={3.6} rx={1.5} className="fill-navy" />
+        ))}
+        <T x={262} y={124} size={15} weight={700}>13 stripes</T>
+        <T x={262} y={146} size={12} weight={400}>13 original colonies</T>
+      </Part>
+    </Frame>
+  );
+}
+
+// Unit 7. E Pluribus Unum: out of many, one.
+function OutOfMany({ focus, pick } = {}) {
+  return (
+    <Frame viewBox="0 0 350 196" title="E Pluribus Unum means out of many, one: many people and many states become one country">
+      <Part id="many" focus={focus} pick={pick} drawing="outOfMany">
+        <Box x={4} y={6} w={150} h={128} className="fill-sky-soft stroke-denim" />
+        {Array.from({ length: 12 }, (_, i) => <Person key={i} cx={30 + (i % 4) * 33} cy={22 + Math.floor(i / 4) * 30} />)}
+        <T x={79} y={122} size={13} weight={700}>Many</T>
+      </Part>
+      <Arrow d={arrowPath(162, 70, 190, 70)} />
+      <Part id="one" focus={focus} pick={pick} drawing="outOfMany">
+        <Box x={196} y={6} w={150} h={128} className="fill-navy stroke-navy" />
+        <circle cx={271} cy={54} r={22} className="fill-gold" />
+        <T x={271} y={60} size={16} weight={800}>1</T>
+        <T x={271} y={108} size={13} weight={700} className="fill-white">One country</T>
+      </Part>
+      <T x={175} y={162} size={15} weight={700}>E Pluribus Unum</T>
+      <T x={175} y={184} size={13} weight={400}>“Out of many, one”</T>
+    </Frame>
+  );
+}
+
+// Unit 7. Where things are: Canada to the north, Mexico to the south, the
+// capital and New York Harbor (a plain box map, no statue).
+function WhereIsIt({ focus, pick } = {}) {
+  const chip = (id, x, y, label, sub) => (
+    <Part id={id} focus={focus} pick={pick} drawing="whereIsIt">
+      <rect x={x} y={y} width={156} height={50} rx={10} className="fill-white stroke-navy" strokeWidth="2" />
+      <circle cx={x + 18} cy={y + 25} r={6} className="fill-gold stroke-navy" strokeWidth="2" />
+      <T x={x + 32} y={y + 22} anchor="start" size={13} weight={700}>{label}</T>
+      <T x={x + 32} y={y + 39} anchor="start" size={11} weight={400}>{sub}</T>
+    </Part>
+  );
+  return (
+    <Frame viewBox="0 0 350 270" title="Canada is north of the United States and Mexico is south. The capital, Washington, D.C., and New York Harbor, where the Statue of Liberty is, are in the east of the United States.">
+      <Part id="canada" focus={focus} pick={pick} drawing="whereIsIt">
+        <Box x={4} y={6} w={342} h={48} className="fill-gold-soft stroke-denim" />
+        <T x={175} y={36} size={14} weight={700}>Canada · north</T>
+      </Part>
+      <Box x={4} y={62} w={342} h={146} className="fill-sky-soft stroke-denim" />
+      <T x={16} y={86} anchor="start" size={14} weight={700}>United States</T>
+      {chip('newYork', 182, 96, 'New York Harbor', 'Statue of Liberty')}
+      {chip('dc', 120, 150, 'Washington, D.C.', 'the capital')}
+      <Part id="mexico" focus={focus} pick={pick} drawing="whereIsIt">
+        <Box x={4} y={216} w={342} h={48} className="fill-denim-soft stroke-denim" />
+        <T x={175} y={246} size={14} weight={700}>Mexico · south</T>
+      </Part>
+    </Frame>
+  );
+}
+
+// Unit 7. The national holidays, month by month.
+export const HOLIDAY_MONTHS = [
+  { key: 'jan', month: 'January', days: ['New Year’s Day', 'Martin Luther King, Jr. Day'] },
+  { key: 'feb', month: 'February', days: ['Presidents Day'] },
+  { key: 'mar', month: 'March', days: [] },
+  { key: 'apr', month: 'April', days: [] },
+  { key: 'may', month: 'May', days: ['Memorial Day'] },
+  { key: 'jun', month: 'June', days: ['Juneteenth'] },
+  { key: 'jul', month: 'July', days: ['Independence Day'] },
+  { key: 'aug', month: 'August', days: [] },
+  { key: 'sep', month: 'September', days: ['Labor Day'] },
+  { key: 'oct', month: 'October', days: ['Columbus Day'] },
+  { key: 'nov', month: 'November', days: ['Veterans Day', 'Thanksgiving Day'] },
+  { key: 'dec', month: 'December', days: ['Christmas Day'] },
+];
+function HolidayCalendar({ focus, pick } = {}) {
+  const months = HOLIDAY_MONTHS.filter((m) => m.days.length);
+  let y = 4;
+  const rows = months.map((m, i) => {
+    const h = 20 + m.days.length * 18;
+    const row = { ...m, y, h, fill: SOFT[i % 3] };
+    y += h + 6;
+    return row;
+  });
+  return (
+    <Frame viewBox={`0 0 350 ${y}`} title="The national holidays by month: January, New Year’s Day and Martin Luther King, Jr. Day; February, Presidents Day; May, Memorial Day; June, Juneteenth; July, Independence Day; September, Labor Day; October, Columbus Day; November, Veterans Day and Thanksgiving Day; December, Christmas Day">
+      {rows.map((r) => (
+        <Part key={r.key} id={r.key} focus={focus} pick={pick} drawing="holidayCalendar">
+          <Box x={4} y={r.y} w={342} h={r.h} className={`${r.fill} stroke-denim`} />
+          <T x={14} y={r.y + 24} anchor="start" size={14} weight={700}>{r.month}</T>
+          {r.days.map((d, k) => <T key={d} x={112} y={r.y + 24 + k * 18} anchor="start" size={14} weight={400}>{d}</T>)}
+        </Part>
+      ))}
+    </Frame>
+  );
+}
+
 export const DRAWINGS = {
   threeBranches: ThreeBranches,
   termLengths: TermLengths,
@@ -1333,6 +1459,10 @@ export const DRAWINGS = {
   sept11Places: Sept11Places,
   middleEastWars: MiddleEastWars,
   innovations: Innovations,
+  starsAndStripes: StarsAndStripes,
+  outOfMany: OutOfMany,
+  whereIsIt: WhereIsIt,
+  holidayCalendar: HolidayCalendar,
 };
 
 // The parts each drawing can light up (story scenes' `focus`).
@@ -1381,4 +1511,8 @@ export const DRAWING_FOCUS = {
   sept11Places: ['newYork', 'pentagon', 'pennsylvania'],
   middleEastWars: ['gulf', 'afghanistan', 'iraq'],
   innovations: ['lightBulb', 'automobile', 'airplane', 'skyscrapers', 'assemblyLine', 'moon'],
+  starsAndStripes: ['stars', 'stripes'],
+  outOfMany: ['many', 'one'],
+  whereIsIt: ['canada', 'newYork', 'dc', 'mexico'],
+  holidayCalendar: ['jan', 'feb', 'may', 'jun', 'jul', 'sep', 'oct', 'nov', 'dec'],
 };
