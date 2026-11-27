@@ -359,7 +359,7 @@
             "status": "reviewed",
             "checkedOn": "2026-11-26"
           },
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "A change to the Constitution is called an amendment.",
@@ -483,7 +483,7 @@
               "meaning": "a government whose power has limits"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "The people who wrote the Constitution learned from older documents.",
@@ -499,8 +499,7 @@
             {
               "say": "They learned from the Declaration of Independence, the Articles of Confederation and the Federalist Papers.",
               "picture": {
-                "drawing": "documentsToConstitution",
-                "focus": "constitution"
+                "drawing": "documentsToConstitution"
               },
               "help": {
                 "simpler": "Three of these older documents are the Declaration, the Articles of Confederation and the Federalist Papers.",
@@ -535,7 +534,7 @@
               "say": "The Declaration and the Constitution share big ideas.",
               "help": {
                 "simpler": "Both documents are built on the same important ideas.",
-                "example": "One idea, equality, means every person should be treated the same under the law.",
+                "example": "Natural rights are rights every person is born with, like life and liberty.",
                 "why": "The test asks you to name two of these ideas."
               }
             },
