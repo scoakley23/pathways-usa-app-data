@@ -1939,6 +1939,12 @@
    ]
   },
   {
+   "text": "All topics",
+   "from": [
+    "class-screen"
+   ]
+  },
+  {
    "text": "All units",
    "from": [
     "course"
@@ -2374,6 +2380,12 @@
    ]
   },
   {
+   "text": "Another round",
+   "from": [
+    "class-screen"
+   ]
+  },
+  {
    "text": "Another was Valley Forge, where the army camped through a hard winter.",
    "from": [
     "course-lessons"
@@ -2801,6 +2813,7 @@
    "from": [
     "ask-history",
     "ask-screen",
+    "class-screen",
     "course",
     "interview-day",
     "interview-when",
@@ -3553,6 +3566,7 @@
   {
    "text": "Checked on official government websites on {date}",
    "from": [
+    "class-screen",
     "tutor-steps-amio"
    ]
   },
@@ -3608,6 +3622,18 @@
    "text": "Choose a state",
    "from": [
     "pilot"
+   ]
+  },
+  {
+   "text": "Choose a topic",
+   "from": [
+    "class-screen"
+   ]
+  },
+  {
+   "text": "Choose another topic",
+   "from": [
+    "class-screen"
    ]
   },
   {
@@ -3841,9 +3867,17 @@
    ]
   },
   {
+   "text": "Class screen",
+   "from": [
+    "class-screen",
+    "interview-tab"
+   ]
+  },
+  {
    "text": "Close",
    "from": [
     "checkpoints",
+    "class-screen",
     "resource-finder",
     "sign-in"
    ]
@@ -5772,6 +5806,7 @@
   {
    "text": "Finish",
    "from": [
+    "class-screen",
     "tutor-steps"
    ]
   },
@@ -6237,6 +6272,7 @@
   {
    "text": "Free practice · Not affiliated with USCIS · Not legal advice",
    "from": [
+    "class-screen",
     "footer",
     "onboarding",
     "sign-in"
@@ -7501,6 +7537,12 @@
    "from": [
     "course",
     "resource-finder"
+   ]
+  },
+  {
+   "text": "Hide answer",
+   "from": [
+    "class-screen"
    ]
   },
   {
@@ -9761,6 +9803,12 @@
    ]
   },
   {
+   "text": "Keys: R read aloud · A show or hide the answer · N next · Esc topics",
+   "from": [
+    "class-screen"
+   ]
+  },
+  {
    "text": "Killing an important person on purpose.",
    "from": [
     "n400"
@@ -11844,6 +11892,7 @@
   {
    "text": "Next question",
    "from": [
+    "class-screen",
     "practice"
    ]
   },
@@ -12279,6 +12328,12 @@
    ]
   },
   {
+   "text": "Nothing is saved.",
+   "from": [
+    "class-screen"
+   ]
+  },
+  {
    "text": "Nothing to practice here yet.",
    "from": [
     "practice"
@@ -12491,9 +12546,21 @@
    ]
   },
   {
+   "text": "Official answer",
+   "from": [
+    "class-screen"
+   ]
+  },
+  {
    "text": "Official answers",
    "from": [
     "home"
+   ]
+  },
+  {
+   "text": "Official answers (any one is right)",
+   "from": [
+    "class-screen"
    ]
   },
   {
@@ -13970,6 +14037,12 @@
    ]
   },
   {
+   "text": "Questions that depend on where you live (senators, representative, governor, state capital) are left out.",
+   "from": [
+    "class-screen"
+   ]
+  },
+  {
    "text": "Questions you learned come back when it’s time to review them.",
    "from": [
     "learn-screens"
@@ -14080,6 +14153,12 @@
    "text": "Read it",
    "from": [
     "lesson-player"
+   ]
+  },
+  {
+   "text": "Read it aloud",
+   "from": [
+    "class-screen"
    ]
   },
   {
@@ -15652,6 +15731,12 @@
    ]
   },
   {
+   "text": "Show answer",
+   "from": [
+    "class-screen"
+   ]
+  },
+  {
    "text": "Show less",
    "from": [
     "ask-screen"
@@ -15679,6 +15764,12 @@
    "text": "Show more ({count} more)",
    "from": [
     "resource-finder"
+   ]
+  },
+  {
+   "text": "Show official civics questions on a big screen for your class. Read each one together, then show the official answer.",
+   "from": [
+    "class-screen"
    ]
   },
   {
@@ -16357,6 +16448,7 @@
   {
    "text": "Start",
    "from": [
+    "class-screen",
     "course",
     "home",
     "learn-screens",
@@ -17319,6 +17411,12 @@
    "from": [
     "lesson-player",
     "n400-lessons"
+   ]
+  },
+  {
+   "text": "That’s the round.",
+   "from": [
+    "class-screen"
    ]
   },
   {
@@ -19570,6 +19668,7 @@
    "text": "The officer asks",
    "from": [
     "checkpoints",
+    "class-screen",
     "tutor-steps"
    ]
   },
@@ -21904,6 +22003,12 @@
    "text": "This list was last checked on {date}. Officials can change; check usa.gov.",
    "from": [
     "find-rep"
+   ]
+  },
+  {
+   "text": "This may change soon. At the interview, name the person serving that day.",
+   "from": [
+    "class-screen"
    ]
   },
   {
@@ -29368,6 +29473,7 @@
   {
    "text": "{n} questions",
    "from": [
+    "class-screen",
     "me"
    ]
   },
@@ -29387,6 +29493,12 @@
    "text": "{n} questions to keep fresh",
    "from": [
     "today-plan"
+   ]
+  },
+  {
+   "text": "{n} questions. Nothing was saved.",
+   "from": [
+    "class-screen"
    ]
   },
   {
@@ -29543,6 +29655,12 @@
    "text": "{title}: {done} of {total} questions",
    "from": [
     "me"
+   ]
+  },
+  {
+   "text": "{topic} · question {n} of {total} · nothing is saved",
+   "from": [
+    "class-screen"
    ]
   },
   {

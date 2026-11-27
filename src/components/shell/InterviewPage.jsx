@@ -119,7 +119,7 @@ export default function InterviewPage() {
         <p className="text-small text-muted text-center">{t('footer')}</p>
 
         <div className="flex flex-wrap gap-2">
-          {INTERVIEW_LINKS.filter((l) => ['day', 'coach'].includes(l.id)).map((l) => (
+          {INTERVIEW_LINKS.filter((l) => ['day', 'coach', 'class'].includes(l.id)).map((l) => (
             <Link
               key={l.id}
               to={l.path}

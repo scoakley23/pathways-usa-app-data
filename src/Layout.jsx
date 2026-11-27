@@ -22,7 +22,7 @@ import { Toaster } from "sonner";
 // message aloud on these screens (onboarding, quick check, lessons).
 // Full-screen course screens: lessons, Speak it!, Read and write, Unit
 // complete, the unit practice interview and the review chest.
-const CHECKPOINT_SCREEN = /^\/(course\/(lesson|n400|speak|readwrite)\/|course\/unit\/[^/]+\/(done|interview)\/?$|review-chest\/?$)/i;
+const CHECKPOINT_SCREEN = /^\/(course\/(lesson|n400|speak|readwrite)\/|course\/unit\/[^/]+\/(done|interview)\/?$|review-chest\/?$|class\/?$)/i;
 const FOCUS_ROUTES = ['/quick-check', '/learn', '/review'];
 
 // Pages drawn as split screens (a navy top and a cream sheet, full width):
@@ -178,7 +178,7 @@ export default function Layout({ children }) {
         />
       )}
       {/* Interview Day writes nothing, so the daily reminder waits for another page. */}
-      {location.pathname !== '/interview-day' && <DailyPracticeReminder />}
+      {!['/interview-day', '/class'].includes(location.pathname.toLowerCase()) && <DailyPracticeReminder />}
       <Toaster />
     </div>
   );

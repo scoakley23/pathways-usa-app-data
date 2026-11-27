@@ -120,7 +120,7 @@ export const INTERVIEW_LINES = {
   tile_file_sub: 'On uscis.gov',
   opens_outside: 'Opens uscis.gov',
   footer: 'AI practice officer, not a real person · Not legal advice',
-  ...Object.fromEntries(INTERVIEW_LINKS.filter((l) => ['day', 'coach'].includes(l.id)).map((l) => [`link_${l.id}`, l.label])),
+  ...Object.fromEntries(INTERVIEW_LINKS.filter((l) => ['day', 'coach', 'class'].includes(l.id)).map((l) => [`link_${l.id}`, l.label])),
 };
 
 // "When's my interview?" (Amio v2, frame WhenInterview). The USCIS months

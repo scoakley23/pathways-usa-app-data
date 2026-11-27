@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Check, Loader2, X } from 'lucide-react';
+import { Check, Loader2, Presentation, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
 import PageTop from '@/components/pathways/PageTop';
 import { RaisedCard, PrimaryButton, SecondaryButton, QuietButton } from '@/components/pathways/ui';
@@ -125,6 +126,15 @@ export default function Partner() {
 
       {error && <p role="alert" className="text-base font-semibold text-not-yet">Couldn't load your learners. Please try again.</p>}
       {!members && !error && <div className="flex justify-center py-10"><Loader2 className="w-6 h-6 animate-spin text-muted" aria-label="Loading" /></div>}
+
+      {/* The Class screen (desktop vision D): for teaching on a projector. Saves nothing. */}
+      <Link to="/class" className="flex items-center gap-4 rounded-card bg-white border-[1.5px] border-line px-4 py-4 hover:border-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy">
+        <Presentation className="w-7 h-7 shrink-0" strokeWidth={2} aria-hidden="true" />
+        <span className="min-w-0">
+          <span className="block text-lg font-bold">Class screen</span>
+          <span className="block text-base text-muted">Show official civics questions on a projector, one at a time, with the official answers. Nothing is saved.</span>
+        </span>
+      </Link>
 
       {summary && <ProgramTotals totals={summary.totals} />}
       {summary && program.shareLearners && <SharedLearners learners={summary.learners} />}
