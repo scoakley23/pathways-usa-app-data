@@ -83,9 +83,9 @@
             "youtubeId": "IGyx5UEwgtA",
             "title": "Structure of the Court System: Crash Course Government and Politics #19",
             "source": "CrashCourse (YouTube)",
-            "license": "Standard YouTube license: embedding is allowed by YouTube's terms, but the video is not licensed to Pathways. Check before marking reviewed.",
-            "status": "draft",
-            "note": "From the old Lessons tab (Base44 Lesson \"The Judicial Branch and Supreme Court\"). Before reviewing: watch it all; check it matches the 2025 answers, has no flags, seals, eagles or Statue of Liberty, and the English is easy enough."
+            "license": "Standard YouTube license: shown as a YouTube embed, which YouTube's terms allow; not licensed to Pathways.",
+            "status": "reviewed",
+            "checkedOn": "2026-11-26"
           }
         },
         "teachBack": {
@@ -144,13 +144,11 @@
             },
             {
               "word": "judicial review",
-              "meaning": "when courts decide if a law goes against the Constitution",
-              "status": "draft"
+              "meaning": "when courts decide if a law goes against the Constitution"
             },
             {
               "word": "confirm",
-              "meaning": "when the Senate votes yes on a person the President chose",
-              "status": "draft"
+              "meaning": "when the Senate votes yes on a person the President chose"
             }
           ]
         },
