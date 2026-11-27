@@ -226,7 +226,7 @@
               "meaning": "when Congress passes a bill again after a veto, with two-thirds of both parts. They go against the president to pass or veto a law."
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "A bill is an idea for a new law.",
@@ -248,7 +248,7 @@
               },
               "help": {
                 "simpler": "Congress writes bills and votes on them.",
-                "example": "If most of Congress votes yes, the bill passes and goes to the President.",
+                "example": "If most members of the House and the Senate vote yes, the bill goes to the President.",
                 "why": "Bills start in Congress, the lawmaking branch."
               }
             },
@@ -286,7 +286,7 @@
               "say": "Veto means saying no to it.",
               "help": {
                 "simpler": "A veto is the President’s “no.”",
-                "example": "After a veto, the bill does not become law, unless two-thirds of both parts of Congress vote for it again.",
+                "example": "After a veto, the bill does not become law, unless two-thirds of both parts of Congress vote to override the veto.",
                 "why": "This is one way the branches check each other."
               }
             },
