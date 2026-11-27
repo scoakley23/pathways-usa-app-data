@@ -24,6 +24,7 @@ const OWNER_REVIEWED = new Set([
   'u1-s2-l1',
   'u1-s2-l2',
   'u1-s2-l3',
+  'u1-s2-l4',
 ]);
 const expectedStatus = (id) => (OWNER_REVIEWED.has(id) ? 'reviewed' : 'draft');
 
