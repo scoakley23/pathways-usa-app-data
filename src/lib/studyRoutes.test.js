@@ -1,38 +1,41 @@
 import { describe, it, expect } from 'vitest';
-import { studyTab, studyPath, isStudyPath } from './studyRoutes';
+import { studyTab, studyPath, isStudyPath, OLD_LESSONS_PATH } from './studyRoutes';
 
 describe('studyPath', () => {
-  it('sends the old Lessons and Practice addresses to the right tab', () => {
-    expect(studyPath('lessons', '')).toBe('/study?tab=lessons');
+  it('Practice keeps the rest of the address', () => {
     expect(studyPath('practice', '')).toBe('/study?tab=practice');
-  });
-
-  it('keeps a practice run and other parameters', () => {
     expect(studyPath('practice', '?mode=reading')).toBe('/study?tab=practice&mode=reading');
     expect(studyPath('practice', '?tab=lessons&mode=civics&x=1')).toBe('/study?tab=practice&mode=civics&x=1');
+    expect(studyPath('nope', '')).toBe('/study?tab=practice');
   });
 
-  it('falls back to Lessons for an unknown tab', () => {
-    expect(studyPath('nope', '')).toBe('/study?tab=lessons');
+  it('the old Lessons tab goes to Course', () => {
+    expect(OLD_LESSONS_PATH).toBe('/course');
+    expect(studyPath('lessons', '')).toBe('/course');
+    expect(studyPath('lessons', '?tab=lessons')).toBe('/course');
+    // A practice run on an old Lessons address is still a practice run.
+    expect(studyPath('lessons', '?mode=civics')).toBe('/study?tab=practice&mode=civics');
   });
 });
 
 describe('studyTab', () => {
-  it('reads the tab, defaulting to Lessons', () => {
-    expect(studyTab('')).toBe('lessons');
+  it('is Practice unless the address asks for the old Lessons tab', () => {
+    expect(studyTab('')).toBe('practice');
     expect(studyTab('?tab=practice')).toBe('practice');
     expect(studyTab('?tab=Practice')).toBe('practice');
-    expect(studyTab('?tab=other')).toBe('lessons');
+    expect(studyTab('?tab=other')).toBe('practice');
+    expect(studyTab('?tab=lessons')).toBe('lessons');
+    expect(studyTab('?tab=Lessons')).toBe('lessons');
   });
 
-  it('puts a practice run on the Practice tab', () => {
+  it('a practice run is always Practice', () => {
     expect(studyTab('?mode=dictation')).toBe('practice');
     expect(studyTab('?tab=lessons&mode=civics')).toBe('practice');
   });
 });
 
 describe('isStudyPath', () => {
-  it('matches Study and the old addresses, any case', () => {
+  it('knows Study and its old addresses', () => {
     expect(isStudyPath('/study')).toBe(true);
     expect(isStudyPath('/Lessons')).toBe(true);
     expect(isStudyPath('/Practice')).toBe(true);

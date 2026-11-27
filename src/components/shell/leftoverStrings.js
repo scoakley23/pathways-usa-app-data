@@ -12,7 +12,8 @@ export const LESSON_STATUS_LINES = {
   in_progress: 'Started',
   not_started: 'Not started',
   none: 'No lessons yet.',
-  best: 'Best {n}%',
+  unit_title: 'Unit {n} · {title}',
+  practice_note: 'Practice only: nothing is saved yet.',
 };
 
 // The 404 page and "not registered". Pack set "error-pages".

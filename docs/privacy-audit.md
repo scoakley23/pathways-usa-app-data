@@ -153,3 +153,7 @@ Behind the `VITE_AUTH_PROVIDER` switch (off until Step 3). The learner's email g
 ## Delete all my data on Supabase (Standalone Step 3, Nov 2026)
 
 Behind the same switch as sign-in. On Supabase, "Delete all my data" calls `delete_my_account()`: it deletes the sign-in itself, and every learner table goes with it (each cascades from the login, including the pilot reminder records; `src/lib/supabaseRules.test.js` checks every table with a `user_id`). Nothing is left to "reset", unlike Base44, where the sign-in account can't be deleted from the app. The device's browser storage is cleared as before.
+
+## Lesson videos (Nov 2026)
+
+A Course lesson's optional video (`steps.listen.video`, from the old Lessons tab) is reviewed content; learners see only `"reviewed"` videos. The page does not contact YouTube until the learner taps "Play video"; then the browser loads `youtube-nocookie.com/embed/<id>` (YouTube sees the request and the learner's IP address, like any embed). No account or learner information is sent, and nothing about the video is saved. AI Policy: "Lesson Explanations".

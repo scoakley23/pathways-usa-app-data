@@ -11,9 +11,16 @@
    - `id`: lowercase letters, numbers and dashes; never change it once learners may have picked it (it's stored on their device).
    - `min_months` / `max_months`: whole months, as USCIS shows them. They mean the case is usually **finished** in that time, counted from when USCIS received the form. The interview usually comes before that.
 3. Set `checked_on` to the day you checked (`YYYY-MM-DD`).
+
+### When someone else copies the numbers (needs your check)
+Numbers copied by someone other than the owner (a helper, or a script) go in with `"needs_owner_check": true` and the day they were copied:
+```json
+{ "id": "houston-tx", "name": "Houston TX", "state": "TX", "min_months": 6, "max_months": 9, "sample": false, "needs_owner_check": true, "copied_on": "2026-11-26" }
+```
+Learners never see these offices (admins and dev do, marked "needs check" on `/interview/when`), and they don't need the file's `checked_on`. To approve one: compare it with the USCIS page, fix the months if needed, **delete both** `needs_owner_check` and `copied_on`, and set the file's `checked_on` to the day you checked. Learners keep seeing "Coming soon" until at least one office is approved.
 4. Delete the two `sample` entries once real offices are in (they're never shown to learners anyway).
 
-`npm test` fails (`src/lib/interviewEstimate.test.js`) if a real office has no sensible months, if there are real offices but no `checked_on`, or if a sample entry isn't marked `"sample": true` with "(sample, not real)" in its name.
+`npm test` fails (`src/lib/interviewEstimate.test.js`) if a real office has no sensible months, if there are real offices but no `checked_on`, or if a sample entry isn't marked `"sample": true` with "(sample, not real)" in its name, or if an office waiting for your check isn't real, has no `copied_on`, or has `needs_owner_check` set to anything but `true` (`copied_on` is allowed only on those).
 
 ## Privacy
 The learner's field office and filing month stay on their device only (`pathways_field_office`, `pathways_filed_month` in browser storage; Delete my data clears them). They are never saved to the database, put in a URL, or sent to the AI or any server.

@@ -31,10 +31,20 @@ export function saveInterviewChoice({ officeId, filed }) {
   if (filed !== undefined) set(FILED_KEY, filed === NOT_FILED || MONTH.test(filed || '') ? filed : null);
 }
 
-/** Offices a learner may pick: real ones only; samples just for admins and dev. */
+/**
+ * True for an office learners may see: real (not a sample) and checked by the
+ * owner (no `needs_owner_check`). Everything else is for admins and dev only.
+ */
+export const isCheckedOffice = (o) => !!o && !o.sample && o.needs_owner_check !== true;
+
+/**
+ * Offices a learner may pick: real, checked ones only. `showSamples` (admins
+ * and dev) also shows the sample offices and real ones still waiting for the
+ * owner's check (`needs_owner_check: true`).
+ */
 export function visibleOffices(data = TIMES, { showSamples = false } = {}) {
   return (data.offices || [])
-    .filter((o) => showSamples || !o.sample)
+    .filter((o) => showSamples || isCheckedOffice(o))
     .sort((a, b) => `${a.state} ${a.name}`.localeCompare(`${b.state} ${b.name}`));
 }
 
@@ -75,7 +85,7 @@ const DATE = /^\d{4}-\d{2}-\d{2}$/;
 export function processingProblems(data = TIMES) {
   const out = [];
   const offices = data.offices || [];
-  const real = offices.filter((o) => !o.sample);
+  const real = offices.filter(isCheckedOffice);
   if (data.source_url !== USCIS_PROCESSING_URL) out.push('source_url must be the official USCIS processing times page');
   if (real.length && !DATE.test(data.checked_on || '')) out.push('real offices but no checked_on date (YYYY-MM-DD)');
   const ids = new Set();
@@ -87,13 +97,20 @@ export function processingProblems(data = TIMES) {
     if (o.sample !== true && o.sample !== false) out.push(`${name}: "sample" must be true or false`);
     if (o.sample === true && !/\(sample, not real\)/.test(o.name || '')) out.push(`${name}: a sample must say "(sample, not real)" in its name`);
     if (o.sample !== true && /sample/i.test(`${o.id} ${o.name}`)) out.push(`${name}: looks like a sample but isn't marked "sample": true`);
+    if ('needs_owner_check' in o) {
+      if (o.needs_owner_check !== true) out.push(`${name}: "needs_owner_check" must be true, or removed once the owner has checked it`);
+      if (o.sample !== false) out.push(`${name}: an office waiting for the owner's check must be real ("sample": false)`);
+      if (!DATE.test(o.copied_on || '')) out.push(`${name}: an office waiting for the owner's check needs copied_on (YYYY-MM-DD)`);
+    } else if ('copied_on' in o) {
+      out.push(`${name}: copied_on is only for offices waiting for the owner's check; use the file's checked_on`);
+    }
     const ok = Number.isInteger(o.min_months) && Number.isInteger(o.max_months) && o.min_months > 0 && o.max_months >= o.min_months && o.max_months <= 60;
     if (!ok) out.push(`${name}: min_months / max_months must be whole months, 1–60, max ≥ min`);
   }
   return out;
 }
 
-/** Admins (and a developer running the app locally) also see the sample offices. */
+/** Admins (and a developer running the app locally) also see the sample and not-yet-checked offices. */
 export function canSeeSampleOffices(user, env = import.meta.env) {
   return user?.role === 'admin' || !!env?.DEV;
 }

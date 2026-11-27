@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { tabFor, TAB_PATHS, INTERVIEW_LINKS, ME_LINKS, SETTINGS_LINKS, SETTINGS_PATH, profileRedirect } from './shellRoutes';
+import { studyPath, studyTab } from './studyRoutes';
 import { lessonSuggestions, STARTER_SUGGESTIONS, INTERVIEW_SUGGESTIONS } from './askSuggestions';
 import { ASK_SCREEN_LINES, ASK_SCREEN_LINES_ES, looksPersonalLegal } from './askTutor';
 import layoutSrc from '../Layout.jsx?raw';
@@ -31,7 +32,7 @@ describe('every old place is still reachable', () => {
 
   const OLD_PLACES = [
     '/', // Today
-    '/study', // Study (Lessons and Practice)
+    '/study', // Study (Practice; the old Lessons tab is in Course)
     '/ask', // the old Vía/Amio tab: Ask Amio
     '/n400-guide', // the old N-400 tab
     '/progress', '/interview-day', '/resources', '/partner', '/admin', // the old profile menu
@@ -42,6 +43,14 @@ describe('every old place is still reachable', () => {
   for (const place of OLD_PLACES) {
     it(`can reach ${place}`, () => expect(reachable).toContain(place));
   }
+
+  it('the old Lessons tab and /Lessons land on Course; Study is Practice', () => {
+    expect(studyTab('?tab=lessons')).toBe('lessons');
+    expect(studyPath('lessons', '?tab=lessons')).toBe('/course');
+    expect(reachable).toContain('/course');
+    expect(tabFor('/course')).toBe('course');
+    expect(studyPath('practice', '')).toBe('/study?tab=practice');
+  });
 
   it('Notifications are in Settings', () => {
     expect(SETTINGS_LINKS.some((l) => l.action === 'notifications')).toBe(true);
@@ -60,28 +69,33 @@ describe('every old place is still reachable', () => {
 });
 
 describe('Ask Amio suggestions', () => {
-  const lessons = [
-    { id: 'l1', title: 'The three branches', key_points: [{ text: 'Separation of powers keeps any one branch from becoming too strong.' }, { text: 'federal' }] },
-    { id: 'l2', title: 'Congress', key_points: [{ text: 'the Senate' }] },
-    { id: 'l3', title: 'Old lesson', key_points: [{ text: 'colony' }] },
-  ];
+  const lesson = (id, title, words, status = 'reviewed') => ({ id, title, status, steps: { listen: { facts: [`${title} fact.`], newWords: words } } });
+  const LESSONS = {
+    l1: lesson('l1', 'The three branches', [{ word: 'checks', meaning: 'limits', status: 'draft' }, { word: 'federal', meaning: 'for the whole country' }]),
+    l2: lesson('l2', 'Congress', [{ word: 'the Senate', meaning: 'one part of Congress' }]),
+    l3: lesson('l3', 'Old lesson', [{ word: 'colony', meaning: 'a place ruled from far away' }]),
+    l4: lesson('l4', 'Draft lesson', [{ word: 'draft', meaning: 'x' }], 'draft'),
+  };
+  const find = (id) => LESSONS[id] || null;
   const progress = [
-    { lesson_id: 'l3', last_attempt_date: '2026-10-01' },
-    { lesson_id: 'l1', last_attempt_date: '2026-11-10' },
-    { lesson_id: 'l2', last_attempt_date: '2026-11-12' },
-    { lesson_id: 'gone', last_attempt_date: '2026-11-13' },
+    { lesson_id: 'l3', completed_at: '2026-10-01' },
+    { lesson_id: 'l1', completed_at: '2026-11-10' },
+    { lesson_id: 'l2', completed_at: '2026-11-12' },
+    { lesson_id: 'l4', completed_at: '2026-11-13' },
+    { lesson_id: '699db0a1297afea4b73d1036', last_attempt_date: '2026-11-14' }, // an old Lessons tab row
   ];
 
-  it('uses the 2 most recent lessons: a short key word first, then the title', () => {
-    expect(lessonSuggestions(progress, lessons)).toEqual([
+  it('uses the 2 most recent reviewed Course lessons: a reviewed new word first, then the title', () => {
+    expect(lessonSuggestions(progress, find).map((q) => q.question)).toEqual([
       'What does "the Senate" mean?',
       'What does "federal" mean?',
       'Explain "Congress" again',
     ]);
+    expect(lessonSuggestions(progress, find)[0]).toEqual({ id: 'course_l2_term', question: 'What does "the Senate" mean?', lead: 'the Senate: ', parts: ['one part of Congress'] });
   });
 
   it('is empty without lessons (the screen shows starters instead)', () => {
-    expect(lessonSuggestions([], lessons)).toEqual([]);
+    expect(lessonSuggestions([], find)).toEqual([]);
     expect(STARTER_SUGGESTIONS).toHaveLength(3);
     expect(INTERVIEW_SUGGESTIONS).toHaveLength(3);
   });

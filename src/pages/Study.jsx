@@ -1,14 +1,12 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
-import Lessons from './Lessons';
+import { Navigate, useLocation } from 'react-router-dom';
 import Practice from './Practice';
-import { studyTab } from '@/lib/studyRoutes';
+import { studyPath, studyTab } from '@/lib/studyRoutes';
 
-// Study: Lessons and Practice as two tabs (/study?tab=lessons | practice).
-// Each tab draws the split screen itself (StudyTop on navy, its list on a
-// cream sheet); Layout gives /study the full width except during a practice
-// run (?mode=…).
+// Study is Practice only (/study?tab=practice). The old Lessons tab
+// (/study?tab=lessons) merged into Course and goes to /course.
 export default function Study(props) {
   const { search } = useLocation();
-  return studyTab(search) === 'practice' ? <Practice {...props} /> : <Lessons {...props} />;
+  if (studyTab(search) === 'lessons') return <Navigate to={studyPath('lessons', search)} replace />;
+  return <Practice {...props} />;
 }

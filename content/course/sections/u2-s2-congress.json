@@ -123,14 +123,32 @@
             {
               "word": "budget",
               "meaning": "a plan for how to spend money"
+            },
+            {
+              "word": "Capitol",
+              "meaning": "the building in Washington, D.C., where Congress meets",
+              "status": "draft"
             }
           ],
+          "video": {
+            "youtubeId": "hltv8-nzcUc",
+            "title": "What Is the Legislative Branch of the U.S. Government? | History",
+            "source": "HISTORY (YouTube)",
+            "license": "Standard YouTube license: embedding is allowed by YouTube's terms, but the video is not licensed to Pathways. Check before marking reviewed.",
+            "status": "draft",
+            "note": "From the old Lessons tab (Base44 Lesson \"Congress and the Legislative Branch\"). Before reviewing: watch it all; check it matches the 2025 answers, has no flags, seals, eagles or Statue of Liberty, and the English is easy enough."
+          },
           "storyStatus": "reviewed",
           "story": [
             {
               "say": "The federal government has three branches.",
               "picture": {
                 "drawing": "threeBranches"
+              },
+              "help": {
+                "simpler": "The national government is split into three parts.",
+                "example": "The three parts are Congress, the President and the courts.",
+                "why": "Knowing the three branches helps you answer many questions on the test."
               }
             },
             {
@@ -138,6 +156,11 @@
               "picture": {
                 "drawing": "threeBranches",
                 "focus": "legislative"
+              },
+              "help": {
+                "simpler": "“Legislative” means law-making. Congress is the part that makes laws.",
+                "example": "When people talk about lawmakers in Washington, D.C., they mean Congress.",
+                "why": "The test asks what part of the federal government writes laws. The answer is Congress."
               }
             },
             {
@@ -145,6 +168,11 @@
               "picture": {
                 "drawing": "billToLaw",
                 "focus": "congress"
+              },
+              "help": {
+                "simpler": "Congress makes the laws that everyone in the country must follow.",
+                "example": "Congress writes a bill. If the President signs it, it becomes a law.",
+                "why": "“Writes laws” is one answer when the test asks for a power of Congress."
               }
             },
             {
@@ -155,10 +183,20 @@
               }
             },
             {
-              "say": "Congress can declare war."
+              "say": "Congress can declare war.",
+              "help": {
+                "simpler": "Only Congress can officially say the country is at war.",
+                "example": "In 1941, Congress declared war after the attack on Pearl Harbor.",
+                "why": "“Declares war” is another power of Congress on the test."
+              }
             },
             {
-              "say": "Congress also makes the federal budget: the plan for how to spend the government’s money."
+              "say": "Congress also makes the federal budget: the plan for how to spend the government’s money.",
+              "help": {
+                "simpler": "Congress decides how the government spends its money.",
+                "example": "The budget pays for things like the military, national parks and highways.",
+                "why": "“Makes the federal budget” is another power of Congress on the test."
+              }
             },
             {
               "check": {
@@ -235,6 +273,11 @@
               "say": "Congress has two parts.",
               "picture": {
                 "drawing": "congressNumbers"
+              },
+              "help": {
+                "simpler": "Congress is made of two groups.",
+                "example": "The two groups are the Senate and the House of Representatives.",
+                "why": "The test asks you to name the two parts of Congress."
               }
             },
             {
@@ -242,6 +285,11 @@
               "picture": {
                 "drawing": "congressNumbers",
                 "focus": "senate"
+              },
+              "help": {
+                "simpler": "The first part is called the Senate. Its members are senators.",
+                "example": "Each state sends two senators to the Senate.",
+                "why": "“The Senate” is one half of the answer about the two parts of Congress."
               }
             },
             {
@@ -249,6 +297,11 @@
               "picture": {
                 "drawing": "congressNumbers",
                 "focus": "house"
+              },
+              "help": {
+                "simpler": "The second part is the House of Representatives. Its members are representatives.",
+                "example": "People often just call it “the House.”",
+                "why": "“The House of Representatives” is the other half of the answer."
               }
             },
             {
@@ -268,10 +321,20 @@
               "picture": {
                 "drawing": "congressNumbers",
                 "focus": "house"
+              },
+              "help": {
+                "simpler": "There are 435 voting members in the House.",
+                "example": "States with more people have more of these members.",
+                "why": "The test asks how many voting members the House has. The answer is 435."
               }
             },
             {
-              "say": "Both parts meet in the U.S. Capitol in Washington, D.C."
+              "say": "Both parts meet in the U.S. Capitol in Washington, D.C.",
+              "help": {
+                "simpler": "Senators and representatives work in the same building, the U.S. Capitol.",
+                "example": "The Capitol is the large white building with a dome in Washington, D.C.",
+                "why": "Knowing where Congress meets helps you picture how it works."
+              }
             },
             {
               "check": {
@@ -339,6 +402,11 @@
               "picture": {
                 "drawing": "congressNumbers",
                 "focus": "senate"
+              },
+              "help": {
+                "simpler": "The Senate has 100 members.",
+                "example": "That is 50 states times 2 senators each.",
+                "why": "The test asks how many senators there are. The answer is 100."
               }
             },
             {
@@ -346,6 +414,11 @@
               "picture": {
                 "drawing": "seatsByPopulation",
                 "focus": "senators"
+              },
+              "help": {
+                "simpler": "Every state has exactly two senators.",
+                "example": "California has two senators, and so does Wyoming.",
+                "why": "This is why there are 100 senators in all."
               }
             },
             {
@@ -365,10 +438,20 @@
               "picture": {
                 "drawing": "seatsByPopulation",
                 "focus": "senators"
+              },
+              "help": {
+                "simpler": "A state’s size does not change how many senators it has.",
+                "example": "A state with millions of people and a state with far fewer people both have two.",
+                "why": "This gives every state an equal voice in the Senate."
               }
             },
             {
-              "say": "50 states with two senators each make 100 senators."
+              "say": "50 states with two senators each make 100 senators.",
+              "help": {
+                "simpler": "Two senators for each of the 50 states makes 100.",
+                "example": "If you remember 2 per state, you can find 100: 50 times 2.",
+                "why": "It is an easy way to remember the answer on the test."
+              }
             },
             {
               "check": {
@@ -440,16 +523,31 @@
               "picture": {
                 "drawing": "termLengths",
                 "focus": "senator"
+              },
+              "help": {
+                "simpler": "A senator serves for six years at a time.",
+                "example": "A senator elected in 2024 serves until early 2031.",
+                "why": "The test asks how long a senator’s term is. The answer is six years."
               }
             },
             {
-              "say": "A term is the number of years a person serves in a job."
+              "say": "A term is the number of years a person serves in a job.",
+              "help": {
+                "simpler": "A term is how long someone holds a job before the next election.",
+                "example": "A senator’s term is six years. A President’s term is four years.",
+                "why": "You need the word “term” to understand many test questions."
+              }
             },
             {
               "say": "A member of the House of Representatives has a two-year term.",
               "picture": {
                 "drawing": "termLengths",
                 "focus": "representative"
+              },
+              "help": {
+                "simpler": "A member of the House serves for two years at a time.",
+                "example": "There is an election for every House seat every two years.",
+                "why": "The test asks about representatives too: their term is two years."
               }
             },
             {
@@ -465,7 +563,12 @@
               }
             },
             {
-              "say": "When the term ends, voters can elect them again."
+              "say": "When the term ends, voters can elect them again.",
+              "help": {
+                "simpler": "When a term ends, people vote again. The same person can win again.",
+                "example": "A senator can be elected again and again, for many six-year terms.",
+                "why": "Senators have no limit on how many terms they can serve."
+              }
             },
             {
               "check": {
@@ -537,6 +640,11 @@
               "picture": {
                 "drawing": "seatsByPopulation",
                 "focus": "senators"
+              },
+              "help": {
+                "simpler": "Each state has two senators in Washington, D.C.",
+                "example": "Both senators from your state speak for everyone in your state.",
+                "why": "The test may ask you to name one of your state’s senators."
               }
             },
             {
@@ -544,6 +652,11 @@
               "picture": {
                 "drawing": "seatsByPopulation",
                 "focus": "house"
+              },
+              "help": {
+                "simpler": "Each area of a state, called a district, has one representative.",
+                "example": "A big city may have several districts. A small state may have just one.",
+                "why": "The test may also ask you to name your representative."
               }
             },
             {
@@ -559,16 +672,31 @@
               }
             },
             {
-              "say": "These names change after elections, so Pathways looks them up from an official list."
+              "say": "These names change after elections, so Pathways looks them up from an official list.",
+              "help": {
+                "simpler": "Senators can change after an election, so the app checks an official list.",
+                "example": "If a senator retires, a new person takes the seat after the next election.",
+                "why": "Always use today’s names when you answer the officer."
+              }
             },
             {
               "say": "These are your state’s two senators today.",
               "picture": {
                 "senators": true
+              },
+              "help": {
+                "simpler": "These two people are your state’s senators right now.",
+                "example": "You can say either name when the officer asks for one of your senators.",
+                "why": "The test asks you to name one of your state’s U.S. senators."
               }
             },
             {
-              "say": "Check the names again before your interview."
+              "say": "Check the names again before your interview.",
+              "help": {
+                "simpler": "Look at the names again just before your interview.",
+                "example": "If there was an election, a name may be different.",
+                "why": "You want to give the names of the senators serving on your interview day."
+              }
             },
             {
               "check": {
@@ -637,6 +765,11 @@
               "picture": {
                 "drawing": "stateDistricts",
                 "focus": "state"
+              },
+              "help": {
+                "simpler": "A senator works for everyone who lives in the state.",
+                "example": "A senator from Texas speaks for people all across Texas.",
+                "why": "The test asks who a senator represents: all people of the state."
               }
             },
             {
@@ -644,10 +777,20 @@
               "picture": {
                 "drawing": "stateDistricts",
                 "focus": "state"
+              },
+              "help": {
+                "simpler": "Not just one town or area. The whole state.",
+                "example": "People in big cities and small towns have the same two senators.",
+                "why": "This is the difference between a senator and a representative."
               }
             },
             {
-              "say": "Citizens of the state vote to choose their senators."
+              "say": "Citizens of the state vote to choose their senators.",
+              "help": {
+                "simpler": "The people of the state choose their senators in an election.",
+                "example": "Citizens vote for senators on Election Day in November.",
+                "why": "This is one way the people control the government."
+              }
             },
             {
               "check": {
@@ -726,6 +869,11 @@
               "say": "Each state is cut into areas called congressional districts.",
               "picture": {
                 "drawing": "stateDistricts"
+              },
+              "help": {
+                "simpler": "Each state is split into areas. Each area is a congressional district.",
+                "example": "A state with many people has many districts. A small state may have just one.",
+                "why": "Districts decide who your representative is."
               }
             },
             {
@@ -733,6 +881,11 @@
               "picture": {
                 "drawing": "stateDistricts",
                 "focus": "district"
+              },
+              "help": {
+                "simpler": "Your representative works for the people in your district.",
+                "example": "Someone across town may be in a different district, with a different representative.",
+                "why": "The test asks who a representative represents: the citizens in their district."
               }
             },
             {
@@ -748,7 +901,12 @@
               }
             },
             {
-              "say": "Citizens in the district vote to choose their representative."
+              "say": "Citizens in the district vote to choose their representative.",
+              "help": {
+                "simpler": "People in the district choose their representative by voting.",
+                "example": "There is an election for representatives every two years, in November.",
+                "why": "This keeps representatives close to the people they serve."
+              }
             },
             {
               "check": {
@@ -820,6 +978,11 @@
               "say": "When the Constitution was written, big states and small states disagreed.",
               "picture": {
                 "drawing": "greatCompromise"
+              },
+              "help": {
+                "simpler": "When the Constitution was written, big and small states did not agree.",
+                "example": "They argued about how many votes each state should get in Congress.",
+                "why": "This argument explains why Congress has two parts."
               }
             },
             {
@@ -827,6 +990,11 @@
               "picture": {
                 "drawing": "greatCompromise",
                 "focus": "big"
+              },
+              "help": {
+                "simpler": "Big states wanted more votes because they had more people.",
+                "example": "A state with many people wanted more seats than a state with few people.",
+                "why": "This idea became the House of Representatives."
               }
             },
             {
@@ -834,6 +1002,11 @@
               "picture": {
                 "drawing": "greatCompromise",
                 "focus": "small"
+              },
+              "help": {
+                "simpler": "Small states wanted every state to have the same number of votes.",
+                "example": "A small state did not want bigger states to always outvote it.",
+                "why": "This idea became the Senate."
               }
             },
             {
@@ -853,6 +1026,11 @@
               "picture": {
                 "drawing": "greatCompromise",
                 "focus": "both"
+              },
+              "help": {
+                "simpler": "A compromise means each side gets part of what it wants.",
+                "example": "The House counts people. The Senate gives every state two seats.",
+                "why": "This compromise is why the House and the Senate have different numbers."
               }
             },
             {
@@ -860,6 +1038,11 @@
               "picture": {
                 "drawing": "seatsByPopulation",
                 "focus": "house"
+              },
+              "help": {
+                "simpler": "States with more people get more members in the House.",
+                "example": "California has many representatives. Wyoming has one.",
+                "why": "This is why the 435 House seats are divided by population."
               }
             },
             {
@@ -867,6 +1050,11 @@
               "picture": {
                 "drawing": "seatsByPopulation",
                 "focus": "senators"
+              },
+              "help": {
+                "simpler": "Every state has two senators, no matter its size.",
+                "example": "Wyoming and California each have two senators.",
+                "why": "The Senate gives small states an equal voice."
               }
             },
             {
@@ -936,6 +1124,11 @@
               "picture": {
                 "drawing": "termLengths",
                 "focus": "representative"
+              },
+              "help": {
+                "simpler": "Representatives serve for two years at a time.",
+                "example": "A representative elected in November faces the next election two years later.",
+                "why": "The test asks why representatives serve shorter terms."
               }
             },
             {
@@ -943,6 +1136,11 @@
               "picture": {
                 "drawing": "termLengths",
                 "focus": "senator"
+              },
+              "help": {
+                "simpler": "Senators serve for six years at a time.",
+                "example": "That is three times as long as a representative’s term.",
+                "why": "Comparing the two helps you remember both numbers."
               }
             },
             {
@@ -958,10 +1156,20 @@
               }
             },
             {
-              "say": "Short terms mean representatives face voters often."
+              "say": "Short terms mean representatives face voters often.",
+              "help": {
+                "simpler": "Representatives must ask voters for their votes every two years.",
+                "example": "If voters are unhappy, they can choose someone new soon.",
+                "why": "This is part of why representatives have short terms."
+              }
             },
             {
-              "say": "So they follow what the public thinks."
+              "say": "So they follow what the public thinks.",
+              "help": {
+                "simpler": "They pay close attention to what people want.",
+                "example": "If many people in a district care about a new road, their representative listens.",
+                "why": "The test asks why representatives serve shorter terms: to more closely follow public opinion."
+              }
             },
             {
               "check": {
@@ -1026,13 +1234,28 @@
               "say": "The Speaker leads the House of Representatives.",
               "picture": {
                 "officeholder": "speaker"
+              },
+              "help": {
+                "simpler": "The Speaker is the leader of the House of Representatives.",
+                "example": "The Speaker runs the meetings of the House.",
+                "why": "The test asks for the name of the Speaker of the House now."
               }
             },
             {
-              "say": "These names change after elections."
+              "say": "These names change after elections.",
+              "help": {
+                "simpler": "The Speaker can change after an election.",
+                "example": "The members of the House vote to choose their Speaker.",
+                "why": "Always use today’s name when you answer."
+              }
             },
             {
-              "say": "So Pathways looks them up on an official list."
+              "say": "So Pathways looks them up on an official list.",
+              "help": {
+                "simpler": "The app checks the name on an official list, so it is up to date.",
+                "example": "The picture shows the name from that list.",
+                "why": "You do not need to remember old names, only the current one."
+              }
             },
             {
               "check": {
@@ -1047,7 +1270,12 @@
               }
             },
             {
-              "say": "Check the names again before your interview."
+              "say": "Check the names again before your interview.",
+              "help": {
+                "simpler": "Look at the name again just before your interview.",
+                "example": "If the House chose a new Speaker, the name will be different.",
+                "why": "You want to give the name of the Speaker on your interview day."
+              }
             },
             {
               "check": {

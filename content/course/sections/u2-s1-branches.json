@@ -61,6 +61,109 @@
             {
               "word": "judicial",
               "meaning": "the branch with the courts"
+            },
+            {
+              "word": "legislative",
+              "meaning": "the branch that makes the laws",
+              "status": "draft"
+            }
+          ],
+          "video": {
+            "youtubeId": "6W8W3p9Ot7M",
+            "title": "FLVS Civics: Foundations - Checks and Balances",
+            "source": "Florida Virtual School (YouTube)",
+            "license": "Standard YouTube license: embedding is allowed by YouTube's terms, but the video is not licensed to Pathways. Check before marking reviewed.",
+            "status": "draft",
+            "note": "From the old Lessons tab (Base44 Lesson \"Checks and Balances\"). Before reviewing: watch it all; check it matches the 2025 answers, has no flags, seals, eagles or Statue of Liberty, and the English is easy enough."
+          },
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "The federal government has three branches: legislative, executive and judicial.",
+              "picture": {
+                "drawing": "threeBranches"
+              },
+              "help": {
+                "simpler": "The national government has three parts. Each part is called a branch.",
+                "example": "A tree has branches. The government also splits into branches.",
+                "why": "The test asks you to name the three branches."
+              }
+            },
+            {
+              "say": "Congress is the legislative branch.",
+              "picture": {
+                "drawing": "threeBranches",
+                "focus": "legislative"
+              },
+              "help": {
+                "simpler": "Congress is the part of the government that makes laws.",
+                "example": "“Legislative” comes from an old word for law.",
+                "why": "Congress is one answer when the test asks for the three branches."
+              }
+            },
+            {
+              "check": {
+                "kind": "tap",
+                "prompt": "Tap the legislative branch.",
+                "picture": {
+                  "drawing": "threeBranches"
+                },
+                "answer": "legislative"
+              }
+            },
+            {
+              "say": "The President leads the executive branch.",
+              "picture": {
+                "drawing": "threeBranches",
+                "focus": "executive"
+              },
+              "help": {
+                "simpler": "The President is in charge of the executive branch.",
+                "example": "“Execute” means to carry out. The executive branch carries out the laws.",
+                "why": "The test asks which branch the President is in charge of. The answer is the executive branch."
+              }
+            },
+            {
+              "say": "The courts are the judicial branch.",
+              "picture": {
+                "drawing": "threeBranches",
+                "focus": "judicial"
+              },
+              "help": {
+                "simpler": "The courts, including the Supreme Court, make up the judicial branch.",
+                "example": "“Judicial” sounds like “judge.” Judges work in the courts.",
+                "why": "The courts are the third branch on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Which branch does the President lead?",
+                "choices": [
+                  "The executive branch",
+                  "The legislative branch",
+                  "The judicial branch"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "Each branch has its own job, so no one branch has all the power.",
+              "picture": {
+                "drawing": "threeBranches"
+              },
+              "help": {
+                "simpler": "Each part does a different job. No part can do everything.",
+                "example": "Congress makes laws, the President carries them out, and the courts explain them.",
+                "why": "This is the idea of checks and balances from Unit 1."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "One branch has all the power.",
+                "answer": false
+              }
             }
           ]
         },
@@ -121,6 +224,98 @@
             {
               "word": "veto",
               "meaning": "when the President says no to a bill"
+            },
+            {
+              "word": "override",
+              "meaning": "when Congress passes a bill again after a veto, with two-thirds of both parts",
+              "status": "draft"
+            }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "A bill is an idea for a new law.",
+              "picture": {
+                "drawing": "billToLaw",
+                "focus": "congress"
+              },
+              "help": {
+                "simpler": "A bill is a plan for a law. It is not a law yet.",
+                "example": "A bill might say that drivers must stop for school buses.",
+                "why": "You need the word “bill” for two test questions."
+              }
+            },
+            {
+              "say": "Congress writes and passes bills.",
+              "picture": {
+                "drawing": "billToLaw",
+                "focus": "congress"
+              },
+              "help": {
+                "simpler": "Congress writes bills and votes on them.",
+                "example": "If most of Congress votes yes, the bill passes and goes to the President.",
+                "why": "Bills start in Congress, the lawmaking branch."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "A bill is already a law.",
+                "answer": false
+              }
+            },
+            {
+              "say": "The President signs a bill to make it a law.",
+              "picture": {
+                "drawing": "billToLaw",
+                "focus": "president"
+              },
+              "help": {
+                "simpler": "When the President signs a bill, it becomes a law.",
+                "example": "The President signs it with a pen, and the new law can begin.",
+                "why": "The test asks who signs bills to become laws. The answer is the President."
+              }
+            },
+            {
+              "say": "The President can also veto a bill.",
+              "picture": {
+                "photo": "white-house.jpg"
+              },
+              "help": {
+                "simpler": "The President can refuse to sign a bill.",
+                "example": "The President works in the White House, where bills arrive to be signed or vetoed.",
+                "why": "The test asks who vetoes bills. The answer is the President."
+              }
+            },
+            {
+              "say": "Veto means saying no to it.",
+              "help": {
+                "simpler": "A veto is the President’s “no.”",
+                "example": "After a veto, the bill does not become law, unless two-thirds of both parts of Congress vote for it again.",
+                "why": "This is one way the branches check each other."
+              }
+            },
+            {
+              "check": {
+                "kind": "tap",
+                "prompt": "Tap the step where the President signs the bill.",
+                "picture": {
+                  "drawing": "billToLaw"
+                },
+                "answer": "president"
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Who vetoes bills?",
+                "choices": [
+                  "The President",
+                  "The Supreme Court",
+                  "The governor"
+                ],
+                "answer": 0
+              }
             }
           ]
         },

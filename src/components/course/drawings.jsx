@@ -26,8 +26,54 @@ function Frame({ viewBox, title, children }) {
 // other parts fade.
 const dim = (focus, key) => (focus && focus !== key ? { opacity: 0.3 } : undefined);
 
+// The parts a learner can tap in a tap-the-picture story check, with their
+// English names (said in the feedback and to screen readers).
+export const DRAWING_PARTS = {
+  threeBranches: { legislative: 'The legislative branch (Congress)', executive: 'The executive branch (the President)', judicial: 'The judicial branch (the courts)' },
+  amendments: { first10: 'Amendments 1 to 10: the Bill of Rights', later: 'Amendments 11 to 27' },
+  powerFromPeople: { people: 'We the People', leaders: 'The leaders' },
+  checksBalances: { congress: 'Congress', president: 'The President', courts: 'The courts' },
+  documentsToConstitution: { declaration: 'The Declaration of Independence', articles: 'The Articles of Confederation', federalist: 'The Federalist Papers', constitution: 'The Constitution' },
+  sharedPower: { national: 'The national government', states: 'The states' },
+  billToLaw: { congress: 'Congress writes a bill', president: 'The President signs it', law: 'It becomes a law' },
+  termLengths: { representative: 'A representative: 2 years', president: 'The President: 4 years', senator: 'A senator: 6 years' },
+  presidentPowers: { sign: 'Signs bills into law', veto: 'Vetoes bills', military: 'Commander in Chief of the military', judges: 'Appoints federal judges' },
+  twoTerms: { term1: 'The first four-year term', term2: 'The second four-year term', third: 'A third term (not allowed)' },
+  executiveBranch: { president: 'The President', vicePresident: 'The Vice President', cabinet: 'The Cabinet', departments: 'Federal departments and agencies' },
+  courtsLevels: { supreme: 'The Supreme Court', federal: 'Other federal courts' },
+  federalStatePowers: { federal: 'Powers only for the federal government', states: 'Powers only for the states', tenth: 'The 10th Amendment' },
+  everyoneRights: { expression: 'Freedom of expression', speech: 'Freedom of speech', assembly: 'Freedom of assembly', petition: 'Freedom to petition the government', religion: 'Freedom of religion', arms: 'The right to bear arms' },
+  votingAmendments: { race: 'A male citizen of any race can vote', women: 'Women can vote', pollTax: 'No one has to pay a tax to vote', age18: 'Citizens 18 and older can vote' },
+  citizensOnly: { vote: 'Vote in federal elections', office: 'Run for federal office', jury: 'Serve on a jury' },
+  waysToServe: { vote: 'Vote', taxes: 'Pay taxes', law: 'Obey the law', military: 'Serve in the military', office: 'Run for office', government: 'Work for the government' },
+  waysToCitizenship: { born: 'Born in the United States', naturalize: 'Naturalize', derive: 'Derive citizenship' },
+  oathPromises: { loyalty: 'Give up loyalty to other countries', defend: 'Defend the Constitution', obey: 'Obey the laws of the United States', serve: 'Serve the nation if needed' },
+};
+
+// One part of a drawing: it fades when another part is lit (`focus`). In a
+// tap-the-picture check (`pick` = { onPick, disabled }) it is a button.
+function Part({ id, focus, pick, drawing, children }) {
+  const style = dim(focus, id);
+  if (!pick) return <g style={style}>{children}</g>;
+  const choose = () => { if (!pick.disabled) pick.onPick(id); };
+  return (
+    <g
+      role="button"
+      tabIndex={pick.disabled ? -1 : 0}
+      aria-label={DRAWING_PARTS[drawing]?.[id] || id}
+      aria-disabled={pick.disabled || undefined}
+      onClick={choose}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); choose(); } }}
+      style={style}
+      className={`${pick.disabled ? '' : 'cursor-pointer'} focus:outline-none focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-denim`}
+    >
+      {children}
+    </g>
+  );
+}
+
 // The three branches and what each one does.
-function ThreeBranches({ focus } = {}) {
+function ThreeBranches({ focus, pick } = {}) {
   const cols = [
     { x: 10, key: 'legislative', name: 'Legislative', who: 'Congress', what: 'makes laws' },
     { x: 125, key: 'executive', name: 'Executive', who: 'President', what: 'carries out laws' },
@@ -38,20 +84,20 @@ function ThreeBranches({ focus } = {}) {
       <Box x={10} y={8} w={330} h={36} className="fill-navy stroke-navy" />
       <T x={175} y={31} className="fill-white">Federal government</T>
       {cols.map((c) => (
-        <g key={c.name} style={dim(focus, c.key)}>
+        <Part key={c.name} id={c.key} focus={focus} pick={pick} drawing="threeBranches">
           <line x1={c.x + 50} y1={44} x2={c.x + 50} y2={62} className="stroke-mid" strokeWidth="3" />
           <Box x={c.x} y={62} w={100} h={118} className="fill-white stroke-denim" />
           <T x={c.x + 50} y={86} className="fill-denim" size={13}>{c.name}</T>
           <T x={c.x + 50} y={118} size={16} weight={700}>{c.who}</T>
           <T x={c.x + 50} y={150} className="fill-muted" size={12} weight={400}>{c.what}</T>
-        </g>
+        </Part>
       ))}
     </Frame>
   );
 }
 
 // Term lengths on one scale: representative 2, President 4, senator 6.
-function TermLengths({ focus } = {}) {
+function TermLengths({ focus, pick } = {}) {
   const rows = [
     { key: 'representative', who: 'Representative', years: 2 },
     { key: 'president', who: 'President', years: 4 },
@@ -61,13 +107,13 @@ function TermLengths({ focus } = {}) {
   return (
     <Frame viewBox="0 0 350 160" title="Terms: a representative serves 2 years, the President 4 years, a senator 6 years">
       {rows.map((r, i) => (
-        <g key={r.who} transform={`translate(0 ${12 + i * 46})`} style={dim(focus, r.key)}>
+        <Part key={r.who} id={r.key} focus={focus} pick={pick} drawing="termLengths"><g transform={`translate(0 ${12 + i * 46})`}>
           <T x={0} y={14} anchor="start" size={13}>{r.who}</T>
           {Array.from({ length: 6 }).map((_, k) => (
             <rect key={k} x={112 + k * unit} y={0} width={unit - 4} height={22} rx={5} className={k < r.years ? 'fill-denim' : 'fill-tint'} />
           ))}
           <T x={112 + 6 * unit + 8} y={16} anchor="start" size={13} weight={700}>{r.years} years</T>
-        </g>
+        </g></Part>
       ))}
     </Frame>
   );
@@ -116,19 +162,21 @@ function ElectoralCollege() {
 }
 
 // Nine seats on the Supreme Court.
-function SupremeCourt() {
+// focus "chief" lights the Chief Justice; "majority" lights 5 of the 9.
+function SupremeCourt({ focus } = {}) {
   return (
     <Frame viewBox="0 0 350 120" title="The Supreme Court has nine justices: the Chief Justice and eight associate justices">
       {Array.from({ length: 9 }).map((_, i) => {
         const chief = i === 4;
+        const lit = focus === 'chief' ? chief : focus === 'majority' ? i < 5 : true;
         return (
-          <g key={i} transform={`translate(${23 + i * 38} 20)`}>
+          <g key={i} transform={`translate(${23 + i * 38} 20)`} style={lit ? undefined : { opacity: 0.3 }}>
             <circle cx="0" cy="12" r="10" className={chief ? 'fill-navy' : 'fill-denim'} />
             <rect x="-14" y="26" width="28" height="30" rx="10" className={chief ? 'fill-navy' : 'fill-denim'} />
           </g>
         );
       })}
-      <T x={175} y={98} size={13}>9 justices: the Chief Justice (center) and 8 others</T>
+      <T x={175} y={98} size={13}>{focus === 'majority' ? 'Usually 5 of the 9 justices decide a case' : '9 justices: the Chief Justice (center) and 8 others'}</T>
     </Frame>
   );
 }
@@ -308,7 +356,7 @@ function ColdWar() {
 
 // How a law is made: Congress writes a bill, the President signs it, it
 // becomes a law.
-function BillToLaw({ focus } = {}) {
+function BillToLaw({ focus, pick } = {}) {
   const steps = [
     { key: 'congress', x: 4, who: 'Congress', what: 'writes a bill' },
     { key: 'president', x: 124, who: 'President', what: 'signs it' },
@@ -317,12 +365,12 @@ function BillToLaw({ focus } = {}) {
   return (
     <Frame viewBox="0 0 350 120" title="How a law is made: Congress writes a bill, the President signs it, and it becomes a law for the whole country">
       {steps.map((s, i) => (
-        <g key={s.key} style={dim(focus, s.key)}>
+        <Part key={s.key} id={s.key} focus={focus} pick={pick} drawing="billToLaw">
           <Box x={s.x} y={14} w={102} h={92} className={s.key === 'law' ? 'fill-navy stroke-navy' : 'fill-white stroke-denim'} />
           <T x={s.x + 51} y={52} size={15} weight={700} className={s.key === 'law' ? 'fill-white' : 'fill-navy'}>{s.who}</T>
           <T x={s.x + 51} y={76} size={12} weight={400} className={s.key === 'law' ? 'fill-white' : 'fill-muted'}>{s.what}</T>
           {i < 2 && <path d={`M${s.x + 106} 60 l12 0 m-5 -5 l5 5 l-5 5`} className="stroke-mid" strokeWidth="3" fill="none" />}
-        </g>
+        </Part>
       ))}
     </Frame>
   );
@@ -431,87 +479,90 @@ const arrowPath = (x1, y1, x2, y2) => {
   const h = (t) => `${(x2 - 8 * Math.cos(a + t)).toFixed(1)} ${(y2 - 8 * Math.sin(a + t)).toFixed(1)}`;
   return `M${x1} ${y1} L${x2} ${y2} M${h(0.6)} L${x2} ${y2} L${h(-0.6)}`;
 };
-const Arrow = ({ d }) => <path d={d} className="stroke-mid" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />;
+const Arrow = ({ d }) => <path d={d} className="stroke-denim" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />;
 
 // The Constitution and its 27 amendments; the first 10 are the Bill of Rights.
-function Amendments({ focus } = {}) {
+function Amendments({ focus, pick } = {}) {
   const first = Array.from({ length: 10 }, (_, i) => i + 1);
   const later = Array.from({ length: 17 }, (_, i) => i + 11);
   const tile = (n, x, y, on) => (
     <g key={n}>
-      <rect x={x} y={y} width={20} height={22} rx={4} className={on ? 'fill-navy stroke-navy' : 'fill-white stroke-denim'} strokeWidth="2" />
-      <T x={x + 10} y={y + 16} size={12} weight={700} className={on ? 'fill-white' : 'fill-navy'}>{n}</T>
+      <rect x={x} y={y} width={20} height={22} rx={4} className={on ? 'fill-gold stroke-navy' : 'fill-sky-soft stroke-denim'} strokeWidth="2" />
+      <T x={x + 10} y={y + 16} size={12} weight={700}>{n}</T>
     </g>
   );
+  const lit = focus === 'all' ? undefined : focus;
   return (
     <Frame viewBox="0 0 350 172" title="The Constitution has 27 amendments. The first 10 amendments, added in 1791, are the Bill of Rights.">
       <Box x={4} y={8} w={108} h={156} className="fill-navy stroke-navy" />
       <T x={58} y={78} size={14} weight={700} className="fill-white">Constitution</T>
       <T x={58} y={100} size={13} weight={400} className="fill-white">1787</T>
       <T x={235} y={22} size={15} weight={700}>27 amendments</T>
-      <g>
-        <rect x={120} y={32} width={228} height={66} rx={8} className="fill-tint" />
+      <Part id="first10" focus={lit} pick={pick} drawing="amendments">
+        <rect x={120} y={32} width={228} height={66} rx={8} className="fill-gold-soft" />
         {first.map((n, i) => tile(n, 124 + i * 22, 38, true))}
         <T x={234} y={88} size={12} weight={700}>Bill of Rights · 1791</T>
-      </g>
-      <g style={focus === 'first10' ? { opacity: 0.3 } : undefined}>
+      </Part>
+      <Part id="later" focus={lit} pick={pick} drawing="amendments">
+        <rect x={120} y={104} width={228} height={62} rx={8} className="fill-white" />
         {later.slice(0, 9).map((n, i) => tile(n, 124 + i * 22, 110, false))}
         {later.slice(9).map((n, i) => tile(n, 124 + i * 22, 138, false))}
-      </g>
+      </Part>
     </Frame>
   );
 }
 
 // We the People: the people vote for leaders, and the leaders make laws for
 // the people. The government's power comes from the people.
-function PowerFromPeople({ focus } = {}) {
+function PowerFromPeople({ focus, pick } = {}) {
   return (
     <Frame viewBox="0 0 350 200" title="We the People: the people vote for leaders, and the leaders make laws for the people. The government gets its power from the people.">
-      <g style={dim(focus, 'people')}>
-        <Box x={4} y={56} w={140} h={88} className="fill-white stroke-denim" />
+      <Part id="people" focus={focus} pick={pick} drawing="powerFromPeople">
+        <Box x={4} y={56} w={140} h={88} className="fill-sky-soft stroke-denim" />
         {[34, 56, 78, 100, 122].map((cx) => <Person key={cx} cx={cx} cy={76} />)}
         <T x={74} y={124} size={14} weight={700}>We the People</T>
         <Arrow d="M74 50 C 74 16, 276 16, 276 46 m-6 -8 l6 8 l6 -8" />
         <T x={175} y={22} size={13} weight={600} className="fill-muted">vote for</T>
-      </g>
-      <g style={dim(focus, 'leaders')}>
+      </Part>
+      <Part id="leaders" focus={focus} pick={pick} drawing="powerFromPeople">
         <Box x={206} y={56} w={140} h={88} className="fill-navy stroke-navy" />
-        <T x={276} y={96} size={14} weight={700} className="fill-white">Leaders</T>
-        <T x={276} y={118} size={12} weight={400} className="fill-white">speak for the people</T>
+        <circle cx={276} cy={80} r={7} className="fill-gold" />
+        <T x={276} y={108} size={14} weight={700} className="fill-white">Leaders</T>
+        <T x={276} y={128} size={12} weight={400} className="fill-white">speak for the people</T>
         <Arrow d="M276 150 C 276 186, 74 186, 74 154 m-6 8 l6 -8 l6 8" />
         <T x={175} y={192} size={13} weight={600} className="fill-muted">make laws for</T>
-      </g>
+      </Part>
     </Frame>
   );
 }
 
 // Checks and balances: each branch can check the others.
-function ChecksBalances({ focus } = {}) {
+function ChecksBalances({ focus, pick } = {}) {
   const boxes = [
-    { key: 'congress', x: 4, y: 8, w: 160, who: 'Congress', what: ['writes laws'] },
-    { key: 'president', x: 186, y: 8, w: 160, who: 'President', what: ['can veto a law'] },
-    { key: 'courts', x: 55, y: 152, w: 240, who: 'Courts', what: ['can decide a law goes', 'against the Constitution'] },
+    { key: 'congress', x: 4, y: 8, w: 160, fill: 'fill-sky-soft', who: 'Congress', what: ['writes laws'] },
+    { key: 'president', x: 186, y: 8, w: 160, fill: 'fill-gold-soft', who: 'President', what: ['can veto a law'] },
+    { key: 'courts', x: 55, y: 152, w: 240, fill: 'fill-denim-soft', who: 'Courts', what: ['can decide a law goes', 'against the Constitution'] },
   ];
   return (
     <Frame viewBox="0 0 350 232" title="Checks and balances: Congress writes laws, the President can veto a law, and the courts can decide a law goes against the Constitution. Each branch checks the others.">
-      <path d="M84 74 L175 152 M266 74 L175 152 M164 41 L186 41" className="stroke-mid" strokeWidth="3" fill="none" />
-      <rect x={95} y={100} width={160} height={28} rx={8} className="fill-tint" />
+      <path d="M84 74 L175 152 M266 74 L175 152 M164 41 L186 41" className="stroke-denim" strokeWidth="3" fill="none" />
+      <rect x={95} y={100} width={160} height={28} rx={8} className="fill-gold" />
       <T x={175} y={119} size={12} weight={700}>Each checks the others</T>
       {boxes.map((b) => (
-        <g key={b.key} style={dim(focus, b.key)}>
-          <Box x={b.x} y={b.y} w={b.w} h={b.what.length > 1 ? 74 : 66} className="fill-white stroke-denim" />
+        <Part key={b.key} id={b.key} focus={focus} pick={pick} drawing="checksBalances">
+          <Box x={b.x} y={b.y} w={b.w} h={b.what.length > 1 ? 74 : 66} className={`${b.fill} stroke-denim`} />
           <T x={b.x + b.w / 2} y={b.y + 26} size={15} weight={700}>{b.who}</T>
           {b.what.map((line, i) => (
-            <T key={line} x={b.x + b.w / 2} y={b.y + 48 + i * 17} size={12} weight={400} className="fill-muted">{line}</T>
+            <T key={line} x={b.x + b.w / 2} y={b.y + 48 + i * 17} size={12} weight={400}>{line}</T>
           ))}
-        </g>
+        </Part>
       ))}
     </Frame>
   );
 }
 
 // Older documents the writers of the Constitution learned from.
-function DocumentsToConstitution({ focus } = {}) {
+function DocumentsToConstitution({ focus, pick } = {}) {
   const docs = [
     { key: 'declaration', x: 4, toX: 120, lines: ['Declaration of', 'Independence'] },
     { key: 'articles', x: 120, toX: 175, lines: ['Articles of', 'Confederation'] },
@@ -520,42 +571,313 @@ function DocumentsToConstitution({ focus } = {}) {
   return (
     <Frame viewBox="0 0 350 220" title="The writers of the Constitution learned from older documents: the Declaration of Independence, the Articles of Confederation and the Federalist Papers. The Constitution was written in 1787.">
       {docs.map((d) => (
-        <g key={d.key} style={dim(focus, d.key)}>
-          <Box x={d.x} y={8} w={110} h={72} className="fill-white stroke-denim" />
+        <Part key={d.key} id={d.key} focus={focus} pick={pick} drawing="documentsToConstitution">
+          <Box x={d.x} y={8} w={110} h={72} className="fill-gold-soft stroke-denim" />
           <T x={d.x + 55} y={40} size={13} weight={700}>{d.lines[0]}</T>
           <T x={d.x + 55} y={60} size={13} weight={700}>{d.lines[1]}</T>
           <Arrow d={arrowPath(d.x + 55, 86, d.toX, 134)} />
-        </g>
+        </Part>
       ))}
-      <g style={dim(focus, 'constitution')}>
+      <Part id="constitution" focus={focus} pick={pick} drawing="documentsToConstitution">
         <Box x={75} y={140} w={200} h={72} className="fill-navy stroke-navy" />
         <T x={175} y={172} size={15} weight={700} className="fill-white">Constitution</T>
         <T x={175} y={194} size={13} weight={400} className="fill-white">1787</T>
-      </g>
+      </Part>
     </Frame>
   );
 }
 
 // A federal republic: the Constitution is the highest law, and power is
 // shared between the national government and the states.
-function SharedPower({ focus } = {}) {
+function SharedPower({ focus, pick } = {}) {
   const sides = [
-    { key: 'national', x: 4, lines: ['National', 'government'] },
-    { key: 'states', x: 186, lines: ['The', 'states'] },
+    { key: 'national', x: 4, fill: 'fill-sky-soft', lines: ['National', 'government'] },
+    { key: 'states', x: 186, fill: 'fill-gold-soft', lines: ['The', 'states'] },
   ];
   return (
     <Frame viewBox="0 0 350 200" title="The Constitution is the highest law. Power is shared between the national government and the states.">
       <Box x={75} y={8} w={200} h={56} className="fill-navy stroke-navy" />
       <T x={175} y={32} size={15} weight={700} className="fill-white">Constitution</T>
       <T x={175} y={52} size={12} weight={400} className="fill-white">the highest law</T>
-      <path d="M130 64 L84 110 M220 64 L266 110" className="stroke-mid" strokeWidth="3" fill="none" />
-      <T x={175} y={98} size={13} weight={600} className="fill-muted">power is shared</T>
+      <path d="M130 64 L84 110 M220 64 L266 110" className="stroke-denim" strokeWidth="3" fill="none" />
+      <rect x={113} y={80} width={124} height={26} rx={8} className="fill-gold" />
+      <T x={175} y={98} size={12} weight={700}>power is shared</T>
       {sides.map((s) => (
-        <g key={s.key} style={dim(focus, s.key)}>
-          <Box x={s.x} y={110} w={160} h={82} className="fill-white stroke-denim" />
-          <T x={s.x + 80} y={146} size={15} weight={700}>{s.lines[0]}</T>
-          <T x={s.x + 80} y={168} size={15} weight={700}>{s.lines[1]}</T>
-        </g>
+        <Part key={s.key} id={s.key} focus={focus} pick={pick} drawing="sharedPower">
+          <Box x={s.x} y={114} w={160} h={78} className={`${s.fill} stroke-denim`} />
+          <T x={s.x + 80} y={148} size={15} weight={700}>{s.lines[0]}</T>
+          <T x={s.x + 80} y={170} size={15} weight={700}>{s.lines[1]}</T>
+        </Part>
+      ))}
+    </Frame>
+  );
+}
+
+// What the President does: four powers around the President.
+function PresidentPowers({ focus, pick } = {}) {
+  const cards = [
+    { key: 'sign', x: 4, y: 6, fill: 'fill-sky-soft', lines: ['Signs bills', 'into law'] },
+    { key: 'veto', x: 186, y: 6, fill: 'fill-gold-soft', lines: ['Vetoes bills', 'says no to a bill'] },
+    { key: 'military', x: 4, y: 162, fill: 'fill-denim-soft', lines: ['Commander in Chief', 'leads the military'] },
+    { key: 'judges', x: 186, y: 162, fill: 'fill-sky-soft', lines: ['Appoints', 'federal judges'] },
+  ];
+  return (
+    <Frame viewBox="0 0 350 230" title="Powers of the President: signs bills into law, vetoes bills, is Commander in Chief of the military, and appoints federal judges">
+      <path d="M84 68 L140 92 M266 68 L210 92 M84 162 L140 138 M266 162 L210 138" className="stroke-denim" strokeWidth="3" fill="none" />
+      <Box x={115} y={90} w={120} h={50} className="fill-navy stroke-navy" />
+      <T x={175} y={121} size={15} weight={700} className="fill-white">President</T>
+      {cards.map((c) => (
+        <Part key={c.key} id={c.key} focus={focus} pick={pick} drawing="presidentPowers">
+          <Box x={c.x} y={c.y} w={160} h={62} className={`${c.fill} stroke-denim`} />
+          <T x={c.x + 80} y={c.y + 27} size={13} weight={700}>{c.lines[0]}</T>
+          <T x={c.x + 80} y={c.y + 47} size={12} weight={400}>{c.lines[1]}</T>
+        </Part>
+      ))}
+    </Frame>
+  );
+}
+
+// Two terms at most (the 22nd Amendment): 4 years + 4 years, no third term.
+function TwoTerms({ focus, pick } = {}) {
+  const terms = [
+    { key: 'term1', x: 4, label: 'Term 1' },
+    { key: 'term2', x: 120, label: 'Term 2' },
+  ];
+  return (
+    <Frame viewBox="0 0 350 150" title="A President can serve two four-year terms, eight years in all. There is no third term. This rule is in the 22nd Amendment.">
+      {terms.map((t) => (
+        <Part key={t.key} id={t.key} focus={focus} pick={pick} drawing="twoTerms">
+          <Box x={t.x} y={8} w={108} h={74} className="fill-gold stroke-navy" />
+          <T x={t.x + 54} y={38} size={15} weight={700}>{t.label}</T>
+          <T x={t.x + 54} y={62} size={13} weight={600}>4 years</T>
+        </Part>
+      ))}
+      <Part id="third" focus={focus} pick={pick} drawing="twoTerms">
+        <rect x={236} y={8} width={110} height={74} rx={10} className="fill-white stroke-denim" strokeWidth="2" strokeDasharray="6 5" />
+        <path d="M252 20 L330 70 M330 20 L252 70" className="stroke-denim" strokeWidth="3" />
+        <T x={291} y={100} size={12} weight={600}>No third term</T>
+      </Part>
+      <rect x={4} y={114} width={226} height={30} rx={8} className="fill-navy" />
+      <T x={117} y={134} size={13} weight={700} className="fill-white">22nd Amendment: two terms</T>
+    </Frame>
+  );
+}
+
+// The executive branch: the President, the Vice President, the Cabinet and
+// the federal departments and agencies.
+function ExecutiveBranch({ focus, pick } = {}) {
+  return (
+    <Frame viewBox="0 0 350 252" title="The executive branch: the President; the Vice President; the Cabinet, which advises the President, with members like the Secretary of State and the Attorney General; and federal departments and agencies">
+      <path d="M175 50 L175 200" className="stroke-denim" strokeWidth="3" />
+      <Part id="president" focus={focus} pick={pick} drawing="executiveBranch">
+        <Box x={100} y={6} w={150} h={44} className="fill-navy stroke-navy" />
+        <T x={175} y={33} size={15} weight={700} className="fill-white">President</T>
+      </Part>
+      <Part id="vicePresident" focus={focus} pick={pick} drawing="executiveBranch">
+        <Box x={100} y={62} w={150} h={40} className="fill-sky-soft stroke-denim" />
+        <T x={175} y={87} size={14} weight={700}>Vice President</T>
+      </Part>
+      <Part id="cabinet" focus={focus} pick={pick} drawing="executiveBranch">
+        <Box x={4} y={114} w={342} h={74} className="fill-gold-soft stroke-denim" />
+        <T x={175} y={136} size={14} weight={700}>Cabinet: advises the President</T>
+        <rect x={14} y={148} width={156} height={30} rx={8} className="fill-white" />
+        <T x={92} y={168} size={12} weight={600}>Secretary of State</T>
+        <rect x={180} y={148} width={156} height={30} rx={8} className="fill-white" />
+        <T x={258} y={168} size={12} weight={600}>Attorney General</T>
+      </Part>
+      <Part id="departments" focus={focus} pick={pick} drawing="executiveBranch">
+        <Box x={4} y={200} w={342} h={46} className="fill-denim-soft stroke-denim" />
+        <T x={175} y={228} size={14} weight={700}>Federal departments and agencies</T>
+      </Part>
+    </Frame>
+  );
+}
+
+// The judicial branch: the Supreme Court and the other federal courts.
+function CourtsLevels({ focus, pick } = {}) {
+  return (
+    <Frame viewBox="0 0 350 204" title="The judicial branch: the Supreme Court, the highest court, and the other federal courts. Courts explain laws and decide disagreements about the law.">
+      <path d="M175 62 L175 96" className="stroke-denim" strokeWidth="3" />
+      <Part id="supreme" focus={focus} pick={pick} drawing="courtsLevels">
+        <Box x={75} y={6} w={200} h={56} className="fill-navy stroke-navy" />
+        <T x={175} y={31} size={15} weight={700} className="fill-white">Supreme Court</T>
+        <T x={175} y={51} size={12} weight={400} className="fill-white">the highest court</T>
+      </Part>
+      <Part id="federal" focus={focus} pick={pick} drawing="courtsLevels">
+        <Box x={4} y={96} w={342} h={48} className="fill-sky-soft stroke-denim" />
+        <T x={175} y={126} size={14} weight={700}>Other federal courts</T>
+      </Part>
+      <rect x={4} y={158} width={342} height={38} rx={8} className="fill-gold" />
+      <T x={175} y={182} size={13} weight={700}>Courts explain laws and decide disagreements</T>
+    </Frame>
+  );
+}
+
+// Powers only for the federal government, only for the states, and the
+// 10th Amendment.
+function FederalStatePowers({ focus, pick } = {}) {
+  const cols = [
+    { key: 'federal', x: 4, fill: 'fill-sky-soft', head: 'Federal only', items: ['Print money', 'Declare war', 'Make treaties'] },
+    { key: 'states', x: 180, fill: 'fill-gold-soft', head: 'States only', items: ['Schools', 'Police', 'Driver’s licenses'] },
+  ];
+  return (
+    <Frame viewBox="0 0 350 250" title="Some powers are only for the federal government, like printing money, declaring war and making treaties. Some are only for the states, like schools, police and driver's licenses. The 10th Amendment: powers not given to the federal government belong to the states or to the people.">
+      {cols.map((c) => (
+        <Part key={c.key} id={c.key} focus={focus} pick={pick} drawing="federalStatePowers">
+          <Box x={c.x} y={6} w={166} h={150} className={`${c.fill} stroke-denim`} />
+          <T x={c.x + 83} y={32} size={15} weight={700}>{c.head}</T>
+          {c.items.map((it, i) => (
+            <g key={it}>
+              <rect x={c.x + 12} y={46 + i * 34} width={142} height={28} rx={8} className="fill-white" />
+              <T x={c.x + 83} y={65 + i * 34} size={13} weight={600}>{it}</T>
+            </g>
+          ))}
+        </Part>
+      ))}
+      <Part id="tenth" focus={focus} pick={pick} drawing="federalStatePowers">
+        <Box x={4} y={168} w={342} h={76} className="fill-navy stroke-navy" />
+        <T x={175} y={192} size={14} weight={700} className="fill-white">10th Amendment</T>
+        <T x={175} y={213} size={12} weight={400} className="fill-white">Powers not given to the federal government</T>
+        <T x={175} y={232} size={12} weight={400} className="fill-white">belong to the states or to the people</T>
+      </Part>
+    </Frame>
+  );
+}
+
+// A box with a bold first line and smaller lines under it (Unit 3 drawings).
+function LabelTile({ x, y, w, h, fill = 'fill-white', lines }) {
+  const [head, ...rest] = lines;
+  const total = 20 + rest.length * 17;
+  const top = y + (h - total) / 2 + 14;
+  return (
+    <g>
+      <Box x={x} y={y} w={w} h={h} className={`${fill} stroke-denim`} />
+      <T x={x + w / 2} y={top} size={14} weight={700}>{head}</T>
+      {rest.map((line, i) => <T key={line} x={x + w / 2} y={top + 20 + i * 17} size={12} weight={400}>{line}</T>)}
+    </g>
+  );
+}
+const SOFT = ['fill-sky-soft', 'fill-gold-soft', 'fill-denim-soft'];
+
+// Rights of everyone living in the United States.
+function EveryoneRights({ focus, pick } = {}) {
+  const tiles = [
+    { key: 'expression', lines: ['Expression', 'ideas in many ways'] },
+    { key: 'speech', lines: ['Speech', 'say what you think'] },
+    { key: 'assembly', lines: ['Assembly', 'meet in a peaceful group'] },
+    { key: 'petition', lines: ['Petition', 'ask the government'] },
+    { key: 'religion', lines: ['Religion', 'any religion, or none'] },
+    { key: 'arms', lines: ['Bear arms', '2nd Amendment'] },
+  ];
+  return (
+    <Frame viewBox="0 0 350 244" title="Rights of everyone living in the United States: freedom of expression, of speech, of assembly, to petition the government and of religion, and the right to bear arms">
+      {tiles.map((t, i) => (
+        <Part key={t.key} id={t.key} focus={focus} pick={pick} drawing="everyoneRights">
+          <LabelTile x={i % 2 ? 180 : 4} y={6 + Math.floor(i / 2) * 80} w={166} h={72} fill={SOFT[i % 3]} lines={t.lines} />
+        </Part>
+      ))}
+    </Frame>
+  );
+}
+
+// The four amendments about who can vote.
+function VotingAmendments({ focus, pick } = {}) {
+  const rows = [
+    { key: 'race', n: '15th', text: 'A male citizen of any race' },
+    { key: 'women', n: '19th', text: 'Women can vote' },
+    { key: 'pollTax', n: '24th', text: 'No tax to vote (no poll tax)' },
+    { key: 'age18', n: '26th', text: 'Citizens 18 and older' },
+  ];
+  return (
+    <Frame viewBox="0 0 350 228" title="Four amendments about who can vote: the 15th, a male citizen of any race; the 19th, women; the 24th, no poll tax; the 26th, citizens 18 and older">
+      {rows.map((r, i) => (
+        <Part key={r.key} id={r.key} focus={focus} pick={pick} drawing="votingAmendments">
+          <Box x={4} y={6 + i * 56} w={342} h={48} className={`${SOFT[i % 3]} stroke-denim`} />
+          <rect x={12} y={14 + i * 56} width={62} height={32} rx={8} className="fill-navy" />
+          <T x={43} y={35 + i * 56} size={13} weight={700} className="fill-white">{r.n}</T>
+          <T x={86} y={35 + i * 56} anchor="start" size={14} weight={700}>{r.text}</T>
+        </Part>
+      ))}
+    </Frame>
+  );
+}
+
+// What only U.S. citizens can do.
+function CitizensOnly({ focus, pick } = {}) {
+  const tiles = [
+    { key: 'vote', x: 4, lines: ['Vote', 'in federal', 'elections'] },
+    { key: 'office', x: 120, lines: ['Run', 'for federal', 'office'] },
+    { key: 'jury', x: 236, lines: ['Serve', 'on a jury'] },
+  ];
+  return (
+    <Frame viewBox="0 0 350 172" title="Only U.S. citizens can vote in federal elections, run for federal office and serve on a jury">
+      <Box x={4} y={6} w={342} h={40} className="fill-navy stroke-navy" />
+      <T x={175} y={31} size={14} weight={700} className="fill-white">Only U.S. citizens can</T>
+      {tiles.map((t, i) => (
+        <Part key={t.key} id={t.key} focus={focus} pick={pick} drawing="citizensOnly">
+          <LabelTile x={t.x} y={56} w={110} h={110} fill={SOFT[i % 3]} lines={t.lines} />
+        </Part>
+      ))}
+    </Frame>
+  );
+}
+
+// Ways Americans can serve their country.
+function WaysToServe({ focus, pick } = {}) {
+  const tiles = [
+    { key: 'vote', lines: ['Vote'] },
+    { key: 'taxes', lines: ['Pay', 'taxes'] },
+    { key: 'law', lines: ['Obey', 'the law'] },
+    { key: 'military', lines: ['Serve in', 'the military'] },
+    { key: 'office', lines: ['Run', 'for office'] },
+    { key: 'government', lines: ['Work for', 'the government'] },
+  ];
+  return (
+    <Frame viewBox="0 0 350 196" title="Ways to serve the country: vote, pay taxes, obey the law, serve in the military, run for office, work for the government">
+      {tiles.map((t, i) => (
+        <Part key={t.key} id={t.key} focus={focus} pick={pick} drawing="waysToServe">
+          <LabelTile x={4 + (i % 3) * 116} y={6 + Math.floor(i / 3) * 96} w={110} h={88} fill={SOFT[i % 3]} lines={t.lines} />
+        </Part>
+      ))}
+    </Frame>
+  );
+}
+
+// The three ways to become a U.S. citizen (no advice about anyone's case).
+function WaysToCitizenship({ focus, pick } = {}) {
+  const cols = [
+    { key: 'born', x: 4, lines: ['Born', 'in the U.S.', '14th Amendment'] },
+    { key: 'naturalize', x: 120, lines: ['Naturalize', 'apply, interview', 'and test, Oath'] },
+    { key: 'derive', x: 236, lines: ['Derive', 'for example,', 'from a parent'] },
+  ];
+  return (
+    <Frame viewBox="0 0 350 216" title="Three ways to become a U.S. citizen: be born in the United States, under the 14th Amendment; naturalize; or derive citizenship, for example from a parent. For your own case, talk to a lawyer first.">
+      {cols.map((c, i) => (
+        <Part key={c.key} id={c.key} focus={focus} pick={pick} drawing="waysToCitizenship">
+          <LabelTile x={c.x} y={6} w={110} h={130} fill={SOFT[i % 3]} lines={c.lines} />
+        </Part>
+      ))}
+      <rect x={4} y={148} width={342} height={60} rx={10} className="fill-gold" />
+      <T x={175} y={172} size={14} weight={700}>Your own case?</T>
+      <T x={175} y={194} size={13} weight={600}>Talk to a lawyer first.</T>
+    </Frame>
+  );
+}
+
+// Promises in the Oath of Allegiance.
+function OathPromises({ focus, pick } = {}) {
+  const tiles = [
+    { key: 'loyalty', lines: ['Give up loyalty', 'to other countries'] },
+    { key: 'defend', lines: ['Defend', 'the Constitution'] },
+    { key: 'obey', lines: ['Obey the laws', 'of the United States'] },
+    { key: 'serve', lines: ['Serve the nation', 'if needed'] },
+  ];
+  return (
+    <Frame viewBox="0 0 350 216" title="Promises in the Oath of Allegiance: give up loyalty to other countries, defend the Constitution, obey the laws of the United States, and serve the nation if needed">
+      {tiles.map((t, i) => (
+        <Part key={t.key} id={t.key} focus={focus} pick={pick} drawing="oathPromises">
+          <LabelTile x={i % 2 ? 180 : 4} y={6 + Math.floor(i / 2) * 106} w={166} h={98} fill={SOFT[i % 3]} lines={t.lines} />
+        </Part>
       ))}
     </Frame>
   );
@@ -580,6 +902,17 @@ export const DRAWINGS = {
   checksBalances: ChecksBalances,
   documentsToConstitution: DocumentsToConstitution,
   sharedPower: SharedPower,
+  presidentPowers: PresidentPowers,
+  twoTerms: TwoTerms,
+  executiveBranch: ExecutiveBranch,
+  courtsLevels: CourtsLevels,
+  federalStatePowers: FederalStatePowers,
+  everyoneRights: EveryoneRights,
+  votingAmendments: VotingAmendments,
+  citizensOnly: CitizensOnly,
+  waysToServe: WaysToServe,
+  waysToCitizenship: WaysToCitizenship,
+  oathPromises: OathPromises,
 };
 
 // The parts each drawing can light up (story scenes' `focus`).
@@ -591,9 +924,21 @@ export const DRAWING_FOCUS = {
   seatsByPopulation: ['senators', 'house'],
   stateDistricts: ['state', 'district'],
   greatCompromise: ['big', 'small', 'both'],
-  amendments: ['first10', 'all'],
+  amendments: ['first10', 'later', 'all'],
   powerFromPeople: ['people', 'leaders'],
   checksBalances: ['congress', 'president', 'courts'],
   documentsToConstitution: ['declaration', 'articles', 'federalist', 'constitution'],
   sharedPower: ['national', 'states'],
+  presidentPowers: ['sign', 'veto', 'military', 'judges'],
+  twoTerms: ['term1', 'term2', 'third'],
+  executiveBranch: ['president', 'vicePresident', 'cabinet', 'departments'],
+  courtsLevels: ['supreme', 'federal'],
+  federalStatePowers: ['federal', 'states', 'tenth'],
+  supremeCourt: ['chief', 'majority'],
+  everyoneRights: ['expression', 'speech', 'assembly', 'petition', 'religion', 'arms'],
+  votingAmendments: ['race', 'women', 'pollTax', 'age18'],
+  citizensOnly: ['vote', 'office', 'jury'],
+  waysToServe: ['vote', 'taxes', 'law', 'military', 'office', 'government'],
+  waysToCitizenship: ['born', 'naturalize', 'derive'],
+  oathPromises: ['loyalty', 'defend', 'obey', 'serve'],
 };

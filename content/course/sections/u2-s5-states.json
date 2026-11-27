@@ -81,6 +81,92 @@
             {
               "word": "power",
               "meaning": "a right to do something"
+            },
+            {
+              "word": "federalism",
+              "meaning": "sharing power between the national government and the states",
+              "status": "draft"
+            }
+          ],
+          "video": {
+            "youtubeId": "_sQNz2liUuY",
+            "title": "Levels of Government - Federal, State, and Local Explained",
+            "source": "Miacademy & MiaPrep Learning Channel (YouTube)",
+            "license": "Standard YouTube license: embedding is allowed by YouTube's terms, but the video is not licensed to Pathways. Check before marking reviewed.",
+            "status": "draft",
+            "note": "From the old Lessons tab (Base44 Lesson \"State and Local Government\"). Before reviewing: watch it all; check it matches the 2025 answers, has no flags, seals, eagles or Statue of Liberty, and the English is easy enough."
+          },
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "Some powers belong only to the federal government.",
+              "picture": {
+                "drawing": "federalStatePowers",
+                "focus": "federal"
+              },
+              "help": {
+                "simpler": "Some jobs only the national government can do.",
+                "example": "States cannot print their own money.",
+                "why": "The test asks you to name one power only for the federal government."
+              }
+            },
+            {
+              "say": "Printing money and declaring war are two of them.",
+              "picture": {
+                "drawing": "federalStatePowers",
+                "focus": "federal"
+              },
+              "help": {
+                "simpler": "Only the federal government prints money and declares war.",
+                "example": "Every dollar bill comes from the federal government.",
+                "why": "“Print paper money” and “Declare war” are answers on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "tap",
+                "prompt": "Tap the powers that only the federal government has.",
+                "picture": {
+                  "drawing": "federalStatePowers"
+                },
+                "answer": "federal"
+              }
+            },
+            {
+              "say": "Some powers belong only to the states.",
+              "picture": {
+                "drawing": "federalStatePowers",
+                "focus": "states"
+              },
+              "help": {
+                "simpler": "Some jobs are done by each state, not by the national government.",
+                "example": "Each state sets up its own public schools.",
+                "why": "The test asks you to name one power only for the states."
+              }
+            },
+            {
+              "say": "Schools, police and driver’s licenses are run by the states.",
+              "picture": {
+                "drawing": "federalStatePowers",
+                "focus": "states"
+              },
+              "help": {
+                "simpler": "States take care of schools, police and driver’s licenses.",
+                "example": "You get your driver’s license from your state, not from the federal government.",
+                "why": "“Give a driver’s license” and “Provide schooling and education” are answers on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Which power belongs to the states?",
+                "choices": [
+                  "Giving driver’s licenses",
+                  "Printing money",
+                  "Declaring war"
+                ],
+                "answer": 0
+              }
             }
           ]
         },
@@ -131,6 +217,63 @@
             {
               "word": "purpose",
               "meaning": "the reason for something"
+            }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "The 10th Amendment is one of the first ten amendments: the Bill of Rights.",
+              "picture": {
+                "drawing": "amendments",
+                "focus": "first10"
+              },
+              "help": {
+                "simpler": "It is one of the first ten amendments, added in 1791.",
+                "example": "Remember from Unit 1: amendments 1 to 10 are the Bill of Rights.",
+                "why": "Knowing where it comes from helps you remember it."
+              }
+            },
+            {
+              "say": "It says powers not given to the federal government belong to the states or to the people.",
+              "picture": {
+                "drawing": "federalStatePowers",
+                "focus": "tenth"
+              },
+              "help": {
+                "simpler": "If the Constitution does not give a power to the national government, the states or the people keep it.",
+                "example": "The Constitution does not give schools to the federal government, so the states run them.",
+                "why": "The test asks about the purpose of the 10th Amendment. This is the answer."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "What is the purpose of the 10th Amendment?",
+                "choices": [
+                  "Powers not given to the federal government belong to the states or the people",
+                  "It gives every state two senators",
+                  "It sets the President’s term"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "This keeps power shared, not all in one place.",
+              "picture": {
+                "drawing": "sharedPower"
+              },
+              "help": {
+                "simpler": "Power is split between the national government and the states.",
+                "example": "Your state makes many rules about daily life, like school and driving rules.",
+                "why": "This sharing is part of the federal system from Unit 1."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "The 10th Amendment gives all power to the federal government.",
+                "answer": false
+              }
             }
           ]
         },
@@ -187,6 +330,62 @@
             {
               "word": "governor",
               "meaning": "the leader of a state"
+            }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "Every state has a capital city and a governor.",
+              "picture": {
+                "photo": "state-capitol.jpg"
+              },
+              "help": {
+                "simpler": "Each state has a main city for its government, the capital, and a leader, the governor.",
+                "example": "This is the Colorado State Capitol in Denver, the capital of Colorado.",
+                "why": "The test asks for the capital of your state and the name of your governor."
+              }
+            },
+            {
+              "say": "The governor leads the state government.",
+              "help": {
+                "simpler": "The governor is the top leader of a state.",
+                "example": "A governor is like a President, but for one state.",
+                "why": "The test asks who the governor of your state is now."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "Every state has a governor.",
+                "answer": true
+              }
+            },
+            {
+              "say": "The app looks up your state’s capital and governor on an official list.",
+              "help": {
+                "simpler": "The app checks an official list, so the names are right.",
+                "example": "It uses the state you picked in “Who Represents Me?”.",
+                "why": "This way you learn the right answers for your state."
+              }
+            },
+            {
+              "say": "Here are your state’s capital and governor.",
+              "picture": {
+                "yourState": true
+              },
+              "help": {
+                "simpler": "These are the answers for your state.",
+                "example": "Officer: “What is the capital of your state?” You say the capital shown here.",
+                "why": "The test asks for your state’s capital and governor. The answers depend on where you live."
+              }
+            },
+            {
+              "say": "Check the names again before your interview.",
+              "help": {
+                "simpler": "Governors can change after elections. Check again close to your interview.",
+                "example": "If there was an election, a name may be different.",
+                "why": "You want to give the governor serving on your interview day."
+              }
             }
           ]
         },

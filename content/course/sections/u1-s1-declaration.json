@@ -71,10 +71,23 @@
               "say": "Long ago, the American colonies were ruled by Britain.",
               "picture": {
                 "photo": "colonies-1775.jpg"
+              },
+              "help": {
+                "simpler": "Before the United States existed, Britain controlled these lands. They were called colonies.",
+                "example": "There were 13 colonies along the Atlantic coast, like Virginia, Massachusetts and New York.",
+                "why": "This is where the story of the United States begins: the colonies later chose to be free."
               }
             },
             {
-              "say": "Over time, the colonists became angry. Britain made them pay high taxes, but they had no vote in Britain’s government."
+              "say": "Over time, the colonists became angry. Britain made them pay high taxes, but they had no vote in Britain’s government.",
+              "picture": {
+                "photo": "stamp-act-denounced.jpg"
+              },
+              "help": {
+                "simpler": "Britain took tax money from the colonists, but the colonists had no say in the rules.",
+                "example": "In 1765, Britain taxed newspapers and other papers in the colonies. The colonists never got a vote on it.",
+                "why": "“No taxation without representation” was a big reason the colonists wanted to be free."
+              }
             },
             {
               "check": {
@@ -84,10 +97,20 @@
               }
             },
             {
-              "say": "British soldiers even stayed in their homes."
+              "say": "British soldiers even stayed in their homes.",
+              "help": {
+                "simpler": "The colonists sometimes had to let British soldiers live in their houses.",
+                "example": "A family might have to give soldiers a place to sleep, even if they did not want to.",
+                "why": "This is one reason the colonists felt they had lost control over their own lives."
+              }
             },
             {
-              "say": "Many colonists had come to America for freedom, including religious freedom. They wanted to govern themselves."
+              "say": "Many colonists had come to America for freedom, including religious freedom. They wanted to govern themselves.",
+              "help": {
+                "simpler": "Many people came to America to be free and to pray in their own way. They wanted to make their own rules.",
+                "example": "The Pilgrims came in 1620 so they could practice their religion freely.",
+                "why": "Freedom and self-government are big ideas in American history and on the civics test."
+              }
             },
             {
               "check": {
@@ -102,24 +125,43 @@
               }
             },
             {
-              "say": "On July 4, 1776, the Declaration of Independence said the colonies were free from Britain."
+              "say": "On July 4, 1776, the Declaration of Independence said the colonies were free from Britain.",
+              "picture": {
+                "photo": "signing-declaration.jpg"
+              },
+              "help": {
+                "simpler": "On July 4, 1776, the colonies said: we are free from Britain. They wrote it in the Declaration of Independence.",
+                "example": "“Declaration” means an official statement. “Independence” means being free from someone else’s control.",
+                "why": "The test asks which founding document said the colonies were free from Britain."
+              }
             },
             {
-              "say": "We remember this day on Independence Day."
+              "say": "We remember this day on Independence Day.",
+              "picture": {
+                "photo": "declaration-of-independence.jpg"
+              },
+              "help": {
+                "simpler": "Every year on July 4, Americans remember the day the Declaration was adopted.",
+                "example": "Many people celebrate with fireworks, parades and family picnics.",
+                "why": "Independence Day is a national holiday. It reminds Americans when the country said it was free."
+              }
             },
             {
-              "say": "The Declaration also says all people are created equal and have rights that no one can take away."
+              "say": "The Declaration also says all people are created equal and have rights that no one can take away.",
+              "help": {
+                "simpler": "Every person has the same worth. Some rights belong to everyone, and no one can take them away.",
+                "example": "The Declaration names some of these rights: life, liberty and the pursuit of happiness.",
+                "why": "The test asks why the Declaration is important. “It says all people are created equal” is one answer."
+              }
             },
             {
               "check": {
-                "kind": "pick",
-                "prompt": "What founding document said the American colonies were free from Britain?",
-                "choices": [
-                  "The Declaration of Independence",
-                  "The Bill of Rights",
-                  "The Federalist Papers"
-                ],
-                "answer": 0
+                "kind": "tap",
+                "prompt": "Tap the document that said the colonies were free from Britain.",
+                "picture": {
+                  "drawing": "documentsToConstitution"
+                },
+                "answer": "declaration"
               }
             }
           ]
@@ -179,12 +221,21 @@
             {
               "say": "“Life, Liberty, and the pursuit of Happiness” are words from the Declaration of Independence.",
               "picture": {
-                "drawing": "documentsToConstitution",
-                "focus": "declaration"
+                "photo": "declaration-of-independence.jpg"
+              },
+              "help": {
+                "simpler": "These famous words come from the Declaration of Independence, written in 1776.",
+                "example": "Life means the right to live. Liberty means freedom. The pursuit of Happiness means trying to build a good life.",
+                "why": "The test asks which document has these words. The answer is the Declaration of Independence."
               }
             },
             {
-              "say": "Liberty means freedom."
+              "say": "Liberty means freedom.",
+              "help": {
+                "simpler": "Liberty and freedom mean the same thing.",
+                "example": "Liberty is being free to speak, to pray and to live your life your way, within the law.",
+                "why": "Liberty is one of the big ideas of the Declaration and the Constitution."
+              }
             },
             {
               "check": {
@@ -194,18 +245,21 @@
               }
             },
             {
-              "say": "The pursuit of Happiness means the freedom to try to make a good life."
+              "say": "The pursuit of Happiness means the freedom to try to make a good life.",
+              "help": {
+                "simpler": "“Pursuit” means trying to reach something. You are free to try to build a happy life.",
+                "example": "Choosing your own job, learning new things or starting a family are ways to pursue happiness.",
+                "why": "It means the government should not stop you from trying to build a good life."
+              }
             },
             {
               "check": {
-                "kind": "pick",
-                "prompt": "“Life, Liberty, and the pursuit of Happiness” are words from which document?",
-                "choices": [
-                  "The Declaration of Independence",
-                  "The Bill of Rights",
-                  "The Articles of Confederation"
-                ],
-                "answer": 0
+                "kind": "tap",
+                "prompt": "Tap the document with the words “Life, Liberty, and the pursuit of Happiness.”",
+                "picture": {
+                  "drawing": "documentsToConstitution"
+                },
+                "answer": "declaration"
               }
             }
           ]

@@ -45,13 +45,13 @@ describe('N-400 lessons (content/n400/lessons.json)', () => {
     for (const name of Object.values(data.questionNames)) expect(name).not.toMatch(/^(yes|no)\b/i);
   });
 
-  it('the review notes: Before you start cards, and five lessons reviewed', () => {
+  it('the review notes: Before you start cards, and all seven lessons reviewed', () => {
     const byId = Object.fromEntries(N400_LESSONS.map((l) => [l.id, l]));
     for (const id of ['n400-time-outside-us', 'n400-immigration-history', 'n400-oath-questions', 'n400-selective-service-military']) expect(byId[id].context?.length, id).toBeGreaterThan(0);
     expect(byId['n400-selective-service-military'].context.join(' ')).toMatch(/Everyone answers question 22\.a/);
     expect(byId['n400-selective-service-military'].questionNotes['p9-22b']).toMatch(/Only for men/);
     expect(byId['n400-time-outside-us'].context.join(' ')).toMatch(/https:\/\/i94\.cbp\.dhs\.gov/);
-    expect(N400_LESSONS.filter((l) => l.status === 'reviewed').map((l) => l.id).sort()).toEqual(['n400-citizenship-voting-taxes', 'n400-crimes-offenses', 'n400-groups-violence', 'n400-immigration-history', 'n400-oath-questions']);
+    expect(N400_LESSONS.filter((l) => l.status === 'reviewed').map((l) => l.id).sort()).toEqual(['n400-citizenship-voting-taxes', 'n400-crimes-offenses', 'n400-groups-violence', 'n400-immigration-history', 'n400-oath-questions', 'n400-selective-service-military', 'n400-time-outside-us']);
   });
 
   it('a Before you start card never says how to answer', () => {

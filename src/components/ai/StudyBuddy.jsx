@@ -4,7 +4,6 @@ import { ArrowLeft, ChevronDown, ChevronRight, Globe, History, Loader2, Scale, U
 import { ai, isAiLimit } from '@/api/ai';
 import { askHistory } from '@/api/askHistory';
 import { lessonProgress as lessonProgressApi } from '@/api/lessons';
-import { content } from '@/api/content';
 import { auth } from '@/api/auth';
 import { createPageUrl } from '@/utils';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -32,7 +31,8 @@ import {
   redactIdentifiers,
 } from '@/lib/askTutor';
 import { lessonSuggestions, STARTER_SUGGESTIONS, INTERVIEW_SUGGESTIONS } from '@/lib/askSuggestions';
-import { preparedAnswer } from '@/lib/askAnswers';
+import { preparedAnswer, courseAnswer } from '@/lib/askAnswers';
+import { findLesson } from '@/lib/course';
 import { loadCivicsBank } from '@/lib/civicsBank';
 import TalkToPerson from './TalkToPerson';
 import { PACK_ONLY, packText } from '@/lib/translationPack';
@@ -193,14 +193,11 @@ export default function StudyBuddy() {
       .then(async (u) => {
         if (!active) return;
         setUser(u);
-        // Suggestions from the learner's 2 most recent lessons: their own
-        // lesson progress (owner-only) and the lessons' reviewed key points.
-        const email = u.email.toLowerCase().trim();
-        const [progress, lessons] = await Promise.all([
-          lessonProgressApi.list({ sort: '-last_attempt_date', limit: 20 }).catch(() => []),
-          content.lessons({ limit: 300 }).catch(() => []),
-        ]);
-        if (active) setFromLessons(lessonSuggestions(progress, lessons));
+        // Suggestions from the learner's 2 most recent Course lessons: their
+        // own lesson progress (owner-only) and the lessons' reviewed words
+        // and facts.
+        const progress = await lessonProgressApi.list({ limit: 200 }).catch(() => []);
+        if (active) setFromLessons(lessonSuggestions(progress, (id) => findLesson(id)?.lesson));
       })
       .catch(() => { if (active) setUser(null); });
     return () => { active = false; };
@@ -208,7 +205,7 @@ export default function StudyBuddy() {
 
   // answerId: the suggestion tapped, so its pre-written answer is found in
   // any language.
-  const ask = async (raw, { answerId = null } = {}) => {
+  const ask = async (raw, { answerId = null, course = null } = {}) => {
     const typed = String(raw || '').trim().slice(0, MAX_QUESTION_LENGTH);
     if (!typed || asked?.loading) return;
     stopReading();
@@ -233,7 +230,9 @@ export default function StudyBuddy() {
     // language (content/ask/answers.json): shown without asking the AI.
     try {
       const translations = Object.fromEntries([...STARTER_SUGGESTIONS, ...INTERVIEW_SUGGESTIONS].map((key) => [key, t(key)]));
-      const prepared = await preparedAnswer({ id: answerId, text: typed, language: askedIn, translations });
+      const prepared = course
+        ? await courseAnswer(course, askedIn)
+        : await preparedAnswer({ id: answerId, text: typed, language: askedIn, translations });
       if (prepared) {
         answer = { type: 'answer', en: prepared.en, mine: prepared.mine };
         setAsked({ question: typed, reply: { kind: 'answer', en: prepared.en, mine: prepared.mine, language: askedIn } });
@@ -424,7 +423,7 @@ export default function StudyBuddy() {
             <section className="space-y-2">
               <h2 className="text-lg font-bold" dir="auto">{suggestionsFromLessons ? t('from_lessons') : t('to_start')}</h2>
               {suggestionsFromLessons
-                ? fromLessons.map((q) => <Suggestion key={q} lang="en" onClick={() => ask(q)}>{q}</Suggestion>)
+                ? fromLessons.map((q) => <Suggestion key={q.id} lang="en" onClick={() => ask(q.question, { course: q })}>{q.question}</Suggestion>)
                 : starters.map((key) => <Suggestion key={key} onClick={() => ask(t(key), { answerId: key })}>{t(key)}</Suggestion>)}
             </section>
 
