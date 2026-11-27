@@ -21,13 +21,13 @@ const DRAFT_LANGUAGES = [
 
 const storeKey = (lang) => `pathways_admin_explanation_drafts_${lang}`;
 const loadSaved = (lang) => {
-  try { return JSON.parse(localStorage.getItem(storeKey(lang)) || '{}') || {}; } catch (e) { return {}; }
+  try { return JSON.parse(localStorage.getItem(storeKey(lang)) || '{}') || {}; } catch { return {}; }
 };
 const saveDrafts = (lang, drafts) => {
-  try { localStorage.setItem(storeKey(lang), JSON.stringify(drafts)); } catch (e) { /* storage unavailable */ }
+  try { localStorage.setItem(storeKey(lang), JSON.stringify(drafts)); } catch { /* storage unavailable */ }
 };
 const clearSaved = (lang) => {
-  try { localStorage.removeItem(storeKey(lang)); } catch (e) { /* storage unavailable */ }
+  try { localStorage.removeItem(storeKey(lang)); } catch { /* storage unavailable */ }
 };
 
 const byText = (a, b) => (a < b ? -1 : a > b ? 1 : 0);
@@ -124,7 +124,7 @@ export default function ExplanationTools() {
       const records = await load2025();
       downloadJson('questions-2025.json', records.map((q) => ({ question: q.question, answer: q.answer, category: q.category || '' })));
       toast.success(`Exported ${records.length} questions.`);
-    } catch (e) {
+    } catch {
       toast.error("Couldn't export the questions.");
     } finally {
       setExporting(false);
@@ -160,14 +160,14 @@ export default function ExplanationTools() {
           };
           setDrafts(current);
           saveDrafts(lang, current);
-        } catch (e) {
+        } catch {
           stats.failed += 1;
         }
         stats.done += 1;
         setProgress({ ...stats });
       }
       setProgress({ ...stats, current: null });
-    } catch (e) {
+    } catch {
       toast.error("Couldn't load the questions.");
     } finally {
       setRunning(false);

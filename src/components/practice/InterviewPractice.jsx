@@ -49,7 +49,7 @@ const speechTimeoutMs = (text) => {
 // interview adds a Civics part with these official questions after the usual
 // ones, graded like lessons (on the device first, then the AI for spoken
 // answers), with official answers only.
-export default function InterviewPractice({ onComplete, onNext, rehearsal = null, onClose = null, onBack = null, learnerName = '', civicsQuestions = null, day = null }) {
+export default function InterviewPractice({ onComplete, rehearsal = null, onClose = null, onBack = null, learnerName = '', civicsQuestions = null, day = null }) {
   const { t: pt } = usePracticeText();
   const [questions, setQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -62,7 +62,7 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
   const [isLoadingQuestions, setIsLoadingQuestions] = useState(true);
   const [sessionResults, setSessionResults] = useState([]);
   const [showReport, setShowReport] = useState(false);
-  const [audioLevel, setAudioLevel] = useState(0);
+  const [, setAudioLevel] = useState(0);
 
   // Conversational UI state
   const [interviewerState, setInterviewerState] = useState('idle');
@@ -122,7 +122,7 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
       const standard = [...smallTalk, ...personalInfo, ...morals, ...oath, ...civics];
       standardQuestionsRef.current = standard;
       setQuestions(standard);
-    } catch (e) {
+    } catch {
       toast.error('Failed to load questions');
     } finally {
       setIsLoadingQuestions(false);
@@ -141,7 +141,7 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
       if (silenceTimeoutRef.current) clearTimeout(silenceTimeoutRef.current);
       silenceTimeoutRef.current = setTimeout(() => {
         if (recognitionRef.current) {
-          try { recognitionRef.current.stop(); } catch (e) {}
+          try { recognitionRef.current.stop(); } catch {}
         }
       }, 12000);
     };
@@ -181,7 +181,7 @@ export default function InterviewPractice({ onComplete, onNext, rehearsal = null
         animFrameRef.current = requestAnimationFrame(tick);
       };
       tick();
-    } catch (e) { /* mic denied */ }
+    } catch { /* mic denied */ }
   };
 
   const stopAudioAnalysis = () => {

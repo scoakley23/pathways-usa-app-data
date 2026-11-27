@@ -31,7 +31,7 @@ export default function ThisWeekCard({ language = 'en' }) {
     let active = true;
     (async () => {
       try {
-        const user = await auth.me();
+        await auth.me();
         const [progress, sessions, lessons, n400, civics2025] = await Promise.all([
           progressApi.list({ sort: '-last_practiced', limit: 500 }).catch(() => []),
           interviewSessionsApi.list({ sort: '-created_date', limit: 50 }).catch(() => []),
@@ -51,7 +51,7 @@ export default function ThisWeekCard({ language = 'en' }) {
           ready: progress.filter((p) => p.content_type === 'civics_question' && p.status === 'mastered' && civicsIds.has(p.content_id)).length,
           civicsTotal: civics2025.length,
         });
-      } catch (e) {
+      } catch {
         if (active) setData({ dates: [], ready: 0, civicsTotal: 0 });
       }
     })();
@@ -69,7 +69,7 @@ export default function ThisWeekCard({ language = 'en' }) {
   const locale = language === 'en' ? 'en-US' : language;
   const weekdayInitials = Array.from({ length: 7 }, (_, k) => {
     const d = new Date(2024, 0, 1 + k); // Jan 1 2024 was a Monday
-    try { return d.toLocaleDateString(locale, { weekday: 'narrow' }); } catch (e) { return ''; }
+    try { return d.toLocaleDateString(locale, { weekday: 'narrow' }); } catch { return ''; }
   });
   const number = 'font-display text-[2.125rem] leading-none';
 

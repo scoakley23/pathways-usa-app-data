@@ -13,7 +13,7 @@ const LINE = COLORS.line;
 const MUTED = COLORS.muted;
 
 export default function ProgressChart({ userEmail }) {
-  const { t, locale } = useProgressText();
+  const { t } = useProgressText();
   const [chartData, setChartData] = useState([]);
   const [loading, setLoading] = useState(true);
 

@@ -79,11 +79,11 @@ export function useJourney() {
     let active = true;
     (async () => {
       let user = null;
-      try { user = await auth.me(); } catch (e) { user = null; }
+      try { user = await auth.me(); } catch { user = null; }
       const ids = allLessonIds(UNITS);
       let saved = { lessons: {}, checkpoints: new Set() };
       if (user) {
-        try { saved = await courseProgress.load(ids); } catch (e) { saved = { lessons: {}, checkpoints: new Set() }; }
+        try { saved = await courseProgress.load(ids); } catch { saved = { lessons: {}, checkpoints: new Set() }; }
       }
       if (active) setState({ loading: false, user, progress: saved.lessons, checkpoints: saved.checkpoints });
     })();

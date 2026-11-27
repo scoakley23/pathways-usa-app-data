@@ -166,18 +166,6 @@ export function PosterProgress({ index = 0, total = 0, className = '' }) {
 export const PosterStars = PosterProgress;
 export const PosterSquares = PosterProgress;
 
-// Ruled paper: the learner's own page (white, pale blue rules, a pale
-// margin line). For the Listen-and-write surface, "Explain it simply", notes
-// and the N-400 screens. Line height matches the rules (`leading-[2.25rem]`).
-export function RuledPaper({ as: Tag = 'div', className = '', children, ...props }) {
-  return (
-    <Tag className={`pw-ruled relative rounded-[6px] bg-white border border-line ps-12 pe-5 pt-3 pb-5 text-navy ${className}`} {...props}>
-      <span aria-hidden="true" className="absolute inset-y-0 start-8 w-0.5 bg-line" />
-      {children}
-    </Tag>
-  );
-}
-
 // Full-bleed test/practice poster: white text on navy. `answer` shows in
 // Lexend 700; `progress` ({ index, total }) adds a thin progress line;
 // `children` holds the controls.
@@ -190,17 +178,6 @@ export function Poster({ label, question, answer, progress, questionAs: Q = 'h2'
       {answer && <p className="mt-5 font-display text-2xl leading-snug sm:text-3xl">{answer}</p>}
       {children && <div className="mt-6">{children}</div>}
     </section>
-  );
-}
-
-// N-400 wording, word for word (Lexend, on a white card).
-export function FormQuote({ item, label = 'ON THE FORM · WORD FOR WORD', className = '', children }) {
-  return (
-    <figure className={`rounded-card border border-line bg-white p-4 ${className}`}>
-      <p className="text-label text-muted">{label}</p>
-      <blockquote className="mt-2 text-base sm:text-lg font-medium leading-relaxed text-navy">{children}</blockquote>
-      {item != null && <figcaption className="mt-2 text-base text-muted">— Form N-400, item {item}</figcaption>}
-    </figure>
   );
 }
 
