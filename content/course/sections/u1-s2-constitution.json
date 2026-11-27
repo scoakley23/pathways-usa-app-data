@@ -92,7 +92,7 @@
             "status": "reviewed",
             "checkedOn": "2026-11-26"
           },
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "The U.S. Constitution is the supreme law of the land.",
@@ -151,6 +151,18 @@
                 "simpler": "The Constitution keeps people’s rights safe.",
                 "example": "It protects rights like freedom of speech and freedom of religion.",
                 "why": "“Protects the rights of the people” is another answer to what the Constitution does."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Name one thing the Constitution does.",
+                "choices": [
+                  "Protects the rights of the people",
+                  "Sets the price of food",
+                  "Names the state capitals"
+                ],
+                "answer": 0
               }
             },
             {
@@ -215,7 +227,7 @@
               "meaning": "saying yes; agreeing"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "The Constitution starts with the words “We the People.”",
@@ -252,11 +264,11 @@
             {
               "check": {
                 "kind": "pick",
-                "prompt": "What are the first words of the Constitution?",
+                "prompt": "What does “We the People” mean?",
                 "choices": [
-                  "We the People",
-                  "Life, Liberty",
-                  "All people are equal"
+                  "Self-government",
+                  "A king rules the people",
+                  "Leaders choose for the people"
                 ],
                 "answer": 0
               }
@@ -347,7 +359,7 @@
             "status": "reviewed",
             "checkedOn": "2026-11-26"
           },
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "A change to the Constitution is called an amendment.",
@@ -471,7 +483,7 @@
               "meaning": "a government whose power has limits"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "The people who wrote the Constitution learned from older documents.",
@@ -487,8 +499,7 @@
             {
               "say": "They learned from the Declaration of Independence, the Articles of Confederation and the Federalist Papers.",
               "picture": {
-                "drawing": "documentsToConstitution",
-                "focus": "constitution"
+                "drawing": "documentsToConstitution"
               },
               "help": {
                 "simpler": "Three of these older documents are the Declaration, the Articles of Confederation and the Federalist Papers.",
@@ -523,7 +534,7 @@
               "say": "The Declaration and the Constitution share big ideas.",
               "help": {
                 "simpler": "Both documents are built on the same important ideas.",
-                "example": "One idea, equality, means every person should be treated the same under the law.",
+                "example": "Natural rights are rights every person is born with, like life and liberty.",
                 "why": "The test asks you to name two of these ideas."
               }
             },

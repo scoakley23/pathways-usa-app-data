@@ -70,6 +70,24 @@ describe('the estimate', () => {
     expect(estimateRange(office, 'October')).toBeNull();
   });
 
+  it('counts half months exactly, without rounding', () => {
+    const at = (n, filed) => { const r = estimateRange({ ...office, min_months: n, max_months: n }, filed); return [r.to.getFullYear(), r.to.getMonth() + 1, r.to.getDate()]; };
+    expect(at(14.5, '2026-10')).toEqual([2027, 12, 31]); // end of December 2027
+    expect(at(14, '2026-10')).toEqual([2027, 12, 15]);
+    expect(at(12.5, '2026-02')).toEqual([2027, 2, 28]); // short month: still February
+    expect(at(0.5 + 11, '2025-12')).toEqual([2026, 11, 30]);
+    expect(estimateRange({ ...office, min_months: 14.5, max_months: 14.5 }, '2026-10').max).toBe(14.5);
+  });
+
+  it('accepts half months in the file but nothing finer', () => {
+    const base = { source_url: USCIS_PROCESSING_URL, checked_on: '2026-11-26' };
+    const o = (min, max) => ({ id: 'a', name: 'A', state: 'TX', min_months: min, max_months: max, sample: false });
+    expect(processingProblems({ ...base, offices: [o(14.5, 14.5)] })).toEqual([]);
+    expect(processingProblems({ ...base, offices: [o(14.25, 14.25)] }).length).toBeGreaterThan(0);
+    expect(processingProblems({ ...base, offices: [o(0.5, 1)] }).length).toBeGreaterThan(0);
+    expect(processingProblems({ ...base, offices: [o('14.5', '14.5')] }).length).toBeGreaterThan(0);
+  });
+
   it('says "by" when USCIS shows one number (min = max)', () => {
     expect(estimateRange(office, '2026-10').single).toBe(false);
     const r = estimateRange({ ...office, min_months: 7, max_months: 7 }, '2026-10');
