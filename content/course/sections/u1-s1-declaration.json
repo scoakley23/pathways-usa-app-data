@@ -65,7 +65,7 @@
               "meaning": "being free from another country's control"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "Long ago, the American colonies were ruled by Britain.",
@@ -131,7 +131,7 @@
               },
               "help": {
                 "simpler": "On July 4, 1776, the colonies said: we are free from Britain. They wrote it in the Declaration of Independence.",
-                "example": "“Declaration” means an official statement. “Independence” means being free from someone else’s control.",
+                "example": "“Declaration” means an important statement made in public. “Independence” means being free from another country’s control.",
                 "why": "The test asks which founding document said the colonies were free from Britain."
               }
             },
@@ -152,6 +152,18 @@
                 "simpler": "Every person has the same worth. Some rights belong to everyone, and no one can take them away.",
                 "example": "The Declaration names some of these rights: life, liberty and the pursuit of happiness.",
                 "why": "The test asks why the Declaration is important. “It says all people are created equal” is one answer."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "What does the Declaration say about all people?",
+                "choices": [
+                  "They are created equal",
+                  "They must pay taxes",
+                  "They must obey Britain"
+                ],
+                "answer": 0
               }
             },
             {
