@@ -99,7 +99,7 @@
               "meaning": "the amendment that limits a President to two terms"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "Americans elect a President every four years.",
@@ -133,7 +133,7 @@
             {
               "say": "This rule is in the 22nd Amendment.",
               "picture": {
-                "drawing": "twoTerms"
+                "photo": "roosevelt.jpg"
               },
               "help": {
                 "simpler": "The two-term rule was added to the Constitution as the 22nd Amendment.",
@@ -188,6 +188,13 @@
                 "simpler": "If one person led for too long, they could gain too much power.",
                 "example": "A limit makes sure new leaders come in over time.",
                 "why": "“To keep the president from becoming too powerful” is the other answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "The two-term rule keeps a president from becoming too powerful.",
+                "answer": true
               }
             }
           ]
