@@ -20,7 +20,8 @@
     "email:texts": "node scripts/supabase/build-reminder-texts.mjs",
     "uscis:bookmarklet": "node scripts/uscis/build-bookmarklet.mjs",
     "uscis:apply": "node scripts/uscis/apply-times.mjs",
-    "icons": "vite-node --config scripts/evals/vite.config.mjs scripts/icons/build-app-icons.mjs"
+    "icons": "vite-node --config scripts/evals/vite.config.mjs scripts/icons/build-app-icons.mjs",
+    "screens": "node scripts/screens/check-screens.mjs"
   },
   "dependencies": {
     "@base44/sdk": "^0.8.63",
@@ -126,6 +127,7 @@
     "@types/react-dom": "^18.2.22",
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.20",
+    "axe-core": "4.10.3",
     "baseline-browser-mapping": "^2.8.32",
     "esbuild": "0.25.10",
     "eslint": "^9.19.0",

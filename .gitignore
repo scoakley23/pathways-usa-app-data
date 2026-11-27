@@ -34,3 +34,6 @@ scripts/translations/.last-batch.json
 .claude/hillclimb/
 .claude/translations/
 supabase/.temp/
+
+# npm run screens output
+screens-out

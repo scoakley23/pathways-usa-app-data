@@ -1,6 +1,7 @@
 import React from 'react';
 import { X } from 'lucide-react';
 import { StepBar } from '@/components/pathways/StepBar';
+import useShortcuts from '@/components/pathways/useShortcuts';
 import { NotQuitePanel } from '@/components/pathways/ResultBanner';
 import { checkCivicsAnswer, officeholderCheck } from '@/components/civics/checkCivicsAnswer';
 import { matchCivicsAnswer } from '@/lib/answerVariants';
@@ -11,6 +12,8 @@ import { splitOfficialAnswers } from '@/lib/practiceChecks';
 // civics answer with the existing checks.
 
 export function LessonHeader({ title, subtitle, step, onClose, closeLabel }) {
+  // Esc closes, like the X (desktop keys, vision C).
+  useShortcuts({ escape: onClose }, !!onClose);
   return (
     <header className="bg-navy text-white px-4 pt-5 pb-4 flex flex-col gap-3">
       <div className="flex items-center gap-2">
