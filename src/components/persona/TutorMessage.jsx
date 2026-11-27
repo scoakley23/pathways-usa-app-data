@@ -44,7 +44,7 @@ export function ListenButton({ text, language, label: givenLabel, tutorName, onN
 // read after the message but not shown (e.g. the answer choices).
 // `readDelay` waits before reading (e.g. for a translation still loading).
 const SHORT = 140;
-export default function TutorMessage({ profile, language = 'en', mine, en, children, expression = 'default', readAlso, readDelay = 0 }) { // eslint-disable-line no-unused-vars
+export default function TutorMessage({ profile, language = 'en', mine, en, children, readAlso, readDelay = 0 }) {
   const { className: sizeClass } = useTextSize();
   const { t } = useLearnText();
   const showMine = !!mine && language !== 'en';

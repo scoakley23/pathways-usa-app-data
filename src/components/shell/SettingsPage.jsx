@@ -253,7 +253,7 @@ export default function SettingsPage() {
             </div>
             <p className="text-small text-muted">{t('reminder_help')}</p>
           </div>
-          <LinkRow to="/interview/when" label={t('your_interview')} value={range ? `${monthName(range.from)} – ${monthName(range.to)}` : t('find_out')} />
+          <LinkRow to="/interview/when" label={t('your_interview')} value={range ? (range.single ? monthName(range.to) : `${monthName(range.from)} – ${monthName(range.to)}`) : t('find_out')} />
           {user && (
             <OpenRow id="program" label={t('my_tutor')} value={program || t('add_code')} open={open.has('program')} onToggle={() => toggle('program')}>
               <ProgramCard user={user} />

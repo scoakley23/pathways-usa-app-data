@@ -46,13 +46,13 @@ export default function N400Guide({ cachedUser }) {
   // Each step (cover, list, a section) starts at the top of the page.
   useEffect(() => {
     if (!searchParams.get('ready')) window.scrollTo({ top: 0 });
-  }, [step, sectionId, cardIndex]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [step, sectionId, cardIndex]);
 
   // The open section's chip scrolls into view in the chip row.
   useEffect(() => {
     if (step !== 'section') return;
     const chip = document.querySelector('[data-section-chip][aria-current="true"]');
-    try { chip?.scrollIntoView({ block: 'nearest', inline: 'center' }); } catch (e) { /* older browsers */ }
+    try { chip?.scrollIntoView({ block: 'nearest', inline: 'center' }); } catch { /* older browsers */ }
   }, [step, sectionId]);
 
   // ?ready=1 (end of the N-400 coach) jumps to "Ready to file?".

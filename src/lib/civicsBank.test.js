@@ -78,12 +78,33 @@ describe('question numbers and 65/20 marks', () => {
 
   // numbers-2025.json starts empty. Once filled in from the USCIS list it
   // must number all 128 questions 1–128, matched by exact wording.
-  it('numbers-2025.json is empty or covers every official question exactly', () => {
-    expect(Array.isArray(numbers)).toBe(true);
-    if (!numbers.length) return;
-    expect(numbers).toHaveLength(questions.length);
-    expect(numbersCoverBank(questions, numbers)).toBe(true);
-    expect(numbers.map((n) => n.number).sort((a, b) => a - b)).toEqual(questions.map((_, i) => i + 1));
-    for (const n of numbers) expect(typeof n.sixty_five_twenty).toBe('boolean');
+  // The same checks run on the live file and on any draft beside it
+  // (numbers-2025.draft.json), so a draft can't drop a question or repeat a
+  // number before it goes live.
+  const numberFiles = import.meta.glob('../../content/civics/numbers-2025*.json', { eager: true, import: 'default' });
+
+  it('finds the live numbers file', () => {
+    expect(numberFiles['../../content/civics/numbers-2025.json']).toBe(numbers);
   });
+
+  for (const [path, list] of Object.entries(numberFiles)) {
+    const name = path.split('/').pop();
+    it(`${name} is empty or covers every official question exactly`, () => {
+      expect(Array.isArray(list)).toBe(true);
+      if (!list.length) return;
+      expect(list).toHaveLength(questions.length);
+      expect(numbersCoverBank(questions, list)).toBe(true);
+      // Every number 1–128 once, every question once.
+      expect(list.map((n) => n.number).sort((a, b) => a - b)).toEqual(questions.map((_, i) => i + 1));
+      expect(new Set(list.map((n) => n.question)).size).toBe(list.length);
+      for (const n of list) {
+        expect(Object.keys(n).sort()).toEqual(['number', 'question', 'sixty_five_twenty']);
+        expect(typeof n.sixty_five_twenty).toBe('boolean');
+      }
+      // The USCIS list marks exactly 20 questions for the 65/20 rule.
+      expect(list.filter((n) => n.sixty_five_twenty)).toHaveLength(20);
+      // Question 30 is the Speaker of the House (spot check against the PDF).
+      expect(list.find((n) => n.number === 30)).toMatchObject({ question: Q30, sixty_five_twenty: true });
+    });
+  }
 });

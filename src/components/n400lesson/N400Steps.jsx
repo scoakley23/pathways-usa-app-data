@@ -272,7 +272,7 @@ export function SayWhatItAsks({ lesson, t, onDone }) {
       setExplain(r?.corrected_version || '');
       if (r?.is_acceptable) setMode('right');
       else { setMode('wrong'); setMisses((m) => m + 1); }
-    } catch (e) {
+    } catch {
       setMode('error');
     }
   };

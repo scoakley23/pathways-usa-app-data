@@ -77,7 +77,119 @@
             "license": "Standard YouTube license: shown as a YouTube embed, which YouTube's terms allow; not licensed to Pathways.",
             "status": "reviewed",
             "checkedOn": "2026-11-27"
-          }
+          },
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "This is the American flag.",
+              "picture": {
+                "photo": "us-flag.jpg"
+              },
+              "help": {
+                "simpler": "This is the flag of the United States.",
+                "example": "You can see it on government buildings and at schools.",
+                "why": "The test asks two questions about the flag."
+              }
+            },
+            {
+              "say": "The American flag is red, white and blue.",
+              "picture": {
+                "photo": "us-flag.jpg"
+              },
+              "help": {
+                "simpler": "The flag has three colors: red, white and blue.",
+                "example": "The stripes are red and white. The stars are white on blue.",
+                "why": "Knowing the colors helps you picture the flag."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "The American flag is red, white and blue.",
+                "answer": true
+              }
+            },
+            {
+              "say": "It has 50 stars, one star for each state.",
+              "picture": {
+                "drawing": "starsAndStripes",
+                "focus": "stars"
+              },
+              "help": {
+                "simpler": "Each star stands for one state.",
+                "example": "There are 50 states, so there are 50 stars.",
+                "why": "“One star for each state” is an answer on the test."
+              }
+            },
+            {
+              "say": "Count them: 50 states, 50 stars.",
+              "picture": {
+                "photo": "us-flag.jpg"
+              },
+              "help": {
+                "simpler": "The number of stars is the same as the number of states.",
+                "example": "When a new state joined, a new star was added.",
+                "why": "“Because there are 50 states” is also an answer."
+              }
+            },
+            {
+              "check": {
+                "kind": "tap",
+                "prompt": "Tap the part that has one for each state.",
+                "picture": {
+                  "drawing": "starsAndStripes"
+                },
+                "answer": "stars"
+              }
+            },
+            {
+              "say": "It has 13 stripes because there were 13 original colonies.",
+              "picture": {
+                "drawing": "starsAndStripes",
+                "focus": "stripes"
+              },
+              "help": {
+                "simpler": "Each stripe stands for one of the first 13 colonies.",
+                "example": "Represent means to stand for something.",
+                "why": "“13 original colonies” is an answer on the test."
+              }
+            },
+            {
+              "say": "The 13 colonies became the first 13 states.",
+              "picture": {
+                "photo": "us-flag.jpg"
+              },
+              "help": {
+                "simpler": "The stripes remember where the country started.",
+                "example": "You learned about the 13 colonies in Unit 4.",
+                "why": "It helps you remember why there are 13 stripes."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Why does the flag have 13 stripes?",
+                "choices": [
+                  "Because there were 13 original colonies",
+                  "Because there are 13 states",
+                  "Because there were 13 Presidents"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "Why does the flag have 50 stars?",
+                "choices": [
+                  "One star for each state",
+                  "One star for each President",
+                  "One star for each war"
+                ],
+                "answer": 0
+              }
+            }
+          ]
         },
         "teachBack": {
           "questionId": "6ad16ecf6a9c603911f9de90"
@@ -137,6 +249,108 @@
             {
               "word": "E Pluribus Unum",
               "meaning": "Latin for \"Out of many, one\""
+            }
+          ],
+          "storyStatus": "draft",
+          "story": [
+            {
+              "say": "The nation’s first motto was “E Pluribus Unum.”",
+              "picture": {
+                "drawing": "outOfMany"
+              },
+              "help": {
+                "simpler": "A motto is a short saying that tells what a group believes.",
+                "example": "The words are in Latin, an old language.",
+                "why": "The test asks what “E Pluribus Unum” means."
+              }
+            },
+            {
+              "say": "Say it like this: ee PLOOR-ih-bus OO-num.",
+              "picture": {
+                "drawing": "outOfMany"
+              },
+              "help": {
+                "simpler": "Say it slowly, in four parts: ee, PLOOR-ih-bus, OO-num.",
+                "example": "The big letters show which part to say strongly.",
+                "why": "It helps you say the motto out loud."
+              }
+            },
+            {
+              "say": "It means “Out of many, one.”",
+              "picture": {
+                "drawing": "outOfMany",
+                "focus": "one"
+              },
+              "help": {
+                "simpler": "Many things come together to make one.",
+                "example": "“We all become one” is another answer.",
+                "why": "“Out of many, one” is the answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "What does “E Pluribus Unum” mean?",
+                "choices": [
+                  "Out of many, one",
+                  "Land of the free",
+                  "One for each state"
+                ],
+                "answer": 0
+              }
+            },
+            {
+              "say": "It says that many people and many states become one country.",
+              "picture": {
+                "drawing": "outOfMany",
+                "focus": "many"
+              },
+              "help": {
+                "simpler": "People from many places make one country together.",
+                "example": "Fifty states, one United States.",
+                "why": "It explains the meaning of the motto."
+              }
+            },
+            {
+              "say": "The national anthem is “The Star-Spangled Banner.”",
+              "picture": {
+                "photo": "us-flag.jpg"
+              },
+              "help": {
+                "simpler": "The country’s official song is “The Star-Spangled Banner.”",
+                "example": "An anthem is a country’s official song.",
+                "why": "The test asks the name of the national anthem."
+              }
+            },
+            {
+              "say": "It is a song about the American flag.",
+              "picture": {
+                "photo": "us-flag.jpg"
+              },
+              "help": {
+                "simpler": "The song is about the flag. A banner is a flag.",
+                "example": "People sing it at sports games and big events.",
+                "why": "It helps you remember the name."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "“The Star-Spangled Banner” is a song about the flag.",
+                "answer": true
+              }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "What is the name of the national anthem?",
+                "choices": [
+                  "The Star-Spangled Banner",
+                  "America the Beautiful",
+                  "Yankee Doodle"
+                ],
+                "answer": 0
+              }
             }
           ]
         },

@@ -24,6 +24,7 @@ import { markKeyWords } from '@/lib/tutorLesson';
 import { RTL_LANGUAGES } from '@/hooks/useAppLanguage';
 
 import { UI_LINES, UI_LINES_ES } from './tutorStepLines';
+import LessonVideo from '@/components/lesson/LessonVideo';
 
 export { UI_LINES, UI_LINES_ES };
 export const UI = Object.fromEntries(Object.keys(UI_LINES).map((k) => [k, { en: UI_LINES[k], es: UI_LINES_ES[k] }]));
@@ -87,7 +88,7 @@ export function PartIntroStep({ step, ctx }) {
 }
 
 export function ExplainStep({ step, ctx }) {
-  const { note, link } = step;
+  const { note, link, video } = step;
   return (
     <TutorMessage profile={ctx.profile} language={ctx.language} mine={step.text.mine} en={step.text.en}>
       {note && (
@@ -107,6 +108,7 @@ export function ExplainStep({ step, ctx }) {
           <span className="sr-only">{ctx.t('new_tab')}</span>
         </a>
       )}
+      {video && <LessonVideo video={video} t={ctx.t} />}
     </TutorMessage>
   );
 }
@@ -239,7 +241,7 @@ export function SpeakingStep({ step, ctx, state, setState }) {
         outcome: { correct: isCorrect },
         result: { isCorrect, right: { en: r.what_was_right_en, mine: r.what_was_right_mine }, tip: { en: r.tip_en, mine: r.tip_mine } },
       });
-    } catch (e) {
+    } catch {
       const isCorrect = local();
       setState({ answered: true, heard: answer, outcome: { correct: isCorrect }, result: { isCorrect, tip: isCorrect ? null : ctx.ui('keyWordsTip') } });
     } finally {
@@ -340,7 +342,7 @@ function WordChips({ words }) {
 export function WritingStep({ step, ctx, state, setState }) {
   const [typed, setTyped] = useState('');
   const say = () => speakText(step.sentence, 'en');
-  useEffect(() => { say(); }, [step.sentence]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { say(); }, [step.sentence]);
 
   const check = (e) => {
     e.preventDefault();
@@ -467,7 +469,7 @@ export function InterviewStep({ step, ctx, state, setState }) {
         : await evaluateInterviewAnswer(step.question, transcript);
       const score = Number(r?.overall_score) || 0;
       setState({ answered: true, heard: transcript, outcome: { score }, result: { isCorrect: !!r.is_acceptable, better: r.corrected_version, tip: r.improvement_tips } });
-    } catch (e) {
+    } catch {
       setFailed(true);
     } finally {
       setChecking(false);

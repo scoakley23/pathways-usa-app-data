@@ -48,6 +48,29 @@ export const DRAWING_PARTS = {
   waysToServe: { vote: 'Vote', taxes: 'Pay taxes', law: 'Obey the law', military: 'Serve in the military', office: 'Run for office', government: 'Work for the government' },
   waysToCitizenship: { born: 'Born in the United States', naturalize: 'Naturalize', derive: 'Derive citizenship' },
   oathPromises: { loyalty: 'Give up loyalty to other countries', defend: 'Defend the Constitution', obey: 'Obey the laws of the United States', serve: 'Serve the nation if needed' },
+  reasonsToCome: { freedom: 'Freedom', religion: 'Religious freedom', opportunity: 'Economic opportunity', persecution: 'Escape persecution' },
+  roadToIndependence: { taxes: 'New taxes, 1760s', teaParty: 'The Boston Tea Party, 1773', declaration: 'The Declaration of Independence, July 4, 1776' },
+  revolutionTimeline: { bunkerHill: 'The Battle of Bunker Hill', delaware: 'Washington crosses the Delaware', valleyForge: 'Valley Forge', yorktown: 'The British surrender at Yorktown' },
+  publius: { madison: 'James Madison', hamilton: 'Alexander Hamilton', jay: 'John Jay' },
+  dollarBills: { one: 'The one-dollar bill: George Washington', ten: 'The ten-dollar bill: Alexander Hamilton' },
+  civilWarMap: { union: 'The Union (North)', confederacy: 'The Confederacy (South)', border: 'Border states' },
+  growingCountry: { louisiana: 'The Louisiana Territory, 1803', alaska: 'Alaska, 1867' },
+  wars1800s: { war1812: 'The War of 1812', mexican: 'The Mexican-American War', civil: 'The Civil War', spanish: 'The Spanish-American War' },
+  civilWarEvents: { fortSumter: 'Fort Sumter, 1861', emancipation: 'The Emancipation Proclamation, 1863', gettysburg: 'The Battle of Gettysburg, 1863', appomattox: 'The surrender at Appomattox, 1865' },
+  reconstructionAmendments: { thirteenth: 'The 13th Amendment: ended slavery', fourteenth: 'The 14th Amendment: citizens', fifteenth: 'The 15th Amendment: voting, 1870' },
+  coldWar: { us: 'The United States', soviet: 'The Soviet Union' },
+  depressionTimeline: { crash: 'The Great Crash, 1929', hardTimes: 'Hard times in the 1930s', ww2: 'World War II' },
+  worldWar2Sides: { axis: 'The Axis Powers: Germany, Italy and Japan', allies: 'The Allied Powers' },
+  fourElections: { roosevelt: 'Franklin Roosevelt, elected four times', limit: 'The 22nd Amendment: two terms' },
+  ikeThree: { general: 'General in World War II', korea: 'President when the Korean War ended', highways: 'The Interstate highways' },
+  northSouth: { korea: 'Korea', vietnam: 'Vietnam' },
+  sept11Places: { newYork: 'New York City: the World Trade Center', pentagon: 'Virginia: the Pentagon', pennsylvania: 'Pennsylvania: a field' },
+  middleEastWars: { gulf: 'The Persian Gulf War, 1991', afghanistan: 'The war in Afghanistan, 2001', iraq: 'The war in Iraq, 2003' },
+  innovations: { lightBulb: 'Light bulb', automobile: 'Automobile', airplane: 'Airplane', skyscrapers: 'Skyscrapers', assemblyLine: 'Assembly line', moon: 'Landing on the moon' },
+  starsAndStripes: { stars: '50 stars: one for each state', stripes: '13 stripes: the 13 original colonies' },
+  outOfMany: { many: 'Many people and states', one: 'One country' },
+  whereIsIt: { canada: 'Canada, to the north', newYork: 'New York Harbor', dc: 'Washington, D.C.', mexico: 'Mexico, to the south' },
+  holidayCalendar: { jan: 'January: New Year’s Day, Martin Luther King, Jr. Day', feb: 'February: Presidents Day', may: 'May: Memorial Day', jun: 'June: Juneteenth', jul: 'July: Independence Day', sep: 'September: Labor Day', oct: 'October: Columbus Day', nov: 'November: Veterans Day, Thanksgiving Day', dec: 'December: Christmas Day' },
 };
 
 // One part of a drawing: it fades when another part is lit (`focus`). In a
@@ -249,7 +272,7 @@ const BORDER = ['DE', 'MD', 'KY', 'MO', 'WV'];
 const UNION = ['ME', 'NH', 'VT', 'MA', 'RI', 'CT', 'NY', 'NJ', 'PA', 'OH', 'IN', 'IL', 'MI', 'WI', 'MN', 'IA', 'KS', 'CA', 'OR', 'DC'];
 export const CIVIL_WAR_SIDES = { union: UNION, confederacy: CONFEDERACY, border: BORDER };
 
-function CivilWarMap() {
+function CivilWarMap({ focus, pick } = {}) {
   const x0 = 2;
   const y0 = 2;
   const style = (c) => {
@@ -267,10 +290,18 @@ function CivilWarMap() {
   ];
   return (
     <Frame viewBox="0 0 354 360" title="A map of the states during the Civil War. The Union in the North; the Confederacy in the South: South Carolina, Mississippi, Florida, Alabama, Georgia, Louisiana, Texas, Virginia, Arkansas, North Carolina and Tennessee; border states with slavery that stayed in the Union: Delaware, Maryland, Kentucky, Missouri and West Virginia. The war began at Fort Sumter, South Carolina.">
-      {Object.keys(STATE_TILES).map((c) => {
+      {Object.keys(STATE_TILES).filter((c) => !UNION.includes(c) && !CONFEDERACY.includes(c) && !BORDER.includes(c)).map((c) => {
         const st = style(c);
-        return <Tile key={c} code={c} x0={x0} y0={y0} fill={st.fill} text={st.text} />;
+        return <g key={c} style={focus ? { opacity: 0.3 } : undefined}><Tile code={c} x0={x0} y0={y0} fill={st.fill} text={st.text} /></g>;
       })}
+      {Object.entries(CIVIL_WAR_SIDES).map(([side, codes]) => (
+        <Part key={side} id={side} focus={focus} pick={pick} drawing="civilWarMap">
+          {codes.map((c) => {
+            const st = style(c);
+            return <Tile key={c} code={c} x0={x0} y0={y0} fill={st.fill} text={st.text} />;
+          })}
+        </Part>
+      ))}
       <circle cx={sx + TILE - 4} cy={sy + TILE - 4} r={7} className="fill-white stroke-navy" strokeWidth="3" />
       <path d={`M${sx + TILE + 2} ${sy + TILE + 2} L${sx + STEP + 6} ${sy + STEP + 8}`} className="stroke-navy" strokeWidth="2" />
       <T x={sx + STEP + 8} y={sy + STEP + 20} anchor="start" size={12} weight={700}>Fort Sumter</T>
@@ -286,14 +317,14 @@ function CivilWarMap() {
 
 // The five wars of the 1900s on one timeline.
 export const WARS_1900S = [
-  { name: 'World War I', from: 1917, to: 1918, label: '1917–1918' },
-  { name: 'World War II', from: 1941, to: 1945, label: '1941–1945' },
-  { name: 'Korean War', from: 1950, to: 1953, label: '1950–1953' },
-  { name: 'Vietnam War', from: 1965, to: 1973, label: '1960s–1973' },
-  { name: 'Persian Gulf War', from: 1991, to: 1991, label: '1991' },
+  { key: 'ww1', name: 'World War I', from: 1917, to: 1918, label: '1917–1918' },
+  { key: 'ww2', name: 'World War II', from: 1941, to: 1945, label: '1941–1945' },
+  { key: 'korea', name: 'Korean War', from: 1950, to: 1953, label: '1950–1953' },
+  { key: 'vietnam', name: 'Vietnam War', from: 1965, to: 1973, label: '1960s–1973' },
+  { key: 'gulf', name: 'Persian Gulf War', from: 1991, to: 1991, label: '1991' },
 ];
 
-function WarsTimeline() {
+function WarsTimeline({ focus } = {}) {
   const left = 18;
   const width = 316;
   const x = (year) => left + ((year - 1900) / 100) * width;
@@ -305,7 +336,7 @@ function WarsTimeline() {
         const barW = Math.max(6, x(w.to + 1) - x1);
         const right = x1 > 220;
         return (
-          <g key={w.name}>
+          <g key={w.name} style={dim(focus, w.key)}>
             <rect x={x1} y={y + 18} width={barW} height={12} rx={4} className="fill-denim" />
             <line x1={x1} y1={y + 30} x2={x1} y2={214} className="stroke-mid" strokeWidth="1" strokeDasharray="3 3" />
             <T x={right ? x1 + barW : x1} y={y + 12} anchor={right ? 'end' : 'start'} size={12} weight={700}>{w.name}</T>
@@ -325,15 +356,15 @@ function WarsTimeline() {
 }
 
 // The Cold War: two rivals with two systems, 1947 to 1991.
-function ColdWar() {
+function ColdWar({ focus, pick } = {}) {
   const sides = [
-    { x: 4, name: 'United States', system: 'Democracy', a: 'People own farms,', b: 'factories and stores.', c: 'People choose.', cls: 'fill-white stroke-denim' },
-    { x: 182, name: 'Soviet Union', system: 'Communism', a: 'The government owns', b: 'farms, factories, stores.', c: 'The government decides.', cls: 'fill-white stroke-navy' },
+    { key: 'us', x: 4, name: 'United States', system: 'Democracy', a: 'People own farms,', b: 'factories and stores.', c: 'People choose.', cls: 'fill-white stroke-denim' },
+    { key: 'soviet', x: 182, name: 'Soviet Union', system: 'Communism', a: 'The government owns', b: 'farms, factories, stores.', c: 'The government decides.', cls: 'fill-white stroke-navy' },
   ];
   return (
     <Frame viewBox="0 0 350 250" title="The Cold War, about 1947 to 1991. The United States: democracy, people own farms, factories and stores, and people choose. The Soviet Union: communism, the government owns farms, factories and stores, and the government decides. They competed with weapons, money and ideas, but never fought each other directly in a big war.">
       {sides.map((s) => (
-        <g key={s.name}>
+        <Part key={s.name} id={s.key} focus={focus} pick={pick} drawing="coldWar">
           <Box x={s.x} y={4} w={164} h={140} className={s.cls} />
           <T x={s.x + 82} y={30} size={15} weight={700}>{s.name}</T>
           <rect x={s.x + 30} y={42} width={104} height={24} rx={12} className={s.name === 'United States' ? 'fill-denim' : 'fill-navy'} />
@@ -341,7 +372,7 @@ function ColdWar() {
           <T x={s.x + 82} y={88} size={12} weight={400} className="fill-muted">{s.a}</T>
           <T x={s.x + 82} y={104} size={12} weight={400} className="fill-muted">{s.b}</T>
           <T x={s.x + 82} y={128} size={12} weight={700}>{s.c}</T>
-        </g>
+        </Part>
       ))}
       <T x={175} y={164} size={12} weight={600}>Rivals: weapons, money and ideas.</T>
       <T x={175} y={180} size={12} weight={400} className="fill-muted">No big war between them.</T>
@@ -883,6 +914,504 @@ function OathPromises({ focus, pick } = {}) {
   );
 }
 
+// Unit 4. Why people came to the American colonies.
+function ReasonsToCome({ focus, pick } = {}) {
+  const tiles = [
+    { key: 'freedom', lines: ['Freedom'] },
+    { key: 'religion', lines: ['Religious', 'freedom'] },
+    { key: 'opportunity', lines: ['Economic', 'opportunity'] },
+    { key: 'persecution', lines: ['Escape', 'persecution'] },
+  ];
+  return (
+    <Frame viewBox="0 0 350 228" title="Why people came to the American colonies: freedom, religious freedom, economic opportunity, or to escape persecution">
+      <Box x={4} y={6} w={342} h={40} className="fill-navy stroke-navy" />
+      <T x={175} y={31} size={14} weight={700} className="fill-white">Why people came to the colonies</T>
+      {tiles.map((t, i) => (
+        <Part key={t.key} id={t.key} focus={focus} pick={pick} drawing="reasonsToCome">
+          <LabelTile x={i % 2 ? 180 : 4} y={56 + Math.floor(i / 2) * 86} w={166} h={78} fill={SOFT[i % 3]} lines={t.lines} />
+        </Part>
+      ))}
+    </Frame>
+  );
+}
+
+// Unit 4. The road to independence: new taxes, the Boston Tea Party, the
+// Declaration of Independence.
+function RoadToIndependence({ focus, pick } = {}) {
+  const rows = [
+    { key: 'taxes', when: '1760s', head: 'New taxes', sub: 'the Stamp Act, a tax on tea' },
+    { key: 'teaParty', when: '1773', head: 'Boston Tea Party', sub: 'tea thrown into the harbor' },
+    { key: 'declaration', when: '1776', head: 'Declaration of Independence', sub: 'adopted on July 4, 1776' },
+  ];
+  return (
+    <Frame viewBox="0 0 350 214" title="The road to independence: new taxes in the 1760s, like the Stamp Act and a tax on tea; the Boston Tea Party in 1773; the Declaration of Independence, adopted on July 4, 1776">
+      {rows.map((r, i) => (
+        <Part key={r.key} id={r.key} focus={focus} pick={pick} drawing="roadToIndependence">
+          <Box x={4} y={6 + i * 72} w={342} h={58} className={`${i === 2 ? 'fill-gold' : SOFT[i % 3]} stroke-denim`} />
+          <rect x={12} y={19 + i * 72} width={66} height={32} rx={8} className="fill-navy" />
+          <T x={45} y={40 + i * 72} size={13} weight={700} className="fill-white">{r.when}</T>
+          <T x={88} y={30 + i * 72} anchor="start" size={14} weight={700}>{r.head}</T>
+          <T x={88} y={50 + i * 72} anchor="start" size={12} weight={400}>{r.sub}</T>
+          {i < 2 && <Arrow d={arrowPath(45, 54 + i * 72, 45, 76 + i * 72)} />}
+        </Part>
+      ))}
+    </Frame>
+  );
+}
+
+// Unit 4. Four events of the American Revolution, in order.
+function RevolutionTimeline({ focus, pick } = {}) {
+  const rows = [
+    { key: 'bunkerHill', text: 'Battle of Bunker Hill' },
+    { key: 'delaware', text: 'Washington crosses the Delaware' },
+    { key: 'valleyForge', text: 'Valley Forge' },
+    { key: 'yorktown', text: 'The British surrender at Yorktown' },
+  ];
+  return (
+    <Frame viewBox="0 0 350 268" title="The American Revolution, led by George Washington and the Continental Army: the Battle of Bunker Hill, Washington crossing the Delaware, Valley Forge, and the British surrender at Yorktown">
+      <Box x={4} y={6} w={342} h={40} className="fill-navy stroke-navy" />
+      <T x={175} y={31} size={14} weight={700} className="fill-white">The Revolutionary War</T>
+      {rows.map((r, i) => (
+        <Part key={r.key} id={r.key} focus={focus} pick={pick} drawing="revolutionTimeline">
+          <Box x={4} y={56 + i * 52} w={342} h={44} className={`${i === 3 ? 'fill-gold' : SOFT[i % 3]} stroke-denim`} />
+          <circle cx={30} cy={78 + i * 52} r={14} className="fill-navy" />
+          <T x={30} y={83 + i * 52} size={13} weight={700} className="fill-white">{i + 1}</T>
+          <T x={54} y={83 + i * 52} anchor="start" size={14} weight={700}>{r.text}</T>
+        </Part>
+      ))}
+    </Frame>
+  );
+}
+
+// Unit 4. The three writers of the Federalist Papers, under one name.
+function Publius({ focus, pick } = {}) {
+  const writers = [
+    { key: 'madison', x: 4, lines: ['James', 'Madison'] },
+    { key: 'hamilton', x: 120, lines: ['Alexander', 'Hamilton'] },
+    { key: 'jay', x: 236, lines: ['John', 'Jay'] },
+  ];
+  return (
+    <Frame viewBox="0 0 350 214" title="James Madison, Alexander Hamilton and John Jay wrote the Federalist Papers under one name: Publius">
+      {writers.map((w, i) => (
+        <Part key={w.key} id={w.key} focus={focus} pick={pick} drawing="publius">
+          <Box x={w.x} y={6} w={110} h={112} className={`${SOFT[i % 3]} stroke-denim`} />
+          <Person cx={w.x + 55} cy={28} />
+          <T x={w.x + 55} y={78} size={14} weight={700}>{w.lines[0]}</T>
+          <T x={w.x + 55} y={98} size={14} weight={700}>{w.lines[1]}</T>
+          <Arrow d={arrowPath(w.x + 55, 124, 175, 146)} />
+        </Part>
+      ))}
+      <Box x={75} y={150} w={200} h={58} className="fill-navy stroke-navy" />
+      <T x={175} y={176} size={15} weight={700} className="fill-white">“Publius”</T>
+      <T x={175} y={196} size={12} weight={400} className="fill-white">The Federalist Papers</T>
+    </Frame>
+  );
+}
+
+// Unit 4. Who is on the one-dollar and ten-dollar bills (plain bills: no
+// seals, no portraits).
+function DollarBills({ focus, pick } = {}) {
+  const bills = [
+    { key: 'one', y: 6, n: '1', name: 'George Washington', fill: 'fill-sky-soft' },
+    { key: 'ten', y: 112, n: '10', name: 'Alexander Hamilton', fill: 'fill-gold-soft' },
+  ];
+  return (
+    <Frame viewBox="0 0 350 214" title="George Washington is on the one-dollar bill. Alexander Hamilton is on the ten-dollar bill.">
+      {bills.map((b) => (
+        <Part key={b.key} id={b.key} focus={focus} pick={pick} drawing="dollarBills">
+          <Box x={4} y={b.y} w={342} h={96} className={`${b.fill} stroke-denim`} />
+          <rect x={12} y={b.y + 8} width={326} height={80} rx={6} className="fill-none stroke-denim" strokeWidth="1.5" />
+          <T x={34} y={b.y + 34} size={18} weight={800}>{b.n}</T>
+          <T x={316} y={b.y + 80} size={18} weight={800}>{b.n}</T>
+          <ellipse cx={92} cy={b.y + 48} rx={28} ry={34} className="fill-white stroke-denim" strokeWidth="2" />
+          <Person cx={92} cy={b.y + 38} />
+          <T x={136} y={b.y + 44} anchor="start" size={14} weight={700}>{b.n === '1' ? 'One dollar' : 'Ten dollars'}</T>
+          <T x={136} y={b.y + 66} anchor="start" size={13} weight={600}>{b.name}</T>
+        </Part>
+      ))}
+    </Frame>
+  );
+}
+
+// Unit 5. Rows with a navy tag on the left (a year or a number), a headline
+// and a short line under it; one tappable part per row.
+function TagRows({ drawing, title, header, rows, focus, pick, rowH = 58 }) {
+  const top = header ? 56 : 6;
+  return (
+    <Frame viewBox={`0 0 350 ${top + rows.length * (rowH + 8)}`} title={title}>
+      {header && <Box x={4} y={6} w={342} h={40} className="fill-navy stroke-navy" />}
+      {header && <T x={175} y={31} size={14} weight={700} className="fill-white">{header}</T>}
+      {rows.map((r, i) => {
+        const y = top + i * (rowH + 8);
+        return (
+          <Part key={r.key} id={r.key} focus={focus} pick={pick} drawing={drawing}>
+            <Box x={4} y={y} w={342} h={rowH} className={`${r.gold ? 'fill-gold' : SOFT[i % 3]} stroke-denim`} />
+            <rect x={12} y={y + (rowH - 32) / 2} width={66} height={32} rx={8} className="fill-navy" />
+            <T x={45} y={y + rowH / 2 + 5} size={13} weight={700} className="fill-white">{r.tag}</T>
+            <T x={88} y={y + (r.sub ? rowH / 2 - 4 : rowH / 2 + 5)} anchor="start" size={14} weight={700}>{r.head}</T>
+            {r.sub && <T x={88} y={y + rowH / 2 + 15} anchor="start" size={12} weight={400}>{r.sub}</T>}
+          </Part>
+        );
+      })}
+    </Frame>
+  );
+}
+
+// Unit 5. The country grows: the Louisiana Territory (1803) and Alaska (1867).
+function GrowingCountry({ focus, pick } = {}) {
+  return (
+    <TagRows
+      drawing="growingCountry" focus={focus} pick={pick} header="The country grows"
+      title="The country grows: in 1803 the United States bought the Louisiana Territory from France, and the country doubled in size. In 1867 it bought Alaska, now the largest state."
+      rows={[
+        { key: 'louisiana', tag: '1803', head: 'Louisiana Territory', sub: 'bought from France: the country doubled' },
+        { key: 'alaska', tag: '1867', head: 'Alaska', sub: 'bought: now the largest state' },
+      ]}
+    />
+  );
+}
+
+// Unit 5. Four wars the United States fought in the 1800s.
+function Wars1800s({ focus, pick } = {}) {
+  return (
+    <TagRows
+      drawing="wars1800s" focus={focus} pick={pick} header="Wars of the 1800s" rowH={44}
+      title="Wars the United States fought in the 1800s: the War of 1812, the Mexican-American War, the Civil War (1861 to 1865) and the Spanish-American War"
+      rows={[
+        { key: 'war1812', tag: '1', head: 'War of 1812' },
+        { key: 'mexican', tag: '2', head: 'Mexican-American War' },
+        { key: 'civil', tag: '3', head: 'Civil War · 1861–1865' },
+        { key: 'spanish', tag: '4', head: 'Spanish-American War' },
+      ]}
+    />
+  );
+}
+
+// Unit 5. Important events of the Civil War, in order.
+function CivilWarEvents({ focus, pick } = {}) {
+  return (
+    <TagRows
+      drawing="civilWarEvents" focus={focus} pick={pick} header="The Civil War · 1861–1865"
+      title="Events of the Civil War: Fort Sumter in 1861, where the war began; the Emancipation Proclamation in 1863; the Battle of Gettysburg in 1863, a Union win; and Lee's surrender at Appomattox in 1865, which ended the war"
+      rows={[
+        { key: 'fortSumter', tag: '1861', head: 'Fort Sumter', sub: 'the war begins' },
+        { key: 'emancipation', tag: '1863', head: 'Emancipation Proclamation', sub: 'freed the slaves in the Confederate states' },
+        { key: 'gettysburg', tag: '1863', head: 'Battle of Gettysburg', sub: 'a big Union win in Pennsylvania' },
+        { key: 'appomattox', tag: '1865', head: 'Appomattox', sub: 'Lee surrenders: the war ends', gold: true },
+      ]}
+    />
+  );
+}
+
+// Unit 5. The amendments added after the Civil War.
+function ReconstructionAmendments({ focus, pick } = {}) {
+  return (
+    <TagRows
+      drawing="reconstructionAmendments" focus={focus} pick={pick} header="After the Civil War"
+      title="Amendments after the Civil War: the 13th ended slavery; the 14th says all persons born or naturalized in the United States are citizens; the 15th, in 1870, says a man cannot be kept from voting because of his race"
+      rows={[
+        { key: 'thirteenth', tag: '13th', head: 'Ended slavery' },
+        { key: 'fourteenth', tag: '14th', head: 'Citizens', sub: 'all persons born or naturalized here' },
+        { key: 'fifteenth', tag: '15th', head: 'Voting · 1870', sub: 'no ban because of a man’s race' },
+      ]}
+    />
+  );
+}
+
+// Unit 6. The Great Depression, from the crash to World War II.
+function DepressionTimeline({ focus, pick } = {}) {
+  return (
+    <TagRows
+      drawing="depressionTimeline" focus={focus} pick={pick} header="The Great Depression"
+      title="The Great Depression: it started with the stock market crash of 1929, the Great Crash. In the 1930s banks closed, people lost jobs and homes, and waited in bread lines. It lasted about ten years, until World War II."
+      rows={[
+        { key: 'crash', tag: '1929', head: 'The Great Crash', sub: 'the stock market crash' },
+        { key: 'hardTimes', tag: '1930s', head: 'Hard times', sub: 'banks close, jobs lost, bread lines' },
+        { key: 'ww2', tag: '1939', head: 'World War II begins', sub: 'about ten years later, it ends' },
+      ]}
+    />
+  );
+}
+
+// Unit 6. The two sides of World War II.
+function WorldWar2Sides({ focus, pick } = {}) {
+  const sides = [
+    { key: 'axis', x: 4, head: 'Axis Powers', lines: ['Germany', 'Italy', 'Japan'], fill: 'fill-white', text: 'fill-navy' },
+    { key: 'allies', x: 182, head: 'Allied Powers', lines: ['England', 'France', 'Russia', 'United States (1941)'], fill: 'fill-navy', text: 'fill-white' },
+  ];
+  return (
+    <Frame viewBox="0 0 350 188" title="World War II, 1939 to 1945. The Axis Powers: Germany, Italy and Japan. The Allied Powers: England, France and Russia; the United States joined them in 1941.">
+      {sides.map((s) => (
+        <Part key={s.key} id={s.key} focus={focus} pick={pick} drawing="worldWar2Sides">
+          <Box x={s.x} y={6} w={164} h={150} className={`${s.fill} stroke-denim`} />
+          <T x={s.x + 82} y={34} size={15} weight={700} className={s.text}>{s.head}</T>
+          {s.lines.map((l, i) => <T key={l} x={s.x + 82} y={64 + i * 22} size={13} weight={i === 3 ? 700 : 400} className={s.text}>{l}</T>)}
+        </Part>
+      ))}
+      <T x={175} y={178} size={13} weight={600}>World War II · 1939–1945</T>
+    </Frame>
+  );
+}
+
+// Unit 6. Franklin Roosevelt was elected four times; after him, the 22nd
+// Amendment allows two terms.
+function FourElections({ focus, pick } = {}) {
+  const years = ['1932', '1936', '1940', '1944'];
+  return (
+    <Frame viewBox="0 0 350 176" title="Franklin Roosevelt was elected President four times: 1932, 1936, 1940 and 1944. After him, the 22nd Amendment limited Presidents to two terms.">
+      <Part id="roosevelt" focus={focus} pick={pick} drawing="fourElections">
+        <Box x={4} y={6} w={342} h={92} className="fill-gold-soft stroke-denim" />
+        <T x={175} y={30} size={14} weight={700}>Franklin Roosevelt: elected 4 times</T>
+        {years.map((y, i) => (
+          <g key={y}>
+            <rect x={20 + i * 80} y={44} width={70} height={40} rx={8} className="fill-gold stroke-navy" strokeWidth="2" />
+            <T x={55 + i * 80} y={69} size={13} weight={700}>{y}</T>
+          </g>
+        ))}
+      </Part>
+      <Part id="limit" focus={focus} pick={pick} drawing="fourElections">
+        <Box x={4} y={108} w={342} h={62} className="fill-navy stroke-navy" />
+        <T x={175} y={134} size={14} weight={700} className="fill-white">After him: the 22nd Amendment</T>
+        <T x={175} y={156} size={13} weight={400} className="fill-white">A President can serve two terms</T>
+      </Part>
+    </Frame>
+  );
+}
+
+// Unit 6. Three things to remember about Dwight Eisenhower.
+function IkeThree({ focus, pick } = {}) {
+  const tiles = [
+    { key: 'general', x: 4, lines: ['General', 'in World', 'War II'] },
+    { key: 'korea', x: 120, lines: ['President', 'when the', 'Korean War', 'ended'] },
+    { key: 'highways', x: 236, lines: ['Interstate', 'highways'] },
+  ];
+  return (
+    <Frame viewBox="0 0 350 172" title="Dwight Eisenhower, Ike: a general in World War II, the 34th President, President when the Korean War ended, and he signed the law that built the Interstate highways">
+      <Box x={4} y={6} w={342} h={40} className="fill-navy stroke-navy" />
+      <T x={175} y={31} size={14} weight={700} className="fill-white">“Ike”: the 34th President</T>
+      {tiles.map((t, i) => (
+        <Part key={t.key} id={t.key} focus={focus} pick={pick} drawing="ikeThree">
+          <LabelTile x={t.x} y={56} w={110} h={110} fill={SOFT[i % 3]} lines={t.lines} />
+        </Part>
+      ))}
+    </Frame>
+  );
+}
+
+// Unit 6. Korea and Vietnam: a communist North against the South; the United
+// States helped the South (plain boxes, not maps).
+function NorthSouth({ focus, pick } = {}) {
+  const rows = [
+    { key: 'korea', y: 6, name: 'Korea · 1950', north: 'North Korea', south: 'South Korea', verb: ['invaded'] },
+    { key: 'vietnam', y: 112, name: 'Vietnam', north: 'North Vietnam', south: 'South Vietnam', verb: ['fought to', 'take over'] },
+  ];
+  return (
+    <Frame viewBox="0 0 350 212" title="Korea: in 1950, communist North Korea invaded South Korea. Vietnam: communist North Vietnam fought to take over South Vietnam. In both wars the United States helped the South, to stop the spread of communism.">
+      {rows.map((r) => (
+        <Part key={r.key} id={r.key} focus={focus} pick={pick} drawing="northSouth">
+          <Box x={4} y={r.y} w={342} h={98} className="fill-sky-soft stroke-denim" />
+          <T x={175} y={r.y + 22} size={14} weight={700}>{r.name}</T>
+          <rect x={14} y={r.y + 34} width={120} height={52} rx={8} className="fill-navy" />
+          <T x={74} y={r.y + 56} size={13} weight={700} className="fill-white">{r.north}</T>
+          <T x={74} y={r.y + 75} size={12} weight={400} className="fill-white">communist</T>
+          <Arrow d={arrowPath(140, r.y + 60, 206, r.y + 60)} />
+          {r.verb.map((v, k) => <T key={v} x={175} y={r.y + 80 + k * 13} size={11} weight={600}>{v}</T>)}
+          <rect x={216} y={r.y + 34} width={120} height={52} rx={8} className="fill-white stroke-denim" strokeWidth="2" />
+          <T x={276} y={r.y + 56} size={13} weight={700}>{r.south}</T>
+          <T x={276} y={r.y + 75} size={12} weight={400}>U.S. helped</T>
+        </Part>
+      ))}
+    </Frame>
+  );
+}
+
+// Unit 6. Where the September 11, 2001 attacks happened (places only).
+function Sept11Places({ focus, pick } = {}) {
+  return (
+    <TagRows
+      drawing="sept11Places" focus={focus} pick={pick} header="September 11, 2001"
+      title="On September 11, 2001, terrorists took over planes. Two crashed into the World Trade Center in New York City, one into the Pentagon in Virginia, and one in a field in Pennsylvania."
+      rows={[
+        { key: 'newYork', tag: 'NY', head: 'New York City', sub: 'the World Trade Center · two planes' },
+        { key: 'pentagon', tag: 'VA', head: 'Virginia', sub: 'the Pentagon · one plane' },
+        { key: 'pennsylvania', tag: 'PA', head: 'Pennsylvania', sub: 'a field · one plane' },
+      ]}
+    />
+  );
+}
+
+// Unit 6. Wars in the Middle East.
+function MiddleEastWars({ focus, pick } = {}) {
+  return (
+    <TagRows
+      drawing="middleEastWars" focus={focus} pick={pick} header="Wars in the Middle East"
+      title="In 1991, the Persian Gulf War forced the Iraqi military out of Kuwait. In 2001, after the September 11 attacks, the war in Afghanistan began, part of the War on Terror. In 2003, the war in Iraq began."
+      rows={[
+        { key: 'gulf', tag: '1991', head: 'Persian Gulf War', sub: 'forced Iraq out of Kuwait' },
+        { key: 'afghanistan', tag: '2001', head: 'War in Afghanistan', sub: 'part of the War on Terror' },
+        { key: 'iraq', tag: '2003', head: 'War in Iraq' },
+      ]}
+    />
+  );
+}
+
+// Unit 6. American innovations, each with a simple outline icon.
+const INNOVATION_ICONS = {
+  bulb: <g><circle cx={0} cy={-6} r={11} /><path d="M-5 6 h10 M-4 11 h8" /></g>,
+  car: <g><path d="M-20 6 v-8 l6 -8 h22 l8 8 h4 v8 z" /><circle cx={-11} cy={7} r={4} /><circle cx={11} cy={7} r={4} /></g>,
+  plane: <g><path d="M-20 0 h40 M2 0 l-10 -12 M2 0 l-10 12 M-16 0 l-5 -7 M-16 0 l-5 7" /></g>,
+  skyscraper: <g><path d="M-14 14 v-22 h10 v22 M-4 14 v-30 h10 v30 M6 14 v-18 h9 v18 M-18 14 h36" /></g>,
+  assembly: <g><path d="M-22 8 h44" /><rect x={-18} y={-6} width={10} height={10} rx={2} /><rect x={-5} y={-6} width={10} height={10} rx={2} /><rect x={8} y={-6} width={10} height={10} rx={2} /><circle cx={-16} cy={12} r={2} /><circle cx={16} cy={12} r={2} /></g>,
+  moon: <g><path d="M4 -14 a14 14 0 1 0 0 28 a11 11 0 1 1 0 -28 z" /></g>,
+};
+function Innovations({ focus, pick } = {}) {
+  const tiles = [
+    { key: 'lightBulb', icon: 'bulb', lines: ['Light bulb'] },
+    { key: 'automobile', icon: 'car', lines: ['Automobile'] },
+    { key: 'airplane', icon: 'plane', lines: ['Airplane'] },
+    { key: 'skyscrapers', icon: 'skyscraper', lines: ['Skyscrapers'] },
+    { key: 'assemblyLine', icon: 'assembly', lines: ['Assembly line'] },
+    { key: 'moon', icon: 'moon', lines: ['Moon landing', '1969'] },
+  ];
+  return (
+    <Frame viewBox="0 0 350 196" title="American innovations: the light bulb, the automobile, the airplane, skyscrapers, the assembly line, and the first landing on the moon in 1969">
+      {tiles.map((t, i) => {
+        const x = 4 + (i % 3) * 116;
+        const y = 6 + Math.floor(i / 3) * 96;
+        return (
+          <Part key={t.key} id={t.key} focus={focus} pick={pick} drawing="innovations">
+            <Box x={x} y={y} w={110} h={88} className={`${SOFT[i % 3]} stroke-denim`} />
+            <g transform={`translate(${x + 55} ${y + 30})`} className="stroke-navy" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">{INNOVATION_ICONS[t.icon]}</g>
+            {t.lines.map((l, k) => <T key={l} x={x + 55} y={y + 64 + k * 16} size={k ? 12 : 13} weight={k ? 400 : 700}>{l}</T>)}
+          </Part>
+        );
+      })}
+    </Frame>
+  );
+}
+
+// Unit 7. Counting the flag's stars and stripes (a counting picture, not a
+// flag: the flag itself is the public-domain image us-flag.jpg).
+const starPath = (cx, cy, r) => {
+  const pts = [];
+  for (let i = 0; i < 10; i += 1) {
+    const a = -Math.PI / 2 + (i * Math.PI) / 5;
+    const rr = i % 2 ? r * 0.45 : r;
+    pts.push(`${(cx + rr * Math.cos(a)).toFixed(1)} ${(cy + rr * Math.sin(a)).toFixed(1)}`);
+  }
+  return `M${pts.join(' L')} Z`;
+};
+function StarsAndStripes({ focus, pick } = {}) {
+  return (
+    <Frame viewBox="0 0 350 176" title="Counting the flag: 50 stars, one for each state, and 13 stripes, one for each of the 13 original colonies">
+      <Part id="stars" focus={focus} pick={pick} drawing="starsAndStripes">
+        <Box x={4} y={6} w={168} h={164} className="fill-sky-soft stroke-denim" />
+        {Array.from({ length: 50 }, (_, i) => (
+          <path key={i} d={starPath(22 + (i % 10) * 14.5, 24 + Math.floor(i / 10) * 15, 5.5)} className="fill-gold stroke-navy" strokeWidth="0.8" />
+        ))}
+        <T x={88} y={124} size={15} weight={700}>50 stars</T>
+        <T x={88} y={146} size={12} weight={400}>one for each state</T>
+      </Part>
+      <Part id="stripes" focus={focus} pick={pick} drawing="starsAndStripes">
+        <Box x={178} y={6} w={168} h={164} className="fill-gold-soft stroke-denim" />
+        {Array.from({ length: 13 }, (_, i) => (
+          <rect key={i} x={194} y={18 + i * 6.6} width={136} height={3.6} rx={1.5} className="fill-navy" />
+        ))}
+        <T x={262} y={124} size={15} weight={700}>13 stripes</T>
+        <T x={262} y={146} size={12} weight={400}>13 original colonies</T>
+      </Part>
+    </Frame>
+  );
+}
+
+// Unit 7. E Pluribus Unum: out of many, one.
+function OutOfMany({ focus, pick } = {}) {
+  return (
+    <Frame viewBox="0 0 350 196" title="E Pluribus Unum means out of many, one: many people and many states become one country">
+      <Part id="many" focus={focus} pick={pick} drawing="outOfMany">
+        <Box x={4} y={6} w={150} h={128} className="fill-sky-soft stroke-denim" />
+        {Array.from({ length: 12 }, (_, i) => <Person key={i} cx={30 + (i % 4) * 33} cy={22 + Math.floor(i / 4) * 30} />)}
+        <T x={79} y={122} size={13} weight={700}>Many</T>
+      </Part>
+      <Arrow d={arrowPath(162, 70, 190, 70)} />
+      <Part id="one" focus={focus} pick={pick} drawing="outOfMany">
+        <Box x={196} y={6} w={150} h={128} className="fill-navy stroke-navy" />
+        <circle cx={271} cy={54} r={22} className="fill-gold" />
+        <T x={271} y={60} size={16} weight={800}>1</T>
+        <T x={271} y={108} size={13} weight={700} className="fill-white">One country</T>
+      </Part>
+      <T x={175} y={162} size={15} weight={700}>E Pluribus Unum</T>
+      <T x={175} y={184} size={13} weight={400}>“Out of many, one”</T>
+    </Frame>
+  );
+}
+
+// Unit 7. Where things are: Canada to the north, Mexico to the south, the
+// capital and New York Harbor (a plain box map, no statue).
+function WhereIsIt({ focus, pick } = {}) {
+  const chip = (id, x, y, label, sub) => (
+    <Part id={id} focus={focus} pick={pick} drawing="whereIsIt">
+      <rect x={x} y={y} width={156} height={50} rx={10} className="fill-white stroke-navy" strokeWidth="2" />
+      <circle cx={x + 18} cy={y + 25} r={6} className="fill-gold stroke-navy" strokeWidth="2" />
+      <T x={x + 32} y={y + 22} anchor="start" size={13} weight={700}>{label}</T>
+      <T x={x + 32} y={y + 39} anchor="start" size={11} weight={400}>{sub}</T>
+    </Part>
+  );
+  return (
+    <Frame viewBox="0 0 350 270" title="Canada is north of the United States and Mexico is south. The capital, Washington, D.C., and New York Harbor, where the Statue of Liberty is, are in the east of the United States.">
+      <Part id="canada" focus={focus} pick={pick} drawing="whereIsIt">
+        <Box x={4} y={6} w={342} h={48} className="fill-gold-soft stroke-denim" />
+        <T x={175} y={36} size={14} weight={700}>Canada · north</T>
+      </Part>
+      <Box x={4} y={62} w={342} h={146} className="fill-sky-soft stroke-denim" />
+      <T x={16} y={86} anchor="start" size={14} weight={700}>United States</T>
+      {chip('newYork', 182, 96, 'New York Harbor', 'Statue of Liberty')}
+      {chip('dc', 120, 150, 'Washington, D.C.', 'the capital')}
+      <Part id="mexico" focus={focus} pick={pick} drawing="whereIsIt">
+        <Box x={4} y={216} w={342} h={48} className="fill-denim-soft stroke-denim" />
+        <T x={175} y={246} size={14} weight={700}>Mexico · south</T>
+      </Part>
+    </Frame>
+  );
+}
+
+// Unit 7. The national holidays, month by month.
+export const HOLIDAY_MONTHS = [
+  { key: 'jan', month: 'January', days: ['New Year’s Day', 'Martin Luther King, Jr. Day'] },
+  { key: 'feb', month: 'February', days: ['Presidents Day'] },
+  { key: 'mar', month: 'March', days: [] },
+  { key: 'apr', month: 'April', days: [] },
+  { key: 'may', month: 'May', days: ['Memorial Day'] },
+  { key: 'jun', month: 'June', days: ['Juneteenth'] },
+  { key: 'jul', month: 'July', days: ['Independence Day'] },
+  { key: 'aug', month: 'August', days: [] },
+  { key: 'sep', month: 'September', days: ['Labor Day'] },
+  { key: 'oct', month: 'October', days: ['Columbus Day'] },
+  { key: 'nov', month: 'November', days: ['Veterans Day', 'Thanksgiving Day'] },
+  { key: 'dec', month: 'December', days: ['Christmas Day'] },
+];
+function HolidayCalendar({ focus, pick } = {}) {
+  const months = HOLIDAY_MONTHS.filter((m) => m.days.length);
+  let y = 4;
+  const rows = months.map((m, i) => {
+    const h = 20 + m.days.length * 18;
+    const row = { ...m, y, h, fill: SOFT[i % 3] };
+    y += h + 6;
+    return row;
+  });
+  return (
+    <Frame viewBox={`0 0 350 ${y}`} title="The national holidays by month: January, New Year’s Day and Martin Luther King, Jr. Day; February, Presidents Day; May, Memorial Day; June, Juneteenth; July, Independence Day; September, Labor Day; October, Columbus Day; November, Veterans Day and Thanksgiving Day; December, Christmas Day">
+      {rows.map((r) => (
+        <Part key={r.key} id={r.key} focus={focus} pick={pick} drawing="holidayCalendar">
+          <Box x={4} y={r.y} w={342} h={r.h} className={`${r.fill} stroke-denim`} />
+          <T x={14} y={r.y + 24} anchor="start" size={14} weight={700}>{r.month}</T>
+          {r.days.map((d, k) => <T key={d} x={112} y={r.y + 24 + k * 18} anchor="start" size={14} weight={400}>{d}</T>)}
+        </Part>
+      ))}
+    </Frame>
+  );
+}
+
 export const DRAWINGS = {
   threeBranches: ThreeBranches,
   termLengths: TermLengths,
@@ -913,6 +1442,27 @@ export const DRAWINGS = {
   waysToServe: WaysToServe,
   waysToCitizenship: WaysToCitizenship,
   oathPromises: OathPromises,
+  reasonsToCome: ReasonsToCome,
+  roadToIndependence: RoadToIndependence,
+  revolutionTimeline: RevolutionTimeline,
+  publius: Publius,
+  dollarBills: DollarBills,
+  growingCountry: GrowingCountry,
+  wars1800s: Wars1800s,
+  civilWarEvents: CivilWarEvents,
+  reconstructionAmendments: ReconstructionAmendments,
+  depressionTimeline: DepressionTimeline,
+  worldWar2Sides: WorldWar2Sides,
+  fourElections: FourElections,
+  ikeThree: IkeThree,
+  northSouth: NorthSouth,
+  sept11Places: Sept11Places,
+  middleEastWars: MiddleEastWars,
+  innovations: Innovations,
+  starsAndStripes: StarsAndStripes,
+  outOfMany: OutOfMany,
+  whereIsIt: WhereIsIt,
+  holidayCalendar: HolidayCalendar,
 };
 
 // The parts each drawing can light up (story scenes' `focus`).
@@ -941,4 +1491,28 @@ export const DRAWING_FOCUS = {
   waysToServe: ['vote', 'taxes', 'law', 'military', 'office', 'government'],
   waysToCitizenship: ['born', 'naturalize', 'derive'],
   oathPromises: ['loyalty', 'defend', 'obey', 'serve'],
+  reasonsToCome: ['freedom', 'religion', 'opportunity', 'persecution'],
+  roadToIndependence: ['taxes', 'teaParty', 'declaration'],
+  revolutionTimeline: ['bunkerHill', 'delaware', 'valleyForge', 'yorktown'],
+  publius: ['madison', 'hamilton', 'jay'],
+  dollarBills: ['one', 'ten'],
+  civilWarMap: ['union', 'confederacy', 'border'],
+  growingCountry: ['louisiana', 'alaska'],
+  wars1800s: ['war1812', 'mexican', 'civil', 'spanish'],
+  civilWarEvents: ['fortSumter', 'emancipation', 'gettysburg', 'appomattox'],
+  reconstructionAmendments: ['thirteenth', 'fourteenth', 'fifteenth'],
+  warsTimeline: ['ww1', 'ww2', 'korea', 'vietnam', 'gulf'],
+  coldWar: ['us', 'soviet'],
+  depressionTimeline: ['crash', 'hardTimes', 'ww2'],
+  worldWar2Sides: ['axis', 'allies'],
+  fourElections: ['roosevelt', 'limit'],
+  ikeThree: ['general', 'korea', 'highways'],
+  northSouth: ['korea', 'vietnam'],
+  sept11Places: ['newYork', 'pentagon', 'pennsylvania'],
+  middleEastWars: ['gulf', 'afghanistan', 'iraq'],
+  innovations: ['lightBulb', 'automobile', 'airplane', 'skyscrapers', 'assemblyLine', 'moon'],
+  starsAndStripes: ['stars', 'stripes'],
+  outOfMany: ['many', 'one'],
+  whereIsIt: ['canada', 'newYork', 'dc', 'mexico'],
+  holidayCalendar: ['jan', 'feb', 'may', 'jun', 'jul', 'sep', 'oct', 'nov', 'dec'],
 };

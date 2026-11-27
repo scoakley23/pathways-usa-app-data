@@ -29,7 +29,7 @@ export default function CheckInForm({ kind, rows = [], user, language = 'en', on
     try {
       await saveCheckIn(user.email, checkIn);
       onDone?.(checkIn);
-    } catch (err) {
+    } catch {
       setError(true);
       setSaving(false);
     }

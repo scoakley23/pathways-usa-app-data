@@ -38,7 +38,7 @@ function Ask({ question, index, total, results, t, onAnswer, onClose }) {
     }
     setChecking(true);
     let correct = false;
-    try { correct = (await gradeCivics(question, said, { location, typed: typedAnswer })).correct; } catch (e) { correct = false; }
+    try { correct = (await gradeCivics(question, said, { location, typed: typedAnswer })).correct; } catch { correct = false; }
     onAnswer({ question, said, correct });
   };
   const speech = useSpeechCapture((transcript) => grade(transcript));
@@ -159,7 +159,6 @@ export default function SpeakItPage() {
     return null;
   }, [journey.course, sectionId]);
   const [round, setRound] = useState(0); // a new pick of questions each try
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const questions = useMemo(() => (found ? speakItQuestions(found.section) : []), [found?.section.id, round]);
   const back = () => navigate(found ? `/course?unit=${found.unit.id}` : '/course');
 

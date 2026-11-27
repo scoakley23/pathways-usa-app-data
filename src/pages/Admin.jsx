@@ -21,7 +21,7 @@ export default function Admin() {
       try {
         const user = await auth.me();
         setCurrentUser(user);
-      } catch (error) {
+      } catch {
         // Not logged in
       } finally {
         setAuthChecked(true);

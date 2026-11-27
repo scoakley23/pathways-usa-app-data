@@ -40,7 +40,7 @@ export default function PilotAdminTool({ currentUser }) {
     try {
       await auth.updateMe({ pilot_test_months_ago: value === '' ? null : Number(value) });
       toast.success(value === '' ? 'Using your real sign-up date.' : `Pretending you signed up ${value} months ago. Reload Today to see it.`);
-    } catch (err) {
+    } catch {
       toast.error('Could not save.');
     }
   };

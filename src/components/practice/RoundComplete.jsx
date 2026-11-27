@@ -22,7 +22,7 @@ export default function RoundComplete({ outcomes = [], title, rule, review = nul
   const toReview = review && review.lines.length > 0;
   useEffect(() => {
     if (right > 0) confetti({ particleCount: 80, spread: 70, origin: { y: 0.3 }, colors: CONFETTI_COLORS, disableForReducedMotion: true });
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div dir={rtl ? 'rtl' : 'ltr'} className="min-h-screen bg-paper text-navy">

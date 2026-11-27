@@ -12,7 +12,7 @@ export default function InterviewHistory() {
   useEffect(() => {
     (async () => {
       try {
-        const user = await auth.me();
+        await auth.me();
         const res = await interviewSessionsApi.list({ sort: '-created_date', limit: 10 });
         setSessions(Array.isArray(res) ? res : res.items || []);
       } catch (e) {
