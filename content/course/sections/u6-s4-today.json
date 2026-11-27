@@ -107,7 +107,7 @@
             "status": "reviewed",
             "checkedOn": "2026-11-27"
           },
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "The civil rights movement fought to end racial discrimination.",
@@ -249,7 +249,7 @@
               "meaning": "to start fighting against someone"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "On September 11, 2001, terrorists attacked the United States.",
@@ -402,7 +402,7 @@
               "meaning": "a fight or war"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "In 1990, Iraq invaded its small neighbor, Kuwait.",
@@ -572,7 +572,7 @@
               "meaning": "something made for the first time"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "An innovation is a new idea or invention.",

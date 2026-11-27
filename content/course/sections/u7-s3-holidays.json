@@ -80,7 +80,7 @@
               "meaning": "July 4, the day the Declaration of Independence was adopted"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "Independence Day is on July 4.",
@@ -231,7 +231,7 @@
               "meaning": "a national holiday on the fourth Thursday of November where people eat turkey and lots of food."
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "Veterans Day is in November.",

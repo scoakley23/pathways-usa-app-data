@@ -16,8 +16,9 @@ function allNames(node, out = []) {
   return out;
 }
 
-// Stories the owner approved in the story review (content/stories-review, Nov 27, 2026).
-// Only these may be "reviewed" in Units 1–3 outside Congress; every other one stays a draft.
+// Stories the owner approved in the story review (content/stories-review, Nov 27, 2026;
+// Units 4–6 in content/stories-review-unit-4, Unit 7 in content/stories-review-unit-7). Only these may be "reviewed" outside Congress;
+// every other one stays a draft.
 const OWNER_REVIEWED = new Set([
   'u1-s1-l1',
   'u1-s1-l2',
@@ -49,6 +50,38 @@ const OWNER_REVIEWED = new Set([
   'u3-s1-l2',
   'u3-s2-l1',
   'u3-s2-l2',
+  'u3-s3-l1',
+  'u3-s3-l2',
+  'u4-s1-l1',
+  'u4-s1-l2',
+  'u4-s2-l1',
+  'u4-s2-l2',
+  'u4-s2-l3',
+  'u4-s3-l1',
+  'u4-s3-l2',
+  'u4-s3-l3',
+  'u4-s3-l4',
+  'u5-s1-l1',
+  'u5-s2-l1',
+  'u5-s2-l2',
+  'u5-s2-l3',
+  'u5-s3-l1',
+  'u5-s3-l2',
+  'u6-s1-l1',
+  'u6-s1-l2',
+  'u6-s2-l1',
+  'u6-s2-l2',
+  'u6-s3-l1',
+  'u6-s3-l2',
+  'u6-s4-l1',
+  'u6-s4-l2',
+  'u6-s4-l3',
+  'u6-s4-l4',
+  'u7-s1-l1',
+  'u7-s1-l2',
+  'u7-s2-l1',
+  'u7-s3-l1',
+  'u7-s3-l2',
 ]);
 const expectedStatus = (id) => (OWNER_REVIEWED.has(id) ? 'reviewed' : 'draft');
 
@@ -124,6 +157,19 @@ describe('stories (Listen as a short video)', () => {
     expect(taps).toBeGreaterThanOrEqual(5);
     const citizen = lessons.find((l) => l.id === 'u3-s3-l1').steps.listen.story;
     expect(citizen.some((x) => x.say?.includes('talk to a lawyer first'))).toBe(true);
+  });
+
+  it('Units 4–7: every lesson has a story with help for every scene; reviewed only where the owner approved it', () => {
+    for (const id of ['u4', 'u5', 'u6', 'u7']) {
+      for (const l of UNITS.find((u) => u.id === id).sections.flatMap((sec) => sec.lessons)) {
+        const story = l.steps.listen.story;
+        expect(story?.length, l.id).toBeGreaterThan(3);
+        expect(l.steps.listen.storyStatus, l.id).toBe(expectedStatus(l.id));
+        for (const item of story.filter((x) => x.say)) {
+          for (const k of HELP_KINDS) expect(item.help?.[k], `${l.id}: ${item.say}`).toBeTruthy();
+        }
+      }
+    }
   });
 
   it('help lines and tap checks go into the translation sources', () => {
