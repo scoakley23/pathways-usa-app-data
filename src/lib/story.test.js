@@ -17,7 +17,7 @@ function allNames(node, out = []) {
 }
 
 // Stories the owner approved in the story review (content/stories-review, Nov 27, 2026;
-// Units 4–6 in content/stories-review-unit-4). Only these may be "reviewed" outside Congress;
+// Units 4–6 in content/stories-review-unit-4, Unit 7 in content/stories-review-unit-7). Only these may be "reviewed" outside Congress;
 // every other one stays a draft.
 const OWNER_REVIEWED = new Set([
   'u1-s1-l1',
@@ -53,6 +53,11 @@ const OWNER_REVIEWED = new Set([
   'u6-s4-l2',
   'u6-s4-l3',
   'u6-s4-l4',
+  'u7-s1-l1',
+  'u7-s1-l2',
+  'u7-s2-l1',
+  'u7-s3-l1',
+  'u7-s3-l2',
 ]);
 const expectedStatus = (id) => (OWNER_REVIEWED.has(id) ? 'reviewed' : 'draft');
 
