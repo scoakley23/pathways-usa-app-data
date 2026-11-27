@@ -5,9 +5,9 @@ Base44 `CivicsQuestion` entity (version `2025`). It is used:
 
 - by the test `src/lib/explanations.test.js`, to make sure no lesson
   explanation changes an official answer, and
-- by **Ask Vía** (`src/lib/civicsBank.js`), which sends the full list with
+- by **Ask Amio** (`src/lib/civicsBank.js`), which sends the full list with
   every request so the tutor answers civics questions from the official
-  accepted answers, not from memory. Vía uses this copy, so re-export it
+  accepted answers, not from memory. Amio uses this copy, so re-export it
   whenever the database changes.
 
 **Do not type or edit this file by hand.** To update it:
@@ -32,7 +32,7 @@ older who have been permanent residents for 20 years or more. Each entry:
 
 `question` must match `questions-2025.json` word for word. Copy the numbers and
 stars from the official USCIS "2025 Civics Test 128 Questions and Answers"
-PDF; never guess them. While the file is empty (`[]`) or incomplete, Vía gets
+PDF; never guess them. While the file is empty (`[]`) or incomplete, Amio gets
 the questions without numbers or stars and is not asked to give numbers.
 `npm test` fails if a filled-in file doesn't number all 128 questions 1–128
 exactly once, repeats a question, or doesn't mark exactly 20 as 65/20. The same
