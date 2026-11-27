@@ -78,7 +78,7 @@
               "meaning": "the right to follow any religion, or no religion"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "Some rights belong to everyone living in the United States, not only to citizens.",
@@ -186,7 +186,7 @@
                 "focus": "arms"
               },
               "help": {
-                "simpler": "People may own guns, as long as they follow the law.",
+                "simpler": "“Bear arms” means to have and carry guns. People may own guns if they follow the law.",
                 "example": "There are laws about who may buy a gun and where guns may be carried.",
                 "why": "“The right to bear arms” is another right you can name."
               }
@@ -284,7 +284,7 @@
             "status": "reviewed",
             "checkedOn": "2026-11-26"
           },
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "Only U.S. citizens can vote in federal elections, run for federal office and serve on a jury.",
@@ -361,7 +361,7 @@
               },
               "help": {
                 "simpler": "No one can be charged money to vote.",
-                "example": "Some places once charged a “poll tax.” The 24th Amendment ended that in 1964.",
+                "example": "Some places once charged a “poll tax.” The 24th Amendment ended it for federal elections in 1964.",
                 "why": "“You don’t have to pay a poll tax to vote” is another answer on the test."
               }
             },

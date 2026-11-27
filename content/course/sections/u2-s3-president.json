@@ -99,7 +99,7 @@
               "meaning": "the amendment that limits a President to two terms"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "Americans elect a President every four years.",
@@ -133,7 +133,7 @@
             {
               "say": "This rule is in the 22nd Amendment.",
               "picture": {
-                "drawing": "twoTerms"
+                "photo": "roosevelt.jpg"
               },
               "help": {
                 "simpler": "The two-term rule was added to the Constitution as the 22nd Amendment.",
@@ -188,6 +188,13 @@
                 "simpler": "If one person led for too long, they could gain too much power.",
                 "example": "A limit makes sure new leaders come in over time.",
                 "why": "“To keep the president from becoming too powerful” is the other answer on the test."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "The two-term rule keeps a president from becoming too powerful.",
+                "answer": true
               }
             }
           ]
@@ -245,7 +252,7 @@
               "meaning": "the leader of all the armed forces"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "The President has important powers.",
@@ -285,7 +292,7 @@
               },
               "help": {
                 "simpler": "The President is the top leader of the U.S. military.",
-                "example": "The Army, Navy, Air Force and Marines all answer to the President.",
+                "example": "Every part of the U.S. military, like the Army and the Navy, answers to the President.",
                 "why": "The test asks who is Commander in Chief. The answer is the President."
               }
             },
@@ -379,7 +386,7 @@
               "meaning": "an agreement where each side gets part of what it wants"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "The Electoral College decides who is elected President.",
@@ -398,6 +405,9 @@
                 "simpler": "Your vote helps pick your state’s electors.",
                 "example": "If most people in your state vote for one candidate, that candidate’s electors usually win.",
                 "why": "This explains how a citizen’s vote counts for President."
+              },
+              "picture": {
+                "photo": "election-day-1944.jpg"
               }
             },
             {
@@ -481,6 +491,18 @@
                 "example": "Some wanted the people to choose. Others wanted Congress to choose. This was the middle way.",
                 "why": "This compromise is the other answer on the test about the Electoral College."
               }
+            },
+            {
+              "check": {
+                "kind": "pick",
+                "prompt": "The Electoral College is a compromise between what?",
+                "choices": [
+                  "A vote of the people and a choice by Congress",
+                  "The President and the courts",
+                  "The states and Britain"
+                ],
+                "answer": 0
+              }
             }
           ]
         },
@@ -528,7 +550,7 @@
               "meaning": "the person who becomes President if the President can no longer serve"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "Sometimes a President cannot finish the job.",
@@ -648,7 +670,7 @@
             "status": "reviewed",
             "checkedOn": "2026-11-26"
           },
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "The executive branch has many parts.",
@@ -668,7 +690,7 @@
               },
               "help": {
                 "simpler": "These are the main parts of the executive branch.",
-                "example": "The Department of Education and the Department of Agriculture are two federal departments.",
+                "example": "The Department of Agriculture and the Department of the Treasury are two federal departments.",
                 "why": "“President,” “Cabinet” and “federal departments and agencies” are all answers on the test."
               }
             },
@@ -769,7 +791,7 @@
               "meaning": "the top lawyer of the federal government"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "Each Cabinet member leads one part of the executive branch.",
@@ -778,8 +800,8 @@
                 "focus": "cabinet"
               },
               "help": {
-                "simpler": "Every Cabinet member is in charge of one department.",
-                "example": "The Secretary of Education leads the Department of Education.",
+                "simpler": "Most Cabinet members are in charge of one department.",
+                "example": "The Secretary of Agriculture leads the Department of Agriculture.",
                 "why": "Their job titles are the answers to the test question about Cabinet positions."
               }
             },
@@ -873,7 +895,7 @@
               "meaning": "at this time"
             }
           ],
-          "storyStatus": "draft",
+          "storyStatus": "reviewed",
           "story": [
             {
               "say": "This is the President of the United States today.",
@@ -916,8 +938,15 @@
               "say": "Check the names again before your interview.",
               "help": {
                 "simpler": "Look at the names one more time close to your interview day.",
-                "example": "If there was an election, a name may be different.",
+                "example": "After an election, or if a leader leaves the job, a name may be different.",
                 "why": "You want to give the names of the leaders serving on your interview day."
+              }
+            },
+            {
+              "check": {
+                "kind": "tf",
+                "statement": "You should check the names again before your interview.",
+                "answer": true
               }
             }
           ]
